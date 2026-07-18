@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-headings-002",
+  "normalizedArtifactDigest": "56a0bd2e95c7ec1aa2b3a0270a83220835d7cb92ffee15ac824fba2d57a5274b",
+  "fixtureArtifactDigest": "99af384b758f05f8e6f2c7a68816bb76410a30be498a7d8cd47b3e3584357ce4",
+  "verificationDigest": "ae9f74e49a6dcc46b50da7b258e0e69899a7c16a9a8749c9fab27c07e5911327",
+  "entries": [
+    {
+      "candidateId": "l1-heading-beach-trip",
+      "revision": 1,
+      "candidateDigest": "20585f85e9045c9733dec33ed97ae468011200adc2d1dc3e8b49a5fd83c2f304",
+      "problemDigest": "33291e70b09dff10e703fac715461d3bf1b5bfcf9d65f5e5da5630176f81bfc4",
+      "fixtureDefinitionDigest": "5b4df4f97f68b338390e41b12bb7f23c4bf718a1ade5f76c7f205ba744ecc28e",
+      "fixtureResultsDigest": "4a9492a5c933e3208a9bf16786afa04c215293e67a587e376730571f60cc7873",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-bedtime-story",
+      "revision": 1,
+      "candidateDigest": "de1982a20957c98d378fd0c8958c038f75726afd695b085f962c9132dd27a0ea",
+      "problemDigest": "b7611166632f2f80e3f9eb1d3d4d5bd93f338cc7e361f669cb8a6cc8c8c7f0f0",
+      "fixtureDefinitionDigest": "f115006faf1aa81c741751c99bbff4e02cc36e4ae73a372407c01d027700cba4",
+      "fixtureResultsDigest": "9bfa03681b592f6352560d7053d28357f1012b7d08fcb0e128dd39316e473b37",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-birthday-party",
+      "revision": 1,
+      "candidateDigest": "b976d648c6dd137a2a6d9a6e7da2bc49b0b5a28f369d61ab4cbdd7ec01102da9",
+      "problemDigest": "f2ba5294f15b9f0610a14eedeef864dc796618986212decce288effc651c1768",
+      "fixtureDefinitionDigest": "290c32e76c18349b00bc70cafb2074c1f905a1330c0657bc4e0ec40d2d9126c4",
+      "fixtureResultsDigest": "ae5f99d2fb273dbd0c50325f95f3a9eee1b4a64ff698399a55ea0ff641d299c4",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-breakfast-menu",
+      "revision": 1,
+      "candidateDigest": "3e8fa7c153bf16b18e0657d3dcf3b696cb8310151079389b7bf04a307b8bb573",
+      "problemDigest": "c2b656d5c487bea41fa03fb627a0da9894ae52c7a7ed4c3cf7dc10360b3fd19a",
+      "fixtureDefinitionDigest": "ae3f243b1f5a9744e00936a9943f94da26ff15f2e93076fa45df555b083e7d93",
+      "fixtureResultsDigest": "d7a13178af88c00d876a87eb5a2fbfe876188c0e3f9e9afc0859642529a50971",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-doctor-visit",
+      "revision": 1,
+      "candidateDigest": "762f03dc30fe8d469d037f1e2e3d761e388c2560f623706721aafc852ca352fe",
+      "problemDigest": "9c61ddecc22528f7588bfefc7645141b603549914896016cadd9c5ef2b5253c4",
+      "fixtureDefinitionDigest": "1e2833dda49e8d2762d8c8cfd6e9190c90561b8a91d42c97cc5278438c8f3211",
+      "fixtureResultsDigest": "6f9de8a4c380a00fea5255d408256dc7b23e3b8e4274cec8b11e1dcdeca3eeec",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-family-photo",
+      "revision": 1,
+      "candidateDigest": "a1fb58e91e476a91d88c7bf800e5fa7aad23c6c03deae39cfac4dbad5f7756fc",
+      "problemDigest": "f5bda14cffe97709ffad863442e9f4df296ec02319b9fff2771a82de4d3743c7",
+      "fixtureDefinitionDigest": "596b41517490f1d9e266854e76aeb97a70444f1339a856162f1ce0854f7c7e13",
+      "fixtureResultsDigest": "963306a44cb261d69bb319438456a4433d514b9ecb99ebc4bb2685addd6d9dfa",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-garden-flowers",
+      "revision": 1,
+      "candidateDigest": "6febb3dde561ca1e7d1e6af553994a36e5bacf7125ca76061b53d1e7bfba21b1",
+      "problemDigest": "ce75e6f23be91b8d7bb91c77b87b23903756fcabcad53f6b348bbb560569f3fd",
+      "fixtureDefinitionDigest": "aad166b7915773b3425e34abcfce43b282d798876c2f7c477556061723cfc8e3",
+      "fixtureResultsDigest": "e1fa06864f59a507f065586ce4744b723d45d4b4d3cfb6fdb2fffb98a394386c",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-music-class",
+      "revision": 1,
+      "candidateDigest": "d098987fa3e6912245dd12c7a06852e11acf2fa5dca3b76b4d9a54042097257d",
+      "problemDigest": "fe56b176ae01f987ca5fec2e978af9feb81d8988685dd4ead45204f39a9d9835",
+      "fixtureDefinitionDigest": "4490fb0f88f5164075be702dafbd5719d9e608d6cd8aba18f719df854ce16a4f",
+      "fixtureResultsDigest": "9033e872c946f6dbce9b706bf5ccc62d8a09192d2bf280ddea2fb04cc32df4ce",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-pet-care",
+      "revision": 1,
+      "candidateDigest": "e31aabd010c121d40ff16fca6adfbadb86db0598970b99bda48c109ac4c21a55",
+      "problemDigest": "bcd1048e0d9c05c124a42a31ba1c271474b5967048345b2f79df079e5c47efda",
+      "fixtureDefinitionDigest": "11ecc65b30877da13ca37ebb85074b3a2c1dd73f208dea716d5845efe058abdb",
+      "fixtureResultsDigest": "5e24ea28737c2a2e54e04c8279a75a90d7e8d4c6ecbdb3b3084a72b26718394c",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-school-bus",
+      "revision": 1,
+      "candidateDigest": "2c475ed4d2e9c82e4b26bebc32b0e03f558c6a7d77c21c69ae4aa73d65b1b7a0",
+      "problemDigest": "63ce2f407899336477f2d10281b14b7d39b005067008663a2c988b1c7fe1eb9a",
+      "fixtureDefinitionDigest": "11f10501d3cfe4ea2f9d463e8602e881de23f6032718d9affb49fd8116a182bf",
+      "fixtureResultsDigest": "2bcc47183acd631b779b8caca918bdf5b764bfe420d57ecac1b380892beaa801",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-soccer-practice",
+      "revision": 1,
+      "candidateDigest": "5114558e165690701899200e2952d8de5b1f203104a806c9d8e96b6ded6539fb",
+      "problemDigest": "61c3a67cdbf3e18572fa49215e0f990a0029202323c16b0d995c73ddbb65489f",
+      "fixtureDefinitionDigest": "4668befc5eec17c14ca6ece91c55ecc0a969946d7b1ebcadeb97c87453b45cb6",
+      "fixtureResultsDigest": "46665537f14d417afdb75d5652b77feb3a88a305a1f951a2bf1084e421aa98e2",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l1-heading-winter-coat",
+      "revision": 1,
+      "candidateDigest": "14ed56cc872994279b301b86564d3e8acac41b0aa60bc48d8e9a21e183e3c28b",
+      "problemDigest": "eb1cbe5875c11b920395fe9286d28b79b24a975f6bca5f994e7a2109e5d0c66f",
+      "fixtureDefinitionDigest": "88d573916f6577177fb0364cbec150fc38304ac4780a2ac1bbb1d9de563439b5",
+      "fixtureResultsDigest": "7e5d00315889a14a1bacf9b742eed0e1b94ec7ac4b8419030d49d1edfe7a4c9f",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-fold-laundry",
+      "revision": 1,
+      "candidateDigest": "75bf570bdc7a7c1af1348db0c0a0c4e744ea9c44d3768efab6832b6705a1fa57",
+      "problemDigest": "b3f22fdea00535105ef76990c4cf9a3cd2d08a5f551d022d03b7fafa7e4b2dec",
+      "fixtureDefinitionDigest": "d375fe2565fa9607037a32263f467ff8b6d9cd5baafb8eed7de4c98823bcbf74",
+      "fixtureResultsDigest": "c7ce2bc836981a73524e8755194888bcc768becd3e32e6adf34e1bcc2d6c22f2",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-get-ready-for-bed",
+      "revision": 1,
+      "candidateDigest": "d8174c642c579b7d7171f1f1004ebd157cd4efc2aa9444eef621222f8b90f92c",
+      "problemDigest": "1de659402e36e618a140aaa6d82b4d68dd65284db0af37c66c9191b74c4b87b5",
+      "fixtureDefinitionDigest": "420fadc3f975bb4217e480de5740841ffde46103ab8d2f4be8ca9c0c6d85f262",
+      "fixtureResultsDigest": "3056a2a0de0e906c6571f4b1ca2074e1123ed03d3b03d2830cdaa17dfd18eab4",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-help-a-neighbor",
+      "revision": 1,
+      "candidateDigest": "523c998b58bbe8e55049433ce60737b33ca484721b8fbdb695fa97f5b71b8eda",
+      "problemDigest": "fea8718007f25e881982e59b2197e374a43ddcff3cd8c776c4c1613195a998fb",
+      "fixtureDefinitionDigest": "ab9a414ef0f2d01ac8df545b857ca48a795b443429cdc94bcb2eff1d9c71f027",
+      "fixtureResultsDigest": "f25f1b93b9c8f93a5f15dc5e1e1b4d102f0775d0eeefcbbc40560eeb25d9d7bc",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-make-lunch",
+      "revision": 1,
+      "candidateDigest": "f8f0b977bf477f459ee7b6373e79dc0ce5af5112deb8be225e1b685c6b86db89",
+      "problemDigest": "ccaff22e08784d4974ccf15135a70c72b0d5ebc2c3de9dfbb905d2296c16bf66",
+      "fixtureDefinitionDigest": "15803d7a57b8be9237d00389bfeb1a2bba06dc925e6b5a5e59f79db763f98280",
+      "fixtureResultsDigest": "db9ec6d41cf07ce8e80b1ea154c2bb89a99abb28cd5de9a554f92ccff4da507c",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-pack-for-a-trip",
+      "revision": 1,
+      "candidateDigest": "29accf02d14018f74f8377dc341941829e8699421cf67224ea7a41ad63514077",
+      "problemDigest": "089ff1cdb336d8348a290239a37c4decd7bb1342eefff8569477c67ba739d9d3",
+      "fixtureDefinitionDigest": "d369e12f1e94bd618f419aa38641bda392359586b88c8ecc69c98502d6a17b92",
+      "fixtureResultsDigest": "87ae865710968f80e192f2e2f953d835e9a9b1cf0211a4b3000a1c66473e637a",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-plan-game-night",
+      "revision": 1,
+      "candidateDigest": "2cece2c5a1f9bb79ba28f1d9dded0f554b900de105aca7b6ed1fd828adad5d99",
+      "problemDigest": "e499c147184a36aa82cff7e379ee4e4be2df05bf9b9f96b14807674a8845482d",
+      "fixtureDefinitionDigest": "8fd9aa599d2a444526bce63a329bd6ba0959a6c76dfb526e55e34af56e20185a",
+      "fixtureResultsDigest": "22907fa7277f814eaa8e0f21165d0c311bfcebcd6a04c97624c3121e3f9888d4",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-practice-piano",
+      "revision": 1,
+      "candidateDigest": "a8121fcec310a1624e7c8d192171f251acd2a04a0d837c93ca681e018b7b6116",
+      "problemDigest": "0220775b55f23d7d2f79ff85cbde016249c14617dc661fc167c526cea3533492",
+      "fixtureDefinitionDigest": "e7ed78339df8013063d671815405e24a60971fd4ac21aca7d61f37c2cfc7802d",
+      "fixtureResultsDigest": "5c69f7ecfbcff057e647a5e8cbaf4ed504042310a4cc270f77562ac39900c72a",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-prepare-for-class",
+      "revision": 1,
+      "candidateDigest": "61f4f018efc27dfae17dafa644928e12d21425a8e2dd3327be3a4f220563615f",
+      "problemDigest": "a56612e16ce9a536e2cf2d4fcce33f891eef3bbdafcc2f777815765be96135a6",
+      "fixtureDefinitionDigest": "92bdcedf46a0c10563cad1acf556365179859f674702ed2b6c25bb474b3e1d19",
+      "fixtureResultsDigest": "732a345caccc5277e52766bf69e6b41d391634e591c228964ed580f7bffb8e1a",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-read-before-bed",
+      "revision": 1,
+      "candidateDigest": "ffecb90f1c1bbf0cbfdab083f6fed500b3677fef654a89bf41c1309b9c1fd2a1",
+      "problemDigest": "f5b68d4a925b0793673064d454caf1c818652416187e42dd38834325b71d4582",
+      "fixtureDefinitionDigest": "90487279ee72c93e9067833335025c748705d53964a55d7e9912850b2044e859",
+      "fixtureResultsDigest": "f792d2d4f2c365461f7da5a0828f2e7d226c48ee086ffc690ede1affa9268586",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-share-family-photos",
+      "revision": 1,
+      "candidateDigest": "03c39aaa9c45fd45878bfaf4158ca29e2bdc891c5363cbdb63690cb982eb5a03",
+      "problemDigest": "6ee5d767ea69b084bfe7ffae71a2eb1956b76b1583e3fcbbf55b2fd5beac9edb",
+      "fixtureDefinitionDigest": "b427d870931508b2b9173fd44dfba5035cbce66e61d02ddf7fe154de6f80450b",
+      "fixtureResultsDigest": "afb9222765d1f7f2216e16169b6240800cd2dde8705db49059cf4beb252c05d1",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-stretch-after-work",
+      "revision": 1,
+      "candidateDigest": "df15f102f8dbdf5b8282f949c4f39df59011df0995ffeec3a98fb6a15abe1b7d",
+      "problemDigest": "42e4b09b355d47a62c19af62bd65876b8cca1fab5fdb6a26b417f16b5cd9fed1",
+      "fixtureDefinitionDigest": "5e8a8cab853409a9003834014ec7cfd4a4d3220e3f811250e83f35b46fdc4be7",
+      "fixtureResultsDigest": "1f5130bc96a6201b945bc0c9e986757c6f8e54108ac4d1e69c8c5575e5262d6c",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    },
+    {
+      "candidateId": "l2-heading-water-the-garden",
+      "revision": 1,
+      "candidateDigest": "10b09eef41c690ce0b92532fa886b61b1aae0da8f824adb8bdf35127ec8320a9",
+      "problemDigest": "85a84e750599bfb80908612313cdd614927e8c5b1b3bf098eae782f61bb966ac",
+      "fixtureDefinitionDigest": "2405de6f5326ce277d7c07770b501cdd6b03cc2a09a36a8e20961bd7938c6ed5",
+      "fixtureResultsDigest": "bc8720153c9c3b5dfce2468f1d2f4c32e86fe4415e1e45d8f3fa9cba95d3d100",
+      "fixtureCount": 8,
+      "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5"
+    }
+  ],
+  "manifestDigest": "af8c6ad6b0b5e453811a4b06e521d09771295253c03b0eaf9919efdda6f76522"
+}

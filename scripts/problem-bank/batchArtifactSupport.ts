@@ -1,11 +1,11 @@
-import { readFile, readdir, mkdir, writeFile } from "node:fs/promises"
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { normalizeProblem } from "../../src/content/normalizeProblem"
-import { level12SeedFixtures } from "../../src/content/level12SeedFixtures"
-import { level12SeedProblems } from "../../src/content/level12SeedProblems"
-import { level35SeedFixtures } from "../../src/content/level35SeedFixtures"
-import { level35SeedProblems } from "../../src/content/level35SeedProblems"
-import type { ProblemFixture, ProblemInput } from "../../src/content/types"
+import type {
+  NormalizedProblem,
+  ProblemFixture,
+  ProblemInput,
+} from "../../src/content/types"
 import { validateProblemBank } from "../../src/content/validateProblemBank"
 import { evaluateProblem } from "../../src/engine/evaluateProblem"
 import {
@@ -14,16 +14,14 @@ import {
   compileAcceptedBank,
   createRuntimeProjections,
   evaluateBatchEvidence,
+  loadBatchDirectories,
   normalizeBatch,
   verifyBatchFixtures,
 } from "./batchPipeline.mjs"
 import { canonicalJson, sha256 } from "./pipeline.mjs"
 
-export const SEED_BATCH_ID = "2026-07-19-milestone-1-foundation-001"
-
-const BANK_ROOT = "curriculum/problem-bank"
-const BATCH_ROOT = `${BANK_ROOT}/batches/${SEED_BATCH_ID}`
-const POLICY_FILE = `${BANK_ROOT}/engine-contract-policy.json`
+const DEFAULT_BANK_ROOT = "curriculum/problem-bank"
+const DEFAULT_POLICY_FILE = `${DEFAULT_BANK_ROOT}/engine-contract-policy.json`
 
 const fixtureRoleMap = {
   canonical: "canonical",
@@ -36,6 +34,27 @@ const fixtureRoleMap = {
 } as const
 
 type JsonRecord = Record<string, unknown>
+
+export type AuthoredBatchConfig = {
+  batchId: string
+  sequence: number
+  curriculumVersion: string
+  generatedBy: string
+  generatedOn: string
+  bankRoot?: string
+  policyFile?: string
+  requiredIndependentReviews?: number
+}
+
+type LoadedBatch = {
+  normalized?: JsonRecord
+  fixtureArtifact?: JsonRecord
+  verification?: JsonRecord
+  manifest?: JsonRecord
+  reviews?: JsonRecord[]
+  editorial?: JsonRecord | null
+  loaderErrors?: string[]
+}
 
 async function readJson(path: string) {
   return JSON.parse(await readFile(path, "utf8"))
@@ -54,9 +73,13 @@ function prettyJson(value: unknown) {
   return `${JSON.stringify(value, null, 2)}\n`
 }
 
+function withoutDigest(value: JsonRecord, field: string) {
+  return Object.fromEntries(Object.entries(value).filter(([key]) => key !== field))
+}
+
 function toBatchFixture(fixture: ProblemFixture) {
   if (!fixture.id || !fixture.role) {
-    throw new Error(`Seed fixture for ${fixture.problemId} lacks schema-v2 identity metadata`)
+    throw new Error(`Fixture for ${fixture.problemId} lacks schema-v2 identity metadata`)
   }
   return {
     id: fixture.id,
@@ -77,13 +100,19 @@ function toBatchFixture(fixture: ProblemFixture) {
   }
 }
 
-function toBatchCandidate(problem: (typeof level12SeedProblems)[number]) {
+function toBatchCandidate(problem: NormalizedProblem) {
   const { sourceBatchId: _sourceBatchId, ...candidate } = structuredClone(problem)
   return candidate
 }
 
-async function buildEngineContract(repositoryRoot: string) {
-  const policy = await readJson(resolve(repositoryRoot, POLICY_FILE))
+async function buildEngineContract({
+  repositoryRoot,
+  policyFile,
+}: {
+  repositoryRoot: string
+  policyFile: string
+}) {
+  const policy = await readJson(resolve(repositoryRoot, policyFile))
   const files = await Promise.all(
     policy.files.map(async (path: string) => ({
       path,
@@ -113,40 +142,127 @@ async function buildEngineContract(repositoryRoot: string) {
   return { ...artifact, engineContractDigest: sha256(artifact) }
 }
 
-export async function buildSeedBatchArtifacts({
+function batchDirectory(config: AuthoredBatchConfig) {
+  return `${config.bankRoot ?? DEFAULT_BANK_ROOT}/batches/${config.batchId}`
+}
+
+function bankDirectory(config: AuthoredBatchConfig) {
+  return config.bankRoot ?? DEFAULT_BANK_ROOT
+}
+
+async function loadPreviousBatches({
   repositoryRoot,
+  config,
 }: {
   repositoryRoot: string
+  config: AuthoredBatchConfig
 }) {
-  const prompt = await readFile(
-    resolve(repositoryRoot, BATCH_ROOT, "generation-prompt.md"),
-    "utf8",
+  const bankRoot = resolve(repositoryRoot, bankDirectory(config))
+  const batches = (await loadBatchDirectories(bankRoot)) as LoadedBatch[]
+  const otherBatches = batches.filter(
+    (batch) => batch.normalized?.batchId !== config.batchId,
   )
-  const fixtures = [...level12SeedFixtures, ...level35SeedFixtures]
-  const seedProblems = [...level12SeedProblems, ...level35SeedProblems]
-  const sourceValidationErrors = validateProblemBank(seedProblems, fixtures)
-  if (sourceValidationErrors.length > 0) {
-    throw new Error(`Schema-v2 seed validation failed:\n${sourceValidationErrors.join("\n")}`)
+  const invalidOtherBatches = otherBatches.flatMap((batch) =>
+    (batch.loaderErrors ?? []).map(
+      (error) => `${String(batch.normalized?.batchId ?? "<unknown>")}: ${error}`,
+    ),
+  )
+  if (invalidOtherBatches.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} while another batch is invalid:\n${invalidOtherBatches.join("\n")}`,
+    )
+  }
+  const sameSequence = otherBatches.filter(
+    (batch) => batch.normalized?.sequence === config.sequence,
+  )
+  if (sameSequence.length > 0) {
+    throw new Error(
+      `Batch sequence ${config.sequence} is already used by ${sameSequence
+        .map((batch) => String(batch.normalized?.batchId))
+        .join(", ")}`,
+    )
+  }
+  const previousBatches = otherBatches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence < config.sequence,
+  )
+  const laterBatches = otherBatches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence > config.sequence,
+  )
+  const compiled = compileAcceptedBank(previousBatches)
+  if (compiled.errors.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} while prior batch evidence is invalid:\n${compiled.errors.join("\n")}`,
+    )
+  }
+  return {
+    previousBatches,
+    laterBatches,
+    compiled,
+    runtimeProjections: createRuntimeProjections(compiled),
+    tracker: buildTracker(compiled),
+  }
+}
+
+export async function buildAuthoredBatchArtifacts({
+  repositoryRoot,
+  config,
+  problems,
+  fixtures,
+}: {
+  repositoryRoot: string
+  config: AuthoredBatchConfig
+  problems: readonly NormalizedProblem[]
+  fixtures: readonly ProblemFixture[]
+}) {
+  const requiredIndependentReviews = config.requiredIndependentReviews ?? 2
+  if (requiredIndependentReviews < 2) {
+    throw new Error("Authored batches require at least two independent reviews")
+  }
+  const sourceBatchMismatches = problems
+    .filter((problem) => problem.sourceBatchId !== config.batchId)
+    .map((problem) => problem.id)
+  if (sourceBatchMismatches.length > 0) {
+    throw new Error(
+      `Source batch metadata must match ${config.batchId}: ${sourceBatchMismatches.join(", ")}`,
+    )
   }
 
+  const sourceValidationErrors = validateProblemBank(problems, fixtures)
+  if (sourceValidationErrors.length > 0) {
+    throw new Error(
+      `Schema-v2 authored batch validation failed:\n${sourceValidationErrors.join("\n")}`,
+    )
+  }
+
+  const prompt = await readFile(
+    resolve(repositoryRoot, batchDirectory(config), "generation-prompt.md"),
+    "utf8",
+  )
   const raw = {
     schemaVersion: 2,
-    batchId: SEED_BATCH_ID,
-    sequence: 1,
-    curriculumVersion: "2026-07-19",
-    generatedBy: "codex-build-time-seed-materializer",
-    generatedOn: "2026-07-19",
-    candidates: seedProblems.map(toBatchCandidate),
+    batchId: config.batchId,
+    sequence: config.sequence,
+    curriculumVersion: config.curriculumVersion,
+    generatedBy: config.generatedBy,
+    generatedOn: config.generatedOn,
+    candidates: problems.map(toBatchCandidate),
   }
   const normalized = normalizeBatch(raw, prompt)
   const fixtureArtifact = {
     schemaVersion: 2,
-    batchId: SEED_BATCH_ID,
+    batchId: config.batchId,
     fixtures: fixtures.map(toBatchFixture).sort((left, right) =>
       left.id.localeCompare(right.id),
     ),
   }
-  const engineContract = await buildEngineContract(repositoryRoot)
+  const engineContract = await buildEngineContract({
+    repositoryRoot,
+    policyFile: config.policyFile ?? DEFAULT_POLICY_FILE,
+  })
   const verification = await verifyBatchFixtures({
     normalized,
     fixtureArtifact,
@@ -160,18 +276,11 @@ export async function buildSeedBatchArtifacts({
     },
     evaluate: evaluateProblem,
   })
-  const manifest = buildReviewManifest({
-    normalized,
-    fixtureArtifact,
-    verification,
-  })
-
-  const pendingCompiled = compileAcceptedBank([])
-  const runtimeProjections = createRuntimeProjections(pendingCompiled)
-  const tracker = buildTracker(pendingCompiled)
+  const manifest = buildReviewManifest({ normalized, fixtureArtifact, verification })
+  const previous = await loadPreviousBatches({ repositoryRoot, config })
   const preparedSummaryBase = {
     schemaVersion: 2,
-    batchId: SEED_BATCH_ID,
+    batchId: config.batchId,
     status: "awaiting-independent-review",
     candidateCount: normalized.candidateCount,
     fixtureCount: fixtureArtifact.fixtures.length,
@@ -182,10 +291,10 @@ export async function buildSeedBatchArtifacts({
     verificationDigest: verification.verificationDigest,
     manifestDigest: manifest.manifestDigest,
     engineContractDigest: engineContract.engineContractDigest,
-    requiredIndependentReviews: 2,
+    requiredIndependentReviews,
     committedIndependentReviews: 0,
     editorialPresent: false,
-    publishedAcceptedTotal: 0,
+    publishedAcceptedTotal: previous.tracker.acceptedTotal,
   }
   const preparedSummary = {
     ...preparedSummaryBase,
@@ -193,27 +302,40 @@ export async function buildSeedBatchArtifacts({
   }
 
   return {
+    config: { ...config, requiredIndependentReviews },
     raw,
     normalized,
     fixtureArtifact,
     engineContract,
     verification,
     manifest,
-    runtimeProjections,
-    tracker,
     preparedSummary,
+    previousBatches: previous.previousBatches,
+    laterBatches: previous.laterBatches,
+    priorRuntimeProjections: previous.runtimeProjections,
+    priorTracker: previous.tracker,
   }
 }
 
-export async function writeSeedBatchArtifacts({
+export async function writeAuthoredBatchArtifacts({
   repositoryRoot,
   computed,
 }: {
   repositoryRoot: string
-  computed: Awaited<ReturnType<typeof buildSeedBatchArtifacts>>
+  computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
 }) {
-  const batchDir = resolve(repositoryRoot, BATCH_ROOT)
-  await mkdir(resolve(batchDir, "reviews"), { recursive: true })
+  const batchDir = resolve(repositoryRoot, batchDirectory(computed.config))
+  const reviewsDir = resolve(batchDir, "reviews")
+  await mkdir(reviewsDir, { recursive: true })
+  const reviewFiles = (await readdir(reviewsDir, { withFileTypes: true })).filter(
+    (entry) => entry.isFile() && entry.name.endsWith(".json"),
+  )
+  if (reviewFiles.length > 0 || (await optionalJson(resolve(batchDir, "editorial.json")))) {
+    throw new Error(
+      `Batch ${computed.config.batchId} is immutable after review or editorial evidence exists`,
+    )
+  }
+
   const artifacts = [
     ["candidates.raw.json", computed.raw],
     ["candidates.normalized.json", computed.normalized],
@@ -223,19 +345,11 @@ export async function writeSeedBatchArtifacts({
     ["review-manifest.json", computed.manifest],
     ["prepared-summary.generated.json", computed.preparedSummary],
   ] as const
-  const reviewFiles = (await readdir(resolve(batchDir, "reviews"), {
-    withFileTypes: true,
-  })).filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
-  if (reviewFiles.length > 0 || (await optionalJson(resolve(batchDir, "editorial.json")))) {
-    throw new Error(
-      `Batch ${SEED_BATCH_ID} is immutable after review or editorial evidence exists`,
-    )
-  }
   for (const [file, expected] of artifacts) {
     const existing = await optionalJson(resolve(batchDir, file))
     if (existing !== null && canonicalJson(existing) !== canonicalJson(expected)) {
       throw new Error(
-        `Batch ${SEED_BATCH_ID} is immutable; create a new batch instead of replacing ${file}`,
+        `Batch ${computed.config.batchId} is immutable; create a new batch instead of replacing ${file}`,
       )
     }
   }
@@ -244,26 +358,16 @@ export async function writeSeedBatchArtifacts({
       writeFile(resolve(batchDir, file), prettyJson(value), "utf8"),
     ),
   )
-  await Promise.all([
-    writeFile(
-      resolve(repositoryRoot, BANK_ROOT, "runtime-projections.generated.json"),
-      prettyJson(computed.runtimeProjections),
-      "utf8",
-    ),
-    writeFile(
-      resolve(repositoryRoot, BANK_ROOT, "tracker.generated.json"),
-      prettyJson(computed.tracker),
-      "utf8",
-    ),
-  ])
 }
 
-export async function readCommittedSeedBatch({
+export async function readCommittedAuthoredBatch({
   repositoryRoot,
+  config,
 }: {
   repositoryRoot: string
+  config: AuthoredBatchConfig
 }) {
-  const batchDir = resolve(repositoryRoot, BATCH_ROOT)
+  const batchDir = resolve(repositoryRoot, batchDirectory(config))
   const reviewFiles = (await readdir(resolve(batchDir, "reviews"), {
     withFileTypes: true,
   }))
@@ -286,10 +390,10 @@ export async function readCommittedSeedBatch({
     ),
     editorial: await optionalJson(resolve(batchDir, "editorial.json")),
     runtimeProjections: await readJson(
-      resolve(repositoryRoot, BANK_ROOT, "runtime-projections.generated.json"),
+      resolve(repositoryRoot, bankDirectory(config), "runtime-projections.generated.json"),
     ),
     tracker: await readJson(
-      resolve(repositoryRoot, BANK_ROOT, "tracker.generated.json"),
+      resolve(repositoryRoot, bankDirectory(config), "tracker.generated.json"),
     ),
   }
 }
@@ -298,11 +402,11 @@ function mechanicalDriftErrors({
   computed,
   committed,
 }: {
-  computed: Awaited<ReturnType<typeof buildSeedBatchArtifacts>>
-  committed: Awaited<ReturnType<typeof readCommittedSeedBatch>>
+  computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
+  committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
   const errors: string[] = []
-  const comparisons = [
+  for (const [label, expected, actual] of [
     ["raw candidates", computed.raw, committed.raw],
     ["normalized candidates", computed.normalized, committed.normalized],
     ["fixture artifact", computed.fixtureArtifact, committed.fixtureArtifact],
@@ -310,8 +414,7 @@ function mechanicalDriftErrors({
     ["verification", computed.verification, committed.verification],
     ["review manifest", computed.manifest, committed.manifest],
     ["prepared summary", computed.preparedSummary, committed.preparedSummary],
-  ] as const
-  for (const [label, expected, actual] of comparisons) {
+  ] as const) {
     if (canonicalJson(expected) !== canonicalJson(actual)) {
       errors.push(`Committed ${label} has deterministic drift`)
     }
@@ -319,22 +422,22 @@ function mechanicalDriftErrors({
   return errors
 }
 
-function withoutDigest(value: JsonRecord, field: string) {
-  return Object.fromEntries(
-    Object.entries(value).filter(([key]) => key !== field),
-  )
-}
-
 function validateCommittedReviews({
   computed,
   reviews,
 }: {
-  computed: Awaited<ReturnType<typeof buildSeedBatchArtifacts>>
+  computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   reviews: JsonRecord[]
 }) {
   const errors: string[] = []
   const reviewerIds = new Set<string>()
   const reviewRunIds = new Set<string>()
+  const candidateKeys = new Set(
+    computed.normalized.candidates.map(
+      (candidate: { id: string; revision: number }) =>
+        `${candidate.id}@${candidate.revision}`,
+    ),
+  )
   for (const review of reviews) {
     const reviewerId = review.reviewerId
     const reviewRunId = review.reviewRunId
@@ -342,9 +445,7 @@ function validateCommittedReviews({
       errors.push(`Invalid review schema: ${String(reviewerId ?? "<unknown>")}`)
     }
     if (review.declaredIndependent !== true) {
-      errors.push(
-        `Review must declare independence: ${String(reviewerId ?? "<unknown>")}`,
-      )
+      errors.push(`Review must declare independence: ${String(reviewerId ?? "<unknown>")}`)
     }
     if (typeof reviewerId !== "string" || !reviewerId.trim()) {
       errors.push("Review reviewerId must be a non-empty string")
@@ -372,14 +473,23 @@ function validateCommittedReviews({
     ) {
       errors.push(`Stale review digest: ${String(reviewerId ?? "<unknown>")}`)
     }
-    const verdicts = Array.isArray(review.verdicts) ? review.verdicts : []
+
+    const verdicts = Array.isArray(review.verdicts)
+      ? (review.verdicts as JsonRecord[])
+      : []
+    for (const verdict of verdicts) {
+      const key = `${String(verdict.candidateId)}@${String(verdict.revision)}`
+      if (!candidateKeys.has(key)) {
+        errors.push(`Unknown review verdict: ${key}/${String(reviewerId ?? "<unknown>")}`)
+      }
+    }
     for (const candidate of computed.normalized.candidates) {
       const evidence = computed.verification.candidates.find(
         (item: { candidateId: string; revision: number }) =>
           item.candidateId === candidate.id && item.revision === candidate.revision,
       )
       const matching = verdicts.filter(
-        (verdict: JsonRecord) =>
+        (verdict) =>
           verdict.candidateId === candidate.id &&
           verdict.revision === candidate.revision,
       )
@@ -389,7 +499,7 @@ function validateCommittedReviews({
         )
         continue
       }
-      const verdict = matching[0]
+      const verdict = matching[0]!
       if (
         verdict.candidateDigest !== candidate.candidateDigest ||
         verdict.fixtureResultsDigest !== evidence?.fixtureResultsDigest
@@ -408,7 +518,9 @@ function validateCommittedReviews({
   return errors
 }
 
-function evidenceBatch(committed: Awaited<ReturnType<typeof readCommittedSeedBatch>>) {
+function evidenceBatch(
+  committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>,
+) {
   return {
     normalized: committed.normalized,
     fixtureArtifact: committed.fixtureArtifact,
@@ -419,33 +531,58 @@ function evidenceBatch(committed: Awaited<ReturnType<typeof readCommittedSeedBat
   }
 }
 
-export function buildSeedBatchPublication({
+export function buildAuthoredBatchPublication({
   computed,
   committed,
 }: {
-  computed: Awaited<ReturnType<typeof buildSeedBatchArtifacts>>
-  committed: Awaited<ReturnType<typeof readCommittedSeedBatch>>
+  computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
+  committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
     ...validateCommittedReviews({ computed, reviews: committed.reviews }),
   ]
-  if (committed.reviews.length < 2) {
-    errors.push("Foundation seed batch requires two independent reviews")
+  const requiredReviews = computed.config.requiredIndependentReviews ?? 2
+  if (committed.reviews.length < requiredReviews) {
+    errors.push(
+      `Batch ${computed.config.batchId} requires ${requiredReviews} independent reviews`,
+    )
   }
   if (committed.editorial === null) {
-    errors.push("Foundation seed batch requires separate editorial evidence")
+    errors.push(`Batch ${computed.config.batchId} requires separate editorial evidence`)
   } else if (
     committed.reviews.some(
       (review) => review.reviewerId === committed.editorial?.editorialActor,
     )
   ) {
-    errors.push("Foundation editorial actor must differ from every reviewer")
+    errors.push("Editorial actor must differ from every reviewer")
   }
-  const batch = evidenceBatch(committed)
-  const evaluated = evaluateBatchEvidence(batch)
+
+  for (const review of committed.reviews) {
+    for (const verdict of Array.isArray(review.verdicts) ? review.verdicts : []) {
+      if (verdict.verdict !== "pass") {
+        errors.push(
+          `Batch ${computed.config.batchId} is fail-closed after reviewer disagreement: ${String(verdict.candidateId)}/${String(review.reviewerId)}`,
+        )
+      }
+    }
+  }
+  if (committed.editorial !== null) {
+    for (const decision of Array.isArray(committed.editorial.decisions)
+      ? committed.editorial.decisions
+      : []) {
+      if (decision.status !== "accepted") {
+        errors.push(
+          `Batch ${computed.config.batchId} is fail-closed after editorial rejection: ${String(decision.candidateId)}`,
+        )
+      }
+    }
+  }
+
+  const currentBatch = evidenceBatch(committed)
+  const evaluated = evaluateBatchEvidence(currentBatch)
   errors.push(...evaluated.errors)
-  const compiled = compileAcceptedBank([batch])
+  const compiled = compileAcceptedBank([...computed.previousBatches, currentBatch])
   errors.push(...compiled.errors)
   const runtimeProjections = createRuntimeProjections(compiled)
   const tracker = buildTracker(compiled)
@@ -486,51 +623,26 @@ function publicationDriftErrors({
   expected,
   committed,
 }: {
-  expected: ReturnType<typeof buildSeedBatchPublication>
-  committed: Awaited<ReturnType<typeof readCommittedSeedBatch>>
+  expected: ReturnType<typeof buildAuthoredBatchPublication>
+  committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
   const errors: string[] = []
-  if (canonicalJson(expected.summary) !== canonicalJson(committed.summary)) {
-    errors.push("Published batch summary is stale; foundation history must not be rewritten")
-  }
-
-  const foundationTrackerEntry = committed.tracker.batches?.find(
-    (batch: { batchId?: string }) => batch.batchId === SEED_BATCH_ID,
-  )
-  if (
-    !foundationTrackerEntry ||
-    foundationTrackerEntry.batchDigest !== expected.summary.batchDigest ||
-    foundationTrackerEntry.accepted !== expected.summary.accepted
-  ) {
-    errors.push("Published tracker no longer contains the sealed foundation batch")
-  }
-
-  const committedProblems = Object.values(
-    committed.runtimeProjections.levels ?? {},
-  ).flat() as JsonRecord[]
-  const expectedProblems = Object.values(
-    expected.runtimeProjections.levels ?? {},
-  ).flat() as JsonRecord[]
-  for (const problem of expectedProblems) {
-    const published = committedProblems.find(
-      (candidate) =>
-        candidate.id === problem.id && candidate.revision === problem.revision,
-    )
-    if (canonicalJson(published) !== canonicalJson(problem)) {
-      errors.push(
-        `Published runtime bank no longer contains foundation problem ${String(problem.id)}@${String(problem.revision)}`,
-      )
+  for (const [label, expectedValue, committedValue] of [
+    ["batch summary", expected.summary, committed.summary],
+  ] as const) {
+    if (canonicalJson(expectedValue) !== canonicalJson(committedValue)) {
+      errors.push(`Published ${label} is stale; run the batch publication command`)
     }
   }
   return errors
 }
 
-export function checkSeedBatchState({
+export function checkAuthoredBatchState({
   computed,
   committed,
 }: {
-  computed: Awaited<ReturnType<typeof buildSeedBatchArtifacts>>
-  committed: Awaited<ReturnType<typeof readCommittedSeedBatch>>
+  computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
+  committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
@@ -540,26 +652,31 @@ export function checkSeedBatchState({
   if (errors.length > 0) {
     return { status: "invalid-review-evidence", errors, committedIndependentReviews }
   }
+
   if (committed.editorial === null) {
-    if (canonicalJson(computed.runtimeProjections) !== canonicalJson(committed.runtimeProjections)) {
-      errors.push("Runtime projections must remain empty before editorial acceptance")
+    if (
+      canonicalJson(computed.priorRuntimeProjections) !==
+      canonicalJson(committed.runtimeProjections)
+    ) {
+      errors.push("Runtime projections must preserve the prior published bank before editorial acceptance")
     }
-    if (canonicalJson(computed.tracker) !== canonicalJson(committed.tracker)) {
-      errors.push("Tracker must remain empty before editorial acceptance")
+    if (canonicalJson(computed.priorTracker) !== canonicalJson(committed.tracker)) {
+      errors.push("Tracker must preserve the prior published bank before editorial acceptance")
     }
     if (committed.summary !== null) {
       errors.push("Batch summary must be absent before editorial acceptance")
     }
+    const requiredReviews = computed.config.requiredIndependentReviews ?? 2
     const status =
       committedIndependentReviews === 0
         ? "awaiting-independent-review"
-        : committedIndependentReviews === 1
+        : committedIndependentReviews < requiredReviews
           ? "awaiting-second-independent-review"
           : "awaiting-editorial"
     return { status, errors, committedIndependentReviews }
   }
 
-  const publication = buildSeedBatchPublication({ computed, committed })
+  const publication = buildAuthoredBatchPublication({ computed, committed })
   if (publication.errors.length > 0) {
     return {
       status: "invalid-editorial-evidence",
@@ -567,10 +684,19 @@ export function checkSeedBatchState({
       committedIndependentReviews,
     }
   }
-  const publicationErrors = publicationDriftErrors({
-    expected: publication,
-    committed,
-  })
+  const publicationErrors = publicationDriftErrors({ expected: publication, committed })
+  if (computed.laterBatches.length === 0) {
+    for (const [label, expectedValue, committedValue] of [
+      ["runtime projections", publication.runtimeProjections, committed.runtimeProjections],
+      ["tracker", publication.tracker, committed.tracker],
+    ] as const) {
+      if (canonicalJson(expectedValue) !== canonicalJson(committedValue)) {
+        publicationErrors.push(
+          `Published ${label} is stale; run the batch publication command`,
+        )
+      }
+    }
+  }
   return {
     status: publicationErrors.length > 0 ? "ready-to-publish" : "published",
     errors: publicationErrors,
@@ -578,33 +704,41 @@ export function checkSeedBatchState({
   }
 }
 
-export async function publishSeedBatchArtifacts({
+export async function publishAuthoredBatchArtifacts({
   repositoryRoot,
   computed,
 }: {
   repositoryRoot: string
-  computed: Awaited<ReturnType<typeof buildSeedBatchArtifacts>>
+  computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
 }) {
-  const committed = await readCommittedSeedBatch({ repositoryRoot })
-  const publication = buildSeedBatchPublication({ computed, committed })
+  if (computed.laterBatches.length > 0) {
+    throw new Error(
+      `Cannot republish ${computed.config.batchId} after later batches exist; publish the latest batch instead`,
+    )
+  }
+  const committed = await readCommittedAuthoredBatch({
+    repositoryRoot,
+    config: computed.config,
+  })
+  const publication = buildAuthoredBatchPublication({ computed, committed })
   if (publication.errors.length > 0) {
     throw new Error(
-      `Cannot publish ${SEED_BATCH_ID}:\n${publication.errors.join("\n")}`,
+      `Cannot publish ${computed.config.batchId}:\n${publication.errors.join("\n")}`,
     )
   }
   await Promise.all([
     writeFile(
-      resolve(repositoryRoot, BANK_ROOT, "runtime-projections.generated.json"),
+      resolve(repositoryRoot, bankDirectory(computed.config), "runtime-projections.generated.json"),
       prettyJson(publication.runtimeProjections),
       "utf8",
     ),
     writeFile(
-      resolve(repositoryRoot, BANK_ROOT, "tracker.generated.json"),
+      resolve(repositoryRoot, bankDirectory(computed.config), "tracker.generated.json"),
       prettyJson(publication.tracker),
       "utf8",
     ),
     writeFile(
-      resolve(repositoryRoot, BATCH_ROOT, "summary.generated.json"),
+      resolve(repositoryRoot, batchDirectory(computed.config), "summary.generated.json"),
       prettyJson(publication.summary),
       "utf8",
     ),

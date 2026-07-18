@@ -1,11 +1,22 @@
-import { level12SeedProblems } from "./level12SeedProblems"
-import { level35SeedProblems } from "./level35SeedProblems"
-import type { CurriculumLevel, NormalizedProblem } from "./types"
+import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
+import {
+  CURRICULUM_LEVELS,
+  type CurriculumLevel,
+  type NormalizedProblem,
+} from "./types"
 
-const compiledProblems = [
-  ...level12SeedProblems,
-  ...level35SeedProblems,
-] satisfies readonly NormalizedProblem[]
+if (runtimeProjections.schemaVersion !== 2) {
+  throw new Error("The compiled problem bank must use schema version 2")
+}
+
+const publishedLevels = runtimeProjections.levels as unknown as Record<
+  `${CurriculumLevel}`,
+  readonly NormalizedProblem[]
+>
+
+const compiledProblems = CURRICULUM_LEVELS.flatMap(
+  (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
+)
 
 if (!compiledProblems[0]) {
   throw new Error("The compiled problem bank must not be empty")

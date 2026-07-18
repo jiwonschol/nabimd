@@ -150,9 +150,10 @@ variants are never equality operands in learner grading.
 
 The engine parses the answer once and evaluates a closed, typed predicate set.
 Predicates may inspect Markdown node types, counts, nesting, order, section
-boundaries, source marker forms explicitly taught by the problem, and bounded
-document length. They may not inspect required words, title text, case,
-spelling, punctuation, semantic truth, or prose similarity.
+boundaries, and source marker forms explicitly taught by the problem. They may
+not inspect required words, title text, case, spelling, punctuation, semantic
+truth, prose similarity, source character count, line count, or document
+length.
 
 The predicate set supports:
 
@@ -161,8 +162,7 @@ The predicate set supports:
   list, and fenced-code presence;
 - ordered versus unordered lists and minimum item counts;
 - logical heading-depth order;
-- block counts and block sequences at document or structural-section scope;
-- required document size boundaries where the exercise teaches concision.
+- block counts and block sequences at document or structural-section scope.
 
 A section is a heading plus following blocks until the next heading of equal or
 shallower depth. Section targeting uses heading depth and occurrence, never
@@ -195,7 +195,8 @@ Every accepted problem runs through the real grading engine with at least:
 
 Equivalent Markdown forms pass unless the lesson explicitly teaches a declared
 source convention. Extra valid Markdown passes for single-syntax problems;
-composite problems may constrain structure and size as declared.
+composite problems may constrain declared Markdown anatomy, never prose or
+document size.
 
 A candidate may enter the runtime bank only when all of these bind to current
 digests:
@@ -208,8 +209,9 @@ digests:
   Goal quality, and the grammar-only boundary.
 
 Any content or fixture change invalidates the associated approvals. Reviewer
-disagreement blocks only that candidate. The accepted set must exactly equal
-the compiled runtime set.
+disagreement, malformed evidence, or any unresolved candidate blocks the whole
+immutable batch. The accepted set must exactly equal the compiled runtime set;
+the publisher never salvages a clean-looking subset from a failed batch.
 
 ## Reproducible batch loop
 

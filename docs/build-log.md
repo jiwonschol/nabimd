@@ -1129,3 +1129,35 @@ Two incremental-review reports were rejected with evidence. The ATX expression
 quantifier `#{1}` through `#{6}`; all six depth tests pass, so replacing it would
 only churn the sealed engine contract. The July 19 metadata likewise remains
 correct in `Asia/Seoul`, the repository owner's recorded review timezone.
+
+### Issue #9 heading vocabulary expansion
+
+The second schema-v2 batch follows the product owner's instruction to expand
+the words before expanding the grammar. Level 1 uses familiar concrete phrases
+such as food, weather, school, pets, and family activities. Level 2 asks for the
+same H1 structure through everyday routines, so recall is tested without
+introducing another syntax family. Neither level grades capitalization,
+spelling, punctuation, wording, prose meaning, or document length.
+
+Batch `2026-07-19-l1-l2-headings-002` contains 24 candidates and 192 fixtures.
+All 24 candidates and all 192 real-engine results passed the frozen manifest.
+Two independent reviewers accepted 24/24 against the same digests, and a
+separate editorial pass accepted all eight required dimensions for 24/24. The
+published projection now contains 44 problems with a 16/16/4/4/4 level split;
+the application consumes that generated ledger directly instead of maintaining
+a parallel handwritten source list.
+
+The pipeline work also added engine-contract validation to batch loading,
+global batch-sequence and candidate-revision preflight checks, and a repository
+gate that forbids changes inside already accepted batch directories. Any
+reviewer or editorial disagreement still blocks the entire new batch; no
+clean-looking subset is silently published. The runtime remains deterministic
+and makes no AI or learner-content API request.
+
+A local CodeRabbit CLI OAuth attempt introduced an unnecessary pause while its
+browser callback returned to `127.0.0.1`. It was removed from the required
+workflow rather than represented as completed review evidence. From this batch
+forward, the delivery gate is an open public PR with Codex review and CI;
+comments left independently by the installed CodeRabbit GitHub app may be
+considered as a secondary signal, but local CodeRabbit authentication is not a
+blocking step.
