@@ -162,6 +162,22 @@ describe("progressStore", () => {
     )
   })
 
+  it("rejects a bounded known-ID run that is not reachable", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      "heading-apple",
+      "heading-apple",
+      "heading-apple",
+    ]
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
   it("rejects oversized completed and recent ID lists", () => {
     for (const field of ["completedProblemIds", "recentProblemIds"] as const) {
       const progress = createDefaultProgress("heading-apple")
@@ -217,13 +233,9 @@ describe("progressStore", () => {
   })
 
   it("recovers when the saved problem disagrees with the active run step", () => {
-    const progress = createDefaultProgress("heading-rainy-day")
+    const progress = createDefaultProgress("heading-apple")
     progress.entryId = "basics"
-    progress.runProblemIds = [
-      "heading-rainy-day",
-      "heading-study-tools",
-      "heading-apple",
-    ]
+    progress.runProblemIds = createRunProblemIds("basics", 0)
     progress.runStepIndex = 1
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 

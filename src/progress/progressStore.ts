@@ -3,6 +3,7 @@ import {
   createRunProblemIds,
   isEntryId,
 } from "../content/entryChoices"
+import { isReachableRunSchedule } from "../session/runSchedule"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v2"
 
@@ -58,6 +59,8 @@ function isValidRunProblemIds(
   value: unknown,
   entryId: ProgressV2["entryId"],
   runNumber: number,
+  runStepIndex: number,
+  currentIsTransfer: boolean,
   validProblemIds: ReadonlySet<string>,
 ): value is string[] {
   if (!Array.isArray(value)) return false
@@ -68,7 +71,14 @@ function isValidRunProblemIds(
 
   return (
     value.length >= expectedRunProblemIds.length &&
-    isKnownIdList(value, validProblemIds, maximumRunLength)
+    isKnownIdList(value, validProblemIds, maximumRunLength) &&
+    isReachableRunSchedule({
+      baselineProblemIds: expectedRunProblemIds,
+      persistedProblemIds: value,
+      persistedStepIndex: runStepIndex,
+      persistedCurrentIsTransfer: currentIsTransfer,
+      transferProblemIds: validProblemIds,
+    })
   )
 }
 
@@ -84,15 +94,18 @@ function isProgressV2(
     typeof value.runNumber === "number" &&
     Number.isSafeInteger(value.runNumber) &&
     value.runNumber >= 0 &&
+    typeof value.runStepIndex === "number" &&
+    Number.isSafeInteger(value.runStepIndex) &&
+    value.runStepIndex >= 0 &&
+    typeof value.currentIsTransfer === "boolean" &&
     isValidRunProblemIds(
       value.runProblemIds,
       value.entryId,
       value.runNumber,
+      value.runStepIndex,
+      value.currentIsTransfer,
       validProblemIds,
     ) &&
-    typeof value.runStepIndex === "number" &&
-    Number.isSafeInteger(value.runStepIndex) &&
-    value.runStepIndex >= 0 &&
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
     validProblemIds.has(value.currentProblemId) &&
@@ -101,7 +114,6 @@ function isProgressV2(
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
     (value.pendingTransferFamily === null ||
       value.pendingTransferFamily === "heading-h1") &&
-    typeof value.currentIsTransfer === "boolean" &&
     (value.entryId === null
       ? value.runProblemIds.length === 0 && value.runStepIndex === 0
       : value.runProblemIds.length > 0 &&
