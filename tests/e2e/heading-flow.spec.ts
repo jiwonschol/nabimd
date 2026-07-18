@@ -237,6 +237,7 @@ test("reveals NBSP and ideographic-space traps without changing source", async (
   page,
 }) => {
   await page.goto("/")
+  await enterLevel1(page)
   const editor = sourceEditor(page)
   const source = "#\u00a0Apple\u3000"
 
