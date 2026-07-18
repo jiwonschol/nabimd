@@ -1211,6 +1211,14 @@ structure-only content check, positive and negative image-alt fixtures were
 added, and all mechanical artifacts and digests were regenerated. No rejected
 manifest was represented as accepted evidence.
 
+A final post-review adversarial check then exposed a narrower nesting edge:
+three empty parent bullets could borrow text from three separate one-item child
+lists and appear nonempty. The item-content walk now stops at nested list
+boundaries. The nested children may still satisfy the lesson if one child list
+itself has three nonempty items, but they can no longer make an empty parent
+item pass. A regression test pins this distinction while the frozen batch
+fixtures continue to replay successfully against the current engine.
+
 The corrected batch contains 24 candidates and 360 frozen real-engine
 fixtures. Atlas accepted 24/24 after recomputing the engine and artifact
 digests. Orchid independently accepted 24/24 after 360/360 frozen fixtures and

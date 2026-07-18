@@ -87,6 +87,7 @@ describe("unordered-list predicates", () => {
     "\\- One\n\\- Two\n\\- Three",
     "    - One\n    - Two\n    - Three",
     "- One\n* Two\n+ Three",
+    "-\n  - Child one\n-\n  - Child two\n-\n  - Child three",
   ])("rejects a source without a three-item bullet list: %s", (source) => {
     expect(evaluateProblem(bulletListProblem, source)).toMatchObject({
       status: "fail",

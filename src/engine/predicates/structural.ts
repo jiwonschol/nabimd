@@ -124,11 +124,19 @@ function listShapePasses(
 }
 
 function listItemHasContent(item: ListItem): boolean {
-  return descendants(item.children as AstNode[]).some((node) => {
-    return [node.value, node.alt].some(
+  return (item.children as AstNode[]).some(nodeHasNonListContent)
+}
+
+function nodeHasNonListContent(node: AstNode): boolean {
+  if (node.type === "list") return false
+  if (
+    [node.value, node.alt].some(
       (content) => typeof content === "string" && content.trim().length > 0,
     )
-  })
+  ) {
+    return true
+  }
+  return node.children?.some(nodeHasNonListContent) ?? false
 }
 
 function codeBlockPasses(
