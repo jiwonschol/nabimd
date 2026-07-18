@@ -377,6 +377,12 @@ wordmark, reading, Goal, preview, and status text. Controls keep the system sans
 stack. Markdown source and code deliberately keep the system monospace stack;
 no JetBrains Mono binary is bundled for this change.
 
+The approved butterfly/nib raster source is distributed as metadata-stripped,
+square PNG derivatives sized for their actual surfaces: 128px for the visible
+wordmark and 64px for the favicon. The full 1254px working source is not shipped
+to browsers. At 360px and below, header gutters and spacing compact while the
+visible Nabi Markdown name and readable problem progress both remain present.
+
 ### Help panel
 
 - Desktop: Help stays aligned beside Goal and reveals its content downward

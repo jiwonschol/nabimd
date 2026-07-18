@@ -74,7 +74,7 @@ button:focus-visible,
   display: block;
   width: 100%;
   height: 100%;
-  transform: scale(1.7);
+  object-fit: contain;
 }
 
 .greeting-shell {
@@ -687,6 +687,34 @@ button:focus-visible,
   .primary-button {
     flex: 1;
     min-width: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-header {
+    padding-inline: 0.75rem;
+  }
+
+  .wordmark {
+    gap: 0.4rem;
+    font-size: 1.2rem;
+  }
+
+  .wordmark__mark {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .progress {
+    gap: 0.5rem;
+  }
+
+  .progress__track {
+    gap: 0.25rem;
+  }
+
+  .progress__segment {
+    width: 1rem;
   }
 }
 

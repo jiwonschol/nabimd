@@ -349,6 +349,36 @@ test("stacks the mobile workspace in semantic order without horizontal overflow"
   expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
 })
 
+test("keeps brand and progress readable without horizontal overflow at 320px", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 800 })
+  await page.goto("/")
+  await enterLevel1(page)
+
+  const wordmark = page.getByRole("heading", { name: "Nabi Markdown" })
+  const progress = page.getByLabel("Heading progress")
+  await expect(wordmark).toBeVisible()
+  await expect(wordmark).toContainText("Nabi Markdown")
+  await expect(progress).toBeVisible()
+  await expect(progress).toContainText("1 of 3")
+
+  const wordmarkBox = await wordmark.boundingBox()
+  const progressBox = await progress.boundingBox()
+  expect(wordmarkBox).not.toBeNull()
+  expect(progressBox).not.toBeNull()
+  expect(wordmarkBox!.x).toBeGreaterThanOrEqual(0)
+  expect(wordmarkBox!.x + wordmarkBox!.width).toBeLessThanOrEqual(320)
+  expect(progressBox!.x).toBeGreaterThanOrEqual(wordmarkBox!.x + wordmarkBox!.width)
+  expect(progressBox!.x + progressBox!.width).toBeLessThanOrEqual(320)
+
+  const layout = await page.evaluate(() => ({
+    documentWidth: document.documentElement.scrollWidth,
+    viewportWidth: window.innerWidth,
+  }))
+  expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+})
+
 for (const viewport of [
   { width: 1280, height: 800 },
   { width: 1440, height: 900 },
@@ -406,15 +436,38 @@ test("loads the shared Nabi mark and local Source Serif faces without console no
   await page.goto("/")
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute(
     "href",
-    "/brand/bfly.png",
+    "/brand/bfly-favicon.png",
   )
   const greetingWordmark = page.getByRole("heading", { name: "Nabi Markdown" })
   const greetingLogo = greetingWordmark.locator("img")
   await expect(greetingLogo).toBeVisible()
+  await expect(greetingLogo).toHaveAttribute(
+    "src",
+    "/brand/bfly-wordmark.png",
+  )
   await expect(greetingLogo).toHaveAttribute("alt", "")
   await expect(greetingLogo).toHaveJSProperty("complete", true)
-  expect(await greetingLogo.evaluate((image: HTMLImageElement) => image.naturalWidth))
-    .toBeGreaterThan(0)
+  expect(
+    await greetingLogo.evaluate((image: HTMLImageElement) => ({
+      width: image.naturalWidth,
+      height: image.naturalHeight,
+    })),
+  ).toEqual({ width: 128, height: 128 })
+
+  const wordmarkAsset = await page.request.get("/brand/bfly-wordmark.png")
+  const faviconAsset = await page.request.get("/brand/bfly-favicon.png")
+  expect(wordmarkAsset.ok()).toBe(true)
+  expect(faviconAsset.ok()).toBe(true)
+  expect((await wordmarkAsset.body()).byteLength).toBeLessThan(32_000)
+  expect((await faviconAsset.body()).byteLength).toBeLessThan(16_000)
+  expect(
+    await page.evaluate(async () => {
+      const image = new Image()
+      image.src = "/brand/bfly-favicon.png"
+      await image.decode()
+      return { width: image.naturalWidth, height: image.naturalHeight }
+    }),
+  ).toEqual({ width: 64, height: 64 })
 
   await expect
     .poll(() => page.evaluate(() => document.fonts.check('600 16px "Source Serif 4"')))
