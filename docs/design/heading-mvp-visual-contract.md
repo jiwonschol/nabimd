@@ -26,10 +26,11 @@ top bar, one question sheet, and one answer sheet.
   the top bar remain fixed.
 - Goal is an immutable rendered reference, not a prose instruction or answer
   state.
-- Hint expands vertically inside Goal. Level 1 may begin open; recall levels
-  begin closed.
+- Hint expands vertically inside Goal. Level 1 begins open automatically;
+  recall levels begin closed.
 - Your answer offers **Write** and **Preview**. After a failed Check, Preview
-  becomes **Review**. A separate Live Preview column does not exist.
+  becomes **Review** and opens automatically. A separate Live Preview column
+  does not exist.
 
 ## Beginner-facing language
 
@@ -67,8 +68,8 @@ capitalization, spelling, punctuation, or exact prose as an error.
 | Canvas | `#f5f5f2` |
 | Muted ink | `#5f5f5a` |
 | Rule | `#d7d7d2` |
-| Positive wash | pale neutral green |
-| Corrective wash | pale neutral red |
+| Positive border / wash | `#9cb89b` / `rgba(244, 250, 241, 0.97)` |
+| Corrective border / wash | `#d7a5a0` / `rgba(255, 246, 245, 0.97)` |
 | UI family | system sans until the selected font license is verified |
 | Editorial display | system serif |
 | Source editor | system monospace |

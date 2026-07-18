@@ -841,8 +841,8 @@ the editor instead of the page.
 
 ### Visual and interaction verification before remote review
 
-- Unit/component/session tests: 14 files, 661 tests passed.
-- Browser tests: 16 Chromium journeys passed.
+- Unit/component/session tests: 14 files, 662 tests passed.
+- Browser tests: 18 Chromium journeys passed.
 - At `1586 × 992`, Goal and Your answer measured exactly `772 × 880` pixels
   each; the document measured `1586 × 992` with no page overflow.
 - An 80-line answer produced an editor scroller of 2,582 pixels inside a
@@ -857,5 +857,33 @@ the editor instead of the page.
   hierarchy matched the approved direction; content density differs because
   Issue #9, not this layout PR, owns the Level 5 problem bank.
 
-CodeRabbit review, GitHub review, merge, deployment, and production verification
-are still pending and are not claimed by this entry.
+### Local CodeRabbit review
+
+The authenticated CodeRabbit CLI reviewed the complete committed CBT diff and
+raised 14 issues: two major and twelve minor. Each was checked against the
+running product instead of being applied automatically.
+
+The review produced concrete accessibility and resilience improvements:
+
+- inactive CodeMirror views no longer take focus during mount;
+- answer tabs use roving tab stops and Left/Right Arrow navigation;
+- reduced-motion users see the verdict for its full React-controlled lifetime
+  instead of a one-millisecond CSS animation ending at zero opacity;
+- the visual contract records automatic Level 1 Hint, automatic failed Review,
+  and exact verdict colors;
+- the runtime-network test now catches same-origin `/api/` traffic as well as
+  external requests; and
+- undo and literal-space regressions assert observable editor content rather
+  than placeholder attributes or normalized text.
+
+The reported long-Review clipping was not present: the later
+`.answer-panel__body--reading` rule already overrides the base hidden overflow.
+An 80-line failed answer was added as an executable counterexample and proved
+that Review scrolls internally while the document stays fixed. The proposed
+Try another fallback removal was rejected because finite-bank exhaustion must
+still return different current content instead of making a visible button do
+nothing. Two date corrections were also rejected: Jiwon approved the design on
+July 19 KST and this work occurred on July 19 KST.
+
+GitHub review, merge, deployment, and production verification are still
+pending and are not claimed by this entry.

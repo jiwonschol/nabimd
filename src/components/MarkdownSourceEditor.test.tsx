@@ -87,6 +87,25 @@ describe("MarkdownSourceEditor", () => {
     await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("# Apple"))
   })
 
+  it("does not steal focus when it mounts as an inactive view", () => {
+    const beforeEditor = document.createElement("button")
+    beforeEditor.textContent = "Before editor"
+    document.body.append(beforeEditor)
+    beforeEditor.focus()
+
+    render(
+      <MarkdownSourceEditor
+        active={false}
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value=""
+      />,
+    )
+
+    expect(beforeEditor).toHaveFocus()
+    beforeEditor.remove()
+  })
+
   it("toggles invisible decorations without changing source", async () => {
     const user = userEvent.setup()
     const onChange = vi.fn()

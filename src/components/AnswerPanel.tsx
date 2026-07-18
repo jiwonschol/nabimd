@@ -1,4 +1,10 @@
-import { useEffect, useMemo, useState } from "react"
+import {
+  type KeyboardEvent as ReactKeyboardEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 import type { EntryId } from "../content/entryChoices"
 import type { Problem } from "../content/types"
 import type { Evaluation } from "../engine/types"
@@ -78,6 +84,9 @@ export function AnswerPanel({
   onCheck,
 }: AnswerPanelProps) {
   const [view, setView] = useState<AnswerView>("write")
+  const writeTabRef = useRef<HTMLButtonElement>(null)
+  const secondTabRef = useRef<HTMLButtonElement>(null)
+  const pendingTabFocus = useRef<AnswerView | null>(null)
   const reviewAvailable =
     evaluation?.status === "fail" ||
     (evaluation?.status === "matched" && evaluation.reviewItems.length > 0)
@@ -110,6 +119,25 @@ export function AnswerPanel({
     return () => document.removeEventListener("keydown", switchView)
   }, [secondView])
 
+  useEffect(() => {
+    const target = pendingTabFocus.current
+    if (!target) return
+    pendingTabFocus.current = null
+    const targetRef = target === "write" ? writeTabRef : secondTabRef
+    targetRef.current?.focus()
+  }, [view])
+
+  const moveBetweenTabs = (
+    event: ReactKeyboardEvent<HTMLButtonElement>,
+    current: AnswerView,
+  ) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return
+    event.preventDefault()
+    const target = current === "write" ? secondView : "write"
+    pendingTabFocus.current = target
+    setView(target)
+  }
+
   const tabIds = useMemo(
     () => ({
       write: `write-tab-${problem.id}`,
@@ -132,7 +160,10 @@ export function AnswerPanel({
             className="answer-tab"
             id={tabIds.write}
             onClick={() => setView("write")}
+            onKeyDown={(event) => moveBetweenTabs(event, "write")}
+            ref={writeTabRef}
             role="tab"
+            tabIndex={view === "write" ? 0 : -1}
             type="button"
           >
             Write
@@ -144,7 +175,10 @@ export function AnswerPanel({
             className="answer-tab"
             id={tabIds.second}
             onClick={() => setView(secondView)}
+            onKeyDown={(event) => moveBetweenTabs(event, secondView)}
+            ref={secondTabRef}
             role="tab"
+            tabIndex={view === secondView ? 0 : -1}
             type="button"
           >
             {secondLabel}
@@ -188,4 +222,3 @@ export function AnswerPanel({
     </section>
   )
 }
-

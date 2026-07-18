@@ -81,7 +81,7 @@ test("completes and replays a fresh session with keyboard input only", async ({
   )
   await expect(editor).toBeFocused()
   await page.keyboard.press("Space")
-  await expect(editor).toHaveText(" ")
+  await expect.poll(() => editor.evaluate((node) => node.textContent)).toBe(" ")
   await editor.press("Control+Enter")
   await expect(page.getByRole("status")).toContainText("Try again")
   await expect(page.getByRole("tab", { name: "Review" })).toHaveAttribute(
@@ -373,6 +373,47 @@ test("scrolls a long work-order answer inside its panel", async ({ page }) => {
   expect(pageScroll.document).toBeLessThanOrEqual(pageScroll.viewport)
 })
 
+test("scrolls a long Review inside the answer panel", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/")
+  await enterLevel1(page)
+
+  const longFailure = [
+    "## Apple",
+    ...Array.from({ length: 80 }, (_, index) => `- Work item ${index + 1}`),
+  ].join("\n")
+  await sourceEditor(page).fill(longFailure)
+  await sourceEditor(page).press("Control+Enter")
+
+  const review = page.getByRole("tabpanel", { name: "Review" })
+  await expect(review).toBeVisible()
+  const metrics = await review.evaluate((element) => ({
+    clientHeight: element.clientHeight,
+    scrollHeight: element.scrollHeight,
+  }))
+  expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight)
+  await review.evaluate((element) => {
+    element.scrollTop = element.scrollHeight
+  })
+  await expect.poll(() => review.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+  expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
+})
+
+test("keeps reduced-motion verdict feedback visible until dismissal", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/")
+  await enterLevel1(page)
+  await sourceEditor(page).fill("# Apple")
+  await sourceEditor(page).press("Control+Enter")
+
+  const verdict = page.getByRole("status")
+  await expect(verdict).toHaveCSS("opacity", "1")
+  await page.waitForTimeout(100)
+  await expect(verdict).toHaveCSS("opacity", "1")
+})
+
 test("loads the Nabi mark and local Source Serif faces without console noise", async ({
   page,
 }) => {
@@ -429,7 +470,10 @@ test("loads Preview without a runtime API or learner-media request", async ({
   const appOrigin = new URL(baseURL ?? "http://127.0.0.1:4173").origin
   const runtimeRequests: string[] = []
   page.on("request", (request) => {
-    if (new URL(request.url()).origin !== appOrigin) runtimeRequests.push(request.url())
+    const url = new URL(request.url())
+    if (url.origin !== appOrigin || url.pathname.startsWith("/api/")) {
+      runtimeRequests.push(request.url())
+    }
   })
 
   await page.goto("/")

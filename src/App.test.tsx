@@ -310,7 +310,8 @@ describe("App", () => {
     )
 
     fireEvent.keyDown(transferEditor, { key: "z", ctrlKey: true })
-    expect(transferEditor).toHaveAttribute("aria-placeholder", "Type Markdown…")
+    expect(within(transferEditor).getByText("Type Markdown…")).toBeVisible()
+    expect(transferEditor).not.toHaveTextContent("# Apple")
 
     await user.click(screen.getByRole("button", { name: "Hint" }))
     expect(
@@ -380,24 +381,37 @@ describe("App", () => {
     const { user, editor } = await openApp()
     await user.keyboard("# Apple")
 
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+    const writeTab = screen.getByRole("tab", { name: "Write" })
+    const previewTab = screen.getByRole("tab", { name: "Preview" })
+
+    expect(writeTab).toHaveAttribute(
       "aria-selected",
       "true",
     )
+    expect(writeTab).toHaveAttribute("tabindex", "0")
+    expect(previewTab).toHaveAttribute("tabindex", "-1")
     await user.keyboard("{Alt>}2{/Alt}")
-    expect(screen.getByRole("tab", { name: "Preview" })).toHaveAttribute(
+    expect(previewTab).toHaveAttribute(
       "aria-selected",
       "true",
     )
+    expect(previewTab).toHaveAttribute("tabindex", "0")
+    expect(writeTab).toHaveAttribute("tabindex", "-1")
     expect(screen.getByRole("tabpanel", { name: "Preview" })).toHaveTextContent(
       "Apple",
     )
 
-    await user.keyboard("{Alt>}1{/Alt}")
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+    previewTab.focus()
+    await user.keyboard("{ArrowRight}")
+    expect(writeTab).toHaveAttribute(
       "aria-selected",
       "true",
     )
+    expect(writeTab).toHaveFocus()
+
+    await user.keyboard("{Alt>}2{/Alt}")
+    await user.keyboard("{Alt>}1{/Alt}")
+    expect(writeTab).toHaveAttribute("aria-selected", "true")
     expect(editor).toHaveFocus()
   })
 
