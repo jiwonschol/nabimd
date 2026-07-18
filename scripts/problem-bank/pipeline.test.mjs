@@ -128,6 +128,39 @@ describe("problem-bank pipeline", () => {
     )
   })
 
+  it("rejects malformed artifact, family, and candidate records safely", () => {
+    expect(validateRawArtifact(null)).toEqual(
+      expect.arrayContaining(["Artifact root must be an object"]),
+    )
+
+    const invalidMetadata = structuredClone(raw)
+    invalidMetadata.generatedBy = "  "
+    invalidMetadata.generatedOn = null
+    invalidMetadata.promptFile = ""
+    invalidMetadata.families[0] = null
+    invalidMetadata.families[1].candidates[0] = null
+
+    expect(() => validateRawArtifact(invalidMetadata)).not.toThrow()
+    expect(validateRawArtifact(invalidMetadata)).toEqual(
+      expect.arrayContaining([
+        "Artifact has invalid generatedBy",
+        "Artifact has invalid generatedOn",
+        "Artifact has invalid promptFile",
+        "Family at index 0 must be an object",
+        "Family emphasis candidate at index 0 must be an object",
+      ]),
+    )
+  })
+
+  it("rejects candidate IDs that are not kebab-case", () => {
+    const invalid = structuredClone(raw)
+    invalid.families[0].candidates[0].id = "Heading_Apple"
+
+    expect(validateRawArtifact(invalid)).toContain(
+      "Candidate Heading_Apple must use a kebab-case ID",
+    )
+  })
+
   it("accepts a complete, unanimous, digest-bound workflow", () => {
     expect(evaluate()).toEqual([])
   })
@@ -163,6 +196,20 @@ describe("problem-bank pipeline", () => {
       expect.arrayContaining([
         "Reviewer disagreement: heading-apple/reviewer-c",
         "Stale review digest: heading-apple/reviewer-b",
+      ]),
+    )
+  })
+
+  it("rejects missing or non-positive fixture counts", () => {
+    const { reviews } = acceptedWorkflow()
+    const missingCounts = { ...fixtureCounts }
+    delete missingCounts["heading-apple"]
+    reviews[0].fixtureCount = 0
+
+    expect(evaluate({ fixtureCounts: missingCounts, reviews })).toEqual(
+      expect.arrayContaining([
+        "Invalid fixture count: heading-apple",
+        "Stale review digest: heading-apple/reviewer-a",
       ]),
     )
   })

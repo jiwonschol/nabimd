@@ -120,11 +120,14 @@ These families are based on Devpost's documented basic Markdown syntax and the
 portable intersection with CommonMark and Typora. Nabi does not claim complete
 Markdown, CommonMark, or GitHub Flavored Markdown coverage.
 
-### Initial bank
+### Future curriculum shape after Build Week
 
-- 24 single-syntax problems: three per family
-- 6 mixed-syntax problems
-- 3 Document Makeovers
+- The Build Week publish set is the 16 accepted H1 problems described above.
+- The other 112 generated candidates remain blocked until their deterministic
+  predicates, fixtures, independent reviews, and editorial decisions exist.
+- A later curriculum may add single-syntax drills, mixed-syntax problems, and
+  Document Makeovers in gated batches; the former 24 + 6 + 3 outline is not a
+  claim about the submitted runtime.
 
 The application can keep offering nonrecent items from the curated bank for as
 long as the learner wants to practice. It does not promise infinitely unique

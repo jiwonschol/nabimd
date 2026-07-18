@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest"
 import { headingProblems } from "./headingProblems"
-import { createRunProblemIds } from "./entryChoices"
+import {
+  createRunProblemIds,
+  createRunProblemIdsForBank,
+} from "./entryChoices"
 
 describe("createRunProblemIds", () => {
   it("keeps every normal run to three exercises", () => {
@@ -39,5 +42,15 @@ describe("createRunProblemIds", () => {
       ids.every((id) => headingProblems.some((problem) => problem.id === id)),
     ).toBe(true)
     expect(createRunProblemIds("challenge", 17)).toEqual(ids)
+  })
+
+  it("rejects an entry whose configured starting problem is absent", () => {
+    const bankWithoutApple = headingProblems.filter(
+      (problem) => problem.id !== "heading-apple",
+    )
+
+    expect(() =>
+      createRunProblemIdsForBank("level-1", 0, bankWithoutApple),
+    ).toThrow("Unknown starting problem for level-1: heading-apple")
   })
 })

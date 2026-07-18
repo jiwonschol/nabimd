@@ -51,18 +51,38 @@ export function createFixtureReviewDigest({
   return sha256({ candidateDigest, problem, results })
 }
 
+function isRecord(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value)
+}
+
 export function validateRawArtifact(raw) {
+  if (!isRecord(raw)) return ["Artifact root must be an object"]
+
   const errors = []
-  const families = Array.isArray(raw?.families) ? raw.families : []
+  if (raw.schemaVersion !== 1) errors.push("Artifact has invalid schemaVersion")
+  for (const field of ["generatedBy", "generatedOn", "promptFile"]) {
+    if (typeof raw[field] !== "string" || !raw[field].trim()) {
+      errors.push(`Artifact has invalid ${field}`)
+    }
+  }
+
+  const families = Array.isArray(raw.families) ? raw.families : []
+  if (!Array.isArray(raw.families)) errors.push("Artifact families must be an array")
   const ids = new Set()
-  const familyIds = families.map((family) => family.id)
+  const familyIds = families
+    .filter(isRecord)
+    .map((family) => family.id)
 
   for (const expected of EXPECTED_FAMILIES) {
     if (familyIds.filter((id) => id === expected).length !== 1) {
       errors.push(`Expected exactly one ${expected} family`)
     }
   }
-  for (const family of families) {
+  for (const [familyIndex, family] of families.entries()) {
+    if (!isRecord(family)) {
+      errors.push(`Family at index ${familyIndex} must be an object`)
+      continue
+    }
     if (!EXPECTED_FAMILIES.includes(family.id)) {
       errors.push(`Unknown family: ${family.id}`)
     }
@@ -83,13 +103,25 @@ export function validateRawArtifact(raw) {
         errors.push(`Family ${family.id} has blank default ${field}`)
       }
     }
-    for (const candidate of family.candidates ?? []) {
+    for (const [candidateIndex, candidate] of (family.candidates ?? []).entries()) {
+      if (!isRecord(candidate)) {
+        errors.push(
+          `Family ${family.id} candidate at index ${candidateIndex} must be an object`,
+        )
+        continue
+      }
       if (ids.has(candidate.id)) errors.push(`Duplicate candidate id: ${candidate.id}`)
-      ids.add(candidate.id)
+      if (typeof candidate.id === "string") ids.add(candidate.id)
       for (const field of ["id", "text", "targetMarkdown"]) {
         if (typeof candidate[field] !== "string" || !candidate[field].trim()) {
           errors.push(`Candidate ${candidate.id ?? "<unknown>"} has blank ${field}`)
         }
+      }
+      if (
+        typeof candidate.id === "string" &&
+        !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(candidate.id)
+      ) {
+        errors.push(`Candidate ${candidate.id} must use a kebab-case ID`)
       }
     }
   }
@@ -230,6 +262,10 @@ export function evaluateWorkflow({
       errors.push(`Missing fixture result digest: ${runtime.id}`)
       continue
     }
+    const fixtureCount = fixtureCounts[runtime.id]
+    if (!Number.isInteger(fixtureCount) || fixtureCount <= 0) {
+      errors.push(`Invalid fixture count: ${runtime.id}`)
+    }
     const candidateReviews = reviews.filter((review) => review.candidateId === runtime.id)
     const reviewers = new Set(candidateReviews.map((review) => review.reviewerId))
     const runs = new Set(candidateReviews.map((review) => review.reviewRunId))
@@ -246,7 +282,9 @@ export function evaluateWorkflow({
       if (
         review.candidateDigest !== candidate.candidateDigest ||
         review.fixtureResultsDigest !== fixtureResultsDigest ||
-        review.fixtureCount !== fixtureCounts[runtime.id]
+        !Number.isInteger(review.fixtureCount) ||
+        review.fixtureCount <= 0 ||
+        review.fixtureCount !== fixtureCount
       ) {
         errors.push(`Stale review digest: ${runtime.id}/${review.reviewerId}`)
       }

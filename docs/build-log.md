@@ -606,7 +606,7 @@ reran their checks before their final records were accepted.
 ### Verified result before remote review
 
 - `npm run check`: passed.
-- Vitest: 15 files, 654 tests passed.
+- Vitest: 15 files, 658 tests passed after local CodeRabbit review corrections.
 - Publication gate: passed with two distinct review artifacts and digest-bound
   editorial acceptance.
 - Production build: Vite transformed 203 modules and completed successfully.
@@ -614,3 +614,14 @@ reran their checks before their final records were accepted.
   1280 × 800 and 1440 × 900 no-scroll bounds and 320/375 px overflow checks.
 - Remote PR review, merge, deployment, and production-browser verification are
   still pending and are not claimed by this entry.
+
+### Local CodeRabbit review corrections
+
+The CodeRabbit CLI reviewed the complete `main...issue-7` diff and raised five
+valid boundary issues: two major and three minor. The release candidate now
+fails explicitly if an entry points to a missing starting problem, rejects
+missing or non-positive fixture counts, validates malformed artifact/family/
+candidate records without dereferencing them, requires kebab-case candidate
+IDs, and labels the former 24 + 6 + 3 curriculum outline as future scope rather
+than the Build Week publish set. Four new regression tests cover the executable
+changes; the full gate remains green.
