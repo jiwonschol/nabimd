@@ -11,7 +11,7 @@ function hasMalformedHeadingSpacing(source: string, check: MatchCheck): boolean 
   if (check.kind !== "heading-spacing") return false
 
   return source.split(/\r?\n/).some((line) => {
-    const trimmedLine = line.trimStart()
+    const trimmedLine = line.trim()
     return (
       trimmedLine === `#${check.text}` ||
       trimmedLine === `#${check.text} #`

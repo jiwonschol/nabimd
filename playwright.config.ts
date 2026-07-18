@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test"
 
-const deploymentUrl = process.env.E2E_BASE_URL
+const deploymentUrl = process.env.E2E_BASE_URL?.trim() || undefined
 const localUrl = "http://127.0.0.1:4173"
 
 export default defineConfig({

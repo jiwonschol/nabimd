@@ -54,6 +54,19 @@ describe("evaluateProblem", () => {
     })
   })
 
+  it("prioritizes malformed heading spacing with trailing whitespace", () => {
+    const result = evaluateProblem(
+      getHeadingProblem("heading-project-notes"),
+      "#Project notes   ",
+    )
+
+    expect(result).toEqual({
+      status: "fail",
+      feedbackId: "space-after-hash",
+      message: "Add one space after the hash symbol.",
+    })
+  })
+
   it("never turns an editorial refinement into a failure", () => {
     const result = evaluateProblem(
       getHeadingProblem("heading-project-notes"),

@@ -80,11 +80,11 @@ export function loadProgress(
   const fallback = createDefaultProgress(
     firstProblemId ?? "heading-project-notes",
   )
-  const saved = storage.getItem(PROGRESS_STORAGE_KEY)
-
-  if (!saved) return fallback
 
   try {
+    const saved = storage.getItem(PROGRESS_STORAGE_KEY)
+    if (!saved) return fallback
+
     const parsed: unknown = JSON.parse(saved)
     return isProgressV1(parsed, validProblemIds)
       ? cloneProgress(parsed)
@@ -98,9 +98,17 @@ export function saveProgress(
   storage: Storage,
   progress: ProgressV1,
 ): void {
-  storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+  try {
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+  } catch {
+    // Progress persistence is optional when browser storage is unavailable.
+  }
 }
 
 export function clearProgress(storage: Storage): void {
-  storage.removeItem(PROGRESS_STORAGE_KEY)
+  try {
+    storage.removeItem(PROGRESS_STORAGE_KEY)
+  } catch {
+    // The in-memory session is still reset even if persisted data remains.
+  }
 }

@@ -91,17 +91,22 @@ test("keeps the mobile coach readable without horizontal overflow", async ({
   expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
 })
 
-test("loads without a runtime API request", async ({ page }) => {
-  const runtimeRequests: string[] = []
-  page.on("request", (request) => {
-    if (["fetch", "xhr"].includes(request.resourceType())) {
-      runtimeRequests.push(request.url())
-    }
-  })
-
+test("loads without a runtime API or learner-media request", async ({ page }) => {
   await page.goto("/")
   await expect(
     page.getByRole("heading", { name: "Nabi Markdown" }),
   ).toBeVisible()
+
+  const runtimeRequests: string[] = []
+  page.on("request", (request) => {
+    if (new URL(request.url()).origin !== new URL(page.url()).origin) {
+      runtimeRequests.push(request.url())
+    }
+  })
+
+  const editor = page.getByRole("textbox", { name: "Your Markdown" })
+  await editor.fill("![tracking pixel](https://example.com/pixel.png)")
+  await expect(page.getByText("[Image: tracking pixel]")).toBeVisible()
+  await expect(page.getByRole("img")).toHaveCount(0)
   expect(runtimeRequests).toEqual([])
 })

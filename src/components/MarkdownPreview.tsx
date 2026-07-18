@@ -11,12 +11,23 @@ export function MarkdownPreview({
   label,
   variant,
 }: MarkdownPreviewProps) {
+  const components =
+    variant === "learner"
+      ? {
+          img: ({ alt }: { alt?: string }) => (
+            <span className="markdown-preview__media-placeholder">
+              [Image: {alt || "image"}]
+            </span>
+          ),
+        }
+      : undefined
+
   return (
     <section
       aria-label={label}
       className={`markdown-preview markdown-preview--${variant}`}
     >
-      <Markdown>{source}</Markdown>
+      <Markdown components={components}>{source}</Markdown>
     </section>
   )
 }

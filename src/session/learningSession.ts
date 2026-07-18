@@ -34,8 +34,13 @@ export function createLearningSession(
   progress: ProgressV1,
   problem: Problem,
 ): LearningSession {
+  const isComplete =
+    progress.completedProblemIds.includes(problem.id) &&
+    progress.pendingTransferFamily === null &&
+    !progress.currentIsTransfer
+
   return {
-    phase: "editing",
+    phase: isComplete ? "complete" : "editing",
     currentProblemId: problem.id,
     draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
     evaluation: null,

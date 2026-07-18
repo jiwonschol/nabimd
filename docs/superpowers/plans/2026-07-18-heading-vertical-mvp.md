@@ -1019,7 +1019,8 @@ test("fails, repairs, transfers, and restores a heading session", async ({ page 
   await page.getByRole("button", { name: "Next" }).click()
 
   await expect(editor).not.toHaveValue("# Project notes")
-  await editor.fill("# Weekend guide")
+  const transferTitle = await editor.inputValue()
+  await editor.fill(`# ${transferTitle}`)
   const transferDraft = await editor.inputValue()
   await page.reload()
   await expect(editor).toHaveValue(transferDraft)

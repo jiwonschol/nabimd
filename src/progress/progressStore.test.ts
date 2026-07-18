@@ -9,6 +9,27 @@ import {
 } from "./progressStore"
 import { MemoryStorage } from "../test/MemoryStorage"
 
+class ThrowingStorage extends MemoryStorage {
+  constructor(private readonly operation: "get" | "set" | "remove") {
+    super()
+  }
+
+  override getItem(key: string): string | null {
+    if (this.operation === "get") throw new Error("Storage is unavailable")
+    return super.getItem(key)
+  }
+
+  override setItem(key: string, value: string): void {
+    if (this.operation === "set") throw new Error("Storage is unavailable")
+    super.setItem(key, value)
+  }
+
+  override removeItem(key: string): void {
+    if (this.operation === "remove") throw new Error("Storage is unavailable")
+    super.removeItem(key)
+  }
+}
+
 const validProblemIds = new Set(
   headingProblems.map((problem) => problem.id),
 )
@@ -89,5 +110,25 @@ describe("progressStore", () => {
     clearProgress(storage)
 
     expect(storage.getItem(PROGRESS_STORAGE_KEY)).toBeNull()
+  })
+
+  it("falls back when reading storage throws", () => {
+    expect(loadProgress(new ThrowingStorage("get"), validProblemIds)).toEqual(
+      createDefaultProgress("heading-project-notes"),
+    )
+  })
+
+  it("treats unavailable write storage as best effort", () => {
+    const progress = createDefaultProgress("heading-project-notes")
+
+    expect(() =>
+      saveProgress(new ThrowingStorage("set"), progress),
+    ).not.toThrow()
+  })
+
+  it("treats unavailable removal storage as best effort", () => {
+    expect(() =>
+      clearProgress(new ThrowingStorage("remove")),
+    ).not.toThrow()
   })
 })

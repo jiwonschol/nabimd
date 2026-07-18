@@ -16,7 +16,7 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
 }
 
 button,
@@ -248,7 +248,7 @@ textarea:focus-visible {
   width: 24px;
   height: 24px;
   fill: none;
-  stroke: currentColor;
+  stroke: currentcolor;
   stroke-linecap: square;
   stroke-width: 1.5;
 }
@@ -340,7 +340,7 @@ textarea:focus-visible {
   min-height: 44px;
   padding: 0.5rem 0.3rem;
   border: 0;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid currentcolor;
   background: transparent;
   color: var(--ink);
 }

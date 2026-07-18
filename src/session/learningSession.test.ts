@@ -49,6 +49,15 @@ describe("learningSessionReducer", () => {
     )
   })
 
+  it("restores a completed problem as complete", () => {
+    const passed = editAndCheck(newSession(), "# Project notes")
+    const complete = learningSessionReducer(passed, { type: "next" })
+
+    const restored = createLearningSession(complete.progress, projectNotes)
+
+    expect(restored.phase).toBe("complete")
+  })
+
   it("completes after a first-attempt Matched pass without requiring Review", () => {
     const passed = editAndCheck(
       newSession(),
