@@ -12,14 +12,12 @@
 - **D7 — Identity & persistence (C-10).** Fully open source (brand retained by Jiwon), never any login. "Anyone drops in, types away, leaves." Progress is **session-scoped**: kept during the visit, fresh start after the browser closes → switch `localStorage` → `sessionStorage`. This also dissolves the schema-migration/reset concern (review P3-11). Note: the written spec's "versioned localStorage" clause must be updated to match (spec is the source of truth per repo docs).
 - **D8 — Setext handling direction (B-5).** Beginner-encouraging: celebrate that it's a real heading, then guide to the `#` style. Copy below (D11).
 
-## Decisions delegated to Claude — provisional, Jiwon will play-test and overrule freely
-
-- **D9 — Grading policy (superseded 2026-07-19): two verdicts, Markdown only.**
+- **D9 — Grading policy (confirmed 2026-07-19): two verdicts, Markdown only.**
   - **Try again** = the requested Markdown construct is absent or malformed.
   - **Matched** = the requested Markdown construct is valid; this is the only pass state.
   - `Perfect` and faithful-copy grading are removed. Optional review concerns Markdown document structure only and never changes the verdict.
   - The Goal is an example to reproduce structurally, not an exact prose answer key.
-- **D10 — Case and prose sensitivity (superseded 2026-07-19): do not grade prose.** `# apple`, `# aple`, and `# Banana` all pass the Level 1 hash-H1 exercise. Nabi preserves exactly what the learner typed and does not auto-capitalize, spell-check, or expose prose differences in Review.
+- **D10 — Case and prose sensitivity (confirmed 2026-07-19): do not grade prose.** `# apple`, `# aple`, and `# Banana` all pass the Level 1 hash-H1 exercise. Nabi preserves exactly what the learner typed and does not auto-capitalize, spell-check, or expose prose differences in Review.
 - **D11 — Setext feedback copy (updated 2026-07-19).** Detect any top-level Setext H1 without comparing its prose, then guide the learner to the hash style: `That's a real heading! Markdown has two heading styles — this quest practices the hash style. Try: # Rainy day`. The visible failed-verdict label is `Try again`.
 
 ## Suggested Build Week scope split (deadline 2026-07-22 09:00 PDT→KST per rules; internal target 07-22 06:00 KST)

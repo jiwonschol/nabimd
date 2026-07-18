@@ -69,7 +69,7 @@ marketing slogans or unrelated navigation.
 ## Interaction contract
 
 - Check is explicit; preview changes do not display correctness.
-- Hint appears only after Fail and never edits source.
+- Hint appears only after `Try again` and never edits source.
 - Review appears only after Matched and never blocks Next.
 - The primary button changes from `Check` to `Check again` to `Next`.
 - Focus rings use ink at a visible two-pixel minimum.
