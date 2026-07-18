@@ -69,6 +69,24 @@ describe("MarkdownSourceEditor", () => {
     expect(onCheck).toHaveBeenCalledTimes(2)
   })
 
+  it("places text focus in the editor and inserts Space as source text", async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value=""
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+
+    expect(editor).toHaveFocus()
+    await user.keyboard("# Apple")
+
+    await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("# Apple"))
+  })
+
   it("toggles invisible decorations without changing source", async () => {
     const user = userEvent.setup()
     const onChange = vi.fn()
