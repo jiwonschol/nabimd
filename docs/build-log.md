@@ -905,8 +905,35 @@ exercise. All three were reproduced with failing tests before correction:
   scroll paths; a `667 × 320` journey reaches both the entry choices and all
   completion actions without document scrolling.
 
-The corrections increased the local gate to 665 tests and the browser suite to
+The corrections increased the local gate to 667 tests and the browser suite to
 19 passing journeys.
 
-GitHub review, merge, deployment, and production verification are still
-pending and are not claimed by this entry.
+### Remote CodeRabbit review corrections
+
+The first GitHub CodeRabbit pass reviewed the preceding head and raised eight
+issues. Six were actionable and were reproduced or pinned with tests before
+correction:
+
+- moving from Write to Preview/Review with `Alt+2`, or through a keyboard
+  failure Check, now moves focus to the visible selected tab instead of leaving
+  it inside a hidden editor;
+- the failed Review introduction now accurately asks the learner to compare
+  the expected Markdown with their answer instead of claiming that a cropped
+  block diff is displayed;
+- the `?` shortcut cannot create hidden Hint state after completion;
+- the approved visual contract, specification, and implementation plan all
+  require the platform-appropriate Check shortcut to be visibly displayed;
+- the keyboard-only browser journey types through real sequential key events
+  instead of using a value-injection helper; and
+- the local-font regression verifies both the regular and semibold Source
+  Serif faces that the page loads.
+
+The reported July 19 date mismatch was rejected because the design approval and
+implementation both occurred on July 19 KST. The short-viewport clipping report
+was stale against the next commit: greeting and completion already gained
+bounded internal scrolling, and the `667 × 320` browser regression reaches both
+surfaces without document scroll.
+
+The final local gate is 15 files and 667 passing tests, plus 19 passing Chromium
+journeys. A fresh remote re-review, merge, deployment, and production
+verification remain pending and are not claimed by this entry.

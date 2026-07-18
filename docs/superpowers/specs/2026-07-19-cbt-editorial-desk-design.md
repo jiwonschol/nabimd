@@ -59,6 +59,8 @@ Capitalization, spelling, prose, and exact wording never affect the outcome. The
 ## Feedback and focus
 
 - Check is explicit and remains `Cmd+Enter` on macOS or `Ctrl+Enter` elsewhere.
+  Its top-bar control visibly displays `⌘↩` on macOS or `Ctrl+↩` elsewhere so
+  the keyboard path is discoverable.
 - Try again and Matched appear briefly as a large, viewport-centered notice, pale red or pale green, then fade away. The notice is announced through an ARIA live region.
 - After Try again, the learner stays in the current problem and returns to Write to repair it.
 - After Matched, the top-bar Next button receives focus. Space or Enter advances.
@@ -92,4 +94,3 @@ The existing completion choices remain. Completion may replace the two-panel wor
 - AI generation or runtime AI grading.
 - GFM, Obsidian, or editor-mode expansion (Issue #16).
 - Exact block diffing that would reintroduce prose comparison.
-

@@ -55,7 +55,8 @@ capitalization, spelling, punctuation, or exact prose as an error.
   uses pale red; Matched uses pale green.
 - After Matched, Check becomes Next and receives focus. Space or Enter advances.
 - The next problem opens Write and returns focus to the editor.
-- `Cmd+Enter` on macOS and `Ctrl+Enter` elsewhere invokes Check.
+- `Cmd+Enter` on macOS and `Ctrl+Enter` elsewhere invokes Check. The filled
+  Check control visibly displays `⌘↩` on macOS or `Ctrl+↩` elsewhere.
 - `Alt+1` opens Write; `Alt+2` opens Preview or Review. `?` toggles Hint when
   focus is not inside a text-entry surface.
 
@@ -98,5 +99,6 @@ viewport for:
 4. monochrome hierarchy and thin-rule rhythm;
 5. Write/Preview/Review beginner language;
 6. internal long-document scrolling;
-7. keyboard-only Check, Next, and editor-focus flow;
+7. keyboard-only Check, Next, and editor-focus flow, including the visible
+   platform-appropriate Check shortcut;
 8. absence of an always-visible third preview column.

@@ -395,6 +395,7 @@ describe("App", () => {
       "aria-selected",
       "true",
     )
+    expect(previewTab).toHaveFocus()
     expect(previewTab).toHaveAttribute("tabindex", "0")
     expect(writeTab).toHaveAttribute("tabindex", "-1")
     expect(screen.getByRole("tabpanel", { name: "Preview" })).toHaveTextContent(
@@ -429,6 +430,9 @@ describe("App", () => {
     )
     expect(reviewTab).toHaveFocus()
     const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(review).toHaveTextContent(
+      "Compare the expected Markdown with what you wrote.",
+    )
     expect(review).toHaveTextContent("1 thing to fix")
     expect(review).toHaveTextContent("How it should look")
     expect(review).toHaveTextContent("What you wrote")

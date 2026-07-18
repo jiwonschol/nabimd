@@ -62,7 +62,7 @@ test("completes and replays a fresh session with keyboard input only", async ({
   await expect(page.getByText(expectedShortcutLabel, { exact: true })).toBeVisible()
 
   for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
-    await editor.fill(answer)
+    await editor.pressSequentially(answer)
     await editor.press("Control+Enter")
     await expect(page.getByRole("status")).toContainText("Matched")
     const next = page.getByRole("button", { name: "Next" })
@@ -495,6 +495,11 @@ test("loads the Nabi mark and local Source Serif faces without console noise", a
   expect(
     await page.evaluate(() =>
       document.fonts.check('400 16px "Source Serif 4"'),
+    ),
+  ).toBe(true)
+  expect(
+    await page.evaluate(() =>
+      document.fonts.check('600 16px "Source Serif 4"'),
     ),
   ).toBe(true)
   expect(consoleNoise).toEqual([])

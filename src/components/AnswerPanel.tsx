@@ -39,7 +39,7 @@ function ReviewPanel({
       <div className="answer-review__summary">
         <p>
           {failed
-            ? "Only the Markdown part that needs attention is shown."
+            ? "Compare the expected Markdown with what you wrote."
             : "Your Markdown matched. These notes are optional improvements."}
         </p>
         <span>
@@ -86,6 +86,7 @@ export function AnswerPanel({
   const [view, setView] = useState<AnswerView>("write")
   const writeTabRef = useRef<HTMLButtonElement>(null)
   const secondTabRef = useRef<HTMLButtonElement>(null)
+  const writePanelRef = useRef<HTMLDivElement>(null)
   const pendingTabFocus = useRef<AnswerView | null>(null)
   const reviewAvailable =
     evaluation?.status === "fail" ||
@@ -103,6 +104,9 @@ export function AnswerPanel({
       evaluation.status === "fail" ||
       (evaluation.status === "matched" && evaluation.reviewItems.length > 0)
     ) {
+      if (writePanelRef.current?.contains(document.activeElement)) {
+        pendingTabFocus.current = "review"
+      }
       setView("review")
       return
     }
@@ -110,16 +114,17 @@ export function AnswerPanel({
   }, [entryId, evaluation])
 
   useEffect(() => {
-    if (evaluation?.status === "fail" && view === "review") {
-      secondTabRef.current?.focus()
-    }
-  }, [evaluation, view])
-
-  useEffect(() => {
     const switchView = (event: KeyboardEvent) => {
       if (!event.altKey || (event.key !== "1" && event.key !== "2")) return
       event.preventDefault()
-      setView(event.key === "1" ? "write" : secondView)
+      const target = event.key === "1" ? "write" : secondView
+      if (
+        target !== "write" &&
+        writePanelRef.current?.contains(document.activeElement)
+      ) {
+        pendingTabFocus.current = target
+      }
+      setView(target)
     }
     document.addEventListener("keydown", switchView)
     return () => document.removeEventListener("keydown", switchView)
@@ -197,6 +202,7 @@ export function AnswerPanel({
         className="answer-panel__body"
         hidden={view !== "write"}
         id={tabIds.writePanel}
+        ref={writePanelRef}
         role="tabpanel"
       >
         <MarkdownSourceEditor

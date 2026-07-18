@@ -18,7 +18,9 @@
 ## Task 2: Pin the top-bar keyboard contract
 
 - Replace StatusBar expectations with failing tests for a top-bar Check/Next action.
-- Prove Cmd/Ctrl+Enter checks, Matched focuses Next, Space/Enter advances, and the next problem restores editor focus.
+- Prove Cmd/Ctrl+Enter checks, the Check control visibly displays the
+  platform-appropriate shortcut, Matched focuses Next, Space/Enter advances,
+  and the next problem restores editor focus.
 - Keep Check disabled only when the current product state cannot check.
 - Run focused component and App tests.
 

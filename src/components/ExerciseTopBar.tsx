@@ -62,6 +62,7 @@ export function ExerciseTopBar({
   }, [matched])
 
   useEffect(() => {
+    if (phase === "complete") return
     const toggleFromKeyboard = (event: KeyboardEvent) => {
       if (event.key !== "?" || isTextEntryTarget(event.target)) return
       event.preventDefault()
@@ -69,7 +70,7 @@ export function ExerciseTopBar({
     }
     document.addEventListener("keydown", toggleFromKeyboard)
     return () => document.removeEventListener("keydown", toggleFromKeyboard)
-  }, [onToggleHint])
+  }, [onToggleHint, phase])
 
   return (
     <header className="exercise-topbar">
@@ -127,4 +128,3 @@ export function ExerciseTopBar({
     </header>
   )
 }
-
