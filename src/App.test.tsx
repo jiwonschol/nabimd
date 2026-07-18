@@ -419,13 +419,15 @@ describe("App", () => {
     const { user, editor } = await openApp()
     await user.click(editor)
     await user.keyboard("#Apple")
-    await user.click(screen.getByRole("button", { name: "Check" }))
+    await user.keyboard("{Control>}{Enter}{/Control}")
 
     expect(screen.getByRole("status")).toHaveTextContent("Try again")
-    expect(screen.getByRole("tab", { name: "Review" })).toHaveAttribute(
+    const reviewTab = screen.getByRole("tab", { name: "Review" })
+    expect(reviewTab).toHaveAttribute(
       "aria-selected",
       "true",
     )
+    expect(reviewTab).toHaveFocus()
     const review = screen.getByRole("tabpanel", { name: "Review" })
     expect(review).toHaveTextContent("1 thing to fix")
     expect(review).toHaveTextContent("How it should look")

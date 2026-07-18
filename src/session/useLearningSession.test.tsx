@@ -327,4 +327,29 @@ describe("useLearningSession", () => {
     expect(result.current.session.draft).toBe("")
     expect(result.current.session.progress.completedProblemIds).toEqual([])
   })
+
+  it("restores a substituted Try another problem and its draft", async () => {
+    const storage = new MemoryStorage()
+    const firstHook = renderHook(() => useLearningSession(storage))
+
+    act(() => firstHook.result.current.start("level-1"))
+    act(() => firstHook.result.current.tryAnother())
+    const replacementId = firstHook.result.current.problem.id
+    act(() => firstHook.result.current.edit("# Saved replacement"))
+
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(replacementId)
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
+        "# Saved replacement",
+      )
+    })
+    firstHook.unmount()
+
+    const restoredHook = renderHook(() => useLearningSession(storage))
+    expect(restoredHook.result.current.session.entryId).toBe("level-1")
+    expect(restoredHook.result.current.problem.id).toBe(replacementId)
+    expect(restoredHook.result.current.session.draft).toBe(
+      "# Saved replacement",
+    )
+  })
 })

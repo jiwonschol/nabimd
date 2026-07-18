@@ -97,6 +97,7 @@ button:focus-visible,
 
 .greeting-shell {
   display: grid;
+  overflow-y: auto;
   place-items: center;
 }
 
@@ -707,8 +708,10 @@ button:focus-visible,
 .completion {
   align-self: center;
   width: min(100%, 58rem);
+  max-height: 100%;
   margin: 0 auto;
   padding: 5rem var(--page-gutter);
+  overflow-y: auto;
 }
 
 .completion h2 {

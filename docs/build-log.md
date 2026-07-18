@@ -841,8 +841,8 @@ the editor instead of the page.
 
 ### Visual and interaction verification before remote review
 
-- Unit/component/session tests: 14 files, 662 tests passed.
-- Browser tests: 18 Chromium journeys passed.
+- Unit/component/session tests: 14 files, 665 tests passed.
+- Browser tests: 19 Chromium journeys passed.
 - At `1586 × 992`, Goal and Your answer measured exactly `772 × 880` pixels
   each; the document measured `1586 × 992` with no page overflow.
 - An 80-line answer produced an editor scroller of 2,582 pixels inside a
@@ -886,6 +886,27 @@ nothing. Two date corrections were also rejected: Jiwon approved the design on
 July 19 KST and this work occurred on July 19 KST.
 
 A full CodeRabbit rerun on the corrected implementation raised zero issues.
+
+### GitHub Codex review corrections
+
+The GitHub Codex reviewer found three P2 boundaries that local visual QA did not
+exercise. All three were reproduced with failing tests before correction:
+
+- Try another changed the persisted run slot, but the hardened progress loader
+  recognized only baseline schedules and transfer moves. The reachability
+  validator now models an explicit same-retry-family replacement without
+  accepting cross-family substitutions, and a hook remount proves the replaced
+  problem and draft survive refresh.
+- A keyboard Check that failed opened Review while DOM focus remained inside
+  the now-hidden CodeMirror surface. Failed Review now moves focus to its
+  selected tab, while Matched continues to focus Next.
+- The fixed practice viewport also prevented short greeting and completion
+  content from scrolling. Those non-editor surfaces now own bounded internal
+  scroll paths; a `667 × 320` journey reaches both the entry choices and all
+  completion actions without document scrolling.
+
+The corrections increased the local gate to 665 tests and the browser suite to
+19 passing journeys.
 
 GitHub review, merge, deployment, and production verification are still
 pending and are not claimed by this entry.

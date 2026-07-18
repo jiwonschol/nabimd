@@ -294,6 +294,43 @@ test("stacks two equal mobile panels without document overflow", async ({ page }
   expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight)
 })
 
+test("keeps greeting and completion actions reachable in a short viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 667, height: 320 })
+  await page.goto("/")
+
+  const greetingShell = page.locator(".greeting-shell")
+  const challenge = page.getByRole("button", { name: "Challenge me" })
+  await challenge.scrollIntoViewIfNeeded()
+  await expect(challenge).toBeVisible()
+  expect(
+    await greetingShell.evaluate(
+      (element) => element.scrollHeight > element.clientHeight,
+    ),
+  ).toBe(true)
+
+  await page.getByRole("button", {
+    name: "New to Markdown — start at Level 1",
+  }).click()
+  for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
+    await sourceEditor(page).fill(answer)
+    await sourceEditor(page).press("Control+Enter")
+    await page.getByRole("button", { name: "Next" }).click()
+  }
+
+  const completion = page.locator(".completion")
+  const changeLevel = page.getByRole("button", { name: "Change level" })
+  await changeLevel.scrollIntoViewIfNeeded()
+  await expect(changeLevel).toBeVisible()
+  expect(
+    await completion.evaluate(
+      (element) => element.scrollHeight > element.clientHeight,
+    ),
+  ).toBe(true)
+  expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
+})
+
 test("contains narrow top-bar overflow without widening the document", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto("/")

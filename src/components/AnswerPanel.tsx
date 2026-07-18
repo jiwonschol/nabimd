@@ -110,6 +110,12 @@ export function AnswerPanel({
   }, [entryId, evaluation])
 
   useEffect(() => {
+    if (evaluation?.status === "fail" && view === "review") {
+      secondTabRef.current?.focus()
+    }
+  }, [evaluation, view])
+
+  useEffect(() => {
     const switchView = (event: KeyboardEvent) => {
       if (!event.altKey || (event.key !== "1" && event.key !== "2")) return
       event.preventDefault()

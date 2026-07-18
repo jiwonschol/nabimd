@@ -79,6 +79,45 @@ describe("progressStore", () => {
     expect(loadProgress(storage, validProblemIds)).toEqual(progress)
   })
 
+  it("restores an explicitly allowed same-family problem replacement", () => {
+    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
+    const replacementProblemId = "heading-weekend-forecast"
+    const progress = createDefaultProgress(replacementProblemId)
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      replacementProblemId,
+      ...expectedRunProblemIds.slice(1),
+    ]
+    const replacements = new Map([
+      [
+        expectedRunProblemIds[0]!,
+        new Set([expectedRunProblemIds[0]!, replacementProblemId]),
+      ],
+    ])
+
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, replacements),
+    ).toEqual(progress)
+  })
+
+  it("rejects a known replacement when its family does not allow it", () => {
+    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress("heading-weekend-forecast")
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      "heading-weekend-forecast",
+      ...expectedRunProblemIds.slice(1),
+    ]
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds, new Map())).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
   it("restores a run with one bounded transfer insertion", () => {
     const expectedRunProblemIds = createRunProblemIds("level-1", 0)
     const transferProblemId = "heading-weekend-forecast"
