@@ -44,19 +44,19 @@ mascots, badges, pills, XP, confetti, or card grids.
 - `Project notes`
 - `Your Markdown`
 - `Live preview`
-- `Fail: Add one space after the hash symbol.`
+- `Try again: Add one space after the hash symbol.`
 - `Hint`
 - `Check again`
 - `Turn the line into the document's main heading.`
 - `1 / 3`
 
-Matched, Perfect, Review, transfer, and completion states may replace the status
+Matched, Review, transfer, and completion states may replace the status
 and coach copy defined by the approved application spec. They must not introduce
 marketing slogans or unrelated navigation.
 
 ## Components and variants
 
-- `EditorialDesk`: editing, fail, matched, perfect, and complete variants.
+- `EditorialDesk`: editing, try-again, matched, and complete variants.
 - `MarkdownPreview`: target and learner-preview variants.
 - `StatusBar`: one live message, one primary action, and at most one contextual
   secondary coaching action.

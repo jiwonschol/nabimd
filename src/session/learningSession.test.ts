@@ -68,10 +68,10 @@ describe("learningSessionReducer", () => {
     expect(hinted.progress.pendingTransferFamily).toBe("heading-h1")
   })
 
-  it("advances after a first-attempt Perfect pass when the run has another step", () => {
+  it("advances after a first-attempt Matched pass when the run has another step", () => {
     const passed = editAndCheck(newSession(), apple, "# Apple")
 
-    expect(passed.evaluation?.status).toBe("perfect")
+    expect(passed.evaluation?.status).toBe("matched")
     expect(canAdvance(passed)).toBe(true)
 
     const advanced = learningSessionReducer(passed, {
@@ -228,11 +228,11 @@ describe("learningSessionReducer", () => {
     expect(capped.hintLevel).toBe(3)
   })
 
-  it("opens Review only for Matched", () => {
-    const perfect = editAndCheck(newSession(), apple, "# Apple")
+  it("opens Review only when a Matched answer has structural notes", () => {
+    const cleanMatch = editAndCheck(newSession(), apple, "# Apple")
     expect(
-      learningSessionReducer(perfect, { type: "review-requested" }),
-    ).toBe(perfect)
+      learningSessionReducer(cleanMatch, { type: "review-requested" }),
+    ).toBe(cleanMatch)
 
     const matched = editAndCheck(
       newSession(),

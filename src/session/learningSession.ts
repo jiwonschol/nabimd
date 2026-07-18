@@ -231,7 +231,8 @@ export function learningSessionReducer(
     }
 
     case "review-requested":
-      return session.evaluation?.status === "matched"
+      return session.evaluation?.status === "matched" &&
+        session.evaluation.reviewItems.length > 0
         ? { ...session, coach: "review" }
         : session
 

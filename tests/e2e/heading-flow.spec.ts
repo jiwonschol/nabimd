@@ -68,7 +68,7 @@ test("completes and replays a fresh session with keyboard input only", async ({
   for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
     await page.keyboard.type(answer)
     await page.keyboard.press("Control+Enter")
-    await expect(page.getByText(/^Perfect\./)).toBeVisible()
+    await expect(page.getByText(/^Matched\./)).toBeVisible()
     const next = page.getByRole("button", { name: "Next" })
     await expect(next).toBeFocused()
     await expect(next).not.toHaveAttribute("aria-keyshortcuts")
@@ -98,7 +98,7 @@ test("completes and replays a fresh session with keyboard input only", async ({
   ).toContainText("Weekend forecast")
 
   await page.keyboard.press("Control+Enter")
-  await expect(page.getByText(/^Fail:/)).toBeVisible()
+  await expect(page.getByText(/^Try again:/)).toBeVisible()
   await expect(editor).toBeFocused()
   await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
 })
@@ -132,7 +132,7 @@ test("fails, receives progressive Help, repairs, transfers, and restores", async
 
   await editor.fill("# Apple")
   await page.getByRole("button", { name: "Check again" }).click()
-  await expect(page.getByText(/^Perfect\./)).toBeVisible()
+  await expect(page.getByText(/^Matched\./)).toBeVisible()
   await page.getByRole("button", { name: "Next" }).click()
 
   await expect(
@@ -150,7 +150,7 @@ test("fails, receives progressive Help, repairs, transfers, and restores", async
   await expect(editor).toHaveText("# Rainy day")
 })
 
-test("completes a three-step first-attempt Perfect run from the keyboard", async ({
+test("completes a three-step first-attempt Matched run from the keyboard", async ({
   page,
 }) => {
   await page.goto("/")
@@ -160,7 +160,7 @@ test("completes a three-step first-attempt Perfect run from the keyboard", async
   for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
     await editor.fill(answer)
     await editor.press("Control+Enter")
-    await expect(page.getByText(/^Perfect\./)).toBeVisible()
+    await expect(page.getByText(/^Matched\./)).toBeVisible()
     await page.getByRole("button", { name: "Next" }).click()
   }
   await expect(

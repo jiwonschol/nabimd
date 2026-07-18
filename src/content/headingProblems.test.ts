@@ -96,7 +96,7 @@ describe("heading problem bank", () => {
       problemId: "heading-unknown",
       kind: "canonical",
       source: "# Unknown",
-      expectedStatus: "perfect",
+      expectedStatus: "matched",
     }
 
     expect(
@@ -112,13 +112,15 @@ describe("heading problem bank", () => {
       (fixture) =>
         !(
           fixture.problemId === "heading-apple" &&
-          fixture.kind === "perfect"
+          fixture.kind === "matched-with-refinement"
         ),
     )
 
     expect(
       validateProblemBank(headingProblems, incompleteFixtures),
-    ).toContain("Missing fixture kind perfect for heading-apple")
+    ).toContain(
+      "Missing fixture kind matched-with-refinement for heading-apple",
+    )
   })
 
   it("requires two transfer candidates in a retry family", () => {

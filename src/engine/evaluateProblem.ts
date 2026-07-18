@@ -15,7 +15,5 @@ export function evaluateProblem(
 
   const reviewItems = evaluateEditorial(problem, tree)
 
-  return reviewItems.length === 0
-    ? { status: "perfect", reviewItems: [] }
-    : { status: "matched", reviewItems }
+  return { status: "matched", reviewItems }
 }

@@ -10,7 +10,7 @@ import { MemoryStorage } from "../test/MemoryStorage"
 import { useLearningSession } from "./useLearningSession"
 
 describe("useLearningSession", () => {
-  it("finishes a three-step run instead of ending after the first Perfect", () => {
+  it("finishes a three-step run instead of ending after the first Match", () => {
     const { result } = renderHook(() =>
       useLearningSession(new MemoryStorage()),
     )

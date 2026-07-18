@@ -20,10 +20,7 @@ function statusMessage(
   if (phase === "complete") return "Heading practice complete."
   if (!evaluation) return "Write the heading, then check your work."
   if (evaluation.status === "fail") return evaluation.message
-  if (evaluation.status === "matched") {
-    return "Matched. Your Markdown uses the requested skill."
-  }
-  return "Perfect. Every check for this exercise passed."
+  return "Matched. Your Markdown uses the requested skill."
 }
 
 export function StatusBar({
@@ -37,7 +34,8 @@ export function StatusBar({
 }: StatusBarProps) {
   const failed = evaluation?.status === "fail"
   const matched = evaluation?.status === "matched"
-  const passed = matched || evaluation?.status === "perfect"
+  const passed = matched
+  const hasReview = matched && evaluation.reviewItems.length > 0
   const primaryActionRef = useRef<HTMLButtonElement>(null)
   const shortcut = resolveCheckShortcut(
     typeof navigator === "undefined" ? {} : navigator,
@@ -52,11 +50,11 @@ export function StatusBar({
   return (
     <footer className="status-bar">
       <p aria-live="polite" className="status-bar__message">
-        {failed ? <strong>Fail: </strong> : null}
+        {failed ? <strong>Try again: </strong> : null}
         <span>{statusMessage(phase, evaluation)}</span>
       </p>
       <div className="status-bar__actions">
-        {matched ? (
+        {hasReview ? (
           <button className="text-button" onClick={onReview} type="button">
             Review
           </button>

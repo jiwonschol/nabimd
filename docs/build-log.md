@@ -756,3 +756,42 @@ Next advanced to a blank Rainy day exercise at step 2 of 3. The browser console
 reported no errors. This verifies the deployed learner path, while the
 malformed-storage and transfer-remount boundaries remain covered by the 670
 automated tests run before merge.
+
+## 2026-07-19 — Grammar-only verdict decision
+
+### Product conflict resolved
+
+The first shipped grader treated the Goal as both a Markdown example and a
+prose answer key. That made capitalization and protected wording blocking
+checks, and split successful work into Matched and Perfect. Play-testing showed
+that this contradicted Nabi's actual promise: it teaches Markdown production,
+not English spelling or faithful transcription.
+
+Jiwon and Codex replaced the three-tier model with two user-visible outcomes:
+
+- Try again when the requested Markdown construct is absent or malformed;
+- Matched when that construct is valid.
+
+The learner's prose is preserved exactly and never auto-corrected. Case,
+spelling, punctuation, wording, and extra prose do not affect the verdict or
+appear as Review differences. Optional Review is reserved for Markdown document
+structure, such as multiple H1 document titles, and never blocks Next.
+
+The decision deliberately makes `# apple`, `# aple`, and `# Banana` equivalent
+for the Level 1 hash-H1 exercise. Tests were changed first and produced 279
+expected failures against the old engine before the implementation was updated.
+
+### Revalidation evidence
+
+Changing the fixture contract invalidated every previously accepted heading
+digest, so the publication gate correctly stopped with 16 stale-review errors.
+Atlas and Orchid independently reran the real engine against all 16 headings
+and 28 fixtures per heading. Both accepted the grammar-only results and wrote
+fresh, distinct review records. The primary editorial acceptance and frozen
+manifest were then rebound to those reviewed fixture digests; no stale record
+was carried forward.
+
+- `npm run check`: passed, including TypeScript, 657 Vitest tests, the
+  publication gate, and the production build.
+- `npm run test:e2e`: 15 Chromium journeys passed, including the complete
+  keyboard run and the 1280 × 800 no-page-scroll check.

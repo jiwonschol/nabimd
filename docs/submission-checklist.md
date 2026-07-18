@@ -54,7 +54,7 @@ commit history, tests, build log, README explanation, or working demo.
 
 - [x] Typecheck passes
 - [x] Unit and grading fixtures pass
-- [x] Every problem has canonical, alternate, fail, matched, and perfect fixtures
+- [x] Every problem has canonical, alternate, try-again, and matched fixtures
 - [x] A failed retry selects different content for the same skill
 - [x] Production build passes
 - [x] Clean-browser critical path passes

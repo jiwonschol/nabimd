@@ -135,32 +135,23 @@ generation.
 
 ## State model
 
-Nabi uses three visible outcomes.
+Nabi uses two visible outcomes.
 
 ### Fail
 
-The requested syntax is missing or malformed, required structure is absent, or
-protected prompt content was lost. `Next` remains locked.
+The requested syntax is missing or malformed, or the required Markdown
+structure is absent. The interface labels this outcome `Try again`, and `Next`
+remains locked.
 
 The learner receives one smallest actionable correction. The current exercise
 stays open so the learner can apply that correction instead of losing context.
 
 ### Matched
 
-The learner used the requested Markdown skill correctly and preserved the
-required content. This is a pass. `Next` unlocks immediately, and the learner
-does not have to open or act on editorial review.
-
-### Perfect
-
-The answer is Matched, faithfully rebuilds the problem's rendered target, and
-passes every other editorial check applicable to that problem. This is a more
-polished pass, not a separate progression gate.
-
-`Perfect` means "the rendered result faithfully matches the goal and all Nabi
-editorial checks passed," not that the document is universally or objectively
-flawless. Internal code uses explicit check results rather than a subjective
-`isPerfect` judgment.
+The learner used the requested Markdown skill correctly. This is the only pass
+state. `Next` unlocks immediately, and optional Markdown-structure review never
+creates another grade. Capitalization, spelling, punctuation, and prose wording
+are not compared with the Goal.
 
 ### Transition rules
 
@@ -172,23 +163,19 @@ Check
               └─ earlier failure → one transfer problem for the same skill
                                    └─ Matched → next skill opens
 
-Matched + all editorial checks → Perfect
 ```
 
 After a failed learner repairs the current problem, Nabi presents a different
 prompt from the same skill family. This verifies transfer without asking the
 learner to memorize and repeat the same answer. The selector must not reuse the
-same problem ID or protected text for this transfer check.
-
-A Matched-but-not-Perfect editorial habit may reappear inside a later problem.
-It never revokes the earlier pass.
+same problem ID or example text for this transfer check.
 
 ### Run progression and completion
 
 A run is an explicit deterministic sequence over the currently shipped heading
 content. Progress labels the learner's current run step and the number of steps
 that can actually finish; it never labels the hidden bank size. A first-try
-Perfect advances to the next run step and cannot complete after one problem
+Matched advances to the next run step and cannot complete after one problem
 while the interface says `1 of 3`.
 
 When a repaired Fail or Help-assisted recall requires transfer, the selected
@@ -229,15 +216,15 @@ Hints never insert text, copy the answer, or complete the exercise.
 ### Review after Matched
 
 Review is optional and never opens automatically. One review action shows all
-applicable refinements at once, capped at three because the documents are
-short. The learner can revise toward Perfect or select Next immediately.
+applicable Markdown-structure refinements at once, capped at three because the
+documents are short. The learner can revise or select Next immediately.
 
 This separation protects the feeling of success: Matched is not presented as
 another failure merely because optional polish remains.
 
 ## US English editorial profile
 
-Perfect checks use a documented Nabi house style derived from recurring rules
+Editorial checks use a documented Nabi house style derived from recurring rules
 in US federal plain-language guidance and the GitHub, Google, and Microsoft
 documentation style guides.
 
@@ -258,7 +245,7 @@ Applicable checks include:
 
 Nabi is not a spelling checker, grammar checker, or general prose-quality
 judge. Subjective qualities that cannot be defended by the problem contract do
-not affect Fail, Matched, or Perfect.
+not affect Try again or Matched.
 
 ## Problem contract
 
@@ -296,7 +283,6 @@ Each committed problem must include fixtures for:
 - missing required syntax;
 - malformed required syntax;
 - a Matched answer with optional refinements;
-- a Perfect answer; and
 - expected feedback and review IDs.
 
 The bank is curriculum, not unvalidated content. A model-generated candidate is
@@ -314,7 +300,6 @@ canonical answer.
 ### Match checks
 
 - Parse supported Markdown into an AST.
-- Verify protected content is present and not materially changed.
 - Verify the requested structural node and level exist.
 - Verify source rules that an AST alone can hide, such as required spacing or a
   lesson-specific Devpost syntax form.
@@ -323,7 +308,6 @@ canonical answer.
 Examples of small predicates include:
 
 ```text
-preservesText
 hasHeading(level)
 usesRequiredSkill
 hasParagraphBreak
@@ -335,17 +319,10 @@ hasImageWithAltText
 
 ### Editorial checks
 
-Editorial checks run after match checks and cannot turn a Matched answer into a
-Fail. They produce zero to three specific refinements and a Perfect result when
-none remain.
-
-When a problem provides a rendered target, `matches-target-exactly` compares
-normalized Markdown AST semantics rather than source strings. Source-only
-equivalents such as closing ATX markers, zero to three leading spaces, supported
-separator whitespace, trailing whitespace, and normalized internal text
-spacing remain faithful. Node kinds and document structure remain significant,
-so inline emphasis, code, links, extra blocks, and duplicate headings produce a
-Matched refinement instead of Perfect.
+Editorial checks run after match checks and cannot turn a Matched answer into
+Try again. They produce zero to three specific Markdown-structure refinements
+without changing the verdict. They do not compare the learner's prose with the
+Goal, including case, spelling, punctuation, or wording.
 
 Equivalent valid Markdown remains valid. A lesson can require a particular
 Devpost-style form to demonstrate a skill without claiming that another valid
@@ -355,11 +332,11 @@ form is invalid Markdown.
 
 Selection is deterministic and local.
 
-- Fail: keep the current problem until Matched.
-- Repaired Fail: select a different problem from the same retry family.
+- Try again: keep the current problem until Matched.
+- Repaired Try again: select a different problem from the same retry family.
 - First-attempt Matched: unlock the next course skill.
-- Matched without Perfect: add editorial review tags to later selection weight.
-- Perfect: reduce near-term repetition for the satisfied editorial tags.
+- Matched with editorial review: add structural review tags to later selection
+  weight.
 - Ongoing practice: avoid recently shown problem IDs before recycling the bank.
 
 Progress uses a versioned `sessionStorage` document containing the selected
@@ -474,7 +451,7 @@ heading predicate works, and a predicate should not depend on browser state.
 
 ### Unit tests
 
-- Parser normalization and protected-content rules
+- Parser normalization and requested-structure rules
 - Every match and editorial predicate
 - Feedback-priority ordering
 - Versioned session-progress validation and corruption recovery; no
@@ -485,8 +462,8 @@ heading predicate works, and a predicate should not depend on browser state.
 
 ### Bank-wide fixture tests
 
-Every committed problem runs its canonical, alternate, fail, matched, and
-perfect fixtures. The suite fails if a problem has incomplete coverage or if
+Every committed problem runs its canonical, alternate, fail, and matched
+fixtures. The suite fails if a problem has incomplete coverage or if
 its expected feedback ID changes unexpectedly.
 
 ### Component tests
@@ -496,7 +473,7 @@ its expected feedback ID changes unexpectedly.
 - Repaired Fail creates the transfer requirement.
 - Matched unlocks Next.
 - Review remains closed until requested.
-- Perfect never becomes a separate mandatory gate.
+- No third verdict tier appears.
 - Help never changes editor content.
 - Completion exposes all three replay actions; hook tests verify each reset
   contract and deterministic replay content.
@@ -521,7 +498,7 @@ Build one complete heading family before expanding the bank:
 1. Three heading problems
 2. Problem schema and fixture harness
 3. Check and grading engine
-4. Fail, Matched, and Perfect states
+4. Try again and Matched states
 5. Repair and transfer flow
 6. Hint and Review Side Coach
 7. Versioned session progress

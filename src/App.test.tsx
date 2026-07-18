@@ -234,7 +234,7 @@ describe("App", () => {
     fireEvent.keyDown(editor, event)
 
     expect(
-      screen.getByText("Perfect. Every check for this exercise passed."),
+      screen.getByText("Matched. Your Markdown uses the requested skill."),
     ).toBeVisible()
   })
 
@@ -289,14 +289,14 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
   })
 
-  it("shows Perfect as a pass without a required Review", async () => {
+  it("shows a clean Matched pass without an empty Review", async () => {
     const { user, editor } = await openApp()
     await user.click(editor)
     await user.keyboard("# Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(
-      screen.getByText("Perfect. Every check for this exercise passed."),
+      screen.getByText("Matched. Your Markdown uses the requested skill."),
     ).toBeVisible()
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
     expect(screen.queryByRole("button", { name: "Review" })).toBeNull()

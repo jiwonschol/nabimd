@@ -1,16 +1,10 @@
 import type { Root } from "mdast"
 import type { MatchCheck, Problem } from "../content/types"
 import {
-  documentText,
   headingsAtLevel,
   isHashHeading,
-  nodeText,
 } from "./markdownAst"
 import type { MatchFailure } from "./types"
-
-export function normalizeText(value: string): string {
-  return value.replace(/\s+/g, " ").trim()
-}
 
 function hasMalformedHeadingSpacing(source: string, check: MatchCheck): boolean {
   if (check.kind !== "heading-spacing") return false
@@ -21,10 +15,10 @@ function hasMalformedHeadingSpacing(source: string, check: MatchCheck): boolean 
 }
 
 function matchingHashHeadings(source: string, root: Root, check: MatchCheck) {
-  if (!("level" in check) || !("text" in check)) return []
+  if (!("level" in check)) return []
 
-  return headingsAtLevel(root, check.level).filter(
-    (heading) => isHashHeading(source, heading),
+  return headingsAtLevel(root, check.level).filter((heading) =>
+    isHashHeading(source, heading),
   )
 }
 
@@ -33,9 +27,7 @@ function hasRequestedHashHeading(
   root: Root,
   check: MatchCheck,
 ): boolean {
-  return matchingHashHeadings(source, root, check).some(
-    (heading) => normalizeText(nodeText(heading)) === normalizeText(check.text),
-  )
+  return matchingHashHeadings(source, root, check).length > 0
 }
 
 function checkPasses(check: MatchCheck, source: string, root: Root): boolean {
@@ -45,27 +37,11 @@ function checkPasses(check: MatchCheck, source: string, root: Root): boolean {
         hasRequestedHashHeading(source, root, check) ||
         !hasMalformedHeadingSpacing(source, check)
       )
-    case "heading-capitalization": {
-      if (hasRequestedHashHeading(source, root, check)) return true
-
-      const exact = normalizeText(check.text)
-      const expected = normalizeText(check.text).toLocaleLowerCase()
-      return !headingsAtLevel(root, check.level).some((heading) => {
-        const actual = normalizeText(nodeText(heading))
-        return actual !== exact && actual.toLocaleLowerCase() === expected
-      })
-    }
-    case "preserves-text":
-      return normalizeText(documentText(root)).includes(
-        normalizeText(check.text),
-      )
     case "hash-heading-style":
       return (
         hasRequestedHashHeading(source, root, check) ||
         !headingsAtLevel(root, check.level).some(
-          (heading) =>
-            normalizeText(nodeText(heading)) === normalizeText(check.text) &&
-            !isHashHeading(source, heading),
+          (heading) => !isHashHeading(source, heading),
         )
       )
     case "has-heading":

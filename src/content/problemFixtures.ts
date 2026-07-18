@@ -5,7 +5,6 @@ function createHeadingFixtures(
   problemId: string,
   text: string,
 ): ProblemFixture[] {
-  const slug = problemId.replace("heading-", "")
   const lowercaseText = text.toLocaleLowerCase()
   const normalizedWhitespaceSource = text.includes(" ")
     ? `# ${text.replace(" ", "\u00a0")}`
@@ -16,14 +15,14 @@ function createHeadingFixtures(
       problemId,
       kind: "canonical",
       source: `# ${text}`,
-      expectedStatus: "perfect",
+      expectedStatus: "matched",
       expectedReviewIds: [],
     },
     {
       problemId,
       kind: "alternate",
       source: `# ${text} #`,
-      expectedStatus: "perfect",
+      expectedStatus: "matched",
       expectedReviewIds: [],
     },
     {
@@ -45,23 +44,13 @@ function createHeadingFixtures(
       kind: "matched-with-refinement",
       source: `# ${text}\n\n# Details`,
       expectedStatus: "matched",
-      expectedReviewIds: [
-        "matches-target-exactly",
-        "one-document-title",
-      ],
-    },
-    {
-      problemId,
-      kind: "perfect",
-      source: `# ${text}`,
-      expectedStatus: "perfect",
-      expectedReviewIds: [],
+      expectedReviewIds: ["one-document-title"],
     },
     {
       problemId,
       kind: "leading-atx",
       source: `   # ${text}`,
-      expectedStatus: "perfect",
+      expectedStatus: "matched",
       expectedReviewIds: [],
     },
     {
@@ -75,7 +64,7 @@ function createHeadingFixtures(
       problemId,
       kind: "tab-separator",
       source: `#\t${text}`,
-      expectedStatus: "perfect",
+      expectedStatus: "matched",
       expectedReviewIds: [],
     },
     {
@@ -118,7 +107,7 @@ function createHeadingFixtures(
       kind: "empty",
       source: "",
       expectedStatus: "fail",
-      expectedFeedbackId: `preserve-${slug}`,
+      expectedFeedbackId: "use-h1-heading",
     },
     {
       problemId,
@@ -136,10 +125,10 @@ function createHeadingFixtures(
     },
     {
       problemId,
-      kind: "capitalization",
+      kind: "case-variation",
       source: `# ${lowercaseText}`,
-      expectedStatus: "fail",
-      expectedFeedbackId: `match-${slug}-capitalization`,
+      expectedStatus: "matched",
+      expectedReviewIds: [],
     },
     {
       problemId,
@@ -167,58 +156,55 @@ function createHeadingFixtures(
       kind: "inline-emphasis",
       source: `# **${text}**`,
       expectedStatus: "matched",
-      expectedReviewIds: ["matches-target-exactly"],
+      expectedReviewIds: [],
     },
     {
       problemId,
       kind: "inline-code",
       source: `# \`${text}\``,
       expectedStatus: "matched",
-      expectedReviewIds: ["matches-target-exactly"],
+      expectedReviewIds: [],
     },
     {
       problemId,
       kind: "inline-link",
       source: `# [${text}](https://example.com)`,
       expectedStatus: "matched",
-      expectedReviewIds: ["matches-target-exactly"],
+      expectedReviewIds: [],
     },
     {
       problemId,
       kind: "extra-paragraph",
       source: `# ${text}\n\nExtra context.`,
       expectedStatus: "matched",
-      expectedReviewIds: ["matches-target-exactly"],
+      expectedReviewIds: [],
     },
     {
       problemId,
       kind: "extra-h2",
       source: `# ${text}\n\n## Details`,
       expectedStatus: "matched",
-      expectedReviewIds: ["matches-target-exactly"],
+      expectedReviewIds: [],
     },
     {
       problemId,
       kind: "duplicate-h1",
       source: `# ${text}\n\n# ${text}`,
       expectedStatus: "matched",
-      expectedReviewIds: [
-        "matches-target-exactly",
-        "one-document-title",
-      ],
+      expectedReviewIds: ["one-document-title"],
     },
     {
       problemId,
       kind: "malformed-plus-correct",
       source: `#${text}\n\n# ${text}`,
       expectedStatus: "matched",
-      expectedReviewIds: ["matches-target-exactly"],
+      expectedReviewIds: [],
     },
     {
       problemId,
       kind: "normalized-whitespace",
       source: normalizedWhitespaceSource,
-      expectedStatus: "perfect",
+      expectedStatus: "matched",
       expectedReviewIds: [],
     },
   ]
