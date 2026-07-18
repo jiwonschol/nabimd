@@ -143,7 +143,7 @@ describe("App", () => {
     await user.keyboard(" ")
 
     expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
-      "Rainy day",
+      "Weekend forecast",
     )
     expect(
       screen.getByRole("textbox", { name: "Your Markdown" }),
@@ -178,6 +178,32 @@ describe("App", () => {
       screen.getByRole("region", { name: "Live preview" }),
     ).toHaveTextContent("Your preview will appear here.")
     expect(screen.getByRole("button", { name: "Check" })).toBeVisible()
+    const instruction = screen.getByRole("heading", {
+      name: "Rebuild the heading below in Markdown.",
+    }).closest("section")
+    expect(instruction).not.toBeNull()
+    expect(instruction).toHaveTextContent(
+      "A main heading names the whole document.",
+    )
+    expect(instruction).toHaveTextContent(
+      "Start a line with one hash, add a space, then type the title.",
+    )
+    expect(within(instruction!).getByText("# Weather")).toBeVisible()
+  })
+
+  it.each([
+    ["I know the basics", "Rainy day"],
+    ["Challenge me", "Study tools"],
+  ])("keeps the Instruction lean for the %s entry", async (entry, target) => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole("button", { name: entry }))
+
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(target)
+    expect(
+      screen.queryByText("A main heading names the whole document."),
+    ).not.toBeInTheDocument()
+    expect(screen.queryByText("# Weather")).not.toBeInTheDocument()
   })
 
   it("does not grade while the learner is typing", async () => {

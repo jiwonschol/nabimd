@@ -3,6 +3,7 @@ import { HelpPanel } from "./HelpPanel"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 import { RenderedDocument } from "./RenderedDocument"
 import { StatusBar } from "./StatusBar"
+import { Wordmark } from "./Wordmark"
 
 type EditorialDeskProps = ReturnType<typeof useLearningSession>
 
@@ -26,7 +27,7 @@ export function EditorialDesk({
   return (
     <main className="app-shell">
       <header className="app-header">
-        <h1 className="wordmark">Nabi Markdown</h1>
+        <Wordmark />
         <div aria-label="Heading progress" className="progress">
           <span className="progress__label">
             <span className="progress__label-name">Headings · </span>
@@ -80,6 +81,14 @@ export function EditorialDesk({
             >
               <p className="section-label">Instruction</p>
               <h2 id="exercise-instruction">{problem.prompt}</h2>
+              {session.teachingMode === "introduce" ? (
+                <p className="instruction__teaching">
+                  {problem.teaching.concept} {problem.teaching.howTo}{" "}
+                  <span>
+                    Example: <code>{problem.teaching.example}</code>
+                  </span>
+                </p>
+              ) : null}
             </section>
 
             <div className="lesson-grid">

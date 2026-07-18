@@ -1,4 +1,5 @@
 import { EditorialDesk } from "./components/EditorialDesk"
+import { Wordmark } from "./components/Wordmark"
 import { entryChoices } from "./content/entryChoices"
 import { useLearningSession } from "./session/useLearningSession"
 
@@ -9,7 +10,7 @@ export function App() {
     return (
       <main className="app-shell greeting-shell">
         <section className="greeting" aria-labelledby="greeting-title">
-          <h1 className="wordmark">Nabi Markdown</h1>
+          <Wordmark />
           <h2 id="greeting-title">Welcome. Choose where to begin.</h2>
           <p>Practice the heading track at the pace that fits you.</p>
           <div className="greeting__choices">

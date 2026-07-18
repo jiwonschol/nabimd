@@ -37,12 +37,31 @@ export function createRunProblemIds(
   entryId: EntryId,
   runNumber: number,
 ): string[] {
+  return createRunProblemIdsForBank(entryId, runNumber, headingProblems)
+}
+
+export function createRunProblemIdsForBank(
+  entryId: EntryId,
+  runNumber: number,
+  problems: readonly { id: string }[],
+): string[] {
   const entry = getEntryChoice(entryId)
-  const startingIndex = headingProblems.findIndex(
+  const startingIndex = problems.findIndex(
     (problem) => problem.id === entry.startingProblemId,
   )
-  const offset = (startingIndex + runNumber) % headingProblems.length
-  const problemIds = headingProblems.map((problem) => problem.id)
+  if (startingIndex < 0) {
+    throw new Error(
+      `Unknown starting problem for ${entryId}: ${entry.startingProblemId}`,
+    )
+  }
 
-  return [...problemIds.slice(offset), ...problemIds.slice(0, offset)]
+  const problemIds = problems.map((problem) => problem.id)
+  const runLength = Math.min(3, problemIds.length)
+  const offset =
+    (startingIndex + runNumber * runLength) % problemIds.length
+
+  return Array.from(
+    { length: runLength },
+    (_, index) => problemIds[(offset + index) % problemIds.length]!,
+  )
 }
