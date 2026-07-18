@@ -16,6 +16,22 @@ export type MatchCheck =
     }
   | {
       id: string
+      kind: "heading-capitalization"
+      level: 1
+      text: string
+      priority: number
+      feedback: string
+    }
+  | {
+      id: string
+      kind: "hash-heading-style"
+      level: 1
+      text: string
+      priority: number
+      feedback: string
+    }
+  | {
+      id: string
       kind: "has-heading"
       level: 1
       text: string
@@ -23,11 +39,17 @@ export type MatchCheck =
       feedback: string
     }
 
-export type EditorialCheck = {
-  id: string
-  kind: "single-h1"
-  review: string
-}
+export type EditorialCheck =
+  | {
+      id: string
+      kind: "matches-target-exactly"
+      review: string
+    }
+  | {
+      id: string
+      kind: "single-h1"
+      review: string
+    }
 
 export type Problem = {
   id: string
@@ -55,6 +77,29 @@ export type FixtureKind =
   | "malformed"
   | "matched-with-refinement"
   | "perfect"
+  | "leading-atx"
+  | "indented-code"
+  | "tab-separator"
+  | "fullwidth-hash"
+  | "raw-html-h1"
+  | "h2"
+  | "escaped-hash"
+  | "blockquote-h1"
+  | "empty"
+  | "compound-missing-space"
+  | "lowercase-compound"
+  | "capitalization"
+  | "setext"
+  | "nbsp-separator"
+  | "ideographic-space-separator"
+  | "inline-emphasis"
+  | "inline-code"
+  | "inline-link"
+  | "extra-paragraph"
+  | "extra-h2"
+  | "duplicate-h1"
+  | "malformed-plus-correct"
+  | "normalized-whitespace"
 
 export type ProblemFixture = {
   problemId: string

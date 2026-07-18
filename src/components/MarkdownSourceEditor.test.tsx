@@ -119,4 +119,31 @@ describe("MarkdownSourceEditor", () => {
     ).toHaveTextContent("# Study tools")
     expect(onChange).not.toHaveBeenCalled()
   })
+
+  it("shows distinct glyphs for NBSP and ideographic space", async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    const { container } = render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value={"#\u00a0Apple\u3000"}
+      />,
+    )
+
+    await user.click(
+      screen.getByRole("button", { name: "Show invisibles" }),
+    )
+
+    expect(
+      container.querySelector(".cm-invisible-character--non-breaking-space"),
+    ).toHaveTextContent("⍽")
+    expect(
+      container.querySelector(".cm-invisible-character--ideographic-space"),
+    ).toHaveTextContent("□")
+    expect(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveTextContent("#⍽Apple□")
+    expect(onChange).not.toHaveBeenCalled()
+  })
 })

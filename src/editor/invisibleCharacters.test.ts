@@ -16,4 +16,13 @@ describe("findInvisibleCharacters", () => {
 
     expect(source).toBe("# Study tools")
   })
+
+  it("distinguishes NBSP and ideographic-space traps", () => {
+    expect(findInvisibleCharacters("# \t\u00a0\u3000Apple")).toEqual([
+      { from: 1, to: 2, kind: "space" },
+      { from: 2, to: 3, kind: "tab" },
+      { from: 3, to: 4, kind: "non-breaking-space" },
+      { from: 4, to: 5, kind: "ideographic-space" },
+    ])
+  })
 })

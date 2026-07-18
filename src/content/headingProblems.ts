@@ -13,6 +13,13 @@ const singleTitleCheck = {
     "Keep one H1 as the document title; use lower heading levels for sections.",
 } as const
 
+const exactTargetCheck = {
+  id: "matches-target-exactly",
+  kind: "matches-target-exactly",
+  review:
+    "Your document renders more than the goal — remove the extra emphasis/content to match it exactly.",
+} as const
+
 type HeadingProblemInput = {
   id: string
   text: string
@@ -48,11 +55,27 @@ function createHeadingProblem({
         feedback: "Add one space after the hash symbol.",
       },
       {
+        id: `match-${id.replace("heading-", "")}-capitalization`,
+        kind: "heading-capitalization",
+        level: 1,
+        text,
+        priority: 15,
+        feedback: `Close — match the capitalization: the goal says '${text}'.`,
+      },
+      {
         id: `preserve-${id.replace("heading-", "")}`,
         kind: "preserves-text",
         text,
         priority: 20,
         feedback: preserveFeedback,
+      },
+      {
+        id: "use-hash-heading-style",
+        kind: "hash-heading-style",
+        level: 1,
+        text,
+        priority: 25,
+        feedback: `That's a real heading! Markdown has two heading styles — this quest practices the hash style. Try: # ${text}`,
       },
       {
         id: "use-h1-heading",
@@ -63,7 +86,7 @@ function createHeadingProblem({
         feedback: "Start the title with one hash symbol and one space.",
       },
     ],
-    editorialChecks: [singleTitleCheck],
+    editorialChecks: [exactTargetCheck, singleTitleCheck],
     hints: sharedHints,
     retryFamily: "heading-h1",
     reviewTags: ["one-document-title"],
