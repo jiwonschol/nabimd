@@ -8,7 +8,6 @@ type StatusBarProps = {
   canCheck: boolean
   onCheck: () => void
   onNext: () => void
-  onHint: () => void
   onReview: () => void
 }
 
@@ -32,7 +31,6 @@ export function StatusBar({
   canCheck,
   onCheck,
   onNext,
-  onHint,
   onReview,
 }: StatusBarProps) {
   if (phase === "complete") return null
@@ -48,11 +46,6 @@ export function StatusBar({
         <span>{statusMessage(phase, evaluation)}</span>
       </p>
       <div className="status-bar__actions">
-        {failed ? (
-          <button className="text-button" onClick={onHint} type="button">
-            Hint
-          </button>
-        ) : null}
         {matched ? (
           <button className="text-button" onClick={onReview} type="button">
             Review

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
 import { App } from "./App"
@@ -10,28 +10,52 @@ async function openApp() {
   return { user, editor }
 }
 
+async function replaceSource(
+  user: ReturnType<typeof userEvent.setup>,
+  editor: HTMLElement,
+  source: string,
+) {
+  await user.click(editor)
+  await user.keyboard("{Control>}a{/Control}{Backspace}")
+  if (source) await user.keyboard(source)
+}
+
 describe("App", () => {
-  it("opens directly on the first real heading exercise", async () => {
+  it("opens on an empty Level 1 lesson with the new rule visible", async () => {
     const { editor } = await openApp()
 
     expect(
       screen.getByRole("heading", { name: "Nabi Markdown" }),
     ).toBeVisible()
+    expect(screen.getByText("Instruction")).toBeVisible()
     expect(
-      screen.getByRole("heading", { name: "Main heading" }),
+      screen.getByRole("heading", {
+        name: "Rebuild the heading below in Markdown.",
+      }),
     ).toBeVisible()
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
+      "Apple",
+    )
+
+    const help = screen.getByRole("complementary", { name: "Help" })
+    expect(within(help).getByRole("button", { name: "Hide hint" })).toBeVisible()
+    expect(within(help).getByText("#", { exact: true })).toBeVisible()
+    expect(within(help).getByText("Space")).toBeVisible()
+    expect(within(help).getByText("Title")).toBeVisible()
+
+    expect(editor).toHaveAttribute("aria-placeholder", "Type Markdown…")
+    expect(screen.getByText("answer.md")).toBeVisible()
     expect(
-      screen.getByRole("region", { name: "Target" }),
-    ).toHaveTextContent("Apple")
-    expect(editor).toHaveValue("")
+      screen.getByRole("region", { name: "Live preview" }),
+    ).toHaveTextContent("Your preview will appear here.")
     expect(screen.getByRole("button", { name: "Check" })).toBeVisible()
   })
 
   it("does not grade while the learner is typing", async () => {
     const { user, editor } = await openApp()
 
-    await user.clear(editor)
-    await user.type(editor, "#Apple")
+    await user.click(editor)
+    await user.keyboard("#Apple")
 
     expect(
       screen.queryByText("Add one space after the hash symbol."),
@@ -49,8 +73,8 @@ describe("App", () => {
     { modifier: "Control", event: { key: "Enter", ctrlKey: true } },
   ])("checks with $modifier + Enter", async ({ event }) => {
     const { user, editor } = await openApp()
-    await user.clear(editor)
-    await user.type(editor, "# Apple")
+    await user.click(editor)
+    await user.keyboard("# Apple")
 
     fireEvent.keyDown(editor, event)
 
@@ -61,96 +85,98 @@ describe("App", () => {
 
   it("keeps Next unavailable after Fail", async () => {
     const { user, editor } = await openApp()
-    await user.clear(editor)
-    await user.type(editor, "#Apple")
+    await user.click(editor)
+    await user.keyboard("#Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
-    expect(
-      screen.queryByRole("button", { name: "Next" }),
-    ).not.toBeInTheDocument()
-    expect(
-      screen.getByRole("button", { name: "Check again" }),
-    ).toBeVisible()
+    expect(screen.queryByRole("button", { name: "Next" })).toBeNull()
+    expect(screen.getByRole("button", { name: "Check again" })).toBeVisible()
   })
 
-  it("reveals three progressive hints without inserting an answer", async () => {
+  it("reveals progressive hints downward without editing source", async () => {
     const { user, editor } = await openApp()
-    await user.clear(editor)
-    await user.type(editor, "#Apple")
+    await user.click(editor)
+    await user.keyboard("#Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
-    const sourceBeforeHint = (editor as HTMLTextAreaElement).value
 
-    await user.click(screen.getByRole("button", { name: "Hint" }))
+    const help = screen.getByRole("complementary", { name: "Help" })
+    await user.click(within(help).getByRole("button", { name: "Show hint" }))
 
-    expect(
-      screen.getByRole("complementary", { name: "Coach" }),
-    ).toHaveTextContent("Use one hash symbol to make a main heading.")
-    expect(screen.getByText("1 / 3")).toBeVisible()
+    expect(help).toHaveTextContent("Use one hash symbol to make a main heading.")
+    expect(within(help).getByText("1 / 3")).toBeVisible()
 
-    await user.click(screen.getByRole("button", { name: "Next hint" }))
-    expect(screen.getByText("2 / 3")).toBeVisible()
-    expect(
-      screen.getByText("Type one hash symbol, one space, then the title."),
-    ).toBeVisible()
+    await user.click(within(help).getByRole("button", { name: "Next hint" }))
+    expect(help).toHaveTextContent(
+      "Type one hash symbol, one space, then the title.",
+    )
 
-    await user.click(screen.getByRole("button", { name: "Next hint" }))
-    expect(screen.getByText("3 / 3")).toBeVisible()
-    expect(screen.getByText("Example: `# Team update`")).toBeVisible()
-    expect(editor).toHaveValue(sourceBeforeHint)
+    await user.click(within(help).getByRole("button", { name: "Next hint" }))
+    expect(help).toHaveTextContent("Example: `# Team update`")
+    expect(editor).toHaveTextContent("#Apple")
   })
 
-  it("keeps Review closed and optional after Matched", async () => {
+  it("keeps Review optional after Matched", async () => {
     const { user, editor } = await openApp()
-    await user.clear(editor)
-    await user.type(editor, "# Apple\n\n# Details")
+    await user.click(editor)
+    await user.keyboard("# Apple{Enter}{Enter}# Details")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(
       screen.getByText("Matched. Your Markdown uses the requested skill."),
     ).toBeVisible()
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
-    expect(
-      screen.queryByRole("complementary", { name: "Coach" }),
-    ).toBeNull()
 
     await user.click(screen.getByRole("button", { name: "Review" }))
 
     expect(
-      screen.getByRole("complementary", { name: "Coach" }),
+      screen.getByRole("complementary", { name: "Help" }),
     ).toHaveTextContent("Keep one H1 as the document title")
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
   })
 
   it("shows Perfect as a pass without a required Review", async () => {
     const { user, editor } = await openApp()
-    await user.clear(editor)
-    await user.type(editor, "# Apple")
+    await user.click(editor)
+    await user.keyboard("# Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(
       screen.getByText("Perfect. Every check for this exercise passed."),
     ).toBeVisible()
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
-    expect(
-      screen.queryByRole("button", { name: "Review" }),
-    ).not.toBeInTheDocument()
+    expect(screen.queryByRole("button", { name: "Review" })).toBeNull()
   })
 
-  it("opens a different-content transfer after a repaired failure", async () => {
+  it("opens a different-content recall transfer with Hint closed", async () => {
     const { user, editor } = await openApp()
-    await user.clear(editor)
-    await user.type(editor, "#Apple")
+    await user.click(editor)
+    await user.keyboard("#Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
-    await user.clear(editor)
-    await user.type(editor, "# Apple")
+    await replaceSource(user, editor, "# Apple")
     await user.click(screen.getByRole("button", { name: "Check again" }))
     await user.click(screen.getByRole("button", { name: "Next" }))
 
-    expect(
-      screen.getByText(
-        "Rebuild the heading below in Markdown.",
-      ),
-    ).toBeVisible()
-    expect(editor).toHaveValue("")
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
+      "Rainy day",
+    )
+    expect(editor).toHaveAttribute("aria-placeholder", "Type Markdown…")
+
+    const help = screen.getByRole("complementary", { name: "Help" })
+    expect(within(help).getByRole("button", { name: "Show hint" })).toBeVisible()
+    expect(within(help).queryByText("#", { exact: true })).toBeNull()
+
+    await user.click(within(help).getByRole("button", { name: "Show hint" }))
+    expect(within(help).getByText("#", { exact: true })).toBeVisible()
+  })
+
+  it("uses the same paper component for Goal and Live preview", async () => {
+    await openApp()
+
+    const goal = screen.getByRole("region", { name: "Goal" })
+    const preview = screen.getByRole("region", { name: "Live preview" })
+
+    expect(goal).toHaveClass("rendered-document")
+    expect(preview).toHaveClass("rendered-document")
+    expect(goal.className).toBe(preview.className)
   })
 })

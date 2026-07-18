@@ -8,6 +8,12 @@ Object.defineProperty(window, "localStorage", {
   value: new MemoryStorage(),
 })
 
+if (!Range.prototype.getClientRects) {
+  Object.defineProperty(Range.prototype, "getClientRects", {
+    value: () => [],
+  })
+}
+
 beforeEach(() => {
   window.localStorage.clear()
 })
