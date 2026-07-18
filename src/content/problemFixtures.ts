@@ -1,4 +1,5 @@
 import type { ProblemFixture } from "./types"
+import { headingProblems } from "./headingProblems"
 
 function createHeadingFixtures(
   problemId: string,
@@ -223,8 +224,7 @@ function createHeadingFixtures(
   ]
 }
 
-export const headingProblemFixtures = [
-  ...createHeadingFixtures("heading-apple", "Apple"),
-  ...createHeadingFixtures("heading-rainy-day", "Rainy day"),
-  ...createHeadingFixtures("heading-study-tools", "Study tools"),
-] as const satisfies readonly ProblemFixture[]
+export const headingProblemFixtures: readonly ProblemFixture[] =
+  headingProblems.flatMap((problem) =>
+    createHeadingFixtures(problem.id, problem.protectedContent[0]!),
+  )

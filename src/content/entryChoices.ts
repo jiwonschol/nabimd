@@ -41,8 +41,13 @@ export function createRunProblemIds(
   const startingIndex = headingProblems.findIndex(
     (problem) => problem.id === entry.startingProblemId,
   )
-  const offset = (startingIndex + runNumber) % headingProblems.length
   const problemIds = headingProblems.map((problem) => problem.id)
+  const runLength = Math.min(3, problemIds.length)
+  const offset =
+    (startingIndex + runNumber * runLength) % problemIds.length
 
-  return [...problemIds.slice(offset), ...problemIds.slice(0, offset)]
+  return Array.from(
+    { length: runLength },
+    (_, index) => problemIds[(offset + index) % problemIds.length]!,
+  )
 }

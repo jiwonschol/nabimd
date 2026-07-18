@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": 1,
+  "decisions": [
+    {
+      "candidateId": "heading-apple",
+      "candidateDigest": "f667904b78a0352413acbbeb87030c30ee9f15b60ef482792943f1268bd47f70",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-rainy-day",
+      "candidateDigest": "56b9e62f1114dd7558f708bc5ab05b42a2455ae55283cffec60fe9e15f17bdfa",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-study-tools",
+      "candidateDigest": "162093c5cb887bdb811e8e40d014529ad85dcb26e7cea8663d60b502c8192f14",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-weekend-forecast",
+      "candidateDigest": "6425eaa5baf5df870b78ecbf6de37fe310bd2ba6d7f2083143837aeea5f0d535",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-team-handbook",
+      "candidateDigest": "103732a54b75d8b8f24f9f867a50ac417b9caa2f453c55518e55309b0ea4cf6e",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-product-roadmap",
+      "candidateDigest": "dd17f77aa23ff0bd5407607b1139135ed45b0aa37413580c071599293141f2a7",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-meeting-notes",
+      "candidateDigest": "3e8fc477fafdba7130ca470c7ec981debe3c7ef4fd379e282f12e1a8c52736e8",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-field-guide",
+      "candidateDigest": "6c529b55f8ca8d75604d6dd5903c7eadf90cda7639a893e1efba31d26c0b8731",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-travel-checklist",
+      "candidateDigest": "bf51423652e6ae8595762bc2e0ca3406aa384536557dd5cf870a2cd8514f6896",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-reading-list",
+      "candidateDigest": "6735384c6ec1c87278558403ba1ec4482271adce8eadf4573d0d023e3fa4dc57",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-community-garden",
+      "candidateDigest": "08743aaf2527626d5aa4fc1cf564e2ad390eedb007ee2ca125681bd7877e699c",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-release-notes",
+      "candidateDigest": "d58d68137b3768dc7e0d7a27e3317acb817ce6cba7ef91daea4d5dbc5691c2d9",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-workshop-agenda",
+      "candidateDigest": "4a9a49caed0b035f6c9c3db2c487413681ff424e44a217cb74e9c934ee5905a3",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-research-summary",
+      "candidateDigest": "5b071c1082af681ca710a8bd48ec0f66453d050f250cd77a27e9615a3dfb7e29",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-customer-stories",
+      "candidateDigest": "dea6e213ff13b1c34a4d2922c1f63f4ba764a96c2cc290442e540b45c3d4556e",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "heading-design-principles",
+      "candidateDigest": "052d9848e777d9a16779fe3bf8818ae02dfda35f74c6a49bb054231b5b50328c",
+      "fixtureResultsDigest": null,
+      "status": "pending",
+      "reason": "awaiting-independent-review",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-important-note",
+      "candidateDigest": "118c52478c5143c5c67f7e87df71eccabc30da3d6a40d38dd2e4d1b5414f1cc7",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-final-deadline",
+      "candidateDigest": "7231ac93d6345181abef5a65d665feb2e7c98b33bab59bd9273afb455f56dc02",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-safety-first",
+      "candidateDigest": "cb724ce339e781893de9293a9896603fe38e61cada612e7b450b472f990820c1",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-key-takeaway",
+      "candidateDigest": "a73b98ebc106138691a2bf5ffbf79dcd65fbcf6edf96b653d610aa78cad231da",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-new-arrival",
+      "candidateDigest": "2a3832eebef57f9fec9a7e4b2148a5c2736d84b2405732c815ef0cafb0f6a0c5",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-required-reading",
+      "candidateDigest": "9f839737c84e2cb3be250481473c5106b7c9f71814226d29c6f04026ce9fcaa7",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-main-idea",
+      "candidateDigest": "720cb5290a83488be856d6254a8c1428105227a4261716c4d764f392e30b4bba",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-next-step",
+      "candidateDigest": "0e1eb8a3fdc38cf74a5cabc2769cdbb170268e5e685de6c2f6fddbc9142fad5f",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-quiet-hours",
+      "candidateDigest": "b3298f986fc76c28efa6e741b414153dd0dcf64360ffa166aca27ead93760ffe",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-launch-day",
+      "candidateDigest": "3cc5fbe7839732717f77ffc366388d19927aeb6ef20a3e81ce0c89397efc9de4",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-weather-alert",
+      "candidateDigest": "e210459ca9c3a8862af75fd6d5bb8cfb9267c9db2ab11322519d3ec74e150879",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-office-closed",
+      "candidateDigest": "08795bd1ee990e1e74a92a2f947ed609eb03e5bfdfcfe88fadf5dad571256976",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-save-your-work",
+      "candidateDigest": "70c08321d8cd1f8fc1c14570c29cbe6d276cfe99c9abfaf37ff0c4af03aa6f83",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-check-the-address",
+      "candidateDigest": "b30e1d9415e4b6b0984e809822d582eceea9c9479c3bca1f869e27ce367e3846",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-bring-an-umbrella",
+      "candidateDigest": "93b3db4689068b8cc62c722f529f92009d8e5b6b12a81a4ef6fd77ea347db2d9",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "emphasis-registration-open",
+      "candidateDigest": "6566379089cee9842d32bdeceafcdc93d22bd9ba33bd6d7c013f148c2b5b3e9d",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-grocery-basics",
+      "candidateDigest": "95eecbb40de7996e32e590e3a9bcd8c955dc84ab287ef1555961d9f519fff89c",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-morning-routine",
+      "candidateDigest": "16fadb0b6eecf5945da08af814f4a1c4243a927289a7be348dabb57c9d21e6bf",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-trip-essentials",
+      "candidateDigest": "36a628c308be0cc7d4b022129344613e878c95adb0add12b3099f1d38357753b",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-study-session",
+      "candidateDigest": "af406c274fd318f6d02a9620cb4d2b3a064b52c8348b1975ceabeb0a3847b15a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-picnic-basket",
+      "candidateDigest": "ee0fe8bea9cb48d47080a27b9098360ec28097a57495a1ac09dd9aa79d83e732",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-desk-setup",
+      "candidateDigest": "0ab4e531e55e4ea8c144796e39f30c61e75261135136ce18a9b96d44a401abf1",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-weekend-chores",
+      "candidateDigest": "caa51cdf6dca31b032ce1ab176c4b7adfd87bb6f6d17182a0d084e5f0b95521b",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-garden-tools",
+      "candidateDigest": "efd43f5f9e542985226e70e1090af19c3565342bd5a19e09136dc755699c839c",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-meeting-prep",
+      "candidateDigest": "152c9e6ac5348c674e1c9e24ee8a361d7f55db1b50e70e3847cbe258ece0a18a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-winter-gear",
+      "candidateDigest": "11f900ef6e0f18414cf169f5db584e508ba922fa3174d531410dc8988b7ba46f",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-baking-supplies",
+      "candidateDigest": "6dbd97cee214214dea61b56566a6caa68385b70780ecfa7c12b34719d63457f0",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-first-day",
+      "candidateDigest": "2d03770d019ee44fbab990514312f633ea1e83bb6f93d826a9840ee5d112c05a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-camera-bag",
+      "candidateDigest": "17893668d408b42f47142ebcad3cc0ec62a9bc7f04cd1b4c0136bdf4fa73c0f0",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-road-trip",
+      "candidateDigest": "1c48f00ddec004de2cd2aea08d7a459c20d96886d7bcc85b634ba19d3d91ad8f",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-library-visit",
+      "candidateDigest": "3fb651b5e151824465bc96e30b948459e11e69c5f2a94efc8ea5cdf072f709ce",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "list-emergency-kit",
+      "candidateDigest": "d7fb1c9034ede1970073e44102d4e1d99d2e145dbab6d1911790b88cf3e1e90b",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-stay-curious",
+      "candidateDigest": "643b6218e7506f3754089cc9e6dab256a985d29d2be9c826e39c03f419a74a05",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-start-small",
+      "candidateDigest": "45e3a0e8d87b89574a5028dad27a9bda0442cd8ed3c77793bb36fda11f9b34b4",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-keep-going",
+      "candidateDigest": "1b29b64a39308d2e2a66319c6e83695be75160047c43e158a0aa081080ccaeb0",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-make-it-clear",
+      "candidateDigest": "769375da74307f6fd2a119bb24f9a4744789b8cf9b7cb316ced989e6c7bac9d8",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-listen-first",
+      "candidateDigest": "37df88b2055cc2071ec8642832f0cf7a52f3d735b188158f9b470c243fb08a7e",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-write-it-down",
+      "candidateDigest": "2e7055424bf06c340a4791a103079dffe741dfc1b5b510f9de831bdf906f9a2c",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-check-your-work",
+      "candidateDigest": "1a81495a4fd40227aca482b075192ff972cd9adc1c3163925fb35484c7177ab0",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-leave-room",
+      "candidateDigest": "032352068217888182b732d32bd76aa71f0ed3d75d4b8adaeb5b188dc0d5627e",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-ask-why",
+      "candidateDigest": "490eb178eb0aa9170b32d499e39e1dee242a08a4f862452b513b1b9ec52a70d9",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-share-context",
+      "candidateDigest": "06099281a223a3f4947d473e816e6d1237062bb745dab9222a0d35abbb156b73",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-name-the-goal",
+      "candidateDigest": "a1db0f9fe3d4c256f39e1f92a72ba13d4f6ad9ee0d77f380824a41010ed62510",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-respect-the-reader",
+      "candidateDigest": "6737d6ee3a7c48b4622951a3a2a952d10bbc48c897b0467949250675abdd1b8e",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-test-the-assumption",
+      "candidateDigest": "48294e69dcdca2fb61fbb410209b8e20f916f69da5fb8bb7ca5a11ccfce54280",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-simplify-the-plan",
+      "candidateDigest": "e81dbcd01eea041050acb7e6df78c05e7004087af2264131ad342dd27e2789c6",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-notice-the-details",
+      "candidateDigest": "0435775a1b7b6ff00c075b564c069612e65b9388e8a7366e27bc604e0bc05f18",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "quote-finish-the-loop",
+      "candidateDigest": "139a3440e7e3b5cdd1bf651244f11b37a39c5af548574b38126c7ab30c78970d",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-npm-test",
+      "candidateDigest": "430830ee84bada0b7c762db396dc4a25a5cd09e3882f81cd5aec48c89b4591c6",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-git-status",
+      "candidateDigest": "3b7d33d95b072aad1aed38513267c2ac209ea8d4c8f59291e69b63d50e126e10",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-readme-file",
+      "candidateDigest": "e40b0fa3100fa98666406414699c8018e84a0fcbfbb986118c4a670c00b3390f",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-src-folder",
+      "candidateDigest": "11d270233a18af058350f64cbf807eae6aab013b409a1e31cae26038701c1271",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-enter-key",
+      "candidateDigest": "6c53996e12554c75a2695c7f7fa2c04581be6cb5d180b398a6762f3371e29708",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-control-c",
+      "candidateDigest": "2789bcbe28de6683113df0a6491e8ccce01c890c63c155fa58686d67756e048a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-true-value",
+      "candidateDigest": "880c3a20c15279a2c79562211a8ffc3cbb32dc9db90f77b52309754a6e90fe95",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-port-3000",
+      "candidateDigest": "9bb91547c8546a19a90da1cd863ea70bf53f6a9ff6f7d820a7043b16705e0d52",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-user-id",
+      "candidateDigest": "834157986ff5432f77fa081bfd11a3586ea2b6afb0e2224094bdf3631e5c14f6",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-main-branch",
+      "candidateDigest": "024fa23269270c8375bd6dabeac7bee837c2fec20760a8b70072e80c72f29a5b",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-npm-run-build",
+      "candidateDigest": "71c7c4d061018b351cc1c8a10ff91e1ffa62cdfb0795438a7de5d32671561919",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-package-json",
+      "candidateDigest": "ebfed97cd9e897d5a5ef0a2842fe23b2e00aba0a9873bfd5094eff2cb4ed2dcc",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-api-path",
+      "candidateDigest": "4779893dc9c2e590590d1f4c6d7d313d007c2c8a07099adb32738c1156470648",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-null-value",
+      "candidateDigest": "2cf59ef35d0c0adff23685fa680a38ae66d61378eb9a39d4fea88ff3b13c0031",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-query-key",
+      "candidateDigest": "3cd54809debd26b697c3c050a37cf3508e49f21b3859f4053443cd50bb9c9da6",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "code-env-file",
+      "candidateDigest": "a8d40ce54dfb908529927a6aa4fc34f9da2bf601ee3337d1548c34452246ab00",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-scene-break",
+      "candidateDigest": "ccb31888b211ec78d2ab35a10a097e99848868aadab59e48b85fd8df75d706fa",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-section-break",
+      "candidateDigest": "bd0ceedfcad1f1099ab4ba5a6ae0b1e90e7fdfccbada704de8c74fa69e0d45f5",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-topic-change",
+      "candidateDigest": "d3cf2504de888234e1a7d695fb028a6682b327a2e1d93bd614d946ee5b409ec1",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-before-notes",
+      "candidateDigest": "5b60aed9633d7bd663bf90761963441294b1edca49821d281dffba55e7511632",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-after-summary",
+      "candidateDigest": "a797f03a0adc1c69c8e27c1a084704ce9bf90c95e742076fc464c735f3816a19",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-between-days",
+      "candidateDigest": "9bcea6309f4e415a39ea135e2b0f1e6ce9a904609c29ace646ce60d563248987",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-before-sources",
+      "candidateDigest": "2ab995e496c404a98a954c3df5d6399ace9f00d088dccd55353e468d32a54d61",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-after-intro",
+      "candidateDigest": "83fd538ebb38aaae4cc0d138fc3b3bfbb6abf34f5885fd94a057ecc75920cafd",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-before-appendix",
+      "candidateDigest": "40f2c853407a617956bf7bada98c3da9a75a4b51173cc2ecbf53bf3c0de9e55a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-between-updates",
+      "candidateDigest": "379afd5e320c2cf0549c8f1b9b6b42cff9a5826932616241f5011635b8cac03a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-before-details",
+      "candidateDigest": "53e0ee2133bc22d9094b4ef20da754298d8219df7ef24cfb6e2b1b98a8545a71",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-after-checklist",
+      "candidateDigest": "96a075d8cfc5d8e8bb8fb68bd20977b170898d4fd725ef6f6bcfa39e369e0acc",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-between-chapters",
+      "candidateDigest": "3e30eea0441790e1e674864d63b6a351bffd38222162a0870fe0f68f5b282df7",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-before-footnotes",
+      "candidateDigest": "9735f8a23c8a35401d8884f2fdee6c50e4bb46f61202cb113dc6e37f2ad9c7b3",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-after-example",
+      "candidateDigest": "7d22c8d676a7fb9f1be7b5709aa79b71464cbbdf8f57187a969b43f6ce6d8d66",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "rule-before-conclusion",
+      "candidateDigest": "1055b3c07944c47d9192ed5b8c4852ea6094b58929fcc9c485abb8422aa77122",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-openai",
+      "candidateDigest": "29455316988807399610ca4df3a8553fced7b6973b6a4fb056df8768742e1674",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-devpost",
+      "candidateDigest": "163bf7c51d8a044d86aa0dedc69221ecb8016ad2c7e10ce98059a5314671318e",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-mdn",
+      "candidateDigest": "dc49485381e33b6e46f7bd1d514769f78d33405fb98aa4aad0cee3397c1f69e9",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-github",
+      "candidateDigest": "08272d7b237cf10031f68a3815401334f8ba8568736cfd45928ce7256a227d30",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-example-guide",
+      "candidateDigest": "6768d960f37823a9044c98e535aa50aefe24a9712566f7245585bc68a8ce5621",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-project-home",
+      "candidateDigest": "bccebc1bfe753cfeb9831a9c62ac0be2a32b9888e592de4627ae9aaafdae5ed4",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-release-notes",
+      "candidateDigest": "34eeb40ae5071b9587173f400acfa3c84a379312aecb20f55ebfe6947592dc9c",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-support-center",
+      "candidateDigest": "5d895ed0be56c65da1ff691afe87450f23f5243777661a962d42cdabecda40c9",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-weather-report",
+      "candidateDigest": "ed46ad14be153951e2d511e0a0fc1d91bf092c147a2c03cff9ed2b100a9ea706",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-event-details",
+      "candidateDigest": "cdf962cf393ec9f4833ce88ea830ac1ffcd06d99432479433cf9c0881bdbf40d",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-team-calendar",
+      "candidateDigest": "7aa01f45e4f77f2737ddcbcf0bc2744396422b1022c258cd0b90cf33ec9f976a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-design-system",
+      "candidateDigest": "f7ee42df6e9c506a08018dafbee93fa5951ab545992665a33dcb679e3bb628ae",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-api-reference",
+      "candidateDigest": "bd1684fdfd4bb05e112c2f91469695ad85ae65ac4fdae28e812d5cbecc46b649",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-community-forum",
+      "candidateDigest": "fb2682001fb99edd29b7c4e2669819f85fdf0b218f1436b5df40b3b5a0fa9343",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-accessibility-help",
+      "candidateDigest": "5ae6d08c1a55e2c984f5c00d79c515ffb37899d28e2db5ed065c2b19dcbd698f",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "link-privacy-policy",
+      "candidateDigest": "74f10c4e9464022831fc6ac01221ada94791822c0971366fcd9c80ced3cab769",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-red-apple",
+      "candidateDigest": "f25a2ddba3e4fb1e15f2f18eece6bfbc591113354a6005f162e462e64b41bc2e",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-rainy-window",
+      "candidateDigest": "7e0445f9ab47ef5825a7afb1269a758d258e66a24fd669535fdeb19cb69240d4",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-city-map",
+      "candidateDigest": "245e62db8cb14f4368428dd5e203be383fb40a18ffaf0f9222b57d5aecbcf247",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-team-photo",
+      "candidateDigest": "6108904653d67679b1f978b8288f44fbb78e503050cadacbae120938bf809ad1",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-book-cover",
+      "candidateDigest": "aed6795ed30846c744b6fdb19cda21c0f7c8aead8dd62ee4457c38147bf1148b",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-mountain-trail",
+      "candidateDigest": "c354a0bde6bf6e0d23f2155181ed81b0e76ef7d7030770fa9ea9119e7e9507b3",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-coffee-cup",
+      "candidateDigest": "fc5419ea0211bab800203a1727466290dcfc4d18295988d787e51dbb22566e35",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-garden-bed",
+      "candidateDigest": "11d7b86796c24fa5475ffcba31b2846e221b19a2e12211dbb81df8dae8271fb4",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-weather-chart",
+      "candidateDigest": "8b280d7b35d302081a257e97c768907b8b4bffb65d871a7f7fae937a0c9c8abd",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-workshop-table",
+      "candidateDigest": "2a91414662e20496b494020acd7abdba9eb0258655079af5dab4bd80f11e69a7",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-bus-route",
+      "candidateDigest": "825bd87e9934dc2648d61a78cc291ca920c46ef7b33a13725946ffe88146b88c",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-product-sketch",
+      "candidateDigest": "6cc9bf31441b7056e7373859ff73349b617a9c25dd8487f7397330fc63e58324",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-library-shelf",
+      "candidateDigest": "b6bfba37e53febbc1cef613aed846ac4d29eb333a0904c099c23e9e136af69ca",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-sunset-lake",
+      "candidateDigest": "dc82c6f069b4d45e8cad292238bd305ea91360296ee02ae52b3b639cb8d20512",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-office-entrance",
+      "candidateDigest": "340cdbb10877b14b689c66565b7ce9bbec7f933ca945d676442b1cdbac52c98a",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    },
+    {
+      "candidateId": "image-safety-sign",
+      "candidateDigest": "bc319d87d9f750100441cadfc590f9725e129dc415a77da3eecbda8304f6b607",
+      "fixtureResultsDigest": null,
+      "status": "blocked",
+      "reason": "engine-family-not-supported",
+      "editorialActor": null
+    }
+  ]
+}

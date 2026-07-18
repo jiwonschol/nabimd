@@ -1,10 +1,17 @@
 import type { Problem } from "./types"
+import headingBank from "./generated/headingBank.generated.json"
 
 const sharedHints = [
   "Use one hash symbol to make a main heading.",
   "Type one hash symbol, one space, then the title.",
   "Example: `# Team update`",
 ] as const
+
+const sharedTeaching = {
+  concept: "A main heading names the whole document.",
+  howTo: "Start a line with one hash, add a space, then type the title.",
+  example: "# Weather",
+} as const
 
 const singleTitleCheck = {
   id: "one-document-title",
@@ -39,6 +46,7 @@ function createHeadingProblem({
     skillIds: ["heading-h1"],
     difficulty: "warmup",
     teachingMode,
+    teaching: sharedTeaching,
     syntaxTokens: ["#", "Space", "Title"],
     title: "Main heading",
     prompt: "Rebuild the heading below in Markdown.",
@@ -93,26 +101,24 @@ function createHeadingProblem({
   }
 }
 
-export const headingProblems = [
-  createHeadingProblem({
-    id: "heading-apple",
-    text: "Apple",
-    teachingMode: "introduce",
-    preserveFeedback: "Keep the word ‘Apple’ in your answer.",
-  }),
-  createHeadingProblem({
-    id: "heading-rainy-day",
-    text: "Rainy day",
-    teachingMode: "recall",
-    preserveFeedback: "Keep the words ‘Rainy day’ in your answer.",
-  }),
-  createHeadingProblem({
-    id: "heading-study-tools",
-    text: "Study tools",
-    teachingMode: "recall",
-    preserveFeedback: "Keep the words ‘Study tools’ in your answer.",
-  }),
-] as const satisfies readonly Problem[]
+const generatedHeadingProblems = headingBank.map(
+  ({ id, text, teachingMode }) =>
+    createHeadingProblem({
+      id,
+      text,
+      teachingMode: teachingMode as Problem["teachingMode"],
+      preserveFeedback: `${text.includes(" ") ? "Keep the words" : "Keep the word"} ‘${text}’ in your answer.`,
+    }),
+)
+
+if (!generatedHeadingProblems[0]) {
+  throw new Error("The generated heading bank must not be empty")
+}
+
+export const headingProblems = generatedHeadingProblems as [
+  Problem,
+  ...Problem[],
+]
 
 export function getHeadingProblem(id: string): Problem {
   const problem = headingProblems.find((candidate) => candidate.id === id)

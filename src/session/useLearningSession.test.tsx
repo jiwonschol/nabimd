@@ -47,7 +47,7 @@ describe("useLearningSession", () => {
 
     expect(result.current.session.entryId).toBe("challenge")
     expect(result.current.session.runNumber).toBe(1)
-    expect(result.current.problem.id).toBe("heading-apple")
+    expect(result.current.problem.id).toBe("heading-product-roadmap")
     expect(result.current.session.draft).toBe("")
   })
 
@@ -92,9 +92,10 @@ describe("useLearningSession", () => {
     expect(result.current.session.teachingMode).toBe("introduce")
 
     act(() => result.current.practiceAgain())
-    expect(result.current.problem.id).toBe("heading-rainy-day")
+    expect(result.current.problem.id).toBe("heading-weekend-forecast")
     expect(result.current.session.coach).toBe("hint")
     expect(result.current.session.teachingMode).toBe("introduce")
+    expect(result.current.problem.teaching.example).toBe("# Weather")
 
     act(() => result.current.start("basics"))
     expect(result.current.session.coach).toBe("closed")
@@ -133,15 +134,15 @@ describe("useLearningSession", () => {
     const { result } = firstHook
 
     act(() => result.current.start("challenge"))
-    for (const answer of ["# Study tools", "# Apple"]) {
+    for (const answer of ["# Study tools", "# Weekend forecast"]) {
       act(() => result.current.edit(answer))
       act(() => result.current.check())
       act(() => result.current.next())
     }
 
-    act(() => result.current.edit("#Rainy day"))
+    act(() => result.current.edit("#Team handbook"))
     act(() => result.current.check())
-    act(() => result.current.edit("# Rainy day"))
+    act(() => result.current.edit("# Team handbook"))
     act(() => result.current.check())
     act(() => result.current.next())
 

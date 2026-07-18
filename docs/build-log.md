@@ -507,8 +507,65 @@ shows a generic docstring-coverage notice even though this repository defines
 no docstring-coverage rule. Neither altered the verified learner path; bundle
 splitting can be considered after the Build Week curriculum scope is complete.
 
-## Next entry
+## Planned evidence after the C6 milestone
 
 Record the primary-task `/feedback` Session ID, the Devpost submission and
 video evidence, and the GPT-5.6 curriculum-refinement artifact before beginning
 the next syntax family.
+
+## 2026-07-18 — Trust-first problem-bank pipeline and Level 1 teaching
+
+### Product decision
+
+Issue #7 exposed a real constraint rather than a reason to inflate the demo:
+the verified grader currently supports only top-level hash H1 exercises. Codex
+generated and normalized 128 candidates—16 in each Devpost-aligned family—but
+only the 16 headings are eligible for the runtime gate. The other 112 remain
+recorded as `engine-family-not-supported`. They are not described as shipped.
+
+Level 1 now teaches the rule in the Instruction area before asking for recall:
+one sentence names the concept, one explains the keystrokes, and one inline
+example shows `# Weather`. The block renders from the dynamic session
+`introduce` state, so it appears when Practice again rotates a non-Apple
+problem into the first Level 1 step. Basics, Challenge, transfer, and later run
+steps stay lean.
+
+### GPT-5.6 generation and refinement
+
+The exact prompt and raw artifact are committed under
+`curriculum/problem-bank/`. A first compact draft revealed three trust risks:
+bare horizontal-rule targets had no human-readable context, invented
+`example.com` destinations weakened link exercises, and image URLs implied
+assets that did not exist. The artifact was corrected before review:
+
+- every family now preserves concept/how-to/example teaching data;
+- every normalized candidate carries expected skill, a likely malformed trap,
+  and an editorial note inside its digest;
+- horizontal rules preserve prose blocks on both sides with blank lines;
+- links use descriptive labels and public documentation destinations; and
+- images use reserved local practice paths and remain blocked until licensed
+  assets and visual alt-text review exist.
+
+### Deterministic gate
+
+The pipeline enforces generate → real fixture engine → independent agreement →
+editorial acceptance → exact publish-set equality. Candidate data uses
+canonical SHA-256 digests. Heading reviews additionally bind the full
+`evaluateProblem` transcript and its 29-fixture count. Missing, stale,
+duplicate, or disagreeing reviews fail; a third negative verdict cannot be
+ignored. The runtime JSON is generated separately and must exactly match the
+accepted editorial set.
+
+At this implementation checkpoint, TypeScript, 652 unit/component/pipeline
+tests, the production build, and all 15 Chromium paths pass. Browser proof now
+includes the first Level 1 teaching block, its non-Apple replay introduction,
+and the lean Basics path. The final bank gate is intentionally red only because
+no independent reviewer or editorial acceptance has yet been recorded. Those
+records must be produced by separate review passes against the exact printed
+digests before this issue can merge.
+
+## Next entry
+
+Record the two independent reviewer artifacts, editorial acceptance, final
+bank-gate result, browser proof, review corrections, merge, and production
+verification for issue #7.

@@ -5,48 +5,37 @@ import { validateProblemBank } from "./validateProblemBank"
 import type { Problem, ProblemFixture } from "./types"
 
 describe("heading problem bank", () => {
-  it("starts with one introduced rule and two recall variants", () => {
+  it("ships sixteen concise heading variants with one static introduction", () => {
+    expect(headingProblems).toHaveLength(16)
+    expect(headingProblems[0]).toMatchObject({
+      id: "heading-apple",
+      target: "# Apple",
+      starterText: "",
+      teachingMode: "introduce",
+      syntaxTokens: ["#", "Space", "Title"],
+    })
     expect(
-      headingProblems.map((problem) => ({
-        id: problem.id,
-        target: problem.target,
-        starterText: problem.starterText,
-        teachingMode: problem.teachingMode,
-        syntaxTokens: problem.syntaxTokens,
-      })),
-    ).toEqual([
-      {
-        id: "heading-apple",
-        target: "# Apple",
-        starterText: "",
-        teachingMode: "introduce",
-        syntaxTokens: ["#", "Space", "Title"],
-      },
-      {
-        id: "heading-rainy-day",
-        target: "# Rainy day",
-        starterText: "",
-        teachingMode: "recall",
-        syntaxTokens: ["#", "Space", "Title"],
-      },
-      {
-        id: "heading-study-tools",
-        target: "# Study tools",
-        starterText: "",
-        teachingMode: "recall",
-        syntaxTokens: ["#", "Space", "Title"],
-      },
-    ])
+      headingProblems.slice(1).every(
+        (problem) => problem.teachingMode === "recall",
+      ),
+    ).toBe(true)
   })
 
-  it("contains three distinct transfer variants", () => {
-    expect(headingProblems).toHaveLength(3)
-    expect(new Set(headingProblems.map((problem) => problem.id)).size).toBe(3)
+  it("contains sixteen distinct transfer variants", () => {
+    expect(new Set(headingProblems.map((problem) => problem.id)).size).toBe(16)
     expect(
       new Set(
         headingProblems.map((problem) => problem.protectedContent.at(0)),
       ).size,
-    ).toBe(3)
+    ).toBe(16)
+  })
+
+  it.each(headingProblems)("gives $id a complete shared teaching block", (problem) => {
+    expect(problem.teaching).toEqual({
+      concept: "A main heading names the whole document.",
+      howTo: "Start a line with one hash, add a space, then type the title.",
+      example: "# Weather",
+    })
   })
 
   it("has a complete valid fixture contract", () => {
@@ -85,7 +74,7 @@ describe("heading problem bank", () => {
 
   it("reports duplicate protected content", () => {
     const duplicateContentProblem: Problem = {
-      ...headingProblems[1],
+      ...headingProblems[1]!,
       id: "heading-duplicate-content",
       protectedContent: headingProblems[0].protectedContent,
     }
@@ -155,6 +144,38 @@ describe("heading problem bank", () => {
     ).toContain(
       "Problem heading-apple must provide exactly three hints",
     )
+  })
+
+  it.each(["concept", "howTo", "example"] as const)(
+    "rejects a blank teaching %s",
+    (field) => {
+      const invalidTeachingProblem: Problem = {
+        ...headingProblems[0],
+        teaching: { ...headingProblems[0].teaching, [field]: "  " },
+      }
+
+      expect(
+        validateProblemBank(
+          [invalidTeachingProblem, ...headingProblems.slice(1)],
+          headingProblemFixtures,
+        ),
+      ).toContain(`Problem heading-apple has blank teaching ${field}`)
+    },
+  )
+
+  it("rejects duplicate fixture kinds for one problem", () => {
+    const duplicateFixture = headingProblemFixtures.find(
+      (fixture) =>
+        fixture.problemId === "heading-apple" && fixture.kind === "canonical",
+    )
+    expect(duplicateFixture).toBeDefined()
+
+    expect(
+      validateProblemBank(headingProblems, [
+        ...headingProblemFixtures,
+        duplicateFixture!,
+      ]),
+    ).toContain("Duplicate fixture kind canonical for heading-apple")
   })
 
   it("returns a known problem by ID", () => {

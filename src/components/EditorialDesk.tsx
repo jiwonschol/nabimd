@@ -81,6 +81,14 @@ export function EditorialDesk({
             >
               <p className="section-label">Instruction</p>
               <h2 id="exercise-instruction">{problem.prompt}</h2>
+              {session.teachingMode === "introduce" ? (
+                <p className="instruction__teaching">
+                  {problem.teaching.concept} {problem.teaching.howTo}{" "}
+                  <span>
+                    Example: <code>{problem.teaching.example}</code>
+                  </span>
+                </p>
+              ) : null}
             </section>
 
             <div className="lesson-grid">

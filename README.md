@@ -9,9 +9,9 @@ not recognition: the learner sees a rendered target, writes the source, checks
 it explicitly, and proves the same skill with different content after a
 mistake.
 
-The current deployed slice teaches H1 document titles. It is deliberately
-small enough to prove the complete learning loop before the problem bank is
-expanded.
+The current product track teaches H1 document titles. Its accepted bank is
+deliberately bounded by a deterministic publication gate before later syntax
+families are allowed into the learner runtime.
 
 **Live demo:** [nabimd.vercel.app](https://nabimd.vercel.app)
 
@@ -61,7 +61,12 @@ syntax or lost prompt content.
 
 This milestone includes:
 
-- three curated H1 heading prompts with 18 golden fixtures;
+- 16 curated H1 heading prompts with 29 real-engine fixtures each;
+- three-exercise replay windows that rotate through the accepted bank;
+- a compact Level 1 concept, how-to, and inline example that disappears in
+  recall mode;
+- a reproducible 128-candidate GPT-5.6 artifact with 112 unsupported-family
+  candidates truthfully blocked from runtime publication;
 - deterministic Markdown parsing and ordered feedback;
 - different-content transfer after a repaired failure;
 - introduce/recall teaching modes, downward Help, progressive hints, and
@@ -70,7 +75,7 @@ This milestone includes:
 - one safe rendered-document surface for Goal and Live preview;
 - a restrained monochrome CodeMirror source editor with optional,
   non-mutating invisibles; and
-- 86 unit/component tests plus eight Chromium end-to-end paths.
+- a digest-bound independent-review and editorial publication gate.
 
 It does **not** yet claim the full 33-problem curriculum, accounts, cloud
 sync, Korean localization, payments, analytics, or runtime AI.
@@ -182,8 +187,8 @@ source → preview ordering and no horizontal overflow at 390 px.
   the browser.
 - Matched and Perfect preserve the difference between correctness and readable
   presentation without turning editorial polish into punishment.
-- Every current problem carries six fixture classes and three progressive
-  hints.
+- Every current problem carries 29 grading fixtures, a complete teaching
+  payload, and three progressive hints.
 - Goal and Live preview share one safe renderer, while the source editor can
   reveal spaces and tabs without changing the learner's Markdown.
 - Typechecking, 86 unit/component tests, the production build, and eight
@@ -244,6 +249,7 @@ npm run check
 - [Approved first-exercise redesign](docs/superpowers/specs/2026-07-18-first-exercise-redesign-design.md)
 - [C6 redesign execution plan](docs/superpowers/plans/2026-07-18-first-exercise-redesign.md)
 - [Level 5 agent-brief north star](docs/design/level-5-agent-brief-north-star.md)
+- [Problem-bank pipeline](curriculum/problem-bank/README.md)
 - [Anonymized Level 5 reference](docs/examples/level-5-agent-work-order-reference.md)
 - [Public demo](https://nabimd.vercel.app)
 - Primary Codex task: the core-build task used for this repository

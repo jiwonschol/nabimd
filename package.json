@@ -13,7 +13,11 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "build": "tsc -b && vite build",
-    "check": "npm run typecheck && npm test && npm run build"
+    "bank:generate": "node scripts/problem-bank/normalize.mjs",
+    "bank:generate:check": "node scripts/problem-bank/normalize.mjs --check",
+    "bank:review-manifest": "vitest run scripts/problem-bank/reviewManifest.report.ts --config vitest.gate.config.ts --reporter=verbose",
+    "bank:gate": "vitest run scripts/problem-bank/problemBankGate.gate.ts --config vitest.gate.config.ts",
+    "check": "npm run typecheck && npm run bank:generate:check && npm test && npm run bank:gate && npm run build"
   },
   "dependencies": {
     "@codemirror/commands": "6.10.4",

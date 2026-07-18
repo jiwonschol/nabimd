@@ -184,6 +184,24 @@ button:focus-visible,
   line-height: 1.2;
 }
 
+.instruction__teaching {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.instruction__teaching span,
+.instruction__teaching code {
+  white-space: nowrap;
+}
+
+.instruction__teaching code {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.88em;
+}
+
 .lesson-grid {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(16rem, 1fr);
