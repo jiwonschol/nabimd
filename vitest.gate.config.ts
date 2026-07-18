@@ -11,6 +11,7 @@ export default defineConfig({
       "scripts/problem-bank/headingBatch002Artifacts.gate.ts",
       "scripts/problem-bank/emphasisBatch003Artifacts.gate.ts",
       "scripts/problem-bank/listBatch004Artifacts.gate.ts",
+      "scripts/problem-bank/orderedListBatch005Artifacts.gate.ts",
     ],
   },
 })
