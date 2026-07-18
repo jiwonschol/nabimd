@@ -642,3 +642,42 @@ that a truthy non-array candidate collection could reach `.entries()` after
 recording an error; validation now falls back to an empty array and returns the
 error instead of throwing. Three more regressions cover the new runtime checks;
 the final local gate passes 661 tests.
+
+## 2026-07-18 — Issue #7 merge and production proof
+
+### Remote review and merge
+
+PR #17 reached a clean, approved state at head `49a62e55a1cddc35be20fd259644f5c24279669a`:
+
+- GitHub Verify passed on the final head;
+- CodeRabbit approved after all six actionable GitHub threads were answered,
+  confirmed, and resolved; its final incremental pass produced no new
+  actionable comment;
+- the GitHub Codex reviewer reported no major issue on the final head; and
+- all six review threads were resolved before merge.
+
+The PR was merged into `main` as
+`d1b9b6ecc5ba23eeee6e69011e006a7591f003f3`. The local main checkout was then
+fast-forwarded to the same commit without modifying the user's untracked font,
+logo, or Session ID files.
+
+### Production deployment and browser proof
+
+The merged main was linked explicitly to the existing
+`jiwon112-3536s-projects/nabimd` Vercel project and deployed as
+`dpl_4qCZZARAD2JEcWbnNcBiRwrwRqxd`. Vercel rebuilt 203 modules successfully and
+reported the deployment Ready at
+`https://nabimd-3jsyb8obz-jiwon112-3536s-projects.vercel.app`.
+
+The CLI initially updated only the project's generated production aliases, so
+`nabimd.vercel.app` still served the previous build. The primary task detected
+the different response ETag and content length, assigned the public alias to
+the new deployment explicitly, and rechecked both public addresses. They then
+returned HTTP 200 with the same new ETag.
+
+The production app was opened in the app browser rather than accepted from an
+HTTP check alone. The welcome screen rendered the released wordmark and three
+entry choices. A fresh Level 1 run showed the teaching block, Goal, downward
+Hint, source editor, and Live preview. Entering `# Apple` returned Perfect;
+Next advanced to a blank `Rainy day` recall exercise at step 2 of 3. This final
+check exercised the deployed learner path, not a local server or preview URL.
