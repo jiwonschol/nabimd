@@ -9,8 +9,9 @@ export type ReviewItem = {
   message: string
 }
 
-export type PassedEvaluation =
-  | { status: "matched"; reviewItems: readonly ReviewItem[] }
-  | { status: "perfect"; reviewItems: readonly [] }
+export type PassedEvaluation = {
+  status: "matched"
+  reviewItems: readonly ReviewItem[]
+}
 
 export type Evaluation = MatchFailure | PassedEvaluation

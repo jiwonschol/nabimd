@@ -1,9 +1,7 @@
 import type { Root } from "mdast"
 import type { EditorialCheck, Problem } from "../content/types"
 import {
-  hasSameRenderedSemantics,
   headingsAtLevel,
-  parseMarkdown,
 } from "./markdownAst"
 import type { ReviewItem } from "./types"
 
@@ -13,8 +11,6 @@ function editorialCheckPasses(
   root: Root,
 ): boolean {
   switch (check.kind) {
-    case "matches-target-exactly":
-      return hasSameRenderedSemantics(root, parseMarkdown(problem.target))
     case "single-h1":
       return headingsAtLevel(root, 1).length === 1
   }

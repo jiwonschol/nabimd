@@ -20,18 +20,10 @@ const singleTitleCheck = {
     "Keep one H1 as the document title; use lower heading levels for sections.",
 } as const
 
-const exactTargetCheck = {
-  id: "matches-target-exactly",
-  kind: "matches-target-exactly",
-  review:
-    "Your document renders more than the goal — remove the extra emphasis/content to match it exactly.",
-} as const
-
 type HeadingProblemInput = {
   id: string
   text: string
   teachingMode: Problem["teachingMode"]
-  preserveFeedback: string
 }
 
 export function parseTeachingMode(value: unknown): Problem["teachingMode"] {
@@ -44,7 +36,6 @@ function createHeadingProblem({
   id,
   text,
   teachingMode,
-  preserveFeedback,
 }: HeadingProblemInput): Problem {
   return {
     id,
@@ -69,21 +60,6 @@ function createHeadingProblem({
         feedback: "Add one space after the hash symbol.",
       },
       {
-        id: `match-${id.replace("heading-", "")}-capitalization`,
-        kind: "heading-capitalization",
-        level: 1,
-        text,
-        priority: 15,
-        feedback: `Close — match the capitalization: the goal says '${text}'.`,
-      },
-      {
-        id: `preserve-${id.replace("heading-", "")}`,
-        kind: "preserves-text",
-        text,
-        priority: 20,
-        feedback: preserveFeedback,
-      },
-      {
         id: "use-hash-heading-style",
         kind: "hash-heading-style",
         level: 1,
@@ -100,7 +76,7 @@ function createHeadingProblem({
         feedback: "Start the title with one hash symbol and one space.",
       },
     ],
-    editorialChecks: [exactTargetCheck, singleTitleCheck],
+    editorialChecks: [singleTitleCheck],
     hints: sharedHints,
     retryFamily: "heading-h1",
     reviewTags: ["one-document-title"],
@@ -113,7 +89,6 @@ const generatedHeadingProblems = headingBank.map(
       id,
       text,
       teachingMode: parseTeachingMode(teachingMode),
-      preserveFeedback: `${text.includes(" ") ? "Keep the words" : "Keep the word"} ‘${text}’ in your answer.`,
     }),
 )
 

@@ -28,18 +28,14 @@ describe("evaluateProblem", () => {
     }
   })
 
-  it("protects the required title text", () => {
-    const result = evaluateProblem(
-      getHeadingProblem("heading-apple"),
-      "# Weekly notes",
-    )
-
-    expect(result).toEqual({
-      status: "fail",
-      feedbackId: "preserve-apple",
-      message: "Keep the word ‘Apple’ in your answer.",
-    })
-  })
+  it.each(["# apple", "# aple", "# Banana"])(
+    "passes valid hash-H1 syntax without grading the prose in %s",
+    (source) => {
+      expect(
+        evaluateProblem(getHeadingProblem("heading-apple"), source),
+      ).toEqual({ status: "matched", reviewItems: [] })
+    },
+  )
 
   it("prioritizes malformed heading spacing", () => {
     const result = evaluateProblem(
@@ -100,9 +96,9 @@ describe("evaluateProblem", () => {
       ["tab separator", "#\tApple"],
       ["multiple separator spaces", "#   Apple"],
       ["trailing whitespace", "# Apple   "],
-    ])("grades a faithful %s answer Perfect", (_label, source) => {
+    ])("grades a valid %s answer Matched", (_label, source) => {
       expect(evaluateProblem(getHeadingProblem("heading-apple"), source)).toEqual({
-        status: "perfect",
+        status: "matched",
         reviewItems: [],
       })
     })
@@ -122,11 +118,11 @@ describe("evaluateProblem", () => {
       })
     })
 
-    it("fails empty input without weakening protected text", () => {
+    it("fails empty input because the requested H1 is missing", () => {
       expect(evaluateProblem(getHeadingProblem("heading-apple"), "")).toEqual({
         status: "fail",
-        feedbackId: "preserve-apple",
-        message: "Keep the word ‘Apple’ in your answer.",
+        feedbackId: "use-h1-heading",
+        message: "Start the title with one hash symbol and one space.",
       })
     })
 
@@ -149,11 +145,10 @@ describe("evaluateProblem", () => {
       })
     })
 
-    it("gives case-specific feedback before the protected-text check", () => {
+    it("does not grade capitalization", () => {
       expect(evaluateProblem(getHeadingProblem("heading-apple"), "# apple")).toEqual({
-        status: "fail",
-        feedbackId: "match-apple-capitalization",
-        message: "Close — match the capitalization: the goal says 'Apple'.",
+        status: "matched",
+        reviewItems: [],
       })
     })
 
@@ -168,34 +163,29 @@ describe("evaluateProblem", () => {
       })
     })
 
-    it("corrects Setext capitalization before requesting hash style", () => {
+    it("requests hash style for Setext without grading capitalization", () => {
       expect(
         evaluateProblem(getHeadingProblem("heading-apple"), "apple\n====="),
       ).toEqual({
         status: "fail",
-        feedbackId: "match-apple-capitalization",
-        message: "Close — match the capitalization: the goal says 'Apple'.",
+        feedbackId: "use-hash-heading-style",
+        message:
+          "That's a real heading! Markdown has two heading styles — this quest practices the hash style. Try: # Apple",
       })
     })
   })
 
-  describe("rendered-semantic exactness", () => {
+  describe("prose-neutral editorial review", () => {
     it.each([
       ["emphasis", "# **Apple**"],
       ["inline code", "# `Apple`"],
       ["link", "# [Apple](https://example.com)"],
       ["extra paragraph", "# Apple\n\nExtra context."],
       ["extra H2", "# Apple\n\n## Details"],
-    ])("grades %s as Matched with exactness review", (_label, source) => {
+    ])("does not review %s merely for differing from the Goal", (_label, source) => {
       expect(evaluateProblem(getHeadingProblem("heading-apple"), source)).toEqual({
         status: "matched",
-        reviewItems: [
-          {
-            id: "matches-target-exactly",
-            message:
-              "Your document renders more than the goal — remove the extra emphasis/content to match it exactly.",
-          },
-        ],
+        reviewItems: [],
       })
     })
 
@@ -205,11 +195,6 @@ describe("evaluateProblem", () => {
       ).toEqual({
         status: "matched",
         reviewItems: [
-          {
-            id: "matches-target-exactly",
-            message:
-              "Your document renders more than the goal — remove the extra emphasis/content to match it exactly.",
-          },
           {
             id: "one-document-title",
             message:
@@ -231,13 +216,7 @@ describe("evaluateProblem", () => {
         evaluateProblem(getHeadingProblem("heading-apple"), "#Apple\n\n# Apple"),
       ).toEqual({
         status: "matched",
-        reviewItems: [
-          {
-            id: "matches-target-exactly",
-            message:
-              "Your document renders more than the goal — remove the extra emphasis/content to match it exactly.",
-          },
-        ],
+        reviewItems: [],
       })
     })
 
@@ -246,7 +225,7 @@ describe("evaluateProblem", () => {
       (source) => {
         expect(
           evaluateProblem(getHeadingProblem("heading-rainy-day"), source),
-        ).toEqual({ status: "perfect", reviewItems: [] })
+        ).toEqual({ status: "matched", reviewItems: [] })
       },
     )
   })

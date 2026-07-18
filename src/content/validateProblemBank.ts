@@ -10,7 +10,6 @@ const requiredFixtureKinds: readonly FixtureKind[] = [
   "missing",
   "malformed",
   "matched-with-refinement",
-  "perfect",
 ]
 
 export function validateProblemBank(

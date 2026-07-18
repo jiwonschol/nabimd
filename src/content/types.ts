@@ -1,22 +1,7 @@
 export type MatchCheck =
   | {
       id: string
-      kind: "preserves-text"
-      text: string
-      priority: number
-      feedback: string
-    }
-  | {
-      id: string
       kind: "heading-spacing"
-      level: 1
-      text: string
-      priority: number
-      feedback: string
-    }
-  | {
-      id: string
-      kind: "heading-capitalization"
       level: 1
       text: string
       priority: number
@@ -40,11 +25,6 @@ export type MatchCheck =
     }
 
 export type EditorialCheck =
-  | {
-      id: string
-      kind: "matches-target-exactly"
-      review: string
-    }
   | {
       id: string
       kind: "single-h1"
@@ -81,7 +61,6 @@ export type FixtureKind =
   | "missing"
   | "malformed"
   | "matched-with-refinement"
-  | "perfect"
   | "leading-atx"
   | "indented-code"
   | "tab-separator"
@@ -93,7 +72,7 @@ export type FixtureKind =
   | "empty"
   | "compound-missing-space"
   | "lowercase-compound"
-  | "capitalization"
+  | "case-variation"
   | "setext"
   | "nbsp-separator"
   | "ideographic-space-separator"
@@ -110,7 +89,7 @@ export type ProblemFixture = {
   problemId: string
   kind: FixtureKind
   source: string
-  expectedStatus: "fail" | "matched" | "perfect"
+  expectedStatus: "fail" | "matched"
   expectedFeedbackId?: string
   expectedReviewIds?: readonly string[]
 }

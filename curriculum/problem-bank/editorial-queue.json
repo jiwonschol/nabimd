@@ -4,7 +4,7 @@
     {
       "candidateId": "heading-apple",
       "candidateDigest": "f667904b78a0352413acbbeb87030c30ee9f15b60ef482792943f1268bd47f70",
-      "fixtureResultsDigest": "46b6b8aee75c052b9e022d917dd9138aff0780ee0577062e167a180b68f38d78",
+      "fixtureResultsDigest": "d43162e677b3d3475434abfeced4e5b68af3b22acbebc45d9e4e84853f51e4eb",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -12,7 +12,7 @@
     {
       "candidateId": "heading-rainy-day",
       "candidateDigest": "56b9e62f1114dd7558f708bc5ab05b42a2455ae55283cffec60fe9e15f17bdfa",
-      "fixtureResultsDigest": "0e7c03b7430b633fdc0437cf535f343904d43934bb3c8718877efca7c2902624",
+      "fixtureResultsDigest": "d4fee8679753890798cec340cdf96d2988ab1d56afd293b8f0f27653e02175a1",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -20,7 +20,7 @@
     {
       "candidateId": "heading-study-tools",
       "candidateDigest": "162093c5cb887bdb811e8e40d014529ad85dcb26e7cea8663d60b502c8192f14",
-      "fixtureResultsDigest": "66198cd89ae200c24628ec13c01566cf98abb3a2a5f774673a21e579ef94fd05",
+      "fixtureResultsDigest": "37743027bc406f97bddef1fea594364231738ad714c6e5fad8ada35fc4df36e9",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -28,7 +28,7 @@
     {
       "candidateId": "heading-weekend-forecast",
       "candidateDigest": "6425eaa5baf5df870b78ecbf6de37fe310bd2ba6d7f2083143837aeea5f0d535",
-      "fixtureResultsDigest": "7cccd8c9c230ab072fd12324e0fdbc53c2ac132695550e4eceb4166ed0d50356",
+      "fixtureResultsDigest": "7b094754292f62f6d0ed7ea537bd8d3c90422342e2b5a692bfca638e8e1b1a2f",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -36,7 +36,7 @@
     {
       "candidateId": "heading-team-handbook",
       "candidateDigest": "103732a54b75d8b8f24f9f867a50ac417b9caa2f453c55518e55309b0ea4cf6e",
-      "fixtureResultsDigest": "291f8309726200513ab9035daf94def49790bdd064d43d940fbdaecb4e5a8270",
+      "fixtureResultsDigest": "22b571891d4c884aa48337091df445ccc80eb20ffae570d1e9fefa375d9d97ed",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -44,7 +44,7 @@
     {
       "candidateId": "heading-product-roadmap",
       "candidateDigest": "dd17f77aa23ff0bd5407607b1139135ed45b0aa37413580c071599293141f2a7",
-      "fixtureResultsDigest": "02db3dc9dd4577552dba7f1bc6754ce91e119fd83a9c710b2caf216e6eb5c153",
+      "fixtureResultsDigest": "d429e3b3262213186cafae1e7303a62ea2060b822af6b2d2fbb2031ecc5ebc5b",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -52,7 +52,7 @@
     {
       "candidateId": "heading-meeting-notes",
       "candidateDigest": "3e8fc477fafdba7130ca470c7ec981debe3c7ef4fd379e282f12e1a8c52736e8",
-      "fixtureResultsDigest": "3ff497ad357627727f2fe10997f969ddfdbcaea0fe0fc491ee6f23307e8ac477",
+      "fixtureResultsDigest": "bb509412391f8bee022ede41ad9f87a8efd5dcd9f4e76ca6c146a9ae68066a20",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -60,7 +60,7 @@
     {
       "candidateId": "heading-field-guide",
       "candidateDigest": "6c529b55f8ca8d75604d6dd5903c7eadf90cda7639a893e1efba31d26c0b8731",
-      "fixtureResultsDigest": "6d26e48e783b56d3e80526c0493da3cfa2a792032671094b54195a5ddfbefc8c",
+      "fixtureResultsDigest": "5ceb53db0380f9b4bd43a930a42e43c1b31dbae427595bea08635b9eac90aa1f",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -68,7 +68,7 @@
     {
       "candidateId": "heading-travel-checklist",
       "candidateDigest": "bf51423652e6ae8595762bc2e0ca3406aa384536557dd5cf870a2cd8514f6896",
-      "fixtureResultsDigest": "15272c343c57e6549fab04607b789755669a0f35bd2a8caa7f7347903bf6f4ce",
+      "fixtureResultsDigest": "ae694a69bc2ed3d29cdd0749d428ced951b9f2f40eb212be6bfd4f61dc9d470b",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -76,7 +76,7 @@
     {
       "candidateId": "heading-reading-list",
       "candidateDigest": "6735384c6ec1c87278558403ba1ec4482271adce8eadf4573d0d023e3fa4dc57",
-      "fixtureResultsDigest": "c8682161593604cb22116cb41174f5bdb840cd6184d6b093df5204b959142a43",
+      "fixtureResultsDigest": "9972db0453965ee66b7dac36a47aa60402c8eea241dbb7adfc54f50efed5285e",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -84,7 +84,7 @@
     {
       "candidateId": "heading-community-garden",
       "candidateDigest": "08743aaf2527626d5aa4fc1cf564e2ad390eedb007ee2ca125681bd7877e699c",
-      "fixtureResultsDigest": "21a3d16eed31133ccf62a9264de48b88b7698bac42bf6c3740232875aea16124",
+      "fixtureResultsDigest": "07c1ac156284b943c063d6d188cda57430d2ec5d5b4328208a29b9ab1e2733ee",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -92,7 +92,7 @@
     {
       "candidateId": "heading-release-notes",
       "candidateDigest": "d58d68137b3768dc7e0d7a27e3317acb817ce6cba7ef91daea4d5dbc5691c2d9",
-      "fixtureResultsDigest": "c788bc872873ab0bf238ffa1140c3fbdfe32810aebeff78923e8a5749defd5a9",
+      "fixtureResultsDigest": "06ab8b01133cfcfe3f6f15e18b3e4a574cb54c6b200f08ee0c2ef4831b1586c3",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -100,7 +100,7 @@
     {
       "candidateId": "heading-workshop-agenda",
       "candidateDigest": "4a9a49caed0b035f6c9c3db2c487413681ff424e44a217cb74e9c934ee5905a3",
-      "fixtureResultsDigest": "cc74e3ca24b2392a9cea2145f6bc4a629561b2cf8f0f1e69a5112de1e23e6ff3",
+      "fixtureResultsDigest": "ea59c19ac33e0e58f823cbdc2f14452916696980629f27f3c6374f4a802690dc",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -108,7 +108,7 @@
     {
       "candidateId": "heading-research-summary",
       "candidateDigest": "5b071c1082af681ca710a8bd48ec0f66453d050f250cd77a27e9615a3dfb7e29",
-      "fixtureResultsDigest": "275d2cabc47f2c6326948909d145adcd9fb41926e9885a1659508d61cbdd6c3a",
+      "fixtureResultsDigest": "f56f238e14e01cc79c955f667f869ce3166460971f56bedbca60472256120dbc",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -116,7 +116,7 @@
     {
       "candidateId": "heading-customer-stories",
       "candidateDigest": "dea6e213ff13b1c34a4d2922c1f63f4ba764a96c2cc290442e540b45c3d4556e",
-      "fixtureResultsDigest": "45b557627a8414ad62dee127d933157d95bb5d6444121c59a788bf505f8accee",
+      "fixtureResultsDigest": "99e20d82c1d46fe3e1718d9bd3fd0d08f262319f12c7a8b097b081bda80181a6",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"
@@ -124,7 +124,7 @@
     {
       "candidateId": "heading-design-principles",
       "candidateDigest": "052d9848e777d9a16779fe3bf8818ae02dfda35f74c6a49bb054231b5b50328c",
-      "fixtureResultsDigest": "23598f425719c9d8f2e19b108b5d35877cc5c5b2353aa99140b4188248bb9b91",
+      "fixtureResultsDigest": "aec91518573644f0b9b62d26e8159c80fd165f317aa6df92dde7b267b0836e31",
       "status": "accepted",
       "reason": "independent-review-and-editorial-pass",
       "editorialActor": "codex-primary-autonomous-editorial-acceptance"

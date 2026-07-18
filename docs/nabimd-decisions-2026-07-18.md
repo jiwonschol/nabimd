@@ -12,16 +12,13 @@
 - **D7 — Identity & persistence (C-10).** Fully open source (brand retained by Jiwon), never any login. "Anyone drops in, types away, leaves." Progress is **session-scoped**: kept during the visit, fresh start after the browser closes → switch `localStorage` → `sessionStorage`. This also dissolves the schema-migration/reset concern (review P3-11). Note: the written spec's "versioned localStorage" clause must be updated to match (spec is the source of truth per repo docs).
 - **D8 — Setext handling direction (B-5).** Beginner-encouraging: celebrate that it's a real heading, then guide to the `#` style. Copy below (D11).
 
-## Decisions delegated to Claude — provisional, Jiwon will play-test and overrule freely
-
-- **D9 — Grading policy (B-4): "Valid Markdown never Fails; only the target defines Perfect."**
-  - **Fail** = required skill/structure missing, or protected text not reproduced.
-  - **Matched** = required skill used and Markdown valid, but the rendered result differs from the goal — extra inline markup (`# **Apple**`, `` # `Apple` ``, `# [Apple](url)`) or extra blocks (added paragraph / `## Details`). Passes (Next opens) + one review item naming the difference, e.g. `Your document renders more than the goal — remove the extra emphasis/content to match it exactly.`
-  - **Perfect** = rendered result faithfully matches the goal.
-  - Implementation: add editorial check `matches-target-exactly`; review cases A11–A13, A19–A20 move from Perfect → Matched+review. Pin ALL of these with tests either way (they are currently unpinned behavior).
-  - Rationale: honors the spec's "never call valid Markdown wrong syntax" (nothing new Fails) while restoring meaning to "rebuild the target" (Perfect = faithful). Beginner-friendly: differences are coaching, not punishment.
-- **D10 — Case sensitivity (B-6): keep it, but say it.** `# apple` vs goal `Apple` stays a Fail (faithful rebuild includes capitalization), but gets a dedicated feedback instead of the misleading generic one: `Close — match the capitalization: the goal says 'Apple'.` (Currently: "Keep the word 'Apple' in your answer," which the user feels they already did. Review P2-5.)
-- **D11 — Setext feedback copy (from D8).** New predicate detecting a Setext heading whose text matches the target, checked before `use-h1-heading`, with encouraging feedback: `That's a real heading! Markdown has two heading styles — this quest practices the hash style. Try: # Rainy day` Optional small follow-on: when the submission is valid Markdown that renders like the goal, soften the visible status prefix from "Fail:" to "Almost:".
+- **D9 — Grading policy (confirmed 2026-07-19): two verdicts, Markdown only.**
+  - **Try again** = the requested Markdown construct is absent or malformed.
+  - **Matched** = the requested Markdown construct is valid; this is the only pass state.
+  - `Perfect` and faithful-copy grading are removed. Optional review concerns Markdown document structure only and never changes the verdict.
+  - The Goal is an example to reproduce structurally, not an exact prose answer key.
+- **D10 — Case and prose sensitivity (confirmed 2026-07-19): do not grade prose.** `# apple`, `# aple`, and `# Banana` all pass the Level 1 hash-H1 exercise. Nabi preserves exactly what the learner typed and does not auto-capitalize, spell-check, or expose prose differences in Review.
+- **D11 — Setext feedback copy (updated 2026-07-19).** Detect any top-level Setext H1 without comparing its prose, then guide the learner to the hash style: `That's a real heading! Markdown has two heading styles — this quest practices the hash style. Try: # Rainy day`. The visible failed-verdict label is `Try again`.
 
 ## Suggested Build Week scope split (deadline 2026-07-22 09:00 PDT→KST per rules; internal target 07-22 06:00 KST)
 

@@ -26,7 +26,7 @@ describe("StatusBar", () => {
       <StatusBar
         {...defaultProps}
         evaluation={{
-          status: "perfect",
+          status: "matched",
           reviewItems: [],
         }}
         phase="evaluated"
@@ -37,6 +37,23 @@ describe("StatusBar", () => {
     expect(next).toHaveFocus()
     expect(next).not.toHaveAttribute("aria-keyshortcuts")
     expect(screen.queryByText("Ctrl+↩")).not.toBeInTheDocument()
+  })
+
+  it("uses Try again as the only failed verdict", () => {
+    render(
+      <StatusBar
+        {...defaultProps}
+        evaluation={{
+          status: "fail",
+          feedbackId: "use-h1-heading",
+          message: "Start the title with one hash symbol and one space.",
+        }}
+        phase="evaluated"
+      />,
+    )
+
+    expect(screen.getByText("Try again:")).toBeVisible()
+    expect(screen.queryByText("Fail:")).not.toBeInTheDocument()
   })
 
   it("can transition to the complete phase without changing hook order", () => {
