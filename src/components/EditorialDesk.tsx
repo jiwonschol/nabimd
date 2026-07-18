@@ -33,7 +33,10 @@ export function EditorialDesk({
       <header className="app-header">
         <h1 className="wordmark">Nabi Markdown</h1>
         <div aria-label="Heading progress" className="progress">
-          <span>Headings · {problemPosition} of 3</span>
+          <span className="progress__label">
+            <span className="progress__label-name">Headings · </span>
+            {problemPosition} of 3
+          </span>
           <span aria-hidden="true" className="progress__track">
             {headingProblems.map((candidate, index) => (
               <span
