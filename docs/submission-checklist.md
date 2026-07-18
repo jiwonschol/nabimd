@@ -34,30 +34,30 @@ commit history, tests, build log, README explanation, or working demo.
 
 ## README final audit
 
-- [ ] Setup instructions match a clean checkout
-- [ ] Sample data or fallback content is included where needed
-- [ ] Run and test commands are exact and verified
+- [x] Setup instructions match a clean checkout
+- [x] Sample data or fallback content is included where needed
+- [x] Run and test commands are exact and verified
 - [ ] Public demo link works without an account
 - [ ] `How we built it` names specific Codex contributions
 - [ ] Human product, engineering, and design decisions are explicit
 - [ ] GPT-5.6's curriculum-production role is concrete, meaningful, and backed
       by repository artifacts
-- [ ] Challenges describe real failures and resolutions
-- [ ] Accomplishments are backed by tests or a runnable demo
-- [ ] Unsupported Markdown syntax is stated honestly
+- [x] Challenges describe real failures and resolutions
+- [x] Accomplishments are backed by tests or a runnable demo
+- [x] Unsupported Markdown syntax is stated honestly
 - [ ] Open-source dependencies and pre-existing work are disclosed
 
 ## Repository and testing
 
-- [ ] Typecheck passes
-- [ ] Unit and grading fixtures pass
-- [ ] Every problem has canonical, alternate, fail, matched, and perfect fixtures
-- [ ] A failed retry selects different content for the same skill
-- [ ] Production build passes
-- [ ] Clean-browser critical path passes
-- [ ] The learner path has no runtime dependency on an AI service
+- [x] Typecheck passes
+- [x] Unit and grading fixtures pass
+- [x] Every problem has canonical, alternate, fail, matched, and perfect fixtures
+- [x] A failed retry selects different content for the same skill
+- [x] Production build passes
+- [x] Clean-browser critical path passes
+- [x] The learner path has no runtime dependency on an AI service
 - [ ] No API key, private token, personal data, or secret appears in the repo
-- [ ] License and trademark notices are present
+- [x] License and trademark notices are present
 
 ## Video and Devpost
 

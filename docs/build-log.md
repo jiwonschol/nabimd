@@ -168,8 +168,71 @@ demo early enough to spend the remaining time on content and visual quality.
 - Tests and deployment: not started
 - GPT-5.6 curriculum artifact: not yet produced
 
+## 2026-07-18 — Heading vertical MVP
+
+### What shipped in this milestone
+
+Codex implemented the approved learning loop end to end for H1 document
+titles: three problems, 18 fixtures, a validated content contract,
+deterministic grading, Fail/Matched/Perfect outcomes, different-content
+transfer after a repaired failure, local progress, progressive Hint, optional
+Review, the Editorial Desk interface, responsive Side Coach, and automated
+browser proof.
+
+The implementation stayed static and local. There is no model call,
+authentication, database, or server-side correctness decision in the learner
+path.
+
+### Test-first grading decisions
+
+The first grader cases forced two distinctions that an exact answer comparison
+would miss:
+
+- `# Project notes #` is a supported equivalent H1 and must pass even though
+  it is not the canonical source string.
+- `#Project notes` is malformed Markdown, and the first useful correction is
+  the missing space—not a generic message that no H1 AST node was found.
+
+Codex encoded these cases in the fixture bank before implementing the grader.
+Match checks carry an explicit priority so spacing feedback wins when several
+checks could fail. The editorial single-H1 rule runs separately: an extra H1
+produces Matched and an optional Review, never Fail.
+
+### Problems encountered and resolved
+
+| Problem observed | Investigation and decision | Resolution | Verification |
+|---|---|---|---|
+| Node 26 and jsdom exposed incompatible global `localStorage` behavior during progress tests | Codex isolated persistence behind the browser-standard `Storage` interface; no browser product workaround was justified | Added a complete `MemoryStorage` test double and explicit jsdom setup | `npm test` passes progress and hook restoration cases |
+| A learner who clears the starter text initially could not receive a starting correction if Check were disabled | An empty answer is still a meaningful attempted answer | Kept Check available and let the deterministic grader supply the missing-structure action | Component and hook tests cover the empty draft boundary |
+| Adding Playwright made the full gate fail even though all 62 Vitest assertions passed | Vitest was also collecting `tests/e2e/heading-flow.spec.ts` | Scoped Vitest to `src/**/*.test.{ts,tsx}` and left `tests/e2e` to Playwright | `npm run check` and `npm run test:e2e` pass independently |
+| The first 390 px browser inspection wrapped the Nabi wordmark across two lines | The progress label occupied too much header width | Preserved the accessible label but visually shortened `Headings · 1 of 3` to `1 of 3` below 480 px | Chromium mobile path proves no horizontal overflow |
+| The sandboxed local server could not bind to `127.0.0.1:4173` | This was an execution boundary, not an app defect | Ran the approved local browser server with the required permission and kept the app configuration unchanged | In-app browser and Playwright both loaded the same Vite app |
+| First production deploy attempt reported an invalid stored Vercel token | Build completed locally; failure occurred before project deployment | Started Vercel OAuth device login and did not claim a demo URL early | Production URL remains unclaimed until the authenticated deploy and clean-browser check finish |
+
+### Visual verification
+
+Codex compared the final browser render against the approved monochrome
+Editorial Desk concept at desktop size. It then exercised Fail, Hint, repair,
+transfer, and completion in the in-app browser. At `390 × 844`, the Side Coach
+became a bottom sheet, the wordmark stayed on one line, and the document width
+did not exceed the viewport.
+
+### Verification at this milestone
+
+- Clean dependency install: `npm ci` completed from `package-lock.json`.
+- Install note: npm left two optional `fsevents` install scripts unapproved;
+  the project builds and tests without approving them.
+- TypeScript: `npm run typecheck` passed.
+- Unit/component tests: 7 files, 62 tests passed.
+- Production build: Vite transformed 186 modules and completed successfully.
+- Browser tests: 4 Chromium journeys passed.
+- Verified browser paths: fail/repair/transfer/draft restore, first-attempt
+  Perfect with keyboard Check, optional Matched Review, and mobile Coach with
+  no horizontal overflow.
+- Deployment: waiting only for Vercel device authentication at the time of
+  this entry; no public URL is recorded yet.
+
 ## Next entry
 
-The next entry must cover the first vertical slice: what was attempted, which
-grading case failed first, how Codex helped investigate it, what Jiwon chose,
-and the test or browser evidence that closed it.
+Record the authenticated production deployment, clean-browser production
+journeys, and the decision to complete or keep the pull request in Draft.

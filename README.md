@@ -1,168 +1,221 @@
 # Nabi Markdown
 
-> Learn Markdown by rebuilding real documents—one quest at a time.
+> Build Markdown fluency by rebuilding small, readable documents—one quest at
+> a time.
 
-Nabi Markdown is an English-first, quest-based Markdown fluency trainer built for the **Education** track of [OpenAI Build Week](https://openai.devpost.com/).
+Nabi Markdown is an English-first Markdown practice app for the **Education**
+track of [OpenAI Build Week](https://openai.devpost.com/). It teaches production,
+not recognition: the learner sees a rendered target, writes the source, checks
+it explicitly, and proves the same skill with different content after a
+mistake.
 
-This repository is at the foundation stage. The first working vertical slice, live demo, setup commands, and test commands will be added as they become real. The [build log](docs/build-log.md) distinguishes completed work from planned work.
+The current deployed slice teaches H1 document titles. It is deliberately
+small enough to prove the complete learning loop before the problem bank is
+expanded.
 
 ## Inspiration
 
-Ten years ago I worked at a tech company and wanted a word processor I
-could drive without the mouse. That search ended in Markdown. Nobody taught
-me — I tripped over it looking for something else.
+Ten years ago I worked at a tech company and wanted a word processor I could
+drive without the mouse. That search ended in Markdown. Nobody taught me—I
+tripped over it looking for something else.
 
-I left that world. I run a convenience store now and write novels on the
-side. The habit stayed.
+I left that world. I run a convenience store now and write novels on the side.
+The habit stayed.
 
-Then AI arrived and everyone started talking to it. Chat asks you to work
-out what you think while you type. I'd already worked it out — I didn't
-want to explain a plan, I wanted to hand one over. So I never chatted. I
-wrote the document first, in Markdown, and gave it that.
+Then AI arrived and everyone started talking to it. Chat asks you to work out
+what you think while you type. I'd already worked it out—I didn't want to
+explain a plan, I wanted to hand one over. So I never chatted. I wrote the
+document first, in Markdown, and gave it that.
 
-That's the only reason I adapted faster than the people around me. Not
-talent. A ten-year-old habit.
+That's the only reason I adapted faster than the people around me. Not talent.
+A ten-year-old habit.
 
-They aren't slow. They've written reports and essays for years — the
-structure is already in their heads. Nobody ever told them the format that
-carries it.
+They aren't slow. They've written reports and essays for years—the structure
+is already in their heads. Nobody ever told them the format that carries it.
 
 ## What it does
 
-Markdown takes ten minutes to understand and months to use without
-thinking. Every tutorial solves the first problem and ignores the second.
+Markdown takes ten minutes to understand and months to use without thinking.
+Most tutorials solve the first problem and ignore the second.
 
-Nabi Markdown takes its method from language learning, not documentation.
-Short quests instead of chapters. Production instead of recognition — you
-type it, you don't read about it. Live rendering next to what you wrote, so
-the correction arrives while your hand is still moving. Syntax you keep
-missing comes back until it doesn't.
+Nabi takes its method from language learning:
 
-An hour, and it's automatic. That's the whole promise we are testing during
-Build Week.
+1. See a small rendered target.
+2. Produce the Markdown yourself in a plain source editor.
+3. Press **Check** or `Control/Command + Enter` when you are ready.
+4. Receive one precise result: **Fail**, **Matched**, or **Perfect**.
+5. Ask for a progressive Hint only after a failure, or an optional Review
+   after Matched.
+6. After repairing a failure, solve a different prompt that uses the same
+   syntax so recall—not answer memorization—is tested.
 
-The planned core loop is:
+Both Matched and Perfect pass. Matched means the requested syntax is correct
+but an optional readability improvement is available. Perfect means all checks
+for that exercise passed. Fail is reserved for missing or malformed required
+syntax or lost prompt content.
 
-```text
-Rendered target
-→ raw Markdown input
-→ deterministic structure check
-→ one smallest next fix
-→ semantically equivalent completion
-→ a short personalized final brief
-```
+## Current scope
 
-The model creates a bounded final exercise. A deterministic Markdown parser
-grades it. The model never decides whether an answer is correct.
+This milestone includes:
+
+- three curated H1 heading prompts with 18 golden fixtures;
+- deterministic Markdown parsing and ordered feedback;
+- different-content transfer after a repaired failure;
+- progressive, request-only hints and optional review;
+- local draft and transfer-state persistence;
+- a monochrome responsive Editorial Desk and mobile Side Coach; and
+- 62 unit/component tests plus four Chromium end-to-end paths.
+
+It does **not** yet claim the full 33-problem curriculum, accounts, cloud
+sync, Korean localization, payments, analytics, or runtime AI.
+
+## How it works
+
+The browser app is React, TypeScript, and Vite. `mdast-util-from-markdown`
+parses learner input into a Markdown AST. The grader checks required structure,
+protected prompt text, malformed syntax, and optional editorial rules. React
+components render the resulting state; they do not inspect Markdown syntax.
+
+The target preview and learner preview use `react-markdown` without raw HTML.
+Progress is versioned and stored locally. The deployed app makes no request to
+OpenAI or any other runtime service, so a network outage cannot change whether
+the same answer passes.
 
 ## How we built it
 
-Nabi Markdown is being built in one primary Codex thread. Codex is the only
-coding agent used for the project. The repository keeps a dated
-[build log](docs/build-log.md) so the final account can be specific instead
-of reconstructed on the last night.
+The core work is being done in one primary Codex task. Codex is the only coding
+agent used for the project.
 
-Work completed so far:
+Codex helped turn a commercial Korean-first roadmap into a Build Week proof,
+compared learning models, wrote the approved application contract and execution
+plan, generated the first visual direction, and implemented the vertical slice
+test-first. It built the problem schema, fixture validator, deterministic AST
+grader, transfer selector, versioned progress store, pure session reducer,
+React interface, responsive CSS, and browser tests. It also ran the app in a
+real browser at desktop and mobile sizes and fixed the defects that appeared.
 
-- Codex checked the official Build Week rules and converted a commercial
-  product plan into a three-day submission scope.
-- Codex compared product, learning, visual, and implementation options.
-- Jiwon chose the product name, founder story, English-first launch,
-  monochrome direction, public repository, and Codex-only workflow.
-- Jiwon chose a four-quest path plus one personalized Boss rather than a
-  broad curriculum.
-- Jiwon chose AGPL-3.0-or-later for the public code while reserving the
-  product name and a future commercial-license option.
-- Codex designed the split between GPT-5.6 generation and deterministic
-  Markdown grading; implementation and tests remain to be proven.
+Jiwon made the consequential product calls. He rejected live correction
+because it improves an editor without building recall; chose explicit Check,
+request-only coaching, and different-content transfer; made Matched a pass and
+Perfect a stronger pass; selected the Editorial Desk and separate Side Coach;
+kept runtime grading deterministic; and set the English-first, black-and-white
+Build Week scope.
 
-The final README will name the exact places where Codex accelerated the
-work, where its suggestions were changed or rejected, and how GPT-5.6 is
-meaningfully used in the working product.
+The dated [build log](docs/build-log.md) records these decisions and failures
+while they happen. The public commit sequence preserves the implementation
+work behind the summary.
 
 ## Challenges we ran into
 
-### Turning a product roadmap into a three-day proof
+### Helpful feedback without automatic correction
 
-The first plan assumed a full launch: 34 levels, Korean content, daily
-practice, and monetization. That was incompatible with a polished Build Week
-entry. We reduced the submission to four short English quests, one bounded
-personalized Boss, semantic grading, and a single coherent screen.
+An early live-coach proposal behaved too much like a word processor's
+autocorrect. Jiwon rejected it because the learner would depend on the editor.
+The shipped loop grades only on explicit Check, reveals Hint only after Fail,
+and requires different content after a repaired mistake.
 
-### Keeping AI helpful without making grading unreliable
+### Grading structure rather than one copied answer
 
-An LLM can write a kind explanation, but it should not decide whether the
-same Markdown is correct differently from one attempt to the next. The
-current design gives GPT-5.6 the generative role and gives an allowlisted
-Markdown AST the grading role. Golden fixtures will test canonical,
-equivalent, and incorrect answers.
+Exact-string comparison would reject valid Markdown such as a supported
+closing-hash heading. The fixture bank therefore separates canonical,
+alternate, missing, malformed, matched-with-refinement, and perfect cases. AST
+checks accept supported equivalents while protected-content and source-spacing
+checks still produce a specific failure for `#Project notes`.
 
-### Publishing openly without abandoning a future business
+### Testing browser storage under Node 26
 
-A public repository does not prevent a paid hosted product, but a permissive
-license would allow closed commercial forks. We chose AGPL-3.0-or-later so
-modified network versions remain open. The official hosted experience,
-learning content, support, and separate commercial licensing can still be
-offered later. No pricing decision is part of the Build Week project.
+The jsdom environment collided with Node 26's global `localStorage` behavior.
+Instead of adding a product workaround, the session accepts the standard
+`Storage` interface and tests use a complete in-memory implementation. That
+keeps browser persistence real and the test boundary explicit.
+
+### Keeping two test runners from collecting each other
+
+The first full gate failed after Playwright tests were added because Vitest
+also collected `tests/e2e/heading-flow.spec.ts`. Vitest is now scoped to
+`src/**/*.test.{ts,tsx}` and Playwright owns `tests/e2e`. The clean-install
+gate then passed both suites independently.
 
 ## Accomplishments that we're proud of
 
-At this foundation milestone, we have:
-
-- locked a judge-readable product thesis;
-- reduced the course to a testable three-day scope;
-- separated model generation from deterministic correctness;
-- created a public, licensed repository during the submission period; and
-- established an evidence log before feature implementation began.
-
-Working application claims will be added only after their tests and public
-demo exist.
+- A complete Fail → repair → different-content transfer → pass loop works in
+  the browser.
+- Matched and Perfect preserve the difference between correctness and readable
+  presentation without turning editorial polish into punishment.
+- Every current problem carries six fixture classes and three progressive
+  hints.
+- `npm ci`, typechecking, 62 unit/component tests, the production build, and
+  four Chromium journeys pass from the committed lockfile.
+- The UI stays monochrome and source-focused while adapting the coach to a
+  no-overflow mobile bottom sheet.
 
 ## What we learned
 
-The Build Week README is part of the technical evidence, not an afterthought.
-It needs to show where Codex changed the speed or quality of the work, where
-the human made the consequential decisions, and how GPT-5.6 contributes to
-the product. That means recording failures and rejected ideas while they are
-fresh, not inventing a clean story at the deadline.
+The important boundary is not “AI versus no AI.” It is creation versus
+judgment. Codex can accelerate product exploration, implementation, and later
+curriculum counterexample work, while the learner deserves a grader whose
+decision is stable, local, and inspectable.
 
-We also learned that the strongest AI boundary for this product is simple:
-the model creates; the parser grades.
+We also learned that the best retry is not the same answer again. A new prompt
+using the same rule reveals whether the syntax moved from short-term correction
+into recall.
 
 ## Run locally
 
-The application scaffold has not been committed yet. Exact installation and
-run commands will be added with the first working vertical slice.
+Requires Node.js `22.13` or later.
 
-## Test
+```bash
+npm ci
+npm run dev
+```
 
-No feature tests exist at this foundation milestone. The first code change
-must add the grading fixtures together with the vertical slice.
+Open the local URL printed by Vite.
+
+## Verify
+
+```bash
+npm run typecheck
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+Or run the non-browser checks together:
+
+```bash
+npm run check
+```
 
 ## Build Week evidence
 
 - [Build log](docs/build-log.md)
 - [Submission checklist](docs/submission-checklist.md)
-- [Repository foundation design](docs/superpowers/specs/2026-07-18-repository-foundation-design.md)
-- Primary Codex thread: this project's core-build thread
-- `/feedback` Session ID: generated after the majority of core functionality
-  is complete and submitted through Devpost, not published here as a claim
+- [Approved application design](docs/superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
+- [Heading MVP execution plan](docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md)
+- Primary Codex task: the core-build task used for this repository
+- `/feedback` Session ID: generated after the majority of the final submission
+  scope is complete, then supplied through Devpost
 
 ## What's next for Nabi Markdown
 
-Markdown is the first code you write with AI. It shouldn't be the first
-thing nobody teaches you.
+First, expand the proven fixture contract across the Devpost-supported common
+syntax families and mix them into short document makeovers. Then use GPT-5.6
+for a documented curriculum counterexample and refinement pass whose accepted
+and rejected suggestions live in the repository; it will help produce the
+bank, not grade learners at runtime.
 
-Next: the syntax that agents actually read — AGENTS.md, prompt structure,
-spec files. And Korean first, then other languages, because the people who
-need this least are the ones who already read English documentation
-comfortably.
+Markdown is the first code many people write with AI. It should not be the
+first thing nobody teaches them.
+
+Later: the syntax agents actually read—AGENTS.md, prompt structure, and spec
+files—and Korean before other localizations.
 
 ## License
 
 The code is licensed under the [GNU Affero General Public License v3.0 or
-later](LICENSE). See [TRADEMARKS.md](TRADEMARKS.md) for the separate treatment
+later](LICENSE). [TRADEMARKS.md](TRADEMARKS.md) describes the separate treatment
 of the Nabi Markdown name and future visual identity.
 
-Commercial licensing may be offered later. No pricing or commercial terms
-have been decided for the Build Week submission.
+Commercial licensing may be offered later. No pricing or commercial terms are
+part of the Build Week submission.
