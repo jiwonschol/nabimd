@@ -90,3 +90,18 @@ test("keeps the mobile coach readable without horizontal overflow", async ({
   }))
   expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
 })
+
+test("loads without a runtime API request", async ({ page }) => {
+  const runtimeRequests: string[] = []
+  page.on("request", (request) => {
+    if (["fetch", "xhr"].includes(request.resourceType())) {
+      runtimeRequests.push(request.url())
+    }
+  })
+
+  await page.goto("/")
+  await expect(
+    page.getByRole("heading", { name: "Nabi Markdown" }),
+  ).toBeVisible()
+  expect(runtimeRequests).toEqual([])
+})

@@ -207,7 +207,8 @@ produces Matched and an optional Review, never Fail.
 | Adding Playwright made the full gate fail even though all 62 Vitest assertions passed | Vitest was also collecting `tests/e2e/heading-flow.spec.ts` | Scoped Vitest to `src/**/*.test.{ts,tsx}` and left `tests/e2e` to Playwright | `npm run check` and `npm run test:e2e` pass independently |
 | The first 390 px browser inspection wrapped the Nabi wordmark across two lines | The progress label occupied too much header width | Preserved the accessible label but visually shortened `Headings · 1 of 3` to `1 of 3` below 480 px | Chromium mobile path proves no horizontal overflow |
 | The sandboxed local server could not bind to `127.0.0.1:4173` | This was an execution boundary, not an app defect | Ran the approved local browser server with the required permission and kept the app configuration unchanged | In-app browser and Playwright both loaded the same Vite app |
-| First production deploy attempt reported an invalid stored Vercel token | Build completed locally; failure occurred before project deployment | Started Vercel OAuth device login and did not claim a demo URL early | Production URL remains unclaimed until the authenticated deploy and clean-browser check finish |
+| First production deploy attempt reported an invalid stored Vercel token | Build completed locally; failure occurred before project deployment | Completed Vercel OAuth device login and redeployed | Vercel reported the production deployment Ready |
+| The new short alias returned a Vercel Authentication 302 instead of the app | `curl` showed the SSO redirect while the previously assigned project alias returned 200 | Renamed the project to `nabimd`, assigned `nabimd.vercel.app`, and disabled project Vercel Authentication using Vercel's documented `{"ssoProtection": null}` setting; this static public demo has no private runtime data | The short URL returned HTTP 200 and passed all five clean Chromium paths without login |
 
 ### Visual verification
 
@@ -225,14 +226,17 @@ did not exceed the viewport.
 - TypeScript: `npm run typecheck` passed.
 - Unit/component tests: 7 files, 62 tests passed.
 - Production build: Vite transformed 186 modules and completed successfully.
-- Browser tests: 4 Chromium journeys passed.
+- Browser tests: 5 Chromium journeys passed locally and against production.
 - Verified browser paths: fail/repair/transfer/draft restore, first-attempt
   Perfect with keyboard Check, optional Matched Review, and mobile Coach with
-  no horizontal overflow.
-- Deployment: waiting only for Vercel device authentication at the time of
-  this entry; no public URL is recorded yet.
+  no horizontal overflow, plus the absence of runtime fetch/XHR requests.
+- GitHub CI: Node 22 verification passed in 52 seconds.
+- Deployment: Vercel production status Ready.
+- Public unrestricted URL: [https://nabimd.vercel.app](https://nabimd.vercel.app)
+- Production proof: HTTP 200 without authentication and all five Chromium
+  paths passed against the public URL.
 
 ## Next entry
 
-Record the authenticated production deployment, clean-browser production
-journeys, and the decision to complete or keep the pull request in Draft.
+Record the pull-request completion decision and the start of the next syntax
+family or curriculum-refinement milestone.

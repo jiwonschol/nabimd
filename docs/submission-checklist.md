@@ -16,9 +16,9 @@ official deadline.
 - [x] Connect the optional Devpost Hackathons Plugin
 - [x] Create a public repository with a relevant license
 - [x] Approve the written application design and learning-state contract
-- [ ] Complete and deploy the heading vertical MVP
+- [x] Complete and deploy the heading vertical MVP
 - [ ] Complete a working, non-trivial project built with Codex and GPT-5.6
-- [ ] Publish a free, unrestricted test URL
+- [x] Publish a free, unrestricted test URL
 - [ ] Keep the test URL available through judging and winner verification
 
 ## Primary Codex thread
@@ -37,7 +37,7 @@ commit history, tests, build log, README explanation, or working demo.
 - [x] Setup instructions match a clean checkout
 - [x] Sample data or fallback content is included where needed
 - [x] Run and test commands are exact and verified
-- [ ] Public demo link works without an account
+- [x] Public demo link works without an account
 - [ ] `How we built it` names specific Codex contributions
 - [ ] Human product, engineering, and design decisions are explicit
 - [ ] GPT-5.6's curriculum-production role is concrete, meaningful, and backed
@@ -45,7 +45,7 @@ commit history, tests, build log, README explanation, or working demo.
 - [x] Challenges describe real failures and resolutions
 - [x] Accomplishments are backed by tests or a runnable demo
 - [x] Unsupported Markdown syntax is stated honestly
-- [ ] Open-source dependencies and pre-existing work are disclosed
+- [x] Open-source dependencies and pre-existing work are disclosed
 
 ## Repository and testing
 
@@ -56,7 +56,7 @@ commit history, tests, build log, README explanation, or working demo.
 - [x] Production build passes
 - [x] Clean-browser critical path passes
 - [x] The learner path has no runtime dependency on an AI service
-- [ ] No API key, private token, personal data, or secret appears in the repo
+- [x] No API key, private token, personal data, or secret appears in the repo
 - [x] License and trademark notices are present
 
 ## Video and Devpost

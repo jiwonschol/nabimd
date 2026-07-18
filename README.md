@@ -13,6 +13,8 @@ The current deployed slice teaches H1 document titles. It is deliberately
 small enough to prove the complete learning loop before the problem bank is
 expanded.
 
+**Live demo:** [nabimd.vercel.app](https://nabimd.vercel.app)
+
 ## Inspiration
 
 Ten years ago I worked at a tech company and wanted a word processor I could
@@ -64,7 +66,7 @@ This milestone includes:
 - progressive, request-only hints and optional review;
 - local draft and transfer-state persistence;
 - a monochrome responsive Editorial Desk and mobile Side Coach; and
-- 62 unit/component tests plus four Chromium end-to-end paths.
+- 62 unit/component tests plus five Chromium end-to-end paths.
 
 It does **not** yet claim the full 33-problem curriculum, accounts, cloud
 sync, Korean localization, payments, analytics, or runtime AI.
@@ -145,7 +147,8 @@ gate then passed both suites independently.
 - Every current problem carries six fixture classes and three progressive
   hints.
 - `npm ci`, typechecking, 62 unit/component tests, the production build, and
-  four Chromium journeys pass from the committed lockfile.
+  five Chromium journeys pass from the committed lockfile and against the
+  public deployment.
 - The UI stays monochrome and source-focused while adapting the coach to a
   no-overflow mobile bottom sheet.
 
@@ -181,6 +184,12 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
+Run the same browser suite against a deployment:
+
+```bash
+E2E_BASE_URL=https://nabimd.vercel.app npm run test:e2e
+```
+
 Or run the non-browser checks together:
 
 ```bash
@@ -193,6 +202,7 @@ npm run check
 - [Submission checklist](docs/submission-checklist.md)
 - [Approved application design](docs/superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
 - [Heading MVP execution plan](docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md)
+- [Public demo](https://nabimd.vercel.app)
 - Primary Codex task: the core-build task used for this repository
 - `/feedback` Session ID: generated after the majority of the final submission
   scope is complete, then supplied through Devpost
@@ -210,6 +220,10 @@ first thing nobody teaches them.
 
 Later: the syntax agents actually read—AGENTS.md, prompt structure, and spec
 files—and Korean before other localizations.
+
+No pre-existing application code was used. The app depends on React, Vite,
+TypeScript, mdast, react-markdown, Vitest, Testing Library, and Playwright;
+their exact versions are locked in `package-lock.json`.
 
 ## License
 

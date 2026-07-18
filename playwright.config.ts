@@ -1,18 +1,23 @@
 import { defineConfig, devices } from "@playwright/test"
 
+const deploymentUrl = process.env.E2E_BASE_URL
+const localUrl = "http://127.0.0.1:4173"
+
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: false,
   retries: 0,
   use: {
-    baseURL: "http://127.0.0.1:4173",
+    baseURL: deploymentUrl ?? localUrl,
     trace: "retain-on-failure",
   },
-  webServer: {
-    command: "npm run dev -- --host 127.0.0.1 --port 4173",
-    url: "http://127.0.0.1:4173",
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: deploymentUrl
+    ? undefined
+    : {
+        command: "npm run dev -- --host 127.0.0.1 --port 4173",
+        url: localUrl,
+        reuseExistingServer: !process.env.CI,
+      },
   projects: [
     {
       name: "chromium",
