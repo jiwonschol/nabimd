@@ -236,7 +236,55 @@ did not exceed the viewport.
 - Production proof: HTTP 200 without authentication and all five Chromium
   paths passed against the public URL.
 
+## 2026-07-18 — First developer hands-on MVP review
+
+### Review context
+
+After using the public heading MVP himself, Jiwon supplied the first
+developer/product-owner review before the problem bank was expanded. This is a
+hands-on acceptance review, not a reconstructed submission narrative. The
+observations below are recorded before a replacement design or implementation
+is chosen.
+
+### Observations from Jiwon
+
+1. **The exercise sentence needs native educational-copy review.** The current
+   `Turn Project notes into the document's main heading.` is understandable,
+   but Jiwon questioned whether it sounds like language a US learning app would
+   naturally use. The first lesson needs shorter, more direct action language.
+2. **`Project notes` does not read as an obvious learner task.** It resembles a
+   label introducing a document that will follow, rather than a concrete piece
+   of text the learner is being asked to transform. Warm-up content should come
+   from a broader bank of short, familiar words or phrases—such as fruit,
+   weather, or learning tools—whose role is immediately obvious.
+3. **The prefilled editor makes the first screen feel redundant.** The rendered
+   target already displays the same words that appear in `Your Markdown`.
+   Prefilling those words makes the target, editor, and live preview repeat one
+   another without clearly signaling what the learner must produce. An empty
+   production area is the leading alternative, subject to the revised lesson
+   design.
+4. **The target/editor/preview hierarchy is oversized for the exercise.** A
+   one-line heading task does not need a document-sized textarea or a large
+   second preview. The placement, relative emphasis, and dimensions of
+   `Target`, `Your Markdown`, and `Live preview` need to be redesigned together
+   rather than resized independently.
+
+### Product interpretation
+
+The vertical slice proved the grading and retry loop, but it inherited the
+spatial assumptions of a general Markdown editor. The next design should behave
+like a focused learning interaction: one unmistakable object to transform, one
+compact place to type, and one immediate visual consequence. It should not look
+as though the learner is beginning a long project document.
+
+### Status
+
+- The review is accepted as the first post-MVP product finding.
+- No replacement copy, content set, empty-editor behavior, or layout has been
+  approved yet.
+- Application code remains unchanged while those decisions are explored.
+
 ## Next entry
 
-Record the pull-request completion decision and the start of the next syntax
-family or curriculum-refinement milestone.
+Record the approved first-exercise redesign, its implementation evidence, and
+the start of the next syntax family or curriculum-refinement milestone.
