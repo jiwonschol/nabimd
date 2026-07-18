@@ -353,25 +353,31 @@ The visual direction is calm, monochrome, editorial, and keyboard-first.
 ### Editorial Desk
 
 - Header: Nabi wordmark, compact progress, current problem count
-- Upper stage: instruction and rendered target
-- Lower stage: wide native Markdown textarea
+- Learning stage: instruction, an aligned Goal/Help row, and an aligned
+  Markdown-source/Live-preview row
 - Footer: status and one primary action
+- At desktop widths, the shell fits one viewport and longer Goal, Help, source,
+  and preview content scrolls inside its panel. At mobile widths, the same
+  semantic order returns to natural document flow.
 - No syntax coloring, gradient, glass effect, confetti, mascot, or card grid
 
-The first version uses an ink, paper, and warm-gray palette. A custom font is
-used only after its exact web-distribution license is verified. Until then, the
-application uses system sans and system monospace fonts, so font selection
-cannot block the MVP.
+The first version uses an ink, paper, and warm-gray palette. Source Serif 4
+Regular and Semibold are bundled under the SIL Open Font License 1.1 for
+wordmark, reading, Goal, preview, and status text. Controls keep the system sans
+stack. Markdown source and code deliberately keep the system monospace stack;
+no JetBrains Mono binary is bundled for this change.
 
-### Side Coach
+### Help panel
 
-- Desktop: an independent panel opens from the right.
-- Small screens: the panel becomes a bottom sheet.
+- Desktop: Help stays aligned beside Goal and reveals its content downward
+  within the panel.
+- Small screens: Help stays in document flow between Goal and the editor.
 - Hint and Review use the same container but different content contracts.
-- The coach opens only by explicit user action and never edits the textarea.
+- Help opens only by explicit user action except for a level's first
+  introduction, and never edits the source.
 
-At 860 pixels or below, the upper-stage columns stack and the editor keeps a
-full-width layout without horizontal scrolling.
+At 780 pixels or below, Goal, Help, source, and preview stack in that order and
+keep a full-width layout without horizontal scrolling.
 
 ## Accessibility
 
@@ -409,7 +415,7 @@ src/content        skill catalog, problems, fixtures, copy
 src/engine         parsing, source checks, match checks, editorial checks
 src/selection      retry, transfer, review-weight, and recent-item selection
 src/progress       versioned local persistence and recovery
-src/components     Editorial Desk, editor, status, Side Coach, progress
+src/components     Editorial Desk, editor, status, Help panel, progress
 src/pages          first problem, home, learning session
 tests/fixtures     bank-wide grading contracts
 ```
@@ -458,7 +464,7 @@ its expected feedback ID changes unexpectedly.
 - Matched unlocks Next.
 - Review remains closed until requested.
 - Perfect never becomes a separate mandatory gate.
-- Side Coach never changes editor content.
+- Help never changes editor content.
 - Completion exposes all three replay actions; hook tests verify each reset
   contract and deterministic replay content.
 

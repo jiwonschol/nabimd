@@ -114,6 +114,11 @@ The dated [build log](docs/build-log.md) records these decisions and failures
 while they happen. The public commit sequence preserves the implementation
 work behind the summary.
 
+## Development log
+
+Follow the public [release tracker](https://github.com/jiwonschol/nabimd/issues/2)
+for the implementation sequence and shipped evidence.
+
 ## Challenges we ran into
 
 ### Helpful feedback without automatic correction
