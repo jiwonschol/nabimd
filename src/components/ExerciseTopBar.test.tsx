@@ -38,4 +38,29 @@ describe("ExerciseTopBar", () => {
     fireEvent.keyDown(document, { key: "?" })
     expect(completedToggle).not.toHaveBeenCalled()
   })
+
+  it("does not toggle Hint while typing a question mark", () => {
+    const activeToggle = renderTopBar("editing")
+    const input = document.createElement("input")
+    document.body.append(input)
+
+    fireEvent.keyDown(input, { key: "?" })
+
+    expect(activeToggle).not.toHaveBeenCalled()
+    input.remove()
+  })
+
+  it("prevents the browser action for a handled Hint shortcut", () => {
+    const activeToggle = renderTopBar("editing")
+    const event = new KeyboardEvent("keydown", {
+      bubbles: true,
+      cancelable: true,
+      key: "?",
+    })
+
+    document.dispatchEvent(event)
+
+    expect(activeToggle).toHaveBeenCalledTimes(1)
+    expect(event.defaultPrevented).toBe(true)
+  })
 })

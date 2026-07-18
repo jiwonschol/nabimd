@@ -905,7 +905,7 @@ exercise. All three were reproduced with failing tests before correction:
   scroll paths; a `667 × 320` journey reaches both the entry choices and all
   completion actions without document scrolling.
 
-The corrections increased the local gate to 667 tests and the browser suite to
+The corrections increased the local gate to 669 tests and the browser suite to
 19 passing journeys.
 
 ### Remote CodeRabbit review corrections
@@ -934,6 +934,11 @@ was stale against the next commit: greeting and completion already gained
 bounded internal scrolling, and the `667 × 320` browser regression reaches both
 surfaces without document scroll.
 
-The final local gate is 15 files and 667 passing tests, plus 19 passing Chromium
+An incremental CodeRabbit pass raised one final test-coverage nit. Dedicated
+top-bar assertions now prove that a question mark typed in a text field does not
+open Hint and that a handled document-level Hint shortcut prevents the browser
+default action.
+
+The final local gate is 15 files and 669 passing tests, plus 19 passing Chromium
 journeys. A fresh remote re-review, merge, deployment, and production
 verification remain pending and are not claimed by this entry.
