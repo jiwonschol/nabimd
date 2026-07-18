@@ -756,7 +756,3 @@ Next advanced to a blank Rainy day exercise at step 2 of 3. The browser console
 reported no errors. This verifies the deployed learner path, while the
 malformed-storage and transfer-remount boundaries remain covered by the 670
 automated tests run before merge.
-
-The Vercel linker creates a local `.vercel` metadata directory. This follow-up
-adds the standard ignore rule without committing project metadata or the
-temporary environment file.
