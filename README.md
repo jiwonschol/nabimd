@@ -64,8 +64,9 @@ habit, but it is not a third grade and cannot revoke Matched.
 This milestone includes:
 
 - five selectable curriculum levels with three-problem rotating runs;
-- four different-content seed problems at every level, including full-length
-  Level 5 agent work orders;
+- 16 easy and routine H1 variants at Levels 1 and 2, plus four composite
+  workplace problems at each of Levels 3–5, including full-length Level 5
+  agent work orders;
 - a fixed CBT-style top bar and two equal Goal/Answer panels;
 - Write and Preview tabs, with Review replacing Preview after Check when useful;
 - a compact Level 1 rule that disappears into request-only Hint for recall;

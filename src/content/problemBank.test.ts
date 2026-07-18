@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest"
+import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
+import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
 import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
 import {
@@ -10,11 +12,23 @@ import {
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
-  it("publishes four inspected seed problems at every level", () => {
-    expect(problemBank).toHaveLength(20)
-    for (const level of [1, 2, 3, 4, 5] as const) {
+  it("publishes the accepted foundation and heading expansion", () => {
+    expect(problemBank).toHaveLength(44)
+    expect(getProblemsForLevel(1)).toHaveLength(16)
+    expect(getProblemsForLevel(2)).toHaveLength(16)
+    for (const level of [3, 4, 5] as const) {
       expect(getProblemsForLevel(level)).toHaveLength(4)
     }
+  })
+
+  it("executes the generated runtime projection without a parallel source list", () => {
+    expect(problemBank).toEqual([
+      ...runtimeProjections.levels[1],
+      ...runtimeProjections.levels[2],
+      ...runtimeProjections.levels[3],
+      ...runtimeProjections.levels[4],
+      ...runtimeProjections.levels[5],
+    ])
   })
 
   it("has a deterministic revision and lookup", () => {
@@ -29,6 +43,7 @@ describe("compiled five-level problem bank", () => {
       validateProblemBank(problemBank, [
         ...level12SeedFixtures,
         ...level35SeedFixtures,
+        ...headingBatch002Fixtures,
       ]),
     ).toEqual([])
   })

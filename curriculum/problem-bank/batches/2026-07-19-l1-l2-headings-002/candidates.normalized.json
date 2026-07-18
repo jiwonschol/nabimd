@@ -1,0 +1,1982 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-headings-002",
+  "sequence": 2,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-19",
+  "promptSha256": "04124c4fe15f32de07c8cd96db014b557b4dc29bbfb5be11fc5eb47f031e6b31",
+  "rawArtifactDigest": "1be5616529fae2dcb2a4de58d90676412d62f449f40c11646442d2bd37cb4683",
+  "candidateCount": 24,
+  "candidates": [
+    {
+      "id": "l1-heading-beach-trip",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Beach trip",
+      "starterText": "",
+      "protectedContent": [
+        "Beach trip"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "travel"
+        ],
+        "terms": [
+          "Beach trip"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "beach-trip",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "20585f85e9045c9733dec33ed97ae468011200adc2d1dc3e8b49a5fd83c2f304"
+    },
+    {
+      "id": "l1-heading-bedtime-story",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Bedtime story",
+      "starterText": "",
+      "protectedContent": [
+        "Bedtime story"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "reading"
+        ],
+        "terms": [
+          "Bedtime story"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "bedtime-story",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "de1982a20957c98d378fd0c8958c038f75726afd695b085f962c9132dd27a0ea"
+    },
+    {
+      "id": "l1-heading-birthday-party",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Birthday party",
+      "starterText": "",
+      "protectedContent": [
+        "Birthday party"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "celebrations"
+        ],
+        "terms": [
+          "Birthday party"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "birthday-party",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "b976d648c6dd137a2a6d9a6e7da2bc49b0b5a28f369d61ab4cbdd7ec01102da9"
+    },
+    {
+      "id": "l1-heading-breakfast-menu",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Breakfast menu",
+      "starterText": "",
+      "protectedContent": [
+        "Breakfast menu"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "Breakfast menu"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "breakfast-menu",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "3e8fa7c153bf16b18e0657d3dcf3b696cb8310151079389b7bf04a307b8bb573"
+    },
+    {
+      "id": "l1-heading-doctor-visit",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Doctor visit",
+      "starterText": "",
+      "protectedContent": [
+        "Doctor visit"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "health"
+        ],
+        "terms": [
+          "Doctor visit"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "doctor-visit",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "762f03dc30fe8d469d037f1e2e3d761e388c2560f623706721aafc852ca352fe"
+    },
+    {
+      "id": "l1-heading-family-photo",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Family photo",
+      "starterText": "",
+      "protectedContent": [
+        "Family photo"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "family"
+        ],
+        "terms": [
+          "Family photo"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "family-photo",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "a1fb58e91e476a91d88c7bf800e5fa7aad23c6c03deae39cfac4dbad5f7756fc"
+    },
+    {
+      "id": "l1-heading-garden-flowers",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Garden flowers",
+      "starterText": "",
+      "protectedContent": [
+        "Garden flowers"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "nature"
+        ],
+        "terms": [
+          "Garden flowers"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "garden-flowers",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "6febb3dde561ca1e7d1e6af553994a36e5bacf7125ca76061b53d1e7bfba21b1"
+    },
+    {
+      "id": "l1-heading-music-class",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Music class",
+      "starterText": "",
+      "protectedContent": [
+        "Music class"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "learning"
+        ],
+        "terms": [
+          "Music class"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "music-class",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "d098987fa3e6912245dd12c7a06852e11acf2fa5dca3b76b4d9a54042097257d"
+    },
+    {
+      "id": "l1-heading-pet-care",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Pet care",
+      "starterText": "",
+      "protectedContent": [
+        "Pet care"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "pets"
+        ],
+        "terms": [
+          "Pet care"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pet-care",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "e31aabd010c121d40ff16fca6adfbadb86db0598970b99bda48c109ac4c21a55"
+    },
+    {
+      "id": "l1-heading-school-bus",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# School bus",
+      "starterText": "",
+      "protectedContent": [
+        "School bus"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "school"
+        ],
+        "terms": [
+          "School bus"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "school-bus",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "2c475ed4d2e9c82e4b26bebc32b0e03f558c6a7d77c21c69ae4aa73d65b1b7a0"
+    },
+    {
+      "id": "l1-heading-soccer-practice",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Soccer practice",
+      "starterText": "",
+      "protectedContent": [
+        "Soccer practice"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "sports"
+        ],
+        "terms": [
+          "Soccer practice"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "soccer-practice",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "5114558e165690701899200e2952d8de5b1f203104a806c9d8e96b6ded6539fb"
+    },
+    {
+      "id": "l1-heading-winter-coat",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading",
+      "prompt": "Write one main heading in Markdown.",
+      "target": "# Winter coat",
+      "starterText": "",
+      "protectedContent": [
+        "Winter coat"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-1-heading-h1",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "clothing"
+        ],
+        "terms": [
+          "Winter coat"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "winter-coat",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "14ed56cc872994279b301b86564d3e8acac41b0aa60bc48d8e9a21e183e3c28b"
+    },
+    {
+      "id": "l2-heading-fold-laundry",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Fold laundry",
+      "starterText": "",
+      "protectedContent": [
+        "Fold laundry"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "household-routine"
+        ],
+        "terms": [
+          "Fold laundry"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "fold-laundry",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "75bf570bdc7a7c1af1348db0c0a0c4e744ea9c44d3768efab6832b6705a1fa57"
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Get ready for bed",
+      "starterText": "",
+      "protectedContent": [
+        "Get ready for bed"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "evening-routine"
+        ],
+        "terms": [
+          "Get ready for bed"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "get-ready-for-bed",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "d8174c642c579b7d7171f1f1004ebd157cd4efc2aa9444eef621222f8b90f92c"
+    },
+    {
+      "id": "l2-heading-help-a-neighbor",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Help a neighbor",
+      "starterText": "",
+      "protectedContent": [
+        "Help a neighbor"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "community-routine"
+        ],
+        "terms": [
+          "Help a neighbor"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "help-a-neighbor",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "523c998b58bbe8e55049433ce60737b33ca484721b8fbdb695fa97f5b71b8eda"
+    },
+    {
+      "id": "l2-heading-make-lunch",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Make lunch",
+      "starterText": "",
+      "protectedContent": [
+        "Make lunch"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "daily-routine"
+        ],
+        "terms": [
+          "Make lunch"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "make-lunch",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "f8f0b977bf477f459ee7b6373e79dc0ce5af5112deb8be225e1b685c6b86db89"
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Pack for a trip",
+      "starterText": "",
+      "protectedContent": [
+        "Pack for a trip"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "travel-planning"
+        ],
+        "terms": [
+          "Pack for a trip"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pack-for-a-trip",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "29accf02d14018f74f8377dc341941829e8699421cf67224ea7a41ad63514077"
+    },
+    {
+      "id": "l2-heading-plan-game-night",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Plan game night",
+      "starterText": "",
+      "protectedContent": [
+        "Plan game night"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "social-planning"
+        ],
+        "terms": [
+          "Plan game night"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "plan-game-night",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "2cece2c5a1f9bb79ba28f1d9dded0f554b900de105aca7b6ed1fd828adad5d99"
+    },
+    {
+      "id": "l2-heading-practice-piano",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Practice piano",
+      "starterText": "",
+      "protectedContent": [
+        "Practice piano"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "practice-routine"
+        ],
+        "terms": [
+          "Practice piano"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "practice-piano",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "a8121fcec310a1624e7c8d192171f251acd2a04a0d837c93ca681e018b7b6116"
+    },
+    {
+      "id": "l2-heading-prepare-for-class",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Prepare for class",
+      "starterText": "",
+      "protectedContent": [
+        "Prepare for class"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "learning-routine"
+        ],
+        "terms": [
+          "Prepare for class"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "prepare-for-class",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "61f4f018efc27dfae17dafa644928e12d21425a8e2dd3327be3a4f220563615f"
+    },
+    {
+      "id": "l2-heading-read-before-bed",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Read before bed",
+      "starterText": "",
+      "protectedContent": [
+        "Read before bed"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "reading-routine"
+        ],
+        "terms": [
+          "Read before bed"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "read-before-bed",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "ffecb90f1c1bbf0cbfdab083f6fed500b3677fef654a89bf41c1309b9c1fd2a1"
+    },
+    {
+      "id": "l2-heading-share-family-photos",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Share family photos",
+      "starterText": "",
+      "protectedContent": [
+        "Share family photos"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "family-routine"
+        ],
+        "terms": [
+          "Share family photos"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "share-family-photos",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "03c39aaa9c45fd45878bfaf4158ca29e2bdc891c5363cbdb63690cb982eb5a03"
+    },
+    {
+      "id": "l2-heading-stretch-after-work",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Stretch after work",
+      "starterText": "",
+      "protectedContent": [
+        "Stretch after work"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "wellness-routine"
+        ],
+        "terms": [
+          "Stretch after work"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "stretch-after-work",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "df15f102f8dbdf5b8282f949c4f39df59011df0995ffeec3a98fb6a15abe1b7d"
+    },
+    {
+      "id": "l2-heading-water-the-garden",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A main heading names the whole document.",
+        "howTo": "Start a line with one hash, add a space, then type the heading.",
+        "example": "# Daily notes"
+      },
+      "syntaxTokens": [
+        "#",
+        "Space",
+        "Heading"
+      ],
+      "title": "Main heading recall",
+      "prompt": "From memory, write one main heading in Markdown.",
+      "target": "# Water the garden",
+      "starterText": "",
+      "protectedContent": [
+        "Water the garden"
+      ],
+      "matchChecks": [
+        {
+          "id": "space-after-hash",
+          "kind": "heading-spacing",
+          "level": 1,
+          "priority": 10,
+          "feedback": "Add one space after the hash symbol."
+        },
+        {
+          "id": "use-hash-heading-style",
+          "kind": "hash-heading-style",
+          "level": 1,
+          "priority": 20,
+          "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+        },
+        {
+          "id": "use-h1-heading",
+          "kind": "has-heading",
+          "level": 1,
+          "priority": 30,
+          "feedback": "Start the heading with one hash symbol and one space."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use lower heading levels for sections."
+        }
+      ],
+      "hints": [
+        "A main heading starts at the beginning of a line.",
+        "Type one hash, one space, then the heading.",
+        "Example: `# Morning walk`"
+      ],
+      "retryFamily": "level-2-heading-h1-recall",
+      "reviewTags": [
+        "one-document-title"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Water the garden"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "water-the-garden",
+      "sourceBatch": "2026-07-19-l1-l2-headings-002",
+      "candidateDigest": "10b09eef41c690ce0b92532fa886b61b1aae0da8f824adb8bdf35127ec8320a9"
+    }
+  ],
+  "artifactDigest": "56a0bd2e95c7ec1aa2b3a0270a83220835d7cb92ffee15ac824fba2d57a5274b"
+}

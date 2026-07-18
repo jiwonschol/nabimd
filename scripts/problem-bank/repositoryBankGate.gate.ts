@@ -26,9 +26,7 @@ async function resolveBaselineSha(): Promise<string | null> {
       cwd: repositoryRoot,
     })
     const mergeBase = stdout.trim()
-    if (mergeBase && mergeBase !== (await run("git", ["rev-parse", "HEAD"], { cwd: repositoryRoot })).stdout.trim()) {
-      return mergeBase
-    }
+    if (mergeBase) return mergeBase
   } catch {
     // A local checkout without origin/main falls through to the parent commit.
   }
@@ -59,6 +57,39 @@ async function readBaselineTracker() {
   return JSON.parse(stdout)
 }
 
+async function immutableBaselineBatchErrors(): Promise<string[]> {
+  const sha = await resolveBaselineSha()
+  if (!sha) return []
+
+  const batchesPath = "curriculum/problem-bank/batches"
+  const { stdout: baselineEntries } = await run(
+    "git",
+    ["ls-tree", "-d", "--name-only", `${sha}:${batchesPath}`],
+    { cwd: repositoryRoot },
+  )
+  const baselineDirectories = new Set(
+    baselineEntries.split("\n").map((entry) => entry.trim()).filter(Boolean),
+  )
+  if (baselineDirectories.size === 0) return []
+
+  const { stdout: changedPaths } = await run(
+    "git",
+    ["diff", "--name-only", sha, "--", batchesPath],
+    { cwd: repositoryRoot },
+  )
+  return changedPaths
+    .split("\n")
+    .map((path) => path.trim())
+    .filter(Boolean)
+    .flatMap((path) => {
+      const relative = path.slice(`${batchesPath}/`.length)
+      const batchDirectory = relative.split("/")[0]
+      return baselineDirectories.has(batchDirectory)
+        ? [`Immutable baseline batch path changed: ${path}`]
+        : []
+    })
+}
+
 const [batches, published, committedTracker, baselineTracker, legacyIndex] =
   await Promise.all([
     loadBatchDirectories(bankRoot),
@@ -81,5 +112,9 @@ describe("repository-wide problem-bank integrity", () => {
 
   it("keeps frozen legacy evidence intact without promoting its counts", async () => {
     expect(await verifyLegacyEvidence({ repositoryRoot, index: legacyIndex })).toEqual([])
+  })
+
+  it("allows only new batch directories beyond the baseline", async () => {
+    expect(await immutableBaselineBatchErrors()).toEqual([])
   })
 })

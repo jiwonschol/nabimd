@@ -1,0 +1,1878 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-headings-002",
+  "fixtures": [
+    {
+      "id": "l1-heading-beach-trip-canonical-canonical",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Beach trip",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-beach-trip-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# bech TRIP",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-beach-trip-different-prose-alternate",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Yellow hat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-beach-trip-edge-case-h2",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Beach trip",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-beach-trip-edge-case-setext",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Beach trip\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-beach-trip-malformed-malformed",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Beach trip",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-beach-trip-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Beach trip\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-beach-trip-missing-missing",
+      "problemId": "l1-heading-beach-trip",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Beach trip",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-bedtime-story-canonical-canonical",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Bedtime story",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-bedtime-story-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# BEDTIME stori",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-bedtime-story-different-prose-alternate",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Rain boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-bedtime-story-edge-case-h2",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Bedtime story",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-bedtime-story-edge-case-setext",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Bedtime story\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-bedtime-story-malformed-malformed",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Bedtime story",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-bedtime-story-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Bedtime story\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-bedtime-story-missing-missing",
+      "problemId": "l1-heading-bedtime-story",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Bedtime story",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-birthday-party-canonical-canonical",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Birthday party",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-birthday-party-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# BIRTHDAY pary",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-birthday-party-different-prose-alternate",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Lunch box",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-birthday-party-edge-case-h2",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Birthday party",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-birthday-party-edge-case-setext",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Birthday party\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-birthday-party-malformed-malformed",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Birthday party",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-birthday-party-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Birthday party\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-birthday-party-missing-missing",
+      "problemId": "l1-heading-birthday-party",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Birthday party",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-breakfast-menu-canonical-canonical",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Breakfast menu",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-breakfast-menu-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# brekfast MENU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-breakfast-menu-different-prose-alternate",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# City park",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-breakfast-menu-edge-case-h2",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Breakfast menu",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-breakfast-menu-edge-case-setext",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Breakfast menu\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-breakfast-menu-malformed-malformed",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Breakfast menu",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-breakfast-menu-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Breakfast menu\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-breakfast-menu-missing-missing",
+      "problemId": "l1-heading-breakfast-menu",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Breakfast menu",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-doctor-visit-canonical-canonical",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Doctor visit",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-doctor-visit-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# doktor VISIT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-doctor-visit-different-prose-alternate",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Family picnic",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-doctor-visit-edge-case-h2",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Doctor visit",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-doctor-visit-edge-case-setext",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Doctor visit\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-doctor-visit-malformed-malformed",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Doctor visit",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-doctor-visit-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Doctor visit\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-doctor-visit-missing-missing",
+      "problemId": "l1-heading-doctor-visit",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Doctor visit",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-family-photo-canonical-canonical",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Family photo",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-family-photo-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# famly FOTO",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-family-photo-different-prose-alternate",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Warm soup",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-family-photo-edge-case-h2",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Family photo",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-family-photo-edge-case-setext",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Family photo\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-family-photo-malformed-malformed",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Family photo",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-family-photo-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Family photo\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-family-photo-missing-missing",
+      "problemId": "l1-heading-family-photo",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Family photo",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-garden-flowers-canonical-canonical",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Garden flowers",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-garden-flowers-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# GARDEN flowrs",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-garden-flowers-different-prose-alternate",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Red balloon",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-garden-flowers-edge-case-h2",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Garden flowers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-garden-flowers-edge-case-setext",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Garden flowers\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-garden-flowers-malformed-malformed",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Garden flowers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-garden-flowers-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Garden flowers\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-garden-flowers-missing-missing",
+      "problemId": "l1-heading-garden-flowers",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Garden flowers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-music-class-canonical-canonical",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Music class",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-music-class-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# musik CLASS",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-music-class-different-prose-alternate",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Small garden",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-music-class-edge-case-h2",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Music class",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-music-class-edge-case-setext",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Music class\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-music-class-malformed-malformed",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Music class",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-music-class-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Music class\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-music-class-missing-missing",
+      "problemId": "l1-heading-music-class",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Music class",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-pet-care-canonical-canonical",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Pet care",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-pet-care-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# PET kare",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-pet-care-different-prose-alternate",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Green apple",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-pet-care-edge-case-h2",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Pet care",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-pet-care-edge-case-setext",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Pet care\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-pet-care-malformed-malformed",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Pet care",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-pet-care-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Pet care\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-pet-care-missing-missing",
+      "problemId": "l1-heading-pet-care",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Pet care",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-school-bus-canonical-canonical",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# School bus",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-school-bus-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# scool BUS",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-school-bus-different-prose-alternate",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Happy dog",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-school-bus-edge-case-h2",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## School bus",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-school-bus-edge-case-setext",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "School bus\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-school-bus-malformed-malformed",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#School bus",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-school-bus-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# School bus\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-school-bus-missing-missing",
+      "problemId": "l1-heading-school-bus",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "School bus",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-soccer-practice-canonical-canonical",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Soccer practice",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-soccer-practice-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# SOCCER practis",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-soccer-practice-different-prose-alternate",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Blue sky",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-soccer-practice-edge-case-h2",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Soccer practice",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-soccer-practice-edge-case-setext",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Soccer practice\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-soccer-practice-malformed-malformed",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Soccer practice",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-soccer-practice-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Soccer practice\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-soccer-practice-missing-missing",
+      "problemId": "l1-heading-soccer-practice",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Soccer practice",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-winter-coat-canonical-canonical",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Winter coat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-winter-coat-case-spelling-variation-case-variation",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# WINTER cote",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-winter-coat-different-prose-alternate",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Toy train",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-winter-coat-edge-case-h2",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Winter coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l1-heading-winter-coat-edge-case-setext",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Winter coat\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l1-heading-winter-coat-malformed-malformed",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Winter coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l1-heading-winter-coat-matched-with-review-matched-with-refinement",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Winter coat\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l1-heading-winter-coat-missing-missing",
+      "problemId": "l1-heading-winter-coat",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Winter coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-fold-laundry-canonical-canonical",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Fold laundry",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-fold-laundry-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# fold LONDRY",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-fold-laundry-different-prose-alternate",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Call a friend",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-fold-laundry-edge-case-h2",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Fold laundry",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-fold-laundry-edge-case-setext",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Fold laundry\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-fold-laundry-malformed-malformed",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Fold laundry",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-fold-laundry-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Fold laundry\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-fold-laundry-missing-missing",
+      "problemId": "l2-heading-fold-laundry",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Fold laundry",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-canonical-canonical",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Get ready for bed",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# get REDY for bed",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-different-prose-alternate",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Wash the dishes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-edge-case-h2",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Get ready for bed",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-edge-case-setext",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Get ready for bed\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-malformed-malformed",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Get ready for bed",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Get ready for bed\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-get-ready-for-bed-missing-missing",
+      "problemId": "l2-heading-get-ready-for-bed",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Get ready for bed",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-canonical-canonical",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Help a neighbor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# help A neibor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-different-prose-alternate",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Set the table",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-edge-case-h2",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Help a neighbor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-edge-case-setext",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Help a neighbor\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-malformed-malformed",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Help a neighbor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Help a neighbor\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-help-a-neighbor-missing-missing",
+      "problemId": "l2-heading-help-a-neighbor",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Help a neighbor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-make-lunch-canonical-canonical",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Make lunch",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-make-lunch-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# MAKE lunc",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-make-lunch-different-prose-alternate",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Clean the desk",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-make-lunch-edge-case-h2",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Make lunch",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-make-lunch-edge-case-setext",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Make lunch\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-make-lunch-malformed-malformed",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Make lunch",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-make-lunch-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Make lunch\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-make-lunch-missing-missing",
+      "problemId": "l2-heading-make-lunch",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Make lunch",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-canonical-canonical",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Pack for a trip",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# PACK for a trp",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-different-prose-alternate",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Check the mail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-edge-case-h2",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Pack for a trip",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-edge-case-setext",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Pack for a trip\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-malformed-malformed",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Pack for a trip",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Pack for a trip\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-pack-for-a-trip-missing-missing",
+      "problemId": "l2-heading-pack-for-a-trip",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Pack for a trip",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-plan-game-night-canonical-canonical",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Plan game night",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-plan-game-night-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# PLAN game nite",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-plan-game-night-different-prose-alternate",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Walk to school",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-plan-game-night-edge-case-h2",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Plan game night",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-plan-game-night-edge-case-setext",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Plan game night\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-plan-game-night-malformed-malformed",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Plan game night",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-plan-game-night-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Plan game night\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-plan-game-night-missing-missing",
+      "problemId": "l2-heading-plan-game-night",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Plan game night",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-practice-piano-canonical-canonical",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Practice piano",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-practice-piano-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# PRACTIS piano",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-practice-piano-different-prose-alternate",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Open the window",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-practice-piano-edge-case-h2",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Practice piano",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-practice-piano-edge-case-setext",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Practice piano\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-practice-piano-malformed-malformed",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Practice piano",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-practice-piano-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Practice piano\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-practice-piano-missing-missing",
+      "problemId": "l2-heading-practice-piano",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Practice piano",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-prepare-for-class-canonical-canonical",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Prepare for class",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-prepare-for-class-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# prepare FOR clas",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-prepare-for-class-different-prose-alternate",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Feed the cat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-prepare-for-class-edge-case-h2",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Prepare for class",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-prepare-for-class-edge-case-setext",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Prepare for class\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-prepare-for-class-malformed-malformed",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Prepare for class",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-prepare-for-class-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Prepare for class\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-prepare-for-class-missing-missing",
+      "problemId": "l2-heading-prepare-for-class",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Prepare for class",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-read-before-bed-canonical-canonical",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Read before bed",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-read-before-bed-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# reed BEFORE bed",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-read-before-bed-different-prose-alternate",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Take a short walk",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-read-before-bed-edge-case-h2",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Read before bed",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-read-before-bed-edge-case-setext",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Read before bed\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-read-before-bed-malformed-malformed",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Read before bed",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-read-before-bed-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Read before bed\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-read-before-bed-missing-missing",
+      "problemId": "l2-heading-read-before-bed",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Read before bed",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-share-family-photos-canonical-canonical",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Share family photos",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-share-family-photos-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# share FAMLY fotos",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-share-family-photos-different-prose-alternate",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Meet at the park",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-share-family-photos-edge-case-h2",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Share family photos",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-share-family-photos-edge-case-setext",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Share family photos\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-share-family-photos-malformed-malformed",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Share family photos",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-share-family-photos-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Share family photos\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-share-family-photos-missing-missing",
+      "problemId": "l2-heading-share-family-photos",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Share family photos",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-stretch-after-work-canonical-canonical",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Stretch after work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-stretch-after-work-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# STRECH after work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-stretch-after-work-different-prose-alternate",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Put away groceries",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-stretch-after-work-edge-case-h2",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Stretch after work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-stretch-after-work-edge-case-setext",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Stretch after work\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-stretch-after-work-malformed-malformed",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Stretch after work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-stretch-after-work-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Stretch after work\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-stretch-after-work-missing-missing",
+      "problemId": "l2-heading-stretch-after-work",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Stretch after work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-water-the-garden-canonical-canonical",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Water the garden",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-water-the-garden-case-spelling-variation-case-variation",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# WATER the gardn",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-water-the-garden-different-prose-alternate",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Write a note",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-heading-water-the-garden-edge-case-h2",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "## Water the garden",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    },
+    {
+      "id": "l2-heading-water-the-garden-edge-case-setext",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-hash-heading-style",
+      "source": "Water the garden\n===",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hash-heading-style"
+    },
+    {
+      "id": "l2-heading-water-the-garden-malformed-malformed",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "space-after-hash",
+      "source": "#Water the garden",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "space-after-hash"
+    },
+    {
+      "id": "l2-heading-water-the-garden-matched-with-review-matched-with-refinement",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Water the garden\n\n# Notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l2-heading-water-the-garden-missing-missing",
+      "problemId": "l2-heading-water-the-garden",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-h1-heading",
+      "source": "Water the garden",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-h1-heading"
+    }
+  ]
+}

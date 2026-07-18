@@ -19,3 +19,14 @@ Each child directory is immutable after it lands. A batch contains:
 Changing any accepted evidence creates a new batch. A baseline tracker rejects
 removal or mutation of an already recorded batch. Schema-v1 candidates are not
 copied here or promoted automatically.
+
+## Published batches
+
+- `2026-07-19-milestone-1-foundation-001` — 20 accepted problems and 184
+  real-engine fixtures across Levels 1–5.
+- `2026-07-19-l1-l2-headings-002` — 24 accepted H1 vocabulary variants and 192
+  real-engine fixtures, bringing Levels 1 and 2 to 16 problems each.
+
+Mechanical preparation writes only the new batch directory. Publication
+recompiles the global runtime projection and tracker from every accepted batch;
+it never rewrites an older batch summary.

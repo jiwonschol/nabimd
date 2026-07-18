@@ -18,6 +18,7 @@ import {
   verifyLegacyEvidence,
   verifyBatchFixtures,
 } from "./batchPipeline.mjs"
+import { sha256 } from "./pipeline.mjs"
 
 function rawCandidate(overrides = {}) {
   return {
@@ -376,6 +377,75 @@ test("compiler publishes only accepted current records and tracker is determinis
   assert.equal(withRevision.problems[0].revision, 2)
 })
 
+test("bank preflight rejects duplicate sequences and non-contiguous revision history", async () => {
+  const first = await acceptedBatch()
+  const duplicateSequence = await acceptedBatch({
+    raw: rawBatch({
+      batchId: "2026-07-19-l1-headings-other-002",
+      sequence: 1,
+      candidates: [
+        rawCandidate({
+          id: "heading-picnic-plans",
+          target: "# Picnic plans",
+          contentVariant: "picnic-plans",
+        }),
+      ],
+    }),
+  })
+  assert.ok(
+    compileAcceptedBank([first, duplicateSequence]).errors.some((error) =>
+      error.includes("Duplicate batch sequence 1"),
+    ),
+  )
+
+  const skippedRevision = await acceptedBatch({
+    raw: rawBatch({
+      batchId: "2026-07-19-l1-headings-003",
+      sequence: 2,
+      candidates: [rawCandidate({ revision: 3 })],
+    }),
+  })
+  assert.ok(
+    compileAcceptedBank([first, skippedRevision]).errors.some((error) =>
+      error.includes("must be contiguous"),
+    ),
+  )
+
+  assert.ok(
+    compileAcceptedBank([skippedRevision]).errors.some((error) =>
+      error.includes("First revision for heading-garden-notes must be 1"),
+    ),
+  )
+})
+
+test("a rejected later revision never replaces the last accepted runtime revision", async () => {
+  const first = await acceptedBatch()
+  const rejected = await acceptedBatch({
+    raw: rawBatch({
+      batchId: "2026-07-19-l1-headings-002",
+      sequence: 2,
+      candidates: [rawCandidate({ revision: 2, title: "Rejected revision" })],
+    }),
+  })
+  rejected.editorial = sealEditorial(
+    {
+      ...rejected.editorial,
+      editorialDigest: undefined,
+      reviewDigests: undefined,
+      decisions: rejected.editorial.decisions.map((decision) => ({
+        ...decision,
+        status: "rejected",
+      })),
+    },
+    rejected.reviews,
+  )
+
+  const compiled = compileAcceptedBank([first, rejected])
+  assert.deepEqual(compiled.errors, [])
+  assert.equal(compiled.problems.length, 1)
+  assert.equal(compiled.problems[0].revision, 1)
+})
+
 test("bank gate checks exact publish projections and committed tracker", async () => {
   const evidence = await acceptedBatch()
   const compiled = compileAcceptedBank([evidence])
@@ -526,7 +596,26 @@ test("filesystem loader discovers lexically ordered schema-v2 batch directories"
     await writeFile(join(dir, "candidates.raw.json"), JSON.stringify(raw))
     await writeFile(join(dir, "candidates.normalized.json"), JSON.stringify(normalized))
     await writeFile(join(dir, "fixtures.json"), JSON.stringify(fixtures()))
-    await writeFile(join(dir, "verification.json"), JSON.stringify({ schemaVersion: 2, batchId }))
+    const engineContractBase = {
+      schemaVersion: 2,
+      policyId: "test-engine-contract",
+      policyDigest: "test-policy",
+      files: [],
+      dependencies: [],
+    }
+    const engineContract = {
+      ...engineContractBase,
+      engineContractDigest: sha256(engineContractBase),
+    }
+    await writeFile(join(dir, "engine-contract.json"), JSON.stringify(engineContract))
+    await writeFile(
+      join(dir, "verification.json"),
+      JSON.stringify({
+        schemaVersion: 2,
+        batchId,
+        engineContractDigest: engineContract.engineContractDigest,
+      }),
+    )
     await writeFile(join(dir, "review-manifest.json"), JSON.stringify({ schemaVersion: 2, batchId }))
     await writeFile(join(dir, "editorial.json"), JSON.stringify({ schemaVersion: 2, batchId }))
   }

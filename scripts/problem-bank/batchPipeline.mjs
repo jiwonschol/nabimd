@@ -713,6 +713,68 @@ export function compileAcceptedBank(batches) {
         String(right.normalized?.batchId ?? ""),
       ),
   )
+
+  const sequenceOwners = new Map()
+  const revisionOwners = new Map()
+  const revisionHistory = new Map()
+  for (const batch of ordered.filter((candidate) => !candidate.loaderErrors?.length)) {
+    const { batchId, sequence, candidates = [] } = batch.normalized ?? {}
+    const sequenceOwner = sequenceOwners.get(sequence)
+    if (sequenceOwner) {
+      errors.push(
+        `Duplicate batch sequence ${String(sequence)}: ${sequenceOwner} and ${String(batchId)}`,
+      )
+    } else {
+      sequenceOwners.set(sequence, batchId)
+    }
+
+    const batchCandidateIds = new Set()
+    for (const candidate of candidates) {
+      if (batchCandidateIds.has(candidate.id)) {
+        errors.push(`Duplicate candidate ID in ${String(batchId)}: ${candidate.id}`)
+      }
+      batchCandidateIds.add(candidate.id)
+
+      const key = candidateKey(candidate.id, candidate.revision)
+      const revisionOwner = revisionOwners.get(key)
+      if (revisionOwner) {
+        errors.push(
+          `Duplicate candidate revision ${key}: ${revisionOwner} and ${String(batchId)}`,
+        )
+      } else {
+        revisionOwners.set(key, batchId)
+      }
+      const history = revisionHistory.get(candidate.id) ?? []
+      history.push({ revision: candidate.revision, sequence, batchId })
+      revisionHistory.set(candidate.id, history)
+    }
+  }
+
+  for (const [id, history] of revisionHistory) {
+    history.sort(
+      (left, right) => left.sequence - right.sequence || left.revision - right.revision,
+    )
+    const first = history[0]
+    const isGrandfatheredFoundationRevision =
+      first?.sequence === 1 &&
+      first?.batchId === "2026-07-19-milestone-1-foundation-001"
+    if (first?.revision !== 1 && !isGrandfatheredFoundationRevision) {
+      errors.push(`First revision for ${id} must be 1`)
+    }
+    for (let index = 1; index < history.length; index += 1) {
+      const previous = history[index - 1]
+      const current = history[index]
+      if (current.sequence <= previous.sequence) {
+        errors.push(`Revision ${candidateKey(id, current.revision)} must use a later batch sequence`)
+      }
+      if (current.revision !== previous.revision + 1) {
+        errors.push(
+          `Revision history for ${id} must be contiguous; received ${previous.revision} then ${current.revision}`,
+        )
+      }
+    }
+  }
+
   for (const batch of ordered) {
     if (batch.loaderErrors?.length) {
       errors.push(
@@ -902,16 +964,18 @@ async function loadBatchDirectory(batchDir, directoryName) {
   let raw
   let normalized
   let fixtureArtifact
+  let engineContract
   let verification
   let manifest
   let editorial
   let reviews = []
   try {
-    ;[prompt, raw, normalized, fixtureArtifact, verification, manifest, editorial] = await Promise.all([
+    ;[prompt, raw, normalized, fixtureArtifact, engineContract, verification, manifest, editorial] = await Promise.all([
       readFile(resolve(batchDir, "generation-prompt.md"), "utf8"),
       readJson(resolve(batchDir, "candidates.raw.json")),
       readJson(resolve(batchDir, "candidates.normalized.json")),
       readJson(resolve(batchDir, "fixtures.json")),
+      readJson(resolve(batchDir, "engine-contract.json")),
       readJson(resolve(batchDir, "verification.json")),
       readJson(resolve(batchDir, "review-manifest.json")),
       readJson(resolve(batchDir, "editorial.json")),
@@ -938,12 +1002,25 @@ async function loadBatchDirectory(batchDir, directoryName) {
     if (normalized.batchId !== directoryName) {
       loaderErrors.push(`Batch directory ${directoryName} does not match ${normalized.batchId}`)
     }
+    if (
+      !isRecord(engineContract) ||
+      engineContract.schemaVersion !== BATCH_SCHEMA_VERSION ||
+      engineContract.engineContractDigest !==
+        currentDigest(engineContract, "engineContractDigest")
+    ) {
+      loaderErrors.push(`Engine contract is stale: ${directoryName}`)
+    } else if (
+      verification.engineContractDigest !== engineContract.engineContractDigest
+    ) {
+      loaderErrors.push(`Verification engine contract does not match ${directoryName}`)
+    }
   } catch (error) {
     loaderErrors.push(`Cannot normalize ${directoryName}: ${error instanceof Error ? error.message : String(error)}`)
   }
   return {
     normalized,
     fixtureArtifact,
+    engineContract,
     verification,
     manifest,
     reviews,
