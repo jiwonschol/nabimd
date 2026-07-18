@@ -72,6 +72,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
     })
 
     viewRef.current = view
+    view.focus()
 
     return () => {
       viewRef.current = null

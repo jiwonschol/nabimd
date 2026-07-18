@@ -1,5 +1,7 @@
 import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
+import { useEffect, useRef } from "react"
+import { resolveCheckShortcut } from "./keyboardShortcut"
 
 type StatusBarProps = {
   phase: LearningSession["phase"]
@@ -33,11 +35,19 @@ export function StatusBar({
   onNext,
   onReview,
 }: StatusBarProps) {
-  if (phase === "complete") return null
-
   const failed = evaluation?.status === "fail"
   const matched = evaluation?.status === "matched"
   const passed = matched || evaluation?.status === "perfect"
+  const primaryActionRef = useRef<HTMLButtonElement>(null)
+  const shortcut = resolveCheckShortcut(
+    typeof navigator === "undefined" ? {} : navigator,
+  )
+
+  useEffect(() => {
+    if (passed) primaryActionRef.current?.focus()
+  }, [passed])
+
+  if (phase === "complete") return null
 
   return (
     <footer className="status-bar">
@@ -52,16 +62,25 @@ export function StatusBar({
           </button>
         ) : null}
         <button
+          aria-keyshortcuts={passed ? undefined : shortcut.ariaKeyShortcuts}
           className="primary-button"
           disabled={!passed && !canCheck}
           onClick={passed ? onNext : onCheck}
+          ref={primaryActionRef}
           type="button"
         >
-          {passed
-            ? "Next"
-            : failed || hadFailure
-              ? "Check again"
-              : "Check"}
+          <span>
+            {passed
+              ? "Next"
+              : failed || hadFailure
+                ? "Check again"
+                : "Check"}
+          </span>
+          {passed ? null : (
+            <span aria-hidden="true" className="primary-button__shortcut">
+              {shortcut.label}
+            </span>
+          )}
         </button>
       </div>
     </footer>

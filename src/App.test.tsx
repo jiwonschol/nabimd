@@ -67,6 +67,27 @@ describe("App", () => {
       ),
     ).toBeVisible()
     expect(screen.queryByText(/welcome/i)).not.toBeInTheDocument()
+    expect(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveFocus()
+  })
+
+  it("focuses each deliberate continuation and restores editor focus", async () => {
+    const { user, editor } = await openApp()
+    await user.keyboard("# Apple")
+    await user.keyboard("{Control>}{Enter}{/Control}")
+
+    const next = screen.getByRole("button", { name: "Next" })
+    expect(next).toHaveFocus()
+
+    await user.keyboard(" ")
+
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
+      "Rainy day",
+    )
+    expect(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveFocus()
   })
 
   it("labels progress by finishable run steps for a higher entry", async () => {
@@ -100,10 +121,33 @@ describe("App", () => {
     expect(
       screen.getByRole("button", { name: "Practice again" }),
     ).toBeVisible()
+    expect(
+      screen.getByRole("button", { name: "Practice again" }),
+    ).toHaveFocus()
     expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
     expect(
       screen.getByRole("button", { name: "Change level" }),
     ).toBeVisible()
+  })
+
+  it("starts replay with editor focus from the completion interstitial", async () => {
+    const { user } = await openApp()
+
+    for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
+      const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+      await replaceSource(user, editor, answer)
+      await user.click(screen.getByRole("button", { name: "Check" }))
+      await user.click(screen.getByRole("button", { name: "Next" }))
+    }
+
+    await user.keyboard(" ")
+
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
+      "Rainy day",
+    )
+    expect(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveFocus()
   })
 
   it("opens on an empty Level 1 lesson with the new rule visible", async () => {

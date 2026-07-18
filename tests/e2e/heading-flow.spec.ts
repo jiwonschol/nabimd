@@ -32,6 +32,66 @@ test("greets a fresh browser session with keyboard-ready entry choices", async (
   await expect(sourceEditor(page)).toHaveCount(0)
 })
 
+test("completes and replays a fresh session with keyboard input only", async ({
+  page,
+}) => {
+  await page.goto("/")
+
+  await page.keyboard.press("Tab")
+  await expect(page.getByRole("button", {
+    name: "New to Markdown — start at Level 1",
+  })).toBeFocused()
+  await page.keyboard.press("Enter")
+
+  const editor = sourceEditor(page)
+  await expect(editor).toBeFocused()
+  const expectedShortcutLabel = await page.evaluate(() => {
+    const modernPlatform = (
+      navigator as Navigator & {
+        userAgentData?: { platform?: string }
+      }
+    ).userAgentData?.platform
+    return /mac|iphone|ipad|ipod/i.test(modernPlatform || navigator.platform)
+      ? "⌘↩"
+      : "Ctrl+↩"
+  })
+  await expect(
+    page.getByText(expectedShortcutLabel, { exact: true }),
+  ).toBeVisible()
+
+  for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
+    await page.keyboard.type(answer)
+    await page.keyboard.press("Control+Enter")
+    await expect(page.getByText(/^Perfect\./)).toBeVisible()
+    const next = page.getByRole("button", { name: "Next" })
+    await expect(next).toBeFocused()
+    await expect(next).not.toHaveAttribute("aria-keyshortcuts")
+    await page.keyboard.press("Space")
+    if (answer !== "# Study tools") await expect(editor).toBeFocused()
+  }
+
+  const practiceAgain = page.getByRole("button", { name: "Practice again" })
+  await expect(practiceAgain).toBeFocused()
+  await page.keyboard.press("Space")
+
+  await expect(
+    page.getByRole("region", { name: "Goal" }),
+  ).toContainText("Rainy day")
+  await expect(editor).toBeFocused()
+
+  await page.keyboard.press("Space")
+  await expect(editor).toHaveText(" ")
+  await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
+  await expect(
+    page.getByRole("region", { name: "Goal" }),
+  ).toContainText("Rainy day")
+
+  await page.keyboard.press("Control+Enter")
+  await expect(page.getByText(/^Fail:/)).toBeVisible()
+  await expect(editor).toBeFocused()
+  await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
+})
+
 test("fails, receives progressive Help, repairs, transfers, and restores", async ({
   page,
 }) => {
