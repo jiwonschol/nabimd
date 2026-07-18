@@ -3,12 +3,8 @@ import { getHeadingProblem } from "../content/headingProblems"
 import { headingProblemFixtures } from "../content/problemFixtures"
 import { evaluateProblem } from "./evaluateProblem"
 
-const matchStageFixtures = headingProblemFixtures.filter(
-  (fixture) => fixture.kind !== "matched-with-refinement",
-)
-
-describe("evaluateProblem match stage", () => {
-  it.each(matchStageFixtures)("grades $problemId $kind", (fixture) => {
+describe("evaluateProblem", () => {
+  it.each(headingProblemFixtures)("grades $problemId $kind", (fixture) => {
     const result = evaluateProblem(
       getHeadingProblem(fixture.problemId),
       fixture.source,
@@ -21,6 +17,14 @@ describe("evaluateProblem match stage", () => {
           ? fixture.expectedFeedbackId
           : undefined
       expect(result.feedbackId).toBe(expectedFeedbackId)
+    }
+
+    if (result.status !== "fail") {
+      const expectedReviewIds =
+        "expectedReviewIds" in fixture ? fixture.expectedReviewIds : []
+      expect(result.reviewItems.map((item) => item.id)).toEqual(
+        expectedReviewIds,
+      )
     }
   })
 
@@ -48,5 +52,14 @@ describe("evaluateProblem match stage", () => {
       feedbackId: "space-after-hash",
       message: "Add one space after the hash symbol.",
     })
+  })
+
+  it("never turns an editorial refinement into a failure", () => {
+    const result = evaluateProblem(
+      getHeadingProblem("heading-project-notes"),
+      "# Project notes\n\n# Details",
+    )
+
+    expect(result.status).toBe("matched")
   })
 })

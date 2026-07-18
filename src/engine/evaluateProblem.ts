@@ -1,4 +1,5 @@
 import type { Problem } from "../content/types"
+import { evaluateEditorial } from "./evaluateEditorial"
 import { evaluateMatch } from "./evaluateMatch"
 import { parseMarkdown } from "./markdownAst"
 import type { Evaluation } from "./types"
@@ -12,5 +13,9 @@ export function evaluateProblem(
 
   if (matchFailure) return matchFailure
 
-  return { status: "perfect", reviewItems: [] }
+  const reviewItems = evaluateEditorial(problem, tree)
+
+  return reviewItems.length === 0
+    ? { status: "perfect", reviewItems: [] }
+    : { status: "matched", reviewItems }
 }
