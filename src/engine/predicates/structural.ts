@@ -107,20 +107,40 @@ function listShapePasses(
   context: EvaluationContext,
 ) {
   const scopedNodes = nodesInScope(context, check.scope)
-  const candidateNodes = check.recursive
-    ? descendants(scopedNodes as AstNode[])
+  const candidates = check.recursive
+    ? collectListCandidates(scopedNodes as AstNode[])
     : scopedNodes
-  const lists = candidateNodes.filter(
-    (node): node is List => node.type === "list",
-  )
-  return lists.some((list) => {
+        .filter((node): node is List => node.type === "list")
+        .map((list) => ({ list, ancestorListOrders: [] }))
+  return candidates.some(({ list, ancestorListOrders }) => {
     const ordered = Boolean(list.ordered)
     return (
       (check.ordered === "either" || check.ordered === ordered) &&
+      (check.ordered === "either" ||
+        ancestorListOrders.every((ancestorOrder) => ancestorOrder === ordered)) &&
       inRange(list.children.length, check.minItems, check.maxItems) &&
       (!check.requireNonemptyItems || list.children.every(listItemHasContent))
     )
   })
+}
+
+function collectListCandidates(nodes: readonly AstNode[]) {
+  const candidates: { list: List; ancestorListOrders: readonly boolean[] }[] = []
+
+  function visit(node: AstNode, ancestorListOrders: readonly boolean[]) {
+    const nextAncestorOrders =
+      node.type === "list"
+        ? [...ancestorListOrders, Boolean((node as List).ordered)]
+        : ancestorListOrders
+
+    if (node.type === "list") {
+      candidates.push({ list: node as List, ancestorListOrders })
+    }
+    node.children?.forEach((child) => visit(child, nextAncestorOrders))
+  }
+
+  nodes.forEach((node) => visit(node, []))
+  return candidates
 }
 
 function listItemHasContent(item: ListItem): boolean {

@@ -1227,3 +1227,13 @@ rerun accepted all eight required dimensions for 24/24 against manifest
 `9781f5059c3088cfe1ed5f2347f86375e1839de9cc3f62c673400df359d1f1c6`.
 Publication raises the deterministic runtime bank to 92 problems with a
 40/40/4/4/4 split. The live application remains network-free during grading.
+
+The exact-head Codex review found two remaining publication defects. First,
+recursive list discovery allowed a valid bullet list nested under a numbered
+list to satisfy the bullet-list lesson even though the answer's outer structure
+was numbered. A failing regression reproduced the collision before the
+traversal was changed to preserve ancestor-list marker types; nested lists can
+now match through neutral wrappers such as blockquotes, but cannot borrow a
+different ordered/unordered outer structure. Second, the pipeline README still
+described the preceding 68-problem publication. Its fixture and level totals
+now match the generated 92-problem tracker.

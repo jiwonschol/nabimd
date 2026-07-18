@@ -73,6 +73,7 @@ describe("unordered-list predicates", () => {
 
   it.each([
     "1. One\n2. Two\n3. Three",
+    "1. Parent\n   - Child one\n   - Child two\n   - Child three",
     "- One",
     "- One\n- Two",
     "-No space\n-No space either\n-No third space",
