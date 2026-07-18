@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { resolveBrowserStorage } from "./browserStorage"
 
+const PREEXISTING_PROBE_KEY = "__nabimd_session_storage_probe__"
+const PREEXISTING_VALUE = "unrelated learner data"
+
 class ThrowingStorage extends MemoryStorage {
   constructor(
     private readonly operation: "getItem" | "setItem" | "removeItem",
@@ -44,6 +47,14 @@ class RecordingStorage extends MemoryStorage {
   }
 }
 
+class FailingProbeReadStorage extends MemoryStorage {
+  override getItem(key: string): string | null {
+    const value = super.getItem(key)
+    if (value === "available") throw new Error("probe read blocked")
+    return value
+  }
+}
+
 function withSessionStorage(storage: Storage, assertion: () => void) {
   const descriptor = Object.getOwnPropertyDescriptor(window, "sessionStorage")
   Object.defineProperty(window, "sessionStorage", {
@@ -78,6 +89,43 @@ describe("resolveBrowserStorage", () => {
         available.operations.some((item) => item.startsWith("remove:")),
       ).toBe(true)
       expect(available.length).toBe(0)
+    })
+  })
+
+  it("preserves a pre-existing probe-key collision on success", () => {
+    const available = new RecordingStorage()
+    available.setItem(PREEXISTING_PROBE_KEY, PREEXISTING_VALUE)
+    available.operations.length = 0
+
+    withSessionStorage(available, () => {
+      expect(resolveBrowserStorage()).toBe(available)
+      expect(available.getItem(PREEXISTING_PROBE_KEY)).toBe(PREEXISTING_VALUE)
+
+      const firstGet = available.operations.find((item) =>
+        item.startsWith("get:"),
+      )
+      const firstSet = available.operations.find((item) =>
+        item.startsWith("set:"),
+      )
+      expect(firstGet).toBeDefined()
+      expect(firstSet).toBeDefined()
+      expect(firstGet?.slice(4)).toBe(firstSet?.slice(4))
+      expect(available.operations.indexOf(firstGet!)).toBeLessThan(
+        available.operations.indexOf(firstSet!),
+      )
+    })
+  })
+
+  it("preserves a pre-existing collision when probe cleanup follows failure", () => {
+    const unavailable = new FailingProbeReadStorage()
+    unavailable.setItem(PREEXISTING_PROBE_KEY, PREEXISTING_VALUE)
+
+    withSessionStorage(unavailable, () => {
+      expect(resolveBrowserStorage()).not.toBe(unavailable)
+      expect(unavailable.getItem(PREEXISTING_PROBE_KEY)).toBe(
+        PREEXISTING_VALUE,
+      )
+      expect(unavailable.length).toBe(1)
     })
   })
 
