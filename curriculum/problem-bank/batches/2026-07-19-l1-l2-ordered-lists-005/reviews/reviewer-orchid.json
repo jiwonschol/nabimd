@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-ordered-lists-005",
+  "reviewerId": "codex-orchid-batch005",
+  "reviewRunId": "orchid-batch005-2026-07-19-002",
+  "declaredIndependent": true,
+  "manifestDigest": "c98f90df1d6dbd254274d5e86a74682b0aaf780e482b2f9e0731f1a8d0a980ea",
+  "verdicts": [
+    {
+      "candidateId": "l1-order-brush-teeth",
+      "revision": 1,
+      "candidateDigest": "c5f12535b21d81bcb67675a9bc1c3d089648841ec605baa0bd3448ae5072d175",
+      "fixtureResultsDigest": "1cc9bfaf0246d2bb757bc392fd506fcfbe395b0b178424627543e59b90d325cb",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-build-tower",
+      "revision": 1,
+      "candidateDigest": "d2cb58f7de2a1e09c9f71119a0caf389a3b85a2fd663d9ae364d82d76476f4d9",
+      "fixtureResultsDigest": "f438b49e244fe5c935926b4dbb1279bc7dc8e2b87a43ad4e01d078e121bbb140",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-draw-cat",
+      "revision": 1,
+      "candidateDigest": "ce4e27f19b85f3a5356fea5cccef27b86076820e56843dd04d112efbc7c7b94d",
+      "fixtureResultsDigest": "be65b35b8d780b247873901e5451c60e024f09725a39b57c530a0e33043dd628",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-feed-pet",
+      "revision": 1,
+      "candidateDigest": "c0b568280226c6bae4d74cc21a81d54bb74ca98bc20706ad79ff0c25586de870",
+      "fixtureResultsDigest": "41e1d00e46a687aca32b1166d453959992695c8bb9555cac6c57c13e2d46aba2",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-make-bed",
+      "revision": 1,
+      "candidateDigest": "5935c09ad320f8d570b83e26646e0029b9a512cd060af032566d63bc390d226a",
+      "fixtureResultsDigest": "8abd634eb510ebabbeaf18f202385968782baee0ba1e624eb61e8f2df7ee1d27",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-make-tea",
+      "revision": 1,
+      "candidateDigest": "9e1f02c6c0fcd9cb5b446c3825263665681c8b4581d64178ca4849de18d95abc",
+      "fixtureResultsDigest": "cf60f9a94fc7e693e4824e9b13ff73a695027faa218d592d83ff7011dd5cb8a1",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-make-toast",
+      "revision": 1,
+      "candidateDigest": "8087e1750addf6a8b4fbb07a07ae599c0f36ddecc9915ffa26256f994161cbbc",
+      "fixtureResultsDigest": "8e4e6c3d9f64c517bc8db3a96ed2832fee898f3501bd9d806c92dbd09ce71e2a",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-pack-lunch",
+      "revision": 1,
+      "candidateDigest": "8ad978f9e8af7e2affaca4580b20b5d28b50d0b33f9db49d2f2457d2aefacd30",
+      "fixtureResultsDigest": "58917f7f45c9a037f79b2a50f89894d2dc85cd2b5ea3dace1a1453ccd05ec22b",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-plant-seed",
+      "revision": 1,
+      "candidateDigest": "d37752a1008a6d3075201e99db6ae130a35697b6d0ba5e23857e1096fae3c157",
+      "fixtureResultsDigest": "ff4309a52321bd50709433d2b23f4104a8c7a539437f13bf1505ba92f235a077",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-send-letter",
+      "revision": 1,
+      "candidateDigest": "b5892abc689e9c989267cb1b5e490c16e6f616096d85b3b974dd46b7367ffa23",
+      "fixtureResultsDigest": "5733a3d59dee2476c4a02b0ffd7b727e828f2052dc1a73b2c69552578db9b740",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-tie-shoes",
+      "revision": 1,
+      "candidateDigest": "e22544497e5e87e604dcb041dd157d44a21a245bde37b0c1466b21316c10ea21",
+      "fixtureResultsDigest": "879e41954a1a164d69b657c81642f572eaf39c2c2a3da53fbbc8e80723078e48",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l1-order-wash-hands",
+      "revision": 1,
+      "candidateDigest": "f5e19f4b6d2f11819195efb2a7b9e9d0f16e01bedc85c1e01addb941209ee26c",
+      "fixtureResultsDigest": "369a8ca72df0ffd27ef87ce5c54d1b0a2a6b5c8ff7075d4900b461ee881ab4ee",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 1 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-charge-phone",
+      "revision": 1,
+      "candidateDigest": "dccc448defe3578c26d7c0da9cf951e720205e0383c8f7c12d37b7b4265dea35",
+      "fixtureResultsDigest": "51db20113c33b0eed5541ea7bb5f4f6332a5a5762e94044e684cdffd39509910",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-clean-shared-table",
+      "revision": 1,
+      "candidateDigest": "431db2a09b7f7a93df8cc935d111f0b457a96a356d5d958f523e1a49ac8b5412",
+      "fixtureResultsDigest": "07874531aee1d9910cd14243379d2778ca608f49a11eedd03f2bd7caa382c6f3",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-lock-bike",
+      "revision": 1,
+      "candidateDigest": "307b13399c4d7968932c0184fdb19316dc65786cac11fc809be7df578aac97fd",
+      "fixtureResultsDigest": "34c4b1c327a85b88f77706ea74b251f14ecede012f182c5c52c8359ac12aca57",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-morning-start",
+      "revision": 1,
+      "candidateDigest": "af3b97084059260587ba22cc5798275b0a4660e463bc6eb763df79f0fbe036a6",
+      "fixtureResultsDigest": "58daa7e698d6cb40c1fb8a661ee9e614ee1ab361a60b461f2d59eff039c60f44",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-prepare-rainy-walk",
+      "revision": 1,
+      "candidateDigest": "b0c931ee69226df2d06186f7de8a97f08bff82ab911a2be54c28dd57f38c25bb",
+      "fixtureResultsDigest": "c0b85824afb297ea1e3163f4d89b9654fadbe76d68ae462e98c2d04a73272bbf",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-return-library-book",
+      "revision": 1,
+      "candidateDigest": "f0304e182f7a27fec33c07d6779115db7b0064e61cac46eb97ffee59b00f2029",
+      "fixtureResultsDigest": "b712a35d8f7dab3b64e2d2aa64a19b49f4576c1d9cdd2ea5ceaa39fd973feadd",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-save-document",
+      "revision": 1,
+      "candidateDigest": "7a2c644bbe7c44f796c7f401205b454e49b5389b9118b86cc39970a45c4f5710",
+      "fixtureResultsDigest": "ed0657fa9707bfbed18d611f9a5918a5e734e60b5463ca10fa1d2a2ce566ea4a",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-set-picnic",
+      "revision": 1,
+      "candidateDigest": "840ffa5f80ad50cce8a064cab0aac0f7badcb14558238b0b9587093e22feae78",
+      "fixtureResultsDigest": "99054ca2109bcb2c5b2f60b7abd95c65a0e709c106971ccb01722315c553a010",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-start-laundry",
+      "revision": 1,
+      "candidateDigest": "570b35d22adfa3af997ec0c82a653403a7daf22673c48cda3ac3f38d67a15705",
+      "fixtureResultsDigest": "81a131c34bd0cee35827a2cd3912ddaf24dc94ee0901c13a908ba1e9b957accf",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-unpack-groceries",
+      "revision": 1,
+      "candidateDigest": "8389850c5a4249f15265c81e270b0f77cbc6e8009987252106ca60c110302115",
+      "fixtureResultsDigest": "dda5c53da195350dce08fa33726cd4646baa51d4fd3c841b669d8e5cd88c31c0",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-water-plant",
+      "revision": 1,
+      "candidateDigest": "996410fe864e5e29b380d60d9f89fe26b6e544ef79dd0145ac9ebd69c614fb73",
+      "fixtureResultsDigest": "ade5e8111673214dd1f786ccf1f33f96af414330f79c9a2eed3c30ff2c6730e1",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    },
+    {
+      "candidateId": "l2-order-wrap-package",
+      "revision": 1,
+      "candidateDigest": "82d68a29356733e80a1aa5508ef221ef271ffb7b6df97c4ae384fd8b0d8358ba",
+      "fixtureResultsDigest": "163a0ae966e264923ca2a8d36411301c6d172c139bd91ef72762ae94e6bd2e22",
+      "verdict": "pass",
+      "notes": "Independently recomputed corrected manifest and engine-bound evidence; all 26 frozen fixtures and 64 CommonMark adversarial probes passed for this Level 2 ordered-list candidate."
+    }
+  ],
+  "reviewDigest": "6cb91a1b2637312aee80da8678a9022126a72a83c4510598ae799c3e3a379920"
+}

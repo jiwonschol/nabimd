@@ -1237,3 +1237,44 @@ now match through neutral wrappers such as blockquotes, but cannot borrow a
 different ordered/unordered outer structure. Second, the pipeline README still
 described the preceding 68-problem publication. Its fixture and level totals
 now match the generated 92-problem tracker.
+
+PR #25 merged the corrected bullet-list batch as
+`f1cd0b36718721f494b35b12f72f95090eaae0ed` after exact-head CI and Codex
+review passed. A detached merge worktree then passed the full 1,655-test check,
+the production build, and all 12 browser journeys. Vercel deployment
+`dpl_CRSodcpvtPgrdGEcNJ7TmhHuSdZB` was promoted to
+`https://nabimd.vercel.app`; the public alias and immutable deployment returned
+the same ETag, and the 12 production journeys passed against the alias.
+
+### Issue #9 ordered-list expansion
+
+The fifth schema-v2 batch adds 24 Level 1–2 ordered-list exercises. It teaches
+the familiar period form (`1.`, `2.`, `3.`) while grading the parsed ordered
+list, not the literal marker numbers. Repeated `1.` markers, non-one starts,
+nonsequential numbers, CommonMark parenthesis delimiters, additional nonempty
+items, and neutral wrappers such as blockquotes are Matched. Bullet lists,
+ordered lists nested under a bullet-list ancestor, split two-plus-one groups,
+code lookalikes, fewer than three items, and empty items receive Try again.
+Multiple qualifying ordered lists remain Matched with optional Review.
+
+The first generated manifest,
+`1936b1391bc524421eae54f3290232fe9984d9010ec14a722cc4ec1421e77a16`,
+was not published. Mechanical review passed it, but the independent editorial
+review rejected six Level 2 prompts because phrases such as “battery sign,”
+“return the chairs,” “loop the lock,” “check the rain,” and “due book” were
+awkward or unclear for novice US English, and the document-saving sequence did
+not actually say to save. Those prompts were rewritten as natural, explicit
+actions. Every generated artifact and digest was then discarded and rebuilt;
+all three reviews reran from scratch against the corrected manifest. This is a
+real product correction from the review gate, not a retrospective success
+claim.
+
+Corrected manifest
+`c98f90df1d6dbd254274d5e86a74682b0aaf780e482b2f9e0731f1a8d0a980ea`
+contains 24 candidates and 624 frozen real-engine fixtures. Atlas accepted
+24/24 after all 624 fixtures and 15 additional adversarial probes passed.
+Orchid independently accepted 24/24 after all frozen fixtures and 1,536
+additional CommonMark probes passed. The separate editorial rerun accepted all
+eight dimensions for 24/24. Publication raises the deterministic runtime bank
+to 116 problems with a 52/52/4/4/4 split, while live grading remains
+network-free and grammar-only.

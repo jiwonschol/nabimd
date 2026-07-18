@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-ordered-lists-005",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 624,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "aee1ba8e1349cd9d0c30e070397347635cfcead8204855509c24eb3a1d5422ee",
+  "verificationDigest": "48e89de21955a4fea375e4f0bb01f1df8a5cf76691d746c7800aa49293b5a204",
+  "manifestDigest": "c98f90df1d6dbd254274d5e86a74682b0aaf780e482b2f9e0731f1a8d0a980ea",
+  "engineContractDigest": "3ec96f405b4cd23a1630113aac45ee75c1ad29b19109fd3ba5e06b0f5ec72ed5",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 92,
+  "preparedSummaryDigest": "1e51195246760a1f996d96bbfc90aa5852c0aff902b571feb34861a9db1dddc5"
+}

@@ -3,6 +3,7 @@ import runtimeProjections from "../../curriculum/problem-bank/runtime-projection
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
 import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
+import { orderedListBatch005Fixtures } from "./batches/orderedListBatch005Fixtures"
 import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
 import {
@@ -14,10 +15,10 @@ import {
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted foundation, heading, emphasis, and list expansions", () => {
-    expect(problemBank).toHaveLength(92)
-    expect(getProblemsForLevel(1)).toHaveLength(40)
-    expect(getProblemsForLevel(2)).toHaveLength(40)
+  it("publishes the accepted foundation, heading, emphasis, bullet-list, and ordered-list expansions", () => {
+    expect(problemBank).toHaveLength(116)
+    expect(getProblemsForLevel(1)).toHaveLength(52)
+    expect(getProblemsForLevel(2)).toHaveLength(52)
     for (const level of [3, 4, 5] as const) {
       expect(getProblemsForLevel(level)).toHaveLength(4)
     }
@@ -48,6 +49,7 @@ describe("compiled five-level problem bank", () => {
         ...headingBatch002Fixtures,
         ...emphasisBatch003Fixtures,
         ...listBatch004Fixtures,
+        ...orderedListBatch005Fixtures,
       ]),
     ).toEqual([])
   })

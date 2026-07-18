@@ -248,6 +248,20 @@ export type FixtureKind =
   | "empty-list"
   | "image-alt-list"
   | "empty-image-alt-list"
+  | "repeated-one"
+  | "parenthesis-marker"
+  | "non-one-start"
+  | "nonsequential-numbers"
+  | "unordered-list"
+  | "one-empty-item"
+  | "split-two-plus-one"
+  | "fenced-code-list"
+  | "indented-code-list"
+  | "nested-under-unordered"
+  | "mixed-delimiters"
+  | "blank-lines"
+  | "nested-under-ordered"
+  | "empty-parents-with-children"
 
 export type ProblemFixture = {
   id?: string

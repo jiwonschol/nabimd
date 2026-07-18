@@ -32,6 +32,10 @@ copied here or promoted automatically.
 - `2026-07-19-l1-l2-lists-004` — 24 accepted bullet-list variants and 360
   real-engine fixtures. Standard `-`, `*`, and `+` markers pass; wording,
   capitalization, spelling, and exact item text are not graded.
+- `2026-07-19-l1-l2-ordered-lists-005` — 24 accepted ordered-list variants and
+  624 real-engine fixtures. CommonMark period and parenthesis delimiters,
+  repeated `1.` markers, and non-one starts pass; wording, capitalization,
+  spelling, and exact numbers are not graded.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

@@ -1,0 +1,2002 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-ordered-lists-005",
+  "sequence": 5,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-19",
+  "candidates": [
+    {
+      "id": "l1-order-make-toast",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Get the bread\n2. Toast the bread\n3. Add butter",
+      "starterText": "",
+      "protectedContent": [
+        "Get the bread",
+        "Toast the bread",
+        "Add butter"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "Get the bread",
+          "Toast the bread",
+          "Add butter"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "make-toast"
+    },
+    {
+      "id": "l1-order-wash-hands",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Turn on the water\n2. Use soap\n3. Rinse your hands",
+      "starterText": "",
+      "protectedContent": [
+        "Turn on the water",
+        "Use soap",
+        "Rinse your hands"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "daily-care"
+        ],
+        "terms": [
+          "Turn on the water",
+          "Use soap",
+          "Rinse your hands"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "wash-hands"
+    },
+    {
+      "id": "l1-order-plant-seed",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Fill the pot\n2. Add the seed\n3. Water the soil",
+      "starterText": "",
+      "protectedContent": [
+        "Fill the pot",
+        "Add the seed",
+        "Water the soil"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "gardening"
+        ],
+        "terms": [
+          "Fill the pot",
+          "Add the seed",
+          "Water the soil"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "plant-seed"
+    },
+    {
+      "id": "l1-order-pack-lunch",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Make a sandwich\n2. Choose a fruit\n3. Fill a bottle",
+      "starterText": "",
+      "protectedContent": [
+        "Make a sandwich",
+        "Choose a fruit",
+        "Fill a bottle"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "Make a sandwich",
+          "Choose a fruit",
+          "Fill a bottle"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pack-lunch"
+    },
+    {
+      "id": "l1-order-tie-shoes",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Cross the laces\n2. Pull them tight\n3. Make two loops",
+      "starterText": "",
+      "protectedContent": [
+        "Cross the laces",
+        "Pull them tight",
+        "Make two loops"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "clothing"
+        ],
+        "terms": [
+          "Cross the laces",
+          "Pull them tight",
+          "Make two loops"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "tie-shoes"
+    },
+    {
+      "id": "l1-order-make-bed",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Straighten the sheet\n2. Place the pillow\n3. Fold the blanket",
+      "starterText": "",
+      "protectedContent": [
+        "Straighten the sheet",
+        "Place the pillow",
+        "Fold the blanket"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home"
+        ],
+        "terms": [
+          "Straighten the sheet",
+          "Place the pillow",
+          "Fold the blanket"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "make-bed"
+    },
+    {
+      "id": "l1-order-draw-cat",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Draw a head\n2. Add two ears\n3. Draw a tail",
+      "starterText": "",
+      "protectedContent": [
+        "Draw a head",
+        "Add two ears",
+        "Draw a tail"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "drawing"
+        ],
+        "terms": [
+          "Draw a head",
+          "Add two ears",
+          "Draw a tail"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "draw-cat"
+    },
+    {
+      "id": "l1-order-brush-teeth",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Wet the brush\n2. Add toothpaste\n3. Brush your teeth",
+      "starterText": "",
+      "protectedContent": [
+        "Wet the brush",
+        "Add toothpaste",
+        "Brush your teeth"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "daily-care"
+        ],
+        "terms": [
+          "Wet the brush",
+          "Add toothpaste",
+          "Brush your teeth"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "brush-teeth"
+    },
+    {
+      "id": "l1-order-make-tea",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Heat the water\n2. Add a tea bag\n3. Pour the water",
+      "starterText": "",
+      "protectedContent": [
+        "Heat the water",
+        "Add a tea bag",
+        "Pour the water"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "kitchen"
+        ],
+        "terms": [
+          "Heat the water",
+          "Add a tea bag",
+          "Pour the water"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "make-tea"
+    },
+    {
+      "id": "l1-order-feed-pet",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Find the bowl\n2. Add the food\n3. Fill the water dish",
+      "starterText": "",
+      "protectedContent": [
+        "Find the bowl",
+        "Add the food",
+        "Fill the water dish"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "pets"
+        ],
+        "terms": [
+          "Find the bowl",
+          "Add the food",
+          "Fill the water dish"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "feed-pet"
+    },
+    {
+      "id": "l1-order-build-tower",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Place a big block\n2. Add a middle block\n3. Top it with a small block",
+      "starterText": "",
+      "protectedContent": [
+        "Place a big block",
+        "Add a middle block",
+        "Top it with a small block"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "toys"
+        ],
+        "terms": [
+          "Place a big block",
+          "Add a middle block",
+          "Top it with a small block"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "build-tower"
+    },
+    {
+      "id": "l1-order-send-letter",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps",
+      "prompt": "Write three steps as a numbered list in Markdown.",
+      "target": "1. Write a note\n2. Use an envelope\n3. Add a stamp",
+      "starterText": "",
+      "protectedContent": [
+        "Write a note",
+        "Use an envelope",
+        "Add a stamp"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-1-ordered-list",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "mail"
+        ],
+        "terms": [
+          "Write a note",
+          "Use an envelope",
+          "Add a stamp"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "send-letter"
+    },
+    {
+      "id": "l2-order-morning-start",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Open the curtains\n2. Make the bed\n3. Eat breakfast",
+      "starterText": "",
+      "protectedContent": [
+        "Open the curtains",
+        "Make the bed",
+        "Eat breakfast"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "daily-routine"
+        ],
+        "terms": [
+          "Open the curtains",
+          "Make the bed",
+          "Eat breakfast"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "morning-start"
+    },
+    {
+      "id": "l2-order-return-library-book",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Find the library book\n2. Remove any bookmarks\n3. Use the return slot",
+      "starterText": "",
+      "protectedContent": [
+        "Find the library book",
+        "Remove any bookmarks",
+        "Use the return slot"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "library-routine"
+        ],
+        "terms": [
+          "Find the library book",
+          "Remove any bookmarks",
+          "Use the return slot"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "return-library-book"
+    },
+    {
+      "id": "l2-order-unpack-groceries",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Put away cold food\n2. Store the cans\n3. Fold the bags",
+      "starterText": "",
+      "protectedContent": [
+        "Put away cold food",
+        "Store the cans",
+        "Fold the bags"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Put away cold food",
+          "Store the cans",
+          "Fold the bags"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "unpack-groceries"
+    },
+    {
+      "id": "l2-order-start-laundry",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Sort the clothes\n2. Add the soap\n3. Start the washer",
+      "starterText": "",
+      "protectedContent": [
+        "Sort the clothes",
+        "Add the soap",
+        "Start the washer"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Sort the clothes",
+          "Add the soap",
+          "Start the washer"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "start-laundry"
+    },
+    {
+      "id": "l2-order-charge-phone",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Find the cable\n2. Connect the phone\n3. Check the battery icon",
+      "starterText": "",
+      "protectedContent": [
+        "Find the cable",
+        "Connect the phone",
+        "Check the battery icon"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "device-routine"
+        ],
+        "terms": [
+          "Find the cable",
+          "Connect the phone",
+          "Check the battery icon"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "charge-phone"
+    },
+    {
+      "id": "l2-order-set-picnic",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Spread the blanket\n2. Set out the food\n3. Collect the empty bags",
+      "starterText": "",
+      "protectedContent": [
+        "Spread the blanket",
+        "Set out the food",
+        "Collect the empty bags"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "outdoor-routine"
+        ],
+        "terms": [
+          "Spread the blanket",
+          "Set out the food",
+          "Collect the empty bags"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "set-picnic"
+    },
+    {
+      "id": "l2-order-lock-bike",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Park by the rack\n2. Pass the lock through the frame\n3. Close the lock",
+      "starterText": "",
+      "protectedContent": [
+        "Park by the rack",
+        "Pass the lock through the frame",
+        "Close the lock"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "travel-routine"
+        ],
+        "terms": [
+          "Park by the rack",
+          "Pass the lock through the frame",
+          "Close the lock"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "lock-bike"
+    },
+    {
+      "id": "l2-order-water-plant",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Touch the soil\n2. Pour water slowly\n3. Empty the tray",
+      "starterText": "",
+      "protectedContent": [
+        "Touch the soil",
+        "Pour water slowly",
+        "Empty the tray"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "plant-care"
+        ],
+        "terms": [
+          "Touch the soil",
+          "Pour water slowly",
+          "Empty the tray"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "water-plant"
+    },
+    {
+      "id": "l2-order-wrap-package",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Choose a strong box\n2. Seal every edge\n3. Add the label",
+      "starterText": "",
+      "protectedContent": [
+        "Choose a strong box",
+        "Seal every edge",
+        "Add the label"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "shipping-routine"
+        ],
+        "terms": [
+          "Choose a strong box",
+          "Seal every edge",
+          "Add the label"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "wrap-package"
+    },
+    {
+      "id": "l2-order-prepare-rainy-walk",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Check the weather\n2. Put on a coat\n3. Carry an umbrella",
+      "starterText": "",
+      "protectedContent": [
+        "Check the weather",
+        "Put on a coat",
+        "Carry an umbrella"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "weather-routine"
+        ],
+        "terms": [
+          "Check the weather",
+          "Put on a coat",
+          "Carry an umbrella"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "prepare-rainy-walk"
+    },
+    {
+      "id": "l2-order-save-document",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Choose a clear name\n2. Save the file\n3. Check that it was saved",
+      "starterText": "",
+      "protectedContent": [
+        "Choose a clear name",
+        "Save the file",
+        "Check that it was saved"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "computer-routine"
+        ],
+        "terms": [
+          "Choose a clear name",
+          "Save the file",
+          "Check that it was saved"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "save-document"
+    },
+    {
+      "id": "l2-order-clean-shared-table",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "ordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A numbered list shows steps in an order that is easy to follow.",
+        "howTo": "Start each step on a new line with a number, a period, and a space.",
+        "example": "1. Open the book\n2. Read one page\n3. Close the book"
+      },
+      "syntaxTokens": [
+        "1.",
+        "Space",
+        "Step",
+        "New line"
+      ],
+      "title": "Numbered steps recall",
+      "prompt": "From memory, write three steps as a numbered list in Markdown.",
+      "target": "1. Move personal items\n2. Wipe the surface\n3. Put the chairs back",
+      "starterText": "",
+      "protectedContent": [
+        "Move personal items",
+        "Wipe the surface",
+        "Put the chairs back"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-numbered-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three numbered steps, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-ordered-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these steps together in one numbered list."
+        }
+      ],
+      "hints": [
+        "Each step starts on its own line.",
+        "Type a number, a period, one space, then the step.",
+        "Example: `1. Open the book`"
+      ],
+      "retryFamily": "level-2-ordered-list-recall",
+      "reviewTags": [
+        "one-focused-ordered-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "shared-space-routine"
+        ],
+        "terms": [
+          "Move personal items",
+          "Wipe the surface",
+          "Put the chairs back"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "clean-shared-table"
+    }
+  ]
+}
