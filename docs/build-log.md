@@ -880,10 +880,10 @@ The reported long-Review clipping was not present: the later
 `.answer-panel__body--reading` rule already overrides the base hidden overflow.
 An 80-line failed answer was added as an executable counterexample and proved
 that Review scrolls internally while the document stays fixed. The proposed
-Try another fallback removal was rejected because finite-bank exhaustion must
-still return different current content instead of making a visible button do
-nothing. Two date corrections were also rejected: Jiwon approved the design on
-July 19 KST and this work occurred on July 19 KST.
+removal of the `Try another` fallback was rejected because finite-bank
+exhaustion must still return different current content instead of making a
+visible button do nothing. Two date corrections were also rejected: Jiwon
+approved the design on July 19 KST and this work occurred on July 19 KST.
 
 A full CodeRabbit rerun on the corrected implementation raised zero issues.
 

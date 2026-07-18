@@ -315,11 +315,13 @@ describe("useLearningSession", () => {
 
     act(() => result.current.start("level-1"))
     const originalId = result.current.problem.id
+    const originalRetryFamily = result.current.problem.retryFamily
     const originalStep = result.current.session.runStepIndex
 
     act(() => result.current.tryAnother())
 
     expect(result.current.problem.id).not.toBe(originalId)
+    expect(result.current.problem.retryFamily).toBe(originalRetryFamily)
     expect(result.current.session.runStepIndex).toBe(originalStep)
     expect(result.current.session.runProblemIds[originalStep]).toBe(
       result.current.problem.id,
