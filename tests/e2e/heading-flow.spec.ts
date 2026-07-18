@@ -293,6 +293,29 @@ test("shows invisible decorations without changing source or preview", async ({
   await expect(editor).toHaveText(source)
 })
 
+test("reveals NBSP and ideographic-space traps without changing source", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await enterLevel1(page)
+  const editor = sourceEditor(page)
+  const source = "#\u00a0Apple\u3000"
+
+  await editor.fill(source)
+  await page.getByRole("button", { name: "Show invisibles" }).click()
+
+  await expect(
+    page.locator(".cm-invisible-character--non-breaking-space"),
+  ).toHaveText("⍽")
+  await expect(
+    page.locator(".cm-invisible-character--ideographic-space"),
+  ).toHaveText("□")
+  await expect(editor).toHaveText("#⍽Apple□")
+
+  await page.getByRole("button", { name: "Hide invisibles" }).click()
+  await expect(editor).toHaveText(source)
+})
+
 test("stacks the mobile workspace in semantic order without horizontal overflow", async ({
   page,
 }) => {

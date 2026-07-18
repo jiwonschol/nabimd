@@ -55,6 +55,23 @@ describe("heading problem bank", () => {
     ).toEqual([])
   })
 
+  it.each(headingProblems)(
+    "covers the U+3000 separator trap for $id",
+    (problem) => {
+      expect(
+        headingProblemFixtures.find(
+          (fixture) =>
+            fixture.problemId === problem.id &&
+            fixture.kind === "ideographic-space-separator",
+        ),
+      ).toMatchObject({
+        source: `#\u3000${problem.protectedContent[0]}`,
+        expectedStatus: "fail",
+        expectedFeedbackId: "space-after-hash",
+      })
+    },
+  )
+
   it("reports duplicate problem IDs", () => {
     const duplicateProblems: readonly Problem[] = [
       ...headingProblems,
