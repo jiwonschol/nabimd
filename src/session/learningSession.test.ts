@@ -1,0 +1,243 @@
+import { describe, expect, it } from "vitest"
+import { getHeadingProblem } from "../content/headingProblems"
+import type { Problem } from "../content/types"
+import { evaluateProblem } from "../engine/evaluateProblem"
+import { createDefaultProgress } from "../progress/progressStore"
+import {
+  canAdvance,
+  createLearningSession,
+  learningSessionReducer,
+} from "./learningSession"
+import type { LearningSession } from "./learningSession"
+
+const apple = getHeadingProblem("heading-apple")
+const rainyDay = getHeadingProblem("heading-rainy-day")
+
+function newSession(problem: Problem = apple): LearningSession {
+  return createLearningSession(
+    createDefaultProgress(problem.id),
+    problem,
+  )
+}
+
+function editAndCheck(
+  session: LearningSession,
+  problem: Problem,
+  source: string,
+): LearningSession {
+  const edited = learningSessionReducer(session, {
+    type: "edited",
+    value: source,
+  })
+
+  return learningSessionReducer(edited, {
+    type: "checked",
+    evaluation: evaluateProblem(problem, source),
+    retryFamily: problem.retryFamily,
+  })
+}
+
+describe("learningSessionReducer", () => {
+  it("opens the introduced rule without creating transfer debt", () => {
+    const session = newSession()
+
+    expect(session.teachingMode).toBe("introduce")
+    expect(session.coach).toBe("hint")
+    expect(session.hintLevel).toBe(1)
+    expect(session.needsTransfer).toBe(false)
+  })
+
+  it("starts a recall problem with every hint closed", () => {
+    const session = newSession(rainyDay)
+
+    expect(session.teachingMode).toBe("recall")
+    expect(session.coach).toBe("closed")
+    expect(session.hintLevel).toBe(0)
+    expect(session.needsTransfer).toBe(false)
+  })
+
+  it("records transfer debt when Help is opened during recall", () => {
+    const session = newSession(rainyDay)
+    const hinted = learningSessionReducer(session, {
+      type: "hint-requested",
+    })
+
+    expect(hinted.coach).toBe("hint")
+    expect(hinted.hintLevel).toBe(1)
+    expect(hinted.needsTransfer).toBe(true)
+    expect(hinted.progress.pendingTransferFamily).toBe("heading-h1")
+  })
+
+  it("completes after a first-attempt Perfect pass", () => {
+    const passed = editAndCheck(newSession(), apple, "# Apple")
+
+    expect(passed.evaluation?.status).toBe("perfect")
+    expect(canAdvance(passed)).toBe(true)
+
+    const complete = learningSessionReducer(passed, { type: "next" })
+
+    expect(complete.phase).toBe("complete")
+    expect(complete.progress.completedProblemIds).toContain("heading-apple")
+  })
+
+  it("restores a completed problem as complete", () => {
+    const passed = editAndCheck(newSession(), apple, "# Apple")
+    const complete = learningSessionReducer(passed, { type: "next" })
+
+    const restored = createLearningSession(complete.progress, apple)
+
+    expect(restored.phase).toBe("complete")
+  })
+
+  it("completes after first-attempt Matched without requiring Review", () => {
+    const passed = editAndCheck(
+      newSession(),
+      apple,
+      "# Apple\n\n# Details",
+    )
+
+    expect(passed.evaluation?.status).toBe("matched")
+    expect(passed.coach).toBe("closed")
+    expect(canAdvance(passed)).toBe(true)
+    expect(learningSessionReducer(passed, { type: "next" }).phase).toBe(
+      "complete",
+    )
+  })
+
+  it("blocks Next after Fail and routes a repaired answer to transfer", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+
+    expect(failed.evaluation?.status).toBe("fail")
+    expect(failed.needsTransfer).toBe(true)
+    expect(canAdvance(failed)).toBe(false)
+    expect(learningSessionReducer(failed, { type: "next" })).toBe(failed)
+
+    const repaired = editAndCheck(failed, apple, "# Apple")
+    const transfer = learningSessionReducer(repaired, {
+      type: "next",
+      transferProblemId: "heading-rainy-day",
+      transferDraft: "",
+    })
+
+    expect(transfer.phase).toBe("editing")
+    expect(transfer.currentProblemId).toBe("heading-rainy-day")
+    expect(transfer.draft).toBe("")
+    expect(transfer.currentIsTransfer).toBe(true)
+    expect(transfer.teachingMode).toBe("recall")
+    expect(transfer.coach).toBe("closed")
+    expect(transfer.needsTransfer).toBe(false)
+    expect(transfer.progress.pendingTransferFamily).toBeNull()
+    expect(transfer.progress.recentProblemIds).toContain("heading-apple")
+  })
+
+  it("restores any transfer as a clean recall exercise", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.currentIsTransfer = true
+
+    const restored = createLearningSession(progress, apple)
+
+    expect(restored.currentIsTransfer).toBe(true)
+    expect(restored.teachingMode).toBe("recall")
+    expect(restored.coach).toBe("closed")
+    expect(restored.hintLevel).toBe(0)
+    expect(restored.needsTransfer).toBe(false)
+  })
+
+  it("routes a recall pass to transfer after Help was used", () => {
+    const hinted = learningSessionReducer(newSession(rainyDay), {
+      type: "hint-requested",
+    })
+    const passed = editAndCheck(hinted, rainyDay, "# Rainy day")
+    const transfer = learningSessionReducer(passed, {
+      type: "next",
+      transferProblemId: "heading-study-tools",
+      transferDraft: "",
+    })
+
+    expect(transfer.currentProblemId).toBe("heading-study-tools")
+    expect(transfer.currentIsTransfer).toBe(true)
+  })
+
+  it("completes after repairing a failed transfer without another transfer", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+    const repaired = editAndCheck(failed, apple, "# Apple")
+    const transfer = learningSessionReducer(repaired, {
+      type: "next",
+      transferProblemId: "heading-rainy-day",
+      transferDraft: "",
+    })
+    const transferFailed = editAndCheck(transfer, rainyDay, "#Rainy day")
+    const transferRepaired = editAndCheck(
+      transferFailed,
+      rainyDay,
+      "# Rainy day",
+    )
+
+    const complete = learningSessionReducer(transferRepaired, {
+      type: "next",
+    })
+
+    expect(complete.phase).toBe("complete")
+    expect(complete.progress.pendingTransferFamily).toBeNull()
+    expect(complete.currentIsTransfer).toBe(false)
+  })
+
+  it("keeps transfer debt when the learner edits after repairing", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+    const repaired = editAndCheck(failed, apple, "# Apple")
+    const editedAgain = learningSessionReducer(repaired, {
+      type: "edited",
+      value: "# Apple ",
+    })
+
+    expect(editedAgain.phase).toBe("editing")
+    expect(editedAgain.evaluation).toBeNull()
+    expect(editedAgain.needsTransfer).toBe(true)
+    expect(editedAgain.progress.pendingTransferFamily).toBe("heading-h1")
+  })
+
+  it("advances progressive hints only after Fail", () => {
+    const initial = newSession()
+    expect(
+      learningSessionReducer(initial, { type: "hint-requested" }),
+    ).toBe(initial)
+
+    const failed = editAndCheck(initial, apple, "#Apple")
+    const reopened = learningSessionReducer(failed, {
+      type: "hint-requested",
+    })
+    const second = learningSessionReducer(reopened, {
+      type: "hint-requested",
+    })
+    const third = learningSessionReducer(second, {
+      type: "hint-requested",
+    })
+    const capped = learningSessionReducer(third, {
+      type: "hint-requested",
+    })
+
+    expect(reopened.hintLevel).toBe(1)
+    expect(second.hintLevel).toBe(2)
+    expect(third.hintLevel).toBe(3)
+    expect(capped.hintLevel).toBe(3)
+  })
+
+  it("opens Review only for Matched", () => {
+    const perfect = editAndCheck(newSession(), apple, "# Apple")
+    expect(
+      learningSessionReducer(perfect, { type: "review-requested" }),
+    ).toBe(perfect)
+
+    const matched = editAndCheck(
+      newSession(),
+      apple,
+      "# Apple\n\n# Details",
+    )
+    const reviewing = learningSessionReducer(matched, {
+      type: "review-requested",
+    })
+
+    expect(reviewing.coach).toBe("review")
+    expect(canAdvance(reviewing)).toBe(true)
+  })
+})

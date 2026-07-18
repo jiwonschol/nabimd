@@ -1,0 +1,20 @@
+:root {
+  color-scheme: light;
+  --ink: #111111;
+  --paper: #ffffff;
+  --canvas: #f5f5f2;
+  --muted: #5f5f5a;
+  --line: #d7d7d2;
+  --focus: #111111;
+  --sans: ui-sans-serif, -apple-system, blinkmacsystemfont, "Segoe UI",
+    sans-serif;
+  --serif: ui-serif, georgia, cambria, "Times New Roman", serif;
+  --mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, monospace;
+  --space-1: 0.375rem;
+  --space-2: 0.75rem;
+  --space-3: 1.25rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --page-gutter: clamp(1.25rem, 3.2vw, 3.75rem);
+  --motion: 180ms;
+}

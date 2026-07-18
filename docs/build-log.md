@@ -1,0 +1,514 @@
+# Nabi Markdown Build Log
+
+This log records what actually happened during OpenAI Build Week. It is not a
+marketing timeline. Entries distinguish Jiwon's product decisions, Codex's
+contribution, and the evidence used to verify the result.
+
+## Evidence policy
+
+- Record problems when they happen; do not reconstruct them at submission.
+- Do not claim a feature before a test or runnable demonstration exists.
+- Record rejected Codex suggestions when they changed the final result.
+- For each consequential conflict, record the proposal, Jiwon's decision, the
+  reason for it, and the artifact that eventually verifies the decision.
+- Keep the majority of core implementation in one primary Codex thread.
+- Generate `/feedback` in that thread after the core build is substantially
+  complete, then submit the Session ID through Devpost.
+- Use dated commits, test output, and the public demo as supporting evidence.
+
+## 2026-07-18 — Repository foundation
+
+### Context
+
+The project began as a commercial Korean-first Markdown learning plan with 34
+levels, daily drills, and monetization. It was re-scoped for a three-day OpenAI
+Build Week Education submission.
+
+### Decisions made by Jiwon
+
+- Named the product **Nabi Markdown** and repository `nabimd`.
+- Chose an English-first Build Week experience; Korean comes after the event.
+- Chose a public repository and AGPL-3.0-or-later, while preserving a future
+  commercial-license option and reserving the brand.
+- Chose Codex as the only coding agent.
+- Supplied the canonical founder story and Devpost narrative.
+- Confirmed the Devpost plugin is connected and an Education draft exists.
+- Chose to use the existing Codex plan and banked resets after not receiving
+  additional Build Week Codex credits.
+
+### Codex contribution
+
+- Verified the current Official Rules and FAQ requirements for the repository,
+  README, video, and primary-thread `/feedback` Session ID.
+- Reduced the product to four English quests and one personalized Boss.
+- Proposed TypeScript, React, Vite, native textarea, remark/mdast, local
+  progress, and one bounded serverless model endpoint.
+- Designed a deterministic AST grader that accepts supported equivalent
+  Markdown syntax.
+- Separated GPT-5.6 generation from deterministic correctness.
+- Created the repository evidence structure and initial public documentation.
+
+### Challenges and resolutions
+
+| Challenge | Evidence | Resolution | Status |
+|---|---|---|---|
+| Commercial plan was too broad for three days | Original 34-level plan | Locked a 4+1 quest submission scope | Resolved in plan |
+| Public source could be confused with giving up monetization | License comparison | AGPL code, separate brand policy, optional future commercial license | Resolved for bootstrap |
+| GitHub CLI authentication had expired | `gh auth status` failed | Jiwon re-authenticated; authenticated owner verified as `jiwonschol` | Resolved |
+| Devpost plugin is connected but not callable from this Codex tool environment | Available-tool inspection | Treat Official Rules and FAQ as source of truth; Jiwon uses plugin UI when needed | Known boundary |
+| No promotional Codex credit allocation | Jiwon's account status | Use the existing plan and banked resets; keep API usage separately bounded | Active constraint |
+
+### Verification
+
+- GitHub owner authenticated: `jiwonschol`
+- Repository name was unused before creation: `jiwonschol/nabimd`
+- Repository visibility: public
+- License file: GNU AGPL v3
+- Application code: not started at this milestone
+
+## 2026-07-18 — Learning model and product conflicts
+
+### Context
+
+Before application scaffolding, Jiwon and Codex reviewed the learning model
+instead of treating the original plan as settled. The discussion changed the
+product from an editor-like correction experience into deliberate Markdown
+practice for people whose writing process or source document is visible to
+other people.
+
+### Conflict record
+
+| Conflict | Codex proposal | Jiwon's decision and reason | Current resolution |
+|---|---|---|---|
+| Convenience versus learning | Quiet live correction after a typing pause | Rejected: automatic correction teaches the editor, not recall | Feedback appears only after `Check`; help is user-requested |
+| First exposure | Begin with copy-and-paste or a nearly complete source | Rejected as too passive | Teach one syntax pattern, then require production with different text |
+| Competing course models | Choose among a syntax ladder, editorial apprenticeship, or document makeovers | Keep all three because they serve different levels | Editorial apprenticeship is the main path; single-syntax warm-ups can appear anywhere; makeovers serve advanced practice |
+| First visit | Mode chooser or placement test | Avoid choice burden | Start with a 60-second problem; experienced users can skip to a document challenge |
+| Desktop layout | Single vertical sheet or an editorial desk | Selected the editorial desk | Prompt and rendered target stay above a wide editor |
+| Coaching location | Inline feedback rail, modal, or separate side panel | Keep coaching outside the work surface | A right-side coach opens on request; it becomes a bottom sheet on small screens |
+| Correctness versus presentation | Treat every valid answer as identical | Separate correct syntax from editorial polish without turning polish into failure | `Fail` blocks progress; `Matched` passes and unlocks `Next`; `Perfect` is an optional higher-quality pass |
+| Review timing | Open editorial critique automatically after success | Rejected because it makes success feel like another failure | `Review` opens only when a matched user asks for it and shows all relevant refinements at once |
+| Failed retry | Repeat the exact same question until correct | Rejected because repetition would encourage memorizing the answer and create frustration | A failed learner receives a different prompt that exercises the same syntax before progressing |
+| AI at runtime | Generate personalized exercises and possibly editorial notes in the live app | Rejected: the learning experience and grading should remain stable, cheap, and inspectable | Ship a curated problem bank and deterministic grading; any GPT-5.6 contribution must occur in the documented curriculum-production workflow, not live grading |
+
+### Learning states agreed
+
+- **Fail:** required syntax is missing or malformed, required structure is
+  absent, or protected prompt content is lost. `Next` stays locked and the next
+  attempt uses different content for the same skill.
+- **Matched:** the learner used the requested Markdown skill correctly. This is
+  a pass and unlocks `Next`.
+- **Perfect:** all applicable Nabi editorial checks also pass. This is a more
+  polished pass, not a separate gate.
+- A matched-but-not-perfect habit can return later inside another problem
+  without revoking the earlier pass.
+
+### Problem-bank contract
+
+Each curated problem is expected to include a skill ID, difficulty, prompt,
+protected content, match predicates, editorial checks, retry-family tags, and
+review tags. Its fixtures must cover a canonical pass, supported alternatives,
+missing or malformed syntax, a matched answer with optional refinements, a
+perfect answer, and the expected feedback IDs.
+
+No generated problem is accepted merely because a model produced it. The bank
+must be refined through deterministic validation, repeated counterexamples,
+and Jiwon's editorial approval.
+
+### Build Week evidence boundary
+
+- The public pull request preserves dated diffs and commit history, but judges
+  should not have to infer product reasoning from a diff.
+- This build log is the curated explanation of conflicts, decisions, and later
+  verification evidence.
+- The README will summarize only the strongest verified examples and link here.
+- The primary-thread `/feedback` Session ID is the official thread identifier;
+  it complements rather than replaces the README, commits, tests, and demo.
+- The rules do not explicitly require a runtime API call. They do require
+  meaningful Codex and GPT-5.6 use and a specific explanation in the repository
+  and video. Concrete GPT-5.6 work and its resulting artifacts still need to be
+  produced and recorded; ideation alone will not be presented as proof.
+
+### Current verification
+
+- Browser brainstorming selection: `Editorial Desk`
+- Browser brainstorming selection: `Side Coach`
+- Feature code: not started
+- Grading fixtures: not started
+- GPT-5.6 curriculum artifact: not yet produced
+
+## 2026-07-18 — Written application contract
+
+### Approval
+
+Jiwon approved the written application design after the verbal interaction and
+learning-state decisions had been consolidated. The approved contract covers
+the audience, learning modes, Devpost-aligned syntax families, Fail/Matched/
+Perfect progression, different-content transfer after a repaired failure,
+request-only Hint and Review, the Editorial Desk, deterministic grading, local
+progress, and the Build Week evidence boundary.
+
+### Implementation cut
+
+Codex translated the approved design into a task-level implementation plan but
+did not start feature code at this milestone. The first implementation unit is
+three H1 heading problems that exercise the complete system from fixtures to
+deployment. The remaining 30-problem expansion waits until the schema, grader,
+transfer behavior, persistence, Side Coach, and browser path work together.
+
+This cut preserves the agreed 33-problem target without multiplying an
+unproven grading contract across the bank. It also gives the project a working
+demo early enough to spend the remaining time on content and visual quality.
+
+### Verification
+
+- Written spec status: approved by Jiwon on 2026-07-18
+- Implementation plan: `docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md`
+- Runtime feature code: not started
+- Tests and deployment: not started
+- GPT-5.6 curriculum artifact: not yet produced
+
+## 2026-07-18 — Heading vertical MVP
+
+### What shipped in this milestone
+
+Codex implemented the approved learning loop end to end for H1 document
+titles: three problems, 18 fixtures, a validated content contract,
+deterministic grading, Fail/Matched/Perfect outcomes, different-content
+transfer after a repaired failure, local progress, progressive Hint, optional
+Review, the Editorial Desk interface, responsive Side Coach, and automated
+browser proof.
+
+The implementation stayed static and local. There is no model call,
+authentication, database, or server-side correctness decision in the learner
+path.
+
+### Test-first grading decisions
+
+The first grader cases forced two distinctions that an exact answer comparison
+would miss:
+
+- `# Project notes #` is a supported equivalent H1 and must pass even though
+  it is not the canonical source string.
+- `#Project notes` is malformed Markdown, and the first useful correction is
+  the missing space—not a generic message that no H1 AST node was found.
+
+Codex encoded these cases in the fixture bank before implementing the grader.
+Match checks carry an explicit priority so spacing feedback wins when several
+checks could fail. The editorial single-H1 rule runs separately: an extra H1
+produces Matched and an optional Review, never Fail.
+
+### Problems encountered and resolved
+
+| Problem observed | Investigation and decision | Resolution | Verification |
+|---|---|---|---|
+| Node 26 and jsdom exposed incompatible global `localStorage` behavior during progress tests | Codex isolated persistence behind the browser-standard `Storage` interface; no browser product workaround was justified | Added a complete `MemoryStorage` test double and explicit jsdom setup | `npm test` passes progress and hook restoration cases |
+| A learner who clears the starter text initially could not receive a starting correction if Check were disabled | An empty answer is still a meaningful attempted answer | Kept Check available and let the deterministic grader supply the missing-structure action | Component and hook tests cover the empty draft boundary |
+| Adding Playwright made the full gate fail even though all 62 Vitest assertions passed | Vitest was also collecting `tests/e2e/heading-flow.spec.ts` | Scoped Vitest to `src/**/*.test.{ts,tsx}` and left `tests/e2e` to Playwright | `npm run check` and `npm run test:e2e` pass independently |
+| The first 390 px browser inspection wrapped the Nabi wordmark across two lines | The progress label occupied too much header width | Preserved the accessible label but visually shortened `Headings · 1 of 3` to `1 of 3` below 480 px | Chromium mobile path proves no horizontal overflow |
+| The sandboxed local server could not bind to `127.0.0.1:4173` | This was an execution boundary, not an app defect | Ran the approved local browser server with the required permission and kept the app configuration unchanged | In-app browser and Playwright both loaded the same Vite app |
+| First production deploy attempt reported an invalid stored Vercel token | Build completed locally; failure occurred before project deployment | Completed Vercel OAuth device login and redeployed | Vercel reported the production deployment Ready |
+| The new short alias returned a Vercel Authentication 302 instead of the app | `curl` showed the SSO redirect while the previously assigned project alias returned 200 | Renamed the project to `nabimd`, assigned `nabimd.vercel.app`, and disabled project Vercel Authentication using Vercel's documented `{"ssoProtection": null}` setting; this static public demo has no private runtime data | The short URL returned HTTP 200 and passed all five clean Chromium paths without login |
+
+### Visual verification
+
+Codex compared the final browser render against the approved monochrome
+Editorial Desk concept at desktop size. It then exercised Fail, Hint, repair,
+transfer, and completion in the in-app browser. At `390 × 844`, the Side Coach
+became a bottom sheet, the wordmark stayed on one line, and the document width
+did not exceed the viewport.
+
+### Verification at this milestone
+
+- Clean dependency install: `npm ci` completed from `package-lock.json`.
+- Install note: npm left two optional `fsevents` install scripts unapproved;
+  the project builds and tests without approving them.
+- TypeScript: `npm run typecheck` passed.
+- Unit/component tests: 7 files, 62 tests passed.
+- Production build: Vite transformed 186 modules and completed successfully.
+- Browser tests: 5 Chromium journeys passed locally and against production.
+- Verified browser paths: fail/repair/transfer/draft restore, first-attempt
+  Perfect with keyboard Check, optional Matched Review, and mobile Coach with
+  no horizontal overflow, plus the absence of runtime fetch/XHR requests.
+- GitHub CI: Node 22 verification passed in 52 seconds.
+- Deployment: Vercel production status Ready.
+- Public unrestricted URL: [https://nabimd.vercel.app](https://nabimd.vercel.app)
+- Production proof: HTTP 200 without authentication and all five Chromium
+  paths passed against the public URL.
+
+## 2026-07-18 — First developer hands-on MVP review
+
+### Review context
+
+After using the public heading MVP himself, Jiwon supplied the first
+developer/product-owner review before the problem bank was expanded. This is a
+hands-on acceptance review, not a reconstructed submission narrative. The
+observations below are recorded before a replacement design or implementation
+is chosen.
+
+### Observations from Jiwon
+
+1. **The exercise sentence needs native educational-copy review.** The current
+   `Turn Project notes into the document's main heading.` is understandable,
+   but Jiwon questioned whether it sounds like language a US learning app would
+   naturally use. The first lesson needs shorter, more direct action language.
+2. **`Project notes` does not read as an obvious learner task.** It resembles a
+   label introducing a document that will follow, rather than a concrete piece
+   of text the learner is being asked to transform. Warm-up content should come
+   from a broader bank of short, familiar words or phrases—such as fruit,
+   weather, or learning tools—whose role is immediately obvious.
+3. **The prefilled editor makes the first screen feel redundant.** The rendered
+   target already displays the same words that appear in `Your Markdown`.
+   Prefilling those words makes the target, editor, and live preview repeat one
+   another without clearly signaling what the learner must produce. An empty
+   production area is the leading alternative, subject to the revised lesson
+   design.
+4. **The target/editor/preview hierarchy is oversized for the exercise.** A
+   one-line heading task does not need a document-sized textarea or a large
+   second preview. The placement, relative emphasis, and dimensions of
+   `Target`, `Your Markdown`, and `Live preview` need to be redesigned together
+   rather than resized independently.
+
+### Product interpretation
+
+The vertical slice proved the grading and retry loop, but it inherited the
+spatial assumptions of a general Markdown editor. The next design should behave
+like a focused learning interaction: one unmistakable object to transform, one
+compact place to type, and one immediate visual consequence. It should not look
+as though the learner is beginning a long project document.
+
+### Status at the initial report
+
+- The review is accepted as the first post-MVP product finding.
+- No replacement copy, content set, empty-editor behavior, or layout has been
+  approved yet.
+- Application code remains unchanged while those decisions are explored.
+
+### Design review continuation
+
+Jiwon then reviewed four visual-companion iterations and corrected the design
+model before implementation:
+
+- **Level 1 teaches before it tests.** A new syntax rule is available up front
+  in the first exposure. From Level 2 onward, recall matters: a collapsed Hint
+  must reveal neither the answer nor its punctuation until the learner opens
+  it.
+- **Hint is a downward disclosure, not a horizontal drawer.** It sits beside
+  the compact goal area and expands from top to bottom so opening help does not
+  change the width or alignment of the rendered reference.
+- **Goal means the rendered reference.** It is not a prose restatement of the
+  instruction. `Instruction` tells the learner what to do; `Goal` shows the
+  finished rendering; `Your Markdown` contains learner source; `Live preview`
+  shows the current rendering. A correct preview should visually match Goal.
+- **Goal and preview need the same surface treatment.** Different borders,
+  typography, or paper textures imply different functions even though the
+  exercise asks the learner to reproduce the goal.
+- **Source and preview stay side by side at equal height.** The focused lesson
+  remains compact at Level 1, while the same two-pane workbench can grow
+  vertically for Level 3 document exercises.
+- **The source pane must look and behave like an editor.** Monospace text alone
+  is not enough. The accepted direction includes an active caret and restrained
+  editor affordances, plus an optional way to inspect invisible spacing.
+- **Whitespace marks must feel conventional rather than like learner syntax.**
+  Microsoft Word documents spaces as dots and tabs as arrows; Apple Pages calls
+  the same family of marks “invisibles” and allows their colour to be changed.
+  The next mockup therefore treats them as faint, optional editor annotations,
+  not full-strength Markdown characters.
+
+Jiwon also set the documentation policy for these reviews: developer feedback
+is recorded in English, edited for clarity rather than copied verbatim, and
+written as evidence that an outside reviewer or Build Week judge can follow.
+
+The visual decisions remain design evidence only; application code has not yet
+been changed to match them at this point in the log.
+
+### Level 5 north star supplied by Jiwon
+
+Jiwon supplied a real 210-line Codex implementation work order from another
+project as an example of Nabi's eventual Level 5 outcome. The document does
+more than format a request: it separates mission, prior failure context,
+ordered sources of truth, a comprehension gate, staged execution, absolute
+prohibitions, stop conditions, verification commands, repository conventions,
+and a final-report schema.
+
+The product decision is to use that anatomy as a future curriculum reference,
+not to copy the project-specific work order or ask learners to transcribe it.
+Level 5 should teach a person to turn unstructured project intent into an
+agent-ready Markdown work order that is executable by a contemporary coding
+agent and auditable by another human. The detailed north-star analysis lives in
+`docs/design/level-5-agent-brief-north-star.md`.
+
+This addition does not expand the current implementation milestone. It explains
+why the H1 redesign is being sized from a moderate document rather than the
+shortest possible heading exercise.
+
+### C6 written approval and implementation boundary
+
+Jiwon approved the C6 written specification and added the final long-term
+constraint: document lines remain relatively narrow, but the workspace must be
+able to grow much farther vertically. By Level 5, repeated Markdown practice
+should have taught the learner the structure of a contemporary AI work order
+almost incidentally. Because those conventions change, reviewed curriculum
+versions can create long-term continuity and may later support paid advanced
+content; monetization remains outside Build Week.
+
+Codex translated the approval into a test-first implementation and PR plan. It
+also turned the supplied real work order into an anonymized fictional reference
+that preserves mission, authority order, staged autonomy, constraints, stop
+conditions, verification, and final-report structure without publishing the
+source project's paths or operational details.
+
+The first redesign implementation makes one additional learning inference:
+opening Help during a recall problem means recall was not independently proven.
+A later pass therefore creates the same different-content transfer obligation
+as a repaired failure. The visible rule in the first introduce problem does not.
+This rule will be treated as implemented only after reducer and browser tests
+prove it.
+
+The existing H1 pull request remains the feature delivery unit. Commits separate
+the approved record, behavior contract, C6 interface, and browser proof. Remote
+review occurs at a behavior checkpoint and again on the complete release
+candidate; deployment waits for current-head review and CI rather than relying
+on approvals of superseded commits.
+
+Artifacts at approval time:
+
+- Approved redesign:
+  `docs/superpowers/specs/2026-07-18-first-exercise-redesign-design.md`
+- Test-first execution plan:
+  `docs/superpowers/plans/2026-07-18-first-exercise-redesign.md`
+- Level 5 analysis: `docs/design/level-5-agent-brief-north-star.md`
+- Anonymized public work-order reference:
+  `docs/examples/level-5-agent-work-order-reference.md`
+- Runtime status: approved but not yet implemented
+
+## 2026-07-18 — C6 first-exercise release candidate
+
+### What changed
+
+Codex implemented the approved first-exercise redesign without replacing the
+verified learning engine. The three heading prompts now use Apple, Rainy day,
+and Study tools; every source starts empty; and `introduce` versus `recall` is
+explicit curriculum data rather than a UI guess. The first exposure shows the
+rule. Recall starts with Help closed, and opening it creates a same-skill
+transfer obligation after a later pass.
+
+The interface now follows the C6 hierarchy approved by Jiwon:
+
+- Instruction says what action to take.
+- Goal is the large rendered reference.
+- Help is a fixed narrow desktop column that opens downward.
+- Your Markdown is a restrained CodeMirror source surface.
+- Live preview uses the same safe rendered-document component as Goal.
+- Source and preview stay side by side and equal-height on desktop, then stack
+  in semantic order on small screens.
+
+No runtime AI, service, learner-media fetch, authentication, database, or
+server grading was introduced.
+
+### Product decisions and Codex implementation calls
+
+Jiwon approved the C6 spatial contract, required conventional optional
+whitespace marks, kept Help hidden for recall, and set a longer-term Level 5
+direction in which narrow, vertically growing documents teach contemporary AI
+work-order structure. Codex selected exact CodeMirror 6 packages, represented
+invisibles as view decorations, shared the renderer between Goal and preview,
+and encoded recall Help as transfer debt. The latter is an implementation of
+Jiwon's learning rule—not a claim that Jiwon specified reducer fields.
+
+### Problems encountered and resolved
+
+| Problem observed | Investigation and decision | Resolution | Verification |
+|---|---|---|---|
+| Making Level 1 Help visible caused the legacy mobile Side Coach to cover Check | The fixed overlay was incompatible with normal lesson order, not merely a test inconvenience | Removed Side Coach and made Help an in-flow downward disclosure | The 390 px browser path proves Goal → Help → source → preview order, usable Check flow, and no horizontal overflow |
+| Full-app typing lost characters although the isolated CodeMirror wrapper test passed | A passive controlled-value effect could replay a stale parent echo between rapid editor transactions | Synchronized controlled document changes in the layout phase | Ten App tests and the real Chromium keyboard path pass |
+| CodeMirror's empty placeholder is rendered inside the contenteditable tree | An assertion for empty `textContent` described DOM internals rather than the learner's empty draft | Asserted the accessible placeholder and visible CodeMirror placeholder; persisted draft proof remains separate | Empty start and empty transfer both pass in unit and browser tests |
+| The first browser render matched C6 structure but stretched nearly across a 1440 px viewport | This contradicted the approved narrow-reading-measure, tall-document direction | Constrained the app to 72rem, the learning workspace to 68rem, and the base workbench to a 24rem maximum height | A second visual comparison confirmed Goal priority, stable Help width, shared paper treatment, 1:1 workbench, and intentional outer whitespace |
+| The old no-network E2E attached its request listener after navigation | Bootstrap-time third-party requests could escape the assertion | Attached the listener before `page.goto` and kept it active while learner media Markdown was entered | The Chromium path observes no external runtime or image request |
+
+### Verification at the release-candidate gate
+
+- TypeScript: `npm run typecheck` passed.
+- Unit/component tests: 10 files, 83 tests passed.
+- Production build: Vite transformed 198 modules and completed successfully.
+- Browser tests: 8 Chromium paths passed locally.
+- Browser evidence covers first-attempt Perfect, Fail and progressive Help,
+  repair and different-content transfer, recall Help transfer debt, optional
+  Matched Review, draft restoration, desktop one-pixel alignment, non-mutating
+  invisibles, mobile semantic stacking, and no external runtime request.
+- In-app desktop visual inspection found no console warning or error from the
+  application.
+- Remote review, GitHub CI on this head, production deployment, and production
+  browser verification remain pending at this entry. They must not be reported
+  as complete from the older deployed head.
+
+### PR checkpoint decision
+
+The behavior commit was intentionally kept local while the legacy interface
+was incompatible with the new Help state. The release candidate is now split
+into reviewable documentation, learning-state, C6 interface, and browser-proof
+commits. PR #1 remains the H1 delivery unit. Fresh Codex and CodeRabbit review
+will be requested only after this complete candidate is pushed; deployment
+waits for current-head CI and review triage.
+
+## 2026-07-18 — Review corrections and final C6 delivery
+
+### What the final review changed
+
+The latest-head Codex review found five valid boundary defects after the first
+C6 release candidate. They were fixed together in application commit
+`410f0e2e98c4ad8fa803bceb53d1087d413cdd8a`:
+
+1. A transferred problem could inherit the previous CodeMirror undo history.
+   The editor is now keyed by problem ID, so the transfer creates a fresh
+   editing history as well as an empty draft.
+2. Merely accessing `window.localStorage` could throw in a restricted browser.
+   Storage resolution is guarded and falls back to a volatile per-session
+   `Storage` implementation without changing the progress schema.
+3. Starting a transfer did not immediately clear its pending family. The
+   reducer now consumes that obligation when the transfer begins.
+4. Reloading an active transfer that happened to target the introductory Apple
+   problem reopened its rule. Active transfers now restore as recall, while a
+   normal first exposure still behaves as an introduction.
+5. A Setext H1 such as `Apple` followed by `=====` could pass even though the
+   lesson explicitly teaches `# Space Title`. The H1 check now also requires an
+   ATX/hash source span for this exercise family.
+
+Regression coverage was added for transfer undo isolation, a throwing
+`localStorage` getter, transfer obligation consumption, introduce-target
+restoration, and Setext rejection. Every current inline review thread was
+answered with evidence and resolved.
+
+### Final evidence
+
+- Application commit: `410f0e2e98c4ad8fa803bceb53d1087d413cdd8a`.
+- TypeScript and production build: passed; Vite transformed 199 modules.
+- Unit/component tests: 10 files, 86 tests passed.
+- Browser tests: all 8 Chromium journeys passed locally and against production.
+- GitHub: Verify completed successfully in 59 seconds; CodeRabbit approved the
+  application commit; aggregate review state was `APPROVED`, merge state was
+  `CLEAN`, and actionable unresolved threads were zero.
+- Production deployment:
+  `dpl_kNkfBiPqSXJjYLEFAB486Fz1ZTGZ` at
+  `https://nabimd-qj4q2mlzc-jiwon112-3536s-projects.vercel.app`, aliased to
+  `https://nabimd.vercel.app`.
+- Public access: the alias returned HTTP 200 without authentication.
+- Runtime: this is a static build; the Vercel runtime-log query returned no
+  function logs, as expected for this architecture.
+
+The earlier production deployment of `410a8fb` was superseded after review.
+The public alias now serves the reviewed `410f0e2` application. This final
+evidence update changes documentation only, so it requires the lightweight
+repository CI gate but not another production deployment.
+
+Two non-blocking platform notices remain recorded rather than hidden: Vite
+warns that the main JavaScript chunk is over 500 kB before gzip, and CodeRabbit
+shows a generic docstring-coverage notice even though this repository defines
+no docstring-coverage rule. Neither altered the verified learner path; bundle
+splitting can be considered after the Build Week curriculum scope is complete.
+
+## Next entry
+
+Record the primary-task `/feedback` Session ID, the Devpost submission and
+video evidence, and the GPT-5.6 curriculum-refinement artifact before beginning
+the next syntax family.
