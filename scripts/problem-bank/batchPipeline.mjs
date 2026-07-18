@@ -970,10 +970,15 @@ async function loadBatchDirectory(batchDir, directoryName) {
   let editorial
   let reviews = []
   try {
-    ;[prompt, raw, normalized, fixtureArtifact, engineContract, verification, manifest, editorial] = await Promise.all([
+    normalized = await readJson(resolve(batchDir, "candidates.normalized.json"))
+  } catch (error) {
+    loaderErrors.push(`Cannot load ${directoryName}: ${error instanceof Error ? error.message : String(error)}`)
+    return { normalized: { batchId: directoryName }, loaderErrors }
+  }
+  try {
+    ;[prompt, raw, fixtureArtifact, engineContract, verification, manifest, editorial] = await Promise.all([
       readFile(resolve(batchDir, "generation-prompt.md"), "utf8"),
       readJson(resolve(batchDir, "candidates.raw.json")),
-      readJson(resolve(batchDir, "candidates.normalized.json")),
       readJson(resolve(batchDir, "fixtures.json")),
       readJson(resolve(batchDir, "engine-contract.json")),
       readJson(resolve(batchDir, "verification.json")),
@@ -982,7 +987,7 @@ async function loadBatchDirectory(batchDir, directoryName) {
     ])
   } catch (error) {
     loaderErrors.push(`Cannot load ${directoryName}: ${error instanceof Error ? error.message : String(error)}`)
-    return { normalized: { batchId: directoryName }, loaderErrors }
+    return { normalized, loaderErrors }
   }
   try {
     const reviewDir = resolve(batchDir, "reviews")

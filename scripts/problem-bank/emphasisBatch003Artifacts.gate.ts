@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { emphasisBatch003Fixtures } from "../../src/content/batches/emphasisBatch003Fixtures"
+import { classifyAuthoredBatchDependencies } from "./batchArtifactSupport"
 import {
   buildEmphasisBatch003Artifacts,
   buildEmphasisBatch003Publication,
@@ -22,6 +23,30 @@ if (publishArtifacts) {
 }
 
 describe("schema-v2 Level 1-2 emphasis expansion batch 003", () => {
+  it("fails closed on unclassified batches without rejecting valid later work", () => {
+    const classified = classifyAuthoredBatchDependencies({
+      batches: [
+        { normalized: { batchId: "prior", sequence: 2 }, loaderErrors: [] },
+        {
+          normalized: { batchId: "later", sequence: 4 },
+          loaderErrors: ["Later editorial is not ready"],
+        },
+        {
+          normalized: { batchId: "unclassified" },
+          loaderErrors: ["Cannot parse normalized evidence"],
+        },
+      ],
+      batchId: "current",
+      sequence: 3,
+    })
+
+    expect(classified.previousBatches).toHaveLength(1)
+    expect(classified.laterBatches).toHaveLength(1)
+    expect(classified.invalidDependencyErrors).toEqual([
+      "unclassified: Cannot parse normalized evidence",
+    ])
+  })
+
   it("runs every fixture for all 24 candidates through the real engine", () => {
     expect(computed.normalized.candidateCount).toBe(24)
     expect(computed.fixtureArtifact.fixtures).toHaveLength(

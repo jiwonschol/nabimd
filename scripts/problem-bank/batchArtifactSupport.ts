@@ -46,7 +46,7 @@ export type AuthoredBatchConfig = {
   requiredIndependentReviews?: number
 }
 
-type LoadedBatch = {
+export type LoadedBatch = {
   normalized?: JsonRecord
   fixtureArtifact?: JsonRecord
   verification?: JsonRecord
@@ -54,6 +54,63 @@ type LoadedBatch = {
   reviews?: JsonRecord[]
   editorial?: JsonRecord | null
   loaderErrors?: string[]
+}
+
+export function classifyAuthoredBatchDependencies({
+  batches,
+  batchId,
+  sequence,
+}: {
+  batches: LoadedBatch[]
+  batchId: string
+  sequence: number
+}) {
+  const otherBatches = batches.filter(
+    (batch) => batch.normalized?.batchId !== batchId,
+  )
+  const previousBatches = otherBatches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence < sequence,
+  )
+  const laterBatches = otherBatches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence > sequence,
+  )
+  const sameSequence = otherBatches.filter(
+    (batch) => batch.normalized?.sequence === sequence,
+  )
+  const unclassifiedBatches = otherBatches.filter(
+    (batch) => typeof batch.normalized?.sequence !== "number",
+  )
+  const invalidPreviousErrors = previousBatches.flatMap((batch) =>
+    (batch.loaderErrors ?? []).map(
+      (error) =>
+        `${String(batch.normalized?.batchId ?? "<unknown>")}: ${error}`,
+    ),
+  )
+  const invalidUnclassifiedErrors = unclassifiedBatches.flatMap((batch) => {
+    const loaderErrors = batch.loaderErrors ?? []
+    const reasons = loaderErrors.length > 0
+      ? loaderErrors
+      : ["missing numeric batch sequence"]
+    return reasons.map(
+      (error) =>
+        `${String(batch.normalized?.batchId ?? "<unknown>")}: ${error}`,
+    )
+  })
+  const invalidDependencyErrors = [
+    ...invalidPreviousErrors,
+    ...invalidUnclassifiedErrors,
+  ]
+
+  return {
+    previousBatches,
+    laterBatches,
+    sameSequence,
+    invalidDependencyErrors,
+  }
 }
 
 async function readJson(path: string) {
@@ -159,32 +216,21 @@ async function loadPreviousBatches({
 }) {
   const bankRoot = resolve(repositoryRoot, bankDirectory(config))
   const batches = (await loadBatchDirectories(bankRoot)) as LoadedBatch[]
-  const otherBatches = batches.filter(
-    (batch) => batch.normalized?.batchId !== config.batchId,
-  )
-  const previousBatches = otherBatches.filter(
-    (batch) =>
-      typeof batch.normalized?.sequence === "number" &&
-      batch.normalized.sequence < config.sequence,
-  )
-  const laterBatches = otherBatches.filter(
-    (batch) =>
-      typeof batch.normalized?.sequence === "number" &&
-      batch.normalized.sequence > config.sequence,
-  )
-  const invalidPreviousBatches = previousBatches.flatMap((batch) =>
-    (batch.loaderErrors ?? []).map(
-      (error) => `${String(batch.normalized?.batchId ?? "<unknown>")}: ${error}`,
-    ),
-  )
-  if (invalidPreviousBatches.length > 0) {
+  const {
+    previousBatches,
+    laterBatches,
+    sameSequence,
+    invalidDependencyErrors,
+  } = classifyAuthoredBatchDependencies({
+    batches,
+    batchId: config.batchId,
+    sequence: config.sequence,
+  })
+  if (invalidDependencyErrors.length > 0) {
     throw new Error(
-      `Cannot prepare ${config.batchId} while a prior batch is invalid:\n${invalidPreviousBatches.join("\n")}`,
+      `Cannot prepare ${config.batchId} while a dependency batch is invalid:\n${invalidDependencyErrors.join("\n")}`,
     )
   }
-  const sameSequence = otherBatches.filter(
-    (batch) => batch.normalized?.sequence === config.sequence,
-  )
   if (sameSequence.length > 0) {
     throw new Error(
       `Batch sequence ${config.sequence} is already used by ${sameSequence

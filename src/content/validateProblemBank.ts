@@ -46,6 +46,53 @@ const supportedMatchCheckKinds = new Set<string>([
   "document-limits",
 ])
 
+const supportedInlineKinds = new Set<string>([
+  "emphasis",
+  "strong",
+  "inline-code",
+  "link",
+  "image",
+])
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value)
+}
+
+function validateEditorialScope(
+  problemId: string,
+  label: string,
+  scope: unknown,
+  errors: string[],
+) {
+  if (!isRecord(scope)) {
+    errors.push(
+      `Problem ${problemId} editorial check ${label} has invalid scope`,
+    )
+    return
+  }
+  if (scope.kind === "document") return
+  if (scope.kind !== "section") {
+    errors.push(
+      `Problem ${problemId} editorial check ${label} has unsupported scope kind: ${String(scope.kind)}`,
+    )
+    return
+  }
+  if (
+    !Number.isInteger(scope.headingDepth) ||
+    Number(scope.headingDepth) < 1 ||
+    Number(scope.headingDepth) > 6
+  ) {
+    errors.push(
+      `Problem ${problemId} editorial check ${label} has invalid section heading depth`,
+    )
+  }
+  if (!Number.isInteger(scope.occurrence) || Number(scope.occurrence) < 0) {
+    errors.push(
+      `Problem ${problemId} editorial check ${label} has invalid section occurrence`,
+    )
+  }
+}
+
 function validateRange(
   problemId: string,
   check: MatchCheck,
@@ -170,14 +217,12 @@ function validateEditorialChecks(
     switch (check.kind) {
       case "single-h1":
         break
-      case "max-inline-count":
-        if (
-          check.scope.kind === "section" &&
-          (!Number.isInteger(check.scope.occurrence) ||
-            check.scope.occurrence < 0)
-        ) {
+      case "max-inline-count": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
+        validateEditorialScope(problem.id, label, runtimeCheck.scope, errors)
+        if (!supportedInlineKinds.has(String(runtimeCheck.inline))) {
           errors.push(
-            `Problem ${problem.id} editorial check ${label} has invalid section occurrence`,
+            `Problem ${problem.id} editorial check ${label} has unsupported inline kind: ${String(runtimeCheck.inline)}`,
           )
         }
         if (!Number.isInteger(check.max) || check.max < 0) {
@@ -186,6 +231,7 @@ function validateEditorialChecks(
           )
         }
         break
+      }
       default:
         errors.push(
           `Problem ${problem.id} has unsupported editorial check kind: ${String((check as { kind?: unknown }).kind)}`,
