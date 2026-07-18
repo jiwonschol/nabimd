@@ -277,12 +277,51 @@ like a focused learning interaction: one unmistakable object to transform, one
 compact place to type, and one immediate visual consequence. It should not look
 as though the learner is beginning a long project document.
 
-### Status
+### Status at the initial report
 
 - The review is accepted as the first post-MVP product finding.
 - No replacement copy, content set, empty-editor behavior, or layout has been
   approved yet.
 - Application code remains unchanged while those decisions are explored.
+
+### Design review continuation
+
+Jiwon then reviewed four visual-companion iterations and corrected the design
+model before implementation:
+
+- **Level 1 teaches before it tests.** A new syntax rule is available up front
+  in the first exposure. From Level 2 onward, recall matters: a collapsed Hint
+  must reveal neither the answer nor its punctuation until the learner opens
+  it.
+- **Hint is a downward disclosure, not a horizontal drawer.** It sits beside
+  the compact goal area and expands from top to bottom so opening help does not
+  change the width or alignment of the rendered reference.
+- **Goal means the rendered reference.** It is not a prose restatement of the
+  instruction. `Instruction` tells the learner what to do; `Goal` shows the
+  finished rendering; `Your Markdown` contains learner source; `Live preview`
+  shows the current rendering. A correct preview should visually match Goal.
+- **Goal and preview need the same surface treatment.** Different borders,
+  typography, or paper textures imply different functions even though the
+  exercise asks the learner to reproduce the goal.
+- **Source and preview stay side by side at equal height.** The focused lesson
+  remains compact at Level 1, while the same two-pane workbench can grow
+  vertically for Level 3 document exercises.
+- **The source pane must look and behave like an editor.** Monospace text alone
+  is not enough. The accepted direction includes an active caret and restrained
+  editor affordances, plus an optional way to inspect invisible spacing.
+- **Whitespace marks must feel conventional rather than like learner syntax.**
+  Microsoft Word documents spaces as dots and tabs as arrows; Apple Pages calls
+  the same family of marks “invisibles” and allows their colour to be changed.
+  The next mockup therefore treats them as faint, optional editor annotations,
+  not full-strength Markdown characters.
+
+Jiwon also set the documentation policy for these reviews: developer feedback
+is recorded in English, edited for clarity rather than copied verbatim, and
+written as evidence that an outside reviewer or Build Week judge can follow.
+
+The visual decisions remain design evidence only; application code has not yet
+been changed to match them. The consolidated written redesign is awaiting
+Jiwon's final spec review before implementation.
 
 ## Next entry
 
