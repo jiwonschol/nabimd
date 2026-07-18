@@ -123,6 +123,16 @@ export function validateRawArtifact(raw) {
       ) {
         errors.push(`Candidate ${candidate.id} must use a kebab-case ID`)
       }
+      for (const field of ["expectedSkill", "likelyMalformedTrap", "editorialNote"]) {
+        if (
+          Object.hasOwn(candidate, field) &&
+          (typeof candidate[field] !== "string" || !candidate[field].trim())
+        ) {
+          errors.push(
+            `Candidate ${candidate.id ?? "<unknown>"} has invalid ${field} override`,
+          )
+        }
+      }
     }
   }
   if (ids.size !== 128) errors.push(`Expected 128 unique candidates, found ${ids.size}`)
@@ -276,7 +286,9 @@ export function evaluateWorkflow({
       errors.push(`Candidate ${runtime.id} has duplicate reviewer or run IDs`)
     }
     if (reviewers.size < 2 || runs.size < 2) {
-      errors.push(`Candidate ${runtime.id} requires two independent reviews`)
+      errors.push(
+        `Candidate ${runtime.id} requires two declared-independent reviews`,
+      )
     }
     for (const review of candidateReviews) {
       if (

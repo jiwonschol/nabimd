@@ -161,6 +161,23 @@ describe("problem-bank pipeline", () => {
     )
   })
 
+  it("rejects malformed candidate metadata overrides", () => {
+    const invalid = structuredClone(raw)
+    Object.assign(invalid.families[0].candidates[0], {
+      expectedSkill: "  ",
+      likelyMalformedTrap: 42,
+      editorialNote: null,
+    })
+
+    expect(validateRawArtifact(invalid)).toEqual(
+      expect.arrayContaining([
+        "Candidate heading-apple has invalid expectedSkill override",
+        "Candidate heading-apple has invalid likelyMalformedTrap override",
+        "Candidate heading-apple has invalid editorialNote override",
+      ]),
+    )
+  })
+
   it("accepts a complete, unanimous, digest-bound workflow", () => {
     expect(evaluate()).toEqual([])
   })
@@ -168,7 +185,9 @@ describe("problem-bank pipeline", () => {
   it("blocks a missing independent reviewer", () => {
     const { reviews } = acceptedWorkflow()
     expect(evaluate({ reviews: reviews.filter((review) => review.reviewerId === "reviewer-a") }))
-      .toContain("Candidate heading-apple requires two independent reviews")
+      .toContain(
+        "Candidate heading-apple requires two declared-independent reviews",
+      )
   })
 
   it("blocks reviewer disagreement and stale digests", () => {

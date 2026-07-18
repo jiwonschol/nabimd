@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest"
 import { headingProblemFixtures } from "./problemFixtures"
-import { getHeadingProblem, headingProblems } from "./headingProblems"
+import {
+  getHeadingProblem,
+  headingProblems,
+  parseTeachingMode,
+} from "./headingProblems"
 import { validateProblemBank } from "./validateProblemBank"
 import type { Problem, ProblemFixture } from "./types"
 
@@ -185,6 +189,14 @@ describe("heading problem bank", () => {
   it("rejects an unknown problem ID", () => {
     expect(() => getHeadingProblem("heading-unknown")).toThrow(
       "Unknown heading problem: heading-unknown",
+    )
+  })
+
+  it("rejects an invalid generated teaching mode", () => {
+    expect(parseTeachingMode("introduce")).toBe("introduce")
+    expect(parseTeachingMode("recall")).toBe("recall")
+    expect(() => parseTeachingMode("automatic")).toThrow(
+      "Invalid generated teaching mode: automatic",
     )
   })
 })

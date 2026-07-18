@@ -34,6 +34,12 @@ type HeadingProblemInput = {
   preserveFeedback: string
 }
 
+export function parseTeachingMode(value: unknown): Problem["teachingMode"] {
+  if (value === "introduce" || value === "recall") return value
+
+  throw new Error(`Invalid generated teaching mode: ${String(value)}`)
+}
+
 function createHeadingProblem({
   id,
   text,
@@ -106,7 +112,7 @@ const generatedHeadingProblems = headingBank.map(
     createHeadingProblem({
       id,
       text,
-      teachingMode: teachingMode as Problem["teachingMode"],
+      teachingMode: parseTeachingMode(teachingMode),
       preserveFeedback: `${text.includes(" ") ? "Keep the words" : "Keep the word"} ‘${text}’ in your answer.`,
     }),
 )

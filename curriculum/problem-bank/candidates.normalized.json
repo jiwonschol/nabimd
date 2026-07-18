@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedBy": "gpt-5.6",
   "generatedOn": "2026-07-18",
-  "promptSha256": "3863f667f5acbb380a19610d2eb6f94ddf57da92225600b9fd1a263d9e222bcb",
+  "promptSha256": "93ed7674e08e746d64c851ceac3b6f165ce805075e951a96a0beeb6c3557d364",
   "candidateCount": 128,
   "perFamilyCounts": {
     "headings": 16,
@@ -2064,5 +2064,5 @@
       "candidateDigest": "bc319d87d9f750100441cadfc590f9725e129dc415a77da3eecbda8304f6b607"
     }
   ],
-  "artifactDigest": "5a27814ea719b0c62dcc966e9b5b9132045f73b97e258ba4fec2fdb0f6fe1916"
+  "artifactDigest": "98a558645b39f093efd194b88cb0e9abbe57198d39d5a0faf19a39941cfc26b7"
 }

@@ -16,10 +16,12 @@ shipped lessons.
    committed fixture through the real `evaluateProblem` engine. Each heading
    currently has 29 fixtures. The resulting transcript and fixture count are
    bound to a SHA-256 digest.
-3. **Independent agreement:** `npm run bank:review-manifest` prints the exact
-   candidate and fixture-result digests. At least two distinct reviewers must
-   submit separate passing records. A stale digest, duplicate reviewer/run,
-   or any disagreeing verdict blocks publication.
+3. **Declared-independent agreement:** `npm run bank:review-manifest` prints
+   the exact candidate and fixture-result digests. At least two reviewers must
+   declare distinct identities and runs and submit separate passing records. A
+   stale digest, duplicate reviewer/run, or any disagreeing verdict blocks
+   publication. The static gate verifies those declarations and artifacts; it
+   does not authenticate the people or processes behind reviewer IDs.
 4. **Editorial queue:** one decision is required for every candidate. An
    accepted heading must cite the same candidate and fixture-result digests and
    name the editorial actor. Unsupported families remain blocked, including
@@ -30,7 +32,7 @@ shipped lessons.
 
 `npm run check` runs the normalization drift check, ordinary tests, bank gate,
 and production build. During review, a feature branch is expected to fail only
-at the missing independent-review/editorial stages. It must not merge in that
+at the missing declared-review/editorial stages. It must not merge in that
 state.
 
 ## Artifact map
@@ -41,9 +43,9 @@ state.
 - `editorial-queue.json` — one decision per candidate;
 - `review-manifest.json` — frozen content, transcript, and fixture-count digests
   for the exact review head;
-- `reviews/*.json` — independent digest-bound review records; and
+- `reviews/*.json` — declared-independent digest-bound review records; and
 - `src/content/generated/headingBank.generated.json` — the runtime publish set.
 
 The 500+ bank remains a roadmap, not a quantity claim. New families publish in
 small batches only after their real predicate, counterexamples, fixtures,
-independent agreement, and editorial acceptance all exist.
+declared-independent agreement, and editorial acceptance all exist.
