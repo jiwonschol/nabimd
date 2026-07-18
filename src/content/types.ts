@@ -110,11 +110,20 @@ export type MatchCheck =
       maxSourceCharacters?: number
     })
 
-export type EditorialCheck = {
-  id: string
-  kind: "single-h1"
-  review: string
-}
+export type EditorialCheck =
+  | {
+      id: string
+      kind: "single-h1"
+      review: string
+    }
+  | {
+      id: string
+      kind: "max-inline-count"
+      scope: CheckScope
+      inline: InlineKind
+      max: number
+      review: string
+    }
 
 type ProblemBase = {
   id: string
@@ -209,6 +218,7 @@ export type FixtureKind =
   | "nbsp-separator"
   | "ideographic-space-separator"
   | "inline-emphasis"
+  | "underscore-strong"
   | "inline-code"
   | "inline-link"
   | "extra-paragraph"

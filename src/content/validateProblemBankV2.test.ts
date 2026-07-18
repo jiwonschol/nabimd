@@ -251,6 +251,37 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("validates generic nonblocking editorial checks safely", () => {
+    const invalid = problem("invalid-editorial", {
+      editorialChecks: [
+        {
+          id: " ",
+          kind: "max-inline-count",
+          scope: { kind: "section", headingDepth: 2, occurrence: -1 },
+          inline: "strong",
+          max: -1,
+          review: " ",
+        },
+        {
+          id: "unknown-review",
+          kind: "semantic-review",
+          review: "Review prose meaning.",
+        },
+      ] as unknown as NormalizedProblem["editorialChecks"],
+    })
+
+    expect(() => validate([invalid, problem("peer")])).not.toThrow()
+    expect(validate([invalid, problem("peer")])).toEqual(
+      expect.arrayContaining([
+        "Problem invalid-editorial has blank editorial check id",
+        "Problem invalid-editorial editorial check <blank> has blank review",
+        "Problem invalid-editorial editorial check <blank> has invalid section occurrence",
+        "Problem invalid-editorial editorial check <blank> has invalid max",
+        "Problem invalid-editorial has unsupported editorial check kind: semantic-review",
+      ]),
+    )
+  })
+
   it("scopes transfer cardinality by level, flavor, and retry family", () => {
     const first = problem("level-1-only", { retryFamily: "shared" })
     const otherLevel = problem("level-2-only", {

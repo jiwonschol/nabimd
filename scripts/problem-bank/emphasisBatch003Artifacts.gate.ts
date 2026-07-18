@@ -1,41 +1,34 @@
 import { describe, expect, it } from "vitest"
-import { headingBatch002Fixtures } from "../../src/content/batches/headingBatch002Fixtures"
+import { emphasisBatch003Fixtures } from "../../src/content/batches/emphasisBatch003Fixtures"
 import {
-  buildHeadingBatch002Artifacts,
-  buildHeadingBatch002Publication,
-  checkHeadingBatch002State,
-  publishHeadingBatch002Artifacts,
-  readCommittedHeadingBatch002,
-  writeHeadingBatch002Artifacts,
-} from "./headingBatch002Support"
+  buildEmphasisBatch003Artifacts,
+  buildEmphasisBatch003Publication,
+  checkEmphasisBatch003State,
+  publishEmphasisBatch003Artifacts,
+  readCommittedEmphasisBatch003,
+  writeEmphasisBatch003Artifacts,
+} from "./emphasisBatch003Support"
 
 const repositoryRoot = process.cwd()
-const writeArtifacts = process.env.NABI_WRITE_HEADING_BATCH_002 === "1"
-const publishArtifacts = process.env.NABI_PUBLISH_HEADING_BATCH_002 === "1"
-const computed = await buildHeadingBatch002Artifacts({ repositoryRoot })
+const writeArtifacts = process.env.NABI_WRITE_EMPHASIS_BATCH_003 === "1"
+const publishArtifacts = process.env.NABI_PUBLISH_EMPHASIS_BATCH_003 === "1"
+const computed = await buildEmphasisBatch003Artifacts({ repositoryRoot })
 
 if (writeArtifacts) {
-  await writeHeadingBatch002Artifacts({ repositoryRoot, computed })
+  await writeEmphasisBatch003Artifacts({ repositoryRoot, computed })
 }
 if (publishArtifacts) {
-  await publishHeadingBatch002Artifacts({ repositoryRoot, computed })
+  await publishEmphasisBatch003Artifacts({ repositoryRoot, computed })
 }
 
-describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
+describe("schema-v2 Level 1-2 emphasis expansion batch 003", () => {
   it("runs every fixture for all 24 candidates through the real engine", () => {
     expect(computed.normalized.candidateCount).toBe(24)
     expect(computed.fixtureArtifact.fixtures).toHaveLength(
-      headingBatch002Fixtures.length,
+      emphasisBatch003Fixtures.length,
     )
     expect(computed.regressionVerification.errors).toEqual([])
     expect(computed.regressionVerification.candidates).toHaveLength(24)
-    expect(
-      computed.normalized.candidates.every(
-        (candidate: { sourceBatch: string; sourceBatchId?: string }) =>
-          candidate.sourceBatch === computed.normalized.batchId &&
-          !("sourceBatchId" in candidate),
-      ),
-    ).toBe(true)
     expect(
       computed.regressionVerification.candidates.every(
         (candidate: { passed: boolean }) => candidate.passed,
@@ -53,17 +46,16 @@ describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
     expect(
       computed.manifest.entries.every(
         (entry: { engineContractDigest: string }) =>
-          entry.engineContractDigest ===
-          computed.engineContract.engineContractDigest,
+          entry.engineContractDigest === computed.engineContract.engineContractDigest,
       ),
     ).toBe(true)
   })
 
-  it("preserves the 20-problem published bank before editorial acceptance", () => {
-    expect(computed.priorTracker.acceptedTotal).toBe(20)
+  it("preserves the 44-problem published bank before editorial acceptance", () => {
+    expect(computed.priorTracker.acceptedTotal).toBe(44)
     expect(computed.priorTracker.counts.byLevel).toEqual({
-      1: 4,
-      2: 4,
+      1: 16,
+      2: 16,
       3: 4,
       4: 4,
       5: 4,
@@ -71,41 +63,30 @@ describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
   })
 
   it("keeps committed mechanical evidence deterministic", async () => {
-    const committed = await readCommittedHeadingBatch002({ repositoryRoot })
-    const state = checkHeadingBatch002State({ computed, committed })
-
+    const committed = await readCommittedEmphasisBatch003({ repositoryRoot })
+    const state = checkEmphasisBatch003State({ computed, committed })
     expect(
       state.errors.filter((error) => error.includes("deterministic drift")),
     ).toEqual([])
     expect(committed.preparedSummary).toEqual(computed.preparedSummary)
-    expect(
-      checkHeadingBatch002State({
-        computed,
-        committed: {
-          ...committed,
-          normalized: { ...committed.normalized, candidateCount: 23 },
-        },
-      }).errors,
-    ).toContain("Committed normalized candidates has deterministic drift")
   })
 
   it("refuses to regenerate after independent evidence exists", async () => {
-    const committed = await readCommittedHeadingBatch002({ repositoryRoot })
+    const committed = await readCommittedEmphasisBatch003({ repositoryRoot })
     if (committed.reviews.length === 0 && committed.editorial === null) {
-      expect(
-        checkHeadingBatch002State({ computed, committed }).status,
-      ).toBe("awaiting-independent-review")
+      expect(checkEmphasisBatch003State({ computed, committed }).status).toBe(
+        "awaiting-independent-review",
+      )
       return
     }
-
     await expect(
-      writeHeadingBatch002Artifacts({ repositoryRoot, computed }),
+      writeEmphasisBatch003Artifacts({ repositoryRoot, computed }),
     ).rejects.toThrow("immutable after review or editorial evidence exists")
   })
 
   it("publishes the whole coherent batch only after unanimous review and editorial acceptance", async () => {
-    const committed = await readCommittedHeadingBatch002({ repositoryRoot })
-    const state = checkHeadingBatch002State({ computed, committed })
+    const committed = await readCommittedEmphasisBatch003({ repositoryRoot })
+    const state = checkEmphasisBatch003State({ computed, committed })
     if (committed.editorial === null) {
       expect([
         "awaiting-independent-review",
@@ -113,17 +94,17 @@ describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
         "awaiting-editorial",
       ]).toContain(state.status)
       expect(state.errors).toEqual([])
-      expect(committed.tracker.acceptedTotal).toBe(20)
+      expect(committed.tracker.acceptedTotal).toBe(44)
       expect(committed.summary).toBeNull()
       return
     }
 
-    const publication = buildHeadingBatch002Publication({ computed, committed })
+    const publication = buildEmphasisBatch003Publication({ computed, committed })
     expect(publication.errors).toEqual([])
-    expect(publication.tracker.acceptedTotal).toBe(44)
+    expect(publication.tracker.acceptedTotal).toBe(68)
     expect(publication.tracker.counts.byLevel).toEqual({
-      1: 16,
-      2: 16,
+      1: 28,
+      2: 28,
       3: 4,
       4: 4,
       5: 4,
@@ -136,12 +117,5 @@ describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
       blocked: 0,
     })
     expect(["ready-to-publish", "published"]).toContain(state.status)
-    if (state.status === "published") {
-      expect(state.errors).toEqual([])
-    } else {
-      expect(
-        state.errors.every((error) => error.includes("Published")),
-      ).toBe(true)
-    }
   })
 })

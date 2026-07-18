@@ -162,14 +162,24 @@ async function loadPreviousBatches({
   const otherBatches = batches.filter(
     (batch) => batch.normalized?.batchId !== config.batchId,
   )
-  const invalidOtherBatches = otherBatches.flatMap((batch) =>
+  const previousBatches = otherBatches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence < config.sequence,
+  )
+  const laterBatches = otherBatches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence > config.sequence,
+  )
+  const invalidPreviousBatches = previousBatches.flatMap((batch) =>
     (batch.loaderErrors ?? []).map(
       (error) => `${String(batch.normalized?.batchId ?? "<unknown>")}: ${error}`,
     ),
   )
-  if (invalidOtherBatches.length > 0) {
+  if (invalidPreviousBatches.length > 0) {
     throw new Error(
-      `Cannot prepare ${config.batchId} while another batch is invalid:\n${invalidOtherBatches.join("\n")}`,
+      `Cannot prepare ${config.batchId} while a prior batch is invalid:\n${invalidPreviousBatches.join("\n")}`,
     )
   }
   const sameSequence = otherBatches.filter(
@@ -182,16 +192,6 @@ async function loadPreviousBatches({
         .join(", ")}`,
     )
   }
-  const previousBatches = otherBatches.filter(
-    (batch) =>
-      typeof batch.normalized?.sequence === "number" &&
-      batch.normalized.sequence < config.sequence,
-  )
-  const laterBatches = otherBatches.filter(
-    (batch) =>
-      typeof batch.normalized?.sequence === "number" &&
-      batch.normalized.sequence > config.sequence,
-  )
   const compiled = compileAcceptedBank(previousBatches)
   if (compiled.errors.length > 0) {
     throw new Error(
@@ -204,6 +204,32 @@ async function loadPreviousBatches({
     compiled,
     runtimeProjections: createRuntimeProjections(compiled),
     tracker: buildTracker(compiled),
+  }
+}
+
+async function sealedEngineEvidence({
+  repositoryRoot,
+  config,
+}: {
+  repositoryRoot: string
+  config: AuthoredBatchConfig
+}) {
+  const batchDir = resolve(repositoryRoot, batchDirectory(config))
+  const reviewsDir = resolve(batchDir, "reviews")
+  let hasReview = false
+  try {
+    hasReview = (await readdir(reviewsDir, { withFileTypes: true })).some(
+      (entry) => entry.isFile() && entry.name.endsWith(".json"),
+    )
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error
+  }
+  const hasEditorial = Boolean(await optionalJson(resolve(batchDir, "editorial.json")))
+  if (!hasReview && !hasEditorial) return null
+
+  return {
+    engineContract: await readJson(resolve(batchDir, "engine-contract.json")),
+    verification: await readJson(resolve(batchDir, "verification.json")),
   }
 }
 
@@ -259,14 +285,14 @@ export async function buildAuthoredBatchArtifacts({
       left.id.localeCompare(right.id),
     ),
   }
-  const engineContract = await buildEngineContract({
+  const regressionEngineContract = await buildEngineContract({
     repositoryRoot,
     policyFile: config.policyFile ?? DEFAULT_POLICY_FILE,
   })
-  const verification = await verifyBatchFixtures({
+  const regressionVerification = await verifyBatchFixtures({
     normalized,
     fixtureArtifact,
-    engineContractDigest: engineContract.engineContractDigest,
+    engineContractDigest: regressionEngineContract.engineContractDigest,
     materialize: (candidate: JsonRecord) => {
       const { candidateDigest: _candidateDigest, sourceBatch, ...input } = candidate
       return normalizeProblem({
@@ -276,6 +302,9 @@ export async function buildAuthoredBatchArtifacts({
     },
     evaluate: evaluateProblem,
   })
+  const sealedEvidence = await sealedEngineEvidence({ repositoryRoot, config })
+  const engineContract = sealedEvidence?.engineContract ?? regressionEngineContract
+  const verification = sealedEvidence?.verification ?? regressionVerification
   const manifest = buildReviewManifest({ normalized, fixtureArtifact, verification })
   const previous = await loadPreviousBatches({ repositoryRoot, config })
   const preparedSummaryBase = {
@@ -308,6 +337,8 @@ export async function buildAuthoredBatchArtifacts({
     fixtureArtifact,
     engineContract,
     verification,
+    regressionEngineContract,
+    regressionVerification,
     manifest,
     preparedSummary,
     previousBatches: previous.previousBatches,

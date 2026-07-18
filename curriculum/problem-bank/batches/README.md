@@ -26,6 +26,9 @@ copied here or promoted automatically.
   real-engine fixtures across Levels 1–5.
 - `2026-07-19-l1-l2-headings-002` — 24 accepted H1 vocabulary variants and 192
   real-engine fixtures, bringing Levels 1 and 2 to 16 problems each.
+- `2026-07-19-l1-l2-emphasis-003` — 24 accepted bold-emphasis variants and 216
+  real-engine fixtures. Standard `**phrase**` and `__phrase__` forms both pass;
+  multiple bold spans remain Matched with an optional structural Review.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

@@ -2,6 +2,7 @@ import { fireEvent, render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it } from "vitest"
 import { entryChoices } from "./content/entryChoices"
+import { getProblem } from "./content/problemBank"
 import { App } from "./App"
 
 async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
@@ -21,6 +22,35 @@ async function replaceSource(
   await user.click(editor)
   await user.keyboard("{Control>}a{/Control}{Backspace}")
   if (source) await user.keyboard(source)
+}
+
+function currentProblem() {
+  const writeTab = screen.getByRole("tab", { name: "Write" })
+  const panelId = writeTab.getAttribute("aria-controls")
+  if (!panelId?.startsWith("write-panel-")) {
+    throw new Error("The active Write tab must identify its problem")
+  }
+  return getProblem(panelId.slice("write-panel-".length))
+}
+
+function validDifferentProse() {
+  return currentProblem().familyId === "emphasis"
+    ? "**completely different words**"
+    : "# completely different words"
+}
+
+function malformedSource() {
+  return currentProblem().familyId === "emphasis" ? "**No closing" : "#No space"
+}
+
+function validRepair() {
+  return currentProblem().familyId === "emphasis" ? "**repaired**" : "# repaired"
+}
+
+function matchedWithReview() {
+  return currentProblem().familyId === "emphasis"
+    ? "**one** and **two**"
+    : "# one\n\n# two"
 }
 
 describe("App", () => {
@@ -52,7 +82,11 @@ describe("App", () => {
       "aria-expanded",
       "true",
     )
-    expect(within(screen.getByRole("complementary", { name: "Hint" })).getByText("#")).toBeVisible()
+    expect(
+      within(screen.getByRole("complementary", { name: "Hint" })).getAllByText(
+        currentProblem().syntaxTokens[0]!,
+      )[0],
+    ).toBeVisible()
     await first.user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
     expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
@@ -63,7 +97,7 @@ describe("App", () => {
 
   it("checks only on explicit action and accepts different prose", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard("# completely different words")
+    await user.keyboard(validDifferentProse())
     expect(screen.queryByRole("status")).toBeNull()
 
     await user.click(screen.getByRole("button", { name: "Check" }))
@@ -77,14 +111,14 @@ describe("App", () => {
   ])("checks with $modifier + Enter", async ({ event }) => {
     const { user, editor } = await openLevel(1)
     await user.click(editor)
-    await user.keyboard("# anything")
+    await user.keyboard(validDifferentProse())
     fireEvent.keyDown(editor, event)
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
   })
 
   it("moves focus Check → Next → editor", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard("# anything")
+    await user.keyboard(validDifferentProse())
     await user.keyboard("{Control>}{Enter}{/Control}")
     expect(screen.getByRole("button", { name: "Next" })).toHaveFocus()
 
@@ -95,7 +129,7 @@ describe("App", () => {
 
   it("keeps Next unavailable and opens beginner Review after Try again", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard("#No space")
+    await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(screen.getByRole("status")).toHaveTextContent("Try again")
@@ -110,23 +144,23 @@ describe("App", () => {
 
   it("keeps Markdown-structure Review optional after Matched", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard("# one{Enter}{Enter}# two")
+    await user.keyboard(matchedWithReview())
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
     expect(screen.getByRole("tabpanel", { name: "Review" })).toHaveTextContent(
-      "Keep one H1",
+      currentProblem().familyId === "emphasis" ? "Keep bold focused" : "Keep one H1",
     )
   })
 
   it("uses a different same-level problem after repair", async () => {
     const { user, editor } = await openLevel(2)
     const originalGoal = screen.getByRole("region", { name: "Goal" }).textContent
-    await user.keyboard("#No space")
+    await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check" }))
     await user.keyboard("{Alt>}1{/Alt}")
-    await replaceSource(user, editor, "# repaired")
+    await replaceSource(user, editor, validRepair())
     await user.click(screen.getByRole("button", { name: "Check again" }))
     await user.click(screen.getByRole("button", { name: "Next" }))
 
@@ -184,7 +218,7 @@ describe("App", () => {
     const { user } = await openLevel(1)
     for (let index = 0; index < 3; index += 1) {
       const editor = screen.getByRole("textbox", { name: "Your Markdown" })
-      await replaceSource(user, editor, "# acceptable")
+      await replaceSource(user, editor, currentProblem().target)
       await user.click(screen.getByRole("button", { name: "Check" }))
       await user.click(screen.getByRole("button", { name: "Next" }))
     }

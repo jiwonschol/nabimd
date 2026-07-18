@@ -145,6 +145,55 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
   }
 }
 
+function validateEditorialChecks(
+  problem: GradableProblem,
+  errors: string[],
+) {
+  const checkIds = new Set<string>()
+  for (const check of problem.editorialChecks) {
+    const label = check.id.trim() || "<blank>"
+    if (!check.id.trim()) {
+      errors.push(`Problem ${problem.id} has blank editorial check id`)
+    } else if (checkIds.has(check.id)) {
+      errors.push(
+        `Problem ${problem.id} has duplicate editorial check id: ${check.id}`,
+      )
+    }
+    checkIds.add(check.id)
+
+    if (!check.review.trim()) {
+      errors.push(
+        `Problem ${problem.id} editorial check ${label} has blank review`,
+      )
+    }
+
+    switch (check.kind) {
+      case "single-h1":
+        break
+      case "max-inline-count":
+        if (
+          check.scope.kind === "section" &&
+          (!Number.isInteger(check.scope.occurrence) ||
+            check.scope.occurrence < 0)
+        ) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid section occurrence`,
+          )
+        }
+        if (!Number.isInteger(check.max) || check.max < 0) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid max`,
+          )
+        }
+        break
+      default:
+        errors.push(
+          `Problem ${problem.id} has unsupported editorial check kind: ${String((check as { kind?: unknown }).kind)}`,
+        )
+    }
+  }
+}
+
 function validateVocabulary(problem: GradableProblem, errors: string[]) {
   const normalized = normalizeProblem(problem)
   const expectedProfile = profileByLevel[normalized.level]
@@ -263,6 +312,7 @@ export function validateProblemBank(
       }
     }
     validateMatchChecks(problem, errors)
+    validateEditorialChecks(problem, errors)
 
     const problemFixtures = fixtures.filter(
       (fixture) => fixture.problemId === problem.id,

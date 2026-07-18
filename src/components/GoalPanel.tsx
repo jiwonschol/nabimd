@@ -30,8 +30,8 @@ export function GoalPanel({
       {hintOpen ? (
         <aside aria-label="Hint" className="goal-hint" id="goal-hint">
           <div aria-label="Markdown pattern" className="syntax-sequence">
-            {problem.syntaxTokens.map((token) => (
-              <code key={token}>{token}</code>
+            {problem.syntaxTokens.map((token, index) => (
+              <code key={`${token}-${index}`}>{token}</code>
             ))}
           </div>
           <p>

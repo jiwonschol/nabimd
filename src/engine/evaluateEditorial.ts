@@ -1,6 +1,9 @@
 import type { EditorialCheck, GradableProblem } from "../content/types"
-import type { EvaluationContext } from "./evaluationContext"
+import {
+  type EvaluationContext,
+} from "./evaluationContext"
 import { headingsAtLevel } from "./markdownAst"
+import { countInlineNodes } from "./predicates/structural"
 import type { ReviewItem } from "./types"
 
 function editorialCheckPasses(
@@ -10,6 +13,8 @@ function editorialCheckPasses(
   switch (check.kind) {
     case "single-h1":
       return headingsAtLevel(context.root, 1).length === 1
+    case "max-inline-count":
+      return countInlineNodes(context, check.scope, check.inline) <= check.max
   }
 }
 
