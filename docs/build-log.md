@@ -610,7 +610,7 @@ reran their checks before their final records were accepted.
 - Publication gate: passed with two distinct review artifacts and digest-bound
   editorial acceptance.
 - Production build: Vite transformed 203 modules and completed successfully.
-- Browser suite: the previously frozen release candidate passed all 15
-  Chromium paths; a fresh final run is required before merge.
+- Browser suite: a fresh final Chromium run passed all 15 paths, including
+  1280 × 800 and 1440 × 900 no-scroll bounds and 320/375 px overflow checks.
 - Remote PR review, merge, deployment, and production-browser verification are
   still pending and are not claimed by this entry.
