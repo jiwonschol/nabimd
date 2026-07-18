@@ -177,6 +177,11 @@ export function evaluateWorkflow({
   for (const id of duplicates(decisionIds)) errors.push(`Duplicate editorial decision: ${id}`)
   for (const key of duplicates(reviewKeys)) errors.push(`Duplicate review record: ${key}`)
   for (const review of reviews) {
+    for (const field of ["reviewerId", "reviewRunId", "candidateId"]) {
+      if (typeof review[field] !== "string" || !review[field].trim()) {
+        errors.push(`Review has blank ${field}`)
+      }
+    }
     if (!candidates.has(review.candidateId)) {
       errors.push(`Unknown reviewed candidate: ${review.candidateId}`)
     }
@@ -255,7 +260,9 @@ export function evaluateWorkflow({
     if (
       !decision ||
       decision.status !== "accepted" ||
-      !decision.editorialActor ||
+      decision.reason !== "independent-review-and-editorial-pass" ||
+      typeof decision.editorialActor !== "string" ||
+      !decision.editorialActor.trim() ||
       decision.candidateDigest !== candidate.candidateDigest ||
       decision.fixtureResultsDigest !== fixtureResultsDigest
     ) {

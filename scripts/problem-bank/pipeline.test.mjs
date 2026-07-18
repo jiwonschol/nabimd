@@ -50,7 +50,7 @@ function acceptedWorkflow() {
     Object.assign(decision, {
       fixtureResultsDigest: fixtureDigests[candidate.id],
       status: "accepted",
-      reason: "fixture-and-independent-review-passed",
+      reason: "independent-review-and-editorial-pass",
       editorialActor: "test-editor",
     })
   }
@@ -175,6 +175,22 @@ describe("problem-bank pipeline", () => {
     })
     expect(evaluate({ reviews })).toContain(
       "Candidate heading-apple has duplicate reviewer or run IDs",
+    )
+  })
+
+  it("rejects blank reviewer provenance and editorial identity", () => {
+    const { reviews, editorialQueue } = acceptedWorkflow()
+    reviews[0].reviewerId = "  "
+    const decision = editorialQueue.decisions.find(
+      (item) => item.candidateId === "heading-apple",
+    )
+    decision.editorialActor = "  "
+
+    expect(evaluate({ reviews, editorialQueue })).toEqual(
+      expect.arrayContaining([
+        "Review has blank reviewerId",
+        "Candidate heading-apple lacks digest-bound editorial acceptance",
+      ]),
     )
   })
 
