@@ -6,6 +6,11 @@ import { App } from "./App"
 async function openApp() {
   const user = userEvent.setup()
   render(<App />)
+  await user.click(
+    screen.getByRole("button", {
+      name: "New to Markdown — start at Level 1",
+    }),
+  )
   const editor = screen.getByRole("textbox", { name: "Your Markdown" })
   return { user, editor }
 }
@@ -21,6 +26,86 @@ async function replaceSource(
 }
 
 describe("App", () => {
+  it("greets a fresh browser session with the three approved entry choices", () => {
+    render(<App />)
+
+    expect(
+      screen.getByRole("heading", { name: "Nabi Markdown" }),
+    ).toBeVisible()
+    expect(screen.getByText(/welcome/i)).toBeVisible()
+    expect(
+      screen.getByRole("button", {
+        name: "New to Markdown — start at Level 1",
+      }),
+    ).toBeVisible()
+    expect(
+      screen.getByRole("button", { name: "I know the basics" }),
+    ).toBeVisible()
+    expect(
+      screen.getByRole("button", { name: "Challenge me" }),
+    ).toBeVisible()
+    expect(
+      screen.queryByRole("textbox", { name: "Your Markdown" }),
+    ).not.toBeInTheDocument()
+  })
+
+  it("enters the selected heading mode in one keyboard activation", async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.tab()
+    await user.tab()
+    await user.keyboard("{Enter}")
+
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
+      "Rainy day",
+    )
+    expect(
+      within(screen.getByRole("complementary", { name: "Help" })).getByRole(
+        "button",
+        { name: "Show hint" },
+      ),
+    ).toBeVisible()
+    expect(screen.queryByText(/welcome/i)).not.toBeInTheDocument()
+  })
+
+  it("labels progress by finishable run steps for a higher entry", async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.click(screen.getByRole("button", { name: "Challenge me" }))
+
+    expect(
+      screen.getByLabelText("Heading progress"),
+    ).toHaveTextContent("1 of 3")
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveTextContent(
+      "Study tools",
+    )
+  })
+
+  it("offers all three replay choices when the run finishes", async () => {
+    const { user } = await openApp()
+    const answers = ["# Apple", "# Rainy day", "# Study tools"]
+
+    for (const answer of answers) {
+      const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+      await replaceSource(user, editor, answer)
+      await user.click(screen.getByRole("button", { name: "Check" }))
+      await user.click(screen.getByRole("button", { name: "Next" }))
+    }
+
+    expect(
+      screen.getByRole("heading", { name: "Heading practice complete." }),
+    ).toBeVisible()
+    expect(
+      screen.getByRole("button", { name: "Practice again" }),
+    ).toBeVisible()
+    expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
+    expect(
+      screen.getByRole("button", { name: "Change level" }),
+    ).toBeVisible()
+  })
+
   it("opens on an empty Level 1 lesson with the new rule visible", async () => {
     const { editor } = await openApp()
 

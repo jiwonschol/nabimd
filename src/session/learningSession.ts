@@ -1,9 +1,18 @@
 import type { Problem } from "../content/types"
 import type { Evaluation } from "../engine/types"
-import type { ProgressV1 } from "../progress/types"
+import { createDefaultProgress } from "../progress/progressStore"
+import type { ProgressV2 } from "../progress/types"
+import {
+  getEntryChoice,
+  type EntryId,
+} from "../content/entryChoices"
 
 export type LearningSession = {
   phase: "editing" | "evaluated" | "complete"
+  entryId: EntryId | null
+  runNumber: number
+  runProblemIds: string[]
+  runStepIndex: number
   currentProblemId: string
   draft: string
   evaluation: Evaluation | null
@@ -14,10 +23,18 @@ export type LearningSession = {
   currentIsTransfer: boolean
   hintLevel: 0 | 1 | 2 | 3
   coach: "closed" | "hint" | "review"
-  progress: ProgressV1
+  progress: ProgressV2
 }
 
 export type SessionEvent =
+  | {
+      type: "started"
+      entryId: EntryId
+      runNumber: number
+      runProblemIds: string[]
+      problem: Problem
+    }
+  | { type: "returned-to-greeting"; problem: Problem }
   | { type: "edited"; value: string }
   | {
       type: "checked"
@@ -29,28 +46,41 @@ export type SessionEvent =
   | { type: "coach-closed" }
   | {
       type: "next"
-      transferProblemId?: string
-      transferDraft?: string
+      nextProblemId?: string
+      nextDraft?: string
     }
 
 export function createLearningSession(
-  progress: ProgressV1,
+  progress: ProgressV2,
   problem: Problem,
 ): LearningSession {
-  const isComplete =
-    progress.completedProblemIds.includes(problem.id) &&
-    progress.pendingTransferFamily === null &&
-    !progress.currentIsTransfer
+  const isComplete = progress.runProblemIds.length
+    ? progress.runStepIndex >= progress.runProblemIds.length
+    : progress.completedProblemIds.includes(problem.id) &&
+      progress.pendingTransferFamily === null &&
+      !progress.currentIsTransfer
+  const entryAutoOpensHelp = progress.entryId
+    ? getEntryChoice(progress.entryId).autoOpenHelp
+    : problem.teachingMode === "introduce"
   const showIntroducedRule =
     !isComplete &&
     !progress.currentIsTransfer &&
-    problem.teachingMode === "introduce"
+    progress.runStepIndex === 0 &&
+    entryAutoOpensHelp
   const teachingMode = progress.currentIsTransfer
     ? "recall"
-    : problem.teachingMode
+    : progress.entryId === null
+      ? problem.teachingMode
+      : showIntroducedRule
+        ? "introduce"
+        : "recall"
 
   return {
     phase: isComplete ? "complete" : "editing",
+    entryId: progress.entryId,
+    runNumber: progress.runNumber,
+    runProblemIds: [...progress.runProblemIds],
+    runStepIndex: progress.runStepIndex,
     currentProblemId: problem.id,
     draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
     evaluation: null,
@@ -77,10 +107,32 @@ function appendUnique(values: readonly string[], value: string): string[] {
   return values.includes(value) ? [...values] : [...values, value]
 }
 
+function placeTransferAtNextStep(
+  problemIds: readonly string[],
+  currentIndex: number,
+  transferProblemId: string,
+): string[] {
+  const nextIndex = currentIndex + 1
+  const laterIndex = problemIds.indexOf(transferProblemId, nextIndex)
+
+  if (laterIndex === nextIndex) return [...problemIds]
+  if (laterIndex > nextIndex) {
+    const reordered = [...problemIds]
+    reordered.splice(laterIndex, 1)
+    reordered.splice(nextIndex, 0, transferProblemId)
+    return reordered
+  }
+
+  const extended = [...problemIds]
+  extended.splice(nextIndex, 0, transferProblemId)
+  return extended
+}
+
 function completeSession(session: LearningSession): LearningSession {
   return {
     ...session,
     phase: "complete",
+    runStepIndex: session.runProblemIds.length || session.runStepIndex,
     coach: "closed",
     needsTransfer: false,
     currentIsTransfer: false,
@@ -96,6 +148,7 @@ function completeSession(session: LearningSession): LearningSession {
       ),
       pendingTransferFamily: null,
       currentIsTransfer: false,
+      runStepIndex: session.runProblemIds.length || session.runStepIndex,
     },
   }
 }
@@ -105,6 +158,23 @@ export function learningSessionReducer(
   event: SessionEvent,
 ): LearningSession {
   switch (event.type) {
+    case "started":
+      return createLearningSession(
+        {
+          ...createDefaultProgress(event.problem.id),
+          entryId: event.entryId,
+          runNumber: event.runNumber,
+          runProblemIds: [...event.runProblemIds],
+        },
+        event.problem,
+      )
+
+    case "returned-to-greeting":
+      return createLearningSession(
+        createDefaultProgress(event.problem.id),
+        event.problem,
+      )
+
     case "edited":
       return {
         ...session,
@@ -192,30 +262,41 @@ export function learningSessionReducer(
 
     case "next": {
       if (!canAdvance(session)) return session
-      if (session.currentIsTransfer) return completeSession(session)
-      if (!session.needsTransfer) return completeSession(session)
-      if (!event.transferProblemId || event.transferDraft === undefined) {
-        return session
+      if (!event.nextProblemId || event.nextDraft === undefined) {
+        return session.needsTransfer && !session.currentIsTransfer
+          ? session
+          : completeSession(session)
       }
+      const nextIsTransfer =
+        session.needsTransfer && !session.currentIsTransfer
+      const nextRunProblemIds = nextIsTransfer
+        ? placeTransferAtNextStep(
+            session.runProblemIds,
+            session.runStepIndex,
+            event.nextProblemId,
+          )
+        : session.runProblemIds
 
       return {
         ...session,
         phase: "editing",
-        currentProblemId: event.transferProblemId,
-        draft: event.transferDraft,
+        currentProblemId: event.nextProblemId,
+        draft: event.nextDraft,
         evaluation: null,
         teachingMode: "recall",
         hadFailure: false,
         needsTransfer: false,
-        currentIsTransfer: true,
+        currentIsTransfer: nextIsTransfer,
+        runProblemIds: nextRunProblemIds,
+        runStepIndex: session.runStepIndex + 1,
         hintLevel: 0,
         coach: "closed",
         progress: {
           ...session.progress,
-          currentProblemId: event.transferProblemId,
+          currentProblemId: event.nextProblemId,
           draftByProblemId: {
             ...session.progress.draftByProblemId,
-            [event.transferProblemId]: event.transferDraft,
+            [event.nextProblemId]: event.nextDraft,
           },
           completedProblemIds: appendUnique(
             session.progress.completedProblemIds,
@@ -225,7 +306,9 @@ export function learningSessionReducer(
             session.progress.recentProblemIds,
             session.currentProblemId,
           ),
-          currentIsTransfer: true,
+          currentIsTransfer: nextIsTransfer,
+          runProblemIds: nextRunProblemIds,
+          runStepIndex: session.runStepIndex + 1,
           pendingTransferFamily: null,
         },
       }

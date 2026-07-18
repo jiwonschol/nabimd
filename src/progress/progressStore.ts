@@ -1,10 +1,15 @@
-import type { ProgressV1 } from "./types"
+import type { ProgressV2 } from "./types"
+import { isEntryId } from "../content/entryChoices"
 
-export const PROGRESS_STORAGE_KEY = "nabimd.progress.v1"
+export const PROGRESS_STORAGE_KEY = "nabimd.progress.v2"
 
-export function createDefaultProgress(currentProblemId: string): ProgressV1 {
+export function createDefaultProgress(currentProblemId: string): ProgressV2 {
   return {
-    version: 1,
+    version: 2,
+    entryId: null,
+    runNumber: 0,
+    runProblemIds: [],
+    runStepIndex: 0,
     currentProblemId,
     draftByProblemId: {},
     completedProblemIds: [],
@@ -44,14 +49,23 @@ function isValidDraftRecord(
   )
 }
 
-function isProgressV1(
+function isProgressV2(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
-): value is ProgressV1 {
+): value is ProgressV2 {
   if (!isRecord(value)) return false
 
   return (
-    value.version === 1 &&
+    value.version === 2 &&
+    (value.entryId === null || isEntryId(value.entryId)) &&
+    typeof value.runNumber === "number" &&
+    Number.isSafeInteger(value.runNumber) &&
+    value.runNumber >= 0 &&
+    isKnownIdList(value.runProblemIds, validProblemIds) &&
+    typeof value.runStepIndex === "number" &&
+    Number.isSafeInteger(value.runStepIndex) &&
+    value.runStepIndex >= 0 &&
+    value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
     validProblemIds.has(value.currentProblemId) &&
     isValidDraftRecord(value.draftByProblemId, validProblemIds) &&
@@ -59,14 +73,21 @@ function isProgressV1(
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
     (value.pendingTransferFamily === null ||
       value.pendingTransferFamily === "heading-h1") &&
-    typeof value.currentIsTransfer === "boolean"
+    typeof value.currentIsTransfer === "boolean" &&
+    (value.entryId === null
+      ? value.runProblemIds.length === 0 && value.runStepIndex === 0
+      : value.runProblemIds.length > 0 &&
+        value.runProblemIds[
+          Math.min(value.runStepIndex, value.runProblemIds.length - 1)
+        ] === value.currentProblemId)
   )
 }
 
-function cloneProgress(progress: ProgressV1): ProgressV1 {
+function cloneProgress(progress: ProgressV2): ProgressV2 {
   return {
     ...progress,
     draftByProblemId: { ...progress.draftByProblemId },
+    runProblemIds: [...progress.runProblemIds],
     completedProblemIds: [...progress.completedProblemIds],
     recentProblemIds: [...progress.recentProblemIds],
   }
@@ -75,7 +96,7 @@ function cloneProgress(progress: ProgressV1): ProgressV1 {
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
-): ProgressV1 {
+): ProgressV2 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
     firstProblemId ?? "heading-apple",
@@ -86,7 +107,7 @@ export function loadProgress(
     if (!saved) return fallback
 
     const parsed: unknown = JSON.parse(saved)
-    return isProgressV1(parsed, validProblemIds)
+    return isProgressV2(parsed, validProblemIds)
       ? cloneProgress(parsed)
       : fallback
   } catch {
@@ -96,7 +117,7 @@ export function loadProgress(
 
 export function saveProgress(
   storage: Storage,
-  progress: ProgressV1,
+  progress: ProgressV2,
 ): void {
   try {
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))

@@ -79,15 +79,23 @@ trap the learner in a single activity type.
 
 ## First-visit flow
 
-The product does not begin with a marketing page, mode chooser, or placement
-test.
+The product begins with level entry, not a marketing page, account gate, or
+placement test. A fresh browser session shows the Nabi Markdown wordmark, a
+short welcome, and exactly three choices:
 
-1. Show the wordmark and a 60-second heading problem.
-2. Provide a small `Skip to a document challenge` link for experienced users.
-3. After the first success, reveal the home view with Warm-up, Path, and Studio.
+1. `New to Markdown — start at Level 1`
+2. `I know the basics`
+3. `Challenge me`
 
-This provides an immediate product demonstration while preserving a route for
-people who already know the basics.
+One pointer click or keyboard activation opens the problem desk directly with
+no intermediate page. Level 1 begins with the introduced rule visible. The two
+higher entries begin in recall mode with Help closed.
+
+The current bank contains only the H1 heading family. The choices are therefore
+honest entry modes into that track, with different starting content, rather
+than claims that unshipped syntax families or advanced levels exist. Entry
+configuration is data so new tracks can replace the current rotated heading
+sequences without restructuring the greeting or session controller.
 
 ## Course and problem-bank scope
 
@@ -166,6 +174,29 @@ same problem ID or protected text for this transfer check.
 A Matched-but-not-Perfect editorial habit may reappear inside a later problem.
 It never revokes the earlier pass.
 
+### Run progression and completion
+
+A run is an explicit deterministic sequence over the currently shipped heading
+content. Progress labels the learner's current run step and the number of steps
+that can actually finish; it never labels the hidden bank size. A first-try
+Perfect advances to the next run step and cannot complete after one problem
+while the interface says `1 of 3`.
+
+When a repaired Fail or Help-assisted recall requires transfer, the selected
+different-content problem becomes the next run step. If that problem was still
+ahead in the sequence, it is moved forward. If the learner was on the last
+step, the transfer is appended and the visible total grows by one. A transfer
+consumes the transfer obligation even if it needs repair, so transfer does not
+form an infinite chain.
+
+Completion offers three actions:
+
+- `Practice again` keeps the selected entry, increments its deterministic run
+  number, clears drafts, and rotates to different starting content.
+- `Start over` clears the current run and restarts the selected entry at its
+  original deterministic sequence.
+- `Change level` clears the run and returns to the greeting.
+
 ## Check, Hint, and Review
 
 There is no live correction or grading while the learner types. Rendering may
@@ -174,8 +205,11 @@ evaluated only after `Check` or `Cmd/Ctrl + Enter`.
 
 ### Hint before Matched
 
-Hint is a rescue ladder, not autocomplete. It opens only after failed checks
-and only when the learner asks.
+Hint is a rescue ladder, not autocomplete. The introduced rule auto-opens only
+at the first step of a Level 1 run. Recall problems and both higher entries
+start with Help closed; opening Help during recall creates a transfer
+obligation. After a failed check, the learner can request progressively stronger
+help.
 
 1. Concept hint
 2. Exact syntax recipe, such as `#` + `Space` + `Title`
@@ -301,10 +335,16 @@ Selection is deterministic and local.
 - Perfect: reduce near-term repetition for the satisfied editorial tags.
 - Ongoing practice: avoid recently shown problem IDs before recycling the bank.
 
-Progress uses a versioned `localStorage` document containing completed problem
-IDs, unlocked skills, pending transfer checks, recent problem IDs, review tags,
-and the current draft. No account, database, cloud sync, or personal profile is
-part of Build Week.
+Progress uses a versioned `sessionStorage` document containing the selected
+entry, deterministic run number and sequence, visible run-step index, completed
+and recent problem IDs, pending transfer state, and the current draft. Reloading
+in the same browser session restores the entry, run progress, and draft. A new
+browser session starts at the greeting. The guarded volatile `Storage` fallback
+keeps the current in-memory run usable when browser storage is unavailable.
+
+The replayable-session schema is version 2. No migration from the earlier local
+schema is required because persistence is intentionally session-scoped. No
+account, database, cloud sync, or personal profile is part of Build Week.
 
 ## Visual design
 
@@ -357,7 +397,7 @@ full-width layout without horizontal scrolling.
 - Native textarea
 - unified/remark/mdast-compatible parsing with raw HTML disabled
 - Small CSS token file and focused component styles
-- `localStorage` with a versioned schema
+- `sessionStorage` with a versioned schema and guarded volatile fallback
 - Vitest and Testing Library
 - Playwright for the first full learning path
 - Static Vercel deployment
@@ -385,7 +425,7 @@ heading predicate works, and a predicate should not depend on browser state.
   wrong answer.
 - Any user Markdown must be safe to parse and render without raw HTML execution.
 - Invalid problem data fails automated validation before deployment.
-- A corrupt or incompatible local progress record recovers to a valid default
+- A corrupt or incompatible session progress record recovers to a valid default
   and never prevents the first problem from loading.
 - The learner path has no network or runtime model dependency.
 - Clipboard failure on a future copy action produces an explicit manual-copy
@@ -398,7 +438,8 @@ heading predicate works, and a predicate should not depend on browser state.
 - Parser normalization and protected-content rules
 - Every match and editorial predicate
 - Feedback-priority ordering
-- Versioned progress migration and corruption recovery
+- Versioned session-progress validation and corruption recovery; no
+  cross-session migration
 - Problem selection avoids the same ID after a repaired Fail
 - Transfer selection stays in the same skill family
 - Review tags reappear without revoking earlier passes
@@ -418,6 +459,8 @@ its expected feedback ID changes unexpectedly.
 - Review remains closed until requested.
 - Perfect never becomes a separate mandatory gate.
 - Side Coach never changes editor content.
+- Completion exposes all three replay actions; hook tests verify each reset
+  contract and deterministic replay content.
 
 ### Browser tests
 
@@ -425,6 +468,8 @@ its expected feedback ID changes unexpectedly.
 - Fail, repair, and pass a different transfer problem.
 - Open Hint after failure and Review after Matched.
 - Refresh and restore the current draft and progression.
+- Start a new browser context at the greeting and restore a selected entry only
+  within the same browser session.
 - Complete the critical path with keyboard controls.
 - Verify the deployed build in a clean browser context.
 
@@ -440,7 +485,7 @@ Build one complete heading family before expanding the bank:
 4. Fail, Matched, and Perfect states
 5. Repair and transfer flow
 6. Hint and Review Side Coach
-7. Versioned local progress
+7. Versioned session progress
 8. Minimal Editorial Desk
 9. Unit, component, and browser proof
 10. First static deployment

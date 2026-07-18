@@ -68,16 +68,22 @@ describe("learningSessionReducer", () => {
     expect(hinted.progress.pendingTransferFamily).toBe("heading-h1")
   })
 
-  it("completes after a first-attempt Perfect pass", () => {
+  it("advances after a first-attempt Perfect pass when the run has another step", () => {
     const passed = editAndCheck(newSession(), apple, "# Apple")
 
     expect(passed.evaluation?.status).toBe("perfect")
     expect(canAdvance(passed)).toBe(true)
 
-    const complete = learningSessionReducer(passed, { type: "next" })
+    const advanced = learningSessionReducer(passed, {
+      type: "next",
+      nextProblemId: "heading-rainy-day",
+      nextDraft: "",
+    })
 
-    expect(complete.phase).toBe("complete")
-    expect(complete.progress.completedProblemIds).toContain("heading-apple")
+    expect(advanced.phase).toBe("editing")
+    expect(advanced.currentProblemId).toBe("heading-rainy-day")
+    expect(advanced.currentIsTransfer).toBe(false)
+    expect(advanced.progress.completedProblemIds).toContain("heading-apple")
   })
 
   it("restores a completed problem as complete", () => {
@@ -115,8 +121,8 @@ describe("learningSessionReducer", () => {
     const repaired = editAndCheck(failed, apple, "# Apple")
     const transfer = learningSessionReducer(repaired, {
       type: "next",
-      transferProblemId: "heading-rainy-day",
-      transferDraft: "",
+      nextProblemId: "heading-rainy-day",
+      nextDraft: "",
     })
 
     expect(transfer.phase).toBe("editing")
@@ -150,8 +156,8 @@ describe("learningSessionReducer", () => {
     const passed = editAndCheck(hinted, rainyDay, "# Rainy day")
     const transfer = learningSessionReducer(passed, {
       type: "next",
-      transferProblemId: "heading-study-tools",
-      transferDraft: "",
+      nextProblemId: "heading-study-tools",
+      nextDraft: "",
     })
 
     expect(transfer.currentProblemId).toBe("heading-study-tools")
@@ -163,8 +169,8 @@ describe("learningSessionReducer", () => {
     const repaired = editAndCheck(failed, apple, "# Apple")
     const transfer = learningSessionReducer(repaired, {
       type: "next",
-      transferProblemId: "heading-rainy-day",
-      transferDraft: "",
+      nextProblemId: "heading-rainy-day",
+      nextDraft: "",
     })
     const transferFailed = editAndCheck(transfer, rainyDay, "#Rainy day")
     const transferRepaired = editAndCheck(

@@ -8,6 +8,11 @@ import { resolveBrowserStorage } from "../progress/browserStorage"
 import { loadProgress, saveProgress } from "../progress/progressStore"
 import { selectTransferProblem } from "../selection/selectTransferProblem"
 import {
+  createRunProblemIds,
+  getEntryChoice,
+  type EntryId,
+} from "../content/entryChoices"
+import {
   canAdvance,
   createLearningSession,
   learningSessionReducer,
@@ -44,6 +49,41 @@ export function useLearningSession(storage?: Storage) {
     dispatch({ type: "edited", value })
   }, [])
 
+  const startRun = useCallback((entryId: EntryId, runNumber: number) => {
+    const runProblemIds = createRunProblemIds(entryId, runNumber)
+    const firstProblemId = runProblemIds.at(0)
+    if (!firstProblemId) return
+    dispatch({
+      type: "started",
+      entryId,
+      runNumber,
+      runProblemIds,
+      problem: getHeadingProblem(firstProblemId),
+    })
+  }, [])
+
+  const start = useCallback((entryId: EntryId) => {
+    getEntryChoice(entryId)
+    startRun(entryId, 0)
+  }, [startRun])
+
+  const practiceAgain = useCallback(() => {
+    if (!session.entryId) return
+    startRun(session.entryId, session.runNumber + 1)
+  }, [session.entryId, session.runNumber, startRun])
+
+  const startOver = useCallback(() => {
+    if (!session.entryId) return
+    startRun(session.entryId, 0)
+  }, [session.entryId, startRun])
+
+  const changeLevel = useCallback(() => {
+    dispatch({
+      type: "returned-to-greeting",
+      problem: headingProblems[0],
+    })
+  }, [])
+
   const check = useCallback(() => {
     dispatch({
       type: "checked",
@@ -74,14 +114,21 @@ export function useLearningSession(storage?: Storage) {
         retryFamily: problem.retryFamily,
         recentProblemIds: session.progress.recentProblemIds,
       })
-      const transferDraft =
-        session.progress.draftByProblemId[transferProblem.id] ??
-        transferProblem.starterText
-
       dispatch({
         type: "next",
-        transferProblemId: transferProblem.id,
-        transferDraft,
+        nextProblemId: transferProblem.id,
+        nextDraft: transferProblem.starterText,
+      })
+      return
+    }
+
+    const nextProblemId = session.runProblemIds[session.runStepIndex + 1]
+    if (nextProblemId) {
+      const nextProblem = getHeadingProblem(nextProblemId)
+      dispatch({
+        type: "next",
+        nextProblemId: nextProblem.id,
+        nextDraft: nextProblem.starterText,
       })
       return
     }
@@ -94,6 +141,10 @@ export function useLearningSession(storage?: Storage) {
     problem,
     canCheck: session.phase !== "complete",
     canNext: canAdvance(session),
+    start,
+    practiceAgain,
+    startOver,
+    changeLevel,
     edit,
     check,
     requestHint,
