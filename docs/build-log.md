@@ -690,7 +690,7 @@ Codex security review identified that browser-restored problem-ID arrays were
 accepted without a length bound before the app copied and rendered them. The
 static path is real, but the repository does not establish a remote attacker
 or cross-user input boundary: the value comes from the learner's same-origin
-`localStorage`. The project therefore treats this as client-state resilience
+`sessionStorage`. The project therefore treats this as client-state resilience
 hardening rather than claiming a demonstrated remote vulnerability.
 
 The PR's first implementation compared a restored run with one exact generated
