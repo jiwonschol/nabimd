@@ -1,10 +1,14 @@
+import { normalizeProblem } from "./normalizeProblem"
 import type {
   FixtureKind,
-  Problem,
+  FixtureRole,
+  GradableProblem,
+  MatchCheck,
   ProblemFixture,
+  VocabularyProfile,
 } from "./types"
 
-const requiredFixtureKinds: readonly FixtureKind[] = [
+const requiredLegacyFixtureKinds: readonly FixtureKind[] = [
   "canonical",
   "alternate",
   "missing",
@@ -12,76 +16,321 @@ const requiredFixtureKinds: readonly FixtureKind[] = [
   "matched-with-refinement",
 ]
 
+const requiredFixtureRoles: readonly FixtureRole[] = [
+  "canonical",
+  "different-prose",
+  "case-spelling-variation",
+  "missing",
+  "malformed",
+  "matched-with-review",
+]
+
+const profileByLevel: Readonly<Record<number, VocabularyProfile>> = {
+  1: "everyday",
+  2: "everyday-recall",
+  3: "workplace-document",
+  4: "development-spec",
+  5: "agent-workflow",
+}
+
+const supportedMatchCheckKinds = new Set<string>([
+  "heading-spacing",
+  "hash-heading-style",
+  "has-heading",
+  "block-count",
+  "inline-presence",
+  "heading-depth-order",
+  "list-shape",
+  "code-block",
+  "block-sequence",
+  "document-limits",
+])
+
+function validateRange(
+  problemId: string,
+  check: MatchCheck,
+  min: number | undefined,
+  max: number | undefined,
+  errors: string[],
+) {
+  if (min !== undefined && (!Number.isInteger(min) || min < 0)) {
+    errors.push(`Problem ${problemId} check ${check.id} has invalid min`)
+  }
+  if (max !== undefined && (!Number.isInteger(max) || max < 0)) {
+    errors.push(`Problem ${problemId} check ${check.id} has invalid max`)
+  }
+  if (min !== undefined && max !== undefined && min > max) {
+    errors.push(`Problem ${problemId} check ${check.id} has min greater than max`)
+  }
+}
+
+function validateScope(problemId: string, check: MatchCheck, errors: string[]) {
+  if (!("scope" in check) || check.scope.kind === "document") return
+
+  if (!Number.isInteger(check.scope.occurrence) || check.scope.occurrence < 0) {
+    errors.push(
+      `Problem ${problemId} check ${check.id} has invalid section occurrence`,
+    )
+  }
+}
+
+function validateMatchChecks(problem: GradableProblem, errors: string[]) {
+  const checkIds = new Set<string>()
+  if (problem.matchChecks.length === 0) {
+    errors.push(`Problem ${problem.id} must provide at least one match check`)
+  }
+
+  for (const check of problem.matchChecks) {
+    if (!check.id.trim()) {
+      errors.push(`Problem ${problem.id} has blank match check id`)
+    } else if (checkIds.has(check.id)) {
+      errors.push(`Problem ${problem.id} has duplicate match check id: ${check.id}`)
+    }
+    checkIds.add(check.id)
+
+    if (!Number.isInteger(check.priority) || check.priority < 0) {
+      errors.push(`Problem ${problem.id} check ${check.id} has invalid priority`)
+    }
+    if (!check.feedback.trim()) {
+      errors.push(`Problem ${problem.id} check ${check.id} has blank feedback`)
+    }
+
+    if (!supportedMatchCheckKinds.has(check.kind)) {
+      errors.push(
+        `Problem ${problem.id} has unsupported match check kind: ${String(check.kind)}`,
+      )
+      continue
+    }
+
+    validateScope(problem.id, check, errors)
+    switch (check.kind) {
+      case "heading-spacing":
+      case "hash-heading-style":
+      case "has-heading":
+      case "heading-depth-order":
+        break
+      case "block-count":
+      case "inline-presence":
+        validateRange(problem.id, check, check.min, check.max, errors)
+        if (check.min === undefined && check.max === undefined) {
+          errors.push(`Problem ${problem.id} check ${check.id} requires a range`)
+        }
+        break
+      case "list-shape":
+        validateRange(problem.id, check, check.minItems, check.maxItems, errors)
+        break
+      case "code-block":
+        validateRange(problem.id, check, check.min, check.max, errors)
+        break
+      case "block-sequence":
+        if (check.sequence.length === 0) {
+          errors.push(`Problem ${problem.id} check ${check.id} has empty sequence`)
+        }
+        break
+      case "document-limits": {
+        const ranges = [
+          [check.minBlocks, check.maxBlocks],
+          [check.minLines, check.maxLines],
+          [check.minSourceCharacters, check.maxSourceCharacters],
+        ] as const
+        if (ranges.every(([min, max]) => min === undefined && max === undefined)) {
+          errors.push(`Problem ${problem.id} check ${check.id} requires a limit`)
+        }
+        for (const [min, max] of ranges) {
+          validateRange(problem.id, check, min, max, errors)
+        }
+        break
+      }
+    }
+  }
+}
+
+function validateVocabulary(problem: GradableProblem, errors: string[]) {
+  const normalized = normalizeProblem(problem)
+  const expectedProfile = profileByLevel[normalized.level]
+  if (!expectedProfile) {
+    errors.push(`Problem ${problem.id} has invalid level: ${normalized.level}`)
+    return
+  }
+  if (normalized.vocabulary.profile !== expectedProfile) {
+    errors.push(
+      `Problem ${problem.id} level ${normalized.level} requires vocabulary profile ${expectedProfile}`,
+    )
+  }
+  const expectedTeachingMode = normalized.level === 1 ? "introduce" : "recall"
+  if (normalized.teachingMode !== expectedTeachingMode) {
+    errors.push(
+      `Problem ${problem.id} level ${normalized.level} requires teaching mode ${expectedTeachingMode}`,
+    )
+  }
+
+  const terms = new Set<string>()
+  for (const domain of normalized.vocabulary.domains) {
+    if (!domain.trim()) errors.push(`Problem ${problem.id} has blank vocabulary domain`)
+  }
+  for (const term of normalized.vocabulary.terms) {
+    if (!term.trim()) errors.push(`Problem ${problem.id} has blank vocabulary term`)
+    if (terms.has(term)) {
+      errors.push(`Problem ${problem.id} has duplicate vocabulary term: ${term}`)
+    }
+    terms.add(term)
+  }
+  if (normalized.vocabulary.domains.length === 0) {
+    errors.push(`Problem ${problem.id} requires a vocabulary domain`)
+  }
+  if (normalized.vocabulary.terms.length === 0) {
+    errors.push(`Problem ${problem.id} requires a vocabulary term`)
+  }
+}
+
+function validConvention(problem: GradableProblem): boolean {
+  const convention = problem.convention
+  return Boolean(
+    convention &&
+      typeof convention.id === "string" &&
+      convention.id.trim() &&
+      typeof convention.version === "string" &&
+      convention.version.trim() &&
+      typeof convention.reviewedOn === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(convention.reviewedOn),
+  )
+}
+
 export function validateProblemBank(
-  problems: readonly Problem[],
+  problems: readonly GradableProblem[],
   fixtures: readonly ProblemFixture[],
 ): string[] {
   const errors: string[] = []
   const problemIds = new Set<string>()
   const protectedTexts = new Set<string>()
-  const retryFamilies = new Map<string, Set<string>>()
+  const legacyRetryFamilies = new Map<string, Set<string>>()
+  const retryVariants = new Map<string, Set<string>>()
 
   for (const problem of problems) {
+    const isSchemaV2 = problem.schemaVersion === 2
+    const normalized = normalizeProblem(problem)
+
     if (problemIds.has(problem.id)) {
       errors.push(`Duplicate problem id: ${problem.id}`)
     }
     problemIds.add(problem.id)
 
-    const firstProtectedText = problem.protectedContent.at(0)
-    if (firstProtectedText) {
-      if (protectedTexts.has(firstProtectedText)) {
-        errors.push(`Duplicate protected content: ${firstProtectedText}`)
+    if (isSchemaV2) {
+      if (normalized.flavor !== "standard") {
+        errors.push(`Problem ${problem.id} has unsupported flavor: ${normalized.flavor}`)
       }
-      protectedTexts.add(firstProtectedText)
+      validateVocabulary(problem, errors)
+      if (!normalized.sourceBatchId.trim()) {
+        errors.push(`Problem ${problem.id} has blank source batch`)
+      }
+      if (!Number.isInteger(normalized.revision) || normalized.revision < 1) {
+        errors.push(`Problem ${problem.id} has invalid revision`)
+      }
+      if (!normalized.curriculumVersion.trim()) {
+        errors.push(`Problem ${problem.id} has blank curriculum version`)
+      }
+      if (!normalized.contentVariant.trim()) {
+        errors.push(`Problem ${problem.id} has blank content variant`)
+      }
+      if (normalized.level === 5 && !validConvention(problem)) {
+        errors.push(`Problem ${problem.id} requires Level 5 convention metadata`)
+      } else if (problem.convention && !validConvention(problem)) {
+        errors.push(`Problem ${problem.id} has invalid convention metadata`)
+      }
+      const retryKey = `${normalized.level}/${normalized.flavor}/${normalized.retryFamily}`
+      const variants = retryVariants.get(retryKey) ?? new Set<string>()
+      variants.add(normalized.contentVariant)
+      retryVariants.set(retryKey, variants)
+    } else {
+      const firstProtectedText = problem.protectedContent.at(0)
+      if (firstProtectedText) {
+        if (protectedTexts.has(firstProtectedText)) {
+          errors.push(`Duplicate protected content: ${firstProtectedText}`)
+        }
+        protectedTexts.add(firstProtectedText)
+      }
+      const familyIds = legacyRetryFamilies.get(problem.retryFamily) ?? new Set()
+      familyIds.add(problem.id)
+      legacyRetryFamilies.set(problem.retryFamily, familyIds)
     }
 
     if (problem.hints.length !== 3) {
-      errors.push(
-        `Problem ${problem.id} must provide exactly three hints`,
-      )
+      errors.push(`Problem ${problem.id} must provide exactly three hints`)
     }
-
     for (const field of ["concept", "howTo", "example"] as const) {
       if (!problem.teaching[field].trim()) {
         errors.push(`Problem ${problem.id} has blank teaching ${field}`)
       }
     }
-
-    const familyIds = retryFamilies.get(problem.retryFamily) ?? new Set()
-    familyIds.add(problem.id)
-    retryFamilies.set(problem.retryFamily, familyIds)
+    validateMatchChecks(problem, errors)
 
     const problemFixtures = fixtures.filter(
       (fixture) => fixture.problemId === problem.id,
     )
-    const fixtureKinds = new Set(problemFixtures.map((fixture) => fixture.kind))
-    const fixtureCounts = new Map<FixtureKind, number>()
-    for (const fixture of problemFixtures) {
-      fixtureCounts.set(fixture.kind, (fixtureCounts.get(fixture.kind) ?? 0) + 1)
-    }
-    for (const [kind, count] of fixtureCounts) {
-      if (count > 1) {
-        errors.push(`Duplicate fixture kind ${kind} for ${problem.id}`)
+    if (isSchemaV2) {
+      const roles = new Set(problemFixtures.map((fixture) => fixture.role))
+      const exercisedCheckIds = new Set(
+        problemFixtures
+          .map((fixture) => fixture.exercisesCheckId)
+          .filter((checkId): checkId is string => Boolean(checkId)),
+      )
+      for (const fixture of problemFixtures) {
+        if (!fixture.id?.trim()) {
+          errors.push(`Problem ${problem.id} has fixture without an id`)
+        }
+        if (!fixture.role) {
+          errors.push(`Problem ${problem.id} has fixture without a role`)
+        }
       }
-    }
-
-    for (const requiredKind of requiredFixtureKinds) {
-      if (!fixtureKinds.has(requiredKind)) {
-        errors.push(`Missing fixture kind ${requiredKind} for ${problem.id}`)
+      for (const role of requiredFixtureRoles) {
+        if (!roles.has(role)) {
+          errors.push(`Missing fixture role ${role} for ${problem.id}`)
+        }
+      }
+      for (const check of problem.matchChecks) {
+        if (!exercisedCheckIds.has(check.id)) {
+          errors.push(
+            `Problem ${problem.id} has no direct fixture for check ${check.id}`,
+          )
+        }
+      }
+    } else {
+      const fixtureKinds = new Set(problemFixtures.map((fixture) => fixture.kind))
+      const fixtureCounts = new Map<FixtureKind, number>()
+      for (const fixture of problemFixtures) {
+        fixtureCounts.set(fixture.kind, (fixtureCounts.get(fixture.kind) ?? 0) + 1)
+      }
+      for (const [kind, count] of fixtureCounts) {
+        if (count > 1) errors.push(`Duplicate fixture kind ${kind} for ${problem.id}`)
+      }
+      for (const requiredKind of requiredLegacyFixtureKinds) {
+        if (!fixtureKinds.has(requiredKind)) {
+          errors.push(`Missing fixture kind ${requiredKind} for ${problem.id}`)
+        }
       }
     }
   }
 
+  const fixtureIds = new Set<string>()
   for (const fixture of fixtures) {
     if (!problemIds.has(fixture.problemId)) {
       errors.push(`Unknown fixture problem id: ${fixture.problemId}`)
     }
+    if (fixture.id) {
+      if (fixtureIds.has(fixture.id)) errors.push(`Duplicate fixture id: ${fixture.id}`)
+      fixtureIds.add(fixture.id)
+    }
   }
 
-  for (const [retryFamily, ids] of retryFamilies) {
+  for (const [retryFamily, ids] of legacyRetryFamilies) {
     if (ids.size < 2) {
+      errors.push(`Retry family ${retryFamily} requires at least two distinct problems`)
+    }
+  }
+  for (const [retryKey, variants] of retryVariants) {
+    if (variants.size < 2) {
       errors.push(
-        `Retry family ${retryFamily} requires at least two distinct problems`,
+        `Retry family ${retryKey} requires at least two distinct content variants`,
       )
     }
   }

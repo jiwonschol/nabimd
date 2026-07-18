@@ -1,4 +1,4 @@
-import type { Problem } from "../content/types"
+import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
 import { RenderedDocumentBody } from "./RenderedDocument"
@@ -7,7 +7,7 @@ type GoalPanelProps = {
   coach: LearningSession["coach"]
   evaluation: Evaluation | null
   hintLevel: LearningSession["hintLevel"]
-  problem: Problem
+  problem: GradableProblem
   onNextHint: () => void
 }
 
@@ -54,4 +54,3 @@ export function GoalPanel({
     </section>
   )
 }
-

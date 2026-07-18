@@ -12,7 +12,7 @@ export function App() {
         <section className="greeting" aria-labelledby="greeting-title">
           <Wordmark />
           <h2 id="greeting-title">Welcome. Choose where to begin.</h2>
-          <p>Practice the heading track at the pace that fits you.</p>
+          <p>Choose the kind of Markdown document you want to practice.</p>
           <div className="greeting__choices">
             {entryChoices.map((entry) => (
               <button

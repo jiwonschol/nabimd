@@ -6,7 +6,7 @@ import {
   useState,
 } from "react"
 import type { EntryId } from "../content/entryChoices"
-import type { Problem } from "../content/types"
+import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 import { RenderedDocumentBody } from "./RenderedDocument"
@@ -17,7 +17,7 @@ type AnswerPanelProps = {
   draft: string
   entryId: EntryId
   evaluation: Evaluation | null
-  problem: Problem
+  problem: GradableProblem
   onChange: (value: string) => void
   onCheck: () => void
 }
@@ -29,7 +29,7 @@ function ReviewPanel({
 }: {
   draft: string
   evaluation: Evaluation
-  problem: Problem
+  problem: GradableProblem
 }) {
   const failed = evaluation.status === "fail"
   const reviewItems = failed ? [] : evaluation.reviewItems
@@ -110,7 +110,7 @@ export function AnswerPanel({
       setView("review")
       return
     }
-    if (entryId !== "challenge") setView("preview")
+    setView("preview")
   }, [entryId, evaluation])
 
   useEffect(() => {
@@ -118,6 +118,12 @@ export function AnswerPanel({
       if (!event.altKey || (event.key !== "1" && event.key !== "2")) return
       event.preventDefault()
       const target = event.key === "1" ? "write" : secondView
+      if (target === "write" && view === "write") {
+        writePanelRef.current
+          ?.querySelector<HTMLElement>('[role="textbox"]')
+          ?.focus()
+        return
+      }
       if (
         target !== "write" &&
         writePanelRef.current?.contains(document.activeElement)
@@ -128,7 +134,7 @@ export function AnswerPanel({
     }
     document.addEventListener("keydown", switchView)
     return () => document.removeEventListener("keydown", switchView)
-  }, [secondView])
+  }, [secondView, view])
 
   useEffect(() => {
     const target = pendingTabFocus.current

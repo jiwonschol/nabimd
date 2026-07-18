@@ -942,3 +942,190 @@ default action.
 The final local gate is 15 files and 669 passing tests, plus 19 passing Chromium
 journeys. A fresh remote re-review, merge, deployment, and production
 verification remain pending and are not claimed by this entry.
+
+## 2026-07-19 — Issue #9 five-level problem-bank program begins
+
+### Product conflict resolved before implementation
+
+The existing application specification still described three entry modes into
+an H1-only vertical and treated the 500-problem bank and Level 5 grader as a
+future direction. Issue #9 superseded that boundary: the Build Week program now
+requires a playable five-level ladder and at least 500 inspected problems.
+
+The Level 5 north-star document also contained an older proposal to distinguish
+Matched from Perfect and to protect critical prose through curated text checks.
+That contradicted Jiwon's later D9/D10 decision that Nabi grades Markdown
+grammar only. The source of truth now has one pass state, Matched. Level 3–5
+problems use ordered structural slots—heading depth and position, lists, code
+blocks, and document anatomy—without comparing section titles, spelling,
+capitalization, or the meaning of the learner's prose. Build-time inspection,
+not learner-time grading, establishes that each Goal is a credible document.
+
+### Codex planning and parallel role evidence
+
+Codex read the prerequisite Issue #7 pipeline, the approved decision record,
+the application spec, the anonymized agent-work-order example, the current
+heading engine, and the session scheduler before editing the specification.
+Four isolated planning roles were used:
+
+- an architecture role compared a typed predicate registry with a generic DSL
+  and family-specific graders;
+- a pipeline role audited digest and review boundaries and compared a monolith,
+  an immutable batch ledger, and a hosted queue;
+- a Level 1–2 curriculum role proposed low-friction vocabulary and single-skill
+  fixture matrices; and
+- a Level 3–5 curriculum role designed human-document, development-spec, and
+  agent-work-order archetypes.
+
+The selected design uses a normalized schema-v2 problem contract, a closed
+typed predicate registry, append-only batch evidence, and generated runtime and
+tracker projections. Runtime AI and web crawling remain absent. Raw model
+generation is reproducible from committed output onward; reviews are described
+honestly as declared-independent repository evidence, not cryptographic proof
+of reviewer identity.
+
+### Autonomous decisions recorded
+
+- Target the first complete bank at 512 accepted problems: 128/128/96/80/80
+  across Levels 1–5. This gives the eight foundational syntax families broad
+  guided and recall coverage while reserving substantial advanced variety.
+- Normalize omitted `flavor` to `standard` before hashing and ship no flavor UI
+  or GFM content in this issue.
+- Treat vocabulary as generation and editorial metadata only; it cannot enter
+  a learner verdict predicate.
+- Require convention version and review date on every Level 5 problem because
+  coding-agent practices change.
+- Replace the single mutable pipeline artifact with immutable batch evidence
+  and deterministic compiled projections, preserving the old Issue #7
+  artifacts as audit history.
+- Requalify old accepted headings after schema changes instead of carrying
+  stale approvals across new digests.
+- Keep image exercises blocked until local licensed assets and their alt-text
+  guidance receive visual inspection; a blocked asset family cannot weaken the
+  bank-wide trust gate.
+
+### First playable five-level foundation
+
+Codex implemented the schema-v2 contract and the first deliberately small
+vertical slice before attempting the 512-problem expansion. Four distinct
+problems now exist at each level. This is the minimum that lets a three-problem
+run offer a genuinely different `Try another` candidate without crossing a
+level, flavor, or retry family.
+
+The foundation includes:
+
+- pure Markdown-AST predicates that inspect structure but cannot read Goal
+  prose, vocabulary terms, capitalization, spelling, or semantic similarity;
+- direct fixtures for every declared match check, plus canonical,
+  different-prose, case-or-spelling, missing, malformed, and optional-Review
+  boundaries;
+- full-length Level 5 work orders whose convention metadata is dated and
+  versioned;
+- a five-choice entry screen and deterministic three-problem schedules bound
+  to the compiled bank revision; and
+- a schema-v2 append-only pipeline that normalizes, hashes, verifies through
+  the real engine, freezes review scope, requires two distinct declared review
+  runs, and publishes only separately accepted editorial decisions.
+
+Two implementation regressions were exposed by integration rather than hidden:
+
+1. The application tests still assumed the previous three entry choices and
+   resumed the first saved run while attempting to open Level 2. The tests now
+   clear browser-session progress between isolated entry cases and assert all
+   five exact levels.
+2. The browser runner reused a Vite server left on port 4173 by another
+   checkout, so it displayed the old product while the new tests ran. The
+   Playwright configuration now owns an overridable isolated port and no longer
+   mistakes a stale checkout for the branch under test.
+
+At this checkpoint, 21 Vitest files and 758 assertions pass. The refreshed
+12-journey Chromium suite covers the five-level chooser, structure-only case
+and spelling tolerance, keyboard Check/Next focus, repaired transfer,
+same-level replacement, session restore, request-only Hint, safe local Preview,
+and the fixed `1280 × 800` Level 5 scroll contract. Publication review evidence
+is recorded in the immutable batch directory rather than inferred from this
+summary.
+
+### Milestone 1 review and publication result
+
+The frozen foundation batch contains 20 candidates and 184 fixtures. Two
+review roles independently accepted all 20 against the same review manifest.
+One checked 104 direct match-check counterexamples and the absence of prose
+operands in the engine; the other separately checked Level 3–5 target anatomy,
+section-occurrence scoping, and transfer variants. A third editorial role then
+inspected all eight required dimensions for every candidate.
+
+The trust gate caught a real evidence-authoring error before publication: the
+first editorial draft contained one mistyped candidate digest and had not yet
+been sealed with its review digests. The compiler reported stale editorial
+scope, digest, and candidate evidence and kept the tracker at zero. Only after
+the editorial actor corrected that one digest and sealed the complete artifact
+did `bank:batch:publish` produce 20 accepted problems—four at every level—with
+zero rejected or blocked records.
+
+The final batch records its accepted set, bank projection, tracker, review
+digests, and editorial digest in `summary.generated.json`. A fresh local
+`npm run check` passed the 15 pipeline tests, 7 state-aware publication tests,
+2 repository-history tests, 774 application tests, legacy gate, typecheck,
+production build, and fixture-exclusion bundle check. The bundle-size warning
+remains informational; no runtime AI or new network dependency was added.
+
+### Public-PR review correction
+
+CodeRabbit and Codex reviewed the public PR and exposed assumptions the local
+foundation review had not challenged. The accepted changes now:
+
+- bind `package-lock.json` into the engine contract;
+- make candidate revision part of fixture, verdict, editorial, and compilation
+  identity, so a later accepted revision can safely supersede the same ID;
+- require direct section lists, preventing a nested list from satisfying the
+  outer exercise;
+- recognize ATX H1 through H6 consistently, including malformed spacing;
+- remove Level 5 character and line limits from Matched so only Markdown
+  structure is graded;
+- reject cross-level transfer data during persisted-session restoration;
+- exclude fixture-only source from the learner production bundle;
+- fail a batch closed on partial, malformed, unknown, or non-independent
+  evidence; and
+- compare accepted immutable batches against the base branch in repository CI.
+
+Those corrections invalidated the old mechanical artifacts and review seals.
+Codex did not carry the stale approval forward. It regenerated 184 fixtures,
+proved 184/184 results and 104/104 direct counterexamples against manifest
+`2b89bc66a6d743af47264aac6431f7e4210704e5555b76e22c32284191ecdb5b`,
+then obtained two fresh 20/20 independent reviews and a separate 20/20
+eight-dimension editorial inspection. The current sealed review digests are
+`18d8a6ee0c1bcaee2b22fd8190e00374ecdfdabeae40e97af7b404e66f25a45f`
+and `4dab094ac04359377780372c61a8c940d5018932bc364b57dccb5ce3b26c6470`;
+the editorial digest is
+`31a304a41a7376502c1c4113d2706e5473338455a827880573b5c9416429a7c3`.
+
+Two reviewer suggestions were deliberately not converted into product changes.
+Schema-v2 progress is safely invalidated rather than migrated because old
+session data has no bank revision and visits are intentionally ephemeral.
+Likewise, any evidence error blocks its immutable batch rather than publishing
+a clean-looking subset. The review artifacts use July 19 because creation and
+inspection occurred on July 19 in the repository owner's `Asia/Seoul`
+timezone; the external review service displayed the same moment as July 18 UTC.
+
+The local CodeRabbit agent callback could not be reused after its OAuth state
+expired, and the pasted callback secret was neither stored nor committed. That
+did not block review: the installed GitHub app reviewed the public PR, which is
+the intended external-review boundary for this repository.
+
+The first public CI rerun also caught a delivery mistake rather than a product
+failure: `package.json` invoked the production-bundle verifier, but the new
+script itself had been left untracked. All preceding CI stages had passed. A
+small follow-up commit added the exact locally verified file and restarted CI.
+The next incremental review then found one real fail-open edge: a resolved base
+commit whose tracker could not be read had been treated like an intentional
+pre-tracker bootstrap. The gate now uses `git ls-tree` to distinguish an absent
+historical path and lets invalid commits, failed reads, and invalid JSON stop the
+run. Two smaller test assertions now pin schema v2 and an unknown candidate with
+a valid revision.
+
+Two incremental-review reports were rejected with evidence. The ATX expression
+`#{${heading.depth}}` deliberately produces the regular-expression
+quantifier `#{1}` through `#{6}`; all six depth tests pass, so replacing it would
+only churn the sealed engine contract. The July 19 metadata likewise remains
+correct in `Asia/Seoul`, the repository owner's recorded review timezone.

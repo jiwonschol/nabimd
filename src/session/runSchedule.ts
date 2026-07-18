@@ -54,18 +54,16 @@ export function isReachableRunSchedule({
   persistedProblemIds,
   persistedStepIndex,
   persistedCurrentIsTransfer,
-  replacementProblemIdsByProblemId,
-  transferProblemIds,
+  isEligibleTransferProblem,
 }: {
   baselineProblemIds: readonly string[]
   persistedProblemIds: readonly string[]
   persistedStepIndex: number
   persistedCurrentIsTransfer: boolean
-  replacementProblemIdsByProblemId: ReadonlyMap<
-    string,
-    ReadonlySet<string>
-  >
-  transferProblemIds: ReadonlySet<string>
+  isEligibleTransferProblem: (
+    currentProblemId: string,
+    candidateProblemId: string,
+  ) => boolean
 }): boolean {
   const queue: RunScheduleState[] = [
     {
@@ -100,9 +98,7 @@ export function isReachableRunSchedule({
     if (
       persistedProblemId !== undefined &&
       persistedProblemId !== currentProblemId &&
-      replacementProblemIdsByProblemId
-        .get(currentProblemId)
-        ?.has(persistedProblemId)
+      isEligibleTransferProblem(currentProblemId, persistedProblemId)
     ) {
       const replacedProblemIds = [...state.problemIds]
       replacedProblemIds[state.stepIndex] = persistedProblemId
@@ -121,8 +117,10 @@ export function isReachableRunSchedule({
 
     if (state.currentIsTransfer) continue
 
-    for (const transferProblemId of transferProblemIds) {
-      if (transferProblemId === currentProblemId) continue
+    for (const transferProblemId of persistedProblemIds) {
+      if (!isEligibleTransferProblem(currentProblemId, transferProblemId)) {
+        continue
+      }
 
       const nextProblemIds = placeTransferAtNextStep(
         state.problemIds,

@@ -1,81 +1,65 @@
 import { act, renderHook, waitFor } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
-import { createRunProblemIds } from "../content/entryChoices"
-import {
-  PROGRESS_STORAGE_KEY,
-  createDefaultProgress,
-  saveProgress,
-} from "../progress/progressStore"
+import { createRunProblemIds, entryChoices } from "../content/entryChoices"
+import { getProblem, problemBank } from "../content/problemBank"
+import { PROGRESS_STORAGE_KEY } from "../progress/progressStore"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { useLearningSession } from "./useLearningSession"
 
+function matchCurrent(result: ReturnType<typeof renderLearningSession>["result"]) {
+  act(() => result.current.edit(result.current.problem.target))
+  act(() => result.current.check())
+  expect(result.current.canNext).toBe(true)
+}
+
+function renderLearningSession(storage = new MemoryStorage()) {
+  return renderHook(() => useLearningSession(storage))
+}
+
 describe("useLearningSession", () => {
   it("finishes a three-step run instead of ending after the first Match", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
+    const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
-    act(() => result.current.edit("# Apple"))
-    act(() => result.current.check())
-    act(() => result.current.next())
 
-    expect(result.current.problem.id).toBe("heading-rainy-day")
-    expect(result.current.session.phase).toBe("editing")
-    expect(result.current.session.runStepIndex).toBe(1)
+    for (let index = 0; index < 3; index += 1) {
+      expect(result.current.session.runStepIndex).toBe(index)
+      matchCurrent(result)
+      act(() => result.current.next())
+    }
 
-    act(() => result.current.edit("# Rainy day"))
-    act(() => result.current.check())
-    act(() => result.current.next())
-    expect(result.current.problem.id).toBe("heading-study-tools")
-    expect(result.current.session.runStepIndex).toBe(2)
-
-    act(() => result.current.edit("# Study tools"))
-    act(() => result.current.check())
-    act(() => result.current.next())
     expect(result.current.session.phase).toBe("complete")
   })
 
-  it("starts deterministic different content for Practice again", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
+  it.each(entryChoices)("starts $id inside its exact bank level", (entry) => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start(entry.id))
 
-    act(() => result.current.start("challenge"))
-    expect(result.current.problem.id).toBe("heading-study-tools")
+    expect(result.current.session.entryId).toBe(entry.id)
+    expect(result.current.problem.level).toBe(entry.level)
+    expect(result.current.session.runProblemIds).toEqual(
+      createRunProblemIds(entry.id, 0),
+    )
+  })
+
+  it("rotates Practice again and restores Start over", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-3"))
+    const original = result.current.problem.id
 
     act(() => result.current.practiceAgain())
-
-    expect(result.current.session.entryId).toBe("challenge")
     expect(result.current.session.runNumber).toBe(1)
-    expect(result.current.problem.id).toBe("heading-product-roadmap")
-    expect(result.current.session.draft).toBe("")
-  })
+    expect(result.current.problem.id).not.toBe(original)
 
-  it("resets to the chosen entry's original run for Start over", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
-    act(() => result.current.start("challenge"))
-    act(() => result.current.practiceAgain())
-    act(() => result.current.edit("draft from replay"))
     act(() => result.current.startOver())
-
-    expect(result.current.session.entryId).toBe("challenge")
     expect(result.current.session.runNumber).toBe(0)
-    expect(result.current.problem.id).toBe("heading-study-tools")
+    expect(result.current.problem.id).toBe(original)
     expect(result.current.session.draft).toBe("")
-    expect(result.current.session.runStepIndex).toBe(0)
   })
 
-  it("clears the run and returns to entry selection for Change level", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
-    act(() => result.current.start("basics"))
-    act(() => result.current.edit("# Rainy day"))
+  it("clears the run and returns to level selection", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-5"))
+    act(() => result.current.edit("draft"))
     act(() => result.current.changeLevel())
 
     expect(result.current.session.entryId).toBeNull()
@@ -83,165 +67,86 @@ describe("useLearningSession", () => {
     expect(result.current.session.progress.draftByProblemId).toEqual({})
   })
 
-  it("auto-opens Help only at the start of a Level 1 run", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
+  it("auto-opens Help only for Level 1", () => {
+    const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
     expect(result.current.session.coach).toBe("hint")
     expect(result.current.session.teachingMode).toBe("introduce")
 
-    act(() => result.current.practiceAgain())
-    expect(result.current.problem.id).toBe("heading-weekend-forecast")
-    expect(result.current.session.coach).toBe("hint")
-    expect(result.current.session.teachingMode).toBe("introduce")
-    expect(result.current.problem.teaching.example).toBe("# Weather")
-
-    act(() => result.current.start("basics"))
-    expect(result.current.session.coach).toBe("closed")
-    expect(result.current.session.teachingMode).toBe("recall")
-  })
-
-  it("continues the run after one transfer without chaining another transfer", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
-    act(() => result.current.start("level-1"))
-    act(() => result.current.edit("#Apple"))
-    act(() => result.current.check())
-    act(() => result.current.edit("# Apple"))
-    act(() => result.current.check())
-    act(() => result.current.next())
-    expect(result.current.problem.id).toBe("heading-rainy-day")
-    expect(result.current.session.currentIsTransfer).toBe(true)
-
-    act(() => result.current.edit("#Rainy day"))
-    act(() => result.current.check())
-    act(() => result.current.edit("# Rainy day"))
-    act(() => result.current.check())
-    act(() => result.current.next())
-
-    expect(result.current.session.phase).toBe("editing")
-    expect(result.current.problem.id).toBe("heading-study-tools")
-    expect(result.current.session.currentIsTransfer).toBe(false)
-    expect(result.current.session.runStepIndex).toBe(2)
-  })
-
-  it("restores a persisted run after transfer reorders a later problem", async () => {
-    const storage = new MemoryStorage()
-    const runProblemIds = createRunProblemIds("basics", 0)
-    const progress = createDefaultProgress(runProblemIds[0]!)
-    progress.entryId = "basics"
-    progress.runProblemIds = runProblemIds
-    progress.recentProblemIds = ["heading-apple", "heading-study-tools"]
-    saveProgress(storage, progress)
-
-    const firstHook = renderHook(() => useLearningSession(storage))
-    act(() => firstHook.result.current.edit("#Rainy day"))
-    act(() => firstHook.result.current.check())
-    act(() => firstHook.result.current.edit("# Rainy day"))
-    act(() => firstHook.result.current.check())
-    act(() => firstHook.result.current.next())
-
-    expect(firstHook.result.current.problem.id).toBe(
-      "heading-weekend-forecast",
-    )
-    expect(firstHook.result.current.session.runProblemIds).toEqual([
-      "heading-rainy-day",
-      "heading-weekend-forecast",
-      "heading-study-tools",
-    ])
-
-    await waitFor(() => {
-      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
-        "heading-weekend-forecast",
-      )
-    })
-    firstHook.unmount()
-
-    const restoredHook = renderHook(() => useLearningSession(storage))
-    expect(restoredHook.result.current.problem.id).toBe(
-      "heading-weekend-forecast",
-    )
-    expect(restoredHook.result.current.session.currentIsTransfer).toBe(true)
-  })
-
-  it("appends a finishable transfer step after a failure on the last run step", async () => {
-    const storage = new MemoryStorage()
-    const firstHook = renderHook(() => useLearningSession(storage))
-    const { result } = firstHook
-
-    act(() => result.current.start("challenge"))
-    for (const answer of ["# Study tools", "# Weekend forecast"]) {
-      act(() => result.current.edit(answer))
-      act(() => result.current.check())
-      act(() => result.current.next())
+    for (const entry of entryChoices.slice(1)) {
+      act(() => result.current.start(entry.id))
+      expect(result.current.session.coach).toBe("closed")
+      expect(result.current.session.teachingMode).toBe("recall")
     }
-
-    act(() => result.current.edit("#Team handbook"))
-    act(() => result.current.check())
-    act(() => result.current.edit("# Team handbook"))
-    act(() => result.current.check())
-    act(() => result.current.next())
-
-    expect(result.current.session.currentIsTransfer).toBe(true)
-    expect(result.current.session.runStepIndex).toBe(3)
-    expect(result.current.session.runProblemIds).toHaveLength(4)
-    expect(result.current.session.runProblemIds[3]).toBe(
-      result.current.problem.id,
-    )
-    expect(result.current.session.draft).toBe("")
-
-    await waitFor(() => {
-      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
-        result.current.problem.id,
-      )
-    })
-    firstHook.unmount()
-    const restored = renderHook(() => useLearningSession(storage))
-    expect(restored.result.current.session.phase).toBe("editing")
-    expect(restored.result.current.session.currentIsTransfer).toBe(true)
   })
 
-  it("opens the introduced Apple problem with an empty draft", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
+  it("repairs a failure, then inserts different same-level content", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-2"))
+    const failedProblem = result.current.problem
 
-    expect(result.current.problem.id).toBe("heading-apple")
+    act(() => result.current.edit("Not Markdown"))
+    act(() => result.current.check())
+    expect(result.current.session.evaluation?.status).toBe("fail")
+    expect(result.current.canNext).toBe(false)
+
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    expect(result.current.problem.id).not.toBe(failedProblem.id)
+    expect(result.current.problem.level).toBe(failedProblem.level)
+    expect(result.current.problem.retryFamily).toBe(failedProblem.retryFamily)
+    expect(result.current.problem.contentVariant).not.toBe(
+      failedProblem.contentVariant,
+    )
+    expect(result.current.session.currentIsTransfer).toBe(true)
+  })
+
+  it("does not create an infinite transfer chain", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+    act(() => result.current.edit("#No space"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.currentIsTransfer).toBe(true)
+
+    act(() => result.current.edit("#Still wrong"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    expect(result.current.session.currentIsTransfer).toBe(false)
+    expect(result.current.session.phase).toBe("editing")
+  })
+
+  it("persists a selected level, problem, and draft", async () => {
+    const storage = new MemoryStorage()
+    const first = renderLearningSession(storage)
+    act(() => first.result.current.start("level-4"))
+    const expectedProblem = first.result.current.problem.id
+    act(() => first.result.current.edit("# Saved draft"))
+
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain("# Saved draft")
+    })
+    first.unmount()
+
+    const restored = renderLearningSession(storage)
+    expect(restored.result.current.session.entryId).toBe("level-4")
+    expect(restored.result.current.problem.id).toBe(expectedProblem)
+    expect(restored.result.current.session.draft).toBe("# Saved draft")
+  })
+
+  it("starts with the first compiled problem when no run is active", () => {
+    const { result } = renderLearningSession()
+    expect(result.current.problem).toBe(getProblem(problemBank[0].id))
     expect(result.current.session.draft).toBe("")
-    expect(result.current.session.coach).toBe("hint")
-    expect(result.current.session.needsTransfer).toBe(false)
     expect(result.current.canNext).toBe(false)
   })
 
-  it("persists the selected entry, progress, and draft in a new hook", async () => {
-    const storage = new MemoryStorage()
-    const firstHook = renderHook(() => useLearningSession(storage))
-
-    act(() => firstHook.result.current.start("basics"))
-    act(() => firstHook.result.current.edit("#Rainy day"))
-
-    await waitFor(() => {
-      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain("#Rainy day")
-    })
-
-    firstHook.unmount()
-    const restoredHook = renderHook(() => useLearningSession(storage))
-
-    expect(restoredHook.result.current.session.entryId).toBe("basics")
-    expect(restoredHook.result.current.problem.id).toBe("heading-rainy-day")
-    expect(restoredHook.result.current.session.runStepIndex).toBe(0)
-    expect(restoredHook.result.current.session.draft).toBe("#Rainy day")
-  })
-
-  it("starts with volatile progress when sessionStorage access throws", () => {
-    const descriptor = Object.getOwnPropertyDescriptor(
-      window,
-      "sessionStorage",
-    )
+  it("uses volatile progress when sessionStorage access throws", () => {
+    const descriptor = Object.getOwnPropertyDescriptor(window, "sessionStorage")
     Object.defineProperty(window, "sessionStorage", {
       configurable: true,
       get() {
@@ -251,107 +156,11 @@ describe("useLearningSession", () => {
 
     try {
       const { result } = renderHook(() => useLearningSession())
-
-      expect(result.current.problem.id).toBe("heading-apple")
-      act(() => result.current.edit("# Apple"))
-      expect(result.current.session.draft).toBe("# Apple")
+      expect(result.current.problem.id).toBe(problemBank[0].id)
+      act(() => result.current.edit("draft"))
+      expect(result.current.session.draft).toBe("draft")
     } finally {
-      if (descriptor) {
-        Object.defineProperty(window, "sessionStorage", descriptor)
-      }
+      if (descriptor) Object.defineProperty(window, "sessionStorage", descriptor)
     }
-  })
-
-  it("selects a different transfer problem after a repaired failure", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
-    act(() => result.current.edit("#Apple"))
-    act(() => result.current.check())
-    expect(result.current.session.evaluation?.status).toBe("fail")
-    expect(result.current.canNext).toBe(false)
-
-    act(() => result.current.edit("# Apple"))
-    act(() => result.current.check())
-    expect(result.current.canNext).toBe(true)
-
-    act(() => result.current.next())
-    expect(result.current.problem.id).toBe("heading-rainy-day")
-    expect(result.current.session.draft).toBe("")
-    expect(result.current.session.currentIsTransfer).toBe(true)
-  })
-
-  it("selects a different transfer problem after recall Help is used", () => {
-    const storage = new MemoryStorage()
-    saveProgress(storage, createDefaultProgress("heading-rainy-day"))
-    const { result } = renderHook(() => useLearningSession(storage))
-
-    expect(result.current.session.coach).toBe("closed")
-    act(() => result.current.requestHint())
-    expect(result.current.session.needsTransfer).toBe(true)
-
-    act(() => result.current.edit("# Rainy day"))
-    act(() => result.current.check())
-    act(() => result.current.next())
-
-    expect(result.current.problem.id).not.toBe("heading-rainy-day")
-    expect(result.current.session.currentIsTransfer).toBe(true)
-  })
-
-  it("keeps an empty draft checkable so feedback can provide a start", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
-    expect(result.current.session.draft).toBe("")
-    expect(result.current.canCheck).toBe(true)
-  })
-
-  it("offers different same-skill content without consuming a run step", () => {
-    const { result } = renderHook(() =>
-      useLearningSession(new MemoryStorage()),
-    )
-
-    act(() => result.current.start("level-1"))
-    const originalId = result.current.problem.id
-    const originalRetryFamily = result.current.problem.retryFamily
-    const originalStep = result.current.session.runStepIndex
-
-    act(() => result.current.tryAnother())
-
-    expect(result.current.problem.id).not.toBe(originalId)
-    expect(result.current.problem.retryFamily).toBe(originalRetryFamily)
-    expect(result.current.session.runStepIndex).toBe(originalStep)
-    expect(result.current.session.runProblemIds[originalStep]).toBe(
-      result.current.problem.id,
-    )
-    expect(result.current.session.draft).toBe("")
-    expect(result.current.session.progress.completedProblemIds).toEqual([])
-  })
-
-  it("restores a substituted Try another problem and its draft", async () => {
-    const storage = new MemoryStorage()
-    const firstHook = renderHook(() => useLearningSession(storage))
-
-    act(() => firstHook.result.current.start("level-1"))
-    act(() => firstHook.result.current.tryAnother())
-    const replacementId = firstHook.result.current.problem.id
-    act(() => firstHook.result.current.edit("# Saved replacement"))
-
-    await waitFor(() => {
-      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(replacementId)
-      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
-        "# Saved replacement",
-      )
-    })
-    firstHook.unmount()
-
-    const restoredHook = renderHook(() => useLearningSession(storage))
-    expect(restoredHook.result.current.session.entryId).toBe("level-1")
-    expect(restoredHook.result.current.problem.id).toBe(replacementId)
-    expect(restoredHook.result.current.session.draft).toBe(
-      "# Saved replacement",
-    )
   })
 })

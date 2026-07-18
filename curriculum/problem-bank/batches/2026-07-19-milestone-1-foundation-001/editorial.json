@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-milestone-1-foundation-001",
+  "editorialActor": "codex-independent-editorial-inspector",
+  "manifestDigest": "2b89bc66a6d743af47264aac6431f7e4210704e5555b76e22c32284191ecdb5b",
+  "decisions": [
+    {
+      "candidateId": "l1-heading-apple",
+      "revision": 1,
+      "candidateDigest": "2e5bb9dfda3787570a3100cf7367d0ebbbc8d430ae4f922fd1d7388a23a91d26",
+      "fixtureResultsDigest": "560806c979baa2950eb71f65e3445e98b93b16a251a72319458297b835ff93a4",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "A one-word fruit title minimizes Level 1 typing friction while the visible Goal makes the ATX H1 task unambiguous. Apple is a distinct, original everyday variant using standard Markdown and deterministic grading."
+    },
+    {
+      "candidateId": "l1-heading-library-card",
+      "revision": 1,
+      "candidateDigest": "92ef97865bcd438001a1dcf780d04189ada9953541ec92e57213fc28335f2113",
+      "fixtureResultsDigest": "fbca29bdfee12440443f5b5cf4e7817e502adba46ab688290cd5c2a0026a6d08",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The familiar reading phrase stays easy to type and the visible example clearly teaches one hash-style main heading. It is an original, distinct everyday variant with standard syntax and no runtime service dependency."
+    },
+    {
+      "candidateId": "l1-heading-rainy-day",
+      "revision": 1,
+      "candidateDigest": "2654cced8761b87c7a04f26a94309180d305bc8bd5f24a50a3c1ab397c249d70",
+      "fixtureResultsDigest": "55ef88b3a435911020e8789e17809b515725ed329b8cfcf3dd90816a8e772b96",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Common weather vocabulary keeps guided production low-friction, and the Goal plainly demonstrates the requested H1. The locally authored phrase broadens the retry set without duplicating another target or leaving standard Markdown."
+    },
+    {
+      "candidateId": "l1-heading-study-notes",
+      "revision": 1,
+      "candidateDigest": "e28e370cc41fecfa41d7a567c5854f035d732aed65535728156bf2959aba03c3",
+      "fixtureResultsDigest": "72bcd6fc28ab1aef9a7dfa02e30b3d0f8ab230a8fbe3c306ce1fd31525e11627",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Study notes is familiar learning-tool vocabulary and remains short enough for first-contact typing. The original Goal is clear, distinct from the other everyday nouns, standard-flavor, and checked without runtime AI."
+    },
+    {
+      "candidateId": "l2-heading-bus-schedule",
+      "revision": 1,
+      "candidateDigest": "454f36c30ed7b3fbaf7455ef849fbd12ffd5aa3e9657e5f1eb089f70ab8e8416",
+      "fixtureResultsDigest": "5a4bdcf2f1d72e9047f65e98db55d61a144916a6dc972a61eb6dac31767230e9",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Daily-travel vocabulary is suitable for hidden-pattern recall, and the Goal supplies a single clear result without grading its words. This original standard-Markdown variant is distinct within the Level 2 retry family and deterministic."
+    },
+    {
+      "candidateId": "l2-heading-grocery-list",
+      "revision": 1,
+      "candidateDigest": "3f2932ad5663ab1f0f4ada7872076b5038a052ebb86c2978c263a8dfac33b05f",
+      "fixtureResultsDigest": "aa91b7cde6fab34e7e7bf2030de945ab089cca61009485e958ad78d20a6f3252",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The errands phrase is common US English and supports straightforward H1 recall. Its authored target is unambiguous and distinct from the other recall prompts while remaining standard Markdown with local deterministic evaluation."
+    },
+    {
+      "candidateId": "l2-heading-morning-walk",
+      "revision": 1,
+      "candidateDigest": "2b6812b67599002773701ba826423aa83510643b11307daf12817f15c2979533",
+      "fixtureResultsDigest": "2d8d2a2a4d2f22684b426f67e2e3251b0acf5d9cfbdbeab548f6a31f7b61f007",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "A familiar routine phrase keeps Level 2 recall focused on remembered syntax rather than vocabulary. The Goal is clear, the local wording is a distinct retry variant, and evaluation stays standard-flavor and offline."
+    },
+    {
+      "candidateId": "l2-heading-weekend-plans",
+      "revision": 1,
+      "candidateDigest": "ae3bd15670a6c5e03e9a0a32ac3f3ab65d0866e6e6405bdbde28312c15c5b603",
+      "fixtureResultsDigest": "59d3d1ef48c7c3122be1a0d6e044474ce84b07944e97de64c2019e113a9eac37",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Weekend planning is familiar recall vocabulary and the single-heading Goal has only one plausible Markdown structure. The phrase is an original, non-duplicated variant and relies solely on standard syntax and the local engine."
+    },
+    {
+      "candidateId": "l3-customer-feedback-note",
+      "revision": 1,
+      "candidateDigest": "c55390993a32246893e1c15694649d9dac0aa834f8e091f5794e636235e2cca1",
+      "fixtureResultsDigest": "d48a2e4c283b473cdd521a241d2420463d4d5b21a4e8912795aa64e5095b236b",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The Goal is a concise, human-scannable customer note with hierarchy, restrained emphasis, and actionable bullets. Its workplace vocabulary and original scenario fit Level 3, differ from the other documents, and are never used as learner-grade operands."
+    },
+    {
+      "candidateId": "l3-meeting-decision",
+      "revision": 1,
+      "candidateDigest": "6013039e5c4d96ccac241d02a462b7e34afa004b38ee40c9ed1da20df253d0eb",
+      "fixtureResultsDigest": "48711ff5026e87f901191e79bf54a801dd947d65174b9eac7dec758013bf6be9",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The decision note demonstrates readable hierarchy for an absent teammate, with one emphasized conclusion and a clear action list. It is a distinct, originally authored workplace scenario using standard Markdown and grammar-only local checks."
+    },
+    {
+      "candidateId": "l3-new-teammate-guide",
+      "revision": 1,
+      "candidateDigest": "c13f3935c0f815cf2f7d8f037a0bccf100ae7fd846cd4ce997ab5d89b14aa0bf",
+      "fixtureResultsDigest": "7c50776c52dce00f6a4f6a97003ef5e7cb0fa4f751394fa4e36a4d671f12e64d",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "This welcoming first-day guide is easy for another person to scan and uses appropriate onboarding vocabulary. Its authored use case is distinct, its Goal visibly establishes the requested anatomy, and prose meaning is outside deterministic grading."
+    },
+    {
+      "candidateId": "l3-weekly-handoff",
+      "revision": 1,
+      "candidateDigest": "6d74c3b0c95bf594956730c42fec7a72fecbe9c8f5f1bf57eddd3495452da626",
+      "fixtureResultsDigest": "03d682ce395c29c4736230b66639142ce62e41f15a0f7945145a806defc86881",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The handoff Goal prioritizes quick human scanning through title, update, emphasis, and follow-up sections. The original workplace content completes rather than duplicates the retry set, and standard structural grading ignores its prose."
+    },
+    {
+      "candidateId": "l4-accessible-dialog-spec",
+      "revision": 1,
+      "candidateDigest": "e3f8585fc5ecf5fbe36d7b6d162e169ca777779ac06d145b772d22c6889b645e",
+      "fixtureResultsDigest": "94f181b965158f0445912e3b34221b88ca2e887241d011363973d0878ff33374",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The accessible-dialog Goal is an executable development spec with bounded scope, dependencies, ordered work, acceptance criteria, and verification. Its original scenario and vocabulary fit Level 4, remain distinct, and are inspected editorially rather than semantically graded."
+    },
+    {
+      "candidateId": "l4-notification-retry-spec",
+      "revision": 1,
+      "candidateDigest": "5bcd4b44034d0ca0ddd875e14a62f22ff4e9ac694a9355997d7bb20732719e65",
+      "fixtureResultsDigest": "f1c4456c4cea86d608955a424ca0d8cd0bb9f651cc26b910b563c30d087a1337",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The bounded-retry spec gives a developer a complete, auditable path from scope through commands. It adds distinct delivery and idempotency vocabulary, is locally authored under standard Markdown, and requires no runtime AI or semantic judgment."
+    },
+    {
+      "candidateId": "l4-search-filter-spec",
+      "revision": 1,
+      "candidateDigest": "0270f3fe7879bcc82ca9457267a4015ca9edd6bd34cfbfb8b013564396afdb89",
+      "fixtureResultsDigest": "f0c5c576425a645f556c7f574ee646ffdc4553a6a274a85ecb3402a59f19d157",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The search-filter Goal models a credible executable feature spec with clear section roles and runnable verification. It is an original, distinct Level 4 scenario; technical truth and wording remain outside standard structural grading."
+    },
+    {
+      "candidateId": "l4-timezone-bug-spec",
+      "revision": 1,
+      "candidateDigest": "801e8209b83eeb087c85c116276c570b9813f6b1aef39c6240a70cb877b05061",
+      "fixtureResultsDigest": "e513db0a7291998016da038ac82f93a61afb2b38aafb385a6e8a07171fbea2e2",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "This regression-oriented Goal turns a time-zone bug into a bounded implementation and verification plan. The locally authored case broadens Level 4 without duplicating another target, and its prose is illustrative rather than a learner-grade requirement."
+    },
+    {
+      "candidateId": "l5-auth-migration-work-order",
+      "revision": 2,
+      "candidateDigest": "3d41cb1f877672895b1ebed5c18cddb5c9208a76f77799b4f61188f9a3a5169b",
+      "fixtureResultsDigest": "0965c9685baf522f555ffe24d031ee417e0d1d1c098a9842de18b69d0336ecbe",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 is a clear, human-reviewable session-migration order with appropriate source-of-truth, rollback, and regression-guard vocabulary. Its nine standard-Markdown predicates grade only the seven-section hierarchy, direct authority/constraint/stop lists, three H3 stages, and two tagged fences; H1-H6 hierarchy is observed, while prose, case, spelling, length, and technical truth remain outside grading. The original Goal is distinct, convention-dated 2026.07, and requires no runtime AI."
+    },
+    {
+      "candidateId": "l5-dependency-upgrade-work-order",
+      "revision": 2,
+      "candidateDigest": "10fc2ec6252fc3087064508ed1cac43deaa0bf021f1e3b760b8eb98b14529f31",
+      "fixtureResultsDigest": "37b42dbb1d7730a54ff10439e06a21490a52955b76b448298d2c843727ce0651",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 presents a credible security-sensitive upgrade order using suitable advisory, compatibility, rollback, and authority-boundary vocabulary. Its nine predicates enforce only standard Markdown anatomy, including all-depth heading order, direct scoped lists, staged H3 execution, and separate tagged verification/report fences; no prose, case, spelling, length, or semantic operand exists. The original scenario is distinct, convention-dated 2026.07, and deterministic without runtime AI."
+    },
+    {
+      "candidateId": "l5-performance-recovery-work-order",
+      "revision": 2,
+      "candidateDigest": "de9171f1870311bf7abd4f4ddda4044159f086044bced4df9a59e178d9f5f1bb",
+      "fixtureResultsDigest": "c943fe5a9a309d2af23b75215e4bcb1cc72c2e94891c176e45327bcb73efaf4f",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 makes baseline evidence, performance budgets, bounded change, stop conditions, verification, and reporting easy for both an agent and maintainer to audit. The nine standard-Markdown checks cover all-depth hierarchy, direct lists, three H3 stages, and tagged command/report fences only; arbitrary short prose and case/spelling changes remain Matched, with no length or semantic grading. The original Goal is distinct, convention-dated 2026.07, and runtime-AI-free."
+    },
+    {
+      "candidateId": "l5-release-context-work-order",
+      "revision": 2,
+      "candidateDigest": "f30e445b0681df8582d4fc1989994f2e19e1e392adff5e158482c69f3655daca",
+      "fixtureResultsDigest": "1c5539ebab86ef22dae7ec0bdb29c289526b2ef8d080cbace7f61de42ae5f60c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 is a strong fictional Level 5 Goal: authority precedence, staged autonomy, hard constraints, narrow stops, verification, and reporting remain human-auditable. Its nine predicates grade only standard Markdown structure—H1-H6 hierarchy, seven H2 slots, direct lists, three H3 stages, and two tagged fences—never Harbor Notes prose, case, spelling, character count, or technical meaning. The distinct original scenario carries the reviewed 2026.07 convention and no runtime AI dependency."
+    }
+  ],
+  "reviewDigests": [
+    "18d8a6ee0c1bcaee2b22fd8190e00374ecdfdabeae40e97af7b404e66f25a45f",
+    "4dab094ac04359377780372c61a8c940d5018932bc364b57dccb5ce3b26c6470"
+  ],
+  "editorialDigest": "31a304a41a7376502c1c4113d2706e5473338455a827880573b5c9416429a7c3"
+}

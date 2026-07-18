@@ -23,8 +23,10 @@ type ExerciseTopBarProps = {
 
 const levelByEntry: Record<EntryId, string> = {
   "level-1": "Level 1",
-  basics: "Level 2",
-  challenge: "Level 3",
+  "level-2": "Level 2",
+  "level-3": "Level 3",
+  "level-4": "Level 4",
+  "level-5": "Level 5",
 }
 
 function isTextEntryTarget(target: EventTarget | null): boolean {
@@ -90,7 +92,7 @@ export function ExerciseTopBar({
         )}
       </div>
 
-      <div aria-label="Heading progress" className="exercise-progress">
+      <div aria-label="Practice progress" className="exercise-progress">
         <span>{levelByEntry[entryId]}</span>
         <span aria-hidden="true">•</span>
         <span>

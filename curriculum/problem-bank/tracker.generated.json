@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "targetAccepted": 512,
+  "bankDigest": "6ab4b9e263abdb0297052b83679ae3d52e7c0a410704ac0b7dd585a723e4f432",
+  "acceptedTotal": 20,
+  "counts": {
+    "byLevel": {
+      "1": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "executable-development-spec": 4,
+      "headings": 8,
+      "readable-human-document": 4
+    },
+    "byLevelAndFamily": {
+      "1/headings": 4,
+      "2/headings": 4,
+      "3/readable-human-document": 4,
+      "4/executable-development-spec": 4,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 20
+    },
+    "rejected": 0,
+    "blocked": 0
+  },
+  "batches": [
+    {
+      "batchId": "2026-07-19-milestone-1-foundation-001",
+      "sequence": 1,
+      "batchDigest": "7779814b447023f45bb3f09a644c73e4bc2975be3cd51fafe7a3f08f6594734f",
+      "generated": 20,
+      "accepted": 20,
+      "rejected": 0,
+      "blocked": 0
+    }
+  ],
+  "trackerDigest": "6a7727b1c07f709a7915447f412dab974227e0cf6121071eaf8b17a213f54da3"
+}

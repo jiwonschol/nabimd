@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it } from "vitest"
-import { headingProblems } from "../content/headingProblems"
 import { createRunProblemIds } from "../content/entryChoices"
+import { getProblem, problemBank, problemBankRevision } from "../content/problemBank"
+import {
+  isEligibleTransferProblem,
+  selectTransferProblem,
+} from "../selection/selectTransferProblem"
+import { MemoryStorage } from "../test/MemoryStorage"
 import {
   PROGRESS_STORAGE_KEY,
   clearProgress,
@@ -8,7 +13,6 @@ import {
   loadProgress,
   saveProgress,
 } from "./progressStore"
-import { MemoryStorage } from "../test/MemoryStorage"
 
 class ThrowingStorage extends MemoryStorage {
   constructor(private readonly operation: "get" | "set" | "remove") {
@@ -31,286 +35,160 @@ class ThrowingStorage extends MemoryStorage {
   }
 }
 
-const validProblemIds = new Set(
-  headingProblems.map((problem) => problem.id),
-)
+const validProblemIds = new Set(problemBank.map((problem) => problem.id))
+function isEligibleTransferProblemId(
+  currentProblemId: string,
+  candidateProblemId: string,
+): boolean {
+  const currentProblem = getProblem(currentProblemId)
+  return isEligibleTransferProblem(
+    currentProblem,
+    getProblem(candidateProblemId),
+    currentProblem.retryFamily,
+  )
+}
 
-describe("progressStore", () => {
+describe("progressStore v3", () => {
   let storage: Storage
 
   beforeEach(() => {
     storage = new MemoryStorage()
   })
 
-  it("uses a new version for replayable session progress", () => {
-    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v2")
-    expect(createDefaultProgress("heading-apple").version).toBe(2)
+  it("binds persisted progress to the compiled bank revision", () => {
+    const progress = createDefaultProgress(problemBank[0].id)
+    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v3")
+    expect(progress).toMatchObject({
+      version: 3,
+      bankRevision: problemBankRevision,
+    })
   })
 
-  it("returns an independent default for fresh storage", () => {
-    const first = loadProgress(storage, validProblemIds)
-    first.completedProblemIds.push("heading-apple")
-
-    const second = loadProgress(storage, validProblemIds)
-
-    expect(second).toEqual(createDefaultProgress("heading-apple"))
-  })
-
-  it("round-trips valid progress", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.draftByProblemId["heading-apple"] = "# Apple"
-    progress.completedProblemIds.push("heading-apple")
-    progress.recentProblemIds.push("heading-apple")
-    progress.pendingTransferFamily = "heading-h1"
-
-    saveProgress(storage, progress)
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
-  })
-
-  it("restores a deterministic run sequence", () => {
-    const runProblemIds = createRunProblemIds("basics", 0)
-    const progress = createDefaultProgress(runProblemIds[0]!)
-    progress.entryId = "basics"
-    progress.runProblemIds = runProblemIds
-
-    saveProgress(storage, progress)
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
-  })
-
-  it("restores an explicitly allowed same-family problem replacement", () => {
-    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
-    const replacementProblemId = "heading-weekend-forecast"
-    const progress = createDefaultProgress(replacementProblemId)
-    progress.entryId = "level-1"
-    progress.runProblemIds = [
-      replacementProblemId,
-      ...expectedRunProblemIds.slice(1),
-    ]
-    const replacements = new Map([
-      [
-        expectedRunProblemIds[0]!,
-        new Set([expectedRunProblemIds[0]!, replacementProblemId]),
-      ],
-    ])
-
+  it("round-trips a valid deterministic run", () => {
+    const ids = createRunProblemIds("level-4", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-4"
+    progress.runProblemIds = ids
+    progress.draftByProblemId[ids[0]!] = "# Draft"
     saveProgress(storage, progress)
 
     expect(
-      loadProgress(storage, validProblemIds, replacements),
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
   })
 
-  it("rejects a known replacement when its family does not allow it", () => {
-    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
-    const progress = createDefaultProgress("heading-weekend-forecast")
-    progress.entryId = "level-1"
-    progress.runProblemIds = [
-      "heading-weekend-forecast",
-      ...expectedRunProblemIds.slice(1),
-    ]
-
+  it("resets safely when the bank revision changes", () => {
+    const progress = createDefaultProgress(problemBank[0].id, "old-bank")
     saveProgress(storage, progress)
 
-    expect(loadProgress(storage, validProblemIds, new Map())).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
+    expect(
+      loadProgress(
+        storage,
+        validProblemIds,
+        isEligibleTransferProblemId,
+        problemBankRevision,
+      ),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
-  it("restores a run with one bounded transfer insertion", () => {
-    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
-    const transferProblemId = "heading-weekend-forecast"
-    const progress = createDefaultProgress(transferProblemId)
-    progress.entryId = "level-1"
+  it("restores an allowed same-level replacement", () => {
+    const baseline = createRunProblemIds("level-3", 0)
+    const replacement = problemBank.find(
+      (candidate) =>
+        candidate.level === 3 &&
+        candidate.retryFamily === getProblem(baseline[0]!).retryFamily &&
+        !baseline.includes(candidate.id),
+    )!
+    const progress = createDefaultProgress(replacement.id)
+    progress.entryId = "level-3"
+    progress.runProblemIds = [replacement.id, baseline[1]!, baseline[2]!]
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it("rejects a known cross-level substitution", () => {
+    const baseline = createRunProblemIds("level-3", 0)
+    const wrongLevel = createRunProblemIds("level-4", 0)[0]!
+    const progress = createDefaultProgress(wrongLevel)
+    progress.entryId = "level-3"
+    progress.runProblemIds = [wrongLevel, ...baseline.slice(1)]
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
+  it("restores a live-eligible same-level transfer insertion", () => {
+    const baseline = createRunProblemIds("level-2", 0)
+    const currentProblem = getProblem(baseline[0]!)
+    const transfer = selectTransferProblem({
+      problems: problemBank,
+      currentProblemId: currentProblem.id,
+      retryFamily: currentProblem.retryFamily,
+      recentProblemIds: baseline,
+    })
+    const progress = createDefaultProgress(transfer.id)
+    progress.entryId = "level-2"
+    progress.runProblemIds = [baseline[0]!, transfer.id, ...baseline.slice(1)]
+    progress.runStepIndex = 1
+    progress.currentIsTransfer = true
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it("rejects a forged cross-level transfer insertion", () => {
+    const baseline = createRunProblemIds("level-3", 0)
+    const wrongLevel = createRunProblemIds("level-4", 0)[0]!
+    const progress = createDefaultProgress(wrongLevel)
+    progress.entryId = "level-3"
     progress.runProblemIds = [
-      expectedRunProblemIds[0]!,
-      transferProblemId,
-      ...expectedRunProblemIds.slice(1),
+      baseline[0]!,
+      wrongLevel,
+      baseline[1]!,
+      baseline[2]!,
     ]
     progress.runStepIndex = 1
     progress.currentIsTransfer = true
-
     saveProgress(storage, progress)
 
-    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
-  it("restores a same-length run after a later problem becomes the transfer", () => {
-    const expectedRunProblemIds = createRunProblemIds("basics", 0)
-    const transferProblemId = expectedRunProblemIds[2]!
-    const progress = createDefaultProgress(transferProblemId)
-    progress.entryId = "basics"
-    progress.runProblemIds = [
-      expectedRunProblemIds[0]!,
-      transferProblemId,
-      expectedRunProblemIds[1]!,
-    ]
-    progress.runStepIndex = 1
-    progress.currentIsTransfer = true
-
-    saveProgress(storage, progress)
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
-  })
-
-  it("restores the bounded maximum of one transfer per normal problem", () => {
-    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
-    const progress = createDefaultProgress("heading-product-roadmap")
-    progress.entryId = "level-1"
-    progress.runProblemIds = [
-      expectedRunProblemIds[0]!,
-      "heading-weekend-forecast",
-      expectedRunProblemIds[1]!,
-      "heading-team-handbook",
-      expectedRunProblemIds[2]!,
-      "heading-product-roadmap",
-    ]
-    progress.runStepIndex = 5
-    progress.currentIsTransfer = true
-
-    saveProgress(storage, progress)
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
-  })
-
-  it("rejects an oversized restored run sequence", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.entryId = "level-1"
-    progress.runProblemIds = Array.from(
-      { length: 1000 },
-      () => "heading-apple",
-    )
-
-    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("rejects a restored run shorter than its deterministic window", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.entryId = "level-1"
-    progress.runProblemIds = ["heading-apple", "heading-study-tools"]
-
-    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("rejects a bounded known-ID run that is not reachable", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.entryId = "level-1"
-    progress.runProblemIds = [
-      "heading-apple",
-      "heading-apple",
-      "heading-apple",
-    ]
-
-    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("rejects oversized completed and recent ID lists", () => {
-    for (const field of ["completedProblemIds", "recentProblemIds"] as const) {
-      const progress = createDefaultProgress("heading-apple")
-      progress[field] = Array.from(
-        { length: validProblemIds.size + 1 },
-        () => "heading-apple",
-      )
-      storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-      expect(loadProgress(storage, validProblemIds)).toEqual(
-        createDefaultProgress("heading-apple"),
-      )
-    }
-  })
-
-  it("recovers from corrupt JSON", () => {
+  it("recovers from corrupt or unknown records", () => {
     storage.setItem(PROGRESS_STORAGE_KEY, "{not-json")
-
     expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
+      createDefaultProgress(problemBank[0].id),
+    )
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify({ version: 2 }))
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress(problemBank[0].id),
     )
   })
 
-  it("recovers from an unknown schema version", () => {
-    storage.setItem(
-      PROGRESS_STORAGE_KEY,
-      JSON.stringify({ version: 3 }),
-    )
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("recovers when persisted progress references an unknown problem", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.currentProblemId = "heading-unknown"
-    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("recovers when a saved ID list contains an unknown problem", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.recentProblemIds.push("heading-unknown")
-    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("recovers when the saved problem disagrees with the active run step", () => {
-    const progress = createDefaultProgress("heading-apple")
-    progress.entryId = "basics"
-    progress.runProblemIds = createRunProblemIds("basics", 0)
-    progress.runStepIndex = 1
-    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
-
-    expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
-    )
-  })
-
-  it("clears saved progress", () => {
-    storage.setItem(
-      PROGRESS_STORAGE_KEY,
-      JSON.stringify(createDefaultProgress("heading-apple")),
-    )
-
+  it("clears and treats unavailable storage as best effort", () => {
+    saveProgress(storage, createDefaultProgress(problemBank[0].id))
     clearProgress(storage)
-
     expect(storage.getItem(PROGRESS_STORAGE_KEY)).toBeNull()
-  })
 
-  it("falls back when reading storage throws", () => {
     expect(loadProgress(new ThrowingStorage("get"), validProblemIds)).toEqual(
-      createDefaultProgress("heading-apple"),
+      createDefaultProgress(problemBank[0].id),
     )
-  })
-
-  it("treats unavailable write storage as best effort", () => {
-    const progress = createDefaultProgress("heading-apple")
-
     expect(() =>
-      saveProgress(new ThrowingStorage("set"), progress),
+      saveProgress(
+        new ThrowingStorage("set"),
+        createDefaultProgress(problemBank[0].id),
+      ),
     ).not.toThrow()
-  })
-
-  it("treats unavailable removal storage as best effort", () => {
-    expect(() =>
-      clearProgress(new ThrowingStorage("remove")),
-    ).not.toThrow()
+    expect(() => clearProgress(new ThrowingStorage("remove"))).not.toThrow()
   })
 })

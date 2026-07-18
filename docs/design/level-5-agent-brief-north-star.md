@@ -105,31 +105,25 @@ anatomy and the fact that the plan follows earlier failed attempts.
 
 Level 5 does not require runtime AI grading. A curated problem can declare:
 
-- required heading levels and section identities;
+- required heading levels and structural section positions;
 - required ordering relationships;
 - minimum and maximum section counts;
-- protected constraints and stop conditions;
 - required code fences or command blocks;
 - required list structure for stages and prohibitions;
 - required verification categories;
-- forbidden contradictions or test-bypass language; and
 - a required final-report template.
 
 The Markdown AST can determine whether those structures exist. Curated text
-checks can protect critical constraints. Editorial checks can then distinguish
-Matched from Perfect without pretending there is one exact sentence for every
-requirement.
+checks do not participate in learner grading: title wording, case, spelling,
+punctuation, and semantic truth never affect the verdict. Build-time editorial
+inspection confirms that each Goal demonstrates a credible work order before it
+is published.
 
 ### Matched
 
-The work order contains the required structure, preserves every critical
-constraint, and gives the agent a viable execution and verification path.
-
-### Perfect
-
-The same work order is also easy for a human to scan: authority boundaries are
-near the actions they constrain, repeated rules are intentional, headings are
-descriptive, and the final report maps cleanly to the requested stages.
+The work order contains the requested Markdown anatomy. This is the only pass
+state. Optional Review may point out additional Markdown-structure refinements,
+but it never creates a second grade or revokes Matched.
 
 ## UI implications for the long term
 
@@ -173,7 +167,9 @@ project.
 ## Current boundary
 
 For Build Week, the Overwater document is evidence of the product's destination
-and a source for future curriculum design. The deployed implementation remains
-the existing H1 vertical slice; the only planned implementation change is the
-separately reviewed first-exercise redesign. No Overwater content, Level 5
-grader, agent integration, or runtime AI call is added now.
+and a source for curriculum design. Its project-specific content is not
+republished. Issue #9 implements the five-level structural curriculum described
+in the definitive
+[`five-level problem-bank design`](../superpowers/specs/2026-07-19-five-level-problem-bank-design.md),
+including deterministic Level 5 predicates and inspected fictional exercises.
+No agent integration or runtime AI call is added.

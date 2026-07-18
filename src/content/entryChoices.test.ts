@@ -1,56 +1,59 @@
 import { describe, expect, it } from "vitest"
-import { headingProblems } from "./headingProblems"
+import { getProblemsForLevel, problemBank } from "./problemBank"
 import {
   createRunProblemIds,
   createRunProblemIdsForBank,
+  entryChoices,
+  getEntryChoice,
+  isEntryId,
 } from "./entryChoices"
 
-describe("createRunProblemIds", () => {
-  it("keeps every normal run to three exercises", () => {
-    for (const entryId of ["level-1", "basics", "challenge"] as const) {
-      expect(createRunProblemIds(entryId, 0)).toHaveLength(3)
-    }
-  })
-
-  it("rotates by non-overlapping three-problem windows", () => {
-    expect(createRunProblemIds("level-1", 0)).toEqual([
-      "heading-apple",
-      "heading-rainy-day",
-      "heading-study-tools",
+describe("five-level entry choices", () => {
+  it("exposes the definitive ladder and only auto-opens Level 1 Help", () => {
+    expect(entryChoices.map((entry) => entry.id)).toEqual([
+      "level-1",
+      "level-2",
+      "level-3",
+      "level-4",
+      "level-5",
     ])
-    expect(createRunProblemIds("level-1", 1)).toEqual([
-      "heading-weekend-forecast",
-      "heading-team-handbook",
-      "heading-product-roadmap",
+    expect(entryChoices.map((entry) => entry.autoOpenHelp)).toEqual([
+      true,
+      false,
+      false,
+      false,
+      false,
     ])
   })
 
-  it("exposes the full accepted bank within six Level 1 runs", () => {
-    const seen = new Set(
-      Array.from({ length: 6 }, (_, runNumber) =>
-        createRunProblemIds("level-1", runNumber),
-      ).flat(),
+  it.each(entryChoices)("keeps $id runs inside its exact level", (entry) => {
+    const ids = createRunProblemIds(entry.id, 0)
+    const allowed = new Set(
+      getProblemsForLevel(entry.level).map((problem) => problem.id),
     )
-
-    expect(seen).toEqual(new Set(headingProblems.map((problem) => problem.id)))
-  })
-
-  it("wraps deterministically without producing unknown IDs", () => {
-    const ids = createRunProblemIds("challenge", 17)
     expect(ids).toHaveLength(3)
-    expect(
-      ids.every((id) => headingProblems.some((problem) => problem.id === id)),
-    ).toBe(true)
-    expect(createRunProblemIds("challenge", 17)).toEqual(ids)
+    expect(ids.every((id) => allowed.has(id))).toBe(true)
   })
 
-  it("rejects an entry whose configured starting problem is absent", () => {
-    const bankWithoutApple = headingProblems.filter(
-      (problem) => problem.id !== "heading-apple",
+  it("rotates deterministically within a level", () => {
+    expect(createRunProblemIds("level-1", 0)).toEqual(
+      createRunProblemIds("level-1", 0),
     )
+    expect(createRunProblemIds("level-1", 0)).not.toEqual(
+      createRunProblemIds("level-1", 1),
+    )
+  })
 
+  it("rejects an empty level without crossing into another level", () => {
+    const withoutLevelFive = problemBank.filter((problem) => problem.level !== 5)
     expect(() =>
-      createRunProblemIdsForBank("level-1", 0, bankWithoutApple),
-    ).toThrow("Unknown starting problem for level-1: heading-apple")
+      createRunProblemIdsForBank("level-5", 0, withoutLevelFive),
+    ).toThrow("No standard problems available for level-5")
+  })
+
+  it("validates and resolves entry IDs", () => {
+    expect(isEntryId("level-5")).toBe(true)
+    expect(isEntryId("challenge")).toBe(false)
+    expect(getEntryChoice("level-3").level).toBe(3)
   })
 })

@@ -1,7 +1,7 @@
-import type { Problem } from "../content/types"
+import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { createDefaultProgress } from "../progress/progressStore"
-import type { ProgressV2 } from "../progress/types"
+import type { ProgressV3 } from "../progress/types"
 import {
   getEntryChoice,
   type EntryId,
@@ -17,14 +17,14 @@ export type LearningSession = {
   currentProblemId: string
   draft: string
   evaluation: Evaluation | null
-  teachingMode: Problem["teachingMode"]
-  retryFamily: Problem["retryFamily"]
+  teachingMode: GradableProblem["teachingMode"]
+  retryFamily: GradableProblem["retryFamily"]
   hadFailure: boolean
   needsTransfer: boolean
   currentIsTransfer: boolean
   hintLevel: 0 | 1 | 2 | 3
   coach: "closed" | "hint"
-  progress: ProgressV2
+  progress: ProgressV3
 }
 
 export type SessionEvent =
@@ -33,18 +33,18 @@ export type SessionEvent =
       entryId: EntryId
       runNumber: number
       runProblemIds: string[]
-      problem: Problem
+      problem: GradableProblem
     }
-  | { type: "returned-to-greeting"; problem: Problem }
+  | { type: "returned-to-greeting"; problem: GradableProblem }
   | { type: "edited"; value: string }
   | {
       type: "checked"
       evaluation: Evaluation
-      retryFamily: Problem["retryFamily"]
+      retryFamily: GradableProblem["retryFamily"]
     }
   | { type: "hint-requested" }
   | { type: "coach-closed" }
-  | { type: "problem-replaced"; problem: Problem }
+  | { type: "problem-replaced"; problem: GradableProblem }
   | {
       type: "next"
       nextProblemId?: string
@@ -52,8 +52,8 @@ export type SessionEvent =
     }
 
 export function createLearningSession(
-  progress: ProgressV2,
-  problem: Problem,
+  progress: ProgressV3,
+  problem: GradableProblem,
 ): LearningSession {
   const isComplete = progress.runProblemIds.length
     ? progress.runStepIndex >= progress.runProblemIds.length

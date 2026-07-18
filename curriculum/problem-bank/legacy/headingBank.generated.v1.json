@@ -1,0 +1,18 @@
+[
+  { "id": "heading-apple", "text": "Apple", "teachingMode": "introduce" },
+  { "id": "heading-rainy-day", "text": "Rainy day", "teachingMode": "recall" },
+  { "id": "heading-study-tools", "text": "Study tools", "teachingMode": "recall" },
+  { "id": "heading-weekend-forecast", "text": "Weekend forecast", "teachingMode": "recall" },
+  { "id": "heading-team-handbook", "text": "Team handbook", "teachingMode": "recall" },
+  { "id": "heading-product-roadmap", "text": "Product roadmap", "teachingMode": "recall" },
+  { "id": "heading-meeting-notes", "text": "Meeting notes", "teachingMode": "recall" },
+  { "id": "heading-field-guide", "text": "Field guide", "teachingMode": "recall" },
+  { "id": "heading-travel-checklist", "text": "Travel checklist", "teachingMode": "recall" },
+  { "id": "heading-reading-list", "text": "Reading list", "teachingMode": "recall" },
+  { "id": "heading-community-garden", "text": "Community garden", "teachingMode": "recall" },
+  { "id": "heading-release-notes", "text": "Release notes", "teachingMode": "recall" },
+  { "id": "heading-workshop-agenda", "text": "Workshop agenda", "teachingMode": "recall" },
+  { "id": "heading-research-summary", "text": "Research summary", "teachingMode": "recall" },
+  { "id": "heading-customer-stories", "text": "Customer stories", "teachingMode": "recall" },
+  { "id": "heading-design-principles", "text": "Design principles", "teachingMode": "recall" }
+]
