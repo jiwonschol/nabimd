@@ -103,7 +103,10 @@ export function validateRawArtifact(raw) {
         errors.push(`Family ${family.id} has blank default ${field}`)
       }
     }
-    for (const [candidateIndex, candidate] of (family.candidates ?? []).entries()) {
+    const familyCandidates = Array.isArray(family.candidates)
+      ? family.candidates
+      : []
+    for (const [candidateIndex, candidate] of familyCandidates.entries()) {
       if (!isRecord(candidate)) {
         errors.push(
           `Family ${family.id} candidate at index ${candidateIndex} must be an object`,

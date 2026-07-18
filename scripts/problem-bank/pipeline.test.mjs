@@ -152,6 +152,20 @@ describe("problem-bank pipeline", () => {
     )
   })
 
+  it("returns errors for non-array candidate collections instead of throwing", () => {
+    const invalid = structuredClone(raw)
+    invalid.families[0].candidates = {}
+    invalid.families[1].candidates = "bad"
+
+    expect(() => validateRawArtifact(invalid)).not.toThrow()
+    expect(validateRawArtifact(invalid)).toEqual(
+      expect.arrayContaining([
+        "Family headings must contain exactly 16 candidates",
+        "Family emphasis must contain exactly 16 candidates",
+      ]),
+    )
+  })
+
   it("rejects candidate IDs that are not kebab-case", () => {
     const invalid = structuredClone(raw)
     invalid.families[0].candidates[0].id = "Heading_Apple"

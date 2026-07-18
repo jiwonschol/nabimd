@@ -610,7 +610,7 @@ reran their checks before their final records were accepted.
 ### Verified result before remote review
 
 - `npm run check`: passed.
-- Vitest: 15 files, 660 tests passed after local and GitHub CodeRabbit review
+- Vitest: 15 files, 661 tests passed after local and GitHub CodeRabbit review
   corrections.
 - Publication gate: passed with two distinct review artifacts and digest-bound
   editorial acceptance.
@@ -631,11 +631,14 @@ IDs, and labels the former 24 + 6 + 3 curriculum outline as future scope rather
 than the Build Week publish set. Four new regression tests cover the executable
 changes; the full gate remains green.
 
-GitHub CodeRabbit then raised five additional publication-boundary issues. The
+GitHub CodeRabbit then raised six additional publication-boundary issues. The
 generation prompt now defines the exact JSON contract and family-default
 inheritance, optional candidate overrides are validated before normalization,
 runtime teaching modes are parsed instead of trusted through a TypeScript cast,
 and public gate language is limited to what static artifacts can prove:
 distinct declared reviewer and run IDs. The spec's old 24 + 6 + 3 outline had
-already been corrected to future scope. Two more regressions cover the new
-runtime checks; the final local gate passes 660 tests.
+already been corrected to future scope. Its incremental rereview also found
+that a truthy non-array candidate collection could reach `.entries()` after
+recording an error; validation now falls back to an empty array and returns the
+error instead of throwing. Three more regressions cover the new runtime checks;
+the final local gate passes 661 tests.
