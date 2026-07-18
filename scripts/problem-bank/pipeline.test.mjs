@@ -3,6 +3,7 @@ import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 import {
   canonicalJson,
+  createFixtureReviewDigest,
   createInitialEditorialQueue,
   evaluateWorkflow,
   normalizeArtifact,
@@ -88,6 +89,31 @@ describe("problem-bank pipeline", () => {
   it("uses deterministic canonical digests", () => {
     expect(canonicalJson({ b: 2, a: 1 })).toBe('{"a":1,"b":2}')
     expect(sha256({ a: 1, b: 2 })).toBe(sha256({ b: 2, a: 1 }))
+  })
+
+  it("binds fixture review approval to the complete runtime problem", () => {
+    const base = {
+      candidateDigest: "candidate-digest",
+      problem: {
+        id: "heading-apple",
+        prompt: "Rebuild the heading below in Markdown.",
+        hints: ["Use one hash."],
+      },
+      results: [{ fixture: { kind: "canonical", source: "# Apple" }, actual: { status: "perfect" } }],
+    }
+
+    expect(createFixtureReviewDigest(base)).not.toBe(
+      createFixtureReviewDigest({
+        ...base,
+        problem: { ...base.problem, prompt: "A changed learner prompt." },
+      }),
+    )
+    expect(createFixtureReviewDigest(base)).not.toBe(
+      createFixtureReviewDigest({
+        ...base,
+        results: [{ fixture: { kind: "canonical", source: "# Changed" }, actual: { status: "perfect" } }],
+      }),
+    )
   })
 
   it("rejects duplicate candidate IDs and family count drift", () => {

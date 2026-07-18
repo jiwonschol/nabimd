@@ -43,6 +43,14 @@ export function sha256(value) {
   ).digest("hex")
 }
 
+export function createFixtureReviewDigest({
+  candidateDigest,
+  problem,
+  results,
+}) {
+  return sha256({ candidateDigest, problem, results })
+}
+
 export function validateRawArtifact(raw) {
   const errors = []
   const families = Array.isArray(raw?.families) ? raw.families : []

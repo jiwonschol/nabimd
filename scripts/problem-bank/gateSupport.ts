@@ -5,7 +5,12 @@ import { headingProblems } from "../../src/content/headingProblems"
 import { headingProblemFixtures } from "../../src/content/problemFixtures"
 import { validateProblemBank } from "../../src/content/validateProblemBank"
 import { evaluateProblem } from "../../src/engine/evaluateProblem"
-import { canonicalJson, evaluateWorkflow, normalizeArtifact, sha256 } from "./pipeline.mjs"
+import {
+  canonicalJson,
+  createFixtureReviewDigest,
+  evaluateWorkflow,
+  normalizeArtifact,
+} from "./pipeline.mjs"
 
 type JsonRecord = Record<string, unknown>
 
@@ -34,6 +39,9 @@ export async function buildGateInput() {
   const fixtureErrors = validateProblemBank(headingProblems, headingProblemFixtures)
 
   for (const problem of headingProblems) {
+    const candidate = normalized.candidates.find(
+      (item: JsonRecord) => item.id === problem.id,
+    )
     const results = headingProblemFixtures
       .filter((fixture) => fixture.problemId === problem.id)
       .sort((left, right) => left.kind.localeCompare(right.kind))
@@ -58,7 +66,11 @@ export async function buildGateInput() {
         }
         return { fixture, actual }
       })
-    fixtureDigests[problem.id] = sha256(results)
+    fixtureDigests[problem.id] = createFixtureReviewDigest({
+      candidateDigest: candidate?.candidateDigest,
+      problem,
+      results,
+    })
     fixtureCounts[problem.id] = results.length
   }
 
@@ -96,12 +108,15 @@ export async function buildGateInput() {
     }
   })
 
-  if (canonicalJson(committedReviewManifest) !== canonicalJson(reviewManifest)) {
+  const reviewManifestIsCurrent =
+    canonicalJson(committedReviewManifest) === canonicalJson(reviewManifest)
+  if (!reviewManifestIsCurrent) {
     driftErrors.push("Committed review manifest is stale")
   }
 
   return {
     errors: [...driftErrors, ...fixtureErrors, ...workflowErrors],
     reviewManifest,
+    reviewManifestIsCurrent,
   }
 }
