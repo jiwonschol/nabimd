@@ -4,7 +4,8 @@
 **Source:** A real 210-line Overwater Codex work order supplied by Jiwon during
 the first Nabi Markdown MVP review  
 **Use policy:** Learn from its structure; do not republish project-specific
-content verbatim as a learner exercise.
+content verbatim as a learner exercise. The anonymized public reference is
+[`docs/examples/level-5-agent-work-order-reference.md`](../examples/level-5-agent-work-order-reference.md).
 
 ## The Level 5 outcome
 
@@ -145,6 +146,12 @@ Those needs validate the current decision to size the layout from a moderate
 document rather than a one-line heading. They do not belong in the current H1
 implementation milestone.
 
+The horizontal reading measure should remain deliberately constrained. Work
+orders become harder to audit when long lines stretch across an IDE-sized
+canvas; their growth is primarily vertical. The Level 1 workspace therefore
+looks spacious now so the same document geometry can hold a much taller Level
+5 Goal, source, and preview later.
+
 ## Keeping “current best practice” honest
 
 Agent conventions change. A Level 5 problem must carry a curriculum version,
@@ -155,6 +162,13 @@ interfaces that become obsolete.
 
 The app should never label one vendor-specific template as a timeless universal
 standard.
+
+That change is also part of Nabi's long-term value. Repeated practice should
+make the anatomy of an agent instruction document feel automatic, while dated
+curriculum versions give learners a reason to return when agent conventions
+change. Maintaining and reviewing those advanced sets may support future paid
+content, but pricing and monetization remain explicitly outside the Build Week
+project.
 
 ## Current boundary
 

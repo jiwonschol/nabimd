@@ -320,8 +320,7 @@ is recorded in English, edited for clarity rather than copied verbatim, and
 written as evidence that an outside reviewer or Build Week judge can follow.
 
 The visual decisions remain design evidence only; application code has not yet
-been changed to match them. The consolidated written redesign is awaiting
-Jiwon's final spec review before implementation.
+been changed to match them at this point in the log.
 
 ### Level 5 north star supplied by Jiwon
 
@@ -342,6 +341,46 @@ agent and auditable by another human. The detailed north-star analysis lives in
 This addition does not expand the current implementation milestone. It explains
 why the H1 redesign is being sized from a moderate document rather than the
 shortest possible heading exercise.
+
+### C6 written approval and implementation boundary
+
+Jiwon approved the C6 written specification and added the final long-term
+constraint: document lines remain relatively narrow, but the workspace must be
+able to grow much farther vertically. By Level 5, repeated Markdown practice
+should have taught the learner the structure of a contemporary AI work order
+almost incidentally. Because those conventions change, reviewed curriculum
+versions can create long-term continuity and may later support paid advanced
+content; monetization remains outside Build Week.
+
+Codex translated the approval into a test-first implementation and PR plan. It
+also turned the supplied real work order into an anonymized fictional reference
+that preserves mission, authority order, staged autonomy, constraints, stop
+conditions, verification, and final-report structure without publishing the
+source project's paths or operational details.
+
+The first redesign implementation makes one additional learning inference:
+opening Help during a recall problem means recall was not independently proven.
+A later pass therefore creates the same different-content transfer obligation
+as a repaired failure. The visible rule in the first introduce problem does not.
+This rule will be treated as implemented only after reducer and browser tests
+prove it.
+
+The existing H1 pull request remains the feature delivery unit. Commits separate
+the approved record, behavior contract, C6 interface, and browser proof. Remote
+review occurs at a behavior checkpoint and again on the complete release
+candidate; deployment waits for current-head review and CI rather than relying
+on approvals of superseded commits.
+
+Artifacts at approval time:
+
+- Approved redesign:
+  `docs/superpowers/specs/2026-07-18-first-exercise-redesign-design.md`
+- Test-first execution plan:
+  `docs/superpowers/plans/2026-07-18-first-exercise-redesign.md`
+- Level 5 analysis: `docs/design/level-5-agent-brief-north-star.md`
+- Anonymized public work-order reference:
+  `docs/examples/level-5-agent-work-order-reference.md`
+- Runtime status: approved but not yet implemented
 
 ## Next entry
 

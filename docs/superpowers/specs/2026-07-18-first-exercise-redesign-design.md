@@ -1,7 +1,7 @@
 # Nabi Markdown First-Exercise Redesign
 
 **Date:** 2026-07-18  
-**Status:** Pending written-spec review  
+**Status:** Approved by Jiwon on 2026-07-18
 **Scope:** Replace the first shipped H1 exercise content and presentation while
 preserving the verified deterministic learning loop.
 
@@ -111,6 +111,10 @@ syntaxTokens: readonly string[]
   hash, spacing clue, answer text, or other punctuation from the solution.
 - Opening Help reveals downward within the fixed frame. The first reveal is
   concise syntax, not prose and never an inserted answer.
+- Opening Help during a `recall` problem records that independent recall was
+  not yet demonstrated. A later Matched or Perfect result therefore routes to
+  a different-content problem in the same syntax family. The initially visible
+  rule in an `introduce` problem does not create this transfer obligation.
 - Existing progressive coaching remains available after Fail. Further
   user-requested hints can reveal the spacing pattern and then an unrelated
   example, but they stay in the same Help frame and never edit source.
@@ -120,6 +124,15 @@ syntaxTokens: readonly string[]
 
 This preserves the earlier learning decision: first exposure teaches, later
 exposure tests recall, failure unlocks coaching, and the app never autocorrects.
+
+The resulting state rule is intentionally compact:
+
+```text
+introduce + visible rule -> no transfer debt
+recall + Help opened -> needs transfer
+Fail -> needs transfer
+Matched/Perfect + needs transfer -> different-content same-skill problem
+```
 
 ## Shared rendered-document surface
 
@@ -144,6 +157,11 @@ baselines, frame tops, and frame bottoms must align exactly.
 
 The Level 3 document used to validate this geometry is a visual and browser-test
 fixture, not a new learner-facing problem in this milestone.
+
+Level 5 preserves this constrained horizontal reading measure while allowing
+the document surfaces to grow much farther vertically. Nabi is teaching the
+shape of a readable work order, not rewarding lines that stretch across a wide
+IDE canvas.
 
 ## Markdown source editor
 
@@ -254,6 +272,13 @@ Browser paths:
    still-valid actionable finding, and repeat verification.
 6. Push the final review fixes, wait for GitHub CI and automated review, deploy
    production, and verify the public alias.
+
+The open H1 MVP pull request remains the delivery unit because this redesign
+completes that same vertical slice. Commit history separates documentation,
+learning behavior, UI, and browser proof. Remote review runs at two stable
+gates: after the content/session behavior checkpoint and after the complete
+release candidate. Deployment waits for a fresh latest-head review rather than
+relying on approvals of superseded commits.
 
 ## Non-goals for this milestone
 
