@@ -17,7 +17,7 @@ official deadline.
 - [x] Create a public repository with a relevant license
 - [x] Approve the written application design and learning-state contract
 - [x] Complete and deploy the heading vertical MVP
-- [ ] Complete a working, non-trivial project built with Codex and GPT-5.6
+- [x] Complete a working, non-trivial project built with Codex and GPT-5.6
 - [x] Publish a free, unrestricted test URL
 - [ ] Keep the test URL available through judging and winner verification
 
@@ -27,7 +27,10 @@ official deadline.
 - [x] Build the majority of core functionality in that thread
 - [ ] Run `/feedback` in that thread after core implementation
 - [ ] Copy the generated Session ID into the Devpost submission form
-- [ ] Explain significant secondary Codex threads in the README if any
+- [x] Explain significant secondary Codex threads in the README if any
+
+No significant secondary Codex thread was used for the core build. The README
+states that the majority of the project was completed in one primary task.
 
 The Session ID is submitted through Devpost. It does not replace the public
 commit history, tests, build log, README explanation, or working demo.

@@ -9,7 +9,7 @@ not recognition: the learner sees a rendered target, writes the source, checks
 it explicitly, and proves the same skill with different content after a
 mistake.
 
-The current release candidate teaches H1 document titles. It is deliberately
+The current deployed slice teaches H1 document titles. It is deliberately
 small enough to prove the complete learning loop before the problem bank is
 expanded.
 
@@ -70,7 +70,7 @@ This milestone includes:
 - one safe rendered-document surface for Goal and Live preview;
 - a restrained monochrome CodeMirror source editor with optional,
   non-mutating invisibles; and
-- 83 unit/component tests plus eight Chromium end-to-end paths.
+- 86 unit/component tests plus eight Chromium end-to-end paths.
 
 It does **not** yet claim the full 33-problem curriculum, accounts, cloud
 sync, Korean localization, payments, analytics, or runtime AI.
@@ -181,8 +181,8 @@ source → preview ordering and no horizontal overflow at 390 px.
   hints.
 - Goal and Live preview share one safe renderer, while the source editor can
   reveal spaces and tabs without changing the learner's Markdown.
-- Typechecking, 83 unit/component tests, the production build, and eight
-  Chromium journeys pass from the committed lockfile.
+- Typechecking, 86 unit/component tests, the production build, and eight
+  Chromium journeys pass locally and against the public deployment.
 - The UI stays monochrome and source-focused while preserving a constrained
   reading width and allowing future document exercises to grow vertically.
 

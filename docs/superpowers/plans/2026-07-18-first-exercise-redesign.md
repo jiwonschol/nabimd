@@ -541,7 +541,7 @@ npm run test:e2e
 
 Expected: typecheck, all Vitest files, build, and every Chromium path pass.
 
-- [ ] **Step 7: Commit and push the release candidate**
+- [x] **Step 7: Commit and push the release candidate**
 
 ```bash
 git add tests playwright.config.ts
@@ -567,7 +567,7 @@ source editor, Level 1/recall Help behavior, and the linked Level 5 public
 reference. Record observed implementation challenges and accepted/rejected
 review feedback without claiming future curriculum as shipped.
 
-- [ ] **Step 2: Commit and push evidence**
+- [x] **Step 2: Commit and push evidence**
 
 ```bash
 git add README.md docs
@@ -575,13 +575,13 @@ git commit -m "docs: record the redesigned learning workspace"
 git push origin agent/bootstrap-nabi-markdown
 ```
 
-- [ ] **Step 3: Request fresh automated reviews on the latest head**
+- [x] **Step 3: Request fresh automated reviews on the latest head**
 
 Post the repository's standard bare Codex review request and explicitly resume
 or trigger CodeRabbit once the branch is stable. Do not spam review commands
 between fix commits.
 
-- [ ] **Step 4: Triage every current thread against current code**
+- [x] **Step 4: Triage every current thread against current code**
 
 For each actionable finding: reproduce or inspect it, fix only if valid, add or
 adjust a test, reply with evidence, and resolve the thread. For stale or invalid
@@ -589,7 +589,7 @@ findings: reply with the concrete reason and resolve only with the user's
 standing authorization for this PR. Ignore the generic docstring-coverage
 warning unless it identifies an actual project rule or defect.
 
-- [ ] **Step 5: Re-run the complete gate after review fixes**
+- [x] **Step 5: Re-run the complete gate after review fixes**
 
 ```bash
 npm run check
@@ -600,14 +600,14 @@ git status --short
 
 Expected: all pass and the worktree is clean after the final review-fix commit.
 
-- [ ] **Step 6: Wait for remote evidence**
+- [x] **Step 6: Wait for remote evidence**
 
 Confirm GitHub Verify succeeds on the final commit, CodeRabbit has reviewed the
 latest head, no actionable unresolved threads remain, and the aggregate review
 state no longer refers only to superseded commits. Report any unavoidable
 platform warning separately.
 
-- [ ] **Step 7: Deploy the exact reviewed commit**
+- [x] **Step 7: Deploy the exact reviewed commit**
 
 ```bash
 npx vercel@56.3.1 --prod --yes
@@ -619,7 +619,7 @@ E2E_BASE_URL=https://nabimd.vercel.app npm run test:e2e
 Expected: production reports Ready, public alias returns HTTP 200 without
 authentication, and every browser journey passes against production.
 
-- [ ] **Step 8: Record final delivery evidence**
+- [x] **Step 8: Record final delivery evidence**
 
 Update the build log with final commit, exact test counts, PR review result,
 deployment URL, and production E2E result. If this changes committed docs,

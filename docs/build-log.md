@@ -451,8 +451,64 @@ commits. PR #1 remains the H1 delivery unit. Fresh Codex and CodeRabbit review
 will be requested only after this complete candidate is pushed; deployment
 waits for current-head CI and review triage.
 
+## 2026-07-18 — Review corrections and final C6 delivery
+
+### What the final review changed
+
+The latest-head Codex review found five valid boundary defects after the first
+C6 release candidate. They were fixed together in application commit
+`410f0e2e98c4ad8fa803bceb53d1087d413cdd8a`:
+
+1. A transferred problem could inherit the previous CodeMirror undo history.
+   The editor is now keyed by problem ID, so the transfer creates a fresh
+   editing history as well as an empty draft.
+2. Merely accessing `window.localStorage` could throw in a restricted browser.
+   Storage resolution is guarded and falls back to a volatile per-session
+   `Storage` implementation without changing the progress schema.
+3. Starting a transfer did not immediately clear its pending family. The
+   reducer now consumes that obligation when the transfer begins.
+4. Reloading an active transfer that happened to target the introductory Apple
+   problem reopened its rule. Active transfers now restore as recall, while a
+   normal first exposure still behaves as an introduction.
+5. A Setext H1 such as `Apple` followed by `=====` could pass even though the
+   lesson explicitly teaches `# Space Title`. The H1 check now also requires an
+   ATX/hash source span for this exercise family.
+
+Regression coverage was added for transfer undo isolation, a throwing
+`localStorage` getter, transfer obligation consumption, introduce-target
+restoration, and Setext rejection. Every current inline review thread was
+answered with evidence and resolved.
+
+### Final evidence
+
+- Application commit: `410f0e2e98c4ad8fa803bceb53d1087d413cdd8a`.
+- TypeScript and production build: passed; Vite transformed 199 modules.
+- Unit/component tests: 10 files, 86 tests passed.
+- Browser tests: all 8 Chromium journeys passed locally and against production.
+- GitHub: Verify completed successfully in 59 seconds; CodeRabbit approved the
+  application commit; aggregate review state was `APPROVED`, merge state was
+  `CLEAN`, and actionable unresolved threads were zero.
+- Production deployment:
+  `dpl_kNkfBiPqSXJjYLEFAB486Fz1ZTGZ` at
+  `https://nabimd-qj4q2mlzc-jiwon112-3536s-projects.vercel.app`, aliased to
+  `https://nabimd.vercel.app`.
+- Public access: the alias returned HTTP 200 without authentication.
+- Runtime: this is a static build; the Vercel runtime-log query returned no
+  function logs, as expected for this architecture.
+
+The earlier production deployment of `410a8fb` was superseded after review.
+The public alias now serves the reviewed `410f0e2` application. This final
+evidence update changes documentation only, so it requires the lightweight
+repository CI gate but not another production deployment.
+
+Two non-blocking platform notices remain recorded rather than hidden: Vite
+warns that the main JavaScript chunk is over 500 kB before gzip, and CodeRabbit
+shows a generic docstring-coverage notice even though this repository defines
+no docstring-coverage rule. Neither altered the verified learner path; bundle
+splitting can be considered after the Build Week curriculum scope is complete.
+
 ## Next entry
 
-Record latest-head PR review and CI, the exact deployed commit, production
-browser evidence, and any review-driven correction before beginning the next
-syntax family or curriculum-refinement milestone.
+Record the primary-task `/feedback` Session ID, the Devpost submission and
+video evidence, and the GPT-5.6 curriculum-refinement artifact before beginning
+the next syntax family.
