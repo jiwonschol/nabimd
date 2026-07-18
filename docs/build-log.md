@@ -323,6 +323,26 @@ The visual decisions remain design evidence only; application code has not yet
 been changed to match them. The consolidated written redesign is awaiting
 Jiwon's final spec review before implementation.
 
+### Level 5 north star supplied by Jiwon
+
+Jiwon supplied a real 210-line Codex implementation work order from another
+project as an example of Nabi's eventual Level 5 outcome. The document does
+more than format a request: it separates mission, prior failure context,
+ordered sources of truth, a comprehension gate, staged execution, absolute
+prohibitions, stop conditions, verification commands, repository conventions,
+and a final-report schema.
+
+The product decision is to use that anatomy as a future curriculum reference,
+not to copy the project-specific work order or ask learners to transcribe it.
+Level 5 should teach a person to turn unstructured project intent into an
+agent-ready Markdown work order that is executable by a contemporary coding
+agent and auditable by another human. The detailed north-star analysis lives in
+`docs/design/level-5-agent-brief-north-star.md`.
+
+This addition does not expand the current implementation milestone. It explains
+why the H1 redesign is being sized from a moderate document rather than the
+shortest possible heading exercise.
+
 ## Next entry
 
 Record the approved first-exercise redesign, its implementation evidence, and

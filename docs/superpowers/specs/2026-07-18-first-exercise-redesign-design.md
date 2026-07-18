@@ -258,6 +258,8 @@ Browser paths:
 ## Non-goals for this milestone
 
 - expanding the full Level 3 problem bank;
+- implementing the future Level 5 agent-ready work-order curriculum described
+  in `docs/design/level-5-agent-brief-north-star.md`;
 - accounts, cloud sync, analytics, payments, or localization;
 - runtime AI generation or grading;
 - syntax-color themes or a general-purpose Markdown IDE; and
