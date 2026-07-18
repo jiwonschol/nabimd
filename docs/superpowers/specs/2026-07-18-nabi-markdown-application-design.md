@@ -1,6 +1,6 @@
 # Nabi Markdown Application Design
 
-**Status:** Verbally approved on 2026-07-18; awaiting written-spec review
+**Status:** Written spec approved by Jiwon on 2026-07-18
 
 **Scope:** OpenAI Build Week application experience, learning model, grading,
 problem bank, architecture, verification, and submission evidence

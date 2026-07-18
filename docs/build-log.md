@@ -137,9 +137,39 @@ and Jiwon's editorial approval.
 - Grading fixtures: not started
 - GPT-5.6 curriculum artifact: not yet produced
 
+## 2026-07-18 — Written application contract
+
+### Approval
+
+Jiwon approved the written application design after the verbal interaction and
+learning-state decisions had been consolidated. The approved contract covers
+the audience, learning modes, Devpost-aligned syntax families, Fail/Matched/
+Perfect progression, different-content transfer after a repaired failure,
+request-only Hint and Review, the Editorial Desk, deterministic grading, local
+progress, and the Build Week evidence boundary.
+
+### Implementation cut
+
+Codex translated the approved design into a task-level implementation plan but
+did not start feature code at this milestone. The first implementation unit is
+three H1 heading problems that exercise the complete system from fixtures to
+deployment. The remaining 30-problem expansion waits until the schema, grader,
+transfer behavior, persistence, Side Coach, and browser path work together.
+
+This cut preserves the agreed 33-problem target without multiplying an
+unproven grading contract across the bank. It also gives the project a working
+demo early enough to spend the remaining time on content and visual quality.
+
+### Verification
+
+- Written spec status: approved by Jiwon on 2026-07-18
+- Implementation plan: `docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md`
+- Runtime feature code: not started
+- Tests and deployment: not started
+- GPT-5.6 curriculum artifact: not yet produced
+
 ## Next entry
 
-The next entry must cover the approved application design and then the first
-vertical slice: what was attempted, which grading case failed first, how Codex
-helped investigate it, what Jiwon chose, and the test or browser evidence that
-closed it.
+The next entry must cover the first vertical slice: what was attempted, which
+grading case failed first, how Codex helped investigate it, what Jiwon chose,
+and the test or browser evidence that closed it.

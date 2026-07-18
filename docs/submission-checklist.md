@@ -15,6 +15,8 @@ official deadline.
 - [x] Select the Education track and create a draft
 - [x] Connect the optional Devpost Hackathons Plugin
 - [x] Create a public repository with a relevant license
+- [x] Approve the written application design and learning-state contract
+- [ ] Complete and deploy the heading vertical MVP
 - [ ] Complete a working, non-trivial project built with Codex and GPT-5.6
 - [ ] Publish a free, unrestricted test URL
 - [ ] Keep the test URL available through judging and winner verification
