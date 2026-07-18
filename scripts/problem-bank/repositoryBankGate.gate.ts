@@ -43,16 +43,20 @@ async function resolveBaselineSha(): Promise<string | null> {
 async function readBaselineTracker() {
   const sha = await resolveBaselineSha()
   if (!sha) return null
-  try {
-    const { stdout } = await run(
-      "git",
-      ["show", `${sha}:curriculum/problem-bank/tracker.generated.json`],
-      { cwd: repositoryRoot, maxBuffer: 10 * 1024 * 1024 },
-    )
-    return JSON.parse(stdout)
-  } catch {
-    return null
-  }
+
+  const trackerPath = "curriculum/problem-bank/tracker.generated.json"
+  const { stdout: trackedPaths } = await run(
+    "git",
+    ["ls-tree", "--name-only", sha, "--", trackerPath],
+    { cwd: repositoryRoot },
+  )
+  if (!trackedPaths.trim()) return null
+
+  const { stdout } = await run("git", ["show", `${sha}:${trackerPath}`], {
+    cwd: repositoryRoot,
+    maxBuffer: 10 * 1024 * 1024,
+  })
+  return JSON.parse(stdout)
 }
 
 const [batches, published, committedTracker, baselineTracker, legacyIndex] =

@@ -15,6 +15,7 @@ describe("Level 3-5 Milestone 1 seed bank", () => {
       expect(problems).toHaveLength(4)
       expect(new Set(problems.map((problem) => problem.retryFamily)).size).toBe(1)
       expect(new Set(problems.map((problem) => problem.contentVariant)).size).toBe(4)
+      expect(problems.every((problem) => problem.schemaVersion === 2)).toBe(true)
       expect(problems.every((problem) => problem.flavor === "standard")).toBe(true)
     }
   })

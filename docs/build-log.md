@@ -1112,3 +1112,20 @@ The local CodeRabbit agent callback could not be reused after its OAuth state
 expired, and the pasted callback secret was neither stored nor committed. That
 did not block review: the installed GitHub app reviewed the public PR, which is
 the intended external-review boundary for this repository.
+
+The first public CI rerun also caught a delivery mistake rather than a product
+failure: `package.json` invoked the production-bundle verifier, but the new
+script itself had been left untracked. All preceding CI stages had passed. A
+small follow-up commit added the exact locally verified file and restarted CI.
+The next incremental review then found one real fail-open edge: a resolved base
+commit whose tracker could not be read had been treated like an intentional
+pre-tracker bootstrap. The gate now uses `git ls-tree` to distinguish an absent
+historical path and lets invalid commits, failed reads, and invalid JSON stop the
+run. Two smaller test assertions now pin schema v2 and an unknown candidate with
+a valid revision.
+
+Two incremental-review reports were rejected with evidence. The ATX expression
+`#{${heading.depth}}` deliberately produces the regular-expression
+quantifier `#{1}` through `#{6}`; all six depth tests pass, so replacing it would
+only churn the sealed engine contract. The July 19 metadata likewise remains
+correct in `Asia/Seoul`, the repository owner's recorded review timezone.

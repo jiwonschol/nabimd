@@ -462,6 +462,7 @@ test("editorial evidence rejects decisions for unknown candidates", async () => 
         ...evidence.editorial.decisions,
         {
           candidateId: "not-in-this-batch",
+          revision: evidence.normalized.candidates[0].revision,
           status: "rejected",
           checks: {},
         },
