@@ -56,6 +56,7 @@ export function EditorialDesk({
           </p>
           <div className="completion__actions">
             <button
+              autoFocus
               className="primary-button"
               onClick={practiceAgain}
               type="button"

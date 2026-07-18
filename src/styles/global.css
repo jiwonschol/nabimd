@@ -482,6 +482,11 @@ button:focus-visible,
   color: var(--paper);
 }
 
+.primary-button__shortcut {
+  margin-left: 0.75rem;
+  opacity: 0.8;
+}
+
 .primary-button:hover {
   background: #2a2a2a;
 }
