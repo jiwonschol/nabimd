@@ -1,23 +1,62 @@
-# Heading MVP Visual Contract
+# CBT Editorial Desk Visual Contract
 
-**Status:** Approved direction consolidated on 2026-07-18
+**Status:** Approved direction consolidated on 2026-07-19
+**Reference:** `docs/superpowers/specs/2026-07-19-cbt-editorial-desk-design.md`
 
-**Reference:** `docs/design/nabi-heading-mvp-concept.png`
+This contract supersedes the first Heading MVP's four-surface Editorial Desk.
+The familiar computer-based-test frame is now the product grammar: one fixed
+top bar, one question sheet, and one answer sheet.
 
-This reference consolidates Jiwon's selected `Editorial Desk` direction B and
-`Side Coach` direction A. It is an implementation reference, not evidence that
-the application already exists.
+## Fixed viewport frame
 
-## Surface and container model
+- The exercise occupies exactly one browser viewport. The document and body do
+  not scroll during practice.
+- One top bar contains the Nabi Markdown home wordmark, Exit, Try another,
+  level/progress, Hint, and Check/Next.
+- Exit, Try another, Hint, and Check/Next have equal control dimensions.
+- Check/Next is the only filled control. The bottom status bar is removed.
+- The wordmark and Exit return directly to the level chooser.
 
-- One full-height editorial work surface, not a marketing page.
-- A thin header rule separates the wordmark and compact progress from the work.
-- The main desk is open whitespace with horizontal rules, not stacked cards.
-- Prompt and rendered target occupy the upper stage.
-- The native Markdown textarea and learner preview occupy the lower stage.
-- The requested Side Coach is a right rail separated by one vertical rule.
-- At `860px` and below, the same coach becomes a bottom sheet.
-- The status/action bar anchors the bottom of the work surface.
+## Question and answer sheets
+
+- The workspace contains exactly two panels: **Goal** on the left and
+  **Your answer** on the right.
+- Desktop panels are a fixed 50:50 split with identical frame dimensions.
+- Long Level 5 work orders scroll inside their panel bodies; panel headers and
+  the top bar remain fixed.
+- Goal is an immutable rendered reference, not a prose instruction or answer
+  state.
+- Hint expands vertically inside Goal. Level 1 may begin open; recall levels
+  begin closed.
+- Your answer offers **Write** and **Preview**. After a failed Check, Preview
+  becomes **Review**. A separate Live Preview column does not exist.
+
+## Beginner-facing language
+
+The answer panel uses learner language instead of implementation vocabulary:
+
+- `Write`, not Source
+- `Preview`, not Render
+- `Review`, not Diff
+- `1 thing to fix`
+- `How it should look`
+- `What you wrote`
+- `How to fix it`
+- `Markdown mark`, not AST node, block type, or token mismatch
+
+Review describes only Markdown syntax or document structure. It never presents
+capitalization, spelling, punctuation, or exact prose as an error.
+
+## Verdict and focus contract
+
+- There are two verdicts only: **Try again** and **Matched**.
+- Each verdict appears briefly in a large, viewport-centered notice. Try again
+  uses pale red; Matched uses pale green.
+- After Matched, Check becomes Next and receives focus. Space or Enter advances.
+- The next problem opens Write and returns focus to the editor.
+- `Cmd+Enter` on macOS and `Ctrl+Enter` elsewhere invokes Check.
+- `Alt+1` opens Write; `Alt+2` opens Preview or Review. `?` toggles Hint when
+  focus is not inside a text-entry surface.
 
 ## Color and typography lock
 
@@ -28,6 +67,8 @@ the application already exists.
 | Canvas | `#f5f5f2` |
 | Muted ink | `#5f5f5a` |
 | Rule | `#d7d7d2` |
+| Positive wash | pale neutral green |
+| Corrective wash | pale neutral red |
 | UI family | system sans until the selected font license is verified |
 | Editorial display | system serif |
 | Source editor | system monospace |
@@ -35,66 +76,26 @@ the application already exists.
 There are no gradients, glass effects, syntax colors, decorative shadows,
 mascots, badges, pills, XP, confetti, or card grids.
 
-## Allowed first-viewport copy
-
-- `Nabi Markdown`
-- `Headings · 1 of 3`
-- `Make a document title`
-- `Turn Project notes into the document's main heading.`
-- `Project notes`
-- `Your Markdown`
-- `Live preview`
-- `Try again: Add one space after the hash symbol.`
-- `Hint`
-- `Check again`
-- `Turn the line into the document's main heading.`
-- `1 / 3`
-
-Matched, Review, transfer, and completion states may replace the status
-and coach copy defined by the approved application spec. They must not introduce
-marketing slogans or unrelated navigation.
-
-## Components and variants
-
-- `EditorialDesk`: editing, try-again, matched, and complete variants.
-- `MarkdownPreview`: target and learner-preview variants.
-- `StatusBar`: one live message, one primary action, and at most one contextual
-  secondary coaching action.
-- `SideCoach`: hint and review variants with the same container anatomy.
-- `ProgressTrack`: three thin segments; active is ink, remaining segments are
-  rules.
-- Close icon: two one-pixel diagonal strokes in a 44px button. No icon library
-  is needed for this single glyph.
-
-## Interaction contract
-
-- Check is explicit; preview changes do not display correctness.
-- Hint appears only after `Try again` and never edits source.
-- Review appears only after Matched and never blocks Next.
-- The primary button changes from `Check` to `Check again` to `Next`.
-- Focus rings use ink at a visible two-pixel minimum.
-- Motion is limited to the coach entrance and remains under 220ms; reduced
-  motion disables it.
-
 ## Responsive continuation
 
-- Desktop reference viewport: `1440 × 1024`.
-- Desktop coach width: approximately 25% of the viewport, with the desk retaining
-  enough width for a 70-character source line.
-- At `860px`, stack the target and editor without horizontal scrolling.
-- At `390 × 844`, the bottom sheet uses a maximum height and keeps the current
-  editor/status reachable.
-- At 200% zoom, no primary content clips horizontally.
+- Primary desktop verification: `1280 × 800`, `1440 × 900`, and the selected
+  visual-reference viewport `1586 × 992`.
+- Desktop keeps equal side-by-side panels.
+- Narrow screens stack two equal-height panels while retaining the fixed top
+  bar and preventing document-level horizontal overflow.
+- At 320 px the top bar may scroll horizontally inside itself; it must not
+  increase the document width.
 
 ## Fidelity checks
 
-Final review compares the browser screenshot and reference for:
+Final review compares the approved reference and implementation at the same
+viewport for:
 
-1. first-viewport copy and order;
-2. open editorial container rather than cards;
-3. true-white work surface and monochrome palette;
-4. type hierarchy across wordmark, target, source, labels, and controls;
-5. right-rail and mobile-sheet coach placement;
-6. thin-rule rhythm and whitespace;
-7. explicit Check/Hint interaction states;
-8. absence of unapproved decorative UI.
+1. one fixed top bar and no bottom bar;
+2. equal Goal and Your answer frames;
+3. centered verdict notice;
+4. monochrome hierarchy and thin-rule rhythm;
+5. Write/Preview/Review beginner language;
+6. internal long-document scrolling;
+7. keyboard-only Check, Next, and editor-focus flow;
+8. absence of an always-visible third preview column.

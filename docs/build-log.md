@@ -795,3 +795,67 @@ was carried forward.
   publication gate, and the production build.
 - `npm run test:e2e`: 15 Chromium journeys passed, including the complete
   keyboard run and the 1280 × 800 no-page-scroll check.
+
+## 2026-07-19 — CBT Editorial Desk rebuild
+
+### Product conflict resolved
+
+The first Editorial Desk was visually polished but behaved like a Markdown
+editor: Goal, source, live preview, Hint/Review, and a bottom action bar competed
+for attention. That arrangement was tolerable for a one-line H1 but would turn
+a future Level 5 company work order into three tall, repetitive columns.
+
+Jiwon chose a familiar computer-based-test grammar instead. The browser now
+contains one fixed top bar and two equal sheets: immutable rendered Goal on the
+left, and the learner's answer on the right. Write and Preview share the answer
+sheet; after a failed Check, Preview becomes Review. The always-visible Live
+Preview column and the bottom status bar were removed.
+
+The change also resolved smaller hands-on findings in the same product frame:
+
+- the Nabi Markdown wordmark and boxed Exit return to the level chooser;
+- Try another replaces the current prompt with different same-skill content
+  without consuming progress;
+- Hint reveals vertically inside Goal and remains hidden at recall levels;
+- learner copy uses Write, Preview, Review, How it should look, What you wrote,
+  and How to fix it instead of Source, Render, Diff, or block-type vocabulary;
+- Try again and Matched appear briefly at the center of the viewport; and
+- a clean Matched result focuses Next, while the next problem returns focus to
+  the editor.
+
+### Codex implementation and test-first evidence
+
+Codex wrote the approved frame contract and a task-level plan before feature
+code. Reducer and component assertions pinned same-skill replacement, exactly
+two workspace panels, the absence of a Live Preview region and bottom bar,
+Hint/Review state, and the Check → focused Next → Space/Enter → focused editor
+sequence. The implementation then composed the screen from a top bar, Goal
+panel, answer panel, and transient verdict notice while keeping the existing
+deterministic grader and CodeMirror editor.
+
+The browser suite was rewritten around the new contract rather than preserving
+obsolete Side Coach selectors. It covers keyboard-only completion, failure and
+repair, transfer, persistence, Hint, Review, equal panel dimensions, narrow
+screens, fixed desktop chrome, and an 80-line work order that scrolls inside
+the editor instead of the page.
+
+### Visual and interaction verification before remote review
+
+- Unit/component/session tests: 14 files, 661 tests passed.
+- Browser tests: 16 Chromium journeys passed.
+- At `1586 × 992`, Goal and Your answer measured exactly `772 × 880` pixels
+  each; the document measured `1586 × 992` with no page overflow.
+- An 80-line answer produced an editor scroller of 2,582 pixels inside a
+  782-pixel viewport while the document height stayed fixed at 992 pixels.
+- A lowercase `# rainy day` produced Matched without changing the learner's
+  text. `## Study tools` produced Try again and the beginner-facing Review.
+- Try another replaced Study tools with Weekend forecast at the same progress
+  position; the wordmark returned directly to the entry chooser.
+- The in-app browser console reported zero warnings or errors.
+- The selected reference and implementation were compared side by side at the
+  same viewport. The equal frame, fixed chrome, centered verdict, and control
+  hierarchy matched the approved direction; content density differs because
+  Issue #9, not this layout PR, owns the Level 5 problem bank.
+
+CodeRabbit review, GitHub review, merge, deployment, and production verification
+are still pending and are not claimed by this entry.

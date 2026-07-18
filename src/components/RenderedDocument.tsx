@@ -6,6 +6,36 @@ type RenderedDocumentProps = {
   emptyMessage?: string
 }
 
+type RenderedDocumentBodyProps = Pick<
+  RenderedDocumentProps,
+  "source" | "emptyMessage"
+>
+
+export function RenderedDocumentBody({
+  source,
+  emptyMessage,
+}: RenderedDocumentBodyProps) {
+  return (
+    <div className="rendered-document__body">
+      {source ? (
+        <Markdown
+          components={{
+            img: ({ alt }) => (
+              <span className="rendered-document__media-placeholder">
+                [Image: {alt || "image"}]
+              </span>
+            ),
+          }}
+        >
+          {source}
+        </Markdown>
+      ) : emptyMessage ? (
+        <span className="rendered-document__empty">{emptyMessage}</span>
+      ) : null}
+    </div>
+  )
+}
+
 export function RenderedDocument({
   label,
   source,
@@ -16,23 +46,7 @@ export function RenderedDocument({
       <header className="document-toolbar">
         <span>{label}</span>
       </header>
-      <div className="rendered-document__body">
-        {source ? (
-          <Markdown
-            components={{
-              img: ({ alt }) => (
-                <span className="rendered-document__media-placeholder">
-                  [Image: {alt || "image"}]
-                </span>
-              ),
-            }}
-          >
-            {source}
-          </Markdown>
-        ) : emptyMessage ? (
-          <span className="rendered-document__empty">{emptyMessage}</span>
-        ) : null}
-      </div>
+      <RenderedDocumentBody emptyMessage={emptyMessage} source={source} />
     </section>
   )
 }

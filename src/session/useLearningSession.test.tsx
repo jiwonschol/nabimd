@@ -307,4 +307,24 @@ describe("useLearningSession", () => {
     expect(result.current.session.draft).toBe("")
     expect(result.current.canCheck).toBe(true)
   })
+
+  it("offers different same-skill content without consuming a run step", () => {
+    const { result } = renderHook(() =>
+      useLearningSession(new MemoryStorage()),
+    )
+
+    act(() => result.current.start("level-1"))
+    const originalId = result.current.problem.id
+    const originalStep = result.current.session.runStepIndex
+
+    act(() => result.current.tryAnother())
+
+    expect(result.current.problem.id).not.toBe(originalId)
+    expect(result.current.session.runStepIndex).toBe(originalStep)
+    expect(result.current.session.runProblemIds[originalStep]).toBe(
+      result.current.problem.id,
+    )
+    expect(result.current.session.draft).toBe("")
+    expect(result.current.session.progress.completedProblemIds).toEqual([])
+  })
 })

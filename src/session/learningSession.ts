@@ -23,7 +23,7 @@ export type LearningSession = {
   needsTransfer: boolean
   currentIsTransfer: boolean
   hintLevel: 0 | 1 | 2 | 3
-  coach: "closed" | "hint" | "review"
+  coach: "closed" | "hint"
   progress: ProgressV2
 }
 
@@ -43,8 +43,8 @@ export type SessionEvent =
       retryFamily: Problem["retryFamily"]
     }
   | { type: "hint-requested" }
-  | { type: "review-requested" }
   | { type: "coach-closed" }
+  | { type: "problem-replaced"; problem: Problem }
   | {
       type: "next"
       nextProblemId?: string
@@ -161,7 +161,7 @@ export function learningSessionReducer(
         phase: "editing",
         draft: event.value,
         evaluation: null,
-        coach: session.coach === "review" ? "closed" : session.coach,
+        coach: session.coach,
         progress: {
           ...session.progress,
           draftByProblemId: {
@@ -230,16 +230,52 @@ export function learningSessionReducer(
       }
     }
 
-    case "review-requested":
-      return session.evaluation?.status === "matched" &&
-        session.evaluation.reviewItems.length > 0
-        ? { ...session, coach: "review" }
-        : session
-
     case "coach-closed":
       return session.coach === "closed"
         ? session
         : { ...session, coach: "closed" }
+
+    case "problem-replaced": {
+      const replacementIsTransfer =
+        session.currentIsTransfer || session.needsTransfer
+      const nextRunProblemIds = session.runProblemIds.map(
+        (problemId, index) =>
+          index === session.runStepIndex ? event.problem.id : problemId,
+      )
+      const keepsIntroduction =
+        session.teachingMode === "introduce" && !replacementIsTransfer
+
+      return {
+        ...session,
+        phase: "editing",
+        currentProblemId: event.problem.id,
+        draft: event.problem.starterText,
+        evaluation: null,
+        teachingMode: keepsIntroduction ? "introduce" : "recall",
+        retryFamily: event.problem.retryFamily,
+        hadFailure: false,
+        needsTransfer: false,
+        currentIsTransfer: replacementIsTransfer,
+        runProblemIds: nextRunProblemIds,
+        hintLevel: keepsIntroduction ? 1 : 0,
+        coach: keepsIntroduction ? "hint" : "closed",
+        progress: {
+          ...session.progress,
+          currentProblemId: event.problem.id,
+          draftByProblemId: {
+            ...session.progress.draftByProblemId,
+            [event.problem.id]: event.problem.starterText,
+          },
+          recentProblemIds: appendUnique(
+            session.progress.recentProblemIds,
+            session.currentProblemId,
+          ),
+          pendingTransferFamily: null,
+          currentIsTransfer: replacementIsTransfer,
+          runProblemIds: nextRunProblemIds,
+        },
+      }
+    }
 
     case "next": {
       if (!canAdvance(session)) return session

@@ -84,6 +84,24 @@ export function useLearningSession(storage?: Storage) {
     })
   }, [])
 
+  const tryAnother = useCallback(() => {
+    const excludedProblemIds = new Set([
+      problem.id,
+      ...session.runProblemIds,
+      ...session.progress.recentProblemIds,
+    ])
+    const sameSkillProblems = headingProblems.filter(
+      (candidate) => candidate.retryFamily === problem.retryFamily,
+    )
+    const replacement =
+      sameSkillProblems.find(
+        (candidate) => !excludedProblemIds.has(candidate.id),
+      ) ?? sameSkillProblems.find((candidate) => candidate.id !== problem.id)
+
+    if (!replacement) return
+    dispatch({ type: "problem-replaced", problem: replacement })
+  }, [problem, session.progress.recentProblemIds, session.runProblemIds])
+
   const check = useCallback(() => {
     dispatch({
       type: "checked",
@@ -94,10 +112,6 @@ export function useLearningSession(storage?: Storage) {
 
   const requestHint = useCallback(() => {
     dispatch({ type: "hint-requested" })
-  }, [])
-
-  const requestReview = useCallback(() => {
-    dispatch({ type: "review-requested" })
   }, [])
 
   const closeCoach = useCallback(() => {
@@ -145,10 +159,10 @@ export function useLearningSession(storage?: Storage) {
     practiceAgain,
     startOver,
     changeLevel,
+    tryAnother,
     edit,
     check,
     requestHint,
-    requestReview,
     closeCoach,
     next,
   }

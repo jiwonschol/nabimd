@@ -12,13 +12,14 @@ import { invisibleCharacters } from "../editor/invisibleCharacters"
 const externalChange = Annotation.define<boolean>()
 
 type MarkdownSourceEditorProps = {
+  active?: boolean
   value: string
   onChange: (value: string) => void
   onCheck: () => void
 }
 
 export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
-  const { value, onChange, onCheck } = _props
+  const { active = true, value, onChange, onCheck } = _props
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
   const onChangeRef = useRef(onChange)
@@ -48,7 +49,6 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
         EditorView.contentAttributes.of({
           role: "textbox",
           "aria-label": "Your Markdown",
-          "aria-describedby": "exercise-instruction",
           "aria-multiline": "true",
           spellcheck: "false",
         }),
@@ -100,6 +100,10 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
       ),
     })
   }, [showInvisibles])
+
+  useEffect(() => {
+    if (active) viewRef.current?.focus()
+  }, [active])
 
   return (
     <section aria-label="Your Markdown" className="markdown-source-editor">

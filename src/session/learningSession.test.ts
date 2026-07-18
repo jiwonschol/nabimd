@@ -228,22 +228,68 @@ describe("learningSessionReducer", () => {
     expect(capped.hintLevel).toBe(3)
   })
 
-  it("opens Review only when a Matched answer has structural notes", () => {
+  it("keeps structural review notes in the Matched evaluation", () => {
     const cleanMatch = editAndCheck(newSession(), apple, "# Apple")
-    expect(
-      learningSessionReducer(cleanMatch, { type: "review-requested" }),
-    ).toBe(cleanMatch)
+    expect(cleanMatch.evaluation?.status).toBe("matched")
+    if (cleanMatch.evaluation?.status === "matched") {
+      expect(cleanMatch.evaluation.reviewItems).toEqual([])
+    }
 
     const matched = editAndCheck(
       newSession(),
       apple,
       "# Apple\n\n# Details",
     )
-    const reviewing = learningSessionReducer(matched, {
-      type: "review-requested",
+    expect(matched.evaluation?.status).toBe("matched")
+    if (matched.evaluation?.status === "matched") {
+      expect(matched.evaluation.reviewItems).toHaveLength(1)
+    }
+    expect(canAdvance(matched)).toBe(true)
+  })
+
+  it("replaces the current prompt without advancing the run", () => {
+    const started = learningSessionReducer(newSession(), {
+      type: "started",
+      entryId: "level-1",
+      runNumber: 0,
+      runProblemIds: ["heading-apple", "heading-study-tools"],
+      problem: apple,
+    })
+    const replaced = learningSessionReducer(started, {
+      type: "problem-replaced",
+      problem: rainyDay,
     })
 
-    expect(reviewing.coach).toBe("review")
-    expect(canAdvance(reviewing)).toBe(true)
+    expect(replaced.currentProblemId).toBe("heading-rainy-day")
+    expect(replaced.runProblemIds).toEqual([
+      "heading-rainy-day",
+      "heading-study-tools",
+    ])
+    expect(replaced.runStepIndex).toBe(0)
+    expect(replaced.draft).toBe("")
+    expect(replaced.evaluation).toBeNull()
+    expect(replaced.needsTransfer).toBe(false)
+    expect(replaced.progress.completedProblemIds).toEqual([])
+  })
+
+  it("turns a failed prompt replacement into the required same-skill retry", () => {
+    const started = learningSessionReducer(newSession(), {
+      type: "started",
+      entryId: "level-1",
+      runNumber: 0,
+      runProblemIds: ["heading-apple", "heading-study-tools"],
+      problem: apple,
+    })
+    const failed = editAndCheck(started, apple, "#Apple")
+    const replaced = learningSessionReducer(failed, {
+      type: "problem-replaced",
+      problem: rainyDay,
+    })
+
+    expect(replaced.currentProblemId).toBe("heading-rainy-day")
+    expect(replaced.currentIsTransfer).toBe(true)
+    expect(replaced.needsTransfer).toBe(false)
+    expect(replaced.progress.pendingTransferFamily).toBeNull()
+    expect(replaced.progress.currentIsTransfer).toBe(true)
   })
 })
