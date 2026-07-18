@@ -63,6 +63,14 @@ const supportedBlockKinds = new Set<string>([
   "thematic-break",
 ])
 
+const scopeRequiredMatchCheckKinds = new Set<string>([
+  "block-count",
+  "inline-presence",
+  "list-shape",
+  "code-block",
+  "block-sequence",
+])
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value)
 }
@@ -121,7 +129,12 @@ function validateRange(
 }
 
 function validateScope(problemId: string, check: MatchCheck, errors: string[]) {
-  if (!("scope" in check)) return
+  if (!("scope" in check)) {
+    if (scopeRequiredMatchCheckKinds.has(check.kind)) {
+      errors.push(`Problem ${problemId} check ${check.id} requires a scope`)
+    }
+    return
+  }
   const runtimeScope = (check as unknown as Record<string, unknown>).scope
   if (!isRecord(runtimeScope)) {
     errors.push(`Problem ${problemId} check ${check.id} has invalid scope`)
@@ -194,14 +207,31 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
         if (check.min === undefined && check.max === undefined) {
           errors.push(`Problem ${problem.id} check ${check.id} requires a range`)
         }
-        if (
-          check.kind === "block-count" &&
-          check.depth !== undefined &&
-          check.block !== "heading"
-        ) {
-          errors.push(
-            `Problem ${problem.id} check ${check.id} can only use depth with heading blocks`,
-          )
+        if (check.kind === "block-count") {
+          const runtimeCheck = check as unknown as Record<string, unknown>
+          if (!supportedBlockKinds.has(String(runtimeCheck.block))) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} has unsupported block kind: ${String(runtimeCheck.block)}`,
+            )
+          }
+          if (
+            runtimeCheck.depth !== undefined &&
+            (!Number.isInteger(runtimeCheck.depth) ||
+              Number(runtimeCheck.depth) < 1 ||
+              Number(runtimeCheck.depth) > 6)
+          ) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} has invalid heading depth`,
+            )
+          }
+          if (
+            runtimeCheck.depth !== undefined &&
+            runtimeCheck.block !== "heading"
+          ) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} can only use depth with heading blocks`,
+            )
+          }
         }
         break
       case "list-shape": {

@@ -276,6 +276,24 @@ describe("schema-v2 problem-bank validation", () => {
           priority: 20,
           feedback: "Add a paragraph.",
         },
+        {
+          id: "missing-scope",
+          kind: "inline-presence",
+          inline: "strong",
+          min: 1,
+          priority: 30,
+          feedback: "Add bold text.",
+        },
+        {
+          id: "invalid-block",
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "table",
+          depth: 7,
+          min: 1,
+          priority: 40,
+          feedback: "Add a block.",
+        },
       ] as unknown as NormalizedProblem["matchChecks"],
     })
 
@@ -290,6 +308,9 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check list-shape has invalid recursive flag",
         "Problem invalid-list-shape check list-shape has invalid nonempty-items flag",
         "Problem invalid-list-shape check paragraph-depth can only use depth with heading blocks",
+        "Problem invalid-list-shape check missing-scope requires a scope",
+        "Problem invalid-list-shape check invalid-block has unsupported block kind: table",
+        "Problem invalid-list-shape check invalid-block has invalid heading depth",
       ]),
     )
   })
