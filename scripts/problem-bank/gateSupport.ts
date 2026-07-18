@@ -21,6 +21,9 @@ export async function buildGateInput() {
   const prompt = await readFile(resolve(bankDir, "generation-prompt.md"), "utf8")
   const regenerated = normalizeArtifact(raw, prompt)
   const editorialQueue = await loadJson(resolve(bankDir, "editorial-queue.json"))
+  const committedReviewManifest = await loadJson(
+    resolve(bankDir, "review-manifest.json"),
+  )
   const reviewDir = resolve(bankDir, "reviews")
   const reviewFiles = (await readdir(reviewDir)).filter((file) => file.endsWith(".json"))
   const reviews = (
@@ -92,6 +95,10 @@ export async function buildGateInput() {
       fixtureCount: fixtureCounts[runtime.id],
     }
   })
+
+  if (canonicalJson(committedReviewManifest) !== canonicalJson(reviewManifest)) {
+    driftErrors.push("Committed review manifest is stale")
+  }
 
   return {
     errors: [...driftErrors, ...fixtureErrors, ...workflowErrors],

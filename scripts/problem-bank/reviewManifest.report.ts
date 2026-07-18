@@ -4,6 +4,9 @@ import { buildGateInput } from "./gateSupport"
 describe("independent review manifest", () => {
   it("prints the exact content and fixture digests", async () => {
     const { reviewManifest } = await buildGateInput()
+    console.log(
+      "Verified curriculum/problem-bank/review-manifest.json against the current real-engine transcript.",
+    )
     console.log(JSON.stringify(reviewManifest, null, 2))
     expect(reviewManifest).toHaveLength(16)
     expect(

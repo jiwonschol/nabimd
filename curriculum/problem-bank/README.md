@@ -39,6 +39,8 @@ state.
 - `candidates.raw.json` — human-readable GPT-5.6 output;
 - `candidates.normalized.json` — deterministic generated artifact and digests;
 - `editorial-queue.json` — one decision per candidate;
+- `review-manifest.json` — frozen content, transcript, and fixture-count digests
+  for the exact review head;
 - `reviews/*.json` — independent digest-bound review records; and
 - `src/content/generated/headingBank.generated.json` — the runtime publish set.
 
