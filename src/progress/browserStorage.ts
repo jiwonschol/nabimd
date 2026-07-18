@@ -51,9 +51,9 @@ function canUseStorage(storage: Storage): boolean {
     if (storage.getItem(probeKey) !== STORAGE_PROBE_VALUE) return false
 
     storage.removeItem(probeKey)
+    wroteProbe = false
     if (storage.getItem(probeKey) !== null) return false
 
-    wroteProbe = false
     return true
   } catch {
     return false
