@@ -29,9 +29,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function isKnownIdList(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
+  maximumLength = validProblemIds.size,
 ): value is string[] {
   return (
     Array.isArray(value) &&
+    value.length <= maximumLength &&
     value.every(
       (item) =>
         typeof item === "string" && validProblemIds.has(item),
@@ -52,34 +54,22 @@ function isValidDraftRecord(
   )
 }
 
-function matchesRunProblemIds(
-  runProblemIds: readonly string[],
+function isValidRunProblemIds(
+  value: unknown,
   entryId: ProgressV2["entryId"],
   runNumber: number,
-): boolean {
-  if (entryId === null) return runProblemIds.length === 0
+  validProblemIds: ReadonlySet<string>,
+): value is string[] {
+  if (!Array.isArray(value)) return false
+  if (entryId === null) return value.length === 0
 
   const expectedRunProblemIds = createRunProblemIds(entryId, runNumber)
-  if (runProblemIds.length === expectedRunProblemIds.length) {
-    return runProblemIds.every(
-      (problemId, index) => problemId === expectedRunProblemIds[index],
-    )
-  }
+  const maximumRunLength = expectedRunProblemIds.length * 2
 
-  if (runProblemIds.length !== expectedRunProblemIds.length + 1) {
-    return false
-  }
-
-  return runProblemIds.some((_, insertedIndex) => {
-    const withoutInsertedProblem = [
-      ...runProblemIds.slice(0, insertedIndex),
-      ...runProblemIds.slice(insertedIndex + 1),
-    ]
-
-    return withoutInsertedProblem.every(
-      (problemId, index) => problemId === expectedRunProblemIds[index],
-    )
-  })
+  return (
+    value.length >= expectedRunProblemIds.length &&
+    isKnownIdList(value, validProblemIds, maximumRunLength)
+  )
 }
 
 function isProgressV2(
@@ -94,13 +84,12 @@ function isProgressV2(
     typeof value.runNumber === "number" &&
     Number.isSafeInteger(value.runNumber) &&
     value.runNumber >= 0 &&
-    Array.isArray(value.runProblemIds) &&
-    matchesRunProblemIds(
+    isValidRunProblemIds(
       value.runProblemIds,
       value.entryId,
       value.runNumber,
+      validProblemIds,
     ) &&
-    isKnownIdList(value.runProblemIds, validProblemIds) &&
     typeof value.runStepIndex === "number" &&
     Number.isSafeInteger(value.runStepIndex) &&
     value.runStepIndex >= 0 &&
