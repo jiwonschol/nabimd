@@ -191,8 +191,9 @@ source → preview ordering and no horizontal overflow at 390 px.
   payload, and three progressive hints.
 - Goal and Live preview share one safe renderer, while the source editor can
   reveal spaces and tabs without changing the learner's Markdown.
-- Typechecking, 86 unit/component tests, the production build, and eight
-  Chromium journeys pass locally and against the public deployment.
+- Typechecking, 654 unit/component/pipeline checks, the digest-bound bank gate,
+  the production build, and 15 Chromium journeys pass on the issue #7 release
+  candidate. Production deployment is verified separately after merge.
 - The UI stays monochrome and source-focused while preserving a constrained
   reading width and allowing future document exercises to grow vertically.
 

@@ -569,3 +569,48 @@ digests before this issue can merge.
 Record the two independent reviewer artifacts, editorial acceptance, final
 bank-gate result, browser proof, review corrections, merge, and production
 verification for issue #7.
+
+## 2026-07-18 — Issue #7 independent review and publication gate
+
+### Review passes
+
+The runtime bank was frozen before review. Two Codex agents then worked from
+the same committed manifest without reading or copying one another's review
+file:
+
+- Atlas regenerated the manifest, ran all 16 heading candidates through their
+  29 real-engine fixtures, inspected the learner copy, and recorded 16 passes.
+- Orchid repeated the same work independently and recorded 16 passes with a
+  distinct reviewer and run ID.
+
+Each pass is tied to its candidate digest, full runtime problem, complete
+fixture definitions, actual engine transcript, and fixture count. An
+independent editorial pass accepted the 16 concise US-English heading titles
+and shared teaching block. Under Jiwon's approved autonomous-execution grant,
+the primary Codex task recorded that editorial acceptance as
+`codex-primary-autonomous-editorial-acceptance`; it is not represented as a
+manual review performed by Jiwon. The remaining 112 candidates stay blocked.
+
+### Audit correction before acceptance
+
+The first frozen manifest bound candidate content and engine results but did
+not bind every runtime problem field. That meant a later prompt or hint edit
+could theoretically leave existing reviews looking current. The primary task
+stopped the two reviewers before they wrote verdicts, added a failing
+regression, and changed the fixture-result digest to include the complete
+runtime problem and full fixture transcript. It also made the manifest command
+fail when its committed file is stale and rejected blank reviewer/run or
+editorial identities. The manifest was regenerated, frozen, and both reviewers
+reran their checks before their final records were accepted.
+
+### Verified result before remote review
+
+- `npm run check`: passed.
+- Vitest: 15 files, 654 tests passed.
+- Publication gate: passed with two distinct review artifacts and digest-bound
+  editorial acceptance.
+- Production build: Vite transformed 203 modules and completed successfully.
+- Browser suite: the previously frozen release candidate passed all 15
+  Chromium paths; a fresh final run is required before merge.
+- Remote PR review, merge, deployment, and production-browser verification are
+  still pending and are not claimed by this entry.
