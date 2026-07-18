@@ -10,5 +10,7 @@ test-results/
 .env.*
 !.env.example
 
+.superpowers/
+
 .DS_Store
 *.local

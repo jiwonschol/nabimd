@@ -9,6 +9,8 @@ contribution, and the evidence used to verify the result.
 - Record problems when they happen; do not reconstruct them at submission.
 - Do not claim a feature before a test or runnable demonstration exists.
 - Record rejected Codex suggestions when they changed the final result.
+- For each consequential conflict, record the proposal, Jiwon's decision, the
+  reason for it, and the artifact that eventually verifies the decision.
 - Keep the majority of core implementation in one primary Codex thread.
 - Generate `/feedback` in that thread after the core build is substantially
   complete, then submit the Session ID through Devpost.
@@ -64,8 +66,80 @@ Build Week Education submission.
 - License file: GNU AGPL v3
 - Application code: not started at this milestone
 
+## 2026-07-18 — Learning model and product conflicts
+
+### Context
+
+Before application scaffolding, Jiwon and Codex reviewed the learning model
+instead of treating the original plan as settled. The discussion changed the
+product from an editor-like correction experience into deliberate Markdown
+practice for people whose writing process or source document is visible to
+other people.
+
+### Conflict record
+
+| Conflict | Codex proposal | Jiwon's decision and reason | Current resolution |
+|---|---|---|---|
+| Convenience versus learning | Quiet live correction after a typing pause | Rejected: automatic correction teaches the editor, not recall | Feedback appears only after `Check`; help is user-requested |
+| First exposure | Begin with copy-and-paste or a nearly complete source | Rejected as too passive | Teach one syntax pattern, then require production with different text |
+| Competing course models | Choose among a syntax ladder, editorial apprenticeship, or document makeovers | Keep all three because they serve different levels | Editorial apprenticeship is the main path; single-syntax warm-ups can appear anywhere; makeovers serve advanced practice |
+| First visit | Mode chooser or placement test | Avoid choice burden | Start with a 60-second problem; experienced users can skip to a document challenge |
+| Desktop layout | Single vertical sheet or an editorial desk | Selected the editorial desk | Prompt and rendered target stay above a wide editor |
+| Coaching location | Inline feedback rail, modal, or separate side panel | Keep coaching outside the work surface | A right-side coach opens on request; it becomes a bottom sheet on small screens |
+| Correctness versus presentation | Treat every valid answer as identical | Separate correct syntax from editorial polish without turning polish into failure | `Fail` blocks progress; `Matched` passes and unlocks `Next`; `Perfect` is an optional higher-quality pass |
+| Review timing | Open editorial critique automatically after success | Rejected because it makes success feel like another failure | `Review` opens only when a matched user asks for it and shows all relevant refinements at once |
+| Failed retry | Repeat the exact same question until correct | Rejected because repetition would encourage memorizing the answer and create frustration | A failed learner receives a different prompt that exercises the same syntax before progressing |
+| AI at runtime | Generate personalized exercises and possibly editorial notes in the live app | Rejected: the learning experience and grading should remain stable, cheap, and inspectable | Ship a curated problem bank and deterministic grading; any GPT-5.6 contribution must occur in the documented curriculum-production workflow, not live grading |
+
+### Learning states agreed
+
+- **Fail:** required syntax is missing or malformed, required structure is
+  absent, or protected prompt content is lost. `Next` stays locked and the next
+  attempt uses different content for the same skill.
+- **Matched:** the learner used the requested Markdown skill correctly. This is
+  a pass and unlocks `Next`.
+- **Perfect:** all applicable Nabi editorial checks also pass. This is a more
+  polished pass, not a separate gate.
+- A matched-but-not-perfect habit can return later inside another problem
+  without revoking the earlier pass.
+
+### Problem-bank contract
+
+Each curated problem is expected to include a skill ID, difficulty, prompt,
+protected content, match predicates, editorial checks, retry-family tags, and
+review tags. Its fixtures must cover a canonical pass, supported alternatives,
+missing or malformed syntax, a matched answer with optional refinements, a
+perfect answer, and the expected feedback IDs.
+
+No generated problem is accepted merely because a model produced it. The bank
+must be refined through deterministic validation, repeated counterexamples,
+and Jiwon's editorial approval.
+
+### Build Week evidence boundary
+
+- The public pull request preserves dated diffs and commit history, but judges
+  should not have to infer product reasoning from a diff.
+- This build log is the curated explanation of conflicts, decisions, and later
+  verification evidence.
+- The README will summarize only the strongest verified examples and link here.
+- The primary-thread `/feedback` Session ID is the official thread identifier;
+  it complements rather than replaces the README, commits, tests, and demo.
+- The rules do not explicitly require a runtime API call. They do require
+  meaningful Codex and GPT-5.6 use and a specific explanation in the repository
+  and video. Concrete GPT-5.6 work and its resulting artifacts still need to be
+  produced and recorded; ideation alone will not be presented as proof.
+
+### Current verification
+
+- Browser brainstorming selection: `Editorial Desk`
+- Browser brainstorming selection: `Side Coach`
+- Feature code: not started
+- Grading fixtures: not started
+- GPT-5.6 curriculum artifact: not yet produced
+
 ## Next entry
 
-The next entry must cover the first vertical slice: what was attempted, which
-grading case failed first, how Codex helped investigate it, what Jiwon chose,
-and the test or browser evidence that closed it.
+The next entry must cover the approved application design and then the first
+vertical slice: what was attempted, which grading case failed first, how Codex
+helped investigate it, what Jiwon chose, and the test or browser evidence that
+closed it.

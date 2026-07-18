@@ -38,7 +38,8 @@ commit history, tests, build log, README explanation, or working demo.
 - [ ] Public demo link works without an account
 - [ ] `How we built it` names specific Codex contributions
 - [ ] Human product, engineering, and design decisions are explicit
-- [ ] GPT-5.6's product role is visible and meaningful
+- [ ] GPT-5.6's curriculum-production role is concrete, meaningful, and backed
+      by repository artifacts
 - [ ] Challenges describe real failures and resolutions
 - [ ] Accomplishments are backed by tests or a runnable demo
 - [ ] Unsupported Markdown syntax is stated honestly
@@ -48,9 +49,11 @@ commit history, tests, build log, README explanation, or working demo.
 
 - [ ] Typecheck passes
 - [ ] Unit and grading fixtures pass
+- [ ] Every problem has canonical, alternate, fail, matched, and perfect fixtures
+- [ ] A failed retry selects different content for the same skill
 - [ ] Production build passes
 - [ ] Clean-browser critical path passes
-- [ ] GPT timeout and fallback path pass
+- [ ] The learner path has no runtime dependency on an AI service
 - [ ] No API key, private token, personal data, or secret appears in the repo
 - [ ] License and trademark notices are present
 
@@ -61,7 +64,8 @@ commit history, tests, build log, README explanation, or working demo.
 - [ ] Video shows the working product clearly
 - [ ] Voiceover explains what was built
 - [ ] Voiceover explains the specific Codex workflow and key decisions
-- [ ] Voiceover explains how GPT-5.6 is integrated and what it does
+- [ ] Voiceover explains the specific GPT-5.6 curriculum work and what shipped
+      because of it
 - [ ] Submission text, images, video, README, and live build agree
 - [ ] Run the plugin's `$prepare-submission` workflow if available
 - [ ] Verify every field manually on the Devpost website
