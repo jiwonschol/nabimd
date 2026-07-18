@@ -1,6 +1,11 @@
 import type { Root } from "mdast"
 import type { MatchCheck, Problem } from "../content/types"
-import { documentText, headingsAtLevel, nodeText } from "./markdownAst"
+import {
+  documentText,
+  headingsAtLevel,
+  isHashHeading,
+  nodeText,
+} from "./markdownAst"
 import type { MatchFailure } from "./types"
 
 export function normalizeText(value: string): string {
@@ -30,7 +35,8 @@ function checkPasses(check: MatchCheck, source: string, root: Root): boolean {
     case "has-heading":
       return headingsAtLevel(root, check.level).some(
         (heading) =>
-          normalizeText(nodeText(heading)) === normalizeText(check.text),
+          normalizeText(nodeText(heading)) === normalizeText(check.text) &&
+          isHashHeading(source, heading),
       )
   }
 }

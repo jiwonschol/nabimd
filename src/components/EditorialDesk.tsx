@@ -80,6 +80,7 @@ export function EditorialDesk({
 
             <div className="workbench-grid">
               <MarkdownSourceEditor
+                key={problem.id}
                 onChange={edit}
                 onCheck={check}
                 value={session.draft}

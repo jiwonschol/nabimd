@@ -165,6 +165,9 @@ describe("App", () => {
     expect(within(help).getByRole("button", { name: "Show hint" })).toBeVisible()
     expect(within(help).queryByText("#", { exact: true })).toBeNull()
 
+    fireEvent.keyDown(editor, { key: "z", ctrlKey: true })
+    expect(editor).toHaveAttribute("aria-placeholder", "Type Markdown…")
+
     await user.click(within(help).getByRole("button", { name: "Show hint" }))
     expect(within(help).getByText("#", { exact: true })).toBeVisible()
   })

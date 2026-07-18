@@ -67,6 +67,19 @@ describe("evaluateProblem", () => {
     })
   })
 
+  it("requires the taught hash heading form", () => {
+    const result = evaluateProblem(
+      getHeadingProblem("heading-apple"),
+      "Apple\n=====",
+    )
+
+    expect(result).toEqual({
+      status: "fail",
+      feedbackId: "use-h1-heading",
+      message: "Start the title with one hash symbol and one space.",
+    })
+  })
+
   it("never turns an editorial refinement into a failure", () => {
     const result = evaluateProblem(
       getHeadingProblem("heading-apple"),

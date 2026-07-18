@@ -37,6 +37,31 @@ describe("useLearningSession", () => {
     expect(restoredHook.result.current.session.draft).toBe("#Apple")
   })
 
+  it("starts with volatile progress when localStorage access throws", () => {
+    const descriptor = Object.getOwnPropertyDescriptor(
+      window,
+      "localStorage",
+    )
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      get() {
+        throw new DOMException("Storage blocked", "SecurityError")
+      },
+    })
+
+    try {
+      const { result } = renderHook(() => useLearningSession())
+
+      expect(result.current.problem.id).toBe("heading-apple")
+      act(() => result.current.edit("# Apple"))
+      expect(result.current.session.draft).toBe("# Apple")
+    } finally {
+      if (descriptor) {
+        Object.defineProperty(window, "localStorage", descriptor)
+      }
+    }
+  })
+
   it("selects a different transfer problem after a repaired failure", () => {
     const { result } = renderHook(() =>
       useLearningSession(new MemoryStorage()),

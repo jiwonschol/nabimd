@@ -42,14 +42,19 @@ export function createLearningSession(
     progress.pendingTransferFamily === null &&
     !progress.currentIsTransfer
   const showIntroducedRule =
-    !isComplete && problem.teachingMode === "introduce"
+    !isComplete &&
+    !progress.currentIsTransfer &&
+    problem.teachingMode === "introduce"
+  const teachingMode = progress.currentIsTransfer
+    ? "recall"
+    : problem.teachingMode
 
   return {
     phase: isComplete ? "complete" : "editing",
     currentProblemId: problem.id,
     draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
     evaluation: null,
-    teachingMode: problem.teachingMode,
+    teachingMode,
     retryFamily: problem.retryFamily,
     hadFailure: progress.pendingTransferFamily !== null,
     needsTransfer: progress.pendingTransferFamily !== null,
@@ -221,6 +226,7 @@ export function learningSessionReducer(
             session.currentProblemId,
           ),
           currentIsTransfer: true,
+          pendingTransferFamily: null,
         },
       }
     }

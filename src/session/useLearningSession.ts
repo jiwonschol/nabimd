@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useReducer } from "react"
+import { useCallback, useEffect, useReducer, useState } from "react"
 import {
   getHeadingProblem,
   headingProblems,
 } from "../content/headingProblems"
 import { evaluateProblem } from "../engine/evaluateProblem"
+import { resolveBrowserStorage } from "../progress/browserStorage"
 import { loadProgress, saveProgress } from "../progress/progressStore"
 import { selectTransferProblem } from "../selection/selectTransferProblem"
 import {
@@ -24,19 +25,20 @@ function initializeSession(storage: Storage) {
   )
 }
 
-export function useLearningSession(
-  storage: Storage = window.localStorage,
-) {
+export function useLearningSession(storage?: Storage) {
+  const [sessionStorage] = useState(
+    () => storage ?? resolveBrowserStorage(),
+  )
   const [session, dispatch] = useReducer(
     learningSessionReducer,
-    storage,
+    sessionStorage,
     initializeSession,
   )
   const problem = getHeadingProblem(session.currentProblemId)
 
   useEffect(() => {
-    saveProgress(storage, session.progress)
-  }, [session.progress, storage])
+    saveProgress(sessionStorage, session.progress)
+  }, [session.progress, sessionStorage])
 
   const edit = useCallback((value: string) => {
     dispatch({ type: "edited", value })

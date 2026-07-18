@@ -126,7 +126,21 @@ describe("learningSessionReducer", () => {
     expect(transfer.teachingMode).toBe("recall")
     expect(transfer.coach).toBe("closed")
     expect(transfer.needsTransfer).toBe(false)
+    expect(transfer.progress.pendingTransferFamily).toBeNull()
     expect(transfer.progress.recentProblemIds).toContain("heading-apple")
+  })
+
+  it("restores any transfer as a clean recall exercise", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.currentIsTransfer = true
+
+    const restored = createLearningSession(progress, apple)
+
+    expect(restored.currentIsTransfer).toBe(true)
+    expect(restored.teachingMode).toBe("recall")
+    expect(restored.coach).toBe("closed")
+    expect(restored.hintLevel).toBe(0)
+    expect(restored.needsTransfer).toBe(false)
   })
 
   it("routes a recall pass to transfer after Help was used", () => {

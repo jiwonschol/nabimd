@@ -62,6 +62,9 @@ test("fails, receives progressive Help, repairs, transfers, and restores", async
   ).toContainText("Rainy day")
   await expect(editor.locator(".cm-placeholder")).toBeVisible()
   await expect(page.getByRole("button", { name: "Show hint" })).toBeVisible()
+  await expect(page.getByRole("button", { name: "Check" })).toBeVisible()
+  await editor.press("Control+z")
+  await expect(editor.locator(".cm-placeholder")).toBeVisible()
 
   await editor.fill("# Rainy day")
   await expect(editor).toHaveText("# Rainy day")
