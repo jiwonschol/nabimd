@@ -41,6 +41,11 @@ describe("progressStore", () => {
     storage = new MemoryStorage()
   })
 
+  it("uses a new version for replayable session progress", () => {
+    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v2")
+    expect(createDefaultProgress("heading-apple").version).toBe(2)
+  })
+
   it("returns an independent default for fresh storage", () => {
     const first = loadProgress(storage, validProblemIds)
     first.completedProblemIds.push("heading-apple")
@@ -73,7 +78,7 @@ describe("progressStore", () => {
   it("recovers from an unknown schema version", () => {
     storage.setItem(
       PROGRESS_STORAGE_KEY,
-      JSON.stringify({ version: 2 }),
+      JSON.stringify({ version: 3 }),
     )
 
     expect(loadProgress(storage, validProblemIds)).toEqual(
@@ -94,6 +99,22 @@ describe("progressStore", () => {
   it("recovers when a saved ID list contains an unknown problem", () => {
     const progress = createDefaultProgress("heading-apple")
     progress.recentProblemIds.push("heading-unknown")
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
+  it("recovers when the saved problem disagrees with the active run step", () => {
+    const progress = createDefaultProgress("heading-rainy-day")
+    progress.entryId = "basics"
+    progress.runProblemIds = [
+      "heading-rainy-day",
+      "heading-study-tools",
+      "heading-apple",
+    ]
+    progress.runStepIndex = 1
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 
     expect(loadProgress(storage, validProblemIds)).toEqual(
