@@ -1,5 +1,8 @@
 import type { ProgressV2 } from "./types"
-import { isEntryId } from "../content/entryChoices"
+import {
+  createRunProblemIds,
+  isEntryId,
+} from "../content/entryChoices"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v2"
 
@@ -49,6 +52,36 @@ function isValidDraftRecord(
   )
 }
 
+function matchesRunProblemIds(
+  runProblemIds: readonly string[],
+  entryId: ProgressV2["entryId"],
+  runNumber: number,
+): boolean {
+  if (entryId === null) return runProblemIds.length === 0
+
+  const expectedRunProblemIds = createRunProblemIds(entryId, runNumber)
+  if (runProblemIds.length === expectedRunProblemIds.length) {
+    return runProblemIds.every(
+      (problemId, index) => problemId === expectedRunProblemIds[index],
+    )
+  }
+
+  if (runProblemIds.length !== expectedRunProblemIds.length + 1) {
+    return false
+  }
+
+  return runProblemIds.some((_, insertedIndex) => {
+    const withoutInsertedProblem = [
+      ...runProblemIds.slice(0, insertedIndex),
+      ...runProblemIds.slice(insertedIndex + 1),
+    ]
+
+    return withoutInsertedProblem.every(
+      (problemId, index) => problemId === expectedRunProblemIds[index],
+    )
+  })
+}
+
 function isProgressV2(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
@@ -61,6 +94,12 @@ function isProgressV2(
     typeof value.runNumber === "number" &&
     Number.isSafeInteger(value.runNumber) &&
     value.runNumber >= 0 &&
+    Array.isArray(value.runProblemIds) &&
+    matchesRunProblemIds(
+      value.runProblemIds,
+      value.entryId,
+      value.runNumber,
+    ) &&
     isKnownIdList(value.runProblemIds, validProblemIds) &&
     typeof value.runStepIndex === "number" &&
     Number.isSafeInteger(value.runStepIndex) &&

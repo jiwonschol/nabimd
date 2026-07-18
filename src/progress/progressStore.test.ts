@@ -67,6 +67,69 @@ describe("progressStore", () => {
     expect(loadProgress(storage, validProblemIds)).toEqual(progress)
   })
 
+  it("restores a deterministic run sequence", () => {
+    const progress = createDefaultProgress("heading-rainy-day")
+    progress.entryId = "basics"
+    progress.runProblemIds = [
+      "heading-rainy-day",
+      "heading-study-tools",
+      "heading-apple",
+    ]
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("restores a run with one bounded transfer insertion", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      "heading-apple",
+      "heading-apple",
+      "heading-rainy-day",
+      "heading-study-tools",
+    ]
+    progress.runStepIndex = 1
+    progress.currentIsTransfer = true
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("rejects an oversized restored run sequence", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.entryId = "level-1"
+    progress.runProblemIds = Array.from(
+      { length: 1000 },
+      () => "heading-apple",
+    )
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
+  it("rejects a non-deterministic restored run sequence", () => {
+    const progress = createDefaultProgress("heading-study-tools")
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      "heading-apple",
+      "heading-study-tools",
+      "heading-rainy-day",
+    ]
+    progress.runStepIndex = 1
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
   it("recovers from corrupt JSON", () => {
     storage.setItem(PROGRESS_STORAGE_KEY, "{not-json")
 
