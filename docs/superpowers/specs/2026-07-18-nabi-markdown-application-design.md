@@ -99,7 +99,11 @@ sequences without restructuring the greeting or session controller.
 
 ## Course and problem-bank scope
 
-The Build Week target is a curated 33-problem bank.
+The Build Week pipeline stages 128 generated candidates—16 per family—but the
+runtime publishes only candidates that the current deterministic engine can
+grade and that clear every trust gate. At the heading-engine milestone, this
+means 16 shipped H1 problems and 112 explicitly blocked roadmap candidates.
+The 500+ bank is a later direction, not a Build Week quantity claim.
 
 ### Devpost-aligned syntax families
 
@@ -116,11 +120,14 @@ These families are based on Devpost's documented basic Markdown syntax and the
 portable intersection with CommonMark and Typora. Nabi does not claim complete
 Markdown, CommonMark, or GitHub Flavored Markdown coverage.
 
-### Initial bank
+### Future curriculum shape after Build Week
 
-- 24 single-syntax problems: three per family
-- 6 mixed-syntax problems
-- 3 Document Makeovers
+- The Build Week publish set is the 16 accepted H1 problems described above.
+- The other 112 generated candidates remain blocked until their deterministic
+  predicates, fixtures, independent reviews, and editorial decisions exist.
+- A later curriculum may add single-syntax drills, mixed-syntax problems, and
+  Document Makeovers in gated batches; the former 24 + 6 + 3 outline is not a
+  claim about the submitted runtime.
 
 The application can keep offering nonrecent items from the curated bank for as
 long as the learner wants to practice. It does not promise infinitely unique
@@ -264,6 +271,12 @@ type Problem = {
   familyId: string
   skillIds: string[]
   difficulty: "warmup" | "mixed" | "makeover"
+  teachingMode: "introduce" | "recall"
+  teaching: {
+    concept: string
+    howTo: string
+    example: string
+  }
   prompt: string
   target?: string
   starterText: string
@@ -287,7 +300,11 @@ Each committed problem must include fixtures for:
 - expected feedback and review IDs.
 
 The bank is curriculum, not unvalidated content. A model-generated candidate is
-not publishable until deterministic fixtures and Jiwon's editorial review pass.
+not publishable until its normalized content digest is current, deterministic
+fixtures pass through the real engine, two independent digest-bound reviewers
+agree, and the editorial queue records an explicit acceptance tied to the same
+fixture-result digest. Any failure blocks publication. Unsupported candidates
+stay visible as `engine-family-not-supported` but never enter the runtime bank.
 
 ## Grading engine
 

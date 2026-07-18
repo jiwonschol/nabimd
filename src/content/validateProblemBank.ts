@@ -42,15 +42,29 @@ export function validateProblemBank(
       )
     }
 
+    for (const field of ["concept", "howTo", "example"] as const) {
+      if (!problem.teaching[field].trim()) {
+        errors.push(`Problem ${problem.id} has blank teaching ${field}`)
+      }
+    }
+
     const familyIds = retryFamilies.get(problem.retryFamily) ?? new Set()
     familyIds.add(problem.id)
     retryFamilies.set(problem.retryFamily, familyIds)
 
-    const fixtureKinds = new Set(
-      fixtures
-        .filter((fixture) => fixture.problemId === problem.id)
-        .map((fixture) => fixture.kind),
+    const problemFixtures = fixtures.filter(
+      (fixture) => fixture.problemId === problem.id,
     )
+    const fixtureKinds = new Set(problemFixtures.map((fixture) => fixture.kind))
+    const fixtureCounts = new Map<FixtureKind, number>()
+    for (const fixture of problemFixtures) {
+      fixtureCounts.set(fixture.kind, (fixtureCounts.get(fixture.kind) ?? 0) + 1)
+    }
+    for (const [kind, count] of fixtureCounts) {
+      if (count > 1) {
+        errors.push(`Duplicate fixture kind ${kind} for ${problem.id}`)
+      }
+    }
 
     for (const requiredKind of requiredFixtureKinds) {
       if (!fixtureKinds.has(requiredKind)) {

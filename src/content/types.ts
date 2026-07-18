@@ -57,6 +57,11 @@ export type Problem = {
   skillIds: readonly ["heading-h1"]
   difficulty: "warmup"
   teachingMode: "introduce" | "recall"
+  teaching: {
+    concept: string
+    howTo: string
+    example: string
+  }
   syntaxTokens: readonly string[]
   title: string
   prompt: string

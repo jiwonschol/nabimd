@@ -507,8 +507,138 @@ shows a generic docstring-coverage notice even though this repository defines
 no docstring-coverage rule. Neither altered the verified learner path; bundle
 splitting can be considered after the Build Week curriculum scope is complete.
 
-## Next entry
+## Planned evidence after the C6 milestone
 
 Record the primary-task `/feedback` Session ID, the Devpost submission and
 video evidence, and the GPT-5.6 curriculum-refinement artifact before beginning
 the next syntax family.
+
+## 2026-07-18 — Trust-first problem-bank pipeline and Level 1 teaching
+
+### Product decision
+
+Issue #7 exposed a real constraint rather than a reason to inflate the demo:
+the verified grader currently supports only top-level hash H1 exercises. Codex
+generated and normalized 128 candidates—16 in each Devpost-aligned family—but
+only the 16 headings are eligible for the runtime gate. The other 112 remain
+recorded as `engine-family-not-supported`. They are not described as shipped.
+
+Level 1 now teaches the rule in the Instruction area before asking for recall:
+one sentence names the concept, one explains the keystrokes, and one inline
+example shows `# Weather`. The block renders from the dynamic session
+`introduce` state, so it appears when Practice again rotates a non-Apple
+problem into the first Level 1 step. Basics, Challenge, transfer, and later run
+steps stay lean.
+
+### GPT-5.6 generation and refinement
+
+The exact prompt and raw artifact are committed under
+`curriculum/problem-bank/`. A first compact draft revealed three trust risks:
+bare horizontal-rule targets had no human-readable context, invented
+`example.com` destinations weakened link exercises, and image URLs implied
+assets that did not exist. The artifact was corrected before review:
+
+- every family now preserves concept/how-to/example teaching data;
+- every normalized candidate carries expected skill, a likely malformed trap,
+  and an editorial note inside its digest;
+- horizontal rules preserve prose blocks on both sides with blank lines;
+- links use descriptive labels and public documentation destinations; and
+- images use reserved local practice paths and remain blocked until licensed
+  assets and visual alt-text review exist.
+
+### Deterministic gate
+
+The pipeline enforces generate → real fixture engine → declared-independent
+agreement → editorial acceptance → exact publish-set equality. Candidate data uses
+canonical SHA-256 digests. Heading reviews additionally bind the full
+`evaluateProblem` transcript and its 29-fixture count. Missing, stale,
+duplicate, or disagreeing reviews fail; a third negative verdict cannot be
+ignored. The runtime JSON is generated separately and must exactly match the
+accepted editorial set.
+
+At this implementation checkpoint, TypeScript, 652 unit/component/pipeline
+tests, the production build, and all 15 Chromium paths pass. Browser proof now
+includes the first Level 1 teaching block, its non-Apple replay introduction,
+and the lean Basics path. The final bank gate is intentionally red only because
+no independent reviewer or editorial acceptance has yet been recorded. Those
+records must be produced by separate review passes against the exact printed
+digests before this issue can merge.
+
+## Next entry
+
+Record the two independent reviewer artifacts, editorial acceptance, final
+bank-gate result, browser proof, review corrections, merge, and production
+verification for issue #7.
+
+## 2026-07-18 — Issue #7 independent review and publication gate
+
+### Review passes
+
+The runtime bank was frozen before review. Two Codex agents then worked from
+the same committed manifest without reading or copying one another's review
+file:
+
+- Atlas regenerated the manifest, ran all 16 heading candidates through their
+  29 real-engine fixtures, inspected the learner copy, and recorded 16 passes.
+- Orchid repeated the same work independently and recorded 16 passes with a
+  distinct reviewer and run ID.
+
+Each pass is tied to its candidate digest, full runtime problem, complete
+fixture definitions, actual engine transcript, and fixture count. An
+independent editorial pass accepted the 16 concise US-English heading titles
+and shared teaching block. Under Jiwon's approved autonomous-execution grant,
+the primary Codex task recorded that editorial acceptance as
+`codex-primary-autonomous-editorial-acceptance`; it is not represented as a
+manual review performed by Jiwon. The remaining 112 candidates stay blocked.
+The repository gate verifies that the records declare different reviewer and
+run IDs; it cannot authenticate agent identity from static JSON. The stronger
+process claim above comes from the actual separate agent runs and is recorded
+as Build Week provenance, not inferred by the executable gate.
+
+### Audit correction before acceptance
+
+The first frozen manifest bound candidate content and engine results but did
+not bind every runtime problem field. That meant a later prompt or hint edit
+could theoretically leave existing reviews looking current. The primary task
+stopped the two reviewers before they wrote verdicts, added a failing
+regression, and changed the fixture-result digest to include the complete
+runtime problem and full fixture transcript. It also made the manifest command
+fail when its committed file is stale and rejected blank reviewer/run or
+editorial identities. The manifest was regenerated, frozen, and both reviewers
+reran their checks before their final records were accepted.
+
+### Verified result before remote review
+
+- `npm run check`: passed.
+- Vitest: 15 files, 661 tests passed after local and GitHub CodeRabbit review
+  corrections.
+- Publication gate: passed with two distinct review artifacts and digest-bound
+  editorial acceptance.
+- Production build: Vite transformed 203 modules and completed successfully.
+- Browser suite: a fresh final Chromium run passed all 15 paths, including
+  1280 × 800 and 1440 × 900 no-scroll bounds and 320/375 px overflow checks.
+- Remote PR review, merge, deployment, and production-browser verification are
+  still pending and are not claimed by this entry.
+
+### Local CodeRabbit review corrections
+
+The CodeRabbit CLI reviewed the complete `main...issue-7` diff and raised five
+valid boundary issues: two major and three minor. The release candidate now
+fails explicitly if an entry points to a missing starting problem, rejects
+missing or non-positive fixture counts, validates malformed artifact/family/
+candidate records without dereferencing them, requires kebab-case candidate
+IDs, and labels the former 24 + 6 + 3 curriculum outline as future scope rather
+than the Build Week publish set. Four new regression tests cover the executable
+changes; the full gate remains green.
+
+GitHub CodeRabbit then raised six additional publication-boundary issues. The
+generation prompt now defines the exact JSON contract and family-default
+inheritance, optional candidate overrides are validated before normalization,
+runtime teaching modes are parsed instead of trusted through a TypeScript cast,
+and public gate language is limited to what static artifacts can prove:
+distinct declared reviewer and run IDs. The spec's old 24 + 6 + 3 outline had
+already been corrected to future scope. Its incremental rereview also found
+that a truthy non-array candidate collection could reach `.entries()` after
+recording an error; validation now falls back to an empty array and returns the
+error instead of throwing. Three more regressions cover the new runtime checks;
+the final local gate passes 661 tests.

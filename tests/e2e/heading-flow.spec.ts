@@ -44,6 +44,12 @@ test("completes and replays a fresh session with keyboard input only", async ({
   await page.keyboard.press("Enter")
 
   const editor = sourceEditor(page)
+  await expect(
+    page.getByText("A main heading names the whole document.", {
+      exact: false,
+    }),
+  ).toBeVisible()
+  await expect(page.getByText("# Weather", { exact: true })).toBeVisible()
   await expect(editor).toBeFocused()
   const expectedShortcutLabel = await page.evaluate(() => {
     const modernPlatform = (
@@ -76,7 +82,12 @@ test("completes and replays a fresh session with keyboard input only", async ({
 
   await expect(
     page.getByRole("region", { name: "Goal" }),
-  ).toContainText("Rainy day")
+  ).toContainText("Weekend forecast")
+  await expect(
+    page.getByText("A main heading names the whole document.", {
+      exact: false,
+    }),
+  ).toBeVisible()
   await expect(editor).toBeFocused()
 
   await page.keyboard.press("Space")
@@ -84,7 +95,7 @@ test("completes and replays a fresh session with keyboard input only", async ({
   await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
   await expect(
     page.getByRole("region", { name: "Goal" }),
-  ).toContainText("Rainy day")
+  ).toContainText("Weekend forecast")
 
   await page.keyboard.press("Control+Enter")
   await expect(page.getByText(/^Fail:/)).toBeVisible()
@@ -173,6 +184,11 @@ test("opening Help on a recall problem creates a different-content transfer", as
   ).toContainText("Rainy day")
   await expect(help.getByRole("button", { name: "Show hint" })).toBeVisible()
   await expect(help.getByText("#", { exact: true })).toHaveCount(0)
+  await expect(
+    page.getByText("A main heading names the whole document.", {
+      exact: false,
+    }),
+  ).toHaveCount(0)
 
   await help.getByRole("button", { name: "Show hint" }).click()
   await expect(help.getByText("#", { exact: true })).toBeVisible()
