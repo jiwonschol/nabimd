@@ -78,7 +78,7 @@ export function loadProgress(
 ): ProgressV1 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
-    firstProblemId ?? "heading-project-notes",
+    firstProblemId ?? "heading-apple",
   )
 
   try {

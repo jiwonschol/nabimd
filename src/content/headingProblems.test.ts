@@ -5,6 +5,40 @@ import { validateProblemBank } from "./validateProblemBank"
 import type { Problem, ProblemFixture } from "./types"
 
 describe("heading problem bank", () => {
+  it("starts with one introduced rule and two recall variants", () => {
+    expect(
+      headingProblems.map((problem) => ({
+        id: problem.id,
+        target: problem.target,
+        starterText: problem.starterText,
+        teachingMode: problem.teachingMode,
+        syntaxTokens: problem.syntaxTokens,
+      })),
+    ).toEqual([
+      {
+        id: "heading-apple",
+        target: "# Apple",
+        starterText: "",
+        teachingMode: "introduce",
+        syntaxTokens: ["#", "Space", "Title"],
+      },
+      {
+        id: "heading-rainy-day",
+        target: "# Rainy day",
+        starterText: "",
+        teachingMode: "recall",
+        syntaxTokens: ["#", "Space", "Title"],
+      },
+      {
+        id: "heading-study-tools",
+        target: "# Study tools",
+        starterText: "",
+        teachingMode: "recall",
+        syntaxTokens: ["#", "Space", "Title"],
+      },
+    ])
+  })
+
   it("contains three distinct transfer variants", () => {
     expect(headingProblems).toHaveLength(3)
     expect(new Set(headingProblems.map((problem) => problem.id)).size).toBe(3)
@@ -29,7 +63,7 @@ describe("heading problem bank", () => {
 
     expect(
       validateProblemBank(duplicateProblems, headingProblemFixtures),
-    ).toContain("Duplicate problem id: heading-project-notes")
+    ).toContain("Duplicate problem id: heading-apple")
   })
 
   it("reports duplicate protected content", () => {
@@ -44,7 +78,7 @@ describe("heading problem bank", () => {
         [...headingProblems, duplicateContentProblem],
         headingProblemFixtures,
       ),
-    ).toContain("Duplicate protected content: Project notes")
+    ).toContain("Duplicate protected content: Apple")
   })
 
   it("reports fixtures for unknown problems", () => {
@@ -67,14 +101,14 @@ describe("heading problem bank", () => {
     const incompleteFixtures = headingProblemFixtures.filter(
       (fixture) =>
         !(
-          fixture.problemId === "heading-project-notes" &&
+          fixture.problemId === "heading-apple" &&
           fixture.kind === "perfect"
         ),
     )
 
     expect(
       validateProblemBank(headingProblems, incompleteFixtures),
-    ).toContain("Missing fixture kind perfect for heading-project-notes")
+    ).toContain("Missing fixture kind perfect for heading-apple")
   })
 
   it("requires two transfer candidates in a retry family", () => {
@@ -102,14 +136,12 @@ describe("heading problem bank", () => {
         headingProblemFixtures,
       ),
     ).toContain(
-      "Problem heading-project-notes must provide exactly three hints",
+      "Problem heading-apple must provide exactly three hints",
     )
   })
 
   it("returns a known problem by ID", () => {
-    expect(getHeadingProblem("heading-project-notes").target).toBe(
-      "# Project notes",
-    )
+    expect(getHeadingProblem("heading-apple").target).toBe("# Apple")
   })
 
   it("rejects an unknown problem ID", () => {

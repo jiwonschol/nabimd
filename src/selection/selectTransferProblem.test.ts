@@ -6,43 +6,43 @@ describe("selectTransferProblem", () => {
   it("chooses different content from the same retry family", () => {
     const selected = selectTransferProblem({
       problems: headingProblems,
-      currentProblemId: "heading-project-notes",
+      currentProblemId: "heading-apple",
       retryFamily: "heading-h1",
-      recentProblemIds: ["heading-project-notes"],
+      recentProblemIds: ["heading-apple"],
     })
 
-    expect(selected.id).toBe("heading-weekend-guide")
+    expect(selected.id).toBe("heading-rainy-day")
     expect(selected.retryFamily).toBe("heading-h1")
-    expect(selected.protectedContent[0]).not.toBe("Project notes")
+    expect(selected.protectedContent[0]).not.toBe("Apple")
   })
 
   it("prefers a nonrecent eligible problem", () => {
     const selected = selectTransferProblem({
       problems: headingProblems,
-      currentProblemId: "heading-project-notes",
+      currentProblemId: "heading-apple",
       retryFamily: "heading-h1",
-      recentProblemIds: ["heading-project-notes", "heading-weekend-guide"],
+      recentProblemIds: ["heading-apple", "heading-rainy-day"],
     })
 
-    expect(selected.id).toBe("heading-reading-list")
+    expect(selected.id).toBe("heading-study-tools")
   })
 
   it("falls back to stable bank order when every candidate is recent", () => {
     const selected = selectTransferProblem({
       problems: headingProblems,
-      currentProblemId: "heading-project-notes",
+      currentProblemId: "heading-apple",
       retryFamily: "heading-h1",
       recentProblemIds: headingProblems.map((problem) => problem.id),
     })
 
-    expect(selected.id).toBe("heading-weekend-guide")
+    expect(selected.id).toBe("heading-rainy-day")
   })
 
   it("rejects a bank with no safe transfer candidate", () => {
     expect(() =>
       selectTransferProblem({
         problems: [headingProblems[0]],
-        currentProblemId: "heading-project-notes",
+        currentProblemId: "heading-apple",
         retryFamily: "heading-h1",
         recentProblemIds: [],
       }),

@@ -43,18 +43,18 @@ describe("progressStore", () => {
 
   it("returns an independent default for fresh storage", () => {
     const first = loadProgress(storage, validProblemIds)
-    first.completedProblemIds.push("heading-project-notes")
+    first.completedProblemIds.push("heading-apple")
 
     const second = loadProgress(storage, validProblemIds)
 
-    expect(second).toEqual(createDefaultProgress("heading-project-notes"))
+    expect(second).toEqual(createDefaultProgress("heading-apple"))
   })
 
   it("round-trips valid progress", () => {
-    const progress = createDefaultProgress("heading-project-notes")
-    progress.draftByProblemId["heading-project-notes"] = "# Project notes"
-    progress.completedProblemIds.push("heading-project-notes")
-    progress.recentProblemIds.push("heading-project-notes")
+    const progress = createDefaultProgress("heading-apple")
+    progress.draftByProblemId["heading-apple"] = "# Apple"
+    progress.completedProblemIds.push("heading-apple")
+    progress.recentProblemIds.push("heading-apple")
     progress.pendingTransferFamily = "heading-h1"
 
     saveProgress(storage, progress)
@@ -66,7 +66,7 @@ describe("progressStore", () => {
     storage.setItem(PROGRESS_STORAGE_KEY, "{not-json")
 
     expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-project-notes"),
+      createDefaultProgress("heading-apple"),
     )
   })
 
@@ -77,34 +77,34 @@ describe("progressStore", () => {
     )
 
     expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-project-notes"),
+      createDefaultProgress("heading-apple"),
     )
   })
 
   it("recovers when persisted progress references an unknown problem", () => {
-    const progress = createDefaultProgress("heading-project-notes")
+    const progress = createDefaultProgress("heading-apple")
     progress.currentProblemId = "heading-unknown"
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 
     expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-project-notes"),
+      createDefaultProgress("heading-apple"),
     )
   })
 
   it("recovers when a saved ID list contains an unknown problem", () => {
-    const progress = createDefaultProgress("heading-project-notes")
+    const progress = createDefaultProgress("heading-apple")
     progress.recentProblemIds.push("heading-unknown")
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 
     expect(loadProgress(storage, validProblemIds)).toEqual(
-      createDefaultProgress("heading-project-notes"),
+      createDefaultProgress("heading-apple"),
     )
   })
 
   it("clears saved progress", () => {
     storage.setItem(
       PROGRESS_STORAGE_KEY,
-      JSON.stringify(createDefaultProgress("heading-project-notes")),
+      JSON.stringify(createDefaultProgress("heading-apple")),
     )
 
     clearProgress(storage)
@@ -114,12 +114,12 @@ describe("progressStore", () => {
 
   it("falls back when reading storage throws", () => {
     expect(loadProgress(new ThrowingStorage("get"), validProblemIds)).toEqual(
-      createDefaultProgress("heading-project-notes"),
+      createDefaultProgress("heading-apple"),
     )
   })
 
   it("treats unavailable write storage as best effort", () => {
-    const progress = createDefaultProgress("heading-project-notes")
+    const progress = createDefaultProgress("heading-apple")
 
     expect(() =>
       saveProgress(new ThrowingStorage("set"), progress),

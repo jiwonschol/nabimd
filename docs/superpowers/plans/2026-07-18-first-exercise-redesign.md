@@ -53,8 +53,10 @@ Use two remote review gates rather than requesting review after every small
 commit:
 
 - **Review Gate A — behavior checkpoint:** after curriculum/session tests and
-  the first two commits are pushed, inspect every current unresolved thread and
-  verify that behavior changes do not invalidate grading or persistence.
+  the first two commits are created, inspect every current unresolved thread
+  and verify that behavior changes do not invalidate grading or persistence.
+  Keep the checkpoint local until the complete browser suite is green; do not
+  push an intentionally mismatched legacy UI merely to expose an early commit.
 - **Review Gate B — release candidate:** after the C6 UI and browser suite are
   pushed, request fresh CodeRabbit and Codex reviews on the latest head, wait
   for CI, address every still-valid actionable finding, resolve the matching
@@ -154,7 +156,7 @@ git commit -m "docs: approve the learning workspace redesign"
 - Modify: `src/content/headingProblems.test.ts`
 - Modify: `src/engine/evaluateProblem.test.ts`
 
-- [ ] **Step 1: Write failing curriculum tests**
+- [x] **Step 1: Write failing curriculum tests**
 
 Assert that the three IDs and targets are exactly:
 
@@ -178,7 +180,7 @@ npm test -- src/content/headingProblems.test.ts src/engine/evaluateProblem.test.
 Expected: FAIL because the shipped bank still contains Project notes, Weekend
 guide, and Summer reading list and lacks teaching metadata.
 
-- [ ] **Step 2: Extend the typed problem contract**
+- [x] **Step 2: Extend the typed problem contract**
 
 Add:
 
@@ -190,13 +192,13 @@ syntaxTokens: readonly string[]
 Keep grading checks typed and local; UI components must not infer rules by
 parsing `target`.
 
-- [ ] **Step 3: Replace all content-specific problem and fixture data**
+- [x] **Step 3: Replace all content-specific problem and fixture data**
 
 Use one shared instruction: `Rebuild the heading below in Markdown.` Keep the
 three progressive hints, but make the first visible rule compact enough for the
 Help surface. Rename protected-content checks and fixture IDs together.
 
-- [ ] **Step 4: Prove validation and grading remain green**
+- [x] **Step 4: Prove validation and grading remain green**
 
 Run:
 
@@ -218,7 +220,7 @@ malformed-spacing feedback, Matched, and Perfect.
 - Modify: `src/session/learningSession.test.ts`
 - Modify: `src/session/useLearningSession.test.tsx`
 
-- [ ] **Step 1: Write failing reducer tests**
+- [x] **Step 1: Write failing reducer tests**
 
 Cover these transitions:
 
@@ -240,26 +242,26 @@ npm test -- src/session/learningSession.test.ts src/session/useLearningSession.t
 Expected: FAIL because Help currently opens only after Fail and the reducer has
 no recall-help transfer flag.
 
-- [ ] **Step 2: Introduce explicit session semantics**
+- [x] **Step 2: Introduce explicit session semantics**
 
 Rename or supplement `hadFailure` with `needsTransfer` so state describes the
 learning obligation rather than one cause. Initialize `introduce` with Help
 open at its first rule; initialize `recall` closed. Allow a learner-requested
 Hint while editing, and set transfer debt only for recall mode.
 
-- [ ] **Step 3: Preserve pass and coaching gates**
+- [x] **Step 3: Preserve pass and coaching gates**
 
 Fail still blocks Next and progressive hints remain user-triggered. Matched
 Review still opens only on request. Perfect never requires Review. Editing after
 evaluation clears the result without erasing transfer debt.
 
-- [ ] **Step 4: Route any transfer debt through the existing selector**
+- [x] **Step 4: Route any transfer debt through the existing selector**
 
 In `useLearningSession.next`, select a same-family, different-content problem
 when `needsTransfer` is true and the current problem is not already a transfer.
 Initialize the transfer problem from its own empty or persisted draft.
 
-- [ ] **Step 5: Run focused and regression tests**
+- [x] **Step 5: Run focused and regression tests**
 
 ```bash
 npm test -- src/session/learningSession.test.ts src/session/useLearningSession.test.tsx src/selection/selectTransferProblem.test.ts
@@ -268,17 +270,18 @@ npm test -- src/session/learningSession.test.ts src/session/useLearningSession.t
 Expected: PASS; no infinite transfer chain and completion restoration remains
 correct.
 
-- [ ] **Step 6: Commit and push Review Gate A**
+- [x] **Step 6: Commit Review Gate A locally**
 
 ```bash
 git add src/content src/session src/selection
 git commit -m "feat: add recall-aware heading lesson state"
-git push origin agent/bootstrap-nabi-markdown
 ```
 
 Inspect PR #1 checks, reviews, and unresolved threads. Fix any still-valid
-behavior or persistence regression before continuing. Do not request a full
-automated review yet; this is a behavior checkpoint.
+behavior or persistence regression before continuing. If the new initial Help
+state exposes a known mismatch in the legacy UI, record it and continue directly
+to the approved C6 replacement. Do not push or request a full automated review
+until the browser suite is green.
 
 ---
 

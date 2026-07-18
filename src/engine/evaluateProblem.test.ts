@@ -30,21 +30,21 @@ describe("evaluateProblem", () => {
 
   it("protects the required title text", () => {
     const result = evaluateProblem(
-      getHeadingProblem("heading-project-notes"),
+      getHeadingProblem("heading-apple"),
       "# Weekly notes",
     )
 
     expect(result).toEqual({
       status: "fail",
-      feedbackId: "preserve-project-notes",
-      message: "Keep the words ‘Project notes’ in your answer.",
+      feedbackId: "preserve-apple",
+      message: "Keep the word ‘Apple’ in your answer.",
     })
   })
 
   it("prioritizes malformed heading spacing", () => {
     const result = evaluateProblem(
-      getHeadingProblem("heading-project-notes"),
-      "#Project notes",
+      getHeadingProblem("heading-apple"),
+      "#Apple",
     )
 
     expect(result).toEqual({
@@ -56,8 +56,8 @@ describe("evaluateProblem", () => {
 
   it("prioritizes malformed heading spacing with trailing whitespace", () => {
     const result = evaluateProblem(
-      getHeadingProblem("heading-project-notes"),
-      "#Project notes   ",
+      getHeadingProblem("heading-apple"),
+      "#Apple   ",
     )
 
     expect(result).toEqual({
@@ -69,8 +69,8 @@ describe("evaluateProblem", () => {
 
   it("never turns an editorial refinement into a failure", () => {
     const result = evaluateProblem(
-      getHeadingProblem("heading-project-notes"),
-      "# Project notes\n\n# Details",
+      getHeadingProblem("heading-apple"),
+      "# Apple\n\n# Details",
     )
 
     expect(result.status).toBe("matched")

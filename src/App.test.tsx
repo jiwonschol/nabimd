@@ -18,12 +18,12 @@ describe("App", () => {
       screen.getByRole("heading", { name: "Nabi Markdown" }),
     ).toBeVisible()
     expect(
-      screen.getByRole("heading", { name: "Make a document title" }),
+      screen.getByRole("heading", { name: "Main heading" }),
     ).toBeVisible()
     expect(
       screen.getByRole("region", { name: "Target" }),
-    ).toHaveTextContent("Project notes")
-    expect(editor).toHaveValue("Project notes")
+    ).toHaveTextContent("Apple")
+    expect(editor).toHaveValue("")
     expect(screen.getByRole("button", { name: "Check" })).toBeVisible()
   })
 
@@ -31,7 +31,7 @@ describe("App", () => {
     const { user, editor } = await openApp()
 
     await user.clear(editor)
-    await user.type(editor, "#Project notes")
+    await user.type(editor, "#Apple")
 
     expect(
       screen.queryByText("Add one space after the hash symbol."),
@@ -50,7 +50,7 @@ describe("App", () => {
   ])("checks with $modifier + Enter", async ({ event }) => {
     const { user, editor } = await openApp()
     await user.clear(editor)
-    await user.type(editor, "# Project notes")
+    await user.type(editor, "# Apple")
 
     fireEvent.keyDown(editor, event)
 
@@ -62,7 +62,7 @@ describe("App", () => {
   it("keeps Next unavailable after Fail", async () => {
     const { user, editor } = await openApp()
     await user.clear(editor)
-    await user.type(editor, "#Project notes")
+    await user.type(editor, "#Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(
@@ -76,7 +76,7 @@ describe("App", () => {
   it("reveals three progressive hints without inserting an answer", async () => {
     const { user, editor } = await openApp()
     await user.clear(editor)
-    await user.type(editor, "#Project notes")
+    await user.type(editor, "#Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
     const sourceBeforeHint = (editor as HTMLTextAreaElement).value
 
@@ -84,7 +84,7 @@ describe("App", () => {
 
     expect(
       screen.getByRole("complementary", { name: "Coach" }),
-    ).toHaveTextContent("Turn the line into the document's main heading.")
+    ).toHaveTextContent("Use one hash symbol to make a main heading.")
     expect(screen.getByText("1 / 3")).toBeVisible()
 
     await user.click(screen.getByRole("button", { name: "Next hint" }))
@@ -102,7 +102,7 @@ describe("App", () => {
   it("keeps Review closed and optional after Matched", async () => {
     const { user, editor } = await openApp()
     await user.clear(editor)
-    await user.type(editor, "# Project notes\n\n# Details")
+    await user.type(editor, "# Apple\n\n# Details")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(
@@ -124,7 +124,7 @@ describe("App", () => {
   it("shows Perfect as a pass without a required Review", async () => {
     const { user, editor } = await openApp()
     await user.clear(editor)
-    await user.type(editor, "# Project notes")
+    await user.type(editor, "# Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
 
     expect(
@@ -139,18 +139,18 @@ describe("App", () => {
   it("opens a different-content transfer after a repaired failure", async () => {
     const { user, editor } = await openApp()
     await user.clear(editor)
-    await user.type(editor, "#Project notes")
+    await user.type(editor, "#Apple")
     await user.click(screen.getByRole("button", { name: "Check" }))
     await user.clear(editor)
-    await user.type(editor, "# Project notes")
+    await user.type(editor, "# Apple")
     await user.click(screen.getByRole("button", { name: "Check again" }))
     await user.click(screen.getByRole("button", { name: "Next" }))
 
     expect(
       screen.getByText(
-        "Turn Weekend guide into the document's main heading.",
+        "Rebuild the heading below in Markdown.",
       ),
     ).toBeVisible()
-    expect(editor).toHaveValue("Weekend guide")
+    expect(editor).toHaveValue("")
   })
 })

@@ -34,6 +34,8 @@ export type Problem = {
   familyId: "headings"
   skillIds: readonly ["heading-h1"]
   difficulty: "warmup"
+  teachingMode: "introduce" | "recall"
+  syntaxTokens: readonly string[]
   title: string
   prompt: string
   target: string

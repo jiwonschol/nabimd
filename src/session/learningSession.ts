@@ -7,7 +7,10 @@ export type LearningSession = {
   currentProblemId: string
   draft: string
   evaluation: Evaluation | null
+  teachingMode: Problem["teachingMode"]
+  retryFamily: Problem["retryFamily"]
   hadFailure: boolean
+  needsTransfer: boolean
   currentIsTransfer: boolean
   hintLevel: 0 | 1 | 2 | 3
   coach: "closed" | "hint" | "review"
@@ -38,16 +41,21 @@ export function createLearningSession(
     progress.completedProblemIds.includes(problem.id) &&
     progress.pendingTransferFamily === null &&
     !progress.currentIsTransfer
+  const showIntroducedRule =
+    !isComplete && problem.teachingMode === "introduce"
 
   return {
     phase: isComplete ? "complete" : "editing",
     currentProblemId: problem.id,
     draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
     evaluation: null,
+    teachingMode: problem.teachingMode,
+    retryFamily: problem.retryFamily,
     hadFailure: progress.pendingTransferFamily !== null,
+    needsTransfer: progress.pendingTransferFamily !== null,
     currentIsTransfer: progress.currentIsTransfer,
-    hintLevel: 0,
-    coach: "closed",
+    hintLevel: showIntroducedRule ? 1 : 0,
+    coach: showIntroducedRule ? "hint" : "closed",
     progress,
   }
 }
@@ -69,6 +77,7 @@ function completeSession(session: LearningSession): LearningSession {
     ...session,
     phase: "complete",
     coach: "closed",
+    needsTransfer: false,
     currentIsTransfer: false,
     progress: {
       ...session.progress,
@@ -114,6 +123,7 @@ export function learningSessionReducer(
         phase: "evaluated",
         evaluation: event.evaluation,
         hadFailure: session.hadFailure || failed,
+        needsTransfer: session.needsTransfer || failed,
         hintLevel: failed ? session.hintLevel : 0,
         coach: "closed",
         progress: {
@@ -126,6 +136,33 @@ export function learningSessionReducer(
     }
 
     case "hint-requested": {
+      if (
+        session.phase === "evaluated" &&
+        session.evaluation?.status !== "fail"
+      ) {
+        return session
+      }
+
+      if (session.coach !== "hint") {
+        const createsTransferDebt =
+          session.teachingMode === "recall" &&
+          !session.currentIsTransfer
+
+        return {
+          ...session,
+          coach: "hint",
+          hintLevel: Math.max(1, session.hintLevel) as 1 | 2 | 3,
+          needsTransfer:
+            session.needsTransfer || createsTransferDebt,
+          progress: createsTransferDebt
+            ? {
+                ...session.progress,
+                pendingTransferFamily: session.retryFamily,
+              }
+            : session.progress,
+        }
+      }
+
       if (session.evaluation?.status !== "fail") return session
       const nextHintLevel = Math.min(3, session.hintLevel + 1) as
         | 1
@@ -151,7 +188,7 @@ export function learningSessionReducer(
     case "next": {
       if (!canAdvance(session)) return session
       if (session.currentIsTransfer) return completeSession(session)
-      if (!session.hadFailure) return completeSession(session)
+      if (!session.needsTransfer) return completeSession(session)
       if (!event.transferProblemId || event.transferDraft === undefined) {
         return session
       }
@@ -162,7 +199,9 @@ export function learningSessionReducer(
         currentProblemId: event.transferProblemId,
         draft: event.transferDraft,
         evaluation: null,
+        teachingMode: "recall",
         hadFailure: false,
+        needsTransfer: false,
         currentIsTransfer: true,
         hintLevel: 0,
         coach: "closed",

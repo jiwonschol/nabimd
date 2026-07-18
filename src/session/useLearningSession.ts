@@ -65,7 +65,7 @@ export function useLearningSession(
   const next = useCallback(() => {
     if (!canAdvance(session)) return
 
-    if (session.hadFailure && !session.currentIsTransfer) {
+    if (session.needsTransfer && !session.currentIsTransfer) {
       const transferProblem = selectTransferProblem({
         problems: headingProblems,
         currentProblemId: problem.id,
