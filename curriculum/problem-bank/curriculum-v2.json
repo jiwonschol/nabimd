@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "curriculumVersion": "2026-07-19",
+  "flavors": ["standard"],
+  "targetAccepted": 512,
+  "levels": [
+    {
+      "level": 1,
+      "name": "guided-production",
+      "minimumAccepted": 128,
+      "teachingMode": "introduce",
+      "vocabularyProfile": "everyday"
+    },
+    {
+      "level": 2,
+      "name": "recall",
+      "minimumAccepted": 128,
+      "teachingMode": "recall",
+      "vocabularyProfile": "everyday-recall"
+    },
+    {
+      "level": 3,
+      "name": "readable-human-documents",
+      "minimumAccepted": 96,
+      "teachingMode": "recall",
+      "vocabularyProfile": "workplace-document"
+    },
+    {
+      "level": 4,
+      "name": "executable-development-specifications",
+      "minimumAccepted": 80,
+      "teachingMode": "recall",
+      "vocabularyProfile": "development-spec"
+    },
+    {
+      "level": 5,
+      "name": "human-reviewable-ai-executable-work-orders",
+      "minimumAccepted": 80,
+      "teachingMode": "recall",
+      "vocabularyProfile": "agent-workflow",
+      "requiresConventionMetadata": true
+    }
+  ],
+  "standardFamilies": [
+    "headings",
+    "emphasis",
+    "lists",
+    "blockquotes",
+    "inline-code",
+    "horizontal-rules",
+    "links",
+    "images"
+  ],
+  "runtimeBoundaries": {
+    "aiCalls": false,
+    "networkRequests": false,
+    "webCrawling": false,
+    "semanticGrading": false,
+    "exactProseGrading": false
+  }
+}

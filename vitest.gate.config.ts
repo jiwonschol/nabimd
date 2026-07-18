@@ -6,6 +6,7 @@ export default defineConfig({
     include: [
       "scripts/problem-bank/problemBankGate.gate.ts",
       "scripts/problem-bank/reviewManifest.report.ts",
+      "scripts/problem-bank/seedBatchArtifacts.gate.ts",
     ],
   },
 })

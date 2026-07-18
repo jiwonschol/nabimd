@@ -1,65 +1,43 @@
-import type { Root } from "mdast"
-import type { MatchCheck, Problem } from "../content/types"
-import {
-  headingsAtLevel,
-  isHashHeading,
-} from "./markdownAst"
+import type { GradableProblem, MatchCheck } from "../content/types"
+import type { EvaluationContext } from "./evaluationContext"
+import { headingCheckPasses } from "./predicates/heading"
+import { structuralCheckPasses } from "./predicates/structural"
 import type { MatchFailure } from "./types"
 
-function hasMalformedHeadingSpacing(source: string, check: MatchCheck): boolean {
-  if (check.kind !== "heading-spacing") return false
-
-  return source
-    .split(/\r?\n/)
-    .some((line) => /^ {0,3}#(?!#)(?=[^ \t\r\n])/.test(line))
-}
-
-function matchingHashHeadings(source: string, root: Root, check: MatchCheck) {
-  if (!("level" in check)) return []
-
-  return headingsAtLevel(root, check.level).filter((heading) =>
-    isHashHeading(source, heading),
-  )
-}
-
-function hasRequestedHashHeading(
-  source: string,
-  root: Root,
+function checkPasses(
   check: MatchCheck,
+  context: EvaluationContext,
 ): boolean {
-  return matchingHashHeadings(source, root, check).length > 0
-}
-
-function checkPasses(check: MatchCheck, source: string, root: Root): boolean {
   switch (check.kind) {
     case "heading-spacing":
-      return (
-        hasRequestedHashHeading(source, root, check) ||
-        !hasMalformedHeadingSpacing(source, check)
-      )
     case "hash-heading-style":
-      return (
-        hasRequestedHashHeading(source, root, check) ||
-        !headingsAtLevel(root, check.level).some(
-          (heading) => !isHashHeading(source, heading),
-        )
-      )
     case "has-heading":
-      return hasRequestedHashHeading(source, root, check)
+      return headingCheckPasses(check, context.source, context.root)
+    case "block-count":
+    case "inline-presence":
+    case "heading-depth-order":
+    case "list-shape":
+    case "code-block":
+    case "block-sequence":
+    case "document-limits":
+      return structuralCheckPasses(check, context)
   }
 }
 
 export function evaluateMatch(
-  problem: Problem,
-  source: string,
-  root: Root,
+  problem: GradableProblem,
+  context: EvaluationContext,
 ): MatchFailure | null {
-  const checksByPriority = [...problem.matchChecks].sort(
-    (left, right) => left.priority - right.priority,
-  )
+  const checksByPriority = problem.matchChecks
+    .map((check, declarationIndex) => ({ check, declarationIndex }))
+    .sort(
+      (left, right) =>
+        left.check.priority - right.check.priority ||
+        left.declarationIndex - right.declarationIndex,
+    )
 
-  for (const check of checksByPriority) {
-    if (!checkPasses(check, source, root)) {
+  for (const { check } of checksByPriority) {
+    if (!checkPasses(check, context)) {
       return {
         status: "fail",
         feedbackId: check.id,

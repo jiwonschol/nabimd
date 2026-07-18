@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "source": "Issue #9 approved curriculum rubric",
+  "webCrawling": false,
+  "profiles": [
+    {
+      "id": "everyday",
+      "level": 1,
+      "domains": ["fruit", "weather", "learning-tools", "home", "errands", "leisure"],
+      "inspection": "Short familiar US-English labels and noun phrases with low typing friction."
+    },
+    {
+      "id": "everyday-recall",
+      "level": 2,
+      "domains": ["routines", "preparation", "study", "sharing", "simple-plans"],
+      "inspection": "Familiar actions and mini-documents that do not distract from syntax recall."
+    },
+    {
+      "id": "workplace-document",
+      "level": 3,
+      "domains": ["meetings", "handoffs", "decisions", "status", "customer-notes"],
+      "inspection": "Contemporary workplace language suitable for readable human documents."
+    },
+    {
+      "id": "development-spec",
+      "level": 4,
+      "domains": ["scope", "dependencies", "constraints", "acceptance", "verification"],
+      "inspection": "Terms used to structure implementation-ready development specifications."
+    },
+    {
+      "id": "agent-workflow",
+      "level": 5,
+      "domains": ["authority", "source-of-truth", "stages", "prohibitions", "stop-conditions", "regression-guards"],
+      "inspection": "Current agent-workflow vocabulary with a recorded convention version and review date."
+    }
+  ],
+  "editorialChecks": [
+    "levelFit",
+    "vocabularyFit",
+    "ambiguity",
+    "goalQuality",
+    "duplication",
+    "licensing",
+    "flavor",
+    "runtimeAiBoundary"
+  ]
+}

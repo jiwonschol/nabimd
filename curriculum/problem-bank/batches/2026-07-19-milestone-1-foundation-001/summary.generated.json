@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-milestone-1-foundation-001",
+  "status": "published",
+  "batchDigest": "58f9c2b5c5d622ccac15cfb8ec6064998fc9613ff384a14dd055a0cb777e0780",
+  "bankDigest": "c6b7b01888b0e72f49ea0e06636717e34b1983cdef6424fdf73cdbe6b2225dbe",
+  "projectionDigest": "bc3f919dda5577bc819f2a0c760f710a15fd539d222c41a0fe65e6494b4402ea",
+  "trackerDigest": "872996ebec8c243eec0a060dfba86787bc4ab170923470ed30c0585893c080ad",
+  "generated": 20,
+  "accepted": 20,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "executable-development-spec": 4,
+      "headings": 8,
+      "readable-human-document": 4
+    },
+    "byLevelAndFamily": {
+      "1/headings": 4,
+      "2/headings": 4,
+      "3/readable-human-document": 4,
+      "4/executable-development-spec": 4,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 20
+    }
+  },
+  "manifestDigest": "980ca43defb48be8faf0fcffab5695c98e2dbfb45670d6ad5a3f443587e82578",
+  "reviewDigests": [
+    "1758df3d41cd2e2d7b81f76919c8b28d7e5294aa1211776a196ecf9d2d806c64",
+    "bf666361aa0ef3fca9a2fc18e71874cf6cf5c9841adfb5f8787a58796e4cbc81"
+  ],
+  "editorialDigest": "89d0117d0a025b776264556467766cf4137830545b8ea52482978ec48d656f8e",
+  "summaryDigest": "d6ce14eb97237979abcb79fb4fb878759969a88086e6780787553f7e2217041d"
+}

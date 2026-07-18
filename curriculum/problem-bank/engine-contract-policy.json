@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "policyId": "real-engine-contract-v1",
+  "files": [
+    "src/content/normalizeProblem.ts",
+    "src/content/types.ts",
+    "src/engine/evaluateProblem.ts",
+    "src/engine/evaluateMatch.ts",
+    "src/engine/evaluateEditorial.ts",
+    "src/engine/evaluationContext.ts",
+    "src/engine/markdownAst.ts",
+    "src/engine/sectionIndex.ts",
+    "src/engine/predicates/heading.ts",
+    "src/engine/predicates/structural.ts",
+    "src/engine/types.ts"
+  ],
+  "dependencies": [
+    {
+      "name": "mdast-util-from-markdown",
+      "version": "2.0.3"
+    }
+  ]
+}

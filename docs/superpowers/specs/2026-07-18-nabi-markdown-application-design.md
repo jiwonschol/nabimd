@@ -81,29 +81,22 @@ trap the learner in a single activity type.
 
 The product begins with level entry, not a marketing page, account gate, or
 placement test. A fresh browser session shows the Nabi Markdown wordmark, a
-short welcome, and exactly three choices:
-
-1. `New to Markdown — start at Level 1`
-2. `I know the basics`
-3. `Challenge me`
+short welcome, and exactly five level choices matching the definitive
+curriculum ladder.
 
 One pointer click or keyboard activation opens the problem desk directly with
-no intermediate page. Level 1 begins with the introduced rule visible. The two
-higher entries begin in recall mode with Help closed.
-
-The current bank contains only the H1 heading family. The choices are therefore
-honest entry modes into that track, with different starting content, rather
-than claims that unshipped syntax families or advanced levels exist. Entry
-configuration is data so new tracks can replace the current rotated heading
-sequences without restructuring the greeting or session controller.
+no intermediate page. Level 1 begins with the introduced rule visible. Levels
+2–5 begin in recall mode with Help closed.
 
 ## Course and problem-bank scope
 
-The Build Week pipeline stages 128 generated candidates—16 per family—but the
-runtime publishes only candidates that the current deterministic engine can
-grade and that clear every trust gate. At the heading-engine milestone, this
-means 16 shipped H1 problems and 112 explicitly blocked roadmap candidates.
-The 500+ bank is a later direction, not a Build Week quantity claim.
+The definitive Issue #9 design is
+[`2026-07-19-five-level-problem-bank-design.md`](./2026-07-19-five-level-problem-bank-design.md).
+The Build Week target is at least 500 inspected problems across all five levels;
+the first planned complete distribution contains 512. The runtime publishes
+only candidates that the deterministic engine can grade and that clear the
+digest-bound fixture, independent-review, and editorial gates. Quantity never
+overrides those gates.
 
 ### Devpost-aligned syntax families
 
@@ -533,10 +526,11 @@ Codex initially proposed a quiet live coach. Jiwon rejected it because automatic
 correction helps someone operate an editor but does not develop recall. That
 decision produced explicit Check, progressive Hint, and the transfer problem.
 
-At least one named problem-bank refinement pass must use GPT-5.6 in Codex before
-submission. The resulting accepted, rejected, and counterexample artifacts
-must be visible in the repository or commit history and described in the build
-log. No GPT-5.6 work is claimed until that pass occurs.
+GPT-5.6 in Codex is used in the documented problem-bank production loop for
+generation, real-engine counterexample verification, and independent editorial
+inspection. Accepted, rejected, and counterexample artifacts remain visible in
+the repository or commit history and are described in the build log. The
+learner application remains deterministic and makes no runtime AI call.
 
 ## Non-goals for Build Week
 
@@ -555,8 +549,8 @@ log. No GPT-5.6 work is claimed until that pass occurs.
 
 If time runs short, cut in this order:
 
-1. Reduce problem count while retaining at least two retry variants per shipped
-   skill family.
+1. Reduce a pending batch rather than publishing an unvetted problem; the
+   Issue #9 completion claim remains blocked until at least 500 pass inspection.
 2. Reduce the number of mixed problems.
 3. Reduce Document Makeovers to one fully tested example.
 4. Simplify motion and decorative polish.

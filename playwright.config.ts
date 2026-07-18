@@ -1,7 +1,8 @@
 import { defineConfig, devices } from "@playwright/test"
 
 const deploymentUrl = process.env.E2E_BASE_URL?.trim() || undefined
-const localUrl = "http://127.0.0.1:4173"
+const localPort = process.env.E2E_PORT?.trim() || "4174"
+const localUrl = `http://127.0.0.1:${localPort}`
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -14,7 +15,7 @@ export default defineConfig({
   webServer: deploymentUrl
     ? undefined
     : {
-        command: "npm run dev -- --host 127.0.0.1 --port 4173",
+        command: `npm run dev -- --host 127.0.0.1 --port ${localPort}`,
         url: localUrl,
         reuseExistingServer: !process.env.CI,
       },

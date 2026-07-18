@@ -1,19 +1,19 @@
-import type { Problem } from "../content/types"
+import type { GradableProblem } from "../content/types"
 import { evaluateEditorial } from "./evaluateEditorial"
 import { evaluateMatch } from "./evaluateMatch"
-import { parseMarkdown } from "./markdownAst"
+import { createEvaluationContext } from "./evaluationContext"
 import type { Evaluation } from "./types"
 
 export function evaluateProblem(
-  problem: Problem,
+  problem: GradableProblem,
   source: string,
 ): Evaluation {
-  const tree = parseMarkdown(source)
-  const matchFailure = evaluateMatch(problem, source, tree)
+  const context = createEvaluationContext(source)
+  const matchFailure = evaluateMatch(problem, context)
 
   if (matchFailure) return matchFailure
 
-  const reviewItems = evaluateEditorial(problem, tree)
+  const reviewItems = evaluateEditorial(problem, context)
 
   return { status: "matched", reviewItems }
 }

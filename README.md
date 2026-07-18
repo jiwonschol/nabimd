@@ -9,9 +9,11 @@ not recognition: the learner sees a rendered target, writes the source, checks
 it explicitly, and proves the same skill with different content after a
 mistake.
 
-The current product track teaches H1 document titles. Its accepted bank is
-deliberately bounded by a deterministic publication gate before later syntax
-families are allowed into the learner runtime.
+The playable curriculum now spans five levels: guided syntax, recall, readable
+workplace documents, development specifications, and agent work orders. The
+first schema-v2 milestone is intentionally small and deeply tested; the public
+tracker, not a marketing estimate, is the source of truth as the bank grows
+toward 512 inspected problems.
 
 **Live demo:** [nabimd.vercel.app](https://nabimd.vercel.app)
 
@@ -45,49 +47,49 @@ Nabi takes its method from language learning:
 1. See a small rendered target.
 2. Produce the Markdown yourself in a plain source editor.
 3. Press **Check** or `Control/Command + Enter` when you are ready.
-4. Receive one precise result: **Fail**, **Matched**, or **Perfect**.
+4. Receive one precise result: **Try again** or **Matched**.
 5. See a new rule during its Level 1 introduction; on later recall exercises,
-   choose whether to open Help. After Fail, ask for progressively stronger
+   choose whether to open Hint. After Try again, ask for progressively stronger
    hints. After Matched, Review remains optional.
 6. After repairing a failure, solve a different prompt that uses the same
    syntax so recall—not answer memorization—is tested.
 
-Both Matched and Perfect pass. Matched means the requested syntax is correct
-but an optional readability improvement is available. Perfect means all checks
-for that exercise passed. Fail is reserved for missing or malformed required
-syntax or lost prompt content.
+Matched means the requested Markdown structure is present. Case, spelling,
+punctuation, and wording are not graded. Try again is reserved for missing or
+malformed requested Markdown. Optional Review can point out another structural
+habit, but it is not a third grade and cannot revoke Matched.
 
 ## Current scope
 
 This milestone includes:
 
-- 16 curated H1 heading prompts with 29 real-engine fixtures each;
-- three-exercise replay windows that rotate through the accepted bank;
-- a compact Level 1 concept, how-to, and inline example that disappears in
-  recall mode;
-- a reproducible 128-candidate GPT-5.6 artifact with 112 unsupported-family
-  candidates truthfully blocked from runtime publication;
-- deterministic Markdown parsing and ordered feedback;
-- different-content transfer after a repaired failure;
-- introduce/recall teaching modes, downward Help, progressive hints, and
-  optional Review;
-- local draft and transfer-state persistence;
-- one safe rendered-document surface for Goal and Live preview;
-- a restrained monochrome CodeMirror source editor with optional,
-  non-mutating invisibles; and
-- a digest-bound declared-independent review and editorial publication gate.
+- five selectable curriculum levels with three-problem rotating runs;
+- four different-content seed problems at every level, including full-length
+  Level 5 agent work orders;
+- a fixed CBT-style top bar and two equal Goal/Answer panels;
+- Write and Preview tabs, with Review replacing Preview after Check when useful;
+- a compact Level 1 rule that disappears into request-only Hint for recall;
+- deterministic AST predicates and ordered, structure-only feedback;
+- different-content replacement after a failure and `Try another` at any time;
+- browser-session draft, schedule, and transfer-state persistence;
+- safe local rendering with no runtime AI or learner-content API request;
+- a monochrome CodeMirror editor with optional, non-mutating invisibles; and
+- an append-only, digest-bound fixture, independent-review, and editorial gate.
 
-It does **not** yet claim the full 33-problem curriculum, accounts, cloud
-sync, Korean localization, payments, analytics, or runtime AI.
+The repository also preserves the earlier 128-candidate GPT-5.6 experiment as
+frozen legacy evidence. Its 112 unsupported-family candidates are not silently
+counted as schema-v2 lessons. Nabi does **not** yet claim the 512-problem closing
+target, accounts, cloud sync, Korean localization, payments, or analytics.
 
 ## How it works
 
 The browser app is React, TypeScript, and Vite. CodeMirror 6 provides the plain
 Markdown source surface, caret, history, gutter, and view-only whitespace
 decorations. `mdast-util-from-markdown` parses learner input into a Markdown
-AST. The grader checks required structure, protected prompt text, malformed
-syntax, and optional editorial rules. React components render the resulting
-state; they do not inspect Markdown syntax.
+AST once. Pure predicates check node types, counts, nesting, order, section
+boundaries, and explicitly taught source forms. They never inspect title text,
+case, spelling, vocabulary, or prose similarity. React components render the
+resulting state; they do not inspect Markdown syntax.
 
 The Goal and learner preview use `react-markdown` without raw HTML.
 Progress is versioned and stored locally. The deployed app makes no request to
@@ -109,11 +111,11 @@ real browser at desktop and mobile sizes and fixed the defects that appeared.
 
 Jiwon made the consequential product calls. He rejected live correction
 because it improves an editor without building recall; chose explicit Check,
-request-only coaching, and different-content transfer; made Matched a pass and
-Perfect a stronger pass; defined Goal as the rendered reference; selected the
-C6 workspace with aligned Goal/Help and equal editor/preview rows; kept runtime
-grading deterministic; and set the English-first, black-and-white Build Week
-scope.
+request-only coaching, and different-content transfer; collapsed the verdicts
+to Try again and Matched; defined Goal as the rendered reference; replaced a
+three-column editor with the familiar CBT two-panel composition; kept runtime
+grading deterministic; and defined Level 5 as a human-reviewable, AI-executable
+work order rather than a vendor-specific prompt template.
 
 The dated [build log](docs/build-log.md) records these decisions and failures
 while they happen. The public commit sequence preserves the implementation
@@ -130,16 +132,17 @@ for the implementation sequence and shipped evidence.
 
 An early live-coach proposal behaved too much like a word processor's
 autocorrect. Jiwon rejected it because the learner would depend on the editor.
-The shipped loop grades only on explicit Check, reveals Hint only after Fail,
-and requires different content after a repaired mistake.
+The shipped loop grades only on explicit Check, reveals Hint on request after
+the initial guided lesson, and requires different content after a repaired
+mistake.
 
 ### Grading structure rather than one copied answer
 
-Exact-string comparison would reject valid Markdown such as a supported
-closing-hash heading. The fixture bank therefore separates canonical,
-alternate, missing, malformed, matched-with-refinement, and perfect cases. AST
-checks accept supported equivalents while protected-content and source-spacing
-checks still produce a specific failure for `#Project notes`.
+Exact-string comparison would punish the learner for writing different words.
+The fixture bank therefore separates canonical, alternate-prose,
+case-or-spelling, missing, malformed, and matched-with-review cases. AST checks
+accept `# aple` when the lesson asks for an H1, while still producing a specific
+spacing correction for `#Project notes`.
 
 ### Testing browser storage under Node 26
 
@@ -160,9 +163,11 @@ gate then passed both suites independently.
 The first shipped slice proved grading but repeated `Project notes` across the
 instruction, target, prefilled source, and preview. Jiwon's hands-on review
 showed that the result looked like a generic Markdown editor, not a lesson.
-The redesign kept the tested grader, persistence, and transfer selector while
-replacing the learner hierarchy: an empty source, a large rendered Goal,
-downward Help, and one shared paper component for Goal and Live preview.
+The first redesign kept the tested grader, persistence, and transfer selector
+while replacing the learner hierarchy with an empty source and a large rendered
+Goal. The later CBT redesign removed the redundant permanent live-preview
+column: Goal stays on the left, while Write, Preview, and Review share the equal
+Answer panel on the right.
 
 ### Keeping fast typing from being overwritten
 
@@ -175,25 +180,24 @@ in the application and real-browser keyboard paths.
 
 ### Removing the mobile overlay exposed by the new Help default
 
-Level 1 now opens Help on first exposure. The legacy mobile Side Coach was a
-fixed bottom sheet, so it covered the Check action before the C6 composition
-was complete. C6 removes that overlay entirely: Help is a normal downward
-disclosure in semantic document order. Browser tests now assert Goal → Help →
-source → preview ordering and no horizontal overflow at 390 px.
+Level 1 now opens Hint on first exposure. The legacy mobile Side Coach was a
+fixed bottom sheet, so it covered the Check action. The CBT composition removes
+that overlay entirely: Hint opens inside Goal and never changes the equal panel
+frame. Browser tests assert the fixed desktop contract and bounded narrow-screen
+overflow.
 
 ## Accomplishments that we're proud of
 
-- A complete Fail → repair → different-content transfer → pass loop works in
-  the browser.
-- Matched and Perfect preserve the difference between correctness and readable
-  presentation without turning editorial polish into punishment.
-- Every current problem carries 29 grading fixtures, a complete teaching
+- A complete Try again → repair → different-content transfer → Matched loop
+  works in the browser.
+- Structure-only grading lets learners change every visible word without losing
+  credit for correct Markdown.
+- Every schema-v2 seed carries real-engine counterexamples, a complete teaching
   payload, and three progressive hints.
-- Goal and Live preview share one safe renderer, while the source editor can
-  reveal spaces and tabs without changing the learner's Markdown.
-- Typechecking, 661 unit/component/pipeline checks, the digest-bound bank gate,
-  the production build, and 15 Chromium journeys pass on the issue #7 release
-  candidate. Production deployment is verified separately after merge.
+- Goal and Answer remain equal at `1280 × 800`; long Level 5 documents scroll
+  inside their panels while the app chrome stays fixed.
+- Typechecking, 758 unit/component/pipeline checks, the digest-bound bank gate,
+  the production build, and 12 Chromium journeys cover the current foundation.
 - The UI stays monochrome and source-focused while preserving a constrained
   reading width and allowing future document exercises to grow vertically.
 
@@ -250,30 +254,29 @@ npm run check
 - [Approved first-exercise redesign](docs/superpowers/specs/2026-07-18-first-exercise-redesign-design.md)
 - [C6 redesign execution plan](docs/superpowers/plans/2026-07-18-first-exercise-redesign.md)
 - [Level 5 agent-brief north star](docs/design/level-5-agent-brief-north-star.md)
+- [Approved five-level problem-bank design](docs/superpowers/specs/2026-07-19-five-level-problem-bank-design.md)
+- [Five-level problem-bank execution plan](docs/superpowers/plans/2026-07-19-five-level-problem-bank.md)
 - [Problem-bank pipeline](curriculum/problem-bank/README.md)
 - [Anonymized Level 5 reference](docs/examples/level-5-agent-work-order-reference.md)
 - [Public demo](https://nabimd.vercel.app)
-- Primary Codex task: the core-build task used for this repository
-- `/feedback` Session ID: generated after the majority of the final submission
-  scope is complete, then supplied through Devpost
+- Primary Codex task and `/feedback` Session ID:
+  `019f7290-4f9c-7c01-beaa-bc106cbdd874`
 
 ## What's next for Nabi Markdown
 
-First, expand the proven fixture contract across the Devpost-supported common
-syntax families and mix them into short document makeovers. Then use GPT-5.6
-for a documented curriculum counterexample and refinement pass whose accepted
-and rejected suggestions live in the repository; it will help produce the
-bank, not grade learners at runtime.
+First, expand the proven fixture contract to the 512-problem distribution in
+small reviewed batches. GPT-5.6 helps generate vocabulary, candidates, and
+counterexamples at build time; accepted and rejected results remain inspectable
+in the repository, and it never grades a learner at runtime.
 
 Markdown is the first code many people write with AI. It should not be the
 first thing nobody teaches them.
 
-Later: the syntax agents actually read—AGENTS.md, prompt structure, spec files,
-and contemporary agent work orders. The eventual Level 5 outcome is not merely
-an editor: repeated document makeovers should teach a person to structure an
-AI instruction document that another human can audit. Those conventions will
-be versioned as tools evolve. Korean comes before other localizations after the
-English curriculum is proven.
+Level 5 already establishes the north star: repeated document makeovers teach a
+person to structure an AI instruction document that another human can audit.
+Its convention metadata is versioned so the curriculum can evolve with agent
+workflows. Korean comes before other localizations after the English curriculum
+is proven.
 
 No pre-existing application code was used. The app depends on React, Vite,
 TypeScript, CodeMirror, mdast, react-markdown, Vitest, Testing Library, and

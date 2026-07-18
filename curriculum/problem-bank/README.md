@@ -1,51 +1,79 @@
 # Problem-bank pipeline
 
 Nabi treats curriculum as executable product data, not a pile of prompts. The
-committed GPT-5.6 artifact contains 128 candidates: 16 in each of eight common
-Markdown families. Only the 16 headings can use the current deterministic
-engine. The remaining 112 are explicitly blocked as
-`engine-family-not-supported`; blocked candidates are roadmap evidence, not
-shipped lessons.
+schema-v2 tracker currently publishes 20 inspected `standard` problems: four
+at each of Levels 1–5. The first immutable batch carries 188 real-engine
+fixtures, two sealed independent reviews, and one separate editorial decision.
+
+The earlier 128-candidate GPT-5.6 artifact remains frozen schema-v1 evidence.
+Its 16 accepted headings and 112 unsupported-family candidates are preserved
+for audit history but do not count toward the schema-v2 tracker.
 
 ## Gate order
 
-1. **Generate:** `npm run bank:generate` normalizes the raw GPT-5.6 artifact,
-   attaches deterministic candidate digests, and preserves the exact prompt
-   digest. `npm run bank:generate:check` rejects drift.
-2. **Validate fixtures:** the publish gate runs `validateProblemBank` and every
-   committed fixture through the real `evaluateProblem` engine. Each heading
-   currently has 29 fixtures. The resulting transcript and fixture count are
-   bound to a SHA-256 digest.
-3. **Declared-independent agreement:** `npm run bank:review-manifest` prints
-   the exact candidate and fixture-result digests. At least two reviewers must
-   declare distinct identities and runs and submit separate passing records. A
-   stale digest, duplicate reviewer/run, or any disagreeing verdict blocks
-   publication. The static gate verifies those declarations and artifacts; it
-   does not authenticate the people or processes behind reviewer IDs.
-4. **Editorial queue:** one decision is required for every candidate. An
-   accepted heading must cite the same candidate and fixture-result digests and
-   name the editorial actor. Unsupported families remain blocked, including
-   image candidates that still need licensed assets and visual alt-text review.
-5. **Publish:** `npm run bank:gate` requires the runtime JSON set to equal the
-   accepted editorial set exactly. Unknown, unsupported, or bypassed content
-   fails the gate.
+1. **Generate and normalize:** an exact build-time prompt and raw candidates
+   produce sorted normalized records with `flavor: "standard"` and content
+   digests.
+2. **Verify:** `validateProblemBank` and every fixture run through the real
+   `normalizeProblem` / `evaluateProblem` implementation. The transcript is
+   bound to an explicit engine-contract digest.
+3. **Freeze review scope:** `review-manifest.json` binds candidate, materialized
+   problem, fixture-definition, fixture-result, and engine digests.
+4. **Independent review:** two distinct reviewer and run IDs must each submit a
+   passing, sealed verdict for every accepted candidate. Disagreement or stale
+   scope blocks only the affected candidate.
+5. **Editorial inspection:** a separate actor decides level fit, vocabulary
+   fit, ambiguity, Goal quality, duplication, licensing, flavor, and the
+   no-runtime-AI boundary.
+6. **Publish:** `npm run bank:batch:publish` writes only the compiled runtime
+   projection, tracker, and batch summary. `npm run check` then proves those
+   files exactly equal the accepted evidence set.
 
-`npm run check` runs the normalization drift check, ordinary tests, bank gate,
-and production build. During review, a feature branch is expected to fail only
-at the missing declared-review/editorial stages. It must not merge in that
-state.
+`npm run bank:batch:generate:check` is state-aware: it represents zero, one,
+two, and editorial-complete review states honestly while keeping publication
+empty until every required seal exists. The generator refuses to rewrite a
+batch after any review or editorial evidence lands. `npm run check` runs both
+pipeline generations, the state gate, application tests, the legacy gate, and
+the production build.
 
 ## Artifact map
 
 - `generation-prompt.md` — exact generation request;
 - `candidates.raw.json` — human-readable GPT-5.6 output;
 - `candidates.normalized.json` — deterministic generated artifact and digests;
-- `editorial-queue.json` — one decision per candidate;
+- `fixtures.json` and `verification.json` — definitions and real-engine result
+  transcripts;
+- `engine-contract.json` — exact source/dependency hashes used by verification;
 - `review-manifest.json` — frozen content, transcript, and fixture-count digests
   for the exact review head;
-- `reviews/*.json` — declared-independent digest-bound review records; and
-- `src/content/generated/headingBank.generated.json` — the runtime publish set.
+- `reviews/*.json` — declared-independent digest-bound review records;
+- `editorial.json` — separate per-candidate editorial decisions;
+- `summary.generated.json` — accepted/rejected/blocked counts and evidence
+  digests; and
+- `runtime-projections.generated.json` / `tracker.generated.json` — exact
+  compiled publish set and progress toward the closing target.
 
-The 500+ bank remains a roadmap, not a quantity claim. New families publish in
-small batches only after their real predicate, counterexamples, fixtures,
-declared-independent agreement, and editorial acceptance all exist.
+The 512-problem closing bank remains a target, not a quantity claim. The tracker
+currently reports 20. New families publish in small batches only after their
+real predicate, counterexamples, fixtures, independent agreement, and editorial
+acceptance all exist.
+
+## Schema-v2 batch foundation
+
+Issue #9 adds an append-only batch ledger beside the frozen schema-v1 evidence.
+The v1 prompt, 128 candidates, 16 accepted headings, 112 blocked candidates,
+review records, and editorial decisions remain unchanged and are indexed by
+`legacy/v1-128.index.json`. They do not count toward the schema-v2 tracker until
+a later batch requalifies them against the new curriculum contract.
+
+Every directory under `batches/` is a self-contained evidence unit. Its raw
+candidate artifact and exact prompt deterministically produce the committed
+normalized artifact. Fixtures are verified through an injected real-engine
+adapter; the pipeline itself does not import the learner engine. Two distinct,
+digest-current reviewer runs and a separate editorial decision are required
+before compilation. The compiler publishes only the accepted set and derives
+`tracker.generated.json`; neither generated projection is hand-edited.
+
+The tracker target is 512 inspected `standard` problems: 128 each at Levels 1
+and 2, 96 at Level 3, and 80 each at Levels 4 and 5. Quantity never overrides a
+fixture, review, or editorial failure. The current distribution is 4/4/4/4/4.

@@ -43,10 +43,10 @@ export function EditorialDesk({
 
       {session.phase === "complete" ? (
         <section className="completion" aria-labelledby="completion-title">
-          <h2 id="completion-title">Heading practice complete.</h2>
+          <h2 id="completion-title">Practice complete.</h2>
           <p>
-            You completed every step in this heading run. Keep practicing or
-            choose a different entry.
+            You completed every step in this run. Keep practicing or choose a
+            different level.
           </p>
           <div className="completion__actions">
             <button

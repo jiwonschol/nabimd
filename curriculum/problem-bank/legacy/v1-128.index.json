@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-legacy-evidence",
+  "countsTowardSchemaV2": false,
+  "candidateCount": 128,
+  "acceptedCount": 16,
+  "blockedCount": 112,
+  "artifacts": [
+    {
+      "path": "curriculum/problem-bank/generation-prompt.md",
+      "sha256": "93ed7674e08e746d64c851ceac3b6f165ce805075e951a96a0beeb6c3557d364"
+    },
+    {
+      "path": "curriculum/problem-bank/candidates.raw.json",
+      "sha256": "803e82e0f299c2a2a83bc42bfbfcdd1f6f70578b8b0d3ceb54802bdefaa2092a"
+    },
+    {
+      "path": "curriculum/problem-bank/candidates.normalized.json",
+      "sha256": "3e7b33fa760cdd12a2e4e15d0dbd54af462b798e0a091f9437d35fd7588b4541"
+    },
+    {
+      "path": "curriculum/problem-bank/editorial-queue.json",
+      "sha256": "9b3fb84f12f38675aa4a8f0a62d1a3a0645f0759cb2d7c3b970ec1ec96741c5b"
+    },
+    {
+      "path": "curriculum/problem-bank/review-manifest.json",
+      "sha256": "59baf460a0a4bebe85097f8858bf6ec136d0fad1051424db363e2bcbd4e65c37"
+    },
+    {
+      "path": "curriculum/problem-bank/reviews/reviewer-atlas.json",
+      "sha256": "2687c5b4401ee970b70b1fc5e2c27c77b3ea728064f0761a4f0a583a7a10fdaf"
+    },
+    {
+      "path": "curriculum/problem-bank/reviews/reviewer-orchid.json",
+      "sha256": "32c10378e97d002ab6d79555c1f55c9c6196faea580d2bd51724b6cd4079c150"
+    },
+    {
+      "path": "curriculum/problem-bank/legacy/headingBank.generated.v1.json",
+      "sha256": "bcea784f56c51defe7182a4986a72bc61c0899d0eb44ddccbca2b792840a4cd4"
+    }
+  ]
+}

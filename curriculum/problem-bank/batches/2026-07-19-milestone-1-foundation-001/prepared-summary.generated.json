@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-milestone-1-foundation-001",
+  "status": "awaiting-independent-review",
+  "candidateCount": 20,
+  "fixtureCount": 188,
+  "passingCandidateCount": 20,
+  "normalizedArtifactDigest": "5ebb68db65b5bcc7b831d88bf9ed5614d398fbe60bbaab94179593fcddd9f296",
+  "verificationDigest": "0b6303623b982528ed6f82bc7dcf6f44014ad348e56a8e8f3bbba8a32ac55c7c",
+  "manifestDigest": "980ca43defb48be8faf0fcffab5695c98e2dbfb45670d6ad5a3f443587e82578",
+  "engineContractDigest": "c0480787fdd7132dbcc05bb2b0c664804ffd0dfaa5d386284fe4b7a7e748f1a5",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 0,
+  "preparedSummaryDigest": "e91c0820e44f24a67fba17f92c20ba810555363b4a46d5b242c13d106fa43dcd"
+}

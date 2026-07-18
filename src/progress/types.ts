@@ -1,7 +1,8 @@
 import type { EntryId } from "../content/entryChoices"
 
-export type ProgressV2 = {
-  version: 2
+export type ProgressV3 = {
+  version: 3
+  bankRevision: string
   entryId: EntryId | null
   runNumber: number
   runProblemIds: string[]
@@ -10,6 +11,6 @@ export type ProgressV2 = {
   draftByProblemId: Record<string, string>
   completedProblemIds: string[]
   recentProblemIds: string[]
-  pendingTransferFamily: "heading-h1" | null
+  pendingTransferFamily: string | null
   currentIsTransfer: boolean
 }

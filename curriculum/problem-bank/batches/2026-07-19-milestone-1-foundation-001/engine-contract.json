@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 2,
+  "policyId": "real-engine-contract-v1",
+  "policyDigest": "40fcef4441800d865d326be284e5b6862e94b76f4b47512d3c79a302494b20d5",
+  "files": [
+    {
+      "path": "src/content/normalizeProblem.ts",
+      "sha256": "03810fafe8ed82ab6cac6199e6811d0878f00968d8b0cead6760d04852316081"
+    },
+    {
+      "path": "src/content/types.ts",
+      "sha256": "072f8451807b60393fe20bfef09bbbdb7cf810f4d63fc774619eeed941ee4e63"
+    },
+    {
+      "path": "src/engine/evaluateProblem.ts",
+      "sha256": "5f81d46a26958291afbf8e85bff3c294391f9b0044bf9d924a02bf0344f1a348"
+    },
+    {
+      "path": "src/engine/evaluateMatch.ts",
+      "sha256": "65e5f351954bf10dd5b023ad8edf2d52125f6bc156b2c4c362cee3d386bd52ce"
+    },
+    {
+      "path": "src/engine/evaluateEditorial.ts",
+      "sha256": "1276a1f887d08ca7ef5c63ae0d4d773c8fe763c1c31e3b2bf31222f7404a3e8c"
+    },
+    {
+      "path": "src/engine/evaluationContext.ts",
+      "sha256": "c2b49fd7add6d758a84ae60f1e02b9bf3e174d68eed1afea413e53fbe113d428"
+    },
+    {
+      "path": "src/engine/markdownAst.ts",
+      "sha256": "ed8d16839e60dd7f5cff1a842655721674dd3d81efd0a0cfb2bd7c6ec8776d35"
+    },
+    {
+      "path": "src/engine/sectionIndex.ts",
+      "sha256": "5a79aed75a5320a71360b349797a94c465466e47c9159e576cb3cb46bcd0db4c"
+    },
+    {
+      "path": "src/engine/predicates/heading.ts",
+      "sha256": "0f8ab68cda790f052b60770fae4ef2391c5b5cd3f4988ac1bf4f96b9daaad353"
+    },
+    {
+      "path": "src/engine/predicates/structural.ts",
+      "sha256": "c9a8d7aa62f6028db1a5cbc3c90b754fa67f61c27a0254bf949032ea08c1688e"
+    },
+    {
+      "path": "src/engine/types.ts",
+      "sha256": "f26dd557f4c32dbd1b9bd49f3485cbadfb6f34fe55e9b42fd107cc366ea3be5d"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "mdast-util-from-markdown",
+      "version": "2.0.3"
+    }
+  ],
+  "engineContractDigest": "c0480787fdd7132dbcc05bb2b0c664804ffd0dfaa5d386284fe4b7a7e748f1a5"
+}

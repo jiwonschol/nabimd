@@ -1,9 +1,9 @@
-import type { Problem } from "../content/types"
+import type { NormalizedProblem } from "../content/types"
 
 type TransferSelection = {
-  problems: readonly Problem[]
+  problems: readonly NormalizedProblem[]
   currentProblemId: string
-  retryFamily: Problem["retryFamily"]
+  retryFamily: NormalizedProblem["retryFamily"]
   recentProblemIds: readonly string[]
 }
 
@@ -12,22 +12,26 @@ export function selectTransferProblem({
   currentProblemId,
   retryFamily,
   recentProblemIds,
-}: TransferSelection): Problem {
+}: TransferSelection): NormalizedProblem {
   const currentProblem = problems.find(
     (problem) => problem.id === currentProblemId,
   )
-  const currentProtectedText = currentProblem?.protectedContent.at(0)
+  if (!currentProblem) {
+    throw new Error(`Unknown current problem: ${currentProblemId}`)
+  }
+
   const recentIds = new Set(recentProblemIds)
   const candidates = problems.filter(
     (problem) =>
+      problem.level === currentProblem.level &&
+      problem.flavor === currentProblem.flavor &&
       problem.retryFamily === retryFamily &&
       problem.id !== currentProblemId &&
-      problem.protectedContent.at(0) !== currentProtectedText,
+      problem.contentVariant !== currentProblem.contentVariant,
   )
 
   const selected =
-    candidates.find((problem) => !recentIds.has(problem.id)) ??
-    candidates.at(0)
+    candidates.find((problem) => !recentIds.has(problem.id)) ?? candidates.at(0)
 
   if (!selected) {
     throw new Error(`No safe transfer problem for ${retryFamily}`)

@@ -1,0 +1,2895 @@
+{
+  "schemaVersion": 2,
+  "index": {
+    "schemaVersion": 2,
+    "bankDigest": "c6b7b01888b0e72f49ea0e06636717e34b1983cdef6424fdf73cdbe6b2225dbe",
+    "counts": {
+      "1": 4,
+      "2": 4,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    }
+  },
+  "levels": {
+    "1": [
+      {
+        "id": "l1-heading-apple",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading",
+        "prompt": "Write one main heading in Markdown.",
+        "target": "# Apple",
+        "starterText": "",
+        "protectedContent": [
+          "Apple"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-1-heading-h1",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "fruit"
+          ],
+          "terms": [
+            "Apple"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "apple",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l1-heading-library-card",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading",
+        "prompt": "Write one main heading in Markdown.",
+        "target": "# Library card",
+        "starterText": "",
+        "protectedContent": [
+          "Library card"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-1-heading-h1",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "reading"
+          ],
+          "terms": [
+            "Library card"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "library-card",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l1-heading-rainy-day",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading",
+        "prompt": "Write one main heading in Markdown.",
+        "target": "# Rainy day",
+        "starterText": "",
+        "protectedContent": [
+          "Rainy day"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-1-heading-h1",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "weather"
+          ],
+          "terms": [
+            "Rainy day"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "rainy-day",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l1-heading-study-notes",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading",
+        "prompt": "Write one main heading in Markdown.",
+        "target": "# Study notes",
+        "starterText": "",
+        "protectedContent": [
+          "Study notes"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-1-heading-h1",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "learning"
+          ],
+          "terms": [
+            "Study notes"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "study-notes",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      }
+    ],
+    "2": [
+      {
+        "id": "l2-heading-bus-schedule",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading recall",
+        "prompt": "From memory, write one main heading in Markdown.",
+        "target": "# Bus schedule",
+        "starterText": "",
+        "protectedContent": [
+          "Bus schedule"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-2-heading-h1-recall",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "daily-travel"
+          ],
+          "terms": [
+            "Bus schedule"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "bus-schedule",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l2-heading-grocery-list",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading recall",
+        "prompt": "From memory, write one main heading in Markdown.",
+        "target": "# Grocery list",
+        "starterText": "",
+        "protectedContent": [
+          "Grocery list"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-2-heading-h1-recall",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "errands"
+          ],
+          "terms": [
+            "Grocery list"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "grocery-list",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l2-heading-morning-walk",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading recall",
+        "prompt": "From memory, write one main heading in Markdown.",
+        "target": "# Morning walk",
+        "starterText": "",
+        "protectedContent": [
+          "Morning walk"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-2-heading-h1-recall",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "daily-routine"
+          ],
+          "terms": [
+            "Morning walk"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "morning-walk",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l2-heading-weekend-plans",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "headings",
+        "skillIds": [
+          "heading-h1"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A main heading names the whole document.",
+          "howTo": "Start a line with one hash, add a space, then type the heading.",
+          "example": "# Daily notes"
+        },
+        "syntaxTokens": [
+          "#",
+          "Space",
+          "Heading"
+        ],
+        "title": "Main heading recall",
+        "prompt": "From memory, write one main heading in Markdown.",
+        "target": "# Weekend plans",
+        "starterText": "",
+        "protectedContent": [
+          "Weekend plans"
+        ],
+        "matchChecks": [
+          {
+            "id": "space-after-hash",
+            "kind": "heading-spacing",
+            "level": 1,
+            "priority": 10,
+            "feedback": "Add one space after the hash symbol."
+          },
+          {
+            "id": "use-hash-heading-style",
+            "kind": "hash-heading-style",
+            "level": 1,
+            "priority": 20,
+            "feedback": "That is a heading, but this exercise practices the hash style. Start with `# `."
+          },
+          {
+            "id": "use-h1-heading",
+            "kind": "has-heading",
+            "level": 1,
+            "priority": 30,
+            "feedback": "Start the heading with one hash symbol and one space."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use lower heading levels for sections."
+          }
+        ],
+        "hints": [
+          "A main heading starts at the beginning of a line.",
+          "Type one hash, one space, then the heading.",
+          "Example: `# Morning walk`"
+        ],
+        "retryFamily": "level-2-heading-h1-recall",
+        "reviewTags": [
+          "one-document-title"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "daily-planning"
+          ],
+          "terms": [
+            "Weekend plans"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "weekend-plans",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      }
+    ],
+    "3": [
+      {
+        "schemaVersion": 2,
+        "id": "l3-customer-feedback-note",
+        "level": 3,
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "team communication",
+            "workplace notes"
+          ],
+          "terms": [
+            "customer",
+            "feedback",
+            "follow-up"
+          ]
+        },
+        "teaching": {
+          "concept": "Readable workplace documents combine hierarchy, emphasis, and lists.",
+          "howTo": "Use one H1, H2 sections, bold text for one key point, and bullets for unordered follow-up work.",
+          "example": "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Turn customer feedback into a readable note",
+        "prompt": "Organize a customer note with one title, a bold takeaway, and three follow-up items.",
+        "target": "# Customer feedback note\n\nThis summary helps the service team review the same information before tomorrow's meeting.\n\n## What we heard\n\nThe **setup steps felt unclear** when customers reached the final screen.\n\n## Follow-up\n\n- Rewrite the last instruction\n- Ask support to review the wording\n- Compare the next five replies",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-customer-feedback-note-outline",
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and two H2 sections in the Goal's order.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ]
+          },
+          {
+            "id": "l3-customer-feedback-note-hierarchy",
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l3-customer-feedback-note-sections",
+            "priority": 15,
+            "feedback": "Keep exactly two H2 sections in this short workplace document.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2
+          },
+          {
+            "id": "l3-customer-feedback-note-emphasis",
+            "priority": 30,
+            "feedback": "Use bold emphasis inside the first H2 section.",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1
+          },
+          {
+            "id": "l3-customer-feedback-note-actions",
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three items.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level3-readable-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "customer-feedback",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l3-meeting-decision",
+        "level": 3,
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "team communication",
+            "workplace notes"
+          ],
+          "terms": [
+            "decision",
+            "meeting",
+            "action"
+          ]
+        },
+        "teaching": {
+          "concept": "Readable workplace documents combine hierarchy, emphasis, and lists.",
+          "howTo": "Use one H1, H2 sections, bold text for one key point, and bullets for unordered follow-up work.",
+          "example": "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Record a meeting decision for another person",
+        "prompt": "Create a compact decision note with one title, a bold decision, and an action list.",
+        "target": "# Meeting decision\n\nThis note records the choice for teammates who could not attend the planning call.\n\n## Decision\n\nThe team will **keep the Friday review** and shorten the daily update instead.\n\n## Actions\n\n- Update the shared calendar\n- Tell the support team\n- Review the change next month",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-meeting-decision-outline",
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and two H2 sections in the Goal's order.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ]
+          },
+          {
+            "id": "l3-meeting-decision-hierarchy",
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l3-meeting-decision-sections",
+            "priority": 15,
+            "feedback": "Keep exactly two H2 sections in this short workplace document.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2
+          },
+          {
+            "id": "l3-meeting-decision-emphasis",
+            "priority": 30,
+            "feedback": "Use bold emphasis inside the first H2 section.",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1
+          },
+          {
+            "id": "l3-meeting-decision-actions",
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three items.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level3-readable-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "meeting-decision",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l3-new-teammate-guide",
+        "level": 3,
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "team communication",
+            "workplace notes"
+          ],
+          "terms": [
+            "onboarding",
+            "checklist",
+            "teammate"
+          ]
+        },
+        "teaching": {
+          "concept": "Readable workplace documents combine hierarchy, emphasis, and lists.",
+          "howTo": "Use one H1, H2 sections, bold text for one key point, and bullets for unordered follow-up work.",
+          "example": "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Make a first-day guide easy to follow",
+        "prompt": "Write a welcoming guide with one title, a bold starting point, and three preparation items.",
+        "target": "# New teammate guide\n\nThis short note helps a new teammate prepare for the first morning without searching through old messages.\n\n## First day\n\nThe **shared checklist is the starting point** for accounts, introductions, and team routines.\n\n## Before you begin\n\n- Open the welcome calendar\n- Save the team directory\n- Bring one question to the check-in",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-new-teammate-guide-outline",
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and two H2 sections in the Goal's order.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ]
+          },
+          {
+            "id": "l3-new-teammate-guide-hierarchy",
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l3-new-teammate-guide-sections",
+            "priority": 15,
+            "feedback": "Keep exactly two H2 sections in this short workplace document.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2
+          },
+          {
+            "id": "l3-new-teammate-guide-emphasis",
+            "priority": 30,
+            "feedback": "Use bold emphasis inside the first H2 section.",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1
+          },
+          {
+            "id": "l3-new-teammate-guide-actions",
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three items.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level3-readable-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "new-teammate-guide",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l3-weekly-handoff",
+        "level": 3,
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "team communication",
+            "workplace notes"
+          ],
+          "terms": [
+            "handoff",
+            "owner",
+            "follow-up"
+          ]
+        },
+        "teaching": {
+          "concept": "Readable workplace documents combine hierarchy, emphasis, and lists.",
+          "howTo": "Use one H1, H2 sections, bold text for one key point, and bullets for unordered follow-up work.",
+          "example": "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Make a weekly handoff easy to scan",
+        "prompt": "Write a short team handoff with one title, a highlighted update, and a clear follow-up list.",
+        "target": "# Weekly handoff\n\nThe afternoon team can use this note to continue without repeating work.\n\n## Current update\n\nThe **customer reply is ready** and the shared folder contains the latest draft.\n\n## Follow-up\n\n- Confirm the final owner\n- Share the review date\n- Archive the older draft",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-weekly-handoff-outline",
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and two H2 sections in the Goal's order.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ]
+          },
+          {
+            "id": "l3-weekly-handoff-hierarchy",
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l3-weekly-handoff-sections",
+            "priority": 15,
+            "feedback": "Keep exactly two H2 sections in this short workplace document.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2
+          },
+          {
+            "id": "l3-weekly-handoff-emphasis",
+            "priority": 30,
+            "feedback": "Use bold emphasis inside the first H2 section.",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1
+          },
+          {
+            "id": "l3-weekly-handoff-actions",
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three items.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level3-readable-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "weekly-handoff",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      }
+    ],
+    "4": [
+      {
+        "schemaVersion": 2,
+        "id": "l4-accessible-dialog-spec",
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "spec-outline",
+          "ordered-implementation",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "software delivery",
+            "technical planning"
+          ],
+          "terms": [
+            "accessibility",
+            "focus",
+            "acceptance criteria",
+            "regression"
+          ]
+        },
+        "teaching": {
+          "concept": "An executable spec separates scope, dependencies, implementation, acceptance, and verification.",
+          "howTo": "Use ordered steps for work sequence, bullets for conditions, and a fenced command block for verification.",
+          "example": "# Feature spec\n\n## Scope\n\n- One change\n\n## Implementation\n\n1. Add\n2. Test\n3. Review\n\n## Verification\n\n```sh\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "```sh"
+        ],
+        "title": "Prepare an accessible dialog specification",
+        "prompt": "Compose a development spec for a dialog flow using clear structure, ordered steps, acceptance items, and a test command.",
+        "target": "# Accessible confirmation dialog\n\nUpdate the delete confirmation flow so keyboard and screen-reader behavior follows the shared dialog contract.\n\n## Scope\n\n- Use the existing confirmation component\n- Preserve the current delete request\n- Update visible and accessible labels together\n\n## Dependencies\n\n- Follow the shared focus-return helper\n- Keep the existing analytics event\n- Reuse the dialog journey setup\n\n## Implementation\n\n1. Move focus to the dialog heading on open\n2. Connect the description with the dialog body\n3. Return focus to the original button on close\n\n## Acceptance criteria\n\n- Escape closes the dialog without deleting\n- Tab remains inside the open dialog\n- Focus returns after cancel and successful delete\n\n## Verification\n\n```sh\nnpm test -- confirmation-dialog\nnpm run test:e2e -- dialog\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-accessible-dialog-spec-outline",
+            "priority": 10,
+            "feedback": "Build the specification with one H1 and five ordered H2 sections.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ]
+          },
+          {
+            "id": "l4-accessible-dialog-spec-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the specification heading hierarchy in logical order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l4-accessible-dialog-spec-sections",
+            "priority": 15,
+            "feedback": "Keep exactly five H2 sections in this development specification.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 5,
+            "max": 5
+          },
+          {
+            "id": "l4-accessible-dialog-spec-implementation",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3
+          },
+          {
+            "id": "l4-accessible-dialog-spec-acceptance",
+            "priority": 40,
+            "feedback": "Use an unordered list of at least three acceptance items in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l4-accessible-dialog-spec-verification",
+            "priority": 50,
+            "feedback": "Add one fenced, language-tagged command block to the fifth H2 section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level4-development-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "accessible-dialog",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l4-notification-retry-spec",
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "spec-outline",
+          "ordered-implementation",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "software delivery",
+            "technical planning"
+          ],
+          "terms": [
+            "retry",
+            "dependency",
+            "acceptance criteria",
+            "idempotent"
+          ]
+        },
+        "teaching": {
+          "concept": "An executable spec separates scope, dependencies, implementation, acceptance, and verification.",
+          "howTo": "Use ordered steps for work sequence, bullets for conditions, and a fenced command block for verification.",
+          "example": "# Feature spec\n\n## Scope\n\n- One change\n\n## Implementation\n\n1. Add\n2. Test\n3. Review\n\n## Verification\n\n```sh\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "```sh"
+        ],
+        "title": "Specify a bounded notification retry",
+        "prompt": "Create a development spec for retrying failed notifications with explicit scope, ordered implementation, acceptance criteria, and verification.",
+        "target": "# Notification retry specification\n\nAdd one bounded retry for temporary delivery failures without duplicating messages or changing the public notification request.\n\n## Scope\n\n- Retry temporary provider failures only\n- Preserve the current request payload\n- Keep permanent failures visible to operators\n\n## Dependencies\n\n- Reuse the installed queue adapter\n- Keep the existing delivery identifier\n- Follow the shared logging policy\n\n## Implementation\n\n1. Classify temporary and permanent provider responses\n2. Schedule one delayed retry with the same delivery identifier\n3. Record the final outcome without storing message content\n\n## Acceptance criteria\n\n- A temporary failure produces one retry\n- A successful first attempt produces no retry\n- Repeated queue delivery does not duplicate the message\n\n## Verification\n\n```sh\nnpm test -- notification-retry\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-notification-retry-spec-outline",
+            "priority": 10,
+            "feedback": "Build the specification with one H1 and five ordered H2 sections.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ]
+          },
+          {
+            "id": "l4-notification-retry-spec-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the specification heading hierarchy in logical order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l4-notification-retry-spec-sections",
+            "priority": 15,
+            "feedback": "Keep exactly five H2 sections in this development specification.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 5,
+            "max": 5
+          },
+          {
+            "id": "l4-notification-retry-spec-implementation",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3
+          },
+          {
+            "id": "l4-notification-retry-spec-acceptance",
+            "priority": 40,
+            "feedback": "Use an unordered list of at least three acceptance items in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l4-notification-retry-spec-verification",
+            "priority": 50,
+            "feedback": "Add one fenced, language-tagged command block to the fifth H2 section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level4-development-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "notification-retry",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l4-search-filter-spec",
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "spec-outline",
+          "ordered-implementation",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "software delivery",
+            "technical planning"
+          ],
+          "terms": [
+            "scope",
+            "dependency",
+            "acceptance criteria",
+            "verification"
+          ]
+        },
+        "teaching": {
+          "concept": "An executable spec separates scope, dependencies, implementation, acceptance, and verification.",
+          "howTo": "Use ordered steps for work sequence, bullets for conditions, and a fenced command block for verification.",
+          "example": "# Feature spec\n\n## Scope\n\n- One change\n\n## Implementation\n\n1. Add\n2. Test\n3. Review\n\n## Verification\n\n```sh\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "```sh"
+        ],
+        "title": "Write an executable search-filter spec",
+        "prompt": "Turn the request into a development spec with scope, dependencies, ordered implementation, acceptance criteria, and verification.",
+        "target": "# Search filter specification\n\nAdd a saved status filter to the customer search page without changing the existing search contract.\n\n## Scope\n\n- Add one status control beside the search field\n- Preserve the current query when the filter changes\n- Keep the empty and loading states\n\n## Dependencies\n\n- Reuse the existing `SearchStatus` type\n- Keep the current URL parameter names\n- Follow the shared form-label pattern\n\n## Implementation\n\n1. Add the filter value to the page state\n2. Connect the control to the existing query builder\n3. Restore the value from the URL on load\n\n## Acceptance criteria\n\n- Keyboard users can reach and change the filter\n- Refreshing the page preserves the selected value\n- Clearing search also clears the filter\n\n## Verification\n\n```sh\nnpm test -- search-filter\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-search-filter-spec-outline",
+            "priority": 10,
+            "feedback": "Build the specification with one H1 and five ordered H2 sections.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ]
+          },
+          {
+            "id": "l4-search-filter-spec-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the specification heading hierarchy in logical order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l4-search-filter-spec-sections",
+            "priority": 15,
+            "feedback": "Keep exactly five H2 sections in this development specification.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 5,
+            "max": 5
+          },
+          {
+            "id": "l4-search-filter-spec-implementation",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3
+          },
+          {
+            "id": "l4-search-filter-spec-acceptance",
+            "priority": 40,
+            "feedback": "Use an unordered list of at least three acceptance items in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l4-search-filter-spec-verification",
+            "priority": 50,
+            "feedback": "Add one fenced, language-tagged command block to the fifth H2 section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level4-development-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "search-filter",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l4-timezone-bug-spec",
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "spec-outline",
+          "ordered-implementation",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "software delivery",
+            "technical planning"
+          ],
+          "terms": [
+            "regression",
+            "constraint",
+            "time zone",
+            "test case"
+          ]
+        },
+        "teaching": {
+          "concept": "An executable spec separates scope, dependencies, implementation, acceptance, and verification.",
+          "howTo": "Use ordered steps for work sequence, bullets for conditions, and a fenced command block for verification.",
+          "example": "# Feature spec\n\n## Scope\n\n- One change\n\n## Implementation\n\n1. Add\n2. Test\n3. Review\n\n## Verification\n\n```sh\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "```sh"
+        ],
+        "title": "Structure a reproducible bug-fix spec",
+        "prompt": "Write a bug-fix spec with bounded scope, dependencies, ordered work, acceptance criteria, and commands.",
+        "target": "# Time-zone display fix\n\nCorrect the meeting date shown after daylight-saving changes while preserving stored UTC values.\n\n## Scope\n\n- Change display conversion only\n- Preserve the saved API timestamp\n- Cover both list and detail views\n\n## Dependencies\n\n- Use the installed date utility\n- Keep the existing locale setting\n- Reuse the meeting fixture factory\n\n## Implementation\n\n1. Reproduce the boundary with a focused test\n2. Move conversion into the shared formatter\n3. Replace the duplicate view calculations\n\n## Acceptance criteria\n\n- Spring boundary meetings show the expected local date\n- Fall boundary meetings do not repeat an hour label\n- Existing UTC snapshots remain unchanged\n\n## Verification\n\n```sh\nnpm test -- timezone-display\nnpm run lint\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-timezone-bug-spec-outline",
+            "priority": 10,
+            "feedback": "Build the specification with one H1 and five ordered H2 sections.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ]
+          },
+          {
+            "id": "l4-timezone-bug-spec-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the specification heading hierarchy in logical order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l4-timezone-bug-spec-sections",
+            "priority": 15,
+            "feedback": "Keep exactly five H2 sections in this development specification.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 5,
+            "max": 5
+          },
+          {
+            "id": "l4-timezone-bug-spec-implementation",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3
+          },
+          {
+            "id": "l4-timezone-bug-spec-acceptance",
+            "priority": 40,
+            "feedback": "Use an unordered list of at least three acceptance items in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l4-timezone-bug-spec-verification",
+            "priority": 50,
+            "feedback": "Add one fenced, language-tagged command block to the fifth H2 section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level4-development-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "timezone-bug",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      }
+    ],
+    "5": [
+      {
+        "schemaVersion": 2,
+        "id": "l5-auth-migration-work-order",
+        "level": 5,
+        "familyId": "agent-ready-work-order",
+        "skillIds": [
+          "authority-order",
+          "staged-execution",
+          "hard-constraints",
+          "stop-conditions",
+          "verification-contract",
+          "final-report"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "AI-assisted development",
+            "engineering operations"
+          ],
+          "terms": [
+            "source of truth",
+            "migration",
+            "rollback",
+            "regression guard"
+          ]
+        },
+        "teaching": {
+          "concept": "An agent work order separates authority, execution, prohibitions, stops, verification, and reporting.",
+          "howTo": "Use H2 sections for the contract, H3 headings for stages, lists for boundaries, and fenced blocks for commands and report shape.",
+          "example": "# Work order\n\n## Authority\n\n1. Rules\n2. Decision\n\n## Execution\n\n### Stage 1\n\n- Act\n\n## Verification\n\n```bash\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "1.",
+          "-",
+          "```bash",
+          "```markdown"
+        ],
+        "title": "Prepare a safe authentication migration order",
+        "prompt": "Write a human-reviewable work order for an authentication migration with staged autonomy and explicit safety boundaries.",
+        "target": "# Work order: migrate session verification\n\nMove session verification from the legacy token adapter to the approved signed-session library without changing the public login flow or existing account identifiers.\n\nThe finished change must support a reversible rollout, preserve active-session behavior during the transition, and document every owner-managed environment value.\n\n## Mission and context\n\nThe outcome must remain reviewable from the repository history and the final report. Continue through ordinary implementation difficulty, but do not invent authority when evidence conflicts with this work order.\n\n## Required reading and authority order\n\nRead the sources before editing and apply them in this order:\n\n1. Read `AGENTS.md` and the security policy\n2. Read ADR-021 for the signed-session decision\n3. Inspect current middleware and cookie conventions\n4. Inspect deployment configuration and rollback scripts\n\nIf two sources disagree, use the stop conditions instead of silently choosing the convenient interpretation.\n\n## Execution contract\n\nComplete the stages in order. Run the focused check after each stage and preserve truthful evidence about failures and fixes.\n\n### Stage 1 — pin compatibility\n\nDescribe the existing session contract with focused tests before replacing its implementation.\n\n- Add fixtures for active, expired, and missing sessions\n- Record cookie attributes and response codes\n- Run the authentication test package\n\n### Stage 2 — add the signed path\n\nIntroduce the approved verifier behind the existing middleware boundary.\n\n- Load keys only through the configuration adapter\n- Keep secrets out of logs and fixtures\n- Add rotation and invalid-signature tests\n\n### Stage 3 — stage the rollout\n\nProvide an observable cutover and a tested rollback without two competing sources of truth.\n\n- Add the approved compatibility window\n- Verify metrics without storing token contents\n- Run login journeys before enabling the new default\n\n## Hard constraints\n\nReject the result if any of these conditions is violated, even when a broad test command passes:\n\n- No credential, signing key, or raw token enters source control\n- Account identifiers remain stable through migration\n- Production never falls back to a test verifier\n- Rollback does not invalidate every active user session\n\n## Stop conditions\n\nStop only when new authority or contradictory evidence prevents safe progress:\n\n- The installed library cannot express the approved cookie contract\n- A production configuration source conflicts with the security policy\n- Safe rollback requires changing the public login contract\n\nDo not stop for an ordinary failing test until the failure has been investigated inside the approved scope.\n\n## Verification\n\nRun the focused checks during implementation, then run the complete gate before reporting completion.\n\n```bash\nnpm run typecheck --workspace apps/auth\nnpm test --workspace apps/auth\nnpm run test:e2e -- login\nrg \"token|secret|privateKey\" apps/auth/src\n```\n\nReview the final diff against the hard constraints after the commands finish.\n\n## Final report\n\nReturn a compact report that lets a maintainer audit the work without reconstructing the session.\n\n```markdown\n# Implementation report\n\n## Stage outcomes\n- Compatibility evidence\n- Signed-session implementation\n- Rollout and rollback verification\n\n## Verification evidence\n- Focused checks: pass or fail with counts\n- Complete gate: pass or fail with counts\n- Regression review: observed result\n\n## Remaining owner decisions\n- List only decisions that require new authority\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-auth-migration-work-order-outline",
+            "priority": 10,
+            "feedback": "Use one H1 followed by the seven H2 work-order sections shown in the Goal.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ]
+          },
+          {
+            "id": "l5-auth-migration-work-order-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the work-order heading hierarchy in logical H1, H2, and H3 order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l5-auth-migration-work-order-sections",
+            "priority": 15,
+            "feedback": "Keep exactly seven H2 sections in this agent work order.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7
+          },
+          {
+            "id": "l5-auth-migration-work-order-authority",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least four sources in the second H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4
+          },
+          {
+            "id": "l5-auth-migration-work-order-stages",
+            "priority": 40,
+            "feedback": "Divide the execution section into at least three H3 stages.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3
+          },
+          {
+            "id": "l5-auth-migration-work-order-constraints",
+            "priority": 50,
+            "feedback": "Use an unordered list of at least four hard constraints in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 4
+          },
+          {
+            "id": "l5-auth-migration-work-order-stops",
+            "priority": 60,
+            "feedback": "Use an unordered list of at least three stop conditions in the fifth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l5-auth-migration-work-order-verification",
+            "priority": 70,
+            "feedback": "Add a fenced, language-tagged command block to the verification section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-auth-migration-work-order-report",
+            "priority": 80,
+            "feedback": "Add a fenced, language-tagged template to the final-report section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-auth-migration-work-order-document-size",
+            "priority": 90,
+            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
+            "kind": "document-limits",
+            "minLines": 60,
+            "minSourceCharacters": 1800
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level5-agent-work-order",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "auth-migration",
+        "flavor": "standard",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-19"
+        },
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l5-dependency-upgrade-work-order",
+        "level": 5,
+        "familyId": "agent-ready-work-order",
+        "skillIds": [
+          "authority-order",
+          "staged-execution",
+          "hard-constraints",
+          "stop-conditions",
+          "verification-contract",
+          "final-report"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "AI-assisted development",
+            "engineering operations"
+          ],
+          "terms": [
+            "advisory",
+            "compatibility",
+            "rollback",
+            "authority boundary"
+          ]
+        },
+        "teaching": {
+          "concept": "An agent work order separates authority, execution, prohibitions, stops, verification, and reporting.",
+          "howTo": "Use H2 sections for the contract, H3 headings for stages, lists for boundaries, and fenced blocks for commands and report shape.",
+          "example": "# Work order\n\n## Authority\n\n1. Rules\n2. Decision\n\n## Execution\n\n### Stage 1\n\n- Act\n\n## Verification\n\n```bash\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "1.",
+          "-",
+          "```bash",
+          "```markdown"
+        ],
+        "title": "Write a controlled dependency-upgrade order",
+        "prompt": "Prepare an auditable work order for a security-sensitive dependency upgrade with staged execution, stop conditions, verification, and reporting.",
+        "target": "# Work order: upgrade the request-signing library\n\nUpgrade the request-signing library to the approved security release while preserving the public client contract, supported runtime versions, and current credential-loading boundary.\n\nThe completed change must document compatibility evidence, keep a reversible lockfile path, and prove that no private key or signed payload enters logs, fixtures, or repository history.\n\n## Mission and context\n\nThe outcome must remain reviewable from the repository history and the final report. Continue through ordinary implementation difficulty, but do not invent authority when evidence conflicts with this work order.\n\n## Required reading and authority order\n\nRead the sources before editing and apply them in this order:\n\n1. Read `AGENTS.md` and the repository security policy\n2. Read the approved dependency advisory and upgrade decision\n3. Inspect the current signing adapter and runtime support matrix\n4. Inspect lockfile, release-note, and rollback conventions\n\nIf two sources disagree, use the stop conditions instead of silently choosing the convenient interpretation.\n\n## Execution contract\n\nComplete the stages in order. Run the focused check after each stage and preserve truthful evidence about failures and fixes.\n\n### Stage 1 — capture compatibility\n\nPin the existing signing contract with public, deterministic fixtures before changing the installed package.\n\n- Record supported algorithms and error shapes\n- Use generated test keys that cannot reach production\n- Run the focused adapter and runtime-version suites\n\n### Stage 2 — perform the bounded upgrade\n\nUpdate the direct dependency and adapt only the documented compatibility differences.\n\n- Use the repository package-manager workflow\n- Keep credential loading behind the existing adapter\n- Review transitive changes against the advisory scope\n\n### Stage 3 — verify and prepare rollback\n\nProve behavior across supported runtimes and leave a clear recovery path for deployment review.\n\n- Run signing, integration, and compatibility tests\n- Search logs and fixtures for sensitive material\n- Document the reversible package and lockfile change\n\n## Hard constraints\n\nReject the result if any of these conditions is violated, even when a broad test command passes:\n\n- No production credential or private key enters a test fixture\n- The public request-signing contract remains unchanged\n- Supported runtime versions continue to pass the same contract suite\n- The upgrade does not weaken verification to accept old signatures\n\n## Stop conditions\n\nStop only when new authority or contradictory evidence prevents safe progress:\n\n- The approved release drops a required runtime version\n- The advisory conflicts with the repository security policy\n- Compatibility requires changing the public client contract\n\nDo not stop for an ordinary failing test until the failure has been investigated inside the approved scope.\n\n## Verification\n\nRun the focused checks during implementation, then run the complete gate before reporting completion.\n\n```bash\nnpm test --workspace packages/request-signing\nnpm run test:compatibility -- request-signing\nnpm run typecheck\nrg \"privateKey|signedPayload|credentialValue\" packages/request-signing\n```\n\nReview the final diff against the hard constraints after the commands finish.\n\n## Final report\n\nReturn a compact report that lets a maintainer audit the work without reconstructing the session.\n\n```markdown\n# Implementation report\n\n## Stage outcomes\n- Compatibility baseline and package changes\n- Security and sensitive-data audit\n- Verification matrix and rollback path\n\n## Verification evidence\n- Focused checks: pass or fail with counts\n- Complete gate: pass or fail with counts\n- Regression review: observed result\n\n## Remaining owner decisions\n- List only decisions that require new authority\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-dependency-upgrade-work-order-outline",
+            "priority": 10,
+            "feedback": "Use one H1 followed by the seven H2 work-order sections shown in the Goal.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ]
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the work-order heading hierarchy in logical H1, H2, and H3 order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-sections",
+            "priority": 15,
+            "feedback": "Keep exactly seven H2 sections in this agent work order.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-authority",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least four sources in the second H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-stages",
+            "priority": 40,
+            "feedback": "Divide the execution section into at least three H3 stages.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-constraints",
+            "priority": 50,
+            "feedback": "Use an unordered list of at least four hard constraints in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 4
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-stops",
+            "priority": 60,
+            "feedback": "Use an unordered list of at least three stop conditions in the fifth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-verification",
+            "priority": 70,
+            "feedback": "Add a fenced, language-tagged command block to the verification section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-report",
+            "priority": 80,
+            "feedback": "Add a fenced, language-tagged template to the final-report section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-dependency-upgrade-work-order-document-size",
+            "priority": 90,
+            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
+            "kind": "document-limits",
+            "minLines": 60,
+            "minSourceCharacters": 1800
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level5-agent-work-order",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "dependency-upgrade",
+        "flavor": "standard",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-19"
+        },
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l5-performance-recovery-work-order",
+        "level": 5,
+        "familyId": "agent-ready-work-order",
+        "skillIds": [
+          "authority-order",
+          "staged-execution",
+          "hard-constraints",
+          "stop-conditions",
+          "verification-contract",
+          "final-report"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "AI-assisted development",
+            "engineering operations"
+          ],
+          "terms": [
+            "baseline",
+            "performance budget",
+            "stop condition",
+            "final report"
+          ]
+        },
+        "teaching": {
+          "concept": "An agent work order separates authority, execution, prohibitions, stops, verification, and reporting.",
+          "howTo": "Use H2 sections for the contract, H3 headings for stages, lists for boundaries, and fenced blocks for commands and report shape.",
+          "example": "# Work order\n\n## Authority\n\n1. Rules\n2. Decision\n\n## Execution\n\n### Stage 1\n\n- Act\n\n## Verification\n\n```bash\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "1.",
+          "-",
+          "```bash",
+          "```markdown"
+        ],
+        "title": "Build an auditable performance recovery order",
+        "prompt": "Compose a work order that lets an agent improve a slow report safely while a maintainer can audit its measurements and limits.",
+        "target": "# Work order: recover report performance\n\nReduce the verified loading time of the monthly account report while preserving result order, authorization checks, and the current export format.\n\nUse measured evidence rather than speculative rewrites. The result must include before-and-after observations from the same fixture and environment.\n\n## Mission and context\n\nThe outcome must remain reviewable from the repository history and the final report. Continue through ordinary implementation difficulty, but do not invent authority when evidence conflicts with this work order.\n\n## Required reading and authority order\n\nRead the sources before editing and apply them in this order:\n\n1. Read `AGENTS.md` and the data-access rules\n2. Read the report performance budget\n3. Inspect the existing query and authorization boundary\n4. Inspect the benchmark fixture and production index conventions\n\nIf two sources disagree, use the stop conditions instead of silently choosing the convenient interpretation.\n\n## Execution contract\n\nComplete the stages in order. Run the focused check after each stage and preserve truthful evidence about failures and fixes.\n\n### Stage 1 — measure the baseline\n\nReproduce the slow path and capture a stable baseline before edits.\n\n- Warm the test database consistently\n- Record query count and elapsed-time distribution\n- Confirm output ordering and authorization behavior\n\n### Stage 2 — make one bounded change\n\nApply the smallest evidence-supported change within the approved data boundary.\n\n- Add or revise one repository-managed index\n- Keep pagination and export contracts unchanged\n- Run focused correctness tests after the change\n\n### Stage 3 — compare and guard\n\nRepeat the baseline method and add a stable regression guard.\n\n- Compare the same fixture and environment\n- Record variance instead of one best run\n- Run the full report and authorization suites\n\n## Hard constraints\n\nReject the result if any of these conditions is violated, even when a broad test command passes:\n\n- Authorization checks stay inside the report query path\n- Result order and export fields remain unchanged\n- Production indexes use repository migration conventions\n- A faster empty fixture does not count as evidence\n\n## Stop conditions\n\nStop only when new authority or contradictory evidence prevents safe progress:\n\n- The baseline cannot reproduce the reported slow path\n- The required index conflicts with the approved migration policy\n- Meeting the budget requires changing the public report contract\n\nDo not stop for an ordinary failing test until the failure has been investigated inside the approved scope.\n\n## Verification\n\nRun the focused checks during implementation, then run the complete gate before reporting completion.\n\n```bash\nnpm run benchmark -- monthly-report\nnpm test --workspace apps/reports\nnpm run typecheck\nrg \"skipAuthorization|disablePolicy\" apps/reports/src\n```\n\nReview the final diff against the hard constraints after the commands finish.\n\n## Final report\n\nReturn a compact report that lets a maintainer audit the work without reconstructing the session.\n\n```markdown\n# Implementation report\n\n## Stage outcomes\n- Baseline method and measurements\n- Bounded implementation change\n- Comparison and regression evidence\n\n## Verification evidence\n- Focused checks: pass or fail with counts\n- Complete gate: pass or fail with counts\n- Regression review: observed result\n\n## Remaining owner decisions\n- List only decisions that require new authority\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-performance-recovery-work-order-outline",
+            "priority": 10,
+            "feedback": "Use one H1 followed by the seven H2 work-order sections shown in the Goal.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ]
+          },
+          {
+            "id": "l5-performance-recovery-work-order-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the work-order heading hierarchy in logical H1, H2, and H3 order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l5-performance-recovery-work-order-sections",
+            "priority": 15,
+            "feedback": "Keep exactly seven H2 sections in this agent work order.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7
+          },
+          {
+            "id": "l5-performance-recovery-work-order-authority",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least four sources in the second H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4
+          },
+          {
+            "id": "l5-performance-recovery-work-order-stages",
+            "priority": 40,
+            "feedback": "Divide the execution section into at least three H3 stages.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3
+          },
+          {
+            "id": "l5-performance-recovery-work-order-constraints",
+            "priority": 50,
+            "feedback": "Use an unordered list of at least four hard constraints in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 4
+          },
+          {
+            "id": "l5-performance-recovery-work-order-stops",
+            "priority": 60,
+            "feedback": "Use an unordered list of at least three stop conditions in the fifth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l5-performance-recovery-work-order-verification",
+            "priority": 70,
+            "feedback": "Add a fenced, language-tagged command block to the verification section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-performance-recovery-work-order-report",
+            "priority": 80,
+            "feedback": "Add a fenced, language-tagged template to the final-report section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-performance-recovery-work-order-document-size",
+            "priority": 90,
+            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
+            "kind": "document-limits",
+            "minLines": 60,
+            "minSourceCharacters": 1800
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level5-agent-work-order",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "performance-recovery",
+        "flavor": "standard",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-19"
+        },
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "schemaVersion": 2,
+        "id": "l5-release-context-work-order",
+        "level": 5,
+        "familyId": "agent-ready-work-order",
+        "skillIds": [
+          "authority-order",
+          "staged-execution",
+          "hard-constraints",
+          "stop-conditions",
+          "verification-contract",
+          "final-report"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "AI-assisted development",
+            "engineering operations"
+          ],
+          "terms": [
+            "authority order",
+            "hard constraint",
+            "stop condition",
+            "evidence"
+          ]
+        },
+        "teaching": {
+          "concept": "An agent work order separates authority, execution, prohibitions, stops, verification, and reporting.",
+          "howTo": "Use H2 sections for the contract, H3 headings for stages, lists for boundaries, and fenced blocks for commands and report shape.",
+          "example": "# Work order\n\n## Authority\n\n1. Rules\n2. Decision\n\n## Execution\n\n### Stage 1\n\n- Act\n\n## Verification\n\n```bash\nnpm test\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "1.",
+          "-",
+          "```bash",
+          "```markdown"
+        ],
+        "title": "Write a bounded release-context work order",
+        "prompt": "Structure an agent work order with authority order, staged execution, hard constraints, stop conditions, verification, and a final report.",
+        "target": "# Work order: restore shared release context\n\nImplement the approved database-backed release context in the Harbor Notes monorepo. Replace the discarded in-memory path while preserving one request path and the public response contract.\n\nThe required outcome is a tested implementation, updated repository documentation, and evidence that the rejected split-call design did not return.\n\n## Mission and context\n\nThe outcome must remain reviewable from the repository history and the final report. Continue through ordinary implementation difficulty, but do not invent authority when evidence conflicts with this work order.\n\n## Required reading and authority order\n\nRead the sources before editing and apply them in this order:\n\n1. Read `AGENTS.md` for repository-wide working rules\n2. Read the release-safety policy for fallback requirements\n3. Read ADR-014 for the approved storage architecture\n4. Inspect the current database and scheduler conventions\n\nIf two sources disagree, use the stop conditions instead of silently choosing the convenient interpretation.\n\n## Execution contract\n\nComplete the stages in order. Run the focused check after each stage and preserve truthful evidence about failures and fixes.\n\n### Stage 1 — establish the boundary\n\nDefine the typed context contract before changing runtime behavior.\n\n- Add focused contract fixtures\n- Keep raw provider data outside the public type\n- Run the API type check and unit tests\n\n### Stage 2 — persist and refresh\n\nAdd idempotent storage and a scheduled refresh using repository conventions.\n\n- Generate the migration and journal entry\n- Declare the schedule as infrastructure code\n- Test repeated refreshes and missing credentials\n\n### Stage 3 — replace and verify\n\nMove the user path to stored context and prove the old architecture is absent.\n\n- Read the latest usable stored row\n- Keep upstream access out of the normal request path\n- Run integration tests and regression searches\n\n## Hard constraints\n\nReject the result if any of these conditions is violated, even when a broad test command passes:\n\n- One release request makes one agent call\n- Production never reads mock provider data\n- Provider failure returns unavailable data rather than invented content\n- Schedules remain committed as infrastructure code\n\n## Stop conditions\n\nStop only when new authority or contradictory evidence prevents safe progress:\n\n- An authority source conflicts with the approved decision\n- Migration history cannot be reconciled safely\n- The platform cannot represent the committed schedule\n\nDo not stop for an ordinary failing test until the failure has been investigated inside the approved scope.\n\n## Verification\n\nRun the focused checks during implementation, then run the complete gate before reporting completion.\n\n```bash\nnpm run typecheck --workspace apps/api\nnpm test --workspace apps/api\nnpm run test:e2e\nrg \"primaryAgentCall|followUpAgentCall\" apps/api/src\n```\n\nReview the final diff against the hard constraints after the commands finish.\n\n## Final report\n\nReturn a compact report that lets a maintainer audit the work without reconstructing the session.\n\n```markdown\n# Implementation report\n\n## Stage outcomes\n- Boundary and contract changes\n- Storage and schedule changes\n- Request-path and regression results\n\n## Verification evidence\n- Focused checks: pass or fail with counts\n- Complete gate: pass or fail with counts\n- Regression review: observed result\n\n## Remaining owner decisions\n- List only decisions that require new authority\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-release-context-work-order-outline",
+            "priority": 10,
+            "feedback": "Use one H1 followed by the seven H2 work-order sections shown in the Goal.",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ]
+          },
+          {
+            "id": "l5-release-context-work-order-hierarchy",
+            "priority": 20,
+            "feedback": "Keep the work-order heading hierarchy in logical H1, H2, and H3 order.",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false
+          },
+          {
+            "id": "l5-release-context-work-order-sections",
+            "priority": 15,
+            "feedback": "Keep exactly seven H2 sections in this agent work order.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7
+          },
+          {
+            "id": "l5-release-context-work-order-authority",
+            "priority": 30,
+            "feedback": "Use an ordered list of at least four sources in the second H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4
+          },
+          {
+            "id": "l5-release-context-work-order-stages",
+            "priority": 40,
+            "feedback": "Divide the execution section into at least three H3 stages.",
+            "kind": "block-count",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3
+          },
+          {
+            "id": "l5-release-context-work-order-constraints",
+            "priority": 50,
+            "feedback": "Use an unordered list of at least four hard constraints in the fourth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 4
+          },
+          {
+            "id": "l5-release-context-work-order-stops",
+            "priority": 60,
+            "feedback": "Use an unordered list of at least three stop conditions in the fifth H2 section.",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3
+          },
+          {
+            "id": "l5-release-context-work-order-verification",
+            "priority": 70,
+            "feedback": "Add a fenced, language-tagged command block to the verification section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-release-context-work-order-report",
+            "priority": 80,
+            "feedback": "Add a fenced, language-tagged template to the final-report section.",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true
+          },
+          {
+            "id": "l5-release-context-work-order-document-size",
+            "priority": 90,
+            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
+            "kind": "document-limits",
+            "minLines": 60,
+            "minSourceCharacters": 1800
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, then divide the document with ## sections.",
+          "Match the Goal's block types and their order; the wording is yours.",
+          "Check each section for the requested list, emphasis, or code block."
+        ],
+        "retryFamily": "level5-agent-work-order",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order"
+        ],
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "release-context",
+        "flavor": "standard",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-19"
+        },
+        "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      }
+    ]
+  },
+  "projectionDigest": "bc3f919dda5577bc819f2a0c760f710a15fd539d222c41a0fe65e6494b4402ea"
+}
