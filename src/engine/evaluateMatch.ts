@@ -48,11 +48,12 @@ function checkPasses(check: MatchCheck, source: string, root: Root): boolean {
     case "heading-capitalization": {
       if (hasRequestedHashHeading(source, root, check)) return true
 
+      const exact = normalizeText(check.text)
       const expected = normalizeText(check.text).toLocaleLowerCase()
-      return !matchingHashHeadings(source, root, check).some(
-        (heading) =>
-          normalizeText(nodeText(heading)).toLocaleLowerCase() === expected,
-      )
+      return !headingsAtLevel(root, check.level).some((heading) => {
+        const actual = normalizeText(nodeText(heading))
+        return actual !== exact && actual.toLocaleLowerCase() === expected
+      })
     }
     case "preserves-text":
       return normalizeText(documentText(root)).includes(

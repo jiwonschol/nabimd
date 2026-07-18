@@ -91,6 +91,7 @@ export type FixtureKind =
   | "capitalization"
   | "setext"
   | "nbsp-separator"
+  | "ideographic-space-separator"
   | "inline-emphasis"
   | "inline-code"
   | "inline-link"

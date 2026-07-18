@@ -167,6 +167,16 @@ describe("evaluateProblem", () => {
           "That's a real heading! Markdown has two heading styles — this quest practices the hash style. Try: # Rainy day",
       })
     })
+
+    it("corrects Setext capitalization before requesting hash style", () => {
+      expect(
+        evaluateProblem(getHeadingProblem("heading-apple"), "apple\n====="),
+      ).toEqual({
+        status: "fail",
+        feedbackId: "match-apple-capitalization",
+        message: "Close — match the capitalization: the goal says 'Apple'.",
+      })
+    })
   })
 
   describe("rendered-semantic exactness", () => {

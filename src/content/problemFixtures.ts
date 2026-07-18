@@ -156,6 +156,13 @@ function createHeadingFixtures(
     },
     {
       problemId,
+      kind: "ideographic-space-separator",
+      source: `#\u3000${text}`,
+      expectedStatus: "fail",
+      expectedFeedbackId: "space-after-hash",
+    },
+    {
+      problemId,
       kind: "inline-emphasis",
       source: `# **${text}**`,
       expectedStatus: "matched",
