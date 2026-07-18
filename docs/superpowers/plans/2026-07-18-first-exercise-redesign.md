@@ -295,7 +295,7 @@ until the browser suite is green.
 - Delete after migration: `src/components/MarkdownPreview.test.tsx`
 - Modify: `src/components/EditorialDesk.tsx`
 
-- [ ] **Step 1: Write failing shared-surface tests**
+- [x] **Step 1: Write failing shared-surface tests**
 
 Assert one component renders both `Goal` and `Live preview`, applies the same
 document-surface class, blocks learner images, and exposes an empty-state
@@ -309,18 +309,18 @@ npm test -- src/components/RenderedDocument.test.tsx
 
 Expected: FAIL because the shared component does not exist.
 
-- [ ] **Step 2: Implement `RenderedDocument`**
+- [x] **Step 2: Implement `RenderedDocument`**
 
 Use `react-markdown` with raw HTML disabled by omission. Replace learner image
 nodes with text placeholders. Keep toolbar labels outside the rendered Markdown
 body and use one paper class for Goal and preview.
 
-- [ ] **Step 3: Migrate both consumers and remove the old split variants**
+- [x] **Step 3: Migrate both consumers and remove the old split variants**
 
 The only functional variation is accessible context and empty-state copy;
 typography, padding, border, and body geometry stay shared.
 
-- [ ] **Step 4: Run component tests**
+- [x] **Step 4: Run component tests**
 
 ```bash
 npm test -- src/components/RenderedDocument.test.tsx
@@ -342,7 +342,7 @@ Expected: PASS with no `<img>` for learner media.
 - Create: `src/editor/invisibleCharacters.test.ts`
 - Modify: `src/test/setup.ts` only if CodeMirror requires a test-only DOM API polyfill
 
-- [ ] **Step 1: Install exact CodeMirror packages**
+- [x] **Step 1: Install exact CodeMirror packages**
 
 ```bash
 npm install --save-exact @codemirror/state@6.7.1 @codemirror/view@6.43.6 @codemirror/commands@6.10.4
@@ -351,7 +351,7 @@ npm install --save-exact @codemirror/state@6.7.1 @codemirror/view@6.43.6 @codemi
 Expected: package and lockfile record exact versions; no Markdown language
 package or syntax highlighter is installed.
 
-- [ ] **Step 2: Write failing editor contract tests**
+- [x] **Step 2: Write failing editor contract tests**
 
 Test an accessible `Your Markdown` textbox, controlled initial value, edit
 callback, external value synchronization without feedback loops, `Mod-Enter`
@@ -365,7 +365,7 @@ npm test -- src/components/MarkdownSourceEditor.test.tsx
 
 Expected: FAIL because the component does not exist.
 
-- [ ] **Step 3: Write failing pure invisible-decoration tests**
+- [x] **Step 3: Write failing pure invisible-decoration tests**
 
 Test that space ranges receive a faint dot class, tabs receive an arrow class,
 line breaks are ignored, and the input document string is returned unchanged.
@@ -378,7 +378,7 @@ npm test -- src/editor/invisibleCharacters.test.ts
 
 Expected: FAIL because the extension does not exist.
 
-- [ ] **Step 4: Implement the controlled editor wrapper**
+- [x] **Step 4: Implement the controlled editor wrapper**
 
 Create one `EditorView` in a ref callback/effect, destroy it on unmount, and use
 `EditorView.updateListener` only when `update.docChanged`. Configure line
@@ -387,18 +387,18 @@ the `Mod-Enter` binding, and content attributes for the accessible label. Use a
 `Compartment` to reconfigure invisible decorations without recreating the
 editor.
 
-- [ ] **Step 5: Implement non-mutating invisible decorations**
+- [x] **Step 5: Implement non-mutating invisible decorations**
 
 Use CodeMirror decorations or a `MatchDecorator`/`ViewPlugin`; never inject
 literal dots or arrows into the document. Keep marks monochrome and low contrast.
 
-- [ ] **Step 6: Apply restrained editor styling**
+- [x] **Step 6: Apply restrained editor styling**
 
 Expose stable wrapper classes and style `.cm-editor`, `.cm-scroller`,
 `.cm-content`, `.cm-gutters`, focus, selection, and cursor. The editor and
 gutter must fill the shared workbench height and scroll vertically.
 
-- [ ] **Step 7: Run editor tests and typecheck**
+- [x] **Step 7: Run editor tests and typecheck**
 
 ```bash
 npm test -- src/components/MarkdownSourceEditor.test.tsx src/editor/invisibleCharacters.test.ts
@@ -421,7 +421,7 @@ observed in output, never as a speculative product workaround.
 - Modify: `src/styles/global.css`
 - Modify: `src/styles/tokens.css`
 
-- [ ] **Step 1: Rewrite component tests around the learning hierarchy**
+- [x] **Step 1: Rewrite component tests around the learning hierarchy**
 
 Assert the visible order and names: Instruction, Goal, Hint, Your Markdown,
 Live preview, status. Assert `Apple` is the first Goal, the editor starts empty,
@@ -436,32 +436,32 @@ npm test -- src/App.test.tsx
 
 Expected: FAIL against the old Target/textarea/Side Coach layout.
 
-- [ ] **Step 2: Refactor the top lesson row**
+- [x] **Step 2: Refactor the top lesson row**
 
 Render the action instruction first. Place the large Goal surface and fixed
 Help frame in one grid. Help is an inline disclosure whose body expands
 downward; it is not a right drawer or mobile bottom sheet.
 
-- [ ] **Step 3: Refactor the workbench row**
+- [x] **Step 3: Refactor the workbench row**
 
 Place `MarkdownSourceEditor` and `RenderedDocument` in a 1:1 grid with one
 shared height variable. Keep the editor narrower in feel through document
 padding and type scale, not by making the preview a different geometry.
 
-- [ ] **Step 4: Integrate Hint and Review into one Help frame**
+- [x] **Step 4: Integrate Hint and Review into one Help frame**
 
 Collapsed recall state contains only `Hint` plus a neutral disclosure icon.
 Level 1 rule, progressive post-Fail hints, and optional Matched Review reuse the
 same column. No mode changes the row width.
 
-- [ ] **Step 5: Implement C6 CSS and mobile stacking**
+- [x] **Step 5: Implement C6 CSS and mobile stacking**
 
 Define explicit lesson/workbench grid columns, equal row heights, shared paper
 tokens, aligned label baselines, a large Level 3-sized Goal height, tall source
 and preview bodies, and mobile stacking in semantic order. Remove drawer and
 bottom-sheet styles.
 
-- [ ] **Step 6: Run component and full unit tests**
+- [x] **Step 6: Run component and full unit tests**
 
 ```bash
 npm test -- src/App.test.tsx
@@ -471,7 +471,7 @@ npm test
 Expected: PASS; grading, persistence, media safety, transfer, and completion
 regressions remain green.
 
-- [ ] **Step 7: Commit the C6 implementation**
+- [x] **Step 7: Commit the C6 implementation**
 
 ```bash
 git add package.json package-lock.json src
@@ -487,13 +487,13 @@ git commit -m "feat: build the C6 Markdown learning workspace"
 - Modify: `tests/e2e/heading-flow.spec.ts`
 - Modify: `playwright.config.ts` only if a current test exposes a real config defect
 
-- [ ] **Step 1: Fix the known bootstrap-network blind spot first**
+- [x] **Step 1: Fix the known bootstrap-network blind spot first**
 
 Move the `page.on("request", ...)` listener before `page.goto("/")`. Keep it
 active while learner media is typed. This is an existing valid review finding,
 not a redesign convenience.
 
-- [ ] **Step 2: Rewrite browser journeys for the new bank and Help model**
+- [x] **Step 2: Rewrite browser journeys for the new bank and Help model**
 
 Cover:
 
@@ -508,7 +508,7 @@ refresh restores a CodeMirror draft
 Read transfer content from the visible Goal rather than hard-coding a selected
 problem title.
 
-- [ ] **Step 3: Add desktop geometry assertions**
+- [x] **Step 3: Add desktop geometry assertions**
 
 At the reference viewport, compare bounding boxes and require:
 
@@ -521,18 +521,18 @@ abs(editor.bottom - preview.bottom) <= 1
 
 Open Help and repeat the Goal/Help width and edge checks.
 
-- [ ] **Step 4: Add invisible-character browser proof**
+- [x] **Step 4: Add invisible-character browser proof**
 
 Enter a heading containing spaces and a tab, toggle Invisibles, assert the
 decorative markers appear, then check `inputValue` and preview text remain
 unchanged.
 
-- [ ] **Step 5: Add mobile stacking and overflow proof**
+- [x] **Step 5: Add mobile stacking and overflow proof**
 
 At `390 x 844`, assert semantic top positions increase in the order Goal,
 Hint, editor, preview and `documentElement.scrollWidth <= innerWidth`.
 
-- [ ] **Step 6: Run the local release gate**
+- [x] **Step 6: Run the local release gate**
 
 ```bash
 npm run check
