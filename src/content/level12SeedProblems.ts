@@ -1,8 +1,4 @@
-import type {
-  FixtureRole,
-  NormalizedProblem,
-  ProblemFixture,
-} from "./types"
+import type { NormalizedProblem } from "./types"
 
 const sourceBatchId = "milestone-1-level-1-2-seed"
 const curriculumVersion = "2026-07-19"
@@ -32,8 +28,6 @@ type SeedInput = {
   contentVariant: string
   heading: string
   vocabularyDomain: string
-  differentProse: string
-  caseSpellingVariation: string
 }
 
 function createSeedProblem({
@@ -110,8 +104,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "apple",
     heading: "Apple",
     vocabularyDomain: "fruit",
-    differentProse: "Bicycle repair",
-    caseSpellingVariation: "aple",
   },
   {
     id: "l1-heading-rainy-day",
@@ -119,8 +111,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "rainy-day",
     heading: "Rainy day",
     vocabularyDomain: "weather",
-    differentProse: "Family recipe",
-    caseSpellingVariation: "RANE DAY",
   },
   {
     id: "l1-heading-study-notes",
@@ -128,8 +118,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "study-notes",
     heading: "Study notes",
     vocabularyDomain: "learning",
-    differentProse: "Morning walk",
-    caseSpellingVariation: "study nots",
   },
   {
     id: "l1-heading-library-card",
@@ -137,8 +125,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "library-card",
     heading: "Library card",
     vocabularyDomain: "reading",
-    differentProse: "Picnic basket",
-    caseSpellingVariation: "libary card",
   },
   {
     id: "l2-heading-grocery-list",
@@ -146,8 +132,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "grocery-list",
     heading: "Grocery list",
     vocabularyDomain: "errands",
-    differentProse: "Garden path",
-    caseSpellingVariation: "grocery lst",
   },
   {
     id: "l2-heading-bus-schedule",
@@ -155,8 +139,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "bus-schedule",
     heading: "Bus schedule",
     vocabularyDomain: "daily-travel",
-    differentProse: "Snowy morning",
-    caseSpellingVariation: "bus shedule",
   },
   {
     id: "l2-heading-weekend-plans",
@@ -164,8 +146,6 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "weekend-plans",
     heading: "Weekend plans",
     vocabularyDomain: "daily-planning",
-    differentProse: "Library card",
-    caseSpellingVariation: "wekend plans",
   },
   {
     id: "l2-heading-morning-walk",
@@ -173,109 +153,8 @@ const seedInputs: readonly SeedInput[] = [
     contentVariant: "morning-walk",
     heading: "Morning walk",
     vocabularyDomain: "daily-routine",
-    differentProse: "Birthday cake",
-    caseSpellingVariation: "mornng walk",
   },
 ]
 
 export const level12SeedProblems: readonly NormalizedProblem[] =
   seedInputs.map(createSeedProblem)
-
-function fixtureKind(role: FixtureRole): ProblemFixture["kind"] {
-  switch (role) {
-    case "canonical":
-      return "canonical"
-    case "different-prose":
-      return "alternate"
-    case "case-spelling-variation":
-      return "case-variation"
-    case "missing":
-      return "missing"
-    case "malformed":
-      return "malformed"
-    case "matched-with-review":
-      return "matched-with-refinement"
-    case "edge-case":
-      return "normalized-whitespace"
-  }
-}
-
-function createSeedFixtures(input: SeedInput): ProblemFixture[] {
-  const fixtures: readonly {
-    role: FixtureRole
-    kind?: ProblemFixture["kind"]
-    source: string
-    expectedStatus: ProblemFixture["expectedStatus"]
-    expectedFeedbackId?: string
-    exercisesCheckId?: string
-    expectedReviewIds?: readonly string[]
-  }[] = [
-    {
-      role: "canonical",
-      source: `# ${input.heading}`,
-      expectedStatus: "matched",
-      expectedReviewIds: [],
-    },
-    {
-      role: "different-prose",
-      source: `# ${input.differentProse}`,
-      expectedStatus: "matched",
-      expectedReviewIds: [],
-    },
-    {
-      role: "case-spelling-variation",
-      source: `# ${input.caseSpellingVariation}`,
-      expectedStatus: "matched",
-      expectedReviewIds: [],
-    },
-    {
-      role: "missing",
-      source: input.heading,
-      expectedStatus: "fail",
-      expectedFeedbackId: "use-h1-heading",
-      exercisesCheckId: "use-h1-heading",
-    },
-    {
-      role: "malformed",
-      source: `#${input.heading}`,
-      expectedStatus: "fail",
-      expectedFeedbackId: "space-after-hash",
-      exercisesCheckId: "space-after-hash",
-    },
-    {
-      role: "edge-case",
-      kind: "setext",
-      source: `${input.heading}\n===`,
-      expectedStatus: "fail",
-      expectedFeedbackId: "use-hash-heading-style",
-      exercisesCheckId: "use-hash-heading-style",
-    },
-    {
-      role: "matched-with-review",
-      source: `# ${input.heading}\n\n# Notes`,
-      expectedStatus: "matched",
-      expectedReviewIds: ["one-document-title"],
-    },
-  ]
-
-  return fixtures.map((fixture) => ({
-    id: `${input.id}-${fixture.role}`,
-    problemId: input.id,
-    role: fixture.role,
-    kind: fixture.kind ?? fixtureKind(fixture.role),
-    source: fixture.source,
-    expectedStatus: fixture.expectedStatus,
-    ...(fixture.expectedFeedbackId
-      ? { expectedFeedbackId: fixture.expectedFeedbackId }
-      : {}),
-    ...(fixture.exercisesCheckId
-      ? { exercisesCheckId: fixture.exercisesCheckId }
-      : {}),
-    ...(fixture.expectedReviewIds
-      ? { expectedReviewIds: fixture.expectedReviewIds }
-      : {}),
-  }))
-}
-
-export const level12SeedFixtures: readonly ProblemFixture[] =
-  seedInputs.flatMap(createSeedFixtures)

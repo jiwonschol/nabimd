@@ -19,7 +19,10 @@ export function isHashHeading(source: string, heading: Heading): boolean {
   if (startOffset === undefined || endOffset === undefined) return false
 
   const headingSource = source.slice(startOffset, endOffset)
-  return /^ {0,3}#(?:[ \t]+|$)/.test(headingSource)
+  const openingHashes = `#{${heading.depth}}`
+  return new RegExp(`^ {0,3}${openingHashes}(?:[ \\t]+|$)`).test(
+    headingSource,
+  )
 }
 
 export function isFencedCode(source: string, code: Code): boolean {

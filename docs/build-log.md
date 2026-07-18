@@ -1048,9 +1048,9 @@ summary.
 
 ### Milestone 1 review and publication result
 
-The frozen foundation batch contains 20 candidates and 188 fixtures. Two
+The frozen foundation batch contains 20 candidates and 184 fixtures. Two
 review roles independently accepted all 20 against the same review manifest.
-One checked 108 direct match-check counterexamples and the absence of prose
+One checked 104 direct match-check counterexamples and the absence of prose
 operands in the engine; the other separately checked Level 3–5 target anatomy,
 section-occurrence scoping, and transfer variants. A third editorial role then
 inspected all eight required dimensions for every candidate.
@@ -1065,14 +1065,50 @@ zero rejected or blocked records.
 
 The final batch records its accepted set, bank projection, tracker, review
 digests, and editorial digest in `summary.generated.json`. A fresh local
-`npm run check` passed the 12 pipeline tests, 7 state-aware publication tests,
-758 application tests, legacy gate, typecheck, and production build. The bundle
-size warning remains informational; no runtime AI or new network dependency was
-added.
+`npm run check` passed the 15 pipeline tests, 7 state-aware publication tests,
+2 repository-history tests, 774 application tests, legacy gate, typecheck,
+production build, and fixture-exclusion bundle check. The bundle-size warning
+remains informational; no runtime AI or new network dependency was added.
 
-The authenticated CodeRabbit CLI was ready, but the local review invocation was
-denied because it would transmit unpublished workspace code to an external
-service. Codex did not bypass that boundary. The branch instead follows the
-already-approved public-repository workflow: publish the reviewed local gate as
-a PR, then request CodeRabbit and Codex review against the public diff before
-merge.
+### Public-PR review correction
+
+CodeRabbit and Codex reviewed the public PR and exposed assumptions the local
+foundation review had not challenged. The accepted changes now:
+
+- bind `package-lock.json` into the engine contract;
+- make candidate revision part of fixture, verdict, editorial, and compilation
+  identity, so a later accepted revision can safely supersede the same ID;
+- require direct section lists, preventing a nested list from satisfying the
+  outer exercise;
+- recognize ATX H1 through H6 consistently, including malformed spacing;
+- remove Level 5 character and line limits from Matched so only Markdown
+  structure is graded;
+- reject cross-level transfer data during persisted-session restoration;
+- exclude fixture-only source from the learner production bundle;
+- fail a batch closed on partial, malformed, unknown, or non-independent
+  evidence; and
+- compare accepted immutable batches against the base branch in repository CI.
+
+Those corrections invalidated the old mechanical artifacts and review seals.
+Codex did not carry the stale approval forward. It regenerated 184 fixtures,
+proved 184/184 results and 104/104 direct counterexamples against manifest
+`2b89bc66a6d743af47264aac6431f7e4210704e5555b76e22c32284191ecdb5b`,
+then obtained two fresh 20/20 independent reviews and a separate 20/20
+eight-dimension editorial inspection. The current sealed review digests are
+`18d8a6ee0c1bcaee2b22fd8190e00374ecdfdabeae40e97af7b404e66f25a45f`
+and `4dab094ac04359377780372c61a8c940d5018932bc364b57dccb5ce3b26c6470`;
+the editorial digest is
+`31a304a41a7376502c1c4113d2706e5473338455a827880573b5c9416429a7c3`.
+
+Two reviewer suggestions were deliberately not converted into product changes.
+Schema-v2 progress is safely invalidated rather than migrated because old
+session data has no bank revision and visits are intentionally ephemeral.
+Likewise, any evidence error blocks its immutable batch rather than publishing
+a clean-looking subset. The review artifacts use July 19 because creation and
+inspection occurred on July 19 in the repository owner's `Asia/Seoul`
+timezone; the external review service displayed the same moment as July 18 UTC.
+
+The local CodeRabbit agent callback could not be reused after its OAuth state
+expired, and the pasted callback secret was neither stored nor committed. That
+did not block review: the installed GitHub app reviewed the public PR, which is
+the intended external-review boundary for this repository.

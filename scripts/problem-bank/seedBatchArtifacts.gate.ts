@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
-import { level12SeedFixtures } from "../../src/content/level12SeedProblems"
-import { level35SeedFixtures } from "../../src/content/level35SeedProblems"
+import { level12SeedFixtures } from "../../src/content/level12SeedFixtures"
+import { level35SeedFixtures } from "../../src/content/level35SeedFixtures"
 import {
   buildSeedBatchPublication,
   buildSeedBatchArtifacts,

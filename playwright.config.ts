@@ -1,7 +1,11 @@
 import { defineConfig, devices } from "@playwright/test"
 
 const deploymentUrl = process.env.E2E_BASE_URL?.trim() || undefined
-const localPort = process.env.E2E_PORT?.trim() || "4174"
+const configuredPort = process.env.E2E_PORT?.trim()
+const localPort = configuredPort ? Number(configuredPort) : 4174
+if (!Number.isInteger(localPort) || localPort < 1 || localPort > 65_535) {
+  throw new Error("E2E_PORT must be an integer between 1 and 65535")
+}
 const localUrl = `http://127.0.0.1:${localPort}`
 
 export default defineConfig({

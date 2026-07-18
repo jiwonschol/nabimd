@@ -3,15 +3,15 @@
   "batchId": "2026-07-19-milestone-1-foundation-001",
   "status": "awaiting-independent-review",
   "candidateCount": 20,
-  "fixtureCount": 188,
+  "fixtureCount": 184,
   "passingCandidateCount": 20,
-  "normalizedArtifactDigest": "5ebb68db65b5bcc7b831d88bf9ed5614d398fbe60bbaab94179593fcddd9f296",
-  "verificationDigest": "0b6303623b982528ed6f82bc7dcf6f44014ad348e56a8e8f3bbba8a32ac55c7c",
-  "manifestDigest": "980ca43defb48be8faf0fcffab5695c98e2dbfb45670d6ad5a3f443587e82578",
-  "engineContractDigest": "c0480787fdd7132dbcc05bb2b0c664804ffd0dfaa5d386284fe4b7a7e748f1a5",
+  "normalizedArtifactDigest": "fe0d8a5a6789062441cdf6ba311f3e243a5244e320aeb2e350aafde2117c5e4e",
+  "verificationDigest": "b6c3f0266d2b922be8772ab18ad9a12730c4d1f107b7bbc068d478082610a9e6",
+  "manifestDigest": "2b89bc66a6d743af47264aac6431f7e4210704e5555b76e22c32284191ecdb5b",
+  "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5",
   "requiredIndependentReviews": 2,
   "committedIndependentReviews": 0,
   "editorialPresent": false,
   "publishedAcceptedTotal": 0,
-  "preparedSummaryDigest": "e91c0820e44f24a67fba17f92c20ba810555363b4a46d5b242c13d106fa43dcd"
+  "preparedSummaryDigest": "45c5068df34413a6266720dd062044bbc38ed97fc329acc55553279818f0f0dd"
 }

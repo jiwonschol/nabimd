@@ -5,6 +5,7 @@ export default defineConfig({
     environment: "node",
     include: [
       "scripts/problem-bank/problemBankGate.gate.ts",
+      "scripts/problem-bank/repositoryBankGate.gate.ts",
       "scripts/problem-bank/reviewManifest.report.ts",
       "scripts/problem-bank/seedBatchArtifacts.gate.ts",
     ],

@@ -75,11 +75,13 @@ function rawBatch(overrides = {}) {
 function fixtures(
   candidateId = "heading-garden-notes",
   batchId = "2026-07-19-l1-headings-001",
+  problemRevision = 1,
 ) {
   const passing = ["canonical", "alternate-prose", "case-or-spelling"]
     .map((role, index) => ({
       id: `${candidateId}-${role}`,
       problemId: candidateId,
+      problemRevision,
       role,
       source: index === 0 ? "# Garden notes" : index === 1 ? "# Picnic plans" : "# gardn NOTES",
       expectedStatus: "matched",
@@ -93,6 +95,7 @@ function fixtures(
       {
         id: `${candidateId}-missing`,
         problemId: candidateId,
+        problemRevision,
         role: "missing-required",
         exercisesCheckId: "has-h1",
         source: "Garden notes",
@@ -102,6 +105,7 @@ function fixtures(
       {
         id: `${candidateId}-malformed`,
         problemId: candidateId,
+        problemRevision,
         role: "malformed-required",
         exercisesCheckId: "has-h1",
         source: "#Garden notes",
@@ -111,6 +115,7 @@ function fixtures(
       {
         id: `${candidateId}-matched-with-review`,
         problemId: candidateId,
+        problemRevision,
         role: "matched-with-review",
         source: "# Garden notes",
         expectedStatus: "matched",
@@ -122,7 +127,11 @@ function fixtures(
 
 async function acceptedBatch({ raw = rawBatch(), prompt = "Generate guided headings.\n" } = {}) {
   const normalized = normalizeBatch(raw, prompt)
-  const fixtureArtifact = fixtures(normalized.candidates[0].id, normalized.batchId)
+  const fixtureArtifact = fixtures(
+    normalized.candidates[0].id,
+    normalized.batchId,
+    normalized.candidates[0].revision,
+  )
   const verification = await verifyBatchFixtures({
     normalized,
     fixtureArtifact,
@@ -136,6 +145,7 @@ async function acceptedBatch({ raw = rawBatch(), prompt = "Generate guided headi
   const manifest = buildReviewManifest({ normalized, fixtureArtifact, verification })
   const verdict = {
     candidateId: normalized.candidates[0].id,
+    revision: normalized.candidates[0].revision,
     candidateDigest: normalized.candidates[0].candidateDigest,
     fixtureResultsDigest: verification.candidates[0].fixtureResultsDigest,
     verdict: "pass",
@@ -147,6 +157,7 @@ async function acceptedBatch({ raw = rawBatch(), prompt = "Generate guided headi
       batchId: normalized.batchId,
       reviewerId,
       reviewRunId: `${reviewerId}-run-001`,
+      declaredIndependent: true,
       manifestDigest: manifest.manifestDigest,
       verdicts: [verdict],
     }),
@@ -160,6 +171,7 @@ async function acceptedBatch({ raw = rawBatch(), prompt = "Generate guided headi
       decisions: [
         {
           candidateId: normalized.candidates[0].id,
+          revision: normalized.candidates[0].revision,
           candidateDigest: normalized.candidates[0].candidateDigest,
           fixtureResultsDigest: verification.candidates[0].fixtureResultsDigest,
           status: "accepted",
@@ -347,9 +359,21 @@ test("compiler publishes only accepted current records and tracker is determinis
   })
   assert.ok(
     compileAcceptedBank([evidence, duplicate]).errors.some((error) =>
-      error.includes("Duplicate current problem id: heading-garden-notes"),
+      error.includes("Duplicate current problem revision: heading-garden-notes@1"),
     ),
   )
+
+  const revised = await acceptedBatch({
+    raw: rawBatch({
+      batchId: "2026-07-19-l1-headings-003",
+      sequence: 3,
+      candidates: [rawCandidate({ revision: 2, title: "Revised main heading" })],
+    }),
+  })
+  const withRevision = compileAcceptedBank([evidence, revised])
+  assert.deepEqual(withRevision.errors, [])
+  assert.equal(withRevision.problems.length, 1)
+  assert.equal(withRevision.problems[0].revision, 2)
 })
 
 test("bank gate checks exact publish projections and committed tracker", async () => {
@@ -401,6 +425,69 @@ test("append-only validation rejects removed or mutated accepted batch evidence"
   const changed = await acceptedBatch({ prompt: "changed prompt\n" })
   assert.ok(
     validateAppendOnly([changed], baseline).some((error) => error.includes("Mutated batch")),
+  )
+})
+
+test("evidence requires declared-independent reviewers and a separate editorial actor", async () => {
+  const evidence = await acceptedBatch()
+
+  const undeclared = structuredClone(evidence)
+  delete undeclared.reviews[0].declaredIndependent
+  undeclared.reviews[0] = sealReview(undeclared.reviews[0])
+  undeclared.editorial = sealEditorial(undeclared.editorial, undeclared.reviews)
+  assert.ok(
+    evaluateBatchEvidence(undeclared).errors.some((error) =>
+      error.includes("Review must declare independence"),
+    ),
+  )
+
+  const sameActor = structuredClone(evidence)
+  sameActor.editorial = sealEditorial(
+    { ...sameActor.editorial, editorialActor: sameActor.reviews[0].reviewerId },
+    sameActor.reviews,
+  )
+  assert.ok(
+    evaluateBatchEvidence(sameActor).errors.some((error) =>
+      error.includes("Editorial actor must differ from reviewers"),
+    ),
+  )
+})
+
+test("editorial evidence rejects decisions for unknown candidates", async () => {
+  const evidence = await acceptedBatch()
+  evidence.editorial = sealEditorial(
+    {
+      ...evidence.editorial,
+      decisions: [
+        ...evidence.editorial.decisions,
+        {
+          candidateId: "not-in-this-batch",
+          status: "rejected",
+          checks: {},
+        },
+      ],
+    },
+    evidence.reviews,
+  )
+
+  assert.ok(
+    evaluateBatchEvidence(evidence).errors.some((error) =>
+      error.includes("Unknown editorial decision"),
+    ),
+  )
+})
+
+test("bank compilation reports loader errors without dereferencing partial batches", () => {
+  const partial = {
+    normalized: { batchId: "broken-batch" },
+    loaderErrors: ["Cannot load broken-batch: missing fixtures.json"],
+  }
+
+  assert.doesNotThrow(() => compileAcceptedBank([partial]))
+  assert.ok(
+    compileAcceptedBank([partial]).errors.some((error) =>
+      error.includes("missing fixtures.json"),
+    ),
   )
 })
 

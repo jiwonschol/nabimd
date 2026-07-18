@@ -76,8 +76,9 @@ function listShapePasses(
   check: Extract<StructuralCheck, { kind: "list-shape" }>,
   context: EvaluationContext,
 ) {
-  const lists = descendants(nodesInScope(context, check.scope) as AstNode[])
-    .filter((node): node is List => node.type === "list")
+  const lists = nodesInScope(context, check.scope).filter(
+    (node): node is List => node.type === "list",
+  )
   return lists.some((list) => {
     const ordered = Boolean(list.ordered)
     return (

@@ -220,6 +220,7 @@ export type FixtureKind =
 export type ProblemFixture = {
   id?: string
   problemId: string
+  problemRevision?: number
   role?: FixtureRole
   exercisesCheckId?: string
   kind: FixtureKind

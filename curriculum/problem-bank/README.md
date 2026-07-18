@@ -2,7 +2,7 @@
 
 Nabi treats curriculum as executable product data, not a pile of prompts. The
 schema-v2 tracker currently publishes 20 inspected `standard` problems: four
-at each of Levels 1–5. The first immutable batch carries 188 real-engine
+at each of Levels 1–5. The first immutable batch carries 184 real-engine
 fixtures, two sealed independent reviews, and one separate editorial decision.
 
 The earlier 128-candidate GPT-5.6 artifact remains frozen schema-v1 evidence.
@@ -20,8 +20,9 @@ for audit history but do not count toward the schema-v2 tracker.
 3. **Freeze review scope:** `review-manifest.json` binds candidate, materialized
    problem, fixture-definition, fixture-result, and engine digests.
 4. **Independent review:** two distinct reviewer and run IDs must each submit a
-   passing, sealed verdict for every accepted candidate. Disagreement or stale
-   scope blocks only the affected candidate.
+   passing, sealed verdict for every accepted candidate. Any disagreement,
+   malformed evidence, or stale scope fails the immutable batch closed before
+   publication.
 5. **Editorial inspection:** a separate actor decides level fit, vocabulary
    fit, ambiguity, Goal quality, duplication, licensing, flavor, and the
    no-runtime-AI boundary.

@@ -12,7 +12,10 @@ import {
 import { evaluateProblem } from "../engine/evaluateProblem"
 import { resolveBrowserStorage } from "../progress/browserStorage"
 import { loadProgress, saveProgress } from "../progress/progressStore"
-import { selectTransferProblem } from "../selection/selectTransferProblem"
+import {
+  isEligibleTransferProblem,
+  selectTransferProblem,
+} from "../selection/selectTransferProblem"
 import {
   canAdvance,
   createLearningSession,
@@ -24,31 +27,14 @@ const validProblemIds = new Set(problemBank.map((problem) => problem.id))
 function isSafeReplacement(leftId: string, rightId: string): boolean {
   const left = getProblem(leftId)
   const right = getProblem(rightId)
-  return (
-    left.id !== right.id &&
-    left.level === right.level &&
-    left.flavor === right.flavor &&
-    left.retryFamily === right.retryFamily &&
-    left.contentVariant !== right.contentVariant
-  )
+  return isEligibleTransferProblem(left, right, left.retryFamily)
 }
-
-const replacementProblemIdsByProblemId = new Map(
-  problemBank.map((problem) => [
-    problem.id,
-    new Set(
-      problemBank
-        .filter((candidate) => isSafeReplacement(problem.id, candidate.id))
-        .map((candidate) => candidate.id),
-    ),
-  ]),
-)
 
 function initializeSession(storage: Storage) {
   const progress = loadProgress(
     storage,
     validProblemIds,
-    replacementProblemIdsByProblemId,
+    isSafeReplacement,
     problemBankRevision,
   )
   return createLearningSession(progress, getProblem(progress.currentProblemId))

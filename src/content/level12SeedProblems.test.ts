@@ -1,9 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { evaluateProblem } from "../engine/evaluateProblem"
-import {
-  level12SeedFixtures,
-  level12SeedProblems,
-} from "./level12SeedProblems"
+import { level12SeedFixtures } from "./level12SeedFixtures"
+import { level12SeedProblems } from "./level12SeedProblems"
 import type { FixtureRole } from "./types"
 import { validateProblemBank } from "./validateProblemBank"
 

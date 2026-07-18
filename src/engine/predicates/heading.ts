@@ -10,7 +10,7 @@ type HeadingCheck = Extract<
 function hasMalformedHeadingSpacing(source: string): boolean {
   return source
     .split(/\r?\n/)
-    .some((line) => /^ {0,3}#(?!#)(?=[^ \t\r\n])/.test(line))
+    .some((line) => /^ {0,3}#{1,6}(?=[^ \t\r\n#])/.test(line))
 }
 
 function matchingHashHeadings(source: string, root: Root, check: HeadingCheck) {

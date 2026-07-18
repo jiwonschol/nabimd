@@ -1,9 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { evaluateProblem } from "../engine/evaluateProblem"
-import {
-  level35SeedFixtures,
-  level35SeedProblems,
-} from "./level35SeedProblems"
+import { level35SeedFixtures } from "./level35SeedFixtures"
+import { level35SeedProblems } from "./level35SeedProblems"
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("Level 3-5 Milestone 1 seed bank", () => {

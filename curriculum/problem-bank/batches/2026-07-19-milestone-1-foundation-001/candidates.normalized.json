@@ -6,7 +6,7 @@
   "generatedBy": "codex-build-time-seed-materializer",
   "generatedOn": "2026-07-19",
   "promptSha256": "48a6a7780870f79c9806bb19f9a5d71ef4aaf681f30672e8428b5e92f938a9ba",
-  "rawArtifactDigest": "72c7cb86a0e0563d942adb51adce6f9d7cbf2f786937f2682325206700ef9af3",
+  "rawArtifactDigest": "46e86313a9cb0a0e31e6dd142392aadbb69ac79458c57821d682c48f06dd4c5f",
   "candidateCount": 20,
   "candidates": [
     {
@@ -2162,14 +2162,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-auth-migration-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2189,7 +2181,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "auth-migration",
       "flavor": "standard",
@@ -2199,7 +2191,7 @@
         "reviewedOn": "2026-07-19"
       },
       "sourceBatch": "2026-07-19-milestone-1-foundation-001",
-      "candidateDigest": "d6da01b6a4f3cd954d99c39ff506daffd7cb42298f7b6448034b7a84d8731058"
+      "candidateDigest": "3d41cb1f877672895b1ebed5c18cddb5c9208a76f77799b4f61188f9a3a5169b"
     },
     {
       "schemaVersion": 2,
@@ -2394,14 +2386,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-dependency-upgrade-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2421,7 +2405,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "dependency-upgrade",
       "flavor": "standard",
@@ -2431,7 +2415,7 @@
         "reviewedOn": "2026-07-19"
       },
       "sourceBatch": "2026-07-19-milestone-1-foundation-001",
-      "candidateDigest": "3e425f5d2a2f535e24a4dcd531923e41e7dd8337f55175ffa7abb316c94c0ba4"
+      "candidateDigest": "10fc2ec6252fc3087064508ed1cac43deaa0bf021f1e3b760b8eb98b14529f31"
     },
     {
       "schemaVersion": 2,
@@ -2626,14 +2610,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-performance-recovery-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2653,7 +2629,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "performance-recovery",
       "flavor": "standard",
@@ -2663,7 +2639,7 @@
         "reviewedOn": "2026-07-19"
       },
       "sourceBatch": "2026-07-19-milestone-1-foundation-001",
-      "candidateDigest": "568656a47837f17755b830b43bfdeb36c4627d12447b2ac6cc8c92a704b6dbff"
+      "candidateDigest": "de9171f1870311bf7abd4f4ddda4044159f086044bced4df9a59e178d9f5f1bb"
     },
     {
       "schemaVersion": 2,
@@ -2858,14 +2834,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-release-context-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2885,7 +2853,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "release-context",
       "flavor": "standard",
@@ -2895,8 +2863,8 @@
         "reviewedOn": "2026-07-19"
       },
       "sourceBatch": "2026-07-19-milestone-1-foundation-001",
-      "candidateDigest": "f4b0dcb210c9b003b806bc29e69eb26eac5818351f3245be3646874e5b942b3b"
+      "candidateDigest": "f30e445b0681df8582d4fc1989994f2e19e1e392adff5e158482c69f3655daca"
     }
   ],
-  "artifactDigest": "5ebb68db65b5bcc7b831d88bf9ed5614d398fbe60bbaab94179593fcddd9f296"
+  "artifactDigest": "fe0d8a5a6789062441cdf6ba311f3e243a5244e320aeb2e350aafde2117c5e4e"
 }

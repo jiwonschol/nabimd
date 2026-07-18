@@ -66,10 +66,10 @@ function isValidRunProblemIds(
   runStepIndex: number,
   currentIsTransfer: boolean,
   validProblemIds: ReadonlySet<string>,
-  replacementProblemIdsByProblemId: ReadonlyMap<
-    string,
-    ReadonlySet<string>
-  >,
+  isEligibleTransferProblem: (
+    currentProblemId: string,
+    candidateProblemId: string,
+  ) => boolean,
 ): value is string[] {
   if (!Array.isArray(value)) return false
   if (entryId === null) return value.length === 0
@@ -85,8 +85,7 @@ function isValidRunProblemIds(
       persistedProblemIds: value,
       persistedStepIndex: runStepIndex,
       persistedCurrentIsTransfer: currentIsTransfer,
-      replacementProblemIdsByProblemId,
-      transferProblemIds: validProblemIds,
+      isEligibleTransferProblem,
     })
   )
 }
@@ -94,10 +93,10 @@ function isValidRunProblemIds(
 function isProgressV3(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
-  replacementProblemIdsByProblemId: ReadonlyMap<
-    string,
-    ReadonlySet<string>
-  >,
+  isEligibleTransferProblem: (
+    currentProblemId: string,
+    candidateProblemId: string,
+  ) => boolean,
   expectedBankRevision: string,
 ): value is ProgressV3 {
   if (!isRecord(value)) return false
@@ -120,7 +119,7 @@ function isProgressV3(
       value.runStepIndex,
       value.currentIsTransfer,
       validProblemIds,
-      replacementProblemIdsByProblemId,
+      isEligibleTransferProblem,
     ) &&
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
@@ -152,10 +151,10 @@ function cloneProgress(progress: ProgressV3): ProgressV3 {
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
-  replacementProblemIdsByProblemId: ReadonlyMap<
-    string,
-    ReadonlySet<string>
-  > = new Map(),
+  isEligibleTransferProblem: (
+    currentProblemId: string,
+    candidateProblemId: string,
+  ) => boolean = () => false,
   expectedBankRevision = problemBankRevision,
 ): ProgressV3 {
   const firstProblemId = validProblemIds.values().next().value
@@ -172,7 +171,7 @@ export function loadProgress(
     return isProgressV3(
       parsed,
       validProblemIds,
-      replacementProblemIdsByProblemId,
+      isEligibleTransferProblem,
       expectedBankRevision,
     )
       ? cloneProgress(parsed)

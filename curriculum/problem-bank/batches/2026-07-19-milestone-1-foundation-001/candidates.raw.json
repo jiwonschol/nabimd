@@ -2127,14 +2127,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-release-context-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2154,7 +2146,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "release-context",
       "flavor": "standard",
@@ -2357,14 +2349,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-auth-migration-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2384,7 +2368,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "auth-migration",
       "flavor": "standard",
@@ -2587,14 +2571,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-performance-recovery-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2614,7 +2590,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "performance-recovery",
       "flavor": "standard",
@@ -2817,14 +2793,6 @@
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true
-        },
-        {
-          "id": "l5-dependency-upgrade-work-order-document-size",
-          "priority": 90,
-          "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-          "kind": "document-limits",
-          "minLines": 60,
-          "minSourceCharacters": 1800
         }
       ],
       "editorialChecks": [
@@ -2844,7 +2812,7 @@
         "one-document-title",
         "logical-heading-order"
       ],
-      "revision": 1,
+      "revision": 2,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "dependency-upgrade",
       "flavor": "standard",

@@ -1,9 +1,10 @@
 import { readFile, readdir, mkdir, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { normalizeProblem } from "../../src/content/normalizeProblem"
-import { level12SeedFixtures } from "../../src/content/level12SeedProblems"
-import { level35SeedFixtures } from "../../src/content/level35SeedProblems"
-import { problemBank } from "../../src/content/problemBank"
+import { level12SeedFixtures } from "../../src/content/level12SeedFixtures"
+import { level12SeedProblems } from "../../src/content/level12SeedProblems"
+import { level35SeedFixtures } from "../../src/content/level35SeedFixtures"
+import { level35SeedProblems } from "../../src/content/level35SeedProblems"
 import type { ProblemFixture, ProblemInput } from "../../src/content/types"
 import { validateProblemBank } from "../../src/content/validateProblemBank"
 import { evaluateProblem } from "../../src/engine/evaluateProblem"
@@ -60,6 +61,7 @@ function toBatchFixture(fixture: ProblemFixture) {
   return {
     id: fixture.id,
     problemId: fixture.problemId,
+    problemRevision: fixture.problemRevision ?? 1,
     role: fixtureRoleMap[fixture.role],
     ...(fixture.exercisesCheckId
       ? { exercisesCheckId: fixture.exercisesCheckId }
@@ -75,7 +77,7 @@ function toBatchFixture(fixture: ProblemFixture) {
   }
 }
 
-function toBatchCandidate(problem: (typeof problemBank)[number]) {
+function toBatchCandidate(problem: (typeof level12SeedProblems)[number]) {
   const { sourceBatchId: _sourceBatchId, ...candidate } = structuredClone(problem)
   return candidate
 }
@@ -121,7 +123,8 @@ export async function buildSeedBatchArtifacts({
     "utf8",
   )
   const fixtures = [...level12SeedFixtures, ...level35SeedFixtures]
-  const sourceValidationErrors = validateProblemBank(problemBank, fixtures)
+  const seedProblems = [...level12SeedProblems, ...level35SeedProblems]
+  const sourceValidationErrors = validateProblemBank(seedProblems, fixtures)
   if (sourceValidationErrors.length > 0) {
     throw new Error(`Schema-v2 seed validation failed:\n${sourceValidationErrors.join("\n")}`)
   }
@@ -133,7 +136,7 @@ export async function buildSeedBatchArtifacts({
     curriculumVersion: "2026-07-19",
     generatedBy: "codex-build-time-seed-materializer",
     generatedOn: "2026-07-19",
-    candidates: problemBank.map(toBatchCandidate),
+    candidates: seedProblems.map(toBatchCandidate),
   }
   const normalized = normalizeBatch(raw, prompt)
   const fixtureArtifact = {
@@ -335,6 +338,14 @@ function validateCommittedReviews({
   for (const review of reviews) {
     const reviewerId = review.reviewerId
     const reviewRunId = review.reviewRunId
+    if (review.schemaVersion !== 2) {
+      errors.push(`Invalid review schema: ${String(reviewerId ?? "<unknown>")}`)
+    }
+    if (review.declaredIndependent !== true) {
+      errors.push(
+        `Review must declare independence: ${String(reviewerId ?? "<unknown>")}`,
+      )
+    }
     if (typeof reviewerId !== "string" || !reviewerId.trim()) {
       errors.push("Review reviewerId must be a non-empty string")
     } else if (reviewerIds.has(reviewerId)) {
@@ -368,7 +379,9 @@ function validateCommittedReviews({
           item.candidateId === candidate.id && item.revision === candidate.revision,
       )
       const matching = verdicts.filter(
-        (verdict: JsonRecord) => verdict.candidateId === candidate.id,
+        (verdict: JsonRecord) =>
+          verdict.candidateId === candidate.id &&
+          verdict.revision === candidate.revision,
       )
       if (matching.length !== 1) {
         errors.push(
@@ -422,6 +435,12 @@ export function buildSeedBatchPublication({
   }
   if (committed.editorial === null) {
     errors.push("Foundation seed batch requires separate editorial evidence")
+  } else if (
+    committed.reviews.some(
+      (review) => review.reviewerId === committed.editorial?.editorialActor,
+    )
+  ) {
+    errors.push("Foundation editorial actor must differ from every reviewer")
   }
   const batch = evidenceBatch(committed)
   const evaluated = evaluateBatchEvidence(batch)

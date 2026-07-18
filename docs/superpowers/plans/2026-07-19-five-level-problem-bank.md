@@ -3,7 +3,7 @@
 > **Execution contract:** Run the stages in order. A problem is publishable
 > only after real-engine fixtures, two independent reviews, and editorial
 > acceptance bind to its current digests. Every batch PR uses `Refs #9`; the
-> closing PR uses `Closes #9` only after the tracker proves 500+ accepted.
+> closing PR uses `Closes #9` only after the tracker proves 512+ accepted.
 
 **Goal:** Make all five curriculum levels playable, then publish at least 512
 inspected standard-Markdown problems without runtime AI or prose grading.
@@ -81,7 +81,7 @@ duplicate IDs, malformed checks, and grammar-only metadata boundaries.
 2. Preserve the current heading source predicates.
 3. Add typed predicates for block presence/count, list shape, heading order,
    section-scoped structure, code fences, inline nodes, sequences, and explicit
-   document limits.
+   structural-completeness constraints.
 4. Keep dispatch exhaustive and pure; use declaration order after priority.
 5. Add metamorphic tests proving rewording, case, and spelling do not affect a
    verdict.
@@ -96,7 +96,7 @@ passing, direct failing, nesting, boundary, and parser-collision coverage.
 - Add `src/content/problemBank.ts`
 - Add generated level bank files under `src/content/generated/`
 - Modify `src/content/entryChoices.ts`
-- Modify session/progress files under `src/features/session/`
+- Modify session files under `src/session/` and progress files under `src/progress/`
 - Modify relevant component and E2E tests
 
 **Work:**

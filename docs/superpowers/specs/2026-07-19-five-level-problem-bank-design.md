@@ -223,7 +223,7 @@ independent inspection -> editorial decision -> compile -> bank-wide gate -> PR
 Each batch stores its prompt/provenance, normalized candidates, fixtures,
 verification records, and editorial decisions. The compiler then regenerates
 the canonical runtime bank and count tracker. A batch PR carries `Refs #9`;
-the PR that proves at least 500 accepted problems carries `Closes #9`.
+the PR that proves at least 512 accepted problems carries `Closes #9`.
 
 The gate rejects duplicate IDs, unsupported flavors, invalid level/profile
 pairings, empty or malformed checks, missing transfer variants, stale digests,

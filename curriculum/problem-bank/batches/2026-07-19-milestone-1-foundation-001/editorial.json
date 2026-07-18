@@ -2,12 +2,13 @@
   "schemaVersion": 2,
   "batchId": "2026-07-19-milestone-1-foundation-001",
   "editorialActor": "codex-independent-editorial-inspector",
-  "manifestDigest": "980ca43defb48be8faf0fcffab5695c98e2dbfb45670d6ad5a3f443587e82578",
+  "manifestDigest": "2b89bc66a6d743af47264aac6431f7e4210704e5555b76e22c32284191ecdb5b",
   "decisions": [
     {
       "candidateId": "l1-heading-apple",
+      "revision": 1,
       "candidateDigest": "2e5bb9dfda3787570a3100cf7367d0ebbbc8d430ae4f922fd1d7388a23a91d26",
-      "fixtureResultsDigest": "b5cae29d747571f65a2898781c5b66c5b43f0835f76f0506e7598c0f697c5b08",
+      "fixtureResultsDigest": "560806c979baa2950eb71f65e3445e98b93b16a251a72319458297b835ff93a4",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -23,8 +24,9 @@
     },
     {
       "candidateId": "l1-heading-library-card",
+      "revision": 1,
       "candidateDigest": "92ef97865bcd438001a1dcf780d04189ada9953541ec92e57213fc28335f2113",
-      "fixtureResultsDigest": "0a302a20bbb33de2b98f13e4de60d2578efc4e299e128ce7d56b7cfebccc86da",
+      "fixtureResultsDigest": "fbca29bdfee12440443f5b5cf4e7817e502adba46ab688290cd5c2a0026a6d08",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -40,8 +42,9 @@
     },
     {
       "candidateId": "l1-heading-rainy-day",
+      "revision": 1,
       "candidateDigest": "2654cced8761b87c7a04f26a94309180d305bc8bd5f24a50a3c1ab397c249d70",
-      "fixtureResultsDigest": "28cc7959d9d1aed498e3199a75797b536902fafbe2752af437e452574db56ffb",
+      "fixtureResultsDigest": "55ef88b3a435911020e8789e17809b515725ed329b8cfcf3dd90816a8e772b96",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -57,8 +60,9 @@
     },
     {
       "candidateId": "l1-heading-study-notes",
+      "revision": 1,
       "candidateDigest": "e28e370cc41fecfa41d7a567c5854f035d732aed65535728156bf2959aba03c3",
-      "fixtureResultsDigest": "dd6663bda668fdc7e3abb91ba3efec67f17cdba98011002f64308b72a3efd9f1",
+      "fixtureResultsDigest": "72bcd6fc28ab1aef9a7dfa02e30b3d0f8ab230a8fbe3c306ce1fd31525e11627",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -74,8 +78,9 @@
     },
     {
       "candidateId": "l2-heading-bus-schedule",
+      "revision": 1,
       "candidateDigest": "454f36c30ed7b3fbaf7455ef849fbd12ffd5aa3e9657e5f1eb089f70ab8e8416",
-      "fixtureResultsDigest": "d3c59eed4cd8815b75e29db973000017096dd1ba350fdfcf17c95a929c014523",
+      "fixtureResultsDigest": "5a4bdcf2f1d72e9047f65e98db55d61a144916a6dc972a61eb6dac31767230e9",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -91,8 +96,9 @@
     },
     {
       "candidateId": "l2-heading-grocery-list",
+      "revision": 1,
       "candidateDigest": "3f2932ad5663ab1f0f4ada7872076b5038a052ebb86c2978c263a8dfac33b05f",
-      "fixtureResultsDigest": "12f80e23ebdeb8c0b10c171894ae4fc9c22d393fea034b80dcb0893975684a83",
+      "fixtureResultsDigest": "aa91b7cde6fab34e7e7bf2030de945ab089cca61009485e958ad78d20a6f3252",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -108,8 +114,9 @@
     },
     {
       "candidateId": "l2-heading-morning-walk",
+      "revision": 1,
       "candidateDigest": "2b6812b67599002773701ba826423aa83510643b11307daf12817f15c2979533",
-      "fixtureResultsDigest": "d26b6fc68a890e51af0123d15dc8f4dd787222e7a2418843de98a9eb0b6a31f8",
+      "fixtureResultsDigest": "2d8d2a2a4d2f22684b426f67e2e3251b0acf5d9cfbdbeab548f6a31f7b61f007",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -125,8 +132,9 @@
     },
     {
       "candidateId": "l2-heading-weekend-plans",
+      "revision": 1,
       "candidateDigest": "ae3bd15670a6c5e03e9a0a32ac3f3ab65d0866e6e6405bdbde28312c15c5b603",
-      "fixtureResultsDigest": "73390742898bc82962203a6b2a3d512eaa88c205d2323a0422fad4716866caaf",
+      "fixtureResultsDigest": "59d3d1ef48c7c3122be1a0d6e044474ce84b07944e97de64c2019e113a9eac37",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -142,8 +150,9 @@
     },
     {
       "candidateId": "l3-customer-feedback-note",
+      "revision": 1,
       "candidateDigest": "c55390993a32246893e1c15694649d9dac0aa834f8e091f5794e636235e2cca1",
-      "fixtureResultsDigest": "e040a741f4e0496f48bc3f03d80bb90201febcc5a188287e64c9524db936b509",
+      "fixtureResultsDigest": "d48a2e4c283b473cdd521a241d2420463d4d5b21a4e8912795aa64e5095b236b",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -159,8 +168,9 @@
     },
     {
       "candidateId": "l3-meeting-decision",
+      "revision": 1,
       "candidateDigest": "6013039e5c4d96ccac241d02a462b7e34afa004b38ee40c9ed1da20df253d0eb",
-      "fixtureResultsDigest": "c72834ef745669460de5c6f52d59fa5d2ba2f8b5fa8bf406ea709898d8d30531",
+      "fixtureResultsDigest": "48711ff5026e87f901191e79bf54a801dd947d65174b9eac7dec758013bf6be9",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -176,8 +186,9 @@
     },
     {
       "candidateId": "l3-new-teammate-guide",
+      "revision": 1,
       "candidateDigest": "c13f3935c0f815cf2f7d8f037a0bccf100ae7fd846cd4ce997ab5d89b14aa0bf",
-      "fixtureResultsDigest": "0fcfb41333b1549f4232304c977cda1f3b55f9c725dc56a78c0040abf222a1c4",
+      "fixtureResultsDigest": "7c50776c52dce00f6a4f6a97003ef5e7cb0fa4f751394fa4e36a4d671f12e64d",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -193,8 +204,9 @@
     },
     {
       "candidateId": "l3-weekly-handoff",
+      "revision": 1,
       "candidateDigest": "6d74c3b0c95bf594956730c42fec7a72fecbe9c8f5f1bf57eddd3495452da626",
-      "fixtureResultsDigest": "e3ac2cb8af392adfd2efdbc5d4794ea681898c3c04a2c2afbe9032e4f82efd1f",
+      "fixtureResultsDigest": "03d682ce395c29c4736230b66639142ce62e41f15a0f7945145a806defc86881",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -210,8 +222,9 @@
     },
     {
       "candidateId": "l4-accessible-dialog-spec",
+      "revision": 1,
       "candidateDigest": "e3f8585fc5ecf5fbe36d7b6d162e169ca777779ac06d145b772d22c6889b645e",
-      "fixtureResultsDigest": "c70751077307529dcf67f944bd0125bcf22b9b01777889b35b140ce3a6c1fbef",
+      "fixtureResultsDigest": "94f181b965158f0445912e3b34221b88ca2e887241d011363973d0878ff33374",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -227,8 +240,9 @@
     },
     {
       "candidateId": "l4-notification-retry-spec",
+      "revision": 1,
       "candidateDigest": "5bcd4b44034d0ca0ddd875e14a62f22ff4e9ac694a9355997d7bb20732719e65",
-      "fixtureResultsDigest": "56f8b1b239720cd87200b1c9c98829e42a44e23c5dfa3ec6a0bb170c00cdff0e",
+      "fixtureResultsDigest": "f1c4456c4cea86d608955a424ca0d8cd0bb9f651cc26b910b563c30d087a1337",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -244,8 +258,9 @@
     },
     {
       "candidateId": "l4-search-filter-spec",
+      "revision": 1,
       "candidateDigest": "0270f3fe7879bcc82ca9457267a4015ca9edd6bd34cfbfb8b013564396afdb89",
-      "fixtureResultsDigest": "57909e13996b601a9974e4a258f425b54d9d33e9e62f963fa21edec9642571e3",
+      "fixtureResultsDigest": "f0c5c576425a645f556c7f574ee646ffdc4553a6a274a85ecb3402a59f19d157",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -261,8 +276,9 @@
     },
     {
       "candidateId": "l4-timezone-bug-spec",
+      "revision": 1,
       "candidateDigest": "801e8209b83eeb087c85c116276c570b9813f6b1aef39c6240a70cb877b05061",
-      "fixtureResultsDigest": "43429aa89cb157e2a2b832e9d8bd752be92cb8527929d31cc7dffdebd6c88b65",
+      "fixtureResultsDigest": "e513db0a7291998016da038ac82f93a61afb2b38aafb385a6e8a07171fbea2e2",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -278,8 +294,9 @@
     },
     {
       "candidateId": "l5-auth-migration-work-order",
-      "candidateDigest": "d6da01b6a4f3cd954d99c39ff506daffd7cb42298f7b6448034b7a84d8731058",
-      "fixtureResultsDigest": "c6a815327e2ec3bc2cd6f22a8e1a34706e7e08459a8407dcdbb68fdc7802c7a8",
+      "revision": 2,
+      "candidateDigest": "3d41cb1f877672895b1ebed5c18cddb5c9208a76f77799b4f61188f9a3a5169b",
+      "fixtureResultsDigest": "0965c9685baf522f555ffe24d031ee417e0d1d1c098a9842de18b69d0336ecbe",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -291,12 +308,13 @@
         "flavor": "pass",
         "runtimeAiBoundary": "pass"
       },
-      "notes": "The authentication migration is human-reviewable and AI-executable through ordered authority, staged work, hard constraints, narrow stops, commands, and a report contract. Its original fictional order carries the current 2026.07 convention metadata; semantics are not learner-graded and runtime AI is absent."
+      "notes": "Revision 2 is a clear, human-reviewable session-migration order with appropriate source-of-truth, rollback, and regression-guard vocabulary. Its nine standard-Markdown predicates grade only the seven-section hierarchy, direct authority/constraint/stop lists, three H3 stages, and two tagged fences; H1-H6 hierarchy is observed, while prose, case, spelling, length, and technical truth remain outside grading. The original Goal is distinct, convention-dated 2026.07, and requires no runtime AI."
     },
     {
       "candidateId": "l5-dependency-upgrade-work-order",
-      "candidateDigest": "3e425f5d2a2f535e24a4dcd531923e41e7dd8337f55175ffa7abb316c94c0ba4",
-      "fixtureResultsDigest": "7afc007a34589976c9b4fc45c4c1b1658414b246f95b9b7358dcef59363c3ba6",
+      "revision": 2,
+      "candidateDigest": "10fc2ec6252fc3087064508ed1cac43deaa0bf021f1e3b760b8eb98b14529f31",
+      "fixtureResultsDigest": "37b42dbb1d7730a54ff10439e06a21490a52955b76b448298d2c843727ce0651",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -308,12 +326,13 @@
         "flavor": "pass",
         "runtimeAiBoundary": "pass"
       },
-      "notes": "This security-sensitive upgrade order exposes authority and compatibility boundaries clearly enough for both an agent and maintainer. It is a distinct, original Level 5 scenario under the reviewed 2026.07 convention, with only standard Markdown anatomy graded locally."
+      "notes": "Revision 2 presents a credible security-sensitive upgrade order using suitable advisory, compatibility, rollback, and authority-boundary vocabulary. Its nine predicates enforce only standard Markdown anatomy, including all-depth heading order, direct scoped lists, staged H3 execution, and separate tagged verification/report fences; no prose, case, spelling, length, or semantic operand exists. The original scenario is distinct, convention-dated 2026.07, and deterministic without runtime AI."
     },
     {
       "candidateId": "l5-performance-recovery-work-order",
-      "candidateDigest": "568656a47837f17755b830b43bfdeb36c4627d12447b2ac6cc8c92a704b6dbff",
-      "fixtureResultsDigest": "e4fe4746fa2dc708685b90dd3fc23d6776ab1bb72b0d5dee1dc506bc5622ae84",
+      "revision": 2,
+      "candidateDigest": "de9171f1870311bf7abd4f4ddda4044159f086044bced4df9a59e178d9f5f1bb",
+      "fixtureResultsDigest": "c943fe5a9a309d2af23b75215e4bcb1cc72c2e94891c176e45327bcb73efaf4f",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -325,12 +344,13 @@
         "flavor": "pass",
         "runtimeAiBoundary": "pass"
       },
-      "notes": "The performance order makes measurement, scope, safety, verification, and reporting inspectable before execution. This original and distinct work order uses current 2026.07 convention metadata, and neither its technical claims nor prose are runtime-graded."
+      "notes": "Revision 2 makes baseline evidence, performance budgets, bounded change, stop conditions, verification, and reporting easy for both an agent and maintainer to audit. The nine standard-Markdown checks cover all-depth hierarchy, direct lists, three H3 stages, and tagged command/report fences only; arbitrary short prose and case/spelling changes remain Matched, with no length or semantic grading. The original Goal is distinct, convention-dated 2026.07, and runtime-AI-free."
     },
     {
       "candidateId": "l5-release-context-work-order",
-      "candidateDigest": "f4b0dcb210c9b003b806bc29e69eb26eac5818351f3245be3646874e5b942b3b",
-      "fixtureResultsDigest": "420d5c2f35f5b48b03c626d58974275c97e339da84822d52eba9a1728a5c8206",
+      "revision": 2,
+      "candidateDigest": "f30e445b0681df8582d4fc1989994f2e19e1e392adff5e158482c69f3655daca",
+      "fixtureResultsDigest": "1c5539ebab86ef22dae7ec0bdb29c289526b2ef8d080cbace7f61de42ae5f60c",
       "status": "accepted",
       "checks": {
         "levelFit": "pass",
@@ -342,12 +362,12 @@
         "flavor": "pass",
         "runtimeAiBoundary": "pass"
       },
-      "notes": "The fictional Harbor Notes order is the strongest Level 5 north-star example: authority precedence, staged autonomy, prohibitions, stops, verification, and reporting remain human-auditable. It is original, distinct, convention-dated 2026.07, standard-flavor, and evaluated without runtime AI or prose matching."
+      "notes": "Revision 2 is a strong fictional Level 5 Goal: authority precedence, staged autonomy, hard constraints, narrow stops, verification, and reporting remain human-auditable. Its nine predicates grade only standard Markdown structure—H1-H6 hierarchy, seven H2 slots, direct lists, three H3 stages, and two tagged fences—never Harbor Notes prose, case, spelling, character count, or technical meaning. The distinct original scenario carries the reviewed 2026.07 convention and no runtime AI dependency."
     }
   ],
   "reviewDigests": [
-    "1758df3d41cd2e2d7b81f76919c8b28d7e5294aa1211776a196ecf9d2d806c64",
-    "bf666361aa0ef3fca9a2fc18e71874cf6cf5c9841adfb5f8787a58796e4cbc81"
+    "18d8a6ee0c1bcaee2b22fd8190e00374ecdfdabeae40e97af7b404e66f25a45f",
+    "4dab094ac04359377780372c61a8c940d5018932bc364b57dccb5ce3b26c6470"
   ],
-  "editorialDigest": "89d0117d0a025b776264556467766cf4137830545b8ea52482978ec48d656f8e"
+  "editorialDigest": "31a304a41a7376502c1c4113d2706e5473338455a827880573b5c9416429a7c3"
 }

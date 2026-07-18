@@ -2,6 +2,7 @@
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
   "files": [
+    "package-lock.json",
     "src/content/normalizeProblem.ts",
     "src/content/types.ts",
     "src/engine/evaluateProblem.ts",

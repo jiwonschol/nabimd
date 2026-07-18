@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "batchId": "2026-07-19-milestone-1-foundation-001",
   "status": "published",
-  "batchDigest": "58f9c2b5c5d622ccac15cfb8ec6064998fc9613ff384a14dd055a0cb777e0780",
-  "bankDigest": "c6b7b01888b0e72f49ea0e06636717e34b1983cdef6424fdf73cdbe6b2225dbe",
-  "projectionDigest": "bc3f919dda5577bc819f2a0c760f710a15fd539d222c41a0fe65e6494b4402ea",
-  "trackerDigest": "872996ebec8c243eec0a060dfba86787bc4ab170923470ed30c0585893c080ad",
+  "batchDigest": "7779814b447023f45bb3f09a644c73e4bc2975be3cd51fafe7a3f08f6594734f",
+  "bankDigest": "6ab4b9e263abdb0297052b83679ae3d52e7c0a410704ac0b7dd585a723e4f432",
+  "projectionDigest": "19d0e0a670f80aac9cae10f95b66d0385633902e561324c953d98d062a3ec9f8",
+  "trackerDigest": "6a7727b1c07f709a7915447f412dab974227e0cf6121071eaf8b17a213f54da3",
   "generated": 20,
   "accepted": 20,
   "rejected": 0,
@@ -35,11 +35,11 @@
       "standard": 20
     }
   },
-  "manifestDigest": "980ca43defb48be8faf0fcffab5695c98e2dbfb45670d6ad5a3f443587e82578",
+  "manifestDigest": "2b89bc66a6d743af47264aac6431f7e4210704e5555b76e22c32284191ecdb5b",
   "reviewDigests": [
-    "1758df3d41cd2e2d7b81f76919c8b28d7e5294aa1211776a196ecf9d2d806c64",
-    "bf666361aa0ef3fca9a2fc18e71874cf6cf5c9841adfb5f8787a58796e4cbc81"
+    "18d8a6ee0c1bcaee2b22fd8190e00374ecdfdabeae40e97af7b404e66f25a45f",
+    "4dab094ac04359377780372c61a8c940d5018932bc364b57dccb5ce3b26c6470"
   ],
-  "editorialDigest": "89d0117d0a025b776264556467766cf4137830545b8ea52482978ec48d656f8e",
-  "summaryDigest": "d6ce14eb97237979abcb79fb4fb878759969a88086e6780787553f7e2217041d"
+  "editorialDigest": "31a304a41a7376502c1c4113d2706e5473338455a827880573b5c9416429a7c3",
+  "summaryDigest": "646f9cad1a9b6eaf9174735198fe23ef573d9c3972f147f8cbeff53327c4f964"
 }

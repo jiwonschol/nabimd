@@ -3,7 +3,6 @@ import type {
   CurriculumLevel,
   MatchCheck,
   NormalizedProblem,
-  ProblemFixture,
   VocabularyProfile,
 } from "./types"
 
@@ -42,6 +41,7 @@ type SeedProblemInput = {
     version: string
     reviewedOn: string
   }
+  revision?: number
 }
 
 function createSeedProblem(input: SeedProblemInput): NormalizedProblem {
@@ -81,7 +81,7 @@ function createSeedProblem(input: SeedProblemInput): NormalizedProblem {
     retryFamily: input.retryFamily,
     reviewTags: ["one-document-title", "logical-heading-order"],
     sourceBatchId: "milestone-1-level-3-5-seeds",
-    revision: 1,
+    revision: input.revision ?? 1,
     curriculumVersion: "2026-07-19",
     contentVariant: input.contentVariant,
     ...(input.convention ? { convention: input.convention } : {}),
@@ -1046,16 +1046,6 @@ function level5Checks(problemId: string): readonly MatchCheck[] {
       requireLanguageTag: true,
       requireFenced: true,
     },
-    {
-      ...commonCheck(
-        `${problemId}-document-size`,
-        90,
-        "Build a complete work order of at least 60 lines and 1,800 characters.",
-      ),
-      kind: "document-limits",
-      minLines: 60,
-      minSourceCharacters: 1_800,
-    },
   ]
 }
 
@@ -1090,6 +1080,7 @@ const level5Problems = level5Documents.map((document) =>
     syntaxTokens: ["#", "##", "###", "1.", "-", "```bash", "```markdown"],
     matchChecks: level5Checks(document.id),
     convention,
+    revision: 2,
   }),
 )
 
@@ -1097,281 +1088,4 @@ export const level35SeedProblems: readonly NormalizedProblem[] = [
   ...level3Problems,
   ...level4Problems,
   ...level5Problems,
-]
-
-function transformH2Section(
-  source: string,
-  occurrence: number,
-  transform: (sectionSource: string) => string,
-): string {
-  const headings = [...source.matchAll(/^## .+$/gm)]
-  const start = headings[occurrence]?.index
-  if (start === undefined) return source
-  const end = headings[occurrence + 1]?.index ?? source.length
-  return `${source.slice(0, start)}${transform(source.slice(start, end))}${source.slice(end)}`
-}
-
-function toOrderedList(source: string, occurrence: number): string {
-  return transformH2Section(source, occurrence, (sectionSource) => {
-    let item = 0
-    return sectionSource.replace(/^- /gm, () => `${(item += 1)}. `)
-  })
-}
-
-function toUnorderedList(source: string, occurrence: number): string {
-  return transformH2Section(source, occurrence, (sectionSource) =>
-    sectionSource.replace(/^\d+\. /gm, "- "),
-  )
-}
-
-function insertSkippedHeading(source: string): string {
-  return source.replace(
-    /^(# .+\n)/,
-    "$1\n#### Skipped supporting detail\n\nThis heading skips two levels.\n",
-  )
-}
-
-function removeThirdH3(source: string): string {
-  let occurrence = 0
-  return source.replace(/^### /gm, (marker) => {
-    occurrence += 1
-    return occurrence === 3 ? "" : marker
-  })
-}
-
-function alterProse(source: string): string {
-  return source.toLowerCase().replace(/\bthe\b/, "teh")
-}
-
-const shortWorkOrder = `# Short work order
-
-Short context.
-
-## Mission
-
-Keep the change bounded.
-
-## Authority
-
-1. Rules
-2. Policy
-3. Decision
-4. Code
-
-## Execution
-
-### Stage one
-
-- Inspect
-
-### Stage two
-
-- Change
-
-### Stage three
-
-- Test
-
-## Constraints
-
-- Keep scope
-- Keep safety
-- Keep tests
-- Keep history
-
-## Stops
-
-- Conflict
-- Broken base
-- New authority
-
-## Verification
-
-\`\`\`sh
-npm test
-\`\`\`
-
-## Report
-
-\`\`\`markdown
-# Report
-- Evidence
-\`\`\``
-
-type FixtureSources = {
-  differentProse: string
-  caseSpellingVariation: string
-  missing: { source: string; feedbackId: string }
-  malformed: { source: string; feedbackId: string }
-  directFailures: Readonly<Record<string, string>>
-}
-
-function fixturesFor(
-  problem: NormalizedProblem,
-  sources: FixtureSources,
-): ProblemFixture[] {
-  const fixtures: ProblemFixture[] = [
-    {
-      id: `${problem.id}-canonical`,
-      problemId: problem.id,
-      role: "canonical",
-      kind: "canonical",
-      source: problem.target,
-      expectedStatus: "matched",
-      expectedReviewIds: [],
-    },
-    {
-      id: `${problem.id}-different-prose`,
-      problemId: problem.id,
-      role: "different-prose",
-      kind: "alternate",
-      source: sources.differentProse,
-      expectedStatus: "matched",
-      expectedReviewIds: [],
-    },
-    {
-      id: `${problem.id}-case-spelling`,
-      problemId: problem.id,
-      role: "case-spelling-variation",
-      kind: "case-variation",
-      source: sources.caseSpellingVariation,
-      expectedStatus: "matched",
-      expectedReviewIds: [],
-    },
-    {
-      id: `${problem.id}-missing`,
-      problemId: problem.id,
-      role: "missing",
-      kind: "missing",
-      source: sources.missing.source,
-      expectedStatus: "fail",
-      expectedFeedbackId: sources.missing.feedbackId,
-      exercisesCheckId: sources.missing.feedbackId,
-    },
-    {
-      id: `${problem.id}-malformed`,
-      problemId: problem.id,
-      role: "malformed",
-      kind: "malformed",
-      source: sources.malformed.source,
-      expectedStatus: "fail",
-      expectedFeedbackId: sources.malformed.feedbackId,
-      exercisesCheckId: sources.malformed.feedbackId,
-    },
-    {
-      id: `${problem.id}-matched-review`,
-      problemId: problem.id,
-      role: "matched-with-review",
-      kind: "matched-with-refinement",
-      source: `${problem.target}\n\n# Extra document title`,
-      expectedStatus: "matched",
-      expectedReviewIds: ["one-document-title"],
-    },
-  ]
-
-  const coveredFailures = new Set([
-    sources.missing.feedbackId,
-    sources.malformed.feedbackId,
-  ])
-  for (const check of problem.matchChecks) {
-    if (coveredFailures.has(check.id)) continue
-    fixtures.push({
-      id: `${problem.id}-fails-${check.id}`,
-      problemId: problem.id,
-      role: "edge-case",
-      kind: "alternate",
-      source: sources.directFailures[check.id]!,
-      expectedStatus: "fail",
-      expectedFeedbackId: check.id,
-      exercisesCheckId: check.id,
-    })
-  }
-  return fixtures
-}
-
-const level3Fixtures = level3Problems.flatMap((problem, index) => {
-  const target = problem.target
-  const outlineId = `${problem.id}-outline`
-  const emphasisId = `${problem.id}-emphasis`
-  return fixturesFor(problem, {
-    differentProse: level3Problems[(index + 1) % level3Problems.length]!.target,
-    caseSpellingVariation: alterProse(target),
-    missing: {
-      source: target.replace(/^# /, ""),
-      feedbackId: outlineId,
-    },
-    malformed: {
-      source: target.replace(/\*\*([^*]+)\*\*/, "**$1*"),
-      feedbackId: emphasisId,
-    },
-    directFailures: {
-      [outlineId]: target.replace(/^# /, ""),
-      [`${problem.id}-sections`]: `${target}\n\n## Extra section\n\nExtra material.`,
-      [`${problem.id}-hierarchy`]: insertSkippedHeading(target),
-      [emphasisId]: target.replace(/\*\*([^*]+)\*\*/, "$1"),
-      [`${problem.id}-actions`]: toOrderedList(target, 1),
-    },
-  })
-})
-
-const level4Fixtures = level4Problems.flatMap((problem, index) => {
-  const target = problem.target
-  const outlineId = `${problem.id}-outline`
-  const verificationId = `${problem.id}-verification`
-  return fixturesFor(problem, {
-    differentProse: level4Problems[(index + 1) % level4Problems.length]!.target,
-    caseSpellingVariation: alterProse(target),
-    missing: {
-      source: target.replace(/^# /, ""),
-      feedbackId: outlineId,
-    },
-    malformed: {
-      source: target.replace("```sh", "```"),
-      feedbackId: verificationId,
-    },
-    directFailures: {
-      [outlineId]: target.replace(/^# /, ""),
-      [`${problem.id}-sections`]: `${target}\n\n## Extra section\n\nExtra material.`,
-      [`${problem.id}-hierarchy`]: insertSkippedHeading(target),
-      [`${problem.id}-implementation`]: toUnorderedList(target, 2),
-      [`${problem.id}-acceptance`]: toOrderedList(target, 3),
-      [verificationId]: target.replace("```sh", "```"),
-    },
-  })
-})
-
-const level5Fixtures = level5Problems.flatMap((problem, index) => {
-  const target = problem.target
-  const outlineId = `${problem.id}-outline`
-  const verificationId = `${problem.id}-verification`
-  return fixturesFor(problem, {
-    differentProse: level5Problems[(index + 1) % level5Problems.length]!.target,
-    caseSpellingVariation: alterProse(target),
-    missing: {
-      source: target.replace(/^# /, ""),
-      feedbackId: outlineId,
-    },
-    malformed: {
-      source: target.replace("```bash", "```"),
-      feedbackId: verificationId,
-    },
-    directFailures: {
-      [outlineId]: target.replace(/^# /, ""),
-      [`${problem.id}-sections`]: `${target}\n\n## Extra section\n\nExtra material.`,
-      [`${problem.id}-hierarchy`]: insertSkippedHeading(target),
-      [`${problem.id}-authority`]: toUnorderedList(target, 1),
-      [`${problem.id}-stages`]: removeThirdH3(target),
-      [`${problem.id}-constraints`]: toOrderedList(target, 3),
-      [`${problem.id}-stops`]: toOrderedList(target, 4),
-      [verificationId]: target.replace("```bash", "```"),
-      [`${problem.id}-report`]: target.replace("```markdown", "```"),
-      [`${problem.id}-document-size`]: shortWorkOrder,
-    },
-  })
-})
-
-export const level35SeedFixtures: readonly ProblemFixture[] = [
-  ...level3Fixtures,
-  ...level4Fixtures,
-  ...level5Fixtures,
 ]

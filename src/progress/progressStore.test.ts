@@ -1,6 +1,10 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { createRunProblemIds } from "../content/entryChoices"
 import { getProblem, problemBank, problemBankRevision } from "../content/problemBank"
+import {
+  isEligibleTransferProblem,
+  selectTransferProblem,
+} from "../selection/selectTransferProblem"
 import { MemoryStorage } from "../test/MemoryStorage"
 import {
   PROGRESS_STORAGE_KEY,
@@ -32,23 +36,17 @@ class ThrowingStorage extends MemoryStorage {
 }
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
-const replacementMap = new Map(
-  problemBank.map((problem) => [
-    problem.id,
-    new Set(
-      problemBank
-        .filter(
-          (candidate) =>
-            candidate.id !== problem.id &&
-            candidate.level === problem.level &&
-            candidate.flavor === problem.flavor &&
-            candidate.retryFamily === problem.retryFamily &&
-            candidate.contentVariant !== problem.contentVariant,
-        )
-        .map((candidate) => candidate.id),
-    ),
-  ]),
-)
+function isEligibleTransferProblemId(
+  currentProblemId: string,
+  candidateProblemId: string,
+): boolean {
+  const currentProblem = getProblem(currentProblemId)
+  return isEligibleTransferProblem(
+    currentProblem,
+    getProblem(candidateProblemId),
+    currentProblem.retryFamily,
+  )
+}
 
 describe("progressStore v3", () => {
   let storage: Storage
@@ -75,7 +73,7 @@ describe("progressStore v3", () => {
     saveProgress(storage, progress)
 
     expect(
-      loadProgress(storage, validProblemIds, replacementMap),
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
   })
 
@@ -87,7 +85,7 @@ describe("progressStore v3", () => {
       loadProgress(
         storage,
         validProblemIds,
-        replacementMap,
+        isEligibleTransferProblemId,
         problemBankRevision,
       ),
     ).toEqual(createDefaultProgress(problemBank[0].id))
@@ -107,7 +105,7 @@ describe("progressStore v3", () => {
     saveProgress(storage, progress)
 
     expect(
-      loadProgress(storage, validProblemIds, replacementMap),
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
   })
 
@@ -120,23 +118,49 @@ describe("progressStore v3", () => {
     saveProgress(storage, progress)
 
     expect(
-      loadProgress(storage, validProblemIds, replacementMap),
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
-  it("restores a bounded same-level transfer insertion", () => {
+  it("restores a live-eligible same-level transfer insertion", () => {
     const baseline = createRunProblemIds("level-2", 0)
-    const transfer = baseline[2]!
-    const progress = createDefaultProgress(transfer)
+    const currentProblem = getProblem(baseline[0]!)
+    const transfer = selectTransferProblem({
+      problems: problemBank,
+      currentProblemId: currentProblem.id,
+      retryFamily: currentProblem.retryFamily,
+      recentProblemIds: baseline,
+    })
+    const progress = createDefaultProgress(transfer.id)
     progress.entryId = "level-2"
-    progress.runProblemIds = [baseline[0]!, transfer, baseline[1]!]
+    progress.runProblemIds = [baseline[0]!, transfer.id, ...baseline.slice(1)]
     progress.runStepIndex = 1
     progress.currentIsTransfer = true
     saveProgress(storage, progress)
 
     expect(
-      loadProgress(storage, validProblemIds, replacementMap),
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
+  })
+
+  it("rejects a forged cross-level transfer insertion", () => {
+    const baseline = createRunProblemIds("level-3", 0)
+    const wrongLevel = createRunProblemIds("level-4", 0)[0]!
+    const progress = createDefaultProgress(wrongLevel)
+    progress.entryId = "level-3"
+    progress.runProblemIds = [
+      baseline[0]!,
+      wrongLevel,
+      baseline[1]!,
+      baseline[2]!,
+    ]
+    progress.runStepIndex = 1
+    progress.currentIsTransfer = true
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
   it("recovers from corrupt or unknown records", () => {

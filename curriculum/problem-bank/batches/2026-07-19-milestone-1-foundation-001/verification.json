@@ -1,15 +1,15 @@
 {
   "schemaVersion": 2,
   "batchId": "2026-07-19-milestone-1-foundation-001",
-  "engineContractDigest": "c0480787fdd7132dbcc05bb2b0c664804ffd0dfaa5d386284fe4b7a7e748f1a5",
+  "engineContractDigest": "08a4185c8323826efe13a383c734d494e1e94c810c705ac54382bcc167cce0a5",
   "candidates": [
     {
       "candidateId": "l1-heading-apple",
       "revision": 1,
       "candidateDigest": "2e5bb9dfda3787570a3100cf7367d0ebbbc8d430ae4f922fd1d7388a23a91d26",
       "problemDigest": "63355a3f7482ba21bfffa28f622bf907946b8256765ade3ecb9f414223d85a38",
-      "fixtureDefinitionDigest": "1f9cf0b78175fe2beac25d444fa102149cacab05432c3cd242c19050cef0b02e",
-      "fixtureResultsDigest": "b5cae29d747571f65a2898781c5b66c5b43f0835f76f0506e7598c0f697c5b08",
+      "fixtureDefinitionDigest": "454f0a36e7f710496808b68c5a395af19054cc1104453b475df6a88c21c1ba5f",
+      "fixtureResultsDigest": "560806c979baa2950eb71f65e3445e98b93b16a251a72319458297b835ff93a4",
       "fixtureCount": 7,
       "passed": true
     },
@@ -18,8 +18,8 @@
       "revision": 1,
       "candidateDigest": "92ef97865bcd438001a1dcf780d04189ada9953541ec92e57213fc28335f2113",
       "problemDigest": "7f0d091b39dfa346174d923314247e4d5bb7d7f95c8841474971987dfb888221",
-      "fixtureDefinitionDigest": "50f945c2ff1d90fc948bbdcadd47635148d526d22da18af5fae1c77831ce8d9c",
-      "fixtureResultsDigest": "0a302a20bbb33de2b98f13e4de60d2578efc4e299e128ce7d56b7cfebccc86da",
+      "fixtureDefinitionDigest": "a1fc5aeb93c3de67fb70e6bb5210c1e82c4df5dcf8c829168f83bdc6c0517fc4",
+      "fixtureResultsDigest": "fbca29bdfee12440443f5b5cf4e7817e502adba46ab688290cd5c2a0026a6d08",
       "fixtureCount": 7,
       "passed": true
     },
@@ -28,8 +28,8 @@
       "revision": 1,
       "candidateDigest": "2654cced8761b87c7a04f26a94309180d305bc8bd5f24a50a3c1ab397c249d70",
       "problemDigest": "1cd8b35a1349ec9842f48a66e37d13b5d7537e992e05d542ba9cf12fce6ebc5c",
-      "fixtureDefinitionDigest": "23f6989e97bec281b526a33dfa2b893a4ea66c89633390193b4d194b8d05869c",
-      "fixtureResultsDigest": "28cc7959d9d1aed498e3199a75797b536902fafbe2752af437e452574db56ffb",
+      "fixtureDefinitionDigest": "ff3495a670c498494d4668865c2c648baa9957e172b56febc2bcf12db422e280",
+      "fixtureResultsDigest": "55ef88b3a435911020e8789e17809b515725ed329b8cfcf3dd90816a8e772b96",
       "fixtureCount": 7,
       "passed": true
     },
@@ -38,8 +38,8 @@
       "revision": 1,
       "candidateDigest": "e28e370cc41fecfa41d7a567c5854f035d732aed65535728156bf2959aba03c3",
       "problemDigest": "16413f403e965b6e0728a84e3599f65d6eec40d712e005cb890c469461c9e4d0",
-      "fixtureDefinitionDigest": "cd448ae9e4ef09342b5f94ac07218c9ddfcd778b5ba854e9db1573f2b28e6b09",
-      "fixtureResultsDigest": "dd6663bda668fdc7e3abb91ba3efec67f17cdba98011002f64308b72a3efd9f1",
+      "fixtureDefinitionDigest": "0887e30e78d527c7cbd24b2ab18f5ca4fea8a93cf85659f34ee166483013d63d",
+      "fixtureResultsDigest": "72bcd6fc28ab1aef9a7dfa02e30b3d0f8ab230a8fbe3c306ce1fd31525e11627",
       "fixtureCount": 7,
       "passed": true
     },
@@ -48,8 +48,8 @@
       "revision": 1,
       "candidateDigest": "454f36c30ed7b3fbaf7455ef849fbd12ffd5aa3e9657e5f1eb089f70ab8e8416",
       "problemDigest": "457200a24c6683ec4d67bad18cd30fdf01f1871f2ccae3bfab2686699498c610",
-      "fixtureDefinitionDigest": "2016982c0b678cb1dd4a2ccb5318cabb601d37a5de5118b2733641fbb7a8bed6",
-      "fixtureResultsDigest": "d3c59eed4cd8815b75e29db973000017096dd1ba350fdfcf17c95a929c014523",
+      "fixtureDefinitionDigest": "927aec6bc18c08b9c9a0a509b61c13d36f4c365c93a39b0f347b00013636d472",
+      "fixtureResultsDigest": "5a4bdcf2f1d72e9047f65e98db55d61a144916a6dc972a61eb6dac31767230e9",
       "fixtureCount": 7,
       "passed": true
     },
@@ -58,8 +58,8 @@
       "revision": 1,
       "candidateDigest": "3f2932ad5663ab1f0f4ada7872076b5038a052ebb86c2978c263a8dfac33b05f",
       "problemDigest": "b00b3363da15a060a4e2d4fcda7650a8478a8e46255da555b167a9492e174b64",
-      "fixtureDefinitionDigest": "da75a939440d003c24955da287f0e89826ffd2711f614a71b677cf39d3ed4563",
-      "fixtureResultsDigest": "12f80e23ebdeb8c0b10c171894ae4fc9c22d393fea034b80dcb0893975684a83",
+      "fixtureDefinitionDigest": "9ca211dcc5242ce456b629b022fea6916f662bb0b1f6076b9eee67b411b9ff9c",
+      "fixtureResultsDigest": "aa91b7cde6fab34e7e7bf2030de945ab089cca61009485e958ad78d20a6f3252",
       "fixtureCount": 7,
       "passed": true
     },
@@ -68,8 +68,8 @@
       "revision": 1,
       "candidateDigest": "2b6812b67599002773701ba826423aa83510643b11307daf12817f15c2979533",
       "problemDigest": "3404bb014f70caf808f5ac4913ac6a1bbb961a3269d10e4bcc28dcfa0944c1be",
-      "fixtureDefinitionDigest": "cb1ff013bbf8ae9a7fae2b30e0ee6ba9a68e1f82a2b54e26e54abf65b21a80bb",
-      "fixtureResultsDigest": "d26b6fc68a890e51af0123d15dc8f4dd787222e7a2418843de98a9eb0b6a31f8",
+      "fixtureDefinitionDigest": "970220ec21202bc2e4a9b221c024943fccb11be23605ba2c4089baa5facc0a63",
+      "fixtureResultsDigest": "2d8d2a2a4d2f22684b426f67e2e3251b0acf5d9cfbdbeab548f6a31f7b61f007",
       "fixtureCount": 7,
       "passed": true
     },
@@ -78,8 +78,8 @@
       "revision": 1,
       "candidateDigest": "ae3bd15670a6c5e03e9a0a32ac3f3ab65d0866e6e6405bdbde28312c15c5b603",
       "problemDigest": "ab035240499e3ac56621a03cada4b2825de5d8f031c806f37cc272889251d416",
-      "fixtureDefinitionDigest": "8d8e92cb6a799fe8027739e04ab73d08721fcb2d28c7dd830538185c8f2bee3b",
-      "fixtureResultsDigest": "73390742898bc82962203a6b2a3d512eaa88c205d2323a0422fad4716866caaf",
+      "fixtureDefinitionDigest": "455270213b638f66b86826ef60a1808d4363bce5893d4eb18bf75246686fd2f6",
+      "fixtureResultsDigest": "59d3d1ef48c7c3122be1a0d6e044474ce84b07944e97de64c2019e113a9eac37",
       "fixtureCount": 7,
       "passed": true
     },
@@ -88,8 +88,8 @@
       "revision": 1,
       "candidateDigest": "c55390993a32246893e1c15694649d9dac0aa834f8e091f5794e636235e2cca1",
       "problemDigest": "e71e3cacd606e2f4c0ef6a43312c0aec6bb8287e783a5c30517d946797ae39bb",
-      "fixtureDefinitionDigest": "e7982a5f1aabd7a0b5008085ba9114c26a49755f7e52afff04987fe44cc7c366",
-      "fixtureResultsDigest": "e040a741f4e0496f48bc3f03d80bb90201febcc5a188287e64c9524db936b509",
+      "fixtureDefinitionDigest": "a8332f6853d26ffe385d81c9974d97bdd39dca3fa49dd38f781866fd3fb572bd",
+      "fixtureResultsDigest": "d48a2e4c283b473cdd521a241d2420463d4d5b21a4e8912795aa64e5095b236b",
       "fixtureCount": 9,
       "passed": true
     },
@@ -98,8 +98,8 @@
       "revision": 1,
       "candidateDigest": "6013039e5c4d96ccac241d02a462b7e34afa004b38ee40c9ed1da20df253d0eb",
       "problemDigest": "aee3735aabf3175c5691eddb17fb4839b5b73e1a8d79417bb85a19fa31b55992",
-      "fixtureDefinitionDigest": "9906b1370e3bb4f2d7607f10e4108f8373b7a37ae258076e88ae465ca6141137",
-      "fixtureResultsDigest": "c72834ef745669460de5c6f52d59fa5d2ba2f8b5fa8bf406ea709898d8d30531",
+      "fixtureDefinitionDigest": "efbc382c18c17ea691b99c8a961f2baa6b05d30811ef798bc9e28dd0445186a4",
+      "fixtureResultsDigest": "48711ff5026e87f901191e79bf54a801dd947d65174b9eac7dec758013bf6be9",
       "fixtureCount": 9,
       "passed": true
     },
@@ -108,8 +108,8 @@
       "revision": 1,
       "candidateDigest": "c13f3935c0f815cf2f7d8f037a0bccf100ae7fd846cd4ce997ab5d89b14aa0bf",
       "problemDigest": "0ef052e2c25ef7d3d03058dd4faa4201f810326ac34ac869c09cda89b75852f1",
-      "fixtureDefinitionDigest": "505ddbc660ab689bf38dc9c57141643fb4fd9ca8a29558446e8688c90077442c",
-      "fixtureResultsDigest": "0fcfb41333b1549f4232304c977cda1f3b55f9c725dc56a78c0040abf222a1c4",
+      "fixtureDefinitionDigest": "72eaf330cb24e5e65d64d5ab0c4a29c8d0d9f9de1bccc504b98133631cb146fd",
+      "fixtureResultsDigest": "7c50776c52dce00f6a4f6a97003ef5e7cb0fa4f751394fa4e36a4d671f12e64d",
       "fixtureCount": 9,
       "passed": true
     },
@@ -118,8 +118,8 @@
       "revision": 1,
       "candidateDigest": "6d74c3b0c95bf594956730c42fec7a72fecbe9c8f5f1bf57eddd3495452da626",
       "problemDigest": "72f1d415e3f3136283e5a9669ce84482405af2902b358512ae1ad9a289623c46",
-      "fixtureDefinitionDigest": "8687c9b2c6e35382a44d02bdf756351b7044c2781eca07af3febe0153106526f",
-      "fixtureResultsDigest": "e3ac2cb8af392adfd2efdbc5d4794ea681898c3c04a2c2afbe9032e4f82efd1f",
+      "fixtureDefinitionDigest": "ea8184406949c24a8d7a52c775b54a18b7068d015c47712ef45c5c0aabf3ed0f",
+      "fixtureResultsDigest": "03d682ce395c29c4736230b66639142ce62e41f15a0f7945145a806defc86881",
       "fixtureCount": 9,
       "passed": true
     },
@@ -128,8 +128,8 @@
       "revision": 1,
       "candidateDigest": "e3f8585fc5ecf5fbe36d7b6d162e169ca777779ac06d145b772d22c6889b645e",
       "problemDigest": "99559908f135a79d74f7c56def06fbb4f85f75df5312fb3a810c2fdd76604680",
-      "fixtureDefinitionDigest": "f120f78ace720d79f081b2de35b15f6295081c7469cb4abcdfa96539c2959564",
-      "fixtureResultsDigest": "c70751077307529dcf67f944bd0125bcf22b9b01777889b35b140ce3a6c1fbef",
+      "fixtureDefinitionDigest": "1568dacb103bd2c3301a8b873cc71b551d80cb470636f574f1637aa98633e6f0",
+      "fixtureResultsDigest": "94f181b965158f0445912e3b34221b88ca2e887241d011363973d0878ff33374",
       "fixtureCount": 10,
       "passed": true
     },
@@ -138,8 +138,8 @@
       "revision": 1,
       "candidateDigest": "5bcd4b44034d0ca0ddd875e14a62f22ff4e9ac694a9355997d7bb20732719e65",
       "problemDigest": "4e15f346196a84e2acb6e5c588a6ad50faf53531cdbf2f3de93520c2b8a1aa7a",
-      "fixtureDefinitionDigest": "349e17a947a39832da324750123c3883559470e85e2d1799f9de464d4de6ca3a",
-      "fixtureResultsDigest": "56f8b1b239720cd87200b1c9c98829e42a44e23c5dfa3ec6a0bb170c00cdff0e",
+      "fixtureDefinitionDigest": "386a93051712afe9faa2103f3e62bc473de2d1d3a91f3ea5eb6fd5d4110afbf4",
+      "fixtureResultsDigest": "f1c4456c4cea86d608955a424ca0d8cd0bb9f651cc26b910b563c30d087a1337",
       "fixtureCount": 10,
       "passed": true
     },
@@ -148,8 +148,8 @@
       "revision": 1,
       "candidateDigest": "0270f3fe7879bcc82ca9457267a4015ca9edd6bd34cfbfb8b013564396afdb89",
       "problemDigest": "23697bd8c7b7932d3a98f65beaf87c8e0095b5d303d6d5432015242ba07eb283",
-      "fixtureDefinitionDigest": "8f135cff36f25a6fef06e05acad46d8dca766c47cd88da46bb0dcfa291f2f6fa",
-      "fixtureResultsDigest": "57909e13996b601a9974e4a258f425b54d9d33e9e62f963fa21edec9642571e3",
+      "fixtureDefinitionDigest": "edd98b0bacf37282f1b020aaf944913e2d7fa2b79bc02faa27f507243b9c7fac",
+      "fixtureResultsDigest": "f0c5c576425a645f556c7f574ee646ffdc4553a6a274a85ecb3402a59f19d157",
       "fixtureCount": 10,
       "passed": true
     },
@@ -158,49 +158,49 @@
       "revision": 1,
       "candidateDigest": "801e8209b83eeb087c85c116276c570b9813f6b1aef39c6240a70cb877b05061",
       "problemDigest": "f93c5237ce9607f92e964934939a408e84ccbd6be4bbb57d375eea22bce0de0b",
-      "fixtureDefinitionDigest": "4e6083e1085c92c6d9ea361682eb3da20a0284b52006ac83b00fbbd203c81a41",
-      "fixtureResultsDigest": "43429aa89cb157e2a2b832e9d8bd752be92cb8527929d31cc7dffdebd6c88b65",
+      "fixtureDefinitionDigest": "abbebbfc102389ef26695b27c3b70b7aa54338473e068e1f29be2c9a72f527ac",
+      "fixtureResultsDigest": "e513db0a7291998016da038ac82f93a61afb2b38aafb385a6e8a07171fbea2e2",
       "fixtureCount": 10,
       "passed": true
     },
     {
       "candidateId": "l5-auth-migration-work-order",
-      "revision": 1,
-      "candidateDigest": "d6da01b6a4f3cd954d99c39ff506daffd7cb42298f7b6448034b7a84d8731058",
-      "problemDigest": "c6c29d1a1103fa20b5b0bd70caa1cad3d81bb351b07c68faecfb04277986b262",
-      "fixtureDefinitionDigest": "b3dc5665b5e73addee63cc1210326c196d0ed7fc6f85c53fd606875c67772103",
-      "fixtureResultsDigest": "c6a815327e2ec3bc2cd6f22a8e1a34706e7e08459a8407dcdbb68fdc7802c7a8",
-      "fixtureCount": 14,
+      "revision": 2,
+      "candidateDigest": "3d41cb1f877672895b1ebed5c18cddb5c9208a76f77799b4f61188f9a3a5169b",
+      "problemDigest": "8e491a1124ffe7118aac24f957feea52cd189aabbe0b84d99090c322f4f5795c",
+      "fixtureDefinitionDigest": "80fd1c8bf4a079ed64f33bc50e80370a76d9aee42d3107d3eed1900d52d85227",
+      "fixtureResultsDigest": "0965c9685baf522f555ffe24d031ee417e0d1d1c098a9842de18b69d0336ecbe",
+      "fixtureCount": 13,
       "passed": true
     },
     {
       "candidateId": "l5-dependency-upgrade-work-order",
-      "revision": 1,
-      "candidateDigest": "3e425f5d2a2f535e24a4dcd531923e41e7dd8337f55175ffa7abb316c94c0ba4",
-      "problemDigest": "af6b297dcd88338a7d8968d9650da59c2741e69ce70351b661f8ebf6d744b760",
-      "fixtureDefinitionDigest": "415b14fd4e1d1ed6d6d0b792080e10e0921fd01e90251552e72a86947aa53d43",
-      "fixtureResultsDigest": "7afc007a34589976c9b4fc45c4c1b1658414b246f95b9b7358dcef59363c3ba6",
-      "fixtureCount": 14,
+      "revision": 2,
+      "candidateDigest": "10fc2ec6252fc3087064508ed1cac43deaa0bf021f1e3b760b8eb98b14529f31",
+      "problemDigest": "86c4b5718bf9c675a35afb9ebe903101505069329c6624d652ba531d45b0d5b0",
+      "fixtureDefinitionDigest": "48742353a9d05a489c197ef0f24b3e3b4a43f91b445deb0da715f4d706ebcd5c",
+      "fixtureResultsDigest": "37b42dbb1d7730a54ff10439e06a21490a52955b76b448298d2c843727ce0651",
+      "fixtureCount": 13,
       "passed": true
     },
     {
       "candidateId": "l5-performance-recovery-work-order",
-      "revision": 1,
-      "candidateDigest": "568656a47837f17755b830b43bfdeb36c4627d12447b2ac6cc8c92a704b6dbff",
-      "problemDigest": "4c2135d5d8d23a5b5d5bbc5eebb71d4bdcf49141ffb6c716984115e57943846a",
-      "fixtureDefinitionDigest": "4d4aec334313a01e804e1d4dbac41f96e8288e80854a0159fe68c8ccb2b6596d",
-      "fixtureResultsDigest": "e4fe4746fa2dc708685b90dd3fc23d6776ab1bb72b0d5dee1dc506bc5622ae84",
-      "fixtureCount": 14,
+      "revision": 2,
+      "candidateDigest": "de9171f1870311bf7abd4f4ddda4044159f086044bced4df9a59e178d9f5f1bb",
+      "problemDigest": "966f045121455d1ef3cb3f14b7d57ef554bd6dac7818c18a27ee8e70ac9c19e8",
+      "fixtureDefinitionDigest": "aab17149cf44756b158fbc88bf686757249405aeef584e6507091e74ddefcff2",
+      "fixtureResultsDigest": "c943fe5a9a309d2af23b75215e4bcb1cc72c2e94891c176e45327bcb73efaf4f",
+      "fixtureCount": 13,
       "passed": true
     },
     {
       "candidateId": "l5-release-context-work-order",
-      "revision": 1,
-      "candidateDigest": "f4b0dcb210c9b003b806bc29e69eb26eac5818351f3245be3646874e5b942b3b",
-      "problemDigest": "b105d9ca51158a3b78b394578af92b12928db9e216536547af1d0baf8f27c53f",
-      "fixtureDefinitionDigest": "4425291fbfeee223cee5228f59bbd96e857a49c9aeba66bc031c78b10dfb7807",
-      "fixtureResultsDigest": "420d5c2f35f5b48b03c626d58974275c97e339da84822d52eba9a1728a5c8206",
-      "fixtureCount": 14,
+      "revision": 2,
+      "candidateDigest": "f30e445b0681df8582d4fc1989994f2e19e1e392adff5e158482c69f3655daca",
+      "problemDigest": "48611179296e260643fc8ae00598f43a0341c22d16b3b2fd6e63cb0f372b351c",
+      "fixtureDefinitionDigest": "b4c429b2dd173c3f0061584fbc64c946bcfe1e13c52dc61101172b2a668b727b",
+      "fixtureResultsDigest": "1c5539ebab86ef22dae7ec0bdb29c289526b2ef8d080cbace7f61de42ae5f60c",
+      "fixtureCount": 13,
       "passed": true
     }
   ],
@@ -208,6 +208,7 @@
     {
       "fixtureId": "l1-heading-apple-canonical",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -221,6 +222,7 @@
     {
       "fixtureId": "l1-heading-apple-case-spelling-variation",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -234,6 +236,7 @@
     {
       "fixtureId": "l1-heading-apple-different-prose",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -247,6 +250,7 @@
     {
       "fixtureId": "l1-heading-apple-edge-case",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -260,6 +264,7 @@
     {
       "fixtureId": "l1-heading-apple-malformed",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -273,6 +278,7 @@
     {
       "fixtureId": "l1-heading-apple-matched-with-review",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -290,6 +296,7 @@
     {
       "fixtureId": "l1-heading-apple-missing",
       "problemId": "l1-heading-apple",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -303,6 +310,7 @@
     {
       "fixtureId": "l1-heading-library-card-canonical",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -316,6 +324,7 @@
     {
       "fixtureId": "l1-heading-library-card-case-spelling-variation",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -329,6 +338,7 @@
     {
       "fixtureId": "l1-heading-library-card-different-prose",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -342,6 +352,7 @@
     {
       "fixtureId": "l1-heading-library-card-edge-case",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -355,6 +366,7 @@
     {
       "fixtureId": "l1-heading-library-card-malformed",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -368,6 +380,7 @@
     {
       "fixtureId": "l1-heading-library-card-matched-with-review",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -385,6 +398,7 @@
     {
       "fixtureId": "l1-heading-library-card-missing",
       "problemId": "l1-heading-library-card",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -398,6 +412,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-canonical",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -411,6 +426,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-case-spelling-variation",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -424,6 +440,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-different-prose",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -437,6 +454,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-edge-case",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -450,6 +468,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-malformed",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -463,6 +482,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-matched-with-review",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -480,6 +500,7 @@
     {
       "fixtureId": "l1-heading-rainy-day-missing",
       "problemId": "l1-heading-rainy-day",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -493,6 +514,7 @@
     {
       "fixtureId": "l1-heading-study-notes-canonical",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -506,6 +528,7 @@
     {
       "fixtureId": "l1-heading-study-notes-case-spelling-variation",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -519,6 +542,7 @@
     {
       "fixtureId": "l1-heading-study-notes-different-prose",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -532,6 +556,7 @@
     {
       "fixtureId": "l1-heading-study-notes-edge-case",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -545,6 +570,7 @@
     {
       "fixtureId": "l1-heading-study-notes-malformed",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -558,6 +584,7 @@
     {
       "fixtureId": "l1-heading-study-notes-matched-with-review",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -575,6 +602,7 @@
     {
       "fixtureId": "l1-heading-study-notes-missing",
       "problemId": "l1-heading-study-notes",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -588,6 +616,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-canonical",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -601,6 +630,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-case-spelling-variation",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -614,6 +644,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-different-prose",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -627,6 +658,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-edge-case",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -640,6 +672,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-malformed",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -653,6 +686,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-matched-with-review",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -670,6 +704,7 @@
     {
       "fixtureId": "l2-heading-bus-schedule-missing",
       "problemId": "l2-heading-bus-schedule",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -683,6 +718,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-canonical",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -696,6 +732,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-case-spelling-variation",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -709,6 +746,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-different-prose",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -722,6 +760,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-edge-case",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -735,6 +774,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-malformed",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -748,6 +788,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-matched-with-review",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -765,6 +806,7 @@
     {
       "fixtureId": "l2-heading-grocery-list-missing",
       "problemId": "l2-heading-grocery-list",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -778,6 +820,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-canonical",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -791,6 +834,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-case-spelling-variation",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -804,6 +848,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-different-prose",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -817,6 +862,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-edge-case",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -830,6 +876,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-malformed",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -843,6 +890,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-matched-with-review",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -860,6 +908,7 @@
     {
       "fixtureId": "l2-heading-morning-walk-missing",
       "problemId": "l2-heading-morning-walk",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -873,6 +922,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-canonical",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -886,6 +936,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-case-spelling-variation",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -899,6 +950,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-different-prose",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -912,6 +964,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-edge-case",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-hash-heading-style"
@@ -925,6 +978,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-malformed",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "space-after-hash"
@@ -938,6 +992,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-matched-with-review",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -955,6 +1010,7 @@
     {
       "fixtureId": "l2-heading-weekend-plans-missing",
       "problemId": "l2-heading-weekend-plans",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "use-h1-heading"
@@ -968,6 +1024,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-canonical",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -981,6 +1038,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-case-spelling",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -994,6 +1052,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-different-prose",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1007,6 +1066,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-fails-l3-customer-feedback-note-actions",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-customer-feedback-note-actions"
@@ -1020,6 +1080,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-fails-l3-customer-feedback-note-hierarchy",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-customer-feedback-note-hierarchy"
@@ -1033,6 +1094,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-fails-l3-customer-feedback-note-sections",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-customer-feedback-note-sections"
@@ -1046,6 +1108,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-malformed",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-customer-feedback-note-emphasis"
@@ -1059,6 +1122,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-matched-review",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1076,6 +1140,7 @@
     {
       "fixtureId": "l3-customer-feedback-note-missing",
       "problemId": "l3-customer-feedback-note",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-customer-feedback-note-outline"
@@ -1089,6 +1154,7 @@
     {
       "fixtureId": "l3-meeting-decision-canonical",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1102,6 +1168,7 @@
     {
       "fixtureId": "l3-meeting-decision-case-spelling",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1115,6 +1182,7 @@
     {
       "fixtureId": "l3-meeting-decision-different-prose",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1128,6 +1196,7 @@
     {
       "fixtureId": "l3-meeting-decision-fails-l3-meeting-decision-actions",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-meeting-decision-actions"
@@ -1141,6 +1210,7 @@
     {
       "fixtureId": "l3-meeting-decision-fails-l3-meeting-decision-hierarchy",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-meeting-decision-hierarchy"
@@ -1154,6 +1224,7 @@
     {
       "fixtureId": "l3-meeting-decision-fails-l3-meeting-decision-sections",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-meeting-decision-sections"
@@ -1167,6 +1238,7 @@
     {
       "fixtureId": "l3-meeting-decision-malformed",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-meeting-decision-emphasis"
@@ -1180,6 +1252,7 @@
     {
       "fixtureId": "l3-meeting-decision-matched-review",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1197,6 +1270,7 @@
     {
       "fixtureId": "l3-meeting-decision-missing",
       "problemId": "l3-meeting-decision",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-meeting-decision-outline"
@@ -1210,6 +1284,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-canonical",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1223,6 +1298,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-case-spelling",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1236,6 +1312,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-different-prose",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1249,6 +1326,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-fails-l3-new-teammate-guide-actions",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-new-teammate-guide-actions"
@@ -1262,6 +1340,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-fails-l3-new-teammate-guide-hierarchy",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-new-teammate-guide-hierarchy"
@@ -1275,6 +1354,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-fails-l3-new-teammate-guide-sections",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-new-teammate-guide-sections"
@@ -1288,6 +1368,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-malformed",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-new-teammate-guide-emphasis"
@@ -1301,6 +1382,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-matched-review",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1318,6 +1400,7 @@
     {
       "fixtureId": "l3-new-teammate-guide-missing",
       "problemId": "l3-new-teammate-guide",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-new-teammate-guide-outline"
@@ -1331,6 +1414,7 @@
     {
       "fixtureId": "l3-weekly-handoff-canonical",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1344,6 +1428,7 @@
     {
       "fixtureId": "l3-weekly-handoff-case-spelling",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1357,6 +1442,7 @@
     {
       "fixtureId": "l3-weekly-handoff-different-prose",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1370,6 +1456,7 @@
     {
       "fixtureId": "l3-weekly-handoff-fails-l3-weekly-handoff-actions",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-weekly-handoff-actions"
@@ -1383,6 +1470,7 @@
     {
       "fixtureId": "l3-weekly-handoff-fails-l3-weekly-handoff-hierarchy",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-weekly-handoff-hierarchy"
@@ -1396,6 +1484,7 @@
     {
       "fixtureId": "l3-weekly-handoff-fails-l3-weekly-handoff-sections",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-weekly-handoff-sections"
@@ -1409,6 +1498,7 @@
     {
       "fixtureId": "l3-weekly-handoff-malformed",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-weekly-handoff-emphasis"
@@ -1422,6 +1512,7 @@
     {
       "fixtureId": "l3-weekly-handoff-matched-review",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1439,6 +1530,7 @@
     {
       "fixtureId": "l3-weekly-handoff-missing",
       "problemId": "l3-weekly-handoff",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l3-weekly-handoff-outline"
@@ -1452,6 +1544,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-canonical",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1465,6 +1558,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-case-spelling",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1478,6 +1572,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-different-prose",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1491,6 +1586,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-fails-l4-accessible-dialog-spec-acceptance",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-accessible-dialog-spec-acceptance"
@@ -1504,6 +1600,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-fails-l4-accessible-dialog-spec-hierarchy",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-accessible-dialog-spec-hierarchy"
@@ -1517,6 +1614,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-fails-l4-accessible-dialog-spec-implementation",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-accessible-dialog-spec-implementation"
@@ -1530,6 +1628,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-fails-l4-accessible-dialog-spec-sections",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-accessible-dialog-spec-sections"
@@ -1543,6 +1642,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-malformed",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-accessible-dialog-spec-verification"
@@ -1556,6 +1656,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-matched-review",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1573,6 +1674,7 @@
     {
       "fixtureId": "l4-accessible-dialog-spec-missing",
       "problemId": "l4-accessible-dialog-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-accessible-dialog-spec-outline"
@@ -1586,6 +1688,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-canonical",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1599,6 +1702,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-case-spelling",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1612,6 +1716,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-different-prose",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1625,6 +1730,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-fails-l4-notification-retry-spec-acceptance",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-notification-retry-spec-acceptance"
@@ -1638,6 +1744,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-fails-l4-notification-retry-spec-hierarchy",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-notification-retry-spec-hierarchy"
@@ -1651,6 +1758,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-fails-l4-notification-retry-spec-implementation",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-notification-retry-spec-implementation"
@@ -1664,6 +1772,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-fails-l4-notification-retry-spec-sections",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-notification-retry-spec-sections"
@@ -1677,6 +1786,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-malformed",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-notification-retry-spec-verification"
@@ -1690,6 +1800,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-matched-review",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1707,6 +1818,7 @@
     {
       "fixtureId": "l4-notification-retry-spec-missing",
       "problemId": "l4-notification-retry-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-notification-retry-spec-outline"
@@ -1720,6 +1832,7 @@
     {
       "fixtureId": "l4-search-filter-spec-canonical",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1733,6 +1846,7 @@
     {
       "fixtureId": "l4-search-filter-spec-case-spelling",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1746,6 +1860,7 @@
     {
       "fixtureId": "l4-search-filter-spec-different-prose",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1759,6 +1874,7 @@
     {
       "fixtureId": "l4-search-filter-spec-fails-l4-search-filter-spec-acceptance",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-search-filter-spec-acceptance"
@@ -1772,6 +1888,7 @@
     {
       "fixtureId": "l4-search-filter-spec-fails-l4-search-filter-spec-hierarchy",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-search-filter-spec-hierarchy"
@@ -1785,6 +1902,7 @@
     {
       "fixtureId": "l4-search-filter-spec-fails-l4-search-filter-spec-implementation",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-search-filter-spec-implementation"
@@ -1798,6 +1916,7 @@
     {
       "fixtureId": "l4-search-filter-spec-fails-l4-search-filter-spec-sections",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-search-filter-spec-sections"
@@ -1811,6 +1930,7 @@
     {
       "fixtureId": "l4-search-filter-spec-malformed",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-search-filter-spec-verification"
@@ -1824,6 +1944,7 @@
     {
       "fixtureId": "l4-search-filter-spec-matched-review",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1841,6 +1962,7 @@
     {
       "fixtureId": "l4-search-filter-spec-missing",
       "problemId": "l4-search-filter-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-search-filter-spec-outline"
@@ -1854,6 +1976,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-canonical",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1867,6 +1990,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-case-spelling",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1880,6 +2004,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-different-prose",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -1893,6 +2018,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-fails-l4-timezone-bug-spec-acceptance",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-timezone-bug-spec-acceptance"
@@ -1906,6 +2032,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-fails-l4-timezone-bug-spec-hierarchy",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-timezone-bug-spec-hierarchy"
@@ -1919,6 +2046,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-fails-l4-timezone-bug-spec-implementation",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-timezone-bug-spec-implementation"
@@ -1932,6 +2060,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-fails-l4-timezone-bug-spec-sections",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-timezone-bug-spec-sections"
@@ -1945,6 +2074,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-malformed",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-timezone-bug-spec-verification"
@@ -1958,6 +2088,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-matched-review",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -1975,6 +2106,7 @@
     {
       "fixtureId": "l4-timezone-bug-spec-missing",
       "problemId": "l4-timezone-bug-spec",
+      "problemRevision": 1,
       "expected": {
         "status": "fail",
         "feedbackId": "l4-timezone-bug-spec-outline"
@@ -1988,6 +2120,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-canonical",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2001,6 +2134,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-case-spelling",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2014,6 +2148,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-different-prose",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2027,6 +2162,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-authority",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-authority"
@@ -2040,6 +2176,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-constraints",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-constraints"
@@ -2047,25 +2184,13 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-constraints"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-document-size",
-      "problemId": "l5-auth-migration-work-order",
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-auth-migration-work-order-document-size"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-auth-migration-work-order-document-size"
       },
       "passed": true
     },
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-hierarchy",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-hierarchy"
@@ -2079,6 +2204,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-report",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-report"
@@ -2092,6 +2218,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-sections",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-sections"
@@ -2105,6 +2232,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-stages",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-stages"
@@ -2118,6 +2246,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-fails-l5-auth-migration-work-order-stops",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-stops"
@@ -2131,6 +2260,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-malformed",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-verification"
@@ -2144,6 +2274,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-matched-review",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -2161,6 +2292,7 @@
     {
       "fixtureId": "l5-auth-migration-work-order-missing",
       "problemId": "l5-auth-migration-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-auth-migration-work-order-outline"
@@ -2174,6 +2306,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-canonical",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2187,6 +2320,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-case-spelling",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2200,6 +2334,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-different-prose",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2213,6 +2348,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-authority",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-authority"
@@ -2226,6 +2362,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-constraints",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-constraints"
@@ -2233,25 +2370,13 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-constraints"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-document-size",
-      "problemId": "l5-dependency-upgrade-work-order",
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-dependency-upgrade-work-order-document-size"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-dependency-upgrade-work-order-document-size"
       },
       "passed": true
     },
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-hierarchy",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-hierarchy"
@@ -2265,6 +2390,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-report",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-report"
@@ -2278,6 +2404,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-sections",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-sections"
@@ -2291,6 +2418,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-stages",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-stages"
@@ -2304,6 +2432,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-fails-l5-dependency-upgrade-work-order-stops",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-stops"
@@ -2317,6 +2446,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-malformed",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-verification"
@@ -2330,6 +2460,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-matched-review",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -2347,6 +2478,7 @@
     {
       "fixtureId": "l5-dependency-upgrade-work-order-missing",
       "problemId": "l5-dependency-upgrade-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-dependency-upgrade-work-order-outline"
@@ -2360,6 +2492,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-canonical",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2373,6 +2506,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-case-spelling",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2386,6 +2520,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-different-prose",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2399,6 +2534,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-authority",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-authority"
@@ -2412,6 +2548,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-constraints",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-constraints"
@@ -2419,25 +2556,13 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-constraints"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-document-size",
-      "problemId": "l5-performance-recovery-work-order",
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-performance-recovery-work-order-document-size"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-performance-recovery-work-order-document-size"
       },
       "passed": true
     },
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-hierarchy",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-hierarchy"
@@ -2451,6 +2576,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-report",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-report"
@@ -2464,6 +2590,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-sections",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-sections"
@@ -2477,6 +2604,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-stages",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-stages"
@@ -2490,6 +2618,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-fails-l5-performance-recovery-work-order-stops",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-stops"
@@ -2503,6 +2632,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-malformed",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-verification"
@@ -2516,6 +2646,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-matched-review",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -2533,6 +2664,7 @@
     {
       "fixtureId": "l5-performance-recovery-work-order-missing",
       "problemId": "l5-performance-recovery-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-performance-recovery-work-order-outline"
@@ -2546,6 +2678,7 @@
     {
       "fixtureId": "l5-release-context-work-order-canonical",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2559,6 +2692,7 @@
     {
       "fixtureId": "l5-release-context-work-order-case-spelling",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2572,6 +2706,7 @@
     {
       "fixtureId": "l5-release-context-work-order-different-prose",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": []
@@ -2585,6 +2720,7 @@
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-authority",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-authority"
@@ -2598,6 +2734,7 @@
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-constraints",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-constraints"
@@ -2605,25 +2742,13 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-constraints"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-document-size",
-      "problemId": "l5-release-context-work-order",
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-release-context-work-order-document-size"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-release-context-work-order-document-size"
       },
       "passed": true
     },
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-hierarchy",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-hierarchy"
@@ -2637,6 +2762,7 @@
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-report",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-report"
@@ -2650,6 +2776,7 @@
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-sections",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-sections"
@@ -2663,6 +2790,7 @@
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-stages",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-stages"
@@ -2676,6 +2804,7 @@
     {
       "fixtureId": "l5-release-context-work-order-fails-l5-release-context-work-order-stops",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-stops"
@@ -2689,6 +2818,7 @@
     {
       "fixtureId": "l5-release-context-work-order-malformed",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-verification"
@@ -2702,6 +2832,7 @@
     {
       "fixtureId": "l5-release-context-work-order-matched-review",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "matched",
         "reviewIds": [
@@ -2719,6 +2850,7 @@
     {
       "fixtureId": "l5-release-context-work-order-missing",
       "problemId": "l5-release-context-work-order",
+      "problemRevision": 2,
       "expected": {
         "status": "fail",
         "feedbackId": "l5-release-context-work-order-outline"
@@ -2731,5 +2863,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "0b6303623b982528ed6f82bc7dcf6f44014ad348e56a8e8f3bbba8a32ac55c7c"
+  "verificationDigest": "b6c3f0266d2b922be8772ab18ad9a12730c4d1f107b7bbc068d478082610a9e6"
 }

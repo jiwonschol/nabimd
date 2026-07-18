@@ -21,7 +21,9 @@
     "bank:batch:generate": "NABI_WRITE_SEED_BATCH=1 vitest run scripts/problem-bank/seedBatchArtifacts.gate.ts --config vitest.gate.config.ts --reporter=verbose",
     "bank:batch:publish": "NABI_PUBLISH_SEED_BATCH=1 vitest run scripts/problem-bank/seedBatchArtifacts.gate.ts --config vitest.gate.config.ts --reporter=verbose",
     "bank:batch:generate:check": "vitest run scripts/problem-bank/seedBatchArtifacts.gate.ts --config vitest.gate.config.ts --reporter=verbose",
-    "check": "npm run typecheck && npm run bank:generate:check && npm run bank:batch:test && npm run bank:batch:generate:check && npm test && npm run bank:gate && npm run build"
+    "bank:repository:gate": "vitest run scripts/problem-bank/repositoryBankGate.gate.ts --config vitest.gate.config.ts --reporter=verbose",
+    "bundle:verify": "node scripts/verifyProductionBundle.mjs",
+    "check": "npm run typecheck && npm run bank:generate:check && npm run bank:batch:test && npm run bank:batch:generate:check && npm run bank:repository:gate && npm test && npm run bank:gate && npm run build && npm run bundle:verify"
   },
   "dependencies": {
     "@codemirror/commands": "6.10.4",

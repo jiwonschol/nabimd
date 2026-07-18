@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "c6b7b01888b0e72f49ea0e06636717e34b1983cdef6424fdf73cdbe6b2225dbe",
+    "bankDigest": "6ab4b9e263abdb0297052b83679ae3d52e7c0a410704ac0b7dd585a723e4f432",
     "counts": {
       "1": 4,
       "2": 4,
@@ -2158,14 +2158,6 @@
             "max": 1,
             "requireLanguageTag": true,
             "requireFenced": true
-          },
-          {
-            "id": "l5-auth-migration-work-order-document-size",
-            "priority": 90,
-            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-            "kind": "document-limits",
-            "minLines": 60,
-            "minSourceCharacters": 1800
           }
         ],
         "editorialChecks": [
@@ -2185,7 +2177,7 @@
           "one-document-title",
           "logical-heading-order"
         ],
-        "revision": 1,
+        "revision": 2,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "auth-migration",
         "flavor": "standard",
@@ -2389,14 +2381,6 @@
             "max": 1,
             "requireLanguageTag": true,
             "requireFenced": true
-          },
-          {
-            "id": "l5-dependency-upgrade-work-order-document-size",
-            "priority": 90,
-            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-            "kind": "document-limits",
-            "minLines": 60,
-            "minSourceCharacters": 1800
           }
         ],
         "editorialChecks": [
@@ -2416,7 +2400,7 @@
           "one-document-title",
           "logical-heading-order"
         ],
-        "revision": 1,
+        "revision": 2,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "dependency-upgrade",
         "flavor": "standard",
@@ -2620,14 +2604,6 @@
             "max": 1,
             "requireLanguageTag": true,
             "requireFenced": true
-          },
-          {
-            "id": "l5-performance-recovery-work-order-document-size",
-            "priority": 90,
-            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-            "kind": "document-limits",
-            "minLines": 60,
-            "minSourceCharacters": 1800
           }
         ],
         "editorialChecks": [
@@ -2647,7 +2623,7 @@
           "one-document-title",
           "logical-heading-order"
         ],
-        "revision": 1,
+        "revision": 2,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "performance-recovery",
         "flavor": "standard",
@@ -2851,14 +2827,6 @@
             "max": 1,
             "requireLanguageTag": true,
             "requireFenced": true
-          },
-          {
-            "id": "l5-release-context-work-order-document-size",
-            "priority": 90,
-            "feedback": "Build a complete work order of at least 60 lines and 1,800 characters.",
-            "kind": "document-limits",
-            "minLines": 60,
-            "minSourceCharacters": 1800
           }
         ],
         "editorialChecks": [
@@ -2878,7 +2846,7 @@
           "one-document-title",
           "logical-heading-order"
         ],
-        "revision": 1,
+        "revision": 2,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "release-context",
         "flavor": "standard",
@@ -2891,5 +2859,5 @@
       }
     ]
   },
-  "projectionDigest": "bc3f919dda5577bc819f2a0c760f710a15fd539d222c41a0fe65e6494b4402ea"
+  "projectionDigest": "19d0e0a670f80aac9cae10f95b66d0385633902e561324c953d98d062a3ec9f8"
 }

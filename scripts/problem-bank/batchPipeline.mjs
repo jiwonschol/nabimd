@@ -66,6 +66,10 @@ function countDuplicates(values) {
   return [...duplicates].sort()
 }
 
+function candidateKey(id, revision = 1) {
+  return `${String(id)}@${String(revision)}`
+}
+
 function requireString(value, label, errors) {
   if (typeof value !== "string" || !value.trim()) errors.push(`${label} must be a non-empty string`)
 }
@@ -236,7 +240,7 @@ export function normalizeBatch(rawBatch, promptText) {
   for (const candidate of rawCandidates) errors.push(...validateCandidate(candidate, rawBatch))
   const recordKeys = rawCandidates
     .filter(isRecord)
-    .map((candidate) => `${candidate.id}@${candidate.revision ?? 1}`)
+    .map((candidate) => candidateKey(candidate.id, candidate.revision ?? 1))
   for (const duplicate of countDuplicates(recordKeys)) {
     errors.push(`Duplicate candidate revision: ${duplicate}`)
   }
@@ -288,7 +292,11 @@ function validateFixtureArtifact(normalized, fixtureArtifact) {
   for (const duplicate of countDuplicates(allFixtures.map((fixture) => fixture?.id))) {
     errors.push(`Duplicate fixture id: ${duplicate}`)
   }
-  const candidateIds = new Set(normalized.candidates.map((candidate) => candidate.id))
+  const candidateKeys = new Set(
+    normalized.candidates.map((candidate) =>
+      candidateKey(candidate.id, candidate.revision),
+    ),
+  )
   for (const fixture of allFixtures) {
     if (!isRecord(fixture)) {
       errors.push("Fixture must be an object")
@@ -299,14 +307,25 @@ function validateFixtureArtifact(normalized, fixtureArtifact) {
         errors.push(`Fixture ${fixture.id ?? "<unknown>"} has invalid ${field}`)
       }
     }
-    if (!candidateIds.has(fixture.problemId)) errors.push(`Unknown fixture problem: ${fixture.problemId}`)
+    if (!Number.isInteger(fixture.problemRevision) || fixture.problemRevision < 1) {
+      errors.push(`Fixture ${fixture.id ?? "<unknown>"} has invalid problemRevision`)
+    }
+    if (!candidateKeys.has(candidateKey(fixture.problemId, fixture.problemRevision))) {
+      errors.push(
+        `Unknown fixture problem: ${candidateKey(fixture.problemId, fixture.problemRevision)}`,
+      )
+    }
     if (!["fail", "matched"].includes(fixture.expectedStatus)) {
       errors.push(`Fixture ${fixture.id ?? "<unknown>"} has invalid expected result`)
     }
   }
 
   for (const candidate of normalized.candidates) {
-    const problemFixtures = allFixtures.filter((fixture) => fixture.problemId === candidate.id)
+    const problemFixtures = allFixtures.filter(
+      (fixture) =>
+        fixture.problemId === candidate.id &&
+        fixture.problemRevision === candidate.revision,
+    )
     const roles = new Set(problemFixtures.map((fixture) => fixture.role))
     for (const role of REQUIRED_FIXTURE_ROLES) {
       if (!roles.has(role)) errors.push(`Candidate ${candidate.id} is missing fixture role ${role}`)
@@ -366,7 +385,10 @@ export async function verifyBatchFixtures({
 
   for (const candidate of normalized.candidates) {
     try {
-      runtimeProblems.set(candidate.id, await materialize(candidate))
+      runtimeProblems.set(
+        candidateKey(candidate.id, candidate.revision),
+        await materialize(candidate),
+      )
     } catch (error) {
       errors.push(
         `Candidate ${candidate.id} materialization error: ${error instanceof Error ? error.message : String(error)}`,
@@ -375,7 +397,9 @@ export async function verifyBatchFixtures({
   }
 
   for (const fixture of fixtureArtifact.fixtures ?? []) {
-    const problem = runtimeProblems.get(fixture.problemId)
+    const problem = runtimeProblems.get(
+      candidateKey(fixture.problemId, fixture.problemRevision),
+    )
     if (!problem) continue
     let actual
     try {
@@ -387,16 +411,31 @@ export async function verifyBatchFixtures({
     const expected = expectedEvaluation(fixture)
     const passed = canonicalJson(actual) === canonicalJson(expected)
     if (!passed) errors.push(`Fixture ${fixture.id} expected ${canonicalJson(expected)}, received ${canonicalJson(actual)}`)
-    results.push({ fixtureId: fixture.id, problemId: fixture.problemId, expected, actual, passed })
+    results.push({
+      fixtureId: fixture.id,
+      problemId: fixture.problemId,
+      problemRevision: fixture.problemRevision,
+      expected,
+      actual,
+      passed,
+    })
   }
 
   const candidates = normalized.candidates.map((candidate) => {
-    const problem = runtimeProblems.get(candidate.id)
+    const problem = runtimeProblems.get(candidateKey(candidate.id, candidate.revision))
     const candidateFixtures = (fixtureArtifact.fixtures ?? [])
-      .filter((fixture) => fixture.problemId === candidate.id)
+      .filter(
+        (fixture) =>
+          fixture.problemId === candidate.id &&
+          fixture.problemRevision === candidate.revision,
+      )
       .sort((left, right) => left.id.localeCompare(right.id))
     const candidateResults = results
-      .filter((result) => result.problemId === candidate.id)
+      .filter(
+        (result) =>
+          result.problemId === candidate.id &&
+          result.problemRevision === candidate.revision,
+      )
       .sort((left, right) => left.fixtureId.localeCompare(right.fixtureId))
     const problemDigest = problem === undefined ? null : sha256(problem)
     const fixtureDefinitionDigest = sha256(candidateFixtures)
@@ -507,6 +546,12 @@ export function evaluateBatchEvidence({
   }
   const reviewArray = Array.isArray(reviews) ? reviews : []
   for (const review of reviewArray) {
+    if (review.schemaVersion !== BATCH_SCHEMA_VERSION) {
+      errors.push(`Invalid review schema: ${review.reviewerId ?? "<unknown>"}`)
+    }
+    if (review.declaredIndependent !== true) {
+      errors.push(`Review must declare independence: ${review.reviewerId ?? "<unknown>"}`)
+    }
     if (review.batchId !== normalized.batchId || review.manifestDigest !== expectedManifest.manifestDigest) {
       errors.push(`Stale review scope: ${review.reviewerId ?? "<unknown>"}`)
     }
@@ -522,6 +567,9 @@ export function evaluateBatchEvidence({
   for (const duplicate of countDuplicates(runIds)) errors.push(`Duplicate review run: ${duplicate}`)
 
   const expectedReviewDigests = reviewArray.map((review) => review.reviewDigest).sort()
+  if (editorialArtifact.schemaVersion !== BATCH_SCHEMA_VERSION) {
+    errors.push(`Invalid editorial schema: ${normalized.batchId}`)
+  }
   if (
     editorialArtifact.batchId !== normalized.batchId ||
     editorialArtifact.manifestDigest !== expectedManifest.manifestDigest ||
@@ -536,9 +584,25 @@ export function evaluateBatchEvidence({
     errors.push(`Stale editorial digest: ${normalized.batchId}`)
   }
   requireString(editorialArtifact.editorialActor, "Editorial actor", errors)
+  if (reviewerIds.includes(editorialArtifact.editorialActor)) {
+    errors.push(`Editorial actor must differ from reviewers: ${editorialArtifact.editorialActor}`)
+  }
 
   const decisions = Array.isArray(editorialArtifact.decisions) ? editorialArtifact.decisions : []
-  for (const duplicate of countDuplicates(decisions.map((decision) => decision.candidateId))) {
+  const candidateKeys = new Set(
+    normalized.candidates.map((candidate) =>
+      candidateKey(candidate.id, candidate.revision),
+    ),
+  )
+  for (const decision of decisions) {
+    const key = candidateKey(decision.candidateId, decision.revision)
+    if (!candidateKeys.has(key)) {
+      errors.push(`Unknown editorial decision: ${key}`)
+    }
+  }
+  for (const duplicate of countDuplicates(
+    decisions.map((decision) => candidateKey(decision.candidateId, decision.revision)),
+  )) {
     errors.push(`Duplicate editorial decision: ${duplicate}`)
   }
   const acceptedProblems = []
@@ -547,7 +611,10 @@ export function evaluateBatchEvidence({
       (item) => item.candidateId === candidate.id && item.revision === candidate.revision,
     )
     if (!verified) errors.push(`Missing verification evidence: ${candidate.id}`)
-    const decision = decisions.find((item) => item.candidateId === candidate.id)
+    const decision = decisions.find(
+      (item) =>
+        item.candidateId === candidate.id && item.revision === candidate.revision,
+    )
     if (!decision) {
       errors.push(`Missing editorial decision: ${candidate.id}`)
       continue
@@ -572,7 +639,11 @@ export function evaluateBatchEvidence({
     }
     const verdicts = reviewArray.flatMap((review) =>
       (review.verdicts ?? [])
-        .filter((verdict) => verdict.candidateId === candidate.id)
+        .filter(
+          (verdict) =>
+            verdict.candidateId === candidate.id &&
+            verdict.revision === candidate.revision,
+        )
         .map((verdict) => ({ ...verdict, reviewerId: review.reviewerId, reviewRunId: review.reviewRunId })),
     )
     const verdictReviewers = new Set(verdicts.map((verdict) => verdict.reviewerId))
@@ -605,9 +676,15 @@ export function evaluateBatchEvidence({
     manifestDigest: expectedManifest.manifestDigest,
     reviewDigests: expectedReviewDigests,
     editorialDigest: editorialArtifact.editorialDigest ?? null,
-    accepted: sortedStatuses(decisions, "accepted").map((item) => item.candidateId).sort(),
-    rejected: sortedStatuses(decisions, "rejected").map((item) => item.candidateId).sort(),
-    blocked: sortedStatuses(decisions, "blocked").map((item) => item.candidateId).sort(),
+    accepted: sortedStatuses(decisions, "accepted")
+      .map((item) => candidateKey(item.candidateId, item.revision))
+      .sort(),
+    rejected: sortedStatuses(decisions, "rejected")
+      .map((item) => candidateKey(item.candidateId, item.revision))
+      .sort(),
+    blocked: sortedStatuses(decisions, "blocked")
+      .map((item) => candidateKey(item.candidateId, item.revision))
+      .sort(),
   }
   return {
     errors,
@@ -627,27 +704,42 @@ export function evaluateBatchEvidence({
 
 export function compileAcceptedBank(batches) {
   const errors = []
-  const problems = []
+  const currentProblems = new Map()
   const summaries = []
-  const seenIds = new Set()
   const ordered = [...batches].sort(
-    (left, right) => left.normalized.sequence - right.normalized.sequence ||
-      left.normalized.batchId.localeCompare(right.normalized.batchId),
+    (left, right) => (left.normalized?.sequence ?? Number.MAX_SAFE_INTEGER) -
+      (right.normalized?.sequence ?? Number.MAX_SAFE_INTEGER) ||
+      String(left.normalized?.batchId ?? "").localeCompare(
+        String(right.normalized?.batchId ?? ""),
+      ),
   )
   for (const batch of ordered) {
+    if (batch.loaderErrors?.length) {
+      errors.push(
+        ...batch.loaderErrors.map(
+          (error) => `${batch.normalized?.batchId ?? "<unknown>"}: ${error}`,
+        ),
+      )
+      continue
+    }
     const evaluated = evaluateBatchEvidence(batch)
     summaries.push(evaluated.summary)
     errors.push(...evaluated.errors.map((error) => `${batch.normalized.batchId}: ${error}`))
     if (evaluated.errors.length) continue
     for (const problem of evaluated.acceptedProblems) {
-      if (seenIds.has(problem.id)) {
-        errors.push(`Duplicate current problem id: ${problem.id}`)
+      const current = currentProblems.get(problem.id)
+      if (current?.revision === problem.revision) {
+        errors.push(
+          `Duplicate current problem revision: ${candidateKey(problem.id, problem.revision)}`,
+        )
         continue
       }
-      seenIds.add(problem.id)
-      problems.push(problem)
+      if (!current || problem.revision > current.revision) {
+        currentProblems.set(problem.id, problem)
+      }
     }
   }
+  const problems = [...currentProblems.values()]
   problems.sort((left, right) => left.level - right.level || left.id.localeCompare(right.id))
   const artifact = {
     schemaVersion: BATCH_SCHEMA_VERSION,
@@ -723,9 +815,6 @@ export function evaluateBankGate({
   const expectedPublished = createRuntimeProjections(compiled)
   const expectedTracker = buildTracker(compiled)
   const errors = [...compiled.errors, ...validateAppendOnly(batches, baselineTracker)]
-  for (const batch of batches) {
-    errors.push(...(batch.loaderErrors ?? []).map((error) => `${batch.normalized.batchId}: ${error}`))
-  }
   if (canonicalJson(published) !== canonicalJson(expectedPublished)) {
     errors.push("Runtime publish projection is stale")
   }
@@ -751,10 +840,12 @@ export function evaluateBankGate({
 export function validateAppendOnly(batches, baselineTracker) {
   const errors = []
   const current = new Map(
-    batches.map((batch) => {
-      const evaluated = evaluateBatchEvidence(batch)
-      return [evaluated.summary.batchId, evaluated.summary.batchDigest]
-    }),
+    batches
+      .filter((batch) => !batch.loaderErrors?.length)
+      .map((batch) => {
+        const evaluated = evaluateBatchEvidence(batch)
+        return [evaluated.summary.batchId, evaluated.summary.batchDigest]
+      }),
   )
   for (const baseline of baselineTracker?.batches ?? []) {
     const digest = current.get(baseline.batchId)

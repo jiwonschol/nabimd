@@ -75,6 +75,31 @@ describe("structural match predicates", () => {
     ).toMatchObject({ status: "fail", feedbackId: "ordered-second-section" })
   })
 
+  it("does not let a nested list satisfy a direct section list requirement", () => {
+    const directOrderedList = problem([
+      {
+        ...common("direct-ordered-list"),
+        kind: "list-shape",
+        scope: { kind: "section", headingDepth: 2, occurrence: 0 },
+        ordered: true,
+        minItems: 2,
+      },
+    ])
+
+    expect(
+      evaluateProblem(
+        directOrderedList,
+        "# Plan\n\n## Steps\n\n- Parent item\n  1. Nested one\n  2. Nested two",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "direct-ordered-list" })
+    expect(
+      evaluateProblem(
+        directOrderedList,
+        "# Plan\n\n## Steps\n\n1. Direct one\n2. Direct two\n   - Nested detail",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+  })
+
   it("rejects skipped heading depths but accepts a logical hierarchy", () => {
     const hierarchy = problem([
       {

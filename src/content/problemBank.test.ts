@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
-import { level12SeedFixtures } from "./level12SeedProblems"
-import { level35SeedFixtures } from "./level35SeedProblems"
+import { level12SeedFixtures } from "./level12SeedFixtures"
+import { level35SeedFixtures } from "./level35SeedFixtures"
 import {
   getProblem,
   getProblemsForLevel,

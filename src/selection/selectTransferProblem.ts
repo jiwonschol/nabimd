@@ -7,6 +7,25 @@ type TransferSelection = {
   recentProblemIds: readonly string[]
 }
 
+type TransferProblem = Pick<
+  NormalizedProblem,
+  "id" | "level" | "flavor" | "retryFamily" | "contentVariant"
+>
+
+export function isEligibleTransferProblem(
+  currentProblem: TransferProblem,
+  candidate: TransferProblem,
+  retryFamily: NormalizedProblem["retryFamily"],
+): boolean {
+  return (
+    candidate.level === currentProblem.level &&
+    candidate.flavor === currentProblem.flavor &&
+    candidate.retryFamily === retryFamily &&
+    candidate.id !== currentProblem.id &&
+    candidate.contentVariant !== currentProblem.contentVariant
+  )
+}
+
 export function selectTransferProblem({
   problems,
   currentProblemId,
@@ -21,13 +40,8 @@ export function selectTransferProblem({
   }
 
   const recentIds = new Set(recentProblemIds)
-  const candidates = problems.filter(
-    (problem) =>
-      problem.level === currentProblem.level &&
-      problem.flavor === currentProblem.flavor &&
-      problem.retryFamily === retryFamily &&
-      problem.id !== currentProblemId &&
-      problem.contentVariant !== currentProblem.contentVariant,
+  const candidates = problems.filter((problem) =>
+    isEligibleTransferProblem(currentProblem, problem, retryFamily),
   )
 
   const selected =
