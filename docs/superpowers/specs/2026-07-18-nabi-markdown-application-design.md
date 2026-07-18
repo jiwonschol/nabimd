@@ -138,12 +138,14 @@ does not have to open or act on editorial review.
 
 ### Perfect
 
-The answer is Matched and passes every editorial check applicable to that
-problem. This is a more polished pass, not a separate progression gate.
+The answer is Matched, faithfully rebuilds the problem's rendered target, and
+passes every other editorial check applicable to that problem. This is a more
+polished pass, not a separate progression gate.
 
-`Perfect` means "all Nabi editorial checks passed," not that the document is
-universally or objectively flawless. Internal code uses explicit check results
-rather than a subjective `isPerfect` judgment.
+`Perfect` means "the rendered result faithfully matches the goal and all Nabi
+editorial checks passed," not that the document is universally or objectively
+flawless. Internal code uses explicit check results rather than a subjective
+`isPerfect` judgment.
 
 ### Transition rules
 
@@ -285,6 +287,14 @@ hasImageWithAltText
 Editorial checks run after match checks and cannot turn a Matched answer into a
 Fail. They produce zero to three specific refinements and a Perfect result when
 none remain.
+
+When a problem provides a rendered target, `matches-target-exactly` compares
+normalized Markdown AST semantics rather than source strings. Source-only
+equivalents such as closing ATX markers, zero to three leading spaces, supported
+separator whitespace, trailing whitespace, and normalized internal text
+spacing remain faithful. Node kinds and document structure remain significant,
+so inline emphasis, code, links, extra blocks, and duplicate headings produce a
+Matched refinement instead of Perfect.
 
 Equivalent valid Markdown remains valid. A lesson can require a particular
 Devpost-style form to demonstrate a skill without claiming that another valid

@@ -11,20 +11,41 @@ import {
 export type InvisibleCharacter = {
   from: number
   to: number
-  kind: "space" | "tab"
+  kind:
+    | "space"
+    | "tab"
+    | "non-breaking-space"
+    | "ideographic-space"
+}
+
+function invisibleCharacterKind(
+  character: string | undefined,
+): InvisibleCharacter["kind"] | null {
+  switch (character) {
+    case " ":
+      return "space"
+    case "\t":
+      return "tab"
+    case "\u00a0":
+      return "non-breaking-space"
+    case "\u3000":
+      return "ideographic-space"
+    default:
+      return null
+  }
 }
 
 export function findInvisibleCharacters(source: string): InvisibleCharacter[] {
   const characters: InvisibleCharacter[] = []
 
   for (let position = 0; position < source.length; position += 1) {
-    const character = source[position]
-    if (character !== " " && character !== "\t") continue
+    const kind = invisibleCharacterKind(source[position])
+    if (!kind) continue
 
     characters.push({
       from: position,
       to: position + 1,
-      kind: character === " " ? "space" : "tab",
+      kind,
     })
   }
 
@@ -44,7 +65,12 @@ class InvisibleCharacterWidget extends WidgetType {
     const marker = document.createElement("span")
     marker.ariaHidden = "true"
     marker.className = `cm-invisible-character cm-invisible-character--${this.kind}`
-    marker.textContent = this.kind === "space" ? "·" : "→"
+    marker.textContent = {
+      space: "·",
+      tab: "→",
+      "non-breaking-space": "⍽",
+      "ideographic-space": "□",
+    }[this.kind]
     return marker
   }
 
@@ -54,12 +80,10 @@ class InvisibleCharacterWidget extends WidgetType {
 }
 
 const invisibleDecorator = new MatchDecorator({
-  regexp: /[ \t]/g,
+  regexp: /[ \t\u00a0\u3000]/g,
   decoration: (match) =>
     Decoration.replace({
-      widget: new InvisibleCharacterWidget(
-        match[0] === " " ? "space" : "tab",
-      ),
+      widget: new InvisibleCharacterWidget(invisibleCharacterKind(match[0])!),
     }),
 })
 
