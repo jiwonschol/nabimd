@@ -29,6 +29,9 @@ copied here or promoted automatically.
 - `2026-07-19-l1-l2-emphasis-003` — 24 accepted bold-emphasis variants and 216
   real-engine fixtures. Standard `**phrase**` and `__phrase__` forms both pass;
   multiple bold spans remain Matched with an optional structural Review.
+- `2026-07-19-l1-l2-lists-004` — 24 accepted bullet-list variants and 360
+  real-engine fixtures. Standard `-`, `*`, and `+` markers pass; wording,
+  capitalization, spelling, and exact item text are not graded.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

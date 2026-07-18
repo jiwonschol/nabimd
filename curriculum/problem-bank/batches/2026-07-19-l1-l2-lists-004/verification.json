@@ -1,0 +1,5387 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-lists-004",
+  "engineContractDigest": "db0434335b120afcb083e39d16239bf79b7f90f29548bda0a46c6de230d85bd0",
+  "candidates": [
+    {
+      "candidateId": "l1-list-art-box",
+      "revision": 1,
+      "candidateDigest": "2f8aa4056e66e8bba3d83041ba4c7f2265180b542419140476bc7f10e1d0df13",
+      "problemDigest": "dde8c0194847203b8af2e5cfcc9f90d28af1e67e24b23a099085549dd875400f",
+      "fixtureDefinitionDigest": "d69439628ecb206c56bc013175b7d1f622e7d23679a7ce8598f0619cc93630d6",
+      "fixtureResultsDigest": "46ebb4ab6b30096a457f9d7ca9112a54a9d6265b35c046b5808276b9c3678f8d",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-bathroom-shelf",
+      "revision": 1,
+      "candidateDigest": "418d0c8f58c9cc62ceffe80016a718dc6d023b14a8b17f5086d29e4be9f67573",
+      "problemDigest": "ad69652872987c7b7cf0b12199c9b47351b02a582fcb481da352ffbfdc4bb8f8",
+      "fixtureDefinitionDigest": "d76d952c859bb5d067ccf4fa965a1c8da453677bdda6ca134e708b999bde4278",
+      "fixtureResultsDigest": "cb8f92a0f0f49d71c06cbd49eb8dfdc62c287c88fcf37b960f3ae304b7df5871",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-cleaning-shelf",
+      "revision": 1,
+      "candidateDigest": "4510cd520cf73be001f2d3f6d50fbd71e5f6668a54aca03ba4d910029b7dfc9d",
+      "problemDigest": "a1cbe24d00b01755155df109ca3d34a0d6d54dde9ee3eeafc00fb420ce046a7a",
+      "fixtureDefinitionDigest": "687fe7f3d1559d8b312b592025405ea342fde1b114bc502518a8e23efc5c453d",
+      "fixtureResultsDigest": "fc183117d7a78ee35018948b705b1e30b2c540d903dd5896306e9ddce717aec8",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-desk-tray",
+      "revision": 1,
+      "candidateDigest": "3b60dce2205debb3d67bb235754346897e7bf1c6152a643574097892d89a9c74",
+      "problemDigest": "9e156208e1721fbf9b28867414fc6ea34379a73c26307d4ef4e8a792a9f42b05",
+      "fixtureDefinitionDigest": "c2108b02592c57c6504a62088037415cd44bd6c4be8cf8ee50ce24ad2193b37b",
+      "fixtureResultsDigest": "5e300739ed92c4b85ca5d341360e3da13d77cf068d2105f1b582e9469d8b2351",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-fruit-bowl",
+      "revision": 1,
+      "candidateDigest": "f5f101ba1b730ec88f26875ded152c66fe62e28fe0428412dd859514d608f175",
+      "problemDigest": "eb278ffa548c04cabc01155f21782ba9a4bcb3018c88c6798f6b989b5376e0a7",
+      "fixtureDefinitionDigest": "41a591f86aaabb0152cb5a9ca08083cc1df9f6b0a1d6f44f9b5eba4a72b77d01",
+      "fixtureResultsDigest": "0553862860bf7714521c4464eb3223be07eccb1b932d95f8fb1140c1fc9b7f4b",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-kitchen-drawer",
+      "revision": 1,
+      "candidateDigest": "322d86d067451e3238eab76b51ff34133f58b4cbc092dbf491580fd56ade6194",
+      "problemDigest": "669d2f639836473b26d234a44f0f57c04718a17ad7bfc1913e0c7ed704caa0bc",
+      "fixtureDefinitionDigest": "1930435a26234d4041bdee41f663c16b64100a9274e5f65b38f10e06e57205ef",
+      "fixtureResultsDigest": "8a30aa992d797d5173fa8c46b05a1763d7c533ed3df574a503d3b4fc5472ec87",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-pencil-case",
+      "revision": 1,
+      "candidateDigest": "21eda69b67b4be69a8c060c35b5d46f70c50481e1f09bc8aa494a66f32d45f60",
+      "problemDigest": "38358e2f2de9410d997cb23f0c9427c10d86aa975b4bcd93a5643a6ea5d7f966",
+      "fixtureDefinitionDigest": "16ab245078958cccea6529d974354b0ba5157cb77c991314cd3a1633754cc86b",
+      "fixtureResultsDigest": "e90df4633af6c5898c53ec0ddf96e5ef260620bd2f33bac3d459d648119c26f4",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-picnic-basket",
+      "revision": 1,
+      "candidateDigest": "27c2c32359a7828b48defac9206e95c502ddd6c27c78a114f032011c276eb461",
+      "problemDigest": "99627c1165b59f452aff9172497396f959212322b04f24ba619dab60f7e6ab18",
+      "fixtureDefinitionDigest": "0bfaeaf406a84f440e4b9e71fb0b3dfb26e09f3bbc955d9a5bdb7352129f6139",
+      "fixtureResultsDigest": "1b64db6ba87bce6adc2f6cd60608cbcaf91f91f6e862663eaf33236119f7cc7c",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-shoe-rack",
+      "revision": 1,
+      "candidateDigest": "e886200c0464ab88c22bbfcb999763dab49a11aa0a4ee843bb41ef7ca434326c",
+      "problemDigest": "c77d24fcdc9fb3f9da5c32c69b962211a3bf738e023d6dacb818ac408830249b",
+      "fixtureDefinitionDigest": "718d0a906a0fb27327335445ef6b17f43df2475dd972865fee71751b55ee8cae",
+      "fixtureResultsDigest": "cf8f5e0ad2c4690d6d4cfec15b112510208c8e1b3da6959ef3426bb47eaa55ea",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-snack-plate",
+      "revision": 1,
+      "candidateDigest": "0265ae906d226e01d3391d6bcaef30b408aedf1fa01ecb2828f5da045f066636",
+      "problemDigest": "6a00f48ec6c7fbe49b86a1fc32801fefb6158a0c0ea1d133ac29757dec23e36a",
+      "fixtureDefinitionDigest": "4b2bd98f5f9227158449ecbdc70b61a28083358943a66df283f7f7cf21195a10",
+      "fixtureResultsDigest": "c92a7181d646c9ee45482f58a80c29d6cd65adfa7c271373e281a0021a3fccdd",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-toolbox",
+      "revision": 1,
+      "candidateDigest": "99de7e8d3c88725517c64427b177bced3ecb748687c0dd8d6a3cc0fb075b06d3",
+      "problemDigest": "b15d7f3bc7fab556f7ea553f3627f4de3cc8c4a8218275aa62be902093d6c647",
+      "fixtureDefinitionDigest": "dce336b8f0ddc00c1f4d03e3121325d5ec5b8082df420dae6656f5b057df97aa",
+      "fixtureResultsDigest": "4d911e9bc4096003f0fda46ba086ab8331d4a3d149f647f706c077e39554f4b5",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-list-toy-bin",
+      "revision": 1,
+      "candidateDigest": "343599ae4175386c96f822c13ae70323a63ca6cbe3135d2a8a2448996eb334ac",
+      "problemDigest": "5367f4784d57d65f526e2493abbf68e88de70392e3bedea155baf02e93c18b36",
+      "fixtureDefinitionDigest": "dc0a9a90e1778129406a0e1f028c620adc795fb7a05777892816b83c19452552",
+      "fixtureResultsDigest": "f70d2e4729871a13b3ac01ab6a8fe17d3ee1de0f07729f5e7cb95ca2b80d3d83",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-backpack-check",
+      "revision": 1,
+      "candidateDigest": "ae53fcc544b2496118cb2e3c3265c985b8e3b60e7415f94420840bc805f62347",
+      "problemDigest": "6e3069c7273a6d59887324f3c52418bc247e0a74c15e6d735f417c79dbf4d3f8",
+      "fixtureDefinitionDigest": "92b389204afc2e473a5193dd7387dd9a498a6f4a9a28051f0cbd406fb8fbbc9e",
+      "fixtureResultsDigest": "dc7277f3b24894c11e7c55ca305b37ef3e10c538df932803a7274b40a71484c8",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-bike-ride-check",
+      "revision": 1,
+      "candidateDigest": "3c5f4ff7057d758e5a68064dcf92b19f8657e0f9b97222c7165cd8cd8a68e6b0",
+      "problemDigest": "53f3b463d2dfd5d6c07eb8536dd5795f070123ec233aa7a57f46e5b1c31dae7b",
+      "fixtureDefinitionDigest": "1f28651228c9e9ba78b36828c694fa9244c322d229bb99326fb42bbbebaa138f",
+      "fixtureResultsDigest": "d576b0aa9db6ddfcafb3b7e80b480440551ecf7146e274fd0c499e62106bc37c",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-closet-cleanup",
+      "revision": 1,
+      "candidateDigest": "5f6fa2c62b0c284118ab42e7df66a2a05aa42a64f3ec91557e1b18463e83b98c",
+      "problemDigest": "22d517ed3ab9c45298fe1a6528f54bd23756c0dc3874bd5b2f9850c7fd283a7f",
+      "fixtureDefinitionDigest": "303778dca1fcb527cf9cd0bced78726928d5327d7f9ed6312203f09a7a020ad0",
+      "fixtureResultsDigest": "e5e5f1b7873b51f9e2d6493417489bf45536ab8106d179fce2a78227de23b323",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-donation-pickup",
+      "revision": 1,
+      "candidateDigest": "441216e9d646a4095f3b9f2135f0ed70045ed9de587079ce916c2bc0da8c9a37",
+      "problemDigest": "e493ebcff70b7a798c69d4d3934f76f8ad8c922fd2ad0202c7280448a35a2497",
+      "fixtureDefinitionDigest": "141b16dafd47174cb3ddf6c9e693d1f0a2dc05ca0a4629b06c1f971a3f2b1351",
+      "fixtureResultsDigest": "746650e7ca1bba2cb7cc80febe186f75f0ed7ef1adfad7df258cf0a71b31cff2",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-guest-setup",
+      "revision": 1,
+      "candidateDigest": "c6c1427f028d427e2b5d16a54b6caf25ec6a41e544a8d13c0020a86e9a4696cb",
+      "problemDigest": "18fff1e76424830ceb6c26c92e6a25c9c8ff27de8f2725be6478270340d2a981",
+      "fixtureDefinitionDigest": "a0e287f272e4b0f9ee27725cba47046713f5dff385b7c52ce2d1e501fef814c5",
+      "fixtureResultsDigest": "a71af52c207ad0e536b6dc85fd91c592fe0686959ebc0f837ecab93112d33f4f",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-houseplant-care",
+      "revision": 1,
+      "candidateDigest": "fd1bc29da988feb798a430a6a7de3759934e6392b6e3ee915d41b0e73ed65137",
+      "problemDigest": "ca5ab30444e8a7f3928b4348c4e858057339c4d736ad0a86afd8eff6752c526e",
+      "fixtureDefinitionDigest": "608d695aa23f103c70520f310eeecc74a79271275d7e6e4aa3c56c1b8aad75d5",
+      "fixtureResultsDigest": "460a6b8d1eb34846287a68ba4f81b928032d5dca148231126bdca51b353d82b0",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-kitchen-cleanup",
+      "revision": 1,
+      "candidateDigest": "6efbcea896f131622d96d68916fa10f22466c0b53de75bb9351a8b7a9e532311",
+      "problemDigest": "8b0cb227ef9ffc03f612ca09f63fe67a23851a01cfc888d0080527f8ea7a01c9",
+      "fixtureDefinitionDigest": "4cd5b261ef68b2c697fb3ef935ca946944deeb45cdd0fdf6201c476d3cec9e8f",
+      "fixtureResultsDigest": "ef2297e83a0b338a299dbb94a7e1368451bc2e47f62ef67f655850f8e150fbb8",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-movie-night-setup",
+      "revision": 1,
+      "candidateDigest": "16e388362062c05fd19fb6d7c78482725c41e306c0e6cab3bf115df95e5c1206",
+      "problemDigest": "31b911dc93c676e029ff52e550bb58ecd53e96141fa0a726657779510d658948",
+      "fixtureDefinitionDigest": "2a56c32fa337b156e53c22f194d2717d111f5b2755df3e14466d42f3b2fda1f7",
+      "fixtureResultsDigest": "50a17b7f166151302ace8423342cbdef91a4b2b16f7253d43c92e57d2b5e4dc6",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-package-checklist",
+      "revision": 1,
+      "candidateDigest": "4c84c3c790f4ad9a4d83c1f4f77f0cf58ddf35dd8c9a6a9ae631050f0934de6f",
+      "problemDigest": "71f5e5ada5c4c18b187224e46c32d958ca2695d1e8d23188b78818acde858187",
+      "fixtureDefinitionDigest": "9751dbbe67059ac308f19efceb02d971e5df6ad7abd860ff045c47ef198d9d3e",
+      "fixtureResultsDigest": "f9a2f4bc2c5b7b1d8f5346d18cc97409f037131e2dcde6331f0557cb894ae819",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-rain-preparation",
+      "revision": 1,
+      "candidateDigest": "e1e6570ee66c854bbb2a0829b5c3e313f298137c2ecca814799cb812a4a0fa28",
+      "problemDigest": "63ce0b70b8981280097d6e3c2088b68b981a6c7cc8f3b6521412dcc071a54eb6",
+      "fixtureDefinitionDigest": "f23ea08b2a7f4ce3ca3a88d55226e2d554ff02d79004b21dc15f12869036f86c",
+      "fixtureResultsDigest": "e4be6c0c3a65df433223c71a57cf37db5ee6c6049c6f33f9d30cd1169f9d53ca",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-room-reset",
+      "revision": 1,
+      "candidateDigest": "dd9164a589ae5d78091bf9c7e7e8438790a3a346fc9e86ef204bd44af8383119",
+      "problemDigest": "6e9cbf7d7481fdea26fb8692fc742e29ae77366979c29d806d101ea91147852a",
+      "fixtureDefinitionDigest": "248f3a9c36e77ca9a29b7c4d1f6eb9b50f3d2be3d82c89440c0f44f7ea5b5411",
+      "fixtureResultsDigest": "496ed2722fbf1e5f1e0b2d102fad17133a52dfd9b0aadc4644d5be8ee3f7d133",
+      "fixtureCount": 15,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-list-study-reset",
+      "revision": 1,
+      "candidateDigest": "c9279298983c9c5212518a4f137dd9d93487d0d2ed3a39e5f516fbd0d51ae325",
+      "problemDigest": "c333ae47fd92af09f7df417a33cb383e23bc75885e2727e697771ef31d4c13f4",
+      "fixtureDefinitionDigest": "bc8f5b6e0399606c65265d699a333eb1aff9f85ffb2461b6a1e4b8cb261d6e43",
+      "fixtureResultsDigest": "c74e7263cffd49739c20d82f9a6e2170c46d4e3212ac306e0224e492ee45862d",
+      "fixtureCount": 15,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l1-list-art-box-canonical-canonical",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-case-spelling-variation-case-variation",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-different-prose-alternate",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-asterisk-bullet",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-blockquote-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-empty-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-image-alt-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-inline-code-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-ordered-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-plus-bullet",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-edge-case-too-short-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-malformed-malformed",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-matched-with-review-multiple-lists",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-art-box-missing-missing",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-canonical-canonical",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-case-spelling-variation-case-variation",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-different-prose-alternate",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-asterisk-bullet",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-blockquote-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-empty-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-image-alt-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-inline-code-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-ordered-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-plus-bullet",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-edge-case-too-short-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-malformed-malformed",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-matched-with-review-multiple-lists",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-bathroom-shelf-missing-missing",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-canonical-canonical",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-case-spelling-variation-case-variation",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-different-prose-alternate",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-asterisk-bullet",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-blockquote-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-empty-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-image-alt-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-inline-code-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-ordered-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-plus-bullet",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-edge-case-too-short-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-malformed-malformed",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-matched-with-review-multiple-lists",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-cleaning-shelf-missing-missing",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-canonical-canonical",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-case-spelling-variation-case-variation",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-different-prose-alternate",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-asterisk-bullet",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-blockquote-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-empty-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-image-alt-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-inline-code-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-ordered-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-plus-bullet",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-edge-case-too-short-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-malformed-malformed",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-matched-with-review-multiple-lists",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-desk-tray-missing-missing",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-canonical-canonical",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-case-spelling-variation-case-variation",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-different-prose-alternate",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-asterisk-bullet",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-blockquote-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-empty-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-image-alt-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-inline-code-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-ordered-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-plus-bullet",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-edge-case-too-short-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-malformed-malformed",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-matched-with-review-multiple-lists",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-fruit-bowl-missing-missing",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-canonical-canonical",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-case-spelling-variation-case-variation",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-different-prose-alternate",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-asterisk-bullet",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-blockquote-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-empty-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-image-alt-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-inline-code-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-ordered-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-plus-bullet",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-edge-case-too-short-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-malformed-malformed",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-matched-with-review-multiple-lists",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-kitchen-drawer-missing-missing",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-canonical-canonical",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-case-spelling-variation-case-variation",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-different-prose-alternate",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-asterisk-bullet",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-blockquote-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-empty-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-image-alt-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-inline-code-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-ordered-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-plus-bullet",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-edge-case-too-short-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-malformed-malformed",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-matched-with-review-multiple-lists",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-pencil-case-missing-missing",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-canonical-canonical",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-case-spelling-variation-case-variation",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-different-prose-alternate",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-asterisk-bullet",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-blockquote-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-empty-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-image-alt-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-inline-code-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-ordered-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-plus-bullet",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-edge-case-too-short-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-malformed-malformed",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-matched-with-review-multiple-lists",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-picnic-basket-missing-missing",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-canonical-canonical",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-case-spelling-variation-case-variation",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-different-prose-alternate",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-asterisk-bullet",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-blockquote-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-empty-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-image-alt-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-inline-code-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-ordered-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-plus-bullet",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-edge-case-too-short-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-malformed-malformed",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-matched-with-review-multiple-lists",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-shoe-rack-missing-missing",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-canonical-canonical",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-case-spelling-variation-case-variation",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-different-prose-alternate",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-asterisk-bullet",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-blockquote-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-empty-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-image-alt-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-inline-code-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-ordered-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-plus-bullet",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-edge-case-too-short-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-malformed-malformed",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-matched-with-review-multiple-lists",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-snack-plate-missing-missing",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-canonical-canonical",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-case-spelling-variation-case-variation",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-different-prose-alternate",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-asterisk-bullet",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-blockquote-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-empty-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-image-alt-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-inline-code-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-ordered-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-plus-bullet",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-edge-case-too-short-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-malformed-malformed",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-matched-with-review-multiple-lists",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toolbox-missing-missing",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-canonical-canonical",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-case-spelling-variation-case-variation",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-different-prose-alternate",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-asterisk-bullet",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-blockquote-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-empty-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-image-alt-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-inline-code-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-ordered-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-plus-bullet",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-edge-case-too-short-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-malformed-malformed",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-matched-with-review-multiple-lists",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-list-toy-bin-missing-missing",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-canonical-canonical",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-case-spelling-variation-case-variation",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-different-prose-alternate",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-asterisk-bullet",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-blockquote-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-empty-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-image-alt-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-inline-code-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-ordered-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-plus-bullet",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-edge-case-too-short-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-malformed-malformed",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-matched-with-review-multiple-lists",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-backpack-check-missing-missing",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-canonical-canonical",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-case-spelling-variation-case-variation",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-different-prose-alternate",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-asterisk-bullet",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-blockquote-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-empty-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-image-alt-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-inline-code-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-ordered-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-plus-bullet",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-edge-case-too-short-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-malformed-malformed",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-matched-with-review-multiple-lists",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-bike-ride-check-missing-missing",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-canonical-canonical",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-different-prose-alternate",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-blockquote-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-empty-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-image-alt-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-inline-code-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-ordered-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-plus-bullet",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-edge-case-too-short-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-malformed-malformed",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-closet-cleanup-missing-missing",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-canonical-canonical",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-different-prose-alternate",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-blockquote-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-empty-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-image-alt-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-inline-code-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-ordered-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-plus-bullet",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-edge-case-too-short-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-malformed-malformed",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-donation-pickup-missing-missing",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-canonical-canonical",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-different-prose-alternate",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-blockquote-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-empty-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-image-alt-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-inline-code-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-ordered-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-plus-bullet",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-edge-case-too-short-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-malformed-malformed",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-guest-setup-missing-missing",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-canonical-canonical",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-case-spelling-variation-case-variation",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-different-prose-alternate",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-asterisk-bullet",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-blockquote-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-empty-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-image-alt-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-inline-code-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-ordered-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-plus-bullet",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-edge-case-too-short-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-malformed-malformed",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-matched-with-review-multiple-lists",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-houseplant-care-missing-missing",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-canonical-canonical",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-different-prose-alternate",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-blockquote-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-empty-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-image-alt-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-inline-code-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-ordered-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-plus-bullet",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-edge-case-too-short-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-malformed-malformed",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-kitchen-cleanup-missing-missing",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-canonical-canonical",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-different-prose-alternate",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-blockquote-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-empty-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-image-alt-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-inline-code-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-ordered-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-plus-bullet",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-edge-case-too-short-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-malformed-malformed",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-movie-night-setup-missing-missing",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-canonical-canonical",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-case-spelling-variation-case-variation",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-different-prose-alternate",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-asterisk-bullet",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-blockquote-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-empty-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-image-alt-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-inline-code-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-ordered-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-plus-bullet",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-edge-case-too-short-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-malformed-malformed",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-matched-with-review-multiple-lists",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-package-checklist-missing-missing",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-canonical-canonical",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-case-spelling-variation-case-variation",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-different-prose-alternate",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-asterisk-bullet",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-blockquote-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-empty-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-image-alt-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-inline-code-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-ordered-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-plus-bullet",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-edge-case-too-short-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-malformed-malformed",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-matched-with-review-multiple-lists",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-rain-preparation-missing-missing",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-canonical-canonical",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-case-spelling-variation-case-variation",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-different-prose-alternate",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-asterisk-bullet",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-blockquote-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-empty-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-image-alt-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-inline-code-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-ordered-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-plus-bullet",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-edge-case-too-short-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-malformed-malformed",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-matched-with-review-multiple-lists",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-room-reset-missing-missing",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-canonical-canonical",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-case-spelling-variation-case-variation",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-different-prose-alternate",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-asterisk-bullet",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-blockquote-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-empty-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-image-alt-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-inline-code-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-ordered-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-plus-bullet",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-edge-case-too-short-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-malformed-malformed",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-matched-with-review-multiple-lists",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-list"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-list-study-reset-missing-missing",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bullet-list"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "56455218c177283d123cf406c119160b888e013e1b8121d9fbc2888df0ef04f4"
+}

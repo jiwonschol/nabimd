@@ -1188,3 +1188,52 @@ one reviewer also ran 360 additional CommonMark adversarial probes. Separate
 editorial inspection accepted all eight dimensions for 24/24. Publication
 raises the deterministic runtime bank to 68 problems with a 28/28/4/4/4 split.
 The live learner still makes no AI or learner-content API request.
+
+### Issue #9 bullet-list expansion
+
+The fourth schema-v2 batch adds 24 Level 1–2 bullet-list exercises. Level 1
+shows the hyphen-and-space pattern with familiar concrete nouns; Level 2 asks
+for the same structure from memory through short everyday actions. The parser
+accepts standard `-`, `*`, and `+` markers, additional valid items, and a valid
+bullet list inside another Markdown wrapper. It does not grade item wording,
+capitalization, spelling, punctuation, or order. Numbered lists, marker text in
+code, missing spaces, fewer than three items, and empty items receive Try
+again. More than one list group remains Matched with optional structural
+Review.
+
+Independent review materially changed the frozen batch before publication.
+The first editorial pass rejected `l1-list-pencil-case` because its Goal
+duplicated the visible teaching example, effectively revealing the answer.
+A separate engine review found that nonempty image-alt list items were treated
+as empty because mdast stores their learner-visible text in `alt`, not `value`.
+The Goal and teaching copy were separated, image alt was added to the
+structure-only content check, positive and negative image-alt fixtures were
+added, and all mechanical artifacts and digests were regenerated. No rejected
+manifest was represented as accepted evidence.
+
+A final post-review adversarial check then exposed a narrower nesting edge:
+three empty parent bullets could borrow text from three separate one-item child
+lists and appear nonempty. The item-content walk now stops at nested list
+boundaries. The nested children may still satisfy the lesson if one child list
+itself has three nonempty items, but they can no longer make an empty parent
+item pass. A regression test pins this distinction while the frozen batch
+fixtures continue to replay successfully against the current engine.
+
+The corrected batch contains 24 candidates and 360 frozen real-engine
+fixtures. Atlas accepted 24/24 after recomputing the engine and artifact
+digests. Orchid independently accepted 24/24 after 360/360 frozen fixtures and
+504 additional adversarial CommonMark probes passed. The separate editorial
+rerun accepted all eight required dimensions for 24/24 against manifest
+`9781f5059c3088cfe1ed5f2347f86375e1839de9cc3f62c673400df359d1f1c6`.
+Publication raises the deterministic runtime bank to 92 problems with a
+40/40/4/4/4 split. The live application remains network-free during grading.
+
+The exact-head Codex review found two remaining publication defects. First,
+recursive list discovery allowed a valid bullet list nested under a numbered
+list to satisfy the bullet-list lesson even though the answer's outer structure
+was numbered. A failing regression reproduced the collision before the
+traversal was changed to preserve ancestor-list marker types; nested lists can
+now match through neutral wrappers such as blockquotes, but cannot borrow a
+different ordered/unordered outer structure. Second, the pipeline README still
+described the preceding 68-problem publication. Its fixture and level totals
+now match the generated 92-problem tracker.

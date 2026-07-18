@@ -85,6 +85,8 @@ export type MatchCheck =
       ordered: boolean | "either"
       minItems: number
       maxItems?: number
+      recursive?: boolean
+      requireNonemptyItems?: boolean
     })
   | (MatchCheckBase & {
       kind: "code-block"
@@ -121,6 +123,16 @@ export type EditorialCheck =
       kind: "max-inline-count"
       scope: CheckScope
       inline: InlineKind
+      max: number
+      review: string
+    }
+  | {
+      id: string
+      kind: "max-block-count"
+      scope: CheckScope
+      block: BlockKind
+      depth?: 1 | 2 | 3 | 4 | 5 | 6
+      recursive?: boolean
       max: number
       review: string
     }
@@ -226,6 +238,16 @@ export type FixtureKind =
   | "duplicate-h1"
   | "malformed-plus-correct"
   | "normalized-whitespace"
+  | "asterisk-bullet"
+  | "plus-bullet"
+  | "ordered-list"
+  | "too-short-list"
+  | "inline-code-list"
+  | "multiple-lists"
+  | "blockquote-list"
+  | "empty-list"
+  | "image-alt-list"
+  | "empty-image-alt-list"
 
 export type ProblemFixture = {
   id?: string

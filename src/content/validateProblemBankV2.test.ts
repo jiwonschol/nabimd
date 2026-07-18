@@ -251,6 +251,70 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("validates list-shape operands and section scope safely", () => {
+    const invalid = problem("invalid-list-shape", {
+      matchChecks: [
+        {
+          id: "list-shape",
+          kind: "list-shape",
+          scope: { kind: "section", headingDepth: 7, occurrence: -1 },
+          ordered: "sometimes",
+          minItems: 0,
+          maxItems: -1,
+          recursive: "yes",
+          requireNonemptyItems: 1,
+          priority: 10,
+          feedback: "Add a list.",
+        },
+        {
+          id: "paragraph-depth",
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "paragraph",
+          depth: 2,
+          min: 1,
+          priority: 20,
+          feedback: "Add a paragraph.",
+        },
+        {
+          id: "missing-scope",
+          kind: "inline-presence",
+          inline: "strong",
+          min: 1,
+          priority: 30,
+          feedback: "Add bold text.",
+        },
+        {
+          id: "invalid-block",
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "table",
+          depth: 7,
+          min: 1,
+          priority: 40,
+          feedback: "Add a block.",
+        },
+      ] as unknown as NormalizedProblem["matchChecks"],
+    })
+
+    expect(() => validate([invalid, problem("peer")])).not.toThrow()
+    expect(validate([invalid, problem("peer")])).toEqual(
+      expect.arrayContaining([
+        "Problem invalid-list-shape check list-shape has invalid section heading depth",
+        "Problem invalid-list-shape check list-shape has invalid section occurrence",
+        "Problem invalid-list-shape check list-shape has unsupported ordered value: sometimes",
+        "Problem invalid-list-shape check list-shape requires at least one item",
+        "Problem invalid-list-shape check list-shape has invalid max",
+        "Problem invalid-list-shape check list-shape has invalid recursive flag",
+        "Problem invalid-list-shape check list-shape has invalid nonempty-items flag",
+        "Problem invalid-list-shape check paragraph-depth can only use depth with heading blocks",
+        "Problem invalid-list-shape check missing-scope requires a scope",
+        "Problem invalid-list-shape check invalid-block has unsupported block kind: table",
+        "Problem invalid-list-shape check invalid-block has invalid heading depth",
+      ]),
+    )
+  })
+
   it("validates generic nonblocking editorial checks safely", () => {
     const invalid = problem("invalid-editorial", {
       editorialChecks: [
@@ -290,6 +354,25 @@ describe("schema-v2 problem-bank validation", () => {
           max: 1,
           review: "Review focus.",
         },
+        {
+          id: "invalid-block-review",
+          kind: "max-block-count",
+          scope: { kind: "section", headingDepth: 8, occurrence: -2 },
+          block: "table",
+          depth: 7,
+          recursive: "yes",
+          max: -1,
+          review: "Review structure.",
+        },
+        {
+          id: "paragraph-depth-review",
+          kind: "max-block-count",
+          scope: { kind: "document" },
+          block: "paragraph",
+          depth: 2,
+          max: 1,
+          review: "Review structure.",
+        },
       ] as unknown as NormalizedProblem["editorialChecks"],
     })
 
@@ -305,6 +388,13 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-editorial editorial check unknown-shapes has unsupported scope kind: chapter",
         "Problem invalid-editorial editorial check unknown-shapes has unsupported inline kind: underline",
         "Problem invalid-editorial editorial check invalid-heading-depth has invalid section heading depth",
+        "Problem invalid-editorial editorial check invalid-block-review has invalid section heading depth",
+        "Problem invalid-editorial editorial check invalid-block-review has invalid section occurrence",
+        "Problem invalid-editorial editorial check invalid-block-review has unsupported block kind: table",
+        "Problem invalid-editorial editorial check invalid-block-review has invalid heading depth",
+        "Problem invalid-editorial editorial check invalid-block-review has invalid recursive flag",
+        "Problem invalid-editorial editorial check invalid-block-review has invalid max",
+        "Problem invalid-editorial editorial check paragraph-depth-review can only use depth with heading blocks",
       ]),
     )
   })
