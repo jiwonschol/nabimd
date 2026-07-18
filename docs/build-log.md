@@ -717,3 +717,42 @@ only a schedule reachable at the persisted step and transfer state.
 - Production build: Vite transformed 204 modules and completed successfully.
 - Remote rereview, merge, and production verification are still pending and
   are not claimed by this entry.
+
+## 2026-07-18 — PR #15 merge and production proof
+
+### Final review and merge
+
+PR #15 reached an approved state at final head
+`a3e4bd9590fc1496d5761808acc29d5725555f97`:
+
+- GitHub Verify passed on the final head;
+- CodeRabbit approved the final head and explicitly confirmed that the shared
+  run-schedule state machine addressed its bounded-but-unreachable duplicate
+  finding;
+- GitHub Codex reported no major issue on the final head; and
+- both actionable review threads were answered and resolved.
+
+The PR was merged into `main` as
+`de3c68b541b768299c6f61fb43e0bc46e0fb8d46`. Local `main` was fast-forwarded
+to the same commit without changing the user's untracked font, logo, or session
+ID files. The merged remote feature branch was deleted afterward.
+
+### Production deployment and browser proof
+
+The merged main was linked to the existing
+`jiwon112-3536s-projects/nabimd` Vercel project and deployed as
+`dpl_BbxQfTxr5dT8czfTADt3aivWLdeM`. Vercel reported the production deployment
+Ready at `https://nabimd-rmgwmoy4n-jiwon112-3536s-projects.vercel.app`.
+
+Vercel's generated production alias pointed to the new artifact, while
+`nabimd.vercel.app` still returned the previous ETag. The primary task assigned
+the public alias explicitly and verified HTTP 200 with the new deployment ETag
+`d6fa3385bba56b1a66cb2bd0cebc7506`. Vercel reported no runtime error logs for
+the deployment.
+
+The production app was then exercised in the app browser. A fresh Level 1 run
+opened the Apple goal and teaching UI; entering `# Apple` returned Perfect;
+Next advanced to a blank Rainy day exercise at step 2 of 3. The browser console
+reported no errors. This verifies the deployed learner path, while the
+malformed-storage and transfer-remount boundaries remain covered by the 670
+automated tests run before merge.
