@@ -26,8 +26,8 @@ describe("schema-v2 foundation seed batch", () => {
     expect(computed.fixtureArtifact.fixtures).toHaveLength(
       level12SeedFixtures.length + level35SeedFixtures.length,
     )
-    expect(computed.verification.errors).toEqual([])
-    expect(computed.verification.candidates).toHaveLength(20)
+    expect(computed.regressionVerification.errors).toEqual([])
+    expect(computed.regressionVerification.candidates).toHaveLength(20)
     expect(
       computed.normalized.candidates.every(
         (candidate) =>
@@ -36,7 +36,9 @@ describe("schema-v2 foundation seed batch", () => {
       ),
     ).toBe(true)
     expect(
-      computed.verification.candidates.every((candidate) => candidate.passed),
+      computed.regressionVerification.candidates.every(
+        (candidate) => candidate.passed,
+      ),
     ).toBe(true)
   })
 

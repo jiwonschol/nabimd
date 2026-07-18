@@ -9,6 +9,7 @@ export default defineConfig({
       "scripts/problem-bank/reviewManifest.report.ts",
       "scripts/problem-bank/seedBatchArtifacts.gate.ts",
       "scripts/problem-bank/headingBatch002Artifacts.gate.ts",
+      "scripts/problem-bank/emphasisBatch003Artifacts.gate.ts",
     ],
   },
 })

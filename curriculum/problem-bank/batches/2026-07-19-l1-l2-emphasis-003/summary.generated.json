@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-emphasis-003",
+  "status": "published",
+  "batchDigest": "08d5ea5e7a474d0fa7957e4e38679ae07ba7521ab904b3740587574401427d64",
+  "bankDigest": "597af246da24671e1c443493e623ed8fc555f048e6d77bf68ab62bf14763e2d6",
+  "projectionDigest": "5451a71ed4a30801cc5ca7946537e5863e499fb342b6ffe28740f2fe1a315fdf",
+  "trackerDigest": "4cf0bb69db720afe7bbe5f77e03e7a5c75023bdd6f09f3419856a036a2565e33",
+  "generated": 24,
+  "accepted": 24,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 28,
+      "2": 28,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "emphasis": 24,
+      "executable-development-spec": 4,
+      "headings": 32,
+      "readable-human-document": 4
+    },
+    "byLevelAndFamily": {
+      "1/emphasis": 12,
+      "1/headings": 16,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "3/readable-human-document": 4,
+      "4/executable-development-spec": 4,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 68
+    }
+  },
+  "manifestDigest": "a5fb3c1931e1d7562703af8498198c8cdaa5116bc265dd2093afde74f2179a53",
+  "reviewDigests": [
+    "4be1c7874a18fcbe87584b7e6299ee0c1f8ac62b9a8c50b9cf5bee2192cdf34f",
+    "a880abf09fedcc894c16075f6ec9d90912a499dd7998a52bef148c71cc638f6a"
+  ],
+  "editorialDigest": "40c733c7fec8676b2126ac52d781cf1f4b400bdcb418eeb10797f30798286e83",
+  "summaryDigest": "e2802502bfe8faaedeb17aadffe36a50962b17b5f41fe3fe04a579b21a2f481d"
+}

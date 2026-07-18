@@ -1,0 +1,3371 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-emphasis-003",
+  "engineContractDigest": "ff970f7cd47f966eaf198d630fb9364711c5dafe1114e92b224c183411c36666",
+  "candidates": [
+    {
+      "candidateId": "l1-emphasis-family-game",
+      "revision": 1,
+      "candidateDigest": "5a058cfb8a82c82518c9c2ae0206f03541a7046c44fd05b3e21d802911e797f2",
+      "problemDigest": "e81ee9b7ddf2d50e67d1382cc2546bf9e09583602954abe86f93db7bd48848e3",
+      "fixtureDefinitionDigest": "fa9ffeaa5c54996c84a5dc68f7b22b6c5bfee1c1a63882ef9f313e8621f26c6d",
+      "fixtureResultsDigest": "be94d01b7d940128260967071626a57b11c3b49e256fd2b2416af594afc1700f",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-favorite-book",
+      "revision": 1,
+      "candidateDigest": "d41d4db91d39ddf58f1c96f5bc03ec37703226a5eed2f000b73f48ca5ffb7e5d",
+      "problemDigest": "b33e3cfe6c733ca295cc3ba77226277402fd5832045c71876b47f2c912a9b346",
+      "fixtureDefinitionDigest": "541dd05129f3e30a0d1d5303a883855d1d581266f308f10ab94e42a3aec745a7",
+      "fixtureResultsDigest": "58ea62d64a0244ef364263890bb6330258cdf3af229293ad72b02f67133dc2d0",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-fresh-fruit",
+      "revision": 1,
+      "candidateDigest": "6e4abfb4766890e0c15f71dc4db343d3ccc8f1958ae73c5f8d7881907d635dae",
+      "problemDigest": "8db6f65420312b9fc4699620c924dcda772fbb8516ed97c349adf7f760577806",
+      "fixtureDefinitionDigest": "dc362bc2995e610ae0f723fd09920cf6dda4bf1cf2dadbc9474fdb2e069a113e",
+      "fixtureResultsDigest": "a3eac7d768d6f0549e45ba6d83a7ff0e5624662a1d1a74ad22de1cea69930b18",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-important-note",
+      "revision": 1,
+      "candidateDigest": "1ad8589912bb4cf9a9e044f8e2b4f6ebfa6fe91eb7ca0eabe5c6aea82106894e",
+      "problemDigest": "7833665c194982f1b76afa02420bd5c6acf708f6a0dfefa084ee0a50e938c20a",
+      "fixtureDefinitionDigest": "ee27286d389f49a2d53bb1b6e5a291f3b8b5f6655d708880243f7500ce0ea3c2",
+      "fixtureResultsDigest": "b4eeb4171d2d172dcba97d43d1a2d37d84aa1032d61bba64c0a124418813dd1e",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-lost-keys",
+      "revision": 1,
+      "candidateDigest": "834adcaf7c0b04e741704e177d40884b834d5219113f8df00bb55a7bbc6a7e1c",
+      "problemDigest": "aad75890ce031f26bbcf39e4b2553da6189c314faa22f79f0a870cb38046d593",
+      "fixtureDefinitionDigest": "a0c92e9e6c5b6cb2ef53a4842ddefee5e96766834c3bfd5946915bdc001f9424",
+      "fixtureResultsDigest": "617f6e77aeb0a971b916ff4849d902ff2be7a3fc607ee9aa5e3871a0442ae300",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-main-idea",
+      "revision": 1,
+      "candidateDigest": "8df9bc4acb8c21a21f4aa35e194d71eb0459d81b572b27042f41293ce7e9f6a6",
+      "problemDigest": "caa37e4e106e04166ce904683463d29f5e1c370db12bd4b98db3fa2cda02db26",
+      "fixtureDefinitionDigest": "b1ffc711182af67509966f250fe1c973c9933c01b7525fb3193ce0cf36b8fa42",
+      "fixtureResultsDigest": "3f00007def3c8349bfbb7e0800cd9aa36aeb4361c787b7f1bbb32f755ac3aee3",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-new-arrival",
+      "revision": 1,
+      "candidateDigest": "c11707195a836269678f3ad7633cf453678c27b0948e17ec85ed9874243c7926",
+      "problemDigest": "9389279a1650cbb9dd126c05b493e3d950248eea46c589cbf2323826a83e66c3",
+      "fixtureDefinitionDigest": "8d211ff068332db07270236ca4d6f09f61ce2a8aba3a2911d2e98f3cd1860913",
+      "fixtureResultsDigest": "de07617b0ddc955bf42f04564c3ada7bf584cdae3ae09da9646d641f8b651781",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-next-step",
+      "revision": 1,
+      "candidateDigest": "0e023cc9711751623fd4d9e0b5e085ee98c239cc8aeb311326210a4f4369a468",
+      "problemDigest": "ae85e05258c2cd0f3f3260942c337337581147874524e35823f943e5a2dde14c",
+      "fixtureDefinitionDigest": "de9913d857ef03ad1b8040a2c8a82cbf4750baeacec265b781c93de2354d6cbf",
+      "fixtureResultsDigest": "0cacbbb50ece97fd72e5bc40b97675dfac8aa64a604ab536091b8f640f266af2",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-quiet-hours",
+      "revision": 1,
+      "candidateDigest": "503a41aec6edfcc61983f155c2e446b76e236b22f51df1a3bdd67a43f246fc9e",
+      "problemDigest": "4f199697ca4f4e8381c7e0e7f42d8246d8c169545d36752249d05101b1ea399f",
+      "fixtureDefinitionDigest": "bdd02ecdd246076f66c7556eba0e72163feddcb36c6c5ed73ba30399a297149e",
+      "fixtureResultsDigest": "ceb50865c9f1c46806dfa8304c32334512619094b801a4fc354ba2498f00b753",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-required-reading",
+      "revision": 1,
+      "candidateDigest": "abf536e97ea59f336c61192b7ac79e25fffcf9759e8c9f3d550fe7f8d6cf9a02",
+      "problemDigest": "807d019f1adb1e5e1310089e03f27c61dd3b983853d0cb7a935e42f87226aeb8",
+      "fixtureDefinitionDigest": "154a0346b8055e7f76bdd9d743b908ecce75ad39ae1b82cb487c600bdff9f9ea",
+      "fixtureResultsDigest": "9c8f748e7529b636d5036ebdf2930a3031724b2eee41234210b256edc350231d",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-safety-first",
+      "revision": 1,
+      "candidateDigest": "a0c55ae9c15539e6079a64f697bb795b6e6116723457d4571bc106367f681c51",
+      "problemDigest": "6274430f3d12ecf0be7a0a0c9a360bcd74b196328e37d5fb89b3c68d7dc3f695",
+      "fixtureDefinitionDigest": "1732b95762a0473e4dd622fc78c74dfc19dd60a2bdc86491d3f2219b5f140122",
+      "fixtureResultsDigest": "ed1aa327eacfe3e38ee8b0523bdba4944d8fa21e98b220f0e98fdb3cd31683e8",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-emphasis-weather-alert",
+      "revision": 1,
+      "candidateDigest": "4df2c8038590cad8c0071b688143807e01e1b173978bd979a7ee406104e16d3f",
+      "problemDigest": "c8ca820ccae09d6b1247e9aea1cf8802d90543b22db4c78598249c520ed560be",
+      "fixtureDefinitionDigest": "94117be919f4b291eb3da2042d4f036133d5386430cb8a9ff2e0043a4dd499de",
+      "fixtureResultsDigest": "70e9e33a71b91366bc021429359672293d123b899126ea725418c857d51e7735",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-bring-an-umbrella",
+      "revision": 1,
+      "candidateDigest": "833c8889359dd1f4bfc17580d01b7ecf19c585d42932dc9df1330974fd34e772",
+      "problemDigest": "6b8f8677fb817cfcbd5dc9a34626423f32b4e8af427a93c23753439c0903f434",
+      "fixtureDefinitionDigest": "81d82c93bbd8b838abb8909395234496c7f6eb8b2b05e33d7f73f9777594b58e",
+      "fixtureResultsDigest": "314793df59cdb305b14129eeee833a99bc194c26fba182aff9ebd3a3a7c8ef58",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-call-a-friend",
+      "revision": 1,
+      "candidateDigest": "114e808510068c93f3188eda8b2ee5dd8140958d0a587dc2636bed9eac666d71",
+      "problemDigest": "60e1b59a5f14ad1ecfad962993f49929d1d784bdc1d24e096752558e74b7154a",
+      "fixtureDefinitionDigest": "34a5d7d54f5fd45d47b328fe6c186ec0d93d562ca3368d64166de424c7931586",
+      "fixtureResultsDigest": "ce9ed8480627e47b4844f9afd1aa343d41869b8fb2cc11c5d20ecdaa3f0879ea",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-charge-your-phone",
+      "revision": 1,
+      "candidateDigest": "aa141dd061e7ff85842f85747bd165bb575883f86e78405a250e505dedd2a08b",
+      "problemDigest": "cdfe0c9193f2a51446c60ff089a832ef2cc7627d97131ffd92cdf6cbdf2f6436",
+      "fixtureDefinitionDigest": "2b162731a8c087f16077190cbb5eefcfc0fbbd8cd580869f759c860ad38a25c0",
+      "fixtureResultsDigest": "e745295722bba7e07be16686eac7faa30a61f9d01b5904b0d763ba23a335b22f",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-check-the-address",
+      "revision": 1,
+      "candidateDigest": "b630def80f013cbc6b8b0b9186fee4f2289b7fe19d94635ba1e8a80a573591bc",
+      "problemDigest": "67762e59b5a1095c060989746dc4d1cebe3eb4cec9e9e2962c5257facc4d3537",
+      "fixtureDefinitionDigest": "16c9310e164bb68e6778c18e860c109c4cc9fa37b73b2c5a24cb1ce363b8ad3c",
+      "fixtureResultsDigest": "aa85503cd253df22a9ac853e0a61e11bac9e0af0634ee1ad66b2266b19ab20b9",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-clean-your-desk",
+      "revision": 1,
+      "candidateDigest": "304907fa008dbf739ed15c84d08931cf99df9b3e05fcad6b9a0b51f9643334ad",
+      "problemDigest": "57d25ff0ec886436ac00cf3e8ad63f073c369913a810b4cdb1a461e4ab3f115b",
+      "fixtureDefinitionDigest": "76f857460eac5636f3b5b762460a245952c3cdcb02cef2b89ab3bf7fac6efe0e",
+      "fixtureResultsDigest": "ac91291e33f82d0bf56359f17581d02f7960beb0c5233a268f183caf20561f6c",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-lock-the-door",
+      "revision": 1,
+      "candidateDigest": "aa0d7659b4168a83cc72ffb33280b99a6adaf2188e52b426eee450f963f1fdb3",
+      "problemDigest": "bdc0065949aea4db4787f39d3dc864486cf113967a772d68a3dcb448c1d29a58",
+      "fixtureDefinitionDigest": "00da9026db5c42938234cd160543349677c81c3dab330ebf9057f5343b9b0832",
+      "fixtureResultsDigest": "319a3f6a446bbf706d1af48da0c29286b3fd910426064c3058ba0fc84b6bfd68",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-review-your-notes",
+      "revision": 1,
+      "candidateDigest": "d98f6787123811754bafeb3d2e4af1b579c1cea04024af0fe8dd915808d9cbdb",
+      "problemDigest": "11bdfe64f914206206fb9a43de6a2db6e63aab806e14550a5dbd1617833cb9c0",
+      "fixtureDefinitionDigest": "465bfd0dacf909cb3d2c5188d4f7ea23da4269c23292ffa9706dc5e98904abd6",
+      "fixtureResultsDigest": "b8926c01504e649a5faed3ddee32e808b61f3395a63699b2057ceb9a30ed82f2",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-save-your-work",
+      "revision": 1,
+      "candidateDigest": "83e8f3f4274437451fc97e9d4988a6028625c32182ce3fa43893cc524baaac4b",
+      "problemDigest": "209e73cad3f1bcd3a7011a2fb1bf4270a8a577a1135b78868b800a589455ec58",
+      "fixtureDefinitionDigest": "435e10b4ad8b6aa94986a0ac0243d0884fbe1e792e4f1721c2e4d5417e2f277f",
+      "fixtureResultsDigest": "cefcb83dc14ddd5588d4139d0d3bac7ec4ace90d23b9684b0cb64c958e31c3f6",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-set-an-alarm",
+      "revision": 1,
+      "candidateDigest": "0b823ac6fef40fc79b072512c8720a2edecc0aad3931062947453c977009e1bc",
+      "problemDigest": "65affeeccc0611a01b2b07a2eee2d1a8db64c663472fa181abfca358f3f22b2b",
+      "fixtureDefinitionDigest": "6f1153e698f286288a60e6df4fb71c61859dbb738d7e459fc2f7a85299cd5aef",
+      "fixtureResultsDigest": "f84f39f0dd5691822260161fa378c0cd4c64d6d7d2cf83a7141b4d2be94c2a67",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-take-a-break",
+      "revision": 1,
+      "candidateDigest": "7a4c732dd1f050074f060d148f45b41491d88c10f57e9c0eeba8168fe4501055",
+      "problemDigest": "f5214e2695a2e326da104706df3ff1ae1ce1d659bc0ed56b8ffb6f94918f5167",
+      "fixtureDefinitionDigest": "e706beac4a24b9ed7dc0c8fa0e8c8bd8ec8d495bf692c4714f1e1d12408fce0b",
+      "fixtureResultsDigest": "4382a50ef04b02403c90e16a62dde14580e4b3c99291ec21e4b50c358cb413b5",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-turn-off-the-lights",
+      "revision": 1,
+      "candidateDigest": "2f2e8d073baece30c971c3eae2488c6bf1bc459522754c8a6ebee7b182e05751",
+      "problemDigest": "e902fdf5b63cf0a89f79a11bc2b6b86f2a8d188fb6b142b7e956df1ec9cb1a7a",
+      "fixtureDefinitionDigest": "b1a47f696bceea6eb0b59833b3266133e2c4842cd927a33829e4cd51c8e3274f",
+      "fixtureResultsDigest": "ec3c08fb5b0b5effbae79dce776ef74c12d7c527d6c7e6f76bc32f406eee5bcc",
+      "fixtureCount": 9,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-emphasis-wash-your-hands",
+      "revision": 1,
+      "candidateDigest": "f7dd72dc6f5df3bc920b7697222150c87d5c15e8141750363d13fb057969ed81",
+      "problemDigest": "819c3999dd0dfbe64aedf3cf99284f298a97120df80d1dd2f6e312286a25c8fb",
+      "fixtureDefinitionDigest": "455df4377a63fb98cbd635a10d7a2bce0516504b27a50fa006f755b380f09919",
+      "fixtureResultsDigest": "9adb7acb00ead78f82620569ca68271b81fc972afab0b9b43e6764eb0889ae54",
+      "fixtureCount": 9,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l1-emphasis-family-game-canonical-canonical",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-different-prose-alternate",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-edge-case-inline-code",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-malformed-malformed",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-family-game-missing-missing",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-canonical-canonical",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-different-prose-alternate",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-edge-case-inline-code",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-malformed-malformed",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-favorite-book-missing-missing",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-canonical-canonical",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-different-prose-alternate",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-edge-case-inline-code",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-malformed-malformed",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-fresh-fruit-missing-missing",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-canonical-canonical",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-different-prose-alternate",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-edge-case-inline-code",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-malformed-malformed",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-important-note-missing-missing",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-canonical-canonical",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-different-prose-alternate",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-edge-case-inline-code",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-malformed-malformed",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-lost-keys-missing-missing",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-canonical-canonical",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-different-prose-alternate",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-edge-case-inline-code",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-malformed-malformed",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-main-idea-missing-missing",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-canonical-canonical",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-different-prose-alternate",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-edge-case-inline-code",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-malformed-malformed",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-new-arrival-missing-missing",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-canonical-canonical",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-different-prose-alternate",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-edge-case-inline-code",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-malformed-malformed",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-next-step-missing-missing",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-canonical-canonical",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-different-prose-alternate",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-edge-case-inline-code",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-malformed-malformed",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-quiet-hours-missing-missing",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-canonical-canonical",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-different-prose-alternate",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-edge-case-inline-code",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-malformed-malformed",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-required-reading-missing-missing",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-canonical-canonical",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-different-prose-alternate",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-edge-case-inline-code",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-malformed-malformed",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-safety-first-missing-missing",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-canonical-canonical",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-different-prose-alternate",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-edge-case-inline-code",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-malformed-malformed",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-emphasis-weather-alert-missing-missing",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-canonical-canonical",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-different-prose-alternate",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-edge-case-inline-code",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-malformed-malformed",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-bring-an-umbrella-missing-missing",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-canonical-canonical",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-different-prose-alternate",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-edge-case-inline-code",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-malformed-malformed",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-call-a-friend-missing-missing",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-canonical-canonical",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-different-prose-alternate",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-edge-case-inline-code",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-malformed-malformed",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-charge-your-phone-missing-missing",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-canonical-canonical",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-different-prose-alternate",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-edge-case-inline-code",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-malformed-malformed",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-check-the-address-missing-missing",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-canonical-canonical",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-different-prose-alternate",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-edge-case-inline-code",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-malformed-malformed",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-clean-your-desk-missing-missing",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-canonical-canonical",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-different-prose-alternate",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-edge-case-inline-code",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-malformed-malformed",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-lock-the-door-missing-missing",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-canonical-canonical",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-different-prose-alternate",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-edge-case-inline-code",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-malformed-malformed",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-review-your-notes-missing-missing",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-canonical-canonical",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-different-prose-alternate",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-edge-case-inline-code",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-malformed-malformed",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-save-your-work-missing-missing",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-canonical-canonical",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-different-prose-alternate",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-edge-case-inline-code",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-malformed-malformed",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-set-an-alarm-missing-missing",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-canonical-canonical",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-different-prose-alternate",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-edge-case-inline-code",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-malformed-malformed",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-take-a-break-missing-missing",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-canonical-canonical",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-different-prose-alternate",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-edge-case-inline-code",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-malformed-malformed",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-turn-off-the-lights-missing-missing",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-canonical-canonical",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-different-prose-alternate",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-edge-case-inline-code",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-malformed-malformed",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-bold-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-emphasis-wash-your-hands-missing-missing",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-bold-emphasis"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "9bb731f86c21ee8fcad7c304a4340e535b8c2ed8d892d82e4c9dc3fe64726da3"
+}

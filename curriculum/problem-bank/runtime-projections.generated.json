@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "b7222a0ec988df010853632f01180fa2bfaac4206c5d5855a8c364eb03d6ca4b",
+    "bankDigest": "597af246da24671e1c443493e623ed8fc555f048e6d77bf68ab62bf14763e2d6",
     "counts": {
-      "1": 16,
-      "2": 16,
+      "1": 28,
+      "2": 28,
       "3": 4,
       "4": 4,
       "5": 4
@@ -13,6 +13,918 @@
   },
   "levels": {
     "1": [
+      {
+        "id": "l1-emphasis-family-game",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Family game**",
+        "starterText": "",
+        "protectedContent": [
+          "Family game"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "family"
+          ],
+          "terms": [
+            "Family game"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "family-game",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-favorite-book",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Favorite book**",
+        "starterText": "",
+        "protectedContent": [
+          "Favorite book"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "reading"
+          ],
+          "terms": [
+            "Favorite book"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "favorite-book",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-fresh-fruit",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Fresh fruit**",
+        "starterText": "",
+        "protectedContent": [
+          "Fresh fruit"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "food"
+          ],
+          "terms": [
+            "Fresh fruit"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fresh-fruit",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-important-note",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Important note**",
+        "starterText": "",
+        "protectedContent": [
+          "Important note"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "information"
+          ],
+          "terms": [
+            "Important note"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "important-note",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-lost-keys",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Lost keys**",
+        "starterText": "",
+        "protectedContent": [
+          "Lost keys"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home"
+          ],
+          "terms": [
+            "Lost keys"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "lost-keys",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-main-idea",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Main idea**",
+        "starterText": "",
+        "protectedContent": [
+          "Main idea"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "reading"
+          ],
+          "terms": [
+            "Main idea"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "main-idea",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-new-arrival",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**New arrival**",
+        "starterText": "",
+        "protectedContent": [
+          "New arrival"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "shopping"
+          ],
+          "terms": [
+            "New arrival"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "new-arrival",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-next-step",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Next step**",
+        "starterText": "",
+        "protectedContent": [
+          "Next step"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "instructions"
+          ],
+          "terms": [
+            "Next step"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "next-step",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-quiet-hours",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Quiet hours**",
+        "starterText": "",
+        "protectedContent": [
+          "Quiet hours"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home"
+          ],
+          "terms": [
+            "Quiet hours"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "quiet-hours",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-required-reading",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Required reading**",
+        "starterText": "",
+        "protectedContent": [
+          "Required reading"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "school"
+          ],
+          "terms": [
+            "Required reading"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "required-reading",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-safety-first",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Safety first**",
+        "starterText": "",
+        "protectedContent": [
+          "Safety first"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "safety"
+          ],
+          "terms": [
+            "Safety first"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "safety-first",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l1-emphasis-weather-alert",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis",
+        "prompt": "Write one short phrase in bold Markdown.",
+        "target": "**Weather alert**",
+        "starterText": "",
+        "protectedContent": [
+          "Weather alert"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-1-bold-emphasis",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "weather"
+          ],
+          "terms": [
+            "Weather alert"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "weather-alert",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
       {
         "id": "l1-heading-apple",
         "schemaVersion": 2,
@@ -1311,6 +2223,918 @@
       }
     ],
     "2": [
+      {
+        "id": "l2-emphasis-bring-an-umbrella",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Bring an umbrella**",
+        "starterText": "",
+        "protectedContent": [
+          "Bring an umbrella"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "weather-routine"
+          ],
+          "terms": [
+            "Bring an umbrella"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "bring-an-umbrella",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-call-a-friend",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Call a friend**",
+        "starterText": "",
+        "protectedContent": [
+          "Call a friend"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "communication-routine"
+          ],
+          "terms": [
+            "Call a friend"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "call-a-friend",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-charge-your-phone",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Charge your phone**",
+        "starterText": "",
+        "protectedContent": [
+          "Charge your phone"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "technology-routine"
+          ],
+          "terms": [
+            "Charge your phone"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "charge-your-phone",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-check-the-address",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Check the address**",
+        "starterText": "",
+        "protectedContent": [
+          "Check the address"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "daily-routine"
+          ],
+          "terms": [
+            "Check the address"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "check-the-address",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-clean-your-desk",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Clean your desk**",
+        "starterText": "",
+        "protectedContent": [
+          "Clean your desk"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "workspace-routine"
+          ],
+          "terms": [
+            "Clean your desk"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "clean-your-desk",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-lock-the-door",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Lock the door**",
+        "starterText": "",
+        "protectedContent": [
+          "Lock the door"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-routine"
+          ],
+          "terms": [
+            "Lock the door"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "lock-the-door",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-review-your-notes",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Review your notes**",
+        "starterText": "",
+        "protectedContent": [
+          "Review your notes"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "study-routine"
+          ],
+          "terms": [
+            "Review your notes"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "review-your-notes",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-save-your-work",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Save your work**",
+        "starterText": "",
+        "protectedContent": [
+          "Save your work"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "computer-routine"
+          ],
+          "terms": [
+            "Save your work"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "save-your-work",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-set-an-alarm",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Set an alarm**",
+        "starterText": "",
+        "protectedContent": [
+          "Set an alarm"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "daily-routine"
+          ],
+          "terms": [
+            "Set an alarm"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "set-an-alarm",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-take-a-break",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Take a break**",
+        "starterText": "",
+        "protectedContent": [
+          "Take a break"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "wellbeing-routine"
+          ],
+          "terms": [
+            "Take a break"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "take-a-break",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-turn-off-the-lights",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Turn off the lights**",
+        "starterText": "",
+        "protectedContent": [
+          "Turn off the lights"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-routine"
+          ],
+          "terms": [
+            "Turn off the lights"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "turn-off-the-lights",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
+      {
+        "id": "l2-emphasis-wash-your-hands",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "emphasis",
+        "skillIds": [
+          "bold-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "Bold emphasis makes one phrase stand out.",
+          "howTo": "Wrap the phrase with two asterisks on each side.",
+          "example": "**Good news**"
+        },
+        "syntaxTokens": [
+          "**",
+          "Phrase",
+          "**"
+        ],
+        "title": "Bold emphasis recall",
+        "prompt": "From memory, write one short phrase in bold Markdown.",
+        "target": "**Wash your hands**",
+        "starterText": "",
+        "protectedContent": [
+          "Wash your hands"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-bold-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 10,
+            "feedback": "Make at least one phrase bold with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-bold-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "strong",
+            "max": 1,
+            "review": "Keep bold focused on one important phrase in this short note."
+          }
+        ],
+        "hints": [
+          "Bold text has a matching marker on both sides.",
+          "Type two asterisks, the phrase, then two more asterisks.",
+          "Example: `**Good news**`"
+        ],
+        "retryFamily": "level-2-bold-emphasis-recall",
+        "reviewTags": [
+          "focused-bold-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "health-routine"
+          ],
+          "terms": [
+            "Wash your hands"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "wash-your-hands",
+        "sourceBatchId": "2026-07-19-l1-l2-emphasis-003"
+      },
       {
         "id": "l2-heading-bus-schedule",
         "schemaVersion": 2,
@@ -4803,5 +6627,5 @@
       }
     ]
   },
-  "projectionDigest": "3197efe0c247dd9b32eb118994c808469ff2bb6f9b4bc5d9dc67c0c5f506be94"
+  "projectionDigest": "5451a71ed4a30801cc5ca7946537e5863e499fb342b6ffe28740f2fe1a315fdf"
 }

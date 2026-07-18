@@ -251,6 +251,64 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("validates generic nonblocking editorial checks safely", () => {
+    const invalid = problem("invalid-editorial", {
+      editorialChecks: [
+        {
+          id: " ",
+          kind: "max-inline-count",
+          scope: { kind: "section", headingDepth: 2, occurrence: -1 },
+          inline: "strong",
+          max: -1,
+          review: " ",
+        },
+        {
+          id: "unknown-review",
+          kind: "semantic-review",
+          review: "Review prose meaning.",
+        },
+        {
+          id: "missing-scope",
+          kind: "max-inline-count",
+          inline: "strong",
+          max: 1,
+          review: "Review focus.",
+        },
+        {
+          id: "unknown-shapes",
+          kind: "max-inline-count",
+          scope: { kind: "chapter" },
+          inline: "underline",
+          max: 1,
+          review: "Review focus.",
+        },
+        {
+          id: "invalid-heading-depth",
+          kind: "max-inline-count",
+          scope: { kind: "section", headingDepth: 7, occurrence: 0 },
+          inline: "strong",
+          max: 1,
+          review: "Review focus.",
+        },
+      ] as unknown as NormalizedProblem["editorialChecks"],
+    })
+
+    expect(() => validate([invalid, problem("peer")])).not.toThrow()
+    expect(validate([invalid, problem("peer")])).toEqual(
+      expect.arrayContaining([
+        "Problem invalid-editorial has blank editorial check id",
+        "Problem invalid-editorial editorial check <blank> has blank review",
+        "Problem invalid-editorial editorial check <blank> has invalid section occurrence",
+        "Problem invalid-editorial editorial check <blank> has invalid max",
+        "Problem invalid-editorial has unsupported editorial check kind: semantic-review",
+        "Problem invalid-editorial editorial check missing-scope has invalid scope",
+        "Problem invalid-editorial editorial check unknown-shapes has unsupported scope kind: chapter",
+        "Problem invalid-editorial editorial check unknown-shapes has unsupported inline kind: underline",
+        "Problem invalid-editorial editorial check invalid-heading-depth has invalid section heading depth",
+      ]),
+    )
+  })
+
   it("scopes transfer cardinality by level, flavor, and retry family", () => {
     const first = problem("level-1-only", { retryFamily: "shared" })
     const otherLevel = problem("level-2-only", {

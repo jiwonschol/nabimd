@@ -146,11 +146,11 @@ export async function buildSeedBatchArtifacts({
       left.id.localeCompare(right.id),
     ),
   }
-  const engineContract = await buildEngineContract(repositoryRoot)
-  const verification = await verifyBatchFixtures({
+  const regressionEngineContract = await buildEngineContract(repositoryRoot)
+  const regressionVerification = await verifyBatchFixtures({
     normalized,
     fixtureArtifact,
-    engineContractDigest: engineContract.engineContractDigest,
+    engineContractDigest: regressionEngineContract.engineContractDigest,
     materialize: (candidate: JsonRecord) => {
       const { candidateDigest: _candidateDigest, sourceBatch, ...input } = candidate
       return normalizeProblem({
@@ -160,6 +160,18 @@ export async function buildSeedBatchArtifacts({
     },
     evaluate: evaluateProblem,
   })
+  const batchDir = resolve(repositoryRoot, BATCH_ROOT)
+  const reviewFiles = (await readdir(resolve(batchDir, "reviews"), {
+    withFileTypes: true,
+  })).filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+  const sealed =
+    reviewFiles.length > 0 || Boolean(await optionalJson(resolve(batchDir, "editorial.json")))
+  const engineContract = sealed
+    ? await readJson(resolve(batchDir, "engine-contract.json"))
+    : regressionEngineContract
+  const verification = sealed
+    ? await readJson(resolve(batchDir, "verification.json"))
+    : regressionVerification
   const manifest = buildReviewManifest({
     normalized,
     fixtureArtifact,
@@ -198,6 +210,8 @@ export async function buildSeedBatchArtifacts({
     fixtureArtifact,
     engineContract,
     verification,
+    regressionEngineContract,
+    regressionVerification,
     manifest,
     runtimeProjections,
     tracker,

@@ -27,8 +27,8 @@ describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
     expect(computed.fixtureArtifact.fixtures).toHaveLength(
       headingBatch002Fixtures.length,
     )
-    expect(computed.verification.errors).toEqual([])
-    expect(computed.verification.candidates).toHaveLength(24)
+    expect(computed.regressionVerification.errors).toEqual([])
+    expect(computed.regressionVerification.candidates).toHaveLength(24)
     expect(
       computed.normalized.candidates.every(
         (candidate: { sourceBatch: string; sourceBatchId?: string }) =>
@@ -37,7 +37,7 @@ describe("schema-v2 Level 1-2 heading expansion batch 002", () => {
       ),
     ).toBe(true)
     expect(
-      computed.verification.candidates.every(
+      computed.regressionVerification.candidates.every(
         (candidate: { passed: boolean }) => candidate.passed,
       ),
     ).toBe(true)

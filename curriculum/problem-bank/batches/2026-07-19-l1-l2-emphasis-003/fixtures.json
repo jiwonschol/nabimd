@@ -1,0 +1,2094 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-emphasis-003",
+  "fixtures": [
+    {
+      "id": "l1-emphasis-family-game-canonical-canonical",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Family game**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-family-game-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 12**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-family-game-different-prose-alternate",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 12**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-family-game-edge-case-inline-code",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 12**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-family-game-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 12*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-family-game-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 12__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-family-game-malformed-malformed",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Family game",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-family-game-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Family game** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-family-game-missing-missing",
+      "problemId": "l1-emphasis-family-game",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Family game",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-favorite-book-canonical-canonical",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Favorite book**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-favorite-book-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 9**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-favorite-book-different-prose-alternate",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 9**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-favorite-book-edge-case-inline-code",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 9**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-favorite-book-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 9*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-favorite-book-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 9__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-favorite-book-malformed-malformed",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Favorite book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-favorite-book-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Favorite book** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-favorite-book-missing-missing",
+      "problemId": "l1-emphasis-favorite-book",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Favorite book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-canonical-canonical",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Fresh fruit**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 10**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-different-prose-alternate",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 10**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-edge-case-inline-code",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 10**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 10*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 10__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-malformed-malformed",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Fresh fruit",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Fresh fruit** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-fresh-fruit-missing-missing",
+      "problemId": "l1-emphasis-fresh-fruit",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Fresh fruit",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-important-note-canonical-canonical",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Important note**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-important-note-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 1**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-important-note-different-prose-alternate",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 1**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-important-note-edge-case-inline-code",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 1**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-important-note-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 1*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-important-note-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 1__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-important-note-malformed-malformed",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Important note",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-important-note-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Important note** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-important-note-missing-missing",
+      "problemId": "l1-emphasis-important-note",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Important note",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-lost-keys-canonical-canonical",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Lost keys**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-lost-keys-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 11**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-lost-keys-different-prose-alternate",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 11**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-lost-keys-edge-case-inline-code",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 11**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-lost-keys-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 11*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-lost-keys-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 11__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-lost-keys-malformed-malformed",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Lost keys",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-lost-keys-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Lost keys** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-lost-keys-missing-missing",
+      "problemId": "l1-emphasis-lost-keys",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Lost keys",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-main-idea-canonical-canonical",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Main idea**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-main-idea-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 5**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-main-idea-different-prose-alternate",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 5**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-main-idea-edge-case-inline-code",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 5**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-main-idea-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 5*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-main-idea-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 5__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-main-idea-malformed-malformed",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Main idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-main-idea-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Main idea** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-main-idea-missing-missing",
+      "problemId": "l1-emphasis-main-idea",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Main idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-new-arrival-canonical-canonical",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**New arrival**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-new-arrival-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 3**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-new-arrival-different-prose-alternate",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 3**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-new-arrival-edge-case-inline-code",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 3**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-new-arrival-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 3*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-new-arrival-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 3__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-new-arrival-malformed-malformed",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**New arrival",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-new-arrival-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**New arrival** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-new-arrival-missing-missing",
+      "problemId": "l1-emphasis-new-arrival",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "New arrival",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-next-step-canonical-canonical",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Next step**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-next-step-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 6**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-next-step-different-prose-alternate",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 6**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-next-step-edge-case-inline-code",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 6**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-next-step-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 6*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-next-step-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 6__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-next-step-malformed-malformed",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Next step",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-next-step-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Next step** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-next-step-missing-missing",
+      "problemId": "l1-emphasis-next-step",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Next step",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-canonical-canonical",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Quiet hours**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 7**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-different-prose-alternate",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 7**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-edge-case-inline-code",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 7**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 7*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 7__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-malformed-malformed",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Quiet hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Quiet hours** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-quiet-hours-missing-missing",
+      "problemId": "l1-emphasis-quiet-hours",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Quiet hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-required-reading-canonical-canonical",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Required reading**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-required-reading-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 4**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-required-reading-different-prose-alternate",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 4**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-required-reading-edge-case-inline-code",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 4**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-required-reading-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 4*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-required-reading-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 4__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-required-reading-malformed-malformed",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Required reading",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-required-reading-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Required reading** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-required-reading-missing-missing",
+      "problemId": "l1-emphasis-required-reading",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Required reading",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-safety-first-canonical-canonical",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Safety first**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-safety-first-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 2**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-safety-first-different-prose-alternate",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 2**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-safety-first-edge-case-inline-code",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 2**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-safety-first-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 2*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-safety-first-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 2__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-safety-first-malformed-malformed",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Safety first",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-safety-first-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Safety first** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-safety-first-missing-missing",
+      "problemId": "l1-emphasis-safety-first",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Safety first",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-weather-alert-canonical-canonical",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Weather alert**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-weather-alert-case-spelling-variation-case-variation",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 8**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-weather-alert-different-prose-alternate",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Blue balloon 8**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-weather-alert-edge-case-inline-code",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Blue balloon 8**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-weather-alert-edge-case-inline-emphasis",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Blue balloon 8*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-weather-alert-edge-case-underscore-strong",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Blue balloon 8__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-emphasis-weather-alert-malformed-malformed",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Weather alert",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l1-emphasis-weather-alert-matched-with-review-matched-with-refinement",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Weather alert** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l1-emphasis-weather-alert-missing-missing",
+      "problemId": "l1-emphasis-weather-alert",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Weather alert",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-canonical-canonical",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Bring an umbrella**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 15**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-different-prose-alternate",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 15**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-edge-case-inline-code",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 15**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 15*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 15__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-malformed-malformed",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Bring an umbrella",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Bring an umbrella** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-bring-an-umbrella-missing-missing",
+      "problemId": "l2-emphasis-bring-an-umbrella",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Bring an umbrella",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-canonical-canonical",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Call a friend**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 19**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-different-prose-alternate",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 19**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-edge-case-inline-code",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 19**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 19*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 19__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-malformed-malformed",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Call a friend",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Call a friend** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-call-a-friend-missing-missing",
+      "problemId": "l2-emphasis-call-a-friend",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Call a friend",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-canonical-canonical",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Charge your phone**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 16**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-different-prose-alternate",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 16**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-edge-case-inline-code",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 16**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 16*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 16__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-malformed-malformed",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Charge your phone",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Charge your phone** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-charge-your-phone-missing-missing",
+      "problemId": "l2-emphasis-charge-your-phone",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Charge your phone",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-check-the-address-canonical-canonical",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Check the address**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-check-the-address-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 14**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-check-the-address-different-prose-alternate",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 14**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-check-the-address-edge-case-inline-code",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 14**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-check-the-address-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 14*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-check-the-address-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 14__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-check-the-address-malformed-malformed",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Check the address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-check-the-address-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Check the address** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-check-the-address-missing-missing",
+      "problemId": "l2-emphasis-check-the-address",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Check the address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-canonical-canonical",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Clean your desk**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 22**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-different-prose-alternate",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 22**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-edge-case-inline-code",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 22**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 22*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 22__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-malformed-malformed",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Clean your desk",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Clean your desk** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-clean-your-desk-missing-missing",
+      "problemId": "l2-emphasis-clean-your-desk",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Clean your desk",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-canonical-canonical",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Lock the door**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 17**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-different-prose-alternate",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 17**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-edge-case-inline-code",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 17**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 17*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 17__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-malformed-malformed",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Lock the door** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-lock-the-door-missing-missing",
+      "problemId": "l2-emphasis-lock-the-door",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-canonical-canonical",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Review your notes**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 23**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-different-prose-alternate",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 23**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-edge-case-inline-code",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 23**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 23*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 23__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-malformed-malformed",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Review your notes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Review your notes** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-review-your-notes-missing-missing",
+      "problemId": "l2-emphasis-review-your-notes",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Review your notes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-save-your-work-canonical-canonical",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Save your work**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-save-your-work-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 13**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-save-your-work-different-prose-alternate",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 13**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-save-your-work-edge-case-inline-code",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 13**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-save-your-work-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 13*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-save-your-work-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 13__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-save-your-work-malformed-malformed",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Save your work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-save-your-work-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Save your work** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-save-your-work-missing-missing",
+      "problemId": "l2-emphasis-save-your-work",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Save your work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-canonical-canonical",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Set an alarm**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 20**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-different-prose-alternate",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 20**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-edge-case-inline-code",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 20**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 20*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 20__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-malformed-malformed",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Set an alarm",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Set an alarm** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-set-an-alarm-missing-missing",
+      "problemId": "l2-emphasis-set-an-alarm",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Set an alarm",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-take-a-break-canonical-canonical",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Take a break**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-take-a-break-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 21**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-take-a-break-different-prose-alternate",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 21**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-take-a-break-edge-case-inline-code",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 21**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-take-a-break-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 21*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-take-a-break-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 21__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-take-a-break-malformed-malformed",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Take a break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-take-a-break-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Take a break** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-take-a-break-missing-missing",
+      "problemId": "l2-emphasis-take-a-break",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Take a break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-canonical-canonical",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Turn off the lights**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 24**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-different-prose-alternate",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 24**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-edge-case-inline-code",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 24**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 24*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 24__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-malformed-malformed",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Turn off the lights",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Turn off the lights** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-turn-off-the-lights-missing-missing",
+      "problemId": "l2-emphasis-turn-off-the-lights",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Turn off the lights",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-canonical-canonical",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "**Wash your hands**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-case-spelling-variation-case-variation",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "**MISPELED words 18**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-different-prose-alternate",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "**Check a new task 18**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-edge-case-inline-code",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "`**Check a new task 18**`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-edge-case-inline-emphasis",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "*Check a new task 18*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-edge-case-underscore-strong",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "__Check a new task 18__",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-malformed-malformed",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "**Wash your hands",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-matched-with-review-matched-with-refinement",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "**Wash your hands** and **Another point**",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-bold-focused"
+      ]
+    },
+    {
+      "id": "l2-emphasis-wash-your-hands-missing-missing",
+      "problemId": "l2-emphasis-wash-your-hands",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-emphasis",
+      "source": "Wash your hands",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-emphasis"
+    }
+  ]
+}

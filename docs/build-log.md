@@ -1161,3 +1161,30 @@ forward, the delivery gate is an open public PR with Codex review and CI;
 comments left independently by the installed CodeRabbit GitHub app may be
 considered as a secondary signal, but local CodeRabbit authentication is not a
 blocking step.
+
+### Issue #9 bold-emphasis expansion
+
+The third schema-v2 batch adds the first new Level 1–2 syntax family without
+changing the two-verdict product contract. It grades the parsed Markdown
+`strong` node, not the learner's prose or a preferred delimiter spelling.
+Consequently `**phrase**`, `__phrase__`, and strong text nested with other valid
+inline Markdown are Matched. Plain text, italic-only text, unclosed markers,
+and marker characters inside inline code do not satisfy the exercise. Multiple
+bold spans remain Matched; a short-note focus suggestion is optional Review and
+cannot revoke the pass.
+
+The predicate and schema changes were written test-first. The implementation
+also exposed an evidence-lifecycle requirement: a new editorial predicate
+changes the current engine contract, but must not rewrite an already accepted
+batch's immutable verification transcript. Older batches now keep their sealed
+engine evidence while all of their fixtures replay against the current engine
+as regression proof. Incomplete later batches likewise cannot invalidate an
+earlier batch's own gate.
+
+Batch `2026-07-19-l1-l2-emphasis-003` contains 24 candidates and 216 frozen
+real-engine fixtures. Two independent reviewers accepted 24/24 against manifest
+`a5fb3c1931e1d7562703af8498198c8cdaa5116bc265dd2093afde74f2179a53`;
+one reviewer also ran 360 additional CommonMark adversarial probes. Separate
+editorial inspection accepted all eight dimensions for 24/24. Publication
+raises the deterministic runtime bank to 68 problems with a 28/28/4/4/4 split.
+The live learner still makes no AI or learner-content API request.

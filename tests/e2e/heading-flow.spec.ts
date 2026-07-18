@@ -22,6 +22,30 @@ async function enterLevel1(page: Page) {
   await enterLevel(page, 1)
 }
 
+async function currentProblemFamily(page: Page) {
+  const panelId = await page.getByRole("tab", { name: "Write" }).getAttribute("aria-controls")
+  if (!panelId?.startsWith("write-panel-")) {
+    throw new Error("The active Write tab must identify its problem")
+  }
+  return panelId.includes("-emphasis-") ? "emphasis" : "headings"
+}
+
+async function validDifferentProse(page: Page, words: string) {
+  return (await currentProblemFamily(page)) === "emphasis"
+    ? `**${words}**`
+    : `# ${words}`
+}
+
+async function malformedSource(page: Page) {
+  return (await currentProblemFamily(page)) === "emphasis" ? "**No closing" : "#No space"
+}
+
+async function expectedRepairFeedback(page: Page) {
+  return (await currentProblemFamily(page)) === "emphasis"
+    ? "Make at least one phrase bold with Markdown."
+    : "Add one space after the hash symbol."
+}
+
 test("greets a fresh session with the definitive five-level ladder", async ({
   page,
 }) => {
@@ -58,12 +82,10 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
 
   const editor = sourceEditor(page)
   await expect(editor).toBeFocused()
-  await expect(page.getByRole("complementary", { name: "Hint" })).toContainText(
-    "A main heading names the whole document.",
-  )
+  await expect(page.getByLabel("Markdown pattern")).toBeVisible()
 
-  for (const answer of ["# first answer", "# second answer", "# third answer"]) {
-    await editor.fill(answer)
+  for (const words of ["first answer", "second answer", "third answer"]) {
+    await editor.fill(await validDifferentProse(page, words))
     await editor.press("Control+Enter")
     await expect(page.getByRole("status")).toContainText("Matched")
     const next = page.getByRole("button", { name: "Next" })
@@ -87,7 +109,7 @@ test("grades Markdown structure without grading capitalization or prose", async 
   await page.goto("/")
   await enterLevel1(page)
 
-  await sourceEditor(page).fill("# aple")
+  await sourceEditor(page).fill(await validDifferentProse(page, "aple"))
   await sourceEditor(page).press("Control+Enter")
   await expect(page.getByRole("status")).toContainText("Matched")
   await expect(page.getByRole("button", { name: "Next" })).toBeVisible()
@@ -99,23 +121,25 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await page.goto("/")
   await enterLevel1(page)
   const editor = sourceEditor(page)
+  const originalGoal = await page.getByRole("region", { name: "Goal" }).textContent()
+  const repairFeedback = await expectedRepairFeedback(page)
 
-  await editor.fill("#No space")
+  await editor.fill(await malformedSource(page))
   await editor.press("Control+Enter")
   await expect(page.getByRole("status")).toContainText("Try again")
   await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
   await expect(page.getByRole("tabpanel", { name: "Review" })).toContainText(
-    "Add one space after the hash symbol.",
+    repairFeedback,
   )
 
   await page.keyboard.press("Alt+1")
   await expect(editor).toBeFocused()
-  await editor.fill("# repaired")
+  await editor.fill(await validDifferentProse(page, "repaired"))
   await editor.press("Control+Enter")
   await page.getByRole("button", { name: "Next" }).click()
   await expect(page.getByLabel("Practice progress")).toContainText("2 of 3")
-  await expect(page.getByRole("region", { name: "Goal" })).not.toContainText(
-    "Apple",
+  await expect(page.getByRole("region", { name: "Goal" })).not.toHaveText(
+    originalGoal ?? "",
   )
 })
 

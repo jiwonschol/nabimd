@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-emphasis-003",
+  "reviewerId": "codex-atlas-batch003",
+  "reviewRunId": "atlas-batch003-2026-07-19-001",
+  "declaredIndependent": true,
+  "reviewedOn": "2026-07-19",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "a5fb3c1931e1d7562703af8498198c8cdaa5116bc265dd2093afde74f2179a53",
+  "verdicts": [
+    {
+      "candidateId": "l1-emphasis-family-game",
+      "revision": 1,
+      "candidateDigest": "5a058cfb8a82c82518c9c2ae0206f03541a7046c44fd05b3e21d802911e797f2",
+      "fixtureResultsDigest": "be94d01b7d940128260967071626a57b11c3b49e256fd2b2416af594afc1700f",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-favorite-book",
+      "revision": 1,
+      "candidateDigest": "d41d4db91d39ddf58f1c96f5bc03ec37703226a5eed2f000b73f48ca5ffb7e5d",
+      "fixtureResultsDigest": "58ea62d64a0244ef364263890bb6330258cdf3af229293ad72b02f67133dc2d0",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-fresh-fruit",
+      "revision": 1,
+      "candidateDigest": "6e4abfb4766890e0c15f71dc4db343d3ccc8f1958ae73c5f8d7881907d635dae",
+      "fixtureResultsDigest": "a3eac7d768d6f0549e45ba6d83a7ff0e5624662a1d1a74ad22de1cea69930b18",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-important-note",
+      "revision": 1,
+      "candidateDigest": "1ad8589912bb4cf9a9e044f8e2b4f6ebfa6fe91eb7ca0eabe5c6aea82106894e",
+      "fixtureResultsDigest": "b4eeb4171d2d172dcba97d43d1a2d37d84aa1032d61bba64c0a124418813dd1e",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-lost-keys",
+      "revision": 1,
+      "candidateDigest": "834adcaf7c0b04e741704e177d40884b834d5219113f8df00bb55a7bbc6a7e1c",
+      "fixtureResultsDigest": "617f6e77aeb0a971b916ff4849d902ff2be7a3fc607ee9aa5e3871a0442ae300",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-main-idea",
+      "revision": 1,
+      "candidateDigest": "8df9bc4acb8c21a21f4aa35e194d71eb0459d81b572b27042f41293ce7e9f6a6",
+      "fixtureResultsDigest": "3f00007def3c8349bfbb7e0800cd9aa36aeb4361c787b7f1bbb32f755ac3aee3",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-new-arrival",
+      "revision": 1,
+      "candidateDigest": "c11707195a836269678f3ad7633cf453678c27b0948e17ec85ed9874243c7926",
+      "fixtureResultsDigest": "de07617b0ddc955bf42f04564c3ada7bf584cdae3ae09da9646d641f8b651781",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-next-step",
+      "revision": 1,
+      "candidateDigest": "0e023cc9711751623fd4d9e0b5e085ee98c239cc8aeb311326210a4f4369a468",
+      "fixtureResultsDigest": "0cacbbb50ece97fd72e5bc40b97675dfac8aa64a604ab536091b8f640f266af2",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-quiet-hours",
+      "revision": 1,
+      "candidateDigest": "503a41aec6edfcc61983f155c2e446b76e236b22f51df1a3bdd67a43f246fc9e",
+      "fixtureResultsDigest": "ceb50865c9f1c46806dfa8304c32334512619094b801a4fc354ba2498f00b753",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-required-reading",
+      "revision": 1,
+      "candidateDigest": "abf536e97ea59f336c61192b7ac79e25fffcf9759e8c9f3d550fe7f8d6cf9a02",
+      "fixtureResultsDigest": "9c8f748e7529b636d5036ebdf2930a3031724b2eee41234210b256edc350231d",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-safety-first",
+      "revision": 1,
+      "candidateDigest": "a0c55ae9c15539e6079a64f697bb795b6e6116723457d4571bc106367f681c51",
+      "fixtureResultsDigest": "ed1aa327eacfe3e38ee8b0523bdba4944d8fa21e98b220f0e98fdb3cd31683e8",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l1-emphasis-weather-alert",
+      "revision": 1,
+      "candidateDigest": "4df2c8038590cad8c0071b688143807e01e1b173978bd979a7ee406104e16d3f",
+      "fixtureResultsDigest": "70e9e33a71b91366bc021429359672293d123b899126ea725418c857d51e7735",
+      "verdict": "pass",
+      "notes": "Everyday guided phrase; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-bring-an-umbrella",
+      "revision": 1,
+      "candidateDigest": "833c8889359dd1f4bfc17580d01b7ecf19c585d42932dc9df1330974fd34e772",
+      "fixtureResultsDigest": "314793df59cdb305b14129eeee833a99bc194c26fba182aff9ebd3a3a7c8ef58",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-call-a-friend",
+      "revision": 1,
+      "candidateDigest": "114e808510068c93f3188eda8b2ee5dd8140958d0a587dc2636bed9eac666d71",
+      "fixtureResultsDigest": "ce9ed8480627e47b4844f9afd1aa343d41869b8fb2cc11c5d20ecdaa3f0879ea",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-charge-your-phone",
+      "revision": 1,
+      "candidateDigest": "aa141dd061e7ff85842f85747bd165bb575883f86e78405a250e505dedd2a08b",
+      "fixtureResultsDigest": "e745295722bba7e07be16686eac7faa30a61f9d01b5904b0d763ba23a335b22f",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-check-the-address",
+      "revision": 1,
+      "candidateDigest": "b630def80f013cbc6b8b0b9186fee4f2289b7fe19d94635ba1e8a80a573591bc",
+      "fixtureResultsDigest": "aa85503cd253df22a9ac853e0a61e11bac9e0af0634ee1ad66b2266b19ab20b9",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-clean-your-desk",
+      "revision": 1,
+      "candidateDigest": "304907fa008dbf739ed15c84d08931cf99df9b3e05fcad6b9a0b51f9643334ad",
+      "fixtureResultsDigest": "ac91291e33f82d0bf56359f17581d02f7960beb0c5233a268f183caf20561f6c",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-lock-the-door",
+      "revision": 1,
+      "candidateDigest": "aa0d7659b4168a83cc72ffb33280b99a6adaf2188e52b426eee450f963f1fdb3",
+      "fixtureResultsDigest": "319a3f6a446bbf706d1af48da0c29286b3fd910426064c3058ba0fc84b6bfd68",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-review-your-notes",
+      "revision": 1,
+      "candidateDigest": "d98f6787123811754bafeb3d2e4af1b579c1cea04024af0fe8dd915808d9cbdb",
+      "fixtureResultsDigest": "b8926c01504e649a5faed3ddee32e808b61f3395a63699b2057ceb9a30ed82f2",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-save-your-work",
+      "revision": 1,
+      "candidateDigest": "83e8f3f4274437451fc97e9d4988a6028625c32182ce3fa43893cc524baaac4b",
+      "fixtureResultsDigest": "cefcb83dc14ddd5588d4139d0d3bac7ec4ace90d23b9684b0cb64c958e31c3f6",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-set-an-alarm",
+      "revision": 1,
+      "candidateDigest": "0b823ac6fef40fc79b072512c8720a2edecc0aad3931062947453c977009e1bc",
+      "fixtureResultsDigest": "f84f39f0dd5691822260161fa378c0cd4c64d6d7d2cf83a7141b4d2be94c2a67",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-take-a-break",
+      "revision": 1,
+      "candidateDigest": "7a4c732dd1f050074f060d148f45b41491d88c10f57e9c0eeba8168fe4501055",
+      "fixtureResultsDigest": "4382a50ef04b02403c90e16a62dde14580e4b3c99291ec21e4b50c358cb413b5",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-turn-off-the-lights",
+      "revision": 1,
+      "candidateDigest": "2f2e8d073baece30c971c3eae2488c6bf1bc459522754c8a6ebee7b182e05751",
+      "fixtureResultsDigest": "ec3c08fb5b0b5effbae79dce776ef74c12d7c527d6c7e6f76bc32f406eee5bcc",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    },
+    {
+      "candidateId": "l2-emphasis-wash-your-hands",
+      "revision": 1,
+      "candidateDigest": "f7dd72dc6f5df3bc920b7697222150c87d5c15e8141750363d13fb057969ed81",
+      "fixtureResultsDigest": "9adb7acb00ead78f82620569ca68271b81fc972afab0b9b43e6764eb0889ae54",
+      "verdict": "pass",
+      "notes": "Familiar recall action; 9/9 real-engine fixtures passed grammar-only strong detection, underscore equivalence, collision failures, and nonblocking multi-bold Review."
+    }
+  ],
+  "reviewDigest": "a880abf09fedcc894c16075f6ec9d90912a499dd7998a52bef148c71cc638f6a"
+}

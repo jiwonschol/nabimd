@@ -624,3 +624,23 @@ test("filesystem loader discovers lexically ordered schema-v2 batch directories"
   assert.deepEqual(loaded.map((batch) => batch.normalized.batchId), ["batch-a", "batch-b"])
   assert.deepEqual(loaded.flatMap((batch) => batch.loaderErrors), [])
 })
+
+test("filesystem loader preserves a readable sequence when later evidence is incomplete", async () => {
+  const root = await mkdtemp(join(tmpdir(), "nabimd-partial-batch-"))
+  const batchId = "batch-later"
+  const batchDir = join(root, "batches", batchId)
+  await mkdir(join(batchDir, "reviews"), { recursive: true })
+  const raw = rawBatch({ batchId, sequence: 4 })
+  const normalized = normalizeBatch(raw, "prompt\n")
+  await writeFile(join(batchDir, "generation-prompt.md"), "prompt\n")
+  await writeFile(join(batchDir, "candidates.raw.json"), JSON.stringify(raw))
+  await writeFile(
+    join(batchDir, "candidates.normalized.json"),
+    JSON.stringify(normalized),
+  )
+
+  const [loaded] = await loadBatchDirectories(root)
+  assert.equal(loaded.normalized.batchId, batchId)
+  assert.equal(loaded.normalized.sequence, 4)
+  assert.ok(loaded.loaderErrors.some((error) => error.includes("Cannot load")))
+})

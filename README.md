@@ -64,9 +64,9 @@ habit, but it is not a third grade and cannot revoke Matched.
 This milestone includes:
 
 - five selectable curriculum levels with three-problem rotating runs;
-- 16 easy and routine H1 variants at Levels 1 and 2, plus four composite
-  workplace problems at each of Levels 3–5, including full-length Level 5
-  agent work orders;
+- 28 guided and recall exercises at each of Levels 1 and 2—16 H1 variants and
+  12 bold-emphasis variants—plus four composite workplace problems at each of
+  Levels 3–5, including full-length Level 5 agent work orders;
 - a fixed CBT-style top bar and two equal Goal/Answer panels;
 - Write and Preview tabs, with Review replacing Preview after Check when useful;
 - a compact Level 1 rule that disappears into request-only Hint for recall;
@@ -197,8 +197,9 @@ overflow.
   payload, and three progressive hints.
 - Goal and Answer remain equal at `1280 × 800`; long Level 5 documents scroll
   inside their panels while the app chrome stays fixed.
-- Typechecking, 758 unit/component/pipeline checks, the digest-bound bank gate,
-  the production build, and 12 Chromium journeys cover the current foundation.
+- Typechecking, 1,240 unit/component checks, the digest-bound pipeline and bank
+  gates, the production build, and 12 Chromium journeys cover the current
+  foundation.
 - The UI stays monochrome and source-focused while preserving a constrained
   reading width and allowing future document exercises to grow vertically.
 

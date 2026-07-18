@@ -2,6 +2,8 @@ import type { Code, Heading, List, RootContent } from "mdast"
 import type {
   BlockKind,
   BlockSelector,
+  CheckScope,
+  InlineKind,
   MatchCheck,
 } from "../../content/types"
 import {
@@ -60,9 +62,18 @@ function inlinePresencePasses(
   check: Extract<StructuralCheck, { kind: "inline-presence" }>,
   context: EvaluationContext,
 ) {
-  const count = descendants(nodesInScope(context, check.scope) as AstNode[])
-    .filter((node) => node.type === nodeTypeByInline[check.inline]).length
+  const count = countInlineNodes(context, check.scope, check.inline)
   return inRange(count, check.min, check.max)
+}
+
+export function countInlineNodes(
+  context: EvaluationContext,
+  scope: CheckScope,
+  inline: InlineKind,
+) {
+  return descendants(nodesInScope(context, scope) as AstNode[]).filter(
+    (node) => node.type === nodeTypeByInline[inline],
+  ).length
 }
 
 function headingDepthOrderPasses(context: EvaluationContext) {

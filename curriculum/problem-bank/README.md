@@ -1,11 +1,11 @@
 # Problem-bank pipeline
 
 Nabi treats curriculum as executable product data, not a pile of prompts. The
-schema-v2 tracker currently publishes 44 inspected `standard` problems: 16 at
+schema-v2 tracker currently publishes 68 inspected `standard` problems: 28 at
 each of Levels 1 and 2, and four at each of Levels 3–5. The foundation batch
-carries 184 real-engine fixtures and the first heading expansion carries 192.
-Each immutable batch has two sealed independent reviews and one separate
-editorial decision.
+carries 184 real-engine fixtures, the heading expansion carries 192, and the
+first bold-emphasis expansion carries 216. Each immutable batch has two sealed
+independent reviews and one separate editorial decision.
 
 The earlier 128-candidate GPT-5.6 artifact remains frozen schema-v1 evidence.
 Its 16 accepted headings and 112 unsupported-family candidates are preserved
@@ -57,7 +57,7 @@ the production build.
   compiled publish set and progress toward the closing target.
 
 The 512-problem closing bank remains a target, not a quantity claim. The tracker
-currently reports 44. New families publish in small batches only after their
+currently reports 68. New families publish in small batches only after their
 real predicate, counterexamples, fixtures, independent agreement, and editorial
 acceptance all exist.
 
@@ -80,4 +80,4 @@ before compilation. The compiler publishes only the accepted set and derives
 The tracker target is 512 inspected `standard` problems: 128 each at Levels 1
 and 2, 96 at Level 3, and 80 each at Levels 4 and 5. Quantity never overrides a
 fixture, review, or editorial failure. The current distribution is
-16/16/4/4/4.
+28/28/4/4/4.

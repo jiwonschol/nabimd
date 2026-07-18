@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-emphasis-003",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 216,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "4b8af0898e637b3d6f63b968dc70ff44c0fc34fc7f054449559fbee139588d80",
+  "verificationDigest": "9bb731f86c21ee8fcad7c304a4340e535b8c2ed8d892d82e4c9dc3fe64726da3",
+  "manifestDigest": "a5fb3c1931e1d7562703af8498198c8cdaa5116bc265dd2093afde74f2179a53",
+  "engineContractDigest": "ff970f7cd47f966eaf198d630fb9364711c5dafe1114e92b224c183411c36666",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 44,
+  "preparedSummaryDigest": "2288bee0c8ae2e141aab29185037612517c482e4420ebbe24a86527eb8b32035"
+}
