@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest"
-import { beforeEach } from "vitest"
+import { cleanup } from "@testing-library/react"
+import { afterEach, beforeEach } from "vitest"
 import { MemoryStorage } from "./MemoryStorage"
 
 Object.defineProperty(window, "localStorage", {
@@ -9,4 +10,8 @@ Object.defineProperty(window, "localStorage", {
 
 beforeEach(() => {
   window.localStorage.clear()
+})
+
+afterEach(() => {
+  cleanup()
 })

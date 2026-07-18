@@ -90,7 +90,7 @@ export function useLearningSession(
   return {
     session,
     problem,
-    canCheck: session.phase !== "complete" && session.draft.trim().length > 0,
+    canCheck: session.phase !== "complete",
     canNext: canAdvance(session),
     edit,
     check,

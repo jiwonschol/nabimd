@@ -49,4 +49,14 @@ describe("useLearningSession", () => {
     expect(result.current.problem.id).toBe("heading-weekend-guide")
     expect(result.current.session.currentIsTransfer).toBe(true)
   })
+
+  it("keeps an empty draft checkable so feedback can provide a starting action", () => {
+    const { result } = renderHook(() =>
+      useLearningSession(new MemoryStorage()),
+    )
+
+    act(() => result.current.edit(""))
+
+    expect(result.current.canCheck).toBe(true)
+  })
 })
