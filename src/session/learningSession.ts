@@ -6,6 +6,7 @@ import {
   getEntryChoice,
   type EntryId,
 } from "../content/entryChoices"
+import { placeTransferAtNextStep } from "./runSchedule"
 
 export type LearningSession = {
   phase: "editing" | "evaluated" | "complete"
@@ -105,27 +106,6 @@ export function canAdvance(session: LearningSession): boolean {
 
 function appendUnique(values: readonly string[], value: string): string[] {
   return values.includes(value) ? [...values] : [...values, value]
-}
-
-function placeTransferAtNextStep(
-  problemIds: readonly string[],
-  currentIndex: number,
-  transferProblemId: string,
-): string[] {
-  const nextIndex = currentIndex + 1
-  const laterIndex = problemIds.indexOf(transferProblemId, nextIndex)
-
-  if (laterIndex === nextIndex) return [...problemIds]
-  if (laterIndex > nextIndex) {
-    const reordered = [...problemIds]
-    reordered.splice(laterIndex, 1)
-    reordered.splice(nextIndex, 0, transferProblemId)
-    return reordered
-  }
-
-  const extended = [...problemIds]
-  extended.splice(nextIndex, 0, transferProblemId)
-  return extended
 }
 
 function completeSession(session: LearningSession): LearningSession {

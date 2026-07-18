@@ -681,3 +681,39 @@ entry choices. A fresh Level 1 run showed the teaching block, Goal, downward
 Hint, source editor, and Live preview. Entering `# Apple` returned Perfect;
 Next advanced to a blank `Rainy day` recall exercise at step 2 of 3. This final
 check exercised the deployed learner path, not a local server or preview URL.
+
+## 2026-07-18 — PR #15 restored-progress hardening
+
+### Finding assessment and correction
+
+Codex security review identified that browser-restored problem-ID arrays were
+accepted without a length bound before the app copied and rendered them. The
+static path is real, but the repository does not establish a remote attacker
+or cross-user input boundary: the value comes from the learner's same-origin
+`sessionStorage`. The project therefore treats this as client-state resilience
+hardening rather than claiming a demonstrated remote vulnerability.
+
+The PR's first implementation compared a restored run with one exact generated
+sequence plus at most one insertion. GitHub Codex review found a legitimate
+counterexample: transfer practice can move a later problem to the next step
+without changing the array length. That implementation would discard valid
+progress after refresh. The final invariant limits a run to the generated
+three-problem baseline through the product's structural maximum of one transfer
+per baseline problem, while allowing the normal reordering. Completed and
+recent ID lists are independently capped at the finite problem-bank size. A
+subsequent CodeRabbit review correctly noted that length and known IDs alone
+would still accept arbitrary duplicates. The final validator replays the same
+pure insertion/reordering transition used by the learning session and accepts
+only a schedule reachable at the persisted step and transfer state.
+
+### Verified result before remote review
+
+- Focused persistence and session suites: 47 tests passed, including a real
+  transfer reorder followed by hook remount, the six-step structural maximum,
+  oversized-list rejection, and rejection of a bounded but unreachable run.
+- `npm run check`: passed.
+- Vitest: 15 files, 670 tests passed.
+- Publication gate: passed.
+- Production build: Vite transformed 204 modules and completed successfully.
+- Remote rereview, merge, and production verification are still pending and
+  are not claimed by this entry.

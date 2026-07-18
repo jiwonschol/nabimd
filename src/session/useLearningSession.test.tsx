@@ -1,5 +1,6 @@
 import { act, renderHook, waitFor } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
+import { createRunProblemIds } from "../content/entryChoices"
 import {
   PROGRESS_STORAGE_KEY,
   createDefaultProgress,
@@ -126,6 +127,45 @@ describe("useLearningSession", () => {
     expect(result.current.problem.id).toBe("heading-study-tools")
     expect(result.current.session.currentIsTransfer).toBe(false)
     expect(result.current.session.runStepIndex).toBe(2)
+  })
+
+  it("restores a persisted run after transfer reorders a later problem", async () => {
+    const storage = new MemoryStorage()
+    const runProblemIds = createRunProblemIds("basics", 0)
+    const progress = createDefaultProgress(runProblemIds[0]!)
+    progress.entryId = "basics"
+    progress.runProblemIds = runProblemIds
+    progress.recentProblemIds = ["heading-apple", "heading-study-tools"]
+    saveProgress(storage, progress)
+
+    const firstHook = renderHook(() => useLearningSession(storage))
+    act(() => firstHook.result.current.edit("#Rainy day"))
+    act(() => firstHook.result.current.check())
+    act(() => firstHook.result.current.edit("# Rainy day"))
+    act(() => firstHook.result.current.check())
+    act(() => firstHook.result.current.next())
+
+    expect(firstHook.result.current.problem.id).toBe(
+      "heading-weekend-forecast",
+    )
+    expect(firstHook.result.current.session.runProblemIds).toEqual([
+      "heading-rainy-day",
+      "heading-weekend-forecast",
+      "heading-study-tools",
+    ])
+
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
+        "heading-weekend-forecast",
+      )
+    })
+    firstHook.unmount()
+
+    const restoredHook = renderHook(() => useLearningSession(storage))
+    expect(restoredHook.result.current.problem.id).toBe(
+      "heading-weekend-forecast",
+    )
+    expect(restoredHook.result.current.session.currentIsTransfer).toBe(true)
   })
 
   it("appends a finishable transfer step after a failure on the last run step", async () => {

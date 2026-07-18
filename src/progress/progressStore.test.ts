@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { headingProblems } from "../content/headingProblems"
+import { createRunProblemIds } from "../content/entryChoices"
 import {
   PROGRESS_STORAGE_KEY,
   clearProgress,
@@ -67,6 +68,131 @@ describe("progressStore", () => {
     expect(loadProgress(storage, validProblemIds)).toEqual(progress)
   })
 
+  it("restores a deterministic run sequence", () => {
+    const runProblemIds = createRunProblemIds("basics", 0)
+    const progress = createDefaultProgress(runProblemIds[0]!)
+    progress.entryId = "basics"
+    progress.runProblemIds = runProblemIds
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("restores a run with one bounded transfer insertion", () => {
+    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
+    const transferProblemId = "heading-weekend-forecast"
+    const progress = createDefaultProgress(transferProblemId)
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      expectedRunProblemIds[0]!,
+      transferProblemId,
+      ...expectedRunProblemIds.slice(1),
+    ]
+    progress.runStepIndex = 1
+    progress.currentIsTransfer = true
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("restores a same-length run after a later problem becomes the transfer", () => {
+    const expectedRunProblemIds = createRunProblemIds("basics", 0)
+    const transferProblemId = expectedRunProblemIds[2]!
+    const progress = createDefaultProgress(transferProblemId)
+    progress.entryId = "basics"
+    progress.runProblemIds = [
+      expectedRunProblemIds[0]!,
+      transferProblemId,
+      expectedRunProblemIds[1]!,
+    ]
+    progress.runStepIndex = 1
+    progress.currentIsTransfer = true
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("restores the bounded maximum of one transfer per normal problem", () => {
+    const expectedRunProblemIds = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress("heading-product-roadmap")
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      expectedRunProblemIds[0]!,
+      "heading-weekend-forecast",
+      expectedRunProblemIds[1]!,
+      "heading-team-handbook",
+      expectedRunProblemIds[2]!,
+      "heading-product-roadmap",
+    ]
+    progress.runStepIndex = 5
+    progress.currentIsTransfer = true
+
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("rejects an oversized restored run sequence", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.entryId = "level-1"
+    progress.runProblemIds = Array.from(
+      { length: 1000 },
+      () => "heading-apple",
+    )
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
+  it("rejects a restored run shorter than its deterministic window", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.entryId = "level-1"
+    progress.runProblemIds = ["heading-apple", "heading-study-tools"]
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
+  it("rejects a bounded known-ID run that is not reachable", () => {
+    const progress = createDefaultProgress("heading-apple")
+    progress.entryId = "level-1"
+    progress.runProblemIds = [
+      "heading-apple",
+      "heading-apple",
+      "heading-apple",
+    ]
+
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress("heading-apple"),
+    )
+  })
+
+  it("rejects oversized completed and recent ID lists", () => {
+    for (const field of ["completedProblemIds", "recentProblemIds"] as const) {
+      const progress = createDefaultProgress("heading-apple")
+      progress[field] = Array.from(
+        { length: validProblemIds.size + 1 },
+        () => "heading-apple",
+      )
+      storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+      expect(loadProgress(storage, validProblemIds)).toEqual(
+        createDefaultProgress("heading-apple"),
+      )
+    }
+  })
+
   it("recovers from corrupt JSON", () => {
     storage.setItem(PROGRESS_STORAGE_KEY, "{not-json")
 
@@ -107,13 +233,9 @@ describe("progressStore", () => {
   })
 
   it("recovers when the saved problem disagrees with the active run step", () => {
-    const progress = createDefaultProgress("heading-rainy-day")
+    const progress = createDefaultProgress("heading-apple")
     progress.entryId = "basics"
-    progress.runProblemIds = [
-      "heading-rainy-day",
-      "heading-study-tools",
-      "heading-apple",
-    ]
+    progress.runProblemIds = createRunProblemIds("basics", 0)
     progress.runStepIndex = 1
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 

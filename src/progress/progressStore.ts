@@ -1,5 +1,9 @@
 import type { ProgressV2 } from "./types"
-import { isEntryId } from "../content/entryChoices"
+import {
+  createRunProblemIds,
+  isEntryId,
+} from "../content/entryChoices"
+import { isReachableRunSchedule } from "../session/runSchedule"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v2"
 
@@ -26,9 +30,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function isKnownIdList(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
+  maximumLength = validProblemIds.size,
 ): value is string[] {
   return (
     Array.isArray(value) &&
+    value.length <= maximumLength &&
     value.every(
       (item) =>
         typeof item === "string" && validProblemIds.has(item),
@@ -49,6 +55,33 @@ function isValidDraftRecord(
   )
 }
 
+function isValidRunProblemIds(
+  value: unknown,
+  entryId: ProgressV2["entryId"],
+  runNumber: number,
+  runStepIndex: number,
+  currentIsTransfer: boolean,
+  validProblemIds: ReadonlySet<string>,
+): value is string[] {
+  if (!Array.isArray(value)) return false
+  if (entryId === null) return value.length === 0
+
+  const expectedRunProblemIds = createRunProblemIds(entryId, runNumber)
+  const maximumRunLength = expectedRunProblemIds.length * 2
+
+  return (
+    value.length >= expectedRunProblemIds.length &&
+    isKnownIdList(value, validProblemIds, maximumRunLength) &&
+    isReachableRunSchedule({
+      baselineProblemIds: expectedRunProblemIds,
+      persistedProblemIds: value,
+      persistedStepIndex: runStepIndex,
+      persistedCurrentIsTransfer: currentIsTransfer,
+      transferProblemIds: validProblemIds,
+    })
+  )
+}
+
 function isProgressV2(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
@@ -61,10 +94,18 @@ function isProgressV2(
     typeof value.runNumber === "number" &&
     Number.isSafeInteger(value.runNumber) &&
     value.runNumber >= 0 &&
-    isKnownIdList(value.runProblemIds, validProblemIds) &&
     typeof value.runStepIndex === "number" &&
     Number.isSafeInteger(value.runStepIndex) &&
     value.runStepIndex >= 0 &&
+    typeof value.currentIsTransfer === "boolean" &&
+    isValidRunProblemIds(
+      value.runProblemIds,
+      value.entryId,
+      value.runNumber,
+      value.runStepIndex,
+      value.currentIsTransfer,
+      validProblemIds,
+    ) &&
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
     validProblemIds.has(value.currentProblemId) &&
@@ -73,7 +114,6 @@ function isProgressV2(
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
     (value.pendingTransferFamily === null ||
       value.pendingTransferFamily === "heading-h1") &&
-    typeof value.currentIsTransfer === "boolean" &&
     (value.entryId === null
       ? value.runProblemIds.length === 0 && value.runStepIndex === 0
       : value.runProblemIds.length > 0 &&
