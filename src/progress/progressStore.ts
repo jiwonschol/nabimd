@@ -62,6 +62,10 @@ function isValidRunProblemIds(
   runStepIndex: number,
   currentIsTransfer: boolean,
   validProblemIds: ReadonlySet<string>,
+  replacementProblemIdsByProblemId: ReadonlyMap<
+    string,
+    ReadonlySet<string>
+  >,
 ): value is string[] {
   if (!Array.isArray(value)) return false
   if (entryId === null) return value.length === 0
@@ -77,6 +81,7 @@ function isValidRunProblemIds(
       persistedProblemIds: value,
       persistedStepIndex: runStepIndex,
       persistedCurrentIsTransfer: currentIsTransfer,
+      replacementProblemIdsByProblemId,
       transferProblemIds: validProblemIds,
     })
   )
@@ -85,6 +90,10 @@ function isValidRunProblemIds(
 function isProgressV2(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
+  replacementProblemIdsByProblemId: ReadonlyMap<
+    string,
+    ReadonlySet<string>
+  >,
 ): value is ProgressV2 {
   if (!isRecord(value)) return false
 
@@ -105,6 +114,7 @@ function isProgressV2(
       value.runStepIndex,
       value.currentIsTransfer,
       validProblemIds,
+      replacementProblemIdsByProblemId,
     ) &&
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
@@ -136,6 +146,10 @@ function cloneProgress(progress: ProgressV2): ProgressV2 {
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
+  replacementProblemIdsByProblemId: ReadonlyMap<
+    string,
+    ReadonlySet<string>
+  > = new Map(),
 ): ProgressV2 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
@@ -147,7 +161,11 @@ export function loadProgress(
     if (!saved) return fallback
 
     const parsed: unknown = JSON.parse(saved)
-    return isProgressV2(parsed, validProblemIds)
+    return isProgressV2(
+      parsed,
+      validProblemIds,
+      replacementProblemIdsByProblemId,
+    )
       ? cloneProgress(parsed)
       : fallback
   } catch {

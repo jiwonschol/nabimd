@@ -795,3 +795,150 @@ was carried forward.
   publication gate, and the production build.
 - `npm run test:e2e`: 15 Chromium journeys passed, including the complete
   keyboard run and the 1280 × 800 no-page-scroll check.
+
+## 2026-07-19 — CBT Editorial Desk rebuild
+
+### Product conflict resolved
+
+The first Editorial Desk was visually polished but behaved like a Markdown
+editor: Goal, source, live preview, Hint/Review, and a bottom action bar competed
+for attention. That arrangement was tolerable for a one-line H1 but would turn
+a future Level 5 company work order into three tall, repetitive columns.
+
+Jiwon chose a familiar computer-based-test grammar instead. The browser now
+contains one fixed top bar and two equal sheets: immutable rendered Goal on the
+left, and the learner's answer on the right. Write and Preview share the answer
+sheet; after a failed Check, Preview becomes Review. The always-visible Live
+Preview column and the bottom status bar were removed.
+
+The change also resolved smaller hands-on findings in the same product frame:
+
+- the Nabi Markdown wordmark and boxed Exit return to the level chooser;
+- Try another replaces the current prompt with different same-skill content
+  without consuming progress;
+- Hint reveals vertically inside Goal and remains hidden at recall levels;
+- learner copy uses Write, Preview, Review, How it should look, What you wrote,
+  and How to fix it instead of Source, Render, Diff, or block-type vocabulary;
+- Try again and Matched appear briefly at the center of the viewport; and
+- a clean Matched result focuses Next, while the next problem returns focus to
+  the editor.
+
+### Codex implementation and test-first evidence
+
+Codex wrote the approved frame contract and a task-level plan before feature
+code. Reducer and component assertions pinned same-skill replacement, exactly
+two workspace panels, the absence of a Live Preview region and bottom bar,
+Hint/Review state, and the Check → focused Next → Space/Enter → focused editor
+sequence. The implementation then composed the screen from a top bar, Goal
+panel, answer panel, and transient verdict notice while keeping the existing
+deterministic grader and CodeMirror editor.
+
+The browser suite was rewritten around the new contract rather than preserving
+obsolete Side Coach selectors. It covers keyboard-only completion, failure and
+repair, transfer, persistence, Hint, Review, equal panel dimensions, narrow
+screens, fixed desktop chrome, and an 80-line work order that scrolls inside
+the editor instead of the page.
+
+### Visual and interaction verification before remote review
+
+- Unit/component/session tests: 14 files, 665 tests passed.
+- Browser tests: 19 Chromium journeys passed.
+- At `1586 × 992`, Goal and Your answer measured exactly `772 × 880` pixels
+  each; the document measured `1586 × 992` with no page overflow.
+- An 80-line answer produced an editor scroller of 2,582 pixels inside a
+  782-pixel viewport while the document height stayed fixed at 992 pixels.
+- A lowercase `# rainy day` produced Matched without changing the learner's
+  text. `## Study tools` produced Try again and the beginner-facing Review.
+- Try another replaced Study tools with Weekend forecast at the same progress
+  position; the wordmark returned directly to the entry chooser.
+- The in-app browser console reported zero warnings or errors.
+- The selected reference and implementation were compared side by side at the
+  same viewport. The equal frame, fixed chrome, centered verdict, and control
+  hierarchy matched the approved direction; content density differs because
+  Issue #9, not this layout PR, owns the Level 5 problem bank.
+
+### Local CodeRabbit review
+
+The authenticated CodeRabbit CLI reviewed the complete committed CBT diff and
+raised 14 issues: two major and twelve minor. Each was checked against the
+running product instead of being applied automatically.
+
+The review produced concrete accessibility and resilience improvements:
+
+- inactive CodeMirror views no longer take focus during mount;
+- answer tabs use roving tab stops and Left/Right Arrow navigation;
+- reduced-motion users see the verdict for its full React-controlled lifetime
+  instead of a one-millisecond CSS animation ending at zero opacity;
+- the visual contract records automatic Level 1 Hint, automatic failed Review,
+  and exact verdict colors;
+- the runtime-network test now catches same-origin `/api/` traffic as well as
+  external requests; and
+- undo and literal-space regressions assert observable editor content rather
+  than placeholder attributes or normalized text.
+
+The reported long-Review clipping was not present: the later
+`.answer-panel__body--reading` rule already overrides the base hidden overflow.
+An 80-line failed answer was added as an executable counterexample and proved
+that Review scrolls internally while the document stays fixed. The proposed
+removal of the `Try another` fallback was rejected because finite-bank
+exhaustion must still return different current content instead of making a
+visible button do nothing. Two date corrections were also rejected: Jiwon
+approved the design on July 19 KST and this work occurred on July 19 KST.
+
+A full CodeRabbit rerun on the corrected implementation raised zero issues.
+
+### GitHub Codex review corrections
+
+The GitHub Codex reviewer found three P2 boundaries that local visual QA did not
+exercise. All three were reproduced with failing tests before correction:
+
+- Try another changed the persisted run slot, but the hardened progress loader
+  recognized only baseline schedules and transfer moves. The reachability
+  validator now models an explicit same-retry-family replacement without
+  accepting cross-family substitutions, and a hook remount proves the replaced
+  problem and draft survive refresh.
+- A keyboard Check that failed opened Review while DOM focus remained inside
+  the now-hidden CodeMirror surface. Failed Review now moves focus to its
+  selected tab, while Matched continues to focus Next.
+- The fixed practice viewport also prevented short greeting and completion
+  content from scrolling. Those non-editor surfaces now own bounded internal
+  scroll paths; a `667 × 320` journey reaches both the entry choices and all
+  completion actions without document scrolling.
+
+The corrections increased the local gate to 669 tests and the browser suite to
+19 passing journeys.
+
+### Remote CodeRabbit review corrections
+
+The first GitHub CodeRabbit pass reviewed the preceding head and raised eight
+issues. Six were actionable and were reproduced or pinned with tests before
+correction:
+
+- moving from Write to Preview/Review with `Alt+2`, or through a keyboard
+  failure Check, now moves focus to the visible selected tab instead of leaving
+  it inside a hidden editor;
+- the failed Review introduction now accurately asks the learner to compare
+  the expected Markdown with their answer instead of claiming that a cropped
+  block diff is displayed;
+- the `?` shortcut cannot create hidden Hint state after completion;
+- the approved visual contract, specification, and implementation plan all
+  require the platform-appropriate Check shortcut to be visibly displayed;
+- the keyboard-only browser journey types through real sequential key events
+  instead of using a value-injection helper; and
+- the local-font regression verifies both the regular and semibold Source
+  Serif faces that the page loads.
+
+The reported July 19 date mismatch was rejected because the design approval and
+implementation both occurred on July 19 KST. The short-viewport clipping report
+was stale against the next commit: greeting and completion already gained
+bounded internal scrolling, and the `667 × 320` browser regression reaches both
+surfaces without document scroll.
+
+An incremental CodeRabbit pass raised one final test-coverage nit. Dedicated
+top-bar assertions now prove that a question mark typed in a text field does not
+open Hint and that a handled document-level Hint shortcut prevents the browser
+default action.
+
+The final local gate is 15 files and 669 passing tests, plus 19 passing Chromium
+journeys. A fresh remote re-review, merge, deployment, and production
+verification remain pending and are not claimed by this entry.

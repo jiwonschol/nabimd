@@ -307,4 +307,51 @@ describe("useLearningSession", () => {
     expect(result.current.session.draft).toBe("")
     expect(result.current.canCheck).toBe(true)
   })
+
+  it("offers different same-skill content without consuming a run step", () => {
+    const { result } = renderHook(() =>
+      useLearningSession(new MemoryStorage()),
+    )
+
+    act(() => result.current.start("level-1"))
+    const originalId = result.current.problem.id
+    const originalRetryFamily = result.current.problem.retryFamily
+    const originalStep = result.current.session.runStepIndex
+
+    act(() => result.current.tryAnother())
+
+    expect(result.current.problem.id).not.toBe(originalId)
+    expect(result.current.problem.retryFamily).toBe(originalRetryFamily)
+    expect(result.current.session.runStepIndex).toBe(originalStep)
+    expect(result.current.session.runProblemIds[originalStep]).toBe(
+      result.current.problem.id,
+    )
+    expect(result.current.session.draft).toBe("")
+    expect(result.current.session.progress.completedProblemIds).toEqual([])
+  })
+
+  it("restores a substituted Try another problem and its draft", async () => {
+    const storage = new MemoryStorage()
+    const firstHook = renderHook(() => useLearningSession(storage))
+
+    act(() => firstHook.result.current.start("level-1"))
+    act(() => firstHook.result.current.tryAnother())
+    const replacementId = firstHook.result.current.problem.id
+    act(() => firstHook.result.current.edit("# Saved replacement"))
+
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(replacementId)
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
+        "# Saved replacement",
+      )
+    })
+    firstHook.unmount()
+
+    const restoredHook = renderHook(() => useLearningSession(storage))
+    expect(restoredHook.result.current.session.entryId).toBe("level-1")
+    expect(restoredHook.result.current.problem.id).toBe(replacementId)
+    expect(restoredHook.result.current.session.draft).toBe(
+      "# Saved replacement",
+    )
+  })
 })

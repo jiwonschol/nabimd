@@ -1,9 +1,8 @@
 import type { useLearningSession } from "../session/useLearningSession"
-import { HelpPanel } from "./HelpPanel"
-import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
-import { RenderedDocument } from "./RenderedDocument"
-import { StatusBar } from "./StatusBar"
-import { Wordmark } from "./Wordmark"
+import { AnswerPanel } from "./AnswerPanel"
+import { ExerciseTopBar } from "./ExerciseTopBar"
+import { GoalPanel } from "./GoalPanel"
+import { VerdictNotice } from "./VerdictNotice"
 
 type EditorialDeskProps = ReturnType<typeof useLearningSession>
 
@@ -14,39 +13,33 @@ export function EditorialDesk({
   edit,
   check,
   requestHint,
-  requestReview,
   closeCoach,
   next,
   practiceAgain,
   startOver,
   changeLevel,
+  tryAnother,
 }: EditorialDeskProps) {
   const runLength = session.runProblemIds.length || 1
   const problemPosition = Math.min(session.runStepIndex + 1, runLength)
 
   return (
-    <main className="app-shell">
-      <header className="app-header">
-        <Wordmark />
-        <div aria-label="Heading progress" className="progress">
-          <span className="progress__label">
-            <span className="progress__label-name">Headings · </span>
-            {problemPosition} of {runLength}
-          </span>
-          <span aria-hidden="true" className="progress__track">
-            {session.runProblemIds.map((problemId, index) => (
-              <span
-                className={
-                  index <= problemPosition - 1
-                    ? "progress__segment progress__segment--active"
-                    : "progress__segment"
-                }
-                key={`${index}-${problemId}`}
-              />
-            ))}
-          </span>
-        </div>
-      </header>
+    <main className="app-shell app-shell--practice">
+      <ExerciseTopBar
+        canCheck={canCheck}
+        entryId={session.entryId!}
+        evaluation={session.evaluation}
+        hadFailure={session.hadFailure}
+        hintOpen={session.coach === "hint"}
+        onCheck={check}
+        onExit={changeLevel}
+        onNext={next}
+        onToggleHint={session.coach === "hint" ? closeCoach : requestHint}
+        onTryAnother={tryAnother}
+        phase={session.phase}
+        problemPosition={problemPosition}
+        runLength={runLength}
+      />
 
       {session.phase === "complete" ? (
         <section className="completion" aria-labelledby="completion-title">
@@ -74,61 +67,24 @@ export function EditorialDesk({
         </section>
       ) : (
         <>
-          <article className="learning-workspace">
-            <section
-              aria-labelledby="exercise-instruction"
-              className="instruction"
-            >
-              <p className="section-label">Instruction</p>
-              <h2 id="exercise-instruction">{problem.prompt}</h2>
-              {session.teachingMode === "introduce" ? (
-                <p className="instruction__teaching">
-                  {problem.teaching.concept} {problem.teaching.howTo}{" "}
-                  <span>
-                    Example: <code>{problem.teaching.example}</code>
-                  </span>
-                </p>
-              ) : null}
-            </section>
-
-            <div className="lesson-grid">
-              <RenderedDocument label="Goal" source={problem.target} />
-              <HelpPanel
-                coach={session.coach}
-                evaluation={session.evaluation}
-                hintLevel={session.hintLevel}
-                hints={problem.hints}
-                onClose={closeCoach}
-                onNextHint={requestHint}
-                onOpenHint={requestHint}
-                syntaxTokens={problem.syntaxTokens}
-              />
-            </div>
-
-            <div className="workbench-grid">
-              <MarkdownSourceEditor
-                key={problem.id}
-                onChange={edit}
-                onCheck={check}
-                value={session.draft}
-              />
-              <RenderedDocument
-                emptyMessage="Your preview will appear here."
-                label="Live preview"
-                source={session.draft}
-              />
-            </div>
+          <article className="cbt-workspace">
+            <GoalPanel
+              coach={session.coach}
+              evaluation={session.evaluation}
+              hintLevel={session.hintLevel}
+              onNextHint={requestHint}
+              problem={problem}
+            />
+            <AnswerPanel
+              draft={session.draft}
+              entryId={session.entryId!}
+              evaluation={session.evaluation}
+              onChange={edit}
+              onCheck={check}
+              problem={problem}
+            />
           </article>
-
-          <StatusBar
-            canCheck={canCheck}
-            evaluation={session.evaluation}
-            hadFailure={session.hadFailure}
-            onCheck={check}
-            onNext={next}
-            onReview={requestReview}
-            phase={session.phase}
-          />
+          <VerdictNotice evaluation={session.evaluation} />
         </>
       )}
     </main>

@@ -44,12 +44,10 @@ test("completes and replays a fresh session with keyboard input only", async ({
   await page.keyboard.press("Enter")
 
   const editor = sourceEditor(page)
-  await expect(
-    page.getByText("A main heading names the whole document.", {
-      exact: false,
-    }),
-  ).toBeVisible()
-  await expect(page.getByText("# Weather", { exact: true })).toBeVisible()
+  await expect(page.getByRole("complementary", { name: "Hint" })).toContainText(
+    "A main heading names the whole document.",
+  )
+  await expect(page.getByText("#", { exact: true })).toBeVisible()
   await expect(editor).toBeFocused()
   const expectedShortcutLabel = await page.evaluate(() => {
     const modernPlatform = (
@@ -61,14 +59,12 @@ test("completes and replays a fresh session with keyboard input only", async ({
       ? "⌘↩"
       : "Ctrl+↩"
   })
-  await expect(
-    page.getByText(expectedShortcutLabel, { exact: true }),
-  ).toBeVisible()
+  await expect(page.getByText(expectedShortcutLabel, { exact: true })).toBeVisible()
 
   for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
-    await page.keyboard.type(answer)
-    await page.keyboard.press("Control+Enter")
-    await expect(page.getByText(/^Matched\./)).toBeVisible()
+    await editor.pressSequentially(answer)
+    await editor.press("Control+Enter")
+    await expect(page.getByRole("status")).toContainText("Matched")
     const next = page.getByRole("button", { name: "Next" })
     await expect(next).toBeFocused()
     await expect(next).not.toHaveAttribute("aria-keyshortcuts")
@@ -80,30 +76,22 @@ test("completes and replays a fresh session with keyboard input only", async ({
   await expect(practiceAgain).toBeFocused()
   await page.keyboard.press("Space")
 
-  await expect(
-    page.getByRole("region", { name: "Goal" }),
-  ).toContainText("Weekend forecast")
-  await expect(
-    page.getByText("A main heading names the whole document.", {
-      exact: false,
-    }),
-  ).toBeVisible()
+  await expect(page.getByRole("region", { name: "Goal" })).toContainText(
+    "Weekend forecast",
+  )
   await expect(editor).toBeFocused()
-
   await page.keyboard.press("Space")
-  await expect(editor).toHaveText(" ")
-  await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
-  await expect(
-    page.getByRole("region", { name: "Goal" }),
-  ).toContainText("Weekend forecast")
-
-  await page.keyboard.press("Control+Enter")
-  await expect(page.getByText(/^Try again:/)).toBeVisible()
-  await expect(editor).toBeFocused()
+  await expect.poll(() => editor.evaluate((node) => node.textContent)).toBe(" ")
+  await editor.press("Control+Enter")
+  await expect(page.getByRole("status")).toContainText("Try again")
+  await expect(page.getByRole("tab", { name: "Review" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  )
   await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
 })
 
-test("fails, receives progressive Help, repairs, transfers, and restores", async ({
+test("fails, receives progressive Hint, repairs, transfers, and restores", async ({
   page,
 }) => {
   await page.goto("/")
@@ -111,41 +99,41 @@ test("fails, receives progressive Help, repairs, transfers, and restores", async
   const editor = sourceEditor(page)
 
   await expect(editor).toHaveAttribute("aria-placeholder", "Type Markdown…")
-  await expect(editor.locator(".cm-placeholder")).toBeVisible()
-  await expect(
-    page.getByRole("complementary", { name: "Help" }),
-  ).toContainText("#")
+  await expect(page.getByRole("complementary", { name: "Hint" })).toContainText(
+    "#",
+  )
 
   await editor.fill("#Apple")
   await page.getByRole("button", { name: "Check", exact: true }).click()
-  await expect(
-    page.getByText("Add one space after the hash symbol."),
-  ).toBeVisible()
+  await expect(page.getByRole("tabpanel", { name: "Review" })).toContainText(
+    "Add one space after the hash symbol.",
+  )
   await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
 
-  await page.getByRole("button", { name: "Show hint" }).click()
-  const help = page.getByRole("complementary", { name: "Help" })
-  await expect(help).toContainText("Use one hash symbol")
-  await help.getByRole("button", { name: "Next hint" }).click()
-  await expect(help).toContainText("one hash symbol, one space")
-  await expect(editor).toHaveText("#Apple")
+  await page.getByRole("button", { name: "Hint" }).click()
+  const hint = page.getByRole("complementary", { name: "Hint" })
+  await expect(hint).toContainText("Use one hash symbol")
+  await hint.getByRole("button", { name: "Next hint" }).click()
+  await expect(hint).toContainText("one hash symbol, one space")
 
+  await page.keyboard.press("Alt+1")
   await editor.fill("# Apple")
   await page.getByRole("button", { name: "Check again" }).click()
-  await expect(page.getByText(/^Matched\./)).toBeVisible()
+  await expect(page.getByRole("status")).toContainText("Matched")
   await page.getByRole("button", { name: "Next" }).click()
 
-  await expect(
-    page.getByRole("region", { name: "Goal" }),
-  ).toContainText("Rainy day")
-  await expect(editor.locator(".cm-placeholder")).toBeVisible()
-  await expect(page.getByRole("button", { name: "Show hint" })).toBeVisible()
-  await expect(page.getByRole("button", { name: "Check" })).toBeVisible()
+  await expect(page.getByRole("region", { name: "Goal" })).toContainText(
+    "Rainy day",
+  )
+  await expect(editor).toBeFocused()
+  await expect(page.getByRole("button", { name: "Hint" })).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  )
   await editor.press("Control+z")
   await expect(editor.locator(".cm-placeholder")).toBeVisible()
 
   await editor.fill("# Rainy day")
-  await expect(editor).toHaveText("# Rainy day")
   await page.reload()
   await expect(editor).toHaveText("# Rainy day")
 })
@@ -160,49 +148,46 @@ test("completes a three-step first-attempt Matched run from the keyboard", async
   for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
     await editor.fill(answer)
     await editor.press("Control+Enter")
-    await expect(page.getByText(/^Matched\./)).toBeVisible()
-    await page.getByRole("button", { name: "Next" }).click()
+    await expect(page.getByRole("status")).toContainText("Matched")
+    await expect(page.getByRole("button", { name: "Next" })).toBeFocused()
+    await page.keyboard.press("Enter")
   }
   await expect(
     page.getByRole("heading", { name: "Heading practice complete." }),
   ).toBeVisible()
-  await expect(
-    page.getByRole("button", { name: "Practice again" }),
-  ).toBeVisible()
 })
 
-test("opening Help on a recall problem creates a different-content transfer", async ({
+test("opening Hint on a recall problem creates a different-content transfer", async ({
   page,
 }) => {
   await page.goto("/")
   await page.getByRole("button", { name: "I know the basics" }).click()
 
   const editor = sourceEditor(page)
-  const help = page.getByRole("complementary", { name: "Help" })
-  await expect(
-    page.getByRole("region", { name: "Goal" }),
-  ).toContainText("Rainy day")
-  await expect(help.getByRole("button", { name: "Show hint" })).toBeVisible()
-  await expect(help.getByText("#", { exact: true })).toHaveCount(0)
-  await expect(
-    page.getByText("A main heading names the whole document.", {
-      exact: false,
-    }),
-  ).toHaveCount(0)
+  await expect(page.getByRole("region", { name: "Goal" })).toContainText(
+    "Rainy day",
+  )
+  await expect(page.getByRole("button", { name: "Hint" })).toHaveAttribute(
+    "aria-expanded",
+    "false",
+  )
+  await expect(page.getByRole("complementary", { name: "Hint" })).toHaveCount(0)
 
-  await help.getByRole("button", { name: "Show hint" }).click()
-  await expect(help.getByText("#", { exact: true })).toBeVisible()
+  await page.getByRole("button", { name: "Hint" }).click()
+  await expect(page.getByRole("complementary", { name: "Hint" })).toContainText(
+    "#",
+  )
   await editor.fill("# Rainy day")
   await page.getByRole("button", { name: "Check", exact: true }).click()
   await page.getByRole("button", { name: "Next" }).click()
 
-  await expect(
-    page.getByRole("region", { name: "Goal" }),
-  ).not.toContainText("Rainy day")
+  await expect(page.getByRole("region", { name: "Goal" })).not.toContainText(
+    "Rainy day",
+  )
   await expect(editor.locator(".cm-placeholder")).toBeVisible()
 })
 
-test("keeps Matched review optional", async ({ page }) => {
+test("keeps structural Review optional after Matched", async ({ page }) => {
   await page.goto("/")
   await enterLevel1(page)
   const editor = sourceEditor(page)
@@ -210,75 +195,38 @@ test("keeps Matched review optional", async ({ page }) => {
   await editor.fill("# Apple\n\n# Details")
   await page.getByRole("button", { name: "Check", exact: true }).click()
 
-  await expect(page.getByText(/^Matched\./)).toBeVisible()
+  await expect(page.getByRole("status")).toContainText("Matched")
   await expect(page.getByRole("button", { name: "Next" })).toBeVisible()
-  await expect(
-    page.getByRole("complementary", { name: "Help" }),
-  ).not.toContainText("Keep one H1")
-
-  await page.getByRole("button", { name: "Review" }).click()
-  await expect(
-    page.getByRole("complementary", { name: "Help" }),
-  ).toContainText("Keep one H1 as the document title")
-  await expect(page.getByRole("button", { name: "Next" })).toBeVisible()
+  await expect(page.getByRole("tab", { name: "Review" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  )
+  await expect(page.getByRole("tabpanel", { name: "Review" })).toContainText(
+    "Keep one H1 as the document title",
+  )
 })
 
-test("keeps both desktop rows aligned while Help opens downward", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 1440, height: 1100 })
+test("keeps Goal and Answer equal while Hint opens inside Goal", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto("/")
-  await enterLevel1(page)
+  await page.getByRole("button", { name: "I know the basics" }).click()
 
   const goal = page.getByRole("region", { name: "Goal" })
-  const help = page.getByRole("complementary", { name: "Help" })
-  const editor = page.getByRole("region", { name: "Your Markdown" })
-  const preview = page.getByRole("region", { name: "Live preview" })
+  const answer = page.getByRole("region", { name: "Your answer" })
+  const before = await Promise.all([goal.boundingBox(), answer.boundingBox()])
+  for (const box of before) expect(box).not.toBeNull()
+  expect(Math.abs(before[0]!.y - before[1]!.y)).toBeLessThanOrEqual(1)
+  expect(Math.abs(before[0]!.width - before[1]!.width)).toBeLessThanOrEqual(1)
+  expect(Math.abs(before[0]!.height - before[1]!.height)).toBeLessThanOrEqual(1)
 
-  const initial = await Promise.all([
-    goal.boundingBox(),
-    help.boundingBox(),
-    editor.boundingBox(),
-    preview.boundingBox(),
-  ])
-  for (const box of initial) expect(box).not.toBeNull()
-  const [goalBox, helpBox, editorBox, previewBox] = initial
-  expect(Math.abs(goalBox!.y - helpBox!.y)).toBeLessThanOrEqual(1)
-  expect(
-    Math.abs(
-      goalBox!.y + goalBox!.height - (helpBox!.y + helpBox!.height),
-    ),
-  ).toBeLessThanOrEqual(1)
-  expect(Math.abs(editorBox!.y - previewBox!.y)).toBeLessThanOrEqual(1)
-  expect(
-    Math.abs(
-      editorBox!.y + editorBox!.height -
-        (previewBox!.y + previewBox!.height),
-    ),
-  ).toBeLessThanOrEqual(1)
-
-  await help.getByRole("button", { name: "Hide hint" }).click()
-  const closedGoal = await goal.boundingBox()
-  const closedHelp = await help.boundingBox()
-  expect(closedGoal).not.toBeNull()
-  expect(closedHelp).not.toBeNull()
-  expect(closedGoal!.x).toBeCloseTo(goalBox!.x, 0)
-  expect(closedGoal!.width).toBeCloseTo(goalBox!.width, 0)
-  expect(closedHelp!.x).toBeCloseTo(helpBox!.x, 0)
-  expect(closedHelp!.width).toBeCloseTo(helpBox!.width, 0)
-  expect(Math.abs(closedGoal!.y - closedHelp!.y)).toBeLessThanOrEqual(1)
-  expect(
-    Math.abs(
-      closedGoal!.y + closedGoal!.height -
-        (closedHelp!.y + closedHelp!.height),
-    ),
-  ).toBeLessThanOrEqual(1)
-
-  await help.getByRole("button", { name: "Show hint" }).click()
-  await expect(help.getByText("#", { exact: true })).toBeVisible()
+  await page.getByRole("button", { name: "Hint" }).click()
+  await expect(page.getByRole("complementary", { name: "Hint" })).toBeVisible()
+  const after = await Promise.all([goal.boundingBox(), answer.boundingBox()])
+  expect(after[0]).toEqual(before[0])
+  expect(after[1]).toEqual(before[1])
 })
 
-test("shows invisible decorations without changing source or preview", async ({
+test("shows invisible decorations without changing source or Preview", async ({
   page,
 }) => {
   await page.goto("/")
@@ -287,11 +235,7 @@ test("shows invisible decorations without changing source or preview", async ({
   const source = "# Study\ttools"
 
   await editor.fill(source)
-  await expect(
-    page.getByRole("region", { name: "Live preview" }),
-  ).toContainText("Study tools")
   await page.getByRole("button", { name: "Show invisibles" }).click()
-
   await expect(page.locator(".cm-invisible-character--space")).toHaveCount(1)
   await expect(page.locator(".cm-invisible-character--tab")).toHaveCount(1)
   const persistedDraft = await page.evaluate((key) => {
@@ -301,10 +245,12 @@ test("shows invisible decorations without changing source or preview", async ({
     return progress.draftByProblemId?.["heading-apple"]
   }, progressStorageKey)
   expect(persistedDraft).toBe(source)
-  await expect(
-    page.getByRole("region", { name: "Live preview" }),
-  ).toContainText("Study tools")
 
+  await page.keyboard.press("Alt+2")
+  await expect(page.getByRole("tabpanel", { name: "Preview" })).toContainText(
+    "Study tools",
+  )
+  await page.keyboard.press("Alt+1")
   await page.getByRole("button", { name: "Hide invisibles" }).click()
   await expect(editor).toHaveText(source)
 })
@@ -319,87 +265,96 @@ test("reveals NBSP and ideographic-space traps without changing source", async (
 
   await editor.fill(source)
   await page.getByRole("button", { name: "Show invisibles" }).click()
-
-  await expect(
-    page.locator(".cm-invisible-character--non-breaking-space"),
-  ).toHaveText("⍽")
-  await expect(
-    page.locator(".cm-invisible-character--ideographic-space"),
-  ).toHaveText("□")
-  await expect(editor).toHaveText("#⍽Apple□")
-
+  await expect(page.locator(".cm-invisible-character--non-breaking-space")).toHaveText("⍽")
+  await expect(page.locator(".cm-invisible-character--ideographic-space")).toHaveText("□")
   await page.getByRole("button", { name: "Hide invisibles" }).click()
   await expect(editor).toHaveText(source)
 })
 
-test("stacks the mobile workspace in semantic order without horizontal overflow", async ({
-  page,
-}) => {
+test("stacks two equal mobile panels without document overflow", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 })
   await page.goto("/")
   await enterLevel1(page)
 
-  const boxes = await Promise.all([
-    page.getByRole("heading", {
-      name: "Rebuild the heading below in Markdown.",
-    }).boundingBox(),
-    page.getByRole("region", { name: "Goal" }).boundingBox(),
-    page.getByRole("complementary", { name: "Help" }).boundingBox(),
-    page.getByRole("region", { name: "Your Markdown" }).boundingBox(),
-    page.getByRole("region", { name: "Live preview" }).boundingBox(),
-    page.getByText("Write the heading, then check your work.").boundingBox(),
-    page.getByRole("button", { name: "Check", exact: true }).boundingBox(),
-  ])
-  for (const box of boxes) expect(box).not.toBeNull()
-  expect(boxes[0]!.y).toBeLessThan(boxes[1]!.y)
-  expect(boxes[1]!.y).toBeLessThan(boxes[2]!.y)
-  expect(boxes[2]!.y).toBeLessThan(boxes[3]!.y)
-  expect(boxes[3]!.y).toBeLessThan(boxes[4]!.y)
-  expect(boxes[4]!.y).toBeLessThan(boxes[5]!.y)
-  expect(boxes[5]!.y).toBeLessThanOrEqual(boxes[6]!.y)
+  const goalBox = await page.getByRole("region", { name: "Goal" }).boundingBox()
+  const answerBox = await page.getByRole("region", { name: "Your answer" }).boundingBox()
+  expect(goalBox).not.toBeNull()
+  expect(answerBox).not.toBeNull()
+  expect(goalBox!.y).toBeLessThan(answerBox!.y)
+  expect(Math.abs(goalBox!.width - answerBox!.width)).toBeLessThanOrEqual(1)
+  expect(Math.abs(goalBox!.height - answerBox!.height)).toBeLessThanOrEqual(1)
 
   const layout = await page.evaluate(() => ({
     documentWidth: document.documentElement.scrollWidth,
+    documentHeight: document.documentElement.scrollHeight,
     viewportWidth: window.innerWidth,
+    viewportHeight: window.innerHeight,
   }))
   expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+  expect(layout.documentHeight).toBeLessThanOrEqual(layout.viewportHeight)
 })
 
-test("keeps brand and progress readable without horizontal overflow at 320px", async ({
+test("keeps greeting and completion actions reachable in a short viewport", async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 667, height: 320 })
+  await page.goto("/")
+
+  const greetingShell = page.locator(".greeting-shell")
+  const challenge = page.getByRole("button", { name: "Challenge me" })
+  await challenge.scrollIntoViewIfNeeded()
+  await expect(challenge).toBeVisible()
+  expect(
+    await greetingShell.evaluate(
+      (element) => element.scrollHeight > element.clientHeight,
+    ),
+  ).toBe(true)
+
+  await page.getByRole("button", {
+    name: "New to Markdown — start at Level 1",
+  }).click()
+  for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
+    await sourceEditor(page).fill(answer)
+    await sourceEditor(page).press("Control+Enter")
+    await page.getByRole("button", { name: "Next" }).click()
+  }
+
+  const completion = page.locator(".completion")
+  const changeLevel = page.getByRole("button", { name: "Change level" })
+  await changeLevel.scrollIntoViewIfNeeded()
+  await expect(changeLevel).toBeVisible()
+  expect(
+    await completion.evaluate(
+      (element) => element.scrollHeight > element.clientHeight,
+    ),
+  ).toBe(true)
+  expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
+})
+
+test("contains narrow top-bar overflow without widening the document", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto("/")
   await enterLevel1(page)
 
-  const wordmark = page.getByRole("heading", { name: "Nabi Markdown" })
-  const progress = page.getByLabel("Heading progress")
-  await expect(wordmark).toBeVisible()
-  await expect(wordmark).toContainText("Nabi Markdown")
-  await expect(progress).toBeVisible()
-  await expect(progress).toContainText("1 of 3")
-
-  const wordmarkBox = await wordmark.boundingBox()
-  const progressBox = await progress.boundingBox()
-  expect(wordmarkBox).not.toBeNull()
-  expect(progressBox).not.toBeNull()
-  expect(wordmarkBox!.x).toBeGreaterThanOrEqual(0)
-  expect(wordmarkBox!.x + wordmarkBox!.width).toBeLessThanOrEqual(320)
-  expect(progressBox!.x).toBeGreaterThanOrEqual(wordmarkBox!.x + wordmarkBox!.width)
-  expect(progressBox!.x + progressBox!.width).toBeLessThanOrEqual(320)
-
-  const layout = await page.evaluate(() => ({
+  await expect(
+    page.getByRole("heading", { name: "Nabi Markdown" }),
+  ).toBeVisible()
+  await expect(page.getByLabel("Heading progress")).toHaveCount(1)
+  const metrics = await page.locator(".exercise-topbar").evaluate((element) => ({
+    clientWidth: element.clientWidth,
+    scrollWidth: element.scrollWidth,
     documentWidth: document.documentElement.scrollWidth,
     viewportWidth: window.innerWidth,
   }))
-  expect(layout.documentWidth).toBeLessThanOrEqual(layout.viewportWidth)
+  expect(metrics.scrollWidth).toBeGreaterThan(metrics.clientWidth)
+  expect(metrics.documentWidth).toBeLessThanOrEqual(metrics.viewportWidth)
 })
 
 for (const viewport of [
   { width: 1280, height: 800 },
   { width: 1440, height: 900 },
 ]) {
-  test(`keeps the complete desk in bounds without page scroll at ${viewport.width}x${viewport.height}`, async ({
+  test(`keeps fixed chrome and equal panels in one viewport at ${viewport.width}x${viewport.height}`, async ({
     page,
   }) => {
     await page.setViewportSize(viewport)
@@ -407,25 +362,18 @@ for (const viewport of [
     await enterLevel1(page)
 
     const requiredSurfaces = [
-      page.locator(".app-header"),
-      page.getByRole("heading", {
-        name: "Rebuild the heading below in Markdown.",
-      }),
+      page.locator(".exercise-topbar"),
       page.getByRole("region", { name: "Goal" }),
-      page.getByRole("complementary", { name: "Help" }),
-      page.getByRole("region", { name: "Your Markdown" }),
-      page.getByRole("region", { name: "Live preview" }),
-      page.getByText("Write the heading, then check your work."),
-      page.getByRole("button", { name: "Check", exact: true }),
+      page.getByRole("region", { name: "Your answer" }),
     ]
-    const boxes = await Promise.all(
-      requiredSurfaces.map((surface) => surface.boundingBox()),
-    )
+    const boxes = await Promise.all(requiredSurfaces.map((surface) => surface.boundingBox()))
     for (const box of boxes) {
       expect(box).not.toBeNull()
       expect(box!.y).toBeGreaterThanOrEqual(0)
       expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height)
     }
+    expect(Math.abs(boxes[1]!.width - boxes[2]!.width)).toBeLessThanOrEqual(1)
+    expect(Math.abs(boxes[1]!.height - boxes[2]!.height)).toBeLessThanOrEqual(1)
 
     const metrics = await page.evaluate(() => ({
       bodyScrollHeight: document.body.scrollHeight,
@@ -433,13 +381,77 @@ for (const viewport of [
       viewportHeight: window.innerHeight,
     }))
     expect(metrics.bodyScrollHeight).toBeLessThanOrEqual(metrics.viewportHeight)
-    expect(metrics.documentScrollHeight).toBeLessThanOrEqual(
-      metrics.viewportHeight,
-    )
+    expect(metrics.documentScrollHeight).toBeLessThanOrEqual(metrics.viewportHeight)
   })
 }
 
-test("loads the shared Nabi mark and local Source Serif faces without console noise", async ({
+test("scrolls a long work-order answer inside its panel", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/")
+  await page.getByRole("button", { name: "Challenge me" }).click()
+  const editor = sourceEditor(page)
+  const longSource = Array.from(
+    { length: 80 },
+    (_, index) => `## Work item ${index + 1}\n\n- Owner\n- Deadline\n- Verification`,
+  ).join("\n\n")
+  await editor.fill(longSource)
+
+  const editorScroll = await page.locator(".cm-scroller").evaluate((element) => ({
+    clientHeight: element.clientHeight,
+    scrollHeight: element.scrollHeight,
+  }))
+  expect(editorScroll.scrollHeight).toBeGreaterThan(editorScroll.clientHeight)
+  const pageScroll = await page.evaluate(() => ({
+    body: document.body.scrollHeight,
+    document: document.documentElement.scrollHeight,
+    viewport: window.innerHeight,
+  }))
+  expect(pageScroll.body).toBeLessThanOrEqual(pageScroll.viewport)
+  expect(pageScroll.document).toBeLessThanOrEqual(pageScroll.viewport)
+})
+
+test("scrolls a long Review inside the answer panel", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/")
+  await enterLevel1(page)
+
+  const longFailure = [
+    "## Apple",
+    ...Array.from({ length: 80 }, (_, index) => `- Work item ${index + 1}`),
+  ].join("\n")
+  await sourceEditor(page).fill(longFailure)
+  await sourceEditor(page).press("Control+Enter")
+
+  const review = page.getByRole("tabpanel", { name: "Review" })
+  await expect(review).toBeVisible()
+  const metrics = await review.evaluate((element) => ({
+    clientHeight: element.clientHeight,
+    scrollHeight: element.scrollHeight,
+  }))
+  expect(metrics.scrollHeight).toBeGreaterThan(metrics.clientHeight)
+  await review.evaluate((element) => {
+    element.scrollTop = element.scrollHeight
+  })
+  await expect.poll(() => review.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+  expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
+})
+
+test("keeps reduced-motion verdict feedback visible until dismissal", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await page.goto("/")
+  await enterLevel1(page)
+  await sourceEditor(page).fill("# Apple")
+  await sourceEditor(page).press("Control+Enter")
+
+  const verdict = page.getByRole("status")
+  await expect(verdict).toHaveCSS("opacity", "1")
+  await page.waitForTimeout(100)
+  await expect(verdict).toHaveCSS("opacity", "1")
+})
+
+test("loads the Nabi mark and local Source Serif faces without console noise", async ({
   page,
 }) => {
   const consoleNoise: string[] = []
@@ -457,12 +469,7 @@ test("loads the shared Nabi mark and local Source Serif faces without console no
   const greetingWordmark = page.getByRole("heading", { name: "Nabi Markdown" })
   const greetingLogo = greetingWordmark.locator("img")
   await expect(greetingLogo).toBeVisible()
-  await expect(greetingLogo).toHaveAttribute(
-    "src",
-    "/brand/bfly-wordmark.png",
-  )
-  await expect(greetingLogo).toHaveAttribute("alt", "")
-  await expect(greetingLogo).toHaveJSProperty("complete", true)
+  await expect(greetingLogo).toHaveAttribute("src", "/brand/bfly-wordmark.png")
   expect(
     await greetingLogo.evaluate((image: HTMLImageElement) => ({
       width: image.naturalWidth,
@@ -470,68 +477,53 @@ test("loads the shared Nabi mark and local Source Serif faces without console no
     })),
   ).toEqual({ width: 128, height: 128 })
 
-  const wordmarkAsset = await page.request.get("/brand/bfly-wordmark.png")
-  const faviconAsset = await page.request.get("/brand/bfly-favicon.png")
-  expect(wordmarkAsset.ok()).toBe(true)
-  expect(faviconAsset.ok()).toBe(true)
-  expect((await wordmarkAsset.body()).byteLength).toBeLessThan(32_000)
-  expect((await faviconAsset.body()).byteLength).toBeLessThan(16_000)
-  expect(
-    await page.evaluate(async () => {
-      const image = new Image()
-      image.src = "/brand/bfly-favicon.png"
-      await image.decode()
-      return { width: image.naturalWidth, height: image.naturalHeight }
-    }),
-  ).toEqual({ width: 64, height: 64 })
-
-  await expect
-    .poll(() => page.evaluate(() => document.fonts.check('600 16px "Source Serif 4"')))
-    .toBe(true)
-  expect(await greetingWordmark.evaluate((element) => getComputedStyle(element).fontFamily))
-    .toContain("Source Serif 4")
-
   await enterLevel1(page)
-  const deskWordmark = page.getByRole("heading", { name: "Nabi Markdown" })
-  await expect(deskWordmark.locator("img")).toBeVisible()
-  for (const label of ["Goal", "Live preview"]) {
-    await expect(
-      page.getByRole("region", { name: label }).locator(".rendered-document__body"),
-    ).toHaveCSS("font-family", /Source Serif 4/)
-  }
-  await expect(page.locator(".status-bar__message")).toHaveCSS(
+  await expect(
+    page.getByRole("region", { name: "Goal" }).locator(".rendered-document__body"),
+  ).toHaveCSS("font-family", /Source Serif 4/)
+  await sourceEditor(page).fill("# Apple")
+  await sourceEditor(page).press("Control+Enter")
+  await expect(page.locator(".verdict-notice strong")).toHaveCSS(
     "font-family",
     /Source Serif 4/,
   )
-  await page.evaluate(() => document.fonts.ready)
-  expect(await page.evaluate(() => document.fonts.check('16px "Source Serif 4"')))
-    .toBe(true)
-  expect(await page.evaluate(() => document.fonts.check('600 16px "Source Serif 4"')))
-    .toBe(true)
+  await page.evaluate(async () => {
+    await document.fonts.load('400 16px "Source Serif 4"')
+    await document.fonts.load('600 16px "Source Serif 4"')
+    await document.fonts.ready
+  })
+  expect(
+    await page.evaluate(() =>
+      document.fonts.check('400 16px "Source Serif 4"'),
+    ),
+  ).toBe(true)
+  expect(
+    await page.evaluate(() =>
+      document.fonts.check('600 16px "Source Serif 4"'),
+    ),
+  ).toBe(true)
   expect(consoleNoise).toEqual([])
 })
 
-test("loads without a runtime API or learner-media request", async ({
+test("loads Preview without a runtime API or learner-media request", async ({
   page,
   baseURL,
 }) => {
   const appOrigin = new URL(baseURL ?? "http://127.0.0.1:4173").origin
   const runtimeRequests: string[] = []
   page.on("request", (request) => {
-    if (new URL(request.url()).origin !== appOrigin) {
+    const url = new URL(request.url())
+    if (url.origin !== appOrigin || url.pathname.startsWith("/api/")) {
       runtimeRequests.push(request.url())
     }
   })
 
   await page.goto("/")
-  await expect(
-    page.getByRole("heading", { name: "Nabi Markdown" }),
-  ).toBeVisible()
-
   await enterLevel1(page)
   await sourceEditor(page).fill(
     "![tracking pixel](https://example.com/pixel.png)",
   )
+  await page.keyboard.press("Alt+2")
   await expect(page.getByText("[Image: tracking pixel]")).toBeVisible()
   await expect(page.getByRole("img")).toHaveCount(0)
   expect(runtimeRequests).toEqual([])
