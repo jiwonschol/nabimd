@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-lists-004",
+  "reviewerId": "codex-orchid-batch004",
+  "reviewRunId": "orchid-batch004-2026-07-19-002",
+  "declaredIndependent": true,
+  "manifestDigest": "9781f5059c3088cfe1ed5f2347f86375e1839de9cc3f62c673400df359d1f1c6",
+  "verdicts": [
+    {
+      "candidateId": "l1-list-art-box",
+      "revision": 1,
+      "candidateDigest": "2f8aa4056e66e8bba3d83041ba4c7f2265180b542419140476bc7f10e1d0df13",
+      "fixtureResultsDigest": "46ebb4ab6b30096a457f9d7ca9112a54a9d6265b35c046b5808276b9c3678f8d",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-bathroom-shelf",
+      "revision": 1,
+      "candidateDigest": "418d0c8f58c9cc62ceffe80016a718dc6d023b14a8b17f5086d29e4be9f67573",
+      "fixtureResultsDigest": "cb8f92a0f0f49d71c06cbd49eb8dfdc62c287c88fcf37b960f3ae304b7df5871",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-cleaning-shelf",
+      "revision": 1,
+      "candidateDigest": "4510cd520cf73be001f2d3f6d50fbd71e5f6668a54aca03ba4d910029b7dfc9d",
+      "fixtureResultsDigest": "fc183117d7a78ee35018948b705b1e30b2c540d903dd5896306e9ddce717aec8",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-desk-tray",
+      "revision": 1,
+      "candidateDigest": "3b60dce2205debb3d67bb235754346897e7bf1c6152a643574097892d89a9c74",
+      "fixtureResultsDigest": "5e300739ed92c4b85ca5d341360e3da13d77cf068d2105f1b582e9469d8b2351",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-fruit-bowl",
+      "revision": 1,
+      "candidateDigest": "f5f101ba1b730ec88f26875ded152c66fe62e28fe0428412dd859514d608f175",
+      "fixtureResultsDigest": "0553862860bf7714521c4464eb3223be07eccb1b932d95f8fb1140c1fc9b7f4b",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-kitchen-drawer",
+      "revision": 1,
+      "candidateDigest": "322d86d067451e3238eab76b51ff34133f58b4cbc092dbf491580fd56ade6194",
+      "fixtureResultsDigest": "8a30aa992d797d5173fa8c46b05a1763d7c533ed3df574a503d3b4fc5472ec87",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-pencil-case",
+      "revision": 1,
+      "candidateDigest": "21eda69b67b4be69a8c060c35b5d46f70c50481e1f09bc8aa494a66f32d45f60",
+      "fixtureResultsDigest": "e90df4633af6c5898c53ec0ddf96e5ef260620bd2f33bac3d459d648119c26f4",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-picnic-basket",
+      "revision": 1,
+      "candidateDigest": "27c2c32359a7828b48defac9206e95c502ddd6c27c78a114f032011c276eb461",
+      "fixtureResultsDigest": "1b64db6ba87bce6adc2f6cd60608cbcaf91f91f6e862663eaf33236119f7cc7c",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-shoe-rack",
+      "revision": 1,
+      "candidateDigest": "e886200c0464ab88c22bbfcb999763dab49a11aa0a4ee843bb41ef7ca434326c",
+      "fixtureResultsDigest": "cf8f5e0ad2c4690d6d4cfec15b112510208c8e1b3da6959ef3426bb47eaa55ea",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-snack-plate",
+      "revision": 1,
+      "candidateDigest": "0265ae906d226e01d3391d6bcaef30b408aedf1fa01ecb2828f5da045f066636",
+      "fixtureResultsDigest": "c92a7181d646c9ee45482f58a80c29d6cd65adfa7c271373e281a0021a3fccdd",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-toolbox",
+      "revision": 1,
+      "candidateDigest": "99de7e8d3c88725517c64427b177bced3ecb748687c0dd8d6a3cc0fb075b06d3",
+      "fixtureResultsDigest": "4d911e9bc4096003f0fda46ba086ab8331d4a3d149f647f706c077e39554f4b5",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l1-list-toy-bin",
+      "revision": 1,
+      "candidateDigest": "343599ae4175386c96f822c13ae70323a63ca6cbe3135d2a8a2448996eb334ac",
+      "fixtureResultsDigest": "f70d2e4729871a13b3ac01ab6a8fe17d3ee1de0f07729f5e7cb95ca2b80d3d83",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 1 everyday vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-backpack-check",
+      "revision": 1,
+      "candidateDigest": "ae53fcc544b2496118cb2e3c3265c985b8e3b60e7415f94420840bc805f62347",
+      "fixtureResultsDigest": "dc7277f3b24894c11e7c55ca305b37ef3e10c538df932803a7274b40a71484c8",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-bike-ride-check",
+      "revision": 1,
+      "candidateDigest": "3c5f4ff7057d758e5a68064dcf92b19f8657e0f9b97222c7165cd8cd8a68e6b0",
+      "fixtureResultsDigest": "d576b0aa9db6ddfcafb3b7e80b480440551ecf7146e274fd0c499e62106bc37c",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-closet-cleanup",
+      "revision": 1,
+      "candidateDigest": "5f6fa2c62b0c284118ab42e7df66a2a05aa42a64f3ec91557e1b18463e83b98c",
+      "fixtureResultsDigest": "e5e5f1b7873b51f9e2d6493417489bf45536ab8106d179fce2a78227de23b323",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-donation-pickup",
+      "revision": 1,
+      "candidateDigest": "441216e9d646a4095f3b9f2135f0ed70045ed9de587079ce916c2bc0da8c9a37",
+      "fixtureResultsDigest": "746650e7ca1bba2cb7cc80febe186f75f0ed7ef1adfad7df258cf0a71b31cff2",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-guest-setup",
+      "revision": 1,
+      "candidateDigest": "c6c1427f028d427e2b5d16a54b6caf25ec6a41e544a8d13c0020a86e9a4696cb",
+      "fixtureResultsDigest": "a71af52c207ad0e536b6dc85fd91c592fe0686959ebc0f837ecab93112d33f4f",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-houseplant-care",
+      "revision": 1,
+      "candidateDigest": "fd1bc29da988feb798a430a6a7de3759934e6392b6e3ee915d41b0e73ed65137",
+      "fixtureResultsDigest": "460a6b8d1eb34846287a68ba4f81b928032d5dca148231126bdca51b353d82b0",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-kitchen-cleanup",
+      "revision": 1,
+      "candidateDigest": "6efbcea896f131622d96d68916fa10f22466c0b53de75bb9351a8b7a9e532311",
+      "fixtureResultsDigest": "ef2297e83a0b338a299dbb94a7e1368451bc2e47f62ef67f655850f8e150fbb8",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-movie-night-setup",
+      "revision": 1,
+      "candidateDigest": "16e388362062c05fd19fb6d7c78482725c41e306c0e6cab3bf115df95e5c1206",
+      "fixtureResultsDigest": "50a17b7f166151302ace8423342cbdef91a4b2b16f7253d43c92e57d2b5e4dc6",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-package-checklist",
+      "revision": 1,
+      "candidateDigest": "4c84c3c790f4ad9a4d83c1f4f77f0cf58ddf35dd8c9a6a9ae631050f0934de6f",
+      "fixtureResultsDigest": "f9a2f4bc2c5b7b1d8f5346d18cc97409f037131e2dcde6331f0557cb894ae819",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-rain-preparation",
+      "revision": 1,
+      "candidateDigest": "e1e6570ee66c854bbb2a0829b5c3e313f298137c2ecca814799cb812a4a0fa28",
+      "fixtureResultsDigest": "e4be6c0c3a65df433223c71a57cf37db5ee6c6049c6f33f9d30cd1169f9d53ca",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-room-reset",
+      "revision": 1,
+      "candidateDigest": "dd9164a589ae5d78091bf9c7e7e8438790a3a346fc9e86ef204bd44af8383119",
+      "fixtureResultsDigest": "496ed2722fbf1e5f1e0b2d102fad17133a52dfd9b0aadc4644d5be8ee3f7d133",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    },
+    {
+      "candidateId": "l2-list-study-reset",
+      "revision": 1,
+      "candidateDigest": "c9279298983c9c5212518a4f137dd9d93487d0d2ed3a39e5f516fbd0d51ae325",
+      "fixtureResultsDigest": "c74e7263cffd49739c20d82f9a6e2170c46d4e3212ac306e0224e492ee45862d",
+      "verdict": "pass",
+      "notes": "Independently recomputed frozen evidence and real-engine outcomes; Level 2 everyday-recall vocabulary, recursive list handling, image-alt content, and grammar-only acceptance all passed."
+    }
+  ],
+  "reviewDigest": "b517cbc8ddfd69a9c15e2d344ed161a4e3a9c31958bec0ac990a98384744ac01"
+}

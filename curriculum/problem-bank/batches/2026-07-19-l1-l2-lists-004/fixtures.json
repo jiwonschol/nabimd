@@ -1,0 +1,3462 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-lists-004",
+  "fixtures": [
+    {
+      "id": "l1-list-art-box-canonical-canonical",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Crayons\n- Paper\n- Glue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-case-spelling-variation-case-variation",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-different-prose-alternate",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 3\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-edge-case-asterisk-bullet",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 3\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-edge-case-blockquote-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 3\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-art-box-edge-case-empty-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-art-box-edge-case-image-alt-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-edge-case-inline-code-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 3`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-art-box-edge-case-ordered-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 3\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-art-box-edge-case-plus-bullet",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 3\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-art-box-edge-case-too-short-list",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 3\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-art-box-malformed-malformed",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 3\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-art-box-matched-with-review-multiple-lists",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-art-box-missing-missing",
+      "problemId": "l1-list-art-box",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 3\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-canonical-canonical",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Soap\n- Combs\n- Towels",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-case-spelling-variation-case-variation",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-different-prose-alternate",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 6\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-asterisk-bullet",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 6\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-blockquote-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 6\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-empty-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-image-alt-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-inline-code-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 6`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-ordered-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 6\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-plus-bullet",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 6\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-bathroom-shelf-edge-case-too-short-list",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 6\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-malformed-malformed",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 6\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-bathroom-shelf-matched-with-review-multiple-lists",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-bathroom-shelf-missing-missing",
+      "problemId": "l1-list-bathroom-shelf",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 6\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-canonical-canonical",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Sponges\n- Brushes\n- Buckets",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-case-spelling-variation-case-variation",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-different-prose-alternate",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 7\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-asterisk-bullet",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 7\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-blockquote-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 7\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-empty-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-image-alt-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-inline-code-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 7`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-ordered-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 7\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-plus-bullet",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 7\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-cleaning-shelf-edge-case-too-short-list",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 7\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-malformed-malformed",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 7\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-cleaning-shelf-matched-with-review-multiple-lists",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-cleaning-shelf-missing-missing",
+      "problemId": "l1-list-cleaning-shelf",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 7\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-canonical-canonical",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Paper clips\n- Labels\n- Stamps",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-case-spelling-variation-case-variation",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-different-prose-alternate",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 11\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-asterisk-bullet",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 11\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-blockquote-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 11\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-empty-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-image-alt-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-inline-code-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 11`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-ordered-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 11\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-plus-bullet",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 11\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-desk-tray-edge-case-too-short-list",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 11\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-malformed-malformed",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 11\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-desk-tray-matched-with-review-multiple-lists",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-desk-tray-missing-missing",
+      "problemId": "l1-list-desk-tray",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 11\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-canonical-canonical",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Bananas\n- Oranges\n- Pears",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-case-spelling-variation-case-variation",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-different-prose-alternate",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 9\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-asterisk-bullet",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 9\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-blockquote-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 9\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-empty-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-image-alt-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-inline-code-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 9`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-ordered-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 9\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-plus-bullet",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 9\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-fruit-bowl-edge-case-too-short-list",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 9\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-malformed-malformed",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 9\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-fruit-bowl-matched-with-review-multiple-lists",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-fruit-bowl-missing-missing",
+      "problemId": "l1-list-fruit-bowl",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 9\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-canonical-canonical",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Spoons\n- Forks\n- Napkins",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-case-spelling-variation-case-variation",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-different-prose-alternate",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 5\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-asterisk-bullet",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 5\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-blockquote-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 5\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-empty-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-image-alt-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-inline-code-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 5`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-ordered-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 5\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-plus-bullet",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 5\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-kitchen-drawer-edge-case-too-short-list",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 5\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-malformed-malformed",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 5\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-kitchen-drawer-matched-with-review-multiple-lists",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-kitchen-drawer-missing-missing",
+      "problemId": "l1-list-kitchen-drawer",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 5\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-canonical-canonical",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Pens\n- Markers\n- Scissors",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-case-spelling-variation-case-variation",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-different-prose-alternate",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 1\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-asterisk-bullet",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 1\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-blockquote-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 1\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-empty-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-image-alt-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-inline-code-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 1`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-ordered-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 1\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-plus-bullet",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 1\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-pencil-case-edge-case-too-short-list",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 1\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-malformed-malformed",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 1\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-pencil-case-matched-with-review-multiple-lists",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-pencil-case-missing-missing",
+      "problemId": "l1-list-pencil-case",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 1\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-canonical-canonical",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Water\n- Blanket\n- Sunscreen",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-case-spelling-variation-case-variation",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-different-prose-alternate",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 12\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-asterisk-bullet",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 12\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-blockquote-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 12\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-empty-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-image-alt-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-inline-code-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 12`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-ordered-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 12\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-plus-bullet",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 12\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-picnic-basket-edge-case-too-short-list",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 12\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-malformed-malformed",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 12\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-picnic-basket-matched-with-review-multiple-lists",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-picnic-basket-missing-missing",
+      "problemId": "l1-list-picnic-basket",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 12\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-canonical-canonical",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Sneakers\n- Boots\n- Sandals",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-case-spelling-variation-case-variation",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-different-prose-alternate",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 10\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-asterisk-bullet",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 10\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-blockquote-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 10\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-empty-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-image-alt-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-inline-code-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 10`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-ordered-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 10\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-plus-bullet",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 10\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-shoe-rack-edge-case-too-short-list",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 10\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-malformed-malformed",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 10\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-shoe-rack-matched-with-review-multiple-lists",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-shoe-rack-missing-missing",
+      "problemId": "l1-list-shoe-rack",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 10\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-canonical-canonical",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Crackers\n- Cheese\n- Grapes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-case-spelling-variation-case-variation",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-different-prose-alternate",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 2\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-asterisk-bullet",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 2\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-blockquote-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 2\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-empty-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-image-alt-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-inline-code-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 2`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-ordered-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 2\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-plus-bullet",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 2\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-snack-plate-edge-case-too-short-list",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 2\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-malformed-malformed",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 2\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-snack-plate-matched-with-review-multiple-lists",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-snack-plate-missing-missing",
+      "problemId": "l1-list-snack-plate",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 2\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-canonical-canonical",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Hammers\n- Tape\n- Nails",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-case-spelling-variation-case-variation",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-different-prose-alternate",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 8\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-asterisk-bullet",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 8\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-blockquote-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 8\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-empty-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-image-alt-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-inline-code-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 8`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-ordered-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 8\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-plus-bullet",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 8\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toolbox-edge-case-too-short-list",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 8\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-malformed-malformed",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 8\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toolbox-matched-with-review-multiple-lists",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-toolbox-missing-missing",
+      "problemId": "l1-list-toolbox",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 8\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-canonical-canonical",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Blocks\n- Puzzles\n- Balls",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-case-spelling-variation-case-variation",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-different-prose-alternate",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 4\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-asterisk-bullet",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 4\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-blockquote-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 4\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-empty-image-alt-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-empty-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-image-alt-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-inline-code-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 4`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-ordered-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 4\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-plus-bullet",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 4\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-list-toy-bin-edge-case-too-short-list",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 4\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-malformed-malformed",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 4\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l1-list-toy-bin-matched-with-review-multiple-lists",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l1-list-toy-bin-missing-missing",
+      "problemId": "l1-list-toy-bin",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 4\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-canonical-canonical",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Add a notebook\n- Pack a snack\n- Zip each pocket",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-case-spelling-variation-case-variation",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-different-prose-alternate",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 14\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-asterisk-bullet",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 14\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-blockquote-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 14\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-empty-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-image-alt-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-inline-code-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 14`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-ordered-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 14\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-plus-bullet",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 14\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-backpack-check-edge-case-too-short-list",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 14\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-malformed-malformed",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 14\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-backpack-check-matched-with-review-multiple-lists",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-backpack-check-missing-missing",
+      "problemId": "l2-list-backpack-check",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 14\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-canonical-canonical",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Fill a bottle\n- Test the brakes\n- Bring a helmet",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-case-spelling-variation-case-variation",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-different-prose-alternate",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 22\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-asterisk-bullet",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 22\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-blockquote-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 22\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-empty-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-image-alt-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-inline-code-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 22`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-ordered-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 22\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-plus-bullet",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 22\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-bike-ride-check-edge-case-too-short-list",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 22\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-malformed-malformed",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 22\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-bike-ride-check-matched-with-review-multiple-lists",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-bike-ride-check-missing-missing",
+      "problemId": "l2-list-bike-ride-check",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 22\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-canonical-canonical",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Hang shirts\n- Pair socks\n- Stack sweaters",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-different-prose-alternate",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 19\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 19\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-blockquote-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 19\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-empty-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-image-alt-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-inline-code-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 19`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-ordered-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 19\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-plus-bullet",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 19\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-closet-cleanup-edge-case-too-short-list",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 19\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-malformed-malformed",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 19\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-closet-cleanup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-closet-cleanup-missing-missing",
+      "problemId": "l2-list-closet-cleanup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 19\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-canonical-canonical",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Gather clean clothes\n- Choose a few books\n- Find a sturdy box",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-different-prose-alternate",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 21\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 21\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-blockquote-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 21\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-empty-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-image-alt-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-inline-code-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 21`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-ordered-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 21\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-plus-bullet",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 21\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-donation-pickup-edge-case-too-short-list",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 21\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-malformed-malformed",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 21\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-donation-pickup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-donation-pickup-missing-missing",
+      "problemId": "l2-list-donation-pickup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 21\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-canonical-canonical",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Clear a chair\n- Set out water\n- Add a clean towel",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-different-prose-alternate",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 16\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 16\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-blockquote-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 16\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-empty-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-image-alt-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-inline-code-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 16`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-ordered-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 16\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-plus-bullet",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 16\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-guest-setup-edge-case-too-short-list",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 16\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-malformed-malformed",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 16\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-guest-setup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-guest-setup-missing-missing",
+      "problemId": "l2-list-guest-setup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 16\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-canonical-canonical",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Check the soil\n- Trim dry leaves\n- Empty the tray",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-case-spelling-variation-case-variation",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-different-prose-alternate",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 15\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-asterisk-bullet",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 15\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-blockquote-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 15\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-empty-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-image-alt-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-inline-code-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 15`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-ordered-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 15\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-plus-bullet",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 15\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-houseplant-care-edge-case-too-short-list",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 15\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-malformed-malformed",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 15\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-houseplant-care-matched-with-review-multiple-lists",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-houseplant-care-missing-missing",
+      "problemId": "l2-list-houseplant-care",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 15\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-canonical-canonical",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Put away dishes\n- Wipe the counter\n- Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-different-prose-alternate",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 13\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 13\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-blockquote-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 13\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-empty-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-image-alt-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-inline-code-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 13`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-ordered-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 13\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-plus-bullet",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 13\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-edge-case-too-short-list",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 13\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-malformed-malformed",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 13\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-kitchen-cleanup-missing-missing",
+      "problemId": "l2-list-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 13\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-canonical-canonical",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Choose a movie\n- Make popcorn\n- Set out pillows",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-case-spelling-variation-case-variation",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-different-prose-alternate",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 20\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-asterisk-bullet",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 20\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-blockquote-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 20\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-empty-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-image-alt-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-inline-code-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 20`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-ordered-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 20\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-plus-bullet",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 20\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-movie-night-setup-edge-case-too-short-list",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 20\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-malformed-malformed",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 20\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-movie-night-setup-matched-with-review-multiple-lists",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-movie-night-setup-missing-missing",
+      "problemId": "l2-list-movie-night-setup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 20\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-canonical-canonical",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Find a box\n- Bring packing tape\n- Keep a marker",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-case-spelling-variation-case-variation",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-different-prose-alternate",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 23\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-asterisk-bullet",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 23\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-blockquote-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 23\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-empty-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-image-alt-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-inline-code-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 23`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-ordered-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 23\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-plus-bullet",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 23\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-package-checklist-edge-case-too-short-list",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 23\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-malformed-malformed",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 23\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-package-checklist-matched-with-review-multiple-lists",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-package-checklist-missing-missing",
+      "problemId": "l2-list-package-checklist",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 23\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-canonical-canonical",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Close the windows\n- Move shoes inside\n- Cover the bike",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-case-spelling-variation-case-variation",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-different-prose-alternate",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 18\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-asterisk-bullet",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 18\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-blockquote-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 18\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-empty-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-image-alt-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-inline-code-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 18`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-ordered-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 18\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-plus-bullet",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 18\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-rain-preparation-edge-case-too-short-list",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 18\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-malformed-malformed",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 18\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-rain-preparation-matched-with-review-multiple-lists",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-rain-preparation-missing-missing",
+      "problemId": "l2-list-rain-preparation",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 18\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-canonical-canonical",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Open the curtains\n- Make the bed\n- Put away clutter",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-case-spelling-variation-case-variation",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-different-prose-alternate",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 24\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-asterisk-bullet",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 24\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-blockquote-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 24\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-empty-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-image-alt-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-inline-code-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 24`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-ordered-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 24\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-plus-bullet",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 24\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-room-reset-edge-case-too-short-list",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 24\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-malformed-malformed",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 24\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-room-reset-matched-with-review-multiple-lists",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-room-reset-missing-missing",
+      "problemId": "l2-list-room-reset",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 24\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-canonical-canonical",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Close the books\n- File loose papers\n- Clear the table",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-case-spelling-variation-case-variation",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- MISPELED WORDS\n- lowercase text\n- punctuation!",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-different-prose-alternate",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- New item 17\n- Anything works\n- Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-asterisk-bullet",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* New item 17\n* Anything works\n* Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-blockquote-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "> - New item 17\n> - Anything works\n> - Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-empty-image-alt-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- ![](one.png)\n- ![](two.png)\n- ![](three.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-empty-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-\n-\n-",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-image-alt-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- ![One](one.png)\n- ![Two](two.png)\n- ![Three](three.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-inline-code-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "`- New item 17`\n\n`- Anything works`\n\n`- Last idea`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-ordered-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "1. New item 17\n2. Anything works\n3. Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-plus-bullet",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "+ New item 17\n+ Anything works\n+ Last idea",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-list-study-reset-edge-case-too-short-list",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "- New item 17\n- Anything works",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-malformed-malformed",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "-New item 17\n-Anything works\n-Last idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    },
+    {
+      "id": "l2-list-study-reset-matched-with-review-multiple-lists",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- One\n- Two\n- Three\n\nA short bridge.\n\n- Four\n- Five\n- Six",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-list"
+      ]
+    },
+    {
+      "id": "l2-list-study-reset-missing-missing",
+      "problemId": "l2-list-study-reset",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bullet-list",
+      "source": "New item 17\nAnything works\nLast idea",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bullet-list"
+    }
+  ]
+}

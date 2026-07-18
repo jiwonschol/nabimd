@@ -54,6 +54,15 @@ const supportedInlineKinds = new Set<string>([
   "image",
 ])
 
+const supportedBlockKinds = new Set<string>([
+  "heading",
+  "paragraph",
+  "list",
+  "code",
+  "blockquote",
+  "thematic-break",
+])
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value)
 }
@@ -112,9 +121,32 @@ function validateRange(
 }
 
 function validateScope(problemId: string, check: MatchCheck, errors: string[]) {
-  if (!("scope" in check) || check.scope.kind === "document") return
-
-  if (!Number.isInteger(check.scope.occurrence) || check.scope.occurrence < 0) {
+  if (!("scope" in check)) return
+  const runtimeScope = (check as unknown as Record<string, unknown>).scope
+  if (!isRecord(runtimeScope)) {
+    errors.push(`Problem ${problemId} check ${check.id} has invalid scope`)
+    return
+  }
+  if (runtimeScope.kind === "document") return
+  if (runtimeScope.kind !== "section") {
+    errors.push(
+      `Problem ${problemId} check ${check.id} has unsupported scope kind: ${String(runtimeScope.kind)}`,
+    )
+    return
+  }
+  if (
+    !Number.isInteger(runtimeScope.headingDepth) ||
+    Number(runtimeScope.headingDepth) < 1 ||
+    Number(runtimeScope.headingDepth) > 6
+  ) {
+    errors.push(
+      `Problem ${problemId} check ${check.id} has invalid section heading depth`,
+    )
+  }
+  if (
+    !Number.isInteger(runtimeScope.occurrence) ||
+    Number(runtimeScope.occurrence) < 0
+  ) {
     errors.push(
       `Problem ${problemId} check ${check.id} has invalid section occurrence`,
     )
@@ -162,10 +194,51 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
         if (check.min === undefined && check.max === undefined) {
           errors.push(`Problem ${problem.id} check ${check.id} requires a range`)
         }
+        if (
+          check.kind === "block-count" &&
+          check.depth !== undefined &&
+          check.block !== "heading"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} can only use depth with heading blocks`,
+          )
+        }
         break
-      case "list-shape":
+      case "list-shape": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
         validateRange(problem.id, check, check.minItems, check.maxItems, errors)
+        if (!Number.isInteger(runtimeCheck.minItems) || Number(runtimeCheck.minItems) < 1) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} requires at least one item`,
+          )
+        }
+        if (
+          runtimeCheck.ordered !== true &&
+          runtimeCheck.ordered !== false &&
+          runtimeCheck.ordered !== "either"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has unsupported ordered value: ${String(runtimeCheck.ordered)}`,
+          )
+        }
+        if (
+          runtimeCheck.recursive !== undefined &&
+          typeof runtimeCheck.recursive !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid recursive flag`,
+          )
+        }
+        if (
+          runtimeCheck.requireNonemptyItems !== undefined &&
+          typeof runtimeCheck.requireNonemptyItems !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid nonempty-items flag`,
+          )
+        }
         break
+      }
       case "code-block":
         validateRange(problem.id, check, check.min, check.max, errors)
         break
@@ -226,6 +299,47 @@ function validateEditorialChecks(
           )
         }
         if (!Number.isInteger(check.max) || check.max < 0) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid max`,
+          )
+        }
+        break
+      }
+      case "max-block-count": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
+        validateEditorialScope(problem.id, label, runtimeCheck.scope, errors)
+        if (!supportedBlockKinds.has(String(runtimeCheck.block))) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has unsupported block kind: ${String(runtimeCheck.block)}`,
+          )
+        }
+        if (
+          runtimeCheck.depth !== undefined &&
+          (!Number.isInteger(runtimeCheck.depth) ||
+            Number(runtimeCheck.depth) < 1 ||
+            Number(runtimeCheck.depth) > 6)
+        ) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid heading depth`,
+          )
+        }
+        if (
+          runtimeCheck.depth !== undefined &&
+          runtimeCheck.block !== "heading"
+        ) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} can only use depth with heading blocks`,
+          )
+        }
+        if (
+          runtimeCheck.recursive !== undefined &&
+          typeof runtimeCheck.recursive !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid recursive flag`,
+          )
+        }
+        if (!Number.isInteger(runtimeCheck.max) || Number(runtimeCheck.max) < 0) {
           errors.push(
             `Problem ${problem.id} editorial check ${label} has invalid max`,
           )

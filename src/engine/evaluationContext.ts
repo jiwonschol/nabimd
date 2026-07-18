@@ -6,6 +6,9 @@ import { createSectionIndex, type MarkdownSection } from "./sectionIndex"
 export type AstNode = {
   type: string
   children?: readonly AstNode[]
+  depth?: number
+  value?: unknown
+  alt?: unknown
 }
 
 export type EvaluationContext = {

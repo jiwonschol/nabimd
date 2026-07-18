@@ -1,4 +1,4 @@
-import type { Code, Heading, List, RootContent } from "mdast"
+import type { Code, Heading, List, ListItem, RootContent } from "mdast"
 import type {
   BlockKind,
   BlockSelector,
@@ -40,7 +40,7 @@ function inRange(value: number, min?: number, max?: number): boolean {
   return (min === undefined || value >= min) && (max === undefined || value <= max)
 }
 
-function blockMatches(node: RootContent, selector: BlockSelector): boolean {
+function blockMatches(node: AstNode, selector: BlockSelector): boolean {
   if (node.type !== nodeTypeByBlock[selector.block]) return false
   return (
     selector.depth === undefined ||
@@ -52,10 +52,29 @@ function blockCountPasses(
   check: Extract<StructuralCheck, { kind: "block-count" }>,
   context: EvaluationContext,
 ) {
-  const count = nodesInScope(context, check.scope).filter((node) =>
-    blockMatches(node, { block: check.block, depth: check.depth }),
-  ).length
+  const count = countBlockNodes(
+    context,
+    check.scope,
+    check.block,
+    check.depth,
+  )
   return inRange(count, check.min, check.max)
+}
+
+export function countBlockNodes(
+  context: EvaluationContext,
+  scope: CheckScope,
+  block: BlockKind,
+  depth?: 1 | 2 | 3 | 4 | 5 | 6,
+  recursive = false,
+) {
+  const scopedNodes = nodesInScope(context, scope)
+  const candidateNodes = recursive
+    ? descendants(scopedNodes as AstNode[])
+    : scopedNodes
+  return candidateNodes.filter((node) =>
+    blockMatches(node, { block, depth }),
+  ).length
 }
 
 function inlinePresencePasses(
@@ -87,14 +106,27 @@ function listShapePasses(
   check: Extract<StructuralCheck, { kind: "list-shape" }>,
   context: EvaluationContext,
 ) {
-  const lists = nodesInScope(context, check.scope).filter(
+  const scopedNodes = nodesInScope(context, check.scope)
+  const candidateNodes = check.recursive
+    ? descendants(scopedNodes as AstNode[])
+    : scopedNodes
+  const lists = candidateNodes.filter(
     (node): node is List => node.type === "list",
   )
   return lists.some((list) => {
     const ordered = Boolean(list.ordered)
     return (
       (check.ordered === "either" || check.ordered === ordered) &&
-      inRange(list.children.length, check.minItems, check.maxItems)
+      inRange(list.children.length, check.minItems, check.maxItems) &&
+      (!check.requireNonemptyItems || list.children.every(listItemHasContent))
+    )
+  })
+}
+
+function listItemHasContent(item: ListItem): boolean {
+  return descendants(item.children as AstNode[]).some((node) => {
+    return [node.value, node.alt].some(
+      (content) => typeof content === "string" && content.trim().length > 0,
     )
   })
 }

@@ -3,7 +3,7 @@ import {
   type EvaluationContext,
 } from "./evaluationContext"
 import { headingsAtLevel } from "./markdownAst"
-import { countInlineNodes } from "./predicates/structural"
+import { countBlockNodes, countInlineNodes } from "./predicates/structural"
 import type { ReviewItem } from "./types"
 
 function editorialCheckPasses(
@@ -15,6 +15,16 @@ function editorialCheckPasses(
       return headingsAtLevel(context.root, 1).length === 1
     case "max-inline-count":
       return countInlineNodes(context, check.scope, check.inline) <= check.max
+    case "max-block-count":
+      return (
+        countBlockNodes(
+          context,
+          check.scope,
+          check.block,
+          check.depth,
+          check.recursive,
+        ) <= check.max
+      )
   }
 }
 

@@ -1,0 +1,2054 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-lists-004",
+  "sequence": 4,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-19",
+  "promptSha256": "d55f73217275f04f9651a37126155bb512ec957e7dc51c7b4781a71409df0733",
+  "rawArtifactDigest": "ecb95ab82b5850f66be4178d2cd2a3d971f5829ea0beaf4afbd5abff7de6f514",
+  "candidateCount": 24,
+  "candidates": [
+    {
+      "id": "l1-list-art-box",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Crayons\n- Paper\n- Glue",
+      "starterText": "",
+      "protectedContent": [
+        "Crayons",
+        "Paper",
+        "Glue"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "art-supplies"
+        ],
+        "terms": [
+          "Crayons",
+          "Paper",
+          "Glue"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "art-box",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "2f8aa4056e66e8bba3d83041ba4c7f2265180b542419140476bc7f10e1d0df13"
+    },
+    {
+      "id": "l1-list-bathroom-shelf",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Soap\n- Combs\n- Towels",
+      "starterText": "",
+      "protectedContent": [
+        "Soap",
+        "Combs",
+        "Towels"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home"
+        ],
+        "terms": [
+          "Soap",
+          "Combs",
+          "Towels"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "bathroom-shelf",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "418d0c8f58c9cc62ceffe80016a718dc6d023b14a8b17f5086d29e4be9f67573"
+    },
+    {
+      "id": "l1-list-cleaning-shelf",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Sponges\n- Brushes\n- Buckets",
+      "starterText": "",
+      "protectedContent": [
+        "Sponges",
+        "Brushes",
+        "Buckets"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "cleaning"
+        ],
+        "terms": [
+          "Sponges",
+          "Brushes",
+          "Buckets"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "cleaning-shelf",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "4510cd520cf73be001f2d3f6d50fbd71e5f6668a54aca03ba4d910029b7dfc9d"
+    },
+    {
+      "id": "l1-list-desk-tray",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Paper clips\n- Labels\n- Stamps",
+      "starterText": "",
+      "protectedContent": [
+        "Paper clips",
+        "Labels",
+        "Stamps"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "office-supplies"
+        ],
+        "terms": [
+          "Paper clips",
+          "Labels",
+          "Stamps"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "desk-tray",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "3b60dce2205debb3d67bb235754346897e7bf1c6152a643574097892d89a9c74"
+    },
+    {
+      "id": "l1-list-fruit-bowl",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Bananas\n- Oranges\n- Pears",
+      "starterText": "",
+      "protectedContent": [
+        "Bananas",
+        "Oranges",
+        "Pears"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "fruit"
+        ],
+        "terms": [
+          "Bananas",
+          "Oranges",
+          "Pears"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "fruit-bowl",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "f5f101ba1b730ec88f26875ded152c66fe62e28fe0428412dd859514d608f175"
+    },
+    {
+      "id": "l1-list-kitchen-drawer",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Spoons\n- Forks\n- Napkins",
+      "starterText": "",
+      "protectedContent": [
+        "Spoons",
+        "Forks",
+        "Napkins"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "kitchen"
+        ],
+        "terms": [
+          "Spoons",
+          "Forks",
+          "Napkins"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "kitchen-drawer",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "322d86d067451e3238eab76b51ff34133f58b4cbc092dbf491580fd56ade6194"
+    },
+    {
+      "id": "l1-list-pencil-case",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Pens\n- Markers\n- Scissors",
+      "starterText": "",
+      "protectedContent": [
+        "Pens",
+        "Markers",
+        "Scissors"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "school-supplies"
+        ],
+        "terms": [
+          "Pens",
+          "Markers",
+          "Scissors"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pencil-case",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "21eda69b67b4be69a8c060c35b5d46f70c50481e1f09bc8aa494a66f32d45f60"
+    },
+    {
+      "id": "l1-list-picnic-basket",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Water\n- Blanket\n- Sunscreen",
+      "starterText": "",
+      "protectedContent": [
+        "Water",
+        "Blanket",
+        "Sunscreen"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "outdoors"
+        ],
+        "terms": [
+          "Water",
+          "Blanket",
+          "Sunscreen"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "picnic-basket",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "27c2c32359a7828b48defac9206e95c502ddd6c27c78a114f032011c276eb461"
+    },
+    {
+      "id": "l1-list-shoe-rack",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Sneakers\n- Boots\n- Sandals",
+      "starterText": "",
+      "protectedContent": [
+        "Sneakers",
+        "Boots",
+        "Sandals"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "clothing"
+        ],
+        "terms": [
+          "Sneakers",
+          "Boots",
+          "Sandals"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "shoe-rack",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "e886200c0464ab88c22bbfcb999763dab49a11aa0a4ee843bb41ef7ca434326c"
+    },
+    {
+      "id": "l1-list-snack-plate",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Crackers\n- Cheese\n- Grapes",
+      "starterText": "",
+      "protectedContent": [
+        "Crackers",
+        "Cheese",
+        "Grapes"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "Crackers",
+          "Cheese",
+          "Grapes"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "snack-plate",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "0265ae906d226e01d3391d6bcaef30b408aedf1fa01ecb2828f5da045f066636"
+    },
+    {
+      "id": "l1-list-toolbox",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Hammers\n- Tape\n- Nails",
+      "starterText": "",
+      "protectedContent": [
+        "Hammers",
+        "Tape",
+        "Nails"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "tools"
+        ],
+        "terms": [
+          "Hammers",
+          "Tape",
+          "Nails"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "toolbox",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "99de7e8d3c88725517c64427b177bced3ecb748687c0dd8d6a3cc0fb075b06d3"
+    },
+    {
+      "id": "l1-list-toy-bin",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list",
+      "prompt": "Write a three-item bullet list in Markdown.",
+      "target": "- Blocks\n- Puzzles\n- Balls",
+      "starterText": "",
+      "protectedContent": [
+        "Blocks",
+        "Puzzles",
+        "Balls"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-1-unordered-list",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "toys"
+        ],
+        "terms": [
+          "Blocks",
+          "Puzzles",
+          "Balls"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "toy-bin",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "343599ae4175386c96f822c13ae70323a63ca6cbe3135d2a8a2448996eb334ac"
+    },
+    {
+      "id": "l2-list-backpack-check",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Add a notebook\n- Pack a snack\n- Zip each pocket",
+      "starterText": "",
+      "protectedContent": [
+        "Add a notebook",
+        "Pack a snack",
+        "Zip each pocket"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "school-routine"
+        ],
+        "terms": [
+          "Add a notebook",
+          "Pack a snack",
+          "Zip each pocket"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "backpack-check",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "ae53fcc544b2496118cb2e3c3265c985b8e3b60e7415f94420840bc805f62347"
+    },
+    {
+      "id": "l2-list-bike-ride-check",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Fill a bottle\n- Test the brakes\n- Bring a helmet",
+      "starterText": "",
+      "protectedContent": [
+        "Fill a bottle",
+        "Test the brakes",
+        "Bring a helmet"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "outdoor-routine"
+        ],
+        "terms": [
+          "Fill a bottle",
+          "Test the brakes",
+          "Bring a helmet"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "bike-ride-check",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "3c5f4ff7057d758e5a68064dcf92b19f8657e0f9b97222c7165cd8cd8a68e6b0"
+    },
+    {
+      "id": "l2-list-closet-cleanup",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Hang shirts\n- Pair socks\n- Stack sweaters",
+      "starterText": "",
+      "protectedContent": [
+        "Hang shirts",
+        "Pair socks",
+        "Stack sweaters"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Hang shirts",
+          "Pair socks",
+          "Stack sweaters"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "closet-cleanup",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "5f6fa2c62b0c284118ab42e7df66a2a05aa42a64f3ec91557e1b18463e83b98c"
+    },
+    {
+      "id": "l2-list-donation-pickup",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Gather clean clothes\n- Choose a few books\n- Find a sturdy box",
+      "starterText": "",
+      "protectedContent": [
+        "Gather clean clothes",
+        "Choose a few books",
+        "Find a sturdy box"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "community-routine"
+        ],
+        "terms": [
+          "Gather clean clothes",
+          "Choose a few books",
+          "Find a sturdy box"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "donation-pickup",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "441216e9d646a4095f3b9f2135f0ed70045ed9de587079ce916c2bc0da8c9a37"
+    },
+    {
+      "id": "l2-list-guest-setup",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Clear a chair\n- Set out water\n- Add a clean towel",
+      "starterText": "",
+      "protectedContent": [
+        "Clear a chair",
+        "Set out water",
+        "Add a clean towel"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Clear a chair",
+          "Set out water",
+          "Add a clean towel"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "guest-setup",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "c6c1427f028d427e2b5d16a54b6caf25ec6a41e544a8d13c0020a86e9a4696cb"
+    },
+    {
+      "id": "l2-list-houseplant-care",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Check the soil\n- Trim dry leaves\n- Empty the tray",
+      "starterText": "",
+      "protectedContent": [
+        "Check the soil",
+        "Trim dry leaves",
+        "Empty the tray"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "plant-care"
+        ],
+        "terms": [
+          "Check the soil",
+          "Trim dry leaves",
+          "Empty the tray"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "houseplant-care",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "fd1bc29da988feb798a430a6a7de3759934e6392b6e3ee915d41b0e73ed65137"
+    },
+    {
+      "id": "l2-list-kitchen-cleanup",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Put away dishes\n- Wipe the counter\n- Sweep the floor",
+      "starterText": "",
+      "protectedContent": [
+        "Put away dishes",
+        "Wipe the counter",
+        "Sweep the floor"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Put away dishes",
+          "Wipe the counter",
+          "Sweep the floor"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "kitchen-cleanup",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "6efbcea896f131622d96d68916fa10f22466c0b53de75bb9351a8b7a9e532311"
+    },
+    {
+      "id": "l2-list-movie-night-setup",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Choose a movie\n- Make popcorn\n- Set out pillows",
+      "starterText": "",
+      "protectedContent": [
+        "Choose a movie",
+        "Make popcorn",
+        "Set out pillows"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "leisure-routine"
+        ],
+        "terms": [
+          "Choose a movie",
+          "Make popcorn",
+          "Set out pillows"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "movie-night-setup",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "16e388362062c05fd19fb6d7c78482725c41e306c0e6cab3bf115df95e5c1206"
+    },
+    {
+      "id": "l2-list-package-checklist",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Find a box\n- Bring packing tape\n- Keep a marker",
+      "starterText": "",
+      "protectedContent": [
+        "Find a box",
+        "Bring packing tape",
+        "Keep a marker"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "shipping-routine"
+        ],
+        "terms": [
+          "Find a box",
+          "Bring packing tape",
+          "Keep a marker"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "package-checklist",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "4c84c3c790f4ad9a4d83c1f4f77f0cf58ddf35dd8c9a6a9ae631050f0934de6f"
+    },
+    {
+      "id": "l2-list-rain-preparation",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Close the windows\n- Move shoes inside\n- Cover the bike",
+      "starterText": "",
+      "protectedContent": [
+        "Close the windows",
+        "Move shoes inside",
+        "Cover the bike"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "weather-routine"
+        ],
+        "terms": [
+          "Close the windows",
+          "Move shoes inside",
+          "Cover the bike"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "rain-preparation",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "e1e6570ee66c854bbb2a0829b5c3e313f298137c2ecca814799cb812a4a0fa28"
+    },
+    {
+      "id": "l2-list-room-reset",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Open the curtains\n- Make the bed\n- Put away clutter",
+      "starterText": "",
+      "protectedContent": [
+        "Open the curtains",
+        "Make the bed",
+        "Put away clutter"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "home-routine"
+        ],
+        "terms": [
+          "Open the curtains",
+          "Make the bed",
+          "Put away clutter"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "room-reset",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "dd9164a589ae5d78091bf9c7e7e8438790a3a346fc9e86ef204bd44af8383119"
+    },
+    {
+      "id": "l2-list-study-reset",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A bullet list groups related items so each one is easy to scan.",
+        "howTo": "Start each item on a new line with a hyphen and a space.",
+        "example": "- Apples\n- Bread\n- Milk"
+      },
+      "syntaxTokens": [
+        "-",
+        "Space",
+        "Item",
+        "New line"
+      ],
+      "title": "Bullet list recall",
+      "prompt": "From memory, write a three-item bullet list in Markdown.",
+      "target": "- Close the books\n- File loose papers\n- Clear the table",
+      "starterText": "",
+      "protectedContent": [
+        "Close the books",
+        "File loose papers",
+        "Clear the table"
+      ],
+      "matchChecks": [
+        {
+          "id": "use-bullet-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 3,
+          "recursive": true,
+          "requireNonemptyItems": true,
+          "priority": 10,
+          "feedback": "Add at least three bullet items, with words after each marker."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-list",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep these items together in one bullet list."
+        }
+      ],
+      "hints": [
+        "Each item starts on its own line.",
+        "Type a hyphen, one space, then the item.",
+        "Example: `- Apples`"
+      ],
+      "retryFamily": "level-2-unordered-list-recall",
+      "reviewTags": [
+        "one-focused-list"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "study-routine"
+        ],
+        "terms": [
+          "Close the books",
+          "File loose papers",
+          "Clear the table"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "study-reset",
+      "sourceBatch": "2026-07-19-l1-l2-lists-004",
+      "candidateDigest": "c9279298983c9c5212518a4f137dd9d93487d0d2ed3a39e5f516fbd0d51ae325"
+    }
+  ],
+  "artifactDigest": "07eb253c01167fead6af5dd9373277522c86b4dd4c5137e7cb6c4377b48c3b60"
+}
