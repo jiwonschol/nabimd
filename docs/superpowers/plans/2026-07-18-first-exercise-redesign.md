@@ -560,7 +560,7 @@ git push origin agent/bootstrap-nabi-markdown
 - Modify: `docs/build-log.md`
 - Modify: `docs/submission-checklist.md` if verification counts or demo facts change
 
-- [ ] **Step 1: Refresh README and Build Week evidence**
+- [x] **Step 1: Refresh README and Build Week evidence**
 
 Describe the verified C6 experience, exact current test counts, CodeMirror
 source editor, Level 1/recall Help behavior, and the linked Level 5 public

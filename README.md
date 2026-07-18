@@ -9,7 +9,7 @@ not recognition: the learner sees a rendered target, writes the source, checks
 it explicitly, and proves the same skill with different content after a
 mistake.
 
-The current deployed slice teaches H1 document titles. It is deliberately
+The current release candidate teaches H1 document titles. It is deliberately
 small enough to prove the complete learning loop before the problem bank is
 expanded.
 
@@ -46,8 +46,9 @@ Nabi takes its method from language learning:
 2. Produce the Markdown yourself in a plain source editor.
 3. Press **Check** or `Control/Command + Enter` when you are ready.
 4. Receive one precise result: **Fail**, **Matched**, or **Perfect**.
-5. Ask for a progressive Hint only after a failure, or an optional Review
-   after Matched.
+5. See a new rule during its Level 1 introduction; on later recall exercises,
+   choose whether to open Help. After Fail, ask for progressively stronger
+   hints. After Matched, Review remains optional.
 6. After repairing a failure, solve a different prompt that uses the same
    syntax so recall—not answer memorization—is tested.
 
@@ -63,22 +64,27 @@ This milestone includes:
 - three curated H1 heading prompts with 18 golden fixtures;
 - deterministic Markdown parsing and ordered feedback;
 - different-content transfer after a repaired failure;
-- progressive, request-only hints and optional review;
+- introduce/recall teaching modes, downward Help, progressive hints, and
+  optional Review;
 - local draft and transfer-state persistence;
-- a monochrome responsive Editorial Desk and mobile Side Coach; and
-- 62 unit/component tests plus five Chromium end-to-end paths.
+- one safe rendered-document surface for Goal and Live preview;
+- a restrained monochrome CodeMirror source editor with optional,
+  non-mutating invisibles; and
+- 83 unit/component tests plus eight Chromium end-to-end paths.
 
 It does **not** yet claim the full 33-problem curriculum, accounts, cloud
 sync, Korean localization, payments, analytics, or runtime AI.
 
 ## How it works
 
-The browser app is React, TypeScript, and Vite. `mdast-util-from-markdown`
-parses learner input into a Markdown AST. The grader checks required structure,
-protected prompt text, malformed syntax, and optional editorial rules. React
-components render the resulting state; they do not inspect Markdown syntax.
+The browser app is React, TypeScript, and Vite. CodeMirror 6 provides the plain
+Markdown source surface, caret, history, gutter, and view-only whitespace
+decorations. `mdast-util-from-markdown` parses learner input into a Markdown
+AST. The grader checks required structure, protected prompt text, malformed
+syntax, and optional editorial rules. React components render the resulting
+state; they do not inspect Markdown syntax.
 
-The target preview and learner preview use `react-markdown` without raw HTML.
+The Goal and learner preview use `react-markdown` without raw HTML.
 Progress is versioned and stored locally. The deployed app makes no request to
 OpenAI or any other runtime service, so a network outage cannot change whether
 the same answer passes.
@@ -99,9 +105,10 @@ real browser at desktop and mobile sizes and fixed the defects that appeared.
 Jiwon made the consequential product calls. He rejected live correction
 because it improves an editor without building recall; chose explicit Check,
 request-only coaching, and different-content transfer; made Matched a pass and
-Perfect a stronger pass; selected the Editorial Desk and separate Side Coach;
-kept runtime grading deterministic; and set the English-first, black-and-white
-Build Week scope.
+Perfect a stronger pass; defined Goal as the rendered reference; selected the
+C6 workspace with aligned Goal/Help and equal editor/preview rows; kept runtime
+grading deterministic; and set the English-first, black-and-white Build Week
+scope.
 
 The dated [build log](docs/build-log.md) records these decisions and failures
 while they happen. The public commit sequence preserves the implementation
@@ -138,6 +145,32 @@ also collected `tests/e2e/heading-flow.spec.ts`. Vitest is now scoped to
 `src/**/*.test.{ts,tsx}` and Playwright owns `tests/e2e`. The clean-install
 gate then passed both suites independently.
 
+### Replacing a generic editor without losing the learning engine
+
+The first shipped slice proved grading but repeated `Project notes` across the
+instruction, target, prefilled source, and preview. Jiwon's hands-on review
+showed that the result looked like a generic Markdown editor, not a lesson.
+The redesign kept the tested grader, persistence, and transfer selector while
+replacing the learner hierarchy: an empty source, a large rendered Goal,
+downward Help, and one shared paper component for Goal and Live preview.
+
+### Keeping fast typing from being overwritten
+
+The first CodeMirror integration passed its isolated component test but lost
+characters when the full app re-rendered after every keystroke. A passive
+effect could replay an older controlled value after the editor had already
+advanced. Moving controlled document synchronization to the layout phase made
+parent echoes settle before the next browser input. The regression is covered
+in the application and real-browser keyboard paths.
+
+### Removing the mobile overlay exposed by the new Help default
+
+Level 1 now opens Help on first exposure. The legacy mobile Side Coach was a
+fixed bottom sheet, so it covered the Check action before the C6 composition
+was complete. C6 removes that overlay entirely: Help is a normal downward
+disclosure in semantic document order. Browser tests now assert Goal → Help →
+source → preview ordering and no horizontal overflow at 390 px.
+
 ## Accomplishments that we're proud of
 
 - A complete Fail → repair → different-content transfer → pass loop works in
@@ -146,11 +179,12 @@ gate then passed both suites independently.
   presentation without turning editorial polish into punishment.
 - Every current problem carries six fixture classes and three progressive
   hints.
-- `npm ci`, typechecking, 62 unit/component tests, the production build, and
-  five Chromium journeys pass from the committed lockfile and against the
-  public deployment.
-- The UI stays monochrome and source-focused while adapting the coach to a
-  no-overflow mobile bottom sheet.
+- Goal and Live preview share one safe renderer, while the source editor can
+  reveal spaces and tabs without changing the learner's Markdown.
+- Typechecking, 83 unit/component tests, the production build, and eight
+  Chromium journeys pass from the committed lockfile.
+- The UI stays monochrome and source-focused while preserving a constrained
+  reading width and allowing future document exercises to grow vertically.
 
 ## What we learned
 
@@ -202,6 +236,10 @@ npm run check
 - [Submission checklist](docs/submission-checklist.md)
 - [Approved application design](docs/superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
 - [Heading MVP execution plan](docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md)
+- [Approved first-exercise redesign](docs/superpowers/specs/2026-07-18-first-exercise-redesign-design.md)
+- [C6 redesign execution plan](docs/superpowers/plans/2026-07-18-first-exercise-redesign.md)
+- [Level 5 agent-brief north star](docs/design/level-5-agent-brief-north-star.md)
+- [Anonymized Level 5 reference](docs/examples/level-5-agent-work-order-reference.md)
 - [Public demo](https://nabimd.vercel.app)
 - Primary Codex task: the core-build task used for this repository
 - `/feedback` Session ID: generated after the majority of the final submission
@@ -218,12 +256,16 @@ bank, not grade learners at runtime.
 Markdown is the first code many people write with AI. It should not be the
 first thing nobody teaches them.
 
-Later: the syntax agents actually read—AGENTS.md, prompt structure, and spec
-files—and Korean before other localizations.
+Later: the syntax agents actually read—AGENTS.md, prompt structure, spec files,
+and contemporary agent work orders. The eventual Level 5 outcome is not merely
+an editor: repeated document makeovers should teach a person to structure an
+AI instruction document that another human can audit. Those conventions will
+be versioned as tools evolve. Korean comes before other localizations after the
+English curriculum is proven.
 
 No pre-existing application code was used. The app depends on React, Vite,
-TypeScript, mdast, react-markdown, Vitest, Testing Library, and Playwright;
-their exact versions are locked in `package-lock.json`.
+TypeScript, CodeMirror, mdast, react-markdown, Vitest, Testing Library, and
+Playwright; their exact versions are locked in `package-lock.json`.
 
 ## License
 

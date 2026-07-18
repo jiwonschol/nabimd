@@ -382,7 +382,77 @@ Artifacts at approval time:
   `docs/examples/level-5-agent-work-order-reference.md`
 - Runtime status: approved but not yet implemented
 
+## 2026-07-18 — C6 first-exercise release candidate
+
+### What changed
+
+Codex implemented the approved first-exercise redesign without replacing the
+verified learning engine. The three heading prompts now use Apple, Rainy day,
+and Study tools; every source starts empty; and `introduce` versus `recall` is
+explicit curriculum data rather than a UI guess. The first exposure shows the
+rule. Recall starts with Help closed, and opening it creates a same-skill
+transfer obligation after a later pass.
+
+The interface now follows the C6 hierarchy approved by Jiwon:
+
+- Instruction says what action to take.
+- Goal is the large rendered reference.
+- Help is a fixed narrow desktop column that opens downward.
+- Your Markdown is a restrained CodeMirror source surface.
+- Live preview uses the same safe rendered-document component as Goal.
+- Source and preview stay side by side and equal-height on desktop, then stack
+  in semantic order on small screens.
+
+No runtime AI, service, learner-media fetch, authentication, database, or
+server grading was introduced.
+
+### Product decisions and Codex implementation calls
+
+Jiwon approved the C6 spatial contract, required conventional optional
+whitespace marks, kept Help hidden for recall, and set a longer-term Level 5
+direction in which narrow, vertically growing documents teach contemporary AI
+work-order structure. Codex selected exact CodeMirror 6 packages, represented
+invisibles as view decorations, shared the renderer between Goal and preview,
+and encoded recall Help as transfer debt. The latter is an implementation of
+Jiwon's learning rule—not a claim that Jiwon specified reducer fields.
+
+### Problems encountered and resolved
+
+| Problem observed | Investigation and decision | Resolution | Verification |
+|---|---|---|---|
+| Making Level 1 Help visible caused the legacy mobile Side Coach to cover Check | The fixed overlay was incompatible with normal lesson order, not merely a test inconvenience | Removed Side Coach and made Help an in-flow downward disclosure | The 390 px browser path proves Goal → Help → source → preview order, usable Check flow, and no horizontal overflow |
+| Full-app typing lost characters although the isolated CodeMirror wrapper test passed | A passive controlled-value effect could replay a stale parent echo between rapid editor transactions | Synchronized controlled document changes in the layout phase | Ten App tests and the real Chromium keyboard path pass |
+| CodeMirror's empty placeholder is rendered inside the contenteditable tree | An assertion for empty `textContent` described DOM internals rather than the learner's empty draft | Asserted the accessible placeholder and visible CodeMirror placeholder; persisted draft proof remains separate | Empty start and empty transfer both pass in unit and browser tests |
+| The first browser render matched C6 structure but stretched nearly across a 1440 px viewport | This contradicted the approved narrow-reading-measure, tall-document direction | Constrained the app to 72rem, the learning workspace to 68rem, and the base workbench to a 24rem maximum height | A second visual comparison confirmed Goal priority, stable Help width, shared paper treatment, 1:1 workbench, and intentional outer whitespace |
+| The old no-network E2E attached its request listener after navigation | Bootstrap-time third-party requests could escape the assertion | Attached the listener before `page.goto` and kept it active while learner media Markdown was entered | The Chromium path observes no external runtime or image request |
+
+### Verification at the release-candidate gate
+
+- TypeScript: `npm run typecheck` passed.
+- Unit/component tests: 10 files, 83 tests passed.
+- Production build: Vite transformed 198 modules and completed successfully.
+- Browser tests: 8 Chromium paths passed locally.
+- Browser evidence covers first-attempt Perfect, Fail and progressive Help,
+  repair and different-content transfer, recall Help transfer debt, optional
+  Matched Review, draft restoration, desktop one-pixel alignment, non-mutating
+  invisibles, mobile semantic stacking, and no external runtime request.
+- In-app desktop visual inspection found no console warning or error from the
+  application.
+- Remote review, GitHub CI on this head, production deployment, and production
+  browser verification remain pending at this entry. They must not be reported
+  as complete from the older deployed head.
+
+### PR checkpoint decision
+
+The behavior commit was intentionally kept local while the legacy interface
+was incompatible with the new Help state. The release candidate is now split
+into reviewable documentation, learning-state, C6 interface, and browser-proof
+commits. PR #1 remains the H1 delivery unit. Fresh Codex and CodeRabbit review
+will be requested only after this complete candidate is pushed; deployment
+waits for current-head CI and review triage.
+
 ## Next entry
 
-Record the approved first-exercise redesign, its implementation evidence, and
-the start of the next syntax family or curriculum-refinement milestone.
+Record latest-head PR review and CI, the exact deployed commit, production
+browser evidence, and any review-driven correction before beginning the next
+syntax family or curriculum-refinement milestone.

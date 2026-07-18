@@ -24,7 +24,7 @@ official deadline.
 ## Primary Codex thread
 
 - [x] Designate the current core-build Codex thread as primary
-- [ ] Build the majority of core functionality in that thread
+- [x] Build the majority of core functionality in that thread
 - [ ] Run `/feedback` in that thread after core implementation
 - [ ] Copy the generated Session ID into the Devpost submission form
 - [ ] Explain significant secondary Codex threads in the README if any
@@ -38,8 +38,8 @@ commit history, tests, build log, README explanation, or working demo.
 - [x] Sample data or fallback content is included where needed
 - [x] Run and test commands are exact and verified
 - [x] Public demo link works without an account
-- [ ] `How we built it` names specific Codex contributions
-- [ ] Human product, engineering, and design decisions are explicit
+- [x] `How we built it` names specific Codex contributions
+- [x] Human product, engineering, and design decisions are explicit
 - [ ] GPT-5.6's curriculum-production role is concrete, meaningful, and backed
       by repository artifacts
 - [x] Challenges describe real failures and resolutions
