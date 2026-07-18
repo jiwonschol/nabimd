@@ -1,4 +1,3 @@
-import { headingProblems } from "../content/headingProblems"
 import type { useLearningSession } from "../session/useLearningSession"
 import { HelpPanel } from "./HelpPanel"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
@@ -17,9 +16,12 @@ export function EditorialDesk({
   requestReview,
   closeCoach,
   next,
+  practiceAgain,
+  startOver,
+  changeLevel,
 }: EditorialDeskProps) {
-  const problemPosition =
-    headingProblems.findIndex((candidate) => candidate.id === problem.id) + 1
+  const runLength = session.runProblemIds.length || 1
+  const problemPosition = Math.min(session.runStepIndex + 1, runLength)
 
   return (
     <main className="app-shell">
@@ -28,17 +30,17 @@ export function EditorialDesk({
         <div aria-label="Heading progress" className="progress">
           <span className="progress__label">
             <span className="progress__label-name">Headings · </span>
-            {problemPosition} of 3
+            {problemPosition} of {runLength}
           </span>
           <span aria-hidden="true" className="progress__track">
-            {headingProblems.map((candidate, index) => (
+            {session.runProblemIds.map((problemId, index) => (
               <span
                 className={
                   index <= problemPosition - 1
                     ? "progress__segment progress__segment--active"
                     : "progress__segment"
                 }
-                key={candidate.id}
+                key={`${index}-${problemId}`}
               />
             ))}
           </span>
@@ -49,9 +51,24 @@ export function EditorialDesk({
         <section className="completion" aria-labelledby="completion-title">
           <h2 id="completion-title">Heading practice complete.</h2>
           <p>
-            You matched the requested syntax. The full learning path is being
-            built next.
+            You completed every step in this heading run. Keep practicing or
+            choose a different entry.
           </p>
+          <div className="completion__actions">
+            <button
+              className="primary-button"
+              onClick={practiceAgain}
+              type="button"
+            >
+              Practice again
+            </button>
+            <button className="text-button" onClick={startOver} type="button">
+              Start over
+            </button>
+            <button className="text-button" onClick={changeLevel} type="button">
+              Change level
+            </button>
+          </div>
         </section>
       ) : (
         <>

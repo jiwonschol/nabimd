@@ -25,7 +25,7 @@ function createVolatileStorage(): Storage {
 
 export function resolveBrowserStorage(): Storage {
   try {
-    return window.localStorage
+    return window.sessionStorage
   } catch {
     return createVolatileStorage()
   }

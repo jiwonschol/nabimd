@@ -8,6 +8,11 @@ Object.defineProperty(window, "localStorage", {
   value: new MemoryStorage(),
 })
 
+Object.defineProperty(window, "sessionStorage", {
+  configurable: true,
+  value: new MemoryStorage(),
+})
+
 if (!Range.prototype.getClientRects) {
   Object.defineProperty(Range.prototype, "getClientRects", {
     value: () => [],
@@ -16,6 +21,7 @@ if (!Range.prototype.getClientRects) {
 
 beforeEach(() => {
   window.localStorage.clear()
+  window.sessionStorage.clear()
 })
 
 afterEach(() => {

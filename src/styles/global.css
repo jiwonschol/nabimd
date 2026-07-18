@@ -59,6 +59,50 @@ button:focus-visible,
   white-space: nowrap;
 }
 
+.greeting-shell {
+  place-items: center;
+}
+
+.greeting {
+  width: min(100%, 48rem);
+  padding: clamp(3rem, 8vw, 7rem) var(--page-gutter);
+}
+
+.greeting h2 {
+  max-width: 40rem;
+  margin: 2rem 0 1rem;
+  font-family: var(--serif);
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-weight: 520;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+.greeting > p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.greeting__choices {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.greeting__choice {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+}
+
+.greeting__choice:hover {
+  border-color: var(--ink);
+}
+
 .progress {
   display: flex;
   align-items: center;
@@ -69,12 +113,12 @@ button:focus-visible,
 }
 
 .progress__track {
-  display: grid;
-  grid-template-columns: repeat(3, 2.75rem);
+  display: flex;
   gap: 0.55rem;
 }
 
 .progress__segment {
+  width: 2.75rem;
   height: 2px;
   background: var(--line);
 }
@@ -479,6 +523,14 @@ button:focus-visible,
   line-height: 1.65;
 }
 
+.completion__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
 @keyframes help-down {
   from {
     opacity: 0;
@@ -505,8 +557,11 @@ button:focus-visible,
   }
 
   .progress__track {
-    grid-template-columns: repeat(3, 1.2rem);
     gap: 0.35rem;
+  }
+
+  .progress__segment {
+    width: 1.2rem;
   }
 
   .learning-workspace {

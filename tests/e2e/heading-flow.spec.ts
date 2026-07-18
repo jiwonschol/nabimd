@@ -1,35 +1,42 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 
-const progressStorageKey = "nabimd.progress.v1"
+const progressStorageKey = "nabimd.progress.v2"
 
 function sourceEditor(page: Page): Locator {
   return page.getByRole("textbox", { name: "Your Markdown" })
 }
 
-async function seedRecallProblem(page: Page) {
-  await page.addInitScript(
-    ({ key }) => {
-      window.localStorage.setItem(
-        key,
-        JSON.stringify({
-          version: 1,
-          currentProblemId: "heading-rainy-day",
-          draftByProblemId: {},
-          completedProblemIds: [],
-          recentProblemIds: [],
-          pendingTransferFamily: null,
-          currentIsTransfer: false,
-        }),
-      )
-    },
-    { key: progressStorageKey },
-  )
+async function enterLevel1(page: Page) {
+  await page.getByRole("button", {
+    name: "New to Markdown — start at Level 1",
+  }).click()
 }
+
+test("greets a fresh browser session with keyboard-ready entry choices", async ({
+  page,
+}) => {
+  await page.goto("/")
+
+  await expect(
+    page.getByRole("heading", { name: "Nabi Markdown" }),
+  ).toBeVisible()
+  await expect(page.getByRole("button", {
+    name: "New to Markdown — start at Level 1",
+  })).toBeVisible()
+  await expect(
+    page.getByRole("button", { name: "I know the basics" }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole("button", { name: "Challenge me" }),
+  ).toBeVisible()
+  await expect(sourceEditor(page)).toHaveCount(0)
+})
 
 test("fails, receives progressive Help, repairs, transfers, and restores", async ({
   page,
 }) => {
   await page.goto("/")
+  await enterLevel1(page)
   const editor = sourceEditor(page)
 
   await expect(editor).toHaveAttribute("aria-placeholder", "Type Markdown…")
@@ -72,27 +79,32 @@ test("fails, receives progressive Help, repairs, transfers, and restores", async
   await expect(editor).toHaveText("# Rainy day")
 })
 
-test("completes a first-attempt Perfect answer from the keyboard", async ({
+test("completes a three-step first-attempt Perfect run from the keyboard", async ({
   page,
 }) => {
   await page.goto("/")
+  await enterLevel1(page)
   const editor = sourceEditor(page)
 
-  await editor.fill("# Apple")
-  await editor.press("Control+Enter")
-
-  await expect(page.getByText(/^Perfect\./)).toBeVisible()
-  await page.getByRole("button", { name: "Next" }).click()
+  for (const answer of ["# Apple", "# Rainy day", "# Study tools"]) {
+    await editor.fill(answer)
+    await editor.press("Control+Enter")
+    await expect(page.getByText(/^Perfect\./)).toBeVisible()
+    await page.getByRole("button", { name: "Next" }).click()
+  }
   await expect(
     page.getByRole("heading", { name: "Heading practice complete." }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole("button", { name: "Practice again" }),
   ).toBeVisible()
 })
 
 test("opening Help on a recall problem creates a different-content transfer", async ({
   page,
 }) => {
-  await seedRecallProblem(page)
   await page.goto("/")
+  await page.getByRole("button", { name: "I know the basics" }).click()
 
   const editor = sourceEditor(page)
   const help = page.getByRole("complementary", { name: "Help" })
@@ -116,6 +128,7 @@ test("opening Help on a recall problem creates a different-content transfer", as
 
 test("keeps Matched review optional", async ({ page }) => {
   await page.goto("/")
+  await enterLevel1(page)
   const editor = sourceEditor(page)
 
   await editor.fill("# Apple\n\n# Details")
@@ -139,6 +152,7 @@ test("keeps both desktop rows aligned while Help opens downward", async ({
 }) => {
   await page.setViewportSize({ width: 1440, height: 1100 })
   await page.goto("/")
+  await enterLevel1(page)
 
   const goal = page.getByRole("region", { name: "Goal" })
   const help = page.getByRole("complementary", { name: "Help" })
@@ -192,6 +206,7 @@ test("shows invisible decorations without changing source or preview", async ({
   page,
 }) => {
   await page.goto("/")
+  await enterLevel1(page)
   const editor = sourceEditor(page)
   const source = "# Study\ttools"
 
@@ -204,7 +219,7 @@ test("shows invisible decorations without changing source or preview", async ({
   await expect(page.locator(".cm-invisible-character--space")).toHaveCount(1)
   await expect(page.locator(".cm-invisible-character--tab")).toHaveCount(1)
   const persistedDraft = await page.evaluate((key) => {
-    const progress = JSON.parse(window.localStorage.getItem(key) ?? "{}") as {
+    const progress = JSON.parse(window.sessionStorage.getItem(key) ?? "{}") as {
       draftByProblemId?: Record<string, string>
     }
     return progress.draftByProblemId?.["heading-apple"]
@@ -223,6 +238,7 @@ test("stacks the mobile workspace without horizontal overflow", async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto("/")
+  await enterLevel1(page)
 
   const boxes = await Promise.all([
     page.getByRole("region", { name: "Goal" }).boundingBox(),
@@ -259,6 +275,7 @@ test("loads without a runtime API or learner-media request", async ({
     page.getByRole("heading", { name: "Nabi Markdown" }),
   ).toBeVisible()
 
+  await enterLevel1(page)
   await sourceEditor(page).fill(
     "![tracking pixel](https://example.com/pixel.png)",
   )
