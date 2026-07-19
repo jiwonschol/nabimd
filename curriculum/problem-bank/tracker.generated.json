@@ -1,21 +1,21 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "072513e74355dc6d3aa367cbfd5166f0867476355112c757ab4e79a33f0b57cf",
-  "acceptedTotal": 236,
+  "bankDigest": "74bc182bcf2b8b1ec44307bbf2d1dd3a51ec945f63c99ce2dc28180560a73412",
+  "acceptedTotal": 248,
   "counts": {
     "byLevel": {
       "1": 100,
       "2": 100,
       "3": 28,
-      "4": 4,
+      "4": 16,
       "5": 4
     },
     "byFamily": {
       "agent-ready-work-order": 4,
       "blockquotes": 24,
       "emphasis": 24,
-      "executable-development-spec": 4,
+      "executable-development-spec": 16,
       "headings": 32,
       "horizontal-rules": 24,
       "inline-code": 24,
@@ -39,11 +39,11 @@
       "2/links": 12,
       "2/lists": 24,
       "3/readable-human-document": 28,
-      "4/executable-development-spec": 4,
+      "4/executable-development-spec": 16,
       "5/agent-ready-work-order": 4
     },
     "byFlavor": {
-      "standard": 236
+      "standard": 248
     },
     "rejected": 0,
     "blocked": 0
@@ -147,7 +147,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-19-l4-development-specs-012",
+      "sequence": 12,
+      "batchDigest": "1de4afb16278dadd2203a71cd07af9507eca69f328544525a1aef954f7ceca11",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "c85739c915cbf4a915481d822b89bd17afad27c3777d4f9f0b1ef891676185ae"
+  "trackerDigest": "6c13ae5a4cdb53608b9aff332b2cda513948a45304c17e6ae67d080acf7a6deb"
 }

@@ -1555,3 +1555,54 @@ against the corrected review digest. The published batch digest is
 `ab09371a1be1da653a879ac872e67e76297ae96ca4c57ea6d8823b164db6fc66`.
 Publication raises Level 3 from 16 to 28 and the deterministic bank from 224 to
 236 problems, with a 100/100/28/4/4 split.
+
+### Issue #9 Level 4 executable-development-spec expansion
+
+The twelfth schema-v2 batch adds 12 Level 4 development specifications in
+three mechanically distinct retry families: interface feature specs, bug
+investigations, and staged migration plans. Each family has four different
+work scenarios, so a failed answer can transfer to new content without changing
+the document anatomy being practiced. Together with the four original Level 4
+seeds, the level now contains 16 problems across four retry families.
+
+The design started with the existing five-section development-spec seed but did
+not clone it with new nouns. Feature specs add a linked dependency and inline
+code, a quoted constraint, ordered implementation, acceptance bullets, and a
+closed fenced verification section. Bug investigations combine quoted evidence
+and a divider with ordered reproduction, constraints, a fix plan, regression
+acceptance, an open decision, and an inline-code verification checklist.
+Migration plans use exactly three H3 stages with task lists, then rollback,
+acceptance, an open decision, and fenced verification. A prototype test first
+broke every check individually; heading-only outline predicates prevent a
+generic message from shadowing the specific failure.
+
+Nabi still grades only parsed Markdown structure. It does not compare heading
+labels or prose, judge technical truth, or execute commands. A fenced code
+block is checked for direct placement, a fence, and a language tag; even an
+empty tagged fence remains Matched under the current engine contract. That
+limit is frozen in the fixtures and stated in the generation brief instead of
+calling the block executable proof. The 12 Goals are 128–184 words and use
+visible, original, vendor-neutral workplace scenarios.
+
+The first frozen manifest,
+`76b8e20ef5e5a83f537edc94b41b9727effd7a3ef4d609ba2cfe520675978759`,
+was not published. Separate editorial inspection stopped the review for three
+learner-facing copy defects: one prompt exposed the internal phrase
+“deterministic Markdown anatomy,” one open decision said a row position should
+“return,” and one implementation step said to “finish” a browser download.
+The two mechanical reviewers were interrupted before their stale records could
+be accepted. The three sentences were rewritten, all derived candidates,
+fixtures, verification records, and manifest bindings were regenerated, and
+all reviews restarted with new run IDs.
+
+Final manifest
+`f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab`
+contains 12 candidates and 488 passing frozen fixtures. Atlas accepted 12/12
+after replaying all fixtures and 180 fresh adversarial probes. Orchid
+independently accepted 12/12 after all fixtures, 644 fresh probes, and 144
+transfer or cross-family checks. The separate editorial rerun accepted 12/12,
+then sealed only the two review digest values without reading reviewer files or
+conclusions. The published batch digest is
+`1de4afb16278dadd2203a71cd07af9507eca69f328544525a1aef954f7ceca11`.
+Publication raises Level 4 from four to 16 and the deterministic bank from 236
+to 248 problems, with a 100/100/28/16/4 split.
