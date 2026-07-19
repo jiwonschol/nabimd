@@ -1829,7 +1829,7 @@ semantic truth are not grading operands.
 Issue #50 owns selection composition, entry choices, session/progress behavior,
 and heading-flow E2E coverage. Batch 015 deliberately uses the existing
 `heading-h1`, list, and blockquote skill classifications and does not edit any
-Issue #50-owned path. No predicate, runtime AI call, network dependency, GFM
+path owned by Issue #50. No predicate, runtime AI call, network dependency, GFM
 syntax, HTML lesson, image lesson, reviewer verdict, editorial verdict,
 published summary, tracker projection, or runtime projection is part of this
 freeze.
@@ -1922,5 +1922,5 @@ comparison against the prior 296-problem bank; the focused pair then passed
 93/93 immutable batch-gate tests, 3/3 repository-gate tests, 9,555/9,555 unit
 and component tests, the legacy bank gate, a 222-module production build, and
 bundle inspection excluding four fixture-only sentinels from the single
-JavaScript asset. `npm run test:e2e` passed all 13 Chromium journeys. No Issue
-#50-owned path changed, and the 512-problem closing target remains open.
+JavaScript asset. `npm run test:e2e` passed all 13 Chromium journeys. No path
+owned by Issue #50 changed, and the 512-problem closing target remains open.
