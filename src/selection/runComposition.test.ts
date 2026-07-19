@@ -135,6 +135,24 @@ describe("run composition policy", () => {
     expect(second).not.toContain(first[1])
   })
 
+  it("serves non-overlapping pairs from one four-item challenge family", () => {
+    const bank = [
+      ...Array.from({ length: 4 }, (_, index) =>
+        problem(`level-four-${index}`, 4, ["document-shape", `part-${index}`]),
+      ),
+      ...Array.from({ length: 4 }, (_, index) =>
+        problem(`work-order-${index}`, 5, ["agent-work-order", "shared-shape"]),
+      ),
+    ]
+
+    const first = createTurnProblemIds(4, 0, bank).slice(4)
+    const second = createTurnProblemIds(4, 1, bank).slice(4)
+
+    expect(first).toHaveLength(2)
+    expect(second).toHaveLength(2)
+    expect(second.every((id) => !first.includes(id))).toBe(true)
+  })
+
   it("rotates a four-item Level 5 bank between turns", () => {
     const bank = Array.from({ length: 4 }, (_, index) =>
       problem(`work-order-${index}`, 5, [`document-shape-${index}`]),

@@ -124,12 +124,16 @@ function selectDistinctChallengeProblems(
   const targetCount = Math.min(count, candidates.length)
   const initialLength = context.selected.length
   const selectedKeys = new Set<string>()
-  const variantRound = Math.floor(offset / Math.max(1, count))
   const orderedKeys = candidates.reduce<string[]>((keys, problem) => {
     const key = getSelectionKey(problem)
     if (!keys.includes(key)) keys.push(key)
     return keys
   }, [])
+  const turnNumber = Math.floor(offset / Math.max(1, count))
+  const variantsPerKeyPerTurn = Math.ceil(
+    count / Math.max(1, orderedKeys.length),
+  )
+  const variantOffset = turnNumber * variantsPerKeyPerTurn
 
   while (selectedKeys.size < targetCount) {
     const key = orderedKeys.find(
@@ -141,7 +145,7 @@ function selectDistinctChallengeProblems(
     const variants = problems.filter(
       (problem) => getSelectionKey(problem) === key,
     )
-    const candidate = rotatedProblems(variants, variantRound).find(
+    const candidate = rotatedProblems(variants, variantOffset).find(
       (problem) => !context.selectedIds.has(problem.id),
     )
     if (!candidate) break

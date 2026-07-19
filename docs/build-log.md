@@ -1679,9 +1679,17 @@ actual next problem or an explicit completion event, and a replaced problem
 recomputes whether Hint should start open. The browser layout test now creates
 a genuinely overflowing Goal before asserting internal scrolling.
 
-The follow-up's complete repository check passed with 8,019 unit/component
+The follow-up's complete repository check passed with 8,020 unit/component
 tests, all immutable bank gates, typechecking, production build, and bundle
 inspection. All 12 Chromium journeys also passed. The review policy is now
 explicit: wait whenever CodeRabbit is actively reviewing; use an independent
 Codex review as the fallback only when CodeRabbit has no heartbeat, returns no
 response, or fails.
+
+GitHub Codex then found one remaining same-family boundary in the follow-up:
+Level 4's two Level 5 challenges advanced the family cursor by one record, so
+consecutive turns shared one of the four work orders. A real failing regression
+proved the overlap. The cursor now advances by the full two-slot offset, giving
+the first two work orders to one turn and the other two to the next. GitHub
+CodeRabbit could not review this PR because its explicit fair-usage response
+deferred the next included review; it was not represented as active or complete.
