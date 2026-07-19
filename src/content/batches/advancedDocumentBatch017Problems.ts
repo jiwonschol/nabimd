@@ -47,6 +47,11 @@ function orderedLines(items: readonly string[]) {
   return items.map((item, index) => `${index + 1}. ${item}`).join("\n")
 }
 
+function documentTitle(title: string, prefix: "Specify " | "Write ") {
+  const withoutInstruction = title.replace(prefix, "")
+  return `${withoutInstruction.charAt(0).toUpperCase()}${withoutInstruction.slice(1)}`
+}
+
 function toBatchInput(
   source: Omit<AdvancedDocumentBatch017Input, "level" | "family" | "target">,
   level: 3 | 4 | 5,
@@ -691,7 +696,7 @@ type IntegrationSpecSource = Omit<AdvancedDocumentBatch017Input, "level" | "fami
 }
 
 function buildIntegrationSpec(source: IntegrationSpecSource) {
-  return `# ${source.title.replace(/^Specify /, "")}
+  return `# ${documentTitle(source.title, "Specify ")}
 
 ${source.purpose}
 
@@ -816,7 +821,7 @@ type RecoverySource = Omit<AdvancedDocumentBatch017Input, "level" | "family" | "
 
 function buildRecoveryOrder(source: RecoverySource) {
   const stages = source.stages.map((stage) => `### ${stage.title}\n\n${bulletLines(stage.actions)}`).join("\n\n")
-  return `# ${source.title.replace(/^Write /, "")}
+  return `# ${documentTitle(source.title, "Write ")}
 
 ${source.mission}
 
@@ -931,7 +936,7 @@ type RefactorSource = Omit<AdvancedDocumentBatch017Input, "level" | "family" | "
 
 function buildRefactorOrder(source: RefactorSource) {
   const stages = source.stages.map((stage) => `### ${stage.title}\n\n${bulletLines(stage.actions)}`).join("\n\n")
-  return `# ${source.title.replace(/^Write /, "")}
+  return `# ${documentTitle(source.title, "Write ")}
 
 ${source.mission}
 
@@ -1045,7 +1050,7 @@ function nestedMapLines(items: RolloutSource["systemMap"]) {
 
 function buildRolloutOrder(source: RolloutSource) {
   const phases = source.phases.map((phase) => `### ${phase.title}\n\n${bulletLines(phase.actions)}`).join("\n\n")
-  return `# ${source.title.replace(/^Write /, "")}
+  return `# ${documentTitle(source.title, "Write ")}
 
 ${source.mission}
 
