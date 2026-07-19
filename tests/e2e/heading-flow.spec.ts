@@ -16,6 +16,8 @@ function sourceEditor(page: Page): Locator {
 
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
   await page.getByRole("button", { name: levelLabels[level - 1] }).click()
+  await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
+  await expect(sourceEditor(page)).toBeFocused()
 }
 
 async function enterLevel1(page: Page) {
@@ -106,9 +108,9 @@ test("greets a fresh session with the definitive five-level ladder", async ({
 })
 
 test("every level opens its task-type turn", async ({ page }) => {
-  for (const [index, label] of levelLabels.entries()) {
+  for (const index of levelLabels.keys()) {
     await page.goto("/")
-    await page.getByRole("button", { name: label }).click()
+    await enterLevel(page, (index + 1) as 1 | 2 | 3 | 4 | 5)
     await expect(page.getByLabel("Practice progress")).toContainText(
       `Level ${index + 1}`,
     )
@@ -118,7 +120,7 @@ test("every level opens its task-type turn", async ({ page }) => {
     await expect(sourceEditor(page)).toBeFocused()
     await page.getByRole("button", { name: "Nabi Markdown home" }).click()
     await expect(
-      page.getByRole("heading", { name: "Welcome. Choose where to begin." }),
+      page.getByRole("heading", { name: "Choose a chapter to begin." }),
     ).toBeVisible()
   }
 })
