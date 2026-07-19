@@ -66,3 +66,31 @@ the combined image. Failure Review received separate captures at
 - Console warnings/errors: 0.
 
 final result: passed
+
+---
+
+## Open-book landing gutter follow-up
+
+- source visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-77213ddc-8590-4645-87ee-7468a85d1799.png`
+- implementation screenshot: `/private/tmp/nabimd-realistic-gutter-1280x720.png`
+- full-view comparison: `/private/tmp/nabimd-realistic-gutter-comparison.png`
+- focused region comparison: `/private/tmp/nabimd-gutter-focused-comparison.png`
+- viewport: `1280 x 720`
+- state: fresh landing; Level 1 page-turn midpoint also checked
+
+The earlier one-sided shadow read as a dividing line. Symmetrical inset page
+shadows and a fine center spine now reproduce the source's visible book gutter
+without changing the page composition, typography, color tokens, imagery, or
+copy. A focused center crop confirms the narrow seam and soft tonal falloff.
+The compact `760 x 720` layout removes the spine and shadows when the pages
+stack. The Level 1 turn completed with editor focus and no console warnings or
+errors.
+
+Findings: P0 none; P1 none; P2 none. The slightly wider tonal falloff is an
+intentional P3 adaptation for laptop displays.
+
+Comparison history: the original border-like treatment was the P2 finding;
+the revised same-viewport capture and focused crop show the corrected bound-book
+cue. No actionable P0, P1, or P2 differences remain.
+
+final result: passed
