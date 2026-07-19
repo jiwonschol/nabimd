@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l3-l5-advanced-documents-017",
+  "editorialActor": "codex-editorial-batch017-compact",
+  "editorialRunId": "editorial-batch017-f739f876-compact-2026-07-20-002",
+  "reviewedOn": "2026-07-20",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "f739f876963fb9177328e1c966f91e5037fc7ff07db300010d0b14fadce97549",
+  "decisions": [
+    {
+      "candidateId": "l3-badge-reader-impact-brief",
+      "revision": 1,
+      "candidateDigest": "9afefbdcc95338e81d1afc71cca0918b9110de093d2352d70d82249c91646d24",
+      "fixtureResultsDigest": "571190981362d3785223a07df972c58831541866adeabcb6b2e6a698690a16f5",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The familiar office-access scenario keeps attention on four visible H2 sections, a quoted observation, impact bullets, ordered response steps, bold ownership, and a descriptive link. Its 25-line Goal is concise, clear US English, and structurally distinct without grading workplace facts."
+    },
+    {
+      "candidateId": "l3-support-queue-impact-brief",
+      "revision": 1,
+      "candidateDigest": "54847fba0ff8a4cc13e677bab5b54898d87e7d7332fb174a19ee4cc48f56a74d",
+      "fixtureResultsDigest": "4ce14f0b823288a0cccc10424850f5fbea22281dc3d75979b487af06b9011a5e",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The support-delay brief uses idiomatic workplace English and makes observation, known impact, response order, and owner update visually scannable. Every visible device is named by the teaching or progressive hints, and the fictional local link creates no licensing or runtime dependency."
+    },
+    {
+      "candidateId": "l4-audit-archive-contract-spec",
+      "revision": 1,
+      "candidateDigest": "3b33217a3e745294f6956d6060c23ad301ef7cc05637e0751e77bfbe65025355",
+      "fixtureResultsDigest": "799538e7e8048627face7b008a1c8aeee23f510c51a09f30607715250480e7f2",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "At 40 lines and 128 words, this is a compact Level 4 typing exercise rather than a reading assignment. Inline code, the dependency link, quoted invariant, short lists, numbered plan, and fenced commands each have an explicit instructional role."
+    },
+    {
+      "candidateId": "l4-contact-import-contract-spec",
+      "revision": 1,
+      "candidateDigest": "4f27976703d7410cb6e3f8ec6fff100c07805d8fde3c10797de3b429b0270bd4",
+      "fixtureResultsDigest": "2211e56210514c60f6eab5d1d1f99fd892f1a0aab571f7d52d2bb6b01d45f924",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The CSV import vocabulary is recognizable while still fitting a development spec. The 40-line, 134-word target uses six sections and only two- or three-item lists; the teaching directly accounts for every link, code span, quote, list, and fence."
+    },
+    {
+      "candidateId": "l4-customer-digest-contract-spec",
+      "revision": 1,
+      "candidateDigest": "7a41bbc451a800c012e6f16831a005d8f27ec337abfe1db654f778e6886bcdcd",
+      "fixtureResultsDigest": "cceee5abcf48491ba1b6109f33aa05d7feaa4e0a8d7fa7a80d58ee383b8c2461",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The scheduled-digest scenario is contemporary and fictional, and its wording remains understandable without domain expertise. Its 40 lines and 133 words stay within the compact contract while the repeated structural pattern reinforces Markdown typing."
+    },
+    {
+      "candidateId": "l4-support-webhook-contract-spec",
+      "revision": 1,
+      "candidateDigest": "3e2c19c417304ee1dd1a10406adac031081f6a8664e240d737bd0274c1c10e5a",
+      "fixtureResultsDigest": "0fe746665b03a4978aa078524f90f91296add5e0c0c1b13734c01870ec70cc69",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The webhook contract is clear professional US English and substantially differs from the other integrations. At 40 lines and 135 words it stays compact, and each visible Markdown device participates in the taught six-section anatomy."
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "db836f3bc80f212af1a4a2e9fd652b0cc99fbe441742e817a08626b9ba6bd5e4",
+      "fixtureResultsDigest": "c82d9c7d5df24d7ba8b22398aa7b632ae26ad0513d775f4d87f08ae55f3c7103",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The fictional analytics refactor is bounded and current without requiring the learner to judge its engineering truth. Its 59 lines and 190 words keep the exercise compact; inline-code scope, three stages, short lists, command fence, and report fence are all instructional."
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "dfbed715dd2141f64f7e570b5b9dc2b5264dcaba0d4b1e864652fb089e21a2e9",
+      "fixtureResultsDigest": "3021affec72504ba9fc60086c5e8034a7bec91b419e5f23bad3e5115ce435a78",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The nested provider-and-consumer map gives the 65-line work order a useful visible hierarchy, not decorative complexity. All lists stay at two or three short items, and the hints explicitly teach nesting, phases, quote, inline code, and fenced report."
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "36e0512b804eba5fc1665d9ae1332950a58f6b4648c778c67b163e78f1d8e7a0",
+      "fixtureResultsDigest": "bd5dcfc7237bc6f4753c909909b5fd2b4cf36468ab83edd5b663bccde9b5fef6",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Locale and time-zone constraints make a distinct but readable bounded-refactor model. The 59-line, 186-word target emphasizes Markdown decisions through explicit authority, scope, prohibition, stage, stop, command, and report structures rather than extra narrative."
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "0798f240c2538032ffab599c508d055cd6a6de431f89d870467da584190506ea",
+      "fixtureResultsDigest": "1cfa2b5ae1b2a0f4c80f7731f7d5a796f256b793d735f39999a3236f6f3ce429",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Evidence, divider, authority, three recovery stages, rollback, constraints, stops, commands, and report form a coherent 65-line typing model. The divider is instructional through the syntax token, family example, and evidence-to-authority separation hint rather than ornamental."
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "287aba5782848249a713d1bbe6dfc1690b7bf54583736d10407b8e544efc2207",
+      "fixtureResultsDigest": "482cef907308af53de362f4b0ae9f3b48e226a1ad643a3d7c4d871f0e1533cab",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The API, worker, and admin-console rollout is distinct from the response-contract variant and uses clear fictional names. Its 65 lines, 223 words, nested map, short lists, quoted pause, inline-code ledger, and fenced report meet the compact instructional contract."
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "4a47f9e26e724949eb4008cc0943ce52cbbe8a1fdb0fb4969ae28f2690061f1f",
+      "fixtureResultsDigest": "824d0fc70c84ad49dec59ff5b2960696692c89a7de93f2477ad263af89e50c5a",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The source-of-truth mismatch is a concrete evidence boundary and differs materially from duplicate delivery. The 65-line, 217-word target keeps every list short and uses the divider, stages, fences, and report as taught Markdown structure without runtime AI."
+    }
+  ],
+  "reviewDigests": [
+    "86ef5a2c8fdcac098be78d4bc1c50ad81fa398de1f9e9550697504b9318d2c98",
+    "e3b1154510e018143545e598916a27de836fa9ec170d41cb0b224ce014225bf1"
+  ],
+  "editorialDigest": "88ed632a0709e48707ae70fc16822b6844ef1e341e5943484b4b9e6412befac2"
+}

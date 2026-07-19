@@ -2291,3 +2291,11 @@ is `e3b1154510e018143545e598916a27de836fa9ec170d41cb0b224ce014225bf1`.
 Both runs passed the complete 9,885-test pre-publication suite, typechecking,
 the focused gate, brevity/list limits, deterministic evidence, and collision
 checks. Publication remains blocked pending a separate editorial review.
+
+The separate `codex-editorial-batch017-compact` actor then accepted all 12
+candidates against the same manifest and both mechanical review digests. It
+explicitly checked level fit, US-English clarity, ambiguity, uniqueness,
+licensing, flavor, the no-runtime-AI boundary, visible-syntax purpose, and the
+new “Markdown typing, not company-document reading” contract. Editorial run
+`editorial-batch017-f739f876-compact-2026-07-20-002` is sealed by digest
+`88ed632a0709e48707ae70fc16822b6844ef1e341e5943484b4b9e6412befac2`.
