@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "b272ee61167ecf426f04245a4adc9700f5d75fc5de5551573d3bfd64b1e5f424",
-  "acceptedTotal": 224,
+  "bankDigest": "072513e74355dc6d3aa367cbfd5166f0867476355112c757ab4e79a33f0b57cf",
+  "acceptedTotal": 236,
   "counts": {
     "byLevel": {
       "1": 100,
       "2": 100,
-      "3": 16,
+      "3": 28,
       "4": 4,
       "5": 4
     },
@@ -21,7 +21,7 @@
       "inline-code": 24,
       "links": 24,
       "lists": 48,
-      "readable-human-document": 16
+      "readable-human-document": 28
     },
     "byLevelAndFamily": {
       "1/blockquotes": 12,
@@ -38,12 +38,12 @@
       "2/inline-code": 12,
       "2/links": 12,
       "2/lists": 24,
-      "3/readable-human-document": 16,
+      "3/readable-human-document": 28,
       "4/executable-development-spec": 4,
       "5/agent-ready-work-order": 4
     },
     "byFlavor": {
-      "standard": 224
+      "standard": 236
     },
     "rejected": 0,
     "blocked": 0
@@ -138,7 +138,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-19-l3-composite-documents-011",
+      "sequence": 11,
+      "batchDigest": "ab09371a1be1da653a879ac872e67e76297ae96ca4c57ea6d8823b164db6fc66",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "e06b986191c25cca7eecbcdf0e979d52c4ad6a02e0741d8c63e89d0a529757e4"
+  "trackerDigest": "c85739c915cbf4a915481d822b89bd17afad27c3777d4f9f0b1ef891676185ae"
 }

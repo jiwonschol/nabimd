@@ -1,0 +1,1970 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l3-composite-documents-011",
+  "sequence": 11,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-19",
+  "candidates": [
+    {
+      "id": "l3-agenda-website-navigation",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "markdown-divider",
+        "ordered-agenda",
+        "preparation-list"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A useful agenda separates the meeting purpose, the order of discussion, and what people should prepare.",
+        "howTo": "Use one H1, three H2 sections, a Markdown divider, an ordered agenda, and an unordered preparation list.",
+        "example": "# Team agenda\n\nUse this note before the meeting.\n\n## Purpose\n\nMake one decision.\n\n---\n\n## Agenda\n\n1. Review\n2. Discuss\n3. Decide\n\n## Preparation\n\n- Read the note\n- Bring a question\n- Check the date"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "---",
+        "1.",
+        "-"
+      ],
+      "title": "Build a website navigation review agenda",
+      "prompt": "Organize a review meeting with a purpose, numbered agenda, and preparation list.",
+      "target": "# Website navigation review\n\nThis agenda helps the content team examine how visitors find common information and leave with a small set of clear improvements.\n\n## Purpose\n\nReview the labels and paths that caused unnecessary searching during the latest walkthrough.\n\n---\n\n## Agenda\n\n1. Compare the current section labels\n2. Review the most common visitor paths\n3. Choose two changes for another walkthrough\n\n## Preparation\n\n- Open the current page outline\n- Bring notes from the walkthrough\n- List one label that needs clarification",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-agenda-website-navigation-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-agenda-website-navigation-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-agenda-website-navigation-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-agenda-website-navigation-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-agenda-website-navigation-agenda",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 40,
+          "feedback": "Use at least three ordered agenda items in the second H2 section."
+        },
+        {
+          "id": "l3-agenda-website-navigation-preparation",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three unordered preparation items in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title, an introduction, and a ## Purpose paragraph.",
+        "Put a Markdown divider on its own line in the first H2 section.",
+        "Add at least three numbered Agenda items and three bulleted Preparation items."
+      ],
+      "retryFamily": "level3-meeting-agenda-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "meeting-agenda"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "website-content-review"
+        ],
+        "terms": [
+          "navigation",
+          "visitor path",
+          "page outline"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "website-navigation-review-agenda",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-agenda-internal-newsletter",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "markdown-divider",
+        "ordered-agenda",
+        "preparation-list"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A useful agenda separates the meeting purpose, the order of discussion, and what people should prepare.",
+        "howTo": "Use one H1, three H2 sections, a Markdown divider, an ordered agenda, and an unordered preparation list.",
+        "example": "# Team agenda\n\nUse this note before the meeting.\n\n## Purpose\n\nMake one decision.\n\n---\n\n## Agenda\n\n1. Review\n2. Discuss\n3. Decide\n\n## Preparation\n\n- Read the note\n- Bring a question\n- Check the date"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "---",
+        "1.",
+        "-"
+      ],
+      "title": "Plan an internal newsletter meeting",
+      "prompt": "Create a focused newsletter agenda with a purpose, numbered discussion order, and preparation list.",
+      "target": "# Internal newsletter planning\n\nUse this agenda to keep the next newsletter meeting focused on useful company updates and realistic writing deadlines.\n\n## Purpose\n\nAgree on the edition's three sections and assign a clear owner to each one.\n\n---\n\n## Agenda\n\n1. Review the proposed topics\n2. Choose the order of the sections\n3. Confirm the final review date\n\n## Preparation\n\n- Read the topic suggestions\n- Bring one short update\n- Check your availability for review",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-agenda-internal-newsletter-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-agenda-internal-newsletter-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-agenda-internal-newsletter-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-agenda-internal-newsletter-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-agenda-internal-newsletter-agenda",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 40,
+          "feedback": "Use at least three ordered agenda items in the second H2 section."
+        },
+        {
+          "id": "l3-agenda-internal-newsletter-preparation",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three unordered preparation items in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title, an introduction, and a ## Purpose paragraph.",
+        "Put a Markdown divider on its own line in the first H2 section.",
+        "Add at least three numbered Agenda items and three bulleted Preparation items."
+      ],
+      "retryFamily": "level3-meeting-agenda-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "meeting-agenda"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "internal-newsletter"
+        ],
+        "terms": [
+          "section owner",
+          "topic suggestion",
+          "review date"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "internal-newsletter-planning-agenda",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-agenda-break-room-supplies",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "markdown-divider",
+        "ordered-agenda",
+        "preparation-list"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A useful agenda separates the meeting purpose, the order of discussion, and what people should prepare.",
+        "howTo": "Use one H1, three H2 sections, a Markdown divider, an ordered agenda, and an unordered preparation list.",
+        "example": "# Team agenda\n\nUse this note before the meeting.\n\n## Purpose\n\nMake one decision.\n\n---\n\n## Agenda\n\n1. Review\n2. Discuss\n3. Decide\n\n## Preparation\n\n- Read the note\n- Bring a question\n- Check the date"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "---",
+        "1.",
+        "-"
+      ],
+      "title": "Structure a supply review agenda",
+      "prompt": "Make an office supply meeting easy to follow with numbered agenda items and preparation bullets.",
+      "target": "# Break room supply review\n\nThis agenda gives the office team a simple way to review frequently used supplies without spending the meeting on individual requests.\n\n## Purpose\n\nDecide which items need a regular count and which can be ordered only when requested.\n\n---\n\n## Agenda\n\n1. Compare the latest supply counts\n2. Review items that were rarely used\n3. Set the next check date\n\n## Preparation\n\n- Open the shared request list\n- Note any empty shelf\n- Bring last month's order summary",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-agenda-break-room-supplies-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-agenda-break-room-supplies-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-agenda-break-room-supplies-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-agenda-break-room-supplies-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-agenda-break-room-supplies-agenda",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 40,
+          "feedback": "Use at least three ordered agenda items in the second H2 section."
+        },
+        {
+          "id": "l3-agenda-break-room-supplies-preparation",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three unordered preparation items in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title, an introduction, and a ## Purpose paragraph.",
+        "Put a Markdown divider on its own line in the first H2 section.",
+        "Add at least three numbered Agenda items and three bulleted Preparation items."
+      ],
+      "retryFamily": "level3-meeting-agenda-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "meeting-agenda"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "shared-office-supplies"
+        ],
+        "terms": [
+          "supply count",
+          "request list",
+          "order summary"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "break-room-supply-review-agenda",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-agenda-volunteer-day",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "markdown-divider",
+        "ordered-agenda",
+        "preparation-list"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A useful agenda separates the meeting purpose, the order of discussion, and what people should prepare.",
+        "howTo": "Use one H1, three H2 sections, a Markdown divider, an ordered agenda, and an unordered preparation list.",
+        "example": "# Team agenda\n\nUse this note before the meeting.\n\n## Purpose\n\nMake one decision.\n\n---\n\n## Agenda\n\n1. Review\n2. Discuss\n3. Decide\n\n## Preparation\n\n- Read the note\n- Bring a question\n- Check the date"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "---",
+        "1.",
+        "-"
+      ],
+      "title": "Prepare a volunteer day planning agenda",
+      "prompt": "Write a clear planning agenda for an optional company activity.",
+      "target": "# Volunteer day planning\n\nThis agenda helps the planning group prepare an optional company volunteer day with clear activities and enough notice for coworkers.\n\n## Purpose\n\nChoose two practical activities and decide what information employees need before expressing interest.\n\n---\n\n## Agenda\n\n1. Compare the proposed activities\n2. Estimate the time for each option\n3. Choose a date for the interest form\n\n## Preparation\n\n- Read the activity summaries\n- Bring one scheduling concern\n- Note any material the announcement needs",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-agenda-volunteer-day-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-agenda-volunteer-day-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-agenda-volunteer-day-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-agenda-volunteer-day-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-agenda-volunteer-day-agenda",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 40,
+          "feedback": "Use at least three ordered agenda items in the second H2 section."
+        },
+        {
+          "id": "l3-agenda-volunteer-day-preparation",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three unordered preparation items in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title, an introduction, and a ## Purpose paragraph.",
+        "Put a Markdown divider on its own line in the first H2 section.",
+        "Add at least three numbered Agenda items and three bulleted Preparation items."
+      ],
+      "retryFamily": "level3-meeting-agenda-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "meeting-agenda"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "company-volunteer-day"
+        ],
+        "terms": [
+          "activity summary",
+          "interest form",
+          "scheduling concern"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "volunteer-day-planning-agenda",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-reference-presentation-writing",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "descriptive-link",
+        "markdown-divider",
+        "blockquote-takeaway"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A reference note points readers to one shared source and leaves them with an easy-to-find takeaway.",
+        "howTo": "Use one H1, two H2 sections, a descriptive Markdown link, a divider, and a nonempty blockquote.",
+        "example": "# Reference note\n\nKeep the source nearby.\n\n## Reference\n\nRead the [team guide](/guide).\n\n---\n\n## Takeaway\n\n> Check the guide before you begin."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "[ ]( )",
+        "---",
+        ">"
+      ],
+      "title": "Make a presentation reference note",
+      "prompt": "Organize one useful reference and a quoted takeaway for presentation contributors.",
+      "target": "# Presentation writing reference\n\nThis note gives contributors one shared reference for preparing a clear internal presentation, making it easier to follow the same approach before the first draft is reviewed.\n\n## Reference\n\nRead the [presentation writing guide](/guides/presentations) for advice on headings, short sections, and useful supporting details.\n\n---\n\n## Takeaway\n\n> Start with the audience's main question, then keep each section focused on one answer.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-reference-presentation-writing-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-reference-presentation-writing-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 sections in this short document."
+        },
+        {
+          "id": "l3-reference-presentation-writing-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-reference-presentation-writing-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-reference-presentation-writing-reference-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 40,
+          "feedback": "Add a Markdown link with readable words and a destination in the first H2 section."
+        },
+        {
+          "id": "l3-reference-presentation-writing-takeaway",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and explain why the reference is useful.",
+        "Put a descriptive Markdown link and a divider in the first H2 section.",
+        "Put one useful takeaway directly inside a blockquote in the second H2 section."
+      ],
+      "retryFamily": "level3-reference-note-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "reference-note"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "presentation-guidance"
+        ],
+        "terms": [
+          "writing guide",
+          "supporting detail",
+          "audience question"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "presentation-writing-reference",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-reference-workplace-survey",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "descriptive-link",
+        "markdown-divider",
+        "blockquote-takeaway"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A reference note points readers to one shared source and leaves them with an easy-to-find takeaway.",
+        "howTo": "Use one H1, two H2 sections, a descriptive Markdown link, a divider, and a nonempty blockquote.",
+        "example": "# Reference note\n\nKeep the source nearby.\n\n## Reference\n\nRead the [team guide](/guide).\n\n---\n\n## Takeaway\n\n> Check the guide before you begin."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "[ ]( )",
+        "---",
+        ">"
+      ],
+      "title": "Create a workplace survey reference",
+      "prompt": "Present a survey-writing reference and one memorable takeaway in a scannable note.",
+      "target": "# Workplace survey reference\n\nUse this note when a team is preparing a short internal survey and needs a shared reminder about writing neutral, easy-to-answer questions.\n\n## Reference\n\nOpen the [survey question guide](/guides/surveys) before drafting choices or asking another teammate to review the form.\n\n---\n\n## Takeaway\n\n> Ask one thing at a time and give every response option a clear, consistent meaning.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-reference-workplace-survey-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-reference-workplace-survey-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 sections in this short document."
+        },
+        {
+          "id": "l3-reference-workplace-survey-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-reference-workplace-survey-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-reference-workplace-survey-reference-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 40,
+          "feedback": "Add a Markdown link with readable words and a destination in the first H2 section."
+        },
+        {
+          "id": "l3-reference-workplace-survey-takeaway",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and explain why the reference is useful.",
+        "Put a descriptive Markdown link and a divider in the first H2 section.",
+        "Put one useful takeaway directly inside a blockquote in the second H2 section."
+      ],
+      "retryFamily": "level3-reference-note-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "reference-note"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-surveys"
+        ],
+        "terms": [
+          "neutral question",
+          "response option",
+          "survey guide"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-survey-reference",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-reference-office-purchase",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "descriptive-link",
+        "markdown-divider",
+        "blockquote-takeaway"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A reference note points readers to one shared source and leaves them with an easy-to-find takeaway.",
+        "howTo": "Use one H1, two H2 sections, a descriptive Markdown link, a divider, and a nonempty blockquote.",
+        "example": "# Reference note\n\nKeep the source nearby.\n\n## Reference\n\nRead the [team guide](/guide).\n\n---\n\n## Takeaway\n\n> Check the guide before you begin."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "[ ]( )",
+        "---",
+        ">"
+      ],
+      "title": "Write an office purchase reference",
+      "prompt": "Make routine purchase guidance easy to find with one link and a quoted takeaway.",
+      "target": "# Office purchase reference\n\nThis note points coworkers to the standard guidance for requesting routine office supplies without repeating the same process in several messages.\n\n## Reference\n\nReview the [purchase request guide](/guides/purchases) before choosing a category, needed date, or delivery location.\n\n---\n\n## Takeaway\n\n> Explain what the team needs, when it is needed, and where the supplies should arrive.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-reference-office-purchase-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-reference-office-purchase-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 sections in this short document."
+        },
+        {
+          "id": "l3-reference-office-purchase-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-reference-office-purchase-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-reference-office-purchase-reference-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 40,
+          "feedback": "Add a Markdown link with readable words and a destination in the first H2 section."
+        },
+        {
+          "id": "l3-reference-office-purchase-takeaway",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and explain why the reference is useful.",
+        "Put a descriptive Markdown link and a divider in the first H2 section.",
+        "Put one useful takeaway directly inside a blockquote in the second H2 section."
+      ],
+      "retryFamily": "level3-reference-note-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "reference-note"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "office-purchase-requests"
+        ],
+        "terms": [
+          "request category",
+          "needed date",
+          "delivery location"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "office-purchase-reference",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-reference-learning-session",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "descriptive-link",
+        "markdown-divider",
+        "blockquote-takeaway"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A reference note points readers to one shared source and leaves them with an easy-to-find takeaway.",
+        "howTo": "Use one H1, two H2 sections, a descriptive Markdown link, a divider, and a nonempty blockquote.",
+        "example": "# Reference note\n\nKeep the source nearby.\n\n## Reference\n\nRead the [team guide](/guide).\n\n---\n\n## Takeaway\n\n> Check the guide before you begin."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "[ ]( )",
+        "---",
+        ">"
+      ],
+      "title": "Build a learning session reference",
+      "prompt": "Create a short preparation reference with a descriptive link and quoted reminder.",
+      "target": "# Learning session reference\n\nThis note keeps one preparation reference easy to find when coworkers are joining an internal learning session for the first time.\n\n## Reference\n\nRead the [session preparation guide](/guides/learning) before choosing the reading, writing a question, or joining the discussion.\n\n---\n\n## Takeaway\n\n> Review one resource in advance and bring one question that the group can explore together.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-reference-learning-session-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-reference-learning-session-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 sections in this short document."
+        },
+        {
+          "id": "l3-reference-learning-session-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-reference-learning-session-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "priority": 30,
+          "feedback": "Put a Markdown divider in the first H2 section."
+        },
+        {
+          "id": "l3-reference-learning-session-reference-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 40,
+          "feedback": "Add a Markdown link with readable words and a destination in the first H2 section."
+        },
+        {
+          "id": "l3-reference-learning-session-takeaway",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and explain why the reference is useful.",
+        "Put a descriptive Markdown link and a divider in the first H2 section.",
+        "Put one useful takeaway directly inside a blockquote in the second H2 section."
+      ],
+      "retryFamily": "level3-reference-note-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "reference-note"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "internal-learning"
+        ],
+        "terms": [
+          "preparation guide",
+          "reading",
+          "discussion question"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "learning-session-reference",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-recommendation-town-hall-format",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "option-list",
+        "blockquote-recommendation",
+        "ordered-next-steps"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A recommendation brief separates the available options, the preferred direction, and the work needed to try it.",
+        "howTo": "Use one H1, three H2 sections, an unordered options list, a nonempty blockquote, and ordered next steps.",
+        "example": "# Recommendation\n\nCompare the choices before acting.\n\n## Options\n\n- Keep the current process\n- Try a shared form\n- Use email\n\n## Recommendation\n\n> Try the shared form first.\n\n## Next steps\n\n1. Draft the form\n2. Test it\n3. Publish the guide"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        ">",
+        "1."
+      ],
+      "title": "Compare town hall formats",
+      "prompt": "Write a recommendation brief that compares three town hall formats and proposes clear next steps.",
+      "target": "# Quarterly town hall format\n\nThis brief compares ways to make the next company town hall useful for coworkers working in different locations.\n\n## Options\n\n- Hold one in-person session\n- Stream the session live\n- Use a hybrid session with written questions\n\n## Recommendation\n\n> Use a hybrid session so people can join remotely while the local audience still shares the same discussion.\n\n## Next steps\n\n1. Confirm the available meeting space\n2. Test the streaming setup\n3. Open a form for questions",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-recommendation-town-hall-format-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-recommendation-town-hall-format-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-recommendation-town-hall-format-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-recommendation-town-hall-format-options",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Use at least three unordered options in the first H2 section."
+        },
+        {
+          "id": "l3-recommendation-town-hall-format-recommendation",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        },
+        {
+          "id": "l3-recommendation-town-hall-format-next-steps",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three ordered steps in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and a short introduction.",
+        "Add at least three bullet points, then put the recommendation in a blockquote.",
+        "Finish the third H2 section with at least three numbered next steps."
+      ],
+      "retryFamily": "level3-recommendation-brief-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "recommendation-brief"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "company-meeting-formats"
+        ],
+        "terms": [
+          "town hall",
+          "hybrid session",
+          "written questions"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "town-hall-format-recommendation",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-recommendation-office-plant-care",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "option-list",
+        "blockquote-recommendation",
+        "ordered-next-steps"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A recommendation brief separates the available options, the preferred direction, and the work needed to try it.",
+        "howTo": "Use one H1, three H2 sections, an unordered options list, a nonempty blockquote, and ordered next steps.",
+        "example": "# Recommendation\n\nCompare the choices before acting.\n\n## Options\n\n- Keep the current process\n- Try a shared form\n- Use email\n\n## Recommendation\n\n> Try the shared form first.\n\n## Next steps\n\n1. Draft the form\n2. Test it\n3. Publish the guide"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        ">",
+        "1."
+      ],
+      "title": "Recommend a plant care approach",
+      "prompt": "Compare practical ways to care for shared office plants, then recommend one approach and outline the follow-up work.",
+      "target": "# Office plant care approach\n\nThis brief reviews simple ways to keep shared plants healthy without adding unclear chores to individual teams.\n\n## Options\n\n- Ask each area to manage its plants\n- Create a weekly staff rotation\n- Arrange one regular care visit\n\n## Recommendation\n\n> Arrange a regular care visit so watering and basic checks happen consistently across the office.\n\n## Next steps\n\n1. Count the shared plants\n2. Ask for a basic service estimate\n3. Review the approach after one month",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-recommendation-office-plant-care-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-recommendation-office-plant-care-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-recommendation-office-plant-care-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-recommendation-office-plant-care-options",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Use at least three unordered options in the first H2 section."
+        },
+        {
+          "id": "l3-recommendation-office-plant-care-recommendation",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        },
+        {
+          "id": "l3-recommendation-office-plant-care-next-steps",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three ordered steps in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and a short introduction.",
+        "Add at least three bullet points, then put the recommendation in a blockquote.",
+        "Finish the third H2 section with at least three numbered next steps."
+      ],
+      "retryFamily": "level3-recommendation-brief-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "recommendation-brief"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "shared-office-care"
+        ],
+        "terms": [
+          "shared plants",
+          "staff rotation",
+          "care visit"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "office-plant-care-recommendation",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-recommendation-internal-tool-demo",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "option-list",
+        "blockquote-recommendation",
+        "ordered-next-steps"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A recommendation brief separates the available options, the preferred direction, and the work needed to try it.",
+        "howTo": "Use one H1, three H2 sections, an unordered options list, a nonempty blockquote, and ordered next steps.",
+        "example": "# Recommendation\n\nCompare the choices before acting.\n\n## Options\n\n- Keep the current process\n- Try a shared form\n- Use email\n\n## Recommendation\n\n> Try the shared form first.\n\n## Next steps\n\n1. Draft the form\n2. Test it\n3. Publish the guide"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        ">",
+        "1."
+      ],
+      "title": "Recommend an internal tool demonstration",
+      "prompt": "Compare three demonstration formats and recommend an accessible way to introduce an internal tool.",
+      "target": "# Internal tool demonstration format\n\nThis brief compares practical formats for showing a new internal tool to coworkers who have different schedules and experience levels.\n\n## Options\n\n- Give one live demonstration\n- Share a recorded walkthrough\n- Host a short guided practice session\n\n## Recommendation\n\n> Share a recorded walkthrough first, then offer guided practice for coworkers who want to try the tool.\n\n## Next steps\n\n1. Outline the main demonstration\n2. Record a short walkthrough\n3. Invite questions before practice",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-recommendation-internal-tool-demo-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-recommendation-internal-tool-demo-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-recommendation-internal-tool-demo-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-recommendation-internal-tool-demo-options",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Use at least three unordered options in the first H2 section."
+        },
+        {
+          "id": "l3-recommendation-internal-tool-demo-recommendation",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        },
+        {
+          "id": "l3-recommendation-internal-tool-demo-next-steps",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three ordered steps in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and a short introduction.",
+        "Add at least three bullet points, then put the recommendation in a blockquote.",
+        "Finish the third H2 section with at least three numbered next steps."
+      ],
+      "retryFamily": "level3-recommendation-brief-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "recommendation-brief"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "internal-tool-learning"
+        ],
+        "terms": [
+          "live demonstration",
+          "recorded walkthrough",
+          "guided practice"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "internal-tool-demo-recommendation",
+      "flavor": "standard"
+    },
+    {
+      "id": "l3-recommendation-community-bulletin",
+      "schemaVersion": 2,
+      "level": 3,
+      "familyId": "readable-human-document",
+      "skillIds": [
+        "document-outline",
+        "option-list",
+        "blockquote-recommendation",
+        "ordered-next-steps"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A recommendation brief separates the available options, the preferred direction, and the work needed to try it.",
+        "howTo": "Use one H1, three H2 sections, an unordered options list, a nonempty blockquote, and ordered next steps.",
+        "example": "# Recommendation\n\nCompare the choices before acting.\n\n## Options\n\n- Keep the current process\n- Try a shared form\n- Use email\n\n## Recommendation\n\n> Try the shared form first.\n\n## Next steps\n\n1. Draft the form\n2. Test it\n3. Publish the guide"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        ">",
+        "1."
+      ],
+      "title": "Recommend a community bulletin format",
+      "prompt": "Compare ways to share optional workplace notices and recommend one maintainable format.",
+      "target": "# Workplace community bulletin\n\nThis brief compares ways to share optional clubs, local events, and coworker announcements without filling the main company update with small notices.\n\n## Options\n\n- Maintain a physical bulletin board\n- Send a separate monthly digest\n- Create one shared bulletin page\n\n## Recommendation\n\n> Use a shared page for current notices and send a short monthly reminder that points people to it.\n\n## Next steps\n\n1. Draft simple posting guidelines\n2. Choose an owner for outdated notices\n3. Review participation after two months",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l3-recommendation-community-bulletin-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 10,
+          "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+        },
+        {
+          "id": "l3-recommendation-community-bulletin-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 3,
+          "max": 3,
+          "priority": 15,
+          "feedback": "Use exactly 3 H2 sections in this short document."
+        },
+        {
+          "id": "l3-recommendation-community-bulletin-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+        },
+        {
+          "id": "l3-recommendation-community-bulletin-options",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Use at least three unordered options in the first H2 section."
+        },
+        {
+          "id": "l3-recommendation-community-bulletin-recommendation",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Put a nonempty blockquote in the second H2 section."
+        },
+        {
+          "id": "l3-recommendation-community-bulletin-next-steps",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 50,
+          "feedback": "Use at least three ordered steps in the third H2 section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        }
+      ],
+      "hints": [
+        "Start with one # title and a short introduction.",
+        "Add at least three bullet points, then put the recommendation in a blockquote.",
+        "Finish the third H2 section with at least three numbered next steps."
+      ],
+      "retryFamily": "level3-recommendation-brief-document",
+      "reviewTags": [
+        "one-document-title",
+        "logical-heading-order",
+        "recommendation-brief"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-community-notices"
+        ],
+        "terms": [
+          "bulletin board",
+          "monthly digest",
+          "posting guidelines"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "community-bulletin-recommendation",
+      "flavor": "standard"
+    }
+  ]
+}
