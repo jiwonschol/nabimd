@@ -1,7 +1,12 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { getEntryChoice, type EntryId } from "../content/entryChoices"
 import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
+import {
+  readSoundMuted,
+  setSoundMuted,
+  subscribeSoundMuted,
+} from "../sound/successSound"
 import { resolveCheckShortcut } from "./keyboardShortcut"
 import { Wordmark } from "./Wordmark"
 
@@ -46,6 +51,7 @@ export function ExerciseTopBar({
   onTryAnother,
 }: ExerciseTopBarProps) {
   const nextRef = useRef<HTMLButtonElement>(null)
+  const [soundMuted, setSoundMutedState] = useState(() => readSoundMuted())
   const matched = evaluation?.status === "matched"
   const entry = getEntryChoice(entryId)
   const shortcut = resolveCheckShortcut(
@@ -55,6 +61,8 @@ export function ExerciseTopBar({
   useEffect(() => {
     if (matched) nextRef.current?.focus()
   }, [matched])
+
+  useEffect(() => subscribeSoundMuted(setSoundMutedState), [])
 
   useEffect(() => {
     if (phase === "complete") return
@@ -91,6 +99,14 @@ export function ExerciseTopBar({
         <span>
           {problemPosition} of {runLength}
         </span>
+        <button
+          aria-pressed={soundMuted}
+          className="sound-control"
+          onClick={() => setSoundMuted(!soundMuted)}
+          type="button"
+        >
+          {soundMuted ? "Muted" : "Sound on"}
+        </button>
       </div>
 
       {phase === "complete" ? null : (

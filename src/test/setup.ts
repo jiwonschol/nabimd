@@ -13,6 +13,16 @@ Object.defineProperty(window, "sessionStorage", {
   value: new MemoryStorage(),
 })
 
+Object.defineProperty(HTMLMediaElement.prototype, "play", {
+  configurable: true,
+  value: () => Promise.resolve(),
+})
+
+Object.defineProperty(HTMLMediaElement.prototype, "pause", {
+  configurable: true,
+  value: () => {},
+})
+
 if (!Range.prototype.getClientRects) {
   Object.defineProperty(Range.prototype, "getClientRects", {
     value: () => [],

@@ -1,5 +1,6 @@
-import { fireEvent, render } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { fireEvent, render, screen } from "@testing-library/react"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import { setSoundMuted } from "../sound/successSound"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 
 function renderTopBar(
@@ -27,6 +28,15 @@ function renderTopBar(
 }
 
 describe("ExerciseTopBar", () => {
+  beforeEach(() => {
+    vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined)
+    vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {})
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
   it("toggles Hint with ? only during an active exercise", () => {
     const activeToggle = renderTopBar("editing")
     fireEvent.keyDown(document, { key: "?" })
@@ -62,5 +72,17 @@ describe("ExerciseTopBar", () => {
 
     expect(activeToggle).toHaveBeenCalledTimes(1)
     expect(event.defaultPrevented).toBe(true)
+  })
+
+  it("reflects and toggles the persisted sound preference", () => {
+    setSoundMuted(true)
+    renderTopBar("editing")
+
+    fireEvent.click(screen.getByRole("button", { name: "Muted" }))
+
+    expect(
+      screen.getByRole("button", { name: "Sound on" }),
+    ).toBeInTheDocument()
+    expect(window.localStorage.getItem("nabimd.sound-muted")).toBe("false")
   })
 })
