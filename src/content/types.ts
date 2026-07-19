@@ -72,6 +72,7 @@ export type MatchCheck =
       scope: CheckScope
       block: BlockKind
       depth?: 1 | 2 | 3 | 4 | 5 | 6
+      recursive?: boolean
       min?: number
       max?: number
     })
@@ -359,6 +360,7 @@ export type FixtureKind =
   | "multiple-reference-links"
   | "multiple-mixed-links"
   | "multiple-unsafe-links"
+  | `thematic-break-${string}`
 
 export type ProblemFixture = {
   id?: string

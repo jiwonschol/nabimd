@@ -1,0 +1,1958 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-thematic-breaks-009",
+  "sequence": 9,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-19",
+  "promptSha256": "c59115cfbbd5f5706e3e5ab5bcb40f8f8d016857e8336961667764c1f69b56df",
+  "rawArtifactDigest": "ece886828dd1463d3d95fa5241a1db3ac70ddd8d8f16ed0154147009e4f10acb",
+  "candidateCount": 24,
+  "candidates": [
+    {
+      "id": "l1-thematic-break-breakfast-dessert",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Breakfast is ready.\n\n---\n\nSave dessert for later.",
+      "starterText": "",
+      "protectedContent": [
+        "Breakfast is ready.",
+        "Save dessert for later."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food-and-home"
+        ],
+        "terms": [
+          "Breakfast is ready.",
+          "Save dessert for later."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "breakfast-dessert",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "9ba9235b34792ceb8aa41d37c3554c2abc58bf6ff99f78dc9592ac4abeb54271"
+    },
+    {
+      "id": "l1-thematic-break-bus-walk-home",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Take the bus downtown.\n\n---\n\nWalk home by the park.",
+      "starterText": "",
+      "protectedContent": [
+        "Take the bus downtown.",
+        "Walk home by the park."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "local-travel"
+        ],
+        "terms": [
+          "Take the bus downtown.",
+          "Walk home by the park."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "bus-walk-home",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "bd5dd1f6c775e58d6f8c67ff289ef7451b6565b9846c7297776943b1181c831d"
+    },
+    {
+      "id": "l1-thematic-break-clean-desk-free-time",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Clear the small desk.\n\n---\n\nPlay music after.",
+      "starterText": "",
+      "protectedContent": [
+        "Clear the small desk.",
+        "Play music after."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home-and-leisure"
+        ],
+        "terms": [
+          "Clear the small desk.",
+          "Play music after."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "clean-desk-free-time",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "e92fff20c95405638bd6fe0acc44fea9766e520b85814c4daab957f0f5e04809"
+    },
+    {
+      "id": "l1-thematic-break-fern-cat",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Water the fern.\n\n---\n\nFill the cat's bowl.",
+      "starterText": "",
+      "protectedContent": [
+        "Water the fern.",
+        "Fill the cat's bowl."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home-care"
+        ],
+        "terms": [
+          "Water the fern.",
+          "Fill the cat's bowl."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "fern-cat",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "bb0444a2deb30bfffffeec61e7811561d6a86b68a413a8b9ca02ab0694089573"
+    },
+    {
+      "id": "l1-thematic-break-groceries-dinner",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Buy rice and apples.\n\n---\n\nCook soup tonight.",
+      "starterText": "",
+      "protectedContent": [
+        "Buy rice and apples.",
+        "Cook soup tonight."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "errands-and-meals"
+        ],
+        "terms": [
+          "Buy rice and apples.",
+          "Cook soup tonight."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "groceries-dinner",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "767bffb936a81ca1cec88b92387cdecb8c7fc0f93ee4f8d5f27d834a1b821c97"
+    },
+    {
+      "id": "l1-thematic-break-morning-music-bedtime",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Play morning music.\n\n---\n\nKeep bedtime quiet.",
+      "starterText": "",
+      "protectedContent": [
+        "Play morning music.",
+        "Keep bedtime quiet."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "daily-routine"
+        ],
+        "terms": [
+          "Play morning music.",
+          "Keep bedtime quiet."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "morning-music-bedtime",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "b97417c2dc22d21140b1018edca2d6555871fa6c52661216924b37bb24fcaac6"
+    },
+    {
+      "id": "l1-thematic-break-pack-lunch-wash-box",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Pack a cheese sandwich.\n\n---\n\nWash the lunch box.",
+      "starterText": "",
+      "protectedContent": [
+        "Pack a cheese sandwich.",
+        "Wash the lunch box."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food-routine"
+        ],
+        "terms": [
+          "Pack a cheese sandwich.",
+          "Wash the lunch box."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pack-lunch-wash-box",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "436c176586da7af38617c6a9ca3b56fac8c92f256060ce3878651fcbddd4f114"
+    },
+    {
+      "id": "l1-thematic-break-park-movie",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Visit the park at noon.\n\n---\n\nWatch a movie tonight.",
+      "starterText": "",
+      "protectedContent": [
+        "Visit the park at noon.",
+        "Watch a movie tonight."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "leisure-plans"
+        ],
+        "terms": [
+          "Visit the park at noon.",
+          "Watch a movie tonight."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "park-movie",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "b2790679b8c78348c35d9b057dd7562b3fc4651d59998ecb48d201c1da59f6ee"
+    },
+    {
+      "id": "l1-thematic-break-puzzle-word-game",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Finish the first puzzle.\n\n---\n\nTry the word game next.",
+      "starterText": "",
+      "protectedContent": [
+        "Finish the first puzzle.",
+        "Try the word game next."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "games-and-learning"
+        ],
+        "terms": [
+          "Finish the first puzzle.",
+          "Try the word game next."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "puzzle-word-game",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "d218cc276c591010f6361bed1045768999dce9037c3039cc3825faa77eee4dae"
+    },
+    {
+      "id": "l1-thematic-break-story-drawing",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Read one story.\n\n---\n\nDraw your favorite part.",
+      "starterText": "",
+      "protectedContent": [
+        "Read one story.",
+        "Draw your favorite part."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "learning-and-art"
+        ],
+        "terms": [
+          "Read one story.",
+          "Draw your favorite part."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "story-drawing",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "f95702b4ed6ee155623e57efe067578fa208ea73658701e7f58b0b5ba75d7afc"
+    },
+    {
+      "id": "l1-thematic-break-sunny-day-indoor-game",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "The sun is out.\n\n---\n\nThe board game is inside.",
+      "starterText": "",
+      "protectedContent": [
+        "The sun is out.",
+        "The board game is inside."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "weather-and-play"
+        ],
+        "terms": [
+          "The sun is out.",
+          "The board game is inside."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sunny-day-indoor-game",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "bf440c154f65b85d80cedc6136d8a06d6f55c6f385dfae7617b8adb7873527e5"
+    },
+    {
+      "id": "l1-thematic-break-sweater-rain-coat",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider",
+      "prompt": "Add one Markdown divider between the two parts.",
+      "target": "Wear the blue sweater.\n\n---\n\nBring the raincoat.",
+      "starterText": "",
+      "protectedContent": [
+        "Wear the blue sweater.",
+        "Bring the raincoat."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-1-thematic-break",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "clothes-and-weather"
+        ],
+        "terms": [
+          "Wear the blue sweater.",
+          "Bring the raincoat."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sweater-rain-coat",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "f39e0906460f715eb27c0eaf40d53f94988f0b168047e857d3baaaaa9ce3aea4"
+    },
+    {
+      "id": "l2-thematic-break-customer-delivery-reply",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The customer asked about delivery.\n\n---\n\nReply with the new date.",
+      "starterText": "",
+      "protectedContent": [
+        "The customer asked about delivery.",
+        "Reply with the new date."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "customer-service"
+        ],
+        "terms": [
+          "The customer asked about delivery.",
+          "Reply with the new date."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "customer-delivery-reply",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "dbdf50ce97a847b18fce9bce463d1e0d707001fa66f350287192aa20a50ab60b"
+    },
+    {
+      "id": "l2-thematic-break-draft-review",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The draft is complete.\n\n---\n\nReview the last page next.",
+      "starterText": "",
+      "protectedContent": [
+        "The draft is complete.",
+        "Review the last page next."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "document-review"
+        ],
+        "terms": [
+          "The draft is complete.",
+          "Review the last page next."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "draft-review",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "59635cf3d4b7af687e5f15afe9d7087c89392aeca6eb5a518d3744f84487e2f1"
+    },
+    {
+      "id": "l2-thematic-break-file-changes-test",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The file changes are saved.\n\n---\n\nThe final test passed.",
+      "starterText": "",
+      "protectedContent": [
+        "The file changes are saved.",
+        "The final test passed."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "beginner-coding-workflow"
+        ],
+        "terms": [
+          "The file changes are saved.",
+          "The final test passed."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "file-changes-test",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "0720bf2887efab9158435fa17448f737d0145765e9a4d451e9c8eb9e8aa4aac4"
+    },
+    {
+      "id": "l2-thematic-break-fractions-practice",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "Today's notes cover fractions.\n\n---\n\nPractice three problems.",
+      "starterText": "",
+      "protectedContent": [
+        "Today's notes cover fractions.",
+        "Practice three problems."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "study-routine"
+        ],
+        "terms": [
+          "Today's notes cover fractions.",
+          "Practice three problems."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "fractions-practice",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "a4cc6d1c5798d3cb4d53b27681c8be28e42d11a2f0e317397edcceb74481b36d"
+    },
+    {
+      "id": "l2-thematic-break-meeting-action-items",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The meeting starts at ten.\n\n---\n\nSend action items after lunch.",
+      "starterText": "",
+      "protectedContent": [
+        "The meeting starts at ten.",
+        "Send action items after lunch."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "meetings"
+        ],
+        "terms": [
+          "The meeting starts at ten.",
+          "Send action items after lunch."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "meeting-action-items",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "30f3af22c46ebfc08c3ae7932ca1fcff4d2bc7b0972b79d3f89faa1096b552fc"
+    },
+    {
+      "id": "l2-thematic-break-morning-closing-shift",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The morning shift stocked the shelves.\n\n---\n\nThe closing shift checks the doors.",
+      "starterText": "",
+      "protectedContent": [
+        "The morning shift stocked the shelves.",
+        "The closing shift checks the doors."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "shift-handoff"
+        ],
+        "terms": [
+          "The morning shift stocked the shelves.",
+          "The closing shift checks the doors."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "morning-closing-shift",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "8bf03db119c3225c3c0ead2de63ddaa33d20e8515b318982d898babc93bbca7d"
+    },
+    {
+      "id": "l2-thematic-break-order-pickup",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The order is ready at the front desk.\n\n---\n\nBring the receipt for pickup.",
+      "starterText": "",
+      "protectedContent": [
+        "The order is ready at the front desk.",
+        "Bring the receipt for pickup."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "orders-and-pickup"
+        ],
+        "terms": [
+          "The order is ready at the front desk.",
+          "Bring the receipt for pickup."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "order-pickup",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "2e8cb594174476895b1953deda4af3799dea4cacd0745a20c7d40790b335e9a5"
+    },
+    {
+      "id": "l2-thematic-break-outdoor-event-rain-plan",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The outdoor table is reserved.\n\n---\n\nUse the lobby if it rains.",
+      "starterText": "",
+      "protectedContent": [
+        "The outdoor table is reserved.",
+        "Use the lobby if it rains."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "event-planning"
+        ],
+        "terms": [
+          "The outdoor table is reserved.",
+          "Use the lobby if it rains."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "outdoor-event-rain-plan",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "421f3bcd6546894cbfd2052e642d48471ca7e369eae109bb66a35ba75a132aea"
+    },
+    {
+      "id": "l2-thematic-break-team-idea-manager-decision",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The team suggested a shorter form.\n\n---\n\nThe manager approved the change.",
+      "starterText": "",
+      "protectedContent": [
+        "The team suggested a shorter form.",
+        "The manager approved the change."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "team-decisions"
+        ],
+        "terms": [
+          "The team suggested a shorter form.",
+          "The manager approved the change."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "team-idea-manager-decision",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "480179738f55f947259fd8c26277611d271113a8a6d3e0e11a6d08ca09476ebd"
+    },
+    {
+      "id": "l2-thematic-break-training-quiz",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The training video takes five minutes.\n\n---\n\nAnswer the quick quiz after.",
+      "starterText": "",
+      "protectedContent": [
+        "The training video takes five minutes.",
+        "Answer the quick quiz after."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "workplace-learning"
+        ],
+        "terms": [
+          "The training video takes five minutes.",
+          "Answer the quick quiz after."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "training-quiz",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "f9943d968d37cebd727a4a5cfae7436d4a816e9532234fbe5d4abeebee9cb210"
+    },
+    {
+      "id": "l2-thematic-break-travel-request-approval",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "The travel request lists two nights.\n\n---\n\nApproval details are in the email.",
+      "starterText": "",
+      "protectedContent": [
+        "The travel request lists two nights.",
+        "Approval details are in the email."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "travel-administration"
+        ],
+        "terms": [
+          "The travel request lists two nights.",
+          "Approval details are in the email."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "travel-request-approval",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "ffd7652afd7d818721f910945eefaefc5f6feb58beb26f0ccd11aa676ef8127f"
+    },
+    {
+      "id": "l2-thematic-break-weekly-sign-copies",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "horizontal-rules",
+      "skillIds": [
+        "thematic-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A Markdown divider separates two parts of a note.",
+        "howTo": "Leave a blank line, type three hyphens on their own line, then leave another blank line.",
+        "example": "Tea is ready.\n\n---\n\nThe cookies are warm."
+      },
+      "syntaxTokens": [
+        "Blank line",
+        "---",
+        "Blank line"
+      ],
+      "title": "Markdown divider recall",
+      "prompt": "From memory, add one Markdown divider between the two parts.",
+      "target": "This week we finished the sign.\n\n---\n\nNext week we print copies.",
+      "starterText": "",
+      "protectedContent": [
+        "This week we finished the sign.",
+        "Next week we print copies."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "recursive": true,
+          "priority": 10,
+          "feedback": "Add a Markdown divider between the two text blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-divider",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 1,
+          "review": "One divider is enough for this short note."
+        }
+      ],
+      "hints": [
+        "Put the divider between the two parts of the note.",
+        "Leave a blank line, then type three hyphens on their own line.",
+        "Example: `First part.\\n\\n---\\n\\nSecond part.`"
+      ],
+      "retryFamily": "level-2-thematic-break-recall",
+      "reviewTags": [
+        "one-focused-divider"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "weekly-update"
+        ],
+        "terms": [
+          "This week we finished the sign.",
+          "Next week we print copies."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "weekly-sign-copies",
+      "sourceBatch": "2026-07-19-l1-l2-thematic-breaks-009",
+      "candidateDigest": "309d45683a05152102da30e5071e1105bd4d35468ee52e00637b4edd605ec0e2"
+    }
+  ],
+  "artifactDigest": "d0401c957639d5cf24d4e115a4b9d371991ba9103d4f60f667d3357c5d8824e3"
+}

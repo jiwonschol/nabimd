@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-thematic-breaks-009",
+  "reviewerId": "codex-orchid-batch009",
+  "reviewRunId": "orchid-batch009-2026-07-19-002",
+  "declaredIndependent": true,
+  "manifestDigest": "4f20f8c8d493e57f00ef7f9fe452bec719cbe957c8e8a2b3f78f3a6fb3e9d6eb",
+  "evidence": {
+    "frozenCandidateCount": 24,
+    "frozenFixtureCount": 1272,
+    "frozenFixturesPerCandidate": 53,
+    "adversarialProbeCountPerCandidate": 80,
+    "adversarialEvaluationCount": 1920,
+    "rendererProbeCount": 7,
+    "runtimeSourceFilesScannedForNetwork": 58,
+    "runtimeSourceFilesScannedForAi": 58,
+    "acceptedBankCollisionComparands": 188,
+    "legacyThematicCollisionComparands": 16,
+    "strictAuthoredGoalCount": 24,
+    "caseSpellingFixtureCount": 24,
+    "uniqueCaseSpellingSourceCount": 24,
+    "uniqueCaseSpellingProseCount": 24,
+    "caseSpellingDistanceOneCount": 24,
+    "differentProseIsolationCount": 24,
+    "raincoatCorrectionConfirmed": true,
+    "normalizedArtifactDigest": "d0401c957639d5cf24d4e115a4b9d371991ba9103d4f60f667d3357c5d8824e3",
+    "fixtureArtifactDigest": "29b12a5afb059d4cdf23dc9869a4cf34b9275138b7d3b53844bb17be0cf16c2b",
+    "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+    "verificationDigest": "a181889faf607a561077bacb2cb3464e923445f900ba2f37d5d13453736ce475",
+    "manifestDigest": "4f20f8c8d493e57f00ef7f9fe452bec719cbe957c8e8a2b3f78f3a6fb3e9d6eb",
+    "rendererFileDigest": "ef9c716199f21e30f4e596bebafd58ddd461032c2667632a62f921a6a070c61b"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l1-thematic-break-breakfast-dessert",
+      "revision": 1,
+      "candidateDigest": "9ba9235b34792ceb8aa41d37c3554c2abc58bf6ff99f78dc9592ac4abeb54271",
+      "fixtureResultsDigest": "d01770898fb3aec0b75d5cbad177544399caa52298a65018467c363d19259f22",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-bus-walk-home",
+      "revision": 1,
+      "candidateDigest": "bd5dd1f6c775e58d6f8c67ff289ef7451b6565b9846c7297776943b1181c831d",
+      "fixtureResultsDigest": "a1218cddfad9d6779f0dc21603e895aa98f5999257c7218d16d5adf4db57984e",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-clean-desk-free-time",
+      "revision": 1,
+      "candidateDigest": "e92fff20c95405638bd6fe0acc44fea9766e520b85814c4daab957f0f5e04809",
+      "fixtureResultsDigest": "8bd024570a5448f3b2fbfa2f68e1d8fd93822252b51a1717519171f9b9b08739",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-fern-cat",
+      "revision": 1,
+      "candidateDigest": "bb0444a2deb30bfffffeec61e7811561d6a86b68a413a8b9ca02ab0694089573",
+      "fixtureResultsDigest": "7b601d030371fa04b9aebb3442b490b78a91a7e1201bc0b48a2664f8e6c52e26",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-groceries-dinner",
+      "revision": 1,
+      "candidateDigest": "767bffb936a81ca1cec88b92387cdecb8c7fc0f93ee4f8d5f27d834a1b821c97",
+      "fixtureResultsDigest": "34584f5d5cc3934dc8738073f15a64643cbd760178dc616ba6622f4fbe650f27",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-morning-music-bedtime",
+      "revision": 1,
+      "candidateDigest": "b97417c2dc22d21140b1018edca2d6555871fa6c52661216924b37bb24fcaac6",
+      "fixtureResultsDigest": "a6e0c5d33e77ddf39ab086ad59b0cc7179f63309d3a08ae0495d484fdb6b1901",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-pack-lunch-wash-box",
+      "revision": 1,
+      "candidateDigest": "436c176586da7af38617c6a9ca3b56fac8c92f256060ce3878651fcbddd4f114",
+      "fixtureResultsDigest": "ddd39404e162d577424107ec01d34e335f8d82f066442a6217c5535b6f56e1d0",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-park-movie",
+      "revision": 1,
+      "candidateDigest": "b2790679b8c78348c35d9b057dd7562b3fc4651d59998ecb48d201c1da59f6ee",
+      "fixtureResultsDigest": "fea84a30acdef5aa0f4444b92afc770297c3e7a0acbebca6ac4cc98fd8ac9e48",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-puzzle-word-game",
+      "revision": 1,
+      "candidateDigest": "d218cc276c591010f6361bed1045768999dce9037c3039cc3825faa77eee4dae",
+      "fixtureResultsDigest": "bea4c8506fc0dad65ec9d7869901366efe63ccaa7d2db3448acb5a16230ce817",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-story-drawing",
+      "revision": 1,
+      "candidateDigest": "f95702b4ed6ee155623e57efe067578fa208ea73658701e7f58b0b5ba75d7afc",
+      "fixtureResultsDigest": "f464071948a15c5f125ce745b9fb398a0c310ed8cce9421bdc90ac050d9a858c",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-sunny-day-indoor-game",
+      "revision": 1,
+      "candidateDigest": "bf440c154f65b85d80cedc6136d8a06d6f55c6f385dfae7617b8adb7873527e5",
+      "fixtureResultsDigest": "6f6631481ae5405efb49916a343147588054094fdb072d60547febbfaf24c216",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l1-thematic-break-sweater-rain-coat",
+      "revision": 1,
+      "candidateDigest": "f39e0906460f715eb27c0eaf40d53f94988f0b168047e857d3baaaaa9ce3aea4",
+      "fixtureResultsDigest": "baf6724bb9bd36a8484c26b7ac9add5eb153fa50a622d6285d1368c89be3a32f",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-customer-delivery-reply",
+      "revision": 1,
+      "candidateDigest": "dbdf50ce97a847b18fce9bce463d1e0d707001fa66f350287192aa20a50ab60b",
+      "fixtureResultsDigest": "305e4824f6efec142375847791952c5b993b1c94ed2d6bfb6b777b3a4d4fc5c0",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-draft-review",
+      "revision": 1,
+      "candidateDigest": "59635cf3d4b7af687e5f15afe9d7087c89392aeca6eb5a518d3744f84487e2f1",
+      "fixtureResultsDigest": "cbded044093904a585cdf486af7f9eab4bab8c830e53186675b7b90006423589",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-file-changes-test",
+      "revision": 1,
+      "candidateDigest": "0720bf2887efab9158435fa17448f737d0145765e9a4d451e9c8eb9e8aa4aac4",
+      "fixtureResultsDigest": "abfedd155cc400b314c24c29f253849abc6356bde0be4c1809ecf321f8767bc3",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-fractions-practice",
+      "revision": 1,
+      "candidateDigest": "a4cc6d1c5798d3cb4d53b27681c8be28e42d11a2f0e317397edcceb74481b36d",
+      "fixtureResultsDigest": "4b079eaa6ac851f6bf82d21069d596e8097324bbe248bf14185b558eb8686f9d",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-meeting-action-items",
+      "revision": 1,
+      "candidateDigest": "30f3af22c46ebfc08c3ae7932ca1fcff4d2bc7b0972b79d3f89faa1096b552fc",
+      "fixtureResultsDigest": "a73061a27f6393070b178bc0f875d09d4ccbf626ae083ca35d17e5cede8b342a",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-morning-closing-shift",
+      "revision": 1,
+      "candidateDigest": "8bf03db119c3225c3c0ead2de63ddaa33d20e8515b318982d898babc93bbca7d",
+      "fixtureResultsDigest": "9aacb0b8c14f9a8c6768d83081300904abce7f4092507343481a6c83f3d975a8",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-order-pickup",
+      "revision": 1,
+      "candidateDigest": "2e8cb594174476895b1953deda4af3799dea4cacd0745a20c7d40790b335e9a5",
+      "fixtureResultsDigest": "e3f12672740b6768b98dbc870120f7b03a86cf6494bb5b7610509eca287bdbab",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-outdoor-event-rain-plan",
+      "revision": 1,
+      "candidateDigest": "421f3bcd6546894cbfd2052e642d48471ca7e369eae109bb66a35ba75a132aea",
+      "fixtureResultsDigest": "aa4c8f0f9349248901a490404f955d9fbe909a61f90dd442c5dbbe8be0abdf01",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-team-idea-manager-decision",
+      "revision": 1,
+      "candidateDigest": "480179738f55f947259fd8c26277611d271113a8a6d3e0e11a6d08ca09476ebd",
+      "fixtureResultsDigest": "fd8ff3bb92a3bbd839ec96c14662f61f96db85907bd6ac396d63e730f3419648",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-training-quiz",
+      "revision": 1,
+      "candidateDigest": "f9943d968d37cebd727a4a5cfae7436d4a816e9532234fbe5d4abeebee9cb210",
+      "fixtureResultsDigest": "18812449a88596a0344f7921238b8eb1251aab1f0e912a4444095ca45634810b",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-travel-request-approval",
+      "revision": 1,
+      "candidateDigest": "ffd7652afd7d818721f910945eefaefc5f6feb58beb26f0ccd11aa676ef8127f",
+      "fixtureResultsDigest": "c6d18c1535fdd1dd6e3c49f11b56a5e24e1556f27102ac044f19dbe9e0c85910",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    },
+    {
+      "candidateId": "l2-thematic-break-weekly-sign-copies",
+      "revision": 1,
+      "candidateDigest": "309d45683a05152102da30e5071e1105bd4d35468ee52e00637b4edd605ec0e2",
+      "fixtureResultsDigest": "c95dff3fa3296b89095c12673e608aa4c23bc68a5031cdcc3f9f9f07ba703004",
+      "verdict": "pass",
+      "notes": "Independently recomputed final manifest-bound artifacts and real-engine evidence; all 53 frozen fixtures and 80 separate CommonMark thematic-break adversarial probes passed for this candidate. Authored Goal anatomy, recursive presence-only grading, single overuse Review, semantic inert rendering, no runtime network/AI, case-spelling isolation, and collision safety against 188 accepted problems were verified."
+    }
+  ],
+  "reviewDigest": "4b5b6e826407ebb8ebdbe9f790a4af6e01ef9521967ecc9edd4347436d92af2c"
+}

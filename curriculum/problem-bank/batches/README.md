@@ -49,6 +49,11 @@ copied here or promoted automatically.
   grading label wording, capitalization, spelling, or destination text;
   autolinks, empty or hidden labels and destinations, and code, image-only,
   HTML-only, malformed, or lookalike forms do not.
+- `2026-07-19-l1-l2-thematic-breaks-009` — 24 accepted Markdown-divider
+  variants and 1,272 real-engine fixtures. All CommonMark marker families,
+  spaced and longer forms, and nested valid dividers pass without prose
+  grading; Setext headings, code, HTML, comments, malformed markers, and
+  lookalikes do not. Extra dividers stay Matched with one optional Review.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

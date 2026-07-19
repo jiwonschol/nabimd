@@ -69,6 +69,7 @@ function blockCountPasses(
     check.scope,
     check.block,
     check.depth,
+    check.recursive,
   )
   return inRange(count, check.min, check.max)
 }

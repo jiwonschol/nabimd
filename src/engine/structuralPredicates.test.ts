@@ -51,6 +51,131 @@ describe("structural match predicates", () => {
   })
 
   it.each([
+    "***",
+    "---",
+    "___",
+    "* * *",
+    "- - -",
+    "_ _ _",
+    "   ****   ",
+    "> ---",
+    "- Parent\n\n  ***",
+  ])("matches CommonMark thematic-break marker forms: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("one-thematic-break"),
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "thematic-break",
+          min: 1,
+          recursive: true,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it("keeps block-count root-only unless recursive matching is requested", () => {
+    const rootOnly = problem([
+      {
+        ...common("root-thematic-break"),
+        kind: "block-count",
+        scope: { kind: "document" },
+        block: "thematic-break",
+        min: 1,
+      },
+    ])
+
+    expect(evaluateProblem(rootOnly, "> ---")).toMatchObject({
+      status: "fail",
+      feedbackId: "root-thematic-break",
+    })
+  })
+
+  it.each([
+    "Plain text",
+    "--",
+    "**",
+    "__",
+    "Title\n---",
+    "- list item",
+    "*emphasis*",
+    "___word___",
+    "\\-\\-\\-",
+    "`---`",
+    "```md\n---\n```",
+    "    ---",
+    "\t***",
+    "<!-- --- -->",
+    "<hr>",
+    "－－－",
+  ])("rejects thematic-break lookalikes parsed as other constructs: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("one-thematic-break"),
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "thematic-break",
+          min: 1,
+          recursive: true,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toMatchObject({
+      status: "fail",
+      feedbackId: "one-thematic-break",
+    })
+  })
+
+  it("keeps extra valid thematic breaks Matched with optional Review", () => {
+    const withThematicBreakReview: GradableProblem = {
+      ...problem([
+        {
+          ...common("one-thematic-break"),
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "thematic-break",
+          min: 1,
+          recursive: true,
+        },
+      ]),
+      editorialChecks: [
+        {
+          id: "keep-one-separator",
+          kind: "max-block-count",
+          scope: { kind: "document" },
+          block: "thematic-break",
+          recursive: true,
+          max: 1,
+          review: "Keep one separator as the focus.",
+        },
+      ],
+    }
+
+    expect(evaluateProblem(withThematicBreakReview, "---")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(
+      evaluateProblem(withThematicBreakReview, "---\n\n> Changed words.\n>\n> ***"),
+    ).toEqual({
+      status: "matched",
+      reviewItems: [
+        {
+          id: "keep-one-separator",
+          message: "Keep one separator as the focus.",
+        },
+      ],
+    })
+  })
+
+  it.each([
     "> Different words",
     ">Different spelling",
     "   > Three-space indent",
