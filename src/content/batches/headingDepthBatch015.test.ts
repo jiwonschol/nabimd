@@ -157,12 +157,15 @@ describe("ATX heading-depth and sectioned-document batch 015", () => {
     expect(bakeSale?.target).not.toContain("## Table box")
   })
 
-  it("does not collide with the published 296-problem bank", () => {
-    const previousIds = new Set(problemBank.map((problem) => problem.id))
-    const previousVariants = new Set(
-      problemBank.map((problem) => problem.contentVariant),
+  it("does not collide with the previously published 296-problem bank", () => {
+    const previousBank = problemBank.filter(
+      (problem) => problem.sourceBatchId !== batchId,
     )
-    const previousTargets = new Set(problemBank.map((problem) => problem.target))
+    const previousIds = new Set(previousBank.map((problem) => problem.id))
+    const previousVariants = new Set(
+      previousBank.map((problem) => problem.contentVariant),
+    )
+    const previousTargets = new Set(previousBank.map((problem) => problem.target))
     const ownTargets = new Set<string>()
     for (const problem of headingDepthBatch015Problems) {
       expect(previousIds.has(problem.id), problem.id).toBe(false)

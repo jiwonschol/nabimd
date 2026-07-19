@@ -1884,3 +1884,43 @@ editorial verdict were deleted, the complete pre-review artifact set was
 regenerated, and review restarts from zero against manifest
 `10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`.
 The engine contract remained byte-identical because no engine code changed.
+
+The repaired review cycle then completed unanimously against manifest
+`10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`.
+Atlas (`reviewer-atlas-batch015`, run
+`atlas-batch015-10d64813-repaired-002`) replayed all 419 fixtures, added 336
+fresh probes, and accepted 24/24 with review digest
+`55e82627be8a1d5f52e0889fdaf161e126ffada0fda95b641213ec3ce9b0d96a`.
+Orchid (`codex-orchid-batch015`, run
+`orchid-batch015-10d64813-repaired-mechanical-002`) independently replayed all
+419 fixtures, added 504 fresh probes, and accepted 24/24 with review digest
+`4b401f943109ee50e917c6414ae788bceb1a7aefc2af6aa90335299ce82fb8a3`.
+The separate `codex-editorial-batch015` actor accepted 24/24 in run
+`editorial-batch015-10d64813-repaired-2026-07-20-002`, sealed by editorial
+digest `ee3297b5ad774bcb26fb340cab326a8f1d13555a287180b0a516346676e9ce60`.
+
+`npm run bank:batch:heading-depth-015:publish` compiled all 24 accepted records
+and raised the deterministic bank from 296 to 320, split 136/136/28/16/4.
+The published family counts include 44 `headings` and 12
+`rebuild-sectioned-documents`. Final publication digests are batch
+`a76ba73b923a0e6706e1cc817bd6a80efa4ed8df1e2a14f81b67fe6fd65fe02e`,
+bank `3864f5233e3f521f952c8f05359bb3936df33ff1688bdbdd40bbbcf37b1e8d07`,
+runtime projection
+`9230750169a6732a83d4f582d942048ea73852d554b891a45770f439766e3295`,
+tracker `61d4338103e8812b7a1222f1e0b38c9526d39cd84a5a0aef3da2946a6c50c293`,
+and summary `0a470abf6094f9980564421be5b224d6bef3a2e54b34310f4ca0fd92d074d79d`.
+
+Publication testing caught one expected integration update and one authored
+test defect. Before Batch 015 fixtures joined the runtime-bank fixture list,
+`src/content/problemBank.test.ts` failed one of five tests with 216 missing
+fixture/check errors; adding the frozen Batch 015 fixtures made it pass 5/5.
+The first `npm run check` then failed one assertion out of 9,555 because Batch
+015's collision test compared the now-published batch against itself. The test
+was corrected to filter its own `sourceBatchId`, preserving its intended
+comparison against the prior 296-problem bank; the focused pair then passed
+431/431. The rerun of `npm run check` passed typechecking, 18/18 pipeline tests,
+93/93 immutable batch-gate tests, 3/3 repository-gate tests, 9,555/9,555 unit
+and component tests, the legacy bank gate, a 222-module production build, and
+bundle inspection excluding four fixture-only sentinels from the single
+JavaScript asset. `npm run test:e2e` passed all 13 Chromium journeys. No Issue
+#50-owned path changed, and the 512-problem closing target remains open.
