@@ -2013,3 +2013,53 @@ No independent or editorial review had begun, so the complete generated
 artifact set was deleted and rebuilt from zero. The repaired manifest
 `56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`
 supersedes the rejected freeze; the engine contract remains unchanged.
+
+The repaired review cycle completed unanimously against manifest
+`56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`.
+Atlas (`reviewer-atlas-batch016`, run `atlas-batch016-56d69a26-001`)
+accepted 12/12 with review digest
+`95ce54326ce397ac3a64c4db7183ff6510be145ffb2d689f43d618182e103327`.
+Orchid (`codex-orchid-batch016`, run
+`orchid-batch016-56d69a26-mechanical-001`) independently accepted 12/12 with
+review digest
+`9453a483738cdcc5194331891d8b6e9c41d800bd6b5239c4e764ac12b510e868`.
+The separate `codex-editorial-batch016` actor accepted 12/12 in run
+`editorial-batch016-56d69a26-2026-07-20-001`, sealed by editorial digest
+`deefd0d2b1d8053d317ddb6461b741d5865724ddaa36161e295607f767057ead`.
+
+`npm run bank:batch:nested-list-016:publish` compiled all 12 accepted records
+and raised the deterministic bank from 320 to 332, split 136/148/28/16/4.
+The published family counts now include 12
+`rebuild-nested-list-documents` problems. The publication command produced the
+same artifacts on a second run, proving idempotence. Final publication digests
+are batch
+`3cb44279584b350138c78794a3602fd6fc2752c61c75be9aa035a17df98f1682`,
+bank `252a62ad44d29afca2288d9ad3263aca720c2c328fb33fe8fa6baa993cd90035`,
+runtime projection
+`4198819db7075715271282adb405d5aa934f1698e75e96a4b63f11e192cfb7b6`,
+tracker `961f9f7c65f361a2f9b540b2dbdc74c483fdb2414fc6fedb9a130cbfc974e6bc`,
+and summary
+`574811a9231f30dc5f4fba115e4b97a6698943816d00ac3255b3ea8c1574ec69`.
+
+Publication testing first failed exactly where expected: the runtime-bank test
+still asserted 320, did not include the Batch 016 fixtures, and the batch-local
+collision test compared the now-published records against themselves. The
+count and split assertions were deliberately updated to 332 and
+136/148/28/16/4, the 252 frozen fixtures joined the runtime-bank fixture list,
+and the collision comparison now excludes its own source batch. The targeted
+publication pair then passed 261/261.
+
+The final `npm run check` passed typechecking, 18/18 pipeline tests, 100/100
+immutable batch-gate tests, 3/3 repository-gate tests, 9,811/9,811 unit and
+component tests, the legacy bank gate, a 222-module production build, and
+bundle inspection excluding four fixture-only sentinels. Local Chromium E2E
+passed all 13 user journeys. Public and curriculum documentation now reports
+only the tracker-backed 332 total. The compatibility metadata remains
+`teachingMode: "recall"`; learner-facing copy does not use that legacy label.
+
+Paragraph separation remains deferred because its Level 1 scheduling would
+require Issue #50-owned taxonomy paths. Publishing Batch 016 leaves 168
+inspected problems to cross the public 500 floor and 180 to reach the internal
+512 closing target. The earlier article and permissive-nested-block findings
+remain recorded above; no rejected draft was silently presented as reviewed,
+and no Issue #50-owned path changed in this publication.

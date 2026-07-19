@@ -158,13 +158,16 @@ describe("Level 2 nested-list document batch 016", () => {
   })
 
   it("does not collide with the accepted bank or within the batch", () => {
-    const previousIds = new Set(problemBank.map((problem) => problem.id))
-    const previousTargets = new Set(problemBank.map((problem) => problem.target))
+    const previousBank = problemBank.filter(
+      (problem) => problem.sourceBatchId !== batchId,
+    )
+    const previousIds = new Set(previousBank.map((problem) => problem.id))
+    const previousTargets = new Set(previousBank.map((problem) => problem.target))
     const previousExamples = new Set(
-      problemBank.map((problem) => problem.teaching.example),
+      previousBank.map((problem) => problem.teaching.example),
     )
     const previousVariants = new Set(
-      problemBank.map((problem) => problem.contentVariant),
+      previousBank.map((problem) => problem.contentVariant),
     )
     const ownTargets = new Set<string>()
     const ownExamples = new Set<string>()

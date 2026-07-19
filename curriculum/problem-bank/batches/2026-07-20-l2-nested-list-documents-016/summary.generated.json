@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "status": "published",
+  "batchDigest": "3cb44279584b350138c78794a3602fd6fc2752c61c75be9aa035a17df98f1682",
+  "bankDigest": "252a62ad44d29afca2288d9ad3263aca720c2c328fb33fe8fa6baa993cd90035",
+  "projectionDigest": "4198819db7075715271282adb405d5aa934f1698e75e96a4b63f11e192cfb7b6",
+  "trackerDigest": "961f9f7c65f361a2f9b540b2dbdc74c483fdb2414fc6fedb9a130cbfc974e6bc",
+  "generated": 12,
+  "accepted": 12,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 136,
+      "2": 148,
+      "3": 28,
+      "4": 16,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 16,
+      "fenced-code-blocks": 12,
+      "headings": 44,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "italic-emphasis": 12,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 28,
+      "rebuild-code-block-documents": 12,
+      "rebuild-nested-list-documents": 12,
+      "rebuild-real-documents": 12,
+      "rebuild-sectioned-documents": 12
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/fenced-code-blocks": 12,
+      "1/headings": 28,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/italic-emphasis": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "2/rebuild-code-block-documents": 12,
+      "2/rebuild-nested-list-documents": 12,
+      "2/rebuild-real-documents": 12,
+      "2/rebuild-sectioned-documents": 12,
+      "3/readable-human-document": 28,
+      "4/executable-development-spec": 16,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 332
+    }
+  },
+  "manifestDigest": "56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382",
+  "reviewDigests": [
+    "9453a483738cdcc5194331891d8b6e9c41d800bd6b5239c4e764ac12b510e868",
+    "95ce54326ce397ac3a64c4db7183ff6510be145ffb2d689f43d618182e103327"
+  ],
+  "editorialDigest": "deefd0d2b1d8053d317ddb6461b741d5865724ddaa36161e295607f767057ead",
+  "summaryDigest": "574811a9231f30dc5f4fba115e4b97a6698943816d00ac3255b3ea8c1574ec69"
+}
