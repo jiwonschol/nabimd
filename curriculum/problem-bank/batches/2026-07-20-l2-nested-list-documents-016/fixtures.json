@@ -178,6 +178,16 @@
       "expectedFeedbackId": "nested-checklist-visible-child-items"
     },
     {
+      "id": "l2-nested-checklist-closet-shelf-invisible-child-null",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-visible-child-items",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - \u0000\n  - Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-visible-child-items"
+    },
+    {
       "id": "l2-nested-checklist-closet-shelf-invisible-root-item",
       "problemId": "l2-nested-checklist-closet-shelf",
       "problemRevision": 1,
@@ -408,6 +418,16 @@
       "role": "edge-case",
       "exercisesCheckId": "nested-checklist-visible-child-items",
       "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - ​\n  - Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-visible-child-items"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-invisible-child-null",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-visible-child-items",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - \u0000\n  - Spinach\n- Pasta\n- Olive oil",
       "expectedStatus": "fail",
       "expectedFeedbackId": "nested-checklist-visible-child-items"
     },
@@ -646,6 +666,16 @@
       "expectedFeedbackId": "nested-checklist-visible-child-items"
     },
     {
+      "id": "l2-nested-checklist-picnic-bag-invisible-child-null",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-visible-child-items",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - \u0000\n  - Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-visible-child-items"
+    },
+    {
       "id": "l2-nested-checklist-picnic-bag-invisible-root-item",
       "problemId": "l2-nested-checklist-picnic-bag",
       "problemRevision": 1,
@@ -876,6 +906,16 @@
       "role": "edge-case",
       "exercisesCheckId": "nested-checklist-visible-child-items",
       "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - ​\n  - Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-visible-child-items"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-invisible-child-null",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-visible-child-items",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - \u0000\n  - Pencil\n- Notebook\n- Lunch card",
       "expectedStatus": "fail",
       "expectedFeedbackId": "nested-checklist-visible-child-items"
     },
@@ -1114,6 +1154,16 @@
       "expectedFeedbackId": "nested-outline-visible-child-items"
     },
     {
+      "id": "l2-nested-outline-pet-care-invisible-child-null",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-visible-child-items",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - \u0000\n  - Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-visible-child-items"
+    },
+    {
       "id": "l2-nested-outline-pet-care-invisible-root-item",
       "problemId": "l2-nested-outline-pet-care",
       "problemRevision": 1,
@@ -1344,6 +1394,16 @@
       "role": "edge-case",
       "exercisesCheckId": "nested-outline-visible-child-items",
       "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - ​\n  - Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-visible-child-items"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-invisible-child-null",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-visible-child-items",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - \u0000\n  - Wednesday\n- Travel essay\n- Poetry book",
       "expectedStatus": "fail",
       "expectedFeedbackId": "nested-outline-visible-child-items"
     },
@@ -1582,6 +1642,16 @@
       "expectedFeedbackId": "nested-outline-visible-child-items"
     },
     {
+      "id": "l2-nested-outline-small-garden-invisible-child-null",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-visible-child-items",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - \u0000\n  - Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-visible-child-items"
+    },
+    {
       "id": "l2-nested-outline-small-garden-invisible-root-item",
       "problemId": "l2-nested-outline-small-garden",
       "problemRevision": 1,
@@ -1812,6 +1882,16 @@
       "role": "edge-case",
       "exercisesCheckId": "nested-outline-visible-child-items",
       "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - ​\n  - Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-visible-child-items"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-invisible-child-null",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-visible-child-items",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - \u0000\n  - Post office\n- Farmers market\n- Gas station",
       "expectedStatus": "fail",
       "expectedFeedbackId": "nested-outline-visible-child-items"
     },
@@ -2050,6 +2130,16 @@
       "expectedFeedbackId": "nested-steps-visible-child-items"
     },
     {
+      "id": "l2-nested-steps-craft-table-invisible-child-null",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-visible-child-items",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. \u0000\n   2. Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-visible-child-items"
+    },
+    {
       "id": "l2-nested-steps-craft-table-invisible-root-item",
       "problemId": "l2-nested-steps-craft-table",
       "problemRevision": 1,
@@ -2280,6 +2370,16 @@
       "role": "edge-case",
       "exercisesCheckId": "nested-steps-visible-child-items",
       "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. ​\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-visible-child-items"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-invisible-child-null",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-visible-child-items",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. \u0000\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
       "expectedStatus": "fail",
       "expectedFeedbackId": "nested-steps-visible-child-items"
     },
@@ -2518,6 +2618,16 @@
       "expectedFeedbackId": "nested-steps-visible-child-items"
     },
     {
+      "id": "l2-nested-steps-room-reset-invisible-child-null",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-visible-child-items",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. \u0000\n   2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-visible-child-items"
+    },
+    {
       "id": "l2-nested-steps-room-reset-invisible-root-item",
       "problemId": "l2-nested-steps-room-reset",
       "problemRevision": 1,
@@ -2748,6 +2858,16 @@
       "role": "edge-case",
       "exercisesCheckId": "nested-steps-visible-child-items",
       "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. ​\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-visible-child-items"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-invisible-child-null",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-visible-child-items",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. \u0000\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
       "expectedStatus": "fail",
       "expectedFeedbackId": "nested-steps-visible-child-items"
     },

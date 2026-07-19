@@ -251,6 +251,7 @@ function materializeFixtures(
     { suffix: "invisible-root-item", role: "edge-case", source: withInvisibleRootItem(problem.target, input.family), expectedStatus: "fail", expectedFeedbackId: rootListId, exercisesCheckId: rootListId },
     { suffix: "invisible-child-comment", role: "edge-case", source: withInvisibleChildItem(problem.target, input.family, "<!-- hidden -->"), expectedStatus: "fail", expectedFeedbackId: visibleChildId, exercisesCheckId: visibleChildId },
     { suffix: "invisible-child-default-ignorable", role: "edge-case", source: withInvisibleChildItem(problem.target, input.family, "\u200B"), expectedStatus: "fail", expectedFeedbackId: visibleChildId, exercisesCheckId: visibleChildId },
+    { suffix: "invisible-child-null", role: "edge-case", source: withInvisibleChildItem(problem.target, input.family, "\u0000"), expectedStatus: "fail", expectedFeedbackId: visibleChildId, exercisesCheckId: visibleChildId },
     { suffix: "extra-root-block", role: "edge-case", source: `${problem.target}\n\nExtra note.`, expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "fenced-code-lookalike", role: "edge-case", source: codeLookalike(problem.target, input.family, true), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "indented-code-lookalike", role: "edge-case", source: codeLookalike(problem.target, input.family, false), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },

@@ -707,6 +707,7 @@ describe("structural match predicates", () => {
     ["a line break", "- <br>"],
     ["default-ignorable characters", "- \u200B"],
     ["control characters", "- \u0007"],
+    ["a raw NUL", "- \u0000"],
     ["whitespace", "-   "],
   ])("rejects list items containing only %s when visibility is required", (_label, source) => {
     const visibleList = problem([
@@ -732,6 +733,8 @@ describe("structural match predicates", () => {
     "- `visible-code`",
     "- [Visible label](/path)",
     "- ![Visible alt](photo.png)",
+    "- \uFFFD",
+    "- \u0000Visible words",
   ])("accepts visibly meaningful list-item content: %s", (source) => {
     const visibleList = problem([
       {

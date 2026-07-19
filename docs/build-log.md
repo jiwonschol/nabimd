@@ -2057,3 +2057,31 @@ tests. The repaired focused run passes 509/509 tests. The Batch 016 gate passes
 `npm run typecheck` passes, and `git diff --check` is clean. No Issue #50-owned
 path changed. Independent mechanical and editorial review must restart against
 the new manifest before Batch 016 can be published again.
+
+A second P2 review on `a81a2ef` found one parser-boundary case: CommonMark
+replaces a raw U+0000 with U+FFFD in the AST, so the first visibility repair
+mistook a NUL-only item for a literal visible replacement character. The
+source-aware repair now removes only as many parsed replacement characters as
+raw NULs occur in that node's source. A literal U+FFFD remains visible, and a
+raw NUL mixed with visible content remains valid. The same helper now backs
+code-block content without changing its established behavior; inline code
+retains its established source-aware path, and image alternatives now isolate
+their raw label source before applying the same NUL accounting.
+
+Twelve NUL-only descendant fixtures bring the immutable matrix to 300 cases,
+25 per candidate, each bound to the exact `nested-*-visible-child-items`
+feedback ID. Regenerated evidence remains fail-closed at 320 accepted problems
+with zero reviewer seals, no editorial verdict, and no publication summary.
+The superseding digests are fixture artifact
+`779f264d6b5febdf492467b2545fcdb5398101c127030a205fcc8f090d04ea31`,
+verification
+`7c2de8b4ea90d06d37e29f9766aa3fab00b6a2b7fc5977fc8376cdfa7bd0b0ca`,
+engine contract
+`f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9`,
+manifest
+`4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457`,
+and prepared summary
+`e085b601e23501ee7193a1e8d5c9db7e4937c14d0720d247c27a426798801871`.
+The focused run passes 524/524, the Batch 016 gate passes 7/7, the full suite
+passes 9,876/9,876 in 51 files, typechecking passes, and `git diff --check` is
+clean. No Issue #50-owned path changed.

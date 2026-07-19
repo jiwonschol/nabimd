@@ -45,7 +45,7 @@
     },
     {
       "path": "src/engine/predicates/structural.ts",
-      "sha256": "98031a652df02c703696e9a13a13e45447fdb50c3e1fbe4992cd2de272549ed2"
+      "sha256": "4127547a55fc1535149d9b4ee86bab89cf15b5575db5226cd725ee7cdf4a93b8"
     },
     {
       "path": "src/engine/types.ts",
@@ -58,5 +58,5 @@
       "version": "2.0.3"
     }
   ],
-  "engineContractDigest": "3a5da05c423920dc24290864cfde3c913f5ba40c9bf164322aebf7f5b1de20ea"
+  "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
 }

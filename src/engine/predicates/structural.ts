@@ -147,9 +147,12 @@ function listShapePasses(
             (ancestorOrder) => ancestorOrder === ordered,
           )) &&
         inRange(list.children.length, check.minItems, check.maxItems) &&
-        (!check.requireNonemptyItems || list.children.every(listItemHasContent)) &&
+        (!check.requireNonemptyItems ||
+          list.children.every(listItemHasContent)) &&
         (!check.requireVisibleItems ||
-          list.children.every(listItemHasVisibleContent))
+          list.children.every((item) =>
+            listItemHasVisibleContent(item, context.source),
+          ))
       )
     })
 }
@@ -189,21 +192,29 @@ function nodeHasNonListContent(node: AstNode): boolean {
   return node.children?.some(nodeHasNonListContent) ?? false
 }
 
-function listItemHasVisibleContent(item: ListItem): boolean {
-  return (item.children as AstNode[]).some(nodeHasVisibleNonListContent)
+function listItemHasVisibleContent(item: ListItem, source: string): boolean {
+  return (item.children as AstNode[]).some((node) =>
+    nodeHasVisibleNonListContent(node, source),
+  )
 }
 
-function nodeHasVisibleNonListContent(node: AstNode): boolean {
+function nodeHasVisibleNonListContent(node: AstNode, source: string): boolean {
   if (node.type === "list") return false
-  if (
-    ["text", "inlineCode", "code"].includes(node.type) &&
-    hasMeaningfulCharacters(node.value)
-  ) {
-    return true
+  if (node.type === "text") {
+    return hasMeaningfulParsedCharacters(
+      node.value,
+      sourceForNode(node, source),
+    )
+  }
+  if (node.type === "inlineCode") {
+    return hasVisibleInlineCodeContent(node as InlineCode, source)
+  }
+  if (node.type === "code") {
+    return codeBlockHasMeaningfulContent(node as Code, source)
   }
   if (
     ["image", "imageReference"].includes(node.type) &&
-    hasMeaningfulCharacters(node.alt)
+    hasMeaningfulParsedCharacters(node.alt, rawImageAlt(node, source))
   ) {
     return true
   }
@@ -212,7 +223,28 @@ function nodeHasVisibleNonListContent(node: AstNode): boolean {
   ) {
     return false
   }
-  return node.children?.some(nodeHasVisibleNonListContent) ?? false
+  return (
+    node.children?.some((child) =>
+      nodeHasVisibleNonListContent(child, source),
+    ) ?? false
+  )
+}
+
+function rawImageAlt(node: AstNode, source: string): string {
+  const raw = sourceForNode(node, source)
+  if (!raw.startsWith("![")) return ""
+  let depth = 1
+  for (let index = 2; index < raw.length; index += 1) {
+    if (raw[index] === "\\" && index + 1 < raw.length) {
+      index += 1
+      continue
+    }
+    if (raw[index] === "[") depth += 1
+    if (raw[index] !== "]") continue
+    depth -= 1
+    if (depth === 0) return raw.slice(2, index)
+  }
+  return ""
 }
 
 function blockquoteShapePasses(
@@ -561,11 +593,19 @@ function codeBlockHasMeaningfulContent(node: Code, source: string): boolean {
     if (isClosedFencedCode(source, node)) lines.pop()
     rawContent = lines.join("\n")
   }
-  const rawNullCount = [...rawContent].filter(
+  return hasMeaningfulParsedCharacters(node.value, rawContent)
+}
+
+function hasMeaningfulParsedCharacters(
+  parsedValue: unknown,
+  rawSource: string,
+): boolean {
+  if (typeof parsedValue !== "string") return false
+  const rawNullCount = [...rawSource].filter(
     (character) => character === "\u0000",
   ).length
   let remainingNullReplacements = rawNullCount
-  const valueWithoutParserNullReplacements = node.value.replace(
+  const valueWithoutParserNullReplacements = parsedValue.replace(
     /\uFFFD/g,
     (character) => {
       if (remainingNullReplacements === 0) return character

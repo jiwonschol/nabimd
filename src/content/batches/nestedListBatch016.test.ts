@@ -218,6 +218,7 @@ describe("Level 2 nested-list document batch 016", () => {
       "invisible-root-item",
       "invisible-child-comment",
       "invisible-child-default-ignorable",
+      "invisible-child-null",
       "extra-root-block",
       "fenced-code-lookalike",
       "indented-code-lookalike",
