@@ -4,16 +4,16 @@ import {
 } from "../content/entryChoices"
 import { problemBankRevision } from "../content/problemBank"
 import { isReachableRunSchedule } from "../session/runSchedule"
-import type { ProgressV3 } from "./types"
+import type { ProgressV4 } from "./types"
 
-export const PROGRESS_STORAGE_KEY = "nabimd.progress.v3"
+export const PROGRESS_STORAGE_KEY = "nabimd.progress.v4"
 
 export function createDefaultProgress(
   currentProblemId: string,
   bankRevision = problemBankRevision,
-): ProgressV3 {
+): ProgressV4 {
   return {
-    version: 3,
+    version: 4,
     bankRevision,
     entryId: null,
     runNumber: 0,
@@ -61,7 +61,7 @@ function isValidDraftRecord(
 
 function isValidRunProblemIds(
   value: unknown,
-  entryId: ProgressV3["entryId"],
+  entryId: ProgressV4["entryId"],
   runNumber: number,
   runStepIndex: number,
   currentIsTransfer: boolean,
@@ -90,7 +90,7 @@ function isValidRunProblemIds(
   )
 }
 
-function isProgressV3(
+function isProgressV4(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
   isEligibleTransferProblem: (
@@ -98,11 +98,11 @@ function isProgressV3(
     candidateProblemId: string,
   ) => boolean,
   expectedBankRevision: string,
-): value is ProgressV3 {
+): value is ProgressV4 {
   if (!isRecord(value)) return false
 
   return (
-    value.version === 3 &&
+    value.version === 4 &&
     value.bankRevision === expectedBankRevision &&
     (value.entryId === null || isEntryId(value.entryId)) &&
     typeof value.runNumber === "number" &&
@@ -138,7 +138,7 @@ function isProgressV3(
   )
 }
 
-function cloneProgress(progress: ProgressV3): ProgressV3 {
+function cloneProgress(progress: ProgressV4): ProgressV4 {
   return {
     ...progress,
     draftByProblemId: { ...progress.draftByProblemId },
@@ -156,7 +156,7 @@ export function loadProgress(
     candidateProblemId: string,
   ) => boolean = () => false,
   expectedBankRevision = problemBankRevision,
-): ProgressV3 {
+): ProgressV4 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
     firstProblemId ?? "l1-heading-apple",
@@ -168,7 +168,7 @@ export function loadProgress(
     if (!saved) return fallback
 
     const parsed: unknown = JSON.parse(saved)
-    return isProgressV3(
+    return isProgressV4(
       parsed,
       validProblemIds,
       isEligibleTransferProblem,
@@ -181,7 +181,7 @@ export function loadProgress(
   }
 }
 
-export function saveProgress(storage: Storage, progress: ProgressV3): void {
+export function saveProgress(storage: Storage, progress: ProgressV4): void {
   try {
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
   } catch {

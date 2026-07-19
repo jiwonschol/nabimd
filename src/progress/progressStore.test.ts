@@ -48,7 +48,7 @@ function isEligibleTransferProblemId(
   )
 }
 
-describe("progressStore v3", () => {
+describe("progressStore v4", () => {
   let storage: Storage
 
   beforeEach(() => {
@@ -57,9 +57,9 @@ describe("progressStore v3", () => {
 
   it("binds persisted progress to the compiled bank revision", () => {
     const progress = createDefaultProgress(problemBank[0].id)
-    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v3")
+    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v4")
     expect(progress).toMatchObject({
-      version: 3,
+      version: 4,
       bankRevision: problemBankRevision,
     })
   })
@@ -92,16 +92,16 @@ describe("progressStore v3", () => {
   })
 
   it("restores an allowed same-level replacement", () => {
-    const baseline = createRunProblemIds("level-3", 0)
+    const baseline = createRunProblemIds("level-1", 0)
     const replacement = problemBank.find(
       (candidate) =>
-        candidate.level === 3 &&
+        candidate.level === 1 &&
         candidate.retryFamily === getProblem(baseline[0]!).retryFamily &&
         !baseline.includes(candidate.id),
     )!
     const progress = createDefaultProgress(replacement.id)
-    progress.entryId = "level-3"
-    progress.runProblemIds = [replacement.id, baseline[1]!, baseline[2]!]
+    progress.entryId = "level-1"
+    progress.runProblemIds = [replacement.id, ...baseline.slice(1)]
     saveProgress(storage, progress)
 
     expect(
@@ -119,7 +119,7 @@ describe("progressStore v3", () => {
     )!
     const progress = createDefaultProgress(replacement.id)
     progress.entryId = "level-1"
-    progress.runProblemIds = [replacement.id, baseline[1]!, baseline[2]!]
+    progress.runProblemIds = [replacement.id, ...baseline.slice(1)]
     progress.currentIsTransfer = true
     saveProgress(storage, progress)
 
@@ -170,8 +170,7 @@ describe("progressStore v3", () => {
     progress.runProblemIds = [
       baseline[0]!,
       wrongLevel,
-      baseline[1]!,
-      baseline[2]!,
+      ...baseline.slice(1),
     ]
     progress.runStepIndex = 1
     progress.currentIsTransfer = true
@@ -189,6 +188,18 @@ describe("progressStore v3", () => {
     )
 
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify({ version: 2 }))
+    expect(loadProgress(storage, validProblemIds)).toEqual(
+      createDefaultProgress(problemBank[0].id),
+    )
+
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...createDefaultProgress(problemBank[0].id),
+        version: 3,
+        pendingTransferFamily: "hint-created-debt",
+      }),
+    )
     expect(loadProgress(storage, validProblemIds)).toEqual(
       createDefaultProgress(problemBank[0].id),
     )

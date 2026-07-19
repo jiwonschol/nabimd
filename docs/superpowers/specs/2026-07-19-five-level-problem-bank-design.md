@@ -26,33 +26,35 @@ the product.
 
 ## Definitive curriculum ladder
 
-### Level 1 — guided production
+### Level 1 — Learn the syntax
 
 Write one syntax pattern while the rule and a different-text example are
 visible. Exercises use short, familiar US-English labels and noun phrases.
 The purpose is to connect a keystroke pattern to its rendered result.
 
-### Level 2 — recall
+### Level 2 — Rebuild real documents
 
-Produce the same single-syntax skills with Help closed. Exercises use familiar
-actions and mini-documents. Opening Help creates the existing same-skill
-transfer obligation; it does not change the grading rule.
+Rebuild small rendered documents by combining familiar syntax into useful
+shapes. The Goal is still a visible target, but the task is no longer framed as
+a memory test. The accepted bank currently provides single-syntax records as a
+transitional fallback; runtime prefers composite rebuilds whenever enough are
+available. Hint use never changes the grading rule or creates remediation.
 
-### Level 3 — readable human documents
+### Level 3 — Write for people
 
 Combine syntax families into short workplace documents that another person can
 scan. Exercises teach one document title, logical heading hierarchy, short
 paragraph rhythm, appropriate list structure, code blocks, links, and
 restrained emphasis.
 
-### Level 4 — executable development specifications
+### Level 4 — Write a development spec
 
 Turn requirements into a document whose structure supports implementation.
 Exercises combine scope, dependencies, constraints, acceptance criteria,
 verification, and unresolved decisions. Nabi verifies the declared Markdown
 anatomy; it does not decide whether the learner's prose is technically true.
 
-### Level 5 — human-reviewable, AI-executable work orders
+### Level 5 — Write an agent work order
 
 Structure a contemporary coding-agent work order with ordered context,
 authority boundaries, staged execution, forbidden shortcuts, stop conditions,
@@ -66,8 +68,8 @@ The first complete bank contains at least 512 inspected problems:
 
 | Level | Minimum | Curriculum role |
 |---|---:|---|
-| 1 | 128 | 16 guided problems for each of eight syntax families |
-| 2 | 128 | 16 recall problems for each of the same families |
+| 1 | 128 | short single-syntax production across eight syntax families |
+| 2 | 128 | small real-document rebuilds using familiar syntax |
 | 3 | 96 | readable workplace-document compositions |
 | 4 | 80 | executable development specifications |
 | 5 | 80 | agent-ready work orders |
@@ -141,10 +143,16 @@ type Problem = {
 }
 ```
 
-Level 1 uses `introduce`; Levels 2–5 use `recall`. A Level 5 problem requires
-valid convention metadata. `contentVariant` is used only to prevent a transfer
-from repeating displayed material. Goal text, vocabulary terms, and content
-variants are never equality operands in learner grading.
+`teachingMode` and the `everyday-recall` vocabulary profile are legacy schema
+values retained to keep accepted, digest-bound batches immutable; they are not
+the learner-facing Level 2 identity. A Level 5 problem requires valid convention
+metadata. `contentVariant` is used only to prevent remediation from repeating
+displayed material. Goal text, vocabulary terms, and content variants are never
+equality operands in learner grading.
+
+Levels 1–2 present a rendered target to rebuild. Levels 3–5 present a brief and
+ask the learner to compose a document. Both routes use the same deterministic,
+structure-only evaluator.
 
 ## Deterministic structural grading
 
@@ -234,14 +242,36 @@ drift, and bank-wide count regressions.
 
 ## Runtime selection contract
 
-The entry chooser exposes exactly Levels 1–5. Scheduling first filters by exact
-level and `standard` flavor, then rotates deterministically. A run contains
-three problems. Transfer and Try another remain within the same level, flavor,
-and retry family and require a different `contentVariant`.
+The entry chooser exposes exactly Levels 1–5 with these learner-facing task
+types: Learn the syntax, Rebuild real documents, Write for people, Write a
+development spec, and Write an agent work order. Scheduling first filters by
+exact level and `standard` flavor, then rotates deterministically.
 
-Level 1 shows the rule while the learner writes. Levels 2–5 start with Help
-closed. Adding a batch must not silently mutate an active run; persisted runs
-record the compiled bank revision and reset safely when that revision changes.
+For Levels 1–4, a scheduled turn contains six problems: four at the chosen
+level followed by two next-level challenges. The first four begin with Hint
+open; the challenges begin with it closed. Hint is always manually available
+and never creates remediation. Level 5 schedules up to six unique at-level
+problems; the current four-problem bank degrades to four rather than duplicating
+content.
+
+Only a failed Check creates a same-skill, different-content remediation. That
+repair may extend a six-problem turn to seven and is exempt from the scheduled
+family-adjacency contract. Try another remains within the same level, flavor,
+and retry family and requires a different `contentVariant`.
+
+Level 1 and transitional single-syntax Level 2 scheduling use one centralized
+weighted family policy. Ordered and unordered lists receive a mild boost;
+inline code, links, and images receive a mild reduction; all other supported
+families use baseline weight. Adjacent scheduled problems never repeat the
+same family, including across turn boundaries. A family appears no more than
+twice per turn, and distinct families are preferred while supply permits.
+Composite Level 2 rebuilds are exempt from this single-family rule. The two
+challenge slots prefer distinct structural families or retry families.
+
+All counts, spillover, Hint boundary, challenge offset, and family weights live
+in the runtime policy module. Adding a batch must not silently mutate an active
+run; persisted runs record the compiled bank revision and reset safely when
+that revision or schedule contract changes.
 
 ## Level 3–5 structural archetypes
 

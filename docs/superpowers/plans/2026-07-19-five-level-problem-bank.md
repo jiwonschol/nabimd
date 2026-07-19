@@ -108,11 +108,25 @@ passing, direct failing, nesting, boundary, and parser-collision coverage.
    family and require another content variant.
 5. Record the compiled bank revision in persisted progress and reset stale runs
    safely.
-6. Preserve three-step runs, Level 1 visible teaching, Level 2–5 closed Help,
-   and keyboard-only completion.
+6. Expose the definitive learner-facing task names: Learn the syntax, Rebuild
+   real documents, Write for people, Write a development spec, and Write an
+   agent work order.
+7. Schedule Levels 1–4 as four chosen-level problems plus two next-level
+   challenges. Level 5 schedules up to six unique at-level problems without
+   duplication when the accepted bank is smaller.
+8. Start Hint open for chosen-level work and closed for challenges while
+   keeping it manually available without penalty. Only a failed Check creates
+   different-content remediation.
+9. Apply the centralized weighted single-syntax family policy at Levels 1–2,
+   while preferring composite Level 2 rebuilds as they become available.
+10. Route Levels 1–2 through rendered targets and Levels 3–5 through briefs,
+    preserving the same deterministic structural grader and keyboard-only
+    completion.
 
-**Gate:** selection tests prove no cross-level transfer, all five entries start,
-and changed bank revisions cannot corrupt active schedules.
+**Gate:** selection tests prove the 4+2 boundary, no adjacent scheduled
+single-syntax family, bounded weighting, no cross-level remediation, truthful
+Level 5 degradation, all five entries start, and changed bank revisions cannot
+corrupt active schedules.
 
 ## Stage 4 — Replace the monolithic pipeline with batch evidence
 

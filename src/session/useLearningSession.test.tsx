@@ -17,11 +17,11 @@ function renderLearningSession(storage = new MemoryStorage()) {
 }
 
 describe("useLearningSession", () => {
-  it("finishes a three-step run instead of ending after the first Match", () => {
+  it("finishes a six-problem turn instead of ending after the first Match", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
 
-    for (let index = 0; index < 3; index += 1) {
+    for (let index = 0; index < 6; index += 1) {
       expect(result.current.session.runStepIndex).toBe(index)
       matchCurrent(result)
       act(() => result.current.next())
@@ -30,7 +30,7 @@ describe("useLearningSession", () => {
     expect(result.current.session.phase).toBe("complete")
   })
 
-  it.each(entryChoices)("starts $id inside its exact bank level", (entry) => {
+  it.each(entryChoices)("starts $id at its chosen level", (entry) => {
     const { result } = renderLearningSession()
     act(() => result.current.start(entry.id))
 
@@ -67,17 +67,38 @@ describe("useLearningSession", () => {
     expect(result.current.session.progress.draftByProblemId).toEqual({})
   })
 
-  it("auto-opens Help only for Level 1", () => {
+  it("shows Hint for four at-level problems and hides it for challenges", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
-    expect(result.current.session.coach).toBe("hint")
-    expect(result.current.session.teachingMode).toBe("introduce")
 
-    for (const entry of entryChoices.slice(1)) {
-      act(() => result.current.start(entry.id))
-      expect(result.current.session.coach).toBe("closed")
-      expect(result.current.session.teachingMode).toBe("recall")
+    for (let index = 0; index < 4; index += 1) {
+      expect(result.current.problem.level).toBe(1)
+      expect(result.current.session.coach).toBe("hint")
+      expect(result.current.session.needsTransfer).toBe(false)
+      matchCurrent(result)
+      act(() => result.current.next())
     }
+
+    expect(result.current.problem.level).toBe(2)
+    expect(result.current.session.coach).toBe("closed")
+    act(() => result.current.requestHint())
+    expect(result.current.session.coach).toBe("hint")
+    expect(result.current.session.needsTransfer).toBe(false)
+  })
+
+  it("keeps every currently available Level 5 problem at-level and guided", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-5"))
+
+    const runLength = result.current.session.runProblemIds.length
+    for (let index = 0; index < runLength; index += 1) {
+      expect(result.current.problem.level).toBe(5)
+      expect(result.current.session.coach).toBe("hint")
+      matchCurrent(result)
+      act(() => result.current.next())
+    }
+
+    expect(result.current.session.phase).toBe("complete")
   })
 
   it("repairs a failure, then inserts different same-level content", () => {

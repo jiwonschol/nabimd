@@ -1,7 +1,7 @@
 import type { EntryId } from "../content/entryChoices"
 
-export type ProgressV3 = {
-  version: 3
+export type ProgressV4 = {
+  version: 4
   bankRevision: string
   entryId: EntryId | null
   runNumber: number

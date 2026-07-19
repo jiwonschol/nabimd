@@ -56,7 +56,7 @@ describe("learningSessionReducer", () => {
     expect(session.needsTransfer).toBe(false)
   })
 
-  it("records transfer debt when Help is opened during recall", () => {
+  it("opens Help during recall without creating transfer debt", () => {
     const session = newSession(rainyDay)
     const hinted = learningSessionReducer(session, {
       type: "hint-requested",
@@ -64,8 +64,8 @@ describe("learningSessionReducer", () => {
 
     expect(hinted.coach).toBe("hint")
     expect(hinted.hintLevel).toBe(1)
-    expect(hinted.needsTransfer).toBe(true)
-    expect(hinted.progress.pendingTransferFamily).toBe("heading-h1")
+    expect(hinted.needsTransfer).toBe(false)
+    expect(hinted.progress.pendingTransferFamily).toBeNull()
   })
 
   it("advances after a first-attempt Matched pass when the run has another step", () => {
@@ -149,19 +149,19 @@ describe("learningSessionReducer", () => {
     expect(restored.needsTransfer).toBe(false)
   })
 
-  it("routes a recall pass to transfer after Help was used", () => {
+  it("does not route a recall pass to transfer merely because Help was used", () => {
     const hinted = learningSessionReducer(newSession(rainyDay), {
       type: "hint-requested",
     })
     const passed = editAndCheck(hinted, rainyDay, "# Rainy day")
-    const transfer = learningSessionReducer(passed, {
+    const advanced = learningSessionReducer(passed, {
       type: "next",
       nextProblemId: "heading-study-tools",
       nextDraft: "",
     })
 
-    expect(transfer.currentProblemId).toBe("heading-study-tools")
-    expect(transfer.currentIsTransfer).toBe(true)
+    expect(advanced.currentProblemId).toBe("heading-study-tools")
+    expect(advanced.currentIsTransfer).toBe(false)
   })
 
   it("completes after repairing a failed transfer without another transfer", () => {

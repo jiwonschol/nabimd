@@ -85,8 +85,9 @@ short welcome, and exactly five level choices matching the definitive
 curriculum ladder.
 
 One pointer click or keyboard activation opens the problem desk directly with
-no intermediate page. Level 1 begins with the introduced rule visible. Levels
-2–5 begin in recall mode with Help closed.
+no intermediate page. The first four problems belong to the selected level and
+begin with Hint open. The final two are next-level challenges and begin with
+Hint closed. Hint remains manually available in either role.
 
 ## Course and problem-bank scope
 
@@ -113,14 +114,16 @@ These families are based on Devpost's documented basic Markdown syntax and the
 portable intersection with CommonMark and Typora. Nabi does not claim complete
 Markdown, CommonMark, or GitHub Flavored Markdown coverage.
 
-### Future curriculum shape after Build Week
+### Current curriculum shape
 
-- The Build Week publish set is the 16 accepted H1 problems described above.
-- The other 112 generated candidates remain blocked until their deterministic
-  predicates, fixtures, independent reviews, and editorial decisions exist.
-- A later curriculum may add single-syntax drills, mixed-syntax problems, and
-  Document Makeovers in gated batches; the former 24 + 6 + 3 outline is not a
-  claim about the submitted runtime.
+- The deterministic runtime bank contains 248 inspected problems split
+  100/100/28/16/4 across Levels 1–5.
+- Accepted batches remain immutable and digest-bound. Runtime scheduling may
+  reclassify how those records are presented, but it does not rewrite their
+  accepted evidence.
+- Level 2 currently uses accepted single-syntax records as a transitional
+  fallback. The scheduler prefers composite rebuild problems as soon as Issue
+  #9 publishes enough of them.
 
 The application can keep offering nonrecent items from the curated bank for as
 long as the learner wants to practice. It does not promise infinitely unique
@@ -165,18 +168,24 @@ same problem ID or example text for this transfer check.
 
 ### Run progression and completion
 
-A run is an explicit deterministic sequence over the currently shipped heading
-content. Progress labels the learner's current run step and the number of steps
-that can actually finish; it never labels the hidden bank size. A first-try
-Matched advances to the next run step and cannot complete after one problem
-while the interface says `1 of 3`.
+A run is an explicit deterministic sequence over the currently shipped bank.
+Progress labels the learner's current run step and the number of steps that can
+actually finish; it never labels the hidden bank size or a policy maximum that
+the available unique content cannot satisfy. A first-try Matched advances to
+the next scheduled step.
 
-When a repaired Fail or Help-assisted recall requires transfer, the selected
-different-content problem becomes the next run step. If that problem was still
-ahead in the sequence, it is moved forward. If the learner was on the last
-step, the transfer is appended and the visible total grows by one. A transfer
-consumes the transfer obligation even if it needs repair, so transfer does not
-form an infinite chain.
+A scheduled Level 1–4 turn contains six problems: four at the chosen level,
+followed by two next-level challenges. Level 5 has no higher challenge level,
+so it schedules up to six unique Level 5 problems. The current bank contains
+four, and the UI truthfully presents a four-problem turn instead of repeating
+content merely to display six.
+
+Only an actual failed Check creates remediation. After repair, a
+different-content problem from the same skill family becomes the next run
+step. This repair is outside the six scheduled slots and may grow the visible
+total from six to seven. It consumes the obligation even if it also needs
+repair, so remediation cannot form an infinite chain. Opening Hint never
+creates remediation.
 
 Completion offers three actions:
 
@@ -194,11 +203,11 @@ evaluated only after `Check` or `Cmd/Ctrl + Enter`.
 
 ### Hint before Matched
 
-Hint is a rescue ladder, not autocomplete. The introduced rule auto-opens only
-at the first step of a Level 1 run. Recall problems and both higher entries
-start with Help closed; opening Help during recall creates a transfer
-obligation. After a failed check, the learner can request progressively stronger
-help.
+Hint is a rescue ladder, not autocomplete. It starts open for the four
+chosen-level problems and closed for the two next-level challenges. The learner
+can close or reopen it at any time. Merely using Hint never creates a transfer
+obligation or changes the grade. After a failed check, repeated requests reveal
+progressively stronger help.
 
 1. Concept hint
 2. Exact syntax recipe, such as `#` + `Space` + `Title`
