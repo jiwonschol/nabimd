@@ -2131,12 +2131,22 @@ fixtures join the published-bank contract, and collision checking excludes
 only this exact source batch. The targeted publication and engine run then
 passed 513/513.
 
-The final `npm run check` passed typechecking, 18/18 pipeline tests, 100/100
+The pre-review `npm run check` passed typechecking, 18/18 pipeline tests, 100/100
 immutable batch-gate tests, 3/3 repository-gate tests, 9,876/9,876 unit and
 component tests, the legacy bank gate, a 222-module production build, and
 bundle inspection excluding four fixture-only sentinels. Local Chromium E2E
-passed all 13 user journeys. Generic generation and publication aliases remain
-on Batch 016. No Issue #50-owned path changed.
+passed all 13 user journeys. No Issue #50-owned path changed.
+
+GitHub CodeRabbit then requested two valid lifecycle guards. The validator now
+rejects `descendantsOnly: true` unless `recursive: true`, so an author receives
+an immediate schema error instead of creating an unwinnable list check. The
+generic `bank:batch:generate` alias is now permanently read-only and runs the
+state-aware all-batch validation; only an explicitly named unsealed batch
+command may write authored evidence. A repository gate prevents that alias
+from drifting back to a sealed batch. GitHub Codex found no major issue on the
+reviewed head. After these review fixes, `npm run check` passes 9,877/9,877
+unit and component tests, 101/101 immutable batch gates, and 4/4 repository
+gates with the same 222-module production build.
 
 The tracker-backed documentation now reports 332 without claiming the closing
 target. Another 168 accepted problems are required to reach the public

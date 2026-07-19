@@ -51,6 +51,12 @@ batch after any review or editorial evidence lands. `npm run check` runs both
 pipeline generations, the state gate, application tests, the legacy gate, and
 the production build.
 
+The generic `npm run bank:batch:generate` alias is deliberately read-only and
+runs that state-aware check. Authors use the explicitly named `prepare` or
+`generate` command for the current unsealed batch; this prevents a generic
+alias from later trying to rewrite whichever reviewed batch happened to be
+latest when the alias was committed.
+
 ## Artifact map
 
 - `generation-prompt.md` — exact generation request;

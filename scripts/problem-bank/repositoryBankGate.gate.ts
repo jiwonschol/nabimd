@@ -117,4 +117,11 @@ describe("repository-wide problem-bank integrity", () => {
   it("allows only new batch directories beyond the baseline", async () => {
     expect(await immutableBaselineBatchErrors()).toEqual([])
   })
+
+  it("keeps the generic generation alias read-only after batches are sealed", async () => {
+    const packageJson = await readJson(resolve(repositoryRoot, "package.json"))
+    expect(packageJson.scripts["bank:batch:generate"]).toBe(
+      "npm run bank:batch:generate:check",
+    )
+  })
 })

@@ -474,6 +474,27 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("rejects descendant-only list checks that cannot inspect descendants", () => {
+    const invalid = problem("unreachable-descendant-list", {
+      matchChecks: [
+        {
+          id: "nested-list",
+          kind: "list-shape",
+          scope: { kind: "document" },
+          ordered: "either",
+          minItems: 1,
+          descendantsOnly: true,
+          priority: 10,
+          feedback: "Add a nested list.",
+        },
+      ],
+    })
+
+    expect(validate([invalid, problem("unreachable-descendant-list-peer")])).toContain(
+      "Problem unreachable-descendant-list check nested-list requires recursive when descendantsOnly is set",
+    )
+  })
+
   it("validates generic nonblocking editorial checks safely", () => {
     const invalid = problem("invalid-editorial", {
       editorialChecks: [

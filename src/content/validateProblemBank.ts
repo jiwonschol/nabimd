@@ -329,6 +329,14 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
           )
         }
         if (
+          runtimeCheck.descendantsOnly === true &&
+          runtimeCheck.recursive !== true
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} requires recursive when descendantsOnly is set`,
+          )
+        }
+        if (
           runtimeCheck.requireVisibleItems !== undefined &&
           typeof runtimeCheck.requireVisibleItems !== "boolean"
         ) {
