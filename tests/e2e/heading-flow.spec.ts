@@ -299,6 +299,26 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   expect(goalScroll.scrollHeight).toBeGreaterThan(goalScroll.clientHeight)
 })
 
+test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/")
+  await enterLevel(page, 1)
+
+  const [tryAnother, levelLabel, soundToggle, hint] = await Promise.all([
+    page.getByRole("button", { name: "Try another" }).boundingBox(),
+    page.locator(".exercise-progress > span:first-child").boundingBox(),
+    page.getByRole("button", { name: "Mute success sound" }).boundingBox(),
+    page.getByRole("button", { name: "Hint" }).boundingBox(),
+  ])
+
+  expect(tryAnother).not.toBeNull()
+  expect(levelLabel).not.toBeNull()
+  expect(soundToggle).not.toBeNull()
+  expect(hint).not.toBeNull()
+  expect(tryAnother!.x + tryAnother!.width).toBeLessThanOrEqual(levelLabel!.x)
+  expect(soundToggle!.x + soundToggle!.width).toBeLessThanOrEqual(hint!.x)
+})
+
 test("a long Level 5 answer scrolls inside the editor, not the page", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 })
   await page.goto("/")
