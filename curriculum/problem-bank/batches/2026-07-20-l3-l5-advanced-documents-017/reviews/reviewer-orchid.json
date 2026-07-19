@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l3-l5-advanced-documents-017",
+  "reviewerId": "codex-orchid-batch017",
+  "reviewRunId": "orchid-batch017-f64697d7-mechanical-001",
+  "declaredIndependent": true,
+  "manifestDigest": "f64697d77c17af5189daecbdd4166b9fc72602186c1226079579730f3ce8a030",
+  "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9",
+  "frozenFixtureCount": 238,
+  "freshProbeCount": 216,
+  "overallVerdict": "pass",
+  "evidence": {
+    "sourceHead": "172e932b862b2624e00451c82bd33e83f2bca3a1",
+    "reviewManifestFileSha256": "13a5d6322e33181e6812d277835e00288a7a1ef0d60e0b2115887649106ab3e9",
+    "normalizedArtifactDigest": "056e4191a3bbbb4e6b56ac9bb3f6cb02c8b87d58b817bf9730765bbcbee75e0e",
+    "fixtureArtifactDigest": "5f1fdd81fa090c183f03ca19965e795e3c10f4c7540d35da1c0bbe62837782a1",
+    "verificationDigest": "2d1b18c5fb8c80c8afa7ddb28620a7cbb1fcda3757efbaacae19d102e70fcbf6",
+    "manifestDigest": "f64697d77c17af5189daecbdd4166b9fc72602186c1226079579730f3ce8a030",
+    "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9",
+    "candidateCount": 12,
+    "manifestUniqueCandidateIds": 12,
+    "frozenFixtureCount": 238,
+    "frozenOutcomeCounts": {
+      "matched": 48,
+      "fail": 190
+    },
+    "frozenDirectMatchChecksRequired": 166,
+    "frozenDirectMatchChecksCovered": 166,
+    "freshProbeCountsByLevel": {
+      "3": 26,
+      "4": 68,
+      "5": 122
+    },
+    "freshOutcomeCounts": {
+      "matched": 70,
+      "fail": 146
+    },
+    "freshProbeFocusGroups": {
+      "parser-equivalent-matched-forms": 70,
+      "shared-outline-section-hierarchy-precedence": 36,
+      "level-3-impact-brief-boundaries": 10,
+      "level-4-contract-spec-boundaries": 32,
+      "level-5-recovery-boundaries": 22,
+      "level-5-refactor-boundaries": 22,
+      "level-5-rollout-boundaries": 24
+    },
+    "freshProbeDigest": "77c72189d6be597e1e3cc2445d2d28219828d0d1aa31984d9dcf49387a67aba8",
+    "publishedCollisionComparands": 332,
+    "acceptedBankIdCollisions": 0,
+    "acceptedBankContentVariantCollisions": 0,
+    "acceptedBankTargetCollisions": 0,
+    "acceptedBankTeachingExampleCollisions": 0,
+    "acceptedBankVocabularySignatureCollisions": 0,
+    "withinBatchIdCollisions": 0,
+    "withinBatchContentVariantCollisions": 0,
+    "withinBatchTargetCollisions": 0,
+    "withinBatchTeachingExampleCollisions": 0,
+    "withinBatchVocabularySignatureCollisions": 0,
+    "prepublicationAcceptedTotal": 332,
+    "runtimeNetworkCalls": 0,
+    "focusedBatchGateTestsPassed": 7,
+    "focusedRegressionTestsPassed": 717,
+    "sealedManifestStableAfterReplay": true,
+    "stopRestartConditionTriggered": false
+  },
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "engineContractRecomputed": "pass",
+    "allFrozenFixturesReplayed": "pass",
+    "frozenFixtureResultsReproduced": "pass",
+    "everyDirectMatchCheckCoveredAndIsolated": "pass",
+    "grammarOnlyProseCaseAndSpellingTolerance": "pass",
+    "commonmarkEquivalentMarkersHeadingsFencesAndLineEndings": "pass",
+    "outlineSectionAndHierarchyFailurePrecedence": "pass",
+    "level3ImpactBriefGrammar": "pass",
+    "level4ContractSpecGrammar": "pass",
+    "level5RecoveryRefactorAndRolloutGrammar": "pass",
+    "collisionUniquenessAgainstPublished332": "pass",
+    "teachingExampleUniquenessWithinBatchAndPublished332": "pass",
+    "deterministicSeal": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l3-badge-reader-impact-brief",
+      "revision": 1,
+      "candidateDigest": "9afefbdcc95338e81d1afc71cca0918b9110de093d2352d70d82249c91646d24",
+      "fixtureResultsDigest": "571190981362d3785223a07df972c58831541866adeabcb6b2e6a698690a16f5",
+      "verdict": "pass",
+      "notes": "Replayed 14 frozen fixtures and 13 new Orchid probes through the real engine; impact-brief structure, grammar-only wording, CommonMark equivalents, and failure precedence passed."
+    },
+    {
+      "candidateId": "l3-support-queue-impact-brief",
+      "revision": 1,
+      "candidateDigest": "54847fba0ff8a4cc13e677bab5b54898d87e7d7332fb174a19ee4cc48f56a74d",
+      "fixtureResultsDigest": "4ce14f0b823288a0cccc10424850f5fbea22281dc3d75979b487af06b9011a5e",
+      "verdict": "pass",
+      "notes": "Replayed 14 frozen fixtures and 13 new Orchid probes through the real engine; impact-brief structure, grammar-only wording, CommonMark equivalents, and failure precedence passed."
+    },
+    {
+      "candidateId": "l4-audit-archive-contract-spec",
+      "revision": 1,
+      "candidateDigest": "19c4194123b8d4364fb38b4315f9ef5598f7722ebc982b616740b6e30d731bba",
+      "fixtureResultsDigest": "383db7f00e047a8533124a9ba9b3614fee6169d71e864aae3b13024d8e0c0955",
+      "verdict": "pass",
+      "notes": "Replayed 18 frozen fixtures and 17 new Orchid probes through the real engine; contract lists, links, inline code, quoted invariant, and fenced verification passed."
+    },
+    {
+      "candidateId": "l4-contact-import-contract-spec",
+      "revision": 1,
+      "candidateDigest": "07d287ecece7ca574fe8fbefa8ebc60f30427b686179da7fd1765706d470f9c2",
+      "fixtureResultsDigest": "20b42ab60777b9b43e150ab2ed7bce968dfcbc9f53289787eb49dd79d85aa3e0",
+      "verdict": "pass",
+      "notes": "Replayed 18 frozen fixtures and 17 new Orchid probes through the real engine; contract lists, links, inline code, quoted invariant, and fenced verification passed."
+    },
+    {
+      "candidateId": "l4-customer-digest-contract-spec",
+      "revision": 1,
+      "candidateDigest": "7c500828bae547caa58717dbca8e7ae97df1deaf4a7dfd11f3d308d3a029ade8",
+      "fixtureResultsDigest": "84baa9750b5cce702efe0ea19f6b43031d9bea15e401a4959ac09a7ca4f67d66",
+      "verdict": "pass",
+      "notes": "Replayed 18 frozen fixtures and 17 new Orchid probes through the real engine; contract lists, links, inline code, quoted invariant, and fenced verification passed."
+    },
+    {
+      "candidateId": "l4-support-webhook-contract-spec",
+      "revision": 1,
+      "candidateDigest": "771a180e3c0a53daa4b981d813131315ae475ffd47e1a54b3d64a933afe7fd5f",
+      "fixtureResultsDigest": "73caed64a2a85472af3bc55417535a5ba2ce20b65713ac16b7ab204d217621b5",
+      "verdict": "pass",
+      "notes": "Replayed 18 frozen fixtures and 17 new Orchid probes through the real engine; contract lists, links, inline code, quoted invariant, and fenced verification passed."
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "b6ca05e1a50d27ff6d5b50daa89c5163cd06772ccd475e3fb67880e459314745",
+      "fixtureResultsDigest": "59bbb5ec98924a355edb4f31de907bad97e6c3e9d3e1b29a36ce6b2f19b70bf2",
+      "verdict": "pass",
+      "notes": "Replayed 23 frozen fixtures and 20 new Orchid probes through the real engine; bounded-refactor authority, scope, stages, stop, commit, regression, and report grammar passed."
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "e95979bc508f441f7925282ebe5473c2437c4e4d69347a9b5fd10869bc175384",
+      "fixtureResultsDigest": "05a4c5e92741609907ec80063ed3c533488c7f07a43ca2823f662b901145bc10",
+      "verdict": "pass",
+      "notes": "Replayed 23 frozen fixtures and 21 new Orchid probes through the real engine; nested system map, staged rollout, compatibility, rollback, pause, ledger, and report grammar passed."
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "67cd9162ea96aed21de71cdc14433d6774480bfeb2e89b03136223a73ea8b1c9",
+      "fixtureResultsDigest": "93c22ae6e8fdd1253c29c3174fc20aaee3d5d146656de0f5ab159d6aa9a454fb",
+      "verdict": "pass",
+      "notes": "Replayed 23 frozen fixtures and 20 new Orchid probes through the real engine; bounded-refactor authority, scope, stages, stop, commit, regression, and report grammar passed."
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "1346bcd2330cbd8420dc587cc9f14fed7da70681a9934e13eb6f136eccd0cc87",
+      "fixtureResultsDigest": "2f80cf108dbf221cb2ce475941b0f9ababe03d001788bb833d5af8318927fd7c",
+      "verdict": "pass",
+      "notes": "Replayed 23 frozen fixtures and 20 new Orchid probes through the real engine; evidence, divider precedence, recovery stages, rollback, stops, verification, and report grammar passed."
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "065883c6d2c3061b3ffac6e07959c6a464e14f9e667637b8c949ac8e93d6b609",
+      "fixtureResultsDigest": "897725a35c5967c67392b1ad4550ca2fc6581c0612a71943d44543376bff75e6",
+      "verdict": "pass",
+      "notes": "Replayed 23 frozen fixtures and 21 new Orchid probes through the real engine; nested system map, staged rollout, compatibility, rollback, pause, ledger, and report grammar passed."
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "8222f391e89f0cda69c0f4e54e333b8759ba0b7c24900e8d754476b715e40d28",
+      "fixtureResultsDigest": "9286463f06b47d06ce1f98bd759cf03ed9ed076a8a0208422a2372fb4bd247cb",
+      "verdict": "pass",
+      "notes": "Replayed 23 frozen fixtures and 20 new Orchid probes through the real engine; evidence, divider precedence, recovery stages, rollback, stops, verification, and report grammar passed."
+    }
+  ],
+  "findings": [],
+  "commands": [
+    "node --import tsx /private/tmp/nabimd-batch017-orchid-review.mts (238 frozen fixtures + 216 fresh probes)",
+    "npm run bank:batch:advanced-document-017:check (7/7)",
+    "npx vitest run src/content/batches/advancedDocumentBatch017.test.ts src/engine/structuralPredicates.test.ts src/content/validateProblemBankV2.test.ts src/engine/evaluateProblem.test.ts --reporter=dot (717/717)"
+  ],
+  "stopConditions": [
+    "Any candidate, fixture, prompt, engine-contract, verification, or manifest change invalidates this digest-bound evidence and requires a new Orchid review run.",
+    "Any reviewer disagreement or editorial rejection blocks publication of the immutable batch."
+  ],
+  "notes": "Independent Orchid review passed from zero on commit 172e932b862b2624e00451c82bd33e83f2bca3a1. All 238 frozen fixtures and 216 newly authored Orchid probes were evaluated through evaluateProblem. The fresh matrix covered grammar-only wording and case, CRLF and blank-line whitespace, alternate CommonMark list markers, Setext H1, tilde fences, outline/section/hierarchy failure precedence, and the family-specific Level 3-5 document contracts. Every one of 166 direct match checks also failed when evaluated in isolation. ID, content variant, normalized target, teaching example, and vocabulary signature were unique both against the published 332-problem bank and within this 12-candidate batch.",
+  "reviewDigest": "78ef4aa276c13f7819920e5ddc03fa8f4725f5eebcc17ff9c1695210acf25297"
+}
