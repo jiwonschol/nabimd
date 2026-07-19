@@ -470,6 +470,13 @@ button:focus-visible,
   font-size: 0.9em;
 }
 
+.rendered-document__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+
 .markdown-source-editor__file {
   color: #8a8a84;
   font-family: var(--mono);

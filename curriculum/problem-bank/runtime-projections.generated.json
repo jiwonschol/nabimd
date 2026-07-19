@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "2f75b15ea3cad9930ebab947baaa704940136b4da39b503c3fe0175df735e175",
+    "bankDigest": "ac29ea7ea8008d4f2223e9111e694c25d0582618c960457eca63465618498e49",
     "counts": {
-      "1": 76,
-      "2": 76,
+      "1": 88,
+      "2": 88,
       "3": 4,
       "4": 4,
       "5": 4
@@ -4056,6 +4056,1026 @@
         "curriculumVersion": "2026-07-19",
         "contentVariant": "yes-value",
         "sourceBatchId": "2026-07-19-l1-l2-inline-code-007"
+      },
+      {
+        "id": "l1-link-community-notice",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "The latest update is in the [community notice](https://example.com/everyday/community-notice).",
+        "starterText": "",
+        "protectedContent": [
+          "The latest update is in the community notice."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "community-information"
+          ],
+          "terms": [
+            "The latest update is in the community notice."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "community-notice",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-craft-guide",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "The [craft guide](https://example.com/everyday/craft-guide) explains each step.",
+        "starterText": "",
+        "protectedContent": [
+          "The craft guide explains each step."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "leisure-crafts"
+          ],
+          "terms": [
+            "The craft guide explains each step."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "craft-guide",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-library-hours",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Today's [library hours](https://example.com/everyday/library-hours) are online.",
+        "starterText": "",
+        "protectedContent": [
+          "Today's library hours are online."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "public-library"
+          ],
+          "terms": [
+            "Today's library hours are online."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "library-hours",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-local-events",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Upcoming activities are listed under [local events](https://example.com/everyday/local-events).",
+        "starterText": "",
+        "protectedContent": [
+          "Upcoming activities are listed under local events."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "community-activities"
+          ],
+          "terms": [
+            "Upcoming activities are listed under local events."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "local-events",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-meal-ideas",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Find a new option on the [meal ideas page](https://example.com/everyday/meal-ideas).",
+        "starterText": "",
+        "protectedContent": [
+          "Find a new option on the meal ideas page."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "everyday-meals"
+          ],
+          "terms": [
+            "Find a new option on the meal ideas page."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "meal-ideas",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-music-playlist",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Listen to the [music playlist](https://example.com/everyday/music-playlist).",
+        "starterText": "",
+        "protectedContent": [
+          "Listen to the music playlist."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "everyday-music"
+          ],
+          "terms": [
+            "Listen to the music playlist."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "music-playlist",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-neighborhood-map",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "The [neighborhood map](https://example.com/everyday/neighborhood-map) shows nearby paths.",
+        "starterText": "",
+        "protectedContent": [
+          "The neighborhood map shows nearby paths."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "neighborhood-navigation"
+          ],
+          "terms": [
+            "The neighborhood map shows nearby paths."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "neighborhood-map",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-reading-list",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Choose a title from the [reading list](https://example.com/everyday/reading-list).",
+        "starterText": "",
+        "protectedContent": [
+          "Choose a title from the reading list."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "leisure-reading"
+          ],
+          "terms": [
+            "Choose a title from the reading list."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "reading-list",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-repair-guide",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Follow the [repair guide](https://example.com/everyday/repair-guide) for simple fixes.",
+        "starterText": "",
+        "protectedContent": [
+          "Follow the repair guide for simple fixes."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home-reference"
+          ],
+          "terms": [
+            "Follow the repair guide for simple fixes."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "repair-guide",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-size-chart",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Compare the options with the [size chart](https://example.com/everyday/size-chart).",
+        "starterText": "",
+        "protectedContent": [
+          "Compare the options with the size chart."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "everyday-reference"
+          ],
+          "terms": [
+            "Compare the options with the size chart."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "size-chart",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-stretching-tips",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Start with these [stretching tips](https://example.com/everyday/stretching-tips).",
+        "starterText": "",
+        "protectedContent": [
+          "Start with these stretching tips."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "everyday-movement"
+          ],
+          "terms": [
+            "Start with these stretching tips."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "stretching-tips",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l1-link-train-map",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link",
+        "prompt": "Write the short note with one Markdown link.",
+        "target": "Use the [train map](https://example.com/everyday/train-map) before leaving.",
+        "starterText": "",
+        "protectedContent": [
+          "Use the train map before leaving."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-1-link",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "local-travel"
+          ],
+          "terms": [
+            "Use the train map before leaving."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "train-map",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
       },
       {
         "id": "l1-list-art-box",
@@ -10120,6 +11140,1026 @@
         "sourceBatchId": "2026-07-19-l1-l2-inline-code-007"
       },
       {
+        "id": "l2-link-agent-instructions",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Read the [agent instructions](https://example.com/work/agent-instructions) before coding.",
+        "starterText": "",
+        "protectedContent": [
+          "Read the agent instructions before coding."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "agent-context"
+          ],
+          "terms": [
+            "Read the agent instructions before coding."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "agent-instructions",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-api-reference",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Look up the endpoint in the [API reference](https://example.com/work/api-reference).",
+        "starterText": "",
+        "protectedContent": [
+          "Look up the endpoint in the API reference."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "api-reading"
+          ],
+          "terms": [
+            "Look up the endpoint in the API reference."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "api-reference",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-deployment-log",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Check the [deployment log](https://example.com/work/deployment-log) after publishing.",
+        "starterText": "",
+        "protectedContent": [
+          "Check the deployment log after publishing."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "deployment-observation"
+          ],
+          "terms": [
+            "Check the deployment log after publishing."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "deployment-log",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-issue-template",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Add the needed details with the [issue template](https://example.com/work/issue-template).",
+        "starterText": "",
+        "protectedContent": [
+          "Add the needed details with the issue template."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "issue-writing"
+          ],
+          "terms": [
+            "Add the needed details with the issue template."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "issue-template",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-preview-build",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Open the [preview build](https://example.com/work/preview-build) for a quick check.",
+        "starterText": "",
+        "protectedContent": [
+          "Open the preview build for a quick check."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "preview-review"
+          ],
+          "terms": [
+            "Open the preview build for a quick check."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "preview-build",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-project-board",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Track the next task on the [project board](https://example.com/work/project-board).",
+        "starterText": "",
+        "protectedContent": [
+          "Track the next task on the project board."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "task-planning"
+          ],
+          "terms": [
+            "Track the next task on the project board."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "project-board",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-project-brief",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Start with the [project brief](https://example.com/work/project-brief).",
+        "starterText": "",
+        "protectedContent": [
+          "Start with the project brief."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "project-orientation"
+          ],
+          "terms": [
+            "Start with the project brief."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "project-brief",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-prompt-guide",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Use the [prompt guide](https://example.com/work/prompt-guide) to refine the request.",
+        "starterText": "",
+        "protectedContent": [
+          "Use the prompt guide to refine the request."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "vibe-coding-prompts"
+          ],
+          "terms": [
+            "Use the prompt guide to refine the request."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "prompt-guide",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-pull-request",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Leave feedback on the [pull request](https://example.com/work/pull-request).",
+        "starterText": "",
+        "protectedContent": [
+          "Leave feedback on the pull request."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "code-review"
+          ],
+          "terms": [
+            "Leave feedback on the pull request."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "pull-request",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-release-checklist",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Confirm the steps in the [release checklist](https://example.com/work/release-checklist).",
+        "starterText": "",
+        "protectedContent": [
+          "Confirm the steps in the release checklist."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "release-planning"
+          ],
+          "terms": [
+            "Confirm the steps in the release checklist."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "release-checklist",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-setup-guide",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Follow the [setup guide](https://example.com/work/setup-guide) before running the project.",
+        "starterText": "",
+        "protectedContent": [
+          "Follow the setup guide before running the project."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "local-setup"
+          ],
+          "terms": [
+            "Follow the setup guide before running the project."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "setup-guide",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
+        "id": "l2-link-test-report",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "links",
+        "skillIds": [
+          "inline-link"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A Markdown link connects readable words to a web address without showing the full address.",
+          "howTo": "Put the readable words in square brackets. Put the web address in parentheses right after them.",
+          "example": "Find details in the [garden guide](https://example.com/garden)."
+        },
+        "syntaxTokens": [
+          "[",
+          "Link text",
+          "]",
+          "(",
+          "Web address",
+          ")"
+        ],
+        "title": "Markdown link recall",
+        "prompt": "From memory, write the short note with one Markdown link.",
+        "target": "Review the [test report](https://example.com/work/test-report) before sharing.",
+        "starterText": "",
+        "protectedContent": [
+          "Review the test report before sharing."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "priority": 10,
+            "feedback": "Add a Markdown link with readable words and a web address."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-link",
+            "kind": "max-link-count",
+            "scope": {
+              "kind": "document"
+            },
+            "max": 1,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "review": "Keep this short note focused on one link."
+          }
+        ],
+        "hints": [
+          "The words readers see go inside square brackets.",
+          "Put the web address in parentheses immediately after the closing bracket.",
+          "Example: `[garden guide](https://example.com/garden)`"
+        ],
+        "retryFamily": "level-2-link-recall",
+        "reviewTags": [
+          "one-focused-link"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "software-testing"
+          ],
+          "terms": [
+            "Review the test report before sharing."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "test-report",
+        "sourceBatchId": "2026-07-19-l1-l2-links-008"
+      },
+      {
         "id": "l2-list-backpack-check",
         "schemaVersion": 2,
         "level": 2,
@@ -14331,5 +16371,5 @@
       }
     ]
   },
-  "projectionDigest": "ce2af496f4b5e40a535e6a7b3c4761686f3a49baea42628421c6eeeed64e2d26"
+  "projectionDigest": "52a1687205e2527b69ec215bdb5bb2adc9a83f02166873627f36843d576e21e2"
 }

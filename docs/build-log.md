@@ -1360,3 +1360,47 @@ passed. Orchid independently accepted 24/24 after all frozen fixtures and
 all required dimensions for 24/24. Publication raises the deterministic
 runtime bank to 164 problems with a 76/76/4/4/4 split, while live grading
 remains network-free and grammar-only.
+
+### Issue #9 link expansion
+
+The eighth schema-v2 batch adds 24 Level 1–2 inline-link exercises. Level 1
+introduces the familiar `[readable words](web address)` shape through short
+everyday notes; Level 2 recalls the same structure in project and vibe-coding
+contexts. Grading requires a parsed link with a visible label and a meaningful
+destination, but never compares the label, destination, capitalization,
+spelling, punctuation, or surrounding prose with the Goal. Direct links and
+resolved full, collapsed, or shortcut reference links match. Autolinks do not,
+because they skip the separate descriptive label this lesson teaches. Multiple
+qualifying links remain Matched with an optional Review.
+
+The renderer is deliberately a separate security boundary. Goal and learner
+preview links keep a monochrome underlined appearance but become inert text:
+no destination, anchor, image, navigation, or network request is exposed.
+Syntactically valid destinations such as `javascript:`, `data:`, or `file:`
+therefore still demonstrate Markdown grammar without becoming executable UI.
+Empty, invisible-only, control-only, NUL-only, and percent-encoded hidden
+destinations fail the structural lesson. Regression coverage distinguishes a
+raw NUL from a literal replacement character and applies the same qualification
+logic to optional multiple-link Review.
+
+The first frozen manifest,
+`77f4ef71714ab25836da951ff8ed7522161f224f07051bb2ba03e3f23f840d91`,
+was not published. Separate editorial inspection rejected a shared teaching
+sentence—“A Markdown link gives a web address readable words instead of
+showing the full address.”—as ungrammatical novice US English. The sentence
+became “A Markdown link connects readable words to a web address without
+showing the full address.” Every mechanical artifact and digest was discarded
+and regenerated; reviewers were stopped before stale verdicts could be
+materialized, and all three reviews restarted from scratch.
+
+Corrected manifest
+`7acff6e61dacbd1cdda5ed2d915be21365b54db7af160037461b79ff0103cb3c`
+contains 24 candidates and 2,304 frozen real-engine fixtures. Atlas accepted
+24/24 after all frozen fixtures and 1,584 additional adversarial and scoped
+evaluations passed. Orchid independently accepted 24/24 after all frozen
+fixtures and 4,872 additional adversarial evaluations passed. Separate
+editorial inspection accepted all 24 candidates after checking language,
+safety, distinctness, grammar-only boundaries, and collisions against the 164
+previously published problems. Publication raises the deterministic runtime
+bank to 188 problems with an 88/88/4/4/4 split, while live grading remains
+network-free and grammar-only.

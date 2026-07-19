@@ -45,6 +45,8 @@ function validDifferentProse() {
       return "**completely different words**"
     case "inline-code":
       return "Use `completely different words`."
+    case "links":
+      return "Use [completely different words](/changed)."
     case "unordered-list":
       return "- Alpha\n- Bravo\n- Charlie"
     case "ordered-list":
@@ -62,6 +64,8 @@ function malformedSource() {
       return "**No closing"
     case "inline-code":
       return "`No closing"
+    case "links":
+      return "[No closing](/path"
     case "unordered-list":
       return "-No space\n-Also malformed\n-Still malformed"
     case "ordered-list":
@@ -79,6 +83,8 @@ function validRepair() {
       return "**repaired**"
     case "inline-code":
       return "Use `repaired`."
+    case "links":
+      return "Use [repaired](/path)."
     case "unordered-list":
       return "- One\n- Two\n- Three"
     case "ordered-list":
@@ -96,6 +102,8 @@ function matchedWithReview() {
       return "**one** and **two**"
     case "inline-code":
       return "Use `one` then `two`."
+    case "links":
+      return "Use [one](/one) then [two](/two)."
     case "unordered-list":
       return "- One\n- Two\n- Three\n\nBridge text.\n\n- Four\n- Five\n- Six"
     case "ordered-list":

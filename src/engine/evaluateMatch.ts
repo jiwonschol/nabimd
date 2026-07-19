@@ -19,6 +19,7 @@ function checkPasses(
     case "list-shape":
     case "blockquote-shape":
     case "inline-code-shape":
+    case "link-shape":
     case "code-block":
     case "block-sequence":
     case "document-limits":

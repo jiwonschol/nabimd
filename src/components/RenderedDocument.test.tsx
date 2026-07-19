@@ -47,4 +47,20 @@ describe("RenderedDocument", () => {
     expect(screen.queryByRole("img")).not.toBeInTheDocument()
     expect(screen.getByText("[Image: tracking pixel]")).toBeVisible()
   })
+
+  it.each([
+    "[Safe](https://example.com/guide)",
+    "[Unsafe](javascript:alert(1))",
+  ])("renders Markdown links without navigable destinations: %s", (source) => {
+    render(
+      <RenderedDocument
+        label="Live preview"
+        source={source}
+      />,
+    )
+
+    const label = source.includes("Unsafe") ? "Unsafe" : "Safe"
+    expect(screen.queryByRole("link", { name: label })).not.toBeInTheDocument()
+    expect(screen.getByText(label)).toHaveClass("rendered-document__link")
+  })
 })

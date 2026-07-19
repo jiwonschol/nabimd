@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-links-008",
+  "status": "published",
+  "batchDigest": "425ebb13720e428ec4ca804d79f59ef44b8d1c510c3189321e62730872a0704f",
+  "bankDigest": "ac29ea7ea8008d4f2223e9111e694c25d0582618c960457eca63465618498e49",
+  "projectionDigest": "52a1687205e2527b69ec215bdb5bb2adc9a83f02166873627f36843d576e21e2",
+  "trackerDigest": "3aa054650045067eac852551994da9a73cda4674e8be1a619295d22f70e53883",
+  "generated": 24,
+  "accepted": 24,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 88,
+      "2": 88,
+      "3": 4,
+      "4": 4,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 4,
+      "headings": 32,
+      "inline-code": 24,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 4
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/headings": 16,
+      "1/inline-code": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "3/readable-human-document": 4,
+      "4/executable-development-spec": 4,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 188
+    }
+  },
+  "manifestDigest": "7acff6e61dacbd1cdda5ed2d915be21365b54db7af160037461b79ff0103cb3c",
+  "reviewDigests": [
+    "26f1bfbac3dae27aa02134a533048926717fa3659cda6ea98aba5cc56e1a59fe",
+    "cf27a94ac43f61434b6b05ec0e797934b333fd39925c8f99414686670fb29948"
+  ],
+  "editorialDigest": "0e997bd02604292bc0c2165ba5908daabf47b83b2e44d9d1728fc5f7c48c5a24",
+  "summaryDigest": "8456cd7c80feae05cd3dcecc1a6e1be0f6e946aede20df80870758eac3aedcd1"
+}

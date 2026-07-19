@@ -20,6 +20,9 @@ export function RenderedDocumentBody({
       {source ? (
         <Markdown
           components={{
+            a: ({ children }) => (
+              <span className="rendered-document__link">{children}</span>
+            ),
             img: ({ alt }) => (
               <span className="rendered-document__media-placeholder">
                 [Image: {alt || "image"}]

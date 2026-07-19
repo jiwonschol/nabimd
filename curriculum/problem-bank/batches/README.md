@@ -44,6 +44,11 @@ copied here or promoted automatically.
   real-engine fixtures. Alternate backtick runs, nested inline contexts, and
   grammar-only wording changes pass; empty or invisible-only spans and code,
   HTML, image-alt, definition, autolink, and lookalike forms do not.
+- `2026-07-19-l1-l2-links-008` — 24 accepted inline-link variants and 2,304
+  real-engine fixtures. Direct and resolved reference links pass without
+  grading label wording, capitalization, spelling, or destination text;
+  autolinks, empty or hidden labels and destinations, and code, image-only,
+  HTML-only, malformed, or lookalike forms do not.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;
