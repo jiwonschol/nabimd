@@ -26,101 +26,101 @@
     {
       "candidateId": "l4-audit-archive-contract-spec",
       "revision": 1,
-      "candidateDigest": "19c4194123b8d4364fb38b4315f9ef5598f7722ebc982b616740b6e30d731bba",
-      "problemDigest": "9bc817cba9a7d9206b561906bc6aaaa95d14a95c580099fb54e78f49f7ca1242",
-      "fixtureDefinitionDigest": "b78a0ca9d74ff9decafc62f297a23d68001b3d221a3fb370a92f8e060c8adfd2",
-      "fixtureResultsDigest": "383db7f00e047a8533124a9ba9b3614fee6169d71e864aae3b13024d8e0c0955",
+      "candidateDigest": "3b33217a3e745294f6956d6060c23ad301ef7cc05637e0751e77bfbe65025355",
+      "problemDigest": "1fc3260c00b3d14191999f55873b5227ed7631ed19cbc9791a7c695c158c3ec7",
+      "fixtureDefinitionDigest": "ac318cc69af5e392629e962777dad9abaf46e5448d3ffd276d863b5e1c86dcaf",
+      "fixtureResultsDigest": "799538e7e8048627face7b008a1c8aeee23f510c51a09f30607715250480e7f2",
       "fixtureCount": 18,
       "passed": true
     },
     {
       "candidateId": "l4-contact-import-contract-spec",
       "revision": 1,
-      "candidateDigest": "07d287ecece7ca574fe8fbefa8ebc60f30427b686179da7fd1765706d470f9c2",
-      "problemDigest": "c7139546da2c40e243b76979c5379795b03d46688fbf2487150ac8c28d9731c2",
-      "fixtureDefinitionDigest": "75948da9a4346585da27a7a752c595d09c095a5e160ff3f176cc7c0238b1ae12",
-      "fixtureResultsDigest": "20b42ab60777b9b43e150ab2ed7bce968dfcbc9f53289787eb49dd79d85aa3e0",
+      "candidateDigest": "4f27976703d7410cb6e3f8ec6fff100c07805d8fde3c10797de3b429b0270bd4",
+      "problemDigest": "490d741a5dd48b4ffc9fd9503904f0ee1e7c8278328b53ad1b7bea6cb21883f8",
+      "fixtureDefinitionDigest": "98b939250a13463fba0c44fbad1159d90f625894bb8b6f81465c3ffe50c35f1b",
+      "fixtureResultsDigest": "2211e56210514c60f6eab5d1d1f99fd892f1a0aab571f7d52d2bb6b01d45f924",
       "fixtureCount": 18,
       "passed": true
     },
     {
       "candidateId": "l4-customer-digest-contract-spec",
       "revision": 1,
-      "candidateDigest": "7c500828bae547caa58717dbca8e7ae97df1deaf4a7dfd11f3d308d3a029ade8",
-      "problemDigest": "f4ffd6b8b2b7103f7755067d41b2d57ef79bd0bddec284e4d5f6464f69e34652",
-      "fixtureDefinitionDigest": "1f7714a4f2c0788f8ee8ce0ef2f7b5862581a9b70b4a1359b6f9f3bdb4022faa",
-      "fixtureResultsDigest": "84baa9750b5cce702efe0ea19f6b43031d9bea15e401a4959ac09a7ca4f67d66",
+      "candidateDigest": "7a41bbc451a800c012e6f16831a005d8f27ec337abfe1db654f778e6886bcdcd",
+      "problemDigest": "857aac028036fed99614ebae480004266d94d46d3203e69fe0a87509be408a18",
+      "fixtureDefinitionDigest": "5a239345270d827d0df05fe02cd8a6016fd664b8fddc9ce5159491020f380cbe",
+      "fixtureResultsDigest": "cceee5abcf48491ba1b6109f33aa05d7feaa4e0a8d7fa7a80d58ee383b8c2461",
       "fixtureCount": 18,
       "passed": true
     },
     {
       "candidateId": "l4-support-webhook-contract-spec",
       "revision": 1,
-      "candidateDigest": "771a180e3c0a53daa4b981d813131315ae475ffd47e1a54b3d64a933afe7fd5f",
-      "problemDigest": "6d64937e96a2aa9ac56252d27cc58b3bae9d01d842abf58b183f7dec5299b51d",
-      "fixtureDefinitionDigest": "c094e862a60818776cd9671cb02dc4c4fce2943cf15d26fc2fcdaab9848a987c",
-      "fixtureResultsDigest": "73caed64a2a85472af3bc55417535a5ba2ce20b65713ac16b7ab204d217621b5",
+      "candidateDigest": "3e2c19c417304ee1dd1a10406adac031081f6a8664e240d737bd0274c1c10e5a",
+      "problemDigest": "c812b0935f074341dbc7372dec90e0bbfa76664afa0e807dc21d4fb6b978304e",
+      "fixtureDefinitionDigest": "58910760fdce822ddfaa33cfad4d8073ffb4913af4bf5cc3febc33c065f16fe8",
+      "fixtureResultsDigest": "0fe746665b03a4978aa078524f90f91296add5e0c0c1b13734c01870ec70cc69",
       "fixtureCount": 18,
       "passed": true
     },
     {
       "candidateId": "l5-analytics-adapter-refactor-work-order",
       "revision": 1,
-      "candidateDigest": "b6ca05e1a50d27ff6d5b50daa89c5163cd06772ccd475e3fb67880e459314745",
-      "problemDigest": "2f524e223c2ede77eb8a23683b045b7735eae309d0e2b0caebd355370c0ba674",
-      "fixtureDefinitionDigest": "5463c191c3222b9c05de570208b97e5a8d00bdd84adcaaa4e1a0e4c3ff75ed22",
-      "fixtureResultsDigest": "59bbb5ec98924a355edb4f31de907bad97e6c3e9d3e1b29a36ce6b2f19b70bf2",
-      "fixtureCount": 23,
+      "candidateDigest": "c1ca9e6808b0d3fe2de461863ace086622bbc052ba30f6bbf908af765cabdb50",
+      "problemDigest": "64cc4f002baef890257b4cb21c5f3a3e7d1945706fa2d09b7a3986ebdf861053",
+      "fixtureDefinitionDigest": "25e38348cca196bec018597ea355638d62e02717a9d5c4388dcf66184f88aaa9",
+      "fixtureResultsDigest": "737480b72187a75b94d8b67d8122937c0cc05ace8806823a10d88a1e45400b22",
+      "fixtureCount": 20,
       "passed": true
     },
     {
       "candidateId": "l5-api-contract-rollout-work-order",
       "revision": 1,
-      "candidateDigest": "e95979bc508f441f7925282ebe5473c2437c4e4d69347a9b5fd10869bc175384",
-      "problemDigest": "9f5d9b281b89caf864719a1feaff5e1b4f07bdcbfa0b734a82cd4fe7d35b252a",
-      "fixtureDefinitionDigest": "15280fc0dd6854342280206cd79f61b0af6999d65efaae7461b2f4d50c5c0af5",
-      "fixtureResultsDigest": "05a4c5e92741609907ec80063ed3c533488c7f07a43ca2823f662b901145bc10",
+      "candidateDigest": "cae928d9c3017cff3c8d951e64dcb53411b2047c2c2e93f124fb27c943d35524",
+      "problemDigest": "50039b529e6326e2f903c35bf12fd974d2b573162ca80dcaf3d5b1dcfba3eb9f",
+      "fixtureDefinitionDigest": "f2c54d7ed5b6dc35a301e8e2041e36743c7a353b5ac46eefe010ff3556ca5eb5",
+      "fixtureResultsDigest": "65584e951a7d48af61776d019fd29a4eff607e1297576f2da565a4d7db4ba1e3",
       "fixtureCount": 23,
       "passed": true
     },
     {
       "candidateId": "l5-date-format-refactor-work-order",
       "revision": 1,
-      "candidateDigest": "67cd9162ea96aed21de71cdc14433d6774480bfeb2e89b03136223a73ea8b1c9",
-      "problemDigest": "76813ca0bc69c95ba977d4a2fe12eccbfa6bf80fdfafb9fc28d46bc501562d4c",
-      "fixtureDefinitionDigest": "a9056f86c78a3e6eb76716b5aef2c1cb2a0dbf80586521a23ef771ca55ca790c",
-      "fixtureResultsDigest": "93c22ae6e8fdd1253c29c3174fc20aaee3d5d146656de0f5ab159d6aa9a454fb",
-      "fixtureCount": 23,
+      "candidateDigest": "6d9f4cd48f6a0e3af1d65903a15dca11f472026dd3f1c19ee5ced652eea9e42c",
+      "problemDigest": "2843b6713bba57f7afb8020e61f3ddb497e0e4fdb05399a0c1fbb65cdc5c5623",
+      "fixtureDefinitionDigest": "f561e6407c094bf54d4e652b990b816693bfd7358a7f1ac7fa57be5a9096fdc0",
+      "fixtureResultsDigest": "4eff4e2c9ff77f4db39fe64866c947ca869411ddbb7942640427504288221768",
+      "fixtureCount": 20,
       "passed": true
     },
     {
       "candidateId": "l5-duplicate-job-recovery-work-order",
       "revision": 1,
-      "candidateDigest": "1346bcd2330cbd8420dc587cc9f14fed7da70681a9934e13eb6f136eccd0cc87",
-      "problemDigest": "a990d010aab363e98e1ad6ef30b3829cc1c7613f88e9bc81d0c9c0628c27f540",
-      "fixtureDefinitionDigest": "1ef5bdc49972977da23adf78ab3b4a1ab278901ab941842f9b327d4f78130964",
-      "fixtureResultsDigest": "2f80cf108dbf221cb2ce475941b0f9ababe03d001788bb833d5af8318927fd7c",
-      "fixtureCount": 23,
+      "candidateDigest": "be78dfabc2b6b94b79e13f4634e628f768d1d52b5f27e968aa0f8017f2583282",
+      "problemDigest": "3d4b0fbfedb7bcd1f15cafe0ec931a5e4fe559edbd0715d9ad563388ce115cf9",
+      "fixtureDefinitionDigest": "eaf5c37d338ce2a638d5329fa57036768381f78ae96acc911db48c2c2f2fa4fe",
+      "fixtureResultsDigest": "98ae9ffe2034f307b3213d25dea9457714263ead4c175d773e0358861bb81e1f",
+      "fixtureCount": 21,
       "passed": true
     },
     {
       "candidateId": "l5-notification-schema-rollout-work-order",
       "revision": 1,
-      "candidateDigest": "065883c6d2c3061b3ffac6e07959c6a464e14f9e667637b8c949ac8e93d6b609",
-      "problemDigest": "3463870d86238e90caecaa3b8a45de06cf19db8bd2080906c0a2b9933f75a2c6",
-      "fixtureDefinitionDigest": "1680f8678ba0623ce1a172a3ac421b169dc03141a1bcda520c4d6cc3cd39bb4c",
-      "fixtureResultsDigest": "897725a35c5967c67392b1ad4550ca2fc6581c0612a71943d44543376bff75e6",
+      "candidateDigest": "287aba5782848249a713d1bbe6dfc1690b7bf54583736d10407b8e544efc2207",
+      "problemDigest": "9381ea8bd6889364b1159bcceb5a182c3740df9be4d98e4e49efa072e0a84006",
+      "fixtureDefinitionDigest": "299b7c68f2707f61d909a35a7c6b34725db74858b7e30d93b6b626efaf312220",
+      "fixtureResultsDigest": "a60964b480eb92fc34bbcb534f55a16b98f86e4638e35b71412a75252e718b46",
       "fixtureCount": 23,
       "passed": true
     },
     {
       "candidateId": "l5-search-index-recovery-work-order",
       "revision": 1,
-      "candidateDigest": "8222f391e89f0cda69c0f4e54e333b8759ba0b7c24900e8d754476b715e40d28",
-      "problemDigest": "01ddec47f89a143046a31173ac03eb91fed318029231a11efad252cf22d888bd",
-      "fixtureDefinitionDigest": "79af9ae0559ab916f7fa42f0fd31afc841c11021346d9c69a50fd1a4c31042e0",
-      "fixtureResultsDigest": "9286463f06b47d06ce1f98bd759cf03ed9ed076a8a0208422a2372fb4bd247cb",
-      "fixtureCount": 23,
+      "candidateDigest": "7d12add6bed412384d5b91d5371358b421fcb67e6c2c901c2f2663d09a20ea5c",
+      "problemDigest": "1529d5cf58f56588288fc483c955708fa2d65da34ed95df81d5997232b880fbe",
+      "fixtureDefinitionDigest": "146da54b93da9ee3041e6dd5c99c7df98d17926d110777adc059eb211673b618",
+      "fixtureResultsDigest": "9229db622940c78cae7957e27f60b0d29eb2f19974dcfc11c49c06f80dd1dfa0",
+      "fixtureCount": 21,
       "passed": true
     }
   ],
@@ -1610,34 +1610,6 @@
       "passed": true
     },
     {
-      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-commits",
-      "problemId": "l5-analytics-adapter-refactor-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-analytics-adapter-refactor-work-order-commits"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-analytics-adapter-refactor-work-order-commits"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-comprehension",
-      "problemId": "l5-analytics-adapter-refactor-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-analytics-adapter-refactor-work-order-comprehension"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-analytics-adapter-refactor-work-order-comprehension"
-      },
-      "passed": true
-    },
-    {
       "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-forbidden",
       "problemId": "l5-analytics-adapter-refactor-work-order",
       "problemRevision": 1,
@@ -1802,20 +1774,6 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-3"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-stage-4",
-      "problemId": "l5-analytics-adapter-refactor-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-4"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-4"
       },
       "passed": true
     },
@@ -2262,34 +2220,6 @@
       "passed": true
     },
     {
-      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-commits",
-      "problemId": "l5-date-format-refactor-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-date-format-refactor-work-order-commits"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-date-format-refactor-work-order-commits"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-comprehension",
-      "problemId": "l5-date-format-refactor-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-date-format-refactor-work-order-comprehension"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-date-format-refactor-work-order-comprehension"
-      },
-      "passed": true
-    },
-    {
       "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-forbidden",
       "problemId": "l5-date-format-refactor-work-order",
       "problemRevision": 1,
@@ -2458,20 +2388,6 @@
       "passed": true
     },
     {
-      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stage-4",
-      "problemId": "l5-date-format-refactor-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-date-format-refactor-work-order-stage-4"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-date-format-refactor-work-order-stage-4"
-      },
-      "passed": true
-    },
-    {
       "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stage-count",
       "problemId": "l5-date-format-refactor-work-order",
       "problemRevision": 1,
@@ -2616,20 +2532,6 @@
       "passed": true
     },
     {
-      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-containment",
-      "problemId": "l5-duplicate-job-recovery-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-duplicate-job-recovery-work-order-containment"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-duplicate-job-recovery-work-order-containment"
-      },
-      "passed": true
-    },
-    {
       "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-evidence",
       "problemId": "l5-duplicate-job-recovery-work-order",
       "problemRevision": 1,
@@ -2668,20 +2570,6 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-duplicate-job-recovery-work-order-hierarchy"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-investigation",
-      "problemId": "l5-duplicate-job-recovery-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-duplicate-job-recovery-work-order-investigation"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-duplicate-job-recovery-work-order-investigation"
       },
       "passed": true
     },
@@ -3268,20 +3156,6 @@
       "passed": true
     },
     {
-      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-containment",
-      "problemId": "l5-search-index-recovery-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-search-index-recovery-work-order-containment"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-search-index-recovery-work-order-containment"
-      },
-      "passed": true
-    },
-    {
       "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-evidence",
       "problemId": "l5-search-index-recovery-work-order",
       "problemRevision": 1,
@@ -3320,20 +3194,6 @@
       "actual": {
         "status": "fail",
         "feedbackId": "l5-search-index-recovery-work-order-hierarchy"
-      },
-      "passed": true
-    },
-    {
-      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-investigation",
-      "problemId": "l5-search-index-recovery-work-order",
-      "problemRevision": 1,
-      "expected": {
-        "status": "fail",
-        "feedbackId": "l5-search-index-recovery-work-order-investigation"
-      },
-      "actual": {
-        "status": "fail",
-        "feedbackId": "l5-search-index-recovery-work-order-investigation"
       },
       "passed": true
     },
@@ -3507,5 +3367,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "2d1b18c5fb8c80c8afa7ddb28620a7cbb1fcda3757efbaacae19d102e70fcbf6"
+  "verificationDigest": "bd268af56bef57b82f5902b81e28d271dfac1676e11eab8ba7ca6eb3530bf84a"
 }

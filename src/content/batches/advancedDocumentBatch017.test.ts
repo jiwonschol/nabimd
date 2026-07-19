@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest"
+import { fromMarkdown } from "mdast-util-from-markdown"
+import type { RootContent } from "mdast"
 import { evaluateProblem } from "../../engine/evaluateProblem"
 import { problemBank } from "../problemBank"
 import { validateProblemBank } from "../validateProblemBank"
@@ -164,6 +166,18 @@ function authoredWordCount(source: string) {
   return source.match(/[A-Za-z0-9][A-Za-z0-9'`.:/-]*/g)?.length ?? 0
 }
 
+function authoredListSizes(source: string) {
+  const sizes: number[] = []
+  const visit = (node: RootContent) => {
+    if (node.type === "list") sizes.push(node.children.length)
+    if ("children" in node) {
+      for (const child of node.children) visit(child as RootContent)
+    }
+  }
+  for (const node of fromMarkdown(source).children) visit(node)
+  return sizes
+}
+
 describe("Level 3-5 advanced-document batch 017", () => {
   it("freezes the exact two, four, and six reviewed additions", () => {
     expect(advancedDocumentBatch017Inputs).toHaveLength(12)
@@ -224,13 +238,28 @@ describe("Level 3-5 advanced-document batch 017", () => {
     }
   })
 
-  it("keeps substantial authored Goals and matches each canonical target in the real engine", () => {
-    const minimumWordsByLevel = { 3: 90, 4: 125, 5: 250 } as const
+  it("keeps Goals substantial but brief enough to practice Markdown rather than reading", () => {
+    const wordRangeByLevel = {
+      3: { min: 90, max: 150 },
+      4: { min: 95, max: 165 },
+      5: { min: 150, max: 230 },
+    } as const
+    const maximumLinesByLevel = { 3: 28, 4: 40, 5: 65 } as const
 
     for (const problem of advancedDocumentBatch017Problems) {
-      expect(authoredWordCount(problem.target), problem.id).toBeGreaterThanOrEqual(
-        minimumWordsByLevel[problem.level as 3 | 4 | 5],
+      const level = problem.level as 3 | 4 | 5
+      const words = authoredWordCount(problem.target)
+      expect(words, problem.id).toBeGreaterThanOrEqual(wordRangeByLevel[level].min)
+      expect(words, problem.id).toBeLessThanOrEqual(wordRangeByLevel[level].max)
+      expect(problem.target.split("\n").length, problem.id).toBeLessThanOrEqual(
+        maximumLinesByLevel[level],
       )
+      if (level >= 4) {
+        expect(
+          authoredListSizes(problem.target).every((size) => size <= 3),
+          problem.id,
+        ).toBe(true)
+      }
       expect(evaluateProblem(problem, problem.target), problem.id).toEqual({
         status: "matched",
         reviewItems: [],

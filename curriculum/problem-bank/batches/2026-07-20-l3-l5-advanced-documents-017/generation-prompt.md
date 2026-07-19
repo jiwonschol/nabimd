@@ -13,6 +13,9 @@ The checkpoint after unanimous review must be 344 accepted problems with level s
 - Teach the structure of readable Markdown documents for human collaborators.
 - Use contemporary, fictional US workplace situations and clear US English.
 - Make each target useful as a realistic document model, not a syntax collage.
+- Teach Markdown typing, not workplace writing. Remove any sentence that adds realism without adding a visible Markdown decision.
+- Keep Level 4 targets within 28–40 lines and 95–165 words, and Level 5 targets within 40–65 lines and 150–230 words.
+- Keep every Level 4–5 list to two or three short items. Each item is normally one short sentence.
 - Grade Markdown grammar and structural shape only. Never grade wording, capitalization, spelling, punctuation, domain truth, or heading text.
 - Use existing AST predicates only. Do not add runtime AI, exact-source matching, protected prose, or new learner-engine behavior.
 - Give each retry family at least two distinct transfer variants.
@@ -25,15 +28,15 @@ Each operational-impact brief uses one H1, an opening paragraph, four ordered H2
 
 ## Level 4 contract
 
-Each integration-contract specification uses one H1, an opening paragraph, exactly six ordered H2 sections, a visible contract-surface list with inline code, a dependency paragraph with inline code and a descriptive direct link, a blockquote invariant with failure bullets, numbered implementation steps, acceptance bullets, and exactly one fenced language-tagged verification block.
+Each integration-contract specification uses one H1, an opening paragraph, exactly six ordered H2 sections, three contract-surface bullets with inline code, a dependency paragraph with inline code and a descriptive direct link, a blockquote invariant with three failure bullets, three numbered implementation steps, three acceptance bullets, and exactly one fenced language-tagged verification block.
 
 ## Level 5 contract
 
 Author two substantially different documents for each of these work-order archetypes:
 
-1. Evidence-led recovery: evidence boundary, authority order, containment, investigation, three recovery stages, rollback, constraints, stop conditions, executable verification, and a report template.
-2. Bounded refactor: required reading, comprehension gate, allowed scope, forbidden shortcuts, four execution stages, regression commands, stop conditions, commit contract, and a report template.
-3. Coordinated rollout: nested system map, authority order, three rollout phases, compatibility contract, rollback, pause and stop conditions, verification ledger, and a report template.
+1. Evidence-led recovery: evidence boundary, three authority items, three recovery stages, rollback, constraints, stop conditions, executable verification, and a short report template.
+2. Bounded refactor: three reading items, allowed scope, forbidden shortcuts, three execution stages, regression commands, stop conditions, and a short report template.
+3. Coordinated rollout: compact nested system map, three authority items, three rollout phases, compatibility, rollback, pause and stop conditions, and one verification section containing a short report template.
 
 Every Level 5 record uses convention `nabi-agent-work-order` version `2026.07`, reviewed on `2026-07-20`.
 

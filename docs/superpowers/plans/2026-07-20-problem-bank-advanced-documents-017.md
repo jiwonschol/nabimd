@@ -18,6 +18,7 @@
 - Keep `targetAccepted: 512`, completion floors `128/128/96/80/80`, and the 512 closing gate unchanged. Do not call the completion gate for this checkpoint.
 - The lifecycle order is `generate -> verify -> inspect -> publish`. Publication must not precede both mechanical seals and the separate editorial seal.
 - Grading is grammar-only. Wording, capitalization, spelling, punctuation, domain truth, heading text, and semantic quality are never match operands.
+- This batch teaches Markdown typing, not workplace writing. Level 4 targets stay within 28–40 lines and 95–165 words; Level 5 targets stay within 40–65 lines and 150–230 words. Every Level 4–5 list contains only two or three short items.
 - Use only existing `block-sequence`, `block-count`, `heading-depth-order`, `list-shape`, `blockquote-shape`, `inline-presence`, `inline-code-shape`, `link-shape`, and `code-block` predicates.
 - No new predicate is expected. If a required structural distinction cannot be expressed with those predicates, stop with a failing focused test and obtain a separate design decision; do not add an engine predicate inside this content batch.
 - Every record has `protectedContent: []`, three progressive hints, a unique ID, unique `contentVariant`, and a target and teaching example not duplicated anywhere in the accepted bank.
@@ -26,7 +27,7 @@
 - Level 5 records use convention `{ id: "nabi-agent-work-order", version: "2026.07", reviewedOn: "2026-07-20" }` and revision `1` for these new IDs.
 - Pre-review freeze contains no files under `reviews/`, no `editorial.json`, and no published `summary.generated.json`.
 - Any problem, fixture, prompt, verification, engine-contract, or manifest change after inspection starts invalidates all mechanical and editorial seals and restarts inspection.
-- Do not modify Issue #50-owned paths while that work is active. After Issue #50 and PR #51 were confirmed closed and merged, publication may update only a stale integration assertion that still expects four Level 5 problems; no #50 runtime behavior is changed.
+- Do not modify Issue #50-owned paths while that work is active. After Issue #50 and PR #51 were confirmed closed and merged, publication may update only stale unit and E2E integration assertions that still expect four Level 5 problems; no #50 runtime behavior is changed.
 - Preserve `bank:batch:generate` as the read-only aggregate check alias. The only mutating generation command is the explicitly named Batch 017 `prepare` command.
 - Do not hand-edit `curriculum/problem-bank/runtime-projections.generated.json` or `curriculum/problem-bank/tracker.generated.json`; only the sealed publisher may regenerate them.
 - A Vercel production command uploads repository content to an external service. If the current external-upload policy requires approval, stop immediately before deployment, ask the user to authorize that exact upload, and continue only after approval.
@@ -37,6 +38,7 @@
 
 **Create during authoring:**
 
+- `.agents/skills/authoring-nabimd-problem-banks/SKILL.md` — reusable authoring budgets, grammar-only contract, fixture protocol, and immutable review lifecycle for later “Level X” requests.
 - `src/content/batches/advancedDocumentBatch017Problems.ts` — normalized Level 3–5 source records and reusable archetype builders/check factories.
 - `src/content/batches/advancedDocumentBatch017Fixtures.ts` — required-role, direct-check, and adversarial real-engine fixtures.
 - `src/content/batches/advancedDocumentBatch017.test.ts` — batch matrix, structural contract, transfer-family, collision, and fixture tests.
@@ -83,7 +85,7 @@
 - `scripts/problem-bank/batchPipeline.mjs` — keep `targetAccepted: 512` and `COMPLETION_FLOORS` unchanged.
 - `scripts/problem-bank/batchPipeline.test.mjs` — no checkpoint-specific completion-gate rewrite.
 - `scripts/problem-bank/repositoryBankGate.gate.ts` — its append-only and projection checks already discover a new batch.
-- Issue #50 runtime files listed in Global Constraints; `src/App.test.tsx` may change only at the stale Level 5 count assertion.
+- Issue #50 runtime files listed in Global Constraints; `src/App.test.tsx` and `tests/e2e/heading-flow.spec.ts` may change only at their stale Level 5 count assertions.
 
 ---
 
@@ -152,7 +154,7 @@ const expected = {
 } as const
 ```
 
-For every match check, reject legacy heading `text` operands and restrict `kind` to the existing predicate allowlist from Global Constraints. For every Level 5 record, assert the exact convention date and revision. Assert Level 5 targets are at least 60 lines and 1,800 source characters as authored-content quality checks; do not encode those limits as learner match checks.
+For every match check, reject legacy heading `text` operands and restrict `kind` to the existing predicate allowlist from Global Constraints. For every Level 5 record, assert the exact convention date and revision. Assert the level-specific line, word, and list-size budgets from Global Constraints as authored-content quality checks; do not encode those limits as learner match checks.
 
 - [ ] **Step 3: Implement the two Level 3 operational-impact briefs**
 
@@ -170,7 +172,7 @@ Use `difficulty: "makeover"`, `teachingMode: "recall"`, `familyId: "executable-d
 
 - [ ] **Step 5: Implement the six Level 5 work orders**
 
-Use the `nabi-agent-work-order` convention while giving the three archetypes genuinely different shapes. Evidence recovery uses ten H2 sections and three H3 recovery stages; bounded refactor uses nine H2 sections and four H3 execution stages; coordinated rollout uses eight H2 sections and three H3 rollout phases. Require one H1, no skipped hierarchy, visible stage-local tasks, explicit authority and stop contracts, and the archetype-specific verification and report structures defined by the problem checks.
+Use the `nabi-agent-work-order` convention while giving the three archetypes genuinely different, compact shapes. Evidence recovery uses eight H2 sections and three H3 recovery stages; bounded refactor uses seven H2 sections and three H3 execution stages; coordinated rollout uses seven H2 sections and three H3 rollout phases. Require one H1, no skipped hierarchy, visible stage-local tasks, explicit authority and stop contracts, and short verification/report structures. Every section must exercise Markdown rather than add business-process reading.
 
 Use the three exact retry families from the matrix, two distinct records per family, and keep every work order auditable rather than aspirational:
 

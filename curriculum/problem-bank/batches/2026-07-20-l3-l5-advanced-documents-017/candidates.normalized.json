@@ -5,8 +5,8 @@
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-07-20",
-  "promptSha256": "2dfea66bbcbf149aa1612d8fd61d297f0fb59aa76b0a33e3c62fd70e3e8520d1",
-  "rawArtifactDigest": "ce23dd763b98903bd03bc59b3b3854668af6362affeba205e9c9bb5c8a6b5356",
+  "promptSha256": "9d9cad57c5a6b984e7971f898e0d87bbdcde8b2ff43757f25e68d6713caa617e",
+  "rawArtifactDigest": "6568e7707d31139baea3c85f818357688d0b90430ff4d15870ff36607774ece5",
   "candidateCount": 12,
   "candidates": [
     {
@@ -445,7 +445,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Records export contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Records export contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -459,7 +459,7 @@
       ],
       "title": "Specify a downloadable audit archive contract",
       "prompt": "Compose a development spec for creating an authorized audit archive with a manifest, checksum, retention boundary, acceptance, and verification.",
-      "target": "# A downloadable audit archive contract\n\nDefine an authorized archive export that records its contents, verifies the completed file, and expires according to the existing retention policy.\n\n## Contract surface\n\n- Accept one `ArchiveRequest`\n- Preserve the requesting account identifier\n- Produce one manifest and checksum\n- Return a time-bounded download reference\n\n## Dependency contract\n\nFollow the [secure export guide](/guides/secure-exports) and keep authorization inside `ArchiveRequestPolicy`.\n\n## Failure boundary\n\n> An archive is never exposed before authorization and checksum verification both succeed.\n\n- Unauthorized requesting account\n- Missing source record\n- Checksum mismatch after archive creation\n\n## Implementation plan\n\n1. Authorize the request before reading records\n2. Build the manifest from approved fields\n3. Create and verify the archive checksum\n4. Store the download reference with its expiration\n\n## Acceptance\n\n- Unauthorized requests create no archive\n- The manifest lists every included file\n- A checksum mismatch exposes no download\n- Expired references cannot retrieve the archive\n\n## Verification\n\n```sh\nnpm test -- audit-archive\nnpm run typecheck\n```",
+      "target": "# A downloadable audit archive contract\n\nDefine an authorized archive export that records its contents, verifies the completed file, and expires according to the existing retention policy.\n\n## Contract surface\n\n- Accept one `ArchiveRequest`\n- Preserve the requesting account identifier\n- Produce one manifest and checksum\n\n## Dependency contract\n\nFollow the [secure export guide](/guides/secure-exports) and keep authorization inside `ArchiveRequestPolicy`.\n\n## Failure boundary\n\n> An archive is never exposed before authorization and checksum verification both succeed.\n\n- Unauthorized requesting account\n- Missing source record\n- Checksum mismatch after archive creation\n\n## Implementation plan\n\n1. Authorize the request before reading records\n2. Build the manifest from approved fields\n3. Create and verify the archive checksum\n\n## Acceptance\n\n- Unauthorized requests create no archive\n- The manifest lists every included file\n- A checksum mismatch exposes no download\n\n## Verification\n\n```sh\nnpm test -- audit-archive\nnpm run typecheck\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -555,10 +555,10 @@
             "occurrence": 0
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 30,
-          "feedback": "Use at least four visible bullets in the contract-surface section."
+          "feedback": "Use at least three visible bullets in the contract-surface section."
         },
         {
           "id": "l4-audit-archive-contract-spec-surface-code",
@@ -637,10 +637,10 @@
             "occurrence": 3
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 60,
-          "feedback": "Use at least four visible numbered implementation steps."
+          "feedback": "Use at least three visible numbered implementation steps."
         },
         {
           "id": "l4-audit-archive-contract-spec-acceptance",
@@ -651,10 +651,10 @@
             "occurrence": 4
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 70,
-          "feedback": "Use at least four visible acceptance bullets."
+          "feedback": "Use at least three visible acceptance bullets."
         },
         {
           "id": "l4-audit-archive-contract-spec-verification",
@@ -707,7 +707,7 @@
       "contentVariant": "downloadable-audit-archive",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "19c4194123b8d4364fb38b4315f9ef5598f7722ebc982b616740b6e30d731bba"
+      "candidateDigest": "3b33217a3e745294f6956d6060c23ad301ef7cc05637e0751e77bfbe65025355"
     },
     {
       "id": "l4-contact-import-contract-spec",
@@ -727,7 +727,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Catalog import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Catalog import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -741,7 +741,7 @@
       ],
       "title": "Specify a CSV contact import contract",
       "prompt": "Compose a development spec for validating and importing contact rows while making partial failures and duplicate handling reviewable.",
-      "target": "# A CSV contact import contract\n\nDefine a bounded CSV import that preserves valid contact rows, reports invalid rows clearly, and never creates a second record for the same external identifier.\n\n## Contract surface\n\n- Accept one `ContactRow` schema\n- Preserve the source row number\n- Return imported and rejected counts\n- Keep the external identifier stable\n\n## Dependency contract\n\nFollow the [import validation guide](/guides/import-validation) and reuse `ContactRowSchema` at the file boundary.\n\n## Failure boundary\n\n> A rejected row never becomes a partial contact record.\n\n- Missing required identifier\n- Invalid email field\n- Duplicate external identifier\n\n## Implementation plan\n\n1. Parse the header and source row numbers\n2. Validate each row before mapping fields\n3. Write valid contacts in one bounded operation\n4. Return a row-level rejection summary\n\n## Acceptance\n\n- Valid rows retain their source order\n- Invalid rows are reported without partial records\n- Repeated identifiers do not create duplicates\n- A fully invalid file returns a useful summary\n\n## Verification\n\n```sh\nnpm test -- contact-import\nnpm run typecheck\n```",
+      "target": "# A CSV contact import contract\n\nDefine a bounded CSV import that preserves valid contact rows, reports invalid rows clearly, and never creates a second record for the same external identifier.\n\n## Contract surface\n\n- Accept one `ContactRow` schema\n- Preserve the source row number\n- Return imported and rejected counts\n\n## Dependency contract\n\nFollow the [import validation guide](/guides/import-validation) and reuse `ContactRowSchema` at the file boundary.\n\n## Failure boundary\n\n> A rejected row never becomes a partial contact record.\n\n- Missing required identifier\n- Invalid email field\n- Duplicate external identifier\n\n## Implementation plan\n\n1. Parse the header and source row numbers\n2. Validate each row before mapping fields\n3. Write valid contacts in one bounded operation\n\n## Acceptance\n\n- Valid rows retain their source order\n- Invalid rows are reported without partial records\n- Repeated identifiers do not create duplicates\n\n## Verification\n\n```sh\nnpm test -- contact-import\nnpm run typecheck\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -837,10 +837,10 @@
             "occurrence": 0
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 30,
-          "feedback": "Use at least four visible bullets in the contract-surface section."
+          "feedback": "Use at least three visible bullets in the contract-surface section."
         },
         {
           "id": "l4-contact-import-contract-spec-surface-code",
@@ -919,10 +919,10 @@
             "occurrence": 3
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 60,
-          "feedback": "Use at least four visible numbered implementation steps."
+          "feedback": "Use at least three visible numbered implementation steps."
         },
         {
           "id": "l4-contact-import-contract-spec-acceptance",
@@ -933,10 +933,10 @@
             "occurrence": 4
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 70,
-          "feedback": "Use at least four visible acceptance bullets."
+          "feedback": "Use at least three visible acceptance bullets."
         },
         {
           "id": "l4-contact-import-contract-spec-verification",
@@ -989,7 +989,7 @@
       "contentVariant": "csv-contact-import",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "07d287ecece7ca574fe8fbefa8ebc60f30427b686179da7fd1765706d470f9c2"
+      "candidateDigest": "4f27976703d7410cb6e3f8ec6fff100c07805d8fde3c10797de3b429b0270bd4"
     },
     {
       "id": "l4-customer-digest-contract-spec",
@@ -1009,7 +1009,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Weekly summary contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Weekly summary contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -1023,7 +1023,7 @@
       ],
       "title": "Specify a scheduled customer digest contract",
       "prompt": "Compose a development spec for a scheduled digest with a stable delivery window, deduplication boundary, fallback behavior, and verification.",
-      "target": "# A scheduled customer digest contract\n\nDefine one scheduled digest run that selects eligible updates, sends at most one message per recipient window, and records unavailable delivery without inventing content.\n\n## Contract surface\n\n- Accept one `DigestWindow` value\n- Select only eligible updates\n- Reuse one delivery identifier\n- Return a recorded delivery outcome\n\n## Dependency contract\n\nFollow the [scheduled delivery guide](/guides/scheduled-delivery) and declare the job through `DigestScheduler`.\n\n## Failure boundary\n\n> A repeated scheduler delivery never creates a second digest for the same recipient window.\n\n- Missing recipient preference\n- Temporary delivery provider failure\n- Repeated scheduler invocation\n\n## Implementation plan\n\n1. Freeze the delivery-window calculation\n2. Select updates through the existing repository\n3. Claim the stable delivery identifier\n4. Record sent, deferred, or unavailable outcomes\n\n## Acceptance\n\n- One window produces at most one digest\n- An empty update set produces no message\n- A temporary failure can be retried safely\n- Unavailable data is never replaced with invented copy\n\n## Verification\n\n```sh\nnpm test -- customer-digest\nnpm run typecheck\n```",
+      "target": "# A scheduled customer digest contract\n\nDefine one scheduled digest run that selects eligible updates, sends at most one message per recipient window, and records unavailable delivery without inventing content.\n\n## Contract surface\n\n- Accept one `DigestWindow` value\n- Select only eligible updates\n- Reuse one delivery identifier\n\n## Dependency contract\n\nFollow the [scheduled delivery guide](/guides/scheduled-delivery) and declare the job through `DigestScheduler`.\n\n## Failure boundary\n\n> A repeated scheduler delivery never creates a second digest for the same recipient window.\n\n- Missing recipient preference\n- Temporary delivery provider failure\n- Repeated scheduler invocation\n\n## Implementation plan\n\n1. Freeze the delivery-window calculation\n2. Select updates through the existing repository\n3. Claim the stable delivery identifier\n\n## Acceptance\n\n- One window produces at most one digest\n- An empty update set produces no message\n- A temporary failure can be retried safely\n\n## Verification\n\n```sh\nnpm test -- customer-digest\nnpm run typecheck\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1119,10 +1119,10 @@
             "occurrence": 0
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 30,
-          "feedback": "Use at least four visible bullets in the contract-surface section."
+          "feedback": "Use at least three visible bullets in the contract-surface section."
         },
         {
           "id": "l4-customer-digest-contract-spec-surface-code",
@@ -1201,10 +1201,10 @@
             "occurrence": 3
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 60,
-          "feedback": "Use at least four visible numbered implementation steps."
+          "feedback": "Use at least three visible numbered implementation steps."
         },
         {
           "id": "l4-customer-digest-contract-spec-acceptance",
@@ -1215,10 +1215,10 @@
             "occurrence": 4
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 70,
-          "feedback": "Use at least four visible acceptance bullets."
+          "feedback": "Use at least three visible acceptance bullets."
         },
         {
           "id": "l4-customer-digest-contract-spec-verification",
@@ -1271,7 +1271,7 @@
       "contentVariant": "scheduled-customer-digest",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "7c500828bae547caa58717dbca8e7ae97df1deaf4a7dfd11f3d308d3a029ade8"
+      "candidateDigest": "7a41bbc451a800c012e6f16831a005d8f27ec337abfe1db654f778e6886bcdcd"
     },
     {
       "id": "l4-support-webhook-contract-spec",
@@ -1291,7 +1291,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Billing callback contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Billing callback contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -1305,7 +1305,7 @@
       ],
       "title": "Specify an inbound support webhook contract",
       "prompt": "Compose a development spec for a signed support webhook with an inspectable contract, bounded failures, implementation order, acceptance, and verification.",
-      "target": "# An inbound support webhook contract\n\nDefine how the support service accepts signed conversation events without duplicating updates or exposing provider details to the rest of the application.\n\n## Contract surface\n\n- Accept one `SupportEvent` payload\n- Preserve the provider event identifier\n- Return one documented acknowledgment\n- Store no raw signing secret\n\n## Dependency contract\n\nFollow the [webhook security guide](/guides/webhook-security) and keep verification behind `SupportEventVerifier`.\n\n## Failure boundary\n\n> An event is never processed until its signature and stable identifier have been verified.\n\n- Missing or malformed signature\n- Repeated event identifier\n- Unsupported event type\n\n## Implementation plan\n\n1. Freeze valid and invalid payload fixtures\n2. Verify the signature at the adapter boundary\n3. Record the stable identifier before dispatch\n4. Return the documented acknowledgment for every handled result\n\n## Acceptance\n\n- A valid new event is processed once\n- A repeated identifier produces no duplicate update\n- An invalid signature changes no stored data\n- Logs contain no signing secret or full payload\n\n## Verification\n\n```sh\nnpm test -- support-webhook\nnpm run typecheck\n```",
+      "target": "# An inbound support webhook contract\n\nDefine how the support service accepts signed conversation events without duplicating updates or exposing provider details to the rest of the application.\n\n## Contract surface\n\n- Accept one `SupportEvent` payload\n- Preserve the provider event identifier\n- Return one documented acknowledgment\n\n## Dependency contract\n\nFollow the [webhook security guide](/guides/webhook-security) and keep verification behind `SupportEventVerifier`.\n\n## Failure boundary\n\n> An event is never processed until its signature and stable identifier have been verified.\n\n- Missing or malformed signature\n- Repeated event identifier\n- Unsupported event type\n\n## Implementation plan\n\n1. Freeze valid and invalid payload fixtures\n2. Verify the signature at the adapter boundary\n3. Record the stable identifier before dispatch\n\n## Acceptance\n\n- A valid new event is processed once\n- A repeated identifier produces no duplicate update\n- An invalid signature changes no stored data\n\n## Verification\n\n```sh\nnpm test -- support-webhook\nnpm run typecheck\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1401,10 +1401,10 @@
             "occurrence": 0
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 30,
-          "feedback": "Use at least four visible bullets in the contract-surface section."
+          "feedback": "Use at least three visible bullets in the contract-surface section."
         },
         {
           "id": "l4-support-webhook-contract-spec-surface-code",
@@ -1483,10 +1483,10 @@
             "occurrence": 3
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 60,
-          "feedback": "Use at least four visible numbered implementation steps."
+          "feedback": "Use at least three visible numbered implementation steps."
         },
         {
           "id": "l4-support-webhook-contract-spec-acceptance",
@@ -1497,10 +1497,10 @@
             "occurrence": 4
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 70,
-          "feedback": "Use at least four visible acceptance bullets."
+          "feedback": "Use at least three visible acceptance bullets."
         },
         {
           "id": "l4-support-webhook-contract-spec-verification",
@@ -1553,7 +1553,7 @@
       "contentVariant": "inbound-support-webhook",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "771a180e3c0a53daa4b981d813131315ae475ffd47e1a54b3d64a933afe7fd5f"
+      "candidateDigest": "3e2c19c417304ee1dd1a10406adac031081f6a8664e240d737bd0274c1c10e5a"
     },
     {
       "id": "l5-analytics-adapter-refactor-work-order",
@@ -1562,20 +1562,19 @@
       "familyId": "agent-ready-work-order",
       "skillIds": [
         "authority-order",
-        "comprehension-gate",
         "scope-boundary",
         "forbidden-shortcuts",
-        "four-stage-execution",
+        "three-stage-execution",
         "regression-guards",
-        "commit-contract",
+        "stop-conditions",
         "final-report"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "A bounded refactor order grants autonomy only inside explicit reading, comprehension, scope, shortcut, execution, regression, stop, commit, and reporting contracts.",
-        "howTo": "Use ordered authority and comprehension lists, four H3 execution stages, scope and prohibition bullets, a regression command block, and a report template.",
-        "example": "# Storage adapter refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
+        "concept": "A compact refactor order separates authority, scope, forbidden shortcuts, execution, regression, stops, and reporting.",
+        "howTo": "Use three-item reading, scope, and prohibition lists, three H3 stages, a regression command block, and a report template.",
+        "example": "# Storage adapter refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
       },
       "syntaxTokens": [
         "#",
@@ -1589,7 +1588,7 @@
       ],
       "title": "Write a bounded analytics adapter refactor order",
       "prompt": "Compose an agent work order for replacing a legacy analytics adapter without changing event names, payload boundaries, privacy rules, or caller behavior.",
-      "target": "# A bounded analytics adapter refactor order\n\nReplace the fictional Cedar Metrics legacy analytics adapter with the approved event client. Preserve public event names, payload allowlists, consent behavior, and caller ownership while keeping raw customer values out of tests and logs.\n\n## Required reading and authority\n\n1. Read `AGENTS.md` and the privacy policy\n2. Read ADR-031 for the approved event client\n3. Inspect the event contract fixtures\n4. Inspect current web and worker callers\n\n## Comprehension gate\n\n1. Restate which layer owns consent\n2. List the fields allowed in an event payload\n3. Identify the stable public event names\n4. Explain when the adapter returns without sending\n5. Name the checks that detect direct client calls\n\n## Allowed scope\n\n- Edit `packages/analytics/src/adapter.ts`\n- Edit `packages/analytics/src/adapter.test.ts`\n- Update approved callers behind the adapter\n- Update the event contract reference\n\n## Forbidden shortcuts\n\n- Do not rename public events\n- Do not add raw customer text to payloads\n- Do not bypass consent to satisfy a fixture\n- Do not let callers import the vendor client directly\n\n## Execution contract\n\n### Stage 1 — freeze the event contract\n\n- Add deterministic allowlist fixtures\n- Record consent and unavailable-client behavior\n\n### Stage 2 — add the approved client\n\n- Keep vendor code behind the adapter\n- Map only allowlisted payload fields\n\n### Stage 3 — migrate callers\n\n- Update web and worker imports\n- Remove verified legacy adapter paths\n\n### Stage 4 — audit and verify\n\n- Search for direct client imports\n- Run privacy, event, and integration suites\n\n## Regression guards\n\n```bash\nnpm test --workspace packages/analytics\nnpm run typecheck\nrg \"vendorAnalytics|rawCustomerText\" apps packages\n```\n\n## Stop conditions\n\n- The approved client cannot preserve consent behavior\n- A documented event contract conflicts with production callers\n- Safe migration requires storing a prohibited payload field\n\n## Commit contract\n\n1. Commit contract fixtures before implementation\n2. Commit the adapter and callers in reviewable stages\n3. Do not mix event changes with unrelated instrumentation cleanup\n\n## Final report\n\n```markdown\n# Refactor report\n\n## Stage outcomes\n- Event contract and consent evidence\n- Adapter and caller migrations\n- Privacy and regression audit\n\n## Verification\n- Focused checks with observed counts\n- Full gate with observed counts\n- Regression searches with observed results\n\n## Owner decisions\n- List only decisions that require new authority\n```",
+      "target": "# A bounded analytics adapter refactor order\n\nReplace the fictional Cedar Metrics legacy analytics adapter with the approved event client. Preserve public event names, payload allowlists, consent behavior, and caller ownership while keeping raw customer values out of tests and logs.\n\n## Required reading and authority\n\n1. Read `AGENTS.md` and the privacy policy\n2. Read ADR-031 for the approved event client\n3. Inspect the event contract fixtures\n\n## Allowed scope\n\n- Edit `packages/analytics/src/adapter.ts`\n- Edit `packages/analytics/src/adapter.test.ts`\n- Update approved callers behind the adapter\n\n## Forbidden shortcuts\n\n- Do not rename public events\n- Do not add raw customer text to payloads\n- Do not bypass consent to satisfy a fixture\n\n## Execution contract\n\n### Stage 1 — freeze the event contract\n\n- Add deterministic allowlist fixtures\n- Record consent and unavailable-client behavior\n\n### Stage 2 — add the approved client\n\n- Keep vendor code behind the adapter\n- Map only allowlisted payload fields\n\n### Stage 3 — migrate callers\n\n- Update web and worker imports\n- Remove verified legacy adapter paths\n\n## Regression guards\n\n```bash\nnpm test --workspace packages/analytics\nnpm run typecheck\n```\n\n## Stop conditions\n\n- The approved client cannot preserve consent behavior\n- A documented event contract conflicts with production callers\n- Safe migration requires storing a prohibited payload field\n\n## Final report\n\n```markdown\n# Refactor report\n- Scope:\n- Verification:\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1633,20 +1632,6 @@
               "depth": 2
             },
             {
-              "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
-              "block": "heading",
-              "depth": 3
-            },
-            {
-              "block": "list"
-            },
-            {
               "block": "heading",
               "depth": 3
             },
@@ -1673,13 +1658,6 @@
             },
             {
               "block": "code"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
-              "block": "list"
             },
             {
               "block": "heading",
@@ -1707,10 +1685,10 @@
           },
           "block": "heading",
           "depth": 2,
-          "min": 9,
-          "max": 9,
+          "min": 7,
+          "max": 7,
           "priority": 15,
-          "feedback": "Use exactly 9 H2 sections in this document."
+          "feedback": "Use exactly 7 H2 sections in this document."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-hierarchy",
@@ -1728,24 +1706,10 @@
             "occurrence": 0
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 30,
-          "feedback": "Use at least four visible ordered authority sources."
-        },
-        {
-          "id": "l5-analytics-adapter-refactor-work-order-comprehension",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 1
-          },
-          "ordered": true,
-          "minItems": 5,
-          "requireVisibleItems": true,
-          "priority": 40,
-          "feedback": "Use at least five visible numbered comprehension prompts."
+          "feedback": "Use at least three visible ordered authority sources."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-scope",
@@ -1753,13 +1717,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 2
+            "occurrence": 1
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 50,
-          "feedback": "Use at least four visible allowed-scope bullets."
+          "priority": 40,
+          "feedback": "Use at least three visible allowed-scope bullets."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-scope-code",
@@ -1767,7 +1731,7 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 2
+            "occurrence": 1
           },
           "min": 2,
           "requireNonemptyContent": true,
@@ -1780,13 +1744,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 3
+            "occurrence": 2
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 60,
-          "feedback": "Use at least four visible forbidden-shortcut bullets."
+          "priority": 50,
+          "feedback": "Use at least three visible forbidden-shortcut bullets."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-stage-count",
@@ -1794,14 +1758,14 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 4
+            "occurrence": 3
           },
           "block": "heading",
           "depth": 3,
-          "min": 4,
-          "max": 4,
-          "priority": 70,
-          "feedback": "Use exactly 4 H3 stages in the execution section."
+          "min": 3,
+          "max": 3,
+          "priority": 60,
+          "feedback": "Use exactly 3 H3 stages in the execution section."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-stage-1",
@@ -1814,7 +1778,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 71,
+          "priority": 61,
           "feedback": "Use at least two visible bullets under H3 stage 1."
         },
         {
@@ -1828,7 +1792,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 72,
+          "priority": 62,
           "feedback": "Use at least two visible bullets under H3 stage 2."
         },
         {
@@ -1842,22 +1806,8 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 73,
+          "priority": 63,
           "feedback": "Use at least two visible bullets under H3 stage 3."
-        },
-        {
-          "id": "l5-analytics-adapter-refactor-work-order-stage-4",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 3,
-            "occurrence": 3
-          },
-          "ordered": false,
-          "minItems": 2,
-          "requireVisibleItems": true,
-          "priority": 74,
-          "feedback": "Use at least two visible bullets under H3 stage 4."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-regression",
@@ -1865,13 +1815,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 5
+            "occurrence": 4
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 80,
+          "priority": 70,
           "feedback": "Use one fenced, language-tagged block in this section."
         },
         {
@@ -1880,27 +1830,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 6
+            "occurrence": 5
           },
           "ordered": false,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 90,
+          "priority": 80,
           "feedback": "Use at least three visible stop-condition bullets."
-        },
-        {
-          "id": "l5-analytics-adapter-refactor-work-order-commits",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 7
-          },
-          "ordered": true,
-          "minItems": 3,
-          "requireVisibleItems": true,
-          "priority": 100,
-          "feedback": "Use at least three visible numbered commit rules."
         },
         {
           "id": "l5-analytics-adapter-refactor-work-order-report",
@@ -1908,13 +1844,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 8
+            "occurrence": 6
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 110,
+          "priority": 90,
           "feedback": "Use one fenced, language-tagged block in this section."
         }
       ],
@@ -1926,9 +1862,9 @@
         }
       ],
       "hints": [
-        "Order the reading and comprehension gates before granting implementation scope.",
-        "Use exactly four ### stages and separate allowed scope from forbidden shortcuts.",
-        "Finish with regression commands, stop conditions, commit rules, and a report template."
+        "Put the reading order before the allowed and forbidden scope lists.",
+        "Use exactly three ### stages and keep every list to three short items.",
+        "Finish with regression commands, stop conditions, and a report template."
       ],
       "retryFamily": "level5-bounded-refactor-work-order",
       "reviewTags": [
@@ -1959,7 +1895,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "b6ca05e1a50d27ff6d5b50daa89c5163cd06772ccd475e3fb67880e459314745"
+      "candidateDigest": "c1ca9e6808b0d3fe2de461863ace086622bbc052ba30f6bbf908af765cabdb50"
     },
     {
       "id": "l5-api-contract-rollout-work-order",
@@ -1981,7 +1917,7 @@
       "teaching": {
         "concept": "A coordinated rollout order maps consumers, authority, phases, compatibility, rollback, stop conditions, verification, and reporting.",
         "howTo": "Use a nested system map, an ordered authority list, three H3 rollout phases, compatibility and stop lists, an inline-code verification ledger, and a fenced report template.",
-        "example": "# Shared schema rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
+        "example": "# Shared schema rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Current code"
       },
       "syntaxTokens": [
         "#",
@@ -1996,7 +1932,7 @@
       ],
       "title": "Write a coordinated API contract rollout order",
       "prompt": "Compose an agent work order for rolling out a versioned response contract across API, web, and mobile consumers with compatibility and rollback proof.",
-      "target": "# A coordinated API contract rollout order\n\nRoll out the fictional Harbor Tasks versioned project response across the API, web client, and mobile client. Preserve the current version during the compatibility window and require evidence from every consumer before removing it.\n\n## System map\n\n- API provider\n  - Versioned schema\n  - Compatibility serializer\n- Web consumer\n  - Typed client\n  - Browser journey\n- Mobile consumer\n  - Cached response\n  - Offline journey\n\n## Authority order\n\n1. Read `AGENTS.md` in each repository\n2. Read the shared response contract\n3. Read the approved rollout decision\n4. Inspect current consumer fixtures and release rules\n\n## Rollout phases\n\n### Phase 1 — add compatibility\n\n- Publish the new typed response beside the current version\n- Add provider contract fixtures\n\n### Phase 2 — move consumers\n\n- Update web before mobile release\n- Record both consumer verification results\n\n### Phase 3 — retire the old path\n\n- Confirm the compatibility window has closed\n- Remove only the verified old serializer\n\n## Compatibility guards\n\n- Existing clients continue to read the current version\n- Unknown optional fields remain safe\n- Cached mobile data remains readable\n- The provider emits one declared version per response\n\n## Rollback plan\n\n1. Restore the prior provider serializer\n2. Restore the previous typed clients\n3. Redeploy web before mobile rollback review\n4. Run the complete compatibility suite\n\n## Pause and stop conditions\n\n> Pause the rollout when one consumer cannot prove the shared response contract on its supported release.\n\n- Repository authority files disagree on version ownership\n- The mobile release cannot represent the compatibility window\n- Rollback requires deleting user data\n\n## Verification ledger\n\n- Run `npm test --workspace apps/api -- contract`\n- Run `npm test --workspace apps/web -- project-response`\n- Run `npm test --workspace apps/mobile -- project-response`\n- Run `npm run test:e2e -- compatibility`\n\n## Release report\n\n```markdown\n# Coordinated rollout report\n\n## Consumer outcomes\n- Provider and compatibility results\n- Web and mobile consumer results\n- Retirement or rollback decision\n\n## Verification evidence\n- Compatibility checks with observed counts\n- Rollback rehearsal with observed result\n- Remaining owner decisions\n```",
+      "target": "# A coordinated API contract rollout order\n\nRoll out one versioned response across the fictional Harbor Tasks API, web client, and mobile client while preserving compatibility.\n\n## System map\n\n- API provider\n  - Versioned schema\n  - Compatibility serializer\n- Web consumer\n- Mobile consumer\n\n## Authority order\n\n1. Read `AGENTS.md` in each repository\n2. Read the shared response contract\n3. Read the approved rollout decision\n\n## Rollout phases\n\n### Phase 1 — add compatibility\n\n- Publish the new typed response beside the current version\n- Add provider contract fixtures\n\n### Phase 2 — move consumers\n\n- Update web before mobile release\n- Record both consumer verification results\n\n### Phase 3 — retire the old path\n\n- Confirm the compatibility window has closed\n- Remove only the verified old serializer\n\n## Compatibility guards\n\n- Existing clients continue to read the current version\n- Unknown optional fields remain safe\n- Cached mobile data remains readable\n\n## Rollback plan\n\n1. Restore the prior provider serializer\n2. Restore the previous typed clients\n3. Run the complete compatibility suite\n\n## Pause and stop conditions\n\n> Pause the rollout when one consumer cannot prove the shared response contract on its supported release.\n- Repository authority files disagree on version ownership\n- The mobile release cannot represent the compatibility window\n- Rollback requires deleting user data\n\n## Verification ledger\n\n- Run `npm test --workspace apps/api -- contract`\n- Run `npm test --workspace apps/web -- project-response`\n- Run `npm test --workspace apps/mobile -- project-response`\n\n```markdown\n# Coordinated rollout report\n- Consumers:\n- Decision:\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2085,10 +2021,6 @@
               "block": "list"
             },
             {
-              "block": "heading",
-              "depth": 2
-            },
-            {
               "block": "code"
             }
           ],
@@ -2103,10 +2035,10 @@
           },
           "block": "heading",
           "depth": 2,
-          "min": 8,
-          "max": 8,
+          "min": 7,
+          "max": 7,
           "priority": 15,
-          "feedback": "Use exactly 8 H2 sections in this document."
+          "feedback": "Use exactly 7 H2 sections in this document."
         },
         {
           "id": "l5-api-contract-rollout-work-order-hierarchy",
@@ -2154,10 +2086,10 @@
             "occurrence": 1
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 40,
-          "feedback": "Use at least four visible ordered authority sources."
+          "feedback": "Use at least three visible ordered authority sources."
         },
         {
           "id": "l5-api-contract-rollout-work-order-stage-count",
@@ -2225,10 +2157,10 @@
             "occurrence": 3
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 60,
-          "feedback": "Use at least four visible compatibility-guard bullets."
+          "feedback": "Use at least three visible compatibility-guard bullets."
         },
         {
           "id": "l5-api-contract-rollout-work-order-rollback",
@@ -2239,10 +2171,10 @@
             "occurrence": 4
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 70,
-          "feedback": "Use at least four visible numbered rollback steps."
+          "feedback": "Use at least three visible numbered rollback steps."
         },
         {
           "id": "l5-api-contract-rollout-work-order-pause-rule",
@@ -2279,10 +2211,10 @@
             "occurrence": 6
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 90,
-          "feedback": "Use at least four visible verification bullets."
+          "feedback": "Use at least three visible verification bullets."
         },
         {
           "id": "l5-api-contract-rollout-work-order-verification-code",
@@ -2292,10 +2224,10 @@
             "headingDepth": 2,
             "occurrence": 6
           },
-          "min": 4,
+          "min": 3,
           "requireNonemptyContent": true,
           "priority": 95,
-          "feedback": "Use at least four nonempty inline-code items in the verification ledger."
+          "feedback": "Use at least three nonempty inline-code items in the verification ledger."
         },
         {
           "id": "l5-api-contract-rollout-work-order-report",
@@ -2303,7 +2235,7 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 7
+            "occurrence": 6
           },
           "min": 1,
           "max": 1,
@@ -2321,9 +2253,9 @@
         }
       ],
       "hints": [
-        "Map the provider and consumers with one nested list before ordering the authority sources.",
-        "Use exactly three ### rollout phases, then add compatibility guards and numbered rollback.",
-        "Finish with a quoted pause rule, inline-code verification bullets, and a report template."
+        "Map the provider and consumers with one compact nested list before authority.",
+        "Use exactly three ### phases, then add three compatibility and rollback items.",
+        "Finish with a quoted pause rule and a verification section containing inline code and a report template."
       ],
       "retryFamily": "level5-coordinated-rollout-work-order",
       "reviewTags": [
@@ -2354,7 +2286,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "e95979bc508f441f7925282ebe5473c2437c4e4d69347a9b5fd10869bc175384"
+      "candidateDigest": "cae928d9c3017cff3c8d951e64dcb53411b2047c2c2e93f124fb27c943d35524"
     },
     {
       "id": "l5-date-format-refactor-work-order",
@@ -2363,20 +2295,19 @@
       "familyId": "agent-ready-work-order",
       "skillIds": [
         "authority-order",
-        "comprehension-gate",
         "scope-boundary",
         "forbidden-shortcuts",
-        "four-stage-execution",
+        "three-stage-execution",
         "regression-guards",
-        "commit-contract",
+        "stop-conditions",
         "final-report"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "A bounded refactor order grants autonomy only inside explicit reading, comprehension, scope, shortcut, execution, regression, stop, commit, and reporting contracts.",
-        "howTo": "Use ordered authority and comprehension lists, four H3 execution stages, scope and prohibition bullets, a regression command block, and a report template.",
-        "example": "# Currency helper refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
+        "concept": "A compact refactor order separates authority, scope, forbidden shortcuts, execution, regression, stops, and reporting.",
+        "howTo": "Use three-item reading, scope, and prohibition lists, three H3 stages, a regression command block, and a report template.",
+        "example": "# Currency helper refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
       },
       "syntaxTokens": [
         "#",
@@ -2390,7 +2321,7 @@
       ],
       "title": "Write a bounded date formatting refactor order",
       "prompt": "Compose an agent work order for consolidating duplicated date formatting while preserving locale, time-zone, and display contracts.",
-      "target": "# A bounded date formatting refactor order\n\nConsolidate duplicated date and time formatting in the fictional Beacon Office monorepo. Keep locale, time-zone, accessibility, and snapshot behavior unchanged while giving the agent autonomy inside an explicit file boundary.\n\n## Required reading and authority\n\n1. Read `AGENTS.md`\n2. Read the date display decision record\n3. Inspect shared formatting tests\n4. Inspect current web and email call sites\n\n## Comprehension gate\n\n1. Restate which layer owns time-zone conversion\n2. Restate which locale comes from the user profile\n3. List the displays that must remain unchanged\n4. Identify the shared helper boundary\n5. Name the checks that guard snapshots and accessibility\n\n## Allowed scope\n\n- Edit `packages/formatting/src/date.ts`\n- Edit `packages/formatting/src/date.test.ts`\n- Update approved web and email callers\n- Update focused documentation for the shared helper\n\n## Forbidden shortcuts\n\n- Do not change stored timestamps\n- Do not replace locale-aware formatting with fixed strings\n- Do not update snapshots before reviewing the rendered difference\n- Do not introduce a second formatting dependency\n\n## Execution contract\n\n### Stage 1 — pin current behavior\n\n- Add boundary fixtures for locale and time zone\n- Run the focused formatting suite\n\n### Stage 2 — create the shared helper\n\n- Move one verified behavior at a time\n- Keep the public helper signature narrow\n\n### Stage 3 — migrate callers\n\n- Update web and email consumers\n- Remove only proven duplicate helpers\n\n### Stage 4 — verify the boundary\n\n- Run accessibility and snapshot checks\n- Search for remaining duplicate formatting paths\n\n## Regression guards\n\n```bash\nnpm test --workspace packages/formatting\nnpm run typecheck\nrg \"toLocaleString|formatDisplayDate\" apps packages\n```\n\n## Stop conditions\n\n- An approved display requires conflicting time-zone ownership\n- A caller depends on undocumented fixed output\n- The shared helper would change a public serialization contract\n\n## Commit contract\n\n1. Commit the behavior fixtures separately\n2. Commit each verified caller migration with its checks\n3. Keep formatting-only cleanup out of behavior commits\n\n## Final report\n\n```markdown\n# Refactor report\n\n## Stage outcomes\n- Pinned behavior and helper boundary\n- Migrated callers and removed duplicates\n- Snapshot, accessibility, and regression evidence\n\n## Verification\n- Focused checks with observed counts\n- Full gate with observed counts\n- Regression searches with observed results\n\n## Owner decisions\n- List only decisions that require new authority\n```",
+      "target": "# A bounded date formatting refactor order\n\nConsolidate duplicated date and time formatting in the fictional Beacon Office monorepo. Keep locale, time-zone, accessibility, and snapshot behavior unchanged while giving the agent autonomy inside an explicit file boundary.\n\n## Required reading and authority\n\n1. Read `AGENTS.md`\n2. Read the date display decision record\n3. Inspect shared formatting tests\n\n## Allowed scope\n\n- Edit `packages/formatting/src/date.ts`\n- Edit `packages/formatting/src/date.test.ts`\n- Update approved web and email callers\n\n## Forbidden shortcuts\n\n- Do not change stored timestamps\n- Do not replace locale-aware formatting with fixed strings\n- Do not update snapshots before reviewing the rendered difference\n\n## Execution contract\n\n### Stage 1 — pin current behavior\n\n- Add boundary fixtures for locale and time zone\n- Run the focused formatting suite\n\n### Stage 2 — create the shared helper\n\n- Move one verified behavior at a time\n- Keep the public helper signature narrow\n\n### Stage 3 — migrate callers\n\n- Update web and email consumers\n- Remove only proven duplicate helpers\n\n## Regression guards\n\n```bash\nnpm test --workspace packages/formatting\nnpm run typecheck\n```\n\n## Stop conditions\n\n- An approved display requires conflicting time-zone ownership\n- A caller depends on undocumented fixed output\n- The shared helper would change a public serialization contract\n\n## Final report\n\n```markdown\n# Refactor report\n- Scope:\n- Verification:\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2434,20 +2365,6 @@
               "depth": 2
             },
             {
-              "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
-              "block": "heading",
-              "depth": 3
-            },
-            {
-              "block": "list"
-            },
-            {
               "block": "heading",
               "depth": 3
             },
@@ -2474,13 +2391,6 @@
             },
             {
               "block": "code"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
-              "block": "list"
             },
             {
               "block": "heading",
@@ -2508,10 +2418,10 @@
           },
           "block": "heading",
           "depth": 2,
-          "min": 9,
-          "max": 9,
+          "min": 7,
+          "max": 7,
           "priority": 15,
-          "feedback": "Use exactly 9 H2 sections in this document."
+          "feedback": "Use exactly 7 H2 sections in this document."
         },
         {
           "id": "l5-date-format-refactor-work-order-hierarchy",
@@ -2529,24 +2439,10 @@
             "occurrence": 0
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 30,
-          "feedback": "Use at least four visible ordered authority sources."
-        },
-        {
-          "id": "l5-date-format-refactor-work-order-comprehension",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 1
-          },
-          "ordered": true,
-          "minItems": 5,
-          "requireVisibleItems": true,
-          "priority": 40,
-          "feedback": "Use at least five visible numbered comprehension prompts."
+          "feedback": "Use at least three visible ordered authority sources."
         },
         {
           "id": "l5-date-format-refactor-work-order-scope",
@@ -2554,13 +2450,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 2
+            "occurrence": 1
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 50,
-          "feedback": "Use at least four visible allowed-scope bullets."
+          "priority": 40,
+          "feedback": "Use at least three visible allowed-scope bullets."
         },
         {
           "id": "l5-date-format-refactor-work-order-scope-code",
@@ -2568,7 +2464,7 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 2
+            "occurrence": 1
           },
           "min": 2,
           "requireNonemptyContent": true,
@@ -2581,13 +2477,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 3
+            "occurrence": 2
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 60,
-          "feedback": "Use at least four visible forbidden-shortcut bullets."
+          "priority": 50,
+          "feedback": "Use at least three visible forbidden-shortcut bullets."
         },
         {
           "id": "l5-date-format-refactor-work-order-stage-count",
@@ -2595,14 +2491,14 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 4
+            "occurrence": 3
           },
           "block": "heading",
           "depth": 3,
-          "min": 4,
-          "max": 4,
-          "priority": 70,
-          "feedback": "Use exactly 4 H3 stages in the execution section."
+          "min": 3,
+          "max": 3,
+          "priority": 60,
+          "feedback": "Use exactly 3 H3 stages in the execution section."
         },
         {
           "id": "l5-date-format-refactor-work-order-stage-1",
@@ -2615,7 +2511,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 71,
+          "priority": 61,
           "feedback": "Use at least two visible bullets under H3 stage 1."
         },
         {
@@ -2629,7 +2525,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 72,
+          "priority": 62,
           "feedback": "Use at least two visible bullets under H3 stage 2."
         },
         {
@@ -2643,22 +2539,8 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 73,
+          "priority": 63,
           "feedback": "Use at least two visible bullets under H3 stage 3."
-        },
-        {
-          "id": "l5-date-format-refactor-work-order-stage-4",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 3,
-            "occurrence": 3
-          },
-          "ordered": false,
-          "minItems": 2,
-          "requireVisibleItems": true,
-          "priority": 74,
-          "feedback": "Use at least two visible bullets under H3 stage 4."
         },
         {
           "id": "l5-date-format-refactor-work-order-regression",
@@ -2666,13 +2548,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 5
+            "occurrence": 4
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 80,
+          "priority": 70,
           "feedback": "Use one fenced, language-tagged block in this section."
         },
         {
@@ -2681,27 +2563,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 6
+            "occurrence": 5
           },
           "ordered": false,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 90,
+          "priority": 80,
           "feedback": "Use at least three visible stop-condition bullets."
-        },
-        {
-          "id": "l5-date-format-refactor-work-order-commits",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 7
-          },
-          "ordered": true,
-          "minItems": 3,
-          "requireVisibleItems": true,
-          "priority": 100,
-          "feedback": "Use at least three visible numbered commit rules."
         },
         {
           "id": "l5-date-format-refactor-work-order-report",
@@ -2709,13 +2577,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 8
+            "occurrence": 6
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 110,
+          "priority": 90,
           "feedback": "Use one fenced, language-tagged block in this section."
         }
       ],
@@ -2727,9 +2595,9 @@
         }
       ],
       "hints": [
-        "Order the reading and comprehension gates before granting implementation scope.",
-        "Use exactly four ### stages and separate allowed scope from forbidden shortcuts.",
-        "Finish with regression commands, stop conditions, commit rules, and a report template."
+        "Put the reading order before the allowed and forbidden scope lists.",
+        "Use exactly three ### stages and keep every list to three short items.",
+        "Finish with regression commands, stop conditions, and a report template."
       ],
       "retryFamily": "level5-bounded-refactor-work-order",
       "reviewTags": [
@@ -2760,7 +2628,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "67cd9162ea96aed21de71cdc14433d6774480bfeb2e89b03136223a73ea8b1c9"
+      "candidateDigest": "6d9f4cd48f6a0e3af1d65903a15dca11f472026dd3f1c19ee5ced652eea9e42c"
     },
     {
       "id": "l5-duplicate-job-recovery-work-order",
@@ -2770,7 +2638,6 @@
       "skillIds": [
         "evidence-boundary",
         "authority-order",
-        "containment",
         "recovery-stages",
         "rollback-contract",
         "stop-conditions",
@@ -2780,9 +2647,9 @@
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "An evidence-led recovery order separates observation, containment, investigation, recovery, rollback, constraints, stops, proof, and reporting.",
-        "howTo": "Use ordered authority and investigation lists, three H3 recovery stages, explicit rollback and stop lists, and fenced verification and report blocks.",
-        "example": "# Retry recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
+        "concept": "A compact recovery order separates evidence, authority, recovery stages, rollback, constraints, stops, proof, and reporting.",
+        "howTo": "Use three-item authority, rollback, constraint, and stop lists, three H3 stages, and fenced verification and report blocks.",
+        "example": "# Retry recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
       },
       "syntaxTokens": [
         "#",
@@ -2797,7 +2664,7 @@
       ],
       "title": "Write a duplicate job recovery work order",
       "prompt": "Compose an evidence-led work order for containing and repairing duplicate job deliveries while preserving rollback and audit evidence.",
-      "target": "# A duplicate job recovery work order\n\nRecover the fictional Northstar Queue worker after one deployment produced duplicate invoice-notification jobs. Preserve customer records, delivery identifiers, and truthful evidence while restoring one idempotent processing path.\n\n## Evidence boundary\n\n> The same delivery identifier appears twice in the worker log after one queue message is acknowledged.\n\n---\n\n## Authority order\n\n1. Read `AGENTS.md` for repository rules\n2. Read the queue safety policy\n3. Read ADR-018 for delivery idempotency\n4. Inspect the worker, migration, and retry test conventions\n\n## Containment\n\n- Pause only the affected notification job\n- Preserve duplicate delivery identifiers for review\n- Keep unrelated queue consumers running\n\n## Investigation plan\n\n1. Reproduce one duplicate with the approved fixture\n2. Trace the acknowledgment and retry boundaries\n3. Compare the deployed migration with repository history\n4. Record the smallest evidence-supported repair\n\n## Recovery stages\n\n### Stage 1 — pin the failure\n\n- Add a focused duplicate-delivery test\n- Prove the verified default behavior before editing\n\n### Stage 2 — restore idempotency\n\n- Apply one bounded worker change\n- Preserve the existing delivery identifier\n\n### Stage 3 — prove recovery\n\n- Run queue and notification suites\n- Review logs and migrations against the constraints\n\n## Rollback plan\n\n1. Disable the affected worker deployment\n2. Restore the prior verified worker artifact\n3. Replay only reviewed delivery identifiers\n\n## Hard constraints\n\n- No customer record is deleted to make counts agree\n- One delivery identifier creates at most one notification\n- Unrelated queue consumers remain available\n- Logs contain no notification body or credential\n\n## Stop conditions\n\n- Repository history cannot explain the deployed migration\n- Safe replay requires deleting customer data\n- The queue platform contradicts the approved acknowledgment contract\n\n## Verification evidence\n\n```bash\nnpm test --workspace apps/worker -- duplicate-delivery\nnpm run typecheck\nrg \"skipIdempotency|forceAcknowledge\" apps/worker/src\n```\n\n## Final recovery report\n\n```markdown\n# Recovery report\n\n## Evidence reviewed\n- Observed duplicate evidence\n- Containment and repair stages\n- Replay and regression results\n\n## Verification result\n- Focused checks and observed counts\n- Complete gate and observed counts\n- Remaining owner decisions\n```",
+      "target": "# A duplicate job recovery work order\n\nRecover the fictional Northstar Queue worker after one deployment produced duplicate invoice-notification jobs. Preserve customer records, delivery identifiers, and truthful evidence while restoring one idempotent processing path.\n\n## Evidence boundary\n\n> The same delivery identifier appears twice in the worker log after one queue message is acknowledged.\n\n---\n\n## Authority order\n\n1. Read `AGENTS.md` for repository rules\n2. Read the queue safety policy\n3. Read ADR-018 for delivery idempotency\n\n## Recovery stages\n\n### Stage 1 — pin the failure\n\n- Add a focused duplicate-delivery test\n- Prove the verified default behavior before editing\n\n### Stage 2 — restore idempotency\n\n- Apply one bounded worker change\n- Preserve the existing delivery identifier\n\n### Stage 3 — prove recovery\n\n- Run queue and notification suites\n- Review logs and migrations against the constraints\n\n## Rollback plan\n\n1. Disable the affected worker deployment\n2. Restore the prior verified worker artifact\n3. Replay only reviewed delivery identifiers\n\n## Hard constraints\n\n- No customer record is deleted to make counts agree\n- One delivery identifier creates at most one notification\n- Logs contain no notification body or credential\n\n## Stop conditions\n\n- Repository history cannot explain the deployed migration\n- Safe replay requires deleting customer data\n- The queue platform contradicts the approved acknowledgment contract\n\n## Verification evidence\n\n```bash\nnpm test --workspace apps/worker -- duplicate-delivery\nnpm run typecheck\n```\n\n## Final recovery report\n\n```markdown\n# Recovery report\n- Evidence:\n- Verification:\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2837,20 +2704,6 @@
               "depth": 2
             },
             {
-              "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
-              "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
               "block": "heading",
               "depth": 3
             },
@@ -2891,10 +2744,6 @@
             },
             {
               "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
             },
             {
               "block": "code"
@@ -2918,10 +2767,10 @@
           },
           "block": "heading",
           "depth": 2,
-          "min": 10,
-          "max": 10,
+          "min": 8,
+          "max": 8,
           "priority": 15,
-          "feedback": "Use exactly 10 H2 sections in this document."
+          "feedback": "Use exactly 8 H2 sections in this document."
         },
         {
           "id": "l5-duplicate-job-recovery-work-order-hierarchy",
@@ -2965,38 +2814,10 @@
             "occurrence": 1
           },
           "ordered": true,
-          "minItems": 4,
-          "requireVisibleItems": true,
-          "priority": 40,
-          "feedback": "Use at least four visible ordered authority sources."
-        },
-        {
-          "id": "l5-duplicate-job-recovery-work-order-containment",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 2
-          },
-          "ordered": false,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 50,
-          "feedback": "Use at least three visible containment bullets."
-        },
-        {
-          "id": "l5-duplicate-job-recovery-work-order-investigation",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 3
-          },
-          "ordered": true,
-          "minItems": 4,
-          "requireVisibleItems": true,
-          "priority": 60,
-          "feedback": "Use at least four visible numbered investigation steps."
+          "priority": 40,
+          "feedback": "Use at least three visible ordered authority sources."
         },
         {
           "id": "l5-duplicate-job-recovery-work-order-stage-count",
@@ -3004,13 +2825,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 4
+            "occurrence": 2
           },
           "block": "heading",
           "depth": 3,
           "min": 3,
           "max": 3,
-          "priority": 70,
+          "priority": 50,
           "feedback": "Use exactly 3 H3 stages in the execution section."
         },
         {
@@ -3024,7 +2845,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 71,
+          "priority": 51,
           "feedback": "Use at least two visible bullets under H3 stage 1."
         },
         {
@@ -3038,7 +2859,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 72,
+          "priority": 52,
           "feedback": "Use at least two visible bullets under H3 stage 2."
         },
         {
@@ -3052,7 +2873,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 73,
+          "priority": 53,
           "feedback": "Use at least two visible bullets under H3 stage 3."
         },
         {
@@ -3061,12 +2882,12 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 5
+            "occurrence": 3
           },
           "ordered": true,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 80,
+          "priority": 60,
           "feedback": "Use at least three visible numbered rollback steps."
         },
         {
@@ -3075,13 +2896,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 6
+            "occurrence": 4
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 90,
-          "feedback": "Use at least four visible hard-constraint bullets."
+          "priority": 70,
+          "feedback": "Use at least three visible hard-constraint bullets."
         },
         {
           "id": "l5-duplicate-job-recovery-work-order-stops",
@@ -3089,12 +2910,12 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 7
+            "occurrence": 5
           },
           "ordered": false,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 100,
+          "priority": 80,
           "feedback": "Use at least three visible stop-condition bullets."
         },
         {
@@ -3103,13 +2924,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 8
+            "occurrence": 6
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 110,
+          "priority": 90,
           "feedback": "Use one fenced, language-tagged block in this section."
         },
         {
@@ -3118,13 +2939,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 9
+            "occurrence": 7
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 120,
+          "priority": 100,
           "feedback": "Use one fenced, language-tagged block in this section."
         }
       ],
@@ -3136,8 +2957,8 @@
         }
       ],
       "hints": [
-        "Separate evidence, authority, containment, investigation, and recovery before writing verification.",
-        "Use exactly three ### recovery stages and keep rollback, constraints, and stop conditions distinct.",
+        "Separate evidence and authority before writing the recovery stages.",
+        "Use exactly three ### stages and three short items in each later list.",
         "Finish with fenced command evidence and a fenced final-report template."
       ],
       "retryFamily": "level5-evidence-recovery-work-order",
@@ -3169,7 +2990,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "1346bcd2330cbd8420dc587cc9f14fed7da70681a9934e13eb6f136eccd0cc87"
+      "candidateDigest": "be78dfabc2b6b94b79e13f4634e628f768d1d52b5f27e968aa0f8017f2583282"
     },
     {
       "id": "l5-notification-schema-rollout-work-order",
@@ -3191,7 +3012,7 @@
       "teaching": {
         "concept": "A coordinated rollout order maps consumers, authority, phases, compatibility, rollback, stop conditions, verification, and reporting.",
         "howTo": "Use a nested system map, an ordered authority list, three H3 rollout phases, compatibility and stop lists, an inline-code verification ledger, and a fenced report template.",
-        "example": "# Account setting rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
+        "example": "# Account setting rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Current code"
       },
       "syntaxTokens": [
         "#",
@@ -3206,7 +3027,7 @@
       ],
       "title": "Write a coordinated preference schema rollout order",
       "prompt": "Compose an agent work order for coordinating a notification preference schema across an API, worker, and admin console with pause and rollback gates.",
-      "target": "# A coordinated preference schema rollout order\n\nRoll out the fictional Willow Mail notification preference schema across the API, delivery worker, and admin console. Keep one schema owner, preserve existing choices, and require consumer evidence before removing compatibility fields.\n\n## System map\n\n- API schema owner\n  - Preference contract\n  - Compatibility mapping\n- Delivery worker\n  - Read path\n  - Delivery decision\n- Admin console\n  - Edit form\n  - Audit view\n\n## Authority order\n\n1. Read repository-wide agent rules\n2. Read the preference data policy\n3. Read ADR-027 for schema ownership\n4. Inspect API, worker, and console contract tests\n\n## Rollout phases\n\n### Phase 1 — establish one owner\n\n- Add the new schema and compatibility mapping\n- Freeze existing preference fixtures\n\n### Phase 2 — move readers and writers\n\n- Move the worker read path first\n- Move the admin form after worker verification\n\n### Phase 3 — remove compatibility\n\n- Confirm every supported consumer is migrated\n- Remove old fields through the repository workflow\n\n## Compatibility guards\n\n- Existing preference choices retain their meaning\n- Missing optional values use the documented fallback\n- The worker reads only the API-owned contract\n- The console never becomes a second schema owner\n\n## Rollback plan\n\n1. Restore compatibility mapping in the API\n2. Restore the previous worker reader\n3. Restore the previous console form mapping\n4. Run preference and delivery journeys\n\n## Pause and stop conditions\n\n> Pause when any consumer writes a preference value the API-owned schema cannot represent safely.\n\n- The data policy conflicts with the approved fallback\n- A supported worker version cannot read the compatibility mapping\n- Rollback would discard an existing user choice\n\n## Verification ledger\n\n- Run `npm test --workspace apps/api -- preferences`\n- Run `npm test --workspace apps/worker -- delivery-choice`\n- Run `npm test --workspace apps/admin -- preference-form`\n- Run `npm run test:e2e -- notification-preferences`\n\n## Release report\n\n```markdown\n# Coordinated rollout report\n\n## Consumer outcomes\n- Schema owner and compatibility result\n- Worker and console migration result\n- Removal, pause, or rollback evidence\n\n## Verification evidence\n- Compatibility checks with observed counts\n- Rollback rehearsal with observed result\n- Remaining owner decisions\n```",
+      "target": "# A coordinated preference schema rollout order\n\nRoll out one notification preference schema across the fictional Willow Mail API, worker, and admin console without changing saved choices.\n\n## System map\n\n- API schema owner\n  - Preference contract\n  - Compatibility mapping\n- Delivery worker\n- Admin console\n\n## Authority order\n\n1. Read repository-wide agent rules\n2. Read the preference data policy\n3. Read ADR-027 for schema ownership\n\n## Rollout phases\n\n### Phase 1 — establish one owner\n\n- Add the new schema and compatibility mapping\n- Freeze existing preference fixtures\n\n### Phase 2 — move readers and writers\n\n- Move the worker read path first\n- Move the admin form after worker verification\n\n### Phase 3 — remove compatibility\n\n- Confirm every supported consumer is migrated\n- Remove old fields through the repository workflow\n\n## Compatibility guards\n\n- Existing preference choices retain their meaning\n- Missing optional values use the documented fallback\n- The worker reads only the API-owned contract\n\n## Rollback plan\n\n1. Restore compatibility mapping in the API\n2. Restore the previous worker reader\n3. Run preference and delivery journeys\n\n## Pause and stop conditions\n\n> Pause when any consumer writes a preference value the API-owned schema cannot represent safely.\n- The data policy conflicts with the approved fallback\n- A supported worker version cannot read the compatibility mapping\n- Rollback would discard an existing user choice\n\n## Verification ledger\n\n- Run `npm test --workspace apps/api -- preferences`\n- Run `npm test --workspace apps/worker -- delivery-choice`\n- Run `npm test --workspace apps/admin -- preference-form`\n\n```markdown\n# Coordinated rollout report\n- Consumers:\n- Decision:\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -3295,10 +3116,6 @@
               "block": "list"
             },
             {
-              "block": "heading",
-              "depth": 2
-            },
-            {
               "block": "code"
             }
           ],
@@ -3313,10 +3130,10 @@
           },
           "block": "heading",
           "depth": 2,
-          "min": 8,
-          "max": 8,
+          "min": 7,
+          "max": 7,
           "priority": 15,
-          "feedback": "Use exactly 8 H2 sections in this document."
+          "feedback": "Use exactly 7 H2 sections in this document."
         },
         {
           "id": "l5-notification-schema-rollout-work-order-hierarchy",
@@ -3364,10 +3181,10 @@
             "occurrence": 1
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 40,
-          "feedback": "Use at least four visible ordered authority sources."
+          "feedback": "Use at least three visible ordered authority sources."
         },
         {
           "id": "l5-notification-schema-rollout-work-order-stage-count",
@@ -3435,10 +3252,10 @@
             "occurrence": 3
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 60,
-          "feedback": "Use at least four visible compatibility-guard bullets."
+          "feedback": "Use at least three visible compatibility-guard bullets."
         },
         {
           "id": "l5-notification-schema-rollout-work-order-rollback",
@@ -3449,10 +3266,10 @@
             "occurrence": 4
           },
           "ordered": true,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 70,
-          "feedback": "Use at least four visible numbered rollback steps."
+          "feedback": "Use at least three visible numbered rollback steps."
         },
         {
           "id": "l5-notification-schema-rollout-work-order-pause-rule",
@@ -3489,10 +3306,10 @@
             "occurrence": 6
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
           "priority": 90,
-          "feedback": "Use at least four visible verification bullets."
+          "feedback": "Use at least three visible verification bullets."
         },
         {
           "id": "l5-notification-schema-rollout-work-order-verification-code",
@@ -3502,10 +3319,10 @@
             "headingDepth": 2,
             "occurrence": 6
           },
-          "min": 4,
+          "min": 3,
           "requireNonemptyContent": true,
           "priority": 95,
-          "feedback": "Use at least four nonempty inline-code items in the verification ledger."
+          "feedback": "Use at least three nonempty inline-code items in the verification ledger."
         },
         {
           "id": "l5-notification-schema-rollout-work-order-report",
@@ -3513,7 +3330,7 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 7
+            "occurrence": 6
           },
           "min": 1,
           "max": 1,
@@ -3531,9 +3348,9 @@
         }
       ],
       "hints": [
-        "Map the provider and consumers with one nested list before ordering the authority sources.",
-        "Use exactly three ### rollout phases, then add compatibility guards and numbered rollback.",
-        "Finish with a quoted pause rule, inline-code verification bullets, and a report template."
+        "Map the provider and consumers with one compact nested list before authority.",
+        "Use exactly three ### phases, then add three compatibility and rollback items.",
+        "Finish with a quoted pause rule and a verification section containing inline code and a report template."
       ],
       "retryFamily": "level5-coordinated-rollout-work-order",
       "reviewTags": [
@@ -3564,7 +3381,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "065883c6d2c3061b3ffac6e07959c6a464e14f9e667637b8c949ac8e93d6b609"
+      "candidateDigest": "287aba5782848249a713d1bbe6dfc1690b7bf54583736d10407b8e544efc2207"
     },
     {
       "id": "l5-search-index-recovery-work-order",
@@ -3574,7 +3391,6 @@
       "skillIds": [
         "evidence-boundary",
         "authority-order",
-        "containment",
         "recovery-stages",
         "rollback-contract",
         "stop-conditions",
@@ -3584,9 +3400,9 @@
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "An evidence-led recovery order separates observation, containment, investigation, recovery, rollback, constraints, stops, proof, and reporting.",
-        "howTo": "Use ordered authority and investigation lists, three H3 recovery stages, explicit rollback and stop lists, and fenced verification and report blocks.",
-        "example": "# Cache recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
+        "concept": "A compact recovery order separates evidence, authority, recovery stages, rollback, constraints, stops, proof, and reporting.",
+        "howTo": "Use three-item authority, rollback, constraint, and stop lists, three H3 stages, and fenced verification and report blocks.",
+        "example": "# Cache recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
       },
       "syntaxTokens": [
         "#",
@@ -3601,7 +3417,7 @@
       ],
       "title": "Write a search index recovery work order",
       "prompt": "Compose an evidence-led work order for restoring index consistency after a schema rollout without weakening the source-of-truth boundary.",
-      "target": "# A search index recovery work order\n\nRestore the fictional Atlas Desk search index after a schema rollout left a subset of records with stale facets. Treat the primary database as the source of truth and keep the recovery measurable, reversible, and reviewable.\n\n## Evidence boundary\n\n> The same record has the current category in the database and the previous category in the search index snapshot.\n\n---\n\n## Authority order\n\n1. Read `AGENTS.md` for repository rules\n2. Read the search recovery policy\n3. Read ADR-024 for index ownership\n4. Inspect current indexing and rebuild conventions\n\n## Containment\n\n- Pause the affected incremental indexer\n- Preserve the inconsistent snapshot\n- Keep database reads available\n\n## Investigation plan\n\n1. Measure the inconsistent record set\n2. Compare schema and indexer deployment versions\n3. Reproduce one stale facet from a fixed fixture\n4. Identify the bounded rebuild range\n\n## Recovery stages\n\n### Stage 1 — establish the baseline\n\n- Record database and index counts\n- Freeze one representative mismatch\n\n### Stage 2 — repair the boundary\n\n- Update the approved index mapping\n- Rebuild only the verified range\n\n### Stage 3 — compare and guard\n\n- Repeat the baseline method\n- Add a stable consistency regression\n\n## Rollback plan\n\n1. Stop the bounded rebuild\n2. Restore the previous verified mapping\n3. Resume reads from the last consistent snapshot\n\n## Hard constraints\n\n- The database remains the source of truth\n- No missing result is replaced with invented content\n- The rebuild does not alter primary records\n- A smaller fixture does not count as recovery evidence\n\n## Stop conditions\n\n- The baseline cannot reproduce the reported mismatch\n- The approved mapping conflicts with current primary data\n- Recovery requires changing the public search contract\n\n## Verification evidence\n\n```bash\nnpm test --workspace apps/search -- consistency\nnpm run benchmark -- index-compare\nrg \"writePrimaryRecord|ignoreMismatch\" apps/search/src\n```\n\n## Final recovery report\n\n```markdown\n# Recovery report\n\n## Evidence reviewed\n- Baseline and mismatch set\n- Mapping and rebuild changes\n- Consistency and regression results\n\n## Verification result\n- Focused checks and observed counts\n- Complete gate and observed counts\n- Remaining owner decisions\n```",
+      "target": "# A search index recovery work order\n\nRestore the fictional Atlas Desk search index after a schema rollout left a subset of records with stale facets. Treat the primary database as the source of truth and keep the recovery measurable, reversible, and reviewable.\n\n## Evidence boundary\n\n> The same record has the current category in the database and the previous category in the search index snapshot.\n\n---\n\n## Authority order\n\n1. Read `AGENTS.md` for repository rules\n2. Read the search recovery policy\n3. Read ADR-024 for index ownership\n\n## Recovery stages\n\n### Stage 1 — establish the baseline\n\n- Record database and index counts\n- Freeze one representative mismatch\n\n### Stage 2 — repair the boundary\n\n- Update the approved index mapping\n- Rebuild only the verified range\n\n### Stage 3 — compare and guard\n\n- Repeat the baseline method\n- Add a stable consistency regression\n\n## Rollback plan\n\n1. Stop the bounded rebuild\n2. Restore the previous verified mapping\n3. Resume reads from the last consistent snapshot\n\n## Hard constraints\n\n- The database remains the source of truth\n- No missing result is replaced with invented content\n- The rebuild does not alter primary records\n\n## Stop conditions\n\n- The baseline cannot reproduce the reported mismatch\n- The approved mapping conflicts with current primary data\n- Recovery requires changing the public search contract\n\n## Verification evidence\n\n```bash\nnpm test --workspace apps/search -- consistency\nnpm run benchmark -- index-compare\n```\n\n## Final recovery report\n\n```markdown\n# Recovery report\n- Evidence:\n- Verification:\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -3641,20 +3457,6 @@
               "depth": 2
             },
             {
-              "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
-              "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
-            },
-            {
               "block": "heading",
               "depth": 3
             },
@@ -3695,10 +3497,6 @@
             },
             {
               "block": "list"
-            },
-            {
-              "block": "heading",
-              "depth": 2
             },
             {
               "block": "code"
@@ -3722,10 +3520,10 @@
           },
           "block": "heading",
           "depth": 2,
-          "min": 10,
-          "max": 10,
+          "min": 8,
+          "max": 8,
           "priority": 15,
-          "feedback": "Use exactly 10 H2 sections in this document."
+          "feedback": "Use exactly 8 H2 sections in this document."
         },
         {
           "id": "l5-search-index-recovery-work-order-hierarchy",
@@ -3769,38 +3567,10 @@
             "occurrence": 1
           },
           "ordered": true,
-          "minItems": 4,
-          "requireVisibleItems": true,
-          "priority": 40,
-          "feedback": "Use at least four visible ordered authority sources."
-        },
-        {
-          "id": "l5-search-index-recovery-work-order-containment",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 2
-          },
-          "ordered": false,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 50,
-          "feedback": "Use at least three visible containment bullets."
-        },
-        {
-          "id": "l5-search-index-recovery-work-order-investigation",
-          "kind": "list-shape",
-          "scope": {
-            "kind": "section",
-            "headingDepth": 2,
-            "occurrence": 3
-          },
-          "ordered": true,
-          "minItems": 4,
-          "requireVisibleItems": true,
-          "priority": 60,
-          "feedback": "Use at least four visible numbered investigation steps."
+          "priority": 40,
+          "feedback": "Use at least three visible ordered authority sources."
         },
         {
           "id": "l5-search-index-recovery-work-order-stage-count",
@@ -3808,13 +3578,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 4
+            "occurrence": 2
           },
           "block": "heading",
           "depth": 3,
           "min": 3,
           "max": 3,
-          "priority": 70,
+          "priority": 50,
           "feedback": "Use exactly 3 H3 stages in the execution section."
         },
         {
@@ -3828,7 +3598,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 71,
+          "priority": 51,
           "feedback": "Use at least two visible bullets under H3 stage 1."
         },
         {
@@ -3842,7 +3612,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 72,
+          "priority": 52,
           "feedback": "Use at least two visible bullets under H3 stage 2."
         },
         {
@@ -3856,7 +3626,7 @@
           "ordered": false,
           "minItems": 2,
           "requireVisibleItems": true,
-          "priority": 73,
+          "priority": 53,
           "feedback": "Use at least two visible bullets under H3 stage 3."
         },
         {
@@ -3865,12 +3635,12 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 5
+            "occurrence": 3
           },
           "ordered": true,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 80,
+          "priority": 60,
           "feedback": "Use at least three visible numbered rollback steps."
         },
         {
@@ -3879,13 +3649,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 6
+            "occurrence": 4
           },
           "ordered": false,
-          "minItems": 4,
+          "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 90,
-          "feedback": "Use at least four visible hard-constraint bullets."
+          "priority": 70,
+          "feedback": "Use at least three visible hard-constraint bullets."
         },
         {
           "id": "l5-search-index-recovery-work-order-stops",
@@ -3893,12 +3663,12 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 7
+            "occurrence": 5
           },
           "ordered": false,
           "minItems": 3,
           "requireVisibleItems": true,
-          "priority": 100,
+          "priority": 80,
           "feedback": "Use at least three visible stop-condition bullets."
         },
         {
@@ -3907,13 +3677,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 8
+            "occurrence": 6
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 110,
+          "priority": 90,
           "feedback": "Use one fenced, language-tagged block in this section."
         },
         {
@@ -3922,13 +3692,13 @@
           "scope": {
             "kind": "section",
             "headingDepth": 2,
-            "occurrence": 9
+            "occurrence": 7
           },
           "min": 1,
           "max": 1,
           "requireLanguageTag": true,
           "requireFenced": true,
-          "priority": 120,
+          "priority": 100,
           "feedback": "Use one fenced, language-tagged block in this section."
         }
       ],
@@ -3940,8 +3710,8 @@
         }
       ],
       "hints": [
-        "Separate evidence, authority, containment, investigation, and recovery before writing verification.",
-        "Use exactly three ### recovery stages and keep rollback, constraints, and stop conditions distinct.",
+        "Separate evidence and authority before writing the recovery stages.",
+        "Use exactly three ### stages and three short items in each later list.",
         "Finish with fenced command evidence and a fenced final-report template."
       ],
       "retryFamily": "level5-evidence-recovery-work-order",
@@ -3973,8 +3743,8 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "8222f391e89f0cda69c0f4e54e333b8759ba0b7c24900e8d754476b715e40d28"
+      "candidateDigest": "7d12add6bed412384d5b91d5371358b421fcb67e6c2c901c2f2663d09a20ea5c"
     }
   ],
-  "artifactDigest": "056e4191a3bbbb4e6b56ac9bb3f6cb02c8b87d58b817bf9730765bbcbee75e0e"
+  "artifactDigest": "3e7eb537e69e3f511a29182e1b7d6c33d20826f2eb45e1033f00f4ab7463fdb1"
 }

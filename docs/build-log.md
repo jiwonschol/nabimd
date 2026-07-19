@@ -2204,3 +2204,43 @@ and tracker
 `123924a5fb466deadb0ebf032fce62d2a46e5ea7b922e5d4a149f54e1932a161`.
 Issue #9 remains open: this PR uses `Refs #9`, preserves the 512 target and
 completion floors, and intentionally leaves later Level 5 expansion available.
+
+### Batch 017 brevity repair and evidence invalidation
+
+Developer playtesting rejected the first publication candidate as too much
+workplace reading for a Markdown lesson. Its Level 4 lists commonly contained
+four items, while the Level 5 work orders stretched to 84–93 lines and roughly
+2,300–2,500 source characters. Those records were structurally valid, but the
+extra policy, comprehension, and reporting detail taught document operations
+rather than additional Markdown.
+
+The replacement contract caps Level 4 at 28–40 lines and 95–165 words, and
+Level 5 at 40–65 lines and 150–230 words. Every Level 4–5 list contains two or
+three short items. Recovery orders now use eight H2 sections, refactor orders
+seven, and rollout orders seven; each retains three H3 stages and the distinct
+Markdown devices that define its family. Grammar-only grading remains
+unchanged.
+
+The prior Atlas and Orchid reviews, editorial verdict, publication summary,
+and manifest are historical evidence only and cannot authorize the replacement
+content. They were removed from the active artifact set before regeneration.
+The repository-local `authoring-nabimd-problem-banks` skill now captures the
+same brevity budgets, fixture protocol, grammar boundary, and immutable review
+lifecycle for future “Level X” problem-bank requests. Pressure tests before
+and after the skill showed the intended correction: without it, agents proposed
+four- and five-item lists and 80-line work orders; with it, they held Level 4
+and Level 5 to the compact budgets and explicitly refused realism inflation.
+
+The replacement freeze contains 228 real-engine fixtures for 12 candidates.
+Level 4 Goals are exactly 40 lines and 128–135 words; Level 5 Goals are
+59–65 lines and 186–223 words. The active manifest is
+`212139fb20e45aaeb7b114b199bbe4b757484c4952962250bc7d65b262cfbbc4`,
+normalized artifact
+`3e7eb537e69e3f511a29182e1b7d6c33d20826f2eb45e1033f00f4ab7463fdb1`,
+verification
+`bd268af56bef57b82f5902b81e28d271dfac1676e11eab8ba7ca6eb3530bf84a`,
+and prepared summary
+`68d30b086951ff1f500722e97df11dfa072e73d67c4a553f8c0bb3f7c5a83303`.
+The engine contract remains unchanged. Runtime projections and tracker are
+restored to the prior 332-problem checkpoint until two new mechanical reviews
+and one new editorial review accept this exact freeze.
