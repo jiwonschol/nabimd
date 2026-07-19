@@ -19,6 +19,9 @@
   --ink: #111111;
   --paper: #ffffff;
   --canvas: #f5f5f2;
+  --book-paper: #f2eee5;
+  --book-paper-pressed: #e7e1d6;
+  --book-line: #b8b1a5;
   --muted: #5f5f5a;
   --line: #d7d7d2;
   --focus: #111111;
@@ -37,4 +40,5 @@
   --space-5: 3rem;
   --page-gutter: clamp(1.25rem, 3.2vw, 3.75rem);
   --motion: 180ms;
+  --page-turn-duration: 720ms;
 }
