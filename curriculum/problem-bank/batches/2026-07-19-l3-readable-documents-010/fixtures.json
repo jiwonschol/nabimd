@@ -1,0 +1,2002 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l3-readable-documents-010",
+  "fixtures": [
+    {
+      "id": "l3-decision-quiet-room-booking-alternate-bullet-marker",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n+ Update the room guide\n+ Add the limit to each calendar\n+ Review booking patterns next month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-canonical",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-case-spelling",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for COWORKER to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n> This quote is in the context section.\n\n## Decision\n\n>\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-decision"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-different-prose",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-duplicate-title-review",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-empty-decision-quote",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-decision-quiet-room-booking-decision",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n>\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-decision"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n\\> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-outline"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-extra-h2",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-quiet-room-booking-sections",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-sections"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-extra-valid-markdown",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n```md\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n```\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-outline"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-hidden-only-action-items",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-missing-title",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-decision-quiet-room-booking-outline",
+      "source": "Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-outline"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-ordered-actions",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-quiet-room-booking-actions",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n1. Update the room guide\n2. Add the limit to each calendar\n3. Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-actions"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n<blockquote>Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.</blockquote>\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-outline"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-skipped-heading-depth",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-quiet-room-booking-hierarchy",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-hierarchy"
+    },
+    {
+      "id": "l3-decision-quiet-room-booking-two-actions",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-quiet-room-booking-actions"
+    },
+    {
+      "id": "l3-decision-reply-template-review-alternate-bullet-marker",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n+ Add a review step to the checklist\n+ Name a backup reviewer\n+ Ask the support lead to confirm the process",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-reply-template-review-canonical",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-reply-template-review-case-spelling",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a BACKU reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-reply-template-review-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n> This quote is in the context section.\n\n## Decision\n\n>\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-decision"
+    },
+    {
+      "id": "l3-decision-reply-template-review-different-prose",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-reply-template-review-duplicate-title-review",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-decision-reply-template-review-empty-decision-quote",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-decision-reply-template-review-decision",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n>\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-decision"
+    },
+    {
+      "id": "l3-decision-reply-template-review-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n\\> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-outline"
+    },
+    {
+      "id": "l3-decision-reply-template-review-extra-h2",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-reply-template-review-sections",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-sections"
+    },
+    {
+      "id": "l3-decision-reply-template-review-extra-valid-markdown",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-reply-template-review-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n```md\n> One teammate reviews every new reply template before it is shared.\n```\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-outline"
+    },
+    {
+      "id": "l3-decision-reply-template-review-hidden-only-action-items",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-reply-template-review-missing-title",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-decision-reply-template-review-outline",
+      "source": "Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-outline"
+    },
+    {
+      "id": "l3-decision-reply-template-review-ordered-actions",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-reply-template-review-actions",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n1. Add a review step to the checklist\n2. Name a backup reviewer\n3. Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-actions"
+    },
+    {
+      "id": "l3-decision-reply-template-review-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n<blockquote>One teammate reviews every new reply template before it is shared.</blockquote>\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-outline"
+    },
+    {
+      "id": "l3-decision-reply-template-review-skipped-heading-depth",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-reply-template-review-hierarchy",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-hierarchy"
+    },
+    {
+      "id": "l3-decision-reply-template-review-two-actions",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-reply-template-review-actions"
+    },
+    {
+      "id": "l3-decision-report-schedule-alternate-bullet-marker",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n+ Update the reporting calendar\n+ Move the reminder to Thursday morning\n+ Review the schedule after one month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-report-schedule-canonical",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-report-schedule-case-spelling",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday MORNIN\n- Review the schedule after one month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-report-schedule-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n> This quote is in the context section.\n\n## Decision\n\n>\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-decision"
+    },
+    {
+      "id": "l3-decision-report-schedule-different-prose",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-report-schedule-duplicate-title-review",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-decision-report-schedule-empty-decision-quote",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-decision-report-schedule-decision",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n>\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-decision"
+    },
+    {
+      "id": "l3-decision-report-schedule-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n\\> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-outline"
+    },
+    {
+      "id": "l3-decision-report-schedule-extra-h2",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-report-schedule-sections",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-sections"
+    },
+    {
+      "id": "l3-decision-report-schedule-extra-valid-markdown",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-report-schedule-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n```md\n> Send the weekly report each Thursday by 3:00 p.m.\n```\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-outline"
+    },
+    {
+      "id": "l3-decision-report-schedule-hidden-only-action-items",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-report-schedule-missing-title",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-decision-report-schedule-outline",
+      "source": "Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-outline"
+    },
+    {
+      "id": "l3-decision-report-schedule-ordered-actions",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-report-schedule-actions",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n1. Update the reporting calendar\n2. Move the reminder to Thursday morning\n3. Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-actions"
+    },
+    {
+      "id": "l3-decision-report-schedule-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n<blockquote>Send the weekly report each Thursday by 3:00 p.m.</blockquote>\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-outline"
+    },
+    {
+      "id": "l3-decision-report-schedule-skipped-heading-depth",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-report-schedule-hierarchy",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-hierarchy"
+    },
+    {
+      "id": "l3-decision-report-schedule-two-actions",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-report-schedule-actions"
+    },
+    {
+      "id": "l3-decision-shared-file-names-alternate-bullet-marker",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n+ Rename the current reports\n+ Add an example to the team guide\n+ Check the shared folder next Friday",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-shared-file-names-canonical",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-shared-file-names-case-spelling",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current REPORT\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-shared-file-names-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n> This quote is in the context section.\n\n## Decision\n\n>\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-decision"
+    },
+    {
+      "id": "l3-decision-shared-file-names-different-prose",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-shared-file-names-duplicate-title-review",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-decision-shared-file-names-empty-decision-quote",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-decision-shared-file-names-decision",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n>\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-decision"
+    },
+    {
+      "id": "l3-decision-shared-file-names-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n\\> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-outline"
+    },
+    {
+      "id": "l3-decision-shared-file-names-extra-h2",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-shared-file-names-sections",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-sections"
+    },
+    {
+      "id": "l3-decision-shared-file-names-extra-valid-markdown",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-shared-file-names-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n```md\n> Put the project date first in every final report file name.\n```\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-outline"
+    },
+    {
+      "id": "l3-decision-shared-file-names-hidden-only-action-items",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-decision-shared-file-names-missing-title",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-decision-shared-file-names-outline",
+      "source": "Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-outline"
+    },
+    {
+      "id": "l3-decision-shared-file-names-ordered-actions",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-shared-file-names-actions",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n1. Rename the current reports\n2. Add an example to the team guide\n3. Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-actions"
+    },
+    {
+      "id": "l3-decision-shared-file-names-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n<blockquote>Put the project date first in every final report file name.</blockquote>\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-outline"
+    },
+    {
+      "id": "l3-decision-shared-file-names-skipped-heading-depth",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-decision-shared-file-names-hierarchy",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-hierarchy"
+    },
+    {
+      "id": "l3-decision-shared-file-names-two-actions",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-decision-shared-file-names-actions"
+    },
+    {
+      "id": "l3-handoff-document-review-alternate-bullet-marker",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n* Review the final two sections\n* Confirm the chart labels\n* Send the clean draft to the final editor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-document-review-canonical",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-document-review-case-spelling",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **OPENIN page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-document-review-different-prose",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-document-review-duplicate-title-review",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-handoff-document-review-extra-h2",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-handoff-document-review-sections",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-sections"
+    },
+    {
+      "id": "l3-handoff-document-review-extra-valid-markdown",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-document-review-fenced-list-lookalike",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n```md\n- First\n- Second\n- Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-outline"
+    },
+    {
+      "id": "l3-handoff-document-review-hidden-only-action-items",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-document-review-inline-code-strong-lookalike",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe `**opening page is approved**`, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-status"
+    },
+    {
+      "id": "l3-handoff-document-review-malformed-strong",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-handoff-document-review-status",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved*, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-status"
+    },
+    {
+      "id": "l3-handoff-document-review-missing-title",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-handoff-document-review-outline",
+      "source": "Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-outline"
+    },
+    {
+      "id": "l3-handoff-document-review-ordered-actions",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-handoff-document-review-actions",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n1. Review the final two sections\n2. Confirm the chart labels\n3. Send the clean draft to the final editor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-actions"
+    },
+    {
+      "id": "l3-handoff-document-review-raw-html-list-lookalike",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n<ul><li>First</li><li>Second</li><li>Third</li></ul>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-outline"
+    },
+    {
+      "id": "l3-handoff-document-review-raw-html-strong",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe <strong>opening page is approved</strong>, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-status"
+    },
+    {
+      "id": "l3-handoff-document-review-skipped-heading-depth",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-handoff-document-review-hierarchy",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-hierarchy"
+    },
+    {
+      "id": "l3-handoff-document-review-strong-in-wrong-section",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe opening page is approved, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor\n\nThe **bold text is in the wrong section**.\n\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-status"
+    },
+    {
+      "id": "l3-handoff-document-review-two-actions",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-document-review-actions"
+    },
+    {
+      "id": "l3-handoff-event-registration-alternate-bullet-marker",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n* Add the late registrations\n* Print badges for new guests\n* Count the remaining welcome packets",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-event-registration-canonical",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-event-registration-case-spelling",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the EARLIE afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-event-registration-different-prose",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-event-registration-duplicate-title-review",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-handoff-event-registration-extra-h2",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-handoff-event-registration-sections",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-sections"
+    },
+    {
+      "id": "l3-handoff-event-registration-extra-valid-markdown",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-event-registration-fenced-list-lookalike",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n```md\n- First\n- Second\n- Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-outline"
+    },
+    {
+      "id": "l3-handoff-event-registration-hidden-only-action-items",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-handoff-event-registration-inline-code-strong-lookalike",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe `**guest list is current through noon**`, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-status"
+    },
+    {
+      "id": "l3-handoff-event-registration-malformed-strong",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-handoff-event-registration-status",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon*, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-status"
+    },
+    {
+      "id": "l3-handoff-event-registration-missing-title",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-handoff-event-registration-outline",
+      "source": "Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-outline"
+    },
+    {
+      "id": "l3-handoff-event-registration-ordered-actions",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-handoff-event-registration-actions",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n1. Add the late registrations\n2. Print badges for new guests\n3. Count the remaining welcome packets",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-actions"
+    },
+    {
+      "id": "l3-handoff-event-registration-raw-html-list-lookalike",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n<ul><li>First</li><li>Second</li><li>Third</li></ul>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-outline"
+    },
+    {
+      "id": "l3-handoff-event-registration-raw-html-strong",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe <strong>guest list is current through noon</strong>, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-status"
+    },
+    {
+      "id": "l3-handoff-event-registration-skipped-heading-depth",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-handoff-event-registration-hierarchy",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-hierarchy"
+    },
+    {
+      "id": "l3-handoff-event-registration-strong-in-wrong-section",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe guest list is current through noon, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets\n\nThe **bold text is in the wrong section**.\n\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-status"
+    },
+    {
+      "id": "l3-handoff-event-registration-two-actions",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-handoff-event-registration-actions"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-canonical",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-case-spelling",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest REVIE date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-different-prose",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-duplicate-title-review",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-extra-h2",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-organize-project-folder-sections",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-sections"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-extra-valid-markdown",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-fenced-steps-lookalike",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n```md\n1. First\n2. Second\n3. Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-outline"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-hidden-only-preparation-items",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\nConfirm the exact label `ready` before continuing.\n\n## Steps\n\n1. Create a folder named Current\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-exact-item"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-inline-code-outside-list",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named Current\n2. Move the approved draft into it\n3. Place older drafts in the archive folder\n\nUse the exact interface label `ready` for this guide.\n\n",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-malformed-inline-code",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-how-to-organize-project-folder-exact-item",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-exact-item"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-missing-title",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-how-to-organize-project-folder-outline",
+      "source": "Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-outline"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-ordered-preparation",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-organize-project-folder-preparation",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n1. Find the approved draft\n2. Confirm the project owner\n3. Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-preparation"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-raw-html-code-lookalike",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named <code>Current</code>\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-exact-item"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-skipped-heading-depth",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-organize-project-folder-hierarchy",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-hierarchy"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-two-preparation-items",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-preparation"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-two-steps",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-steps"
+    },
+    {
+      "id": "l3-how-to-organize-project-folder-unordered-steps",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-organize-project-folder-steps",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n- Create a folder named `Current`\n- Move the approved draft into it\n- Place older drafts in the archive folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-organize-project-folder-steps"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-canonical",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-case-spelling",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `MEETIN-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-different-prose",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-duplicate-title-review",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-extra-h2",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-publish-meeting-notes-sections",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-sections"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-extra-valid-markdown",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-fenced-steps-lookalike",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n```md\n1. First\n2. Second\n3. Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-outline"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-hidden-only-preparation-items",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\nConfirm the exact label `ready` before continuing.\n\n## Steps\n\n1. Save the final copy as meeting-notes.md\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-inline-code-outside-list",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as meeting-notes.md\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees\n\nUse the exact interface label `ready` for this guide.\n\n",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-malformed-inline-code",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-how-to-publish-meeting-notes-exact-item",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-missing-title",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-how-to-publish-meeting-notes-outline",
+      "source": "Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-outline"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-ordered-preparation",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-publish-meeting-notes-preparation",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n1. Review the attendee list\n2. Confirm each action owner\n3. Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-preparation"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-raw-html-code-lookalike",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as <code>meeting-notes.md</code>\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-skipped-heading-depth",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-publish-meeting-notes-hierarchy",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-hierarchy"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-two-preparation-items",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-preparation"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-two-steps",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-steps"
+    },
+    {
+      "id": "l3-how-to-publish-meeting-notes-unordered-steps",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-publish-meeting-notes-steps",
+      "source": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n- Save the final copy as `meeting-notes.md`\n- Add the file to the shared meeting folder\n- Send the folder link to all attendees",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-publish-meeting-notes-steps"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-canonical",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-case-spelling",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet REFLECT what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-different-prose",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-duplicate-title-review",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-extra-h2",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-review-inventory-sheet-sections",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-sections"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-extra-valid-markdown",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-fenced-steps-lookalike",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n```md\n1. First\n2. Second\n3. Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-outline"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-hidden-only-preparation-items",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\nConfirm the exact label `ready` before continuing.\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as checked\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-inline-code-outside-list",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as checked\n3. Share the completed sheet with the order owner\n\nUse the exact interface label `ready` for this guide.\n\n",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-malformed-inline-code",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-how-to-review-inventory-sheet-exact-item",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-missing-title",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-how-to-review-inventory-sheet-outline",
+      "source": "Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-outline"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-ordered-preparation",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-review-inventory-sheet-preparation",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n1. Open the latest inventory sheet\n2. Bring the current item count\n3. Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-preparation"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-raw-html-code-lookalike",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as <code>checked</code>\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-skipped-heading-depth",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-review-inventory-sheet-hierarchy",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-hierarchy"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-two-preparation-items",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-preparation"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-two-steps",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-steps"
+    },
+    {
+      "id": "l3-how-to-review-inventory-sheet-unordered-steps",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-review-inventory-sheet-steps",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n- Compare each row with the counted items\n- Mark reviewed rows as `checked`\n- Share the completed sheet with the order owner",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-review-inventory-sheet-steps"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-canonical",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-case-spelling",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and EVERYON needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-different-prose",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-duplicate-title-review",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-extra-h2",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-update-team-calendar-sections",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-sections"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-extra-valid-markdown",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-fenced-steps-lookalike",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n```md\n1. First\n2. Second\n3. Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-outline"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-hidden-only-preparation-items",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\nConfirm the exact label `ready` before continuing.\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose Save and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-exact-item"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-inline-code-outside-list",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose Save and send the update\n\nUse the exact interface label `ready` for this guide.\n\n",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-malformed-inline-code",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-how-to-update-team-calendar-exact-item",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-exact-item"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-missing-title",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-how-to-update-team-calendar-outline",
+      "source": "Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-outline"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-ordered-preparation",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-update-team-calendar-preparation",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n1. Confirm the new time\n2. Check the team's time zone\n3. Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-preparation"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-raw-html-code-lookalike",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose <code>Save</code> and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-exact-item"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-skipped-heading-depth",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-update-team-calendar-hierarchy",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-hierarchy"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-two-preparation-items",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-preparation"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-two-steps",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-steps"
+    },
+    {
+      "id": "l3-how-to-update-team-calendar-unordered-steps",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-how-to-update-team-calendar-steps",
+      "source": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n- Open the existing event\n- Change the date and attendee list\n- Choose `Save` and send the update",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-how-to-update-team-calendar-steps"
+    },
+    {
+      "id": "l3-status-help-center-refresh-alternate-bullet-marker",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n* Confirm the article owner\n* Add the approved screenshots\n* Share the publish date with support",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-help-center-refresh-canonical",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-help-center-refresh-case-spelling",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Help center REFRES\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-help-center-refresh-different-prose",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-help-center-refresh-duplicate-title-review",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-status-help-center-refresh-extra-h2",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-status-help-center-refresh-sections",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-sections"
+    },
+    {
+      "id": "l3-status-help-center-refresh-extra-valid-markdown",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-help-center-refresh-fenced-list-lookalike",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n```md\n- First\n- Second\n- Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-outline"
+    },
+    {
+      "id": "l3-status-help-center-refresh-hidden-only-action-items",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-help-center-refresh-inline-code-strong-lookalike",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe `**billing article has passed its content review**`, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-status"
+    },
+    {
+      "id": "l3-status-help-center-refresh-malformed-strong",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-status-help-center-refresh-status",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review*, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-status"
+    },
+    {
+      "id": "l3-status-help-center-refresh-missing-title",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-status-help-center-refresh-outline",
+      "source": "Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-outline"
+    },
+    {
+      "id": "l3-status-help-center-refresh-ordered-actions",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-status-help-center-refresh-actions",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n1. Confirm the article owner\n2. Add the approved screenshots\n3. Share the publish date with support",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-actions"
+    },
+    {
+      "id": "l3-status-help-center-refresh-raw-html-list-lookalike",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n<ul><li>First</li><li>Second</li><li>Third</li></ul>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-outline"
+    },
+    {
+      "id": "l3-status-help-center-refresh-raw-html-strong",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe <strong>billing article has passed its content review</strong>, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-status"
+    },
+    {
+      "id": "l3-status-help-center-refresh-skipped-heading-depth",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-status-help-center-refresh-hierarchy",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-hierarchy"
+    },
+    {
+      "id": "l3-status-help-center-refresh-strong-in-wrong-section",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe billing article has passed its content review, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support\n\nThe **bold text is in the wrong section**.\n\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-status"
+    },
+    {
+      "id": "l3-status-help-center-refresh-two-actions",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-help-center-refresh-actions"
+    },
+    {
+      "id": "l3-status-office-move-alternate-bullet-marker",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n* Send the floor plan to the team\n* Place labels on the packed boxes\n* Confirm the move-day contact",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-office-move-canonical",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-office-move-case-spelling",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move WITHOU searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-office-move-different-prose",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-office-move-duplicate-title-review",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact\n\n# Separate document title",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "one-document-title"
+      ]
+    },
+    {
+      "id": "l3-status-office-move-extra-h2",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-status-office-move-sections",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact\n\n## Additional notes\n\nThis extra section is outside the requested short structure.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-sections"
+    },
+    {
+      "id": "l3-status-office-move-extra-valid-markdown",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact\n\n---\n\n> A separate supporting note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-office-move-fenced-list-lookalike",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n```md\n- First\n- Second\n- Third\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-outline"
+    },
+    {
+      "id": "l3-status-office-move-hidden-only-action-items",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->\n- <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-status-office-move-inline-code-strong-lookalike",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe `**new floor plan is approved**`, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-status"
+    },
+    {
+      "id": "l3-status-office-move-malformed-strong",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l3-status-office-move-status",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved*, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-status"
+    },
+    {
+      "id": "l3-status-office-move-missing-title",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l3-status-office-move-outline",
+      "source": "Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-outline"
+    },
+    {
+      "id": "l3-status-office-move-ordered-actions",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-status-office-move-actions",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n1. Send the floor plan to the team\n2. Place labels on the packed boxes\n3. Confirm the move-day contact",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-actions"
+    },
+    {
+      "id": "l3-status-office-move-raw-html-list-lookalike",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n<ul><li>First</li><li>Second</li><li>Third</li></ul>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-outline"
+    },
+    {
+      "id": "l3-status-office-move-raw-html-strong",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe <strong>new floor plan is approved</strong>, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-status"
+    },
+    {
+      "id": "l3-status-office-move-skipped-heading-depth",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l3-status-office-move-hierarchy",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n### Supporting detail\n\nThis extra heading skips a level.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-hierarchy"
+    },
+    {
+      "id": "l3-status-office-move-strong-in-wrong-section",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe new floor plan is approved, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact\n\nThe **bold text is in the wrong section**.\n\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-status"
+    },
+    {
+      "id": "l3-status-office-move-two-actions",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l3-status-office-move-actions"
+    }
+  ]
+}

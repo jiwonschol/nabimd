@@ -7,6 +7,7 @@ import { inlineCodeBatch007Fixtures } from "./batches/inlineCodeBatch007Fixtures
 import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
 import { orderedListBatch005Fixtures } from "./batches/orderedListBatch005Fixtures"
+import { readableDocumentBatch010Fixtures } from "./batches/readableDocumentBatch010Fixtures"
 import { thematicBreakBatch009Fixtures } from "./batches/thematicBreakBatch009Fixtures"
 import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
@@ -19,13 +20,13 @@ import {
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted foundation and nine reviewed expansion batches", () => {
-    expect(problemBank).toHaveLength(212)
+  it("publishes the accepted foundation and ten reviewed expansion batches", () => {
+    expect(problemBank).toHaveLength(224)
     expect(getProblemsForLevel(1)).toHaveLength(100)
     expect(getProblemsForLevel(2)).toHaveLength(100)
-    for (const level of [3, 4, 5] as const) {
-      expect(getProblemsForLevel(level)).toHaveLength(4)
-    }
+    expect(getProblemsForLevel(3)).toHaveLength(16)
+    expect(getProblemsForLevel(4)).toHaveLength(4)
+    expect(getProblemsForLevel(5)).toHaveLength(4)
   })
 
   it("executes the generated runtime projection without a parallel source list", () => {
@@ -58,6 +59,7 @@ describe("compiled five-level problem bank", () => {
         ...inlineCodeBatch007Fixtures,
         ...linkBatch008Fixtures,
         ...thematicBreakBatch009Fixtures,
+        ...readableDocumentBatch010Fixtures,
       ]),
     ).toEqual([])
   })

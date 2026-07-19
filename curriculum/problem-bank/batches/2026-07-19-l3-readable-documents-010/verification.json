@@ -1,0 +1,3147 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l3-readable-documents-010",
+  "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+  "candidates": [
+    {
+      "candidateId": "l3-decision-quiet-room-booking",
+      "revision": 1,
+      "candidateDigest": "c2ffabe884ad2949abe7bf9d10aa46fca0ebc6a88ff12a579f6855524504426d",
+      "problemDigest": "95232b9ee9e21e5a38e90cb3af7bb7411fb3b9f7fada2665d3088d41755d6ad2",
+      "fixtureDefinitionDigest": "7cb83a78b3e36babd4e7fd15d33b63a61221ce0b73a310c8288a03439eb7a515",
+      "fixtureResultsDigest": "5b83bc678b9e39716ab16530bb473e8934fb9b5fb48d85a18ca4c379289ba350",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-decision-reply-template-review",
+      "revision": 1,
+      "candidateDigest": "8f232884508f0c69641e3bf7bf69998338f3afc09edec9aa8a5e6e43906faa33",
+      "problemDigest": "5e2372913ed4481dddae5c59985caaff181862b4d3c60f7bb4afccd0dcbb33c4",
+      "fixtureDefinitionDigest": "408b9ac598d044b777f228200d83078060e58e52c7d9d0dec9464cbfd5f0870d",
+      "fixtureResultsDigest": "e4daf2cae52f894cb922879f1b6e30587974a929b9aef46ff19dc093029edf17",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-decision-report-schedule",
+      "revision": 1,
+      "candidateDigest": "17477e1af2a1107634b520d04b06f8abc159ac0a0bbde08fb1733238e9c4da26",
+      "problemDigest": "e29c0ecda1bb2d8c5f30c027df38c836c9d7d83c9303ffa46e5ce72b8da6472b",
+      "fixtureDefinitionDigest": "f5cd15b6fdecb93ceee71e1578b838158deaa3ee8b9fbf37de8dd8009ac1f53c",
+      "fixtureResultsDigest": "d06974c60dbc4b67850453b8cda4ff681c7fa34a8fff4b1be3221009c77f1b55",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-decision-shared-file-names",
+      "revision": 1,
+      "candidateDigest": "6f2278d62b02099655ebe167ef19e033fed3e3c75ce00f0015b5ca3bd8bd1bc3",
+      "problemDigest": "1d3671421903713cf3e801df81d8709c8cf697603d60bfb3e0f9fcdab351ba28",
+      "fixtureDefinitionDigest": "637d954c9ac3e061582a6cd8253ed18da7aaa84241b08e915bbbfa9aebfa69eb",
+      "fixtureResultsDigest": "56c33674a9f95d45f3c94fc3c7f7f878be5cc065cb9b934fd26ad04ec851e3f6",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-handoff-document-review",
+      "revision": 1,
+      "candidateDigest": "983e53de3878d72ee99cabc6c1cd1a271e21271865f32850969ff2b6aaf9ed85",
+      "problemDigest": "a7dfcc6bc394c667a26c683bb3278ecf51aae48042ff6097bfc0adda5a4f7843",
+      "fixtureDefinitionDigest": "52e587fda4df533bb72a9211732d0949c97202e0dbd8de65ef52c74dbe102a3f",
+      "fixtureResultsDigest": "adcac5fb7668fd191f4aa6e6d1cf281a98f9edcc4c66cdcaeb802e47d41d1ce2",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-handoff-event-registration",
+      "revision": 1,
+      "candidateDigest": "6dda3584e811cb6860257b6562af1f3086722aa1efb4d509f9143732a20a6254",
+      "problemDigest": "401fcbc948e63d6fcf2a33177d1f416c6cd0d9ee806017e8ee0c75f41496472e",
+      "fixtureDefinitionDigest": "99cc8dd45c88dfa5285e13c7f884b44c4421017d333ea85d8e5d284096bdc206",
+      "fixtureResultsDigest": "8676fd146a1ace1b5c9ed1ea65d32d9146101881eede847d5961aed6777127f7",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-how-to-organize-project-folder",
+      "revision": 1,
+      "candidateDigest": "c5142535674db78a4b4896be1c0525baec2ab23b28f15a65a20b5bc8e247992b",
+      "problemDigest": "fc43d1ed343c58ae7a39b936a7b45846b9ed2fdbe44a4c713ded5e5ecc4819f4",
+      "fixtureDefinitionDigest": "c7a2cd605ace50686f511f080aec6be26e32e1774df36f2894274d563a78c1c4",
+      "fixtureResultsDigest": "ac37efa2e52cd63cec9cf00a12ba8c16b48eaef6da51f6cf24aab63f86cc7c9b",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-how-to-publish-meeting-notes",
+      "revision": 1,
+      "candidateDigest": "3163b0543f70b83e6bd86ed7ad9808290640fe6b0a180676fec9620f0b466eea",
+      "problemDigest": "2e2b91f274f4e2caccb0e5f262cbb919f078992a90e34d7bfc6e8b4d1887d803",
+      "fixtureDefinitionDigest": "5eb325cd1fde097e7f5e9d68ee1bbe52d55aa67a56fc879af0d774c8e4ec5a43",
+      "fixtureResultsDigest": "15a5adb18f9f7d2f18772c92edf5d63a715037b17a70b5f194fbe18cfbbf1bcf",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-how-to-review-inventory-sheet",
+      "revision": 1,
+      "candidateDigest": "0dbff61755d4cac5c088efda8e596e8cc5f9e1fca2020c6e926af62d18f6a41e",
+      "problemDigest": "b63002213a81de907746c8fbc6876a42ac8c8860f528bf3f9368563bbcd5588a",
+      "fixtureDefinitionDigest": "81ac68f5bfcb2679254c98be3fe79a5952fbdc0372730522ed6cd5c060963e67",
+      "fixtureResultsDigest": "8690d1b69d8038d745609a182f0294a8f37398335a07751329a24c63360638c2",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-how-to-update-team-calendar",
+      "revision": 1,
+      "candidateDigest": "ca2a3ba5ad251cac63d37290d867c7ab5e563fa10c5945b968dd7aae3f9600d0",
+      "problemDigest": "a34b5fd8edd77dd4894f792a69b8e3087e86e6c685b1628420ce8451a95a489d",
+      "fixtureDefinitionDigest": "47f3be7b17022a442954bc90e596a8a632e6b7464770640d6bff041695f6f72f",
+      "fixtureResultsDigest": "808bc73e7d986e87843484443a3dcfb82e700a16108ab56e797b38b3bae6dbe9",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-status-help-center-refresh",
+      "revision": 1,
+      "candidateDigest": "f96747969bc6970f022383cb52f3ef21d2eef983cf0bd36dddc21e4757a1c044",
+      "problemDigest": "5d615e572a4c5fe9142f3bd04a2d86727b103e32e6b8cd149bff680dee0e6008",
+      "fixtureDefinitionDigest": "01b27839788c029c3339c82ddd05b8534f0d6ce58772259cbd3c8e0e2206dbdf",
+      "fixtureResultsDigest": "54fee3a0e5038a1c9ce0714984278ec32eb8da579814db1a1bc5b3f6f30585ab",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-status-office-move",
+      "revision": 1,
+      "candidateDigest": "d940c69a7a8f90cd7148d6bbef527d06d7cdbc921e02ae98f27044fe5d538914",
+      "problemDigest": "e6d6ee0c438427dba023406ed3f435d1776064393130465ab76fd864be99ef39",
+      "fixtureDefinitionDigest": "2e13db96b2f7df6e7b621ce2551d33f4e23728928c5c957440faf3d82635ddc0",
+      "fixtureResultsDigest": "d100cfc00899652b09fa759645ac74f8ac2bcc1ffdf08df779b63322cd9610fc",
+      "fixtureCount": 18,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-alternate-bullet-marker",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-canonical",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-case-spelling",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-different-prose",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-duplicate-title-review",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-empty-decision-quote",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-extra-h2",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-extra-valid-markdown",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-hidden-only-action-items",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-missing-title",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-ordered-actions",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-skipped-heading-depth",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-quiet-room-booking-two-actions",
+      "problemId": "l3-decision-quiet-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-quiet-room-booking-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-alternate-bullet-marker",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-canonical",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-case-spelling",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-different-prose",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-duplicate-title-review",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-empty-decision-quote",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-extra-h2",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-extra-valid-markdown",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-hidden-only-action-items",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-missing-title",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-ordered-actions",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-skipped-heading-depth",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-reply-template-review-two-actions",
+      "problemId": "l3-decision-reply-template-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-reply-template-review-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-alternate-bullet-marker",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-canonical",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-case-spelling",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-different-prose",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-duplicate-title-review",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-empty-decision-quote",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-extra-h2",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-extra-valid-markdown",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-hidden-only-action-items",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-missing-title",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-ordered-actions",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-skipped-heading-depth",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-report-schedule-two-actions",
+      "problemId": "l3-decision-report-schedule",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-report-schedule-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-alternate-bullet-marker",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-canonical",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-case-spelling",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-decision-quote-in-wrong-section",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-different-prose",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-duplicate-title-review",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-empty-decision-quote",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-decision"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-decision"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-escaped-blockquote-lookalike",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-extra-h2",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-extra-valid-markdown",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-fenced-blockquote-lookalike",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-hidden-only-action-items",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-missing-title",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-ordered-actions",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-raw-html-blockquote-lookalike",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-skipped-heading-depth",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-decision-shared-file-names-two-actions",
+      "problemId": "l3-decision-shared-file-names",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-decision-shared-file-names-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-alternate-bullet-marker",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-canonical",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-case-spelling",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-different-prose",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-duplicate-title-review",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-extra-h2",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-extra-valid-markdown",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-fenced-list-lookalike",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-hidden-only-action-items",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-inline-code-strong-lookalike",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-malformed-strong",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-missing-title",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-ordered-actions",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-raw-html-list-lookalike",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-raw-html-strong",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-skipped-heading-depth",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-strong-in-wrong-section",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-document-review-two-actions",
+      "problemId": "l3-handoff-document-review",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-document-review-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-alternate-bullet-marker",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-canonical",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-case-spelling",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-different-prose",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-duplicate-title-review",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-extra-h2",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-extra-valid-markdown",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-fenced-list-lookalike",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-hidden-only-action-items",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-inline-code-strong-lookalike",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-malformed-strong",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-missing-title",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-ordered-actions",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-raw-html-list-lookalike",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-raw-html-strong",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-skipped-heading-depth",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-strong-in-wrong-section",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-handoff-event-registration-two-actions",
+      "problemId": "l3-handoff-event-registration",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-handoff-event-registration-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-canonical",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-case-spelling",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-different-prose",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-duplicate-title-review",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-extra-h2",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-extra-valid-markdown",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-fenced-steps-lookalike",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-hidden-only-preparation-items",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-inline-code-outside-list",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-malformed-inline-code",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-missing-title",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-ordered-preparation",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-raw-html-code-lookalike",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-skipped-heading-depth",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-two-preparation-items",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-two-steps",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-organize-project-folder-unordered-steps",
+      "problemId": "l3-how-to-organize-project-folder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-organize-project-folder-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-canonical",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-case-spelling",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-different-prose",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-duplicate-title-review",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-extra-h2",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-extra-valid-markdown",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-fenced-steps-lookalike",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-hidden-only-preparation-items",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-inline-code-outside-list",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-malformed-inline-code",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-missing-title",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-ordered-preparation",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-raw-html-code-lookalike",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-skipped-heading-depth",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-two-preparation-items",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-two-steps",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-publish-meeting-notes-unordered-steps",
+      "problemId": "l3-how-to-publish-meeting-notes",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-publish-meeting-notes-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-canonical",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-case-spelling",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-different-prose",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-duplicate-title-review",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-extra-h2",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-extra-valid-markdown",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-fenced-steps-lookalike",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-hidden-only-preparation-items",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-inline-code-outside-list",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-malformed-inline-code",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-missing-title",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-ordered-preparation",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-raw-html-code-lookalike",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-skipped-heading-depth",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-two-preparation-items",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-two-steps",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-review-inventory-sheet-unordered-steps",
+      "problemId": "l3-how-to-review-inventory-sheet",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-review-inventory-sheet-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-canonical",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-case-spelling",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-different-prose",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-duplicate-title-review",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-extra-h2",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-extra-valid-markdown",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-fenced-steps-lookalike",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-hidden-only-preparation-items",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-inline-code-in-wrong-section",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-inline-code-outside-list",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-malformed-inline-code",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-missing-title",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-ordered-preparation",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-raw-html-code-lookalike",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-exact-item"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-exact-item"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-skipped-heading-depth",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-two-preparation-items",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-two-steps",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-how-to-update-team-calendar-unordered-steps",
+      "problemId": "l3-how-to-update-team-calendar",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-how-to-update-team-calendar-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-alternate-bullet-marker",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-canonical",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-case-spelling",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-different-prose",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-duplicate-title-review",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-extra-h2",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-extra-valid-markdown",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-fenced-list-lookalike",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-hidden-only-action-items",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-inline-code-strong-lookalike",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-malformed-strong",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-missing-title",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-ordered-actions",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-raw-html-list-lookalike",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-raw-html-strong",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-skipped-heading-depth",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-strong-in-wrong-section",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-help-center-refresh-two-actions",
+      "problemId": "l3-status-help-center-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-help-center-refresh-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-alternate-bullet-marker",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-canonical",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-case-spelling",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-different-prose",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-duplicate-title-review",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-extra-h2",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-extra-valid-markdown",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-fenced-list-lookalike",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-hidden-only-action-items",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-inline-code-strong-lookalike",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-malformed-strong",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-missing-title",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-ordered-actions",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-actions"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-raw-html-list-lookalike",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-raw-html-strong",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-skipped-heading-depth",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-strong-in-wrong-section",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-status"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-status-office-move-two-actions",
+      "problemId": "l3-status-office-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-actions"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-status-office-move-actions"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "2db2060453c57f526209174773dd02c6e2691f4daf87973af34f6f9ed4c6f665"
+}

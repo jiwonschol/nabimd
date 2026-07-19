@@ -42,6 +42,35 @@ describe("selectTransferProblem", () => {
     expect(selected.level).toBe(1)
   })
 
+  it("keeps every Level 3 document transfer inside its structural family", () => {
+    const retryFamilies = [
+      "level3-status-handoff-document",
+      "level3-how-to-document",
+      "level3-decision-record",
+    ] as const
+
+    for (const retryFamily of retryFamilies) {
+      const family = getProblemsForLevel(3).filter(
+        (problem) => problem.retryFamily === retryFamily,
+      )
+      expect(family).toHaveLength(4)
+      expect(new Set(family.map((problem) => problem.contentVariant)).size).toBe(4)
+
+      const current = family[0]!
+      const selected = selectTransferProblem({
+        problems: problemBank,
+        currentProblemId: current.id,
+        retryFamily,
+        recentProblemIds: [current.id, family[1]!.id],
+      })
+
+      expect(selected.id).toBe(family[2]!.id)
+      expect(selected.level).toBe(3)
+      expect(selected.retryFamily).toBe(retryFamily)
+      expect(selected.contentVariant).not.toBe(current.contentVariant)
+    }
+  })
+
   it("rejects a bank with no safe transfer candidate", () => {
     const current = getProblemsForLevel(5)[0]!
     expect(() =>

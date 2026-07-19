@@ -16,6 +16,7 @@ export default defineConfig({
       "scripts/problem-bank/inlineCodeBatch007Artifacts.gate.ts",
       "scripts/problem-bank/linkBatch008Artifacts.gate.ts",
       "scripts/problem-bank/thematicBreakBatch009Artifacts.gate.ts",
+      "scripts/problem-bank/readableDocumentBatch010Artifacts.gate.ts",
     ],
   },
 })
