@@ -1393,14 +1393,28 @@ showing the full address.” Every mechanical artifact and digest was discarded
 and regenerated; reviewers were stopped before stale verdicts could be
 materialized, and all three reviews restarted from scratch.
 
-Corrected manifest
-`7acff6e61dacbd1cdda5ed2d915be21365b54db7af160037461b79ff0103cb3c`
+The second manifest,
+`7acff6e61dacbd1cdda5ed2d915be21365b54db7af160037461b79ff0103cb3c`,
+was also not published. Its engine, independent reviews, and editorial review
+passed, but a later local CodeRabbit agent review found that all 24 fixtures
+labelled “case/spelling variation” reused the unrelated phrase “COMPLETELY
+DIFFRENT WORDS.” The answers correctly matched, but this repeated the broader
+different-prose proof instead of isolating capitalization and spelling against
+each problem's own canonical label. Each fixture now uppercases its own label
+and removes one character. A batch test proves all 24 sources are unique,
+one-edit canonical variants, and distinct from their different-prose partner.
+The generation brief now records this rejected pattern. Prior seals were
+discarded and the complete review cycle restarted again.
+
+Final manifest
+`4c027a146b1f54ae99c143e552deb5e2851b615c34539529adfd6c167832c5cf`
 contains 24 candidates and 2,304 frozen real-engine fixtures. Atlas accepted
 24/24 after all frozen fixtures and 1,584 additional adversarial and scoped
 evaluations passed. Orchid independently accepted 24/24 after all frozen
-fixtures and 4,872 additional adversarial evaluations passed. Separate
-editorial inspection accepted all 24 candidates after checking language,
-safety, distinctness, grammar-only boundaries, and collisions against the 164
-previously published problems. Publication raises the deterministic runtime
-bank to 188 problems with an 88/88/4/4/4 split, while live grading remains
-network-free and grammar-only.
+fixtures and 4,968 additional adversarial evaluations passed. Both explicitly
+reproved the 24 corrected case/spelling fixtures. Separate editorial inspection
+accepted all 24 candidates after checking language, safety, distinctness,
+grammar-only boundaries, and collisions against the 164 previously published
+problems. Publication raises the deterministic runtime bank to 188 problems
+with an 88/88/4/4/4 split, while live grading remains network-free and
+grammar-only.

@@ -2,13 +2,13 @@
   "schemaVersion": 2,
   "batchId": "2026-07-19-l1-l2-links-008",
   "reviewerId": "codex-atlas-batch008",
-  "reviewRunId": "atlas-batch008-2026-07-19-002",
+  "reviewRunId": "atlas-batch008-2026-07-19-004",
   "declaredIndependent": true,
-  "manifestDigest": "7acff6e61dacbd1cdda5ed2d915be21365b54db7af160037461b79ff0103cb3c",
+  "manifestDigest": "4c027a146b1f54ae99c143e552deb5e2851b615c34539529adfd6c167832c5cf",
   "artifactDigests": {
-    "normalizedArtifactDigest": "37624c6d3457097ab8772c6e55a1e610ed5ffd6ecf657cbd430e91b4339cd3bd",
-    "fixtureArtifactDigest": "dcb6f0e03d6f87de53a34885003e3ca9ad4b82c6d1c9997e0451c440340e7450",
-    "verificationDigest": "47307fb58a39e36560c93627f27f8e8848decb904bb3a602a010863a55ce4a6c",
+    "normalizedArtifactDigest": "d21aa0ed1886c479fa1a3c63a7415e8952b1a40277b9cf4d06d9af41ea56fa38",
+    "fixtureArtifactDigest": "1f2266c5526c8ffba2c5567f6eb8ced29d894ce75e0a9550be3bff08d30277b2",
+    "verificationDigest": "8f98d42f3c32ac471c402a32e08835e8240439d8dc1bfc5b25bab6e80921f7dd",
     "engineContractDigest": "4026ed0cb1c1cf00ad048083b560f22cff24e825670b78855333d352558f1493"
   },
   "overallVerdict": "pass",
@@ -17,175 +17,175 @@
       "candidateId": "l1-link-community-notice",
       "revision": 1,
       "candidateDigest": "5c9e7f35ee957afc272dc84873a4be5ad99f853f130f5263c4bc8d5d13680a0d",
-      "fixtureResultsDigest": "949d2a32f0bd2828f39098780f31f3410ed986c32b8a42d6d7ccafb53f7ce7ea",
+      "fixtureResultsDigest": "69c1dd7f617e1882a270f877a814b13cd3e663cb916fa1ad035ca415eb603d8e",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-craft-guide",
       "revision": 1,
       "candidateDigest": "6f79899eff1e229c0a1e5c9b266315fd33248262a2dfe51d4a497c2b16ad349f",
-      "fixtureResultsDigest": "15f70812e37625549e2948f7ebdcfd199f3f589fd26cbab14b5725c4dc1deb59",
+      "fixtureResultsDigest": "0e74ee94fe108cb4b1e647e3b9060453b3b55679b2116f1de02b4eecff1fa851",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-library-hours",
       "revision": 1,
       "candidateDigest": "f136fafcddeeed7e1b0be1acb0186b2b8efef8a89aa09ed8deeaadabff44deea",
-      "fixtureResultsDigest": "c6f9fae41c6bd528ddbc7446ab3e36737fe4b2fa230cafae07c37653eafc81ee",
+      "fixtureResultsDigest": "ef1feb94e0fd4438dfa65325de8276c00aad92cd6441837dbae1ac94fe889f1d",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-local-events",
       "revision": 1,
       "candidateDigest": "b244e4e5f161ce7c2dca0744f3065aeac03dc7b675b9237cb1521a1ec83ed2d7",
-      "fixtureResultsDigest": "f3acca26137461209dcca0b33b90c8a6c3415e48800cfa3b1a89ef62338100b9",
+      "fixtureResultsDigest": "98fba0f741d425165e80e56d6c7adeaebb4c75bedd18054605a7eaabb0c37234",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-meal-ideas",
       "revision": 1,
       "candidateDigest": "016b3d4081ea44da309b34060d4b95f947cc47bb321d13cdaa3fb7384f93e0e3",
-      "fixtureResultsDigest": "88fccdfc667d62d6dadb47092d06801fe6215d1c65e1541de54646a223615a85",
+      "fixtureResultsDigest": "5bb20c07045ae45e5499d10705cb6c60a9506df7a6e91ffb94ab7c9df8cedebc",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-music-playlist",
       "revision": 1,
       "candidateDigest": "52d6c6e9c71e78efe504b9b21d2ae35f45cf72741e546ea459b5775f0df2f839",
-      "fixtureResultsDigest": "389f188db80375e9dde97f995d39746977cec009eb3ad3e4c0ba0036c3f75923",
+      "fixtureResultsDigest": "956688aba2eec921d3becdbdabd40c68679092fb0efcbf5121df6213e11e92e5",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-neighborhood-map",
       "revision": 1,
       "candidateDigest": "81aa8cedab07021b76dc8f42176977cf6194c36be7c3edb79aad5e8fa923ca5e",
-      "fixtureResultsDigest": "47f7ee6292ae9740e2ddd1a59690e2eadb465270cd94ec4b9fee4012a0aee0ce",
+      "fixtureResultsDigest": "7ed1d10e562e7643d2fb654e4e1679950f51607ffb7dab0ae6b5e1d39c8696b4",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-reading-list",
       "revision": 1,
       "candidateDigest": "a9af3c0155e057bdb1b850989e17b854d2e38a3edceeadc48094e5bbd6d0d245",
-      "fixtureResultsDigest": "18704537bd54fb477355373030c7eedff0aeaf3611c9641ef1d8c78f124385a8",
+      "fixtureResultsDigest": "e893630d58f9e04ecabe00a444925ea3941d7f4e45dc345c5ce2cd86d7a5611d",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-repair-guide",
       "revision": 1,
       "candidateDigest": "56d829f9f349ea3b713d66125f37f06d04a755360b4870a366fa174f6ae4862c",
-      "fixtureResultsDigest": "e1d5de7bccc23670d6a823491a57d6dc4c38af28b4a206bee3dfe99db3b63aa5",
+      "fixtureResultsDigest": "7d64c11a37905166e8d577fcff36bd591e90c448476f03c40418c708a6c290c2",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-size-chart",
       "revision": 1,
       "candidateDigest": "c1f58966c807970f0d99efa21a1464e439924f20fe2bc6e2bb36e324cd9188e4",
-      "fixtureResultsDigest": "86329e5b6b73efbacf719f3cdc5198570a618d1b0868b79abbcc3f898230ebae",
+      "fixtureResultsDigest": "7f9cb70312f8d73671dc2b73d9b96f840791ced4dd1963cb1fd1c0418b238d89",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-stretching-tips",
       "revision": 1,
       "candidateDigest": "7eefcd063f55362b04fc2418c3137c2626261a909a6beb72350de76a53b078fe",
-      "fixtureResultsDigest": "48de2a63614da5eaaff26d1c69b3d4b8c366e5443825d62a8402bfae213615d8",
+      "fixtureResultsDigest": "ed2143cb7027da25e5996be99cdfb3034b644aecd4073c98e0ec5c5c1c1d4bd6",
       "verdict": "pass"
     },
     {
       "candidateId": "l1-link-train-map",
       "revision": 1,
       "candidateDigest": "7e15145f8068c2b6d9fb10871c4b93379c0a0a91c1175f4131e2481f41982754",
-      "fixtureResultsDigest": "19b4c6fa17a8b8f459cf20520e4aa78b9876ca7754b38951cc7fc6bd87053dc4",
+      "fixtureResultsDigest": "8aa44ab6d6e60f12cfe47de7883e1dcaa8e89e6d3820fcb25872be89a7d015e6",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-agent-instructions",
       "revision": 1,
       "candidateDigest": "341ed4e245fd3b10bda92bb90c7300abff3ee2fcda0ce517e2f07352dabd9a59",
-      "fixtureResultsDigest": "b3731a2c993ce005f24fb84ccc068d5ab7a73d242bc35fc72b5d8d5fe5a589e4",
+      "fixtureResultsDigest": "4088c2957a41172db3916c0e8f1c6d48a2c67f26ccb396071ff85df28b6e1484",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-api-reference",
       "revision": 1,
       "candidateDigest": "847650372cb275db85791082d73f104125f6b942ae2e4957a3dae2615b3686ae",
-      "fixtureResultsDigest": "2be5578dc8f85521c7a5149e2a84cf1b5240dcba2a4bc4cb2cb92503687188d9",
+      "fixtureResultsDigest": "c695f595f387528ae4073e815b8f1a3312975d5d316389e8cfbff1954c976002",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-deployment-log",
       "revision": 1,
       "candidateDigest": "be91af0c67457263f9c8333aa5613d21cea352b4d9e03006ceafed455345f30a",
-      "fixtureResultsDigest": "509dc847da4cfaa18c3e51c047c0f2c1296e88c2c797924f22c07b61af4d24a6",
+      "fixtureResultsDigest": "5781f75ac5d629557449f1be2c4356bed637b7260ac0c6207e9d8866c12e5548",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-issue-template",
       "revision": 1,
       "candidateDigest": "a019891f9bfb638720a7864c37991e95f9228bd3f62fcdb9842842b8e922ed54",
-      "fixtureResultsDigest": "f5fdcb5b3fa111cf7ab8e0ac9b3e8444139a6ee5ea8018cc13a0879cc563ec52",
+      "fixtureResultsDigest": "7b0862442107e9d6671b1b8f724eb0b10a28ccf1857851684702ec1ae0de1225",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-preview-build",
       "revision": 1,
       "candidateDigest": "cb2c20bfa88dd35be55f4de988dab54ed8fe3460b9aa3688ff9de4975df512d5",
-      "fixtureResultsDigest": "680f474fdc9aaef3249cfc1c38a44f8e65ad58c81819d45d52d58ed696797322",
+      "fixtureResultsDigest": "dbb53639cbd47fd1ece309c443a6864721977529b0995912df3af948c7f5f823",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-project-board",
       "revision": 1,
       "candidateDigest": "a5cab2f33ae3ccf32341b1e43e00bc9df1f4bcd8f7c4e45f64aad05d4834e7e3",
-      "fixtureResultsDigest": "3db6dfa0243205e002adefbb0310e5728655b62f22520374324874fa0d347f36",
+      "fixtureResultsDigest": "fc18518e586465ad9bfa163ac5d17a8ad141853e29926d263be8cc93e1623145",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-project-brief",
       "revision": 1,
       "candidateDigest": "f2687b9b97bf37f0945f6f7b7cbc4fcf46224f6f9482d19ac73bd296a013a323",
-      "fixtureResultsDigest": "f1d544fecfa17dbafa19a3815bd8f6b5062775e88c7e0433a0696172623e9b20",
+      "fixtureResultsDigest": "2156179233b36d5a6e1dcc234d079d41ebc14b36b2fbf0f513a78f60f1242e5b",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-prompt-guide",
       "revision": 1,
       "candidateDigest": "053ad1e9b272e8d4b37f2d4e37208223441ed2807bebf39e0d9ddf027b598b24",
-      "fixtureResultsDigest": "8209c39e66e39bd4abcad753205404fb7488230757d5765753e5bbd6ac0bd209",
+      "fixtureResultsDigest": "b9fd3383c6697f4a5e5bdf552a9fd5d2419d1dccb73434c49247726250ef9899",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-pull-request",
       "revision": 1,
       "candidateDigest": "e824c5ee08cbbd71a5dcd56361eb04cb8bc7e4e572cdba5a1d6ecab14f2d1367",
-      "fixtureResultsDigest": "b62ed1cdd4b1e003010a8d2166f03dafe7b47ca8a83b255d388d1fafccf59b75",
+      "fixtureResultsDigest": "d3039470a81e08f7e77d5d50f4c958d52e3f2d1fc90cb2da231ef06a9a80d92f",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-release-checklist",
       "revision": 1,
       "candidateDigest": "43190e42ed8c8bdfc43ef37b1f23673bf64c8a36b9e91fa850e2fbc02b02b9a5",
-      "fixtureResultsDigest": "a9c8918da2f473d90e9e1476e45f625e80c9039693e18bdced54d61e7b8f49a4",
+      "fixtureResultsDigest": "edca25ea032ab0c28aab3b74be5c9a1019704043444a6fd64913d44a2d9e4a0c",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-setup-guide",
       "revision": 1,
       "candidateDigest": "e796b90d20a377e436e22cf07cf99f8e183f626f61634fdeca447e9fc8136fb8",
-      "fixtureResultsDigest": "82d4e03214d19647ca1159adef374de9929bdc0562cdb8c2f79fade27649473a",
+      "fixtureResultsDigest": "0d89967c50a5087257be68a514d22bcc6cba0d665ac8513ebf96d825dcc88809",
       "verdict": "pass"
     },
     {
       "candidateId": "l2-link-test-report",
       "revision": 1,
       "candidateDigest": "1f5a37981389b54196bf62e68194024758d7f1165d1106fb7310936fbe2de84e",
-      "fixtureResultsDigest": "efa442a071ee5c46e629aac8832163ddaed6143d218f97e9eb50183bf8a5cb14",
+      "fixtureResultsDigest": "fc9620af530be4ad9e4da0509b52d73c7fd9cab6cd3b4bbac4ea99a14b75766a",
       "verdict": "pass"
     }
   ],
   "evidence": {
-    "normalizedArtifactDigest": "37624c6d3457097ab8772c6e55a1e610ed5ffd6ecf657cbd430e91b4339cd3bd",
-    "fixtureArtifactDigest": "dcb6f0e03d6f87de53a34885003e3ca9ad4b82c6d1c9997e0451c440340e7450",
-    "verificationDigest": "47307fb58a39e36560c93627f27f8e8848decb904bb3a602a010863a55ce4a6c",
+    "normalizedArtifactDigest": "d21aa0ed1886c479fa1a3c63a7415e8952b1a40277b9cf4d06d9af41ea56fa38",
+    "fixtureArtifactDigest": "1f2266c5526c8ffba2c5567f6eb8ced29d894ce75e0a9550be3bff08d30277b2",
+    "verificationDigest": "8f98d42f3c32ac471c402a32e08835e8240439d8dc1bfc5b25bab6e80921f7dd",
     "engineContractDigest": "4026ed0cb1c1cf00ad048083b560f22cff24e825670b78855333d352558f1493",
     "frozenFixtureCount": 2304,
     "frozenFixtureFailures": 0,
@@ -201,9 +201,13 @@
       "target",
       "vocabulary"
     ],
+    "caseSpellingFixtureCount": 24,
+    "uniqueCaseSpellingSourceCount": 24,
+    "uppercaseOneCharacterCanonicalVariantCount": 24,
+    "caseSpellingDistinctFromDifferentProseCount": 24,
     "rejectedCandidateCount": 0,
     "failures": []
   },
-  "notes": "Independently recomputed all frozen bindings and 2304 real-engine fixtures; verified grammar-only direct and reference links, source-style rejection, Unicode and NUL handling, percent-encoded hidden destinations, first-definition behavior, section scope, optional Review, inert rendering, zero runtime network calls, and accepted-bank uniqueness across 1584 independent adversarial evaluations.",
-  "reviewDigest": "cf27a94ac43f61434b6b05ec0e797934b333fd39925c8f99414686670fb29948"
+  "notes": "Independently recomputed all final frozen bindings and 2304 real-engine fixtures; proved all 24 case-or-spelling fixtures are unique uppercase one-character deletions of their own canonical labels and distinct from alternate-prose fixtures; verified grammar-only direct and reference links, destination independence, source-style rejection, Unicode and NUL handling, percent-encoded hidden destinations, first-definition behavior, section scope, optional Review, inert rendering, zero runtime network calls, and accepted-bank uniqueness across 1584 independent adversarial evaluations.",
+  "reviewDigest": "541c1cbf8d445005a42514119f8a7ecfdb90c535239889d4b7f02abf46bdaf19"
 }

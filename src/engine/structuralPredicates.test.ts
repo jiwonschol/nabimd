@@ -266,6 +266,32 @@ describe("structural match predicates", () => {
   })
 
   it.each([
+    "[Escaped parentheses](/path\\(one\\))",
+    "[Escaped brackets](/path\\[one\\])",
+    "[Escaped angle close](<https://example.com/a\\>b>)",
+    "[Multiline reference][guide]\n\n[guide]:\n  /path",
+    "[Escaped reference][guide]\n\n[guide]: </path\\>next>",
+  ])("qualifies escaped and multiline CommonMark link destinations: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("commonmark-destination"),
+          kind: "link-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyLabel: true,
+          requireNonemptyDestination: true,
+          allowReferences: true,
+          allowAutolinks: false,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it.each([
     "Plain text",
     "[](/path)",
     "[   ](/path)",

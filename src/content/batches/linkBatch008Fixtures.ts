@@ -20,11 +20,29 @@ function fixtureKind(role: FixtureRole): ProblemFixture["kind"] {
   }
 }
 
+function linkLabelFromTarget(target: string): string {
+  const label = target.match(/\[([^\]]+)]\(/)?.[1]
+  if (!label) throw new Error(`Link target has no inline label: ${target}`)
+  return label
+}
+
+function caseSpellingVariation(label: string): string {
+  const uppercaseLabel = label.toUpperCase()
+  const vowelIndex = uppercaseLabel.search(/[AEIOU]/)
+  if (vowelIndex < 0) {
+    throw new Error(`Link label has no vowel to vary: ${label}`)
+  }
+  return `${uppercaseLabel.slice(0, vowelIndex)}${uppercaseLabel.slice(vowelIndex + 1)}`
+}
+
 function createLinkFixtures(
   problem: (typeof linkBatch008Problems)[number],
   index: number,
 ): ProblemFixture[] {
   const alternate = `different label ${index + 1}`
+  const variedCanonicalLabel = caseSpellingVariation(
+    linkLabelFromTarget(problem.target),
+  )
   const fail = {
     expectedStatus: "fail" as const,
     expectedFeedbackId: "use-link",
@@ -41,7 +59,7 @@ function createLinkFixtures(
   }[] = [
     { role: "canonical", source: problem.target, expectedStatus: "matched", expectedReviewIds: [] },
     { role: "different-prose", source: `Open [${alternate}](https://example.com/changed/${index + 1}).`, expectedStatus: "matched", expectedReviewIds: [] },
-    { role: "case-spelling-variation", source: "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).", expectedStatus: "matched", expectedReviewIds: [] },
+    { role: "case-spelling-variation", source: `Use [${variedCanonicalLabel}](https://changed.example/now).`, expectedStatus: "matched", expectedReviewIds: [] },
     { role: "edge-case", kind: "link-double-title", source: '[Guide](/path "Open guide")', expectedStatus: "matched", expectedReviewIds: [] },
     { role: "edge-case", kind: "link-single-title", source: "[Guide](/path 'Open guide')", expectedStatus: "matched", expectedReviewIds: [] },
     { role: "edge-case", kind: "link-parenthesized-title", source: "[Guide](/path (Open guide))", expectedStatus: "matched", expectedReviewIds: [] },

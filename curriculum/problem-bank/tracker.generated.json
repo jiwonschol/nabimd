@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "ac29ea7ea8008d4f2223e9111e694c25d0582618c960457eca63465618498e49",
+  "bankDigest": "be8b5658128456930ca1e4fc7890de9648043c7355e3e885f15bcb11060e8aab",
   "acceptedTotal": 188,
   "counts": {
     "byLevel": {
@@ -112,12 +112,12 @@
     {
       "batchId": "2026-07-19-l1-l2-links-008",
       "sequence": 8,
-      "batchDigest": "425ebb13720e428ec4ca804d79f59ef44b8d1c510c3189321e62730872a0704f",
+      "batchDigest": "935a12a0a0e24c45ebbce0e47d289a7f7e591742eb9b33f81410301622db4d66",
       "generated": 24,
       "accepted": 24,
       "rejected": 0,
       "blocked": 0
     }
   ],
-  "trackerDigest": "3aa054650045067eac852551994da9a73cda4674e8be1a619295d22f70e53883"
+  "trackerDigest": "77a6619005b55859edd1c25e146a43cf4fe2c942a623b18f9fde10a3913ec592"
 }

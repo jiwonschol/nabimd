@@ -134,6 +134,34 @@ describe("link batch 008", () => {
     }
   })
 
+  it("isolates case and spelling tolerance with one canonical-label change per problem", () => {
+    const variationSources = linkBatch008Fixtures.filter(
+      (fixture) => fixture.role === "case-spelling-variation",
+    )
+    expect(variationSources).toHaveLength(24)
+    expect(new Set(variationSources.map((fixture) => fixture.source)).size).toBe(24)
+
+    for (const problem of linkBatch008Problems) {
+      const canonicalLabel = problem.target.match(/\[([^\]]+)]\(/)?.[1]
+      const variation = variationSources
+        .find((fixture) => fixture.problemId === problem.id)
+        ?.source.match(/\[([^\]]+)]\(/)?.[1]
+      expect(canonicalLabel, problem.id).toBeDefined()
+      expect(variation, problem.id).toBeDefined()
+
+      const uppercaseCanonical = canonicalLabel!.toUpperCase()
+      expect(variation).toBe(variation!.toUpperCase())
+      expect(
+        [...uppercaseCanonical].some(
+          (_, index) =>
+            `${uppercaseCanonical.slice(0, index)}${uppercaseCanonical.slice(index + 1)}` ===
+            variation,
+        ),
+        problem.id,
+      ).toBe(true)
+    }
+  })
+
   it.each(linkBatch008Fixtures)(
     "runs $id through the real grading engine",
     (fixture) => {

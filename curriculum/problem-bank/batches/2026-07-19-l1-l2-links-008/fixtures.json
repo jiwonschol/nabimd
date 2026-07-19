@@ -16,7 +16,7 @@
       "problemId": "l1-link-community-notice",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [CMMUNITY NOTICE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -938,7 +938,7 @@
       "problemId": "l1-link-craft-guide",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [CRFT GUIDE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1860,7 +1860,7 @@
       "problemId": "l1-link-library-hours",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [LBRARY HOURS](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2782,7 +2782,7 @@
       "problemId": "l1-link-local-events",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [LCAL EVENTS](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -3704,7 +3704,7 @@
       "problemId": "l1-link-meal-ideas",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [MAL IDEAS PAGE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -4626,7 +4626,7 @@
       "problemId": "l1-link-music-playlist",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [MSIC PLAYLIST](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -5548,7 +5548,7 @@
       "problemId": "l1-link-neighborhood-map",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [NIGHBORHOOD MAP](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -6470,7 +6470,7 @@
       "problemId": "l1-link-reading-list",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [RADING LIST](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -7392,7 +7392,7 @@
       "problemId": "l1-link-repair-guide",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [RPAIR GUIDE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -8314,7 +8314,7 @@
       "problemId": "l1-link-size-chart",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [SZE CHART](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -9236,7 +9236,7 @@
       "problemId": "l1-link-stretching-tips",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [STRTCHING TIPS](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -10158,7 +10158,7 @@
       "problemId": "l1-link-train-map",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [TRIN MAP](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -11080,7 +11080,7 @@
       "problemId": "l2-link-agent-instructions",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [GENT INSTRUCTIONS](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -12002,7 +12002,7 @@
       "problemId": "l2-link-api-reference",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [PI REFERENCE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -12924,7 +12924,7 @@
       "problemId": "l2-link-deployment-log",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [DPLOYMENT LOG](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -13846,7 +13846,7 @@
       "problemId": "l2-link-issue-template",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [SSUE TEMPLATE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -14768,7 +14768,7 @@
       "problemId": "l2-link-preview-build",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [PRVIEW BUILD](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -15690,7 +15690,7 @@
       "problemId": "l2-link-project-board",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [PRJECT BOARD](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -16612,7 +16612,7 @@
       "problemId": "l2-link-project-brief",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [PRJECT BRIEF](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -17534,7 +17534,7 @@
       "problemId": "l2-link-prompt-guide",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [PRMPT GUIDE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -18456,7 +18456,7 @@
       "problemId": "l2-link-pull-request",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [PLL REQUEST](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -19378,7 +19378,7 @@
       "problemId": "l2-link-release-checklist",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [RLEASE CHECKLIST](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -20300,7 +20300,7 @@
       "problemId": "l2-link-setup-guide",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [STUP GUIDE](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -21222,7 +21222,7 @@
       "problemId": "l2-link-test-report",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).",
+      "source": "Use [TST REPORT](https://changed.example/now).",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },

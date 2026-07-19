@@ -49,9 +49,13 @@ describe("RenderedDocument", () => {
   })
 
   it.each([
-    "[Safe](https://example.com/guide)",
-    "[Unsafe](javascript:alert(1))",
-  ])("renders Markdown links without navigable destinations: %s", (source) => {
+    { label: "Safe", source: "[Safe](https://example.com/guide)" },
+    {
+      label: "Reference",
+      source: "[Reference][guide]\n\n[guide]: https://example.com/guide",
+    },
+    { label: "Unsafe", source: "[Unsafe](javascript:alert(1))" },
+  ])("renders Markdown links without navigable destinations", ({ label, source }) => {
     render(
       <RenderedDocument
         label="Live preview"
@@ -59,8 +63,10 @@ describe("RenderedDocument", () => {
       />,
     )
 
-    const label = source.includes("Unsafe") ? "Unsafe" : "Safe"
     expect(screen.queryByRole("link", { name: label })).not.toBeInTheDocument()
-    expect(screen.getByText(label)).toHaveClass("rendered-document__link")
+    const renderedLabel = screen.getByText(label)
+    expect(renderedLabel).toHaveClass("rendered-document__link")
+    expect(renderedLabel.tagName).toBe("SPAN")
+    expect(renderedLabel).not.toHaveAttribute("href")
   })
 })

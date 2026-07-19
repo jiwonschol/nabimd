@@ -5,13 +5,13 @@
   "candidateCount": 24,
   "fixtureCount": 2304,
   "passingCandidateCount": 24,
-  "normalizedArtifactDigest": "37624c6d3457097ab8772c6e55a1e610ed5ffd6ecf657cbd430e91b4339cd3bd",
-  "verificationDigest": "47307fb58a39e36560c93627f27f8e8848decb904bb3a602a010863a55ce4a6c",
-  "manifestDigest": "7acff6e61dacbd1cdda5ed2d915be21365b54db7af160037461b79ff0103cb3c",
+  "normalizedArtifactDigest": "d21aa0ed1886c479fa1a3c63a7415e8952b1a40277b9cf4d06d9af41ea56fa38",
+  "verificationDigest": "8f98d42f3c32ac471c402a32e08835e8240439d8dc1bfc5b25bab6e80921f7dd",
+  "manifestDigest": "4c027a146b1f54ae99c143e552deb5e2851b615c34539529adfd6c167832c5cf",
   "engineContractDigest": "4026ed0cb1c1cf00ad048083b560f22cff24e825670b78855333d352558f1493",
   "requiredIndependentReviews": 2,
   "committedIndependentReviews": 0,
   "editorialPresent": false,
   "publishedAcceptedTotal": 164,
-  "preparedSummaryDigest": "c8fa9be75619b1a3cc54fddf67b640abe6328be7643e199f183a7b15cf8c878f"
+  "preparedSummaryDigest": "7c01ac2054f660457977b5ac42f41c78fd8ef352de80f020450bc7c91669e74c"
 }

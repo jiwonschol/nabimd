@@ -48,6 +48,10 @@ and 12 Level 2 recall exercises.
   content, multiple links, unsafe schemes, inert-rendering, Unicode/NUL,
   hidden-only, empty destination, autolink, raw-HTML, image-only, code/comment,
   malformed-delimiter, and lookalike fixtures.
+- Keep the different-prose and case/spelling roles independent. Each
+  case/spelling fixture must be a unique capitalization and one-character
+  spelling variation of that problem's own canonical link label, never one
+  shared unrelated phrase reused across the batch.
 - Every fixture runs through the production grading engine before review.
 - Two declared-independent mechanical reviews and a separate editorial review
   are required before publication.
@@ -66,3 +70,8 @@ and 12 Level 2 recall exercises.
   full address.` — rejected after the first frozen manifest because the missing
   connector makes the learner-facing rule ungrammatical. The corrected rule
   says a link “connects readable words to a web address.”
+- `Use [COMPLETELY DIFFRENT WORDS](https://changed.example/now).` repeated for
+  every case/spelling fixture — rejected after the second frozen manifest. It
+  proved the broader different-prose policy again but did not isolate
+  capitalization and spelling against each problem's own label. The final
+  fixtures use 24 distinct canonical-label variations.
