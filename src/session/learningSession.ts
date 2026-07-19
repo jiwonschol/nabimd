@@ -48,10 +48,10 @@ export type SessionEvent =
   | { type: "problem-replaced"; problem: GradableProblem }
   | {
       type: "next"
-      nextProblemId?: string
-      nextProblem?: GradableProblem
-      nextDraft?: string
+      nextProblem: GradableProblem
+      nextDraft: string
     }
+  | { type: "completed" }
 
 function shouldStartHintOpen({
   entryId,
@@ -241,8 +241,11 @@ export function learningSessionReducer(
       )
       const keepsIntroduction =
         session.teachingMode === "introduce" && !replacementIsTransfer
-      const hintStartsOpen =
-        session.hintStartsOpen && !replacementIsTransfer
+      const hintStartsOpen = shouldStartHintOpen({
+        entryId: session.entryId,
+        currentIsTransfer: replacementIsTransfer,
+        problem: event.problem,
+      })
 
       return {
         ...session,
@@ -279,12 +282,7 @@ export function learningSessionReducer(
 
     case "next": {
       if (!canAdvance(session)) return session
-      const nextProblemId = event.nextProblem?.id ?? event.nextProblemId
-      if (!nextProblemId || event.nextDraft === undefined) {
-        return session.needsTransfer && !session.currentIsTransfer
-          ? session
-          : completeSession(session)
-      }
+      const nextProblemId = event.nextProblem.id
       const nextIsTransfer =
         session.needsTransfer && !session.currentIsTransfer
       const nextRunProblemIds = nextIsTransfer
@@ -295,13 +293,11 @@ export function learningSessionReducer(
           )
         : session.runProblemIds
       const nextRunStepIndex = session.runStepIndex + 1
-      const hintStartsOpen = event.nextProblem
-        ? shouldStartHintOpen({
-            entryId: session.entryId,
-            currentIsTransfer: nextIsTransfer,
-            problem: event.nextProblem,
-          })
-        : false
+      const hintStartsOpen = shouldStartHintOpen({
+        entryId: session.entryId,
+        currentIsTransfer: nextIsTransfer,
+        problem: event.nextProblem,
+      })
 
       return {
         ...session,
@@ -311,8 +307,8 @@ export function learningSessionReducer(
         evaluation: null,
         teachingMode: nextIsTransfer
           ? "recall"
-          : event.nextProblem?.teachingMode ?? "recall",
-        retryFamily: event.nextProblem?.retryFamily ?? session.retryFamily,
+          : event.nextProblem.teachingMode,
+        retryFamily: event.nextProblem.retryFamily,
         hadFailure: false,
         needsTransfer: false,
         currentIsTransfer: nextIsTransfer,
@@ -343,5 +339,11 @@ export function learningSessionReducer(
         },
       }
     }
+
+    case "completed":
+      if (!canAdvance(session)) return session
+      return session.needsTransfer && !session.currentIsTransfer
+        ? session
+        : completeSession(session)
   }
 }

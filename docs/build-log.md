@@ -1660,3 +1660,28 @@ unit/component tests, every immutable problem-bank gate, typechecking,
 production build, and bundle inspection. All 12 Chromium journeys passed,
 including keyboard-only completion, chosen-level versus challenge Hint rhythm,
 truthful Level 5 scrolling, fixed `1280 × 800` chrome, and session restore.
+
+### Post-merge review correction
+
+PR #44 was merged while the GitHub CodeRabbit review still had an active
+heartbeat. That was a workflow error: an active review must be allowed to
+finish and its findings must be processed before merge. Codex and CodeRabbit
+completed shortly afterward and left seven inline threads plus three related
+nitpicks. Their overlap reduced to six implementation boundaries, all handled
+in a dedicated follow-up rather than rewriting the earlier record.
+
+The correction rotates the actual problem variant within each challenge
+family, advances the four-item Level 5 bank between turns, caches deterministic
+turn history, and rejects implausibly large untrusted run numbers before any
+schedule reconstruction. High-level brief exercises no longer reveal the
+canonical target after a failed Check. Session advancement now requires an
+actual next problem or an explicit completion event, and a replaced problem
+recomputes whether Hint should start open. The browser layout test now creates
+a genuinely overflowing Goal before asserting internal scrolling.
+
+The follow-up's complete repository check passed with 8,019 unit/component
+tests, all immutable bank gates, typechecking, production build, and bundle
+inspection. All 12 Chromium journeys also passed. The review policy is now
+explicit: wait whenever CodeRabbit is actively reviewing; use an independent
+Codex review as the fallback only when CodeRabbit has no heartbeat, returns no
+response, or fails.

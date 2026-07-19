@@ -260,6 +260,15 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   const topbar = page.locator(".exercise-topbar")
   const goal = page.getByRole("region", { name: "Goal" })
   const answer = page.getByRole("region", { name: "Your answer" })
+  await goal.locator(".goal-brief").evaluate((node) => {
+    const paragraph = node.querySelector("p")
+    if (paragraph) {
+      paragraph.textContent = Array.from(
+        { length: 80 },
+        (_, index) => `Work-order requirement ${index + 1}.`,
+      ).join(" ")
+    }
+  })
   const [topbarBox, goalBox, answerBox] = await Promise.all([
     topbar.boundingBox(),
     goal.boundingBox(),
@@ -287,7 +296,7 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
     scrollHeight: node.scrollHeight,
   }))
   expect(goalScroll.overflowY).toBe("auto")
-  expect(goalScroll.scrollHeight).toBeGreaterThanOrEqual(goalScroll.clientHeight)
+  expect(goalScroll.scrollHeight).toBeGreaterThan(goalScroll.clientHeight)
 })
 
 test("a long Level 5 answer scrolls inside the editor, not the page", async ({ page }) => {

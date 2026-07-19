@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest"
+import { createRunProblemIds } from "../content/entryChoices"
 import { getHeadingProblem } from "../content/headingProblems"
-import type { Problem } from "../content/types"
+import { getProblem } from "../content/problemBank"
+import type { GradableProblem } from "../content/types"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import { createDefaultProgress } from "../progress/progressStore"
 import {
@@ -13,7 +15,7 @@ import type { LearningSession } from "./learningSession"
 const apple = getHeadingProblem("heading-apple")
 const rainyDay = getHeadingProblem("heading-rainy-day")
 
-function newSession(problem: Problem = apple): LearningSession {
+function newSession(problem: GradableProblem = apple): LearningSession {
   return createLearningSession(
     createDefaultProgress(problem.id),
     problem,
@@ -22,7 +24,7 @@ function newSession(problem: Problem = apple): LearningSession {
 
 function editAndCheck(
   session: LearningSession,
-  problem: Problem,
+  problem: GradableProblem,
   source: string,
 ): LearningSession {
   const edited = learningSessionReducer(session, {
@@ -76,7 +78,7 @@ describe("learningSessionReducer", () => {
 
     const advanced = learningSessionReducer(passed, {
       type: "next",
-      nextProblemId: "heading-rainy-day",
+      nextProblem: rainyDay,
       nextDraft: "",
     })
 
@@ -88,7 +90,7 @@ describe("learningSessionReducer", () => {
 
   it("restores a completed problem as complete", () => {
     const passed = editAndCheck(newSession(), apple, "# Apple")
-    const complete = learningSessionReducer(passed, { type: "next" })
+    const complete = learningSessionReducer(passed, { type: "completed" })
 
     const restored = createLearningSession(complete.progress, apple)
 
@@ -105,7 +107,7 @@ describe("learningSessionReducer", () => {
     expect(passed.evaluation?.status).toBe("matched")
     expect(passed.coach).toBe("closed")
     expect(canAdvance(passed)).toBe(true)
-    expect(learningSessionReducer(passed, { type: "next" }).phase).toBe(
+    expect(learningSessionReducer(passed, { type: "completed" }).phase).toBe(
       "complete",
     )
   })
@@ -116,12 +118,12 @@ describe("learningSessionReducer", () => {
     expect(failed.evaluation?.status).toBe("fail")
     expect(failed.needsTransfer).toBe(true)
     expect(canAdvance(failed)).toBe(false)
-    expect(learningSessionReducer(failed, { type: "next" })).toBe(failed)
+    expect(learningSessionReducer(failed, { type: "completed" })).toBe(failed)
 
     const repaired = editAndCheck(failed, apple, "# Apple")
     const transfer = learningSessionReducer(repaired, {
       type: "next",
-      nextProblemId: "heading-rainy-day",
+      nextProblem: rainyDay,
       nextDraft: "",
     })
 
@@ -156,7 +158,7 @@ describe("learningSessionReducer", () => {
     const passed = editAndCheck(hinted, rainyDay, "# Rainy day")
     const advanced = learningSessionReducer(passed, {
       type: "next",
-      nextProblemId: "heading-study-tools",
+      nextProblem: getHeadingProblem("heading-study-tools"),
       nextDraft: "",
     })
 
@@ -169,7 +171,7 @@ describe("learningSessionReducer", () => {
     const repaired = editAndCheck(failed, apple, "# Apple")
     const transfer = learningSessionReducer(repaired, {
       type: "next",
-      nextProblemId: "heading-rainy-day",
+      nextProblem: rainyDay,
       nextDraft: "",
     })
     const transferFailed = editAndCheck(transfer, rainyDay, "#Rainy day")
@@ -180,7 +182,7 @@ describe("learningSessionReducer", () => {
     )
 
     const complete = learningSessionReducer(transferRepaired, {
-      type: "next",
+      type: "completed",
     })
 
     expect(complete.phase).toBe("complete")
@@ -291,5 +293,26 @@ describe("learningSessionReducer", () => {
     expect(replaced.needsTransfer).toBe(false)
     expect(replaced.progress.pendingTransferFamily).toBeNull()
     expect(replaced.progress.currentIsTransfer).toBe(true)
+  })
+
+  it("recomputes Hint visibility when a replacement changes the problem role", () => {
+    const levelOneProblem = getProblem(createRunProblemIds("level-1", 0)[0]!)
+    const started = learningSessionReducer(newSession(levelOneProblem), {
+      type: "started",
+      entryId: "level-1",
+      runNumber: 0,
+      runProblemIds: [levelOneProblem.id],
+      problem: levelOneProblem,
+    })
+    const levelTwoProblem = getProblem(createRunProblemIds("level-2", 0)[0]!)
+
+    const replaced = learningSessionReducer(started, {
+      type: "problem-replaced",
+      problem: levelTwoProblem,
+    })
+
+    expect(started.hintStartsOpen).toBe(true)
+    expect(replaced.hintStartsOpen).toBe(false)
+    expect(replaced.coach).toBe("closed")
   })
 })

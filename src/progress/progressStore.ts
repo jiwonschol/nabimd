@@ -7,6 +7,9 @@ import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV4 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v4"
+// A browser session cannot legitimately reach this many six-problem turns.
+// Cap untrusted storage before deterministic schedule reconstruction.
+export const MAX_PERSISTED_RUN_NUMBER = 10_000
 
 export function createDefaultProgress(
   currentProblemId: string,
@@ -108,6 +111,7 @@ function isProgressV4(
     typeof value.runNumber === "number" &&
     Number.isSafeInteger(value.runNumber) &&
     value.runNumber >= 0 &&
+    value.runNumber <= MAX_PERSISTED_RUN_NUMBER &&
     typeof value.runStepIndex === "number" &&
     Number.isSafeInteger(value.runStepIndex) &&
     value.runStepIndex >= 0 &&

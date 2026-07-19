@@ -6,6 +6,7 @@ import {
   useState,
 } from "react"
 import type { EntryId } from "../content/entryChoices"
+import { getExerciseMode } from "../content/exerciseMode"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
@@ -33,13 +34,16 @@ function ReviewPanel({
 }) {
   const failed = evaluation.status === "fail"
   const reviewItems = failed ? [] : evaluation.reviewItems
+  const showsReferenceAnswer = getExerciseMode(problem.level ?? 1) === "target"
 
   return (
     <div className="answer-review">
       <div className="answer-review__summary">
         <p>
           {failed
-            ? "Compare the expected Markdown with what you wrote."
+            ? showsReferenceAnswer
+              ? "Compare the expected Markdown with what you wrote."
+              : "Review the document structure and revise your Markdown."
             : "Your Markdown matched. These notes are optional improvements."}
         </p>
         <span>
@@ -50,12 +54,14 @@ function ReviewPanel({
       </div>
       <div className="answer-review__card">
         <h3>{failed ? "Markdown mark" : "Document structure"}</h3>
-        <div className="answer-review__section">
-          <h4>How it should look</h4>
-          <div className="answer-review__document">
-            <RenderedDocumentBody source={problem.target} />
+        {showsReferenceAnswer ? (
+          <div className="answer-review__section">
+            <h4>How it should look</h4>
+            <div className="answer-review__document">
+              <RenderedDocumentBody source={problem.target} />
+            </div>
           </div>
-        </div>
+        ) : null}
         <div className="answer-review__section">
           <h4>What you wrote</h4>
           <div className="answer-review__document">

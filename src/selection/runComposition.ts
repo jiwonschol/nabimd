@@ -124,19 +124,29 @@ function selectDistinctChallengeProblems(
   const targetCount = Math.min(count, candidates.length)
   const initialLength = context.selected.length
   const selectedKeys = new Set<string>()
+  const variantRound = Math.floor(offset / Math.max(1, count))
+  const orderedKeys = candidates.reduce<string[]>((keys, problem) => {
+    const key = getSelectionKey(problem)
+    if (!keys.includes(key)) keys.push(key)
+    return keys
+  }, [])
 
   while (selectedKeys.size < targetCount) {
-    const candidate = candidates.find((problem) => {
-      const key = getSelectionKey(problem)
-      return (
-        !context.selectedIds.has(problem.id) &&
-        key !== context.previousKey &&
-        !selectedKeys.has(key)
-      )
-    })
+    const key = orderedKeys.find(
+      (candidateKey) =>
+        candidateKey !== context.previousKey &&
+        !selectedKeys.has(candidateKey),
+    )
+    if (!key) break
+    const variants = problems.filter(
+      (problem) => getSelectionKey(problem) === key,
+    )
+    const candidate = rotatedProblems(variants, variantRound).find(
+      (problem) => !context.selectedIds.has(problem.id),
+    )
     if (!candidate) break
     appendProblem(context, candidate)
-    selectedKeys.add(getSelectionKey(candidate))
+    selectedKeys.add(key)
   }
 
   while (context.selected.length < initialLength + targetCount) {
@@ -159,6 +169,41 @@ function selectDistinctChallengeProblems(
 type WeightedSelectionState = {
   familySelectionCounts: Map<SyntaxFamily, number>
   scores: Map<SyntaxFamily, number>
+}
+
+type TurnSelectionHistory = {
+  nextTurn: number
+  previousKey: string | null
+  selectedIdsByTurn: string[][]
+  weightedState: WeightedSelectionState
+}
+
+const selectionHistoryByBank = new WeakMap<
+  readonly SchedulableProblem[],
+  Map<CurriculumLevel, TurnSelectionHistory>
+>()
+
+function getTurnSelectionHistory(
+  problems: readonly SchedulableProblem[],
+  level: CurriculumLevel,
+): TurnSelectionHistory {
+  let byLevel = selectionHistoryByBank.get(problems)
+  if (!byLevel) {
+    byLevel = new Map()
+    selectionHistoryByBank.set(problems, byLevel)
+  }
+
+  let history = byLevel.get(level)
+  if (!history) {
+    history = {
+      nextTurn: 0,
+      previousKey: null,
+      selectedIdsByTurn: [],
+      weightedState: createWeightedSelectionState(),
+    }
+    byLevel.set(level, history)
+  }
+  return history
 }
 
 function createWeightedSelectionState(): WeightedSelectionState {
@@ -282,6 +327,10 @@ export function createTurnProblemIds(
   runNumber: number,
   problems: readonly SchedulableProblem[],
 ): string[] {
+  if (!Number.isSafeInteger(runNumber) || runNumber < 0) {
+    throw new Error(`Invalid run number: ${runNumber}`)
+  }
+
   const standardProblems = problems.filter(
     (problem) => problem.flavor === "standard",
   )
@@ -297,15 +346,15 @@ export function createTurnProblemIds(
     challengeLevel === null
       ? []
       : standardProblems.filter((problem) => problem.level === challengeLevel)
-  const weightedState = createWeightedSelectionState()
-  let previousKey: string | null = null
-  let selectedIds: string[] = []
+  const history = getTurnSelectionHistory(problems, level)
 
-  // Replaying earlier turns makes an arbitrary run number deterministic while
-  // carrying the final challenge family into the next turn's first slot.
-  for (let turn = 0; turn <= runNumber; turn += 1) {
+  // Compute only turns not already cached for this immutable problem bank.
+  // This preserves deterministic cross-turn weighting and family boundaries
+  // without replaying the complete history on every request.
+  while (history.nextTurn <= runNumber) {
+    const turn = history.nextTurn
     const context: TurnContext = {
-      previousKey,
+      previousKey: history.previousKey,
       selected: [],
       selectedIds: new Set(),
     }
@@ -315,15 +364,21 @@ export function createTurnProblemIds(
         atLevelProblems,
         RUN_POLICY.atLevelCount,
         context,
-        weightedState,
+        history.weightedState,
       )
     } else if (level === 2) {
-      selectLevelTwoProblems(atLevelProblems, turn, context, weightedState)
+      selectLevelTwoProblems(
+        atLevelProblems,
+        turn,
+        context,
+        history.weightedState,
+      )
     } else {
       selectRotatedUniqueProblems(
         atLevelProblems,
         level === 5 ? RUN_POLICY.turnSize : RUN_POLICY.atLevelCount,
-        turn * RUN_POLICY.atLevelCount,
+        turn *
+          (level === 5 ? RUN_POLICY.turnSize : RUN_POLICY.atLevelCount),
         context,
       )
     }
@@ -337,9 +392,10 @@ export function createTurnProblemIds(
       )
     }
 
-    previousKey = context.previousKey
-    selectedIds = context.selected.map(({ id }) => id)
+    history.previousKey = context.previousKey
+    history.selectedIdsByTurn.push(context.selected.map(({ id }) => id))
+    history.nextTurn += 1
   }
 
-  return selectedIds
+  return [...history.selectedIdsByTurn[runNumber]!]
 }

@@ -7,6 +7,7 @@ import {
 } from "../selection/selectTransferProblem"
 import { MemoryStorage } from "../test/MemoryStorage"
 import {
+  MAX_PERSISTED_RUN_NUMBER,
   PROGRESS_STORAGE_KEY,
   clearProgress,
   createDefaultProgress,
@@ -203,6 +204,19 @@ describe("progressStore v4", () => {
     expect(loadProgress(storage, validProblemIds)).toEqual(
       createDefaultProgress(problemBank[0].id),
     )
+  })
+
+  it("rejects a persisted run number beyond the session safety limit", () => {
+    expect(MAX_PERSISTED_RUN_NUMBER).toBe(10_000)
+    const progress = createDefaultProgress(problemBank[0].id)
+    progress.entryId = "level-1"
+    progress.runNumber = MAX_PERSISTED_RUN_NUMBER + 1
+    progress.runProblemIds = createRunProblemIds("level-1", 0)
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
   it("clears and treats unavailable storage as best effort", () => {

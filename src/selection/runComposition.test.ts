@@ -7,7 +7,7 @@ import { RUN_POLICY, SYNTAX_FAMILY_WEIGHTS } from "./runPolicy"
 describe("run composition policy", () => {
   const problem = (
     id: string,
-    level: 1 | 2 | 3,
+    level: 1 | 2 | 3 | 4 | 5,
     skillIds: readonly string[],
   ) => ({
     flavor: "standard" as const,
@@ -113,5 +113,35 @@ describe("run composition policy", () => {
       "rebuild-2",
       "rebuild-3",
     ])
+  })
+
+  it("rotates the problem variant within each challenge family", () => {
+    const bank = [
+      problem("h1", 1, ["heading-h1"]),
+      problem("b1", 1, ["blockquote"]),
+      problem("o1", 1, ["ordered-list"]),
+      problem("u1", 1, ["unordered-list"]),
+      problem("code-a", 2, ["inline-code"]),
+      problem("code-b", 2, ["inline-code"]),
+      problem("link-a", 2, ["inline-link"]),
+      problem("link-b", 2, ["inline-link"]),
+    ]
+
+    const first = createTurnProblemIds(1, 0, bank).slice(4)
+    const second = createTurnProblemIds(1, 1, bank).slice(4)
+
+    expect(new Set(first)).not.toEqual(new Set(second))
+    expect(second).not.toContain(first[0])
+    expect(second).not.toContain(first[1])
+  })
+
+  it("rotates a four-item Level 5 bank between turns", () => {
+    const bank = Array.from({ length: 4 }, (_, index) =>
+      problem(`work-order-${index}`, 5, [`document-shape-${index}`]),
+    )
+
+    expect(createTurnProblemIds(5, 1, bank)).not.toEqual(
+      createTurnProblemIds(5, 0, bank),
+    )
   })
 })
