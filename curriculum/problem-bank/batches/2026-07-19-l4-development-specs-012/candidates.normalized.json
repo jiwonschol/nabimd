@@ -6,7 +6,7 @@
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-07-19",
   "promptSha256": "ccc3dc536a7bccafa2c52a080196afe6a406be71a55fb1f4a61e1d2ad6f8436e",
-  "rawArtifactDigest": "e94c3df9607bdcc47dfb45bdc1052fab9602e2c4259a0e50c280e7dce2fc3876",
+  "rawArtifactDigest": "e0e8cdf4f1921855b567352eddb0a2576c2d915dd8c8020e63d0046142233219",
   "candidateCount": 12,
   "candidates": [
     {
@@ -1579,7 +1579,7 @@
       ],
       "title": "Trace a lost pagination cursor",
       "prompt": "Create a structured bug investigation for pagination state with reproducible evidence and a two-item inline-code verification checklist.",
-      "target": "# Lost pagination cursor investigation\n\nReturning from a project detail page can reset the project list to its first page instead of restoring the page the reader left.\n\n## Evidence\n\n> The browser returns to the list route, but the next page cursor is missing from the restored list state.\n\n---\n\n## Reproduction\n\n1. Open the second page of the project list\n2. Select a project near the middle of the page\n3. Use the browser back action from the detail view\n4. Compare the restored page and list position\n\n## Constraints\n\n- Keep the current route names\n- Preserve active list filters\n- Avoid storing the complete result set in history\n\n## Fix plan\n\n1. Add a navigation fixture with a second-page cursor\n2. Save the cursor in the existing list route state\n3. Restore the cursor before requesting the list page\n\n## Regression acceptance\n\n- Back navigation restores the prior page\n- A new list visit still starts on the first page\n- Changing filters clears an incompatible cursor\n\n## Open decision\n\n> Decide whether the exact row position should also return after the page loads.\n\n## Verification checklist\n\n- Run `npm test -- project-pagination`\n- Run `npm run test:e2e -- list-return`",
+      "target": "# Lost pagination cursor investigation\n\nReturning from a project detail page can reset the project list to its first page instead of restoring the page the reader left.\n\n## Evidence\n\n> The browser returns to the list route, but the next page cursor is missing from the restored list state.\n\n---\n\n## Reproduction\n\n1. Open the second page of the project list\n2. Select a project near the middle of the page\n3. Use the browser back action from the detail view\n4. Compare the restored page and list position\n\n## Constraints\n\n- Keep the current route names\n- Preserve active list filters\n- Avoid storing the complete result set in history\n\n## Fix plan\n\n1. Add a navigation fixture with a second-page cursor\n2. Save the cursor in the existing list route state\n3. Restore the cursor before requesting the list page\n\n## Regression acceptance\n\n- Back navigation restores the prior page\n- A new list visit still starts on the first page\n- Changing filters clears an incompatible cursor\n\n## Open decision\n\n> Decide whether the exact row position should also be restored after the page loads.\n\n## Verification checklist\n\n- Run `npm test -- project-pagination`\n- Run `npm run test:e2e -- list-return`",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1837,7 +1837,7 @@
       "contentVariant": "lost-pagination-cursor",
       "flavor": "standard",
       "sourceBatch": "2026-07-19-l4-development-specs-012",
-      "candidateDigest": "b71663b50c761d85b33bdbdf71f573584f3317522e47e556b045ce968d868ca8"
+      "candidateDigest": "1073524510fb0ca4f3668f1963d16aede9eb13741c084fa28755ccf559b1fd97"
     },
     {
       "id": "l4-nullable-column-backfill-migration",
@@ -2748,7 +2748,7 @@
       ],
       "title": "Specify a project-list export",
       "prompt": "Write an interface feature spec with bounded scope, an explicit dependency, a constraint, ordered implementation, acceptance items, and verification.",
-      "target": "# Project list export\n\nAdd a download action for the currently displayed project list without changing how the list is filtered or sorted.\n\n## Scope\n\n- Export only the rows shown by the active filters\n- Include the columns visible in the current view\n- Show a clear empty result when no rows are available\n\n## Dependencies\n\nFollow the [project list interface guide](/guides/project-list) and reuse the existing `ProjectRow` type.\n\n## Constraints\n\n> Keep filtering, sorting, and row selection in the current list owner.\n\n## Implementation\n\n1. Add the download action beside the list controls\n2. Map visible rows and columns into the export format\n3. Create the file name and finish the browser download\n\n## Acceptance criteria\n\n- Active filters affect the downloaded rows\n- Hidden columns do not appear in the file\n- An empty list does not create a misleading file\n\n## Verification\n\n```sh\nnpm test -- project-list-export\nnpm run typecheck\n```",
+      "target": "# Project list export\n\nAdd a download action for the currently displayed project list without changing how the list is filtered or sorted.\n\n## Scope\n\n- Export only the rows shown by the active filters\n- Include the columns visible in the current view\n- Show a clear empty result when no rows are available\n\n## Dependencies\n\nFollow the [project list interface guide](/guides/project-list) and reuse the existing `ProjectRow` type.\n\n## Constraints\n\n> Keep filtering, sorting, and row selection in the current list owner.\n\n## Implementation\n\n1. Add the download action beside the list controls\n2. Map visible rows and columns into the export format\n3. Start the browser download with a clear file name\n\n## Acceptance criteria\n\n- Active filters affect the downloaded rows\n- Hidden columns do not appear in the file\n- An empty list does not create a misleading file\n\n## Verification\n\n```sh\nnpm test -- project-list-export\nnpm run typecheck\n```",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -2969,7 +2969,7 @@
       "contentVariant": "project-list-export",
       "flavor": "standard",
       "sourceBatch": "2026-07-19-l4-development-specs-012",
-      "candidateDigest": "a953c7a9a5155d6aa1a86718b0c349f89158a90a913aa41562bd476be9e524c9"
+      "candidateDigest": "406fbbc693eb985c45dd0c4dbf022f8c7f35024db770d7067128ce95fe75be0c"
     },
     {
       "id": "l4-stale-permission-badge-investigation",
@@ -3293,7 +3293,7 @@
         "```sh"
       ],
       "title": "Write a table-density specification",
-      "prompt": "Specify a table-density control using the feature-interface document structure and deterministic Markdown anatomy.",
+      "prompt": "Write an interface feature spec for a table-density control with clear scope, a dependency, a quoted constraint, ordered work, acceptance items, and verification.",
       "target": "# Table density setting\n\nLet people choose comfortable or compact row spacing for the shared project table without hiding any table content.\n\n## Scope\n\n- Add two density choices to the table controls\n- Apply the choice to header and body rows together\n- Restore the saved preference when the view opens\n\n## Dependencies\n\nUse the [table control pattern](/guides/table-controls) and the existing `TableDensity` value.\n\n## Constraints\n\n> Density changes spacing only; columns, labels, and row actions remain available.\n\n## Implementation\n\n1. Add the density control to the table toolbar\n2. Map each choice to the shared spacing tokens\n3. Save and restore the selected preference\n\n## Acceptance criteria\n\n- Both choices update all table rows\n- Refreshing the view preserves the selected density\n- A missing preference uses the comfortable default\n\n## Verification\n\n```sh\nnpm test -- table-density\nnpm run typecheck\n```",
       "starterText": "",
       "protectedContent": [],
@@ -3515,8 +3515,8 @@
       "contentVariant": "table-density-setting",
       "flavor": "standard",
       "sourceBatch": "2026-07-19-l4-development-specs-012",
-      "candidateDigest": "a36baa1d8996a22b3cb72523ab356046677cfe26a26513db3e15fc1157993892"
+      "candidateDigest": "ab2670222b8b4a15afe76a86513366b6eefcd4c80366d3b68119fb7d3f12ab10"
     }
   ],
-  "artifactDigest": "56e6b06ba0f07cb00da1f18a05849b865f955c8af0e9b9450cdf272e6eb6fd2b"
+  "artifactDigest": "d6222b2f4fb78fea41a9ee5ecb1f6e53f0f2e4c9f7cf4446ca7889be99cc72d1"
 }

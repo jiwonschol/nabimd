@@ -56,10 +56,10 @@
     {
       "candidateId": "l4-lost-pagination-cursor-investigation",
       "revision": 1,
-      "candidateDigest": "b71663b50c761d85b33bdbdf71f573584f3317522e47e556b045ce968d868ca8",
-      "problemDigest": "41efbdf047e2486c77cfa730a5d96e20145ba439bbfe21d91475474d522679b2",
-      "fixtureDefinitionDigest": "3fab7add462f9324eb61ba312c43382b74751b029c1ba34b1e628cbfa1d562f6",
-      "fixtureResultsDigest": "c51c4073f0742afac9a2f2af6fdf7aade6a483f3f4e4a7d2e2fe8d38ac8a113c",
+      "candidateDigest": "1073524510fb0ca4f3668f1963d16aede9eb13741c084fa28755ccf559b1fd97",
+      "problemDigest": "2ed43fc266e1975c838344316a785e009bfdac743ec5e840c09a851e154344e4",
+      "fixtureDefinitionDigest": "f3749f2e323115ca3ecd17120b59eacb12e267d3e80ab9080fcc83bf693ff533",
+      "fixtureResultsDigest": "1544f0236051c88fd3914fe60f306e5c5d765f9b63f53885baf568f4138bbde1",
       "fixtureCount": 43,
       "passed": true
     },
@@ -96,10 +96,10 @@
     {
       "candidateId": "l4-project-list-export-spec",
       "revision": 1,
-      "candidateDigest": "a953c7a9a5155d6aa1a86718b0c349f89158a90a913aa41562bd476be9e524c9",
-      "problemDigest": "613b63370cf982690fbe8bde6b5b83622d281688eefc89afabef745452f11df5",
-      "fixtureDefinitionDigest": "3e33ac3e288cdfb21f588e79f47ecf36fb3ae17e5cf411d8fab2fafcfd2c9f5c",
-      "fixtureResultsDigest": "1f8dca1f4eb72f9c88056dc1cd63541ec5a9e7828f0c7e7b96e660d2e5cc87ad",
+      "candidateDigest": "406fbbc693eb985c45dd0c4dbf022f8c7f35024db770d7067128ce95fe75be0c",
+      "problemDigest": "1d3a252656f9f17444b748e320896eb769df1f8ed03ede4ef187ada22f7b0df5",
+      "fixtureDefinitionDigest": "f8abd223ce00de4d96d4d3425255289a335363220dfaf451aae2576526f6cb1e",
+      "fixtureResultsDigest": "f4e53a22397b7685ccf8a9fd0006d97f0366dc5de726a1230d1aa30f927ad225",
       "fixtureCount": 39,
       "passed": true
     },
@@ -108,18 +108,18 @@
       "revision": 1,
       "candidateDigest": "dce546445e46d6fa0fa01b646e0eddb6ea3d382da0d781af6ee3cbc719712eff",
       "problemDigest": "ba87649127930514b8ff8b69caca729ffbd18944f665760a674d45b5fe1e93ad",
-      "fixtureDefinitionDigest": "ba92487dfd2cfb18115aa13349228f3e48bb53165d81789cfc5717b11cfd7fe3",
-      "fixtureResultsDigest": "756f9d290e2df066738de2ca82b6fd488940ea93433d1298a035c740fbd8502a",
+      "fixtureDefinitionDigest": "93ab4f9974a9b893bd158046d203f5631a9399e398d63529e0b393a20193bb5f",
+      "fixtureResultsDigest": "38ca175117288f67722cc569760865805bf70c13761fb6800c1c4bd9224b117c",
       "fixtureCount": 43,
       "passed": true
     },
     {
       "candidateId": "l4-table-density-spec",
       "revision": 1,
-      "candidateDigest": "a36baa1d8996a22b3cb72523ab356046677cfe26a26513db3e15fc1157993892",
-      "problemDigest": "0e86844c6f40225ad4ce8942eb05bb532f4cae62d13c4cb031fc46a680f44b2b",
-      "fixtureDefinitionDigest": "0527d2abc37ab8ff1e0b847945c061184fcf3d940a42b295f66e584b0556d6c2",
-      "fixtureResultsDigest": "019ab9aea298183450cf42952262371ef07705bda3734f6a4951696f85e1c8db",
+      "candidateDigest": "ab2670222b8b4a15afe76a86513366b6eefcd4c80366d3b68119fb7d3f12ab10",
+      "problemDigest": "fe2429877b8b463a5816f6ee7a1898aa73824e0055881f79df5f6b2bcba8ca42",
+      "fixtureDefinitionDigest": "ed699aed039c9828354b7e1a242f1fb7a305feeef212017d9c45bdb824d888f6",
+      "fixtureResultsDigest": "9d6acbc81ba6f57738bcd8a521da78b18f5f5cb4dfaa9b082f5e4fa0a6324ea6",
       "fixtureCount": 39,
       "passed": true
     }
@@ -7007,5 +7007,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "fdbf98416304bb345da870e8e576bb59f006e6730fb1f5bfa493f9b9885c6800"
+  "verificationDigest": "1fa14301b4d4d7ca4b7cd5da4c7297d72739135d5288699c4ae3427f0ae0e4f1"
 }

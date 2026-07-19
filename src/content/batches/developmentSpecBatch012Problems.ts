@@ -596,7 +596,7 @@ Follow the [project list interface guide](/guides/project-list) and reuse the ex
 
 1. Add the download action beside the list controls
 2. Map visible rows and columns into the export format
-3. Create the file name and finish the browser download
+3. Start the browser download with a clear file name
 
 ## Acceptance criteria
 
@@ -709,7 +709,7 @@ npm run typecheck
     contentVariant: "table-density-setting",
     title: "Write a table-density specification",
     prompt:
-      "Specify a table-density control using the feature-interface document structure and deterministic Markdown anatomy.",
+      "Write an interface feature spec for a table-density control with clear scope, a dependency, a quoted constraint, ordered work, acceptance items, and verification.",
     vocabularyDomain: "data-table-density",
     vocabularyTerms: ["display density", "row spacing", "saved preference", "default view"],
     target: `# Table density setting
@@ -901,7 +901,7 @@ Returning from a project detail page can reset the project list to its first pag
 
 ## Open decision
 
-> Decide whether the exact row position should also return after the page loads.
+> Decide whether the exact row position should also be restored after the page loads.
 
 ## Verification checklist
 
