@@ -123,20 +123,23 @@ describe("App", () => {
     expect(screen.queryByRole("textbox", { name: "Your Markdown" })).toBeNull()
   })
 
-  it("enters any selected level directly and keeps its run at 1 of 3", async () => {
+  it("enters any selected level directly and starts its six-problem turn", async () => {
     for (const entry of entryChoices) {
       window.sessionStorage.clear()
       const view = render(<App />)
       const user = userEvent.setup()
       await user.click(screen.getByRole("button", { name: entry.label }))
-      expect(screen.getByLabelText("Practice progress")).toHaveTextContent("1 of 3")
-      expect(screen.getByText(`Level ${entry.level}`)).toBeVisible()
+      const expectedLength = entry.level === 5 ? 4 : 6
+      expect(screen.getByLabelText("Practice progress")).toHaveTextContent(
+        `1 of ${expectedLength}`,
+      )
+      expect(screen.getByText(entry.label)).toBeVisible()
       expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
       view.unmount()
     }
   })
 
-  it("shows teaching automatically only at Level 1", async () => {
+  it("shows teaching automatically at the start of every chosen level", async () => {
     const first = await openLevel(1)
     expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
       "aria-expanded",
@@ -151,8 +154,35 @@ describe("App", () => {
     await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
     expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
       "aria-expanded",
-      "false",
+      "true",
     )
+  })
+
+  it("keeps the selected task identity visible in the exercise header", async () => {
+    await openLevel(2)
+    expect(screen.getByLabelText("Practice progress")).toHaveTextContent(
+      "Level 2 — Rebuild real documents",
+    )
+  })
+
+  it("routes Levels 1–2 to a visible target and Levels 3–5 to a brief", async () => {
+    const targetView = await openLevel(2)
+    const targetGoal = screen.getByRole("region", { name: "Goal" })
+    expect(targetGoal).toHaveTextContent("Make this document")
+    expect(targetGoal.querySelector(".rendered-document__body")).not.toBeNull()
+
+    await targetView.user.click(
+      screen.getByRole("button", { name: "Nabi Markdown home" }),
+    )
+    await targetView.user.click(
+      screen.getByRole("button", { name: entryChoices[2].label }),
+    )
+    const briefProblem = currentProblem()
+    const briefGoal = screen.getByRole("region", { name: "Goal" })
+    expect(briefGoal).toHaveTextContent("Build from this brief")
+    expect(briefGoal).toHaveTextContent(briefProblem.prompt)
+    expect(briefGoal.querySelector(".rendered-document__body")).toBeNull()
+    expect(briefGoal).not.toHaveTextContent(briefProblem.target.split("\n")[0]!)
   })
 
   it("checks only on explicit action and accepts different prose", async () => {
@@ -184,7 +214,7 @@ describe("App", () => {
 
     await user.keyboard(" ")
     expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
-    expect(screen.getByLabelText("Practice progress")).toHaveTextContent("2 of 3")
+    expect(screen.getByLabelText("Practice progress")).toHaveTextContent("2 of 6")
   })
 
   it("keeps Next unavailable and opens beginner Review after Try again", async () => {
@@ -229,7 +259,7 @@ describe("App", () => {
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(
       originalGoal,
     )
-    expect(screen.getByText("Level 2")).toBeVisible()
+    expect(screen.getByText(entryChoices[1].label)).toBeVisible()
     expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
       "aria-expanded",
       "false",
@@ -270,7 +300,7 @@ describe("App", () => {
     const original = screen.getByRole("region", { name: "Goal" }).textContent
     await user.click(screen.getByRole("button", { name: "Try another" }))
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(original)
-    expect(screen.getByLabelText("Practice progress")).toHaveTextContent("1 of 3")
+    expect(screen.getByLabelText("Practice progress")).toHaveTextContent("1 of 6")
 
     await user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     expect(screen.getByRole("heading", { name: "Welcome. Choose where to begin." })).toBeVisible()
@@ -278,7 +308,7 @@ describe("App", () => {
 
   it("completes a run and offers all replay choices", async () => {
     const { user } = await openLevel(1)
-    for (let index = 0; index < 3; index += 1) {
+    for (let index = 0; index < 6; index += 1) {
       const editor = screen.getByRole("textbox", { name: "Your Markdown" })
       await replaceSource(user, editor, currentProblem().target)
       await user.click(screen.getByRole("button", { name: "Check" }))
@@ -286,6 +316,7 @@ describe("App", () => {
     }
 
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
+    expect(screen.getByText("Level 1 — Learn the syntax")).toBeVisible()
     expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
   })

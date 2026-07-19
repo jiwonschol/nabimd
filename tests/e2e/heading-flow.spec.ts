@@ -1,14 +1,14 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 
 const levelLabels = [
-  "Level 1 — Learn with the pattern",
-  "Level 2 — Recall the syntax",
+  "Level 1 — Learn the syntax",
+  "Level 2 — Rebuild real documents",
   "Level 3 — Write for people",
   "Level 4 — Write a development spec",
   "Level 5 — Write an agent work order",
 ] as const
 
-const progressStorageKey = "nabimd.progress.v3"
+const progressStorageKey = "nabimd.progress.v4"
 
 function sourceEditor(page: Page): Locator {
   return page.getByRole("textbox", { name: "Your Markdown" })
@@ -105,14 +105,16 @@ test("greets a fresh session with the definitive five-level ladder", async ({
   await expect(sourceEditor(page)).toHaveCount(0)
 })
 
-test("every level opens its own three-problem run", async ({ page }) => {
+test("every level opens its task-type turn", async ({ page }) => {
   for (const [index, label] of levelLabels.entries()) {
     await page.goto("/")
     await page.getByRole("button", { name: label }).click()
     await expect(page.getByLabel("Practice progress")).toContainText(
       `Level ${index + 1}`,
     )
-    await expect(page.getByLabel("Practice progress")).toContainText("1 of 3")
+    await expect(page.getByLabel("Practice progress")).toContainText(
+      `1 of ${index === 4 ? 4 : 6}`,
+    )
     await expect(sourceEditor(page)).toBeFocused()
     await page.getByRole("button", { name: "Nabi Markdown home" }).click()
     await expect(
@@ -131,7 +133,14 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(editor).toBeFocused()
   await expect(page.getByLabel("Markdown pattern")).toBeVisible()
 
-  for (const words of ["first answer", "second answer", "third answer"]) {
+  for (const words of [
+    "first answer",
+    "second answer",
+    "third answer",
+    "fourth answer",
+    "fifth answer",
+    "sixth answer",
+  ]) {
     await editor.fill(await validDifferentProse(page, words))
     await editor.press("Control+Enter")
     await expect(page.getByRole("status")).toContainText("Matched")
@@ -147,7 +156,7 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(practiceAgain).toBeFocused()
   await page.keyboard.press("Enter")
   await expect(sourceEditor(page)).toBeFocused()
-  await expect(page.getByLabel("Practice progress")).toContainText("1 of 3")
+  await expect(page.getByLabel("Practice progress")).toContainText("1 of 6")
 })
 
 test("grades Markdown structure without grading capitalization or prose", async ({
@@ -184,7 +193,7 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await editor.fill(await validDifferentProse(page, "repaired"))
   await editor.press("Control+Enter")
   await page.getByRole("button", { name: "Next" }).click()
-  await expect(page.getByLabel("Practice progress")).toContainText("2 of 3")
+  await expect(page.getByLabel("Practice progress")).toContainText("2 of 7")
   await expect(page.getByRole("region", { name: "Goal" })).not.toHaveText(
     originalGoal ?? "",
   )
@@ -199,14 +208,24 @@ test("Try another stays in level and serves different content", async ({ page })
   await page.getByRole("button", { name: "Try another" }).click()
   await expect(goal).not.toHaveText(before ?? "")
   await expect(page.getByLabel("Practice progress")).toContainText("Level 3")
-  await expect(page.getByLabel("Practice progress")).toContainText("1 of 3")
+  await expect(page.getByLabel("Practice progress")).toContainText("1 of 6")
 })
 
-test("recall levels hide Hint until requested", async ({ page }) => {
+test("at-level work shows Hint and challenge work hides it until requested", async ({
+  page,
+}) => {
   await page.goto("/")
-  await enterLevel(page, 2)
+  await enterLevel(page, 1)
 
   const hintButton = page.getByRole("button", { name: "Hint" })
+  const editor = sourceEditor(page)
+  for (let index = 0; index < 4; index += 1) {
+    await expect(hintButton).toHaveAttribute("aria-expanded", "true")
+    await editor.fill(await validDifferentProse(page, `guided ${index}`))
+    await editor.press("Control+Enter")
+    await page.keyboard.press("Space")
+  }
+
   await expect(hintButton).toHaveAttribute("aria-expanded", "false")
   await expect(page.getByRole("complementary", { name: "Hint" })).toHaveCount(0)
   await page.getByRole("button", { name: "Exit" }).focus()
@@ -262,11 +281,13 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   expect(pageMetrics.body).toBeLessThanOrEqual(pageMetrics.viewport)
   expect(pageMetrics.document).toBeLessThanOrEqual(pageMetrics.viewport)
 
-  const goalScroll = await goal.locator(".rendered-document__body").evaluate((node) => ({
+  const goalScroll = await goal.locator(".goal-brief").evaluate((node) => ({
     clientHeight: node.clientHeight,
+    overflowY: window.getComputedStyle(node).overflowY,
     scrollHeight: node.scrollHeight,
   }))
-  expect(goalScroll.scrollHeight).toBeGreaterThan(goalScroll.clientHeight)
+  expect(goalScroll.overflowY).toBe("auto")
+  expect(goalScroll.scrollHeight).toBeGreaterThanOrEqual(goalScroll.clientHeight)
 })
 
 test("a long Level 5 answer scrolls inside the editor, not the page", async ({ page }) => {

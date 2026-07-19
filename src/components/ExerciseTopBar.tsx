@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import type { EntryId } from "../content/entryChoices"
+import { getEntryChoice, type EntryId } from "../content/entryChoices"
 import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
 import { resolveCheckShortcut } from "./keyboardShortcut"
@@ -19,14 +19,6 @@ type ExerciseTopBarProps = {
   onNext: () => void
   onToggleHint: () => void
   onTryAnother: () => void
-}
-
-const levelByEntry: Record<EntryId, string> = {
-  "level-1": "Level 1",
-  "level-2": "Level 2",
-  "level-3": "Level 3",
-  "level-4": "Level 4",
-  "level-5": "Level 5",
 }
 
 function isTextEntryTarget(target: EventTarget | null): boolean {
@@ -55,6 +47,7 @@ export function ExerciseTopBar({
 }: ExerciseTopBarProps) {
   const nextRef = useRef<HTMLButtonElement>(null)
   const matched = evaluation?.status === "matched"
+  const entry = getEntryChoice(entryId)
   const shortcut = resolveCheckShortcut(
     typeof navigator === "undefined" ? {} : navigator,
   )
@@ -93,7 +86,7 @@ export function ExerciseTopBar({
       </div>
 
       <div aria-label="Practice progress" className="exercise-progress">
-        <span>{levelByEntry[entryId]}</span>
+        <span>{entry.label}</span>
         <span aria-hidden="true">•</span>
         <span>
           {problemPosition} of {runLength}

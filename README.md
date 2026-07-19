@@ -1,16 +1,20 @@
 # Nabi Markdown
 
+[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/jiwonschol/nabimd?utm_source=oss&utm_medium=github&utm_campaign=jiwonschol%2Fnabimd&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
+
 > Build Markdown fluency by rebuilding small, readable documents—one quest at
 > a time.
 
 Nabi Markdown is an English-first Markdown practice app for the **Education**
 track of [OpenAI Build Week](https://openai.devpost.com/). It teaches production,
-not recognition: the learner sees a rendered target, writes the source, checks
-it explicitly, and proves the same skill with different content after a
-mistake.
+not recognition: a beginner rebuilds a rendered target, an advanced learner
+composes from a brief, and everyone writes the Markdown source and checks it
+explicitly. After a mistake, the learner proves the same skill with different
+content.
 
-The playable curriculum now spans five levels: guided syntax, recall, readable
-workplace documents, development specifications, and agent work orders. The
+The playable curriculum now spans five levels: Learn the syntax, Rebuild real
+documents, Write for people, Write a development spec, and Write an agent work
+order. The
 first schema-v2 milestone is intentionally small and deeply tested; the public
 tracker, not a marketing estimate, is the source of truth as the bank grows
 toward 512 inspected problems.
@@ -44,13 +48,15 @@ Most tutorials solve the first problem and ignore the second.
 
 Nabi takes its method from language learning:
 
-1. See a small rendered target.
+1. Rebuild a rendered target at Levels 1–2, then compose from a brief at
+   Levels 3–5.
 2. Produce the Markdown yourself in a plain source editor.
 3. Press **Check** or `Control/Command + Enter` when you are ready.
 4. Receive one precise result: **Try again** or **Matched**.
-5. See a new rule during its Level 1 introduction; on later recall exercises,
-   choose whether to open Hint. After Try again, ask for progressively stronger
-   hints. After Matched, Review remains optional.
+5. See Hint during the first four chosen-level problems, then try two
+   next-level challenges with Hint closed. Hint remains available on request;
+   after Try again it reveals progressively stronger help. After Matched,
+   Review remains optional.
 6. After repairing a failure, solve a different prompt that uses the same
    syntax so recall—not answer memorization—is tested.
 
@@ -63,17 +69,17 @@ habit, but it is not a third grade and cannot revoke Matched.
 
 This milestone includes:
 
-- five selectable curriculum levels with three-problem rotating runs;
-- 88 guided and recall exercises at each of Levels 1 and 2—16 H1 variants, 12
-  bold-emphasis variants, 12 bullet-list variants, 12 ordered-list variants,
-  12 blockquote variants, 12 inline-code variants, and 12 link variants—plus
-  four composite workplace problems at each of Levels 3–5, including
-  full-length Level 5 agent work orders;
+- five selectable curriculum levels with six scheduled problems per turn:
+  four at the selected level and two next-level challenges;
+- a 248-problem deterministic bank split 100/100/28/16/4 across Levels 1–5;
+  the current Level 5 turn uses all four unique work orders instead of
+  duplicating two to display six;
 - a fixed CBT-style top bar and two equal Goal/Answer panels;
 - Write and Preview tabs, with Review replacing Preview after Check when useful;
-- a compact Level 1 rule that disappears into request-only Hint for recall;
+- chosen-level Hint that begins open, next-level challenges that begin closed,
+  and request-only Hint at any point without a grading penalty;
 - deterministic AST predicates and ordered, structure-only feedback;
-- different-content replacement after a failure and `Try another` at any time;
+- different-content remediation after a failure and `Try another` at any time;
 - browser-session draft, schedule, and transfer-state persistence;
 - safe local rendering with no runtime AI or learner-content API request;
 - a monochrome CodeMirror editor with optional, non-mutating invisibles; and
@@ -135,9 +141,10 @@ for the implementation sequence and shipped evidence.
 
 An early live-coach proposal behaved too much like a word processor's
 autocorrect. Jiwon rejected it because the learner would depend on the editor.
-The shipped loop grades only on explicit Check, reveals Hint on request after
-the initial guided lesson, and requires different content after a repaired
-mistake.
+The shipped loop grades only on explicit Check. Chosen-level practice starts
+with Hint open, next-level challenges start with it closed, and opening it never
+changes the verdict or creates a penalty. Only an actual failed Check requires
+different-content remediation.
 
 ### Grading structure rather than one copied answer
 
@@ -183,7 +190,7 @@ in the application and real-browser keyboard paths.
 
 ### Removing the mobile overlay exposed by the new Help default
 
-Level 1 now opens Hint on first exposure. The legacy mobile Side Coach was a
+Chosen-level practice now opens Hint on entry. The legacy mobile Side Coach was a
 fixed bottom sheet, so it covered the Check action. The CBT composition removes
 that overlay entirely: Hint opens inside Goal and never changes the equal panel
 frame. Browser tests assert the fixed desktop contract and bounded narrow-screen
@@ -199,9 +206,9 @@ overflow.
   payload, and three progressive hints.
 - Goal and Answer remain equal at `1280 × 800`; long Level 5 documents scroll
   inside their panels while the app chrome stays fixed.
-- Typechecking, 1,240 unit/component checks, the digest-bound pipeline and bank
-  gates, the production build, and 12 Chromium journeys cover the current
-  foundation.
+- Typechecking, the complete unit/component suite, digest-bound pipeline and
+  bank gates, production build, and 12 Chromium journeys cover the current
+  foundation. Exact current counts are recorded by CI rather than copied here.
 - The UI stays monochrome and source-focused while preserving a constrained
   reading width and allowing future document exercises to grow vertically.
 

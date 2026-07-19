@@ -270,6 +270,21 @@ button:focus-visible,
   flex-direction: column;
 }
 
+.goal-brief {
+  min-height: 0;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  overflow-y: auto;
+}
+
+.goal-brief p {
+  max-width: 42rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.3vw, 2.25rem);
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+
 .goal-hint {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--line);

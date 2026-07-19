@@ -1,4 +1,5 @@
 import type { useLearningSession } from "../session/useLearningSession"
+import { getEntryChoice } from "../content/entryChoices"
 import { AnswerPanel } from "./AnswerPanel"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
@@ -22,6 +23,7 @@ export function EditorialDesk({
 }: EditorialDeskProps) {
   const runLength = session.runProblemIds.length || 1
   const problemPosition = Math.min(session.runStepIndex + 1, runLength)
+  const entry = getEntryChoice(session.entryId!)
 
   return (
     <main className="app-shell app-shell--practice">
@@ -45,8 +47,8 @@ export function EditorialDesk({
         <section className="completion" aria-labelledby="completion-title">
           <h2 id="completion-title">Practice complete.</h2>
           <p>
-            You completed every step in this run. Keep practicing or choose a
-            different level.
+            You completed every step in {entry.label}. Keep practicing or
+            choose a different level.
           </p>
           <div className="completion__actions">
             <button

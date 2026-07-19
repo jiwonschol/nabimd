@@ -1606,3 +1606,57 @@ conclusions. The published batch digest is
 `5e03747f907dd72e712db2e783d6b729d8381632be8a8d8cfe7fd8d7aa76d69d`.
 Publication raises Level 4 from four to 16 and the deterministic bank from 236
 to 248 problems, with a 100/100/28/16/4 split.
+
+## 2026-07-19 — Issue #36 level identities and 4+2 turns
+
+Hands-on testing exposed a scheduling defect rather than a missing bank: the
+runtime had 248 accepted problems, but the old selector read consecutive
+records from a bank grouped by syntax family. A learner could therefore receive
+the same blockquote shape repeatedly even though other families existed.
+
+Jiwon and Codex replaced the ambiguous guided/recall ladder with five exact
+tasks: Learn the syntax, Rebuild real documents, Write for people, Write a
+development spec, and Write an agent work order. The same identity now appears
+at entry, in the exercise header, and at completion. Levels 1–2 rebuild a
+rendered target; Levels 3–5 compose from a brief. The evaluator did not change:
+it still grades only declared Markdown structure and ignores prose, case,
+spelling, and punctuation.
+
+The new turn policy is centralized. Levels 1–4 receive four chosen-level
+problems followed by two next-level challenges. Chosen-level Hint starts open;
+challenge Hint starts closed but can always be opened manually. Opening Hint is
+not a failure and creates no remediation. Only an actual failed Check inserts a
+same-skill, different-content repair, which can truthfully extend the displayed
+turn from six to seven.
+
+Low-level single-syntax scheduling now rotates deterministically by family.
+Ordered and unordered lists have a mild frequency boost; inline code, links,
+and images have a mild reduction; the remaining supported families use the
+baseline. Scheduled neighbors cannot repeat a family, including across turn
+boundaries, and no family appears more than twice in one turn. Composite Level
+2 rebuilds are preferred and exempt from the single-family rule. Until Issue #9
+publishes enough composite Level 2 content, accepted single-syntax records fill
+the remaining slots.
+
+The Level 5 bank contains only four unique accepted work orders. Rather than
+duplicate two and pretend the turn contains six different tasks, the scheduler
+returns four. It will reach six automatically when the bank has six. Accepted
+batch files and review digests remain untouched; this issue changes runtime
+classification and scheduling only. The session storage schema moved to v4 so
+an old three-problem schedule cannot resume under the new contract.
+
+The authenticated CodeRabbit CLI reached the remote connection phase but did
+not return a review, so it was stopped rather than allowed to block delivery.
+An independent Codex review found two Major selector boundaries: challenges
+could repeat the preceding family, including across turns, and a tiny bank
+could reuse one problem ID inside a turn. Both were reproduced with failing
+tests. A shared turn context now carries the final family through all six slots
+and into the next turn, while selected IDs are excluded and insufficient banks
+degrade to their unique supply. The same reviewer confirmed both findings
+closed with no new Critical or Major issue.
+
+Final evidence: the complete repository check passed, including 8,014
+unit/component tests, every immutable problem-bank gate, typechecking,
+production build, and bundle inspection. All 12 Chromium journeys passed,
+including keyboard-only completion, chosen-level versus challenge Hint rhythm,
+truthful Level 5 scrolling, fixed `1280 × 800` chrome, and session restore.

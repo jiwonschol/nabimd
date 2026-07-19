@@ -139,6 +139,7 @@ export function useLearningSession(storage?: Storage) {
       dispatch({
         type: "next",
         nextProblemId: transferProblem.id,
+        nextProblem: transferProblem,
         nextDraft: transferProblem.starterText,
       })
       return
@@ -150,6 +151,7 @@ export function useLearningSession(storage?: Storage) {
       dispatch({
         type: "next",
         nextProblemId: nextProblem.id,
+        nextProblem,
         nextDraft: nextProblem.starterText,
       })
       return

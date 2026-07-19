@@ -1,4 +1,5 @@
 import type { GradableProblem } from "../content/types"
+import { getExerciseMode } from "../content/exerciseMode"
 import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
 import { RenderedDocumentBody } from "./RenderedDocument"
@@ -20,12 +21,15 @@ export function GoalPanel({
 }: GoalPanelProps) {
   const hintOpen = coach === "hint"
   const visibleHint = problem.hints[Math.max(0, hintLevel - 1)]
+  const exerciseMode = getExerciseMode(problem.level ?? 1)
 
   return (
     <section aria-label="Goal" className="cbt-panel goal-panel">
       <header className="cbt-panel__header">
         <span>Goal</span>
-        <span className="cbt-panel__context">Make this document</span>
+        <span className="cbt-panel__context">
+          {exerciseMode === "target" ? "Make this document" : "Build from this brief"}
+        </span>
       </header>
       {hintOpen ? (
         <aside aria-label="Hint" className="goal-hint" id="goal-hint">
@@ -50,7 +54,13 @@ export function GoalPanel({
           ) : null}
         </aside>
       ) : null}
-      <RenderedDocumentBody source={problem.target} />
+      {exerciseMode === "target" ? (
+        <RenderedDocumentBody source={problem.target} />
+      ) : (
+        <div className="goal-brief">
+          <p>{problem.prompt}</p>
+        </div>
+      )}
     </section>
   )
 }
