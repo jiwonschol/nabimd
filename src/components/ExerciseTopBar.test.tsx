@@ -1,6 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { setSoundMuted } from "../sound/successSound"
+import {
+  __resetSuccessSoundForTesting,
+  setSoundMuted,
+} from "../sound/successSound"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 
 function renderTopBar(
@@ -34,6 +37,7 @@ describe("ExerciseTopBar", () => {
   })
 
   afterEach(() => {
+    __resetSuccessSoundForTesting()
     vi.restoreAllMocks()
   })
 

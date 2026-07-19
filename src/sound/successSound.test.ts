@@ -40,8 +40,9 @@ describe("successSound", () => {
     )
   })
 
-  afterEach(() => {
-    document.dispatchEvent(new Event("pointerdown"))
+  afterEach(async () => {
+    const { __resetSuccessSoundForTesting } = await import("./successSound")
+    __resetSuccessSoundForTesting(false)
     vi.unstubAllGlobals()
   })
 

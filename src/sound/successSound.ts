@@ -131,4 +131,22 @@ function installGestureUnlockListeners() {
   })
 }
 
+export function __resetSuccessSoundForTesting(
+  reinstallGestureListeners = true,
+) {
+  removeGestureUnlockListeners()
+  if (audio) {
+    audio.pause()
+    audio.currentTime = 0
+  }
+  audio = null
+  unlocked = false
+  priming = null
+  pendingPlayback = false
+  soundMuted = undefined
+  muteListeners.clear()
+  removeGestureUnlockListeners = () => {}
+  if (reinstallGestureListeners) installGestureUnlockListeners()
+}
+
 installGestureUnlockListeners()
