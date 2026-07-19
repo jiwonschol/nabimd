@@ -71,11 +71,11 @@ This milestone includes:
 
 - five selectable curriculum levels with six scheduled problems per turn:
   four at the selected level and two next-level challenges;
-- a 332-problem deterministic bank split 136/148/28/16/4 across Levels 1–5,
+- a 344-problem deterministic bank split 136/148/30/20/10 across Levels 1–5,
   including reviewed ATX H2–H6 lessons, H1–H3 sectioned-document rebuilds,
-  and practical nested-list document rebuilds;
-  the current Level 5 turn uses all four unique work orders instead of
-  duplicating two to display six;
+  practical nested-list document rebuilds, operational briefs, integration
+  contracts, and agent-ready work orders;
+  the current Level 5 turn draws six unique work orders from ten reviewed Goals;
 - a fixed CBT-style top bar and two equal Goal/Answer panels;
 - Write and Preview tabs, with Review replacing Preview after Check when useful;
 - chosen-level Hint that begins open, next-level challenges that begin closed,

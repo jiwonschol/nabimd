@@ -26,7 +26,7 @@
 - Level 5 records use convention `{ id: "nabi-agent-work-order", version: "2026.07", reviewedOn: "2026-07-20" }` and revision `1` for these new IDs.
 - Pre-review freeze contains no files under `reviews/`, no `editorial.json`, and no published `summary.generated.json`.
 - Any problem, fixture, prompt, verification, engine-contract, or manifest change after inspection starts invalidates all mechanical and editorial seals and restarts inspection.
-- Do not modify Issue #50-owned paths: `src/content/entryChoices.ts`, `src/selection/runComposition.ts`, `src/selection/runComposition.test.ts`, `src/session/**`, `src/progress/**`, `src/App.test.tsx`, or `tests/e2e/heading-flow.spec.ts`.
+- Do not modify Issue #50-owned paths while that work is active. After Issue #50 and PR #51 were confirmed closed and merged, publication may update only a stale integration assertion that still expects four Level 5 problems; no #50 runtime behavior is changed.
 - Preserve `bank:batch:generate` as the read-only aggregate check alias. The only mutating generation command is the explicitly named Batch 017 `prepare` command.
 - Do not hand-edit `curriculum/problem-bank/runtime-projections.generated.json` or `curriculum/problem-bank/tracker.generated.json`; only the sealed publisher may regenerate them.
 - A Vercel production command uploads repository content to an external service. If the current external-upload policy requires approval, stop immediately before deployment, ask the user to authorize that exact upload, and continue only after approval.
@@ -78,12 +78,12 @@
 - `curriculum/problem-bank/runtime-projections.generated.json`
 - `curriculum/problem-bank/tracker.generated.json`
 
-**Explicitly unchanged:**
+**Explicitly unchanged except for the closed-#50 integration assertion described above:**
 
 - `scripts/problem-bank/batchPipeline.mjs` — keep `targetAccepted: 512` and `COMPLETION_FLOORS` unchanged.
 - `scripts/problem-bank/batchPipeline.test.mjs` — no checkpoint-specific completion-gate rewrite.
 - `scripts/problem-bank/repositoryBankGate.gate.ts` — its append-only and projection checks already discover a new batch.
-- All Issue #50-owned files listed in Global Constraints.
+- Issue #50 runtime files listed in Global Constraints; `src/App.test.tsx` may change only at the stale Level 5 count assertion.
 
 ---
 

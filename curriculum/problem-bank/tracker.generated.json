@@ -1,21 +1,21 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "b9ad420505055ab2e061e229ef2410574dd0ac1e7dcf81a8803224777aaeb65f",
-  "acceptedTotal": 332,
+  "bankDigest": "3b30540b1ef31e9b908f7c91c614649dcd11d5eefacbcfa764cd899c76ecf0cc",
+  "acceptedTotal": 344,
   "counts": {
     "byLevel": {
       "1": 136,
       "2": 148,
-      "3": 28,
-      "4": 16,
-      "5": 4
+      "3": 30,
+      "4": 20,
+      "5": 10
     },
     "byFamily": {
-      "agent-ready-work-order": 4,
+      "agent-ready-work-order": 10,
       "blockquotes": 24,
       "emphasis": 24,
-      "executable-development-spec": 16,
+      "executable-development-spec": 20,
       "fenced-code-blocks": 12,
       "headings": 44,
       "horizontal-rules": 24,
@@ -23,7 +23,7 @@
       "italic-emphasis": 12,
       "links": 24,
       "lists": 48,
-      "readable-human-document": 28,
+      "readable-human-document": 30,
       "rebuild-code-block-documents": 12,
       "rebuild-nested-list-documents": 12,
       "rebuild-real-documents": 12,
@@ -50,12 +50,12 @@
       "2/rebuild-nested-list-documents": 12,
       "2/rebuild-real-documents": 12,
       "2/rebuild-sectioned-documents": 12,
-      "3/readable-human-document": 28,
-      "4/executable-development-spec": 16,
-      "5/agent-ready-work-order": 4
+      "3/readable-human-document": 30,
+      "4/executable-development-spec": 20,
+      "5/agent-ready-work-order": 10
     },
     "byFlavor": {
-      "standard": 332
+      "standard": 344
     },
     "rejected": 0,
     "blocked": 0
@@ -204,7 +204,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-20-l3-l5-advanced-documents-017",
+      "sequence": 17,
+      "batchDigest": "7824a8848edf2254faae4a68887dfcb780b875dbe7db70546a544fcd1793df50",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "1fddd8fc64685c1461d6c41ea68f23880a58c5080f0ab91d591b1dbcd3f38f39"
+  "trackerDigest": "123924a5fb466deadb0ebf032fce62d2a46e5ea7b922e5d4a149f54e1932a161"
 }

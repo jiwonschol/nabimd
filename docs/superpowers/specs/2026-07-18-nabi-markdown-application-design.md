@@ -179,9 +179,8 @@ the next scheduled step.
 
 A scheduled Level 1–4 turn contains six problems: four at the chosen level,
 followed by two next-level challenges. Level 5 has no higher challenge level,
-so it schedules up to six unique Level 5 problems. The current bank contains
-four, and the UI truthfully presents a four-problem turn instead of repeating
-content merely to display six.
+so it schedules six unique Level 5 problems from the ten currently published
+work orders without repeating content merely to display six.
 
 Only an actual failed Check creates remediation. After repair, a
 different-content problem from the same skill family becomes the next run

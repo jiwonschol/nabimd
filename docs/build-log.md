@@ -2153,3 +2153,54 @@ target. Another 168 accepted problems are required to reach the public
 500-problem floor, and 180 are required to reach the internal 512-problem
 closing target. Paragraph separation and image lessons remain deferred under
 their recorded constraints; publication did not weaken those stop conditions.
+
+## 2026-07-20 — Issue #9 advanced-document Batch 017 checkpoint
+
+Batch 017 adds exactly two Level 3 operational-impact briefs, four Level 4
+integration-contract specs, and six Level 5 agent work orders. The Level 5
+set is divided into evidence recovery, bounded refactoring, and coordinated
+rollout, with two transfer variants in each retry family. The 12 Goals use
+fictional contemporary US workplace contexts and existing Standard Markdown
+predicates only; learner prose, capitalization, spelling, punctuation, and
+domain truth remain outside grading.
+
+Pre-review editorial inspection restarted the immutable cycle twice before
+approval. The first restart capitalized the rendered H1 examples while
+retaining case-insensitive learner grading. The second removed repeated
+teaching examples within retry families. The final frozen scope is commit
+`172e932`, manifest
+`f64697d77c17af5189daecbdd4166b9fc72602186c1226079579730f3ce8a030`,
+engine contract
+`f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9`,
+normalized artifact
+`056e4191a3bbbb4e6b56ac9bb3f6cb02c8b87d58b817bf9730765bbcbee75e0e`,
+fixture artifact
+`5f1fdd81fa090c183f03ca19965e795e3c10f4c7540d35da1c0bbe62837782a1`,
+and verification
+`2d1b18c5fb8c80c8afa7ddb28620a7cbb1fcda3757efbaacae19d102e70fcbf6`.
+
+Atlas replayed 238/238 frozen fixtures, covered 166/166 direct checks, passed
+348/348 fresh probes, and found no collision against the published 332; review
+digest
+`6704c98539a7ed629194b3c175dfd34ebdddc6c541968de18f3c24059ceec7bf`.
+Orchid independently replayed 238/238, covered 166/166 direct checks, passed
+216/216 fresh probes, and found the same zero-collision result; review digest
+`78ef4aa276c13f7819920e5ddc03fa8f4725f5eebcc17ff9c1695210acf25297`.
+Both explicitly checked teaching-example uniqueness. The separate
+`codex-editorial-batch017` actor accepted 12/12 for level fit, vocabulary,
+ambiguity, Goal quality, duplication, licensing, standard flavor, and the
+no-runtime-AI boundary; editorial digest
+`061f3be56e4bbb1eb760b7a1522a5e017f9cc0d8388e2883c2f411e278c67ed8`.
+
+Publishing raised the deterministic bank from 332 to the intermediate
+344-problem checkpoint, split 136/148/30/20/10. Advanced family totals are now
+30 readable human documents, 20 executable development specs, and 10
+agent-ready work orders. Publication digests are batch
+`7824a8848edf2254faae4a68887dfcb780b875dbe7db70546a544fcd1793df50`,
+bank `3b30540b1ef31e9b908f7c91c614649dcd11d5eefacbcfa764cd899c76ecf0cc`,
+runtime projection
+`417c3e6987ef1bce22ebb912a5c923c8d1f13ec172d1c6e94ba948109e3f50a9`,
+and tracker
+`123924a5fb466deadb0ebf032fce62d2a46e5ea7b922e5d4a149f54e1932a161`.
+Issue #9 remains open: this PR uses `Refs #9`, preserves the 512 target and
+completion floors, and intentionally leaves later Level 5 expansion available.
