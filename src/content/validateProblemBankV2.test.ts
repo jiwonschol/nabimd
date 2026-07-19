@@ -311,6 +311,18 @@ describe("schema-v2 problem-bank validation", () => {
           priority: 60,
           feedback: "Add inline code.",
         },
+        {
+          id: "invalid-link-shape",
+          kind: "link-shape",
+          min: -1,
+          max: -2,
+          requireNonemptyLabel: "yes",
+          requireNonemptyDestination: "no",
+          allowReferences: "yes",
+          allowAutolinks: 1,
+          priority: 70,
+          feedback: "Add a link.",
+        },
       ] as unknown as NormalizedProblem["matchChecks"],
     })
 
@@ -336,6 +348,14 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check invalid-inline-code-shape has invalid max",
         "Problem invalid-list-shape check invalid-inline-code-shape has min greater than max",
         "Problem invalid-list-shape check invalid-inline-code-shape has invalid nonempty-content flag",
+        "Problem invalid-list-shape check invalid-link-shape requires a scope",
+        "Problem invalid-list-shape check invalid-link-shape has invalid min",
+        "Problem invalid-list-shape check invalid-link-shape has invalid max",
+        "Problem invalid-list-shape check invalid-link-shape has min greater than max",
+        "Problem invalid-list-shape check invalid-link-shape has invalid nonempty-label flag",
+        "Problem invalid-list-shape check invalid-link-shape has invalid nonempty-destination flag",
+        "Problem invalid-list-shape check invalid-link-shape has invalid references flag",
+        "Problem invalid-list-shape check invalid-link-shape has invalid autolinks flag",
       ]),
     )
   })
@@ -398,6 +418,17 @@ describe("schema-v2 problem-bank validation", () => {
           max: 1,
           review: "Review structure.",
         },
+        {
+          id: "invalid-link-review",
+          kind: "max-link-count",
+          scope: { kind: "document" },
+          max: -1,
+          requireNonemptyLabel: "yes",
+          requireNonemptyDestination: "yes",
+          allowReferences: 1,
+          allowAutolinks: "no",
+          review: "Review link focus.",
+        },
       ] as unknown as NormalizedProblem["editorialChecks"],
     })
 
@@ -420,6 +451,11 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-editorial editorial check invalid-block-review has invalid recursive flag",
         "Problem invalid-editorial editorial check invalid-block-review has invalid max",
         "Problem invalid-editorial editorial check paragraph-depth-review can only use depth with heading blocks",
+        "Problem invalid-editorial editorial check invalid-link-review has invalid max",
+        "Problem invalid-editorial editorial check invalid-link-review has invalid nonempty-label flag",
+        "Problem invalid-editorial editorial check invalid-link-review has invalid nonempty-destination flag",
+        "Problem invalid-editorial editorial check invalid-link-review has invalid references flag",
+        "Problem invalid-editorial editorial check invalid-link-review has invalid autolinks flag",
       ]),
     )
   })

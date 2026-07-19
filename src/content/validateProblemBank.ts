@@ -43,6 +43,7 @@ const supportedMatchCheckKinds = new Set<string>([
   "list-shape",
   "blockquote-shape",
   "inline-code-shape",
+  "link-shape",
   "code-block",
   "block-sequence",
   "document-limits",
@@ -71,6 +72,7 @@ const scopeRequiredMatchCheckKinds = new Set<string>([
   "list-shape",
   "blockquote-shape",
   "inline-code-shape",
+  "link-shape",
   "code-block",
   "block-sequence",
 ])
@@ -309,6 +311,34 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
         }
         break
       }
+      case "link-shape": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
+        validateRange(problem.id, check, check.min, check.max, errors)
+        if (check.min === undefined && check.max === undefined) {
+          errors.push(`Problem ${problem.id} check ${check.id} requires a range`)
+        }
+        if (typeof runtimeCheck.requireNonemptyLabel !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid nonempty-label flag`,
+          )
+        }
+        if (typeof runtimeCheck.requireNonemptyDestination !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid nonempty-destination flag`,
+          )
+        }
+        if (typeof runtimeCheck.allowReferences !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid references flag`,
+          )
+        }
+        if (typeof runtimeCheck.allowAutolinks !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid autolinks flag`,
+          )
+        }
+        break
+      }
       case "code-block":
         validateRange(problem.id, check, check.min, check.max, errors)
         break
@@ -412,6 +442,36 @@ function validateEditorialChecks(
         if (!Number.isInteger(runtimeCheck.max) || Number(runtimeCheck.max) < 0) {
           errors.push(
             `Problem ${problem.id} editorial check ${label} has invalid max`,
+          )
+        }
+        break
+      }
+      case "max-link-count": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
+        validateEditorialScope(problem.id, label, runtimeCheck.scope, errors)
+        if (!Number.isInteger(runtimeCheck.max) || Number(runtimeCheck.max) < 0) {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid max`,
+          )
+        }
+        if (typeof runtimeCheck.requireNonemptyLabel !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid nonempty-label flag`,
+          )
+        }
+        if (typeof runtimeCheck.requireNonemptyDestination !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid nonempty-destination flag`,
+          )
+        }
+        if (typeof runtimeCheck.allowReferences !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid references flag`,
+          )
+        }
+        if (typeof runtimeCheck.allowAutolinks !== "boolean") {
+          errors.push(
+            `Problem ${problem.id} editorial check ${label} has invalid autolinks flag`,
           )
         }
         break

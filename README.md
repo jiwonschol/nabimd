@@ -64,11 +64,11 @@ habit, but it is not a third grade and cannot revoke Matched.
 This milestone includes:
 
 - five selectable curriculum levels with three-problem rotating runs;
-- 76 guided and recall exercises at each of Levels 1 and 2—16 H1 variants, 12
+- 88 guided and recall exercises at each of Levels 1 and 2—16 H1 variants, 12
   bold-emphasis variants, 12 bullet-list variants, 12 ordered-list variants,
-  12 blockquote variants, and 12 inline-code variants—plus four composite
-  workplace problems at each of Levels 3–5, including full-length Level 5
-  agent work orders;
+  12 blockquote variants, 12 inline-code variants, and 12 link variants—plus
+  four composite workplace problems at each of Levels 3–5, including
+  full-length Level 5 agent work orders;
 - a fixed CBT-style top bar and two equal Goal/Answer panels;
 - Write and Preview tabs, with Review replacing Preview after Check when useful;
 - a compact Level 1 rule that disappears into request-only Hint for recall;

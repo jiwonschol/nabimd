@@ -226,6 +226,252 @@ describe("structural match predicates", () => {
     ).toMatchObject({ status: "fail", feedbackId: "code-in-second-section" })
   })
 
+  it.each([
+    "[Different label](/anywhere)",
+    "[COMPLETELY DIFFRENT](https://changed.example \"Changed title\")",
+    "[Unsafe but parsed](javascript:alert(1))",
+    "[NUL plus visible](<\u0000path>)",
+    "[Literal replacement](<\ufffd>)",
+    "[**Strong label**](/path)",
+    "[`code label`](/path)",
+    "[<span>Visible label</span>](/path)",
+    "# [Heading link](/path)",
+    "- [List link](/path)",
+    "> [Quote link](/path)",
+    "[Reference label][guide]\n\n[guide]: /path",
+    "[Collapsed label][]\n\n[collapsed label]: /path",
+    "[Shortcut label]\n\n[shortcut label]: /path",
+    "[Reference NUL plus visible][guide]\n\n[guide]: <\u0000path>",
+    "[Reference literal replacement][guide]\n\n[guide]: <\ufffd>",
+    "[Outer [Parsed inner](/inner)](/outer)",
+    "[First](/one) and [Second](/two)",
+  ])("matches a parsed link with a meaningful label without grading its prose or destination: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("meaningful-link"),
+          kind: "link-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyLabel: true,
+          requireNonemptyDestination: true,
+          allowReferences: true,
+          allowAutolinks: false,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it.each([
+    "[Escaped parentheses](/path\\(one\\))",
+    "[Escaped brackets](/path\\[one\\])",
+    "[Escaped angle close](<https://example.com/a\\>b>)",
+    "[Multiline reference][guide]\n\n[guide]:\n  /path",
+    "[Escaped reference][guide]\n\n[guide]: </path\\>next>",
+  ])("qualifies escaped and multiline CommonMark link destinations: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("commonmark-destination"),
+          kind: "link-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyLabel: true,
+          requireNonemptyDestination: true,
+          allowReferences: true,
+          allowAutolinks: false,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it.each([
+    "Plain text",
+    "[](/path)",
+    "[   ](/path)",
+    "[\u00a0](/path)",
+    "[&nbsp;](/path)",
+    "[&#x200B;](/path)",
+    "[\u200b\u2060](/path)",
+    "[\ufeff\u200e\u200f](/path)",
+    "[\u0001\u001b\u007f](/path)",
+    "[\u2800](/path)",
+    "[   \n  ](/path)",
+    "[<span></span>](/path)",
+    "[<!-- hidden -->](/path)",
+    "[Label]()",
+    "[Label](<>)",
+    "[NBSP destination](<\u00a0>)",
+    "[Hidden destination](<\u200b\u2060>)",
+    "[Control destination](<\u0001\u001b\u007f>)",
+    "[Braille blank destination](<\u2800>)",
+    "[NUL destination](<\u0000>)",
+    "[Encoded hidden destination](<%E2%80%8B>)",
+    "[Encoded control destination](<%00>)",
+    "[![Useful alt](/image.png)](/path)",
+    "[![](/image.png)](/path)",
+    "![Image only](/image.png)",
+    "<https://example.com>",
+    "<person@example.com>",
+    "[Empty reference][guide]\n\n[guide]: <>",
+    "[First definition wins][guide]\n\n[guide]: <>\n[guide]: /later",
+    "[Reference NBSP][guide]\n\n[guide]: <\u00a0>",
+    "[Reference hidden][guide]\n\n[guide]: <\u200b\u2060>",
+    "[Reference control][guide]\n\n[guide]: <\u0001\u001b\u007f>",
+    "[Reference braille blank][guide]\n\n[guide]: <\u2800>",
+    "[Reference NUL][guide]\n\n[guide]: <\u0000>",
+    "[Reference encoded hidden][guide]\n\n[guide]: <%E2%80%8B>",
+    "[Reference encoded control][guide]\n\n[guide]: <%00>",
+    "[guide]: /definition-only",
+    "[Unresolved][missing]",
+    "[Malformed](/path with spaces)",
+    "[Malformed](/path",
+    "\\[Escaped\\](/path)",
+    "`[Code lookalike](/path)`",
+    "```md\n[Code-block lookalike](/path)\n```",
+    "    [Indented lookalike](/path)",
+    '<a href="/path">HTML lookalike</a>',
+    "［Fullwidth］（/path）",
+  ])("rejects missing, malformed, hidden-label, or lookalike links: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("meaningful-link"),
+          kind: "link-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyLabel: true,
+          requireNonemptyDestination: true,
+          allowReferences: true,
+          allowAutolinks: false,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toMatchObject({
+      status: "fail",
+      feedbackId: "meaningful-link",
+    })
+  })
+
+  it("keeps link section scope structural and independent of heading prose", () => {
+    const scopedLink = problem([
+      {
+        ...common("link-in-second-section"),
+        kind: "link-shape",
+        scope: { kind: "section", headingDepth: 2, occurrence: 1 },
+        min: 1,
+        requireNonemptyLabel: true,
+        requireNonemptyDestination: true,
+        allowReferences: true,
+        allowAutolinks: false,
+      },
+    ])
+
+    expect(
+      evaluateProblem(
+        scopedLink,
+        "# Title\n\n## First name\n\nPlain text.\n\n## [Changed name](/path)\n\nMore text.",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        scopedLink,
+        "# Title\n\n## First name\n\nUse [a link](/path).\n\n## Changed name\n\nPlain text.",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "link-in-second-section" })
+  })
+
+  it("makes reference links and autolinks explicit grammar options", () => {
+    const referencesDisabled = problem([
+      {
+        ...common("direct-links-only"),
+        kind: "link-shape",
+        scope: { kind: "document" },
+        min: 1,
+        requireNonemptyLabel: true,
+        requireNonemptyDestination: true,
+        allowReferences: false,
+        allowAutolinks: false,
+      },
+    ])
+    const autolinksEnabled = problem([
+      {
+        ...common("autolinks-allowed"),
+        kind: "link-shape",
+        scope: { kind: "document" },
+        min: 1,
+        requireNonemptyLabel: true,
+        requireNonemptyDestination: true,
+        allowReferences: false,
+        allowAutolinks: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(
+        referencesDisabled,
+        "[Reference][guide]\n\n[guide]: /path",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "direct-links-only" })
+    expect(evaluateProblem(autolinksEnabled, "<https://example.com>")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+  })
+
+  it("uses qualifying links for the optional multiple-link review", () => {
+    const withLinkReview: GradableProblem = {
+      ...problem([
+        {
+          ...common("one-link"),
+          kind: "link-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyLabel: true,
+          requireNonemptyDestination: true,
+          allowReferences: true,
+          allowAutolinks: false,
+        },
+      ]),
+      editorialChecks: [
+        {
+          id: "keep-one-link",
+          kind: "max-link-count",
+          scope: { kind: "document" },
+          max: 1,
+          requireNonemptyLabel: true,
+          requireNonemptyDestination: true,
+          allowReferences: true,
+          allowAutolinks: false,
+          review: "Keep one link as the focus.",
+        },
+      ],
+    }
+
+    expect(
+      evaluateProblem(
+        withLinkReview,
+        "[Direct](/one) and [Reference][two]\n\n[two]: /two",
+      ),
+    ).toEqual({
+      status: "matched",
+      reviewItems: [
+        { id: "keep-one-link", message: "Keep one link as the focus." },
+      ],
+    })
+    expect(
+      evaluateProblem(withLinkReview, "[Direct](/one) and [](/ignored)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+  })
+
   it("targets a section by heading depth and occurrence, never heading prose", () => {
     const sectionList = problem([
       {

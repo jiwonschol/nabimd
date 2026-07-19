@@ -1,8 +1,11 @@
 import type {
   Blockquote,
   Code,
+  Definition,
   Heading,
   InlineCode,
+  Link,
+  LinkReference,
   List,
   ListItem,
   RootContent,
@@ -12,6 +15,7 @@ import type {
   BlockSelector,
   CheckScope,
   InlineKind,
+  LinkShapeOptions,
   MatchCheck,
 } from "../../content/types"
 import {
@@ -222,6 +226,237 @@ function hasVisibleInlineCodeContent(node: InlineCode, source: string): boolean 
   )
 }
 
+function linkShapePasses(
+  check: Extract<StructuralCheck, { kind: "link-shape" }>,
+  context: EvaluationContext,
+) {
+  const count = countQualifyingLinks(context, check.scope, check)
+  return inRange(count, check.min, check.max)
+}
+
+export function countQualifyingLinks(
+  context: EvaluationContext,
+  scope: CheckScope,
+  options: LinkShapeOptions,
+): number {
+  return descendants(nodesInScope(context, scope) as AstNode[])
+    .filter(
+      (node): node is Link | LinkReference =>
+        node.type === "link" || node.type === "linkReference",
+    )
+    .filter((node) => linkSyntaxAllowed(node, context, options))
+    .filter(
+      (node) =>
+        !options.requireNonemptyLabel ||
+        linkHasVisibleLabel(node, context.source),
+    ).length
+}
+
+function linkSyntaxAllowed(
+  link: Link | LinkReference,
+  context: EvaluationContext,
+  options: LinkShapeOptions,
+): boolean {
+  if (link.type === "linkReference") {
+    if (!options.allowReferences) return false
+    if (!options.requireNonemptyDestination) return true
+    const definition = firstMatchingDefinition(context, link.identifier)
+    return Boolean(
+      definition &&
+      hasMeaningfulDestination(
+        definition.url,
+        definitionDestinationSource(definition, context.source),
+      ),
+    )
+  }
+
+  const raw = sourceForNode(link as unknown as AstNode, context.source)
+  const isAutolink = raw.startsWith("<")
+  if (isAutolink ? !options.allowAutolinks : !raw.startsWith("[")) return false
+  if (!options.requireNonemptyDestination) return true
+  const rawDestination = isAutolink
+    ? raw.slice(1, -1)
+    : directLinkDestinationSource(link, context.source)
+  return hasMeaningfulDestination(link.url, rawDestination)
+}
+
+function firstMatchingDefinition(
+  context: EvaluationContext,
+  identifier: string,
+): Definition | undefined {
+  return descendants(context.blocks as AstNode[])
+    .filter((node): node is Definition => node.type === "definition")
+    .sort(
+      (left, right) =>
+        (left.position?.start.offset ?? 0) -
+        (right.position?.start.offset ?? 0),
+    )
+    .find((definition) => definition.identifier === identifier)
+}
+
+function directLinkDestinationSource(link: Link, source: string): string {
+  const lastChild = link.children.at(-1)
+  const labelEnd = lastChild?.position?.end.offset
+  const linkEnd = link.position?.end.offset
+  if (typeof labelEnd === "number" && typeof linkEnd === "number") {
+    const suffix = source.slice(labelEnd, linkEnd)
+    if (suffix.startsWith("](")) {
+      return destinationFromParenthesizedSource(suffix.slice(2))
+    }
+  }
+
+  const raw = sourceForNode(link as unknown as AstNode, source)
+  const separator = raw.lastIndexOf("](")
+  return separator < 0
+    ? ""
+    : destinationFromParenthesizedSource(raw.slice(separator + 2))
+}
+
+function definitionDestinationSource(
+  definition: Definition,
+  source: string,
+): string {
+  const raw = sourceForNode(definition as unknown as AstNode, source)
+  const markerEnd = findDefinitionMarkerEnd(raw)
+  return markerEnd < 0
+    ? ""
+    : destinationFromDefinitionSource(raw.slice(markerEnd))
+}
+
+function findDefinitionMarkerEnd(raw: string): number {
+  for (let index = 0; index < raw.length - 1; index += 1) {
+    if (raw[index] === "\\") {
+      index += 1
+      continue
+    }
+    if (raw[index] === "]" && raw[index + 1] === ":") return index + 2
+  }
+  return -1
+}
+
+function destinationFromDefinitionSource(source: string): string {
+  let start = 0
+  while (start < source.length && /[ \t\r\n]/.test(source[start]!)) {
+    start += 1
+  }
+  return destinationToken(source, start, false)
+}
+
+function destinationFromParenthesizedSource(source: string): string {
+  let start = 0
+  while (start < source.length && /[ \t\r\n]/.test(source[start]!)) {
+    start += 1
+  }
+  return destinationToken(source, start, true)
+}
+
+function destinationToken(
+  source: string,
+  start: number,
+  stopAtOuterParenthesis: boolean,
+): string {
+  if (source[start] === "<") {
+    let value = ""
+    for (let index = start + 1; index < source.length; index += 1) {
+      if (source[index] === "\\" && index + 1 < source.length) {
+        value += source[index]! + source[index + 1]!
+        index += 1
+        continue
+      }
+      if (source[index] === ">") return value
+      value += source[index]
+    }
+    return ""
+  }
+
+  let parenthesisDepth = 0
+  let end = start
+  for (; end < source.length; end += 1) {
+    const character = source[end]!
+    if (character === "\\" && end + 1 < source.length) {
+      end += 1
+      continue
+    }
+    if (/[ \t\r\n]/.test(character) && parenthesisDepth === 0) break
+    if (character === "(") {
+      parenthesisDepth += 1
+      continue
+    }
+    if (character === ")") {
+      if (parenthesisDepth === 0 && stopAtOuterParenthesis) break
+      if (parenthesisDepth > 0) parenthesisDepth -= 1
+    }
+  }
+  return source.slice(start, end)
+}
+
+function hasMeaningfulDestination(parsed: string, raw: string): boolean {
+  return (
+    hasMeaningfulCharacters(decodePercentEncoding(parsed)) &&
+    hasMeaningfulCharacters(raw)
+  )
+}
+
+function decodePercentEncoding(value: string): string {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return value
+  }
+}
+
+function linkHasVisibleLabel(
+  link: Link | LinkReference,
+  source: string,
+): boolean {
+  return (link.children as AstNode[]).some((node) =>
+    nodeHasVisibleLinkLabel(node, source),
+  )
+}
+
+function nodeHasVisibleLinkLabel(node: AstNode, source: string): boolean {
+  if (node.type === "inlineCode") {
+    return hasVisibleInlineCodeContent(node as InlineCode, source)
+  }
+  if (node.type === "text") {
+    return (
+      hasMeaningfulCharacters(node.value) &&
+      hasMeaningfulCharacters(sourceForNode(node, source))
+    )
+  }
+  if (
+    node.type === "html" ||
+    node.type === "break" ||
+    node.type === "image" ||
+    node.type === "imageReference"
+  ) return false
+  return node.children?.some((child) => nodeHasVisibleLinkLabel(child, source)) ?? false
+}
+
+function sourceForNode(node: AstNode, source: string): string {
+  const positionedNode = node as AstNode & {
+    position?: { start?: { offset?: number }; end?: { offset?: number } }
+  }
+  const start = positionedNode.position?.start?.offset
+  const end = positionedNode.position?.end?.offset
+  return typeof start === "number" && typeof end === "number"
+    ? source.slice(start, end)
+    : ""
+}
+
+function hasMeaningfulCharacters(value: unknown): boolean {
+  return (
+    typeof value === "string" &&
+    value
+      .normalize("NFKC")
+      .replace(
+        /[\p{White_Space}\p{Default_Ignorable_Code_Point}\p{Cc}\p{Cf}\u2800]/gu,
+        "",
+      )
+      .length > 0
+  )
+}
+
 function nodeHasNonBlockquoteContent(node: AstNode): boolean {
   if (node.type === "blockquote") return false
   if (
@@ -317,6 +552,8 @@ export function structuralCheckPasses(
       return blockquoteShapePasses(check, context)
     case "inline-code-shape":
       return inlineCodeShapePasses(check, context)
+    case "link-shape":
+      return linkShapePasses(check, context)
     case "code-block":
       return codeBlockPasses(check, context)
     case "block-sequence":

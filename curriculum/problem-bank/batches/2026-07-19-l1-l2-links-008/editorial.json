@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-links-008",
+  "editorialRunId": "editorial-batch008-2026-07-19-004",
+  "editorialActor": "codex-editorial-batch008",
+  "reviewedOn": "2026-07-19",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "4c027a146b1f54ae99c143e552deb5e2851b615c34539529adfd6c167832c5cf",
+  "evidence": {
+    "candidateCount": 24,
+    "level1GuidedCount": 12,
+    "level2RecallCount": 12,
+    "fixtureCount": 2304,
+    "passingFixtureCount": 2304,
+    "fixtureRoleCounts": {
+      "canonical": 24,
+      "case-or-spelling": 24,
+      "alternate-prose": 24,
+      "edge-case": 2088,
+      "malformed-required": 24,
+      "matched-with-review": 96,
+      "missing-required": 24
+    },
+    "uniqueCaseOrSpellingLabels": 24,
+    "uniqueCaseOrSpellingSources": 24,
+    "credibleOneCharacterCaseOrSpellingFixtures": 24,
+    "caseOrSpellingDistinctFromAlternateProse": 24,
+    "candidateBindingMismatches": 0,
+    "engineBindingMismatches": 0,
+    "publishedBankCount": 164,
+    "duplicateIds": 0,
+    "duplicateTargets": 0,
+    "duplicateContentVariants": 0,
+    "duplicateVocabularySets": 0,
+    "teachingExampleLeaks": 0,
+    "normalizedArtifactDigest": "d21aa0ed1886c479fa1a3c63a7415e8952b1a40277b9cf4d06d9af41ea56fa38",
+    "fixtureArtifactDigest": "1f2266c5526c8ffba2c5567f6eb8ced29d894ce75e0a9550be3bff08d30277b2",
+    "verificationDigest": "8f98d42f3c32ac471c402a32e08835e8240439d8dc1bfc5b25bab6e80921f7dd",
+    "engineContractDigest": "4026ed0cb1c1cf00ad048083b560f22cff24e825670b78855333d352558f1493",
+    "preparedSummaryDigest": "7c01ac2054f660457977b5ac42f41c78fd8ef352de80f020450bc7c91669e74c"
+  },
+  "summary": {
+    "accepted": 24,
+    "rejected": 0,
+    "blocked": 0
+  },
+  "dimensionCounts": {
+    "noviceUsEnglish": {
+      "pass": 24,
+      "fail": 0
+    },
+    "naturalness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "clarity": {
+      "pass": 24,
+      "fail": 0
+    },
+    "usefulness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "ageNeutrality": {
+      "pass": 24,
+      "fail": 0
+    },
+    "workplaceAppropriateness": {
+      "pass": 12,
+      "fail": 0,
+      "notApplicable": 12
+    },
+    "distinctness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "copyrightAndBrandSafety": {
+      "pass": 24,
+      "fail": 0
+    },
+    "answerLeakage": {
+      "pass": 24,
+      "fail": 0
+    },
+    "grammarOnlyPolicy": {
+      "pass": 24,
+      "fail": 0
+    },
+    "caseOrSpellingFixtureQuality": {
+      "pass": 24,
+      "fail": 0
+    },
+    "reservedExampleDestinations": {
+      "pass": 24,
+      "fail": 0
+    },
+    "nonDestructiveContent": {
+      "pass": 24,
+      "fail": 0
+    },
+    "semanticAppropriateness": {
+      "pass": 24,
+      "fail": 0
+    }
+  },
+  "findings": [],
+  "decisions": [
+    {
+      "candidateId": "l1-link-community-notice",
+      "revision": 1,
+      "candidateDigest": "5c9e7f35ee957afc272dc84873a4be5ad99f853f130f5263c4bc8d5d13680a0d",
+      "fixtureResultsDigest": "69c1dd7f617e1882a270f877a814b13cd3e663cb916fa1ad035ca415eb603d8e",
+      "contentVariant": "community-notice",
+      "vocabularyDomain": "community-information",
+      "target": "The latest update is in the [community notice](https://example.com/everyday/community-notice).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-craft-guide",
+      "revision": 1,
+      "candidateDigest": "6f79899eff1e229c0a1e5c9b266315fd33248262a2dfe51d4a497c2b16ad349f",
+      "fixtureResultsDigest": "0e74ee94fe108cb4b1e647e3b9060453b3b55679b2116f1de02b4eecff1fa851",
+      "contentVariant": "craft-guide",
+      "vocabularyDomain": "leisure-crafts",
+      "target": "The [craft guide](https://example.com/everyday/craft-guide) explains each step.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-library-hours",
+      "revision": 1,
+      "candidateDigest": "f136fafcddeeed7e1b0be1acb0186b2b8efef8a89aa09ed8deeaadabff44deea",
+      "fixtureResultsDigest": "ef1feb94e0fd4438dfa65325de8276c00aad92cd6441837dbae1ac94fe889f1d",
+      "contentVariant": "library-hours",
+      "vocabularyDomain": "public-library",
+      "target": "Today's [library hours](https://example.com/everyday/library-hours) are online.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-local-events",
+      "revision": 1,
+      "candidateDigest": "b244e4e5f161ce7c2dca0744f3065aeac03dc7b675b9237cb1521a1ec83ed2d7",
+      "fixtureResultsDigest": "98fba0f741d425165e80e56d6c7adeaebb4c75bedd18054605a7eaabb0c37234",
+      "contentVariant": "local-events",
+      "vocabularyDomain": "community-activities",
+      "target": "Upcoming activities are listed under [local events](https://example.com/everyday/local-events).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-meal-ideas",
+      "revision": 1,
+      "candidateDigest": "016b3d4081ea44da309b34060d4b95f947cc47bb321d13cdaa3fb7384f93e0e3",
+      "fixtureResultsDigest": "5bb20c07045ae45e5499d10705cb6c60a9506df7a6e91ffb94ab7c9df8cedebc",
+      "contentVariant": "meal-ideas",
+      "vocabularyDomain": "everyday-meals",
+      "target": "Find a new option on the [meal ideas page](https://example.com/everyday/meal-ideas).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-music-playlist",
+      "revision": 1,
+      "candidateDigest": "52d6c6e9c71e78efe504b9b21d2ae35f45cf72741e546ea459b5775f0df2f839",
+      "fixtureResultsDigest": "956688aba2eec921d3becdbdabd40c68679092fb0efcbf5121df6213e11e92e5",
+      "contentVariant": "music-playlist",
+      "vocabularyDomain": "everyday-music",
+      "target": "Listen to the [music playlist](https://example.com/everyday/music-playlist).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-neighborhood-map",
+      "revision": 1,
+      "candidateDigest": "81aa8cedab07021b76dc8f42176977cf6194c36be7c3edb79aad5e8fa923ca5e",
+      "fixtureResultsDigest": "7ed1d10e562e7643d2fb654e4e1679950f51607ffb7dab0ae6b5e1d39c8696b4",
+      "contentVariant": "neighborhood-map",
+      "vocabularyDomain": "neighborhood-navigation",
+      "target": "The [neighborhood map](https://example.com/everyday/neighborhood-map) shows nearby paths.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-reading-list",
+      "revision": 1,
+      "candidateDigest": "a9af3c0155e057bdb1b850989e17b854d2e38a3edceeadc48094e5bbd6d0d245",
+      "fixtureResultsDigest": "e893630d58f9e04ecabe00a444925ea3941d7f4e45dc345c5ce2cd86d7a5611d",
+      "contentVariant": "reading-list",
+      "vocabularyDomain": "leisure-reading",
+      "target": "Choose a title from the [reading list](https://example.com/everyday/reading-list).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-repair-guide",
+      "revision": 1,
+      "candidateDigest": "56d829f9f349ea3b713d66125f37f06d04a755360b4870a366fa174f6ae4862c",
+      "fixtureResultsDigest": "7d64c11a37905166e8d577fcff36bd591e90c448476f03c40418c708a6c290c2",
+      "contentVariant": "repair-guide",
+      "vocabularyDomain": "home-reference",
+      "target": "Follow the [repair guide](https://example.com/everyday/repair-guide) for simple fixes.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-size-chart",
+      "revision": 1,
+      "candidateDigest": "c1f58966c807970f0d99efa21a1464e439924f20fe2bc6e2bb36e324cd9188e4",
+      "fixtureResultsDigest": "7f9cb70312f8d73671dc2b73d9b96f840791ced4dd1963cb1fd1c0418b238d89",
+      "contentVariant": "size-chart",
+      "vocabularyDomain": "everyday-reference",
+      "target": "Compare the options with the [size chart](https://example.com/everyday/size-chart).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-stretching-tips",
+      "revision": 1,
+      "candidateDigest": "7eefcd063f55362b04fc2418c3137c2626261a909a6beb72350de76a53b078fe",
+      "fixtureResultsDigest": "ed2143cb7027da25e5996be99cdfb3034b644aecd4073c98e0ec5c5c1c1d4bd6",
+      "contentVariant": "stretching-tips",
+      "vocabularyDomain": "everyday-movement",
+      "target": "Start with these [stretching tips](https://example.com/everyday/stretching-tips).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l1-link-train-map",
+      "revision": 1,
+      "candidateDigest": "7e15145f8068c2b6d9fb10871c4b93379c0a0a91c1175f4131e2481f41982754",
+      "fixtureResultsDigest": "8aa44ab6d6e60f12cfe47de7883e1dcaa8e89e6d3820fcb25872be89a7d015e6",
+      "contentVariant": "train-map",
+      "vocabularyDomain": "local-travel",
+      "target": "Use the [train map](https://example.com/everyday/train-map) before leaving.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-agent-instructions",
+      "revision": 1,
+      "candidateDigest": "341ed4e245fd3b10bda92bb90c7300abff3ee2fcda0ce517e2f07352dabd9a59",
+      "fixtureResultsDigest": "4088c2957a41172db3916c0e8f1c6d48a2c67f26ccb396071ff85df28b6e1484",
+      "contentVariant": "agent-instructions",
+      "vocabularyDomain": "agent-context",
+      "target": "Read the [agent instructions](https://example.com/work/agent-instructions) before coding.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-api-reference",
+      "revision": 1,
+      "candidateDigest": "847650372cb275db85791082d73f104125f6b942ae2e4957a3dae2615b3686ae",
+      "fixtureResultsDigest": "c695f595f387528ae4073e815b8f1a3312975d5d316389e8cfbff1954c976002",
+      "contentVariant": "api-reference",
+      "vocabularyDomain": "api-reading",
+      "target": "Look up the endpoint in the [API reference](https://example.com/work/api-reference).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-deployment-log",
+      "revision": 1,
+      "candidateDigest": "be91af0c67457263f9c8333aa5613d21cea352b4d9e03006ceafed455345f30a",
+      "fixtureResultsDigest": "5781f75ac5d629557449f1be2c4356bed637b7260ac0c6207e9d8866c12e5548",
+      "contentVariant": "deployment-log",
+      "vocabularyDomain": "deployment-observation",
+      "target": "Check the [deployment log](https://example.com/work/deployment-log) after publishing.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-issue-template",
+      "revision": 1,
+      "candidateDigest": "a019891f9bfb638720a7864c37991e95f9228bd3f62fcdb9842842b8e922ed54",
+      "fixtureResultsDigest": "7b0862442107e9d6671b1b8f724eb0b10a28ccf1857851684702ec1ae0de1225",
+      "contentVariant": "issue-template",
+      "vocabularyDomain": "issue-writing",
+      "target": "Add the needed details with the [issue template](https://example.com/work/issue-template).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-preview-build",
+      "revision": 1,
+      "candidateDigest": "cb2c20bfa88dd35be55f4de988dab54ed8fe3460b9aa3688ff9de4975df512d5",
+      "fixtureResultsDigest": "dbb53639cbd47fd1ece309c443a6864721977529b0995912df3af948c7f5f823",
+      "contentVariant": "preview-build",
+      "vocabularyDomain": "preview-review",
+      "target": "Open the [preview build](https://example.com/work/preview-build) for a quick check.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-project-board",
+      "revision": 1,
+      "candidateDigest": "a5cab2f33ae3ccf32341b1e43e00bc9df1f4bcd8f7c4e45f64aad05d4834e7e3",
+      "fixtureResultsDigest": "fc18518e586465ad9bfa163ac5d17a8ad141853e29926d263be8cc93e1623145",
+      "contentVariant": "project-board",
+      "vocabularyDomain": "task-planning",
+      "target": "Track the next task on the [project board](https://example.com/work/project-board).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-project-brief",
+      "revision": 1,
+      "candidateDigest": "f2687b9b97bf37f0945f6f7b7cbc4fcf46224f6f9482d19ac73bd296a013a323",
+      "fixtureResultsDigest": "2156179233b36d5a6e1dcc234d079d41ebc14b36b2fbf0f513a78f60f1242e5b",
+      "contentVariant": "project-brief",
+      "vocabularyDomain": "project-orientation",
+      "target": "Start with the [project brief](https://example.com/work/project-brief).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-prompt-guide",
+      "revision": 1,
+      "candidateDigest": "053ad1e9b272e8d4b37f2d4e37208223441ed2807bebf39e0d9ddf027b598b24",
+      "fixtureResultsDigest": "b9fd3383c6697f4a5e5bdf552a9fd5d2419d1dccb73434c49247726250ef9899",
+      "contentVariant": "prompt-guide",
+      "vocabularyDomain": "vibe-coding-prompts",
+      "target": "Use the [prompt guide](https://example.com/work/prompt-guide) to refine the request.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-pull-request",
+      "revision": 1,
+      "candidateDigest": "e824c5ee08cbbd71a5dcd56361eb04cb8bc7e4e572cdba5a1d6ecab14f2d1367",
+      "fixtureResultsDigest": "d3039470a81e08f7e77d5d50f4c958d52e3f2d1fc90cb2da231ef06a9a80d92f",
+      "contentVariant": "pull-request",
+      "vocabularyDomain": "code-review",
+      "target": "Leave feedback on the [pull request](https://example.com/work/pull-request).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-release-checklist",
+      "revision": 1,
+      "candidateDigest": "43190e42ed8c8bdfc43ef37b1f23673bf64c8a36b9e91fa850e2fbc02b02b9a5",
+      "fixtureResultsDigest": "edca25ea032ab0c28aab3b74be5c9a1019704043444a6fd64913d44a2d9e4a0c",
+      "contentVariant": "release-checklist",
+      "vocabularyDomain": "release-planning",
+      "target": "Confirm the steps in the [release checklist](https://example.com/work/release-checklist).",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-setup-guide",
+      "revision": 1,
+      "candidateDigest": "e796b90d20a377e436e22cf07cf99f8e183f626f61634fdeca447e9fc8136fb8",
+      "fixtureResultsDigest": "0d89967c50a5087257be68a514d22bcc6cba0d665ac8513ebf96d825dcc88809",
+      "contentVariant": "setup-guide",
+      "vocabularyDomain": "local-setup",
+      "target": "Follow the [setup guide](https://example.com/work/setup-guide) before running the project.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    },
+    {
+      "candidateId": "l2-link-test-report",
+      "revision": 1,
+      "candidateDigest": "1f5a37981389b54196bf62e68194024758d7f1165d1106fb7310936fbe2de84e",
+      "fixtureResultsDigest": "fc9620af530be4ad9e4da0509b52d73c7fd9cab6cd3b4bbac4ea99a14b75766a",
+      "contentVariant": "test-report",
+      "vocabularyDomain": "software-testing",
+      "target": "Review the [test report](https://example.com/work/test-report) before sharing.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: novice-facing US English, safe and distinct content, grammar-only link grading, and a unique credible one-character spelling-plus-capitalization fixture distinct from alternate prose all pass."
+    }
+  ],
+  "reviewDigests": [
+    "541c1cbf8d445005a42514119f8a7ecfdb90c535239889d4b7f02abf46bdaf19",
+    "ddb8265003310bbda8da9bda48ff337dbbbe1271683622fd7dfe4aac9b64ffac"
+  ],
+  "editorialDigest": "a2f58a316cc3f77f1c1353eb1264a644a3898b2d15f9241b11b62a541fb2e777"
+}

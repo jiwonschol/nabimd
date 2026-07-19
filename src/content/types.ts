@@ -56,6 +56,13 @@ export type BlockSelector = {
   depth?: 1 | 2 | 3 | 4 | 5 | 6
 }
 
+export type LinkShapeOptions = {
+  requireNonemptyLabel: boolean
+  requireNonemptyDestination: boolean
+  allowReferences: boolean
+  allowAutolinks: boolean
+}
+
 export type MatchCheck =
   | (HeadingMatchCheck & { kind: "heading-spacing" })
   | (HeadingMatchCheck & { kind: "hash-heading-style" })
@@ -101,6 +108,13 @@ export type MatchCheck =
       max?: number
       requireNonemptyContent?: boolean
     })
+  | (MatchCheckBase &
+      LinkShapeOptions & {
+        kind: "link-shape"
+        scope: CheckScope
+        min?: number
+        max?: number
+      })
   | (MatchCheckBase & {
       kind: "code-block"
       scope: CheckScope
@@ -149,6 +163,13 @@ export type EditorialCheck =
       max: number
       review: string
     }
+  | (LinkShapeOptions & {
+      id: string
+      kind: "max-link-count"
+      scope: CheckScope
+      max: number
+      review: string
+    })
 
 type ProblemBase = {
   id: string
@@ -333,6 +354,11 @@ export type FixtureKind =
   | "fullwidth-backtick"
   | "apostrophe-code"
   | "empty-backticks"
+  | `link-${string}`
+  | "multiple-explicit-links"
+  | "multiple-reference-links"
+  | "multiple-mixed-links"
+  | "multiple-unsafe-links"
 
 export type ProblemFixture = {
   id?: string
