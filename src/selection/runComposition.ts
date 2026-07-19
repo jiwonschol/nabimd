@@ -19,6 +19,7 @@ type SchedulableProblem = Pick<
 const skillFamilyById: Readonly<Record<string, SyntaxFamily>> = {
   blockquote: "blockquote",
   "bold-emphasis": "bold",
+  "code-block": "code-block",
   "heading-h1": "heading",
   image: "image",
   "inline-code": "inline-code",
@@ -199,6 +200,7 @@ type TurnSelectionHistory = {
   previousKey: string | null
   selectedIdsByTurn: string[][]
   weightedState: WeightedSelectionState
+  compositeSelectionCounts: Map<string, number>
 }
 
 const selectionHistoryByBank = new WeakMap<
@@ -225,6 +227,7 @@ function getTurnSelectionHistory(
       previousKey: null,
       selectedIdsByTurn: [],
       weightedState: createWeightedSelectionState(),
+      compositeSelectionCounts: new Map(),
     }
     byLevel.set(historyKey, history)
   }
@@ -341,18 +344,73 @@ function selectLevelTwoProblems(
   runNumber: number,
   context: TurnContext,
   state: WeightedSelectionState,
+  compositeSelectionCounts: Map<string, number>,
   seed: number,
 ): void {
   const compositeProblems = problems.filter(
     (problem) => getSyntaxFamily(problem) === null,
   )
-  selectRotatedUniqueProblems(
-    compositeProblems,
-    RUN_POLICY.atLevelCount,
+  const compositeGroups = new Map<string, SchedulableProblem[]>()
+  for (const problem of compositeProblems) {
+    const group = compositeGroups.get(problem.retryFamily) ?? []
+    group.push(problem)
+    compositeGroups.set(problem.retryFamily, group)
+  }
+  const familyKeys = [...compositeGroups.keys()]
+  const familyOffset =
     runNumber * RUN_POLICY.atLevelCount +
-      seededOffset(compositeProblems.length, seed, 2_001),
-    context,
+    seededOffset(familyKeys.length, seed, 2_001)
+  const orderedFamilyKeys =
+    familyKeys.length === 0
+      ? []
+      : Array.from(
+          { length: familyKeys.length },
+          (_, index) => familyKeys[(familyOffset + index) % familyKeys.length]!,
+        )
+  const usedFamilies = new Set<string>()
+  const targetCompositeCount = Math.min(
+    RUN_POLICY.atLevelCount,
+    compositeProblems.length,
   )
+
+  while (context.selected.length < targetCompositeCount) {
+    const familiesWithCandidate = orderedFamilyKeys.filter((family) =>
+      compositeGroups
+        .get(family)!
+        .some((problem) => !context.selectedIds.has(problem.id)),
+    )
+    const eligibleFamilies = familiesWithCandidate.filter(
+      (family) => family !== context.previousKey,
+    )
+    const unusedFamilies = eligibleFamilies.filter(
+      (family) => !usedFamilies.has(family),
+    )
+    const candidates =
+      unusedFamilies.length > 0
+        ? unusedFamilies
+        : eligibleFamilies.length > 0
+          ? eligibleFamilies
+          : familiesWithCandidate
+    const selectedFamily = candidates[0]
+    if (!selectedFamily) break
+
+    const group = compositeGroups.get(selectedFamily)!
+    const selectionCount = compositeSelectionCounts.get(selectedFamily) ?? 0
+    const variantOffset = seededOffset(
+      group.length,
+      seed,
+      hashString(selectedFamily),
+    )
+    const candidate = rotatedProblems(
+      group,
+      variantOffset + selectionCount,
+    ).find((problem) => !context.selectedIds.has(problem.id))
+    if (!candidate) break
+
+    appendProblem(context, candidate)
+    compositeSelectionCounts.set(selectedFamily, selectionCount + 1)
+    usedFamilies.add(selectedFamily)
+  }
   if (context.selected.length === RUN_POLICY.atLevelCount) return
 
   // The accepted bank still contains legacy single-syntax Level 2 lessons.
@@ -424,6 +482,7 @@ export function createTurnProblemIds(
         turn,
         context,
         history.weightedState,
+        history.compositeSelectionCounts,
         seed,
       )
     } else {

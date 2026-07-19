@@ -80,11 +80,10 @@ describe("five-level entry choices", () => {
   it("never places the same low-level syntax family back-to-back across turns", () => {
     const families = Array.from({ length: 16 }, (_, runNumber) =>
       createRunProblemIds("level-1", runNumber)
-        .map((id) =>
-          getSyntaxFamily(
-            problemBank.find((problem) => problem.id === id)!,
-          ),
-        ),
+        .map((id) => {
+          const problem = problemBank.find((candidate) => candidate.id === id)!
+          return getSyntaxFamily(problem) ?? problem.retryFamily
+        }),
     ).flat()
 
     for (let index = 1; index < families.length; index += 1) {

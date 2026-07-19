@@ -40,6 +40,12 @@ async function currentProblemFamily(page: Page) {
   if (panelId.includes("-emphasis-")) return "emphasis"
   if (panelId.includes("-italic-")) return "italic"
   if (panelId.includes("-inline-code-")) return "inline-code"
+  if (panelId.includes("-code-block-")) {
+    if (panelId.includes("-copy-")) return "code-block-copy"
+    if (panelId.includes("-reference")) return "code-block-reference"
+    if (panelId.includes("-routine")) return "code-block-routine"
+    return "code-block"
+  }
   if (panelId.includes("-link-")) return "links"
   if (panelId.includes("-thematic-break-")) return "thematic-break"
   if (panelId.includes("-order-")) return "ordered-list"
@@ -57,6 +63,14 @@ async function validDifferentProse(page: Page, words: string) {
       return `*${words}*`
     case "inline-code":
       return `Use \`${words}\`.`
+    case "code-block":
+      return `\`\`\`\n${words}\n\`\`\``
+    case "code-block-copy":
+      return `# ${words}\n\n> ${words}\n\n\`\`\`\n${words}\n\`\`\``
+    case "code-block-reference":
+      return `# ${words}\n\n\`\`\`\n${words}\n\`\`\`\n\n- ${words} one\n- ${words} two`
+    case "code-block-routine":
+      return `# ${words}\n\n\`\`\`\n${words}\n\`\`\`\n\n1. ${words} one\n2. ${words} two\n3. ${words} three`
     case "links":
       return `Use [${words}](/changed).`
     case "thematic-break":
@@ -80,6 +94,11 @@ async function malformedSource(page: Page) {
       return "*No closing"
     case "inline-code":
       return "`No closing"
+    case "code-block":
+    case "code-block-copy":
+    case "code-block-reference":
+    case "code-block-routine":
+      return "```\nNo closing fence"
     case "links":
       return "[No closing](/path"
     case "thematic-break":
@@ -103,6 +122,12 @@ async function expectedRepairFeedback(page: Page) {
       return "Make at least one phrase italic with Markdown."
     case "inline-code":
       return "Wrap at least one meaningful item in backticks."
+    case "code-block":
+      return "Put text between matching lines of three backticks."
+    case "code-block-copy":
+    case "code-block-reference":
+    case "code-block-routine":
+      return "Rebuild the three-block shape shown in the Goal."
     case "links":
       return "Add a Markdown link with readable words and a web address."
     case "thematic-break":

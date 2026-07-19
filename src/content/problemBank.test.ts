@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
 import { blockquoteBatch006Fixtures } from "./batches/blockquoteBatch006Fixtures"
+import { codeBlockBatch014Fixtures } from "./batches/codeBlockBatch014Fixtures"
 import { developmentSpecBatch012Fixtures } from "./batches/developmentSpecBatch012Fixtures"
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
 import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
@@ -24,9 +25,9 @@ import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(problemBank).toHaveLength(272)
-    expect(getProblemsForLevel(1)).toHaveLength(112)
-    expect(getProblemsForLevel(2)).toHaveLength(112)
+    expect(problemBank).toHaveLength(296)
+    expect(getProblemsForLevel(1)).toHaveLength(124)
+    expect(getProblemsForLevel(2)).toHaveLength(124)
     expect(getProblemsForLevel(3)).toHaveLength(28)
     expect(getProblemsForLevel(4)).toHaveLength(16)
     expect(getProblemsForLevel(5)).toHaveLength(4)
@@ -41,6 +42,16 @@ describe("compiled five-level problem bank", () => {
     expect(
       getProblemsForLevel(2).filter(
         (problem) => problem.familyId === "rebuild-real-documents",
+      ),
+    ).toHaveLength(12)
+    expect(
+      getProblemsForLevel(1).filter(
+        (problem) => problem.familyId === "fenced-code-blocks",
+      ),
+    ).toHaveLength(12)
+    expect(
+      getProblemsForLevel(2).filter(
+        (problem) => problem.familyId === "rebuild-code-block-documents",
       ),
     ).toHaveLength(12)
   })
@@ -79,6 +90,7 @@ describe("compiled five-level problem bank", () => {
         ...readableDocumentBatch011Fixtures,
         ...developmentSpecBatch012Fixtures,
         ...italicRebuildBatch013Fixtures,
+        ...codeBlockBatch014Fixtures,
       ]),
     ).toEqual([])
   })

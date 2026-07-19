@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 596,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "cbb780179fc17b4cccb98d500a6dffbc5d9c582206a62bab1f56cac68e161391",
+  "verificationDigest": "47e4ae95ef96eced2577b93065d1d0d174fd6efaabbe7e14da300687f95ca418",
+  "manifestDigest": "719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde",
+  "engineContractDigest": "0db28345c59871969d430720be7bdd572f6f8991c3decc29963340d3400fd02c",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 272,
+  "preparedSummaryDigest": "e801700c356510c0845f65cdc7773027f43d53f0e4632a24fafa3bdbd4491401"
+}

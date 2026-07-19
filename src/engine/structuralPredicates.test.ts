@@ -747,6 +747,127 @@ describe("structural match predicates", () => {
     })
   })
 
+  it("can require visible code-block content without changing the default", () => {
+    const legacy = problem([
+      {
+        ...common("legacy-code-block"),
+        kind: "code-block",
+        scope: { kind: "document" },
+        min: 1,
+      },
+    ])
+    const visible = problem([
+      {
+        ...common("visible-code-block"),
+        kind: "code-block",
+        scope: { kind: "document" },
+        min: 1,
+        requireNonemptyContent: true,
+      },
+    ])
+
+    for (const source of [
+      "```\n\n```",
+      "```\n   \n```",
+      "```\n\u200B\n```",
+      "```\n\u0000\n```",
+    ]) {
+      expect(evaluateProblem(legacy, source)).toEqual({
+        status: "matched",
+        reviewItems: [],
+      })
+      expect(evaluateProblem(visible, source)).toMatchObject({
+        status: "fail",
+        feedbackId: "visible-code-block",
+      })
+    }
+
+    expect(evaluateProblem(visible, "```\nPack lunch\n```")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(evaluateProblem(visible, "```\n<!-- shown as code -->\n```")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(evaluateProblem(visible, "```\n\u0000visible\n```")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(evaluateProblem(visible, "```\n\uFFFD\n```")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(evaluateProblem(visible, "    Pack lunch")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(evaluateProblem(visible, "`Pack lunch`")).toMatchObject({
+      status: "fail",
+      feedbackId: "visible-code-block",
+    })
+    expect(
+      evaluateProblem(visible, "<pre><code>Pack lunch</code></pre>"),
+    ).toMatchObject({ status: "fail", feedbackId: "visible-code-block" })
+    expect(evaluateProblem(visible, "<!-- hidden outside code -->")).toMatchObject({
+      status: "fail",
+      feedbackId: "visible-code-block",
+    })
+  })
+
+  it("can require a matching closing fence without changing legacy code blocks", () => {
+    const legacy = problem([
+      {
+        ...common("legacy-open-fence"),
+        kind: "code-block",
+        scope: { kind: "document" },
+        min: 1,
+        requireFenced: true,
+      },
+    ])
+    const closed = problem([
+      {
+        ...common("closed-fence"),
+        kind: "code-block",
+        scope: { kind: "document" },
+        min: 1,
+        requireFenced: true,
+        requireClosedFence: true,
+      },
+    ])
+
+    expect(evaluateProblem(legacy, "```\nBring water")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    for (const source of [
+      "```\nBring water\n```",
+      "~~~\nBring water\n~~~",
+      "```\nBring water\n````",
+      "```\rBring water\r```",
+      "> ```\n> Bring water\n> ```",
+      "1.   ```\n     Bring water\n     ```",
+      "- ```\n  Bring water\n  ```",
+    ]) {
+      expect(evaluateProblem(closed, source)).toEqual({
+        status: "matched",
+        reviewItems: [],
+      })
+    }
+    for (const source of [
+      "```\nBring water",
+      "````\nBring water\n```",
+      "```\nBring water\n~~~",
+      "```\nBring water\n> ```",
+      "1.   ```\n     Bring water\n     > ```",
+    ]) {
+      expect(evaluateProblem(closed, source)).toMatchObject({
+        status: "fail",
+        feedbackId: "closed-fence",
+      })
+    }
+  })
+
   it("finds inline Markdown recursively without treating plain markers as syntax", () => {
     const inline = problem([
       {

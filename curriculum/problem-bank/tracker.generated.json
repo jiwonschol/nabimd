@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "668d5e402d02a8e6dfa9aa38c20c7cacedcec28f3c5a50ef25f8ab960112c43f",
-  "acceptedTotal": 272,
+  "bankDigest": "03b4cdcbfd53639192ae8e305db129670b0c2c97bd5e17fb238e7ff9343ef7f7",
+  "acceptedTotal": 296,
   "counts": {
     "byLevel": {
-      "1": 112,
-      "2": 112,
+      "1": 124,
+      "2": 124,
       "3": 28,
       "4": 16,
       "5": 4
@@ -16,6 +16,7 @@
       "blockquotes": 24,
       "emphasis": 24,
       "executable-development-spec": 16,
+      "fenced-code-blocks": 12,
       "headings": 32,
       "horizontal-rules": 24,
       "inline-code": 24,
@@ -23,11 +24,13 @@
       "links": 24,
       "lists": 48,
       "readable-human-document": 28,
+      "rebuild-code-block-documents": 12,
       "rebuild-real-documents": 12
     },
     "byLevelAndFamily": {
       "1/blockquotes": 12,
       "1/emphasis": 12,
+      "1/fenced-code-blocks": 12,
       "1/headings": 16,
       "1/horizontal-rules": 12,
       "1/inline-code": 12,
@@ -41,13 +44,14 @@
       "2/inline-code": 12,
       "2/links": 12,
       "2/lists": 24,
+      "2/rebuild-code-block-documents": 12,
       "2/rebuild-real-documents": 12,
       "3/readable-human-document": 28,
       "4/executable-development-spec": 16,
       "5/agent-ready-work-order": 4
     },
     "byFlavor": {
-      "standard": 272
+      "standard": 296
     },
     "rejected": 0,
     "blocked": 0
@@ -169,7 +173,16 @@
       "accepted": 24,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
+      "sequence": 14,
+      "batchDigest": "13665e7c07f38e7109fcf4c12556001b044523fa2bb2a58e6c6ca2229d302467",
+      "generated": 24,
+      "accepted": 24,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "0f09408574f471dddb331083338b4d6ecb3d59415258e736b332e6135c2c1f04"
+  "trackerDigest": "3c9277bad5b34fcce1d128a329a3ab1d26f1d13ea2a502b3fb7933cd1ca60f03"
 }

@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
+  "reviewerId": "codex-orchid-batch014",
+  "reviewRunId": "orchid-batch014-719c007-refrozen-seal-001",
+  "declaredIndependent": true,
+  "manifestDigest": "719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde",
+  "engineContractDigest": "0db28345c59871969d430720be7bdd572f6f8991c3decc29963340d3400fd02c",
+  "frozenFixtureCount": 596,
+  "freshProbeCount": 696,
+  "overallVerdict": "pass",
+  "evidence": {
+    "sourceHead": "a54c5fa9c6760d71bdfc626dc1026b06535ae000",
+    "reviewManifestFileSha256": "1a7e4bc91ff2fca584fe1071c748865853b3534442f4de0ae328430cb26bf284",
+    "frozenCandidateCount": 24,
+    "frozenFixtureCount": 596,
+    "frozenFixtureCountsByLevel": {
+      "1": 312,
+      "2": 284
+    },
+    "freshProbeCount": 696,
+    "freshProbeCountsByLevel": {
+      "1": 348,
+      "2": 348
+    },
+    "freshProbeCountsPerCandidate": 29,
+    "crOnlyFenceAcceptances": 24,
+    "rawNulOnlyRejections": 24,
+    "literalReplacementCharacterAcceptances": 24,
+    "nulPlusVisibleAcceptances": 24,
+    "targetTeachingExampleCollisions": 0,
+    "previousEditorialCollisionsRemaining": 0,
+    "acceptedBankCollisionComparands": 272,
+    "acceptedBankIdCollisions": 0,
+    "acceptedBankTargetCollisions": 0,
+    "acceptedBankContentVariantCollisions": 0,
+    "acceptedBankVocabularyCollisions": 0,
+    "selectionSeeds": 256,
+    "selectionTurnsPerSeed": 48,
+    "selectionTotalSelections": 73728,
+    "selectionMissingVariantSeeds": 0,
+    "selectionAdjacentFamilyViolations": 0,
+    "selectionDuplicateTurnViolations": 0,
+    "selectionDeterminismViolations": 0,
+    "selectionLatestFirstSeenTurn": 5,
+    "fullSuiteTestFilesPassed": 49,
+    "fullSuiteTestsPassed": 9105,
+    "focusedTestFilesPassed": 4,
+    "focusedTestsPassed": 809,
+    "batchGateTestsPassed": 6,
+    "typecheckPassed": true,
+    "prepublicationAcceptedTotal": 272,
+    "runtimeNetworkCalls": 0,
+    "normalizedArtifactDigest": "cbb780179fc17b4cccb98d500a6dffbc5d9c582206a62bab1f56cac68e161391",
+    "fixtureArtifactDigest": "ca0f41bb36936d0ee9299c5b8e6f0807e989ebe152beb0e9a45bc6b1ca97ab09",
+    "engineContractDigest": "0db28345c59871969d430720be7bdd572f6f8991c3decc29963340d3400fd02c",
+    "verificationDigest": "47e4ae95ef96eced2577b93065d1d0d174fd6efaabbe7e14da300687f95ca418",
+    "manifestDigest": "719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde",
+    "promptDigest": "1da735b0830158cd37627deac9d970256953ac7848c4369f6d0334ce74afc9ec",
+    "frozenInputFileDigests": {
+      "candidates.raw.json": "a33db584f6f8d0010ac0c37ff9c78dd4f58908c4c29449bafbf88244fd8616be",
+      "candidates.normalized.json": "57d67f62bb043ccb7e3dbcee40dcef454986c76bc6d6e01b7aeac9b7f3d8f9d7",
+      "fixtures.json": "8f668497329421f89a7c0462a24b2ff758ddefb0936f225b5ed192ce13dfbae6",
+      "engine-contract.json": "396a68d05cf487be5e870842bb61118232e25d9df193cf11613b2b001bc2cceb",
+      "verification.json": "803dc5dbc02a0c333cb3c6c5ebe0ccb0f3aa427dc9eeaa8a980fe1295df92fc9",
+      "review-manifest.json": "1a7e4bc91ff2fca584fe1071c748865853b3534442f4de0ae328430cb26bf284"
+    },
+    "stopRestartConditionTriggered": false
+  },
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "sourceAndPromptSealsRecomputed": "pass",
+    "engineContractRecomputed": "pass",
+    "frozenFixturesReplayed": "pass",
+    "frozenFixtureDigestsReproduced": "pass",
+    "directCheckCoverage": "pass",
+    "fixtureRoleCoverage": "pass",
+    "closedFenceBoundaries": "pass",
+    "containerAwareClosures": "pass",
+    "crOnlyLineEndings": "pass",
+    "meaningfulCodeContent": "pass",
+    "nulReplacementDisambiguation": "pass",
+    "level2ExactBlockShape": "pass",
+    "level2QuoteAndListShape": "pass",
+    "grammarOnlyBoundaries": "pass",
+    "targetTeachingExampleSeparation": "pass",
+    "previousEditorialCollisionsRemoved": "pass",
+    "legacyBatch012Compatibility": "pass",
+    "collisionUniquenessAgainstPublished272": "pass",
+    "taxonomyAndRetryFamilies": "pass",
+    "selectionReachability256Seeds": "pass",
+    "prepublicationGate": "pass",
+    "fullSuite": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l1-code-block-book-label",
+      "revision": 1,
+      "candidateDigest": "02113545c0bef5f72386e4de4a71495a6e5efc4d18701a2ffde7f09d35036251",
+      "fixtureResultsDigest": "87cd15534d1216f8835466969a4bae5e3ee3d8b04df9850f3e309cb656568e27",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-bus-stop",
+      "revision": 1,
+      "candidateDigest": "be7f71bffd197811974082646cfa97bc3530b358876f5b110a586092530ff384",
+      "fixtureResultsDigest": "d2b94ba33bc8f13a06532351d6a536bdb3d06817715923b3b761f8499839a22d",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-door-sign",
+      "revision": 1,
+      "candidateDigest": "eae3957441ff117ddd39d1a57e5773924fcaa04ab0b0ea0c844108ad2f876c1f",
+      "fixtureResultsDigest": "9c67b77e4caa33f613834a0c3e28ac925750e3a6bba1ca1d9fa1d5b92b258ffb",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-garden-tag",
+      "revision": 1,
+      "candidateDigest": "d307e52da52f5b990fe91f16249d4b45ab50612bf0c5214f0924aedb75854f89",
+      "fixtureResultsDigest": "c4b6ac72aaa9cc402bd60e2b16b11a2fa07b4d638899e5981bf6bc50116a2bb6",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-laundry-note",
+      "revision": 1,
+      "candidateDigest": "171cfa3df750a38bedfe41de4952d3078ebb65f115fa5a43f5f6c72f04f3d639",
+      "fixtureResultsDigest": "6aa93539ec543382733b33f345a641829d29739da8bd1428f571e9b79c50f312",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-music-note",
+      "revision": 1,
+      "candidateDigest": "123ed52f104390aba332120c06bf1760e92eb22bea00c548e85cddd8de8f7937",
+      "fixtureResultsDigest": "a8b17e308bfba1b363565ba32da50e65aa8d49521f5d38a6e6a57af18b72e706",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-pet-note",
+      "revision": 1,
+      "candidateDigest": "c7a948dc128310c2c50f5868463c776d2d1b59ed07b9d342984a8f185ec3f6aa",
+      "fixtureResultsDigest": "2a83cec3c36ec99f5a7ab7c679a579429b6787bb99545c95e4e433109d778071",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-phone-reminder",
+      "revision": 1,
+      "candidateDigest": "536a3e28098ee71313d8b7e6b1a0e28829fbe71a9a69767084f7df454d7fb017",
+      "fixtureResultsDigest": "447d0c517d850e608aac7db15f6c7cb4f3752483eadf40ca3dbaa5990ae1519e",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-picnic-label",
+      "revision": 1,
+      "candidateDigest": "01efdead9951b80adccda771a88da147205bb2f255cd37d8f6bf363cc91fb2be",
+      "fixtureResultsDigest": "38b673eb9b094ea5ec0c4ee44ca67cec9de2883787dc02860576df4e771c920e",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-shoe-box",
+      "revision": 1,
+      "candidateDigest": "2cb8e7b85cef98ca410b3b52242c069eec662d0ea473b595771a788927d23313",
+      "fixtureResultsDigest": "602ff269e27a92fccd3cd3e7775ec4faabea548929db1c57ca7eb89efeed9701",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-snack-label",
+      "revision": 1,
+      "candidateDigest": "3231ae62627840311cd38d8bc5384af75fe6c3d2a3697b48cacff733ae357564",
+      "fixtureResultsDigest": "93b559e73ffe2b0566b1ebf28dd2353335f917c50cbe123a3c13710e78587f0c",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l1-code-block-weather-message",
+      "revision": 1,
+      "candidateDigest": "9bf46f3d12c0da1855af8de4a3af5a0352d099c9a10607b1431a1390b029b506",
+      "fixtureResultsDigest": "e1e55a1ede368499d5d77d24bec1d3cd1f6868aa09a7ae9f5e88f01ba3f01a3f",
+      "verdict": "pass",
+      "notes": "All 26 frozen fixtures and 29 independent probes passed closed nonempty fenced-code grammar, equivalent marker/container/line-ending handling, raw-control boundaries, prose neutrality, and focused Review behavior."
+    },
+    {
+      "candidateId": "l2-code-block-alarm-routine",
+      "revision": 1,
+      "candidateDigest": "a7ca25cfa6e4bc1f9316dfd749bf8876838ca7b3f896c8e1f926b50cce8a1162",
+      "fixtureResultsDigest": "6be80f881bbc5a8281884968ebec2f1dee35d1b333bbde5bc9da01618cbbeb81",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-ordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-bus-reference",
+      "revision": 1,
+      "candidateDigest": "b879b5c20cb6e7487f2279104e0c1344afb16e8a61436658409050e4134a329d",
+      "fixtureResultsDigest": "550a4224450b9e3729838a21c0e6d40f9be2137bfa25c26d0dc76eb9b9d15c65",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-unordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-contact-reference",
+      "revision": 1,
+      "candidateDigest": "ef2936c0aaa647c74abdbeeab43b94350cecd12fb2f9ceac0170ca4e43cf6ce4",
+      "fixtureResultsDigest": "28de5ddefa435697e866cbdb5c90960d3724203a8f6b3b78441b69b681ab2604",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-unordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-door-copy",
+      "revision": 1,
+      "candidateDigest": "ceb52403cbe8e0535baa953a39c2d82a2c2bc7d1daccd5d3b8791dcfb6d19538",
+      "fixtureResultsDigest": "170ac2d30e7948e3ea980003dbb450e798cbf1f5303365477b8496eb8285912d",
+      "verdict": "pass",
+      "notes": "All 23 frozen fixtures and 29 independent probes passed exact H1-blockquote-code anatomy, nonempty quote and code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-grocery-reference",
+      "revision": 1,
+      "candidateDigest": "a8babd19ab479af84475d76aadf7f51b506e4ec9a40a5b9f5b6f4831cee5e730",
+      "fixtureResultsDigest": "b031f71b24d85b4e5d9ffbf0e2a52a66c7061feb1dac5b58d67a1571876a2a4a",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-unordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-guest-copy",
+      "revision": 1,
+      "candidateDigest": "5bb6ca3d8a2694ce041a5fa1495f716cda5d616d3e53fed259df8675fe0cf76a",
+      "fixtureResultsDigest": "648a2048fd5f53c7fc4d682530f48dbfc3b5d260acc309cf3451975282c5f477",
+      "verdict": "pass",
+      "notes": "All 23 frozen fixtures and 29 independent probes passed exact H1-blockquote-code anatomy, nonempty quote and code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-library-copy",
+      "revision": 1,
+      "candidateDigest": "8c9308911781726f55c899c4d3dd222de4433d813cfb769460336b05d80c2d49",
+      "fixtureResultsDigest": "8880284fdecf53388b449519f8ce7878724bd9a89cb488c3e48d195146ad2a60",
+      "verdict": "pass",
+      "notes": "All 23 frozen fixtures and 29 independent probes passed exact H1-blockquote-code anatomy, nonempty quote and code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-lunch-copy",
+      "revision": 1,
+      "candidateDigest": "f0f612b0ff9b09026e42f40a3ee7134959a229c022787b361a531b2ddf96a534",
+      "fixtureResultsDigest": "2e76fcee48588da9bc57d664533c144cac923ea507a49b2295d1859a053cf8ad",
+      "verdict": "pass",
+      "notes": "All 23 frozen fixtures and 29 independent probes passed exact H1-blockquote-code anatomy, nonempty quote and code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-movie-routine",
+      "revision": 1,
+      "candidateDigest": "f83b23dafcb9a5b4cbaded2f495c8ad4d37b36aa384c6d086434fc9d9f400a04",
+      "fixtureResultsDigest": "02a401c35c838d1cf45857a45d7f1512df044559086a8781d52cad060f99e4bd",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-ordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-package-routine",
+      "revision": 1,
+      "candidateDigest": "805b20c7708ea2f10c89755963612c985e1a05ca6b0dfa60e0037f5041cacc1a",
+      "fixtureResultsDigest": "3397fa804b46853ab6d8d828bee7b7fe6851c2ac6d3c65a8d632099a687ad23c",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-ordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-pet-reference",
+      "revision": 1,
+      "candidateDigest": "e58c0bedaa8ea6878bf98f98553965e2fdb4427b9db13bdb7cfa3875ae58b29a",
+      "fixtureResultsDigest": "adf5058e9d38a5f1b52c7fd35cd8bd9773e77feb5d09b63ebe777d8214e92296",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-unordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    },
+    {
+      "candidateId": "l2-code-block-plant-routine",
+      "revision": 1,
+      "candidateDigest": "a91511f4c742c2a67b4b49383d3108cf484cf668de7a2de1457bfb80e36ff3db",
+      "fixtureResultsDigest": "c5bfe1541da094f4bb1ffcd1b6db86ca574daff29c6cd688b31497ed0b7bb284",
+      "verdict": "pass",
+      "notes": "All 24 frozen fixtures and 29 independent probes passed exact H1-code-ordered-list anatomy, nonempty list/code content, fence/control boundaries, and grammar-only prose independence."
+    }
+  ],
+  "findings": [],
+  "stopConditions": [
+    "Any candidate, fixture, engine-contract, verification, manifest, prompt, or selector change after this review invalidates this digest-bound evidence and requires a new independent review run.",
+    "Any later reviewer disagreement or editorial rejection blocks publication of the whole immutable batch."
+  ],
+  "notes": "Independent refrozen-seal Orchid review passed against the exact 719c0074 manifest. All 596 frozen fixtures and 696 independently authored fresh probes produced the expected real-engine outcomes across all 24 candidates. Fresh probes covered equivalent fences, longer closers, language tags, CRLF and CR-only line endings, blockquote and list containers, fence-looking literal final lines, raw-NUL replacement handling, literal U+FFFD, NUL plus visible text, invisible-only content, parser lookalikes, exact Level 2 anatomy, and prose-neutral variants. No candidate target equals its teaching example; the previous door-sign, bus-reference, and alarm-routine example collisions are absent. No ID, target, contentVariant, or full-vocabulary collision existed against the 272 accepted problems. Across 256 seeds and 48 turns, every new Level 2 variant was reachable by turn 5 with no adjacent-family, duplicate-turn, or determinism violation. The full 9,105-test suite, focused 809-test regressions, typecheck, and prepublication gate passed with no blocking findings.",
+  "reviewDigest": "8dcdddf6df23d8dd5f98c0e7fb12a75afcac1705d71c1884d44be99a5a60a3bd"
+}

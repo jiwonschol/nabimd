@@ -129,6 +129,8 @@ export type MatchCheck =
       max?: number
       requireLanguageTag?: boolean
       requireFenced?: boolean
+      requireClosedFence?: boolean
+      requireNonemptyContent?: boolean
     })
   | (MatchCheckBase & {
       kind: "block-sequence"

@@ -1758,3 +1758,44 @@ generalized the browser-safe controller to one interruptible channel for
 Matched, Try again, and the turn summary. The existing persistent mute choice,
 first-gesture unlock, rejected-playback retry, and duplicate-transition guards
 remain in force.
+
+## 2026-07-20 — Issue #9 code-block breadth and rebuild batch
+
+Issue #9's refinement showed that a high problem count was still producing a
+narrow low-level experience. Batch 014 therefore adds a new Level 1 syntax
+family instead of another vocabulary-only variant: 12 short code-block lessons
+and 12 Level 2 rebuilds across sample notes, quick references, and numbered
+routines. The learner-facing copy calls the structure a `Code block`; it does
+not require a language tag or teach programming. Matching checks only for a
+nonempty, explicitly closed fenced block and the requested document anatomy.
+Text, case, spelling, punctuation, and code meaning remain outside grading.
+
+The first implementation exposed several real engine and scheduling defects.
+CommonMark parses an unclosed opening fence through end of file, so the new
+lesson uses an opt-in closed-fence check without changing legacy predicates.
+Nested fences, CR-only line endings, raw NUL input, and a literal replacement
+character required separate regression cases so visible content could be
+recognized without accepting an invisible-only block. Level 2's stable seeded
+selection also starved some variants; persistent per-family rotation now makes
+all 12 rebuilds reachable while preserving retry-family separation.
+
+The first final seal was not published. Separate editorial inspection found
+that one Level 1 Goal and two Level 2 Goals reused their shared teaching
+example. The examples were replaced with different documents, a regression now
+requires every teaching example to differ from its Goal, all derived evidence
+was deleted, and both independent mechanical reviews restarted from zero.
+
+Final manifest
+`719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde`
+contains 24 accepted candidates and 596 frozen real-engine fixtures. Atlas
+replayed every fixture plus 732 fresh probes; Orchid independently replayed
+every fixture plus 696 fresh probes. Both proved all 12 Level 2 variants
+reachable across 256 seeds with no adjacent-family, duplicate, or determinism
+violation. The separate editorial rerun accepted 24/24. Publication raises the
+deterministic bank from 272 to 296, split 124/124/28/16/4, and records fenced
+code blocks as a CommonMark-compatible syntax family supported by Devpost
+without claiming complete Markdown or GFM coverage. The exact published tree
+passed 9,105 unit and component tests, every immutable batch and repository
+gate, typechecking, the production build and bundle inspection, plus all 13
+Chromium user journeys including keyboard-only completion through the new
+Level 2 code-block challenges.

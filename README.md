@@ -71,7 +71,7 @@ This milestone includes:
 
 - five selectable curriculum levels with six scheduled problems per turn:
   four at the selected level and two next-level challenges;
-- a 248-problem deterministic bank split 100/100/28/16/4 across Levels 1–5;
+- a 296-problem deterministic bank split 124/124/28/16/4 across Levels 1–5;
   the current Level 5 turn uses all four unique work orders instead of
   duplicating two to display six;
 - a fixed CBT-style top bar and two equal Goal/Answer panels;

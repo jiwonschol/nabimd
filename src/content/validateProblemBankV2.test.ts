@@ -375,6 +375,7 @@ describe("schema-v2 problem-bank validation", () => {
           inline: "strong",
           min: 1,
           requireNonemptyContent: "yes",
+          requireClosedFence: "yes",
           priority: 30,
           feedback: "Add bold text.",
         },
@@ -418,6 +419,16 @@ describe("schema-v2 problem-bank validation", () => {
           priority: 70,
           feedback: "Add a link.",
         },
+        {
+          id: "invalid-code-block",
+          kind: "code-block",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyContent: "yes",
+          requireClosedFence: "yes",
+          priority: 80,
+          feedback: "Add a code block.",
+        },
       ] as unknown as NormalizedProblem["matchChecks"],
     })
 
@@ -453,6 +464,8 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check invalid-link-shape has invalid nonempty-destination flag",
         "Problem invalid-list-shape check invalid-link-shape has invalid references flag",
         "Problem invalid-list-shape check invalid-link-shape has invalid autolinks flag",
+        "Problem invalid-list-shape check invalid-code-block has invalid nonempty-content flag",
+        "Problem invalid-list-shape check invalid-code-block has invalid closed-fence flag",
       ]),
     )
   })

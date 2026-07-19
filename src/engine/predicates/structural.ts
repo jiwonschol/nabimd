@@ -24,7 +24,7 @@ import {
   type AstNode,
   type EvaluationContext,
 } from "../evaluationContext"
-import { isFencedCode } from "../markdownAst"
+import { isClosedFencedCode, isFencedCode } from "../markdownAst"
 
 type StructuralCheck = Exclude<
   MatchCheck,
@@ -506,7 +506,32 @@ function codeBlockPasses(
     .filter((node): node is Code => node.type === "code")
     .filter((node) => !check.requireLanguageTag || Boolean(node.lang?.trim()))
     .filter((node) => !check.requireFenced || isFencedCode(context.source, node))
+    .filter(
+      (node) =>
+        !check.requireClosedFence || isClosedFencedCode(context.source, node),
+    )
+    .filter(
+      (node) =>
+        !check.requireNonemptyContent ||
+        codeBlockHasMeaningfulContent(node, context.source),
+    )
   return inRange(blocks.length, check.min, check.max)
+}
+
+function codeBlockHasMeaningfulContent(node: Code, source: string): boolean {
+  const rawNullCount = [...sourceForNode(node, source)].filter(
+    (character) => character === "\u0000",
+  ).length
+  let remainingNullReplacements = rawNullCount
+  const valueWithoutParserNullReplacements = node.value.replace(
+    /\uFFFD/g,
+    (character) => {
+      if (remainingNullReplacements === 0) return character
+      remainingNullReplacements -= 1
+      return ""
+    },
+  )
+  return hasMeaningfulCharacters(valueWithoutParserNullReplacements)
 }
 
 function blockSequencePasses(
