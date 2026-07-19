@@ -2299,3 +2299,20 @@ licensing, flavor, the no-runtime-AI boundary, visible-syntax purpose, and the
 new “Markdown typing, not company-document reading” contract. Editorial run
 `editorial-batch017-f739f876-compact-2026-07-20-002` is sealed by digest
 `88ed632a0709e48707ae70fc16822b6844ef1e341e5943484b4b9e6412befac2`.
+
+Publishing the accepted replacement twice produced identical artifacts and
+raised the runtime bank from 332 to the intermediate 344 checkpoint, split
+`136/148/30/20/10`. Replacement publication digests are batch
+`ec3826cb3206a4b72fcced2e940714d27e7dec964ecb70e917c11f7a8ccf18dc`,
+bank `be6a660939c623b5d9db2ac38f034c83d86b72f5db6ff5cec1b28503aa5d1dc6`,
+runtime projection
+`89c098f3d79ee963fe5696d2d247585e784ce1a40c1b576c2766010440f29f44`,
+tracker `9c0b9d7daa121d484456249461631dcf947e7e75069a0894e5aa0bc436bb8686`,
+and summary `011d9526bd5712ae135df1378c2d50328e23627883f8cad7897c9246f6862403`.
+
+The final `npm run check` passes typechecking, 18/18 pipeline tests, every
+immutable batch gate, 4/4 repository gates, 9,885/9,885 unit and component
+tests, the compiled-bank gate, a 222-module production build, and bundle
+inspection. Local Chromium E2E passes all 13 learner journeys, including every
+level opening a six-problem turn and a long Level 5 answer scrolling inside
+the editor. Issue #9 remains open and this replacement still uses `Refs #9`.

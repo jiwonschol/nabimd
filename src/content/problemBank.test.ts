@@ -29,13 +29,13 @@ import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(tracker.acceptedTotal).toBe(332)
+    expect(tracker.acceptedTotal).toBe(344)
     expect(tracker.counts.byLevel).toEqual({
       1: 136,
       2: 148,
-      3: 28,
-      4: 16,
-      5: 4,
+      3: 30,
+      4: 20,
+      5: 10,
     })
     expect(problemBank).toHaveLength(tracker.acceptedTotal)
     for (const level of [1, 2, 3, 4, 5] as const) {
