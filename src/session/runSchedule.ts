@@ -107,6 +107,13 @@ export function isReachableRunSchedule({
         stepIndex: state.stepIndex,
         currentIsTransfer: state.currentIsTransfer,
       })
+      if (!state.currentIsTransfer) {
+        queue.push({
+          problemIds: replacedProblemIds,
+          stepIndex: state.stepIndex,
+          currentIsTransfer: true,
+        })
+      }
     }
 
     queue.push({

@@ -109,6 +109,25 @@ describe("progressStore v3", () => {
     ).toEqual(progress)
   })
 
+  it("restores a failed prompt replaced by a same-step transfer retry", () => {
+    const baseline = createRunProblemIds("level-1", 0)
+    const replacement = problemBank.find(
+      (candidate) =>
+        candidate.level === 1 &&
+        candidate.retryFamily === getProblem(baseline[0]!).retryFamily &&
+        !baseline.includes(candidate.id),
+    )!
+    const progress = createDefaultProgress(replacement.id)
+    progress.entryId = "level-1"
+    progress.runProblemIds = [replacement.id, baseline[1]!, baseline[2]!]
+    progress.currentIsTransfer = true
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
   it("rejects a known cross-level substitution", () => {
     const baseline = createRunProblemIds("level-3", 0)
     const wrongLevel = createRunProblemIds("level-4", 0)[0]!
