@@ -2085,3 +2085,61 @@ and prepared summary
 The focused run passes 524/524, the Batch 016 gate passes 7/7, the full suite
 passes 9,876/9,876 in 51 files, typechecking passes, and `git diff --check` is
 clean. No Issue #50-owned path changed.
+
+The fresh repair review cycle completed unanimously against manifest
+`4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457`
+and engine contract
+`f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9`.
+Atlas (`reviewer-atlas-batch016`, run
+`atlas-batch016-4953c83f-repaired-001`) replayed all 300 frozen fixtures,
+added 456 fresh probes, and accepted 12/12 with review digest
+`eb8d7dcd354433b7f8ba194913b5d8970e37f3067be1a2b6c3b521422a996e6f`.
+Orchid (`codex-orchid-batch016-repaired-engine`, run
+`orchid-batch016-4953c83f-engine-repair-mechanical-001`) independently
+replayed the frozen matrix, added 972 fresh probes, and accepted 12/12 with
+review digest
+`bada6ccb246f35f916440bc60836d1673db8a1c96d25892eaa27a3719ac60128`.
+The separate `codex-editorial-batch016-repaired-engine` actor accepted 12/12
+in run `editorial-batch016-4953c83f-repaired-engine-2026-07-20-002`, sealed by
+editorial digest
+`f7f36693ef6baab7469c0fba49e3e3e9c045284cb61fc604ac22f6e2d4e8110e`.
+
+This is the replacement publication, not a continuation of the rejected
+evidence. Whole-branch review rejected the original `412293a` publication;
+`760522c` reverted it, `a81a2ef` added visible root/child grading,
+`b88cc37` corrected raw-NUL parsing, and `7942de2` committed only fresh review
+seals for the repaired engine and manifest. No digest or verdict from the
+rejected publication is used by the replacement.
+
+Running `npm run bank:batch:nested-list-016:publish` twice produced identical
+artifacts and raised the deterministic bank from 320 to 332, split
+136/148/28/16/4, with 12 `rebuild-nested-list-documents` problems. Final
+publication digests are batch
+`ba0fa8ceb1cff2a79871aaf66cc35dddcd721933834be2beee4672061045d1d6`,
+bank `b9ad420505055ab2e061e229ef2410574dd0ac1e7dcf81a8803224777aaeb65f`,
+runtime projection
+`132ea134d89f06c45156dc2a34c251a9c068c10650f4080fa800ab3189eb7508`,
+tracker `1fddd8fc64685c1461d6c41ea68f23880a58c5080f0ab91d591b1dbcd3f38f39`,
+and summary
+`0da0618d85b98fdad2cc67703e9e8d4f4da5af0ce144b3f284427139b18b553f`.
+
+Publication testing first failed at the three expected integration points: the
+runtime-bank test still asserted 320, omitted the Batch 016 fixtures, and the
+batch-local collision test compared the now-published records against itself.
+The count and split assertions now read 332 and 136/148/28/16/4, all 300
+fixtures join the published-bank contract, and collision checking excludes
+only this exact source batch. The targeted publication and engine run then
+passed 513/513.
+
+The final `npm run check` passed typechecking, 18/18 pipeline tests, 100/100
+immutable batch-gate tests, 3/3 repository-gate tests, 9,876/9,876 unit and
+component tests, the legacy bank gate, a 222-module production build, and
+bundle inspection excluding four fixture-only sentinels. Local Chromium E2E
+passed all 13 user journeys. Generic generation and publication aliases remain
+on Batch 016. No Issue #50-owned path changed.
+
+The tracker-backed documentation now reports 332 without claiming the closing
+target. Another 168 accepted problems are required to reach the public
+500-problem floor, and 180 are required to reach the internal 512-problem
+closing target. Paragraph separation and image lessons remain deferred under
+their recorded constraints; publication did not weaken those stop conditions.
