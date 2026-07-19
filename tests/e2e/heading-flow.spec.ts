@@ -9,6 +9,13 @@ const levelLabels = [
 ] as const
 
 const progressStorageKey = "nabimd.progress.v5"
+const sessionSeedStorageKey = "nabimd.session-seed.v1"
+
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "0")
+  }, sessionSeedStorageKey)
+})
 
 function sourceEditor(page: Page): Locator {
   return page.getByRole("textbox", { name: "Your Markdown" })
@@ -31,6 +38,7 @@ async function currentProblemFamily(page: Page) {
   }
   if (panelId.includes("-blockquote-")) return "blockquote"
   if (panelId.includes("-emphasis-")) return "emphasis"
+  if (panelId.includes("-italic-")) return "italic"
   if (panelId.includes("-inline-code-")) return "inline-code"
   if (panelId.includes("-link-")) return "links"
   if (panelId.includes("-thematic-break-")) return "thematic-break"
@@ -45,6 +53,8 @@ async function validDifferentProse(page: Page, words: string) {
       return `> ${words}`
     case "emphasis":
       return `**${words}**`
+    case "italic":
+      return `*${words}*`
     case "inline-code":
       return `Use \`${words}\`.`
     case "links":
@@ -66,6 +76,8 @@ async function malformedSource(page: Page) {
       return "Plain words without a blockquote"
     case "emphasis":
       return "**No closing"
+    case "italic":
+      return "*No closing"
     case "inline-code":
       return "`No closing"
     case "links":
@@ -87,6 +99,8 @@ async function expectedRepairFeedback(page: Page) {
       return "Add a blockquote with words inside it."
     case "emphasis":
       return "Make at least one phrase bold with Markdown."
+    case "italic":
+      return "Make at least one phrase italic with Markdown."
     case "inline-code":
       return "Wrap at least one meaningful item in backticks."
     case "links":
