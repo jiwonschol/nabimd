@@ -8,6 +8,7 @@ import {
   subscribeSoundMuted,
 } from "../sound/successSound"
 import { resolveCheckShortcut } from "./keyboardShortcut"
+import { ElapsedTime } from "./ElapsedTime"
 import { Wordmark } from "./Wordmark"
 
 type ExerciseTopBarProps = {
@@ -16,9 +17,14 @@ type ExerciseTopBarProps = {
   evaluation: Evaluation | null
   hadFailure: boolean
   hintOpen: boolean
+  currentIsTransfer: boolean
   phase: LearningSession["phase"]
   problemPosition: number
+  runCompletedAtMs: number | null
   runLength: number
+  runStartedAtMs: number | null
+  scheduledRunLength: number
+  scheduledStepIndex: number
   onCheck: () => void
   onExit: () => void
   onNext: () => void
@@ -41,9 +47,14 @@ export function ExerciseTopBar({
   evaluation,
   hadFailure,
   hintOpen,
+  currentIsTransfer,
   phase,
   problemPosition,
+  runCompletedAtMs,
   runLength,
+  runStartedAtMs,
+  scheduledRunLength,
+  scheduledStepIndex,
   onCheck,
   onExit,
   onNext,
@@ -54,6 +65,11 @@ export function ExerciseTopBar({
   const [soundMuted, setSoundMutedState] = useState(() => readSoundMuted())
   const matched = evaluation?.status === "matched"
   const entry = getEntryChoice(entryId)
+  const [levelNumber, levelName] = entry.label.split(" — ", 2)
+  const visibleScheduledPosition =
+    phase === "complete"
+      ? scheduledRunLength
+      : Math.min(scheduledStepIndex + 1, scheduledRunLength)
   const shortcut = resolveCheckShortcut(
     typeof navigator === "undefined" ? {} : navigator,
   )
@@ -94,20 +110,66 @@ export function ExerciseTopBar({
       </div>
 
       <div aria-label="Practice progress" className="exercise-progress">
-        <span>{entry.label}</span>
-        <span aria-hidden="true">•</span>
-        <span>
-          {problemPosition} of {runLength}
-        </span>
-        <button
-          aria-label="Mute success sound"
-          aria-pressed={soundMuted}
-          className="sound-control"
-          onClick={() => setSoundMuted(!soundMuted)}
-          type="button"
-        >
-          {soundMuted ? "Muted" : "Sound on"}
-        </button>
+        <div className="exercise-progress__meta">
+          <span aria-label={entry.label} className="exercise-progress__level">
+            <span>{levelNumber}</span>
+            {levelName ? (
+              <span className="exercise-progress__level-name">
+                {` — ${levelName}`}
+              </span>
+            ) : null}
+          </span>
+          <span className="elapsed-control">
+            <ElapsedTime
+              completedAtMs={runCompletedAtMs}
+              startedAtMs={runStartedAtMs}
+            />
+          </span>
+          <button
+            aria-label="Mute success sound"
+            aria-pressed={soundMuted}
+            className="sound-control"
+            onClick={() => setSoundMuted(!soundMuted)}
+            type="button"
+          >
+            {soundMuted ? "Muted" : "Sound on"}
+          </button>
+        </div>
+
+        <div className="exercise-progress__run">
+          <ol aria-label="Turn steps" className="turn-progress">
+            {Array.from({ length: scheduledRunLength }, (_, index) => {
+              const completed =
+                phase === "complete" || index < scheduledStepIndex
+              const current =
+                phase !== "complete" && index === scheduledStepIndex
+              const state = completed
+                ? "completed"
+                : current
+                  ? "current"
+                  : "upcoming"
+              return (
+                <li
+                  aria-current={current ? "step" : undefined}
+                  aria-label={`Step ${index + 1}, ${state}`}
+                  className={`turn-progress__step turn-progress__step--${state}`}
+                  key={index}
+                />
+              )
+            })}
+          </ol>
+          <span className="exercise-progress__count">
+            {visibleScheduledPosition} of {scheduledRunLength}
+          </span>
+          {currentIsTransfer ? (
+            <span className="repair-progress">
+              <strong>Repair practice</strong>
+              <span>
+                Exercise {problemPosition} of {runLength}
+              </span>
+            </span>
+          ) : null}
+        </div>
       </div>
 
       {phase === "complete" ? null : (

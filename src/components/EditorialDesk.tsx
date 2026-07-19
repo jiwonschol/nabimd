@@ -1,5 +1,8 @@
 import type { useLearningSession } from "../session/useLearningSession"
-import { getEntryChoice } from "../content/entryChoices"
+import {
+  createRunProblemIds,
+  getEntryChoice,
+} from "../content/entryChoices"
 import { AnswerPanel } from "./AnswerPanel"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
@@ -24,6 +27,10 @@ export function EditorialDesk({
   const runLength = session.runProblemIds.length || 1
   const problemPosition = Math.min(session.runStepIndex + 1, runLength)
   const entry = getEntryChoice(session.entryId!)
+  const scheduledRunLength = createRunProblemIds(
+    session.entryId!,
+    session.runNumber,
+  ).length
 
   return (
     <main className="app-shell app-shell--practice">
@@ -33,6 +40,7 @@ export function EditorialDesk({
         evaluation={session.evaluation}
         hadFailure={session.hadFailure}
         hintOpen={session.coach === "hint"}
+        currentIsTransfer={session.currentIsTransfer}
         onCheck={check}
         onExit={changeLevel}
         onNext={next}
@@ -40,7 +48,11 @@ export function EditorialDesk({
         onTryAnother={tryAnother}
         phase={session.phase}
         problemPosition={problemPosition}
+        runCompletedAtMs={session.runCompletedAtMs}
         runLength={runLength}
+        runStartedAtMs={session.runStartedAtMs}
+        scheduledRunLength={scheduledRunLength}
+        scheduledStepIndex={session.scheduledStepIndex}
       />
 
       {session.phase === "complete" ? (
