@@ -2278,3 +2278,16 @@ and prepared summary
 The Batch 017 gate passes 7/7, the complete unit and component suite passes
 9,885/9,885 in 52 files, typechecking passes, and `git diff --check` is clean.
 The runtime bank remains fail-closed at 332 pending fresh reviews.
+
+Both replacement mechanical reviews accepted the exact `f739f876…`
+manifest. Atlas replayed 228/228 frozen fixtures, covered 156/156 direct
+checks, passed 328/328 fresh probes, and found zero collisions against the
+published 332; review digest
+`86ef5a2c8fdcac098be78d4bc1c50ad81fa398de1f9e9550697504b9318d2c98`.
+Orchid independently replayed the same freeze, passed 208 behavioral probes,
+and then removed each of 430 visible Markdown devices one at a time; all 430
+mutations failed in the intended scope. Its combined 638-probe review digest
+is `e3b1154510e018143545e598916a27de836fa9ec170d41cb0b224ce014225bf1`.
+Both runs passed the complete 9,885-test pre-publication suite, typechecking,
+the focused gate, brevity/list limits, deterministic evidence, and collision
+checks. Publication remains blocked pending a separate editorial review.
