@@ -1,9 +1,20 @@
-import { fireEvent, render, screen, within } from "@testing-library/react"
+import { act, fireEvent, render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
+import { playPageTurnSound } from "./sound/pageTurnSound"
 import { App } from "./App"
+
+vi.mock("./sound/pageTurnSound", () => ({
+  playPageTurnSound: vi.fn(),
+}))
+
+afterEach(() => {
+  vi.mocked(playPageTurnSound).mockClear()
+  vi.unstubAllGlobals()
+  vi.useRealTimers()
+})
 
 async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
   const user = userEvent.setup()
@@ -121,6 +132,72 @@ describe("App", () => {
       expect(screen.getByRole("button", { name: entry.label })).toBeVisible()
     }
     expect(screen.queryByRole("textbox", { name: "Your Markdown" })).toBeNull()
+  })
+
+  it("turns the chosen page while the practice sheet receives the session", () => {
+    vi.useFakeTimers()
+    render(<App />)
+
+    fireEvent.click(
+      screen.getByRole("button", { name: entryChoices[0].label }),
+    )
+
+    expect(playPageTurnSound).toHaveBeenCalledOnce()
+    expect(screen.getByTestId("page-turn-transition")).toBeVisible()
+    const receiver = screen.getByTestId("page-turn-receiver")
+    expect(receiver).toHaveAttribute("inert")
+    expect(receiver.querySelector('[aria-label="Your Markdown"]')).not.toBeNull()
+
+    act(() => {
+      vi.advanceTimersByTime(720)
+    })
+
+    expect(screen.queryByTestId("page-turn-transition")).toBeNull()
+    expect(screen.getByTestId("page-turn-receiver")).not.toHaveAttribute("inert")
+    expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
+  })
+
+  it("ignores repeated level activation while a page is already turning", () => {
+    vi.useFakeTimers()
+    render(<App />)
+
+    const level = screen.getByRole("button", { name: entryChoices[0].label })
+    fireEvent.click(level)
+    fireEvent.click(level)
+
+    expect(playPageTurnSound).toHaveBeenCalledOnce()
+    expect(screen.getAllByTestId("page-turn-transition")).toHaveLength(1)
+  })
+
+  it("shortens the handoff when reduced motion is preferred", () => {
+    vi.useFakeTimers()
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockReturnValue({
+        matches: true,
+        media: "(prefers-reduced-motion: reduce)",
+        onchange: null,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+      }),
+    )
+    render(<App />)
+
+    fireEvent.click(
+      screen.getByRole("button", { name: entryChoices[0].label }),
+    )
+    act(() => {
+      vi.advanceTimersByTime(119)
+    })
+    expect(screen.getByTestId("page-turn-transition")).toBeVisible()
+
+    act(() => {
+      vi.advanceTimersByTime(1)
+    })
+    expect(screen.queryByTestId("page-turn-transition")).toBeNull()
   })
 
   it("enters any selected level directly and starts its six-problem turn", async () => {
@@ -315,7 +392,9 @@ describe("App", () => {
     expect(screen.getByLabelText("Practice progress")).toHaveTextContent("1 of 6")
 
     await user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
-    expect(screen.getByRole("heading", { name: "Welcome. Choose where to begin." })).toBeVisible()
+    expect(
+      screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+    ).toBeVisible()
   })
 
   it("completes a run and offers all replay choices", async () => {
