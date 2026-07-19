@@ -41,6 +41,7 @@ const supportedMatchCheckKinds = new Set<string>([
   "inline-presence",
   "heading-depth-order",
   "list-shape",
+  "blockquote-shape",
   "code-block",
   "block-sequence",
   "document-limits",
@@ -67,6 +68,7 @@ const scopeRequiredMatchCheckKinds = new Set<string>([
   "block-count",
   "inline-presence",
   "list-shape",
+  "blockquote-shape",
   "code-block",
   "block-sequence",
 ])
@@ -265,6 +267,26 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
         ) {
           errors.push(
             `Problem ${problem.id} check ${check.id} has invalid nonempty-items flag`,
+          )
+        }
+        break
+      }
+      case "blockquote-shape": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
+        if (
+          runtimeCheck.recursive !== undefined &&
+          typeof runtimeCheck.recursive !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid recursive flag`,
+          )
+        }
+        if (
+          runtimeCheck.requireNonemptyContent !== undefined &&
+          typeof runtimeCheck.requireNonemptyContent !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid nonempty-content flag`,
           )
         }
         break

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-blockquotes-006",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 672,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "c896da20ef4c5afb37e54601c1aae4e7db25ea540cea28af6d6a1a55092f2b32",
+  "verificationDigest": "ee56151a7ea849a7d25c07ae79c9a26fa2ef471588055ae54a3fbe70bb096203",
+  "manifestDigest": "310c36d8b7e96bf02277d0c08d12cca57edb370265d36e203922e56ef3ad509a",
+  "engineContractDigest": "e2aeef0d7985feaf82ed4db4a6a4747a6e8b301a78329c94192fdb16869288a9",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 116,
+  "preparedSummaryDigest": "51e3ba5fffb92f259fb5d5c4c1263f03340f3db697374c01c1be64ce267832f5"
+}

@@ -1,4 +1,11 @@
-import type { Code, Heading, List, ListItem, RootContent } from "mdast"
+import type {
+  Blockquote,
+  Code,
+  Heading,
+  List,
+  ListItem,
+  RootContent,
+} from "mdast"
 import type {
   BlockKind,
   BlockSelector,
@@ -159,6 +166,55 @@ function nodeHasNonListContent(node: AstNode): boolean {
   return node.children?.some(nodeHasNonListContent) ?? false
 }
 
+function blockquoteShapePasses(
+  check: Extract<StructuralCheck, { kind: "blockquote-shape" }>,
+  context: EvaluationContext,
+) {
+  const scopedNodes = nodesInScope(context, check.scope) as AstNode[]
+  const candidates = (check.recursive ? descendants(scopedNodes) : scopedNodes)
+    .filter((node): node is Blockquote => node.type === "blockquote")
+  return candidates.some(
+    (blockquote) =>
+      !check.requireNonemptyContent || blockquoteHasDirectContent(blockquote),
+  )
+}
+
+function blockquoteHasDirectContent(blockquote: Blockquote): boolean {
+  return (blockquote.children as AstNode[]).some(nodeHasNonBlockquoteContent)
+}
+
+function nodeHasNonBlockquoteContent(node: AstNode): boolean {
+  if (node.type === "blockquote") return false
+  if (
+    ["text", "inlineCode", "code"].includes(node.type) &&
+    hasVisibleCharacters(node.value)
+  ) {
+    return true
+  }
+  if (
+    ["image", "imageReference"].includes(node.type) &&
+    hasVisibleCharacters(node.alt)
+  ) {
+    return true
+  }
+  if (
+    ["html", "definition", "thematicBreak", "break"].includes(node.type)
+  ) {
+    return false
+  }
+  return node.children?.some(nodeHasNonBlockquoteContent) ?? false
+}
+
+function hasVisibleCharacters(value: unknown): boolean {
+  return (
+    typeof value === "string" &&
+    value
+      .normalize("NFKC")
+      .replace(/[\p{White_Space}\p{Default_Ignorable_Code_Point}]/gu, "")
+      .length > 0
+  )
+}
+
 function codeBlockPasses(
   check: Extract<StructuralCheck, { kind: "code-block" }>,
   context: EvaluationContext,
@@ -218,6 +274,8 @@ export function structuralCheckPasses(
       return headingDepthOrderPasses(context)
     case "list-shape":
       return listShapePasses(check, context)
+    case "blockquote-shape":
+      return blockquoteShapePasses(check, context)
     case "code-block":
       return codeBlockPasses(check, context)
     case "block-sequence":

@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-blockquotes-006",
+  "editorialActor": "codex-editorial-batch006",
+  "editorialRunId": "editorial-batch006-2026-07-19-002",
+  "reviewedOn": "2026-07-19",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "310c36d8b7e96bf02277d0c08d12cca57edb370265d36e203922e56ef3ad509a",
+  "evidence": {
+    "candidateCount": 24,
+    "level1GuidedCount": 12,
+    "level2RecallCount": 12,
+    "fixtureCount": 672,
+    "passingFixtureCount": 672,
+    "candidateBindingMismatches": 0,
+    "engineBindingMismatches": 0,
+    "publishedBankCount": 116,
+    "duplicateIds": 0,
+    "duplicateTargets": 0,
+    "duplicateContentVariants": 0,
+    "duplicateVocabularySets": 0,
+    "teachingExampleLeaks": 0,
+    "normalizedArtifactDigest": "c896da20ef4c5afb37e54601c1aae4e7db25ea540cea28af6d6a1a55092f2b32",
+    "fixtureArtifactDigest": "aeec3e96066bf93f3cc6ad8cca61bb1ef96a51f82a5d4cf6325ba78186798eae",
+    "verificationDigest": "ee56151a7ea849a7d25c07ae79c9a26fa2ef471588055ae54a3fbe70bb096203",
+    "engineContractDigest": "e2aeef0d7985feaf82ed4db4a6a4747a6e8b301a78329c94192fdb16869288a9",
+    "preparedSummaryDigest": "51e3ba5fffb92f259fb5d5c4c1263f03340f3db697374c01c1be64ce267832f5"
+  },
+  "summary": {
+    "accepted": 24,
+    "rejected": 0,
+    "blocked": 0
+  },
+  "dimensionCounts": {
+    "noviceUsEnglish": {
+      "pass": 24,
+      "fail": 0
+    },
+    "naturalness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "clarity": {
+      "pass": 24,
+      "fail": 0
+    },
+    "usefulness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "ageNeutrality": {
+      "pass": 24,
+      "fail": 0
+    },
+    "workplaceAppropriateness": {
+      "pass": 12,
+      "fail": 0,
+      "notApplicable": 12
+    },
+    "distinctness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "copyrightSafety": {
+      "pass": 24,
+      "fail": 0
+    },
+    "answerLeakage": {
+      "pass": 24,
+      "fail": 0
+    },
+    "grammarOnlyPolicy": {
+      "pass": 24,
+      "fail": 0
+    }
+  },
+  "findings": [],
+  "decisions": [
+    {
+      "candidateId": "l1-blockquote-book-by-lamp",
+      "revision": 1,
+      "candidateDigest": "dd302c44fbc76a4cacd536f28e737ad371363c67601f47e46c1adbfdb5df9bc5",
+      "fixtureResultsDigest": "7e9a57e334206226b6a37c50e28b01ea24c450a7b7e4009f128272ecfce54152",
+      "contentVariant": "book-by-lamp",
+      "vocabularyDomain": "home-objects",
+      "target": "> Your book is beside the lamp.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-bring-keys",
+      "revision": 1,
+      "candidateDigest": "d907f817b5ed185099b30c57af14e8795b3443de9fced51190ea4431513bb775",
+      "fixtureResultsDigest": "52da06964351d100257664bfc48117c3497e798e31fd8f3f3a6ba2e956edf234",
+      "contentVariant": "bring-keys",
+      "vocabularyDomain": "home-reminder",
+      "target": "> Bring your keys.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-bus-arrival",
+      "revision": 1,
+      "candidateDigest": "8c33b001502670959fba5a6b35f0152544ae313229c4baae4d5964474b1999fa",
+      "fixtureResultsDigest": "84721b8673e64d5bc6db28928ddefa75f0891127f3a1a6bf2ef8d1dd490e13c4",
+      "contentVariant": "bus-arrival",
+      "vocabularyDomain": "daily-travel",
+      "target": "> The bus will arrive soon.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-call-when-home",
+      "revision": 1,
+      "candidateDigest": "75513e7af946e21216fa54c6b61f0a5f117ec55d7dfd178095ae22ef4bd5cfcf",
+      "fixtureResultsDigest": "c3487bda7a150f3e5b97e49955f900c97abef8e7dcbd53ca5efe377e12423b37",
+      "contentVariant": "call-when-home",
+      "vocabularyDomain": "homecoming-message",
+      "target": "> Call me when you get home.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The age-neutral replacement is natural, familiar, and distinct; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-close-back-door",
+      "revision": 1,
+      "candidateDigest": "7a46d88973c9f44d5c79f36192c97369da2a3ba399da8d886197187e25b0db9a",
+      "fixtureResultsDigest": "12e4529dfb1d592e65e73f9031520d0c2485fee4c8d3c6af565067abe6ac22d8",
+      "contentVariant": "close-back-door",
+      "vocabularyDomain": "home-routine",
+      "target": "> Please close the back door.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-dinner-table",
+      "revision": 1,
+      "candidateDigest": "05f98f8f674534a09d8efb80af1cdd3093f9ca1dac81109c60e6b6527321330e",
+      "fixtureResultsDigest": "bb4aa35d36c4fc49887cd0be505b5c868f378b4874dfd9ba2f71cae0a558cb17",
+      "contentVariant": "dinner-table",
+      "vocabularyDomain": "family-meal",
+      "target": "> Dinner is on the table.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-dog-water",
+      "revision": 1,
+      "candidateDigest": "18e9a0c5060bfa572d5d2a15e74b3b2f4d8ced704c1d081bcfb8cb4fc516fbf3",
+      "fixtureResultsDigest": "868696a4954f203939f3620279c736cee7be657d5038bdabd68fb5917483e260",
+      "contentVariant": "dog-water",
+      "vocabularyDomain": "pet-care",
+      "target": "> The dog needs fresh water.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-milk-in-fridge",
+      "revision": 1,
+      "candidateDigest": "c907db939a39ae0d3607982231e01faf2f9e2a4ad84cdf04aff6f953be3812cb",
+      "fixtureResultsDigest": "1361e37aa687d9de7f601c77a3681f712dad8dc194aaec75487ea018af143257",
+      "contentVariant": "milk-in-fridge",
+      "vocabularyDomain": "kitchen-note",
+      "target": "> The milk is in the fridge.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-pack-snack",
+      "revision": 1,
+      "candidateDigest": "5dd94f8df00674db7ad1742891f1b0bf3cceede2fb6977b286051bd5fd53c7a0",
+      "fixtureResultsDigest": "8da1f145364e5427439f6bf8dd5d0ca5a18242a298dad5ffb2ecc1c7da74d0dc",
+      "contentVariant": "pack-snack",
+      "vocabularyDomain": "food-reminder",
+      "target": "> Pack a snack for later.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-shoes-by-door",
+      "revision": 1,
+      "candidateDigest": "0af23436637f321b080550b383c7e178cca2436a6532101add4f564f89860061",
+      "fixtureResultsDigest": "3efa8abc9e896bcfe4d1d18777c35d137422fa50a704b617252851768cd15adf",
+      "contentVariant": "shoes-by-door",
+      "vocabularyDomain": "clothing-routine",
+      "target": "> Leave your shoes by the door.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-store-closing",
+      "revision": 1,
+      "candidateDigest": "fad73100af0df099b2eb448eaf2ec9754f1ea5698ce386a556715392bb441ae6",
+      "fixtureResultsDigest": "ab12e285a3ae7e2331f0a1e0e1a74eee4af8f3262d391a613df2b2e2081eaeec",
+      "contentVariant": "store-closing",
+      "vocabularyDomain": "local-errand",
+      "target": "> The store closes at six.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-blockquote-take-umbrella",
+      "revision": 1,
+      "candidateDigest": "7fdde208b08bafa60b70a11fdd1971d59714f1fe3ef03f6a8725802bef027af0",
+      "fixtureResultsDigest": "3b860ba3b07d0f081d1c2caad224f70515e5551070195577bcc72b1b0801e4b6",
+      "contentVariant": "take-umbrella",
+      "vocabularyDomain": "weather-reminder",
+      "target": "> Take an umbrella today.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Familiar, natural guided callout with a distinct Goal, content variant, and vocabulary set; all applicable editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-ask-for-help",
+      "revision": 1,
+      "candidateDigest": "5bfe026d586c896201d4a56e0c06ef3c28330f8abbb8375254dc271e8b75f52a",
+      "fixtureResultsDigest": "5a97c72470b80b29e35f8d6dab8623f8fd042740a5b27c39660ad3851271583d",
+      "contentVariant": "ask-for-help",
+      "vocabularyDomain": "learning-support",
+      "target": "> Ask for help if you get stuck.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-bring-id",
+      "revision": 1,
+      "candidateDigest": "f8df90e73dc8500f4554f632502e23fcd4d0b7db1d2433df4b7dec1a832be8e9",
+      "fixtureResultsDigest": "18ae6d05166d32a0c54a2c8941f7f7d8565a4ae4e8e2fed0380ebd66613eac3a",
+      "contentVariant": "bring-id",
+      "vocabularyDomain": "check-in-reminder",
+      "target": "> Bring your ID when you check in.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-friday-deadline",
+      "revision": 1,
+      "candidateDigest": "53667baf881c4b24ea7e10ee216223d0617ac620467fd2ef0ec3d6f116b007ca",
+      "fixtureResultsDigest": "c9831b8ff2f8e9d93bb3262f9a921139cb0ec707341c64bb12153e4129107070",
+      "contentVariant": "friday-deadline",
+      "vocabularyDomain": "workplace-deadline",
+      "target": "> The deadline moved to Friday.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-lobby-opening",
+      "revision": 1,
+      "candidateDigest": "3fc5dad248b0dcb5c1f5618d175348e805c5ee9004011b5c8870cccfd93e8124",
+      "fixtureResultsDigest": "00d3534ecb4ed2343bce1a7be022a2f2293fa48d1d7ba46a0c39ce952bf80388",
+      "contentVariant": "lobby-opening",
+      "vocabularyDomain": "building-schedule",
+      "target": "> The lobby opens at eight.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The lobby-opening replacement is natural, workplace-appropriate, age-neutral, and distinct from the accepted bank; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-meeting-time",
+      "revision": 1,
+      "candidateDigest": "7868141e850a7ee54cf435450f2afdf52997c3e49c6cfa6439f859a014516508",
+      "fixtureResultsDigest": "864fc1cb653dfef85e38f355c0c7125f8f625fceac1a3355bcc154d0549a0444",
+      "contentVariant": "meeting-time",
+      "vocabularyDomain": "workplace-schedule",
+      "target": "> The team meeting starts at nine.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-package-front-desk",
+      "revision": 1,
+      "candidateDigest": "3dcc8568a272395ea13c2314a791d3ee95111bab8367f3e37c611b96ced7f86b",
+      "fixtureResultsDigest": "dc2b5c8054db4fe49beb35b073e764c6694a325cc543b52cdd46ee0c5bcd22ed",
+      "contentVariant": "package-front-desk",
+      "vocabularyDomain": "office-delivery",
+      "target": "> Your package is at the front desk.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-pickup-noon",
+      "revision": 1,
+      "candidateDigest": "09ec6a7efed035a549091609b27803aab981578c3b27a6e10d66ad22537a5dfb",
+      "fixtureResultsDigest": "1b7278004b8be89b4d04955dd36e5ab89063d97be77c43079236cb5896e24874",
+      "contentVariant": "pickup-noon",
+      "vocabularyDomain": "pickup-schedule",
+      "target": "> Pickup begins at noon.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-printer-paper",
+      "revision": 1,
+      "candidateDigest": "9ee924a93541a8223a39c1c8a43e3169bb608722491f15f5921601b199a190fe",
+      "fixtureResultsDigest": "cc08d5b831cb65ca973c19dee6fefeff9662bb9880645ca1ac1e008c5ba42299",
+      "contentVariant": "printer-paper",
+      "vocabularyDomain": "office-supplies",
+      "target": "> The printer needs more paper.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-save-copy",
+      "revision": 1,
+      "candidateDigest": "7d7b1d8f4b80d8521b5ff5f3c06400542602a4b47490fd406524ea0cf91f5ab9",
+      "fixtureResultsDigest": "5236ba0825119a023f3285c8e6d49e87c77bbea570308f6228a88b996fe216bc",
+      "contentVariant": "save-copy",
+      "vocabularyDomain": "computer-routine",
+      "target": "> Save a copy before you edit.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-shared-folder",
+      "revision": 1,
+      "candidateDigest": "ae4401e0cf05cca5b9d7021d9a8e120ffbec2fb82b926163a35c6aebccb40cf3",
+      "fixtureResultsDigest": "a48ce68c4170764d888990972a6c7a519d124e8868a016b4834dde51c08ae57b",
+      "contentVariant": "shared-folder",
+      "vocabularyDomain": "document-sharing",
+      "target": "> Put updates in the shared folder.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-side-entrance",
+      "revision": 1,
+      "candidateDigest": "005f483b22424419beb626c3e72e0a6feae189db0369b64693683eef2c245757",
+      "fixtureResultsDigest": "9fe6f828fcc39dd869b04d6ad7b27e1c0d11dcde014ddbb1d3a0889c4a48ce39",
+      "contentVariant": "side-entrance",
+      "vocabularyDomain": "building-notice",
+      "target": "> The side entrance is closed today.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-blockquote-updated-schedule",
+      "revision": 1,
+      "candidateDigest": "1a5eb307b328298917e982189c8bd4d5f5832224399b1f5b7841b68d5a50c743",
+      "fixtureResultsDigest": "c24ec144f30b13c8d271276c5031b75ce892aaf3fe33ab2c6aed6522016d027d",
+      "contentVariant": "updated-schedule",
+      "vocabularyDomain": "schedule-update",
+      "target": "> Please check the updated schedule.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural everyday-recall or beginner-workplace callout with clear novice US English and distinct content; all editorial dimensions pass."
+    }
+  ],
+  "reviewDigests": [
+    "99872ed8a7faecf0993029366ecfa8e5c22524c3b57149f9b8832e435acdbf03",
+    "b457d38ca4a48f0cd090aa2b40b3d00e7eb8761a50d89f69568d6f3814850c8e"
+  ],
+  "editorialDigest": "383222b1607dc75fa32d92f8ad6e9b8df41eaf2982c742bd4a807568079d5383"
+}

@@ -294,6 +294,14 @@ describe("schema-v2 problem-bank validation", () => {
           priority: 40,
           feedback: "Add a block.",
         },
+        {
+          id: "invalid-blockquote-shape",
+          kind: "blockquote-shape",
+          recursive: "yes",
+          requireNonemptyContent: 1,
+          priority: 50,
+          feedback: "Add a blockquote.",
+        },
       ] as unknown as NormalizedProblem["matchChecks"],
     })
 
@@ -311,6 +319,9 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check missing-scope requires a scope",
         "Problem invalid-list-shape check invalid-block has unsupported block kind: table",
         "Problem invalid-list-shape check invalid-block has invalid heading depth",
+        "Problem invalid-list-shape check invalid-blockquote-shape requires a scope",
+        "Problem invalid-list-shape check invalid-blockquote-shape has invalid recursive flag",
+        "Problem invalid-list-shape check invalid-blockquote-shape has invalid nonempty-content flag",
       ]),
     )
   })

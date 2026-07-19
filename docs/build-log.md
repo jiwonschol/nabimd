@@ -1278,3 +1278,44 @@ additional CommonMark probes passed. The separate editorial rerun accepted all
 eight dimensions for 24/24. Publication raises the deterministic runtime bank
 to 116 problems with a 52/52/4/4/4 split, while live grading remains
 network-free and grammar-only.
+
+### Issue #9 blockquote expansion
+
+The sixth schema-v2 batch adds 24 Level 1–2 blockquote exercises. The Goal
+teaches the portable `> ` form, while grading follows the parsed CommonMark
+blockquote rather than a marker regex. No-space markers, up to three leading
+spaces, lazy continuation, images with visible alt text, headings, lists,
+code, neutral wrappers, and nested quotes can therefore match. Empty quotes,
+invisible-only content, definitions, thematic breaks, raw HTML, escaped or
+fullwidth markers, and code lookalikes do not. Nested or multiple blockquotes
+remain Matched with optional Review instead of becoming a third verdict.
+
+Independent engine review changed the implementation before the first
+manifest was frozen. The initial visible-content walk treated arbitrary AST
+`value` fields as learner-visible, which let HTML comments, empty raw HTML,
+zero-width spaces, and word joiners satisfy a quote. A failing regression set
+reproduced those cases before the predicate moved to an explicit visible-node
+allowlist and Unicode whitespace/default-ignorable filter. The final batch has
+28 real-engine fixtures per candidate, including those hidden-content and
+CommonMark boundary cases.
+
+The first frozen manifest,
+`9f793bd584842b2b5d6821bfc6483b1de4337ac582174084f693320f728ac3a5`,
+was not published. Orchid found that `quiet-hours` reused a content variant
+from the accepted emphasis batch, and the separate editorial review rejected
+“Call me after school” because it assumed a school-centered life stage rather
+than remaining age-neutral. Tests were added to compare new authored
+identities with the accepted bank and to pin the age-neutral replacement. The
+two candidates became “Call me when you get home” and “The lobby opens at
+eight,” and all mechanical artifacts and reviews were regenerated from
+scratch.
+
+Corrected manifest
+`310c36d8b7e96bf02277d0c08d12cca57edb370265d36e203922e56ef3ad509a`
+contains 24 candidates and 672 frozen real-engine fixtures. Atlas accepted
+24/24 after 672/672 fixtures, 755 targeted checks, and 984 additional
+adversarial evaluations passed. Orchid independently accepted 24/24 after all
+frozen fixtures and 1,752 additional CommonMark evaluations passed. Separate
+editorial inspection accepted all required dimensions for 24/24. Publication
+raises the deterministic runtime bank to 140 problems with a 64/64/4/4/4
+split, while live grading remains network-free and grammar-only.

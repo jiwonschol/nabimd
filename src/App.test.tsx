@@ -33,24 +33,68 @@ function currentProblem() {
   return getProblem(panelId.slice("write-panel-".length))
 }
 
+function currentSkill() {
+  return currentProblem().skillIds[0]
+}
+
 function validDifferentProse() {
-  return currentProblem().familyId === "emphasis"
-    ? "**completely different words**"
-    : "# completely different words"
+  switch (currentSkill()) {
+    case "blockquote":
+      return "> completely different words"
+    case "bold-emphasis":
+      return "**completely different words**"
+    case "unordered-list":
+      return "- Alpha\n- Bravo\n- Charlie"
+    case "ordered-list":
+      return "1. Alpha\n2. Bravo\n3. Charlie"
+    default:
+      return "# completely different words"
+  }
 }
 
 function malformedSource() {
-  return currentProblem().familyId === "emphasis" ? "**No closing" : "#No space"
+  switch (currentSkill()) {
+    case "blockquote":
+      return "Plain words without a blockquote"
+    case "bold-emphasis":
+      return "**No closing"
+    case "unordered-list":
+      return "-No space\n-Also malformed\n-Still malformed"
+    case "ordered-list":
+      return "1.No space\n2.Also malformed\n3.Still malformed"
+    default:
+      return "#No space"
+  }
 }
 
 function validRepair() {
-  return currentProblem().familyId === "emphasis" ? "**repaired**" : "# repaired"
+  switch (currentSkill()) {
+    case "blockquote":
+      return "> repaired"
+    case "bold-emphasis":
+      return "**repaired**"
+    case "unordered-list":
+      return "- One\n- Two\n- Three"
+    case "ordered-list":
+      return "1. One\n2. Two\n3. Three"
+    default:
+      return "# repaired"
+  }
 }
 
 function matchedWithReview() {
-  return currentProblem().familyId === "emphasis"
-    ? "**one** and **two**"
-    : "# one\n\n# two"
+  switch (currentSkill()) {
+    case "blockquote":
+      return "> one\n\nBridge text.\n\n> two"
+    case "bold-emphasis":
+      return "**one** and **two**"
+    case "unordered-list":
+      return "- One\n- Two\n- Three\n\nBridge text.\n\n- Four\n- Five\n- Six"
+    case "ordered-list":
+      return "1. One\n2. Two\n3. Three\n\nBridge text.\n\n1. Four\n2. Five\n3. Six"
+    default:
+      return "# one\n\n# two"
+  }
 }
 
 describe("App", () => {
@@ -150,7 +194,7 @@ describe("App", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
     expect(screen.getByRole("tabpanel", { name: "Review" })).toHaveTextContent(
-      currentProblem().familyId === "emphasis" ? "Keep bold focused" : "Keep one H1",
+      currentProblem().editorialChecks[0]!.review,
     )
   })
 

@@ -36,6 +36,10 @@ copied here or promoted automatically.
   624 real-engine fixtures. CommonMark period and parenthesis delimiters,
   repeated `1.` markers, and non-one starts pass; wording, capitalization,
   spelling, and exact numbers are not graded.
+- `2026-07-19-l1-l2-blockquotes-006` — 24 accepted blockquote variants and 672
+  real-engine fixtures. CommonMark no-space markers, up to three leading
+  spaces, lazy continuation, and nested quotes pass; empty or hidden-only
+  content and code or HTML lookalikes do not.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;
