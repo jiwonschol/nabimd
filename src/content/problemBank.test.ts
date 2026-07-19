@@ -5,6 +5,7 @@ import { developmentSpecBatch012Fixtures } from "./batches/developmentSpecBatch0
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
 import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
 import { inlineCodeBatch007Fixtures } from "./batches/inlineCodeBatch007Fixtures"
+import { italicRebuildBatch013Fixtures } from "./batches/italicRebuildBatch013Fixtures"
 import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
 import { orderedListBatch005Fixtures } from "./batches/orderedListBatch005Fixtures"
@@ -22,13 +23,26 @@ import {
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted foundation and eleven reviewed expansion batches", () => {
-    expect(problemBank).toHaveLength(248)
-    expect(getProblemsForLevel(1)).toHaveLength(100)
-    expect(getProblemsForLevel(2)).toHaveLength(100)
+  it("publishes the accepted foundation and reviewed expansion batches", () => {
+    expect(problemBank).toHaveLength(272)
+    expect(getProblemsForLevel(1)).toHaveLength(112)
+    expect(getProblemsForLevel(2)).toHaveLength(112)
     expect(getProblemsForLevel(3)).toHaveLength(28)
     expect(getProblemsForLevel(4)).toHaveLength(16)
     expect(getProblemsForLevel(5)).toHaveLength(4)
+  })
+
+  it("broadens Level 1 with italic emphasis and Level 2 with composite rebuilds", () => {
+    expect(
+      getProblemsForLevel(1).filter(
+        (problem) => problem.familyId === "italic-emphasis",
+      ),
+    ).toHaveLength(12)
+    expect(
+      getProblemsForLevel(2).filter(
+        (problem) => problem.familyId === "rebuild-real-documents",
+      ),
+    ).toHaveLength(12)
   })
 
   it("executes the generated runtime projection without a parallel source list", () => {
@@ -64,6 +78,7 @@ describe("compiled five-level problem bank", () => {
         ...readableDocumentBatch010Fixtures,
         ...readableDocumentBatch011Fixtures,
         ...developmentSpecBatch012Fixtures,
+        ...italicRebuildBatch013Fixtures,
       ]),
     ).toEqual([])
   })

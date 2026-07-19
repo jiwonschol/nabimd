@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-italic-l2-rebuilds-013",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 420,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "1d2a41b24d1e2b88e3f2f4ec86d91410f6f555f8b57d033fba84a695aabbb8de",
+  "verificationDigest": "26462ff78071765955d3a25829842ad74ccbc8cf4fe8a4a04af41e96e7a41278",
+  "manifestDigest": "d920b10c3fd9285dd624fea41b198fb42f5c43927e561071567dda9583e2c3f2",
+  "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 248,
+  "preparedSummaryDigest": "aad23e8298d578fa73b801b0d4f34465732bedd604a062dcea5096acfb12078b"
+}

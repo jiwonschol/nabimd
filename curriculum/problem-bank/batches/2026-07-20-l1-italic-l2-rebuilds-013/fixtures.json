@@ -1,0 +1,4094 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-italic-l2-rebuilds-013",
+  "fixtures": [
+    {
+      "id": "l1-italic-blue-marble-bold-only",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 7**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-canonical",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Blue marble*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-blue-marble-case-spelling",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 7*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-blue-marble-combined-bold-italic",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 7***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-blue-marble-different-prose",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 7*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-blue-marble-escaped-markers",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 7\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-fenced-code",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 7*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-image-alt",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 7*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-inline-code",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 7*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-invisible-comment",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-invisible-zero-width",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-italic-link-label",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 7*](https://example.com/7)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-blue-marble-matched-review",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Blue marble* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-blue-marble-missing",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Blue marble",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-raw-html",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 7</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-unclosed-marker",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Blue marble",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-blue-marble-underscore-italic",
+      "problemId": "l1-italic-blue-marble",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 7_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-cold-water-bold-only",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 2**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-canonical",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Cold water*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-cold-water-case-spelling",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 2*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-cold-water-combined-bold-italic",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 2***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-cold-water-different-prose",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 2*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-cold-water-escaped-markers",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 2\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-fenced-code",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 2*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-image-alt",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 2*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-inline-code",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 2*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-invisible-comment",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-invisible-zero-width",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-italic-link-label",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 2*](https://example.com/2)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-cold-water-matched-review",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Cold water* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-cold-water-missing",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Cold water",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-raw-html",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 2</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-unclosed-marker",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Cold water",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-cold-water-underscore-italic",
+      "problemId": "l1-italic-cold-water",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 2_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-happy-turtle-bold-only",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 11**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-canonical",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Happy turtle*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-happy-turtle-case-spelling",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 11*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-happy-turtle-combined-bold-italic",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 11***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-happy-turtle-different-prose",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 11*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-happy-turtle-escaped-markers",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 11\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-fenced-code",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 11*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-image-alt",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 11*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-inline-code",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 11*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-invisible-comment",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-invisible-zero-width",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-italic-link-label",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 11*](https://example.com/11)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-happy-turtle-matched-review",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Happy turtle* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-happy-turtle-missing",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Happy turtle",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-raw-html",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 11</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-unclosed-marker",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Happy turtle",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-happy-turtle-underscore-italic",
+      "problemId": "l1-italic-happy-turtle",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 11_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-little-garden-bold-only",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 6**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-canonical",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Little garden*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-little-garden-case-spelling",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 6*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-little-garden-combined-bold-italic",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 6***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-little-garden-different-prose",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 6*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-little-garden-escaped-markers",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 6\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-fenced-code",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 6*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-image-alt",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 6*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-inline-code",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 6*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-invisible-comment",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-invisible-zero-width",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-italic-link-label",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 6*](https://example.com/6)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-little-garden-matched-review",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Little garden* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-little-garden-missing",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Little garden",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-raw-html",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 6</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-unclosed-marker",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Little garden",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-little-garden-underscore-italic",
+      "problemId": "l1-italic-little-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 6_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-orange-socks-bold-only",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 5**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-canonical",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Orange socks*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-orange-socks-case-spelling",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 5*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-orange-socks-combined-bold-italic",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 5***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-orange-socks-different-prose",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 5*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-orange-socks-escaped-markers",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 5\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-fenced-code",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 5*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-image-alt",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 5*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-inline-code",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 5*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-invisible-comment",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-invisible-zero-width",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-italic-link-label",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 5*](https://example.com/5)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-orange-socks-matched-review",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Orange socks* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-orange-socks-missing",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Orange socks",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-raw-html",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 5</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-unclosed-marker",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Orange socks",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-orange-socks-underscore-italic",
+      "problemId": "l1-italic-orange-socks",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 5_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-paper-boat-bold-only",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 4**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-canonical",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Paper boat*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-paper-boat-case-spelling",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 4*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-paper-boat-combined-bold-italic",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 4***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-paper-boat-different-prose",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 4*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-paper-boat-escaped-markers",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 4\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-fenced-code",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 4*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-image-alt",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 4*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-inline-code",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 4*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-invisible-comment",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-invisible-zero-width",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-italic-link-label",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 4*](https://example.com/4)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-paper-boat-matched-review",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Paper boat* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-paper-boat-missing",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Paper boat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-raw-html",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 4</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-unclosed-marker",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Paper boat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-paper-boat-underscore-italic",
+      "problemId": "l1-italic-paper-boat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 4_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-silver-moon-bold-only",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 10**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-canonical",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Silver moon*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-silver-moon-case-spelling",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 10*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-silver-moon-combined-bold-italic",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 10***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-silver-moon-different-prose",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 10*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-silver-moon-escaped-markers",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 10\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-fenced-code",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 10*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-image-alt",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 10*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-inline-code",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 10*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-invisible-comment",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-invisible-zero-width",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-italic-link-label",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 10*](https://example.com/10)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-silver-moon-matched-review",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Silver moon* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-silver-moon-missing",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Silver moon",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-raw-html",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 10</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-unclosed-marker",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Silver moon",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-silver-moon-underscore-italic",
+      "problemId": "l1-italic-silver-moon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 10_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-soft-pillow-bold-only",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 9**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-canonical",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Soft pillow*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-soft-pillow-case-spelling",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 9*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-soft-pillow-combined-bold-italic",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 9***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-soft-pillow-different-prose",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 9*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-soft-pillow-escaped-markers",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 9\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-fenced-code",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 9*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-image-alt",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 9*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-inline-code",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 9*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-invisible-comment",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-invisible-zero-width",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-italic-link-label",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 9*](https://example.com/9)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-soft-pillow-matched-review",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Soft pillow* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-soft-pillow-missing",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Soft pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-raw-html",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 9</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-unclosed-marker",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Soft pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-soft-pillow-underscore-italic",
+      "problemId": "l1-italic-soft-pillow",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 9_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-sunny-window-bold-only",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 3**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-canonical",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Sunny window*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-sunny-window-case-spelling",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 3*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-sunny-window-combined-bold-italic",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 3***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-sunny-window-different-prose",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 3*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-sunny-window-escaped-markers",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 3\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-fenced-code",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 3*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-image-alt",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 3*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-inline-code",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 3*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-invisible-comment",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-invisible-zero-width",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-italic-link-label",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 3*](https://example.com/3)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-sunny-window-matched-review",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Sunny window* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-sunny-window-missing",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Sunny window",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-raw-html",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 3</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-unclosed-marker",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Sunny window",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-sunny-window-underscore-italic",
+      "problemId": "l1-italic-sunny-window",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 3_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-warm-soup-bold-only",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 12**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-canonical",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Warm soup*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-warm-soup-case-spelling",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 12*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-warm-soup-combined-bold-italic",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 12***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-warm-soup-different-prose",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 12*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-warm-soup-escaped-markers",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 12\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-fenced-code",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 12*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-image-alt",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 12*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-inline-code",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 12*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-invisible-comment",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-invisible-zero-width",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-italic-link-label",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 12*](https://example.com/12)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-warm-soup-matched-review",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Warm soup* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-warm-soup-missing",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Warm soup",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-raw-html",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 12</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-unclosed-marker",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Warm soup",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-warm-soup-underscore-italic",
+      "problemId": "l1-italic-warm-soup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 12_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-wooden-spoon-bold-only",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 8**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-canonical",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Wooden spoon*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-wooden-spoon-case-spelling",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 8*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-wooden-spoon-combined-bold-italic",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 8***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-wooden-spoon-different-prose",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 8*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-wooden-spoon-escaped-markers",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 8\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-fenced-code",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 8*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-image-alt",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 8*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-inline-code",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 8*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-invisible-comment",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-invisible-zero-width",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-italic-link-label",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 8*](https://example.com/8)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-wooden-spoon-matched-review",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Wooden spoon* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-wooden-spoon-missing",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Wooden spoon",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-raw-html",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 8</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-unclosed-marker",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Wooden spoon",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-wooden-spoon-underscore-italic",
+      "problemId": "l1-italic-wooden-spoon",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 8_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-yellow-kite-bold-only",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "**Quiet lantern 1**",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-canonical",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "*Yellow kite*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-yellow-kite-case-spelling",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "*MISPELED words 1*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-yellow-kite-combined-bold-italic",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "***Quiet lantern 1***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-yellow-kite-different-prose",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "*Quiet lantern 1*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-yellow-kite-escaped-markers",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "\\*Quiet lantern 1\\*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-fenced-code",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "```md\n*Quiet lantern 1*\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-image-alt",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "![*Quiet lantern 1*](local.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-inline-code",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "`*Quiet lantern 1*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-invisible-comment",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*<!-- hidden -->*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-invisible-zero-width",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*​*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-italic-link-label",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "[*Quiet lantern 1*](https://example.com/1)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-italic-yellow-kite-matched-review",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "*Yellow kite* and *Another gentle point*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l1-italic-yellow-kite-missing",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "Yellow kite",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-raw-html",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "<em>Quiet lantern 1</em>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-unclosed-marker",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-italic-emphasis",
+      "source": "*Yellow kite",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-italic-emphasis"
+    },
+    {
+      "id": "l1-italic-yellow-kite-underscore-italic",
+      "problemId": "l1-italic-yellow-kite",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "_Quiet lantern 1_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-bold-only",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\n**Prepare the pan before mixing.**\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-canonical",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-case-spelling",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Baking REMINDE\n\n*Prepare the pan before mixing.*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-different-prose",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-empty-quote",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-quote",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-extra-block",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-shape",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\n> Recipe note: Let the bread cool before slicing.\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-inline-code-italic",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\n`*Prepare the pan before mixing.*`\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-invisible-comment",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\n*<!-- hidden -->*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-invisible-zero-width",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\n*​*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-italic-in-final-block-only",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\nPrepare the pan before mixing.\n\n> *Recipe note: Let the bread cool before slicing.*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-italic-in-title-only",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# *Baking reminder*\n\nPrepare the pan before mixing.\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-malformed-italic",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-matched-review",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.* and *one extra thought*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-missing-title",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-shape",
+      "source": "Baking reminder\n\n*Prepare the pan before mixing.*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-nested-quote",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-quote",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\n> > Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-plain-final-message",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-shape",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\nRecipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-raw-html-italic",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-baking-reminder-italic",
+      "source": "# Baking reminder\n\n<em>Prepare the pan before mixing.</em>\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-baking-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-baking-reminder-underscore-italic",
+      "problemId": "l2-rebuild-baking-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Baking reminder\n\n_Prepare the pan before mixing._\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-alternate-list-marker",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n+ Fresh water\n+ Dry food",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-bold-only",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\n**Check these before dinner.**\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-canonical",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-case-spelling",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n- Fresh water\n- Dry FOO",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-different-prose",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Picnic bag\n\n*Pack light for the park.*\n\n- Water\n- Apples",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-extra-block",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-shape",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n- Fresh water\n- Dry food\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-shape"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-hidden-list-items",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-inline-code-italic",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\n`*Check these before dinner.*`\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-invisible-comment",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\n*<!-- hidden -->*\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-invisible-zero-width",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\n*​*\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-italic-in-final-block-only",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\nCheck these before dinner.\n\n- *Fresh water*\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-italic-in-title-only",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# *Cat supplies*\n\nCheck these before dinner.\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-malformed-italic",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\n*Check these before dinner.\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-matched-review",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Cat supplies\n\n*Check these before dinner.* and *one extra thought*\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-missing-title",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-shape",
+      "source": "Cat supplies\n\n*Check these before dinner.*\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-shape"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-raw-html-italic",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-italic",
+      "source": "# Cat supplies\n\n<em>Check these before dinner.</em>\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-italic"
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-underscore-italic",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Cat supplies\n\n_Check these before dinner._\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-cat-supplies-wrong-list-kind",
+      "problemId": "l2-rebuild-cat-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-cat-supplies-list",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n1. Fresh water\n2. Dry food",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-cat-supplies-list"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-bold-only",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\n**Check the soil before watering.**\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-canonical",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-case-spelling",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\n> Garden NOT: Move the small pot into the shade.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-different-prose",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-empty-quote",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-quote",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-extra-block",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-shape",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\n> Garden note: Move the small pot into the shade.\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-inline-code-italic",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\n`*Check the soil before watering.*`\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-invisible-comment",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\n*<!-- hidden -->*\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-invisible-zero-width",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\n*​*\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-italic-in-final-block-only",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\nCheck the soil before watering.\n\n> *Garden note: Move the small pot into the shade.*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-italic-in-title-only",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# *Garden reminder*\n\nCheck the soil before watering.\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-malformed-italic",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\n*Check the soil before watering.\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-matched-review",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Garden reminder\n\n*Check the soil before watering.* and *one extra thought*\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-missing-title",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-shape",
+      "source": "Garden reminder\n\n*Check the soil before watering.*\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-nested-quote",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-quote",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\n> > Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-plain-final-message",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-shape",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\nGarden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-raw-html-italic",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-garden-reminder-italic",
+      "source": "# Garden reminder\n\n<em>Check the soil before watering.</em>\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-garden-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-garden-reminder-underscore-italic",
+      "problemId": "l2-rebuild-garden-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Garden reminder\n\n_Check the soil before watering._\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-alternate-list-marker",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Homework plan\n\n*Work through one task at a time.*\n\n1. Read the page\n1. Answer the questions\n1. Check the work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-bold-only",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\n**Work through one task at a time.**\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-canonical",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Homework plan\n\n*Work through one task at a time.*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-case-spelling",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Homework PLA\n\n*Work through one task at a time.*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-different-prose",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-extra-block",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-shape",
+      "source": "# Homework plan\n\n*Work through one task at a time.*\n\n1. Read the page\n2. Answer the questions\n3. Check the work\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-shape"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-hidden-list-items",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Homework plan\n\n*Work through one task at a time.*\n\n1. <!-- hidden item 1 -->\n2. <!-- hidden item 2 -->\n3. <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-inline-code-italic",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\n`*Work through one task at a time.*`\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-invisible-comment",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\n*<!-- hidden -->*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-invisible-zero-width",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\n*​*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-italic-in-final-block-only",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\nWork through one task at a time.\n\n1. *Read the page*\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-italic-in-title-only",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# *Homework plan*\n\nWork through one task at a time.\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-malformed-italic",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\n*Work through one task at a time.\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-matched-review",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Homework plan\n\n*Work through one task at a time.* and *one extra thought*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-homework-plan-missing-title",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-homework-plan-shape",
+      "source": "Homework plan\n\n*Work through one task at a time.*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-shape"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-raw-html-italic",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-italic",
+      "source": "# Homework plan\n\n<em>Work through one task at a time.</em>\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-italic"
+    },
+    {
+      "id": "l2-rebuild-homework-plan-underscore-italic",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Homework plan\n\n_Work through one task at a time._\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-homework-plan-wrong-list-kind",
+      "problemId": "l2-rebuild-homework-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-homework-plan-list",
+      "source": "# Homework plan\n\n*Work through one task at a time.*\n\n- Read the page\n- Answer the questions\n- Check the work",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-homework-plan-list"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-alternate-list-marker",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. Wash the cups\n1. Wipe the table\n1. Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-bold-only",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\n**Clean one area at a time.**\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-canonical",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-case-spelling",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a TIM.*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-different-prose",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-extra-block",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-shape",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-shape"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-hidden-list-items",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. <!-- hidden item 1 -->\n2. <!-- hidden item 2 -->\n3. <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-inline-code-italic",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\n`*Clean one area at a time.*`\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-invisible-comment",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\n*<!-- hidden -->*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-invisible-zero-width",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\n*​*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-italic-in-final-block-only",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\nClean one area at a time.\n\n1. *Wash the cups*\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-italic-in-title-only",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# *Kitchen cleanup*\n\nClean one area at a time.\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-malformed-italic",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-matched-review",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.* and *one extra thought*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-missing-title",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-shape",
+      "source": "Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-shape"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-raw-html-italic",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-italic",
+      "source": "# Kitchen cleanup\n\n<em>Clean one area at a time.</em>\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-italic"
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-underscore-italic",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Kitchen cleanup\n\n_Clean one area at a time._\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-kitchen-cleanup-wrong-list-kind",
+      "problemId": "l2-rebuild-kitchen-cleanup",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-kitchen-cleanup-list",
+      "source": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n- Wash the cups\n- Wipe the table\n- Sweep the floor",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-kitchen-cleanup-list"
+    },
+    {
+      "id": "l2-rebuild-library-visit-alternate-list-marker",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n1. Pack the library card\n1. Check the library hours",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-library-visit-bold-only",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\n**Get ready before you leave.**\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-canonical",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-library-visit-case-spelling",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n2. Pack the library card\n3. CHEC the library hours",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-library-visit-different-prose",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Homework plan\n\n*Work through one task at a time.*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-library-visit-extra-block",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-shape",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-shape"
+    },
+    {
+      "id": "l2-rebuild-library-visit-hidden-list-items",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n1. <!-- hidden item 1 -->\n2. <!-- hidden item 2 -->\n3. <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-library-visit-inline-code-italic",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\n`*Get ready before you leave.*`\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-invisible-comment",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\n*<!-- hidden -->*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-invisible-zero-width",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\n*​*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-italic-in-final-block-only",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\nGet ready before you leave.\n\n1. *Find the book list*\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-italic-in-title-only",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# *Library visit*\n\nGet ready before you leave.\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-malformed-italic",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\n*Get ready before you leave.\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-matched-review",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Library visit\n\n*Get ready before you leave.* and *one extra thought*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-library-visit-missing-title",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-library-visit-shape",
+      "source": "Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-shape"
+    },
+    {
+      "id": "l2-rebuild-library-visit-raw-html-italic",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-italic",
+      "source": "# Library visit\n\n<em>Get ready before you leave.</em>\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-italic"
+    },
+    {
+      "id": "l2-rebuild-library-visit-underscore-italic",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Library visit\n\n_Get ready before you leave._\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-library-visit-wrong-list-kind",
+      "problemId": "l2-rebuild-library-visit",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-library-visit-list",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n- Find the book list\n- Pack the library card\n- Check the library hours",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-library-visit-list"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-alternate-list-marker",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n1. Pack lunch\n1. Lock the door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-morning-routine-bold-only",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\n**Finish these steps before leaving.**\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-canonical",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-morning-routine-case-spelling",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n2. PAC lunch\n3. Lock the door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-morning-routine-different-prose",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-morning-routine-extra-block",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-shape",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-shape"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-hidden-list-items",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. <!-- hidden item 1 -->\n2. <!-- hidden item 2 -->\n3. <!-- hidden item 3 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-morning-routine-inline-code-italic",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\n`*Finish these steps before leaving.*`\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-invisible-comment",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\n*<!-- hidden -->*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-invisible-zero-width",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\n*​*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-italic-in-final-block-only",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\nFinish these steps before leaving.\n\n1. *Open the curtains*\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-italic-in-title-only",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# *Morning routine*\n\nFinish these steps before leaving.\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-malformed-italic",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-matched-review",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.* and *one extra thought*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-morning-routine-missing-title",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-morning-routine-shape",
+      "source": "Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-shape"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-raw-html-italic",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-italic",
+      "source": "# Morning routine\n\n<em>Finish these steps before leaving.</em>\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-italic"
+    },
+    {
+      "id": "l2-rebuild-morning-routine-underscore-italic",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Morning routine\n\n_Finish these steps before leaving._\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-morning-routine-wrong-list-kind",
+      "problemId": "l2-rebuild-morning-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-morning-routine-list",
+      "source": "# Morning routine\n\n*Finish these steps before leaving.*\n\n- Open the curtains\n- Pack lunch\n- Lock the door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-morning-routine-list"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-alternate-list-marker",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Picnic bag\n\n*Pack light for the park.*\n\n+ Water\n+ Apples",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-bold-only",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\n**Pack light for the park.**\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-canonical",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Picnic bag\n\n*Pack light for the park.*\n\n- Water\n- Apples",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-case-spelling",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Picnic bag\n\n*PAC light for the park.*\n\n- Water\n- Apples",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-different-prose",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Rainy day\n\n*Keep these by the door.*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-extra-block",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-shape",
+      "source": "# Picnic bag\n\n*Pack light for the park.*\n\n- Water\n- Apples\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-shape"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-hidden-list-items",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Picnic bag\n\n*Pack light for the park.*\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-inline-code-italic",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\n`*Pack light for the park.*`\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-invisible-comment",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\n*<!-- hidden -->*\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-invisible-zero-width",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\n*​*\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-italic-in-final-block-only",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\nPack light for the park.\n\n- *Water*\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-italic-in-title-only",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# *Picnic bag*\n\nPack light for the park.\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-malformed-italic",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\n*Pack light for the park.\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-matched-review",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Picnic bag\n\n*Pack light for the park.* and *one extra thought*\n\n- Water\n- Apples",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-missing-title",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-shape",
+      "source": "Picnic bag\n\n*Pack light for the park.*\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-shape"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-raw-html-italic",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-italic",
+      "source": "# Picnic bag\n\n<em>Pack light for the park.</em>\n\n- Water\n- Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-italic"
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-underscore-italic",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Picnic bag\n\n_Pack light for the park._\n\n- Water\n- Apples",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-picnic-bag-wrong-list-kind",
+      "problemId": "l2-rebuild-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-picnic-bag-list",
+      "source": "# Picnic bag\n\n*Pack light for the park.*\n\n1. Water\n2. Apples",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-picnic-bag-list"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-alternate-list-marker",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Rainy day\n\n*Keep these by the door.*\n\n+ Umbrella\n+ Boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-rainy-day-bold-only",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\n**Keep these by the door.**\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-canonical",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Rainy day\n\n*Keep these by the door.*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-rainy-day-case-spelling",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Rainy day\n\n*Keep these by the DOO.*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-rainy-day-different-prose",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n- Notebook\n- Pencil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-rainy-day-extra-block",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-shape",
+      "source": "# Rainy day\n\n*Keep these by the door.*\n\n- Umbrella\n- Boots\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-shape"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-hidden-list-items",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Rainy day\n\n*Keep these by the door.*\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-rainy-day-inline-code-italic",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\n`*Keep these by the door.*`\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-invisible-comment",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\n*<!-- hidden -->*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-invisible-zero-width",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\n*​*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-italic-in-final-block-only",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\nKeep these by the door.\n\n- *Umbrella*\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-italic-in-title-only",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# *Rainy day*\n\nKeep these by the door.\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-malformed-italic",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\n*Keep these by the door.\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-matched-review",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Rainy day\n\n*Keep these by the door.* and *one extra thought*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-rainy-day-missing-title",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-rainy-day-shape",
+      "source": "Rainy day\n\n*Keep these by the door.*\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-shape"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-raw-html-italic",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-italic",
+      "source": "# Rainy day\n\n<em>Keep these by the door.</em>\n\n- Umbrella\n- Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-italic"
+    },
+    {
+      "id": "l2-rebuild-rainy-day-underscore-italic",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Rainy day\n\n_Keep these by the door._\n\n- Umbrella\n- Boots",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-rainy-day-wrong-list-kind",
+      "problemId": "l2-rebuild-rainy-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-rainy-day-list",
+      "source": "# Rainy day\n\n*Keep these by the door.*\n\n1. Umbrella\n2. Boots",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-rainy-day-list"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-bold-only",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\n**Remember the return date.**\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-canonical",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-case-spelling",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\n> Librarian: Return the book by FRIDA.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-different-prose",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Garden reminder\n\n*Check the soil before watering.*\n\n> Garden note: Move the small pot into the shade.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-empty-quote",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-quote",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-extra-block",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-shape",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\n> Librarian: Return the book by Friday.\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-inline-code-italic",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\n`*Remember the return date.*`\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-invisible-comment",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\n*<!-- hidden -->*\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-invisible-zero-width",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\n*​*\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-italic-in-final-block-only",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\nRemember the return date.\n\n> *Librarian: Return the book by Friday.*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-italic-in-title-only",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# *Reading reminder*\n\nRemember the return date.\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-malformed-italic",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\n*Remember the return date.\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-matched-review",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Reading reminder\n\n*Remember the return date.* and *one extra thought*\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-missing-title",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-shape",
+      "source": "Reading reminder\n\n*Remember the return date.*\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-nested-quote",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-quote",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\n> > Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-plain-final-message",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-shape",
+      "source": "# Reading reminder\n\n*Remember the return date.*\n\nLibrarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-raw-html-italic",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-reading-reminder-italic",
+      "source": "# Reading reminder\n\n<em>Remember the return date.</em>\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-reading-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-reading-reminder-underscore-italic",
+      "problemId": "l2-rebuild-reading-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reading reminder\n\n_Remember the return date._\n\n> Librarian: Return the book by Friday.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-alternate-list-marker",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n+ Notebook\n+ Pencil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-bold-only",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\n**Bring the tools for class.**\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-canonical",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n- Notebook\n- Pencil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-case-spelling",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n- NOTEBOO\n- Pencil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-different-prose",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Cat supplies\n\n*Check these before dinner.*\n\n- Fresh water\n- Dry food",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-extra-block",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-shape",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n- Notebook\n- Pencil\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-shape"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-hidden-list-items",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n- <!-- hidden item 1 -->\n- <!-- hidden item 2 -->",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-inline-code-italic",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\n`*Bring the tools for class.*`\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-invisible-comment",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\n*<!-- hidden -->*\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-invisible-zero-width",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\n*​*\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-italic-in-final-block-only",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\nBring the tools for class.\n\n- *Notebook*\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-italic-in-title-only",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# *School backpack*\n\nBring the tools for class.\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-malformed-italic",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\n*Bring the tools for class.\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-matched-review",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# School backpack\n\n*Bring the tools for class.* and *one extra thought*\n\n- Notebook\n- Pencil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-school-backpack-missing-title",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-school-backpack-shape",
+      "source": "School backpack\n\n*Bring the tools for class.*\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-shape"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-raw-html-italic",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-italic",
+      "source": "# School backpack\n\n<em>Bring the tools for class.</em>\n\n- Notebook\n- Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-italic"
+    },
+    {
+      "id": "l2-rebuild-school-backpack-underscore-italic",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# School backpack\n\n_Bring the tools for class._\n\n- Notebook\n- Pencil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-school-backpack-wrong-list-kind",
+      "problemId": "l2-rebuild-school-backpack",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-school-backpack-list",
+      "source": "# School backpack\n\n*Bring the tools for class.*\n\n1. Notebook\n2. Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-school-backpack-list"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-bold-only",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\n**Read this before the train arrives.**\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-canonical",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-case-spelling",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\n> Station MESSAG: Keep your ticket ready.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-different-prose",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\n> Recipe note: Let the bread cool before slicing.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-empty-quote",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-quote",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-extra-block",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-shape",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\n> Station message: Keep your ticket ready.\n\nOne extra paragraph.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-inline-code-italic",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\n`*Read this before the train arrives.*`\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-invisible-comment",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\n*<!-- hidden -->*\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-invisible-zero-width",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\n*​*\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-italic-in-final-block-only",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\nRead this before the train arrives.\n\n> *Station message: Keep your ticket ready.*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-italic-in-title-only",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# *Travel reminder*\n\nRead this before the train arrives.\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-malformed-italic",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-matched-review",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.* and *one extra thought*\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-italic-focus"
+      ]
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-missing-title",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-shape",
+      "source": "Travel reminder\n\n*Read this before the train arrives.*\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-nested-quote",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-quote",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\n> > Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-quote"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-plain-final-message",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-shape",
+      "source": "# Travel reminder\n\n*Read this before the train arrives.*\n\nStation message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-shape"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-raw-html-italic",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-rebuild-travel-reminder-italic",
+      "source": "# Travel reminder\n\n<em>Read this before the train arrives.</em>\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-rebuild-travel-reminder-italic"
+    },
+    {
+      "id": "l2-rebuild-travel-reminder-underscore-italic",
+      "problemId": "l2-rebuild-travel-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Travel reminder\n\n_Read this before the train arrives._\n\n> Station message: Keep your ticket ready.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    }
+  ]
+}

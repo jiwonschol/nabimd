@@ -280,6 +280,70 @@ describe("schema-v2 problem-bank validation", () => {
     ).toEqual([])
   })
 
+  it("accepts a top-level block occurrence scope", () => {
+    const scoped = problem("block-scoped-inline", {
+      matchChecks: [
+        {
+          id: "italic-middle-paragraph",
+          kind: "inline-presence",
+          scope: {
+            kind: "block",
+            block: "paragraph",
+            occurrence: 0,
+          },
+          inline: "emphasis",
+          min: 1,
+          priority: 10,
+          feedback: "Make the middle paragraph italic.",
+        },
+      ] as unknown as NormalizedProblem["matchChecks"],
+      editorialChecks: [],
+    })
+    const scopedFixtures = fixtures(scoped.id).map((fixture) => ({
+      ...fixture,
+      exercisesCheckId: "italic-middle-paragraph",
+    }))
+
+    expect(
+      validate(
+        [scoped, problem("block-scoped-inline-peer")],
+        [...scopedFixtures, ...fixtures("block-scoped-inline-peer")],
+      ),
+    ).toEqual([])
+  })
+
+  it("rejects unsupported and negative top-level block scopes", () => {
+    const invalid = problem("invalid-block-scopes", {
+      matchChecks: [
+        {
+          id: "unsupported-block",
+          kind: "inline-presence",
+          scope: { kind: "block", block: "table", occurrence: 0 },
+          inline: "emphasis",
+          min: 1,
+          priority: 10,
+          feedback: "Use italics.",
+        },
+        {
+          id: "negative-occurrence",
+          kind: "inline-presence",
+          scope: { kind: "block", block: "paragraph", occurrence: -1 },
+          inline: "emphasis",
+          min: 1,
+          priority: 20,
+          feedback: "Use italics.",
+        },
+      ] as unknown as NormalizedProblem["matchChecks"],
+    })
+
+    expect(validate([invalid, problem("invalid-block-scopes-peer")])).toEqual(
+      expect.arrayContaining([
+        "Problem invalid-block-scopes check unsupported-block has unsupported scope block: table",
+        "Problem invalid-block-scopes check negative-occurrence has invalid block occurrence",
+      ]),
+    )
+  })
+
   it("validates list-shape operands and section scope safely", () => {
     const invalid = problem("invalid-list-shape", {
       matchChecks: [
@@ -310,6 +374,7 @@ describe("schema-v2 problem-bank validation", () => {
           kind: "inline-presence",
           inline: "strong",
           min: 1,
+          requireNonemptyContent: "yes",
           priority: 30,
           feedback: "Add bold text.",
         },
@@ -368,6 +433,7 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check list-shape has invalid nonempty-items flag",
         "Problem invalid-list-shape check paragraph-depth can only use depth with heading blocks",
         "Problem invalid-list-shape check missing-scope requires a scope",
+        "Problem invalid-list-shape check missing-scope has invalid nonempty-content flag",
         "Problem invalid-list-shape check invalid-block has unsupported block kind: table",
         "Problem invalid-list-shape check invalid-block has invalid heading depth",
         "Problem invalid-list-shape check invalid-block has invalid recursive flag",

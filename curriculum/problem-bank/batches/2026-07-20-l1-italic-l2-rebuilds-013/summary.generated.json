@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-italic-l2-rebuilds-013",
+  "status": "published",
+  "batchDigest": "db5d02720396c66750c9225b6ca22e962264895ce7606f71839e66f48abb0322",
+  "bankDigest": "668d5e402d02a8e6dfa9aa38c20c7cacedcec28f3c5a50ef25f8ab960112c43f",
+  "projectionDigest": "a89d2dfff41209b90b13b2927f3feb893e1092238145ecefc99a4ee7b51f1c53",
+  "trackerDigest": "0f09408574f471dddb331083338b4d6ecb3d59415258e736b332e6135c2c1f04",
+  "generated": 24,
+  "accepted": 24,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 112,
+      "2": 112,
+      "3": 28,
+      "4": 16,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 16,
+      "headings": 32,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "italic-emphasis": 12,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 28,
+      "rebuild-real-documents": 12
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/headings": 16,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/italic-emphasis": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "2/rebuild-real-documents": 12,
+      "3/readable-human-document": 28,
+      "4/executable-development-spec": 16,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 272
+    }
+  },
+  "manifestDigest": "d920b10c3fd9285dd624fea41b198fb42f5c43927e561071567dda9583e2c3f2",
+  "reviewDigests": [
+    "24e12b470eb7c11c5e2ec5fa47241ab16fb0614dfc3f56b0ae2b4de28d548682",
+    "86726e2abb3f3d8c0ffa3dbf79ac135a25ab1080201d6b2afa589dcff47b3fb9"
+  ],
+  "editorialDigest": "eecfb54e58bc93b7003dc3c909f1421650fe4bf7fee0b7b4795fc06f0df70314",
+  "summaryDigest": "6b5ddf3f4283b78441f4d282dea1bf8da090f3010d59213e408e30f67d05fadf"
+}

@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-italic-l2-rebuilds-013",
+  "normalizedArtifactDigest": "1d2a41b24d1e2b88e3f2f4ec86d91410f6f555f8b57d033fba84a695aabbb8de",
+  "fixtureArtifactDigest": "3d43c0188827e5f8b946a3a9757f021f594656cab0deb9f834a1b6112884c889",
+  "verificationDigest": "26462ff78071765955d3a25829842ad74ccbc8cf4fe8a4a04af41e96e7a41278",
+  "entries": [
+    {
+      "candidateId": "l1-italic-blue-marble",
+      "revision": 1,
+      "candidateDigest": "b32d38225ea37439806e3088088203cb8b13e6a6b047a5904e64c15734b28aec",
+      "problemDigest": "2587caa4e97225a6e67a9675c733ccc43d074ac9b6e70d49f7fe9b7681d6e7b3",
+      "fixtureDefinitionDigest": "1c2ec4061ff323b895abbc18000ae36c9897757d39d508942d78caed78931ffa",
+      "fixtureResultsDigest": "df6568272d29a5ae09dccfffbd93f4462852d60af1599a465a813338db7d0984",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-cold-water",
+      "revision": 1,
+      "candidateDigest": "7ad5181bfa88432e90202419f03bb2a0933d7cf573f3d8d8229ed444830f1257",
+      "problemDigest": "df1d0d38e872ca58905a0de3c17b144c87aeaa3fc86061a46d394293cb99ebdf",
+      "fixtureDefinitionDigest": "c2e68d189cd8b9b22963b025223b4354014221594b514c3eaa79d265780b1682",
+      "fixtureResultsDigest": "fbe2f9ea23e5e338101671daa456be88c935b9e612a337dfb92e7be22524f649",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-happy-turtle",
+      "revision": 1,
+      "candidateDigest": "ccbf2acc4fec31838ea7c33e0cd91794cbf0c184173ce6b4c0c19b766a15c044",
+      "problemDigest": "e296c81515277b857347a1d1e8a712920e381c8cc2c4ac6a6bc2eaa12c13b445",
+      "fixtureDefinitionDigest": "286e50bcec5565f358275b66850f947c8ad9c9e758a34fa81a70a7964f924067",
+      "fixtureResultsDigest": "9bdc1983d878472d4dcdf822895744b76bad117761c40cd71544fe35dfbcf191",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-little-garden",
+      "revision": 1,
+      "candidateDigest": "f9d5aec09ae7aaee87a75f0c4c2eee4ffa122c1cbbbc8639403cc50a82cdc293",
+      "problemDigest": "b96442186a8cef325ee69e365ef654f61c3da034747e9844e43f02f370ee76fa",
+      "fixtureDefinitionDigest": "6cbc156024e55810dd04c8da9e1ca51b8547cfe2c5dd9f2c79d43dbcfc41ddc5",
+      "fixtureResultsDigest": "169dd30cb3a89f907360994e9f1f01cc6876c1a1e4c106ed63ab88bffcc146fa",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-orange-socks",
+      "revision": 1,
+      "candidateDigest": "adf3343efc2957e2290d2705447ac2e9436642af31e4c80a9b01ad9bf5feec24",
+      "problemDigest": "bfb4bd931f7d2898fab7d42548cbead95ea222e256f03640c6e8f062344dca54",
+      "fixtureDefinitionDigest": "23691d9ba7feb1203331de774e04515659bc8a5b0293306adc9e005a002079c1",
+      "fixtureResultsDigest": "474943245814c677f51f0e9eade8a1802932212e7fc92f49b5cf0d253085c843",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-paper-boat",
+      "revision": 1,
+      "candidateDigest": "e76e20cfa0a067d18cbe75cf2454f645769d2fd04c254548d36167ea93d22318",
+      "problemDigest": "0aea69a9711fe5452818981ea73c3dacb72a16132e113eb364c0fd6b69b57091",
+      "fixtureDefinitionDigest": "1e3f1ff318a97aeae82893e95820798722fb4039481a4c6afc5a9f128593f381",
+      "fixtureResultsDigest": "32147ffe3adc008ef3e8f91e9cb63d77548bca403e7459f8c42b5ddadf527b2e",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-silver-moon",
+      "revision": 1,
+      "candidateDigest": "54f868df9ac35c300a5a0bf64094e37ba03d6de741cc98be47f533c0109fa78f",
+      "problemDigest": "1fe246a80bb770d50170198493b61858eec58da2b7d9aa087e2c856279255324",
+      "fixtureDefinitionDigest": "c46d069e6a96bb09c2361ece2e6c449b35ca5a9f9d6b5182de65c777a6db8cd9",
+      "fixtureResultsDigest": "1c160731c61c652feda726fe3c4b12781f5243423a51e7c7442c331cf6be82db",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-soft-pillow",
+      "revision": 1,
+      "candidateDigest": "38816833ca1537b4b653253a180337d8ed06050cdabd89258b8c6aa7f7c801ea",
+      "problemDigest": "6364f7c3d14281fcb4b64a3c9b5467925d57d727085cb99c18a497062dbbf150",
+      "fixtureDefinitionDigest": "692068b39d81b1558dc3dbf5859dea985e125fabfb388b1aa6d14a0f8a3ca5c4",
+      "fixtureResultsDigest": "7f349989a42216d7c4e5871d414376dd6583b37e67238c07c9cf5e13a77d12ff",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-sunny-window",
+      "revision": 1,
+      "candidateDigest": "a1cf59c57cce1cc02a662da95bf32eca6735c298f1706281a0f21bfe15c32395",
+      "problemDigest": "ca6c8f11f5038a7cd6574aa5ec7985cdcd0bb10d4840f480b1ca78bccec5d4df",
+      "fixtureDefinitionDigest": "94eef7d72449537c3f4b0daf2bcf0eac47dda3ec404a425352f5d7432ccc0ca4",
+      "fixtureResultsDigest": "a9d4405223eb2345b1e40eeabc37794e15b0b1c862d3df8c95eb7fed9c674327",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-warm-soup",
+      "revision": 1,
+      "candidateDigest": "8e83c74d0571c9429ec9404ebf804537d4acdbc442289f9f844c1b0a5ef0b349",
+      "problemDigest": "d16399cbeabc8d19940b93cbba76f0ed9c2ac526744d8fd681107ccd23f759b2",
+      "fixtureDefinitionDigest": "f72d4b0c06070ff882ba0fcfcec9a230da24831620f7484ae2e54d69e354e565",
+      "fixtureResultsDigest": "1f90bbd976f2f3d4fd08cd8f0ce2640d84cedbd26cd05918eca23ee235df293a",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-wooden-spoon",
+      "revision": 1,
+      "candidateDigest": "6e91cc9a5b4351b851229890119b9e5c4d36aecb40a602fd2dd942892a32a6eb",
+      "problemDigest": "4c77fd8f91ea191c533311128cc59f4fbedf01789d303b6ecf09a11cd94e27b6",
+      "fixtureDefinitionDigest": "2dc829d1cac111f7ed867c953fe4f23b40a2a1e420bf6d2ae54f509372b1ac56",
+      "fixtureResultsDigest": "47547272742aba0c8099f8c66b6d8e88a95ffeb63ba4fad3b26bbf9e42bd631d",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l1-italic-yellow-kite",
+      "revision": 1,
+      "candidateDigest": "e5d28ca902eecf6cb678ecc2239779cd8849b024339af4f18345d4a247cb8f65",
+      "problemDigest": "988cbc14b5762dea0da7e830be44e515084ca4193d1789a6d8e5495070337ad1",
+      "fixtureDefinitionDigest": "fc89219954fdc6032c6fbd619e3d71dfae85956274c20b57054b5476465dfaf4",
+      "fixtureResultsDigest": "3ae0aba269d9a36b929ad937a8295e5792cfc17d7a684d8f757377a31a079087",
+      "fixtureCount": 17,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-baking-reminder",
+      "revision": 1,
+      "candidateDigest": "c0514d16cb913e06dbd857370656e7ad8fd4c3f43fb789b95fd0f97028e77e27",
+      "problemDigest": "f1ec3c54722ddc833d9c7c3ee8792733d55405343fe7187ba28925db983f64bd",
+      "fixtureDefinitionDigest": "efc1f75e7f1898f80743a6fb87881564158a48dc9c21b700ad8730f545b957ca",
+      "fixtureResultsDigest": "f1a603054d9a0beb43ebdc2bd716aeba61bb453a82d234bad9bdc2b3b1b7a7b0",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-cat-supplies",
+      "revision": 1,
+      "candidateDigest": "00875dfb76e12df4e8205bb702a8c1c6464ad87757b2ba53c9cc7b9f959b6d68",
+      "problemDigest": "f48032ec09b09cf40723fa3fab57a7f74e980ca76d985e22b47aa523151efab7",
+      "fixtureDefinitionDigest": "f673c671c688c7b1f6986eba53ef19efbb489d1216f27f0e81d9609cf17a75cc",
+      "fixtureResultsDigest": "82abb3a55d7b5e9dfc3deba814fd5c1c232a1e3b4e00f9cdc4a94cccd2a69d94",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-garden-reminder",
+      "revision": 1,
+      "candidateDigest": "45fce305cada3d6dde13ac996c190f54d88eb7118d6b10816a25cef5fd9a4343",
+      "problemDigest": "0ab568d067a309de282a1f03fa5e9e51f546ac291f4256f06eb4bf4173f46f6c",
+      "fixtureDefinitionDigest": "10de44c5c6491ef4874e50888f257f7993f6e3d20797168dfe57e39f607d9fd6",
+      "fixtureResultsDigest": "0b43ac748f5251e1c0ff11ff795e7bef378b079cd678b1782ddbcbc60dceaf66",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-homework-plan",
+      "revision": 1,
+      "candidateDigest": "918bd3fac44221d48138a35e7004442ab06628566cc09ea9581d57ba565a847c",
+      "problemDigest": "acf7ef640503a3d40e6028bee9720c892a46fa3443697e6f85dcacc494804043",
+      "fixtureDefinitionDigest": "db0a280f53ce7165e5147eb2da7ca8f9e607096893c9809ff06481d4c6ff2346",
+      "fixtureResultsDigest": "fc60c771e8b9f1f0676f9220d39059022612c504c441372dbf8f23f54429344c",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-kitchen-cleanup",
+      "revision": 1,
+      "candidateDigest": "8e54116d4097d93e67975ebb8d8dc42cf0d6ed7a67f0e8e23b10a67c9a4cc335",
+      "problemDigest": "dbecee6f4449119995d80fcccded64228a611bc1616d4ed5eed883f951fd0017",
+      "fixtureDefinitionDigest": "2a682ac696b790b9de1c5e9f33bf6ba809c4d6c5670bc22454b408d1ede42f73",
+      "fixtureResultsDigest": "6f1aa94f27dd556174c7b583cd08d5e7a580e0d06a36f10941bf4c8cc21af42e",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-library-visit",
+      "revision": 1,
+      "candidateDigest": "5fae8598a0f68c90851fb687126623a816c00d2bc480eaedf2a768095b7fdfc0",
+      "problemDigest": "11769f7a3e31a47198dd8088e5234d6ef3e4562fd3ad967860060afb94f8b40c",
+      "fixtureDefinitionDigest": "2a7ddd0099f8e31046a9a9e2157bc9b516d4a08b70ed3c60b4c9203de1da740d",
+      "fixtureResultsDigest": "8a905fbe8d699488e4e7bc2b378264b96d7a06a9dd77a47851939a258ba15c83",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-morning-routine",
+      "revision": 1,
+      "candidateDigest": "e42cf1800f220e13b8e9e9fce3c92c1e520e53a4e892e79af1b8d371b8d5f902",
+      "problemDigest": "8f3f16cb5eb436c7673b25819b1d68fa96ae6748d24d13b014e08893f08bf898",
+      "fixtureDefinitionDigest": "9016a26abea707733cd698f378e4c26a0c7626944d90a02baff1c86cab8e3f16",
+      "fixtureResultsDigest": "fc317e1d5795778e71985f5e4654fa5c78e677cd320523bc2809c6c1fbb816de",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-picnic-bag",
+      "revision": 1,
+      "candidateDigest": "e99cfee365592b1e9e99707dbc4bddba95abe962dcf411fefc9d57c881ad171f",
+      "problemDigest": "021cfd7b2b8a6faa8251e4b31aba421ce4a79123edc2c55e7cf6c306137c5abc",
+      "fixtureDefinitionDigest": "d616c2a407e139c714f2dd6e541ed8a29f84d6ef9357a1aa2f064e3decacbaa7",
+      "fixtureResultsDigest": "72844395a1848356dcbf2eae7f9d707de2c81f0f6e564428424ed560109bb786",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-rainy-day",
+      "revision": 1,
+      "candidateDigest": "792240660e61f4186638ddb3327aae5a0f3f9e4ad02dfdeda416ae684b1130c9",
+      "problemDigest": "5736089fda7061475ed16f35190db251dca029f0e654fb486889eb75b1de65eb",
+      "fixtureDefinitionDigest": "c25285189817346e87da17d86a20bfe33273e6df0ef37395f5f99b4cc6590165",
+      "fixtureResultsDigest": "295dbc7cdf68fc248db231fb1f4c6e20b2fdbd1ae42a900bc3c54ec3821c3d18",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-reading-reminder",
+      "revision": 1,
+      "candidateDigest": "f3978407361233ed5815e623c1f89375e90bfa8abacc28370134d98141213486",
+      "problemDigest": "6796a839f7525988cfbb89f3898e7c189f13fede01f1aa88d55e9b23d7dab561",
+      "fixtureDefinitionDigest": "13d261588bd9d5f525f5cf2b34f4558a84f41fa02f8b8ff5ac092d2f58f95f46",
+      "fixtureResultsDigest": "3763dd79e2dcf2d4ed2486db9c4b7f1cd21e721f35009e9c16b5a65c24330215",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-school-backpack",
+      "revision": 1,
+      "candidateDigest": "c131003e1afab2b8fa59b8715b39262b1edb98a2d739063c61dd8d4e5bcd53aa",
+      "problemDigest": "3bffb0c4b21cf036bdfc365f2810a03cf511981347af20f34ceace738605751e",
+      "fixtureDefinitionDigest": "4d5cc9c4d2c4b1bd395608bee5865fe57644876300de5761a9c08448bd2c6adf",
+      "fixtureResultsDigest": "caf34b3198dd378c14b33cc4f1d604b87aebcb1e396a220ced9399c98190c037",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    },
+    {
+      "candidateId": "l2-rebuild-travel-reminder",
+      "revision": 1,
+      "candidateDigest": "7a3b09754f717bf11784659c0b8362de4f4d0ae04697438ff00aba83940d4c3d",
+      "problemDigest": "46d8b2f0513ff5bd6dd1a3a9dee032c9cdcf40d188f3692e99dbf1d51775b7ca",
+      "fixtureDefinitionDigest": "457e841e8e1354d22d985a83bd130fc93e16306518ae5744ee5b15a2a2aefcc3",
+      "fixtureResultsDigest": "897d46d1ab3d27fe5b8beb2187e53edd3f9d1390bbb02a3208c34b03e335967a",
+      "fixtureCount": 18,
+      "engineContractDigest": "f1564170f837ca2712db0c1257ca4d5074bcae409bfcf08096b4a24ca7cccbea"
+    }
+  ],
+  "manifestDigest": "d920b10c3fd9285dd624fea41b198fb42f5c43927e561071567dda9583e2c3f2"
+}

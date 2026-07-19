@@ -94,6 +94,19 @@ function validateEditorialScope(
     return
   }
   if (scope.kind === "document") return
+  if (scope.kind === "block") {
+    if (!supportedBlockKinds.has(String(scope.block))) {
+      errors.push(
+        `Problem ${problemId} editorial check ${label} has unsupported scope block: ${String(scope.block)}`,
+      )
+    }
+    if (!Number.isInteger(scope.occurrence) || Number(scope.occurrence) < 0) {
+      errors.push(
+        `Problem ${problemId} editorial check ${label} has invalid block occurrence`,
+      )
+    }
+    return
+  }
   if (scope.kind !== "section") {
     errors.push(
       `Problem ${problemId} editorial check ${label} has unsupported scope kind: ${String(scope.kind)}`,
@@ -147,6 +160,22 @@ function validateScope(problemId: string, check: MatchCheck, errors: string[]) {
     return
   }
   if (runtimeScope.kind === "document") return
+  if (runtimeScope.kind === "block") {
+    if (!supportedBlockKinds.has(String(runtimeScope.block))) {
+      errors.push(
+        `Problem ${problemId} check ${check.id} has unsupported scope block: ${String(runtimeScope.block)}`,
+      )
+    }
+    if (
+      !Number.isInteger(runtimeScope.occurrence) ||
+      Number(runtimeScope.occurrence) < 0
+    ) {
+      errors.push(
+        `Problem ${problemId} check ${check.id} has invalid block occurrence`,
+      )
+    }
+    return
+  }
   if (runtimeScope.kind !== "section") {
     errors.push(
       `Problem ${problemId} check ${check.id} has unsupported scope kind: ${String(runtimeScope.kind)}`,
@@ -244,6 +273,16 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
           ) {
             errors.push(
               `Problem ${problem.id} check ${check.id} has invalid recursive flag`,
+            )
+          }
+        } else {
+          const runtimeCheck = check as unknown as Record<string, unknown>
+          if (
+            runtimeCheck.requireNonemptyContent !== undefined &&
+            typeof runtimeCheck.requireNonemptyContent !== "boolean"
+          ) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} has invalid nonempty-content flag`,
             )
           }
         }
