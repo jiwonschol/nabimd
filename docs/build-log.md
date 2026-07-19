@@ -2244,3 +2244,37 @@ and prepared summary
 The engine contract remains unchanged. Runtime projections and tracker are
 restored to the prior 332-problem checkpoint until two new mechanical reviews
 and one new editorial review accept this exact freeze.
+
+The first replacement Atlas run correctly refused to seal commit `8a6a0af`.
+Although all 228 frozen fixtures, 156 direct checks, 328 fresh probes, the
+Batch 017 gate, focused regressions, and typechecking passed, three integration
+tests still asserted the rejected publication's post-344 state while runtime
+and tracker were intentionally fail-closed at 332. The pre-publication tests
+now assert the truthful 332 split and four-problem Level 5 turn; advanced-family
+assertions follow the tracker so they remain valid on both sides of publication.
+No candidate, fixture, prompt, engine contract, verification, or manifest
+changed. Because the reviewed HEAD changed, both independent mechanical runs
+still restart from zero and no verdict from the blocked run is reusable.
+
+The independent Orchid run also refused to seal `8a6a0af`. Five Level 5 Goals
+displayed `AGENTS.md` as inline code in authority lists even though those
+spans were outside each family's inline-code matcher scope. Removing only the
+backticks still Matched, so the decoration violated the authoring rule that
+every visible Markdown device must be a practiced decision. Those five file
+names are now plain text; the checked inline-code spans in scope and
+verification sections remain. This candidate mutation invalidates the prior
+manifest and requires complete artifact regeneration plus both mechanical and
+editorial reviews from zero.
+
+The superseding pre-review freeze keeps the same 228-fixture matrix and exact
+brevity budgets. Its manifest is
+`f739f876963fb9177328e1c966f91e5037fc7ff07db300010d0b14fadce97549`,
+normalized artifact
+`8487123bf006e8ad424329021e0f825c1a2d908c9fea391c4034492679d9380e`,
+verification
+`ccc887bd6446abb380c52c3f847e10dd0c5fd7a9bb64401762840671f51677e8`,
+and prepared summary
+`f0e475918332bbb704f4a47bad0c8c5163b223d15d2392615180cf23c3d83415`.
+The Batch 017 gate passes 7/7, the complete unit and component suite passes
+9,885/9,885 in 52 files, typechecking passes, and `git diff --check` is clean.
+The runtime bank remains fail-closed at 332 pending fresh reviews.

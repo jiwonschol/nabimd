@@ -202,13 +202,13 @@ describe("App", () => {
     expect(screen.queryByTestId("page-turn-transition")).toBeNull()
   })
 
-  it("enters any selected level directly and starts its six-problem turn", async () => {
+  it("enters any selected level directly and starts the available turn", async () => {
     for (const entry of entryChoices) {
       window.sessionStorage.clear()
       const view = render(<App />)
       const user = userEvent.setup()
       await user.click(screen.getByRole("button", { name: entry.label }))
-      const expectedLength = 6
+      const expectedLength = entry.level === 5 ? 4 : 6
       expect(screen.getByLabelText("Practice progress")).toHaveTextContent(
         `1 of ${expectedLength}`,
       )
