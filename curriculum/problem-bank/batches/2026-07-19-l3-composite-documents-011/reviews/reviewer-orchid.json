@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "batchId": "2026-07-19-l3-composite-documents-011",
   "reviewerId": "codex-orchid-batch011",
-  "reviewRunId": "orchid-batch011-2026-07-19-001",
+  "reviewRunId": "orchid-batch011-2026-07-19-002",
   "declaredIndependent": true,
   "manifestDigest": "fd9c371e31fe99176ffbd67dc82d952a22e8bed7280fc9105ef56e1068d94cab",
   "evidence": {
@@ -24,9 +24,9 @@
     },
     "freshProbeCount": 604,
     "freshProbeCountsByFamily": {
-      "agenda": 48,
-      "recommendation": 46,
-      "reference": 57
+      "agenda": 192,
+      "recommendation": 184,
+      "reference": 228
     },
     "hiddenOnlyListAccepted": 24,
     "referenceSchemeNotSemanticallyGraded": 8,
@@ -158,5 +158,5 @@
       "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
     }
   ],
-  "reviewDigest": "770608419c0aa37baf5c8f4eba1a8cd7add9ccdc9a1ae8a7399bc5388d6a0105"
+  "reviewDigest": "5d98464784e39a377f11d43c1b4053c042d30ccbc1a5d3587fadbc9615e4ccc5"
 }

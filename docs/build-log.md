@@ -1547,7 +1547,11 @@ after replaying all fixtures and 30 independent probes. Orchid independently
 accepted 12/12 after replaying all fixtures and 604 fresh adversarial probes.
 The separate editorial review accepted 12/12, verified 48 visible useful list
 items and no collision against the published 224-problem bank, then sealed both
-review digests. The published batch digest is
-`81d8cb5154da4bc9e5fd5c36de6fa12109273650d47d26ba0486b63bd806ae68`.
+review digests. CodeRabbit then caught that Orchid's family breakdown recorded
+per-candidate probe counts under a family-total field. Orchid re-ran the exact
+manifest and corrected the evidence to 192 agenda, 184 recommendation, and 228
+reference probes; Editorial resealed the unchanged 12 accepted decisions
+against the corrected review digest. The published batch digest is
+`ab09371a1be1da653a879ac872e67e76297ae96ca4c57ea6d8823b164db6fc66`.
 Publication raises Level 3 from 16 to 28 and the deterministic bank from 224 to
 236 problems, with a 100/100/28/4/4 split.

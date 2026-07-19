@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "batchId": "2026-07-19-l3-composite-documents-011",
-  "editorialRunId": "editorial-batch011-2026-07-19-001",
+  "editorialRunId": "editorial-batch011-2026-07-19-002",
   "editorialActor": "codex-editorial-batch011-independent",
   "reviewedOn": "2026-07-19",
   "reviewTimezone": "Asia/Seoul",
@@ -590,8 +590,8 @@
     }
   ],
   "reviewDigests": [
-    "7572cfe033059b1e3495395e6b677098fbf65fca210548368da1d09da07b3a71",
-    "770608419c0aa37baf5c8f4eba1a8cd7add9ccdc9a1ae8a7399bc5388d6a0105"
+    "5d98464784e39a377f11d43c1b4053c042d30ccbc1a5d3587fadbc9615e4ccc5",
+    "7572cfe033059b1e3495395e6b677098fbf65fca210548368da1d09da07b3a71"
   ],
-  "editorialDigest": "13f630c7030f3314b793cff429a6adffc35520d488bc57641fa3a18b0a53f661"
+  "editorialDigest": "c99f3a1dbfbdd8949de1f046d7deb3e6536213e13e4b9797a7bd118cfa3971ce"
 }
