@@ -2013,3 +2013,47 @@ No independent or editorial review had begun, so the complete generated
 artifact set was deleted and rebuilt from zero. The repaired manifest
 `56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`
 supersedes the rejected freeze; the engine contract remains unchanged.
+
+## 2026-07-20 — Batch 016 invisible-list repair and evidence invalidation
+
+The final whole-branch review rejected published commit `412293a`: every
+Batch 016 problem accepted a list item whose only content was an HTML comment,
+even though that item renders as blank. Publication was undone with normal
+revert commit `760522c`, preserving the audit trail and returning the runtime
+bank and tracker to 320 accepted problems split 136/136/28/16/4.
+
+The deterministic list-shape engine now has two optional, backwards-compatible
+capabilities. `descendantsOnly` limits a recursive shape check to nested lists,
+and `requireVisibleItems` requires every selected list item to contain
+meaningful visible text, inline code, or image alternative text. HTML comments,
+definitions, dividers, breaks, whitespace, control characters, and default-
+ignorable characters do not satisfy the latter. Both flags default off, and a
+regression test records the legacy `requireNonemptyItems` behavior unchanged.
+
+Batch 016 opts its root lists into visible-item grading and adds a separate
+`nested-*-visible-child-items` check for the one descendant list. The frozen
+matrix now contains 288 real-engine fixtures, 24 per candidate: 12 invisible
+root-item cases plus 24 child-list cases covering HTML-comment-only and zero-
+width-only items. Every new child fixture is bound to the exact new feedback
+ID. The previous Atlas and Orchid seals, editorial verdict, publication
+summary, and all digest-bound generated evidence were invalidated. The complete
+pre-review set was rebuilt with zero reviewer seals, no editorial verdict, no
+publication summary, and status `awaiting-independent-review`.
+
+Repaired pre-review digests:
+
+- generation prompt: `c7c9f6549d7bfcfdf6f47aca404b967193107cbf9f35a930dced890c47d29ebe`
+- raw candidates: `1d627ca5bf87c7af496c59269df6f841b3ecf905a98a85aa84be424a61187dce`
+- normalized candidates: `bb9ee6041bc589605da1403eed4f118e9130b453dd3a78ffe350ee0444722b6a`
+- fixture artifact: `d3b34303d78fac93c14c4f7fbe482ff9831cc375cb27c3417e5d064271aa5d52`
+- verification: `699750999c4effd3ebcef365ed65e8128b1112827dc7bb03fd74ce6ddc59c012`
+- engine contract: `3a5da05c423920dc24290864cfde3c913f5ba40c9bf164322aebf7f5b1de20ea`
+- review manifest: `335e8819e130afe6cdf86460e2fdb5d2a51ee20118a843404f34b6e70b895a07`
+- prepared summary: `d9556cb7fd4f4bcce3bae0ae0b030df274da36833d90ae0d2b74d5843a1b3480`
+
+TDD first reproduced the hole in the structural predicate and schema validator
+tests. The repaired focused run passes 509/509 tests. The Batch 016 gate passes
+7/7, the full unit and component suite passes 9,861/9,861 in 51 files,
+`npm run typecheck` passes, and `git diff --check` is clean. No Issue #50-owned
+path changed. Independent mechanical and editorial review must restart against
+the new manifest before Batch 016 can be published again.

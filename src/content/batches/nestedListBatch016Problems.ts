@@ -243,10 +243,11 @@ function createNestedListProblem(
         ordered,
         minItems: 2,
         requireNonemptyItems: true,
+        requireVisibleItems: true,
         priority: 20,
         feedback: ordered
-          ? "Use one top-level numbered list with at least two nonempty steps."
-          : "Use one top-level bullet list with at least two nonempty items.",
+          ? "Use one top-level numbered list with at least two visible steps."
+          : "Use one top-level bullet list with at least two visible items.",
       },
       {
         id: `nested-${input.family}-list-count`,
@@ -258,6 +259,18 @@ function createNestedListProblem(
         max: 2,
         priority: 30,
         feedback: "Nest exactly one list inside the top-level list.",
+      },
+      {
+        id: `nested-${input.family}-visible-child-items`,
+        kind: "list-shape",
+        scope: documentScope,
+        ordered: "either",
+        minItems: 2,
+        recursive: true,
+        descendantsOnly: true,
+        requireVisibleItems: true,
+        priority: 35,
+        feedback: "Give every nested list item visible text or other visible content.",
       },
       ...nestedBlockExclusions(input.family),
     ],

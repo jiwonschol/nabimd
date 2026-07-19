@@ -3,15 +3,15 @@
   "batchId": "2026-07-20-l2-nested-list-documents-016",
   "status": "awaiting-independent-review",
   "candidateCount": 12,
-  "fixtureCount": 252,
+  "fixtureCount": 288,
   "passingCandidateCount": 12,
-  "normalizedArtifactDigest": "5846144d1392857634c58fb4b231a2a0253f76d7826066a5e7c03be7fa6920b6",
-  "verificationDigest": "7a064ab2b795c836460591b8929b57d433584c60e7aedc97b94296c03142e94f",
-  "manifestDigest": "56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382",
-  "engineContractDigest": "79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b",
+  "normalizedArtifactDigest": "bb9ee6041bc589605da1403eed4f118e9130b453dd3a78ffe350ee0444722b6a",
+  "verificationDigest": "699750999c4effd3ebcef365ed65e8128b1112827dc7bb03fd74ce6ddc59c012",
+  "manifestDigest": "335e8819e130afe6cdf86460e2fdb5d2a51ee20118a843404f34b6e70b895a07",
+  "engineContractDigest": "3a5da05c423920dc24290864cfde3c913f5ba40c9bf164322aebf7f5b1de20ea",
   "requiredIndependentReviews": 2,
   "committedIndependentReviews": 0,
   "editorialPresent": false,
   "publishedAcceptedTotal": 320,
-  "preparedSummaryDigest": "511635520043981162e6970b234ca7f604f9078cd68d16a0a88f8ca6fb66bf56"
+  "preparedSummaryDigest": "d9556cb7fd4f4bcce3bae0ae0b030df274da36833d90ae0d2b74d5843a1b3480"
 }

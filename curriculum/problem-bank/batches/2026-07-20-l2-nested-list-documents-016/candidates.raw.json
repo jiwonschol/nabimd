@@ -65,8 +65,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -80,6 +81,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -224,8 +239,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -239,6 +255,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -383,8 +413,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -398,6 +429,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -542,8 +587,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -557,6 +603,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -705,8 +765,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -720,6 +781,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -868,8 +943,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -883,6 +959,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -1031,8 +1121,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -1046,6 +1137,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -1194,8 +1299,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -1209,6 +1315,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -1353,8 +1473,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1368,6 +1489,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1512,8 +1647,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1527,6 +1663,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1671,8 +1821,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1686,6 +1837,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1830,8 +1995,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1845,6 +2011,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",

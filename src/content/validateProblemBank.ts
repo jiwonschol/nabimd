@@ -320,6 +320,22 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
             `Problem ${problem.id} check ${check.id} has invalid nonempty-items flag`,
           )
         }
+        if (
+          runtimeCheck.descendantsOnly !== undefined &&
+          typeof runtimeCheck.descendantsOnly !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid descendants-only flag`,
+          )
+        }
+        if (
+          runtimeCheck.requireVisibleItems !== undefined &&
+          typeof runtimeCheck.requireVisibleItems !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid visible-items flag`,
+          )
+        }
         break
       }
       case "blockquote-shape": {

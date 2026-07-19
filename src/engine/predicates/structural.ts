@@ -133,16 +133,25 @@ function listShapePasses(
     : scopedNodes
         .filter((node): node is List => node.type === "list")
         .map((list) => ({ list, ancestorListOrders: [] }))
-  return candidates.some(({ list, ancestorListOrders }) => {
-    const ordered = Boolean(list.ordered)
-    return (
-      (check.ordered === "either" || check.ordered === ordered) &&
-      (check.ordered === "either" ||
-        ancestorListOrders.every((ancestorOrder) => ancestorOrder === ordered)) &&
-      inRange(list.children.length, check.minItems, check.maxItems) &&
-      (!check.requireNonemptyItems || list.children.every(listItemHasContent))
+  return candidates
+    .filter(
+      ({ ancestorListOrders }) =>
+        !check.descendantsOnly || ancestorListOrders.length > 0,
     )
-  })
+    .some(({ list, ancestorListOrders }) => {
+      const ordered = Boolean(list.ordered)
+      return (
+        (check.ordered === "either" || check.ordered === ordered) &&
+        (check.ordered === "either" ||
+          ancestorListOrders.every(
+            (ancestorOrder) => ancestorOrder === ordered,
+          )) &&
+        inRange(list.children.length, check.minItems, check.maxItems) &&
+        (!check.requireNonemptyItems || list.children.every(listItemHasContent)) &&
+        (!check.requireVisibleItems ||
+          list.children.every(listItemHasVisibleContent))
+      )
+    })
 }
 
 function collectListCandidates(nodes: readonly AstNode[]) {
@@ -178,6 +187,32 @@ function nodeHasNonListContent(node: AstNode): boolean {
     return true
   }
   return node.children?.some(nodeHasNonListContent) ?? false
+}
+
+function listItemHasVisibleContent(item: ListItem): boolean {
+  return (item.children as AstNode[]).some(nodeHasVisibleNonListContent)
+}
+
+function nodeHasVisibleNonListContent(node: AstNode): boolean {
+  if (node.type === "list") return false
+  if (
+    ["text", "inlineCode", "code"].includes(node.type) &&
+    hasMeaningfulCharacters(node.value)
+  ) {
+    return true
+  }
+  if (
+    ["image", "imageReference"].includes(node.type) &&
+    hasMeaningfulCharacters(node.alt)
+  ) {
+    return true
+  }
+  if (
+    ["html", "definition", "thematicBreak", "break"].includes(node.type)
+  ) {
+    return false
+  }
+  return node.children?.some(nodeHasVisibleNonListContent) ?? false
 }
 
 function blockquoteShapePasses(

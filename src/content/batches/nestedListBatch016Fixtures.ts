@@ -154,6 +154,20 @@ function withTooFewRootItems(source: string, family: NestedListFamily) {
   return kept.join("\n")
 }
 
+function withInvisibleRootItem(source: string, family: NestedListFamily) {
+  const rootMarker = family === "steps" ? /^(\d+\. ).+$/m : /^(- ).+$/m
+  return source.replace(rootMarker, "$1<!-- hidden -->")
+}
+
+function withInvisibleChildItem(
+  source: string,
+  family: NestedListFamily,
+  content: string,
+) {
+  const childMarker = family === "steps" ? /^(   \d+\. ).+$/m : /^(  - ).+$/m
+  return source.replace(childMarker, `$1${content}`)
+}
+
 function codeLookalike(source: string, family: NestedListFamily, fenced: boolean) {
   const lines = source.split("\n")
   const start = listStart(lines)
@@ -215,6 +229,7 @@ function materializeFixtures(
   const shapeId = `nested-${input.family}-root-shape`
   const rootListId = `nested-${input.family}-root-list`
   const countId = `nested-${input.family}-list-count`
+  const visibleChildId = `nested-${input.family}-visible-child-items`
   const blockquoteId = `nested-${input.family}-no-extra-blockquote`
   const headingId = `nested-${input.family}-no-extra-heading`
   const dividerId = `nested-${input.family}-no-extra-divider`
@@ -233,6 +248,9 @@ function materializeFixtures(
     { suffix: "missing-list", role: "edge-case", source: withoutList(problem.target), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "wrong-root-order", role: "edge-case", source: withWrongRootOrder(problem.target), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "too-few-root-items", role: "edge-case", source: withTooFewRootItems(problem.target, input.family), expectedStatus: "fail", expectedFeedbackId: rootListId, exercisesCheckId: rootListId },
+    { suffix: "invisible-root-item", role: "edge-case", source: withInvisibleRootItem(problem.target, input.family), expectedStatus: "fail", expectedFeedbackId: rootListId, exercisesCheckId: rootListId },
+    { suffix: "invisible-child-comment", role: "edge-case", source: withInvisibleChildItem(problem.target, input.family, "<!-- hidden -->"), expectedStatus: "fail", expectedFeedbackId: visibleChildId, exercisesCheckId: visibleChildId },
+    { suffix: "invisible-child-default-ignorable", role: "edge-case", source: withInvisibleChildItem(problem.target, input.family, "\u200B"), expectedStatus: "fail", expectedFeedbackId: visibleChildId, exercisesCheckId: visibleChildId },
     { suffix: "extra-root-block", role: "edge-case", source: `${problem.target}\n\nExtra note.`, expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "fenced-code-lookalike", role: "edge-case", source: codeLookalike(problem.target, input.family, true), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "indented-code-lookalike", role: "edge-case", source: codeLookalike(problem.target, input.family, false), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },

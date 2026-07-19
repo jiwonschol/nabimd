@@ -101,6 +101,8 @@ export type MatchCheck =
       maxItems?: number
       recursive?: boolean
       requireNonemptyItems?: boolean
+      descendantsOnly?: boolean
+      requireVisibleItems?: boolean
     })
   | (MatchCheckBase & {
       kind: "blockquote-shape"

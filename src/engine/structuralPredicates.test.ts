@@ -682,6 +682,105 @@ describe("structural match predicates", () => {
     ).toEqual({ status: "matched", reviewItems: [] })
   })
 
+  it("preserves the legacy nonempty-list interpretation unless visibility is requested", () => {
+    const legacyList = problem([
+      {
+        ...common("legacy-list"),
+        kind: "list-shape",
+        scope: { kind: "document" },
+        ordered: false,
+        minItems: 1,
+        requireNonemptyItems: true,
+      },
+    ])
+
+    expect(evaluateProblem(legacyList, "- <!-- hidden -->")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+  })
+
+  it.each([
+    ["an HTML comment", "- <!-- hidden -->"],
+    ["a link definition", "- [hidden]: /path"],
+    ["a divider", "-\n  ---"],
+    ["a line break", "- <br>"],
+    ["default-ignorable characters", "- \u200B"],
+    ["control characters", "- \u0007"],
+    ["whitespace", "-   "],
+  ])("rejects list items containing only %s when visibility is required", (_label, source) => {
+    const visibleList = problem([
+      {
+        ...common("visible-list"),
+        kind: "list-shape",
+        scope: { kind: "document" },
+        ordered: false,
+        minItems: 1,
+        requireVisibleItems: true,
+      },
+    ])
+
+    expect(evaluateProblem(visibleList, source)).toMatchObject({
+      status: "fail",
+      feedbackId: "visible-list",
+    })
+  })
+
+  it.each([
+    "- Visible words",
+    "- **Visible words**",
+    "- `visible-code`",
+    "- [Visible label](/path)",
+    "- ![Visible alt](photo.png)",
+  ])("accepts visibly meaningful list-item content: %s", (source) => {
+    const visibleList = problem([
+      {
+        ...common("visible-list"),
+        kind: "list-shape",
+        scope: { kind: "document" },
+        ordered: false,
+        minItems: 1,
+        requireVisibleItems: true,
+      },
+    ])
+
+    expect(evaluateProblem(visibleList, source)).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+  })
+
+  it("can target descendant list shapes without letting the root list satisfy them", () => {
+    const visibleChildList = problem([
+      {
+        ...common("visible-child-list"),
+        kind: "list-shape",
+        scope: { kind: "document" },
+        ordered: "either",
+        minItems: 2,
+        recursive: true,
+        descendantsOnly: true,
+        requireVisibleItems: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(
+        visibleChildList,
+        "- Visible root one\n  - Visible child one\n  - Visible child two\n- Visible root two",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(visibleChildList, "- Visible root one\n- Visible root two"),
+    ).toMatchObject({ status: "fail", feedbackId: "visible-child-list" })
+    expect(
+      evaluateProblem(
+        visibleChildList,
+        "- Visible root one\n  - <!-- hidden -->\n  - Visible child two\n- Visible root two",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "visible-child-list" })
+  })
+
   it("rejects skipped heading depths but accepts a logical hierarchy", () => {
     const hierarchy = problem([
       {

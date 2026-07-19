@@ -5,8 +5,8 @@
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-07-20",
-  "promptSha256": "cc89729c9614ce13eb526d1f18190d9de3c1646ccfb7db08d6a0b788e293811f",
-  "rawArtifactDigest": "429cdf2855c0f70ce73bcf222e274ddfbb23788cbc54303415393350e4598e69",
+  "promptSha256": "c7c9f6549d7bfcfdf6f47aca404b967193107cbf9f35a930dced890c47d29ebe",
+  "rawArtifactDigest": "1d627ca5bf87c7af496c59269df6f841b3ecf905a98a85aa84be424a61187dce",
   "candidateCount": 12,
   "candidates": [
     {
@@ -68,8 +68,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -83,6 +84,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -168,7 +183,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-closet-shelf-checklist",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "9f89c95b3a3f33c49dc4862f884622b259e562fb9e799b85d497f36e62d445c5"
+      "candidateDigest": "9d61f4eb1872b7addb92e4a04194fd1ddc661f982b926cf6364020b384cd35c3"
     },
     {
       "id": "l2-nested-checklist-grocery-basket",
@@ -229,8 +244,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -244,6 +260,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -329,7 +359,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-grocery-basket-checklist",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "bcd7c8602285c2c7c2566926aa26f8b361c61881d4a2c488c7a53212c7224721"
+      "candidateDigest": "f3794452e349260395c196e9bd654cf54cc8ff3086fb3b6ff7d9627692f9e3af"
     },
     {
       "id": "l2-nested-checklist-picnic-bag",
@@ -390,8 +420,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -405,6 +436,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -490,7 +535,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-picnic-bag-checklist",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "fd1f38467f3de74f2e63a3c9d769f8f47b110c13eead7d1d1ecc470a8d40b015"
+      "candidateDigest": "41d5947651745c037e57ec665537962c533fbf9d17cbb3b0f67254840bc20c57"
     },
     {
       "id": "l2-nested-checklist-school-supplies",
@@ -551,8 +596,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-checklist-list-count",
@@ -566,6 +612,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-checklist-no-extra-blockquote",
@@ -651,7 +711,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-school-supplies-checklist",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "997e5b069e77cf427e7e3f9eb87ccb04c6b573843ed095f9e422899fd893473e"
+      "candidateDigest": "c12b3471333ba88b1c65f417ceb5773f49183b94d148e418f1698f1c56213fc4"
     },
     {
       "id": "l2-nested-outline-pet-care",
@@ -716,8 +776,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -731,6 +792,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -816,7 +891,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-pet-care-outline",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "b2ca9a3cc4745a063696192d959eaf4efe854c7b438f3b560bc63b23a4041e32"
+      "candidateDigest": "d8785cacd82563c652d8a69c7816a5546f89dbf17f4f1c958a6a44949efba3d0"
     },
     {
       "id": "l2-nested-outline-reading-plan",
@@ -881,8 +956,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -896,6 +972,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -981,7 +1071,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-reading-plan-outline",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "493adc82cb162bf230efaafad4106821e58a439035444921999b6e49362b235d"
+      "candidateDigest": "bb0da382428fc8922197e28d30fdfada8470289f1a50eed7a63d12e6853ff829"
     },
     {
       "id": "l2-nested-outline-small-garden",
@@ -1046,8 +1136,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -1061,6 +1152,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -1146,7 +1251,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-small-garden-outline",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "75f19749475da5771042d0d1660fc31156438a160f94a57768329abd5c23918b"
+      "candidateDigest": "4f10617853650a347df6bbd38aa47cecf8adb694cfcddd1a175f8b79115e5077"
     },
     {
       "id": "l2-nested-outline-weekend-route",
@@ -1211,8 +1316,9 @@
           "ordered": false,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level bullet list with at least two nonempty items."
+          "feedback": "Use one top-level bullet list with at least two visible items."
         },
         {
           "id": "nested-outline-list-count",
@@ -1226,6 +1332,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-outline-no-extra-blockquote",
@@ -1311,7 +1431,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-weekend-route-outline",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "3284ad9afd0af8a0af9534f16022c26d96cfeb033a83e0170f0a115fa5c2c63c"
+      "candidateDigest": "b206eacf6ee8c0962e01df4713ce463df223c1cb211885f9a4bec950c58c28be"
     },
     {
       "id": "l2-nested-steps-craft-table",
@@ -1372,8 +1492,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1387,6 +1508,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1472,7 +1607,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-craft-table-steps",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "96462c267a2c6856abe2237d229c3169ea8773cccea39f048a144232682cca9b"
+      "candidateDigest": "0a07842690cac73deec0c4355584b1d0a2a96c9d587e42b3a529040bc6682164"
     },
     {
       "id": "l2-nested-steps-laundry-routine",
@@ -1533,8 +1668,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1548,6 +1684,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1633,7 +1783,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-laundry-routine-steps",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "ac3aab700728970d0faf69baf06e45d58fab5b61c5aaec471c3105779fc5231e"
+      "candidateDigest": "8b5c30a49d1d75eb9b6f3432261c0ecdfa336a8b4bfb1f54a51ee2f271582edd"
     },
     {
       "id": "l2-nested-steps-room-reset",
@@ -1694,8 +1844,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1709,6 +1860,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1794,7 +1959,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-room-reset-steps",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "6ec178b918b33aa8920492aa466e0379fa4cb3a92863109db8a675f0227b774b"
+      "candidateDigest": "a04842e07e98fea372c5242ff3092de23eddfc2b357bdec69d32d18156d4ff0b"
     },
     {
       "id": "l2-nested-steps-simple-meal",
@@ -1855,8 +2020,9 @@
           "ordered": true,
           "minItems": 2,
           "requireNonemptyItems": true,
+          "requireVisibleItems": true,
           "priority": 20,
-          "feedback": "Use one top-level numbered list with at least two nonempty steps."
+          "feedback": "Use one top-level numbered list with at least two visible steps."
         },
         {
           "id": "nested-steps-list-count",
@@ -1870,6 +2036,20 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-visible-child-items",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": "either",
+          "minItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Give every nested list item visible text or other visible content."
         },
         {
           "id": "nested-steps-no-extra-blockquote",
@@ -1955,8 +2135,8 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "nested-simple-meal-steps",
       "sourceBatch": "2026-07-20-l2-nested-list-documents-016",
-      "candidateDigest": "c70367934032ebfa5c61b313d0c696b2d99b23c28dd44e5ffd2bfe86b2a1889a"
+      "candidateDigest": "f7ba6830de2c119f3ad5cadafd0f9b6be9da39c36891404520ad2cf8fcdf909e"
     }
   ],
-  "artifactDigest": "5846144d1392857634c58fb4b231a2a0253f76d7826066a5e7c03be7fa6920b6"
+  "artifactDigest": "bb9ee6041bc589605da1403eed4f118e9130b453dd3a78ffe350ee0444722b6a"
 }
