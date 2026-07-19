@@ -2145,7 +2145,7 @@ state-aware all-batch validation; only an explicitly named unsealed batch
 command may write authored evidence. A repository gate prevents that alias
 from drifting back to a sealed batch. GitHub Codex found no major issue on the
 reviewed head. After these review fixes, `npm run check` passes 9,877/9,877
-unit and component tests, 101/101 immutable batch gates, and 4/4 repository
+unit and component tests, 100/100 immutable batch gates, and 4/4 repository
 gates with the same 222-module production build.
 
 The tracker-backed documentation now reports 332 without claiming the closing
