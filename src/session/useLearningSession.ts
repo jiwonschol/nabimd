@@ -23,6 +23,33 @@ import {
 } from "./learningSession"
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
+export const SESSION_SEED_STORAGE_KEY = "nabimd.session-seed.v1"
+
+function createRandomSessionSeed(): number {
+  return Math.floor(Math.random() * 0x1_0000_0000)
+}
+
+function getOrCreateSessionSeed(
+  storage: Storage,
+  createSeed: () => number,
+): number {
+  try {
+    const storedValue = storage.getItem(SESSION_SEED_STORAGE_KEY)
+    const stored = storedValue === null ? null : Number(storedValue)
+    if (stored !== null && Number.isSafeInteger(stored) && stored >= 0) {
+      return stored
+    }
+
+    const seed = createSeed()
+    if (!Number.isSafeInteger(seed) || seed < 0) {
+      throw new Error("Session seed must be a nonnegative safe integer")
+    }
+    storage.setItem(SESSION_SEED_STORAGE_KEY, String(seed))
+    return seed
+  } catch {
+    return 0
+  }
+}
 
 function isSafeReplacement(leftId: string, rightId: string): boolean {
   const left = getProblem(leftId)
@@ -30,12 +57,13 @@ function isSafeReplacement(leftId: string, rightId: string): boolean {
   return isEligibleTransferProblem(left, right, left.retryFamily)
 }
 
-function initializeSession(storage: Storage) {
+function initializeSession({ storage, seed }: { storage: Storage; seed: number }) {
   const progress = loadProgress(
     storage,
     validProblemIds,
     isSafeReplacement,
     problemBankRevision,
+    seed,
   )
   return createLearningSession(progress, getProblem(progress.currentProblemId))
 }
@@ -43,11 +71,15 @@ function initializeSession(storage: Storage) {
 export function useLearningSession(
   storage?: Storage,
   now: () => number = Date.now,
+  createSessionSeed: () => number = createRandomSessionSeed,
 ) {
   const [sessionStorage] = useState(() => storage ?? resolveBrowserStorage())
+  const [sessionSeed] = useState(() =>
+    getOrCreateSessionSeed(sessionStorage, createSessionSeed),
+  )
   const [session, dispatch] = useReducer(
     learningSessionReducer,
-    sessionStorage,
+    { storage: sessionStorage, seed: sessionSeed },
     initializeSession,
   )
   const problem = getProblem(session.currentProblemId)
@@ -61,7 +93,7 @@ export function useLearningSession(
   }, [])
 
   const startRun = useCallback((entryId: EntryId, runNumber: number) => {
-    const runProblemIds = createRunProblemIds(entryId, runNumber)
+    const runProblemIds = createRunProblemIds(entryId, runNumber, sessionSeed)
     const firstProblemId = runProblemIds.at(0)
     if (!firstProblemId) return
     dispatch({
@@ -69,10 +101,11 @@ export function useLearningSession(
       atMs: now(),
       entryId,
       runNumber,
+      runSeed: sessionSeed,
       runProblemIds,
       problem: getProblem(firstProblemId),
     })
-  }, [now])
+  }, [now, sessionSeed])
 
   const start = useCallback(
     (entryId: EntryId) => {
@@ -89,8 +122,8 @@ export function useLearningSession(
 
   const startOver = useCallback(() => {
     if (!session.entryId) return
-    startRun(session.entryId, 0)
-  }, [session.entryId, startRun])
+    startRun(session.entryId, session.runNumber + 1)
+  }, [session.entryId, session.runNumber, startRun])
 
   const changeLevel = useCallback(() => {
     dispatch({ type: "returned-to-greeting", problem: problemBank[0] })

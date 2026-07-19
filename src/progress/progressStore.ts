@@ -14,12 +14,14 @@ export const MAX_PERSISTED_RUN_NUMBER = 10_000
 export function createDefaultProgress(
   currentProblemId: string,
   bankRevision = problemBankRevision,
+  runSeed = 0,
 ): ProgressV5 {
   return {
     version: 5,
     bankRevision,
     entryId: null,
     runNumber: 0,
+    runSeed,
     runProblemIds: [],
     runStepIndex: 0,
     scheduledStepIndex: 0,
@@ -71,6 +73,7 @@ function isValidRunProblemIds(
   value: unknown,
   entryId: ProgressV5["entryId"],
   runNumber: number,
+  runSeed: number,
   runStepIndex: number,
   scheduledStepIndex: number,
   currentIsTransfer: boolean,
@@ -83,7 +86,7 @@ function isValidRunProblemIds(
   if (!Array.isArray(value)) return false
   if (entryId === null) return value.length === 0
 
-  const expectedRunProblemIds = createRunProblemIds(entryId, runNumber)
+  const expectedRunProblemIds = createRunProblemIds(entryId, runNumber, runSeed)
   const maximumRunLength = expectedRunProblemIds.length * 2
 
   return (
@@ -142,6 +145,7 @@ function isProgressV5(
     candidateProblemId: string,
   ) => boolean,
   expectedBankRevision: string,
+  expectedRunSeed: number,
 ): value is ProgressV5 {
   if (!isRecord(value)) return false
 
@@ -150,6 +154,8 @@ function isProgressV5(
     value.bankRevision !== expectedBankRevision ||
     (value.entryId !== null && !isEntryId(value.entryId)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
+    !isNonnegativeSafeInteger(value.runSeed) ||
+    value.runSeed !== expectedRunSeed ||
     value.runNumber > MAX_PERSISTED_RUN_NUMBER ||
     !isNonnegativeSafeInteger(value.runStepIndex) ||
     typeof value.currentIsTransfer !== "boolean"
@@ -159,7 +165,9 @@ function isProgressV5(
 
   const entryId = value.entryId
   const scheduledRunLength =
-    entryId === null ? 0 : createRunProblemIds(entryId, value.runNumber).length
+    entryId === null
+      ? 0
+      : createRunProblemIds(entryId, value.runNumber, value.runSeed).length
   const activeRun = entryId !== null
   const scheduledStepIndex = isNonnegativeSafeInteger(value.scheduledStepIndex)
     ? value.scheduledStepIndex
@@ -200,6 +208,7 @@ function isProgressV5(
       value.runProblemIds,
       entryId,
       value.runNumber,
+      value.runSeed,
       value.runStepIndex,
       scheduledStepIndex,
       value.currentIsTransfer,
@@ -252,11 +261,13 @@ export function loadProgress(
     candidateProblemId: string,
   ) => boolean = () => false,
   expectedBankRevision = problemBankRevision,
+  expectedRunSeed = 0,
 ): ProgressV5 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
     firstProblemId ?? "l1-heading-apple",
     expectedBankRevision,
+    expectedRunSeed,
   )
 
   try {
@@ -269,6 +280,7 @@ export function loadProgress(
       validProblemIds,
       isEligibleTransferProblem,
       expectedBankRevision,
+      expectedRunSeed,
     )
       ? cloneProgress(parsed)
       : fallback

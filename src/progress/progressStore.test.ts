@@ -84,6 +84,26 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
+  it("rejects a persisted run that was generated for another session seed", () => {
+    const ids = createRunProblemIds("level-4", 0, 17)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-4"
+    progress.runSeed = 17
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(
+        storage,
+        validProblemIds,
+        isEligibleTransferProblemId,
+        problemBankRevision,
+        18,
+      ),
+    ).toEqual(createDefaultProgress(problemBank[0].id, problemBankRevision, 18))
+  })
+
   it("round-trips the greeting state without an active timer", () => {
     const progress = createDefaultProgress(problemBank[0].id)
     saveProgress(storage, progress)
