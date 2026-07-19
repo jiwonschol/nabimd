@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "editorialActor": "codex-editorial-batch016-repaired-engine",
+  "editorialRunId": "editorial-batch016-4953c83f-repaired-engine-2026-07-20-002",
+  "reviewedOn": "2026-07-20",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457",
+  "decisions": [
+    {
+      "candidateId": "l2-nested-checklist-closet-shelf",
+      "revision": 1,
+      "candidateDigest": "9d61f4eb1872b7addb92e4a04194fd1ddc661f982b926cf6364020b384cd35c3",
+      "fixtureResultsDigest": "402b9c0af37082bbd275842566a1da44dc09db7edef6e7bfe06075f64a9deac0",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Top shelf clearly acts as the parent of sweaters and scarves in both source and render. The short household language fits Level 2, and the visible-item feedback would describe an empty child plainly without grading the clothing words."
+    },
+    {
+      "candidateId": "l2-nested-checklist-grocery-basket",
+      "revision": 1,
+      "candidateDigest": "f3794452e349260395c196e9bd654cf54cc8ff3086fb3b6ff7d9627692f9e3af",
+      "fixtureResultsDigest": "097517223ef43a29d5a46fc2a38d5b5e3f244a880e14034e94c44964dbd9a8ec",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Tomatoes and spinach are an immediately understandable subgroup of produce, so the document teaches hierarchy through meaning rather than decoration. Goal and breakfast-shop example use separate wording and inventories."
+    },
+    {
+      "candidateId": "l2-nested-checklist-picnic-bag",
+      "revision": 1,
+      "candidateDigest": "41d5947651745c037e57ec665537962c533fbf9d17cbb3b0f67254840bc20c57",
+      "fixtureResultsDigest": "441e0b72ebd50de151c5a1a6c3629b1e6bd1064aa954c24ba941a760dda77dfd",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The picnic setting recalls familiar vocabulary, but cold items with two children creates a new nested-document task beyond the earlier flat Picnic bag lesson. The beach-tote example introduces a different outing and item set."
+    },
+    {
+      "candidateId": "l2-nested-checklist-school-supplies",
+      "revision": 1,
+      "candidateDigest": "c12b3471333ba88b1c65f417ceb5773f49183b94d148e418f1698f1c56213fc4",
+      "fixtureResultsDigest": "32ff205f5ae93b1220494ed01634b805dbda1b3ec19f60e19b91f73ec805b08c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Writing tools provides a strong parent label for pen and pencil, and the first-bell sentence reads naturally in US school context. Recalled school nouns support progression without repeating an earlier complete target."
+    },
+    {
+      "candidateId": "l2-nested-outline-pet-care",
+      "revision": 1,
+      "candidateDigest": "d8785cacd82563c652d8a69c7816a5546f89dbf17f4f1c958a6a44949efba3d0",
+      "fixtureResultsDigest": "7b128bd76b986051754723a45e17faf8c42d5c74e7b4e27163540b1e0c285b52",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The H1-H2 frame reads as a usable evening pet-care note, with dinner visibly containing two actions. Pet care has appeared as simpler heading vocabulary, but this source, hierarchy, and cat-care example are independently composed."
+    },
+    {
+      "candidateId": "l2-nested-outline-reading-plan",
+      "revision": 1,
+      "candidateDigest": "bb0da382428fc8922197e28d30fdfada8470289f1a50eed7a63d12e6853ff829",
+      "fixtureResultsDigest": "b7a23c868516d7f59889d5d6e143f857d23f01e7143fa3ea76d232852fe9a6db",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Monday and Wednesday visibly schedule short stories while the other reading choices remain top-level. The weekly outline is concise, useful, and distinct from the music-practice teaching document."
+    },
+    {
+      "candidateId": "l2-nested-outline-small-garden",
+      "revision": 1,
+      "candidateDigest": "4f10617853650a347df6bbd38aa47cecf8adb694cfcddd1a175f8b79115e5077",
+      "fixtureResultsDigest": "9ad75559693b978a0e8ce6164307fc0e921a78e243172444adeb722c8491abc0",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Basil and mint sit naturally beneath herb bed, making the inner list legible at a glance. The sunny-yard note and common gardening terms keep cognitive load appropriate for a composite Level 2 rebuild."
+    },
+    {
+      "candidateId": "l2-nested-outline-weekend-route",
+      "revision": 1,
+      "candidateDigest": "b206eacf6ee8c0962e01df4713ce463df223c1cb211885f9a4bec950c58c28be",
+      "fixtureResultsDigest": "ba23a87455259cc4a41da60412e7f544fccf57ee5c5fde4245cd76bf289adea4",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Bakery and post office are plausible stops within the town center, while the market and gas station remain separate route stops. The result is natural contemporary US errand language and a useful small outline."
+    },
+    {
+      "candidateId": "l2-nested-steps-craft-table",
+      "revision": 1,
+      "candidateDigest": "0a07842690cac73deec0c4355584b1d0a2a96c9d587e42b3a529040bc6682164",
+      "fixtureResultsDigest": "b73b291dd72577816a4db1457aae1bab7e018e087f806affab9323714c50eb8e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The numbered sequence is coherent, and choosing paper and finding glue are meaningful children of gathering supplies. Its card-making Goal and watercolor example do not reuse targets or prose from the accepted bank."
+    },
+    {
+      "candidateId": "l2-nested-steps-laundry-routine",
+      "revision": 1,
+      "candidateDigest": "8b5c30a49d1d75eb9b6f3432261c0ecdfa336a8b4bfb1f54a51ee2f271582edd",
+      "fixtureResultsDigest": "778856b99e91174120f894b5e186f5f262d8c3bbb10df7072c21fb42c8b771ca",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Sort the clothes and Start the washer deliberately recur from flat ordered-list practice, but separating whites and darks introduces the targeted second level inside a larger document. This is spaced structural progression, not a duplicate exercise."
+    },
+    {
+      "candidateId": "l2-nested-steps-room-reset",
+      "revision": 1,
+      "candidateDigest": "a04842e07e98fea372c5242ff3092de23eddfc2b357bdec69d32d18156d4ff0b",
+      "fixtureResultsDigest": "3a7c2562d35f87a482988a52d212a04e4ba3d6d7558f977dda512c4eb68f7912",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Putting away shoes and picking up books clearly expand Clear the floor, and the bedtime sequence is idiomatic checklist language. One familiar Make the bed action does not make the new nested source duplicative."
+    },
+    {
+      "candidateId": "l2-nested-steps-simple-meal",
+      "revision": 1,
+      "candidateDigest": "f7ba6830de2c119f3ad5cadafd0f9b6be9da39c36891404520ad2cf8fcdf909e",
+      "fixtureResultsDigest": "35a123bb722d80d57cbf43d0839bd0ef0de9b9660f82533794b6e86441aedb1c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Slicing cucumber and grating carrot are visible, concrete parts of preparing the filling, followed by a sensible wrap-making sequence. The fruit-bowl example preserves the same lesson with different food and actions."
+    }
+  ],
+  "reviewDigests": [
+    "bada6ccb246f35f916440bc60836d1673db8a1c96d25892eaa27a3719ac60128",
+    "eb8d7dcd354433b7f8ba194913b5d8970e37f3067be1a2b6c3b521422a996e6f"
+  ],
+  "editorialDigest": "f7f36693ef6baab7469c0fba49e3e3e9c045284cb61fc604ac22f6e2d4e8110e"
+}

@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "normalizedArtifactDigest": "bb9ee6041bc589605da1403eed4f118e9130b453dd3a78ffe350ee0444722b6a",
+  "fixtureArtifactDigest": "779f264d6b5febdf492467b2545fcdb5398101c127030a205fcc8f090d04ea31",
+  "verificationDigest": "7c2de8b4ea90d06d37e29f9766aa3fab00b6a2b7fc5977fc8376cdfa7bd0b0ca",
+  "entries": [
+    {
+      "candidateId": "l2-nested-checklist-closet-shelf",
+      "revision": 1,
+      "candidateDigest": "9d61f4eb1872b7addb92e4a04194fd1ddc661f982b926cf6364020b384cd35c3",
+      "problemDigest": "3d3caead9d41972dc4a6fdebc0d891683a0aeb87d1c877653080d24fad95a037",
+      "fixtureDefinitionDigest": "0d8928e3f7c69d7f9726b338f7d87e6d37d5bc4d926a5cba1f1812e3dd2c4e37",
+      "fixtureResultsDigest": "402b9c0af37082bbd275842566a1da44dc09db7edef6e7bfe06075f64a9deac0",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-checklist-grocery-basket",
+      "revision": 1,
+      "candidateDigest": "f3794452e349260395c196e9bd654cf54cc8ff3086fb3b6ff7d9627692f9e3af",
+      "problemDigest": "7fe55d3be7f5e4fc0af0909a831e086764ce4e6e8b369a300f65fd00798ce83c",
+      "fixtureDefinitionDigest": "5bfc2a278347f277cc8f5afd2a70356bc012a5f7cd960c51c164ad6e624b5a44",
+      "fixtureResultsDigest": "097517223ef43a29d5a46fc2a38d5b5e3f244a880e14034e94c44964dbd9a8ec",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-checklist-picnic-bag",
+      "revision": 1,
+      "candidateDigest": "41d5947651745c037e57ec665537962c533fbf9d17cbb3b0f67254840bc20c57",
+      "problemDigest": "1ca546fdbedc21b15dd0186d03768bc4134ff642bb7472584525b574dfdd757b",
+      "fixtureDefinitionDigest": "ab908e9f47e2e52b75eced3ae866ad2726b1216dabf9fac2c08807aa23c347d1",
+      "fixtureResultsDigest": "441e0b72ebd50de151c5a1a6c3629b1e6bd1064aa954c24ba941a760dda77dfd",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-checklist-school-supplies",
+      "revision": 1,
+      "candidateDigest": "c12b3471333ba88b1c65f417ceb5773f49183b94d148e418f1698f1c56213fc4",
+      "problemDigest": "2712467fcffaf13588c5fef60b3b9a81b5261ad2e03400cb60568cfe09081372",
+      "fixtureDefinitionDigest": "380a3e98d2711e540884624aec40ce8db829b1f21d3581bef95b8144db2c76db",
+      "fixtureResultsDigest": "32ff205f5ae93b1220494ed01634b805dbda1b3ec19f60e19b91f73ec805b08c",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-outline-pet-care",
+      "revision": 1,
+      "candidateDigest": "d8785cacd82563c652d8a69c7816a5546f89dbf17f4f1c958a6a44949efba3d0",
+      "problemDigest": "879da4dbd0a95846978e6823300122281593be080bba24158d2416d7eab6ab8c",
+      "fixtureDefinitionDigest": "f533fda89b8a65af8201503ec11a28dc032529d7743ec01e05e2a8ba53766719",
+      "fixtureResultsDigest": "7b128bd76b986051754723a45e17faf8c42d5c74e7b4e27163540b1e0c285b52",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-outline-reading-plan",
+      "revision": 1,
+      "candidateDigest": "bb0da382428fc8922197e28d30fdfada8470289f1a50eed7a63d12e6853ff829",
+      "problemDigest": "b014d580949b45f557209636a85a3260348324c00ec4534b0a0b6568186b05b8",
+      "fixtureDefinitionDigest": "5047d1554daaa615cb5adac2d648302d907a2eda9dbd7567b91c05458f38095a",
+      "fixtureResultsDigest": "b7a23c868516d7f59889d5d6e143f857d23f01e7143fa3ea76d232852fe9a6db",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-outline-small-garden",
+      "revision": 1,
+      "candidateDigest": "4f10617853650a347df6bbd38aa47cecf8adb694cfcddd1a175f8b79115e5077",
+      "problemDigest": "922007ae83b8d4fc6a77d9b1aa96ce4a8bc5a896273bd2cde3ad78c0e13ae949",
+      "fixtureDefinitionDigest": "e2b280e34ecb796b8d33676819d93ccc46b92107e4025f0073004da6b4a2250d",
+      "fixtureResultsDigest": "9ad75559693b978a0e8ce6164307fc0e921a78e243172444adeb722c8491abc0",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-outline-weekend-route",
+      "revision": 1,
+      "candidateDigest": "b206eacf6ee8c0962e01df4713ce463df223c1cb211885f9a4bec950c58c28be",
+      "problemDigest": "a08444ce4ec62c1d18037b2bc82163bdc10db8e2b4125189b6e4b2cf0847088e",
+      "fixtureDefinitionDigest": "770ae57417bf943444e32bbe1b91da698be87ff35baf856b590696ce7d2bb061",
+      "fixtureResultsDigest": "ba23a87455259cc4a41da60412e7f544fccf57ee5c5fde4245cd76bf289adea4",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-steps-craft-table",
+      "revision": 1,
+      "candidateDigest": "0a07842690cac73deec0c4355584b1d0a2a96c9d587e42b3a529040bc6682164",
+      "problemDigest": "cd4eee1ed679aa5aa695dd1faa5fede7b915a36db877becaba6af7b9b92186d5",
+      "fixtureDefinitionDigest": "afb44c2ed84bc669bf48f50b8944fde89e0fdac9332991eaf366f74e242ad8c6",
+      "fixtureResultsDigest": "b73b291dd72577816a4db1457aae1bab7e018e087f806affab9323714c50eb8e",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-steps-laundry-routine",
+      "revision": 1,
+      "candidateDigest": "8b5c30a49d1d75eb9b6f3432261c0ecdfa336a8b4bfb1f54a51ee2f271582edd",
+      "problemDigest": "498c7708751136fe63129dd0f4915cbef75ad499421fff1c32dabc1f659c2ec0",
+      "fixtureDefinitionDigest": "75e444421f1e0014f91472fc345f5bbef9395f9418fd2f600145d9cdf739968f",
+      "fixtureResultsDigest": "778856b99e91174120f894b5e186f5f262d8c3bbb10df7072c21fb42c8b771ca",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-steps-room-reset",
+      "revision": 1,
+      "candidateDigest": "a04842e07e98fea372c5242ff3092de23eddfc2b357bdec69d32d18156d4ff0b",
+      "problemDigest": "b75c8271cd0cd23d31e1278f88051f615c6de6b76501fd6573b453dee7d697d5",
+      "fixtureDefinitionDigest": "ccb3da7847091114e8ec27623cace984e5e5e036a4f1413dadb08fc1f8117311",
+      "fixtureResultsDigest": "3a7c2562d35f87a482988a52d212a04e4ba3d6d7558f977dda512c4eb68f7912",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l2-nested-steps-simple-meal",
+      "revision": 1,
+      "candidateDigest": "f7ba6830de2c119f3ad5cadafd0f9b6be9da39c36891404520ad2cf8fcdf909e",
+      "problemDigest": "e85986477e12e57b3125736a88121627c57dfcc3d25c3fb5e0fbdb9dab20e85a",
+      "fixtureDefinitionDigest": "13c53055e99d35a203ff991d05c201cf4adf5fd76b180e5baec9518cb9ff8e3f",
+      "fixtureResultsDigest": "35a123bb722d80d57cbf43d0839bd0ef0de9b9660f82533794b6e86441aedb1c",
+      "fixtureCount": 25,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    }
+  ],
+  "manifestDigest": "4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457"
+}

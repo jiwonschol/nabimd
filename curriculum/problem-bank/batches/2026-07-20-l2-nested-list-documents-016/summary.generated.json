@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "status": "published",
+  "batchDigest": "ba0fa8ceb1cff2a79871aaf66cc35dddcd721933834be2beee4672061045d1d6",
+  "bankDigest": "b9ad420505055ab2e061e229ef2410574dd0ac1e7dcf81a8803224777aaeb65f",
+  "projectionDigest": "132ea134d89f06c45156dc2a34c251a9c068c10650f4080fa800ab3189eb7508",
+  "trackerDigest": "1fddd8fc64685c1461d6c41ea68f23880a58c5080f0ab91d591b1dbcd3f38f39",
+  "generated": 12,
+  "accepted": 12,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 136,
+      "2": 148,
+      "3": 28,
+      "4": 16,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 16,
+      "fenced-code-blocks": 12,
+      "headings": 44,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "italic-emphasis": 12,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 28,
+      "rebuild-code-block-documents": 12,
+      "rebuild-nested-list-documents": 12,
+      "rebuild-real-documents": 12,
+      "rebuild-sectioned-documents": 12
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/fenced-code-blocks": 12,
+      "1/headings": 28,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/italic-emphasis": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "2/rebuild-code-block-documents": 12,
+      "2/rebuild-nested-list-documents": 12,
+      "2/rebuild-real-documents": 12,
+      "2/rebuild-sectioned-documents": 12,
+      "3/readable-human-document": 28,
+      "4/executable-development-spec": 16,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 332
+    }
+  },
+  "manifestDigest": "4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457",
+  "reviewDigests": [
+    "bada6ccb246f35f916440bc60836d1673db8a1c96d25892eaa27a3719ac60128",
+    "eb8d7dcd354433b7f8ba194913b5d8970e37f3067be1a2b6c3b521422a996e6f"
+  ],
+  "editorialDigest": "f7f36693ef6baab7469c0fba49e3e3e9c045284cb61fc604ac22f6e2d4e8110e",
+  "summaryDigest": "0da0618d85b98fdad2cc67703e9e8d4f4da5af0ce144b3f284427139b18b553f"
+}

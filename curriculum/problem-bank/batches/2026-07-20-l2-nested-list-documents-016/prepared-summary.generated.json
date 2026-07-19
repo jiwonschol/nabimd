@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "status": "awaiting-independent-review",
+  "candidateCount": 12,
+  "fixtureCount": 300,
+  "passingCandidateCount": 12,
+  "normalizedArtifactDigest": "bb9ee6041bc589605da1403eed4f118e9130b453dd3a78ffe350ee0444722b6a",
+  "verificationDigest": "7c2de8b4ea90d06d37e29f9766aa3fab00b6a2b7fc5977fc8376cdfa7bd0b0ca",
+  "manifestDigest": "4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457",
+  "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 320,
+  "preparedSummaryDigest": "e085b601e23501ee7193a1e8d5c9db7e4937c14d0720d247c27a426798801871"
+}

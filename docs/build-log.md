@@ -1924,3 +1924,232 @@ and component tests, the legacy bank gate, a 222-module production build, and
 bundle inspection excluding four fixture-only sentinels from the single
 JavaScript asset. `npm run test:e2e` passed all 13 Chromium journeys. No path
 owned by Issue #50 changed, and the 512-problem closing target remains open.
+
+## 2026-07-20 — Issue #9 nested-list document pre-review freeze
+
+Batch 016 freezes 12 Level 2 document rebuilds without publishing them. The
+next uncovered basic family considered was paragraph separation, but Level 1
+cannot schedule a paragraph-only family without editing Issue #50-owned
+taxonomy and selection paths. That breadth remains deferred. Nested lists are
+reachable through the existing Level 2 composite path and reuse the current
+AST predicates, so this batch adds four nested checklists, four nested outlines,
+and four nested step documents without changing runtime verdict semantics.
+
+The syntax scope incorporates all four references named in Issue #9's
+2026-07-19 refinement:
+
+- <https://daringfireball.net/projects/markdown/basics>
+- <https://daringfireball.net/projects/markdown/syntax>
+- <https://www.markdownguide.org/basic-syntax/>
+- <https://markdown.kr/guide.php>
+
+Those sources define syntax scope only; vocabulary was authored locally and
+was not crawled. Each candidate requires an exact root block sequence, at least
+two nonempty items in one root list, and exactly two recursive list nodes. The
+root ordered or unordered kind is binding, while the descendant marker kind is
+deliberately unconstrained. Teaching therefore says to "nest one list inside
+another" and does not claim that the child marker must match its parent.
+Wording, capitalization, spelling, punctuation, and semantic truth remain
+outside grading.
+
+The repaired immutable fixture set contains 252 real-engine cases, exactly 21 per
+candidate. It freezes canonical, different-prose, case/spelling, alternative
+indentation, alternative root markers, and mixed child-marker matches. It also
+rejects flat lists, insufficient indentation, sibling root lists, a third list
+depth, missing or undersized root lists, wrong root order, extra root blocks,
+fenced and indented code lookalikes, blockquote-only nested lists, and extra
+blockquotes, headings, dividers, or code blocks inside the root list. The
+prior runtime and tracker remain byte-identical at Git blob IDs
+`03e2513cc351ac0cffe0851e0f519a1b568a884a` and
+`e8c0746933ef88348334c6e2326ddb6e8ad1c72a`, preserving 320 published
+problems split 136/136/28/16/4. Unanimous review would publish 332 split
+136/148/28/16/4, with 12 in `rebuild-nested-list-documents`.
+
+Frozen digests:
+
+- generation prompt: `cc89729c9614ce13eb526d1f18190d9de3c1646ccfb7db08d6a0b788e293811f`
+- raw candidates: `429cdf2855c0f70ce73bcf222e274ddfbb23788cbc54303415393350e4598e69`
+- normalized candidates: `5846144d1392857634c58fb4b231a2a0253f76d7826066a5e7c03be7fa6920b6`
+- fixture artifact: `3dc50ed957ac798679e690ae819b4cd861c524ff49747e94731975dce6019698`
+- verification: `7a064ab2b795c836460591b8929b57d433584c60e7aedc97b94296c03142e94f`
+- engine contract: `79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b`
+- review manifest: `56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`
+- prepared summary: `511635520043981162e6970b234ca7f604f9078cd68d16a0a88f8ca6fb66bf56`
+
+TDD began with
+`npx vitest run src/content/batches/nestedListBatch016.test.ts`, which failed
+because both authored modules did not exist. The artifact gate then failed
+until the Batch 016 support module, package aliases, gate configuration, and
+pre-review artifacts existed. A learner-facing copy test separately rejected
+the article-less `Rebuild nested ...` titles; the final titles use natural
+`Rebuild a nested ...` phrasing. The focused content, structural-predicate, and
+schema-v2 run passes 459 tests in three files. The Batch 016 gate passes seven
+tests, `npm test` passes 9,811 unit and component tests in 51 files,
+`npm run typecheck` passes, and `git diff --check` is clean.
+
+Two draft artifact sets were discarded before this immutable freeze. The first
+did not yet carry the refinement's four source links. The second preceded the
+test-first title copy edit and one fixture prose cleanup. No independent review
+had started, so neither draft produced a reviewer or editorial seal. The final
+directory contains zero reviewer verdict sets, no `editorial.json`, no
+`summary.generated.json`, and remains fail-closed at
+`awaiting-independent-review`. No Issue #50-owned path, engine predicate,
+runtime AI call, network dependency, GFM extension, image lesson, or vocabulary
+crawler is part of this freeze.
+
+The first committed freeze at `05403c9` did not pass its task review. Its
+manifest
+`952a1c4c73493ac93c6389a04226589c56172ed760accd6efa8ff1805c824326`
+contained the ungrammatical steps-family title `Rebuild a nested steps`. It
+also allowed a learner to insert a blockquote, heading, thematic break, or code
+block inside the root list while retaining the required root anatomy and list
+count. Exact family-title assertions now require `Rebuild a nested step list`.
+Four root-list-scoped recursive `block-count` checks, each with `max: 0` and a
+distinct priority and feedback ID, close the structural hole using only the
+existing engine. Forty-eight new real-engine fixtures exercise every new
+failure ID across all 12 candidates.
+
+No independent or editorial review had begun, so the complete generated
+artifact set was deleted and rebuilt from zero. The repaired manifest
+`56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`
+supersedes the rejected freeze; the engine contract remains unchanged.
+
+## 2026-07-20 — Batch 016 invisible-list repair and evidence invalidation
+
+The final whole-branch review rejected published commit `412293a`: every
+Batch 016 problem accepted a list item whose only content was an HTML comment,
+even though that item renders as blank. Publication was undone with normal
+revert commit `760522c`, preserving the audit trail and returning the runtime
+bank and tracker to 320 accepted problems split 136/136/28/16/4.
+
+The deterministic list-shape engine now has two optional, backwards-compatible
+capabilities. `descendantsOnly` limits a recursive shape check to nested lists,
+and `requireVisibleItems` requires every selected list item to contain
+meaningful visible text, inline code, or image alternative text. HTML comments,
+definitions, dividers, breaks, whitespace, control characters, and default-
+ignorable characters do not satisfy the latter. Both flags default off, and a
+regression test records the legacy `requireNonemptyItems` behavior unchanged.
+
+Batch 016 opts its root lists into visible-item grading and adds a separate
+`nested-*-visible-child-items` check for the one descendant list. The frozen
+matrix now contains 288 real-engine fixtures, 24 per candidate: 12 invisible
+root-item cases plus 24 child-list cases covering HTML-comment-only and zero-
+width-only items. Every new child fixture is bound to the exact new feedback
+ID. The previous Atlas and Orchid seals, editorial verdict, publication
+summary, and all digest-bound generated evidence were invalidated. The complete
+pre-review set was rebuilt with zero reviewer seals, no editorial verdict, no
+publication summary, and status `awaiting-independent-review`.
+
+Repaired pre-review digests:
+
+- generation prompt: `c7c9f6549d7bfcfdf6f47aca404b967193107cbf9f35a930dced890c47d29ebe`
+- raw candidates: `1d627ca5bf87c7af496c59269df6f841b3ecf905a98a85aa84be424a61187dce`
+- normalized candidates: `bb9ee6041bc589605da1403eed4f118e9130b453dd3a78ffe350ee0444722b6a`
+- fixture artifact: `d3b34303d78fac93c14c4f7fbe482ff9831cc375cb27c3417e5d064271aa5d52`
+- verification: `699750999c4effd3ebcef365ed65e8128b1112827dc7bb03fd74ce6ddc59c012`
+- engine contract: `3a5da05c423920dc24290864cfde3c913f5ba40c9bf164322aebf7f5b1de20ea`
+- review manifest: `335e8819e130afe6cdf86460e2fdb5d2a51ee20118a843404f34b6e70b895a07`
+- prepared summary: `d9556cb7fd4f4bcce3bae0ae0b030df274da36833d90ae0d2b74d5843a1b3480`
+
+TDD first reproduced the hole in the structural predicate and schema validator
+tests. The repaired focused run passes 509/509 tests. The Batch 016 gate passes
+7/7, the full unit and component suite passes 9,861/9,861 in 51 files,
+`npm run typecheck` passes, and `git diff --check` is clean. No Issue #50-owned
+path changed. Independent mechanical and editorial review must restart against
+the new manifest before Batch 016 can be published again.
+
+A second P2 review on `a81a2ef` found one parser-boundary case: CommonMark
+replaces a raw U+0000 with U+FFFD in the AST, so the first visibility repair
+mistook a NUL-only item for a literal visible replacement character. The
+source-aware repair now removes only as many parsed replacement characters as
+raw NULs occur in that node's source. A literal U+FFFD remains visible, and a
+raw NUL mixed with visible content remains valid. The same helper now backs
+code-block content without changing its established behavior; inline code
+retains its established source-aware path, and image alternatives now isolate
+their raw label source before applying the same NUL accounting.
+
+Twelve NUL-only descendant fixtures bring the immutable matrix to 300 cases,
+25 per candidate, each bound to the exact `nested-*-visible-child-items`
+feedback ID. Regenerated evidence remains fail-closed at 320 accepted problems
+with zero reviewer seals, no editorial verdict, and no publication summary.
+The superseding digests are fixture artifact
+`779f264d6b5febdf492467b2545fcdb5398101c127030a205fcc8f090d04ea31`,
+verification
+`7c2de8b4ea90d06d37e29f9766aa3fab00b6a2b7fc5977fc8376cdfa7bd0b0ca`,
+engine contract
+`f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9`,
+manifest
+`4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457`,
+and prepared summary
+`e085b601e23501ee7193a1e8d5c9db7e4937c14d0720d247c27a426798801871`.
+The focused run passes 524/524, the Batch 016 gate passes 7/7, the full suite
+passes 9,876/9,876 in 51 files, typechecking passes, and `git diff --check` is
+clean. No Issue #50-owned path changed.
+
+The fresh repair review cycle completed unanimously against manifest
+`4953c83fbe12669e8f73b0f247ee60023b438152e54f0bfe72ed06f206143457`
+and engine contract
+`f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9`.
+Atlas (`reviewer-atlas-batch016`, run
+`atlas-batch016-4953c83f-repaired-001`) replayed all 300 frozen fixtures,
+added 456 fresh probes, and accepted 12/12 with review digest
+`eb8d7dcd354433b7f8ba194913b5d8970e37f3067be1a2b6c3b521422a996e6f`.
+Orchid (`codex-orchid-batch016-repaired-engine`, run
+`orchid-batch016-4953c83f-engine-repair-mechanical-001`) independently
+replayed the frozen matrix, added 972 fresh probes, and accepted 12/12 with
+review digest
+`bada6ccb246f35f916440bc60836d1673db8a1c96d25892eaa27a3719ac60128`.
+The separate `codex-editorial-batch016-repaired-engine` actor accepted 12/12
+in run `editorial-batch016-4953c83f-repaired-engine-2026-07-20-002`, sealed by
+editorial digest
+`f7f36693ef6baab7469c0fba49e3e3e9c045284cb61fc604ac22f6e2d4e8110e`.
+
+This is the replacement publication, not a continuation of the rejected
+evidence. Whole-branch review rejected the original `412293a` publication;
+`760522c` reverted it, `a81a2ef` added visible root/child grading,
+`b88cc37` corrected raw-NUL parsing, and `7942de2` committed only fresh review
+seals for the repaired engine and manifest. No digest or verdict from the
+rejected publication is used by the replacement.
+
+Running `npm run bank:batch:nested-list-016:publish` twice produced identical
+artifacts and raised the deterministic bank from 320 to 332, split
+136/148/28/16/4, with 12 `rebuild-nested-list-documents` problems. Final
+publication digests are batch
+`ba0fa8ceb1cff2a79871aaf66cc35dddcd721933834be2beee4672061045d1d6`,
+bank `b9ad420505055ab2e061e229ef2410574dd0ac1e7dcf81a8803224777aaeb65f`,
+runtime projection
+`132ea134d89f06c45156dc2a34c251a9c068c10650f4080fa800ab3189eb7508`,
+tracker `1fddd8fc64685c1461d6c41ea68f23880a58c5080f0ab91d591b1dbcd3f38f39`,
+and summary
+`0da0618d85b98fdad2cc67703e9e8d4f4da5af0ce144b3f284427139b18b553f`.
+
+Publication testing first failed at the three expected integration points: the
+runtime-bank test still asserted 320, omitted the Batch 016 fixtures, and the
+batch-local collision test compared the now-published records against itself.
+The count and split assertions now read 332 and 136/148/28/16/4, all 300
+fixtures join the published-bank contract, and collision checking excludes
+only this exact source batch. The targeted publication and engine run then
+passed 513/513.
+
+The pre-review `npm run check` passed typechecking, 18/18 pipeline tests, 100/100
+immutable batch-gate tests, 3/3 repository-gate tests, 9,876/9,876 unit and
+component tests, the legacy bank gate, a 222-module production build, and
+bundle inspection excluding four fixture-only sentinels. Local Chromium E2E
+passed all 13 user journeys. No Issue #50-owned path changed.
+
+GitHub CodeRabbit then requested two valid lifecycle guards. The validator now
+rejects `descendantsOnly: true` unless `recursive: true`, so an author receives
+an immediate schema error instead of creating an unwinnable list check. The
+generic `bank:batch:generate` alias is now permanently read-only and runs the
+state-aware all-batch validation; only an explicitly named unsealed batch
+command may write authored evidence. A repository gate prevents that alias
+from drifting back to a sealed batch. GitHub Codex found no major issue on the
+reviewed head. After these review fixes, `npm run check` passes 9,877/9,877
+unit and component tests, 100/100 immutable batch gates, and 4/4 repository
+gates with the same 222-module production build.
+
+The tracker-backed documentation now reports 332 without claiming the closing
+target. Another 168 accepted problems are required to reach the public
+500-problem floor, and 180 are required to reach the internal 512-problem
+closing target. Paragraph separation and image lessons remain deferred under
+their recorded constraints; publication did not weaken those stop conditions.

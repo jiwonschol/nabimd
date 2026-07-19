@@ -356,6 +356,8 @@ describe("schema-v2 problem-bank validation", () => {
           maxItems: -1,
           recursive: "yes",
           requireNonemptyItems: 1,
+          descendantsOnly: "yes",
+          requireVisibleItems: 1,
           priority: 10,
           feedback: "Add a list.",
         },
@@ -442,6 +444,8 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check list-shape has invalid max",
         "Problem invalid-list-shape check list-shape has invalid recursive flag",
         "Problem invalid-list-shape check list-shape has invalid nonempty-items flag",
+        "Problem invalid-list-shape check list-shape has invalid descendants-only flag",
+        "Problem invalid-list-shape check list-shape has invalid visible-items flag",
         "Problem invalid-list-shape check paragraph-depth can only use depth with heading blocks",
         "Problem invalid-list-shape check missing-scope requires a scope",
         "Problem invalid-list-shape check missing-scope has invalid nonempty-content flag",
@@ -467,6 +471,27 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check invalid-code-block has invalid nonempty-content flag",
         "Problem invalid-list-shape check invalid-code-block has invalid closed-fence flag",
       ]),
+    )
+  })
+
+  it("rejects descendant-only list checks that cannot inspect descendants", () => {
+    const invalid = problem("unreachable-descendant-list", {
+      matchChecks: [
+        {
+          id: "nested-list",
+          kind: "list-shape",
+          scope: { kind: "document" },
+          ordered: "either",
+          minItems: 1,
+          descendantsOnly: true,
+          priority: 10,
+          feedback: "Add a nested list.",
+        },
+      ],
+    })
+
+    expect(validate([invalid, problem("unreachable-descendant-list-peer")])).toContain(
+      "Problem unreachable-descendant-list check nested-list requires recursive when descendantsOnly is set",
     )
   })
 

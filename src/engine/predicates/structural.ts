@@ -133,16 +133,28 @@ function listShapePasses(
     : scopedNodes
         .filter((node): node is List => node.type === "list")
         .map((list) => ({ list, ancestorListOrders: [] }))
-  return candidates.some(({ list, ancestorListOrders }) => {
-    const ordered = Boolean(list.ordered)
-    return (
-      (check.ordered === "either" || check.ordered === ordered) &&
-      (check.ordered === "either" ||
-        ancestorListOrders.every((ancestorOrder) => ancestorOrder === ordered)) &&
-      inRange(list.children.length, check.minItems, check.maxItems) &&
-      (!check.requireNonemptyItems || list.children.every(listItemHasContent))
+  return candidates
+    .filter(
+      ({ ancestorListOrders }) =>
+        !check.descendantsOnly || ancestorListOrders.length > 0,
     )
-  })
+    .some(({ list, ancestorListOrders }) => {
+      const ordered = Boolean(list.ordered)
+      return (
+        (check.ordered === "either" || check.ordered === ordered) &&
+        (check.ordered === "either" ||
+          ancestorListOrders.every(
+            (ancestorOrder) => ancestorOrder === ordered,
+          )) &&
+        inRange(list.children.length, check.minItems, check.maxItems) &&
+        (!check.requireNonemptyItems ||
+          list.children.every(listItemHasContent)) &&
+        (!check.requireVisibleItems ||
+          list.children.every((item) =>
+            listItemHasVisibleContent(item, context.source),
+          ))
+      )
+    })
 }
 
 function collectListCandidates(nodes: readonly AstNode[]) {
@@ -178,6 +190,61 @@ function nodeHasNonListContent(node: AstNode): boolean {
     return true
   }
   return node.children?.some(nodeHasNonListContent) ?? false
+}
+
+function listItemHasVisibleContent(item: ListItem, source: string): boolean {
+  return (item.children as AstNode[]).some((node) =>
+    nodeHasVisibleNonListContent(node, source),
+  )
+}
+
+function nodeHasVisibleNonListContent(node: AstNode, source: string): boolean {
+  if (node.type === "list") return false
+  if (node.type === "text") {
+    return hasMeaningfulParsedCharacters(
+      node.value,
+      sourceForNode(node, source),
+    )
+  }
+  if (node.type === "inlineCode") {
+    return hasVisibleInlineCodeContent(node as InlineCode, source)
+  }
+  if (node.type === "code") {
+    return codeBlockHasMeaningfulContent(node as Code, source)
+  }
+  if (
+    ["image", "imageReference"].includes(node.type) &&
+    hasMeaningfulParsedCharacters(node.alt, rawImageAlt(node, source))
+  ) {
+    return true
+  }
+  if (
+    ["html", "definition", "thematicBreak", "break"].includes(node.type)
+  ) {
+    return false
+  }
+  return (
+    node.children?.some((child) =>
+      nodeHasVisibleNonListContent(child, source),
+    ) ?? false
+  )
+}
+
+function rawImageAlt(node: AstNode, source: string): string {
+  const raw = sourceForNode(node, source)
+  if (!raw.startsWith("![")) return ""
+  let depth = 1
+  for (let index = 2; index < raw.length; index += 1) {
+    if (raw[index] === "\\" && index + 1 < raw.length) {
+      index += 1
+      continue
+    }
+    if (raw[index] === "[") depth += 1
+    if (raw[index] !== "]") continue
+    depth -= 1
+    if (depth === 0) return raw.slice(2, index)
+  }
+  return ""
 }
 
 function blockquoteShapePasses(
@@ -526,11 +593,19 @@ function codeBlockHasMeaningfulContent(node: Code, source: string): boolean {
     if (isClosedFencedCode(source, node)) lines.pop()
     rawContent = lines.join("\n")
   }
-  const rawNullCount = [...rawContent].filter(
+  return hasMeaningfulParsedCharacters(node.value, rawContent)
+}
+
+function hasMeaningfulParsedCharacters(
+  parsedValue: unknown,
+  rawSource: string,
+): boolean {
+  if (typeof parsedValue !== "string") return false
+  const rawNullCount = [...rawSource].filter(
     (character) => character === "\u0000",
   ).length
   let remainingNullReplacements = rawNullCount
-  const valueWithoutParserNullReplacements = node.value.replace(
+  const valueWithoutParserNullReplacements = parsedValue.replace(
     /\uFFFD/g,
     (character) => {
       if (remainingNullReplacements === 0) return character

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "policyId": "real-engine-contract-v1",
+  "policyDigest": "992045d7c35818595027c1756ebcad777fe2bb8159deed797e9def6034cd8ae1",
+  "files": [
+    {
+      "path": "package-lock.json",
+      "sha256": "11f9c8f6c1ecf341114b1008518371721b4564e82c19a198598bcefda575b4c0"
+    },
+    {
+      "path": "src/content/normalizeProblem.ts",
+      "sha256": "03810fafe8ed82ab6cac6199e6811d0878f00968d8b0cead6760d04852316081"
+    },
+    {
+      "path": "src/content/types.ts",
+      "sha256": "ff38f1d56413271111cc5d5bd5cb0a43b36c9bd307c424991e1aa0fcb6b81ae7"
+    },
+    {
+      "path": "src/engine/evaluateProblem.ts",
+      "sha256": "5f81d46a26958291afbf8e85bff3c294391f9b0044bf9d924a02bf0344f1a348"
+    },
+    {
+      "path": "src/engine/evaluateMatch.ts",
+      "sha256": "b341c89f10be9041930043e8e93fe206e3ad87f9030d4504535c335a84bca630"
+    },
+    {
+      "path": "src/engine/evaluateEditorial.ts",
+      "sha256": "eecf2a75c490bd0f59f79fe77a6a885a41d24db6c506c1e029c1da7831585f51"
+    },
+    {
+      "path": "src/engine/evaluationContext.ts",
+      "sha256": "10e7a7afd6f3111cfca9dd2d1c178f3909a09285f4485c74bbb0c9c10eaadf57"
+    },
+    {
+      "path": "src/engine/markdownAst.ts",
+      "sha256": "b83c38084c7608b846181bfddb613beae790a0cf6a4e847b2231811673277176"
+    },
+    {
+      "path": "src/engine/sectionIndex.ts",
+      "sha256": "5a79aed75a5320a71360b349797a94c465466e47c9159e576cb3cb46bcd0db4c"
+    },
+    {
+      "path": "src/engine/predicates/heading.ts",
+      "sha256": "66b4623adecf8cb88ae5e89d9a7e3f302b8c390be9ba5630100451e30ffda74c"
+    },
+    {
+      "path": "src/engine/predicates/structural.ts",
+      "sha256": "4127547a55fc1535149d9b4ee86bab89cf15b5575db5226cd725ee7cdf4a93b8"
+    },
+    {
+      "path": "src/engine/types.ts",
+      "sha256": "f26dd557f4c32dbd1b9bd49f3485cbadfb6f34fe55e9b42fd107cc366ea3be5d"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "mdast-util-from-markdown",
+      "version": "2.0.3"
+    }
+  ],
+  "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+}

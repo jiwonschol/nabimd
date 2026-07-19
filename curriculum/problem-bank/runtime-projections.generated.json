@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "3864f5233e3f521f952c8f05359bb3936df33ff1688bdbdd40bbbcf37b1e8d07",
+    "bankDigest": "b9ad420505055ab2e061e229ef2410574dd0ac1e7dcf81a8803224777aaeb65f",
     "counts": {
       "1": 136,
-      "2": 136,
+      "2": 148,
       "3": 28,
       "4": 16,
       "5": 4
@@ -18548,6 +18548,2122 @@
         "sourceBatchId": "2026-07-19-l1-l2-lists-004"
       },
       {
+        "id": "l2-nested-checklist-closet-shelf",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Hall cabinet\n\nPut each item back in its usual place.\n\n- Upper basket\n  - Gloves\n  - Knit hats\n- Lower basket"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested checklist",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-checklist-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-checklist-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-checklist-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-checklist-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-checklist-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-checklist",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-checklist"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "closet-organization"
+          ],
+          "terms": [
+            "closet",
+            "sweaters",
+            "shoes"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-closet-shelf-checklist",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-checklist-grocery-basket",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Breakfast shop\n\nBuy enough food for two mornings.\n\n- Fresh food\n  - Bananas\n  - Berries\n- Oatmeal"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested checklist",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-checklist-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-checklist-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-checklist-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-checklist-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-checklist-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-checklist",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-checklist"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "grocery-shopping"
+          ],
+          "terms": [
+            "grocery",
+            "produce",
+            "pasta"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-grocery-basket-checklist",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-checklist-picnic-bag",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Beach tote\n\nGather everything before the drive.\n\n- Sun gear\n  - Hat\n  - Sunscreen\n- Water bottle"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested checklist",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-checklist-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-checklist-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-checklist-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-checklist-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-checklist-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-checklist",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-checklist"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "picnic-planning"
+          ],
+          "terms": [
+            "picnic",
+            "snacks",
+            "napkins"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-picnic-bag-checklist",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-checklist-school-supplies",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Library visit\n\nPrepare the bag before walking over.\n\n- Return pile\n  - Mystery book\n  - Nature book\n- Library card"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested checklist",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-checklist-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-checklist-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-checklist-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-checklist-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-checklist-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-checklist-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-checklist",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-checklist"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "school-routine"
+          ],
+          "terms": [
+            "school",
+            "backpack",
+            "notebook"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-school-supplies-checklist",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-outline-pet-care",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Cat care\n\n## Morning routine\n\nCheck everything before leaving home.\n\n- Breakfast\n  - Measure food\n  - Rinse bowl\n- Litter box"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested outline",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n- Short walk\n- Brush coat",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-outline-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-outline-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-outline-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-outline-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-outline-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-outline",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-outline"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "pet-care"
+          ],
+          "terms": [
+            "pet",
+            "dinner",
+            "walk"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-pet-care-outline",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-outline-reading-plan",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Music practice\n\n## Evening set\n\nPlay a short session after dinner.\n\n- Warm-up\n  - Scales\n  - Chords\n- New song"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested outline",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- Poetry book",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-outline-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-outline-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-outline-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-outline-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-outline-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-outline",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-outline"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "reading-routine"
+          ],
+          "terms": [
+            "reading",
+            "stories",
+            "poetry"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-reading-plan-outline",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-outline-small-garden",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Window plants\n\n## Care notes\n\nKeep the pots near the morning light.\n\n- Kitchen herbs\n  - Thyme\n  - Parsley\n- Fern"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested outline",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-outline-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-outline-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-outline-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-outline-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-outline-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-outline",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-outline"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-gardening"
+          ],
+          "terms": [
+            "garden",
+            "herbs",
+            "watering"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-small-garden-outline",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-outline-weekend-route",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Bike loop\n\n## Rest stops\n\nTake the quiet path around the lake.\n\n- North shore\n  - Water fountain\n  - Picnic table\n- Trail gate"
+        },
+        "syntaxTokens": [
+          "#",
+          "-",
+          "Indent"
+        ],
+        "title": "Rebuild a nested outline",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-outline-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-outline-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level bullet list with at least two visible items."
+          },
+          {
+            "id": "nested-outline-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-outline-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-outline-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-outline-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start each top-level item with a bullet marker.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-outline",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-outline"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "weekend-errands"
+          ],
+          "terms": [
+            "route",
+            "bakery",
+            "market"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-weekend-route-outline",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-steps-craft-table",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Paint corner\n\nPrepare a small space for watercolor practice.\n\n1. Set out tools\n   1. Fill a water cup\n   2. Choose two brushes\n2. Tape down paper"
+        },
+        "syntaxTokens": [
+          "#",
+          "1.",
+          "Indent"
+        ],
+        "title": "Rebuild a nested step list",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-steps-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-steps-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level numbered list with at least two visible steps."
+          },
+          {
+            "id": "nested-steps-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-steps-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-steps-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start the top-level steps with 1.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-steps",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-steps"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "arts-and-crafts"
+          ],
+          "terms": [
+            "craft",
+            "paper",
+            "cards"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-craft-table-steps",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-steps-laundry-routine",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Dish routine\n\nClear the sink after the evening meal.\n\n1. Sort the dishes\n   1. Stack plates\n   2. Gather cups\n2. Fill the dishwasher"
+        },
+        "syntaxTokens": [
+          "#",
+          "1.",
+          "Indent"
+        ],
+        "title": "Rebuild a nested step list",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-steps-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-steps-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level numbered list with at least two visible steps."
+          },
+          {
+            "id": "nested-steps-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-steps-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-steps-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start the top-level steps with 1.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-steps",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-steps"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "laundry-routine"
+          ],
+          "terms": [
+            "laundry",
+            "washer",
+            "clothes"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-laundry-routine-steps",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-steps-room-reset",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Desk reset\n\nLeave the workspace ready for tomorrow.\n\n1. Clear the surface\n   1. File loose notes\n   2. Return pens\n2. Wipe the desk"
+        },
+        "syntaxTokens": [
+          "#",
+          "1.",
+          "Indent"
+        ],
+        "title": "Rebuild a nested step list",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-steps-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-steps-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level numbered list with at least two visible steps."
+          },
+          {
+            "id": "nested-steps-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-steps-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-steps-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start the top-level steps with 1.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-steps",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-steps"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-routine"
+          ],
+          "terms": [
+            "room",
+            "floor",
+            "curtains"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-room-reset-steps",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
+        "id": "l2-nested-steps-simple-meal",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-nested-list-documents",
+        "skillIds": [
+          "heading-h1",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A nested list groups related details under one larger item.",
+          "howTo": "Rebuild the visible document and nest one list inside another. The inner list may use any valid Markdown list marker.",
+          "example": "# Fruit bowl\n\nPut together a quick afternoon snack.\n\n1. Prepare the fruit\n   1. Rinse the grapes\n   2. Slice the pear\n2. Add yogurt"
+        },
+        "syntaxTokens": [
+          "#",
+          "1.",
+          "Indent"
+        ],
+        "title": "Rebuild a nested step list",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "nested-steps-root-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Keep the same title, note, and top-level list order shown in the Goal."
+          },
+          {
+            "id": "nested-steps-root-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "requireVisibleItems": true,
+            "priority": 20,
+            "feedback": "Use one top-level numbered list with at least two visible steps."
+          },
+          {
+            "id": "nested-steps-list-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "list",
+            "recursive": true,
+            "min": 2,
+            "max": 2,
+            "priority": 30,
+            "feedback": "Nest exactly one list inside the top-level list."
+          },
+          {
+            "id": "nested-steps-visible-child-items",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": "either",
+            "minItems": 2,
+            "recursive": true,
+            "descendantsOnly": true,
+            "requireVisibleItems": true,
+            "priority": 35,
+            "feedback": "Give every nested list item visible text or other visible content."
+          },
+          {
+            "id": "nested-steps-no-extra-blockquote",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 0,
+            "priority": 40,
+            "feedback": "Remove the extra quote inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-heading",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "heading",
+            "recursive": true,
+            "max": 0,
+            "priority": 50,
+            "feedback": "Remove the extra heading inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-divider",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "thematic-break",
+            "recursive": true,
+            "max": 0,
+            "priority": 60,
+            "feedback": "Remove the extra divider inside the list."
+          },
+          {
+            "id": "nested-steps-no-extra-code",
+            "kind": "block-count",
+            "scope": {
+              "kind": "block",
+              "block": "list",
+              "occurrence": 0
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 0,
+            "priority": 70,
+            "feedback": "Remove the extra code block inside the list."
+          }
+        ],
+        "editorialChecks": [],
+        "hints": [
+          "Build the title and short note first.",
+          "Start the top-level steps with 1.",
+          "Indent the inner items so they belong to one outer item."
+        ],
+        "retryFamily": "level-2-nested-steps",
+        "reviewTags": [
+          "composite-level-2",
+          "nested-list",
+          "nested-steps"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "simple-cooking"
+          ],
+          "terms": [
+            "meal",
+            "filling",
+            "wrap"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nested-simple-meal-steps",
+        "sourceBatchId": "2026-07-20-l2-nested-list-documents-016"
+      },
+      {
         "id": "l2-order-charge-phone",
         "schemaVersion": 2,
         "level": 2,
@@ -32763,5 +34879,5 @@
       }
     ]
   },
-  "projectionDigest": "9230750169a6732a83d4f582d942048ea73852d554b891a45770f439766e3295"
+  "projectionDigest": "132ea134d89f06c45156dc2a34c251a9c068c10650f4080fa800ab3189eb7508"
 }
