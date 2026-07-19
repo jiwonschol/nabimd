@@ -149,6 +149,14 @@ describe("ATX heading-depth and sectioned-document batch 015", () => {
     }
   })
 
+  it("uses an unambiguous US-English section heading for bake-sale supplies", () => {
+    const bakeSale = headingDepthBatch015Problems.find(
+      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
+    )
+    expect(bakeSale?.target).toContain("## Table supplies")
+    expect(bakeSale?.target).not.toContain("## Table box")
+  })
+
   it("does not collide with the published 296-problem bank", () => {
     const previousIds = new Set(problemBank.map((problem) => problem.id))
     const previousVariants = new Set(

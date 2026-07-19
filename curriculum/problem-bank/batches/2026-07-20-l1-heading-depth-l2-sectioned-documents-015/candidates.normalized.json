@@ -6,7 +6,7 @@
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-07-20",
   "promptSha256": "032fb250d21c38890ce246fd714cb5de97cab94f0b26b1113144f09d2e42fb41",
-  "rawArtifactDigest": "851da77253613b7636c2eebaa4e13db4206535519f669a08302e97aa10e48847",
+  "rawArtifactDigest": "5573b1c77b542193cbb7f248923d3bbb6fed96fa16cdda103eaf09897d88b64e",
   "candidateCount": 24,
   "candidates": [
     {
@@ -1185,7 +1185,7 @@
       ],
       "title": "Rebuild a sectioned checklist",
       "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
-      "target": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "target": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
@@ -1273,7 +1273,7 @@
       "curriculumVersion": "2026-07-19",
       "contentVariant": "sectioned-bake-sale-checklist",
       "sourceBatch": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
-      "candidateDigest": "eb3c6d11e86252e7314efb03e13ad95c0de7f074f0983fe0052bd98beec8dab6"
+      "candidateDigest": "18a2d6476f65d64642f9bc2ca939dd346279c652355de5a436358df38779874f"
     },
     {
       "id": "l2-sectioned-checklist-bike-repair",
@@ -2542,5 +2542,5 @@
       "candidateDigest": "6675a56de7ce5c5fb3943b2f7edd4544c294fb5c60197d6fe822767d5d2812b3"
     }
   ],
-  "artifactDigest": "0dc550dd05d55d7b99710c6c658faf5b1aa7ca01025ea2deaf224e7cceb397ce"
+  "artifactDigest": "10c36db41cdbf948ce4c46ceb8ac2d751ee4b9959a267d75253cbb9b041584d3"
 }

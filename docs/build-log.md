@@ -1846,19 +1846,19 @@ byte-identical at Git blob IDs
 Frozen digests:
 
 - generation prompt: `032fb250d21c38890ce246fd714cb5de97cab94f0b26b1113144f09d2e42fb41`
-- raw candidates: `851da77253613b7636c2eebaa4e13db4206535519f669a08302e97aa10e48847`
-- normalized candidates: `0dc550dd05d55d7b99710c6c658faf5b1aa7ca01025ea2deaf224e7cceb397ce`
-- fixture artifact: `cecae6e25328a5019ccc8f2a86bfba03b3a679fbdd2c3e325acaeab2e8e1879f`
-- verification: `7a83ec675f89d13f297e94ef2ac5f1c83a2ef4a2a2f011a1d72b718a9b5d0acc`
+- raw candidates: `5573b1c77b542193cbb7f248923d3bbb6fed96fa16cdda103eaf09897d88b64e`
+- normalized candidates: `10c36db41cdbf948ce4c46ceb8ac2d751ee4b9959a267d75253cbb9b041584d3`
+- fixture artifact: `f42ec61fa6756b40080bcc0d910687817ee98b625a1a1d750b57ff99b50d7247`
+- verification: `5613dff8c05e645108808a657b1fc9ec33fe66478778eabc1aa2b9a7d1aca5f5`
 - engine contract: `79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b`
-- review manifest: `b5877a9687312217ec65b0b8238f722ec697cc73c4dafd6fc3f5af10644cf9b4`
-- prepared summary: `12e59c9e7bd6d00bd6a035c65b5999b57f4a4efb272f8c0372c92318becdaaeb`
+- review manifest: `10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`
+- prepared summary: `c5e80b9362278a1bd06d01a8a080c7efd8579bc07225a50e68fb482517aef5f3`
 
 TDD began with
 `npx vitest run src/content/batches/headingDepthBatch015.test.ts`, which failed
 as expected because the Batch 015 modules did not exist. The focused green run
 `npx vitest run src/content/batches/headingDepthBatch015.test.ts src/engine/structuralPredicates.test.ts src/content/validateProblemBankV2.test.ts`
-passes 628 tests in three files. `npm run bank:batch:heading-depth-015:prepare`
+passes 629 tests in three files. `npm run bank:batch:heading-depth-015:prepare`
 then freezes the evidence, and
 `npm run bank:batch:heading-depth-015:check` passes seven mechanical gate tests.
 The final pre-review verification also runs `npm test`, `npm run typecheck`, and
@@ -1873,3 +1873,14 @@ assert their observable value is undefined. The artifacts above were generated
 only after both corrections. Publication remains intentionally fail-closed at
 `awaiting-independent-review`: zero reviewer verdict sets, no `editorial.json`,
 no `summary.generated.json`, and a preserved 296-problem runtime bank.
+
+The first editorial pass rejected the bake-sale checklist's `## Table box`
+heading as unnatural and ambiguous US English. That draft's manifest
+`b5877a9687312217ec65b0b8238f722ec697cc73c4dafd6fc3f5af10644cf9b4`
+and both independent review seals were invalidated before editing. The
+authoritative target now says `## Table supplies`; a regression test failed on
+the rejected wording before the source fix. Both reviewer JSON files and the
+editorial verdict were deleted, the complete pre-review artifact set was
+regenerated, and review restarts from zero against manifest
+`10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`.
+The engine contract remained byte-identical because no engine code changed.

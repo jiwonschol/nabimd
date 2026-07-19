@@ -2581,7 +2581,7 @@
       "problemId": "l2-sectioned-checklist-bake-sale",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2590,7 +2590,7 @@
       "problemId": "l2-sectioned-checklist-bake-sale",
       "problemRevision": 1,
       "role": "case-or-spelling",
-      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the TREATZ.\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\n## Table supplies\n\nSet THESZ items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2609,7 +2609,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-list",
-      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- \n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- \n- Paper bags\n- Small change",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-list"
     },
@@ -2619,7 +2619,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
-      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change\n\nExtra note 7.",
+      "source": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change\n\nExtra note 7.",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
     },
@@ -2628,7 +2628,7 @@
       "problemId": "l2-sectioned-checklist-bake-sale",
       "problemRevision": 1,
       "role": "matched-with-review",
-      "source": "# Bake sale\n\n## Table box\n\n*Set these items beside the treats.*\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\n## Table supplies\n\n*Set these items beside the treats.*\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "matched",
       "expectedReviewIds": [
         "keep-heading-plain"
@@ -2640,7 +2640,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
-      "source": "# Bake sale\n\n## Table box\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\n## Table supplies\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
     },
@@ -2650,7 +2650,7 @@
       "problemRevision": 1,
       "role": "missing-required",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
-      "source": "## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "## Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
     },
@@ -2670,7 +2670,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-list",
-      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards",
+      "source": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- Price cards",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-list"
     },
@@ -2680,7 +2680,7 @@
       "problemRevision": 1,
       "role": "malformed-required",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-hierarchy",
-      "source": "# Bake sale\n\n### Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\n### Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
     },
@@ -2690,7 +2690,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-list",
-      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n1. Price cards\n2. Paper bags\n3. Small change",
+      "source": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n1. Price cards\n2. Paper bags\n3. Small change",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-list"
     },
@@ -2700,7 +2700,7 @@
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
-      "source": "# Bake sale\n\nSet these items beside the treats.\n\n## Table box\n\n- Price cards\n- Paper bags\n- Small change",
+      "source": "# Bake sale\n\nSet these items beside the treats.\n\n## Table supplies\n\n- Price cards\n- Paper bags\n- Small change",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
     },

@@ -126,10 +126,10 @@
     {
       "candidateId": "l2-sectioned-checklist-bake-sale",
       "revision": 1,
-      "candidateDigest": "eb3c6d11e86252e7314efb03e13ad95c0de7f074f0983fe0052bd98beec8dab6",
-      "problemDigest": "4db10581c2272ae78b39b99ab928426dd48ecbf3346d5a33ff2fef18394f22ad",
-      "fixtureDefinitionDigest": "092f12c2f576c9719ef92850f7d39c7d3a34d3961cd576bb3d65d836f0d7b3fa",
-      "fixtureResultsDigest": "d3c3745fffbfb29267ea5d7e9395f00d47e7d63b973e9b379e5c8f8e9a80d293",
+      "candidateDigest": "18a2d6476f65d64642f9bc2ca939dd346279c652355de5a436358df38779874f",
+      "problemDigest": "de7fcc2fcf446d96affbfdc93fe920399ef1821706f95bd7f90e38194869d3ff",
+      "fixtureDefinitionDigest": "ca38791249d12b24e12a25905204a6188c1492ebf61ff7400656927e14d09337",
+      "fixtureResultsDigest": "6c2f0c8b436e8ea71d9eacf1a361e80b718df0f11a9420d56a46ceb0cb7b887d",
       "fixtureCount": 13,
       "passed": true
     },
@@ -6209,5 +6209,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "7a83ec675f89d13f297e94ef2ac5f1c83a2ef4a2a2f011a1d72b718a9b5d0acc"
+  "verificationDigest": "5613dff8c05e645108808a657b1fc9ec33fe66478778eabc1aa2b9a7d1aca5f5"
 }

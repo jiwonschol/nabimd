@@ -1830,7 +1830,7 @@
       ],
       "title": "Rebuild a sectioned checklist",
       "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
-      "target": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "target": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
