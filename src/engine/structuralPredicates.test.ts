@@ -119,6 +119,113 @@ describe("structural match predicates", () => {
     })
   })
 
+  it.each([
+    "`Different words`",
+    "`` code with ` inside ``",
+    "` spaced words `",
+    "`line\nbreak`",
+    "# Heading with `value`",
+    "- Set `mode`",
+    "> Use `note`",
+    "[Open `file`](/path)",
+    "**`value`**",
+    "`&nbsp;`",
+    "`&#x200B;`",
+    "`\u0000visible`",
+    "`\ufffd`",
+    "`\u0000\ufffd`",
+  ])("matches meaningful parsed inline code without grading its prose: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("nonempty-inline-code"),
+          kind: "inline-code-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyContent: true,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it.each([
+    "Plain text",
+    "``",
+    "` `",
+    "`\u00a0`",
+    "`\u3000`",
+    "`\u200b`",
+    "`\u2060`",
+    "`\ufeff`",
+    "`\u200e\u200f`",
+    "`\u0001`",
+    "`\u0000`",
+    "`\u001b`",
+    "`\u007f`",
+    "`\u2800`",
+    "`\n`",
+    "`\t`",
+    "`\r\n`",
+    "`code",
+    "\\`code\\`",
+    "```md\ncode\n```",
+    "    code",
+    "    `code`",
+    "<code>code</code>",
+    "![`code`](/image.png)",
+    "[`code`]: /url",
+    "<https://example.com/`code`>",
+    "<!-- `code` -->",
+    "｀code｀",
+    "'code'",
+  ])("rejects missing, empty, hidden, or lookalike inline code: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("nonempty-inline-code"),
+          kind: "inline-code-shape",
+          scope: { kind: "document" },
+          min: 1,
+          requireNonemptyContent: true,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toMatchObject({
+      status: "fail",
+      feedbackId: "nonempty-inline-code",
+    })
+  })
+
+  it("keeps inline-code section scope structural and independent of heading prose", () => {
+    const scopedInlineCode = problem([
+      {
+        ...common("code-in-second-section"),
+        kind: "inline-code-shape",
+        scope: { kind: "section", headingDepth: 2, occurrence: 1 },
+        min: 1,
+        requireNonemptyContent: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(
+        scopedInlineCode,
+        "# Title\n\n## First name\n\nPlain text.\n\n## Changed name\n\nUse `value`.",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        scopedInlineCode,
+        "# Title\n\n## First name\n\nUse `value`.\n\n## Changed name\n\nPlain text.",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "code-in-second-section" })
+  })
+
   it("targets a section by heading depth and occurrence, never heading prose", () => {
     const sectionList = problem([
       {

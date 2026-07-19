@@ -1319,3 +1319,44 @@ frozen fixtures and 1,752 additional CommonMark evaluations passed. Separate
 editorial inspection accepted all required dimensions for 24/24. Publication
 raises the deterministic runtime bank to 140 problems with a 64/64/4/4/4
 split, while live grading remains network-free and grammar-only.
+
+### Issue #9 inline-code expansion
+
+The seventh schema-v2 batch adds 24 Level 1–2 inline-code exercises. The Goal
+teaches paired backticks around short keys, values, file names, and safe
+commands. Grading checks for at least one meaningful parsed inline-code span;
+it never grades the token, prose, capitalization, spelling, or punctuation.
+CommonMark alternate delimiter runs, literal backticks, multiline spans, and
+inline code nested in headings, lists, blockquotes, links, or emphasis match.
+Unclosed or mismatched delimiters, empty or invisible-only spans, fenced and
+indented code, raw HTML, image alt text, definitions, autolinks, comments, and
+lookalike punctuation do not. More than one span remains Matched with an
+optional Review instead of becoming a third verdict.
+
+The first frozen manifest,
+`219fb5131e2a989990e623b885fe7697f9939e63d471c1db03e666ebf3ed8eac`,
+was not published. Separate editorial inspection rejected a `date` command
+because it can enter a date-setting flow on Windows, and rejected “Open
+list.txt” because it was too close to the visible teaching example “Open
+notes.txt.” They became “Search for rain” and “Name the list today.txt,” with
+only the practiced item wrapped in inline code.
+
+The second manifest,
+`0d54904b870d828e0613ff174e9b436edffea4cd1be38948412497e983386ede`,
+was also not published. Atlas independently found a batch-wide false positive:
+CommonMark replaces a raw NUL with U+FFFD before exposing the AST value, so a
+NUL-only span appeared visible. The predicate now extracts the original span
+from AST source positions before Unicode filtering. Regressions distinguish a
+raw NUL, a raw NUL followed by visible text, and a literal replacement
+character. An earlier Orchid pass did not include the NUL probe and was
+discarded as stale rather than counted as evidence.
+
+Corrected manifest
+`5b4fc70970a16b0e25eb14c77daea8f69bf525f5e12da5a7be0c63fae73b979c`
+contains 24 candidates and 912 frozen real-engine fixtures. Atlas accepted
+24/24 after all frozen fixtures and 2,328 additional adversarial evaluations
+passed. Orchid independently accepted 24/24 after all frozen fixtures and
+3,456 additional evaluations passed. Separate editorial inspection accepted
+all required dimensions for 24/24. Publication raises the deterministic
+runtime bank to 164 problems with a 76/76/4/4/4 split, while live grading
+remains network-free and grammar-only.

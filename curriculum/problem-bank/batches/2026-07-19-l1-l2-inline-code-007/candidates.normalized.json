@@ -1,0 +1,1862 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-inline-code-007",
+  "sequence": 7,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-19",
+  "promptSha256": "e888d2e77dd51b7fba5b222c1d8aaa2e7da93894cb9d3b646f00de30ba36ee82",
+  "rawArtifactDigest": "d6af06fa744142979f19bb6aace0258633d8328e78291ab895e4787f1f6f1abf",
+  "candidateCount": 24,
+  "candidates": [
+    {
+      "id": "l1-inline-code-blue-value",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Set the color to `blue`.",
+      "starterText": "",
+      "protectedContent": [
+        "Set the color to blue."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-settings"
+        ],
+        "terms": [
+          "Set the color to blue."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "blue-value",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "d54f8e2a4d8a0a4201031e375a214dfa4843a8d0606189d73b4bcb7f83865376"
+    },
+    {
+      "id": "l1-inline-code-enter-key",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Press `Enter` to continue.",
+      "starterText": "",
+      "protectedContent": [
+        "Press Enter to continue."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "keyboard-keys"
+        ],
+        "terms": [
+          "Press Enter to continue."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "enter-key",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "66da47abf3bbb31b10faa6005d2bfd2ecd7fc0ef37f8ce25de77dfeed32e6531"
+    },
+    {
+      "id": "l1-inline-code-escape-key",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Press `Escape` to close the menu.",
+      "starterText": "",
+      "protectedContent": [
+        "Press Escape to close the menu."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "keyboard-keys"
+        ],
+        "terms": [
+          "Press Escape to close the menu."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "escape-key",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "8ca7f6f4df49be5c41ef11bd752805285ffb32b17b52704fca0795232699bdaf"
+    },
+    {
+      "id": "l1-inline-code-greeting-command",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Run `echo hello` to show a greeting.",
+      "starterText": "",
+      "protectedContent": [
+        "Run echo hello to show a greeting."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "beginner-commands"
+        ],
+        "terms": [
+          "Run echo hello to show a greeting."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "greeting-command",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "8d777b79d3f3a4fd88c227005f5b54de703f53e768cc974088edd7dddf90c080"
+    },
+    {
+      "id": "l1-inline-code-notes-file",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Save the note as `notes.md`.",
+      "starterText": "",
+      "protectedContent": [
+        "Save the note as notes.md."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-files"
+        ],
+        "terms": [
+          "Save the note as notes.md."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "notes-file",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "199692c9c349af9cc57f096bf8798dcdcb71ea89b29e4b08358e7e84c91c60ae"
+    },
+    {
+      "id": "l1-inline-code-photo-file",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Find `photo.jpg`.",
+      "starterText": "",
+      "protectedContent": [
+        "Find photo.jpg."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-files"
+        ],
+        "terms": [
+          "Find photo.jpg."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "photo-file",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "b079a29d2b619b3012ff2df565632883b6fab6df93eeb7eb97f87728ebfab68c"
+    },
+    {
+      "id": "l1-inline-code-ready-label",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Set the label to `ready`.",
+      "starterText": "",
+      "protectedContent": [
+        "Set the label to ready."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-labels"
+        ],
+        "terms": [
+          "Set the label to ready."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "ready-label",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "37144c1b4a5a27a473634396c48a6943fc1bfa0f1ecff954a462c0a2884c41af"
+    },
+    {
+      "id": "l1-inline-code-search-word",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Search for `rain`.",
+      "starterText": "",
+      "protectedContent": [
+        "Search for rain."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-search"
+        ],
+        "terms": [
+          "Search for rain."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "search-word",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "615a3c4df46c5575f654e2ce205ef0a52cd670b88cc00741ceacbea6348147de"
+    },
+    {
+      "id": "l1-inline-code-small-value",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Choose `small` for the size.",
+      "starterText": "",
+      "protectedContent": [
+        "Choose small for the size."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-settings"
+        ],
+        "terms": [
+          "Choose small for the size."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "small-value",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "1b47578341c56b4fd7c0f2e955ec42334a9d6a25a7608b09a347e5c050e03f87"
+    },
+    {
+      "id": "l1-inline-code-space-key",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Press `Space` to pause.",
+      "starterText": "",
+      "protectedContent": [
+        "Press Space to pause."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "keyboard-keys"
+        ],
+        "terms": [
+          "Press Space to pause."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "space-key",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "367c20eebb632054e6f3c81c1a836d9c257d672cd0e8e3b86cf78ca53c5354ce"
+    },
+    {
+      "id": "l1-inline-code-today-list",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Name the list `today.txt`.",
+      "starterText": "",
+      "protectedContent": [
+        "Name the list today.txt."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-files"
+        ],
+        "terms": [
+          "Name the list today.txt."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "today-list-file",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "a611c0f0df99daa4ac2b4ccfc29d2dc8ef2fa8e2e4eeced77d9544f98c658a87"
+    },
+    {
+      "id": "l1-inline-code-yes-value",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code",
+      "prompt": "Write the short note with one item as inline code.",
+      "target": "Type `yes` in the box.",
+      "starterText": "",
+      "protectedContent": [
+        "Type yes in the box."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-1-inline-code",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "simple-input"
+        ],
+        "terms": [
+          "Type yes in the box."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "yes-value",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "853216973d3c0815b57d31cc05f80d1159da737e2e1c9e321fd88883a3f0bb59"
+    },
+    {
+      "id": "l2-inline-code-agenda-file",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Attach `agenda.pdf` to the invite.",
+      "starterText": "",
+      "protectedContent": [
+        "Attach agenda.pdf to the invite."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "meeting-materials"
+        ],
+        "terms": [
+          "Attach agenda.pdf to the invite."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "agenda-file",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "2fdd9843c9883779ac570f5511199f082c6c3e2249a91f0d0159bb31b84738ce"
+    },
+    {
+      "id": "l2-inline-code-done-task",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Set the task to `done`.",
+      "starterText": "",
+      "protectedContent": [
+        "Set the task to done."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "task-tracking"
+        ],
+        "terms": [
+          "Set the task to done."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "done-task",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "ec1a51afc22019930826ee0904d216a699592824f68de4ea4643e9d04878378a"
+    },
+    {
+      "id": "l2-inline-code-draft-status",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Set the status to `draft`.",
+      "starterText": "",
+      "protectedContent": [
+        "Set the status to draft."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "work-status"
+        ],
+        "terms": [
+          "Set the status to draft."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "draft-status",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "674f978d80e9246d3f34de6fcce95fa2186069d46327e0f44491c59736632491"
+    },
+    {
+      "id": "l2-inline-code-git-status-command",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Run `git status` before you commit.",
+      "starterText": "",
+      "protectedContent": [
+        "Run git status before you commit."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "version-control"
+        ],
+        "terms": [
+          "Run git status before you commit."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "git-status-command",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "c4bde8b41e80bdea225cc1cac0d0f3be1c1ec1298c4bedf8ca1d85078fb4182d"
+    },
+    {
+      "id": "l2-inline-code-help-command",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Type `/help` to see available commands.",
+      "starterText": "",
+      "protectedContent": [
+        "Type /help to see available commands."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "chat-help"
+        ],
+        "terms": [
+          "Type /help to see available commands."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "help-command",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "b1c064a0549168a938226d11ccaa9f8ee112c72e276782460f3b3dce6918ffc4"
+    },
+    {
+      "id": "l2-inline-code-meeting-file",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Save the meeting notes in `meeting.md`.",
+      "starterText": "",
+      "protectedContent": [
+        "Save the meeting notes in meeting.md."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "meeting-notes"
+        ],
+        "terms": [
+          "Save the meeting notes in meeting.md."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "meeting-file",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "1e96ea88ac47fe100b0faf2b934d8d697a151e9c199e2e5beb427d8c5304c7f2"
+    },
+    {
+      "id": "l2-inline-code-new-line-shortcut",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Press `Shift+Enter` for a new line.",
+      "starterText": "",
+      "protectedContent": [
+        "Press Shift+Enter for a new line."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "chat-writing"
+        ],
+        "terms": [
+          "Press Shift+Enter for a new line."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "new-line-shortcut",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "eeafce5d3b046d7aa7742b3a50fe877d2ce18a16cc096feb7d20dafe807ebcc5"
+    },
+    {
+      "id": "l2-inline-code-notifications-off",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Set notifications to `off`.",
+      "starterText": "",
+      "protectedContent": [
+        "Set notifications to off."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "notification-setting"
+        ],
+        "terms": [
+          "Set notifications to off."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "notifications-off",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "c78e64b6bfbf5c1873515ec8d4d9a486d5718da101acf2f0b43751a3d0868e87"
+    },
+    {
+      "id": "l2-inline-code-readme-file",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Read `README.md` before you start.",
+      "starterText": "",
+      "protectedContent": [
+        "Read README.md before you start."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "document-reading"
+        ],
+        "terms": [
+          "Read README.md before you start."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "readme-file",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "d2ca9d506d335cd24ff5f0d8b1f880ebabfc029a7875d57acd480c52116e2b20"
+    },
+    {
+      "id": "l2-inline-code-short-reply",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Set the reply length to `short`.",
+      "starterText": "",
+      "protectedContent": [
+        "Set the reply length to short."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "ai-response-setting"
+        ],
+        "terms": [
+          "Set the reply length to short."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "short-reply",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "4a8271201103d5ce312b41eda9b9b575f043b1e7d37b422e5a7905a568ea3407"
+    },
+    {
+      "id": "l2-inline-code-tab-key",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Press `Tab` to move to the next field.",
+      "starterText": "",
+      "protectedContent": [
+        "Press Tab to move to the next field."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "form-navigation"
+        ],
+        "terms": [
+          "Press Tab to move to the next field."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "tab-key",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "18c22d675baa073742bd6d73c1e38702cc43c13f9395ad16dc91d00cea10f799"
+    },
+    {
+      "id": "l2-inline-code-test-command",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "inline-code",
+      "skillIds": [
+        "inline-code"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Inline code sets apart a short item such as text to type, a key, a file name, or a command.",
+        "howTo": "Wrap the item with one backtick on each side.",
+        "example": "Open `notes.txt`."
+      },
+      "syntaxTokens": [
+        "`",
+        "Item",
+        "`"
+      ],
+      "title": "Inline code recall",
+      "prompt": "From memory, mark one item in the short note as inline code.",
+      "target": "Run `npm test` before sharing your changes.",
+      "starterText": "",
+      "protectedContent": [
+        "Run npm test before sharing your changes."
+      ],
+      "matchChecks": [
+        {
+          "id": "use-inline-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 10,
+          "feedback": "Wrap at least one meaningful item in backticks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-inline-code",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "inline-code",
+          "max": 1,
+          "review": "Keep inline code focused on one short item in this note."
+        }
+      ],
+      "hints": [
+        "The marked item has a matching symbol on both sides.",
+        "Type one backtick, the item, then one more backtick.",
+        "Example: ``Open `notes.txt`.``"
+      ],
+      "retryFamily": "level-2-inline-code-recall",
+      "reviewTags": [
+        "one-focused-inline-code"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "software-testing"
+        ],
+        "terms": [
+          "Run npm test before sharing your changes."
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "test-command",
+      "sourceBatch": "2026-07-19-l1-l2-inline-code-007",
+      "candidateDigest": "215bf9952472e1af7ef05b44d3cd0c3bef93a4a8bc7df390bd6c2e98197106e2"
+    }
+  ],
+  "artifactDigest": "85efe1775627508a2bf8954a04f6e4a9001bb13f8da3ed74985a791c2db66a71"
+}

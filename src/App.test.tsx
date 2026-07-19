@@ -43,6 +43,8 @@ function validDifferentProse() {
       return "> completely different words"
     case "bold-emphasis":
       return "**completely different words**"
+    case "inline-code":
+      return "Use `completely different words`."
     case "unordered-list":
       return "- Alpha\n- Bravo\n- Charlie"
     case "ordered-list":
@@ -58,6 +60,8 @@ function malformedSource() {
       return "Plain words without a blockquote"
     case "bold-emphasis":
       return "**No closing"
+    case "inline-code":
+      return "`No closing"
     case "unordered-list":
       return "-No space\n-Also malformed\n-Still malformed"
     case "ordered-list":
@@ -73,6 +77,8 @@ function validRepair() {
       return "> repaired"
     case "bold-emphasis":
       return "**repaired**"
+    case "inline-code":
+      return "Use `repaired`."
     case "unordered-list":
       return "- One\n- Two\n- Three"
     case "ordered-list":
@@ -88,6 +94,8 @@ function matchedWithReview() {
       return "> one\n\nBridge text.\n\n> two"
     case "bold-emphasis":
       return "**one** and **two**"
+    case "inline-code":
+      return "Use `one` then `two`."
     case "unordered-list":
       return "- One\n- Two\n- Three\n\nBridge text.\n\n- Four\n- Five\n- Six"
     case "ordered-list":

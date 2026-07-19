@@ -40,6 +40,10 @@ copied here or promoted automatically.
   real-engine fixtures. CommonMark no-space markers, up to three leading
   spaces, lazy continuation, and nested quotes pass; empty or hidden-only
   content and code or HTML lookalikes do not.
+- `2026-07-19-l1-l2-inline-code-007` — 24 accepted inline-code variants and 912
+  real-engine fixtures. Alternate backtick runs, nested inline contexts, and
+  grammar-only wording changes pass; empty or invisible-only spans and code,
+  HTML, image-alt, definition, autolink, and lookalike forms do not.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

@@ -29,6 +29,7 @@ async function currentProblemFamily(page: Page) {
   }
   if (panelId.includes("-blockquote-")) return "blockquote"
   if (panelId.includes("-emphasis-")) return "emphasis"
+  if (panelId.includes("-inline-code-")) return "inline-code"
   if (panelId.includes("-order-")) return "ordered-list"
   if (panelId.includes("-list-")) return "unordered-list"
   return "headings"
@@ -40,6 +41,8 @@ async function validDifferentProse(page: Page, words: string) {
       return `> ${words}`
     case "emphasis":
       return `**${words}**`
+    case "inline-code":
+      return `Use \`${words}\`.`
     case "unordered-list":
       return `- ${words} one\n- ${words} two\n- ${words} three`
     case "ordered-list":
@@ -55,6 +58,8 @@ async function malformedSource(page: Page) {
       return "Plain words without a blockquote"
     case "emphasis":
       return "**No closing"
+    case "inline-code":
+      return "`No closing"
     case "unordered-list":
       return "-No space\n-Also malformed\n-Still malformed"
     case "ordered-list":
@@ -70,6 +75,8 @@ async function expectedRepairFeedback(page: Page) {
       return "Add a blockquote with words inside it."
     case "emphasis":
       return "Make at least one phrase bold with Markdown."
+    case "inline-code":
+      return "Wrap at least one meaningful item in backticks."
     case "unordered-list":
       return "Add at least three bullet items, with words after each marker."
     case "ordered-list":

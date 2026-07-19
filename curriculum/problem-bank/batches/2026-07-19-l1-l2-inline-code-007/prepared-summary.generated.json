@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-inline-code-007",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 912,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "85efe1775627508a2bf8954a04f6e4a9001bb13f8da3ed74985a791c2db66a71",
+  "verificationDigest": "9376ba4271609e9eedfb820bb10674bda293b9449bb7f733a957947c72977e3a",
+  "manifestDigest": "5b4fc70970a16b0e25eb14c77daea8f69bf525f5e12da5a7be0c63fae73b979c",
+  "engineContractDigest": "d47def99916b9443336060a558b9e159401f9d224d37c16c29bf59359b746ad9",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 140,
+  "preparedSummaryDigest": "51f80e1a8d9b4d1bf0249f57fd5c4d714678ac5e0add4c4d8e7f9d734c138549"
+}

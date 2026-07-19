@@ -42,6 +42,7 @@ const supportedMatchCheckKinds = new Set<string>([
   "heading-depth-order",
   "list-shape",
   "blockquote-shape",
+  "inline-code-shape",
   "code-block",
   "block-sequence",
   "document-limits",
@@ -69,6 +70,7 @@ const scopeRequiredMatchCheckKinds = new Set<string>([
   "inline-presence",
   "list-shape",
   "blockquote-shape",
+  "inline-code-shape",
   "code-block",
   "block-sequence",
 ])
@@ -280,6 +282,22 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
           errors.push(
             `Problem ${problem.id} check ${check.id} has invalid recursive flag`,
           )
+        }
+        if (
+          runtimeCheck.requireNonemptyContent !== undefined &&
+          typeof runtimeCheck.requireNonemptyContent !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid nonempty-content flag`,
+          )
+        }
+        break
+      }
+      case "inline-code-shape": {
+        const runtimeCheck = check as unknown as Record<string, unknown>
+        validateRange(problem.id, check, check.min, check.max, errors)
+        if (check.min === undefined && check.max === undefined) {
+          errors.push(`Problem ${problem.id} check ${check.id} requires a range`)
         }
         if (
           runtimeCheck.requireNonemptyContent !== undefined &&

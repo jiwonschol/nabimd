@@ -18,6 +18,7 @@ function checkPasses(
     case "heading-depth-order":
     case "list-shape":
     case "blockquote-shape":
+    case "inline-code-shape":
     case "code-block":
     case "block-sequence":
     case "document-limits":

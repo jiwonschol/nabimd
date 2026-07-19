@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-inline-code-007",
+  "reviewerId": "codex-atlas-batch007",
+  "reviewRunId": "atlas-batch007-2026-07-19-003",
+  "declaredIndependent": true,
+  "manifestDigest": "5b4fc70970a16b0e25eb14c77daea8f69bf525f5e12da5a7be0c63fae73b979c",
+  "verdicts": [
+    {
+      "candidateId": "l1-inline-code-blue-value",
+      "revision": 1,
+      "candidateDigest": "d54f8e2a4d8a0a4201031e375a214dfa4843a8d0606189d73b4bcb7f83865376",
+      "fixtureResultsDigest": "9cafcf8cf056c0fd9742f45eeafda62d06a5599c8de27e44bef6c7eaf23de9f6",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-enter-key",
+      "revision": 1,
+      "candidateDigest": "66da47abf3bbb31b10faa6005d2bfd2ecd7fc0ef37f8ce25de77dfeed32e6531",
+      "fixtureResultsDigest": "244809a5ac686cc9c842c14a5418601acb7d2411fc7d1ef7675fe2bb616f6916",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-escape-key",
+      "revision": 1,
+      "candidateDigest": "8ca7f6f4df49be5c41ef11bd752805285ffb32b17b52704fca0795232699bdaf",
+      "fixtureResultsDigest": "62643e9e02f808b0bbcc895b7fce27eec9340391722af549fecd5183a09bce08",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-greeting-command",
+      "revision": 1,
+      "candidateDigest": "8d777b79d3f3a4fd88c227005f5b54de703f53e768cc974088edd7dddf90c080",
+      "fixtureResultsDigest": "022f6e65aabfb726ec3ae1967b4b41a03d263ff8c90eaa42014688325c2d84d1",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-notes-file",
+      "revision": 1,
+      "candidateDigest": "199692c9c349af9cc57f096bf8798dcdcb71ea89b29e4b08358e7e84c91c60ae",
+      "fixtureResultsDigest": "68269e3cd5a9de5eead713b8a60d2be20467c4ca44d1d4c62d0de0fd2ed5ad81",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-photo-file",
+      "revision": 1,
+      "candidateDigest": "b079a29d2b619b3012ff2df565632883b6fab6df93eeb7eb97f87728ebfab68c",
+      "fixtureResultsDigest": "164ef82086d519cc7f22c2fb9cfb533ba7b2d69aa503c3eaf49ea9a3e8eb3d19",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-ready-label",
+      "revision": 1,
+      "candidateDigest": "37144c1b4a5a27a473634396c48a6943fc1bfa0f1ecff954a462c0a2884c41af",
+      "fixtureResultsDigest": "86793f37991f0de90a8bd8606cf69b6bac4331ffbc4516591a1ded0330acbcbb",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-search-word",
+      "revision": 1,
+      "candidateDigest": "615a3c4df46c5575f654e2ce205ef0a52cd670b88cc00741ceacbea6348147de",
+      "fixtureResultsDigest": "21590a553ac05ebff48cf451cfdaf702440a6a4d3c8c984bfc57df37057c0757",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-small-value",
+      "revision": 1,
+      "candidateDigest": "1b47578341c56b4fd7c0f2e955ec42334a9d6a25a7608b09a347e5c050e03f87",
+      "fixtureResultsDigest": "66c7bd1ef8251e442333e689e5a480ff28b077bd39ae90b8e2b4d72c62fa6e33",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-space-key",
+      "revision": 1,
+      "candidateDigest": "367c20eebb632054e6f3c81c1a836d9c257d672cd0e8e3b86cf78ca53c5354ce",
+      "fixtureResultsDigest": "b394ff433b044df42590e71369b5aaed3f77e7d66b6db8fe7137e74e24ac0833",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-today-list",
+      "revision": 1,
+      "candidateDigest": "a611c0f0df99daa4ac2b4ccfc29d2dc8ef2fa8e2e4eeced77d9544f98c658a87",
+      "fixtureResultsDigest": "6f3156d0b114fd7b9e9ffa4d143201c4fb20fe313394c595684c73c57c95ad06",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l1-inline-code-yes-value",
+      "revision": 1,
+      "candidateDigest": "853216973d3c0815b57d31cc05f80d1159da737e2e1c9e321fd88883a3f0bb59",
+      "fixtureResultsDigest": "0c4653ad13ee085b0efceb5c6b4c760d8613c305185be9852ad4ad4bc42726bb",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-agenda-file",
+      "revision": 1,
+      "candidateDigest": "2fdd9843c9883779ac570f5511199f082c6c3e2249a91f0d0159bb31b84738ce",
+      "fixtureResultsDigest": "53c7ead3b9900a8ad5188b3b632a6832a6cda25b985b8a5d400c2b384e52bdd7",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-done-task",
+      "revision": 1,
+      "candidateDigest": "ec1a51afc22019930826ee0904d216a699592824f68de4ea4643e9d04878378a",
+      "fixtureResultsDigest": "c36eaa23a4458802b9fd00fa228eba9806f2f9b2ed3768441ecf8a47d582da90",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-draft-status",
+      "revision": 1,
+      "candidateDigest": "674f978d80e9246d3f34de6fcce95fa2186069d46327e0f44491c59736632491",
+      "fixtureResultsDigest": "62399e7a8c5948e0a68c6584086fa79ebe44ad75be3a93a7a3b803eb4a9d3fbb",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-git-status-command",
+      "revision": 1,
+      "candidateDigest": "c4bde8b41e80bdea225cc1cac0d0f3be1c1ec1298c4bedf8ca1d85078fb4182d",
+      "fixtureResultsDigest": "a7c483810807c0750fa279c0c617d3a184cfaea6148cd3b479655b7688673714",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-help-command",
+      "revision": 1,
+      "candidateDigest": "b1c064a0549168a938226d11ccaa9f8ee112c72e276782460f3b3dce6918ffc4",
+      "fixtureResultsDigest": "fb4c45dcc94501b5e1fa5f5b6fce149ce877e81141a4db52745b5ba4f3770fdc",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-meeting-file",
+      "revision": 1,
+      "candidateDigest": "1e96ea88ac47fe100b0faf2b934d8d697a151e9c199e2e5beb427d8c5304c7f2",
+      "fixtureResultsDigest": "13caa731263d2beb3fd4833f3b311d75e2bedc98fb083af79c492654a593a453",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-new-line-shortcut",
+      "revision": 1,
+      "candidateDigest": "eeafce5d3b046d7aa7742b3a50fe877d2ce18a16cc096feb7d20dafe807ebcc5",
+      "fixtureResultsDigest": "f82b90cccbf996d4ba4ea820fbd07701af57218418cf22f79c06f6d7acdfc18e",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-notifications-off",
+      "revision": 1,
+      "candidateDigest": "c78e64b6bfbf5c1873515ec8d4d9a486d5718da101acf2f0b43751a3d0868e87",
+      "fixtureResultsDigest": "eeb43e074f620c9e63273327e56513384fe522a325a967857e6663302e0b2188",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-readme-file",
+      "revision": 1,
+      "candidateDigest": "d2ca9d506d335cd24ff5f0d8b1f880ebabfc029a7875d57acd480c52116e2b20",
+      "fixtureResultsDigest": "d967b8ea8d991244ee564f3dd306d8388d46f7432ac3966db4cd6b450e3ce227",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-short-reply",
+      "revision": 1,
+      "candidateDigest": "4a8271201103d5ce312b41eda9b9b575f043b1e7d37b422e5a7905a568ea3407",
+      "fixtureResultsDigest": "66df7200298299a05b4e2f11b13f60f9b356ac1ac2d18bce4b59e85f59612081",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-tab-key",
+      "revision": 1,
+      "candidateDigest": "18c22d675baa073742bd6d73c1e38702cc43c13f9395ad16dc91d00cea10f799",
+      "fixtureResultsDigest": "24beeb49008bb88ade743d578373b63b7371dc79da2659471d4252fdff3bb2e4",
+      "verdict": "pass"
+    },
+    {
+      "candidateId": "l2-inline-code-test-command",
+      "revision": 1,
+      "candidateDigest": "215bf9952472e1af7ef05b44d3cd0c3bef93a4a8bc7df390bd6c2e98197106e2",
+      "fixtureResultsDigest": "d98faccff6bd1f071dcce0cb80cea97fecd10bed9f426ad57f21e4b402add27e",
+      "verdict": "pass"
+    }
+  ],
+  "notes": "Independently recomputed the final frozen artifacts and all 912 real-engine fixtures; verified accepted-bank uniqueness and 2328 adversarial CommonMark, Unicode, NUL ordering, literal replacement-character, nesting, lookalike, grammar-only, and optional Review evaluations.",
+  "reviewDigest": "c9818071449cdcc3ce7640b95100b816d156da89c56a1054392c122ea1dfcfc3"
+}
