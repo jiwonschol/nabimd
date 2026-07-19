@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l3-composite-documents-011",
+  "reviewerId": "codex-orchid-batch011",
+  "reviewRunId": "orchid-batch011-2026-07-19-001",
+  "declaredIndependent": true,
+  "manifestDigest": "fd9c371e31fe99176ffbd67dc82d952a22e8bed7280fc9105ef56e1068d94cab",
+  "evidence": {
+    "frozenCandidateCount": 12,
+    "frozenFixtureCount": 252,
+    "frozenFixtureCountsByCandidate": {
+      "l3-agenda-break-room-supplies": 21,
+      "l3-agenda-internal-newsletter": 21,
+      "l3-agenda-volunteer-day": 21,
+      "l3-agenda-website-navigation": 21,
+      "l3-recommendation-community-bulletin": 21,
+      "l3-recommendation-internal-tool-demo": 21,
+      "l3-recommendation-office-plant-care": 21,
+      "l3-recommendation-town-hall-format": 21,
+      "l3-reference-learning-session": 21,
+      "l3-reference-office-purchase": 21,
+      "l3-reference-presentation-writing": 21,
+      "l3-reference-workplace-survey": 21
+    },
+    "freshProbeCount": 604,
+    "freshProbeCountsByFamily": {
+      "agenda": 48,
+      "recommendation": 46,
+      "reference": 57
+    },
+    "hiddenOnlyListAccepted": 24,
+    "referenceSchemeNotSemanticallyGraded": 8,
+    "resolvedReferenceSyntaxAccepted": 12,
+    "alternateDividerAccepted": 24,
+    "authoredGoalChecks": 12,
+    "retryFamilyCount": 3,
+    "candidatesPerRetryFamily": {
+      "level3-meeting-agenda-document": 4,
+      "level3-recommendation-brief-document": 4,
+      "level3-reference-note-document": 4
+    },
+    "uniqueCaseSpellingSourceCount": 12,
+    "caseSpellingCaseOnlyCount": 12,
+    "alternateRetryFamilyCount": 12,
+    "acceptedBankCollisionComparands": 224,
+    "runtimeSourceFilesScanned": 62,
+    "runtimeNetworkCalls": 0,
+    "normalizedArtifactDigest": "3ac58c5c315986a00ff1e65ab315e7dd439c9c6483d1691243d42807e95ef57b",
+    "fixtureArtifactDigest": "575e6691af2e720ef2b59370cb4637529684d28380681ef7f1ec83507557a124",
+    "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+    "verificationDigest": "44092c9a47bfe1847ebd6d98297f77c9644ee957ecefe06f9b6414ed929fc722",
+    "manifestDigest": "fd9c371e31fe99176ffbd67dc82d952a22e8bed7280fc9105ef56e1068d94cab",
+    "frozenInputFileDigests": {
+      "candidates.raw.json": "f38e464414912867da3d795c86c6fc83dca8076b9405f856e29b789221190c38",
+      "candidates.normalized.json": "f6c1c6efbe62a1eaadc7c36d9f875c71752d95666b78d36ab148f35c31d4d013",
+      "fixtures.json": "8a267833f05cca8bab5266d0a43de4d124eebc4c740aafc9503b52425020d972",
+      "engine-contract.json": "b5a0fb950d97e641c4f043fea53aeb20ec5c6e9b98c57657e90186a5201d49a2",
+      "verification.json": "c2a5db0448e6a47287ad8bb5e43119c4eb35f31db76ef7adcc65d3d0a9d5d38c",
+      "review-manifest.json": "c18c992348b52823cb7b0fbd74fcbe06a3a28055324177167cf44e1c01fc7887"
+    },
+    "stopRestartConditionTriggered": false
+  },
+  "verdicts": [
+    {
+      "candidateId": "l3-agenda-break-room-supplies",
+      "revision": 1,
+      "candidateDigest": "05a1b6f8ead85915aa67c11ce6ba01c54acde3f39bc60b3c4075b097cd863259",
+      "fixtureResultsDigest": "d65502868807788a494cb213674153685d8ad854f86dfb91c3bb3cfe386839d2",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-agenda-internal-newsletter",
+      "revision": 1,
+      "candidateDigest": "f19cd65c464f828a98e6fb381bb3c6599cae0135ed8ec6d75e4eeeace76b9c03",
+      "fixtureResultsDigest": "35ed60eab79cb6b5c1cfe0e3cc78823a9b73fdc906790e9077c585b0cc477bab",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-agenda-volunteer-day",
+      "revision": 1,
+      "candidateDigest": "4f738c6e2bb455db3ef08bcd5ee3231590cf35eae3d7bc54e48697f4ddaf8dbb",
+      "fixtureResultsDigest": "6fcc4d1f67d1444a00ab536a60f254bfe71cae66d113fa17317f35969ee355e8",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-agenda-website-navigation",
+      "revision": 1,
+      "candidateDigest": "463149c06da4b7a90aaf4541fb0feb0ae51e87d007bcb896d465856468acede7",
+      "fixtureResultsDigest": "c50b0f4dd81560b35a33f0806c7de57867d4aba6ceda819e4389cee9c4572708",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-recommendation-community-bulletin",
+      "revision": 1,
+      "candidateDigest": "c1d90040b0422b30971b21ce363e036eea71805d6d2c9b24547d1e9e7b969af2",
+      "fixtureResultsDigest": "a5058adc2bf2755f3031d4c5a73323eff97df09a229aa87b24e1776ea798059a",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-recommendation-internal-tool-demo",
+      "revision": 1,
+      "candidateDigest": "30bfeb446a2fe22e65f5c73f1ea65dcb4b3163e3e05ea9c7faea50f272da77d3",
+      "fixtureResultsDigest": "6c745f1ac5a6d3b12c27428ae962b716549eacb8050d1585152449d91ba8df18",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-recommendation-office-plant-care",
+      "revision": 1,
+      "candidateDigest": "b44c223fc34365a341b9afeff7e697f1b72c65afcc8ecf1df5e425c870931fb4",
+      "fixtureResultsDigest": "f9aeb7a436a6e115aab1063e5ce3585ace9ae717df7d4f880c07b7b0c51b8777",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-recommendation-town-hall-format",
+      "revision": 1,
+      "candidateDigest": "e376b119f41649a7ffa13af618b5908da63f2c92366ef3f0eaa205faaf4a3655",
+      "fixtureResultsDigest": "7cd54d3a7367f5731fa72892a107aca78bb982bf2c9b39b63b2976b36045eecf",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-reference-learning-session",
+      "revision": 1,
+      "candidateDigest": "ee13fbf71e8b91d2473948677884c0c47aebc52fff98dcbcfb8d49932ffc948a",
+      "fixtureResultsDigest": "25da3f9b4f84b9e83165b3aedcc4e4248a38937612d300fd6a55bd688ae15636",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-reference-office-purchase",
+      "revision": 1,
+      "candidateDigest": "44d6d512fea4d6e4b57a79b2eec050fe5fac8c23cd910aea077645bd13c55b41",
+      "fixtureResultsDigest": "0d5c33e07dbf4c82d6e650fc7da3111c5dee1a8362837a8aa67fb64ca2a49b02",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-reference-presentation-writing",
+      "revision": 1,
+      "candidateDigest": "c1b6cddf0c4384dfb10db917b20d4474682882b4b88f9deefd7cd09cf55ff326",
+      "fixtureResultsDigest": "b8df4b4b73dfd75a832bdd80706a20333a2d5c53f9e97903c0422d6a413beecc",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    },
+    {
+      "candidateId": "l3-reference-workplace-survey",
+      "revision": 1,
+      "candidateDigest": "a201e1fd3c3fc6e242143b01d23396e81784274bd97705a9802637bbc9d03620",
+      "fixtureResultsDigest": "0720b27e5b62abde0cb5be9490e5617303a842bfd63729f02129bfba910ec87e",
+      "verdict": "pass",
+      "notes": "Independently recomputed the exact Batch 011 manifest and engine bindings and re-executed all 252 frozen fixtures through the real engine. Fresh composite-document probes covered agenda dividers and ordered/preparation lists; reference-link labels, destinations, direct/reference syntax, section scope, and inert scheme semantics; recommendation options, direct blockquotes, and ordered next steps; plus Setext, HTML/fenced/escaped lookalikes, H2 occurrence/order, duplicate-title Review, hidden-only lists, retry-family anatomy, collisions, and prose/case isolation. No stop/restart condition was triggered."
+    }
+  ],
+  "reviewDigest": "770608419c0aa37baf5c8f4eba1a8cd7add9ccdc9a1ae8a7399bc5388d6a0105"
+}

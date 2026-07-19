@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l3-composite-documents-011",
+  "reviewerId": "reviewer-atlas",
+  "reviewRunId": "atlas-batch011-run-001",
+  "declaredIndependent": true,
+  "manifestDigest": "fd9c371e31fe99176ffbd67dc82d952a22e8bed7280fc9105ef56e1068d94cab",
+  "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+  "frozenFixtureCount": 252,
+  "freshProbeCount": 30,
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "engineContractCurrent": "pass",
+    "frozenFixturesReplayed": "pass",
+    "frozenFixtureDigestsReproduced": "pass",
+    "directCheckCoverage": "pass",
+    "sameFamilyDifferentProse": "pass",
+    "caseSpellingIndependence": "pass",
+    "collisionUniquenessAgainstPublished224": "pass",
+    "retryVariantViability": "pass",
+    "binaryGrammarOnlyBehavior": "pass",
+    "meetingAgendaAdversarialProbes": "pass",
+    "referenceNoteAdversarialProbes": "pass",
+    "recommendationBriefAdversarialProbes": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l3-agenda-break-room-supplies",
+      "revision": 1,
+      "candidateDigest": "05a1b6f8ead85915aa67c11ce6ba01c54acde3f39bc60b3c4075b097cd863259",
+      "fixtureResultsDigest": "d65502868807788a494cb213674153685d8ad854f86dfb91c3bb3cfe386839d2",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-agenda-internal-newsletter",
+      "revision": 1,
+      "candidateDigest": "f19cd65c464f828a98e6fb381bb3c6599cae0135ed8ec6d75e4eeeace76b9c03",
+      "fixtureResultsDigest": "35ed60eab79cb6b5c1cfe0e3cc78823a9b73fdc906790e9077c585b0cc477bab",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-agenda-volunteer-day",
+      "revision": 1,
+      "candidateDigest": "4f738c6e2bb455db3ef08bcd5ee3231590cf35eae3d7bc54e48697f4ddaf8dbb",
+      "fixtureResultsDigest": "6fcc4d1f67d1444a00ab536a60f254bfe71cae66d113fa17317f35969ee355e8",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-agenda-website-navigation",
+      "revision": 1,
+      "candidateDigest": "463149c06da4b7a90aaf4541fb0feb0ae51e87d007bcb896d465856468acede7",
+      "fixtureResultsDigest": "c50b0f4dd81560b35a33f0806c7de57867d4aba6ceda819e4389cee9c4572708",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-recommendation-community-bulletin",
+      "revision": 1,
+      "candidateDigest": "c1d90040b0422b30971b21ce363e036eea71805d6d2c9b24547d1e9e7b969af2",
+      "fixtureResultsDigest": "a5058adc2bf2755f3031d4c5a73323eff97df09a229aa87b24e1776ea798059a",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-recommendation-internal-tool-demo",
+      "revision": 1,
+      "candidateDigest": "30bfeb446a2fe22e65f5c73f1ea65dcb4b3163e3e05ea9c7faea50f272da77d3",
+      "fixtureResultsDigest": "6c745f1ac5a6d3b12c27428ae962b716549eacb8050d1585152449d91ba8df18",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-recommendation-office-plant-care",
+      "revision": 1,
+      "candidateDigest": "b44c223fc34365a341b9afeff7e697f1b72c65afcc8ecf1df5e425c870931fb4",
+      "fixtureResultsDigest": "f9aeb7a436a6e115aab1063e5ce3585ace9ae717df7d4f880c07b7b0c51b8777",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-recommendation-town-hall-format",
+      "revision": 1,
+      "candidateDigest": "e376b119f41649a7ffa13af618b5908da63f2c92366ef3f0eaa205faaf4a3655",
+      "fixtureResultsDigest": "7cd54d3a7367f5731fa72892a107aca78bb982bf2c9b39b63b2976b36045eecf",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-reference-learning-session",
+      "revision": 1,
+      "candidateDigest": "ee13fbf71e8b91d2473948677884c0c47aebc52fff98dcbcfb8d49932ffc948a",
+      "fixtureResultsDigest": "25da3f9b4f84b9e83165b3aedcc4e4248a38937612d300fd6a55bd688ae15636",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-reference-office-purchase",
+      "revision": 1,
+      "candidateDigest": "44d6d512fea4d6e4b57a79b2eec050fe5fac8c23cd910aea077645bd13c55b41",
+      "fixtureResultsDigest": "0d5c33e07dbf4c82d6e650fc7da3111c5dee1a8362837a8aa67fb64ca2a49b02",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-reference-presentation-writing",
+      "revision": 1,
+      "candidateDigest": "c1b6cddf0c4384dfb10db917b20d4474682882b4b88f9deefd7cd09cf55ff326",
+      "fixtureResultsDigest": "b8df4b4b73dfd75a832bdd80706a20333a2d5c53f9e97903c0422d6a413beecc",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    },
+    {
+      "candidateId": "l3-reference-workplace-survey",
+      "revision": 1,
+      "candidateDigest": "a201e1fd3c3fc6e242143b01d23396e81784274bd97705a9802637bbc9d03620",
+      "fixtureResultsDigest": "0720b27e5b62abde0cb5be9490e5617303a842bfd63729f02129bfba910ec87e",
+      "verdict": "pass",
+      "notes": "Replayed all 21 frozen fixtures through evaluateProblem, reproduced the manifest evidence digest, confirmed direct-check coverage and same-family transfer evidence, and exercised this structural family in fresh adversarial probes."
+    }
+  ],
+  "findings": [],
+  "stopConditions": [
+    "Any candidate, fixture, engine-contract, or manifest change after this review invalidates this digest-bound evidence and requires a fresh independent review run.",
+    "Any later reviewer disagreement or editorial rejection blocks publication of the whole immutable batch."
+  ],
+  "notes": "Independent mechanical review passed. All 252 frozen fixtures and 30 fresh probes produced the expected binary grammar-only outcomes across meeting agendas, reference notes, and recommendation briefs. Fresh probes covered unrelated prose, case and spelling variation, CommonMark marker alternatives, section scoping, invisible link content, reference-link syntax, nested and HTML-only blockquotes, list ordering, hidden-only list items under current semantics, and accepted additional qualifying blocks.",
+  "reviewDigest": "7572cfe033059b1e3495395e6b677098fbf65fca210548368da1d09da07b3a71"
+}

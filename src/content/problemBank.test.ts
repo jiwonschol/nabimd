@@ -8,6 +8,7 @@ import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
 import { orderedListBatch005Fixtures } from "./batches/orderedListBatch005Fixtures"
 import { readableDocumentBatch010Fixtures } from "./batches/readableDocumentBatch010Fixtures"
+import { readableDocumentBatch011Fixtures } from "./batches/readableDocumentBatch011Fixtures"
 import { thematicBreakBatch009Fixtures } from "./batches/thematicBreakBatch009Fixtures"
 import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
@@ -20,11 +21,11 @@ import {
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted foundation and ten reviewed expansion batches", () => {
-    expect(problemBank).toHaveLength(224)
+  it("publishes the accepted foundation and eleven reviewed expansion batches", () => {
+    expect(problemBank).toHaveLength(236)
     expect(getProblemsForLevel(1)).toHaveLength(100)
     expect(getProblemsForLevel(2)).toHaveLength(100)
-    expect(getProblemsForLevel(3)).toHaveLength(16)
+    expect(getProblemsForLevel(3)).toHaveLength(28)
     expect(getProblemsForLevel(4)).toHaveLength(4)
     expect(getProblemsForLevel(5)).toHaveLength(4)
   })
@@ -60,6 +61,7 @@ describe("compiled five-level problem bank", () => {
         ...linkBatch008Fixtures,
         ...thematicBreakBatch009Fixtures,
         ...readableDocumentBatch010Fixtures,
+        ...readableDocumentBatch011Fixtures,
       ]),
     ).toEqual([])
   })

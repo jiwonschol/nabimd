@@ -1516,3 +1516,38 @@ export before CodeRabbit started. Authentication was therefore not the cause
 and the local run is not represented as a review. Because the repository and
 PR are public, the open GitHub CodeRabbit review remains the external review
 gate for the exact committed head.
+
+### Issue #9 Level 3 composite-document continuation
+
+The eleventh schema-v2 batch adds 12 more Level 3 workplace documents in three
+new retry families: meeting agendas, reference notes, and recommendation
+briefs. Each family has four distinct workplace scenarios. Together with the
+pilot, Level 3 now offers six document anatomies that can support same-family,
+different-content transfer without asking the learner to repeat an answer.
+
+A fenced copy-ready template was prototyped before the review scope froze, then
+rejected. The existing `code-block` predicate can require a fence but cannot
+prove that its visible contents are nonempty. Calling an empty-but-Matched
+fence “copy-ready” would overstate the deterministic grader. The replacement
+recommendation brief uses only predicates whose learner-facing promise the
+engine can prove; no runtime AI or network dependency was added.
+
+Every Goal is a 55–77-word plain-US-English workplace document. Grading checks
+only parsed Markdown anatomy: heading depth and order, section-scoped blocks,
+thematic breaks, descriptive links, direct blockquotes, and ordered or
+unordered list shape. Heading text, prose, capitalization, spelling,
+punctuation, and semantic quality remain outside the binary Matched verdict.
+The batch freezes 252 real-engine fixtures, exactly 21 per candidate, with an
+isolated failure for every required check and same-family alternate prose.
+
+Final manifest
+`fd9c371e31fe99176ffbd67dc82d952a22e8bed7280fc9105ef56e1068d94cab`
+contains 12 candidates and 252 passing frozen fixtures. Atlas accepted 12/12
+after replaying all fixtures and 30 independent probes. Orchid independently
+accepted 12/12 after replaying all fixtures and 604 fresh adversarial probes.
+The separate editorial review accepted 12/12, verified 48 visible useful list
+items and no collision against the published 224-problem bank, then sealed both
+review digests. The published batch digest is
+`81d8cb5154da4bc9e5fd5c36de6fa12109273650d47d26ba0486b63bd806ae68`.
+Publication raises Level 3 from 16 to 28 and the deterministic bank from 224 to
+236 problems, with a 100/100/28/4/4 split.

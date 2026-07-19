@@ -1,0 +1,3707 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l3-composite-documents-011",
+  "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+  "candidates": [
+    {
+      "candidateId": "l3-agenda-break-room-supplies",
+      "revision": 1,
+      "candidateDigest": "05a1b6f8ead85915aa67c11ce6ba01c54acde3f39bc60b3c4075b097cd863259",
+      "problemDigest": "1bc501b752c75ed1d7649eb23ba945fb45d4b678ea21401853d9c676c282bd18",
+      "fixtureDefinitionDigest": "09be8d3fa56b4913ac56d53174cc512b83d344b11f6e51e05f08d457cc4c43bf",
+      "fixtureResultsDigest": "d65502868807788a494cb213674153685d8ad854f86dfb91c3bb3cfe386839d2",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-agenda-internal-newsletter",
+      "revision": 1,
+      "candidateDigest": "f19cd65c464f828a98e6fb381bb3c6599cae0135ed8ec6d75e4eeeace76b9c03",
+      "problemDigest": "9cda62308dbddf0f0a1c748237eef7607a1a95c0636d09a876a08feaddb94277",
+      "fixtureDefinitionDigest": "fc556cfcb6fdbdcd915e5c1f4958bd40533c7127179b2f59ce62ec4a5edd18e0",
+      "fixtureResultsDigest": "35ed60eab79cb6b5c1cfe0e3cc78823a9b73fdc906790e9077c585b0cc477bab",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-agenda-volunteer-day",
+      "revision": 1,
+      "candidateDigest": "4f738c6e2bb455db3ef08bcd5ee3231590cf35eae3d7bc54e48697f4ddaf8dbb",
+      "problemDigest": "60cd7dd50d7c175f5d7a4960260d78e6eb71a6768a92fb22cd437dae3f9f2a4d",
+      "fixtureDefinitionDigest": "e54b4ba4a29cf35fcaf303767ac5e0706feee6f30ac4fa957dcbcbf583b1616d",
+      "fixtureResultsDigest": "6fcc4d1f67d1444a00ab536a60f254bfe71cae66d113fa17317f35969ee355e8",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-agenda-website-navigation",
+      "revision": 1,
+      "candidateDigest": "463149c06da4b7a90aaf4541fb0feb0ae51e87d007bcb896d465856468acede7",
+      "problemDigest": "bae9ee6d28bd29cd6fc203d335a3e5dc81c258ec9e288094e0932f33c87c1f0c",
+      "fixtureDefinitionDigest": "55cd34b06d231368ae6c383a0c503ba3c936cd86128b744852e03fe916d62f84",
+      "fixtureResultsDigest": "c50b0f4dd81560b35a33f0806c7de57867d4aba6ceda819e4389cee9c4572708",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-recommendation-community-bulletin",
+      "revision": 1,
+      "candidateDigest": "c1d90040b0422b30971b21ce363e036eea71805d6d2c9b24547d1e9e7b969af2",
+      "problemDigest": "59bec321f30daac9d2caa31e3fd82bf450cc7eaf7fea54a6ffca5648e5d4d196",
+      "fixtureDefinitionDigest": "9f86d456bcdbbfaedc138ae59d5c60a771220e0521addb98041a35f845683260",
+      "fixtureResultsDigest": "a5058adc2bf2755f3031d4c5a73323eff97df09a229aa87b24e1776ea798059a",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-recommendation-internal-tool-demo",
+      "revision": 1,
+      "candidateDigest": "30bfeb446a2fe22e65f5c73f1ea65dcb4b3163e3e05ea9c7faea50f272da77d3",
+      "problemDigest": "35237a1a8467ccedc9657a02d94a1850b268de87d0154077622b433f25628d03",
+      "fixtureDefinitionDigest": "4114ca5358577301cc61e578e6ffbe3a84ff7345acb1897be35f04ea86469942",
+      "fixtureResultsDigest": "6c745f1ac5a6d3b12c27428ae962b716549eacb8050d1585152449d91ba8df18",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-recommendation-office-plant-care",
+      "revision": 1,
+      "candidateDigest": "b44c223fc34365a341b9afeff7e697f1b72c65afcc8ecf1df5e425c870931fb4",
+      "problemDigest": "948844e907046b51583df391841a85a90765ed9f3aef54303f15415e1d4ef8d1",
+      "fixtureDefinitionDigest": "15061d45a4c15fe2fce9248f895b37dd9c8a388e9a5a9c60865bc0447cbf8d90",
+      "fixtureResultsDigest": "f9aeb7a436a6e115aab1063e5ce3585ace9ae717df7d4f880c07b7b0c51b8777",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-recommendation-town-hall-format",
+      "revision": 1,
+      "candidateDigest": "e376b119f41649a7ffa13af618b5908da63f2c92366ef3f0eaa205faaf4a3655",
+      "problemDigest": "4db4458586595822e41288884d3ba408c520909189bd3a1c7390f640f9d8c7ea",
+      "fixtureDefinitionDigest": "a4ca9458b3d64bdf9490a2113d240b623641f2a703832f82f97ef3ee0f7851a6",
+      "fixtureResultsDigest": "7cd54d3a7367f5731fa72892a107aca78bb982bf2c9b39b63b2976b36045eecf",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-reference-learning-session",
+      "revision": 1,
+      "candidateDigest": "ee13fbf71e8b91d2473948677884c0c47aebc52fff98dcbcfb8d49932ffc948a",
+      "problemDigest": "f00bbe13a8344de2ecc35f9e5c90bb08492ed75090984d0084f5c817c472b128",
+      "fixtureDefinitionDigest": "9f02eeb7fc3b7937e43898e915adadd8cb67d0d078eca5af61c1b2dfd56db3a4",
+      "fixtureResultsDigest": "25da3f9b4f84b9e83165b3aedcc4e4248a38937612d300fd6a55bd688ae15636",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-reference-office-purchase",
+      "revision": 1,
+      "candidateDigest": "44d6d512fea4d6e4b57a79b2eec050fe5fac8c23cd910aea077645bd13c55b41",
+      "problemDigest": "2a98b3ea5537e3a1a0b83aa4d91e9917458187f50239d3a57a830eee586530c5",
+      "fixtureDefinitionDigest": "5d8711c2f5f3370cc45ea74dd1ba05c6e50b150cb88398d84855d7d47943bd67",
+      "fixtureResultsDigest": "0d5c33e07dbf4c82d6e650fc7da3111c5dee1a8362837a8aa67fb64ca2a49b02",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-reference-presentation-writing",
+      "revision": 1,
+      "candidateDigest": "c1b6cddf0c4384dfb10db917b20d4474682882b4b88f9deefd7cd09cf55ff326",
+      "problemDigest": "bb57143b51cd9465a4cc9c083a0fe0b20826a91398084ecee5ad7736391083a1",
+      "fixtureDefinitionDigest": "a626a62ce4abb19ba4da2efc70635520df0a47918551ea97e64ad5597c1576b9",
+      "fixtureResultsDigest": "b8df4b4b73dfd75a832bdd80706a20333a2d5c53f9e97903c0422d6a413beecc",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-reference-workplace-survey",
+      "revision": 1,
+      "candidateDigest": "a201e1fd3c3fc6e242143b01d23396e81784274bd97705a9802637bbc9d03620",
+      "problemDigest": "065d9dd4bc439d9fbe7883c1732d10a6794596d89da0b81fe8b51322f3671a8c",
+      "fixtureDefinitionDigest": "26e060c16fc681ca1ef1aafe1a77ffc9c1206ded195ca809712188df0392b92f",
+      "fixtureResultsDigest": "0720b27e5b62abde0cb5be9490e5617303a842bfd63729f02129bfba910ec87e",
+      "fixtureCount": 21,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-alternate-divider",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-alternate-list-markers",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-canonical",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-case-spelling",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-different-prose",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-divider-in-wrong-section",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-duplicate-divider",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-duplicate-title-review",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-extra-h2",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-extra-valid-markdown",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-fenced-divider-lookalike",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-hidden-only-list-items",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-malformed-divider",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-missing-title",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-nested-divider",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-ordered-preparation",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-raw-html-divider-lookalike",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-skipped-heading-depth",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-two-agenda-items",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-two-preparation-items",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-break-room-supplies-unordered-agenda",
+      "problemId": "l3-agenda-break-room-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-break-room-supplies-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-alternate-divider",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-alternate-list-markers",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-canonical",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-case-spelling",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-different-prose",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-divider-in-wrong-section",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-duplicate-divider",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-duplicate-title-review",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-extra-h2",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-extra-valid-markdown",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-fenced-divider-lookalike",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-hidden-only-list-items",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-malformed-divider",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-missing-title",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-nested-divider",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-ordered-preparation",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-raw-html-divider-lookalike",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-skipped-heading-depth",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-two-agenda-items",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-two-preparation-items",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-internal-newsletter-unordered-agenda",
+      "problemId": "l3-agenda-internal-newsletter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-internal-newsletter-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-alternate-divider",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-alternate-list-markers",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-canonical",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-case-spelling",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-different-prose",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-divider-in-wrong-section",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-duplicate-divider",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-duplicate-title-review",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-extra-h2",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-extra-valid-markdown",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-fenced-divider-lookalike",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-hidden-only-list-items",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-malformed-divider",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-missing-title",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-nested-divider",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-ordered-preparation",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-raw-html-divider-lookalike",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-skipped-heading-depth",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-two-agenda-items",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-two-preparation-items",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-volunteer-day-unordered-agenda",
+      "problemId": "l3-agenda-volunteer-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-volunteer-day-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-alternate-divider",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-alternate-list-markers",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-canonical",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-case-spelling",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-different-prose",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-divider-in-wrong-section",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-duplicate-divider",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-duplicate-title-review",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-extra-h2",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-extra-valid-markdown",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-fenced-divider-lookalike",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-hidden-only-list-items",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-malformed-divider",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-missing-title",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-nested-divider",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-ordered-preparation",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-raw-html-divider-lookalike",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-skipped-heading-depth",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-two-agenda-items",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-two-preparation-items",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-preparation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-preparation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-agenda-website-navigation-unordered-agenda",
+      "problemId": "l3-agenda-website-navigation",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-agenda"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-agenda-website-navigation-agenda"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-additional-options-list",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-alternate-list-markers",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-canonical",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-case-spelling",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-different-prose",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-duplicate-title-review",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-empty-recommendation",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-extra-h2",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-extra-valid-markdown",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-fenced-blockquote-lookalike",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-hidden-only-list-items",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-html-only-recommendation",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-missing-title",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-nested-recommendation",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-ordered-options",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-raw-html-blockquote-lookalike",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-recommendation-in-wrong-section",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-skipped-heading-depth",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-two-next-steps",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-two-options",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-community-bulletin-unordered-next-steps",
+      "problemId": "l3-recommendation-community-bulletin",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-community-bulletin-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-additional-options-list",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-alternate-list-markers",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-canonical",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-case-spelling",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-different-prose",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-duplicate-title-review",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-empty-recommendation",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-extra-h2",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-extra-valid-markdown",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-fenced-blockquote-lookalike",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-hidden-only-list-items",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-html-only-recommendation",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-missing-title",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-nested-recommendation",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-ordered-options",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-raw-html-blockquote-lookalike",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-recommendation-in-wrong-section",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-skipped-heading-depth",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-two-next-steps",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-two-options",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-internal-tool-demo-unordered-next-steps",
+      "problemId": "l3-recommendation-internal-tool-demo",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-internal-tool-demo-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-additional-options-list",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-alternate-list-markers",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-canonical",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-case-spelling",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-different-prose",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-duplicate-title-review",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-empty-recommendation",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-extra-h2",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-extra-valid-markdown",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-fenced-blockquote-lookalike",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-hidden-only-list-items",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-html-only-recommendation",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-missing-title",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-nested-recommendation",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-ordered-options",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-raw-html-blockquote-lookalike",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-recommendation-in-wrong-section",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-skipped-heading-depth",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-two-next-steps",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-two-options",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-office-plant-care-unordered-next-steps",
+      "problemId": "l3-recommendation-office-plant-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-office-plant-care-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-additional-options-list",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-alternate-list-markers",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-canonical",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-case-spelling",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-different-prose",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-duplicate-title-review",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-empty-recommendation",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-extra-h2",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-extra-valid-markdown",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-fenced-blockquote-lookalike",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-hidden-only-list-items",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-html-only-recommendation",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-missing-title",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-nested-recommendation",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-ordered-options",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-raw-html-blockquote-lookalike",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-recommendation-in-wrong-section",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-recommendation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-skipped-heading-depth",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-two-next-steps",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-two-options",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-options"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-options"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-recommendation-town-hall-format-unordered-next-steps",
+      "problemId": "l3-recommendation-town-hall-format",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-next-steps"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-recommendation-town-hall-format-next-steps"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-alternate-divider",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-autolink",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-canonical",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-case-spelling",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-different-prose",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-divider-in-wrong-section",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-duplicate-title-review",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-empty-link-destination",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-empty-link-label",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-empty-takeaway",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-takeaway"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-takeaway"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-extra-h2",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-extra-valid-markdown",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-image-lookalike",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-inline-code-lookalike",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-link-in-wrong-section",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-malformed-link",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-missing-title",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-raw-html-anchor",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-raw-html-blockquote-lookalike",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-reference-link",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-learning-session-skipped-heading-depth",
+      "problemId": "l3-reference-learning-session",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-learning-session-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-alternate-divider",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-autolink",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-canonical",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-case-spelling",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-different-prose",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-divider-in-wrong-section",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-duplicate-title-review",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-empty-link-destination",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-empty-link-label",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-empty-takeaway",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-takeaway"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-takeaway"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-extra-h2",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-extra-valid-markdown",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-image-lookalike",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-inline-code-lookalike",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-link-in-wrong-section",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-malformed-link",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-missing-title",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-raw-html-anchor",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-raw-html-blockquote-lookalike",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-reference-link",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-office-purchase-skipped-heading-depth",
+      "problemId": "l3-reference-office-purchase",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-office-purchase-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-alternate-divider",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-autolink",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-canonical",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-case-spelling",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-different-prose",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-divider-in-wrong-section",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-duplicate-title-review",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-empty-link-destination",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-empty-link-label",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-empty-takeaway",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-takeaway"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-takeaway"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-extra-h2",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-extra-valid-markdown",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-image-lookalike",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-inline-code-lookalike",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-link-in-wrong-section",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-malformed-link",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-missing-title",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-raw-html-anchor",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-raw-html-blockquote-lookalike",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-reference-link",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-presentation-writing-skipped-heading-depth",
+      "problemId": "l3-reference-presentation-writing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-presentation-writing-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-alternate-divider",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-autolink",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-canonical",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-case-spelling",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-different-prose",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-divider-in-wrong-section",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-divider"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-divider"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-duplicate-title-review",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-empty-link-destination",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-empty-link-label",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-empty-takeaway",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-takeaway"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-takeaway"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-extra-h2",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-extra-valid-markdown",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-image-lookalike",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-inline-code-lookalike",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-link-in-wrong-section",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-malformed-link",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-missing-title",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-raw-html-anchor",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-reference-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-raw-html-blockquote-lookalike",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-reference-link",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-reference-workplace-survey-skipped-heading-depth",
+      "problemId": "l3-reference-workplace-survey",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-reference-workplace-survey-hierarchy"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "44092c9a47bfe1847ebd6d98297f77c9644ee957ecefe06f9b6414ed929fc722"
+}

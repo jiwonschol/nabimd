@@ -47,6 +47,9 @@ describe("selectTransferProblem", () => {
       "level3-status-handoff-document",
       "level3-how-to-document",
       "level3-decision-record",
+      "level3-meeting-agenda-document",
+      "level3-reference-note-document",
+      "level3-recommendation-brief-document",
     ] as const
 
     for (const retryFamily of retryFamilies) {
