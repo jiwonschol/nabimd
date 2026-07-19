@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 419,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "0dc550dd05d55d7b99710c6c658faf5b1aa7ca01025ea2deaf224e7cceb397ce",
+  "verificationDigest": "7a83ec675f89d13f297e94ef2ac5f1c83a2ef4a2a2f011a1d72b718a9b5d0acc",
+  "manifestDigest": "b5877a9687312217ec65b0b8238f722ec697cc73c4dafd6fc3f5af10644cf9b4",
+  "engineContractDigest": "79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 296,
+  "preparedSummaryDigest": "12e59c9e7bd6d00bd6a035c65b5999b57f4a4efb272f8c0372c92318becdaaeb"
+}

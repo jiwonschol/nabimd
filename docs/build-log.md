@@ -1803,3 +1803,73 @@ passed 9,129 unit and component tests, every immutable batch and repository
 gate, typechecking, the production build and bundle inspection, plus all 13
 Chromium user journeys including keyboard-only completion through the new
 Level 2 code-block challenges.
+
+## 2026-07-20 — Issue #9 heading-depth pre-review freeze
+
+Batch 015 freezes 24 new candidates without publishing them: 12 Level 1 ATX
+heading-depth lessons and 12 Level 2 sectioned-document rebuilds. Heading depth
+was chosen over indented code because Batch 014 had just expanded the code-block
+family and the current engine already grades H2-H6 without a predicate change.
+Paragraph and line-break lessons remain useful future breadth, but a line-break
+contract would need new source-aware engine and scheduler work. Images remain
+blocked on licensed local assets plus visual alt-text review. Heading depth
+therefore adds uncovered CommonMark structure with the smallest engine risk.
+
+The Level 1 matrix is exactly three H2, three H3, two H4, two H5, and two H6
+lessons. It freezes current engine boundaries rather than tightening them:
+zero-to-three leading spaces, tab or multiple-space separators, optional closing
+ATX markers, and empty ATX headings Match. Four-space indentation, the wrong
+depth, seven hashes, missing separator space, escaped or fullwidth hashes,
+Setext H2, raw HTML, fenced-code lookalikes, and nested-only headings fail the
+document-root contract. Level 2 freezes four process, four checklist, and four
+message documents with exact block anatomy, unskipped heading hierarchy, and
+nonempty list or quote structure. Prose, case, spelling, punctuation, and
+semantic truth are not grading operands.
+
+Issue #50 owns selection composition, entry choices, session/progress behavior,
+and heading-flow E2E coverage. Batch 015 deliberately uses the existing
+`heading-h1`, list, and blockquote skill classifications and does not edit any
+Issue #50-owned path. No predicate, runtime AI call, network dependency, GFM
+syntax, HTML lesson, image lesson, reviewer verdict, editorial verdict,
+published summary, tracker projection, or runtime projection is part of this
+freeze.
+
+The frozen evidence contains 24 candidates and 419 fixtures: each H2 candidate
+has 23, each H3-H6 candidate has 22, each process/checklist rebuild has 13, and
+each message rebuild has 12. All 24 candidates pass their frozen fixtures
+through the real learner engine. The prior runtime and tracker files remain
+byte-identical at Git blob IDs
+`bbd4941276f3e0f4d88fc5ca9ba3b7593f2f20f1` and
+`6fc715d5a1f950c105e5f7c00dd4aba442101762`, preserving the published total of
+296 and split 124/124/28/16/4 until unanimous review and editorial acceptance.
+
+Frozen digests:
+
+- generation prompt: `032fb250d21c38890ce246fd714cb5de97cab94f0b26b1113144f09d2e42fb41`
+- raw candidates: `851da77253613b7636c2eebaa4e13db4206535519f669a08302e97aa10e48847`
+- normalized candidates: `0dc550dd05d55d7b99710c6c658faf5b1aa7ca01025ea2deaf224e7cceb397ce`
+- fixture artifact: `cecae6e25328a5019ccc8f2a86bfba03b3a679fbdd2c3e325acaeab2e8e1879f`
+- verification: `7a83ec675f89d13f297e94ef2ac5f1c83a2ef4a2a2f011a1d72b718a9b5d0acc`
+- engine contract: `79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b`
+- review manifest: `b5877a9687312217ec65b0b8238f722ec697cc73c4dafd6fc3f5af10644cf9b4`
+- prepared summary: `12e59c9e7bd6d00bd6a035c65b5999b57f4a4efb272f8c0372c92318becdaaeb`
+
+TDD began with
+`npx vitest run src/content/batches/headingDepthBatch015.test.ts`, which failed
+as expected because the Batch 015 modules did not exist. The focused green run
+`npx vitest run src/content/batches/headingDepthBatch015.test.ts src/engine/structuralPredicates.test.ts src/content/validateProblemBankV2.test.ts`
+passes 628 tests in three files. `npm run bank:batch:heading-depth-015:prepare`
+then freezes the evidence, and
+`npm run bank:batch:heading-depth-015:check` passes seven mechanical gate tests.
+The final pre-review verification also runs `npm test`, `npm run typecheck`, and
+`git diff --check` before commit.
+
+Two pre-freeze integration drafts were rejected. The exact requested `tsx`
+entry point initially exposed that the runner was not a declared dependency, so
+`tsx` 4.22.4 was pinned before continuing. The first artifact draft also wrote
+legacy optional heading `text` fields as explicit `undefined`; canonical JSON
+correctly rejected those values, so the fields were omitted while tests still
+assert their observable value is undefined. The artifacts above were generated
+only after both corrections. Publication remains intentionally fail-closed at
+`awaiting-independent-review`: zero reviewer verdict sets, no `editorial.json`,
+no `summary.generated.json`, and a preserved 296-problem runtime bank.

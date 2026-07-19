@@ -1,0 +1,4076 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+  "fixtures": [
+    {
+      "id": "l1-heading-depth-bring-along-canonical",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-bring-along-hash-style",
+      "source": "### Bring along",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-case-spelling",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "### BRING ALONGZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-closing-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "### Bring along ###",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-different-prose",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "### bring along plan 6",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-empty-atx-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-escaped-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "\\### Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-extra-block",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "### Bring along\n\nExtra note 6.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "```\n### Bring along\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-four-space-indented",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "    ### Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-fullwidth-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "＃＃＃ Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-matched-review",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "### *Bring along*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-bring-along-missing-space",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-bring-along-spacing",
+      "source": "###Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-spacing"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-multiple-space-separator",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###   Bring along",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-nested-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "> ### Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-one-leading-space",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ### Bring along",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-raw-html-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "<h3>Bring along</h3>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-seven-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "####### Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bring-along-tab-separator",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###\tBring along tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-three-leading-spaces",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ### Bring along",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-two-leading-spaces",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ### Bring along",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bring-along-wrong-depth",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bring-along-shape",
+      "source": "#### Bring along",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bring-along-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-canonical",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-hash-style",
+      "source": "### Bus stop",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-case-spelling",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "### BUS STOPZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-closing-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "### Bus stop ###",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-different-prose",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "### bus stop plan 4",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-empty-atx-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-escaped-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "\\### Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-extra-block",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "### Bus stop\n\nExtra note 4.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "```\n### Bus stop\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-four-space-indented",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "    ### Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-fullwidth-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "＃＃＃ Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-matched-review",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "### *Bus stop*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-missing-space",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-spacing",
+      "source": "###Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-spacing"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-multiple-space-separator",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###   Bus stop",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-nested-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "> ### Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-one-leading-space",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ### Bus stop",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-raw-html-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "<h3>Bus stop</h3>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-seven-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "####### Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-tab-separator",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###\tBus stop tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-three-leading-spaces",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ### Bus stop",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-two-leading-spaces",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ### Bus stop",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-bus-stop-wrong-depth",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-bus-stop-shape",
+      "source": "#### Bus stop",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-bus-stop-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-canonical",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-hash-style",
+      "source": "##### Clean shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-case-spelling",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "##### CLEAN SHELFZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-closing-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##### Clean shelf #####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-different-prose",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "##### clean shelf plan 10",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-empty-atx-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-escaped-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "\\##### Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-extra-block",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "##### Clean shelf\n\nExtra note 10.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "```\n##### Clean shelf\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-four-space-indented",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "    ##### Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-fullwidth-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "＃＃＃＃＃ Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-matched-review",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "##### *Clean shelf*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-missing-space",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-spacing",
+      "source": "#####Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-spacing"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-multiple-space-separator",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#####   Clean shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-nested-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "> ##### Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-one-leading-space",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ##### Clean shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-raw-html-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "<h5>Clean shelf</h5>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-seven-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "####### Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-tab-separator",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#####\tClean shelf tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-three-leading-spaces",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ##### Clean shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-two-leading-spaces",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ##### Clean shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf-wrong-depth",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-clean-shelf-shape",
+      "source": "###### Clean shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-clean-shelf-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-canonical",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-hash-style",
+      "source": "###### Dog leash",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-case-spelling",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "###### DOG LEASHZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-closing-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###### Dog leash ######",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-different-prose",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "###### dog leash plan 12",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-empty-atx-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "######",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-escaped-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "\\###### Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-extra-block",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "###### Dog leash\n\nExtra note 12.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "```\n###### Dog leash\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-four-space-indented",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "    ###### Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-fullwidth-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "＃＃＃＃＃＃ Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-matched-review",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "###### *Dog leash*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-missing-space",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-spacing",
+      "source": "######Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-spacing"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-multiple-space-separator",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "######   Dog leash",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-nested-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "> ###### Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-one-leading-space",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ###### Dog leash",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-raw-html-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "<h6>Dog leash</h6>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-seven-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "####### Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-tab-separator",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "######\tDog leash tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-three-leading-spaces",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ###### Dog leash",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-two-leading-spaces",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ###### Dog leash",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-dog-leash-wrong-depth",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-dog-leash-shape",
+      "source": "##### Dog leash",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-dog-leash-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-canonical",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-hash-style",
+      "source": "###### Lost mitten",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-case-spelling",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "###### LOST MITTENZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-closing-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###### Lost mitten ######",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-different-prose",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "###### lost mitten plan 11",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-empty-atx-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "######",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-escaped-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "\\###### Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-extra-block",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "###### Lost mitten\n\nExtra note 11.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "```\n###### Lost mitten\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-four-space-indented",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "    ###### Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-fullwidth-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "＃＃＃＃＃＃ Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-matched-review",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "###### *Lost mitten*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-missing-space",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-spacing",
+      "source": "######Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-spacing"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-multiple-space-separator",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "######   Lost mitten",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-nested-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "> ###### Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-one-leading-space",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ###### Lost mitten",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-raw-html-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "<h6>Lost mitten</h6>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-seven-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "####### Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-tab-separator",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "######\tLost mitten tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-three-leading-spaces",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ###### Lost mitten",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-two-leading-spaces",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ###### Lost mitten",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten-wrong-depth",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-lost-mitten-shape",
+      "source": "##### Lost mitten",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-lost-mitten-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-canonical",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-map-key-hash-style",
+      "source": "#### Map key",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-case-spelling",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "#### MAP KEYZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-closing-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#### Map key ####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-different-prose",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "#### map key plan 7",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-empty-atx-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-escaped-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "\\#### Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-extra-block",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "#### Map key\n\nExtra note 7.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "```\n#### Map key\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-four-space-indented",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "    #### Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-fullwidth-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "＃＃＃＃ Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-matched-review",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "#### *Map key*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-map-key-missing-space",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-map-key-spacing",
+      "source": "####Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-spacing"
+    },
+    {
+      "id": "l1-heading-depth-map-key-multiple-space-separator",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "####   Map key",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-nested-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "> #### Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-one-leading-space",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " #### Map key",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-raw-html-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "<h4>Map key</h4>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-seven-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "####### Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-map-key-tab-separator",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "####\tMap key tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-three-leading-spaces",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   #### Map key",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-two-leading-spaces",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  #### Map key",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-map-key-wrong-depth",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-map-key-shape",
+      "source": "##### Map key",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-map-key-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-canonical",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-hash-style",
+      "source": "##### Movie seat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-case-spelling",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "##### MOVIE SEATZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-closing-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##### Movie seat #####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-different-prose",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "##### movie seat plan 9",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-empty-atx-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-escaped-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "\\##### Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-extra-block",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "##### Movie seat\n\nExtra note 9.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "```\n##### Movie seat\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-four-space-indented",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "    ##### Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-fullwidth-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "＃＃＃＃＃ Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-matched-review",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "##### *Movie seat*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-missing-space",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-spacing",
+      "source": "#####Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-spacing"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-multiple-space-separator",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#####   Movie seat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-nested-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "> ##### Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-one-leading-space",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ##### Movie seat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-raw-html-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "<h5>Movie seat</h5>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-seven-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "####### Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-tab-separator",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#####\tMovie seat tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-three-leading-spaces",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ##### Movie seat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-two-leading-spaces",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ##### Movie seat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-movie-seat-wrong-depth",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-movie-seat-shape",
+      "source": "###### Movie seat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-movie-seat-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-canonical",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-hash-style",
+      "source": "#### Pet bowl",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-case-spelling",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "#### PET BOWLZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-closing-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "#### Pet bowl ####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-different-prose",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "#### pet bowl plan 8",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-empty-atx-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "####",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-escaped-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "\\#### Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-extra-block",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "#### Pet bowl\n\nExtra note 8.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "```\n#### Pet bowl\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-four-space-indented",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "    #### Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-fullwidth-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "＃＃＃＃ Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-matched-review",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "#### *Pet bowl*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-missing-space",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-spacing",
+      "source": "####Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-spacing"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-multiple-space-separator",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "####   Pet bowl",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-nested-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "> #### Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-one-leading-space",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " #### Pet bowl",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-raw-html-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "<h4>Pet bowl</h4>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-seven-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "####### Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-tab-separator",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "####\tPet bowl tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-three-leading-spaces",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   #### Pet bowl",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-two-leading-spaces",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  #### Pet bowl",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl-wrong-depth",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pet-bowl-shape",
+      "source": "##### Pet bowl",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pet-bowl-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-canonical",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-hash-style",
+      "source": "## Pool pass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-case-spelling",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "## POOL PASSZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-closing-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "## Pool pass ##",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-different-prose",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "## pool pass plan 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-empty-atx-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-escaped-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "\\## Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-extra-block",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "## Pool pass\n\nExtra note 2.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "```\n## Pool pass\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-four-space-indented",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "    ## Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-fullwidth-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "＃＃ Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-matched-review",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "## *Pool pass*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-missing-space",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-spacing",
+      "source": "##Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-spacing"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-multiple-space-separator",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##   Pool pass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-nested-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "> ## Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-one-leading-space",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ## Pool pass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-raw-html-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "<h2>Pool pass</h2>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-setext-h2",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-hash-style",
+      "source": "Pool pass\n---",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-hash-style"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-seven-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "####### Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-tab-separator",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##\tPool pass tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-three-leading-spaces",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ## Pool pass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-two-leading-spaces",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ## Pool pass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-pool-pass-wrong-depth",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-pool-pass-shape",
+      "source": "### Pool pass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-pool-pass-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-canonical",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-hash-style",
+      "source": "## Snack ideas",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-case-spelling",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "## SNACK IDEASZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-closing-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "## Snack ideas ##",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-different-prose",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "## snack ideas plan 1",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-empty-atx-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-escaped-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "\\## Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-extra-block",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "## Snack ideas\n\nExtra note 1.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "```\n## Snack ideas\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-four-space-indented",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "    ## Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-fullwidth-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "＃＃ Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-matched-review",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "## *Snack ideas*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-missing-space",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-spacing",
+      "source": "##Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-spacing"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-multiple-space-separator",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##   Snack ideas",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-nested-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "> ## Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-one-leading-space",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ## Snack ideas",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-raw-html-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "<h2>Snack ideas</h2>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-setext-h2",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-hash-style",
+      "source": "Snack ideas\n---",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-hash-style"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-seven-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "####### Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-tab-separator",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##\tSnack ideas tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-three-leading-spaces",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ## Snack ideas",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-two-leading-spaces",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ## Snack ideas",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-snack-ideas-wrong-depth",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-snack-ideas-shape",
+      "source": "### Snack ideas",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-snack-ideas-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-canonical",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-tea-break-hash-style",
+      "source": "### Tea break",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-case-spelling",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "### TEA BREAKZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-closing-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "### Tea break ###",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-different-prose",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "### tea break plan 5",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-empty-atx-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-escaped-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "\\### Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-extra-block",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "### Tea break\n\nExtra note 5.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "```\n### Tea break\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-four-space-indented",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "    ### Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-fullwidth-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "＃＃＃ Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-matched-review",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "### *Tea break*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-tea-break-missing-space",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-tea-break-spacing",
+      "source": "###Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-spacing"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-multiple-space-separator",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###   Tea break",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-nested-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "> ### Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-one-leading-space",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ### Tea break",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-raw-html-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "<h3>Tea break</h3>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-seven-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "####### Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-tea-break-tab-separator",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "###\tTea break tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-three-leading-spaces",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ### Tea break",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-two-leading-spaces",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ### Tea break",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-tea-break-wrong-depth",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-tea-break-shape",
+      "source": "#### Tea break",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-tea-break-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-canonical",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "canonical",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-hash-style",
+      "source": "## Yard sale",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-case-spelling",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "## YARD SALEZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-closing-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "## Yard sale ##",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-different-prose",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "## yard sale plan 3",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-empty-atx-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-escaped-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "\\## Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-extra-block",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "## Yard sale\n\nExtra note 3.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "```\n## Yard sale\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-four-space-indented",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "    ## Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-fullwidth-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "＃＃ Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-matched-review",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "## *Yard sale*",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-missing-space",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-spacing",
+      "source": "##Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-spacing"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-multiple-space-separator",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##   Yard sale",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-nested-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "> ## Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-one-leading-space",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": " ## Yard sale",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-raw-html-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "<h2>Yard sale</h2>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-setext-h2",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-hash-style",
+      "source": "Yard sale\n---",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-hash-style"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-seven-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "####### Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-tab-separator",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "##\tYard sale tab",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-three-leading-spaces",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "   ## Yard sale",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-two-leading-spaces",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "  ## Yard sale",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-heading-depth-yard-sale-wrong-depth",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l1-heading-depth-yard-sale-shape",
+      "source": "### Yard sale",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l1-heading-depth-yard-sale-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-canonical",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-case-spelling",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the TREATZ.\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-different-prose",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Cookie stand\n\n## Counter kit\n\nKeep these supplies near the trays.\n\n- Menu signs\n- Wax bags\n- Coin roll",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-empty-list-item",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-list",
+      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- \n- Paper bags\n- Small change",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-extra-block",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
+      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change\n\nExtra note 7.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-matched-review",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Bake sale\n\n## Table box\n\n*Set these items beside the treats.*\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
+      "source": "# Bake sale\n\n## Table box\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-missing-title",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
+      "source": "## Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-hierarchy",
+      "source": "# Cookie stand\n\n### Counter kit\n\nKeep these supplies near the trays.\n\n- Menu signs\n- Wax bags\n- Coin roll",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-too-few-items",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-list",
+      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n- Price cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-wrong-depth",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-hierarchy",
+      "source": "# Bake sale\n\n### Table box\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-list",
+      "source": "# Bake sale\n\n## Table box\n\nSet these items beside the treats.\n\n1. Price cards\n2. Paper bags\n3. Small change",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale-wrong-order",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bake-sale-shape",
+      "source": "# Bake sale\n\nSet these items beside the treats.\n\n## Table box\n\n- Price cards\n- Paper bags\n- Small change",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bake-sale-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-canonical",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-case-spelling",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump\n- PATCZ kit\n- Clean rag",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-different-prose",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Tire check\n\n## Gear\n\nPlace the tools near the back wheel.\n\n- Floor pump\n- Repair patch\n- Shop cloth",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-empty-list-item",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-list",
+      "source": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n- \n- Patch kit\n- Clean rag",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-extra-block",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-shape",
+      "source": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump\n- Patch kit\n- Clean rag\n\nExtra note 8.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-matched-review",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Bike repair\n\n## Tool tray\n\n*Gather the basics before checking the tire.*\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-shape",
+      "source": "# Bike repair\n\n## Tool tray\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-missing-title",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-shape",
+      "source": "## Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-hierarchy",
+      "source": "# Tire check\n\n### Gear\n\nPlace the tools near the back wheel.\n\n- Floor pump\n- Repair patch\n- Shop cloth",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-too-few-items",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-list",
+      "source": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-wrong-depth",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-hierarchy",
+      "source": "# Bike repair\n\n### Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-list",
+      "source": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n1. Hand pump\n2. Patch kit\n3. Clean rag",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair-wrong-order",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-bike-repair-shape",
+      "source": "# Bike repair\n\nGather the basics before checking the tire.\n\n## Tool tray\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-bike-repair-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-canonical",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n- Paper\n- Washable paint\n- Old towel",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-case-spelling",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n- Paper\n- WASHABLZ paint\n- Old towel",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-different-prose",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Paint afternoon\n\n## Materials\n\nProtect the desk before mixing colors.\n\n- Card stock\n- Paint cups\n- Spare cloth",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-empty-list-item",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-list",
+      "source": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n- \n- Washable paint\n- Old towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-extra-block",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-shape",
+      "source": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n- Paper\n- Washable paint\n- Old towel\n\nExtra note 6.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-matched-review",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Indoor art\n\n## Supplies\n\n*Cover the table before starting.*\n\n- Paper\n- Washable paint\n- Old towel",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-shape",
+      "source": "# Indoor art\n\n## Supplies\n\n- Paper\n- Washable paint\n- Old towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-missing-title",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-shape",
+      "source": "## Supplies\n\nCover the table before starting.\n\n- Paper\n- Washable paint\n- Old towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-hierarchy",
+      "source": "# Paint afternoon\n\n### Materials\n\nProtect the desk before mixing colors.\n\n- Card stock\n- Paint cups\n- Spare cloth",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-too-few-items",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-list",
+      "source": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n- Paper",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-wrong-depth",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-hierarchy",
+      "source": "# Indoor art\n\n### Supplies\n\nCover the table before starting.\n\n- Paper\n- Washable paint\n- Old towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-list",
+      "source": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n1. Paper\n2. Washable paint\n3. Old towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art-wrong-order",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-indoor-art-shape",
+      "source": "# Indoor art\n\nCover the table before starting.\n\n## Supplies\n\n- Paper\n- Washable paint\n- Old towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-indoor-art-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-canonical",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Pool day\n\n## Pack\n\nBring the bag by the front door.\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-case-spelling",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Pool day\n\n## Pack\n\nBring the bag by the front DOOZ.\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-different-prose",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Lake swim\n\n## Bag\n\nLeave the gear beside the stairs.\n\n- Beach towel\n- Drink bottle\n- Sun hat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-empty-list-item",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-list",
+      "source": "# Pool day\n\n## Pack\n\nBring the bag by the front door.\n\n- \n- Water bottle\n- Sunscreen",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-extra-block",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-shape",
+      "source": "# Pool day\n\n## Pack\n\nBring the bag by the front door.\n\n- Towel\n- Water bottle\n- Sunscreen\n\nExtra note 5.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-matched-review",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Pool day\n\n## Pack\n\n*Bring the bag by the front door.*\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-shape",
+      "source": "# Pool day\n\n## Pack\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-missing-title",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-shape",
+      "source": "## Pack\n\nBring the bag by the front door.\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-shape"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-hierarchy",
+      "source": "# Lake swim\n\n### Bag\n\nLeave the gear beside the stairs.\n\n- Beach towel\n- Drink bottle\n- Sun hat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-too-few-items",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-list",
+      "source": "# Pool day\n\n## Pack\n\nBring the bag by the front door.\n\n- Towel",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-wrong-depth",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-hierarchy",
+      "source": "# Pool day\n\n### Pack\n\nBring the bag by the front door.\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-list",
+      "source": "# Pool day\n\n## Pack\n\nBring the bag by the front door.\n\n1. Towel\n2. Water bottle\n3. Sunscreen",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-list"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day-wrong-order",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-checklist-pool-day-shape",
+      "source": "# Pool day\n\nBring the bag by the front door.\n\n## Pack\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-checklist-pool-day-shape"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-canonical",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Book swap\n\n## Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-case-spelling",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Book swap\n\n## SATURDAZ table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-different-prose",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Story exchange\n\n## Sunday shelf\n\nChoose one clean book to trade.\n\n### Small reminder\n\n> Add your initials near the back.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-empty-quote",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-quote",
+      "source": "# Book swap\n\n## Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-quote"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-extra-block",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-shape",
+      "source": "# Book swap\n\n## Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n> Write your name inside the cover.\n\nExtra note 10.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-shape"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-matched-review",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Book swap\n\n## Saturday table\n\n*Bring one book in good condition.*\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-missing-paragraph",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-shape",
+      "source": "# Book swap\n\n## Saturday table\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-shape"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-missing-quote",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-shape",
+      "source": "# Book swap\n\n## Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-shape"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-missing-title",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-shape",
+      "source": "## Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-shape"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-hierarchy",
+      "source": "# Story exchange\n\n### Sunday shelf\n\nChoose one clean book to trade.\n\n### Small reminder\n\n> Add your initials near the back.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-wrong-depth",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-hierarchy",
+      "source": "# Book swap\n\n### Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap-wrong-order",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-book-swap-shape",
+      "source": "# Book swap\n\n## Saturday table\n\n### Friendly reminder\n\nBring one book in good condition.\n\n> Write your name inside the cover.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-book-swap-shape"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-canonical",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Bus stop update\n\n## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n> Arrive five minutes early.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-case-spelling",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Bus STOZ update\n\n## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n> Arrive five minutes early.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-different-prose",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Shuttle notice\n\n## Different curb\n\nThe early ride meets beside Cedar Avenue.\n\n### Passenger note\n\n> Come a few minutes ahead.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-empty-quote",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-quote",
+      "source": "# Bus stop update\n\n## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-quote"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-extra-block",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-shape",
+      "source": "# Bus stop update\n\n## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n> Arrive five minutes early.\n\nExtra note 11.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-shape"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-matched-review",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Bus stop update\n\n## New corner\n\n*The morning bus now stops by Pine Street.*\n\n### Rider note\n\n> Arrive five minutes early.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-missing-paragraph",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-shape",
+      "source": "# Bus stop update\n\n## New corner\n\n### Rider note\n\n> Arrive five minutes early.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-shape"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-missing-quote",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-shape",
+      "source": "# Bus stop update\n\n## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-shape"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-missing-title",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-shape",
+      "source": "## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n> Arrive five minutes early.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-shape"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-hierarchy",
+      "source": "# Shuttle notice\n\n### Different curb\n\nThe early ride meets beside Cedar Avenue.\n\n### Passenger note\n\n> Come a few minutes ahead.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-wrong-depth",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-hierarchy",
+      "source": "# Bus stop update\n\n### New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n> Arrive five minutes early.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop-wrong-order",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-bus-stop-shape",
+      "source": "# Bus stop update\n\n## New corner\n\n### Rider note\n\nThe morning bus now stops by Pine Street.\n\n> Arrive five minutes early.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-bus-stop-shape"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-canonical",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Lost and found\n\n## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n> Ask at the front desk.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-case-spelling",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Lost and found\n\n## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n> Ask at the FRONZ desk.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-different-prose",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Missing items\n\n## Red cap\n\nSomeone found it beside the side gate.\n\n### Collection note\n\n> Visit the office after lunch.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-empty-quote",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-quote",
+      "source": "# Lost and found\n\n## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-quote"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-extra-block",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-shape",
+      "source": "# Lost and found\n\n## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n> Ask at the front desk.\n\nExtra note 9.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-shape"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-matched-review",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Lost and found\n\n## Blue scarf\n\n*It was found near the gym door.*\n\n### Pickup note\n\n> Ask at the front desk.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-missing-paragraph",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-shape",
+      "source": "# Lost and found\n\n## Blue scarf\n\n### Pickup note\n\n> Ask at the front desk.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-shape"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-missing-quote",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-shape",
+      "source": "# Lost and found\n\n## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-shape"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-missing-title",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-shape",
+      "source": "## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n> Ask at the front desk.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-shape"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-hierarchy",
+      "source": "# Missing items\n\n### Red cap\n\nSomeone found it beside the side gate.\n\n### Collection note\n\n> Visit the office after lunch.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-wrong-depth",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-hierarchy",
+      "source": "# Lost and found\n\n### Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n> Ask at the front desk.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found-wrong-order",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-lost-and-found-shape",
+      "source": "# Lost and found\n\n## Blue scarf\n\n### Pickup note\n\nIt was found near the gym door.\n\n> Ask at the front desk.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-lost-and-found-shape"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-canonical",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# School play\n\n## Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n> Label every bag with a name.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-school-play-case-spelling",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# School play\n\n## Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n> Label EVERZ bag with a name.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-school-play-different-prose",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Stage show\n\n## Outfit return\n\nTake every outfit to the band room.\n\n### Performer note\n\n> Mark each tote with its owner.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-message-school-play-empty-quote",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-school-play-quote",
+      "source": "# School play\n\n## Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-quote"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-extra-block",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-school-play-shape",
+      "source": "# School play\n\n## Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n> Label every bag with a name.\n\nExtra note 12.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-shape"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-matched-review",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# School play\n\n## Costume check\n\n*Bring each costume to the music room.*\n\n### Cast note\n\n> Label every bag with a name.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-message-school-play-missing-paragraph",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-school-play-shape",
+      "source": "# School play\n\n## Costume check\n\n### Cast note\n\n> Label every bag with a name.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-shape"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-missing-quote",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-school-play-shape",
+      "source": "# School play\n\n## Costume check\n\nBring each costume to the music room.\n\n### Cast note",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-shape"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-missing-title",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-message-school-play-shape",
+      "source": "## Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n> Label every bag with a name.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-shape"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-school-play-hierarchy",
+      "source": "# Stage show\n\n### Outfit return\n\nTake every outfit to the band room.\n\n### Performer note\n\n> Mark each tote with its owner.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-wrong-depth",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-message-school-play-hierarchy",
+      "source": "# School play\n\n### Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n> Label every bag with a name.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-message-school-play-wrong-order",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-message-school-play-shape",
+      "source": "# School play\n\n## Costume check\n\n### Cast note\n\nBring each costume to the music room.\n\n> Label every bag with a name.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-message-school-play-shape"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-canonical",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-case-spelling",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it OUTSIDZ",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-different-prose",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Seed station\n\nRestock the tray before sunrise.\n\n## Method\n\n1. Lift the top\n2. Add fresh grain\n3. Return it to the hook",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-empty-list-item",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-list",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n1. \n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-list"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-extra-block",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-shape",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside\n\nExtra note 3.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-shape"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-matched-review",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Bird feeder\n\n*Fill the feeder before the birds arrive.*\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-missing-paragraph",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-shape",
+      "source": "# Bird feeder\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-shape"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-missing-title",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-shape",
+      "source": "Fill the feeder before the birds arrive.\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-shape"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-hierarchy",
+      "source": "# Seed station\n\nRestock the tray before sunrise.\n\n### Method\n\n1. Lift the top\n2. Add fresh grain\n3. Return it to the hook",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-too-few-items",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-list",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n1. Open the lid",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-list"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-wrong-depth",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-hierarchy",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n### Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-wrong-list-kind",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-list",
+      "source": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n- Open the lid\n- Pour in seed\n- Hang it outside",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-list"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder-wrong-order",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-bird-feeder-shape",
+      "source": "# Bird feeder\n\n## Steps\n\nFill the feeder before the birds arrive.\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-bird-feeder-shape"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-canonical",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-case-spelling",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n1. MOVZ two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-different-prose",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Reading tent\n\nMake a quiet nook near the couch.\n\n## Method\n\n1. Place two stools\n2. Spread a quilt\n3. Bring a cushion",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-empty-list-item",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-list",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n1. \n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-list"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-extra-block",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-shape",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow\n\nExtra note 2.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-shape"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-matched-review",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Blanket fort\n\n*Build a cozy place for reading.*\n\n## Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-missing-paragraph",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-shape",
+      "source": "# Blanket fort\n\n## Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-shape"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-missing-title",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-shape",
+      "source": "Build a cozy place for reading.\n\n## Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-shape"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-hierarchy",
+      "source": "# Reading tent\n\nMake a quiet nook near the couch.\n\n### Method\n\n1. Place two stools\n2. Spread a quilt\n3. Bring a cushion",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-too-few-items",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-list",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n1. Move two chairs",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-list"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-wrong-depth",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-hierarchy",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n### Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-wrong-list-kind",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-list",
+      "source": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n- Move two chairs\n- Drape the blanket\n- Add a pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-list"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort-wrong-order",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-blanket-fort-shape",
+      "source": "# Blanket fort\n\n## Steps\n\nBuild a cozy place for reading.\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-blanket-fort-shape"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-canonical",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Car wash\n\nClean the car in a shady spot.\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-case-spelling",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Car wash\n\nClean the car in a SHADZ spot.\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-different-prose",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Wash the wagon\n\nWork where the pavement is cool.\n\n## Method\n\n1. Spray off dust\n2. Wipe the doors\n3. Polish the glass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-empty-list-item",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-list",
+      "source": "# Car wash\n\nClean the car in a shady spot.\n\n## Steps\n\n1. \n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-list"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-extra-block",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-shape",
+      "source": "# Car wash\n\nClean the car in a shady spot.\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows\n\nExtra note 1.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-shape"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-matched-review",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Car wash\n\n*Clean the car in a shady spot.*\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-missing-paragraph",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-shape",
+      "source": "# Car wash\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-shape"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-missing-title",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-shape",
+      "source": "Clean the car in a shady spot.\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-shape"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-hierarchy",
+      "source": "# Wash the wagon\n\nWork where the pavement is cool.\n\n### Method\n\n1. Spray off dust\n2. Wipe the doors\n3. Polish the glass",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-too-few-items",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-list",
+      "source": "# Car wash\n\nClean the car in a shady spot.\n\n## Steps\n\n1. Rinse the car",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-list"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-wrong-depth",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-hierarchy",
+      "source": "# Car wash\n\nClean the car in a shady spot.\n\n### Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-wrong-list-kind",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-list",
+      "source": "# Car wash\n\nClean the car in a shady spot.\n\n## Steps\n\n- Rinse the car\n- Wash each side\n- Dry the windows",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-list"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash-wrong-order",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-car-wash-shape",
+      "source": "# Car wash\n\n## Steps\n\nClean the car in a shady spot.\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-car-wash-shape"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-canonical",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Sort the mail\n\nClear the table before sorting.\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-case-spelling",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Sort the mail\n\nClear the TABLZ before sorting.\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-different-prose",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Letter piles\n\nUse an empty counter for the envelopes.\n\n## Method\n\n1. Read the labels\n2. Stack each group\n3. Toss old ads",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-empty-list-item",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-list",
+      "source": "# Sort the mail\n\nClear the table before sorting.\n\n## Steps\n\n1. \n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-list"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-extra-block",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-shape",
+      "source": "# Sort the mail\n\nClear the table before sorting.\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers\n\nExtra note 4.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-shape"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-matched-review",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Sort the mail\n\n*Clear the table before sorting.*\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-heading-plain"
+      ]
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-missing-paragraph",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-shape",
+      "source": "# Sort the mail\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-shape"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-missing-title",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-shape",
+      "source": "Clear the table before sorting.\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-shape"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-hierarchy",
+      "source": "# Letter piles\n\nUse an empty counter for the envelopes.\n\n### Method\n\n1. Read the labels\n2. Stack each group\n3. Toss old ads",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-too-few-items",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-list",
+      "source": "# Sort the mail\n\nClear the table before sorting.\n\n## Steps\n\n1. Check each name",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-list"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-wrong-depth",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-hierarchy",
+      "source": "# Sort the mail\n\nClear the table before sorting.\n\n### Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-hierarchy"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-wrong-list-kind",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-list",
+      "source": "# Sort the mail\n\nClear the table before sorting.\n\n## Steps\n\n- Check each name\n- Group the letters\n- Recycle the flyers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-list"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail-wrong-order",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l2-sectioned-process-sort-mail-shape",
+      "source": "# Sort the mail\n\n## Steps\n\nClear the table before sorting.\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l2-sectioned-process-sort-mail-shape"
+    }
+  ]
+}
