@@ -1,5 +1,10 @@
 # Success Sound Implementation Plan
 
+> Superseded on 2026-07-19: the original single CC0 cue was replaced at the
+> project owner's direction with three supplied cues for Matched, Try again,
+> and the turn summary. The implementation now lives in
+> `src/sound/feedbackSound.ts`; this file remains as the historical #37 plan.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Play one restrained success chime when a verdict becomes `matched`, with a persistent mute control and browser-safe first-gesture unlock.

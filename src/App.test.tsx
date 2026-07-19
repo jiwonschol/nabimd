@@ -133,7 +133,7 @@ describe("App", () => {
       expect(screen.getByLabelText("Practice progress")).toHaveTextContent(
         `1 of ${expectedLength}`,
       )
-      expect(screen.getByText(entry.label)).toBeVisible()
+      expect(screen.getByLabelText(entry.label)).toBeVisible()
       expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
       view.unmount()
     }
@@ -271,7 +271,7 @@ describe("App", () => {
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(
       originalGoal,
     )
-    expect(screen.getByText(entryChoices[1].label)).toBeVisible()
+    expect(screen.getByLabelText(entryChoices[1].label)).toBeVisible()
     expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
       "aria-expanded",
       "false",
@@ -328,7 +328,7 @@ describe("App", () => {
     }
 
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
-    expect(screen.getByText("Level 1 — Learn the syntax")).toBeVisible()
+    expect(screen.getByLabelText("Level 1 — Learn the syntax")).toBeVisible()
     expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
   })

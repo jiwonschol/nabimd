@@ -12,7 +12,7 @@ top bar, one question sheet, and one answer sheet.
 - The exercise occupies exactly one browser viewport. The document and body do
   not scroll during practice.
 - One top bar contains the Nabi Markdown home wordmark, Exit, Try another,
-  level/progress, Hint, and Check/Next.
+  level, elapsed clock, scheduled progress, sound, Hint, and Check/Next.
 - Exit, Try another, Hint, and Check/Next have equal control dimensions.
 - Check/Next is the only filled control. The bottom status bar is removed.
 - The wordmark and Exit return directly to the level chooser.
@@ -76,7 +76,23 @@ capitalization, spelling, punctuation, or exact prose as an error.
 | Source editor | system monospace |
 
 There are no gradients, glass effects, syntax colors, decorative shadows,
-mascots, badges, pills, XP, confetti, or card grids.
+mascots, decorative badges, XP, confetti, or card grids. Compact state labels
+remain permissible when they communicate sound or repair state.
+
+## Progress and results
+
+- Levels 1–4 render six scheduled rail markers; Level 5 renders its truthful
+  available scheduled count.
+- Repair practice does not add a score marker. It keeps the current marker and
+  separately exposes the expanded exercise position and total.
+- The clock is tabular, survives a same-session reload, and freezes when the
+  turn completes.
+- One persistent sound preference covers three restrained cues: Matched, Try
+  again, and turn completion. The cues share one channel so a newer state can
+  replace an obsolete sound rather than overlap it.
+- Results preserve the monochrome editorial hierarchy: score and time lead,
+  level standing never fabricates data, and syntax review appears only after a
+  failed Check.
 
 ## Responsive continuation
 

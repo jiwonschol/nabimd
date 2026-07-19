@@ -21,7 +21,7 @@ Capitalization, spelling, prose, and exact wording never affect the outcome. The
 ## Fixed frame
 
 - The app shell occupies one viewport and never creates document-level vertical scroll during an exercise.
-- One top bar owns the wordmark, Exit, Try another, level/progress, Hint, and Check/Next.
+- One top bar owns the wordmark, Exit, Try another, elapsed clock, scheduled progress, sound, Hint, and Check/Next.
 - Exit, Try another, Hint, and Check/Next use equal control dimensions. Check/Next remains the only filled control.
 - The Nabi Markdown wordmark and Exit both return directly to the level chooser.
 - Try another replaces only the current prompt with different content from the same skill. It does not consume a step or create transfer debt.
@@ -62,6 +62,9 @@ Capitalization, spelling, prose, and exact wording never affect the outcome. The
   Its top-bar control visibly displays `⌘↩` on macOS or `Ctrl+↩` elsewhere so
   the keyboard path is discoverable.
 - Try again and Matched appear briefly as a large, viewport-centered notice, pale red or pale green, then fade away. The notice is announced through an ARIA live region.
+- Matched, Try again, and turn completion each have one restrained cue on a
+  shared, interruptible audio channel. One persistent mute preference covers
+  all three; no typing, Hint, Check-before-verdict, or Next sound is added.
 - After Try again, the learner stays in the current problem and returns to Write to repair it.
 - After Matched, the top-bar Next button receives focus. Space or Enter advances.
 - When the next problem appears, Write opens and the editor receives focus.
@@ -78,7 +81,7 @@ This resolves the conflict between a low-level preview preference and the strong
 
 ## Completion
 
-The existing completion choices remain. Completion may replace the two-panel workspace, but the top-level navigation continues to offer a direct route back to the chooser.
+Completion replaces the two-panel workspace with a focused turn summary while the top bar stays fixed. The summary shows scheduled score, frozen elapsed time, encouraging copy, an honest level-standing placeholder from `rankingClient`, and authored syntax reminders for failed scheduled slots. It never invents percentile data or turns a remediation exercise into another score slot. The existing Practice again, Start over, and Change level choices remain.
 
 ## Accessibility and verification
 

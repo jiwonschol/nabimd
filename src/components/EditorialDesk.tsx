@@ -1,11 +1,19 @@
 import type { useLearningSession } from "../session/useLearningSession"
-import { getEntryChoice } from "../content/entryChoices"
+import {
+  createRunProblemIds,
+  getEntryChoice,
+} from "../content/entryChoices"
+import type { RankingClient } from "../ranking/rankingClient"
 import { AnswerPanel } from "./AnswerPanel"
+import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
+import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 
-type EditorialDeskProps = ReturnType<typeof useLearningSession>
+type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
+  rankingClient: RankingClient
+}
 
 export function EditorialDesk({
   session,
@@ -20,10 +28,22 @@ export function EditorialDesk({
   startOver,
   changeLevel,
   tryAnother,
+  rankingClient,
 }: EditorialDeskProps) {
   const runLength = session.runProblemIds.length || 1
   const problemPosition = Math.min(session.runStepIndex + 1, runLength)
   const entry = getEntryChoice(session.entryId!)
+  const scheduledRunLength = createRunProblemIds(
+    session.entryId!,
+    session.runNumber,
+  ).length
+  const score =
+    scheduledRunLength - session.failedScheduledStepIndexes.length
+  const elapsedMs = getElapsedMs(
+    session.runStartedAtMs,
+    session.runCompletedAtMs,
+    session.runCompletedAtMs ?? Date.now(),
+  )
 
   return (
     <main className="app-shell app-shell--practice">
@@ -33,6 +53,7 @@ export function EditorialDesk({
         evaluation={session.evaluation}
         hadFailure={session.hadFailure}
         hintOpen={session.coach === "hint"}
+        currentIsTransfer={session.currentIsTransfer}
         onCheck={check}
         onExit={changeLevel}
         onNext={next}
@@ -40,33 +61,26 @@ export function EditorialDesk({
         onTryAnother={tryAnother}
         phase={session.phase}
         problemPosition={problemPosition}
+        runCompletedAtMs={session.runCompletedAtMs}
         runLength={runLength}
+        runStartedAtMs={session.runStartedAtMs}
+        scheduledRunLength={scheduledRunLength}
+        scheduledStepIndex={session.scheduledStepIndex}
       />
 
       {session.phase === "complete" ? (
-        <section className="completion" aria-labelledby="completion-title">
-          <h2 id="completion-title">Practice complete.</h2>
-          <p>
-            You completed every step in {entry.label}. Keep practicing or
-            choose a different level.
-          </p>
-          <div className="completion__actions">
-            <button
-              autoFocus
-              className="primary-button"
-              onClick={practiceAgain}
-              type="button"
-            >
-              Practice again
-            </button>
-            <button className="text-button" onClick={startOver} type="button">
-              Start over
-            </button>
-            <button className="text-button" onClick={changeLevel} type="button">
-              Change level
-            </button>
-          </div>
-        </section>
+        <RunSummary
+          elapsedMs={elapsedMs}
+          failedProblemIds={session.failedProblemIds}
+          level={entry.level}
+          levelLabel={entry.label}
+          onChangeLevel={changeLevel}
+          onPracticeAgain={practiceAgain}
+          onStartOver={startOver}
+          rankingClient={rankingClient}
+          score={score}
+          total={scheduledRunLength}
+        />
       ) : (
         <>
           <article className="cbt-workspace">

@@ -90,11 +90,33 @@ describe("learningSessionReducer", () => {
 
   it("restores a completed problem as complete", () => {
     const passed = editAndCheck(newSession(), apple, "# Apple")
-    const complete = learningSessionReducer(passed, { type: "completed" })
+    const complete = learningSessionReducer(passed, {
+      type: "completed",
+      atMs: 9_000,
+    })
 
     const restored = createLearningSession(complete.progress, apple)
 
     expect(restored.phase).toBe("complete")
+  })
+
+  it("keeps completion time valid if the wall clock moves backward", () => {
+    const started = learningSessionReducer(newSession(), {
+      type: "started",
+      atMs: 10_000,
+      entryId: "level-1",
+      runNumber: 0,
+      runProblemIds: [apple.id],
+      problem: apple,
+    })
+    const passed = editAndCheck(started, apple, "# Apple")
+    const complete = learningSessionReducer(passed, {
+      type: "completed",
+      atMs: 9_000,
+    })
+
+    expect(complete.runCompletedAtMs).toBe(10_000)
+    expect(complete.progress.runCompletedAtMs).toBe(10_000)
   })
 
   it("completes after first-attempt Matched without requiring Review", () => {
@@ -107,9 +129,10 @@ describe("learningSessionReducer", () => {
     expect(passed.evaluation?.status).toBe("matched")
     expect(passed.coach).toBe("closed")
     expect(canAdvance(passed)).toBe(true)
-    expect(learningSessionReducer(passed, { type: "completed" }).phase).toBe(
-      "complete",
-    )
+    expect(
+      learningSessionReducer(passed, { type: "completed", atMs: 9_000 })
+        .phase,
+    ).toBe("complete")
   })
 
   it("blocks Next after Fail and routes a repaired answer to transfer", () => {
@@ -118,7 +141,9 @@ describe("learningSessionReducer", () => {
     expect(failed.evaluation?.status).toBe("fail")
     expect(failed.needsTransfer).toBe(true)
     expect(canAdvance(failed)).toBe(false)
-    expect(learningSessionReducer(failed, { type: "completed" })).toBe(failed)
+    expect(
+      learningSessionReducer(failed, { type: "completed", atMs: 9_000 }),
+    ).toBe(failed)
 
     const repaired = editAndCheck(failed, apple, "# Apple")
     const transfer = learningSessionReducer(repaired, {
@@ -183,6 +208,7 @@ describe("learningSessionReducer", () => {
 
     const complete = learningSessionReducer(transferRepaired, {
       type: "completed",
+      atMs: 9_000,
     })
 
     expect(complete.phase).toBe("complete")
@@ -252,6 +278,7 @@ describe("learningSessionReducer", () => {
   it("replaces the current prompt without advancing the run", () => {
     const started = learningSessionReducer(newSession(), {
       type: "started",
+      atMs: 1_000,
       entryId: "level-1",
       runNumber: 0,
       runProblemIds: ["heading-apple", "heading-study-tools"],
@@ -277,6 +304,7 @@ describe("learningSessionReducer", () => {
   it("turns a failed prompt replacement into the required same-skill retry", () => {
     const started = learningSessionReducer(newSession(), {
       type: "started",
+      atMs: 1_000,
       entryId: "level-1",
       runNumber: 0,
       runProblemIds: ["heading-apple", "heading-study-tools"],
@@ -299,6 +327,7 @@ describe("learningSessionReducer", () => {
     const levelOneProblem = getProblem(createRunProblemIds("level-1", 0)[0]!)
     const started = learningSessionReducer(newSession(levelOneProblem), {
       type: "started",
+      atMs: 1_000,
       entryId: "level-1",
       runNumber: 0,
       runProblemIds: [levelOneProblem.id],
@@ -314,5 +343,46 @@ describe("learningSessionReducer", () => {
     expect(started.hintStartsOpen).toBe(true)
     expect(replaced.hintStartsOpen).toBe(false)
     expect(replaced.coach).toBe("closed")
+  })
+
+  it("tracks one score penalty per scheduled step across remediation", () => {
+    const scheduledIds = createRunProblemIds("level-1", 0)
+    const started = learningSessionReducer(newSession(), {
+      type: "started",
+      atMs: 1_000,
+      entryId: "level-1",
+      runNumber: 0,
+      runProblemIds: scheduledIds,
+      problem: apple,
+    })
+    const failedOnce = editAndCheck(started, apple, "#Apple")
+    const failedTwice = editAndCheck(failedOnce, apple, "#Still wrong")
+    const repaired = editAndCheck(failedTwice, apple, "# Apple")
+    const transfer = learningSessionReducer(repaired, {
+      type: "next",
+      nextProblem: rainyDay,
+      nextDraft: "",
+    })
+
+    expect(transfer.scheduledStepIndex).toBe(0)
+    expect(transfer.failedScheduledStepIndexes).toEqual([0])
+    expect(transfer.failedProblemIds).toEqual([apple.id])
+
+    const transferFailed = editAndCheck(transfer, rainyDay, "#Rainy day")
+    const transferRepaired = editAndCheck(
+      transferFailed,
+      rainyDay,
+      "# Rainy day",
+    )
+    const nextScheduled = learningSessionReducer(transferRepaired, {
+      type: "next",
+      nextProblem: getProblem(scheduledIds[1]!),
+      nextDraft: "",
+    })
+
+    expect(nextScheduled.scheduledStepIndex).toBe(1)
+    expect(nextScheduled.failedScheduledStepIndexes).toEqual([0])
+    expect(nextScheduled.failedProblemIds).toEqual([apple.id, rainyDay.id])
+    expect(nextScheduled.runStartedAtMs).toBe(1_000)
   })
 })

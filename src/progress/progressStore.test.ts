@@ -49,7 +49,7 @@ function isEligibleTransferProblemId(
   )
 }
 
-describe("progressStore v4", () => {
+describe("progressStore v5", () => {
   let storage: Storage
 
   beforeEach(() => {
@@ -58,10 +58,15 @@ describe("progressStore v4", () => {
 
   it("binds persisted progress to the compiled bank revision", () => {
     const progress = createDefaultProgress(problemBank[0].id)
-    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v4")
+    expect(PROGRESS_STORAGE_KEY).toBe("nabimd.progress.v5")
     expect(progress).toMatchObject({
-      version: 4,
+      version: 5,
       bankRevision: problemBankRevision,
+      scheduledStepIndex: 0,
+      failedScheduledStepIndexes: [],
+      failedProblemIds: [],
+      runStartedAtMs: null,
+      runCompletedAtMs: null,
     })
   })
 
@@ -70,12 +75,71 @@ describe("progressStore v4", () => {
     const progress = createDefaultProgress(ids[0]!)
     progress.entryId = "level-4"
     progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
     progress.draftByProblemId[ids[0]!] = "# Draft"
     saveProgress(storage, progress)
 
     expect(
       loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
+  })
+
+  it("round-trips the greeting state without an active timer", () => {
+    const progress = createDefaultProgress(problemBank[0].id)
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
+  it("round-trips score facts and a frozen completion time", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids.at(-1)!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStepIndex = ids.length
+    progress.scheduledStepIndex = ids.length
+    progress.failedScheduledStepIndexes = [0]
+    progress.failedProblemIds = [ids[0]!]
+    progress.runStartedAtMs = 5_000
+    progress.runCompletedAtMs = 72_000
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it("rejects impossible timing and score metadata", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 10_000
+
+    saveProgress(storage, {
+      ...progress,
+      runCompletedAtMs: 9_999,
+    })
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
+
+    saveProgress(storage, {
+      ...progress,
+      failedScheduledStepIndexes: [ids.length],
+    })
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
+
+    saveProgress(storage, {
+      ...progress,
+      scheduledStepIndex: ids.length,
+      failedScheduledStepIndexes: [ids.length - 1],
+    })
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
   it("resets safely when the bank revision changes", () => {
@@ -103,6 +167,7 @@ describe("progressStore v4", () => {
     const progress = createDefaultProgress(replacement.id)
     progress.entryId = "level-1"
     progress.runProblemIds = [replacement.id, ...baseline.slice(1)]
+    progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
     expect(
@@ -122,6 +187,7 @@ describe("progressStore v4", () => {
     progress.entryId = "level-1"
     progress.runProblemIds = [replacement.id, ...baseline.slice(1)]
     progress.currentIsTransfer = true
+    progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
     expect(
@@ -135,6 +201,7 @@ describe("progressStore v4", () => {
     const progress = createDefaultProgress(wrongLevel)
     progress.entryId = "level-3"
     progress.runProblemIds = [wrongLevel, ...baseline.slice(1)]
+    progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
     expect(
@@ -156,6 +223,7 @@ describe("progressStore v4", () => {
     progress.runProblemIds = [baseline[0]!, transfer.id, ...baseline.slice(1)]
     progress.runStepIndex = 1
     progress.currentIsTransfer = true
+    progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
     expect(
@@ -175,6 +243,7 @@ describe("progressStore v4", () => {
     ]
     progress.runStepIndex = 1
     progress.currentIsTransfer = true
+    progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
     expect(
@@ -212,6 +281,7 @@ describe("progressStore v4", () => {
     progress.entryId = "level-1"
     progress.runNumber = MAX_PERSISTED_RUN_NUMBER + 1
     progress.runProblemIds = createRunProblemIds("level-1", 0)
+    progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
     expect(

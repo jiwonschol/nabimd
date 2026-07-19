@@ -182,10 +182,17 @@ content merely to display six.
 
 Only an actual failed Check creates remediation. After repair, a
 different-content problem from the same skill family becomes the next run
-step. This repair is outside the six scheduled slots and may grow the visible
-total from six to seven. It consumes the obligation even if it also needs
-repair, so remediation cannot form an infinite chain. Opening Hint never
-creates remediation.
+step. This repair is outside the six scheduled score slots. The six-marker rail
+holds its scheduled position while a separate Repair practice label shows the
+truthful expanded queue position and total, such as `Exercise 2 of 7`. It
+consumes the obligation even if it also needs repair, so remediation cannot
+form an infinite chain. Opening Hint never creates remediation.
+
+The elapsed clock starts when the learner chooses a level, is reconstructed
+from the persisted epoch timestamp after a reload, and freezes at completion.
+The completion screen shows the scheduled score, frozen time, encouraging copy,
+and authored syntax reminders for any scheduled slots that received a failed
+Check. Remediation cannot deduct the same scheduled score slot twice.
 
 Completion offers three actions:
 
@@ -342,13 +349,15 @@ Selection is deterministic and local.
 - Ongoing practice: avoid recently shown problem IDs before recycling the bank.
 
 Progress uses a versioned `sessionStorage` document containing the selected
-entry, deterministic run number and sequence, visible run-step index, completed
-and recent problem IDs, pending transfer state, and the current draft. Reloading
-in the same browser session restores the entry, run progress, and draft. A new
-browser session starts at the greeting. The guarded volatile `Storage` fallback
-keeps the current in-memory run usable when browser storage is unavailable.
+entry, deterministic run number and sequence, visible and scheduled run-step
+indices, completed and recent problem IDs, failed scheduled slots and problem
+IDs, start/completion timestamps, pending transfer state, and the current draft.
+Reloading in the same browser session restores the entry, timer, run progress,
+and draft. A new browser session starts at the greeting. The guarded volatile
+`Storage` fallback keeps the current in-memory run usable when browser storage
+is unavailable.
 
-The replayable-session schema is version 2. No migration from the earlier local
+The replayable-session schema is version 5. No migration from an earlier local
 schema is required because persistence is intentionally session-scoped. No
 account, database, cloud sync, or personal profile is part of Build Week.
 
@@ -549,7 +558,9 @@ learner application remains deterministic and makes no runtime AI call.
 - Korean or multilingual UI
 - Infinite generated exercises
 - Chat tutor, autocomplete, or answer insertion
-- XP, lives, coins, streak penalties, ranking, or leaderboards
+- XP, lives, coins, streak penalties, named leaderboards, or personal rankings;
+  the completion screen only exposes an anonymous standing-client seam and an
+  honest collecting-data placeholder until separate backend work is approved
 - Full CommonMark or GFM conformance
 - Tables, footnotes, front matter, raw HTML, nested lists, or document upload
 - Native apps or a mobile-specific symbol keyboard

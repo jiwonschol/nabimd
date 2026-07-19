@@ -1,9 +1,15 @@
 import { EditorialDesk } from "./components/EditorialDesk"
 import { Wordmark } from "./components/Wordmark"
 import { entryChoices } from "./content/entryChoices"
+import { localRankingClient } from "./ranking/localRankingClient"
+import type { RankingClient } from "./ranking/rankingClient"
 import { useLearningSession } from "./session/useLearningSession"
 
-export function App() {
+type AppProps = {
+  rankingClient?: RankingClient
+}
+
+export function App({ rankingClient = localRankingClient }: AppProps = {}) {
   const learningSession = useLearningSession()
 
   if (!learningSession.session.entryId) {
@@ -32,5 +38,5 @@ export function App() {
     )
   }
 
-  return <EditorialDesk {...learningSession} />
+  return <EditorialDesk {...learningSession} rankingClient={rankingClient} />
 }

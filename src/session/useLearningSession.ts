@@ -40,7 +40,10 @@ function initializeSession(storage: Storage) {
   return createLearningSession(progress, getProblem(progress.currentProblemId))
 }
 
-export function useLearningSession(storage?: Storage) {
+export function useLearningSession(
+  storage?: Storage,
+  now: () => number = Date.now,
+) {
   const [sessionStorage] = useState(() => storage ?? resolveBrowserStorage())
   const [session, dispatch] = useReducer(
     learningSessionReducer,
@@ -63,12 +66,13 @@ export function useLearningSession(storage?: Storage) {
     if (!firstProblemId) return
     dispatch({
       type: "started",
+      atMs: now(),
       entryId,
       runNumber,
       runProblemIds,
       problem: getProblem(firstProblemId),
     })
-  }, [])
+  }, [now])
 
   const start = useCallback(
     (entryId: EntryId) => {
@@ -155,8 +159,8 @@ export function useLearningSession(storage?: Storage) {
       return
     }
 
-    dispatch({ type: "completed" })
-  }, [problem, session])
+    dispatch({ type: "completed", atMs: now() })
+  }, [now, problem, session])
 
   return {
     session,

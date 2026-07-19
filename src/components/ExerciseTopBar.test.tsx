@@ -1,14 +1,16 @@
 import { fireEvent, render, screen } from "@testing-library/react"
+import type { ComponentProps } from "react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import {
-  __resetSuccessSoundForTesting,
+  __resetFeedbackSoundForTesting,
   setSoundMuted,
-} from "../sound/successSound"
+} from "../sound/feedbackSound"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 
 function renderTopBar(
   phase: "editing" | "complete",
   onToggleHint = vi.fn(),
+  overrides: Partial<ComponentProps<typeof ExerciseTopBar>> = {},
 ) {
   render(
     <ExerciseTopBar
@@ -17,6 +19,7 @@ function renderTopBar(
       evaluation={null}
       hadFailure={false}
       hintOpen={false}
+      currentIsTransfer={false}
       onCheck={vi.fn()}
       onExit={vi.fn()}
       onNext={vi.fn()}
@@ -24,7 +27,12 @@ function renderTopBar(
       onTryAnother={vi.fn()}
       phase={phase}
       problemPosition={1}
-      runLength={3}
+      runCompletedAtMs={null}
+      runLength={6}
+      runStartedAtMs={1_000}
+      scheduledRunLength={6}
+      scheduledStepIndex={0}
+      {...overrides}
     />,
   )
   return onToggleHint
@@ -37,7 +45,7 @@ describe("ExerciseTopBar", () => {
   })
 
   afterEach(() => {
-    __resetSuccessSoundForTesting()
+    __resetFeedbackSoundForTesting()
     vi.restoreAllMocks()
   })
 
@@ -83,7 +91,7 @@ describe("ExerciseTopBar", () => {
     renderTopBar("editing")
 
     const soundToggle = screen.getByRole("button", {
-      name: "Mute success sound",
+      name: "Mute feedback sounds",
     })
 
     expect(soundToggle).toHaveTextContent("Muted")
@@ -91,5 +99,23 @@ describe("ExerciseTopBar", () => {
 
     expect(soundToggle).toHaveTextContent("Sound on")
     expect(window.localStorage.getItem("nabimd.sound-muted")).toBe("false")
+  })
+
+  it("renders scheduled steps separately from repair practice", () => {
+    renderTopBar("editing", vi.fn(), {
+      currentIsTransfer: true,
+      problemPosition: 2,
+      runLength: 7,
+      scheduledStepIndex: 0,
+    })
+
+    expect(screen.getAllByRole("listitem", { name: /Step/ })).toHaveLength(6)
+    expect(screen.getByRole("listitem", { name: "Step 1, current" })).toHaveAttribute(
+      "aria-current",
+      "step",
+    )
+    expect(screen.getByText("1 of 6")).toBeVisible()
+    expect(screen.getByText("Repair practice")).toBeVisible()
+    expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })
 })

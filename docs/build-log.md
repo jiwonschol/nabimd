@@ -1693,3 +1693,68 @@ proved the overlap. The cursor now advances by the full two-slot offset, giving
 the first two work orders to one turn and the other two to the next. GitHub
 CodeRabbit could not review this PR because its explicit fair-usage response
 deferred the next included review; it was not represented as active or complete.
+
+## 2026-07-19 — Issue #37 verdict success sound
+
+Jiwon wanted one refined success cue at the moment a correct verdict appears,
+not UI noise on Check, Next, failure, or typing. Codex selected Kenney's
+`confirmation_003.ogg`, recorded its CC0 source, and kept the asset behind one
+native `Audio` controller so it remains replaceable without an audio library.
+The preference is the one deliberate localStorage exception: learning progress
+stays session-scoped, while an accessibility mute choice survives the visit.
+
+Browser autoplay policy created the important engineering boundary. The first
+pointer or keyboard gesture primes muted audio asynchronously; a verdict that
+arrives during that promise is queued once, rejection leaves later gestures
+free to retry, and muting stops and rewinds active playback. Success fires only
+on a non-Matched to Matched transition, so React rerenders cannot replay it.
+
+Codex review found duplicate transition playback, mute-during-playback,
+premature asynchronous unlock, and a changing accessible toggle name. Each was
+fixed and independently rechecked. GitHub CodeRabbit then completed its active
+review, approved the PR, and suggested isolating singleton sound state between
+tests; that valid nitpick was also fixed before merge. PR #46 merged only after
+CI and CodeRabbit both passed.
+
+## 2026-07-19 — Issue #38 game layer design and implementation
+
+The results layer exposed a real product tension. D3 says remediation can make
+six scheduled exercises become seven visible exercises, while a game score and
+progress rail need a stable denominator. Nabi now treats those as different
+facts: six scheduled markers remain the score slots, and `Repair practice`
+shows the truthful expanded queue position such as `Exercise 2 of 7`. A
+persisted scheduled cursor stays on the same marker during repair, so repeated
+failure in that repair cannot deduct the scheduled score twice.
+
+The elapsed clock persists one epoch start and one completion timestamp rather
+than writing storage every second. React derives the display from those facts,
+so background throttling and a same-session reload cannot reset the clock. The
+progress document moved to schema v5 and now validates timing order, bounded
+scheduled failures, known failed problem IDs, and deterministic run reachability.
+As required by D7, incompatible earlier session records reset safely instead of
+being migrated across browser sessions.
+
+The new results screen leads with scheduled score and frozen time, keeps all
+three replay actions, and groups authored teaching reminders by syntax family.
+It never compares the learner's prose. `rankingClient` is asynchronous and
+identity-free so Issue #41 can implement it later; the shipped local client
+returns `Collecting data` and `Your time only` rather than fabricating a
+percentile. No login, backend, PII, grading change, or editor-key change entered
+this issue.
+
+Independent Codex review found that the first repair implementation could move
+a later scheduled problem forward instead of adding a separate exercise. That
+made it possible to finish without practicing all six scored slots. The queue
+now always inserts repair practice and preserves every scheduled occurrence;
+the persisted-schedule validator also tracks the scheduled cursor through its
+reachability graph instead of accepting an unrelated in-range value. Review
+also led to clamping completion time against a backward wall-clock change and
+announcing asynchronous standing updates to assistive technology.
+
+After the initial #37 merge, Jiwon supplied the three final product cues and
+rejected the temporary success sound on listening. Codex converted the WAV
+masters to compact MP3 delivery assets, removed the temporary Kenney file, and
+generalized the browser-safe controller to one interruptible channel for
+Matched, Try again, and the turn summary. The existing persistent mute choice,
+first-gesture unlock, rejected-playback retry, and duplicate-transition guards
+remain in force.
