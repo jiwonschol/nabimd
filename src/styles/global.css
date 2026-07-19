@@ -477,6 +477,41 @@ button:focus-visible,
   text-underline-offset: 0.15em;
 }
 
+.rendered-document__quote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-inline-start: 0.2rem solid var(--quote-rule);
+  background: var(--quote-surface);
+  color: var(--ink);
+}
+
+.rendered-document__quote > :first-child {
+  margin-top: 0;
+}
+
+.rendered-document__quote > :last-child {
+  margin-bottom: 0;
+}
+
+.rendered-document__quote .rendered-document__quote {
+  margin: 1rem 0 0.15rem;
+  background: var(--quote-nested-surface);
+}
+
+.rendered-document__quote h1 {
+  margin: 0 0 0.45em;
+  font-size: clamp(1.5rem, 2.2vw, 2.05rem);
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.rendered-document__quote h2 {
+  margin: 0 0 0.45em;
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
 .markdown-source-editor__file {
   color: #8a8a84;
   font-family: var(--mono);
@@ -624,20 +659,33 @@ button:focus-visible,
   text-transform: uppercase;
 }
 
-.answer-review__section pre {
-  margin: 0;
-  padding: 0.85rem 1rem;
-  overflow: auto;
+.answer-review__document {
   border: 1px solid var(--line);
   background: #fafaf8;
-  font-family: var(--mono);
-  font-size: 0.88rem;
-  line-height: 1.55;
-  white-space: pre-wrap;
 }
 
-.answer-review__section p,
-.answer-review__section ul {
+.answer-review__document > .rendered-document__body {
+  min-height: 0;
+  padding: 0.85rem 1rem;
+  overflow: visible;
+}
+
+.answer-review__document .rendered-document__body h1 {
+  margin-bottom: 0.45em;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.answer-review__document .rendered-document__body h2 {
+  margin: 0 0 0.45em;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.answer-review__section > p,
+.answer-review__section > ul {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.55;

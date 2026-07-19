@@ -23,6 +23,11 @@ export function RenderedDocumentBody({
             a: ({ children }) => (
               <span className="rendered-document__link">{children}</span>
             ),
+            blockquote: ({ children }) => (
+              <blockquote className="rendered-document__quote">
+                {children}
+              </blockquote>
+            ),
             img: ({ alt }) => (
               <span className="rendered-document__media-placeholder">
                 [Image: {alt || "image"}]
