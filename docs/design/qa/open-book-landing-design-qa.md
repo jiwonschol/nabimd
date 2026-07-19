@@ -54,3 +54,42 @@ No P1 or P2 visual differences remain. The reference texture is intentionally
 not reproduced as a raster overlay; the production surface uses the existing
 paper tokens and typography so it remains crisp, fast, and consistent with the
 test workspace.
+
+## Realistic gutter follow-up
+
+- Implementation: `/private/tmp/nabimd-realistic-gutter-1280x720.png`
+- Full comparison: `/private/tmp/nabimd-realistic-gutter-comparison.png`
+- Focused gutter comparison: `/private/tmp/nabimd-gutter-focused-comparison.png`
+- Motion midpoint: `/private/tmp/nabimd-realistic-gutter-turn-midpoint-1280x720.png`
+- Compact layout: `/private/tmp/nabimd-realistic-gutter-mobile-760x720.png`
+- Viewport: 1280 x 720 desktop; 760 x 720 compact
+
+The original implementation used one border and a very shallow one-sided
+shadow, which read as a divider rather than a bound book. The follow-up adds a
+narrow spine plus symmetrical inset shadows, so both sheets appear to fall
+into the center gutter. The focused comparison confirms the same visual cue as
+the source: a fine center seam surrounded by soft tonal falloff.
+
+The gutter remains visible while the selected page turns, with the destination
+sheet appearing beneath it. At the compact breakpoint the two sheets stack,
+so the spine and inset shadows are removed and the existing horizontal rule
+continues to separate the sections.
+
+### Follow-up findings
+
+- P0: none.
+- P1: none.
+- P2: none.
+- P3: the implementation uses a slightly wider, smoother tonal falloff than
+  the source image so the book cue survives on ordinary laptop displays.
+
+### Follow-up browser evidence
+
+- Desktop shell: 1280 x 720 with no document overflow.
+- Desktop sheet shadows: equal 22 px horizontal offsets and 28 px blur on
+  opposite sides of the gutter.
+- Compact sheet shadows: none; chapter left border: 0 px.
+- Page-turn destination: editor focused after the 720 ms handoff.
+- Console warnings/errors: 0.
+
+final result: passed

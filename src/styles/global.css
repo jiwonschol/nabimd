@@ -96,6 +96,7 @@ button:focus-visible,
 }
 
 .open-book-shell {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: min(100%, 96rem);
@@ -103,6 +104,21 @@ button:focus-visible,
   border-color: var(--book-line);
   background: var(--book-paper);
   font-family: var(--serif);
+}
+
+.open-book-shell::after {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgb(17 17 17 / 18%);
+  box-shadow:
+    -5px 0 12px rgb(17 17 17 / 10%),
+    5px 0 12px rgb(17 17 17 / 10%);
+  content: "";
+  pointer-events: none;
 }
 
 .open-book-page {
@@ -116,6 +132,7 @@ button:focus-visible,
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   gap: clamp(1.2rem, 2.4vh, 2rem);
+  box-shadow: inset -22px 0 28px -25px rgb(17 17 17 / 38%);
 }
 
 .open-book-page--intro .wordmark {
@@ -202,8 +219,8 @@ button:focus-visible,
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: clamp(1.25rem, 2.8vh, 2rem);
-  border-left: 1px solid var(--book-line);
-  box-shadow: inset 18px 0 24px -30px #111111;
+  border-left: 1px solid rgb(17 17 17 / 16%);
+  box-shadow: inset 22px 0 28px -25px rgb(17 17 17 / 38%);
 }
 
 .chapter-index-header h2 {
@@ -415,6 +432,10 @@ button:focus-visible,
     overflow-y: auto;
   }
 
+  .open-book-shell::after {
+    display: none;
+  }
+
   .open-book-page {
     min-height: auto;
     padding: 2rem 1.35rem;
@@ -422,6 +443,7 @@ button:focus-visible,
 
   .open-book-page--intro {
     min-height: 62svh;
+    box-shadow: none;
   }
 
   .open-book-intro h2 {
