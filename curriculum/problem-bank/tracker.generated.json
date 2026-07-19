@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "74bc182bcf2b8b1ec44307bbf2d1dd3a51ec945f63c99ce2dc28180560a73412",
+  "bankDigest": "de68b5c803888b027a87f015deb117d068862e965052ab3543ddac05c391c7d2",
   "acceptedTotal": 248,
   "counts": {
     "byLevel": {
@@ -151,12 +151,12 @@
     {
       "batchId": "2026-07-19-l4-development-specs-012",
       "sequence": 12,
-      "batchDigest": "1de4afb16278dadd2203a71cd07af9507eca69f328544525a1aef954f7ceca11",
+      "batchDigest": "5e03747f907dd72e712db2e783d6b729d8381632be8a8d8cfe7fd8d7aa76d69d",
       "generated": 12,
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
     }
   ],
-  "trackerDigest": "6c13ae5a4cdb53608b9aff332b2cda513948a45304c17e6ae67d080acf7a6deb"
+  "trackerDigest": "e85f91934d740e26a7dedafaa878215530a0db03604d773c831ff1b3f25499d9"
 }

@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "batchId": "2026-07-19-l4-development-specs-012",
   "status": "published",
-  "batchDigest": "1de4afb16278dadd2203a71cd07af9507eca69f328544525a1aef954f7ceca11",
-  "bankDigest": "74bc182bcf2b8b1ec44307bbf2d1dd3a51ec945f63c99ce2dc28180560a73412",
-  "projectionDigest": "9a1911b9eb710d34aaf101b48d448438b6f34d599002342ddf448a2f0b8083ea",
-  "trackerDigest": "6c13ae5a4cdb53608b9aff332b2cda513948a45304c17e6ae67d080acf7a6deb",
+  "batchDigest": "5e03747f907dd72e712db2e783d6b729d8381632be8a8d8cfe7fd8d7aa76d69d",
+  "bankDigest": "de68b5c803888b027a87f015deb117d068862e965052ab3543ddac05c391c7d2",
+  "projectionDigest": "7191d47b7cfae33e8487eefa2e4948cb0735cf19afc4dfab91dc7b112eefdea5",
+  "trackerDigest": "e85f91934d740e26a7dedafaa878215530a0db03604d773c831ff1b3f25499d9",
   "generated": 12,
   "accepted": 12,
   "rejected": 0,
@@ -58,6 +58,6 @@
     "05f516cea538333e4e15524b23864fcd4fa2605ac4acf0af1926207b85e6a60e",
     "f401934250f753ddd4e3fbde3c774f329e97f0fe964898addd93a84864d8af44"
   ],
-  "editorialDigest": "27e37fb5e3a147f987d81246df77a8f15d8d1be6c3fb355942714b9650423d7c",
-  "summaryDigest": "214351d74392d0874adcfdf840bf08b2b110854ec331ac90a1f4b12f389397d1"
+  "editorialDigest": "a52e7c15fd3ea2f6b917b259a63a2af5cc41e61981d1ba7529e6c813fa858ce5",
+  "summaryDigest": "7afffe80c6fa7c4949ae1dd6f3ee79e7ae40367229ce31987922038696458555"
 }

@@ -1603,6 +1603,6 @@ independently accepted 12/12 after all fixtures, 644 fresh probes, and 144
 transfer or cross-family checks. The separate editorial rerun accepted 12/12,
 then sealed only the two review digest values without reading reviewer files or
 conclusions. The published batch digest is
-`1de4afb16278dadd2203a71cd07af9507eca69f328544525a1aef954f7ceca11`.
+`5e03747f907dd72e712db2e783d6b729d8381632be8a8d8cfe7fd8d7aa76d69d`.
 Publication raises Level 4 from four to 16 and the deterministic bank from 236
 to 248 problems, with a 100/100/28/16/4 split.

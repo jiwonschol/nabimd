@@ -78,7 +78,7 @@
     "fixtureArtifactDigest": "173a30ee7801c2c19215293c827fb1c094933dbc9e6872347e0568c6d85330b8",
     "manifestVerificationDigest": "1fa14301b4d4d7ca4b7cd5da4c7297d72739135d5288699c4ae3427f0ae0e4f1",
     "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
-    "inspectionBoundary": "Fresh independent editorial run 002 inspected the exact generation brief, all 12 raw and normalized learner-facing records, manifest bindings, approved Level 4 and Level 5 progression specs, and the published 236-problem runtime bank. The three prior copy blockers were rechecked as fixed. Batch 012 mechanical reviewer JSONs and verification.json were deliberately not read; the verification digest above is manifest scope metadata only."
+    "inspectionBoundary": "Fresh independent editorial run 002 inspected the exact generation brief, all 12 raw and normalized learner-facing records, manifest bindings, approved Level 4 and Level 5 progression specs, and the published 236-problem runtime bank. The three prior copy blockers were rechecked as fixed. Run 003-seal only bound the two supplied review digest values; it did not read mechanical reviewer files or conclusions. Batch 012 mechanical reviewer JSONs and verification.json were deliberately not read; the verification digest above is manifest scope metadata only."
   },
   "summary": {
     "accepted": 12,
@@ -257,5 +257,5 @@
     "05f516cea538333e4e15524b23864fcd4fa2605ac4acf0af1926207b85e6a60e",
     "f401934250f753ddd4e3fbde3c774f329e97f0fe964898addd93a84864d8af44"
   ],
-  "editorialDigest": "27e37fb5e3a147f987d81246df77a8f15d8d1be6c3fb355942714b9650423d7c"
+  "editorialDigest": "a52e7c15fd3ea2f6b917b259a63a2af5cc41e61981d1ba7529e6c813fa858ce5"
 }
