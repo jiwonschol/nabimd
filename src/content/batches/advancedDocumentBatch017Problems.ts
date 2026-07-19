@@ -555,6 +555,33 @@ const familyTeaching: Record<AdvancedDocumentFamily, ProblemInput["teaching"]> =
   },
 }
 
+const teachingExampleTitles: Record<string, string> = {
+  "support-queue-delay": "# Delivery window update",
+  "office-badge-reader-interruption": "# Meeting room access update",
+  "inbound-support-webhook": "# Billing callback contract",
+  "csv-contact-import": "# Catalog import contract",
+  "scheduled-customer-digest": "# Weekly summary contract",
+  "downloadable-audit-archive": "# Records export contract",
+  "duplicate-job-delivery-recovery": "# Retry recovery order",
+  "search-index-consistency-recovery": "# Cache recovery order",
+  "shared-date-format-refactor": "# Currency helper refactor order",
+  "analytics-adapter-replacement": "# Storage adapter refactor order",
+  "versioned-api-contract-rollout": "# Shared schema rollout order",
+  "notification-preference-schema-rollout": "# Account setting rollout order",
+}
+
+function teachingFor(input: AdvancedDocumentBatch017Input): ProblemInput["teaching"] {
+  const teaching = familyTeaching[input.family]
+  const exampleTitle = teachingExampleTitles[input.contentVariant]
+  if (!exampleTitle) {
+    throw new Error(`Missing teaching-example title for ${input.contentVariant}`)
+  }
+  return {
+    ...teaching,
+    example: teaching.example.replace(/^# .+$/m, exampleTitle),
+  }
+}
+
 const familyMetadata: Record<AdvancedDocumentFamily, {
   level: 3 | 4 | 5
   retryFamily: string
@@ -1200,7 +1227,7 @@ function makeProblem(input: AdvancedDocumentBatch017Input): NormalizedProblem {
     skillIds: metadata.skillIds,
     difficulty: "makeover",
     teachingMode: "recall",
-    teaching: familyTeaching[input.family],
+    teaching: teachingFor(input),
     syntaxTokens: metadata.syntaxTokens,
     title: input.title,
     prompt: input.prompt,

@@ -264,6 +264,7 @@ describe("Level 3-5 advanced-document batch 017", () => {
     const ownIds = new Set<string>()
     const ownTargets = new Set<string>()
     const ownVariants = new Set<string>()
+    const ownExamples = new Set<string>()
 
     for (const problem of advancedDocumentBatch017Problems) {
       expect(priorIds.has(problem.id), problem.id).toBe(false)
@@ -272,9 +273,11 @@ describe("Level 3-5 advanced-document batch 017", () => {
       expect(ownIds.has(problem.id), problem.id).toBe(false)
       expect(ownTargets.has(problem.target), problem.id).toBe(false)
       expect(ownVariants.has(problem.contentVariant), problem.id).toBe(false)
+      expect(ownExamples.has(problem.teaching.example), problem.id).toBe(false)
       ownIds.add(problem.id)
       ownTargets.add(problem.target)
       ownVariants.add(problem.contentVariant)
+      ownExamples.add(problem.teaching.example)
     }
   })
 

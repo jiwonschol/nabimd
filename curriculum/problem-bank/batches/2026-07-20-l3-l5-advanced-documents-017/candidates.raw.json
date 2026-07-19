@@ -22,7 +22,7 @@
       "teaching": {
         "concept": "An operational brief separates observation, known impact, response order, and the next update.",
         "howTo": "Use four H2 sections, a blockquote for what was observed, bullets for known impact, numbered response steps, and a linked owner update.",
-        "example": "# Service update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
+        "example": "# Delivery window update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
       },
       "syntaxTokens": [
         "#",
@@ -229,7 +229,7 @@
       "teaching": {
         "concept": "An operational brief separates observation, known impact, response order, and the next update.",
         "howTo": "Use four H2 sections, a blockquote for what was observed, bullets for known impact, numbered response steps, and a linked owner update.",
-        "example": "# Service update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
+        "example": "# Meeting room access update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
       },
       "syntaxTokens": [
         "#",
@@ -438,7 +438,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Billing callback contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -718,7 +718,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Catalog import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -998,7 +998,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Weekly summary contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -1278,7 +1278,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Records export contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -1560,7 +1560,7 @@
       "teaching": {
         "concept": "An evidence-led recovery order separates observation, containment, investigation, recovery, rollback, constraints, stops, proof, and reporting.",
         "howTo": "Use ordered authority and investigation lists, three H3 recovery stages, explicit rollback and stop lists, and fenced verification and report blocks.",
-        "example": "# Recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
+        "example": "# Retry recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
       },
       "syntaxTokens": [
         "#",
@@ -1967,7 +1967,7 @@
       "teaching": {
         "concept": "An evidence-led recovery order separates observation, containment, investigation, recovery, rollback, constraints, stops, proof, and reporting.",
         "howTo": "Use ordered authority and investigation lists, three H3 recovery stages, explicit rollback and stop lists, and fenced verification and report blocks.",
-        "example": "# Recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
+        "example": "# Cache recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
       },
       "syntaxTokens": [
         "#",
@@ -2374,7 +2374,7 @@
       "teaching": {
         "concept": "A bounded refactor order grants autonomy only inside explicit reading, comprehension, scope, shortcut, execution, regression, stop, commit, and reporting contracts.",
         "howTo": "Use ordered authority and comprehension lists, four H3 execution stages, scope and prohibition bullets, a regression command block, and a report template.",
-        "example": "# Refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
+        "example": "# Currency helper refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
       },
       "syntaxTokens": [
         "#",
@@ -2778,7 +2778,7 @@
       "teaching": {
         "concept": "A bounded refactor order grants autonomy only inside explicit reading, comprehension, scope, shortcut, execution, regression, stop, commit, and reporting contracts.",
         "howTo": "Use ordered authority and comprehension lists, four H3 execution stages, scope and prohibition bullets, a regression command block, and a report template.",
-        "example": "# Refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
+        "example": "# Storage adapter refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
       },
       "syntaxTokens": [
         "#",
@@ -3182,7 +3182,7 @@
       "teaching": {
         "concept": "A coordinated rollout order maps consumers, authority, phases, compatibility, rollback, stop conditions, verification, and reporting.",
         "howTo": "Use a nested system map, an ordered authority list, three H3 rollout phases, compatibility and stop lists, an inline-code verification ledger, and a fenced report template.",
-        "example": "# Rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
+        "example": "# Shared schema rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
       },
       "syntaxTokens": [
         "#",
@@ -3575,7 +3575,7 @@
       "teaching": {
         "concept": "A coordinated rollout order maps consumers, authority, phases, compatibility, rollback, stop conditions, verification, and reporting.",
         "howTo": "Use a nested system map, an ordered authority list, three H3 rollout phases, compatibility and stop lists, an inline-code verification ledger, and a fenced report template.",
-        "example": "# Rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
+        "example": "# Account setting rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
       },
       "syntaxTokens": [
         "#",

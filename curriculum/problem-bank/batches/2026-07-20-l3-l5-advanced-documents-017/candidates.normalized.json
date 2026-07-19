@@ -6,7 +6,7 @@
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-07-20",
   "promptSha256": "2dfea66bbcbf149aa1612d8fd61d297f0fb59aa76b0a33e3c62fd70e3e8520d1",
-  "rawArtifactDigest": "5fcc634f6b92745c57dd64b8148bb8bd80dba6566ba656868a24ad8b6a7acfdc",
+  "rawArtifactDigest": "ce23dd763b98903bd03bc59b3b3854668af6362affeba205e9c9bb5c8a6b5356",
   "candidateCount": 12,
   "candidates": [
     {
@@ -25,7 +25,7 @@
       "teaching": {
         "concept": "An operational brief separates observation, known impact, response order, and the next update.",
         "howTo": "Use four H2 sections, a blockquote for what was observed, bullets for known impact, numbered response steps, and a linked owner update.",
-        "example": "# Service update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
+        "example": "# Meeting room access update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
       },
       "syntaxTokens": [
         "#",
@@ -216,7 +216,7 @@
       "contentVariant": "office-badge-reader-interruption",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "0a963c57cdfbfcbfb4a1f88a3b27611263ac697d608fef786f999c6304c49349"
+      "candidateDigest": "9afefbdcc95338e81d1afc71cca0918b9110de093d2352d70d82249c91646d24"
     },
     {
       "id": "l3-support-queue-impact-brief",
@@ -234,7 +234,7 @@
       "teaching": {
         "concept": "An operational brief separates observation, known impact, response order, and the next update.",
         "howTo": "Use four H2 sections, a blockquote for what was observed, bullets for known impact, numbered response steps, and a linked owner update.",
-        "example": "# Service update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
+        "example": "# Delivery window update\n\nShare a short overview.\n\n## Observation\n\n> One delay was reported.\n\nThe report is being reviewed.\n\n## Known impact\n\n- One queue\n- One team\n- One time window\n\n## Response\n\n1. Confirm\n2. Update\n3. Review\n\n## Owner and update\n\n**Owner:** Operations. Read the [update page](/updates)."
       },
       "syntaxTokens": [
         "#",
@@ -425,7 +425,7 @@
       "contentVariant": "support-queue-delay",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "af7d869971d9b346837067b3025a175f6f26458bb85eb69a6dfb72894a2c254b"
+      "candidateDigest": "54847fba0ff8a4cc13e677bab5b54898d87e7d7332fb174a19ee4cc48f56a74d"
     },
     {
       "id": "l4-audit-archive-contract-spec",
@@ -445,7 +445,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Records export contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -707,7 +707,7 @@
       "contentVariant": "downloadable-audit-archive",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "1772a0c0358fccc36dd0bda4ea3501f6f1699529afa8247e7fc5feabbff890a5"
+      "candidateDigest": "19c4194123b8d4364fb38b4315f9ef5598f7722ebc982b616740b6e30d731bba"
     },
     {
       "id": "l4-contact-import-contract-spec",
@@ -727,7 +727,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Catalog import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -989,7 +989,7 @@
       "contentVariant": "csv-contact-import",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "ebec15ec3674406b997e40a80eeb476398c7d8c6f2380360cde032e3a89a1b25"
+      "candidateDigest": "07d287ecece7ca574fe8fbefa8ebc60f30427b686179da7fd1765706d470f9c2"
     },
     {
       "id": "l4-customer-digest-contract-spec",
@@ -1009,7 +1009,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Weekly summary contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -1271,7 +1271,7 @@
       "contentVariant": "scheduled-customer-digest",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "2dc7f0154794c714773681dd2a7b3fb0785f1bc3f9b672341becbd108da8a471"
+      "candidateDigest": "7c500828bae547caa58717dbca8e7ae97df1deaf4a7dfd11f3d308d3a029ade8"
     },
     {
       "id": "l4-support-webhook-contract-spec",
@@ -1291,7 +1291,7 @@
       "teaching": {
         "concept": "An integration contract makes its surface, dependency, failure boundary, implementation, acceptance, and verification inspectable.",
         "howTo": "Use six H2 sections, lists for the contract and failure cases, a linked dependency, a quoted invariant, ordered implementation, and a fenced verification block.",
-        "example": "# Import contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
+        "example": "# Billing callback contract\n\nDefine one boundary.\n\n## Contract surface\n\n- Accept `Record`\n- Return one result\n- Keep identifiers\n- Reject invalid input\n\n## Dependency\n\nFollow the [contract guide](/guides/contracts) for `Record`.\n\n## Failure boundary\n\n> Invalid input never becomes a stored record.\n\n- Missing field\n- Invalid type\n- Duplicate identifier\n\n## Implementation\n\n1. Parse\n2. Validate\n3. Store\n4. Report\n\n## Acceptance\n\n- Valid input succeeds\n- Invalid input fails\n- Duplicates are stable\n- Errors are visible\n\n## Verification\n\n```sh\nnpm test -- import\n```"
       },
       "syntaxTokens": [
         "#",
@@ -1553,7 +1553,7 @@
       "contentVariant": "inbound-support-webhook",
       "flavor": "standard",
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "04607846afd6811488ac42796220182474bec728a0e2d1a96ed8f4f234b0b748"
+      "candidateDigest": "771a180e3c0a53daa4b981d813131315ae475ffd47e1a54b3d64a933afe7fd5f"
     },
     {
       "id": "l5-analytics-adapter-refactor-work-order",
@@ -1575,7 +1575,7 @@
       "teaching": {
         "concept": "A bounded refactor order grants autonomy only inside explicit reading, comprehension, scope, shortcut, execution, regression, stop, commit, and reporting contracts.",
         "howTo": "Use ordered authority and comprehension lists, four H3 execution stages, scope and prohibition bullets, a regression command block, and a report template.",
-        "example": "# Refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
+        "example": "# Storage adapter refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
       },
       "syntaxTokens": [
         "#",
@@ -1959,7 +1959,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "2e90e91d0301fb8205c5c687fbc79a6f9ce5b75b30a998ca689e7a051869116e"
+      "candidateDigest": "b6ca05e1a50d27ff6d5b50daa89c5163cd06772ccd475e3fb67880e459314745"
     },
     {
       "id": "l5-api-contract-rollout-work-order",
@@ -1981,7 +1981,7 @@
       "teaching": {
         "concept": "A coordinated rollout order maps consumers, authority, phases, compatibility, rollback, stop conditions, verification, and reporting.",
         "howTo": "Use a nested system map, an ordered authority list, three H3 rollout phases, compatibility and stop lists, an inline-code verification ledger, and a fenced report template.",
-        "example": "# Rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
+        "example": "# Shared schema rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
       },
       "syntaxTokens": [
         "#",
@@ -2354,7 +2354,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "2b5f5620ccdc75d23abebca768731f73064a28e7b3aeebb894e1cab3ee956b08"
+      "candidateDigest": "e95979bc508f441f7925282ebe5473c2437c4e4d69347a9b5fd10869bc175384"
     },
     {
       "id": "l5-date-format-refactor-work-order",
@@ -2376,7 +2376,7 @@
       "teaching": {
         "concept": "A bounded refactor order grants autonomy only inside explicit reading, comprehension, scope, shortcut, execution, regression, stop, commit, and reporting contracts.",
         "howTo": "Use ordered authority and comprehension lists, four H3 execution stages, scope and prohibition bullets, a regression command block, and a report template.",
-        "example": "# Refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
+        "example": "# Currency helper refactor order\n\nState the invariant.\n\n## Required reading\n\n1. Rules\n2. Decision\n3. Tests\n4. Current adapter\n\n## Allowed scope\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n- Preserve callers\n- Preserve output\n\n## Execution contract\n\n### Pin behavior\n\n- Add tests\n- Run them"
       },
       "syntaxTokens": [
         "#",
@@ -2760,7 +2760,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "455dd4f89681f0fb09c3c90ab768e0267fee10d8088e29c1927cdcda357f6f49"
+      "candidateDigest": "67cd9162ea96aed21de71cdc14433d6774480bfeb2e89b03136223a73ea8b1c9"
     },
     {
       "id": "l5-duplicate-job-recovery-work-order",
@@ -2782,7 +2782,7 @@
       "teaching": {
         "concept": "An evidence-led recovery order separates observation, containment, investigation, recovery, rollback, constraints, stops, proof, and reporting.",
         "howTo": "Use ordered authority and investigation lists, three H3 recovery stages, explicit rollback and stop lists, and fenced verification and report blocks.",
-        "example": "# Recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
+        "example": "# Retry recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
       },
       "syntaxTokens": [
         "#",
@@ -3169,7 +3169,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "ae7c59839887b215bd4a2d4a3bb77b74bda14cc26efbfe3b8e364f48738bae1f"
+      "candidateDigest": "1346bcd2330cbd8420dc587cc9f14fed7da70681a9934e13eb6f136eccd0cc87"
     },
     {
       "id": "l5-notification-schema-rollout-work-order",
@@ -3191,7 +3191,7 @@
       "teaching": {
         "concept": "A coordinated rollout order maps consumers, authority, phases, compatibility, rollback, stop conditions, verification, and reporting.",
         "howTo": "Use a nested system map, an ordered authority list, three H3 rollout phases, compatibility and stop lists, an inline-code verification ledger, and a fenced report template.",
-        "example": "# Rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
+        "example": "# Account setting rollout order\n\nState the shared contract.\n\n## System map\n\n- Provider\n  - Schema\n  - Compatibility\n- Web consumer\n- Worker consumer\n\n## Authority order\n\n1. Rules\n2. Contract\n3. Plan\n4. Current code"
       },
       "syntaxTokens": [
         "#",
@@ -3564,7 +3564,7 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "7ff142bcdb43ce352c0b2297ec5765672b3e89dc23b3cfb2f3660764e2336620"
+      "candidateDigest": "065883c6d2c3061b3ffac6e07959c6a464e14f9e667637b8c949ac8e93d6b609"
     },
     {
       "id": "l5-search-index-recovery-work-order",
@@ -3586,7 +3586,7 @@
       "teaching": {
         "concept": "An evidence-led recovery order separates observation, containment, investigation, recovery, rollback, constraints, stops, proof, and reporting.",
         "howTo": "Use ordered authority and investigation lists, three H3 recovery stages, explicit rollback and stop lists, and fenced verification and report blocks.",
-        "example": "# Recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
+        "example": "# Cache recovery order\n\nState the mission.\n\n## Evidence boundary\n\n> Record one observed failure.\n\n---\n\n## Authority order\n\n1. Rules\n2. Policy\n3. Decision\n4. Current code\n\n## Recovery stages\n\n### Contain\n\n- Limit impact\n- Preserve evidence\n\n### Repair\n\n- Make one change\n- Run focused checks\n\n### Prove\n\n- Run the full gate\n- Record results"
       },
       "syntaxTokens": [
         "#",
@@ -3973,8 +3973,8 @@
         "reviewedOn": "2026-07-20"
       },
       "sourceBatch": "2026-07-20-l3-l5-advanced-documents-017",
-      "candidateDigest": "eaa634084b81f089dfab0c4981179888f4b6df20c2d390cbea27fd7b2298e017"
+      "candidateDigest": "8222f391e89f0cda69c0f4e54e333b8759ba0b7c24900e8d754476b715e40d28"
     }
   ],
-  "artifactDigest": "96e61824150c3ed0a5d727bfe5144247f8fb64d5b140d3004a2bcfb9c8045587"
+  "artifactDigest": "056e4191a3bbbb4e6b56ac9bb3f6cb02c8b87d58b817bf9730765bbcbee75e0e"
 }

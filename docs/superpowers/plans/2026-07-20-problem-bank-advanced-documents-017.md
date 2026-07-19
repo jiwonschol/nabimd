@@ -246,11 +246,11 @@ Expected: FAIL because the fixture module does not yet exist.
 For every candidate add:
 
 - the exact authored target as `canonical`;
-- a problem-specific, structurally equivalent rewrite as `different-prose`;
+- the other frozen target in the same structural retry family as `different-prose`;
 - a structurally equivalent case, spelling, and punctuation variation as `case-spelling-variation`; and
-- a structurally valid source with one italic phrase as `matched-with-review`, expected Matched plus the restrained-emphasis review.
+- a structurally valid source with a second H1 as `matched-with-review`, expected Matched plus the one-document-title review.
 
-Do not reuse another candidate's complete target as transfer evidence. Each positive rewrite must preserve only the required Markdown anatomy, not heading labels or domain facts.
+The same-family alternate deliberately proves that the grammar contract accepts a different complete document without inventing a second unreviewed Goal. It must preserve the structural archetype while changing heading labels and domain facts.
 
 - [ ] **Step 3: Add Level 3 adversarial fixtures**
 
@@ -262,7 +262,7 @@ Cover missing/extra/reordered sections, missing or malformed dependency links, r
 
 - [ ] **Step 5: Add Level 5 adversarial fixtures**
 
-Cover missing/extra/reordered H2 sections, an extra H1, skipped H1-to-H3 hierarchy, fewer or more than three H3 stages, stage tasks placed outside their stage, wrong/missing/short/empty authority, task, constraint, or stop lists, untagged/indented/unclosed/empty/nested verification and report fences, and source text that only looks like code inside a paragraph or quote. Add direct failures for all three stage-list checks, not one shared proxy.
+Cover missing/extra/reordered H2 sections, an extra H1 review path, skipped H1-to-H3 hierarchy, the wrong H3 stage count for each archetype, stage tasks placed outside their stage, wrong/missing/short/empty authority, task, constraint, or stop lists, untagged or empty verification and report fences, and source text that only looks like code. Add direct failures for every stage-list check, not one shared proxy.
 
 - [ ] **Step 6: Run focused engine and validator coverage**
 
