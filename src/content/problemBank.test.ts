@@ -11,7 +11,6 @@ import { inlineCodeBatch007Fixtures } from "./batches/inlineCodeBatch007Fixtures
 import { italicRebuildBatch013Fixtures } from "./batches/italicRebuildBatch013Fixtures"
 import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
-import { nestedListBatch016Fixtures } from "./batches/nestedListBatch016Fixtures"
 import { orderedListBatch005Fixtures } from "./batches/orderedListBatch005Fixtures"
 import { readableDocumentBatch010Fixtures } from "./batches/readableDocumentBatch010Fixtures"
 import { readableDocumentBatch011Fixtures } from "./batches/readableDocumentBatch011Fixtures"
@@ -28,10 +27,10 @@ import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(tracker.acceptedTotal).toBe(332)
+    expect(tracker.acceptedTotal).toBe(320)
     expect(tracker.counts.byLevel).toEqual({
       1: 136,
-      2: 148,
+      2: 136,
       3: 28,
       4: 16,
       5: 4,
@@ -74,11 +73,6 @@ describe("compiled five-level problem bank", () => {
         (problem) => problem.familyId === "rebuild-sectioned-documents",
       ),
     ).toHaveLength(12)
-    expect(
-      getProblemsForLevel(2).filter(
-        (problem) => problem.familyId === "rebuild-nested-list-documents",
-      ),
-    ).toHaveLength(12)
   })
 
   it("executes the generated runtime projection without a parallel source list", () => {
@@ -117,7 +111,6 @@ describe("compiled five-level problem bank", () => {
       ...italicRebuildBatch013Fixtures,
       ...codeBlockBatch014Fixtures,
       ...headingDepthBatch015Fixtures,
-      ...nestedListBatch016Fixtures,
     ].filter(({ problemId }) => publishedProblemIds.has(problemId))
 
     expect(

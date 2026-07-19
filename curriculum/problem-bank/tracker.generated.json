@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "252a62ad44d29afca2288d9ad3263aca720c2c328fb33fe8fa6baa993cd90035",
-  "acceptedTotal": 332,
+  "bankDigest": "3864f5233e3f521f952c8f05359bb3936df33ff1688bdbdd40bbbcf37b1e8d07",
+  "acceptedTotal": 320,
   "counts": {
     "byLevel": {
       "1": 136,
-      "2": 148,
+      "2": 136,
       "3": 28,
       "4": 16,
       "5": 4
@@ -25,7 +25,6 @@
       "lists": 48,
       "readable-human-document": 28,
       "rebuild-code-block-documents": 12,
-      "rebuild-nested-list-documents": 12,
       "rebuild-real-documents": 12,
       "rebuild-sectioned-documents": 12
     },
@@ -47,7 +46,6 @@
       "2/links": 12,
       "2/lists": 24,
       "2/rebuild-code-block-documents": 12,
-      "2/rebuild-nested-list-documents": 12,
       "2/rebuild-real-documents": 12,
       "2/rebuild-sectioned-documents": 12,
       "3/readable-human-document": 28,
@@ -55,7 +53,7 @@
       "5/agent-ready-work-order": 4
     },
     "byFlavor": {
-      "standard": 332
+      "standard": 320
     },
     "rejected": 0,
     "blocked": 0
@@ -195,16 +193,7 @@
       "accepted": 24,
       "rejected": 0,
       "blocked": 0
-    },
-    {
-      "batchId": "2026-07-20-l2-nested-list-documents-016",
-      "sequence": 16,
-      "batchDigest": "3cb44279584b350138c78794a3602fd6fc2752c61c75be9aa035a17df98f1682",
-      "generated": 12,
-      "accepted": 12,
-      "rejected": 0,
-      "blocked": 0
     }
   ],
-  "trackerDigest": "961f9f7c65f361a2f9b540b2dbdc74c483fdb2414fc6fedb9a130cbfc974e6bc"
+  "trackerDigest": "61d4338103e8812b7a1222f1e0b38c9526d39cd84a5a0aef3da2946a6c50c293"
 }
