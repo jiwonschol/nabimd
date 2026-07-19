@@ -72,6 +72,7 @@ function isValidRunProblemIds(
   entryId: ProgressV5["entryId"],
   runNumber: number,
   runStepIndex: number,
+  scheduledStepIndex: number,
   currentIsTransfer: boolean,
   validProblemIds: ReadonlySet<string>,
   isEligibleTransferProblem: (
@@ -92,6 +93,7 @@ function isValidRunProblemIds(
       baselineProblemIds: expectedRunProblemIds,
       persistedProblemIds: value,
       persistedStepIndex: runStepIndex,
+      persistedScheduledStepIndex: scheduledStepIndex,
       persistedCurrentIsTransfer: currentIsTransfer,
       isEligibleTransferProblem,
     })
@@ -159,6 +161,9 @@ function isProgressV5(
   const scheduledRunLength =
     entryId === null ? 0 : createRunProblemIds(entryId, value.runNumber).length
   const activeRun = entryId !== null
+  const scheduledStepIndex = isNonnegativeSafeInteger(value.scheduledStepIndex)
+    ? value.scheduledStepIndex
+    : null
   const startedAtMs = isNonnegativeSafeInteger(value.runStartedAtMs)
     ? value.runStartedAtMs
     : null
@@ -167,11 +172,14 @@ function isProgressV5(
     : null
 
   if (
-    !isNonnegativeSafeInteger(value.scheduledStepIndex) ||
-    value.scheduledStepIndex > scheduledRunLength ||
+    scheduledStepIndex === null ||
+    scheduledStepIndex > scheduledRunLength ||
     !isUniqueIntegerList(
       value.failedScheduledStepIndexes,
       scheduledRunLength,
+    ) ||
+    value.failedScheduledStepIndexes.some(
+      (failedIndex) => failedIndex > scheduledStepIndex,
     ) ||
     !isUniqueKnownIdList(
       value.failedProblemIds,
@@ -193,6 +201,7 @@ function isProgressV5(
       entryId,
       value.runNumber,
       value.runStepIndex,
+      scheduledStepIndex,
       value.currentIsTransfer,
       validProblemIds,
       isEligibleTransferProblem,
@@ -215,10 +224,11 @@ function isProgressV5(
         value.runProblemIds[
           Math.min(value.runStepIndex, value.runProblemIds.length - 1)
         ] === value.currentProblemId) &&
-    (value.runCompletedAtMs === null
-      ? value.runStepIndex < value.runProblemIds.length
-      : value.runStepIndex === value.runProblemIds.length &&
-        value.scheduledStepIndex === scheduledRunLength)
+    (entryId === null ||
+      (value.runCompletedAtMs === null
+        ? value.runStepIndex < value.runProblemIds.length
+        : value.runStepIndex === value.runProblemIds.length &&
+          value.scheduledStepIndex === scheduledRunLength))
   )
 }
 

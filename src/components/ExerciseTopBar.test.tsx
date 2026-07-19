@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import type { ComponentProps } from "react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import {
-  __resetSuccessSoundForTesting,
+  __resetFeedbackSoundForTesting,
   setSoundMuted,
-} from "../sound/successSound"
+} from "../sound/feedbackSound"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 
 function renderTopBar(
@@ -45,7 +45,7 @@ describe("ExerciseTopBar", () => {
   })
 
   afterEach(() => {
-    __resetSuccessSoundForTesting()
+    __resetFeedbackSoundForTesting()
     vi.restoreAllMocks()
   })
 
@@ -91,7 +91,7 @@ describe("ExerciseTopBar", () => {
     renderTopBar("editing")
 
     const soundToggle = screen.getByRole("button", {
-      name: "Mute success sound",
+      name: "Mute feedback sounds",
     })
 
     expect(soundToggle).toHaveTextContent("Muted")

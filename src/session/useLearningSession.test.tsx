@@ -108,6 +108,7 @@ describe("useLearningSession", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-2"))
     const failedProblem = result.current.problem
+    const scheduledProblemIds = [...result.current.session.runProblemIds]
 
     act(() => result.current.edit("Not Markdown"))
     act(() => result.current.check())
@@ -124,6 +125,12 @@ describe("useLearningSession", () => {
       failedProblem.contentVariant,
     )
     expect(result.current.session.currentIsTransfer).toBe(true)
+    expect(result.current.session.runProblemIds).toHaveLength(
+      scheduledProblemIds.length + 1,
+    )
+    for (const scheduledProblemId of scheduledProblemIds) {
+      expect(result.current.session.runProblemIds).toContain(scheduledProblemId)
+    }
   })
 
   it("does not create an infinite transfer chain", () => {

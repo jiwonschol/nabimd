@@ -84,6 +84,13 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
+  it("round-trips the greeting state without an active timer", () => {
+    const progress = createDefaultProgress(problemBank[0].id)
+    saveProgress(storage, progress)
+
+    expect(loadProgress(storage, validProblemIds)).toEqual(progress)
+  })
+
   it("round-trips score facts and a frozen completion time", () => {
     const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids.at(-1)!)
@@ -120,6 +127,15 @@ describe("progressStore v5", () => {
     saveProgress(storage, {
       ...progress,
       failedScheduledStepIndexes: [ids.length],
+    })
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
+
+    saveProgress(storage, {
+      ...progress,
+      scheduledStepIndex: ids.length,
+      failedScheduledStepIndexes: [ids.length - 1],
     })
     expect(
       loadProgress(storage, validProblemIds, isEligibleTransferProblemId),

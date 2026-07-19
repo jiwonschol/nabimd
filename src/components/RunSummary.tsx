@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { getProblem } from "../content/problemBank"
 import type { CurriculumLevel } from "../content/types"
 import type {
   RankingClient,
   RankingStanding,
 } from "../ranking/rankingClient"
+import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
 
 type RunSummaryProps = {
@@ -72,10 +73,17 @@ export function RunSummary({
   onChangeLevel,
 }: RunSummaryProps) {
   const [standing, setStanding] = useState<RankingStanding | null>(null)
+  const playedSummarySound = useRef(false)
   const reminders = useMemo(
     () => syntaxReminders(failedProblemIds),
     [failedProblemIds],
   )
+
+  useEffect(() => {
+    if (playedSummarySound.current) return
+    playedSummarySound.current = true
+    playFeedbackSound("summary")
+  }, [])
 
   useEffect(() => {
     let active = true
@@ -112,7 +120,11 @@ export function RunSummary({
           <dt>Time</dt>
           <dd>{formatElapsedTime(elapsedMs)}</dd>
         </div>
-        <div aria-label="Level standing">
+        <div
+          aria-atomic="true"
+          aria-label="Level standing"
+          aria-live="polite"
+        >
           <dt>Level standing</dt>
           <dd>
             {standing?.kind === "percentile"

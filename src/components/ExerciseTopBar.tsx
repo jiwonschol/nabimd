@@ -6,7 +6,7 @@ import {
   readSoundMuted,
   setSoundMuted,
   subscribeSoundMuted,
-} from "../sound/successSound"
+} from "../sound/feedbackSound"
 import { resolveCheckShortcut } from "./keyboardShortcut"
 import { ElapsedTime } from "./ElapsedTime"
 import { Wordmark } from "./Wordmark"
@@ -126,7 +126,7 @@ export function ExerciseTopBar({
             />
           </span>
           <button
-            aria-label="Mute success sound"
+            aria-label="Mute feedback sounds"
             aria-pressed={soundMuted}
             className="sound-control"
             onClick={() => setSoundMuted(!soundMuted)}

@@ -1,11 +1,18 @@
-export const SUCCESS_SOUND_ASSET = "/audio/success.ogg"
+export const FEEDBACK_SOUND_ASSETS = {
+  matched: "/audio/matched.mp3",
+  retry: "/audio/try-again.mp3",
+  summary: "/audio/summary.mp3",
+} as const
+
+export type FeedbackSoundCue = keyof typeof FEEDBACK_SOUND_ASSETS
 
 const SOUND_MUTED_KEY = "nabimd.sound-muted"
 
 let audio: HTMLAudioElement | null = null
+let activeCue: FeedbackSoundCue = "matched"
 let unlocked = false
 let priming: Promise<void> | null = null
-let pendingPlayback = false
+let pendingCue: FeedbackSoundCue | null = null
 let soundMuted: boolean | undefined
 const muteListeners = new Set<(muted: boolean) => void>()
 
@@ -22,7 +29,8 @@ function readStoredSoundMuted(): boolean {
 function getAudio(): HTMLAudioElement | null {
   if (audio) return audio
   if (typeof Audio === "undefined") return null
-  audio = new Audio(SUCCESS_SOUND_ASSET)
+  audio = new Audio(FEEDBACK_SOUND_ASSETS[activeCue])
+  audio.preload = "auto"
   return audio
 }
 
@@ -59,7 +67,7 @@ export function subscribeSoundMuted(listener: (muted: boolean) => void) {
   }
 }
 
-export function unlockSuccessSound() {
+export function unlockFeedbackSound() {
   if (unlocked || priming) return
 
   const sound = getAudio()
@@ -86,23 +94,23 @@ export function unlockSuccessSound() {
       sound.currentTime = 0
       sound.muted = readSoundMuted()
 
-      const shouldPlayPendingVerdict = pendingPlayback
-      pendingPlayback = false
-      if (shouldPlayPendingVerdict) playSuccessSound()
+      const cue = pendingCue
+      pendingCue = null
+      if (cue) playFeedbackSound(cue)
     },
     () => {
       if (priming !== playback) return
 
       priming = null
-      pendingPlayback = false
+      pendingCue = null
       sound.muted = readSoundMuted()
     },
   )
 }
 
-export function playSuccessSound() {
+export function playFeedbackSound(cue: FeedbackSoundCue) {
   if (!unlocked) {
-    if (priming) pendingPlayback = true
+    if (priming) pendingCue = cue
     return
   }
   if (readSoundMuted()) return
@@ -110,6 +118,11 @@ export function playSuccessSound() {
   const sound = getAudio()
   if (!sound) return
 
+  if (activeCue !== cue) {
+    sound.pause()
+    sound.src = FEEDBACK_SOUND_ASSETS[cue]
+    activeCue = cue
+  }
   sound.muted = false
   sound.currentTime = 0
   swallowPlaybackRejection(sound.play())
@@ -118,7 +131,7 @@ export function playSuccessSound() {
 function installGestureUnlockListeners() {
   if (typeof document === "undefined") return
 
-  const unlockFromGesture = () => unlockSuccessSound()
+  const unlockFromGesture = () => unlockFeedbackSound()
   removeGestureUnlockListeners = () => {
     document.removeEventListener("pointerdown", unlockFromGesture, true)
     document.removeEventListener("keydown", unlockFromGesture, true)
@@ -131,7 +144,7 @@ function installGestureUnlockListeners() {
   })
 }
 
-export function __resetSuccessSoundForTesting(
+export function __resetFeedbackSoundForTesting(
   reinstallGestureListeners = true,
 ) {
   removeGestureUnlockListeners()
@@ -140,9 +153,10 @@ export function __resetSuccessSoundForTesting(
     audio.currentTime = 0
   }
   audio = null
+  activeCue = "matched"
   unlocked = false
   priming = null
-  pendingPlayback = false
+  pendingCue = null
   soundMuted = undefined
   muteListeners.clear()
   removeGestureUnlockListeners = () => {}

@@ -8,7 +8,7 @@ const levelLabels = [
   "Level 5 — Write an agent work order",
 ] as const
 
-const progressStorageKey = "nabimd.progress.v4"
+const progressStorageKey = "nabimd.progress.v5"
 
 function sourceEditor(page: Page): Locator {
   return page.getByRole("textbox", { name: "Your Markdown" })
@@ -124,6 +124,7 @@ test("every level opens its task-type turn", async ({ page }) => {
 })
 
 test("completes and replays Level 1 with keyboard input only", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
   await page.goto("/")
   await page.keyboard.press("Tab")
   await expect(page.getByRole("button", { name: levelLabels[0] })).toBeFocused()
@@ -152,6 +153,21 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(
     page.getByRole("heading", { name: "Practice complete." }),
   ).toBeVisible()
+  await expect(page.getByLabel("Score")).toContainText("6 / 6")
+  await expect(page.getByLabel("Total time")).toContainText(/\d{2}:\d{2}/)
+  await expect(page.getByLabel("Level standing")).toContainText(
+    "Collecting data",
+  )
+  await expect(
+    page.getByRole("listitem", { name: "Step 6, completed" }),
+  ).toBeVisible()
+  const pageMetrics = await page.evaluate(() => ({
+    body: document.body.scrollHeight,
+    document: document.documentElement.scrollHeight,
+    viewport: window.innerHeight,
+  }))
+  expect(pageMetrics.body).toBeLessThanOrEqual(pageMetrics.viewport)
+  expect(pageMetrics.document).toBeLessThanOrEqual(pageMetrics.viewport)
   const practiceAgain = page.getByRole("button", { name: "Practice again" })
   await expect(practiceAgain).toBeFocused()
   await page.keyboard.press("Enter")
@@ -193,7 +209,13 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await editor.fill(await validDifferentProse(page, "repaired"))
   await editor.press("Control+Enter")
   await page.getByRole("button", { name: "Next" }).click()
-  await expect(page.getByLabel("Practice progress")).toContainText("2 of 7")
+  await expect(page.getByLabel("Practice progress")).toContainText("1 of 6")
+  await expect(page.getByLabel("Practice progress")).toContainText(
+    "Repair practice",
+  )
+  await expect(page.getByLabel("Practice progress")).toContainText(
+    "Exercise 2 of 7",
+  )
   await expect(page.getByRole("region", { name: "Goal" })).not.toHaveText(
     originalGoal ?? "",
   )
@@ -243,13 +265,27 @@ test("persists the current draft only for the browser session", async ({ page })
   const stored = await page.evaluate((key) => {
     const progress = JSON.parse(window.sessionStorage.getItem(key) ?? "{}") as {
       draftByProblemId?: Record<string, string>
+      runStartedAtMs?: number
     }
-    return Object.values(progress.draftByProblemId ?? {})
+    return {
+      drafts: Object.values(progress.draftByProblemId ?? {}),
+      runStartedAtMs: progress.runStartedAtMs,
+    }
   }, progressStorageKey)
-  expect(stored).toContain("# saved draft")
+  expect(stored.drafts).toContain("# saved draft")
+
+  await page.waitForTimeout(1_100)
 
   await page.reload()
   await expect(editor).toHaveText("# saved draft")
+  await expect(page.getByLabel("Elapsed time")).not.toHaveText("00:00")
+  const restoredStartedAt = await page.evaluate((key) => {
+    const progress = JSON.parse(window.sessionStorage.getItem(key) ?? "{}") as {
+      runStartedAtMs?: number
+    }
+    return progress.runStartedAtMs
+  }, progressStorageKey)
+  expect(restoredStartedAt).toBe(stored.runStartedAtMs)
 })
 
 test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page }) => {
@@ -306,8 +342,8 @@ test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {
 
   const [tryAnother, levelLabel, soundToggle, hint] = await Promise.all([
     page.getByRole("button", { name: "Try another" }).boundingBox(),
-    page.locator(".exercise-progress > span:first-child").boundingBox(),
-    page.getByRole("button", { name: "Mute success sound" }).boundingBox(),
+    page.locator(".exercise-progress__level").boundingBox(),
+    page.getByRole("button", { name: "Mute feedback sounds" }).boundingBox(),
     page.getByRole("button", { name: "Hint" }).boundingBox(),
   ])
 

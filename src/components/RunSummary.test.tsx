@@ -1,7 +1,13 @@
 import { render, screen, waitFor } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { StrictMode } from "react"
+import { beforeEach, describe, expect, it, vi } from "vitest"
 import type { RankingClient } from "../ranking/rankingClient"
+import { playFeedbackSound } from "../sound/feedbackSound"
 import { RunSummary } from "./RunSummary"
+
+vi.mock("../sound/feedbackSound", () => ({
+  playFeedbackSound: vi.fn(),
+}))
 
 function renderSummary(
   rankingClient: RankingClient,
@@ -24,6 +30,10 @@ function renderSummary(
 }
 
 describe("RunSummary", () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
   it("shows score, frozen time, collecting status, and replay actions", async () => {
     const getStanding = vi.fn().mockResolvedValue({ kind: "collecting" })
     renderSummary({ getStanding })
@@ -34,6 +44,7 @@ describe("RunSummary", () => {
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
     expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+    expect(playFeedbackSound).toHaveBeenCalledWith("summary")
 
     await waitFor(() => expect(getStanding).toHaveBeenCalledOnce())
     expect(screen.getByLabelText("Level standing")).toHaveTextContent(
@@ -73,11 +84,36 @@ describe("RunSummary", () => {
         total={6}
       />,
     )
-    expect(await screen.findByText("About top 18%" )).toBeVisible()
+    expect(await screen.findByText("About top 18%")).toBeVisible()
     expect(screen.getByText("Compared with 240 anonymous turns")).toBeVisible()
     unmount()
 
     renderSummary({ getStanding: vi.fn().mockRejectedValue(new Error("offline")) })
+    expect(await screen.findByText("Collecting data")).toBeVisible()
+  })
+
+  it("plays the completion cue once during StrictMode effect verification", async () => {
+    render(
+      <StrictMode>
+        <RunSummary
+          elapsedMs={12_000}
+          failedProblemIds={[]}
+          level={1}
+          levelLabel="Level 1 — Learn the syntax"
+          onChangeLevel={vi.fn()}
+          onPracticeAgain={vi.fn()}
+          onStartOver={vi.fn()}
+          rankingClient={{
+            getStanding: vi.fn().mockResolvedValue({ kind: "collecting" }),
+          }}
+          score={6}
+          total={6}
+        />
+      </StrictMode>,
+    )
+
+    expect(playFeedbackSound).toHaveBeenCalledOnce()
+    expect(playFeedbackSound).toHaveBeenCalledWith("summary")
     expect(await screen.findByText("Collecting data")).toBeVisible()
   })
 })

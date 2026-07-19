@@ -2,12 +2,12 @@
 
 **Goal:** Add a session-scoped elapsed clock, a legible turn-progress display, and a truthful completion summary without changing grading, level composition, or remediation rules.
 
-**Architecture:** Progress schema v5 stores only durable run facts: scheduled problem count, first-failure problem IDs, and start/completion timestamps. The reducer owns those facts; React derives the live display time from the persisted timestamp. The top bar renders the current dynamic run queue (six scheduled exercises, with a visible extra step when remediation extends it). A dedicated `RunSummary` consumes a local asynchronous `rankingClient` seam that #41 can later implement without changing the results UI.
+**Architecture:** Progress schema v5 stores only durable run facts: the scheduled cursor, unique failed scheduled indexes, failed problem IDs, and start/completion timestamps. The reducer owns those facts; React derives the live display time from the persisted timestamp. The top bar renders a fixed scheduled rail plus a separate repair-queue position when remediation extends the run. A dedicated `RunSummary` consumes a local asynchronous `rankingClient` seam that #41 can later implement without changing the results UI.
 
 ## Product decisions
 
 - The clock uses `MM:SS` below one hour and `H:MM:SS` afterward. It starts when a level is chosen, survives reload from `sessionStorage`, and freezes at completion.
-- The base progress rail has six steps for Levels 1–4 and the truthful available count for Level 5. If remediation extends a run, its extra step is visible rather than hidden.
+- The base progress rail has six scheduled markers for Levels 1–4 and the truthful available count for Level 5. Remediation holds the same scheduled marker while a separate `Repair practice · Exercise 2 of 7` detail keeps the expanded queue visible.
 - Score counts scheduled exercises completed without a failed Check. A remediation exercise never changes the denominator and cannot penalize the score a second time.
 - The summary does not invent a percentile. The local ranking client returns `Collecting data` and clearly labels the result as the learner's time only.
 - Syntax review groups first-failure problems by retry family and shows the existing teaching concept, instruction, and syntax tokens. It does not inspect prose or alter verdicts.
@@ -18,9 +18,9 @@
 **Files:** `src/progress/types.ts`, `src/progress/progressStore.ts`, `src/progress/progressStore.test.ts`, `src/session/learningSession.ts`, `src/session/learningSession.test.ts`, `src/session/useLearningSession.ts`, `src/session/useLearningSession.test.tsx`
 
 1. Add failing tests for v5 validation, timestamp round trips, fresh-run reset, mid-run reload, completion freeze, and one-score-penalty-per-scheduled-exercise.
-2. Add `scheduledProblemCount`, `failedScheduledProblemIds`, `runStartedAtMs`, and `runCompletedAtMs` to progress.
+2. Add `scheduledStepIndex`, `failedScheduledStepIndexes`, `failedProblemIds`, `runStartedAtMs`, and `runCompletedAtMs` to progress.
 3. Timestamp `started` and `completed` events through an injectable clock in the hook.
-4. Record only first failures on non-transfer exercises and preserve them through repair and reload.
+4. Record each failed scheduled slot once while retaining failed problem IDs for de-duplicated syntax reminders through repair and reload.
 
 ## Task 2 — Add clock and progress rail
 

@@ -100,6 +100,25 @@ describe("learningSessionReducer", () => {
     expect(restored.phase).toBe("complete")
   })
 
+  it("keeps completion time valid if the wall clock moves backward", () => {
+    const started = learningSessionReducer(newSession(), {
+      type: "started",
+      atMs: 10_000,
+      entryId: "level-1",
+      runNumber: 0,
+      runProblemIds: [apple.id],
+      problem: apple,
+    })
+    const passed = editAndCheck(started, apple, "# Apple")
+    const complete = learningSessionReducer(passed, {
+      type: "completed",
+      atMs: 9_000,
+    })
+
+    expect(complete.runCompletedAtMs).toBe(10_000)
+    expect(complete.progress.runCompletedAtMs).toBe(10_000)
+  })
+
   it("completes after first-attempt Matched without requiring Review", () => {
     const passed = editAndCheck(
       newSession(),

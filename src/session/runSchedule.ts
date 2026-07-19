@@ -1,6 +1,7 @@
 type RunScheduleState = {
   problemIds: string[]
   stepIndex: number
+  scheduledStepIndex: number
   currentIsTransfer: boolean
 }
 
@@ -10,16 +11,9 @@ export function placeTransferAtNextStep(
   transferProblemId: string,
 ): string[] {
   const nextIndex = currentIndex + 1
-  const laterIndex = problemIds.indexOf(transferProblemId, nextIndex)
-
-  if (laterIndex === nextIndex) return [...problemIds]
-  if (laterIndex > nextIndex) {
-    const reordered = [...problemIds]
-    reordered.splice(laterIndex, 1)
-    reordered.splice(nextIndex, 0, transferProblemId)
-    return reordered
-  }
-
+  // Transfer practice is outside the scheduled score slots. Even when the
+  // selected content also appears later in the scheduled run, preserve that
+  // scheduled occurrence and insert a distinct repair exercise here.
   const extended = [...problemIds]
   extended.splice(nextIndex, 0, transferProblemId)
   return extended
@@ -29,10 +23,12 @@ function matchesPersistedState(
   state: RunScheduleState,
   persistedProblemIds: readonly string[],
   persistedStepIndex: number,
+  persistedScheduledStepIndex: number,
   persistedCurrentIsTransfer: boolean,
 ): boolean {
   return (
     state.stepIndex === persistedStepIndex &&
+    state.scheduledStepIndex === persistedScheduledStepIndex &&
     state.currentIsTransfer === persistedCurrentIsTransfer &&
     state.problemIds.length === persistedProblemIds.length &&
     state.problemIds.every(
@@ -45,6 +41,7 @@ function stateKey(state: RunScheduleState): string {
   return JSON.stringify([
     state.problemIds,
     state.stepIndex,
+    state.scheduledStepIndex,
     state.currentIsTransfer,
   ])
 }
@@ -53,12 +50,14 @@ export function isReachableRunSchedule({
   baselineProblemIds,
   persistedProblemIds,
   persistedStepIndex,
+  persistedScheduledStepIndex,
   persistedCurrentIsTransfer,
   isEligibleTransferProblem,
 }: {
   baselineProblemIds: readonly string[]
   persistedProblemIds: readonly string[]
   persistedStepIndex: number
+  persistedScheduledStepIndex: number
   persistedCurrentIsTransfer: boolean
   isEligibleTransferProblem: (
     currentProblemId: string,
@@ -69,6 +68,7 @@ export function isReachableRunSchedule({
     {
       problemIds: [...baselineProblemIds],
       stepIndex: 0,
+      scheduledStepIndex: 0,
       currentIsTransfer: false,
     },
   ]
@@ -85,6 +85,7 @@ export function isReachableRunSchedule({
         state,
         persistedProblemIds,
         persistedStepIndex,
+        persistedScheduledStepIndex,
         persistedCurrentIsTransfer,
       )
     ) {
@@ -105,12 +106,14 @@ export function isReachableRunSchedule({
       queue.push({
         problemIds: replacedProblemIds,
         stepIndex: state.stepIndex,
+        scheduledStepIndex: state.scheduledStepIndex,
         currentIsTransfer: state.currentIsTransfer,
       })
       if (!state.currentIsTransfer) {
         queue.push({
           problemIds: replacedProblemIds,
           stepIndex: state.stepIndex,
+          scheduledStepIndex: state.scheduledStepIndex,
           currentIsTransfer: true,
         })
       }
@@ -119,16 +122,17 @@ export function isReachableRunSchedule({
     queue.push({
       problemIds: state.problemIds,
       stepIndex: state.stepIndex + 1,
+      scheduledStepIndex: state.scheduledStepIndex + 1,
       currentIsTransfer: false,
     })
 
     if (state.currentIsTransfer) continue
 
-    for (const transferProblemId of persistedProblemIds) {
-      if (!isEligibleTransferProblem(currentProblemId, transferProblemId)) {
-        continue
-      }
-
+    const transferProblemId = persistedProblemIds[state.stepIndex + 1]
+    if (
+      transferProblemId !== undefined &&
+      isEligibleTransferProblem(currentProblemId, transferProblemId)
+    ) {
       const nextProblemIds = placeTransferAtNextStep(
         state.problemIds,
         state.stepIndex,
@@ -139,6 +143,7 @@ export function isReachableRunSchedule({
       queue.push({
         problemIds: nextProblemIds,
         stepIndex: state.stepIndex + 1,
+        scheduledStepIndex: state.scheduledStepIndex,
         currentIsTransfer: true,
       })
     }

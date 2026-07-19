@@ -142,6 +142,7 @@ function completeSession(
   session: LearningSession,
   atMs: number,
 ): LearningSession {
+  const completedAtMs = Math.max(session.runStartedAtMs ?? atMs, atMs)
   const scheduledRunLength = session.entryId
     ? createRunProblemIds(session.entryId, session.runNumber).length
     : session.scheduledStepIndex
@@ -150,7 +151,7 @@ function completeSession(
     phase: "complete",
     runStepIndex: session.runProblemIds.length || session.runStepIndex,
     scheduledStepIndex: scheduledRunLength,
-    runCompletedAtMs: atMs,
+    runCompletedAtMs: completedAtMs,
     coach: "closed",
     needsTransfer: false,
     currentIsTransfer: false,
@@ -168,7 +169,7 @@ function completeSession(
       currentIsTransfer: false,
       runStepIndex: session.runProblemIds.length || session.runStepIndex,
       scheduledStepIndex: scheduledRunLength,
-      runCompletedAtMs: atMs,
+      runCompletedAtMs: completedAtMs,
     },
   }
 }
