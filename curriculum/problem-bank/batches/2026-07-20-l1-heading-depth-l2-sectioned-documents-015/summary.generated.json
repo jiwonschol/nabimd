@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+  "status": "published",
+  "batchDigest": "a76ba73b923a0e6706e1cc817bd6a80efa4ed8df1e2a14f81b67fe6fd65fe02e",
+  "bankDigest": "3864f5233e3f521f952c8f05359bb3936df33ff1688bdbdd40bbbcf37b1e8d07",
+  "projectionDigest": "9230750169a6732a83d4f582d942048ea73852d554b891a45770f439766e3295",
+  "trackerDigest": "61d4338103e8812b7a1222f1e0b38c9526d39cd84a5a0aef3da2946a6c50c293",
+  "generated": 24,
+  "accepted": 24,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 136,
+      "2": 136,
+      "3": 28,
+      "4": 16,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 16,
+      "fenced-code-blocks": 12,
+      "headings": 44,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "italic-emphasis": 12,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 28,
+      "rebuild-code-block-documents": 12,
+      "rebuild-real-documents": 12,
+      "rebuild-sectioned-documents": 12
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/fenced-code-blocks": 12,
+      "1/headings": 28,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/italic-emphasis": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "2/rebuild-code-block-documents": 12,
+      "2/rebuild-real-documents": 12,
+      "2/rebuild-sectioned-documents": 12,
+      "3/readable-human-document": 28,
+      "4/executable-development-spec": 16,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 320
+    }
+  },
+  "manifestDigest": "10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2",
+  "reviewDigests": [
+    "4b401f943109ee50e917c6414ae788bceb1a7aefc2af6aa90335299ce82fb8a3",
+    "55e82627be8a1d5f52e0889fdaf161e126ffada0fda95b641213ec3ce9b0d96a"
+  ],
+  "editorialDigest": "ee3297b5ad774bcb26fb340cab326a8f1d13555a287180b0a516346676e9ce60",
+  "summaryDigest": "0a470abf6094f9980564421be5b224d6bef3a2e54b34310f4ca0fd92d074d79d"
+}

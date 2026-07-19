@@ -1803,3 +1803,124 @@ passed 9,129 unit and component tests, every immutable batch and repository
 gate, typechecking, the production build and bundle inspection, plus all 13
 Chromium user journeys including keyboard-only completion through the new
 Level 2 code-block challenges.
+
+## 2026-07-20 — Issue #9 heading-depth pre-review freeze
+
+Batch 015 freezes 24 new candidates without publishing them: 12 Level 1 ATX
+heading-depth lessons and 12 Level 2 sectioned-document rebuilds. Heading depth
+was chosen over indented code because Batch 014 had just expanded the code-block
+family and the current engine already grades H2-H6 without a predicate change.
+Paragraph and line-break lessons remain useful future breadth, but a line-break
+contract would need new source-aware engine and scheduler work. Images remain
+blocked on licensed local assets plus visual alt-text review. Heading depth
+therefore adds uncovered CommonMark structure with the smallest engine risk.
+
+The Level 1 matrix is exactly three H2, three H3, two H4, two H5, and two H6
+lessons. It freezes current engine boundaries rather than tightening them:
+zero-to-three leading spaces, tab or multiple-space separators, optional closing
+ATX markers, and empty ATX headings Match. Four-space indentation, the wrong
+depth, seven hashes, missing separator space, escaped or fullwidth hashes,
+Setext H2, raw HTML, fenced-code lookalikes, and nested-only headings fail the
+document-root contract. Level 2 freezes four process, four checklist, and four
+message documents with exact block anatomy, unskipped heading hierarchy, and
+nonempty list or quote structure. Prose, case, spelling, punctuation, and
+semantic truth are not grading operands.
+
+Issue #50 owns selection composition, entry choices, session/progress behavior,
+and heading-flow E2E coverage. Batch 015 deliberately uses the existing
+`heading-h1`, list, and blockquote skill classifications and does not edit any
+path owned by Issue #50. No predicate, runtime AI call, network dependency, GFM
+syntax, HTML lesson, image lesson, reviewer verdict, editorial verdict,
+published summary, tracker projection, or runtime projection is part of this
+freeze.
+
+The frozen evidence contains 24 candidates and 419 fixtures: each H2 candidate
+has 23, each H3-H6 candidate has 22, each process/checklist rebuild has 13, and
+each message rebuild has 12. All 24 candidates pass their frozen fixtures
+through the real learner engine. The prior runtime and tracker files remain
+byte-identical at Git blob IDs
+`bbd4941276f3e0f4d88fc5ca9ba3b7593f2f20f1` and
+`6fc715d5a1f950c105e5f7c00dd4aba442101762`, preserving the published total of
+296 and split 124/124/28/16/4 until unanimous review and editorial acceptance.
+
+Frozen digests:
+
+- generation prompt: `032fb250d21c38890ce246fd714cb5de97cab94f0b26b1113144f09d2e42fb41`
+- raw candidates: `5573b1c77b542193cbb7f248923d3bbb6fed96fa16cdda103eaf09897d88b64e`
+- normalized candidates: `10c36db41cdbf948ce4c46ceb8ac2d751ee4b9959a267d75253cbb9b041584d3`
+- fixture artifact: `f42ec61fa6756b40080bcc0d910687817ee98b625a1a1d750b57ff99b50d7247`
+- verification: `5613dff8c05e645108808a657b1fc9ec33fe66478778eabc1aa2b9a7d1aca5f5`
+- engine contract: `79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b`
+- review manifest: `10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`
+- prepared summary: `c5e80b9362278a1bd06d01a8a080c7efd8579bc07225a50e68fb482517aef5f3`
+
+TDD began with
+`npx vitest run src/content/batches/headingDepthBatch015.test.ts`, which failed
+as expected because the Batch 015 modules did not exist. The focused green run
+`npx vitest run src/content/batches/headingDepthBatch015.test.ts src/engine/structuralPredicates.test.ts src/content/validateProblemBankV2.test.ts`
+passes 629 tests in three files. `npm run bank:batch:heading-depth-015:prepare`
+then freezes the evidence, and
+`npm run bank:batch:heading-depth-015:check` passes seven mechanical gate tests.
+The final pre-review verification also runs `npm test`, `npm run typecheck`, and
+`git diff --check` before commit.
+
+Two pre-freeze integration drafts were rejected. The exact requested `tsx`
+entry point initially exposed that the runner was not a declared dependency, so
+`tsx` 4.22.4 was pinned before continuing. The first artifact draft also wrote
+legacy optional heading `text` fields as explicit `undefined`; canonical JSON
+correctly rejected those values, so the fields were omitted while tests still
+assert their observable value is undefined. The artifacts above were generated
+only after both corrections. Publication remains intentionally fail-closed at
+`awaiting-independent-review`: zero reviewer verdict sets, no `editorial.json`,
+no `summary.generated.json`, and a preserved 296-problem runtime bank.
+
+The first editorial pass rejected the bake-sale checklist's `## Table box`
+heading as unnatural and ambiguous US English. That draft's manifest
+`b5877a9687312217ec65b0b8238f722ec697cc73c4dafd6fc3f5af10644cf9b4`
+and both independent review seals were invalidated before editing. The
+authoritative target now says `## Table supplies`; a regression test failed on
+the rejected wording before the source fix. Both reviewer JSON files and the
+editorial verdict were deleted, the complete pre-review artifact set was
+regenerated, and review restarts from zero against manifest
+`10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`.
+The engine contract remained byte-identical because no engine code changed.
+
+The repaired review cycle then completed unanimously against manifest
+`10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2`.
+Atlas (`reviewer-atlas-batch015`, run
+`atlas-batch015-10d64813-repaired-002`) replayed all 419 fixtures, added 336
+fresh probes, and accepted 24/24 with review digest
+`55e82627be8a1d5f52e0889fdaf161e126ffada0fda95b641213ec3ce9b0d96a`.
+Orchid (`codex-orchid-batch015`, run
+`orchid-batch015-10d64813-repaired-mechanical-002`) independently replayed all
+419 fixtures, added 504 fresh probes, and accepted 24/24 with review digest
+`4b401f943109ee50e917c6414ae788bceb1a7aefc2af6aa90335299ce82fb8a3`.
+The separate `codex-editorial-batch015` actor accepted 24/24 in run
+`editorial-batch015-10d64813-repaired-2026-07-20-002`, sealed by editorial
+digest `ee3297b5ad774bcb26fb340cab326a8f1d13555a287180b0a516346676e9ce60`.
+
+`npm run bank:batch:heading-depth-015:publish` compiled all 24 accepted records
+and raised the deterministic bank from 296 to 320, split 136/136/28/16/4.
+The published family counts include 44 `headings` and 12
+`rebuild-sectioned-documents`. Final publication digests are batch
+`a76ba73b923a0e6706e1cc817bd6a80efa4ed8df1e2a14f81b67fe6fd65fe02e`,
+bank `3864f5233e3f521f952c8f05359bb3936df33ff1688bdbdd40bbbcf37b1e8d07`,
+runtime projection
+`9230750169a6732a83d4f582d942048ea73852d554b891a45770f439766e3295`,
+tracker `61d4338103e8812b7a1222f1e0b38c9526d39cd84a5a0aef3da2946a6c50c293`,
+and summary `0a470abf6094f9980564421be5b224d6bef3a2e54b34310f4ca0fd92d074d79d`.
+
+Publication testing caught one expected integration update and one authored
+test defect. Before Batch 015 fixtures joined the runtime-bank fixture list,
+`src/content/problemBank.test.ts` failed one of five tests with 216 missing
+fixture/check errors; adding the frozen Batch 015 fixtures made it pass 5/5.
+The first `npm run check` then failed one assertion out of 9,555 because Batch
+015's collision test compared the now-published batch against itself. The test
+was corrected to filter its own `sourceBatchId`, preserving its intended
+comparison against the prior 296-problem bank; the focused pair then passed
+431/431. The rerun of `npm run check` passed typechecking, 18/18 pipeline tests,
+93/93 immutable batch-gate tests, 3/3 repository-gate tests, 9,555/9,555 unit
+and component tests, the legacy bank gate, a 222-module production build, and
+bundle inspection excluding four fixture-only sentinels from the single
+JavaScript asset. `npm run test:e2e` passed all 13 Chromium journeys. No path
+owned by Issue #50 changed, and the 512-problem closing target remains open.

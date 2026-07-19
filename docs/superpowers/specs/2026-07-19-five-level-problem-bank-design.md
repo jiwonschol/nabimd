@@ -83,6 +83,10 @@ The standard syntax families are headings and paragraphs, emphasis, lists,
 blockquotes, inline code, horizontal rules, links, fenced code blocks, and
 images with alt text. Fenced code blocks are a CommonMark-compatible,
 Devpost-supported expansion of the initial basic family list.
+The published 320-problem checkpoint includes ATX heading lessons from H1
+through H6 and Level 2 rebuilds whose H1–H3 hierarchy is graded structurally;
+its level split is 136/136/28/16/4. Deep headings remain focused syntax lessons,
+while ordinary sectioned documents use the readable H1–H3 range.
 Image exercises remain blocked until their local assets and alt-text guidance
 have been visually and editorially inspected; another ready family may carry
 the minimum count while that stop remains local to images.

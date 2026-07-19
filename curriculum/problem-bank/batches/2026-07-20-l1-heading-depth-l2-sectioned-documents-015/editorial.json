@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+  "editorialActor": "codex-editorial-batch015",
+  "editorialRunId": "editorial-batch015-10d64813-repaired-2026-07-20-002",
+  "reviewedOn": "2026-07-20",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "10d64813601f53649d2feae357c84aac5eac2f88cebf6dbccaa55d99bd2bc9d2",
+  "decisions": [
+    {
+      "candidateId": "l1-heading-depth-bring-along", "revision": 1,
+      "candidateDigest": "c37b7e4853280c8968906915d4b1dd5573ffe07b7aec10a5401ef9231ea51506", "fixtureResultsDigest": "f9f0371035cd9c1454373c1681f94656e43bebe79c6c5006325f0077cf305849", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Bring along is familiar planning language; the distinct After dinner example keeps the H3 exercise concrete and beginner-friendly."
+    },
+    {
+      "candidateId": "l1-heading-depth-bus-stop", "revision": 1,
+      "candidateDigest": "88d7daf4747e268a326e68449e4dcfc04c7ca9a859df582a921af32d84fbbca5", "fixtureResultsDigest": "bf44c76e1e8e190a924e7424f38af95eda895f6054dea9bfc2f0a18a6c604478", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Bus stop is concise everyday US English and differs from the Blue pencil example; its later reuse in a full update document is progressive rather than duplicative."
+    },
+    {
+      "candidateId": "l1-heading-depth-clean-shelf", "revision": 1,
+      "candidateDigest": "2bbe0bf414ba38079e1f6cf2e3c3428bf5cd6f19cd518f3aaf83b5d5e709c98c", "fixtureResultsDigest": "7502ed2651911618824f123ccb9e102848b6620472f12cf677f087c3770f4248", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Clean shelf reads naturally as a short household task label and isolates the H5 marker without adding conceptual load."
+    },
+    {
+      "candidateId": "l1-heading-depth-dog-leash", "revision": 1,
+      "candidateDigest": "17995ae1ea3cabbabce3198c95d5b1adb149a5cfcd716b5582ea237e9a6be11a", "fixtureResultsDigest": "1cfec4a7251f0d777daf21e308d86c1d5f85f8fb8d2558f45bb554896fc169c4", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Dog leash is concrete, widely familiar vocabulary appropriate for a minimal H6 drill."
+    },
+    {
+      "candidateId": "l1-heading-depth-lost-mitten", "revision": 1,
+      "candidateDigest": "7abae1b21649feac7d374c438f8bbf1c6d0baa8fa90c0834170c7968cb951c64", "fixtureResultsDigest": "6eadb49cb6ceee802be982f604ecff249f212158b6fe9b8f0594fec5b65ba1e9", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Lost mitten is a clear two-word label with an everyday object and no overlap with its Green bowl example."
+    },
+    {
+      "candidateId": "l1-heading-depth-map-key", "revision": 1,
+      "candidateDigest": "ddf99d139edf556d0985d7637226e3f0279a6baf0a2eb728256e8b9fd199cc3e", "fixtureResultsDigest": "6024aa2de9810c813236fa7ba51a472ff637c90ec94cc719e40a373af65084f4", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Map key is standard navigation language and supplies useful topical breadth at H4."
+    },
+    {
+      "candidateId": "l1-heading-depth-movie-seat", "revision": 1,
+      "candidateDigest": "9a20db3df48c239c9ef3f3e41b53ec39ed595a8efdc40d9342896cd708d09669", "fixtureResultsDigest": "d06f3fad09f7458bce7ce9f8c70e4442dc4f749e0203640f98452faf6d0a7f33", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Movie seat is an immediately recognizable leisure label and remains distinct from the Orange cup example."
+    },
+    {
+      "candidateId": "l1-heading-depth-pet-bowl", "revision": 1,
+      "candidateDigest": "fc65698e4e9eed65c391166b34de60f52458f2c44adf3ffa9092d02a30d74819", "fixtureResultsDigest": "34e1a1530af8a4b395ca34622121def9311584dc4cd1e31af3eb21f09b263f71", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Pet bowl uses plain pet-care vocabulary and gives H4 practice without repeating its Garden gate example."
+    },
+    {
+      "candidateId": "l1-heading-depth-pool-pass", "revision": 1,
+      "candidateDigest": "d88aabd3a5d0e21729cf916697babc4da7d1664178c63f8eab3dd9d1af38b0f9", "fixtureResultsDigest": "aca639381fb84b05edb6edb37d7e54b0d9871a50f488b187c50f06c8049eb4b2", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Pool pass is natural recreation vocabulary and makes the H2 lesson easy to recognize at a glance."
+    },
+    {
+      "candidateId": "l1-heading-depth-snack-ideas", "revision": 1,
+      "candidateDigest": "164de79ac7df71f90dca0001ad67e53d6e48958cc70e0f53b184346ecec62b64", "fixtureResultsDigest": "09a9fa37c28c05a8fe603a6636ba42b8570a3be9b1a547ab2b8c75526e930ee2", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Snack ideas is a natural heading; earlier snack exercises use different structures and targets, so this adds heading practice rather than a duplicate."
+    },
+    {
+      "candidateId": "l1-heading-depth-tea-break", "revision": 1,
+      "candidateDigest": "a19d60ea87f582dca93fc74546ef1f40f25d7e41cb63f2efad03a4dec543f8b0", "fixtureResultsDigest": "5d04cd09edab1a4895b83f257ee3780bd69dea3d3e1d2a9dc800ae97c7904759", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Tea break is familiar workplace and daily-routine language with a distinct Shoe box teaching example."
+    },
+    {
+      "candidateId": "l1-heading-depth-yard-sale", "revision": 1,
+      "candidateDigest": "0d23ea30360b9ef24ca240d8a0bb0b72d3edd15cdf9f2464bf35762b65aa27d6", "fixtureResultsDigest": "2c70f0b8d4388d0f14df1e3d45e54b8fa0b1413ffc9891770483dd5fa3244286", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Yard sale is idiomatic US English and a useful neighborhood heading for an H2 introduction."
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-bake-sale", "revision": 1,
+      "candidateDigest": "18a2d6476f65d64642f9bc2ca939dd346279c652355de5a436358df38779874f", "fixtureResultsDigest": "6c2f0c8b436e8ea71d9eacf1a361e80b718df0f11a9420d56a46ceb0cb7b887d", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Table supplies is natural, self-explanatory US English; together with the setup sentence and three sale items it now forms a useful H1-H2 checklist."
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-bike-repair", "revision": 1,
+      "candidateDigest": "72f2c20aafee36e0977f6b9f23782162c13bf3bc6671aff9ce257ea72fc18ce2", "fixtureResultsDigest": "79b619e66efd03add62e8e31be06f8ba17a0aa80e3acfe0e3117df4f378da54b", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Tool tray, the setup sentence, and three concrete supplies form a coherent, useful bike-repair checklist with clear H1-H2 hierarchy."
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-indoor-art", "revision": 1,
+      "candidateDigest": "cd040e6617ae3e2455a9e0b78ab3972179fa53171c0f4c3410ea2e6b52142941", "fixtureResultsDigest": "9e646603b41971ad87619ac550621a9421bd14e2ab46a91141d7819a00767981", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The supplies section, setup sentence, and familiar art materials create a practical Level 2 document with a clear hierarchy."
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-pool-day", "revision": 1,
+      "candidateDigest": "e4a42453ef96929a2b4950e924d09896a7e39d63162adfcdfc98239c5adc5172", "fixtureResultsDigest": "7cb407bbd755d1c00087ad22ee7c2f911d10382282ab02fdccf5082655e3939a", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Pool day and Pack establish an intuitive parent-section relationship, followed by a concise and useful packing checklist."
+    },
+    {
+      "candidateId": "l2-sectioned-message-book-swap", "revision": 1,
+      "candidateDigest": "9db10b5953940bd999398fc83b993914479b755ac898e6bf9739be6c78c166b7", "fixtureResultsDigest": "8595af26b80512cabf74fec807f6bf012e5971091b97d7eb68ebf42d0b256929", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The event, table, reminder, and quoted instruction form a readable H1-H2-H3 community message; the prose is natural and structurally distinct."
+    },
+    {
+      "candidateId": "l2-sectioned-message-bus-stop", "revision": 1,
+      "candidateDigest": "730c6e562f9334083d02f01494990fb611b3dc673c07b66c1da1cefd1f3ac28a", "fixtureResultsDigest": "aaaf0c4d6d3dada71cdeb0335fde2bc28f4329f060287990a39bdbd4c26e6d7d", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The Pine Street stop change and rider reminder read like a plausible local notice and demonstrate H1-H2-H3 hierarchy clearly."
+    },
+    {
+      "candidateId": "l2-sectioned-message-lost-and-found", "revision": 1,
+      "candidateDigest": "74160fd74abec182126eb5fc8e3a246d9a025f8b7169fd0c9c48a59f044ccf01", "fixtureResultsDigest": "0ba1754bf35723c83ba3943ad339deac07305e738f30cc77f097acd1d47bd820", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The scarf description, location, and pickup instruction make a compact, realistic notice with a meaningful three-level hierarchy."
+    },
+    {
+      "candidateId": "l2-sectioned-message-school-play", "revision": 1,
+      "candidateDigest": "846789cac1bac41f477d436ce031d28fc783d553027e95719847723780895534", "fixtureResultsDigest": "1ff132d04a8c90fa83ec0695187e7a3d0a4f0ae635ea09c8f89ff03f987df883", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Costume check and Cast note are natural subordinate sections, and the bag-label reminder makes the document practically useful."
+    },
+    {
+      "candidateId": "l2-sectioned-process-bird-feeder", "revision": 1,
+      "candidateDigest": "cbbb2dff1a46ec6216a191320aee8a4caf1f6948621f29ec92c4caa8dfc7a9fb", "fixtureResultsDigest": "7e6ba4686a1b69eaa89978a059207b664ad89766784a632f8b13ff06f8b090ac", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The setup sentence and three chronological feeder steps form a coherent, beginner-readable process document."
+    },
+    {
+      "candidateId": "l2-sectioned-process-blanket-fort", "revision": 1,
+      "candidateDigest": "15957830038e662c201c8af6bb46d0d89c41de9ddbc8a8571c06e70cdf6d088c", "fixtureResultsDigest": "0a18443d80549b619a4394244a487f2434a12f69b84b230515e4d43c4878b21f", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The reading purpose and three familiar construction steps are cohesive, age-neutral, and appropriately simple for Level 2."
+    },
+    {
+      "candidateId": "l2-sectioned-process-car-wash", "revision": 1,
+      "candidateDigest": "4f6d1161911083e2d9981879f39d8699b319ce59186f608fc8bc764d6a6809c0", "fixtureResultsDigest": "a8c7cbdfa56f1ce1af450d29e2148e4216787ff9ffdf07653f3b1553b842b76f", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The shaded-location setup and rinse-wash-dry sequence are natural US English and make a useful compact process."
+    },
+    {
+      "candidateId": "l2-sectioned-process-sort-mail", "revision": 1,
+      "candidateDigest": "6675a56de7ce5c5fb3943b2f7edd4544c294fb5c60197d6fe822767d5d2812b3", "fixtureResultsDigest": "30430635ad080e8d4ccf9c66f482438e58e35ef41bf8a51d029cf5c38f391dad", "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "The table setup and name-group-recycle sequence are clear household instructions with a visible H1-H2 process hierarchy."
+    }
+  ],
+  "reviewDigests": [
+    "4b401f943109ee50e917c6414ae788bceb1a7aefc2af6aa90335299ce82fb8a3",
+    "55e82627be8a1d5f52e0889fdaf161e126ffada0fda95b641213ec3ce9b0d96a"
+  ],
+  "editorialDigest": "ee3297b5ad774bcb26fb340cab326a8f1d13555a287180b0a516346676e9ce60"
+}

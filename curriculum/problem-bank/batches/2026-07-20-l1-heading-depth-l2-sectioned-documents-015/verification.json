@@ -1,0 +1,6213 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+  "engineContractDigest": "79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b",
+  "candidates": [
+    {
+      "candidateId": "l1-heading-depth-bring-along",
+      "revision": 1,
+      "candidateDigest": "c37b7e4853280c8968906915d4b1dd5573ffe07b7aec10a5401ef9231ea51506",
+      "problemDigest": "84398d348fb495024daaf8f5ef16aae1eae9b464a6024c0d36f1ea9c1dfd5cd6",
+      "fixtureDefinitionDigest": "8130864617de74fe4061ba828e35f91e8d1e4ed9c3bbbff4ba45d88b7abcd26c",
+      "fixtureResultsDigest": "f9f0371035cd9c1454373c1681f94656e43bebe79c6c5006325f0077cf305849",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-bus-stop",
+      "revision": 1,
+      "candidateDigest": "88d7daf4747e268a326e68449e4dcfc04c7ca9a859df582a921af32d84fbbca5",
+      "problemDigest": "fdfbf6c8ad88cd7748956c1206be13539956252200a145c49ab4633b32cdfc06",
+      "fixtureDefinitionDigest": "18c8f5415d7f9ce01a7b2ca161f66754cfb9a6b691d62b9ababefaf604509c28",
+      "fixtureResultsDigest": "bf44c76e1e8e190a924e7424f38af95eda895f6054dea9bfc2f0a18a6c604478",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-clean-shelf",
+      "revision": 1,
+      "candidateDigest": "2bbe0bf414ba38079e1f6cf2e3c3428bf5cd6f19cd518f3aaf83b5d5e709c98c",
+      "problemDigest": "1f2ffa77252a9e44209223dec35ad3488f0d6bfc712c8a2ad301181f82fdb7af",
+      "fixtureDefinitionDigest": "eb6da86a9e905bffabe9400e0e3b641edf08531d2cfb07ec1c3b09ad7f069ce1",
+      "fixtureResultsDigest": "7502ed2651911618824f123ccb9e102848b6620472f12cf677f087c3770f4248",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-dog-leash",
+      "revision": 1,
+      "candidateDigest": "17995ae1ea3cabbabce3198c95d5b1adb149a5cfcd716b5582ea237e9a6be11a",
+      "problemDigest": "cf4c2b83d69e738eeb6856a50f14701a0b28b4447d02ccb9a966db791f5b99f4",
+      "fixtureDefinitionDigest": "7484990b8889b1cdec4a592cf8c93e8168a6abd7c73d8b224707159f071d74c3",
+      "fixtureResultsDigest": "1cfec4a7251f0d777daf21e308d86c1d5f85f8fb8d2558f45bb554896fc169c4",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-lost-mitten",
+      "revision": 1,
+      "candidateDigest": "7abae1b21649feac7d374c438f8bbf1c6d0baa8fa90c0834170c7968cb951c64",
+      "problemDigest": "c7c6fa27522c8fefd1a627c68510a1e07807dbbb2f85160801fd55493c4848bb",
+      "fixtureDefinitionDigest": "9a11e5937b194b4cf7de7a58e5b18124e6a3ca84e0bd19ed13cb175d31b82633",
+      "fixtureResultsDigest": "6eadb49cb6ceee802be982f604ecff249f212158b6fe9b8f0594fec5b65ba1e9",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-map-key",
+      "revision": 1,
+      "candidateDigest": "ddf99d139edf556d0985d7637226e3f0279a6baf0a2eb728256e8b9fd199cc3e",
+      "problemDigest": "4b024413191e540da6be656ed0c699f73776435e3c645919ed230beb98216f49",
+      "fixtureDefinitionDigest": "b63d8d9ea3e30da4262003dab55abd11793c11c9ac514a1fbf2c349de29ab4d8",
+      "fixtureResultsDigest": "6024aa2de9810c813236fa7ba51a472ff637c90ec94cc719e40a373af65084f4",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-movie-seat",
+      "revision": 1,
+      "candidateDigest": "9a20db3df48c239c9ef3f3e41b53ec39ed595a8efdc40d9342896cd708d09669",
+      "problemDigest": "8c206f0d55c1696e660f2d9c55613327b64d862c1da064aeefa09c30de992c41",
+      "fixtureDefinitionDigest": "6dc5deb58db8ef0cab74d8804f45507f3b226c284ab3beda36fb071fb12ed490",
+      "fixtureResultsDigest": "d06f3fad09f7458bce7ce9f8c70e4442dc4f749e0203640f98452faf6d0a7f33",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-pet-bowl",
+      "revision": 1,
+      "candidateDigest": "fc65698e4e9eed65c391166b34de60f52458f2c44adf3ffa9092d02a30d74819",
+      "problemDigest": "7b29e3dbcbd2d51d5a52796fefcd91ddbcbcb9d4737fa195e8ffbf6fa839a9e0",
+      "fixtureDefinitionDigest": "1f6f356912d30866623bc48d39ab11b30ed375ebb85ca23ac7da579088b75e71",
+      "fixtureResultsDigest": "34e1a1530af8a4b395ca34622121def9311584dc4cd1e31af3eb21f09b263f71",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-pool-pass",
+      "revision": 1,
+      "candidateDigest": "d88aabd3a5d0e21729cf916697babc4da7d1664178c63f8eab3dd9d1af38b0f9",
+      "problemDigest": "fa3b8d3a246fd920be1958f461626dbe0f347a485e1f501d4e525ba830e98ff4",
+      "fixtureDefinitionDigest": "51d8a8f193b569142a18e4b7142e9265a58325c718535af9b0e42d5388cb796c",
+      "fixtureResultsDigest": "aca639381fb84b05edb6edb37d7e54b0d9871a50f488b187c50f06c8049eb4b2",
+      "fixtureCount": 23,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-snack-ideas",
+      "revision": 1,
+      "candidateDigest": "164de79ac7df71f90dca0001ad67e53d6e48958cc70e0f53b184346ecec62b64",
+      "problemDigest": "3f62ebd23f30d30391ee144fc3e2c5d4902cfff39b5fbcc0db3b070876bfcdb8",
+      "fixtureDefinitionDigest": "6c42fa09632479bf153d4e872047ba80a617ea4a5ad7b447c85527f3452a16e8",
+      "fixtureResultsDigest": "09a9fa37c28c05a8fe603a6636ba42b8570a3be9b1a547ab2b8c75526e930ee2",
+      "fixtureCount": 23,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-tea-break",
+      "revision": 1,
+      "candidateDigest": "a19d60ea87f582dca93fc74546ef1f40f25d7e41cb63f2efad03a4dec543f8b0",
+      "problemDigest": "83d214825f55d68674bf6d5870c0c148cdb430c7969ebe120bb5258ebf53b817",
+      "fixtureDefinitionDigest": "482fd7e404d4e17399eb0ae26a8d3bfc84356a6e26a853b52976e33743978290",
+      "fixtureResultsDigest": "5d04cd09edab1a4895b83f257ee3780bd69dea3d3e1d2a9dc800ae97c7904759",
+      "fixtureCount": 22,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-heading-depth-yard-sale",
+      "revision": 1,
+      "candidateDigest": "0d23ea30360b9ef24ca240d8a0bb0b72d3edd15cdf9f2464bf35762b65aa27d6",
+      "problemDigest": "5014ed9d73998b1cb571c669724a29cd12d00e13e4a7c7fbf6b4a5501016950b",
+      "fixtureDefinitionDigest": "08a5bd3e3e18603bf6b3778abf5aec8b4c7cfcc8ac9f8965d37d40b4676c134f",
+      "fixtureResultsDigest": "2c70f0b8d4388d0f14df1e3d45e54b8fa0b1413ffc9891770483dd5fa3244286",
+      "fixtureCount": 23,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-bake-sale",
+      "revision": 1,
+      "candidateDigest": "18a2d6476f65d64642f9bc2ca939dd346279c652355de5a436358df38779874f",
+      "problemDigest": "de7fcc2fcf446d96affbfdc93fe920399ef1821706f95bd7f90e38194869d3ff",
+      "fixtureDefinitionDigest": "ca38791249d12b24e12a25905204a6188c1492ebf61ff7400656927e14d09337",
+      "fixtureResultsDigest": "6c2f0c8b436e8ea71d9eacf1a361e80b718df0f11a9420d56a46ceb0cb7b887d",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-bike-repair",
+      "revision": 1,
+      "candidateDigest": "72f2c20aafee36e0977f6b9f23782162c13bf3bc6671aff9ce257ea72fc18ce2",
+      "problemDigest": "71e8f754d00aae82d9f3b6359b661ab84060dd9957f4a64c9a4b76655edef91b",
+      "fixtureDefinitionDigest": "8c7f9051b7cdb46893b66fd2150faeec0a7a2fb3921c7ed96acbe1317cd606db",
+      "fixtureResultsDigest": "79b619e66efd03add62e8e31be06f8ba17a0aa80e3acfe0e3117df4f378da54b",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-indoor-art",
+      "revision": 1,
+      "candidateDigest": "cd040e6617ae3e2455a9e0b78ab3972179fa53171c0f4c3410ea2e6b52142941",
+      "problemDigest": "6ee9318c7191cc81bbe89761d31e2df117fa6d0678163d5d275ac993dc644d67",
+      "fixtureDefinitionDigest": "3ca78fa37d53dd311a8c2e7171c0d32b1d9ab9d32cbe30455e0e307cdc5c750e",
+      "fixtureResultsDigest": "9e646603b41971ad87619ac550621a9421bd14e2ab46a91141d7819a00767981",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-checklist-pool-day",
+      "revision": 1,
+      "candidateDigest": "e4a42453ef96929a2b4950e924d09896a7e39d63162adfcdfc98239c5adc5172",
+      "problemDigest": "4e473a9bc2479f35b6a270312e354a19e4c7faadff62e2c4b1c96eb864fb963e",
+      "fixtureDefinitionDigest": "fecac84a1a1f3bfbfb2e72846fb45152788ddf9e60fdc914caff78753a605ce7",
+      "fixtureResultsDigest": "7cb407bbd755d1c00087ad22ee7c2f911d10382282ab02fdccf5082655e3939a",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-message-book-swap",
+      "revision": 1,
+      "candidateDigest": "9db10b5953940bd999398fc83b993914479b755ac898e6bf9739be6c78c166b7",
+      "problemDigest": "871831da278a1bffffbef780b28451352ac1202cd3e6c6e9648657efd98e2cf5",
+      "fixtureDefinitionDigest": "319a1f15eb596ab259dc332eef03328610e0a7bdd90ea214dd47eb719cfac45f",
+      "fixtureResultsDigest": "8595af26b80512cabf74fec807f6bf012e5971091b97d7eb68ebf42d0b256929",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-message-bus-stop",
+      "revision": 1,
+      "candidateDigest": "730c6e562f9334083d02f01494990fb611b3dc673c07b66c1da1cefd1f3ac28a",
+      "problemDigest": "c8ecb087b620eb7257e9b6b8210dd4678d9d936992fb2cc670e81997a30ab6a9",
+      "fixtureDefinitionDigest": "3dc77d5b4368222b99d12ed34555417743ab4a5fbe48859591c2532253cf8281",
+      "fixtureResultsDigest": "aaaf0c4d6d3dada71cdeb0335fde2bc28f4329f060287990a39bdbd4c26e6d7d",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-message-lost-and-found",
+      "revision": 1,
+      "candidateDigest": "74160fd74abec182126eb5fc8e3a246d9a025f8b7169fd0c9c48a59f044ccf01",
+      "problemDigest": "08c83d966af9d3cf39a3f2925dc566c0bdb5b800dd77d0023610419ef307c4d6",
+      "fixtureDefinitionDigest": "3f96e4f2ca7cbd634659b35a9eb819aa21e7a0a62ff725094f533abab091cdcb",
+      "fixtureResultsDigest": "0ba1754bf35723c83ba3943ad339deac07305e738f30cc77f097acd1d47bd820",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-message-school-play",
+      "revision": 1,
+      "candidateDigest": "846789cac1bac41f477d436ce031d28fc783d553027e95719847723780895534",
+      "problemDigest": "83a71f54bc135d6d877286e81aa149cc349fba0a22ca6a33bfabe4c428f7a9c6",
+      "fixtureDefinitionDigest": "77962395d8d5612ea45d12c30e67f4be6d99ca340f24b76cd22e345f8f41b4b3",
+      "fixtureResultsDigest": "1ff132d04a8c90fa83ec0695187e7a3d0a4f0ae635ea09c8f89ff03f987df883",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-process-bird-feeder",
+      "revision": 1,
+      "candidateDigest": "cbbb2dff1a46ec6216a191320aee8a4caf1f6948621f29ec92c4caa8dfc7a9fb",
+      "problemDigest": "abb82a786d5e4e28e781d6d7ce20f0bef4e0b334296e295673ce9cc8be30f0ee",
+      "fixtureDefinitionDigest": "577ce20a8a29e369c2e0cf34e01a3a701e31d8c65ac85890839e728004633bd1",
+      "fixtureResultsDigest": "7e6ba4686a1b69eaa89978a059207b664ad89766784a632f8b13ff06f8b090ac",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-process-blanket-fort",
+      "revision": 1,
+      "candidateDigest": "15957830038e662c201c8af6bb46d0d89c41de9ddbc8a8571c06e70cdf6d088c",
+      "problemDigest": "1bb1863a445dff203b1ef40572033af09ba7ac71d80dfe85a615d789daf60e15",
+      "fixtureDefinitionDigest": "67d3fcaccf71b6223a717e597d061750cd5a38d0cab38c928f14364c491b4ac2",
+      "fixtureResultsDigest": "0a18443d80549b619a4394244a487f2434a12f69b84b230515e4d43c4878b21f",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-process-car-wash",
+      "revision": 1,
+      "candidateDigest": "4f6d1161911083e2d9981879f39d8699b319ce59186f608fc8bc764d6a6809c0",
+      "problemDigest": "1408df1d54d38dc45b27d6508c9a2d6890ad7a69557e4760e99f5210a5bf56c7",
+      "fixtureDefinitionDigest": "79188b83c6fcb43bee30561fbea61fef8d6c28b1edc5c0048470e7d05adfe19f",
+      "fixtureResultsDigest": "a8c7cbdfa56f1ce1af450d29e2148e4216787ff9ffdf07653f3b1553b842b76f",
+      "fixtureCount": 13,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-sectioned-process-sort-mail",
+      "revision": 1,
+      "candidateDigest": "6675a56de7ce5c5fb3943b2f7edd4544c294fb5c60197d6fe822767d5d2812b3",
+      "problemDigest": "b56ba29159e5ac35dbf2f9451bd4eec633e5339db047821db24beb4b602fc0ba",
+      "fixtureDefinitionDigest": "b7e8608c74b1812b2652c40236c316fe4873c904a8a528910357c779b9985a22",
+      "fixtureResultsDigest": "30430635ad080e8d4ccf9c66f482438e58e35ef41bf8a51d029cf5c38f391dad",
+      "fixtureCount": 13,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l1-heading-depth-bring-along-canonical",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-case-spelling",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-closing-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-different-prose",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-empty-atx-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-escaped-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-extra-block",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-four-space-indented",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-fullwidth-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-matched-review",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-missing-space",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-multiple-space-separator",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-nested-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-one-leading-space",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-raw-html-heading",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-seven-hashes",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-tab-separator",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-three-leading-spaces",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-two-leading-spaces",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bring-along-wrong-depth",
+      "problemId": "l1-heading-depth-bring-along",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bring-along-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-canonical",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-case-spelling",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-closing-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-different-prose",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-empty-atx-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-escaped-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-extra-block",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-four-space-indented",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-fullwidth-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-matched-review",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-missing-space",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-multiple-space-separator",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-nested-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-one-leading-space",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-raw-html-heading",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-seven-hashes",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-tab-separator",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-three-leading-spaces",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-two-leading-spaces",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-bus-stop-wrong-depth",
+      "problemId": "l1-heading-depth-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-canonical",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-case-spelling",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-closing-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-different-prose",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-empty-atx-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-escaped-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-extra-block",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-four-space-indented",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-fullwidth-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-matched-review",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-missing-space",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-multiple-space-separator",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-nested-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-one-leading-space",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-raw-html-heading",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-seven-hashes",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-tab-separator",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-three-leading-spaces",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-two-leading-spaces",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-clean-shelf-wrong-depth",
+      "problemId": "l1-heading-depth-clean-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-clean-shelf-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-canonical",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-case-spelling",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-closing-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-different-prose",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-empty-atx-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-escaped-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-extra-block",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-four-space-indented",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-fullwidth-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-matched-review",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-missing-space",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-multiple-space-separator",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-nested-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-one-leading-space",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-raw-html-heading",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-seven-hashes",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-tab-separator",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-three-leading-spaces",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-two-leading-spaces",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-dog-leash-wrong-depth",
+      "problemId": "l1-heading-depth-dog-leash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-dog-leash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-canonical",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-case-spelling",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-closing-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-different-prose",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-empty-atx-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-escaped-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-extra-block",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-four-space-indented",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-fullwidth-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-matched-review",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-missing-space",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-multiple-space-separator",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-nested-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-one-leading-space",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-raw-html-heading",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-seven-hashes",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-tab-separator",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-three-leading-spaces",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-two-leading-spaces",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-lost-mitten-wrong-depth",
+      "problemId": "l1-heading-depth-lost-mitten",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-lost-mitten-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-canonical",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-case-spelling",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-closing-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-different-prose",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-empty-atx-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-escaped-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-extra-block",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-four-space-indented",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-fullwidth-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-matched-review",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-missing-space",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-multiple-space-separator",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-nested-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-one-leading-space",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-raw-html-heading",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-seven-hashes",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-tab-separator",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-three-leading-spaces",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-two-leading-spaces",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-map-key-wrong-depth",
+      "problemId": "l1-heading-depth-map-key",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-map-key-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-canonical",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-case-spelling",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-closing-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-different-prose",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-empty-atx-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-escaped-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-extra-block",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-four-space-indented",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-fullwidth-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-matched-review",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-missing-space",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-multiple-space-separator",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-nested-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-one-leading-space",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-raw-html-heading",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-seven-hashes",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-tab-separator",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-three-leading-spaces",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-two-leading-spaces",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-movie-seat-wrong-depth",
+      "problemId": "l1-heading-depth-movie-seat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-movie-seat-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-canonical",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-case-spelling",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-closing-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-different-prose",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-empty-atx-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-escaped-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-extra-block",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-four-space-indented",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-fullwidth-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-matched-review",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-missing-space",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-multiple-space-separator",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-nested-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-one-leading-space",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-raw-html-heading",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-seven-hashes",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-tab-separator",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-three-leading-spaces",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-two-leading-spaces",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pet-bowl-wrong-depth",
+      "problemId": "l1-heading-depth-pet-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pet-bowl-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-canonical",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-case-spelling",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-closing-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-different-prose",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-empty-atx-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-escaped-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-extra-block",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-four-space-indented",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-fullwidth-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-matched-review",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-missing-space",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-multiple-space-separator",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-nested-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-one-leading-space",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-raw-html-heading",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-setext-h2",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-hash-style"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-hash-style"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-seven-hashes",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-tab-separator",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-three-leading-spaces",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-two-leading-spaces",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-pool-pass-wrong-depth",
+      "problemId": "l1-heading-depth-pool-pass",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-pool-pass-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-canonical",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-case-spelling",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-closing-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-different-prose",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-empty-atx-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-escaped-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-extra-block",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-four-space-indented",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-fullwidth-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-matched-review",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-missing-space",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-multiple-space-separator",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-nested-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-one-leading-space",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-raw-html-heading",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-setext-h2",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-hash-style"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-hash-style"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-seven-hashes",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-tab-separator",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-three-leading-spaces",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-two-leading-spaces",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-snack-ideas-wrong-depth",
+      "problemId": "l1-heading-depth-snack-ideas",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-snack-ideas-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-canonical",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-case-spelling",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-closing-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-different-prose",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-empty-atx-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-escaped-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-extra-block",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-four-space-indented",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-fullwidth-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-matched-review",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-missing-space",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-multiple-space-separator",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-nested-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-one-leading-space",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-raw-html-heading",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-seven-hashes",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-tab-separator",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-three-leading-spaces",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-two-leading-spaces",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-tea-break-wrong-depth",
+      "problemId": "l1-heading-depth-tea-break",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-tea-break-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-canonical",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-case-spelling",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-closing-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-different-prose",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-empty-atx-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-escaped-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-extra-block",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-fenced-code-lookalike",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-four-space-indented",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-fullwidth-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-matched-review",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-missing-space",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-spacing"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-spacing"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-multiple-space-separator",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-nested-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-one-leading-space",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-plain-text-missing-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-raw-html-heading",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-setext-h2",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-hash-style"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-hash-style"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-seven-hashes",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-tab-separator",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-three-leading-spaces",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-two-leading-spaces",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-heading-depth-yard-sale-wrong-depth",
+      "problemId": "l1-heading-depth-yard-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l1-heading-depth-yard-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-canonical",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-case-spelling",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-different-prose",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-empty-list-item",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-extra-block",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-matched-review",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-missing-title",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-too-few-items",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-wrong-depth",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bake-sale-wrong-order",
+      "problemId": "l2-sectioned-checklist-bake-sale",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bake-sale-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-canonical",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-case-spelling",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-different-prose",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-empty-list-item",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-extra-block",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-matched-review",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-missing-title",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-too-few-items",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-wrong-depth",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-bike-repair-wrong-order",
+      "problemId": "l2-sectioned-checklist-bike-repair",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-bike-repair-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-canonical",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-case-spelling",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-different-prose",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-empty-list-item",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-extra-block",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-matched-review",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-missing-title",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-too-few-items",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-wrong-depth",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-indoor-art-wrong-order",
+      "problemId": "l2-sectioned-checklist-indoor-art",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-indoor-art-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-canonical",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-case-spelling",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-different-prose",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-empty-list-item",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-extra-block",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-matched-review",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-missing-paragraph",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-missing-title",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-skipped-hierarchy",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-too-few-items",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-wrong-depth",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-wrong-list-kind",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-checklist-pool-day-wrong-order",
+      "problemId": "l2-sectioned-checklist-pool-day",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-checklist-pool-day-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-canonical",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-case-spelling",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-different-prose",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-empty-quote",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-extra-block",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-matched-review",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-missing-paragraph",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-missing-quote",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-missing-title",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-wrong-depth",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-book-swap-wrong-order",
+      "problemId": "l2-sectioned-message-book-swap",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-book-swap-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-canonical",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-case-spelling",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-different-prose",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-empty-quote",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-extra-block",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-matched-review",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-missing-paragraph",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-missing-quote",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-missing-title",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-wrong-depth",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-bus-stop-wrong-order",
+      "problemId": "l2-sectioned-message-bus-stop",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-bus-stop-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-canonical",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-case-spelling",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-different-prose",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-empty-quote",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-extra-block",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-matched-review",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-missing-paragraph",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-missing-quote",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-missing-title",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-wrong-depth",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-lost-and-found-wrong-order",
+      "problemId": "l2-sectioned-message-lost-and-found",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-lost-and-found-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-canonical",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-case-spelling",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-different-prose",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-empty-quote",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-extra-block",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-matched-review",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-missing-paragraph",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-missing-quote",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-missing-title",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-skipped-hierarchy",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-wrong-depth",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-message-school-play-wrong-order",
+      "problemId": "l2-sectioned-message-school-play",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-message-school-play-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-canonical",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-case-spelling",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-different-prose",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-empty-list-item",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-extra-block",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-matched-review",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-missing-paragraph",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-missing-title",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-too-few-items",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-wrong-depth",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-wrong-list-kind",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-bird-feeder-wrong-order",
+      "problemId": "l2-sectioned-process-bird-feeder",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-bird-feeder-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-canonical",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-case-spelling",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-different-prose",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-empty-list-item",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-extra-block",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-matched-review",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-missing-paragraph",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-missing-title",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-too-few-items",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-wrong-depth",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-wrong-list-kind",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-blanket-fort-wrong-order",
+      "problemId": "l2-sectioned-process-blanket-fort",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-blanket-fort-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-canonical",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-case-spelling",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-different-prose",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-empty-list-item",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-extra-block",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-matched-review",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-missing-paragraph",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-missing-title",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-too-few-items",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-wrong-depth",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-wrong-list-kind",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-car-wash-wrong-order",
+      "problemId": "l2-sectioned-process-car-wash",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-car-wash-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-canonical",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-case-spelling",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-different-prose",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-empty-list-item",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-extra-block",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-matched-review",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-heading-plain"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-missing-paragraph",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-missing-title",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-skipped-hierarchy",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-too-few-items",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-wrong-depth",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-wrong-list-kind",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-sectioned-process-sort-mail-wrong-order",
+      "problemId": "l2-sectioned-process-sort-mail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l2-sectioned-process-sort-mail-shape"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "5613dff8c05e645108808a657b1fc9ec33fe66478778eabc1aa2b9a7d1aca5f5"
+}

@@ -1,0 +1,2494 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+  "sequence": 15,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-20",
+  "candidates": [
+    {
+      "id": "l1-heading-depth-snack-ideas",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H2 can name a section below a document title. This exercise uses the hash form.",
+        "howTo": "Start the line with exactly 2 hash marks, then a space.",
+        "example": "## Paper stars"
+      },
+      "syntaxTokens": [
+        "##",
+        "Space"
+      ],
+      "title": "H2 heading",
+      "prompt": "Write one H2 heading in Markdown.",
+      "target": "## Snack ideas",
+      "starterText": "",
+      "protectedContent": [
+        "Snack ideas"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-snack-ideas-spacing",
+          "kind": "heading-spacing",
+          "level": 2,
+          "priority": 10,
+          "feedback": "Add a space after the 2 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-snack-ideas-hash-style",
+          "kind": "hash-heading-style",
+          "level": 2,
+          "priority": 20,
+          "feedback": "This exercise practices the hash form of an H2. Start with `## `."
+        },
+        {
+          "id": "l1-heading-depth-snack-ideas-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 2
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H2 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ##.",
+        "Put one space after ##.",
+        "Example: `## Paper stars`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-2"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "everyday-food"
+        ],
+        "terms": [
+          "Snack ideas"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h2-snack-ideas"
+    },
+    {
+      "id": "l1-heading-depth-pool-pass",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H2 can name a section below a document title. This exercise uses the hash form.",
+        "howTo": "Start the line with exactly 2 hash marks, then a space.",
+        "example": "## Morning bell"
+      },
+      "syntaxTokens": [
+        "##",
+        "Space"
+      ],
+      "title": "H2 heading",
+      "prompt": "Write one H2 heading in Markdown.",
+      "target": "## Pool pass",
+      "starterText": "",
+      "protectedContent": [
+        "Pool pass"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-pool-pass-spacing",
+          "kind": "heading-spacing",
+          "level": 2,
+          "priority": 10,
+          "feedback": "Add a space after the 2 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-pool-pass-hash-style",
+          "kind": "hash-heading-style",
+          "level": 2,
+          "priority": 20,
+          "feedback": "This exercise practices the hash form of an H2. Start with `## `."
+        },
+        {
+          "id": "l1-heading-depth-pool-pass-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 2
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H2 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ##.",
+        "Put one space after ##.",
+        "Example: `## Morning bell`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-2"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "everyday-outdoors"
+        ],
+        "terms": [
+          "Pool pass"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h2-pool-pass"
+    },
+    {
+      "id": "l1-heading-depth-yard-sale",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H2 can name a section below a document title. This exercise uses the hash form.",
+        "howTo": "Start the line with exactly 2 hash marks, then a space.",
+        "example": "## Warm cookies"
+      },
+      "syntaxTokens": [
+        "##",
+        "Space"
+      ],
+      "title": "H2 heading",
+      "prompt": "Write one H2 heading in Markdown.",
+      "target": "## Yard sale",
+      "starterText": "",
+      "protectedContent": [
+        "Yard sale"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-yard-sale-spacing",
+          "kind": "heading-spacing",
+          "level": 2,
+          "priority": 10,
+          "feedback": "Add a space after the 2 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-yard-sale-hash-style",
+          "kind": "hash-heading-style",
+          "level": 2,
+          "priority": 20,
+          "feedback": "This exercise practices the hash form of an H2. Start with `## `."
+        },
+        {
+          "id": "l1-heading-depth-yard-sale-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 2
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H2 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ##.",
+        "Put one space after ##.",
+        "Example: `## Warm cookies`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-2"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "neighborhood"
+        ],
+        "terms": [
+          "Yard sale"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h2-yard-sale"
+    },
+    {
+      "id": "l1-heading-depth-bus-stop",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H3 marks a heading at depth 3.",
+        "howTo": "Start the line with exactly 3 hash marks, then a space.",
+        "example": "### Blue pencil"
+      },
+      "syntaxTokens": [
+        "###",
+        "Space"
+      ],
+      "title": "H3 heading",
+      "prompt": "Write one H3 heading in Markdown.",
+      "target": "### Bus stop",
+      "starterText": "",
+      "protectedContent": [
+        "Bus stop"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-bus-stop-spacing",
+          "kind": "heading-spacing",
+          "level": 3,
+          "priority": 10,
+          "feedback": "Add a space after the 3 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-bus-stop-hash-style",
+          "kind": "hash-heading-style",
+          "level": 3,
+          "priority": 20,
+          "feedback": "Start the H3 with `### `."
+        },
+        {
+          "id": "l1-heading-depth-bus-stop-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 3
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H3 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ###.",
+        "Put one space after ###.",
+        "Example: `### Blue pencil`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-3"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "local-travel"
+        ],
+        "terms": [
+          "Bus stop"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h3-bus-stop"
+    },
+    {
+      "id": "l1-heading-depth-tea-break",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H3 marks a heading at depth 3.",
+        "howTo": "Start the line with exactly 3 hash marks, then a space.",
+        "example": "### Shoe box"
+      },
+      "syntaxTokens": [
+        "###",
+        "Space"
+      ],
+      "title": "H3 heading",
+      "prompt": "Write one H3 heading in Markdown.",
+      "target": "### Tea break",
+      "starterText": "",
+      "protectedContent": [
+        "Tea break"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-tea-break-spacing",
+          "kind": "heading-spacing",
+          "level": 3,
+          "priority": 10,
+          "feedback": "Add a space after the 3 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-tea-break-hash-style",
+          "kind": "hash-heading-style",
+          "level": 3,
+          "priority": 20,
+          "feedback": "Start the H3 with `### `."
+        },
+        {
+          "id": "l1-heading-depth-tea-break-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 3
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H3 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ###.",
+        "Put one space after ###.",
+        "Example: `### Shoe box`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-3"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "daily-routine"
+        ],
+        "terms": [
+          "Tea break"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h3-tea-break"
+    },
+    {
+      "id": "l1-heading-depth-bring-along",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H3 marks a heading at depth 3.",
+        "howTo": "Start the line with exactly 3 hash marks, then a space.",
+        "example": "### After dinner"
+      },
+      "syntaxTokens": [
+        "###",
+        "Space"
+      ],
+      "title": "H3 heading",
+      "prompt": "Write one H3 heading in Markdown.",
+      "target": "### Bring along",
+      "starterText": "",
+      "protectedContent": [
+        "Bring along"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-bring-along-spacing",
+          "kind": "heading-spacing",
+          "level": 3,
+          "priority": 10,
+          "feedback": "Add a space after the 3 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-bring-along-hash-style",
+          "kind": "hash-heading-style",
+          "level": 3,
+          "priority": 20,
+          "feedback": "Start the H3 with `### `."
+        },
+        {
+          "id": "l1-heading-depth-bring-along-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 3
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H3 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ###.",
+        "Put one space after ###.",
+        "Example: `### After dinner`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-3"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "daily-planning"
+        ],
+        "terms": [
+          "Bring along"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h3-bring-along"
+    },
+    {
+      "id": "l1-heading-depth-map-key",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H4 marks a heading at depth 4.",
+        "howTo": "Start the line with exactly 4 hash marks, then a space.",
+        "example": "#### Lemon slices"
+      },
+      "syntaxTokens": [
+        "####",
+        "Space"
+      ],
+      "title": "H4 heading",
+      "prompt": "Write one H4 heading in Markdown.",
+      "target": "#### Map key",
+      "starterText": "",
+      "protectedContent": [
+        "Map key"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-map-key-spacing",
+          "kind": "heading-spacing",
+          "level": 4,
+          "priority": 10,
+          "feedback": "Add a space after the 4 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-map-key-hash-style",
+          "kind": "hash-heading-style",
+          "level": 4,
+          "priority": 20,
+          "feedback": "Start the H4 with `#### `."
+        },
+        {
+          "id": "l1-heading-depth-map-key-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 4
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H4 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ####.",
+        "Put one space after ####.",
+        "Example: `#### Lemon slices`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-4"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "navigation"
+        ],
+        "terms": [
+          "Map key"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h4-map-key"
+    },
+    {
+      "id": "l1-heading-depth-pet-bowl",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H4 marks a heading at depth 4.",
+        "howTo": "Start the line with exactly 4 hash marks, then a space.",
+        "example": "#### Garden gate"
+      },
+      "syntaxTokens": [
+        "####",
+        "Space"
+      ],
+      "title": "H4 heading",
+      "prompt": "Write one H4 heading in Markdown.",
+      "target": "#### Pet bowl",
+      "starterText": "",
+      "protectedContent": [
+        "Pet bowl"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-pet-bowl-spacing",
+          "kind": "heading-spacing",
+          "level": 4,
+          "priority": 10,
+          "feedback": "Add a space after the 4 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-pet-bowl-hash-style",
+          "kind": "hash-heading-style",
+          "level": 4,
+          "priority": 20,
+          "feedback": "Start the H4 with `#### `."
+        },
+        {
+          "id": "l1-heading-depth-pet-bowl-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 4
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H4 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ####.",
+        "Put one space after ####.",
+        "Example: `#### Garden gate`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-4"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "pet-care"
+        ],
+        "terms": [
+          "Pet bowl"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h4-pet-bowl"
+    },
+    {
+      "id": "l1-heading-depth-movie-seat",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H5 marks a heading at depth 5.",
+        "howTo": "Start the line with exactly 5 hash marks, then a space.",
+        "example": "##### Orange cup"
+      },
+      "syntaxTokens": [
+        "#####",
+        "Space"
+      ],
+      "title": "H5 heading",
+      "prompt": "Write one H5 heading in Markdown.",
+      "target": "##### Movie seat",
+      "starterText": "",
+      "protectedContent": [
+        "Movie seat"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-movie-seat-spacing",
+          "kind": "heading-spacing",
+          "level": 5,
+          "priority": 10,
+          "feedback": "Add a space after the 5 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-movie-seat-hash-style",
+          "kind": "hash-heading-style",
+          "level": 5,
+          "priority": 20,
+          "feedback": "Start the H5 with `##### `."
+        },
+        {
+          "id": "l1-heading-depth-movie-seat-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 5
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H5 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with #####.",
+        "Put one space after #####.",
+        "Example: `##### Orange cup`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-5"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "leisure"
+        ],
+        "terms": [
+          "Movie seat"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h5-movie-seat"
+    },
+    {
+      "id": "l1-heading-depth-clean-shelf",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H5 marks a heading at depth 5.",
+        "howTo": "Start the line with exactly 5 hash marks, then a space.",
+        "example": "##### Paper plane"
+      },
+      "syntaxTokens": [
+        "#####",
+        "Space"
+      ],
+      "title": "H5 heading",
+      "prompt": "Write one H5 heading in Markdown.",
+      "target": "##### Clean shelf",
+      "starterText": "",
+      "protectedContent": [
+        "Clean shelf"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-clean-shelf-spacing",
+          "kind": "heading-spacing",
+          "level": 5,
+          "priority": 10,
+          "feedback": "Add a space after the 5 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-clean-shelf-hash-style",
+          "kind": "hash-heading-style",
+          "level": 5,
+          "priority": 20,
+          "feedback": "Start the H5 with `##### `."
+        },
+        {
+          "id": "l1-heading-depth-clean-shelf-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 5
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H5 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with #####.",
+        "Put one space after #####.",
+        "Example: `##### Paper plane`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-5"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home-care"
+        ],
+        "terms": [
+          "Clean shelf"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h5-clean-shelf"
+    },
+    {
+      "id": "l1-heading-depth-lost-mitten",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H6 marks a heading at depth 6.",
+        "howTo": "Start the line with exactly 6 hash marks, then a space.",
+        "example": "###### Green bowl"
+      },
+      "syntaxTokens": [
+        "######",
+        "Space"
+      ],
+      "title": "H6 heading",
+      "prompt": "Write one H6 heading in Markdown.",
+      "target": "###### Lost mitten",
+      "starterText": "",
+      "protectedContent": [
+        "Lost mitten"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-lost-mitten-spacing",
+          "kind": "heading-spacing",
+          "level": 6,
+          "priority": 10,
+          "feedback": "Add a space after the 6 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-lost-mitten-hash-style",
+          "kind": "hash-heading-style",
+          "level": 6,
+          "priority": 20,
+          "feedback": "Start the H6 with `###### `."
+        },
+        {
+          "id": "l1-heading-depth-lost-mitten-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 6
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H6 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ######.",
+        "Put one space after ######.",
+        "Example: `###### Green bowl`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-6"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "clothing"
+        ],
+        "terms": [
+          "Lost mitten"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h6-lost-mitten"
+    },
+    {
+      "id": "l1-heading-depth-dog-leash",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "headings",
+      "skillIds": [
+        "heading-h1"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An H6 marks a heading at depth 6.",
+        "howTo": "Start the line with exactly 6 hash marks, then a space.",
+        "example": "###### Blue blanket"
+      },
+      "syntaxTokens": [
+        "######",
+        "Space"
+      ],
+      "title": "H6 heading",
+      "prompt": "Write one H6 heading in Markdown.",
+      "target": "###### Dog leash",
+      "starterText": "",
+      "protectedContent": [
+        "Dog leash"
+      ],
+      "matchChecks": [
+        {
+          "id": "l1-heading-depth-dog-leash-spacing",
+          "kind": "heading-spacing",
+          "level": 6,
+          "priority": 10,
+          "feedback": "Add a space after the 6 hash marks."
+        },
+        {
+          "id": "l1-heading-depth-dog-leash-hash-style",
+          "kind": "hash-heading-style",
+          "level": 6,
+          "priority": 20,
+          "feedback": "Start the H6 with `###### `."
+        },
+        {
+          "id": "l1-heading-depth-dog-leash-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 6
+            }
+          ],
+          "priority": 30,
+          "feedback": "Write exactly one H6 heading and no other blocks."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Begin at the start of a line with ######.",
+        "Put one space after ######.",
+        "Example: `###### Blue blanket`"
+      ],
+      "retryFamily": "level-1-heading-depth",
+      "reviewTags": [
+        "atx-heading",
+        "heading-depth-6"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "pet-care"
+        ],
+        "terms": [
+          "Dog leash"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "h6-dog-leash"
+    },
+    {
+      "id": "l2-sectioned-process-car-wash",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Make cocoa\n\nPrepare a warm drink.\n\n## Steps\n\n1. Heat milk\n2. Add cocoa\n3. Stir well"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1."
+      ],
+      "title": "Rebuild a sectioned process",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Car wash\n\nClean the car in a shady spot.\n\n## Steps\n\n1. Rinse the car\n2. Wash each side\n3. Dry the windows",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-process-car-wash-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-process-car-wash-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-process-car-wash-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an ordered list of at least three nonempty steps."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the opening paragraph before H2.",
+        "Finish with at least three numbered steps."
+      ],
+      "retryFamily": "level-2-sectioned-process",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-process"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "car-care"
+        ],
+        "terms": [
+          "car",
+          "wash",
+          "windows"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-car-wash-process"
+    },
+    {
+      "id": "l2-sectioned-process-blanket-fort",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Make cocoa\n\nPrepare a warm drink.\n\n## Steps\n\n1. Heat milk\n2. Add cocoa\n3. Stir well"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1."
+      ],
+      "title": "Rebuild a sectioned process",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Blanket fort\n\nBuild a cozy place for reading.\n\n## Steps\n\n1. Move two chairs\n2. Drape the blanket\n3. Add a pillow",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-process-blanket-fort-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-process-blanket-fort-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-process-blanket-fort-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an ordered list of at least three nonempty steps."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the opening paragraph before H2.",
+        "Finish with at least three numbered steps."
+      ],
+      "retryFamily": "level-2-sectioned-process",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-process"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "indoor-play"
+        ],
+        "terms": [
+          "blanket",
+          "chairs",
+          "pillow"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-blanket-fort-process"
+    },
+    {
+      "id": "l2-sectioned-process-bird-feeder",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Make cocoa\n\nPrepare a warm drink.\n\n## Steps\n\n1. Heat milk\n2. Add cocoa\n3. Stir well"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1."
+      ],
+      "title": "Rebuild a sectioned process",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Bird feeder\n\nFill the feeder before the birds arrive.\n\n## Steps\n\n1. Open the lid\n2. Pour in seed\n3. Hang it outside",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-process-bird-feeder-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-process-bird-feeder-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-process-bird-feeder-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an ordered list of at least three nonempty steps."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the opening paragraph before H2.",
+        "Finish with at least three numbered steps."
+      ],
+      "retryFamily": "level-2-sectioned-process",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-process"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "backyard-nature"
+        ],
+        "terms": [
+          "feeder",
+          "seed",
+          "birds"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-bird-feeder-process"
+    },
+    {
+      "id": "l2-sectioned-process-sort-mail",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Make cocoa\n\nPrepare a warm drink.\n\n## Steps\n\n1. Heat milk\n2. Add cocoa\n3. Stir well"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1."
+      ],
+      "title": "Rebuild a sectioned process",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Sort the mail\n\nClear the table before sorting.\n\n## Steps\n\n1. Check each name\n2. Group the letters\n3. Recycle the flyers",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-process-sort-mail-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-process-sort-mail-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-process-sort-mail-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": true,
+          "minItems": 3,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an ordered list of at least three nonempty steps."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the opening paragraph before H2.",
+        "Finish with at least three numbered steps."
+      ],
+      "retryFamily": "level-2-sectioned-process",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-process"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "household-routine"
+        ],
+        "terms": [
+          "mail",
+          "letters",
+          "flyers"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-mail-sorting-process"
+    },
+    {
+      "id": "l2-sectioned-checklist-pool-day",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Rainy walk\n\n## Bring\n\nSet these by the door.\n\n- Raincoat\n- Dry socks"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-"
+      ],
+      "title": "Rebuild a sectioned checklist",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Pool day\n\n## Pack\n\nBring the bag by the front door.\n\n- Towel\n- Water bottle\n- Sunscreen",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-checklist-pool-day-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-checklist-pool-day-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-checklist-pool-day-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an unordered list of at least two nonempty items."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the paragraph after H2.",
+        "Finish with at least two bullet items."
+      ],
+      "retryFamily": "level-2-sectioned-checklist",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-checklist"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "outdoor-swimming"
+        ],
+        "terms": [
+          "pool",
+          "towel",
+          "sunscreen"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-pool-day-checklist"
+    },
+    {
+      "id": "l2-sectioned-checklist-indoor-art",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Rainy walk\n\n## Bring\n\nSet these by the door.\n\n- Raincoat\n- Dry socks"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-"
+      ],
+      "title": "Rebuild a sectioned checklist",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Indoor art\n\n## Supplies\n\nCover the table before starting.\n\n- Paper\n- Washable paint\n- Old towel",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-checklist-indoor-art-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-checklist-indoor-art-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-checklist-indoor-art-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an unordered list of at least two nonempty items."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the paragraph after H2.",
+        "Finish with at least two bullet items."
+      ],
+      "retryFamily": "level-2-sectioned-checklist",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-checklist"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "arts-and-crafts"
+        ],
+        "terms": [
+          "art",
+          "paint",
+          "paper"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-indoor-art-checklist"
+    },
+    {
+      "id": "l2-sectioned-checklist-bake-sale",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Rainy walk\n\n## Bring\n\nSet these by the door.\n\n- Raincoat\n- Dry socks"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-"
+      ],
+      "title": "Rebuild a sectioned checklist",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Bake sale\n\n## Table supplies\n\nSet these items beside the treats.\n\n- Price cards\n- Paper bags\n- Small change",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-checklist-bake-sale-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-checklist-bake-sale-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-checklist-bake-sale-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an unordered list of at least two nonempty items."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the paragraph after H2.",
+        "Finish with at least two bullet items."
+      ],
+      "retryFamily": "level-2-sectioned-checklist",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-checklist"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "community-event"
+        ],
+        "terms": [
+          "sale",
+          "cards",
+          "bags"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-bake-sale-checklist"
+    },
+    {
+      "id": "l2-sectioned-checklist-bike-repair",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Rainy walk\n\n## Bring\n\nSet these by the door.\n\n- Raincoat\n- Dry socks"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-"
+      ],
+      "title": "Rebuild a sectioned checklist",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Bike repair\n\n## Tool tray\n\nGather the basics before checking the tire.\n\n- Hand pump\n- Patch kit\n- Clean rag",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-checklist-bike-repair-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-checklist-bike-repair-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-checklist-bike-repair-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "requireNonemptyItems": true,
+          "priority": 30,
+          "feedback": "Finish with an unordered list of at least two nonempty items."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1 and add the H2 section shown in the Goal.",
+        "Keep the paragraph after H2.",
+        "Finish with at least two bullet items."
+      ],
+      "retryFamily": "level-2-sectioned-checklist",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-checklist"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "bike-care"
+        ],
+        "terms": [
+          "bike",
+          "pump",
+          "tire"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-bike-repair-checklist"
+    },
+    {
+      "id": "l2-sectioned-message-lost-and-found",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "blockquote"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Porch notice\n\n## Package\n\nA box arrived this afternoon.\n\n### Neighbor note\n\n> Please bring it inside."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "###",
+        ">"
+      ],
+      "title": "Rebuild a sectioned message",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Lost and found\n\n## Blue scarf\n\nIt was found near the gym door.\n\n### Pickup note\n\n> Ask at the front desk.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-message-lost-and-found-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-message-lost-and-found-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 3
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-message-lost-and-found-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Finish with a blockquote that contains a short message."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1, then add an H2 section.",
+        "Put one paragraph under H2 and an H3 below it.",
+        "Finish with a nonempty blockquote that starts with >."
+      ],
+      "retryFamily": "level-2-sectioned-message",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-message"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "school-message"
+        ],
+        "terms": [
+          "scarf",
+          "gym",
+          "desk"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-lost-found-message"
+    },
+    {
+      "id": "l2-sectioned-message-book-swap",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "blockquote"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Porch notice\n\n## Package\n\nA box arrived this afternoon.\n\n### Neighbor note\n\n> Please bring it inside."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "###",
+        ">"
+      ],
+      "title": "Rebuild a sectioned message",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Book swap\n\n## Saturday table\n\nBring one book in good condition.\n\n### Friendly reminder\n\n> Write your name inside the cover.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-message-book-swap-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-message-book-swap-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 3
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-message-book-swap-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Finish with a blockquote that contains a short message."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1, then add an H2 section.",
+        "Put one paragraph under H2 and an H3 below it.",
+        "Finish with a nonempty blockquote that starts with >."
+      ],
+      "retryFamily": "level-2-sectioned-message",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-message"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "neighborhood-reading"
+        ],
+        "terms": [
+          "book",
+          "table",
+          "cover"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-book-swap-message"
+    },
+    {
+      "id": "l2-sectioned-message-bus-stop",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "blockquote"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Porch notice\n\n## Package\n\nA box arrived this afternoon.\n\n### Neighbor note\n\n> Please bring it inside."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "###",
+        ">"
+      ],
+      "title": "Rebuild a sectioned message",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# Bus stop update\n\n## New corner\n\nThe morning bus now stops by Pine Street.\n\n### Rider note\n\n> Arrive five minutes early.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-message-bus-stop-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-message-bus-stop-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 3
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-message-bus-stop-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Finish with a blockquote that contains a short message."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1, then add an H2 section.",
+        "Put one paragraph under H2 and an H3 below it.",
+        "Finish with a nonempty blockquote that starts with >."
+      ],
+      "retryFamily": "level-2-sectioned-message",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-message"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "local-transit"
+        ],
+        "terms": [
+          "bus",
+          "corner",
+          "rider"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-bus-stop-message"
+    },
+    {
+      "id": "l2-sectioned-message-school-play",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "rebuild-sectioned-documents",
+      "skillIds": [
+        "heading-h1",
+        "blockquote"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short document uses heading depth to show how its sections fit together.",
+        "howTo": "Rebuild the visible heading hierarchy and block order, using your own wording if you like.",
+        "example": "# Porch notice\n\n## Package\n\nA box arrived this afternoon.\n\n### Neighbor note\n\n> Please bring it inside."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "###",
+        ">"
+      ],
+      "title": "Rebuild a sectioned message",
+      "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+      "target": "# School play\n\n## Costume check\n\nBring each costume to the music room.\n\n### Cast note\n\n> Label every bag with a name.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l2-sectioned-message-school-play-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 10,
+          "feedback": "Keep heading levels in order without skipping a depth."
+        },
+        {
+          "id": "l2-sectioned-message-school-play-shape",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "exact": true,
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 3
+            },
+            {
+              "block": "blockquote"
+            }
+          ],
+          "priority": 20,
+          "feedback": "Keep the same heading, paragraph, and list or quote order shown in the Goal."
+        },
+        {
+          "id": "l2-sectioned-message-school-play-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Finish with a blockquote that contains a short message."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-heading-plain",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "Keep this focused heading plain unless emphasis is useful."
+        }
+      ],
+      "hints": [
+        "Start with H1, then add an H2 section.",
+        "Put one paragraph under H2 and an H3 below it.",
+        "Finish with a nonempty blockquote that starts with >."
+      ],
+      "retryFamily": "level-2-sectioned-message",
+      "reviewTags": [
+        "composite-level-2",
+        "heading-hierarchy",
+        "sectioned-message"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "school-theater"
+        ],
+        "terms": [
+          "play",
+          "costume",
+          "cast"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sectioned-school-play-message"
+    }
+  ]
+}
