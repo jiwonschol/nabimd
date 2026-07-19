@@ -1,8 +1,9 @@
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { createDefaultProgress } from "../progress/progressStore"
-import type { ProgressV4 } from "../progress/types"
+import type { ProgressV5 } from "../progress/types"
 import {
+  createRunProblemIds,
   getEntryChoice,
   type EntryId,
 } from "../content/entryChoices"
@@ -14,6 +15,7 @@ export type LearningSession = {
   runNumber: number
   runProblemIds: string[]
   runStepIndex: number
+  scheduledStepIndex: number
   currentProblemId: string
   draft: string
   evaluation: Evaluation | null
@@ -25,12 +27,17 @@ export type LearningSession = {
   hintStartsOpen: boolean
   hintLevel: 0 | 1 | 2 | 3
   coach: "closed" | "hint"
-  progress: ProgressV4
+  failedScheduledStepIndexes: number[]
+  failedProblemIds: string[]
+  runStartedAtMs: number | null
+  runCompletedAtMs: number | null
+  progress: ProgressV5
 }
 
 export type SessionEvent =
   | {
       type: "started"
+      atMs: number
       entryId: EntryId
       runNumber: number
       runProblemIds: string[]
@@ -51,7 +58,7 @@ export type SessionEvent =
       nextProblem: GradableProblem
       nextDraft: string
     }
-  | { type: "completed" }
+  | { type: "completed"; atMs: number }
 
 function shouldStartHintOpen({
   entryId,
@@ -72,7 +79,7 @@ function shouldStartHintOpen({
 }
 
 export function createLearningSession(
-  progress: ProgressV4,
+  progress: ProgressV5,
   problem: GradableProblem,
 ): LearningSession {
   const isComplete = progress.runProblemIds.length
@@ -97,6 +104,7 @@ export function createLearningSession(
     runNumber: progress.runNumber,
     runProblemIds: [...progress.runProblemIds],
     runStepIndex: progress.runStepIndex,
+    scheduledStepIndex: progress.scheduledStepIndex,
     currentProblemId: problem.id,
     draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
     evaluation: null,
@@ -108,6 +116,12 @@ export function createLearningSession(
     hintStartsOpen,
     hintLevel: hintStartsOpen ? 1 : 0,
     coach: hintStartsOpen ? "hint" : "closed",
+    failedScheduledStepIndexes: [
+      ...progress.failedScheduledStepIndexes,
+    ],
+    failedProblemIds: [...progress.failedProblemIds],
+    runStartedAtMs: progress.runStartedAtMs,
+    runCompletedAtMs: progress.runCompletedAtMs,
     progress,
   }
 }
@@ -120,15 +134,23 @@ export function canAdvance(session: LearningSession): boolean {
   )
 }
 
-function appendUnique(values: readonly string[], value: string): string[] {
+function appendUnique<T>(values: readonly T[], value: T): T[] {
   return values.includes(value) ? [...values] : [...values, value]
 }
 
-function completeSession(session: LearningSession): LearningSession {
+function completeSession(
+  session: LearningSession,
+  atMs: number,
+): LearningSession {
+  const scheduledRunLength = session.entryId
+    ? createRunProblemIds(session.entryId, session.runNumber).length
+    : session.scheduledStepIndex
   return {
     ...session,
     phase: "complete",
     runStepIndex: session.runProblemIds.length || session.runStepIndex,
+    scheduledStepIndex: scheduledRunLength,
+    runCompletedAtMs: atMs,
     coach: "closed",
     needsTransfer: false,
     currentIsTransfer: false,
@@ -145,6 +167,8 @@ function completeSession(session: LearningSession): LearningSession {
       pendingTransferFamily: null,
       currentIsTransfer: false,
       runStepIndex: session.runProblemIds.length || session.runStepIndex,
+      scheduledStepIndex: scheduledRunLength,
+      runCompletedAtMs: atMs,
     },
   }
 }
@@ -161,6 +185,7 @@ export function learningSessionReducer(
           entryId: event.entryId,
           runNumber: event.runNumber,
           runProblemIds: [...event.runProblemIds],
+          runStartedAtMs: event.atMs,
         },
         event.problem,
       )
@@ -189,6 +214,15 @@ export function learningSessionReducer(
 
     case "checked": {
       const failed = event.evaluation.status === "fail"
+      const failedScheduledStepIndexes = failed
+        ? appendUnique(
+            session.failedScheduledStepIndexes,
+            session.scheduledStepIndex,
+          )
+        : session.failedScheduledStepIndexes
+      const failedProblemIds = failed
+        ? appendUnique(session.failedProblemIds, session.currentProblemId)
+        : session.failedProblemIds
       return {
         ...session,
         phase: "evaluated",
@@ -197,11 +231,15 @@ export function learningSessionReducer(
         needsTransfer: session.needsTransfer || failed,
         hintLevel: failed ? session.hintLevel : 0,
         coach: "closed",
+        failedScheduledStepIndexes,
+        failedProblemIds,
         progress: {
           ...session.progress,
           pendingTransferFamily: failed
             ? event.retryFamily
             : session.progress.pendingTransferFamily,
+          failedScheduledStepIndexes,
+          failedProblemIds,
         },
       }
     }
@@ -293,6 +331,9 @@ export function learningSessionReducer(
           )
         : session.runProblemIds
       const nextRunStepIndex = session.runStepIndex + 1
+      const nextScheduledStepIndex = nextIsTransfer
+        ? session.scheduledStepIndex
+        : session.scheduledStepIndex + 1
       const hintStartsOpen = shouldStartHintOpen({
         entryId: session.entryId,
         currentIsTransfer: nextIsTransfer,
@@ -314,6 +355,7 @@ export function learningSessionReducer(
         currentIsTransfer: nextIsTransfer,
         runProblemIds: nextRunProblemIds,
         runStepIndex: nextRunStepIndex,
+        scheduledStepIndex: nextScheduledStepIndex,
         hintStartsOpen,
         hintLevel: hintStartsOpen ? 1 : 0,
         coach: hintStartsOpen ? "hint" : "closed",
@@ -335,6 +377,7 @@ export function learningSessionReducer(
           currentIsTransfer: nextIsTransfer,
           runProblemIds: nextRunProblemIds,
           runStepIndex: nextRunStepIndex,
+          scheduledStepIndex: nextScheduledStepIndex,
           pendingTransferFamily: null,
         },
       }
@@ -344,6 +387,6 @@ export function learningSessionReducer(
       if (!canAdvance(session)) return session
       return session.needsTransfer && !session.currentIsTransfer
         ? session
-        : completeSession(session)
+        : completeSession(session, event.atMs)
   }
 }

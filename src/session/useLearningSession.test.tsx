@@ -12,8 +12,11 @@ function matchCurrent(result: ReturnType<typeof renderLearningSession>["result"]
   expect(result.current.canNext).toBe(true)
 }
 
-function renderLearningSession(storage = new MemoryStorage()) {
-  return renderHook(() => useLearningSession(storage))
+function renderLearningSession(
+  storage = new MemoryStorage(),
+  now: () => number = () => 1_000,
+) {
+  return renderHook(() => useLearningSession(storage, now))
 }
 
 describe("useLearningSession", () => {
@@ -157,6 +160,53 @@ describe("useLearningSession", () => {
     expect(restored.result.current.session.entryId).toBe("level-4")
     expect(restored.result.current.problem.id).toBe(expectedProblem)
     expect(restored.result.current.session.draft).toBe("# Saved draft")
+  })
+
+  it("preserves the original turn clock across reload and freezes completion", async () => {
+    const storage = new MemoryStorage()
+    let nowMs = 1_000
+    const now = () => nowMs
+    const first = renderLearningSession(storage, now)
+    act(() => first.result.current.start("level-1"))
+
+    expect(first.result.current.session.runStartedAtMs).toBe(1_000)
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
+        '"runStartedAtMs":1000',
+      )
+    })
+    first.unmount()
+
+    nowMs = 8_000
+    const restored = renderLearningSession(storage, now)
+    expect(restored.result.current.session.runStartedAtMs).toBe(1_000)
+    expect(restored.result.current.session.runCompletedAtMs).toBeNull()
+
+    for (let index = 0; index < 6; index += 1) {
+      matchCurrent(restored.result)
+      if (index === 5) nowMs = 16_000
+      act(() => restored.result.current.next())
+    }
+
+    expect(restored.result.current.session.phase).toBe("complete")
+    expect(restored.result.current.session.runCompletedAtMs).toBe(16_000)
+  })
+
+  it("starts a fresh clock and score for replay actions", () => {
+    let nowMs = 1_000
+    const { result } = renderLearningSession(new MemoryStorage(), () => nowMs)
+    act(() => result.current.start("level-1"))
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+
+    expect(result.current.session.failedScheduledStepIndexes).toEqual([0])
+
+    nowMs = 5_000
+    act(() => result.current.practiceAgain())
+
+    expect(result.current.session.runStartedAtMs).toBe(5_000)
+    expect(result.current.session.failedScheduledStepIndexes).toEqual([])
+    expect(result.current.session.failedProblemIds).toEqual([])
   })
 
   it("starts with the first compiled problem when no run is active", () => {

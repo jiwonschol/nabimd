@@ -4,9 +4,9 @@ import {
 } from "../content/entryChoices"
 import { problemBankRevision } from "../content/problemBank"
 import { isReachableRunSchedule } from "../session/runSchedule"
-import type { ProgressV4 } from "./types"
+import type { ProgressV5 } from "./types"
 
-export const PROGRESS_STORAGE_KEY = "nabimd.progress.v4"
+export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
 // A browser session cannot legitimately reach this many six-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
@@ -14,20 +14,25 @@ export const MAX_PERSISTED_RUN_NUMBER = 10_000
 export function createDefaultProgress(
   currentProblemId: string,
   bankRevision = problemBankRevision,
-): ProgressV4 {
+): ProgressV5 {
   return {
-    version: 4,
+    version: 5,
     bankRevision,
     entryId: null,
     runNumber: 0,
     runProblemIds: [],
     runStepIndex: 0,
+    scheduledStepIndex: 0,
     currentProblemId,
     draftByProblemId: {},
     completedProblemIds: [],
     recentProblemIds: [],
     pendingTransferFamily: null,
     currentIsTransfer: false,
+    failedScheduledStepIndexes: [],
+    failedProblemIds: [],
+    runStartedAtMs: null,
+    runCompletedAtMs: null,
   }
 }
 
@@ -64,7 +69,7 @@ function isValidDraftRecord(
 
 function isValidRunProblemIds(
   value: unknown,
-  entryId: ProgressV4["entryId"],
+  entryId: ProgressV5["entryId"],
   runNumber: number,
   runStepIndex: number,
   currentIsTransfer: boolean,
@@ -93,7 +98,41 @@ function isValidRunProblemIds(
   )
 }
 
-function isProgressV4(
+function isNonnegativeSafeInteger(value: unknown): value is number {
+  return (
+    typeof value === "number" &&
+    Number.isSafeInteger(value) &&
+    value >= 0
+  )
+}
+
+function isUniqueIntegerList(
+  value: unknown,
+  upperExclusive: number,
+): value is number[] {
+  return (
+    Array.isArray(value) &&
+    value.length <= upperExclusive &&
+    new Set(value).size === value.length &&
+    value.every(
+      (item) =>
+        isNonnegativeSafeInteger(item) && item < upperExclusive,
+    )
+  )
+}
+
+function isUniqueKnownIdList(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+  maximumLength: number,
+): value is string[] {
+  return (
+    isKnownIdList(value, validProblemIds, maximumLength) &&
+    new Set(value).size === value.length
+  )
+}
+
+function isProgressV5(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
   isEligibleTransferProblem: (
@@ -101,24 +140,57 @@ function isProgressV4(
     candidateProblemId: string,
   ) => boolean,
   expectedBankRevision: string,
-): value is ProgressV4 {
+): value is ProgressV5 {
   if (!isRecord(value)) return false
 
+  if (
+    value.version !== 5 ||
+    value.bankRevision !== expectedBankRevision ||
+    (value.entryId !== null && !isEntryId(value.entryId)) ||
+    !isNonnegativeSafeInteger(value.runNumber) ||
+    value.runNumber > MAX_PERSISTED_RUN_NUMBER ||
+    !isNonnegativeSafeInteger(value.runStepIndex) ||
+    typeof value.currentIsTransfer !== "boolean"
+  ) {
+    return false
+  }
+
+  const entryId = value.entryId
+  const scheduledRunLength =
+    entryId === null ? 0 : createRunProblemIds(entryId, value.runNumber).length
+  const activeRun = entryId !== null
+  const startedAtMs = isNonnegativeSafeInteger(value.runStartedAtMs)
+    ? value.runStartedAtMs
+    : null
+  const completedAtMs = isNonnegativeSafeInteger(value.runCompletedAtMs)
+    ? value.runCompletedAtMs
+    : null
+
+  if (
+    !isNonnegativeSafeInteger(value.scheduledStepIndex) ||
+    value.scheduledStepIndex > scheduledRunLength ||
+    !isUniqueIntegerList(
+      value.failedScheduledStepIndexes,
+      scheduledRunLength,
+    ) ||
+    !isUniqueKnownIdList(
+      value.failedProblemIds,
+      validProblemIds,
+      Math.min(validProblemIds.size, scheduledRunLength * 4),
+    ) ||
+    (activeRun ? startedAtMs === null : value.runStartedAtMs !== null) ||
+    (!activeRun && value.runCompletedAtMs !== null) ||
+    (value.runCompletedAtMs !== null && completedAtMs === null) ||
+    (completedAtMs !== null &&
+      (startedAtMs === null || completedAtMs < startedAtMs))
+  ) {
+    return false
+  }
+
   return (
-    value.version === 4 &&
-    value.bankRevision === expectedBankRevision &&
-    (value.entryId === null || isEntryId(value.entryId)) &&
-    typeof value.runNumber === "number" &&
-    Number.isSafeInteger(value.runNumber) &&
-    value.runNumber >= 0 &&
-    value.runNumber <= MAX_PERSISTED_RUN_NUMBER &&
-    typeof value.runStepIndex === "number" &&
-    Number.isSafeInteger(value.runStepIndex) &&
-    value.runStepIndex >= 0 &&
-    typeof value.currentIsTransfer === "boolean" &&
     isValidRunProblemIds(
       value.runProblemIds,
-      value.entryId,
+      entryId,
       value.runNumber,
       value.runStepIndex,
       value.currentIsTransfer,
@@ -133,22 +205,32 @@ function isProgressV4(
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
     (value.pendingTransferFamily === null ||
       typeof value.pendingTransferFamily === "string") &&
-    (value.entryId === null
-      ? value.runProblemIds.length === 0 && value.runStepIndex === 0
+    (entryId === null
+      ? value.runProblemIds.length === 0 &&
+        value.runStepIndex === 0 &&
+        value.scheduledStepIndex === 0 &&
+        value.failedScheduledStepIndexes.length === 0 &&
+        value.failedProblemIds.length === 0
       : value.runProblemIds.length > 0 &&
         value.runProblemIds[
           Math.min(value.runStepIndex, value.runProblemIds.length - 1)
-        ] === value.currentProblemId)
+        ] === value.currentProblemId) &&
+    (value.runCompletedAtMs === null
+      ? value.runStepIndex < value.runProblemIds.length
+      : value.runStepIndex === value.runProblemIds.length &&
+        value.scheduledStepIndex === scheduledRunLength)
   )
 }
 
-function cloneProgress(progress: ProgressV4): ProgressV4 {
+function cloneProgress(progress: ProgressV5): ProgressV5 {
   return {
     ...progress,
     draftByProblemId: { ...progress.draftByProblemId },
     runProblemIds: [...progress.runProblemIds],
     completedProblemIds: [...progress.completedProblemIds],
     recentProblemIds: [...progress.recentProblemIds],
+    failedScheduledStepIndexes: [...progress.failedScheduledStepIndexes],
+    failedProblemIds: [...progress.failedProblemIds],
   }
 }
 
@@ -160,7 +242,7 @@ export function loadProgress(
     candidateProblemId: string,
   ) => boolean = () => false,
   expectedBankRevision = problemBankRevision,
-): ProgressV4 {
+): ProgressV5 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
     firstProblemId ?? "l1-heading-apple",
@@ -172,7 +254,7 @@ export function loadProgress(
     if (!saved) return fallback
 
     const parsed: unknown = JSON.parse(saved)
-    return isProgressV4(
+    return isProgressV5(
       parsed,
       validProblemIds,
       isEligibleTransferProblem,
@@ -185,7 +267,7 @@ export function loadProgress(
   }
 }
 
-export function saveProgress(storage: Storage, progress: ProgressV4): void {
+export function saveProgress(storage: Storage, progress: ProgressV5): void {
   try {
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
   } catch {
