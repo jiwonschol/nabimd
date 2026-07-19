@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l4-development-specs-012",
+  "reviewerId": "reviewer-atlas-batch012",
+  "reviewRunId": "atlas-batch012-d8ea082-run-001",
+  "declaredIndependent": true,
+  "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab",
+  "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+  "frozenFixtureCount": 488,
+  "freshProbeCount": 180,
+  "evidence": {
+    "reviewedHead": "d8ea082",
+    "normalizedArtifactDigest": "d6222b2f4fb78fea41a9ee5ecb1f6e53f0f2e4c9f7cf4446ca7889be99cc72d1",
+    "fixtureArtifactDigest": "173a30ee7801c2c19215293c827fb1c094933dbc9e6872347e0568c6d85330b8",
+    "verificationDigest": "1fa14301b4d4d7ca4b7cd5da4c7297d72739135d5288699c4ae3427f0ae0e4f1",
+    "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab",
+    "candidateCount": 12,
+    "directCheckCount": 152,
+    "publishedCollisionComparands": 236,
+    "frozenFixtureCountsByFamily": {
+      "feature-interface": 156,
+      "bug-investigation": 172,
+      "staged-migration": 160
+    },
+    "freshProbeCountsByFamily": {
+      "feature-interface": 56,
+      "bug-investigation": 60,
+      "staged-migration": 64
+    },
+    "freshProbeDigest": "48c627fe2f5d10ca2a699778c9ef07b54a33060d8e719826db9e49f19d4f0441"
+  },
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "sourceArtifactsRecomputed": "pass",
+    "engineContractCurrent": "pass",
+    "frozenFixturesReplayed": "pass",
+    "frozenFixtureDigestsReproduced": "pass",
+    "directCheckCoverage": "pass",
+    "sixRequiredFixtureRoles": "pass",
+    "sameFamilyDifferentProse": "pass",
+    "caseSpellingAndProseIndependence": "pass",
+    "collisionUniquenessAgainstPublished236": "pass",
+    "binaryGrammarOnlyBehavior": "pass",
+    "exactSectionPlacement": "pass",
+    "linksAndInlineCode": "pass",
+    "dividerAndBlockquoteOrder": "pass",
+    "listShapeAndOrder": "pass",
+    "h3StageHierarchy": "pass",
+    "fencedUntaggedNestedAndEmptyCode": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l4-api-field-deprecation-migration",
+      "revision": 1,
+      "candidateDigest": "167e819c2afaaa0ea41632e4a97aa87d3475aafa04a6c452754b589572e239db",
+      "fixtureResultsDigest": "b587f968962282a6f7fba82c601642249330236e9918158e48095ad821024244",
+      "verdict": "pass",
+      "notes": "Replayed all 40 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 16 fresh staged-migration probes."
+    },
+    {
+      "candidateId": "l4-cache-namespace-migration",
+      "revision": 1,
+      "candidateDigest": "f184069cc27d01b7e7e0b4a157a48f5639aa130679b818e756d610e3555793ae",
+      "fixtureResultsDigest": "b4769ac2ee614c2d085380011f7eaecee8ca21ae7d6ac29068244a18b59964c8",
+      "verdict": "pass",
+      "notes": "Replayed all 40 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 16 fresh staged-migration probes."
+    },
+    {
+      "candidateId": "l4-configuration-key-migration",
+      "revision": 1,
+      "candidateDigest": "3a1075379e289869ec870b27c213a3d077242d073d368a26a84bb8e7402deb03",
+      "fixtureResultsDigest": "bf40b4e272c9cd8a0ad12198c8e5f2de89c26eb033bbfe8e582ffa82fbbe333a",
+      "verdict": "pass",
+      "notes": "Replayed all 40 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 16 fresh staged-migration probes."
+    },
+    {
+      "candidateId": "l4-duplicate-form-submission-investigation",
+      "revision": 1,
+      "candidateDigest": "56393234520ac1e64b1bd3ae92d18b1e0e4cf444d6eca1dc5fe1b93eb5188264",
+      "fixtureResultsDigest": "92c3fac7388c123ab762c067ea1a7db16a60c528ca8cbe4028bc76a763f35902",
+      "verdict": "pass",
+      "notes": "Replayed all 43 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 15 fresh bug-investigation probes."
+    },
+    {
+      "candidateId": "l4-editor-save-status-spec",
+      "revision": 1,
+      "candidateDigest": "0631965e6a2e17bee4eb71cb1e948a65bbafc914f6b725583f106cd327357bc0",
+      "fixtureResultsDigest": "37dfd501b186ba413cdaeedc7015f22af310afa2de4493cd17b357527415896b",
+      "verdict": "pass",
+      "notes": "Replayed all 39 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 14 fresh feature-interface probes."
+    },
+    {
+      "candidateId": "l4-lost-pagination-cursor-investigation",
+      "revision": 1,
+      "candidateDigest": "1073524510fb0ca4f3668f1963d16aede9eb13741c084fa28755ccf559b1fd97",
+      "fixtureResultsDigest": "1544f0236051c88fd3914fe60f306e5c5d765f9b63f53885baf568f4138bbde1",
+      "verdict": "pass",
+      "notes": "Replayed all 43 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 15 fresh bug-investigation probes."
+    },
+    {
+      "candidateId": "l4-nullable-column-backfill-migration",
+      "revision": 1,
+      "candidateDigest": "d877f098c414d48bfb8c1e5c6237fd3e3532a44f30c7c739624f2be6d4ca8eac",
+      "fixtureResultsDigest": "f9a55b27dbe9c5467f43dcbbf9be2fc860950aa1b388adec48c2054030d37a7c",
+      "verdict": "pass",
+      "notes": "Replayed all 40 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 16 fresh staged-migration probes."
+    },
+    {
+      "candidateId": "l4-offline-retry-banner-investigation",
+      "revision": 1,
+      "candidateDigest": "a6a093de1354c9db89e7826af83969303812b31e154d803fc6e5bb5918c61072",
+      "fixtureResultsDigest": "fcb33b18dd7a7c7a8259a5391113b8e7616bb50a796ecd17f5d53e59a280d7fe",
+      "verdict": "pass",
+      "notes": "Replayed all 43 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 15 fresh bug-investigation probes."
+    },
+    {
+      "candidateId": "l4-project-archive-spec",
+      "revision": 1,
+      "candidateDigest": "1f0b551b8432fbaf796edc6375e8471e9ca3d93d415b830c4fc8c2e148195347",
+      "fixtureResultsDigest": "b45722a5b652a471aea5e2fd5f3475f40b74233b755c44a94b5a8268d068af26",
+      "verdict": "pass",
+      "notes": "Replayed all 39 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 14 fresh feature-interface probes."
+    },
+    {
+      "candidateId": "l4-project-list-export-spec",
+      "revision": 1,
+      "candidateDigest": "406fbbc693eb985c45dd0c4dbf022f8c7f35024db770d7067128ce95fe75be0c",
+      "fixtureResultsDigest": "f4e53a22397b7685ccf8a9fd0006d97f0366dc5de726a1230d1aa30f927ad225",
+      "verdict": "pass",
+      "notes": "Replayed all 39 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 14 fresh feature-interface probes."
+    },
+    {
+      "candidateId": "l4-stale-permission-badge-investigation",
+      "revision": 1,
+      "candidateDigest": "dce546445e46d6fa0fa01b646e0eddb6ea3d382da0d781af6ee3cbc719712eff",
+      "fixtureResultsDigest": "38ca175117288f67722cc569760865805bf70c13761fb6800c1c4bd9224b117c",
+      "verdict": "pass",
+      "notes": "Replayed all 43 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 15 fresh bug-investigation probes."
+    },
+    {
+      "candidateId": "l4-table-density-spec",
+      "revision": 1,
+      "candidateDigest": "ab2670222b8b4a15afe76a86513366b6eefcd4c80366d3b68119fb7d3f12ab10",
+      "fixtureResultsDigest": "9d6acbc81ba6f57738bcd8a521da78b18f5f5cb4dfaa9b082f5e4fa0a6324ea6",
+      "verdict": "pass",
+      "notes": "Replayed all 39 frozen fixtures through evaluateProblem, reproduced the manifest evidence binding, verified direct-check coverage and same-family transfer, and included this candidate in 14 fresh feature-interface probes."
+    }
+  ],
+  "findings": [],
+  "stopConditions": [
+    "Any candidate, fixture, engine-contract, or manifest change after this review invalidates this digest-bound evidence and requires a new independent review run.",
+    "Any later reviewer disagreement or editorial rejection blocks publication of the whole immutable batch."
+  ],
+  "notes": "Independent mechanical review passed at exact HEAD d8ea082. All 488 frozen fixtures and 180 separate fresh probes produced the expected binary grammar-only outcomes. Fresh probes covered exact section placement; direct links and inline code; divider and blockquote order; ordered, unordered, short, and misplaced lists; exact H3 stage anatomy; and fenced, untagged, nested, tilde, and empty language-tagged code. The current engine intentionally grades Markdown anatomy rather than prose truth and accepts an empty language-tagged fenced block; this review verified that documented current-semantics boundary rather than claiming command execution or semantic validation. No candidate collided with the 236 published problems by id, target, or level-family-content variant.",
+  "reviewDigest": "f401934250f753ddd4e3fbde3c774f329e97f0fe964898addd93a84864d8af44"
+}

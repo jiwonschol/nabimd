@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l4-development-specs-012",
+  "reviewerId": "codex-orchid-batch012",
+  "reviewRunId": "orchid-batch012-2026-07-19-002",
+  "declaredIndependent": true,
+  "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab",
+  "evidence": {
+    "sourceHead": "d8ea08225a058b2668f5d8b74d786c334797c614",
+    "frozenCandidateCount": 12,
+    "frozenFixtureCount": 488,
+    "frozenFixtureCountsByCandidate": {
+      "l4-project-list-export-spec": 39,
+      "l4-editor-save-status-spec": 39,
+      "l4-project-archive-spec": 39,
+      "l4-table-density-spec": 39,
+      "l4-duplicate-form-submission-investigation": 43,
+      "l4-stale-permission-badge-investigation": 43,
+      "l4-lost-pagination-cursor-investigation": 43,
+      "l4-offline-retry-banner-investigation": 43,
+      "l4-configuration-key-migration": 40,
+      "l4-nullable-column-backfill-migration": 40,
+      "l4-cache-namespace-migration": 40,
+      "l4-api-field-deprecation-migration": 40
+    },
+    "freshProbeCount": 644,
+    "freshProbeCountsByFamily": {
+      "feature-interface": 196,
+      "bug-investigation": 228,
+      "staged-migration": 220
+    },
+    "sameFamilyTransferAccepted": 48,
+    "crossFamilyTransferRejected": 96,
+    "hiddenOnlyListAccepted": 12,
+    "opaqueLinkDestinationAccepted": 4,
+    "emptyTaggedFenceAccepted": 8,
+    "setextHeadingAccepted": 12,
+    "alternateListMarkersAccepted": 12,
+    "alternateDividerAccepted": 8,
+    "authoredGoalChecks": 152,
+    "retryFamilyCount": 3,
+    "candidatesPerRetryFamily": {
+      "level4-feature-interface-spec": 4,
+      "level4-bug-investigation-spec": 4,
+      "level4-staged-migration-spec": 4
+    },
+    "acceptedBankCollisionComparands": 236,
+    "engineContractFileCount": 12,
+    "runtimeNetworkCalls": 0,
+    "normalizedArtifactDigest": "d6222b2f4fb78fea41a9ee5ecb1f6e53f0f2e4c9f7cf4446ca7889be99cc72d1",
+    "fixtureArtifactDigest": "173a30ee7801c2c19215293c827fb1c094933dbc9e6872347e0568c6d85330b8",
+    "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+    "verificationDigest": "1fa14301b4d4d7ca4b7cd5da4c7297d72739135d5288699c4ae3427f0ae0e4f1",
+    "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab",
+    "frozenInputFileDigests": {
+      "candidates.raw.json": "9bfedd7f694af5cf8db505da16073263d3ea3be1286e81d1597768735308995e",
+      "candidates.normalized.json": "f8201446b752b59ca96672853e5e97ad36987465c1a7d401b285adf82d290554",
+      "fixtures.json": "3a97918fc5d634bb9cfac664b10524fd098163bf9db74a6b4932bb81e6029474",
+      "engine-contract.json": "b5a0fb950d97e641c4f043fea53aeb20ec5c6e9b98c57657e90186a5201d49a2",
+      "verification.json": "ba9eb078370f5d639d614670ef4ca136fd36693df29ec82a87d7bc5cc3f97f24",
+      "review-manifest.json": "5670be846906f64ca8c6f2082b2e89eec22a80e7608a5c3dc699472621eb95a0"
+    },
+    "stopRestartConditionTriggered": false
+  },
+  "mechanicalChecks": {
+    "exactHeadAndManifestBound": "pass",
+    "sourceArtifactsRecomputed": "pass",
+    "engineContractRecomputed": "pass",
+    "frozenFixturesReplayed": "pass",
+    "frozenFixtureDigestsReproduced": "pass",
+    "directCheckCoverage": "pass",
+    "fixtureRoleCoverage": "pass",
+    "retryFamilyTransfer": "pass",
+    "crossFamilyRejection": "pass",
+    "collisionUniquenessAgainstPublished236": "pass",
+    "grammarOnlyBoundaries": "pass",
+    "featureInterfaceParserProbes": "pass",
+    "bugInvestigationParserProbes": "pass",
+    "stagedMigrationParserProbes": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l4-api-field-deprecation-migration",
+      "revision": 1,
+      "candidateDigest": "167e819c2afaaa0ea41632e4a97aa87d3475aafa04a6c452754b589572e239db",
+      "fixtureResultsDigest": "b587f968962282a6f7fba82c601642249330236e9918158e48095ad821024244",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised staged-migration hierarchy, section scope, list, quote, and fenced-code boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-cache-namespace-migration",
+      "revision": 1,
+      "candidateDigest": "f184069cc27d01b7e7e0b4a157a48f5639aa130679b818e756d610e3555793ae",
+      "fixtureResultsDigest": "b4769ac2ee614c2d085380011f7eaecee8ca21ae7d6ac29068244a18b59964c8",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised staged-migration hierarchy, section scope, list, quote, and fenced-code boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-configuration-key-migration",
+      "revision": 1,
+      "candidateDigest": "3a1075379e289869ec870b27c213a3d077242d073d368a26a84bb8e7402deb03",
+      "fixtureResultsDigest": "bf40b4e272c9cd8a0ad12198c8e5f2de89c26eb033bbfe8e582ffa82fbbe333a",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised staged-migration hierarchy, section scope, list, quote, and fenced-code boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-duplicate-form-submission-investigation",
+      "revision": 1,
+      "candidateDigest": "56393234520ac1e64b1bd3ae92d18b1e0e4cf444d6eca1dc5fe1b93eb5188264",
+      "fixtureResultsDigest": "92c3fac7388c123ab762c067ea1a7db16a60c528ca8cbe4028bc76a763f35902",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised quote-divider order, alternate dividers, direct lists, inline-code checks, and closed verification structure in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-editor-save-status-spec",
+      "revision": 1,
+      "candidateDigest": "0631965e6a2e17bee4eb71cb1e948a65bbafc914f6b725583f106cd327357bc0",
+      "fixtureResultsDigest": "37dfd501b186ba413cdaeedc7015f22af310afa2de4493cd17b357527415896b",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised explicit-link discrimination, inline code, section-scoped lists and quotes, and fenced verification boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-lost-pagination-cursor-investigation",
+      "revision": 1,
+      "candidateDigest": "1073524510fb0ca4f3668f1963d16aede9eb13741c084fa28755ccf559b1fd97",
+      "fixtureResultsDigest": "1544f0236051c88fd3914fe60f306e5c5d765f9b63f53885baf568f4138bbde1",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised quote-divider order, alternate dividers, direct lists, inline-code checks, and closed verification structure in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-nullable-column-backfill-migration",
+      "revision": 1,
+      "candidateDigest": "d877f098c414d48bfb8c1e5c6237fd3e3532a44f30c7c739624f2be6d4ca8eac",
+      "fixtureResultsDigest": "f9a55b27dbe9c5467f43dcbbf9be2fc860950aa1b388adec48c2054030d37a7c",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised staged-migration hierarchy, section scope, list, quote, and fenced-code boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-offline-retry-banner-investigation",
+      "revision": 1,
+      "candidateDigest": "a6a093de1354c9db89e7826af83969303812b31e154d803fc6e5bb5918c61072",
+      "fixtureResultsDigest": "fcb33b18dd7a7c7a8259a5391113b8e7616bb50a796ecd17f5d53e59a280d7fe",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised quote-divider order, alternate dividers, direct lists, inline-code checks, and closed verification structure in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-project-archive-spec",
+      "revision": 1,
+      "candidateDigest": "1f0b551b8432fbaf796edc6375e8471e9ca3d93d415b830c4fc8c2e148195347",
+      "fixtureResultsDigest": "b45722a5b652a471aea5e2fd5f3475f40b74233b755c44a94b5a8268d068af26",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised explicit-link discrimination, inline code, section-scoped lists and quotes, and fenced verification boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-project-list-export-spec",
+      "revision": 1,
+      "candidateDigest": "406fbbc693eb985c45dd0c4dbf022f8c7f35024db770d7067128ce95fe75be0c",
+      "fixtureResultsDigest": "f4e53a22397b7685ccf8a9fd0006d97f0366dc5de726a1230d1aa30f927ad225",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised explicit-link discrimination, inline code, section-scoped lists and quotes, and fenced verification boundaries in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-stale-permission-badge-investigation",
+      "revision": 1,
+      "candidateDigest": "dce546445e46d6fa0fa01b646e0eddb6ea3d382da0d781af6ee3cbc719712eff",
+      "fixtureResultsDigest": "38ca175117288f67722cc569760865805bf70c13761fb6800c1c4bd9224b117c",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised quote-divider order, alternate dividers, direct lists, inline-code checks, and closed verification structure in the independent probe matrix."
+    },
+    {
+      "candidateId": "l4-table-density-spec",
+      "revision": 1,
+      "candidateDigest": "ab2670222b8b4a15afe76a86513366b6eefcd4c80366d3b68119fb7d3f12ab10",
+      "fixtureResultsDigest": "9d6acbc81ba6f57738bcd8a521da78b18f5f5cb4dfaa9b082f5e4fa0a6324ea6",
+      "verdict": "pass",
+      "notes": "Recomputed the exact manifest binding, replayed all frozen evidence through evaluateProblem, proved direct-check and role coverage, and exercised explicit-link discrimination, inline code, section-scoped lists and quotes, and fenced verification boundaries in the independent probe matrix."
+    }
+  ],
+  "findings": [],
+  "stopConditions": [
+    "Any candidate, fixture, engine-contract, verification, or manifest change after this review invalidates this digest-bound evidence and requires a new independent review run.",
+    "Any later reviewer disagreement or editorial rejection blocks publication of the whole immutable batch."
+  ],
+  "notes": "Independent mechanical review passed at exact HEAD d8ea08225a058b2668f5d8b74d786c334797c614. All 488 frozen fixtures and 644 independently authored fresh probes produced the expected grammar-only outcomes across feature-interface, bug-investigation, and staged-migration families. The probe matrix covered Setext and alternate markers, explicit links versus reference/autolink/image/HTML/code lookalikes, wrong-section content, nested and marker-empty structures, quote-divider order, global H3 occurrence safety, closed block sequences, and empty tagged fences. Current boundaries are recorded rather than overstated: hidden-comment-only list items count as nonempty source, link destinations are checked for nonemptiness rather than semantic validity, empty language-tagged fences satisfy the fenced-code predicate, and wording, spelling, technical truth, command usefulness, and command execution remain outside grading.",
+  "reviewDigest": "05f516cea538333e4e15524b23864fcd4fa2605ac4acf0af1926207b85e6a60e"
+}
