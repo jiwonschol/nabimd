@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
+  "status": "published",
+  "batchDigest": "0db21213f4d54b1bea9ce25c6b3d4ebda8308cedb2f0607256d6c4f16cd9e258",
+  "bankDigest": "a0e6802fc15550542cfabc34fbe5d347084c7f48bb70a607dcc56605092caf41",
+  "projectionDigest": "ce0b7133d2f4b8558ecae760cd8b21a9ef4cb0a650b29a5fa08506ea83e227c0",
+  "trackerDigest": "6a9b852953716ffc5cb84a69f01e9488d2e0f8638354517a9e7d8080e71fd978",
+  "generated": 24,
+  "accepted": 24,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 124,
+      "2": 124,
+      "3": 28,
+      "4": 16,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 16,
+      "fenced-code-blocks": 12,
+      "headings": 32,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "italic-emphasis": 12,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 28,
+      "rebuild-code-block-documents": 12,
+      "rebuild-real-documents": 12
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/fenced-code-blocks": 12,
+      "1/headings": 16,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/italic-emphasis": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "2/rebuild-code-block-documents": 12,
+      "2/rebuild-real-documents": 12,
+      "3/readable-human-document": 28,
+      "4/executable-development-spec": 16,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 296
+    }
+  },
+  "manifestDigest": "2ea7c49635f0d3d5afe3298f795b5dfb439fda82198b2c2e8b4fce9c141948d9",
+  "reviewDigests": [
+    "b40e0f2c8aa18a2ef79e4891721f64d3a96f5d4c7caae81aaeead1e523eac768",
+    "e151c7b64813f6afa717a195a88e9f511515e74141ccb0d6bf53f2d2fb1be41c"
+  ],
+  "editorialDigest": "fbb0c479df24cea892d81b2ba5735353e0d36aba392a0202f02ca5d36c735ec3",
+  "summaryDigest": "4a03687b9178844e0ec04fe648d53e5de356ad13c39656211761a88387692435"
+}

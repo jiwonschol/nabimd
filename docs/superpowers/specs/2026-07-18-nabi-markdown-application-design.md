@@ -109,15 +109,18 @@ overrides those gates.
 6. Horizontal rules
 7. Links
 8. Images and alt text
+9. Fenced code blocks
 
 These families are based on Devpost's documented basic Markdown syntax and the
-portable intersection with CommonMark and Typora. Nabi does not claim complete
-Markdown, CommonMark, or GitHub Flavored Markdown coverage.
+portable intersection with CommonMark and Typora. Fenced code blocks extend the
+first basic set with a CommonMark-compatible form that Devpost supports. Nabi
+does not claim complete Markdown, CommonMark, or GitHub Flavored Markdown
+coverage.
 
 ### Current curriculum shape
 
-- The deterministic runtime bank contains 248 inspected problems split
-  100/100/28/16/4 across Levels 1–5.
+- The deterministic runtime bank contains 296 inspected problems split
+  124/124/28/16/4 across Levels 1–5.
 - Accepted batches remain immutable and digest-bound. Runtime scheduling may
   reclassify how those records are presented, but it does not rewrite their
   accepted evidence.

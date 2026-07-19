@@ -68,7 +68,7 @@ The first complete bank contains at least 512 inspected problems:
 
 | Level | Minimum | Curriculum role |
 |---|---:|---|
-| 1 | 128 | short single-syntax production across eight syntax families |
+| 1 | 128 | short single-syntax production across the basic syntax surface |
 | 2 | 128 | small real-document rebuilds using familiar syntax |
 | 3 | 96 | readable workplace-document compositions |
 | 4 | 80 | executable development specifications |
@@ -80,7 +80,9 @@ per-family, and per-flavor counts are generated in the tracker after every
 accepted batch.
 
 The standard syntax families are headings and paragraphs, emphasis, lists,
-blockquotes, inline code, horizontal rules, links, and images with alt text.
+blockquotes, inline code, horizontal rules, links, fenced code blocks, and
+images with alt text. Fenced code blocks are a CommonMark-compatible,
+Devpost-supported expansion of the initial basic family list.
 Image exercises remain blocked until their local assets and alt-text guidance
 have been visually and editorially inspected; another ready family may carry
 the minimum count while that stop remains local to images.

@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "668d5e402d02a8e6dfa9aa38c20c7cacedcec28f3c5a50ef25f8ab960112c43f",
+    "bankDigest": "a0e6802fc15550542cfabc34fbe5d347084c7f48bb70a607dcc56605092caf41",
     "counts": {
-      "1": 112,
-      "2": 112,
+      "1": 124,
+      "2": 124,
       "3": 28,
       "4": 16,
       "5": 4
@@ -936,6 +936,966 @@
         "curriculumVersion": "2026-07-19",
         "contentVariant": "take-umbrella",
         "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-code-block-book-label",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nReturn on Tuesday\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Return on Tuesday"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "reading"
+          ],
+          "terms": [
+            "Return on Tuesday"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-book-label-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-bus-stop",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nMeet at Oak Street\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Meet at Oak Street"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "local-travel"
+          ],
+          "terms": [
+            "Meet at Oak Street"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-bus-stop-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-door-sign",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nBack soon\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Back soon"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home-message"
+          ],
+          "terms": [
+            "Back soon"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-door-sign-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-garden-tag",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nWater every morning\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Water every morning"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "plant-care"
+          ],
+          "terms": [
+            "Water every morning"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-garden-tag-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-laundry-note",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nWash in cold water\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Wash in cold water"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home-care"
+          ],
+          "terms": [
+            "Wash in cold water"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-laundry-note-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-music-note",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nPlay track three\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Play track three"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "music"
+          ],
+          "terms": [
+            "Play track three"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-music-note-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-pet-note",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nFresh water at noon\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Fresh water at noon"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "pet-care"
+          ],
+          "terms": [
+            "Fresh water at noon"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-pet-note-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-phone-reminder",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nCall after lunch\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Call after lunch"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "daily-message"
+          ],
+          "terms": [
+            "Call after lunch"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-phone-reminder-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-picnic-label",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nWater and apples\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Water and apples"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "outdoor-food"
+          ],
+          "terms": [
+            "Water and apples"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-picnic-label-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-shoe-box",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nRain boots\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Rain boots"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "clothes"
+          ],
+          "terms": [
+            "Rain boots"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-shoe-box-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-snack-label",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nNuts and raisins\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Nuts and raisins"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "food"
+          ],
+          "terms": [
+            "Nuts and raisins"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-snack-label-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l1-code-block-weather-message",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "fenced-code-blocks",
+        "skillIds": [
+          "code-block"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A code block keeps a whole line in a separate copy-ready block.",
+          "howTo": "Put three backticks on a line before the text and three matching backticks on a line after it.",
+          "example": "```\nKeep dry\n```"
+        },
+        "syntaxTokens": [
+          "```",
+          "Text",
+          "```"
+        ],
+        "title": "Code block",
+        "prompt": "Write one short line inside a code block.",
+        "target": "```\nBring a light jacket\n```",
+        "starterText": "",
+        "protectedContent": [
+          "Bring a light jacket"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-closed-code-block",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Put text between matching lines of three backticks."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with a line of three backticks.",
+          "Type a short line inside the block.",
+          "Finish with another line of three backticks."
+        ],
+        "retryFamily": "level-1-fenced-code-block",
+        "reviewTags": [
+          "closed-fence",
+          "nonempty-code-block"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "weather"
+          ],
+          "terms": [
+            "Bring a light jacket"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-weather-message-copy",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
       },
       {
         "id": "l1-emphasis-family-game",
@@ -9902,6 +10862,1402 @@
         "curriculumVersion": "2026-07-19",
         "contentVariant": "updated-schedule",
         "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-code-block-alarm-routine",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A routine can put a copy-ready value before a short numbered list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an ordered list with at least three steps.",
+          "example": "# Tea timer\n\n```\n4 minutes\n```\n\n1. Boil water\n2. Set the timer\n3. Pour the tea"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "1."
+        ],
+        "title": "Rebuild a numbered routine",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Morning alarm\n\n```\n7:00 AM\n```\n\n1. Get up\n2. Open the curtains\n3. Make breakfast",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-alarm-routine-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-alarm-routine-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-alarm-routine-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-code-block-numbered-routine",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "numbered-routine"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "morning-routine"
+          ],
+          "terms": [
+            "alarm",
+            "curtains",
+            "breakfast"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-alarm-numbered-routine",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-bus-reference",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quick reference can put a copy-ready value before a short bullet list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an unordered list with at least two items.",
+          "example": "# Library card\n\n```\nShelf B\n```\n\n- Second floor\n- Near the window"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "-"
+        ],
+        "title": "Rebuild a quick reference",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Bus card\n\n```\nRoute 8\n```\n\n- North stop\n- Main Street",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-bus-reference-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-bus-reference-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-bus-reference-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least two bullet items that start with -."
+        ],
+        "retryFamily": "level-2-code-block-quick-reference",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "quick-reference"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "travel-reference"
+          ],
+          "terms": [
+            "bus",
+            "route",
+            "street"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-bus-quick-reference",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-contact-reference",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quick reference can put a copy-ready value before a short bullet list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an unordered list with at least two items.",
+          "example": "# Library card\n\n```\nShelf B\n```\n\n- Second floor\n- Near the window"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "-"
+        ],
+        "title": "Rebuild a quick reference",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Emergency contact\n\n```\nJordan: 555-0102\n```\n\n- Call first\n- Leave a message",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-contact-reference-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-contact-reference-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-contact-reference-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least two bullet items that start with -."
+        ],
+        "retryFamily": "level-2-code-block-quick-reference",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "quick-reference"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "contact-reference"
+          ],
+          "terms": [
+            "contact",
+            "call",
+            "message"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-contact-quick-reference",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-door-copy",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A copy-ready note can combine a title, a short quoted cue, and a code block.",
+          "howTo": "Rebuild one H1, one blockquote, then put text between matching lines of three backticks.",
+          "example": "# Door sign\n\n> Copy this message.\n\n```\nBack soon\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          ">"
+        ],
+        "title": "Rebuild a copy-ready note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Door message\n\n> Copy this note for the front door.\n\n```\nPlease knock\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-door-copy-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-door-copy-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-door-copy-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put a short message after the > quote marker."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title and one quoted cue that starts with >.",
+          "Open a code block with three backticks on their own line.",
+          "Put text inside, then close with three matching backticks."
+        ],
+        "retryFamily": "level-2-code-block-sample-note",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "sample-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-message"
+          ],
+          "terms": [
+            "door",
+            "note",
+            "knock"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "copy-ready-door-message",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-grocery-reference",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quick reference can put a copy-ready value before a short bullet list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an unordered list with at least two items.",
+          "example": "# Library card\n\n```\nShelf B\n```\n\n- Second floor\n- Near the window"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "-"
+        ],
+        "title": "Rebuild a quick reference",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Grocery pickup\n\n```\nOrder A17\n```\n\n- Bring a bag\n- Check the receipt",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-grocery-reference-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-grocery-reference-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-grocery-reference-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least two bullet items that start with -."
+        ],
+        "retryFamily": "level-2-code-block-quick-reference",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "quick-reference"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "shopping-reference"
+          ],
+          "terms": [
+            "grocery",
+            "bag",
+            "receipt"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-grocery-quick-reference",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-guest-copy",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A copy-ready note can combine a title, a short quoted cue, and a code block.",
+          "howTo": "Rebuild one H1, one blockquote, then put text between matching lines of three backticks.",
+          "example": "# Door sign\n\n> Copy this message.\n\n```\nBack soon\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          ">"
+        ],
+        "title": "Rebuild a copy-ready note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Guest message\n\n> Copy this note for the spare room.\n\n```\nTowels are in the closet\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-guest-copy-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-guest-copy-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-guest-copy-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put a short message after the > quote marker."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title and one quoted cue that starts with >.",
+          "Open a code block with three backticks on their own line.",
+          "Put text inside, then close with three matching backticks."
+        ],
+        "retryFamily": "level-2-code-block-sample-note",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "sample-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "guest-message"
+          ],
+          "terms": [
+            "guest",
+            "towels",
+            "closet"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "copy-ready-guest-message",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-library-copy",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A copy-ready note can combine a title, a short quoted cue, and a code block.",
+          "howTo": "Rebuild one H1, one blockquote, then put text between matching lines of three backticks.",
+          "example": "# Door sign\n\n> Copy this message.\n\n```\nBack soon\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          ">"
+        ],
+        "title": "Rebuild a copy-ready note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Library message\n\n> Copy this note for the book cart.\n\n```\nReturns go here\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-library-copy-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-library-copy-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-library-copy-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put a short message after the > quote marker."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title and one quoted cue that starts with >.",
+          "Open a code block with three backticks on their own line.",
+          "Put text inside, then close with three matching backticks."
+        ],
+        "retryFamily": "level-2-code-block-sample-note",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "sample-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "library-message"
+          ],
+          "terms": [
+            "library",
+            "book cart",
+            "returns"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "copy-ready-library-message",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-lunch-copy",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A copy-ready note can combine a title, a short quoted cue, and a code block.",
+          "howTo": "Rebuild one H1, one blockquote, then put text between matching lines of three backticks.",
+          "example": "# Door sign\n\n> Copy this message.\n\n```\nBack soon\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          ">"
+        ],
+        "title": "Rebuild a copy-ready note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Lunch label\n\n> Copy this note for the lunch bag.\n\n```\nKeep cold\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-lunch-copy-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-lunch-copy-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-lunch-copy-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put a short message after the > quote marker."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title and one quoted cue that starts with >.",
+          "Open a code block with three backticks on their own line.",
+          "Put text inside, then close with three matching backticks."
+        ],
+        "retryFamily": "level-2-code-block-sample-note",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "sample-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "food-message"
+          ],
+          "terms": [
+            "lunch",
+            "bag",
+            "cold"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "copy-ready-lunch-message",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-movie-routine",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A routine can put a copy-ready value before a short numbered list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an ordered list with at least three steps.",
+          "example": "# Tea timer\n\n```\n4 minutes\n```\n\n1. Boil water\n2. Set the timer\n3. Pour the tea"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "1."
+        ],
+        "title": "Rebuild a numbered routine",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Movie setup\n\n```\nInput: HDMI 1\n```\n\n1. Turn on the screen\n2. Choose the input\n3. Start the movie",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-movie-routine-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-movie-routine-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-movie-routine-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-code-block-numbered-routine",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "numbered-routine"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "movie-routine"
+          ],
+          "terms": [
+            "movie",
+            "screen",
+            "input"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-movie-numbered-routine",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-package-routine",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A routine can put a copy-ready value before a short numbered list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an ordered list with at least three steps.",
+          "example": "# Tea timer\n\n```\n4 minutes\n```\n\n1. Boil water\n2. Set the timer\n3. Pour the tea"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "1."
+        ],
+        "title": "Rebuild a numbered routine",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Package pickup\n\n```\nLocker 14\n```\n\n1. Bring the key\n2. Open the locker\n3. Take the box",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-package-routine-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-package-routine-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-package-routine-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-code-block-numbered-routine",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "numbered-routine"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "pickup-routine"
+          ],
+          "terms": [
+            "package",
+            "locker",
+            "box"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-package-numbered-routine",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-pet-reference",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quick reference can put a copy-ready value before a short bullet list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an unordered list with at least two items.",
+          "example": "# Library card\n\n```\nShelf B\n```\n\n- Second floor\n- Near the window"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "-"
+        ],
+        "title": "Rebuild a quick reference",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Pet care card\n\n```\nFood: one cup\n```\n\n- Fill the water bowl\n- Close the gate",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-pet-reference-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-pet-reference-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-pet-reference-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least two bullet items that start with -."
+        ],
+        "retryFamily": "level-2-code-block-quick-reference",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "quick-reference"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "pet-reference"
+          ],
+          "terms": [
+            "pet",
+            "water bowl",
+            "gate"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-pet-quick-reference",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
+      },
+      {
+        "id": "l2-code-block-plant-routine",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-code-block-documents",
+        "skillIds": [
+          "heading-h1",
+          "code-block",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A routine can put a copy-ready value before a short numbered list.",
+          "howTo": "Rebuild one H1, one code block between matching backtick lines, then an ordered list with at least three steps.",
+          "example": "# Tea timer\n\n```\n4 minutes\n```\n\n1. Boil water\n2. Set the timer\n3. Pour the tea"
+        },
+        "syntaxTokens": [
+          "#",
+          "```",
+          "1."
+        ],
+        "title": "Rebuild a numbered routine",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Plant timer\n\n```\nEvery three days\n```\n\n1. Check the soil\n2. Add water\n3. Empty the tray",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-code-block-plant-routine-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal."
+          },
+          {
+            "id": "l2-code-block-plant-routine-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "document"
+            },
+            "min": 1,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Put text between matching lines of three backticks."
+          },
+          {
+            "id": "l2-code-block-plant-routine-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-code-block",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "code",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep one focused code block in this short document."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put text between matching lines of three backticks below it.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-code-block-numbered-routine",
+        "reviewTags": [
+          "composite-level-2",
+          "closed-fence",
+          "numbered-routine"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "plant-routine"
+          ],
+          "terms": [
+            "plant",
+            "soil",
+            "tray"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "fenced-plant-numbered-routine",
+        "sourceBatchId": "2026-07-20-l1-code-block-l2-rebuilds-014"
       },
       {
         "id": "l2-emphasis-bring-an-umbrella",
@@ -27899,5 +30255,5 @@
       }
     ]
   },
-  "projectionDigest": "a89d2dfff41209b90b13b2927f3feb893e1092238145ecefc99a4ee7b51f1c53"
+  "projectionDigest": "ce0b7133d2f4b8558ecae760cd8b21a9ef4cb0a650b29a5fa08506ea83e227c0"
 }

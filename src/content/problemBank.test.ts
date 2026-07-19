@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest"
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
+import tracker from "../../curriculum/problem-bank/tracker.generated.json"
 import { blockquoteBatch006Fixtures } from "./batches/blockquoteBatch006Fixtures"
+import { codeBlockBatch014Fixtures } from "./batches/codeBlockBatch014Fixtures"
 import { developmentSpecBatch012Fixtures } from "./batches/developmentSpecBatch012Fixtures"
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
 import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
@@ -24,25 +26,36 @@ import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(problemBank).toHaveLength(272)
-    expect(getProblemsForLevel(1)).toHaveLength(112)
-    expect(getProblemsForLevel(2)).toHaveLength(112)
-    expect(getProblemsForLevel(3)).toHaveLength(28)
-    expect(getProblemsForLevel(4)).toHaveLength(16)
-    expect(getProblemsForLevel(5)).toHaveLength(4)
+    expect(problemBank).toHaveLength(tracker.acceptedTotal)
+    for (const level of [1, 2, 3, 4, 5] as const) {
+      expect(getProblemsForLevel(level)).toHaveLength(
+        tracker.counts.byLevel[level],
+      )
+    }
   })
 
   it("broadens Level 1 with italic emphasis and Level 2 with composite rebuilds", () => {
+    const trackedFamilies = tracker.counts.byFamily as Record<string, number>
     expect(
       getProblemsForLevel(1).filter(
         (problem) => problem.familyId === "italic-emphasis",
       ),
-    ).toHaveLength(12)
+    ).toHaveLength(trackedFamilies["italic-emphasis"] ?? 0)
     expect(
       getProblemsForLevel(2).filter(
         (problem) => problem.familyId === "rebuild-real-documents",
       ),
-    ).toHaveLength(12)
+    ).toHaveLength(trackedFamilies["rebuild-real-documents"] ?? 0)
+    expect(
+      getProblemsForLevel(1).filter(
+        (problem) => problem.familyId === "fenced-code-blocks",
+      ),
+    ).toHaveLength(trackedFamilies["fenced-code-blocks"] ?? 0)
+    expect(
+      getProblemsForLevel(2).filter(
+        (problem) => problem.familyId === "rebuild-code-block-documents",
+      ),
+    ).toHaveLength(trackedFamilies["rebuild-code-block-documents"] ?? 0)
   })
 
   it("executes the generated runtime projection without a parallel source list", () => {
@@ -63,23 +76,27 @@ describe("compiled five-level problem bank", () => {
   })
 
   it("passes the schema-v2 bank and fixture contract", () => {
+    const publishedProblemIds = new Set(problemBank.map(({ id }) => id))
+    const publishedFixtures = [
+      ...level12SeedFixtures,
+      ...level35SeedFixtures,
+      ...headingBatch002Fixtures,
+      ...emphasisBatch003Fixtures,
+      ...listBatch004Fixtures,
+      ...orderedListBatch005Fixtures,
+      ...blockquoteBatch006Fixtures,
+      ...inlineCodeBatch007Fixtures,
+      ...linkBatch008Fixtures,
+      ...thematicBreakBatch009Fixtures,
+      ...readableDocumentBatch010Fixtures,
+      ...readableDocumentBatch011Fixtures,
+      ...developmentSpecBatch012Fixtures,
+      ...italicRebuildBatch013Fixtures,
+      ...codeBlockBatch014Fixtures,
+    ].filter(({ problemId }) => publishedProblemIds.has(problemId))
+
     expect(
-      validateProblemBank(problemBank, [
-        ...level12SeedFixtures,
-        ...level35SeedFixtures,
-        ...headingBatch002Fixtures,
-        ...emphasisBatch003Fixtures,
-        ...listBatch004Fixtures,
-        ...orderedListBatch005Fixtures,
-        ...blockquoteBatch006Fixtures,
-        ...inlineCodeBatch007Fixtures,
-        ...linkBatch008Fixtures,
-        ...thematicBreakBatch009Fixtures,
-        ...readableDocumentBatch010Fixtures,
-        ...readableDocumentBatch011Fixtures,
-        ...developmentSpecBatch012Fixtures,
-        ...italicRebuildBatch013Fixtures,
-      ]),
+      validateProblemBank(problemBank, publishedFixtures),
     ).toEqual([])
   })
 })

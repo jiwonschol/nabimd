@@ -388,6 +388,22 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
       }
       case "code-block":
         validateRange(problem.id, check, check.min, check.max, errors)
+        if (
+          check.requireNonemptyContent !== undefined &&
+          typeof check.requireNonemptyContent !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid nonempty-content flag`,
+          )
+        }
+        if (
+          check.requireClosedFence !== undefined &&
+          typeof check.requireClosedFence !== "boolean"
+        ) {
+          errors.push(
+            `Problem ${problem.id} check ${check.id} has invalid closed-fence flag`,
+          )
+        }
         break
       case "block-sequence":
         if (check.sequence.length === 0) {

@@ -20,6 +20,7 @@ export const SYNTAX_FAMILY_WEIGHTS = {
   "ordered-list": 1.25,
   "unordered-list": 1.25,
   "inline-code": 0.65,
+  "code-block": 0.65,
   "thematic-break": 1,
   link: 0.65,
   image: 0.65,

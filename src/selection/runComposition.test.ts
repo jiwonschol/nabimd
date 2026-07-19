@@ -39,6 +39,15 @@ describe("run composition policy", () => {
     }
   })
 
+  it("schedules a one-syntax code-block lesson as its own family", () => {
+    expect(getSyntaxFamily(problem("block", 1, ["code-block"]))).toBe(
+      "code-block",
+    )
+    expect(SYNTAX_FAMILY_WEIGHTS["code-block"]).toBeLessThan(
+      SYNTAX_FAMILY_WEIGHTS.heading,
+    )
+  })
+
   it("makes lists recur more often than rare families across many turns", () => {
     const counts = new Map<string, number>()
 
@@ -148,6 +157,29 @@ describe("run composition policy", () => {
       "rebuild-2",
       "rebuild-3",
     ])
+  })
+
+  it("eventually serves every composite variant for a stable session seed", () => {
+    const rebuilds = Array.from({ length: 6 }, (_, familyIndex) =>
+      Array.from({ length: 4 }, (_, variantIndex) => ({
+        ...problem(
+          `rebuild-${familyIndex}-${variantIndex}`,
+          2,
+          ["heading-h1", `shape-${familyIndex}`],
+        ),
+        retryFamily: `rebuild-family-${familyIndex}`,
+      })),
+    ).flat()
+
+    for (const seed of [0, 17, 255]) {
+      const seen = new Set<string>()
+      for (let turn = 0; turn < 24; turn += 1) {
+        for (const id of createTurnProblemIds(2, turn, rebuilds, seed)) {
+          seen.add(id)
+        }
+      }
+      expect(seen).toEqual(new Set(rebuilds.map(({ id }) => id)))
+    }
   })
 
   it("rotates the problem variant within each challenge family", () => {
