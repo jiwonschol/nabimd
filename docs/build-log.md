@@ -2316,3 +2316,36 @@ tests, the compiled-bank gate, a 222-module production build, and bundle
 inspection. Local Chromium E2E passes all 13 learner journeys, including every
 level opening a six-problem turn and a long Level 5 answer scrolling inside
 the editor. Issue #9 remains open and this replacement still uses `Refs #9`.
+
+## 2026-07-20 — Issue #40 keyboard contract
+
+The editor now supports readline movement without replacing CodeMirror's
+platform defaults. Linux and Windows receive `Ctrl+A/E` for line boundaries
+and `Ctrl+B/F` for character motion; macOS keeps CodeMirror's equivalent
+native bindings. Every platform adds `Alt+B/F` word motion, while the audited
+default `Mod+Home/End` bindings continue to own document start/end. Real
+macOS testing exposed that Option-key layouts may report `Option+B/F` as
+`∫/ƒ`; a physical-key-code fallback now preserves the requested movement
+without intercepting plain characters or unrelated modifier combinations.
+
+Check and Next now derive from one shortcut table. `Ctrl+Enter` works
+everywhere, `Cmd+Enter` is added on macOS, and `Shift+Enter` is added on
+Windows. The same table produces the CodeMirror bindings, DOM-event matcher,
+visible label, and `aria-keyshortcuts`, so the two actions cannot drift. Bare
+Space and Enter no longer activate the focused Next button; they remain
+ordinary editor and IME keys.
+
+The first Chromium run uncovered an event-ownership race: an editor Check
+could render Matched and install a document-level Next listener before that
+same keydown finished bubbling, so one press performed both transitions. The
+global listener was removed. Matched still focuses Next, and that focused
+button alone owns the second action shortcut. This makes one key press equal
+one state transition and restores editor focus after the next problem opens.
+
+Final verification passes `npm run check`, including 9,890/9,890 unit and
+component tests, all immutable problem-bank gates, typechecking, the
+223-module production build, and bundle inspection. Chromium passes all 13
+learner journeys. A separate in-app macOS browser run verified Command-Enter
+Check, Control-Enter Next, non-advancing Space/Enter, every caret motion,
+visible platform labels, an empty error console, and an unobstructed rendered
+exercise screen.

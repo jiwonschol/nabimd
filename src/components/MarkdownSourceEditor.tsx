@@ -8,6 +8,8 @@ import {
 } from "@codemirror/view"
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { invisibleCharacters } from "../editor/invisibleCharacters"
+import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
+import { createActionKeyBindings } from "./keyboardShortcut"
 
 const externalChange = Annotation.define<boolean>()
 
@@ -62,8 +64,10 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
           }
         }),
         keymap.of([
-          { key: "Ctrl-Enter", run: runCheck },
-          { key: "Meta-Enter", run: runCheck },
+          ...createActionKeyBindings(runCheck),
+          ...resolveReadlineNavigationKeymap(
+            typeof navigator === "undefined" ? {} : navigator,
+          ),
           ...defaultKeymap,
           ...historyKeymap,
         ]),

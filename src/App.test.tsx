@@ -274,24 +274,25 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Next" })).toBeVisible()
   })
 
-  it.each([
-    { modifier: "Command", event: { key: "Enter", metaKey: true } },
-    { modifier: "Control", event: { key: "Enter", ctrlKey: true } },
-  ])("checks with $modifier + Enter", async ({ event }) => {
+  it("checks with the universal Control + Enter shortcut", async () => {
     const { user, editor } = await openLevel(1)
     await user.click(editor)
     await user.keyboard(validDifferentProse())
-    fireEvent.keyDown(editor, event)
+    fireEvent.keyDown(editor, { key: "Enter", ctrlKey: true })
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
   })
 
-  it("moves focus Check → Next → editor", async () => {
+  it("moves focus Check → Next → editor with one unified shortcut", async () => {
     const { user, editor } = await openLevel(1)
     await user.keyboard(validDifferentProse())
     await user.keyboard("{Control>}{Enter}{/Control}")
     expect(screen.getByRole("button", { name: "Next" })).toHaveFocus()
 
     await user.keyboard(" ")
+    expect(screen.getByRole("button", { name: "Next" })).toHaveFocus()
+    expect(screen.getByLabelText("Practice progress")).toHaveTextContent("1 of 6")
+
+    await user.keyboard("{Control>}{Enter}{/Control}")
     expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
     expect(screen.getByLabelText("Practice progress")).toHaveTextContent("2 of 6")
   })

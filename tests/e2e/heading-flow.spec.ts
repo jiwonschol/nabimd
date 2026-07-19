@@ -195,7 +195,7 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
     await expect(page.getByRole("status")).toContainText("Matched")
     const next = page.getByRole("button", { name: "Next" })
     await expect(next).toBeFocused()
-    await page.keyboard.press("Space")
+    await page.keyboard.press("Control+Enter")
   }
 
   await expect(
@@ -293,7 +293,7 @@ test("at-level work shows Hint and challenge work hides it until requested", asy
     await expect(hintButton).toHaveAttribute("aria-expanded", "true")
     await editor.fill(await validDifferentProse(page, `guided ${index}`))
     await editor.press("Control+Enter")
-    await page.keyboard.press("Space")
+    await page.keyboard.press("Control+Enter")
   }
 
   await expect(hintButton).toHaveAttribute("aria-expanded", "false")
