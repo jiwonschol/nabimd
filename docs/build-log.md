@@ -1924,3 +1924,74 @@ and component tests, the legacy bank gate, a 222-module production build, and
 bundle inspection excluding four fixture-only sentinels from the single
 JavaScript asset. `npm run test:e2e` passed all 13 Chromium journeys. No path
 owned by Issue #50 changed, and the 512-problem closing target remains open.
+
+## 2026-07-20 — Issue #9 nested-list document pre-review freeze
+
+Batch 016 freezes 12 Level 2 document rebuilds without publishing them. The
+next uncovered basic family considered was paragraph separation, but Level 1
+cannot schedule a paragraph-only family without editing Issue #50-owned
+taxonomy and selection paths. That breadth remains deferred. Nested lists are
+reachable through the existing Level 2 composite path and reuse the current
+AST predicates, so this batch adds four nested checklists, four nested outlines,
+and four nested step documents without changing runtime verdict semantics.
+
+The syntax scope incorporates all four references named in Issue #9's
+2026-07-19 refinement:
+
+- <https://daringfireball.net/projects/markdown/basics>
+- <https://daringfireball.net/projects/markdown/syntax>
+- <https://www.markdownguide.org/basic-syntax/>
+- <https://markdown.kr/guide.php>
+
+Those sources define syntax scope only; vocabulary was authored locally and
+was not crawled. Each candidate requires an exact root block sequence, at least
+two nonempty items in one root list, and exactly two recursive list nodes. The
+root ordered or unordered kind is binding, while the descendant marker kind is
+deliberately unconstrained. Teaching therefore says to "nest one list inside
+another" and does not claim that the child marker must match its parent.
+Wording, capitalization, spelling, punctuation, and semantic truth remain
+outside grading.
+
+The immutable fixture set contains 204 real-engine cases, exactly 17 per
+candidate. It freezes canonical, different-prose, case/spelling, alternative
+indentation, alternative root markers, and mixed child-marker matches. It also
+rejects flat lists, insufficient indentation, sibling root lists, a third list
+depth, missing or undersized root lists, wrong root order, extra root blocks,
+fenced and indented code lookalikes, and blockquote-only nested lists. The
+prior runtime and tracker remain byte-identical at Git blob IDs
+`03e2513cc351ac0cffe0851e0f519a1b568a884a` and
+`e8c0746933ef88348334c6e2326ddb6e8ad1c72a`, preserving 320 published
+problems split 136/136/28/16/4. Unanimous review would publish 332 split
+136/148/28/16/4, with 12 in `rebuild-nested-list-documents`.
+
+Frozen digests:
+
+- generation prompt: `bdc3c446fd28671e1dfee6a4bd375f81b3fd860fab0ddb07e40ba1cdaaad1064`
+- raw candidates: `128678c084b2ea1685c3d1e778b9f2485e0c0ce21e7f99951145af13d02e0d88`
+- normalized candidates: `3dd558308dc8c14086f1a2fc0a6a412a1d4071419ef50dcba4b8958af18aef14`
+- fixture artifact: `ebda8c8404d9043624d6f07efc4daf607687eb28497b7c94e76a1972f469c9b0`
+- verification: `279cb4d8f8c2eacce2bdb66a6641ec382a340b51888bebff1444d5887ecad5bd`
+- engine contract: `79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b`
+- review manifest: `952a1c4c73493ac93c6389a04226589c56172ed760accd6efa8ff1805c824326`
+- prepared summary: `0a92b797e334699ed561171556536cd027b2737cc4816b72214486d97b9ae2d6`
+
+TDD began with
+`npx vitest run src/content/batches/nestedListBatch016.test.ts`, which failed
+because both authored modules did not exist. The artifact gate then failed
+until the Batch 016 support module, package aliases, gate configuration, and
+pre-review artifacts existed. A learner-facing copy test separately rejected
+the article-less `Rebuild nested ...` titles; the final titles use natural
+`Rebuild a nested ...` phrasing. The focused content, structural-predicate, and
+schema-v2 run passes 411 tests in three files. The Batch 016 gate passes seven
+tests, `npm test` passes 9,763 unit and component tests in 51 files,
+`npm run typecheck` passes, and `git diff --check` is clean.
+
+Two draft artifact sets were discarded before this immutable freeze. The first
+did not yet carry the refinement's four source links. The second preceded the
+test-first title copy edit and one fixture prose cleanup. No independent review
+had started, so neither draft produced a reviewer or editorial seal. The final
+directory contains zero reviewer verdict sets, no `editorial.json`, no
+`summary.generated.json`, and remains fail-closed at
+`awaiting-independent-review`. No Issue #50-owned path, engine predicate,
+runtime AI call, network dependency, GFM extension, image lesson, or vocabulary
+crawler is part of this freeze.

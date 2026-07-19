@@ -1,0 +1,1974 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "fixtures": [
+    {
+      "id": "l2-nested-checklist-closet-shelf-alternative-indentation",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n    - Sweaters\n    - Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-alternative-markers",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n* Top shelf\n  + Sweaters\n  + Scarves\n* Middle shelf\n* Shoe bin",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n> - Top shelf\n>   - Sweaters\n>   - Scarves\n> - Middle shelf\n> - Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-canonical",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-case-spelling",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they BELONGelongz.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-different-prose",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Linen cupboard\n\nGroup the folded items by shelf.\n\n- Upper shelf\n  - Hand towels\n  - Pillowcases\n- Lower shelf\n- Laundry basket",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-extra-root-block",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-extra-root-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n```text\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-flat-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n- Sweaters\n- Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n    - Top shelf\n    - Sweaters\n    - Scarves\n    - Middle shelf\n    - Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-insufficient-indentation",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n - Sweaters\n - Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-missing-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-mixed-child-marker",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  1. Sweaters\n  1. Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-third-list-depth",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n    - Extra detail\n  - Scarves\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-too-few-root-items",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-list",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-list"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-wrong-root-order",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Closet shelf\n\n- Top shelf\n  - Sweaters\n  - Scarves\n- Middle shelf\n- Shoe bin\n\nSort the clean clothes by where they belong.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-alternative-indentation",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n    - Tomatoes\n    - Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-alternative-markers",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n* Produce\n  + Tomatoes\n  + Spinach\n* Pasta\n* Olive oil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n> - Produce\n>   - Tomatoes\n>   - Spinach\n> - Pasta\n> - Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-canonical",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-case-spelling",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# GROCERYroceryz basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-different-prose",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Market cart\n\nGet a handful of ingredients for supper.\n\n- Vegetables\n  - Bell peppers\n  - Green beans\n- Rice\n- Sesame oil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-extra-root-block",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-extra-root-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n```text\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-flat-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n- Tomatoes\n- Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n    - Produce\n    - Tomatoes\n    - Spinach\n    - Pasta\n    - Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-insufficient-indentation",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n - Tomatoes\n - Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-missing-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-mixed-child-marker",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  1. Tomatoes\n  1. Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-third-list-depth",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n    - Extra detail\n  - Spinach\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-too-few-root-items",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-list",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-list"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-wrong-root-order",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Grocery basket\n\n- Produce\n  - Tomatoes\n  - Spinach\n- Pasta\n- Olive oil\n\nPick up a few basics for dinner.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-alternative-indentation",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n    - Apple slices\n    - Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-alternative-markers",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n* Cold items\n  + Apple slices\n  + Cheese cubes\n* Dry snacks\n* Napkins",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n> - Cold items\n>   - Apple slices\n>   - Cheese cubes\n> - Dry snacks\n> - Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-canonical",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-case-spelling",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Picnic bag\n\nPACKackz lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-different-prose",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Park lunch\n\nPrepare a light meal for the afternoon.\n\n- Chilled food\n  - Orange slices\n  - Yogurt cups\n- Crackers\n- Paper towels",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-extra-root-block",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-extra-root-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n```text\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-flat-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n- Apple slices\n- Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n    - Cold items\n    - Apple slices\n    - Cheese cubes\n    - Dry snacks\n    - Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-insufficient-indentation",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n - Apple slices\n - Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-missing-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-mixed-child-marker",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  1. Apple slices\n  1. Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-third-list-depth",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n    - Extra detail\n  - Cheese cubes\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-too-few-root-items",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-list",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-list"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-wrong-root-order",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# Picnic bag\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n- Dry snacks\n- Napkins\n\nPack lunch before leaving for the park.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-alternative-indentation",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n    - Blue pen\n    - Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-alternative-markers",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n* Writing tools\n  + Blue pen\n  + Pencil\n* Notebook\n* Lunch card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n> - Writing tools\n>   - Blue pen\n>   - Pencil\n> - Notebook\n> - Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-canonical",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-case-spelling",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# School supplies\n\nCheck the backpack BEFOREeforez the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-different-prose",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Class bag\n\nLook through the bag before walking to school.\n\n- Desk tools\n  - Green marker\n  - Eraser\n- Folder\n- Bus pass",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-extra-root-block",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-extra-root-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n```text\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-flat-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n- Blue pen\n- Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n    - Writing tools\n    - Blue pen\n    - Pencil\n    - Notebook\n    - Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-insufficient-indentation",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n - Blue pen\n - Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-missing-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-mixed-child-marker",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  1. Blue pen\n  1. Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-third-list-depth",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-list-count",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n    - Extra detail\n  - Pencil\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-list-count"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-too-few-root-items",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-list",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-list"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-wrong-root-order",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-root-shape",
+      "source": "# School supplies\n\n- Writing tools\n  - Blue pen\n  - Pencil\n- Notebook\n- Lunch card\n\nCheck the backpack before the first bell.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-alternative-indentation",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n    - Fill the bowl\n    - Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-pet-care-alternative-markers",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n* Dinner\n  + Fill the bowl\n  + Add fresh water\n* Short walk\n* Brush coat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-pet-care-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n> - Dinner\n>   - Fill the bowl\n>   - Add fresh water\n> - Short walk\n> - Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-canonical",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-pet-care-case-spelling",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - FILLillz the bowl\n  - Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-pet-care-different-prose",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Rabbit care\n\n## Morning routine\n\nMake the hutch comfortable before breakfast.\n\n- Food\n  - Add fresh hay\n  - Refill water\n- Quick check\n- Brush fur",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-pet-care-extra-root-block",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n- Short walk\n- Brush coat\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-extra-root-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n- Short walk\n- Brush coat\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n```text\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n- Short walk\n- Brush coat\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-flat-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n- Fill the bowl\n- Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-indented-code-lookalike",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n    - Dinner\n    - Fill the bowl\n    - Add fresh water\n    - Short walk\n    - Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-insufficient-indentation",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n - Fill the bowl\n - Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-missing-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-mixed-child-marker",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  1. Fill the bowl\n  1. Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-pet-care-third-list-depth",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n    - Extra detail\n  - Add fresh water\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-too-few-root-items",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-list",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-list"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-wrong-root-order",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Pet care\n\n## Evening routine\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n- Short walk\n- Brush coat\n\nSettle the dog in before bedtime.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-alternative-indentation",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n    - Monday\n    - Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-alternative-markers",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n* Short stories\n  + Monday\n  + Wednesday\n* Travel essay\n* Poetry book",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n> - Short stories\n>   - Monday\n>   - Wednesday\n> - Travel essay\n> - Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-canonical",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-case-spelling",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- POETRYoetryz book",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-different-prose",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Listening plan\n\n## This weekend\n\nSpend a little time with music each day.\n\n- Jazz albums\n  - Friday\n  - Sunday\n- Radio play\n- Concert film",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-extra-root-block",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- Poetry book\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-extra-root-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- Poetry book\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n```text\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- Poetry book\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-flat-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n- Monday\n- Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-indented-code-lookalike",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n    - Short stories\n    - Monday\n    - Wednesday\n    - Travel essay\n    - Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-insufficient-indentation",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n - Monday\n - Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-missing-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-mixed-child-marker",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  1. Monday\n  1. Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-third-list-depth",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n    - Extra detail\n  - Wednesday\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-too-few-root-items",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-list",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-list"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-wrong-root-order",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Reading plan\n\n## This week\n\n- Short stories\n  - Monday\n  - Wednesday\n- Travel essay\n- Poetry book\n\nMake time for a little reading each evening.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-alternative-indentation",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n    - Basil\n    - Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-small-garden-alternative-markers",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n* Herb bed\n  + Basil\n  + Mint\n* Tomato pot\n* Watering can",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-small-garden-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n> - Herb bed\n>   - Basil\n>   - Mint\n> - Tomato pot\n> - Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-canonical",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-small-garden-case-spelling",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Small garden\n\n## PLANTINGlantingz notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-small-garden-different-prose",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Patio pots\n\n## Growing notes\n\nChoose the bright side of the porch.\n\n- Salad pot\n  - Lettuce\n  - Radishes\n- Pepper plant\n- Small trowel",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-small-garden-extra-root-block",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-extra-root-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n```text\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-flat-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n- Basil\n- Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-indented-code-lookalike",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n    - Herb bed\n    - Basil\n    - Mint\n    - Tomato pot\n    - Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-insufficient-indentation",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n - Basil\n - Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-missing-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-mixed-child-marker",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  1. Basil\n  1. Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-small-garden-third-list-depth",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n    - Extra detail\n  - Mint\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-too-few-root-items",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-list",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-list"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-wrong-root-order",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Small garden\n\n## Planting notes\n\n- Herb bed\n  - Basil\n  - Mint\n- Tomato pot\n- Watering can\n\nUse the sunny end of the yard.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-alternative-indentation",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n    - Bakery\n    - Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-alternative-markers",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n* Town center\n  + Bakery\n  + Post office\n* Farmers market\n* Gas station",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n> - Town center\n>   - Bakery\n>   - Post office\n> - Farmers market\n> - Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-canonical",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-case-spelling",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Weekend route\n\n## Morning STOPStopsz\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-different-prose",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Afternoon errands\n\n## First stops\n\nComplete the short trip before sunset.\n\n- Main street\n  - Pharmacy\n  - Hardware store\n- Produce stand\n- Train station",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-extra-root-block",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-extra-root-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station\n\n* Separate group",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n```text\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-flat-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n- Bakery\n- Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-indented-code-lookalike",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n    - Town center\n    - Bakery\n    - Post office\n    - Farmers market\n    - Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-insufficient-indentation",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n - Bakery\n - Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-missing-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-mixed-child-marker",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  1. Bakery\n  1. Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-third-list-depth",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-list-count",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n    - Extra detail\n  - Post office\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-list-count"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-too-few-root-items",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-list",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-list"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-wrong-root-order",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-root-shape",
+      "source": "# Weekend route\n\n## Morning stops\n\n- Town center\n  - Bakery\n  - Post office\n- Farmers market\n- Gas station\n\nFinish the errands before lunch.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-alternative-indentation",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n    1. Choose colored paper\n    2. Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-craft-table-alternative-markers",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1) Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2) Cover the table\n3) Make the cards",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-craft-table-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n> 1. Gather supplies\n>    1. Choose colored paper\n>    2. Find the glue\n> 2. Cover the table\n> 3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-canonical",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-craft-table-case-spelling",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the GLUEluez\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-craft-table-different-prose",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Sewing tray\n\nArrange a small place for mending a button.\n\n1. Collect the tools\n   1. Choose a needle\n   2. Find matching thread\n2. Clear the chair\n3. Mend the shirt",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-craft-table-extra-root-block",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-extra-root-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards\n\n1) Separate task",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n```text\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-flat-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n1. Choose colored paper\n2. Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-indented-code-lookalike",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n    1. Gather supplies\n    1. Choose colored paper\n    2. Find the glue\n    2. Cover the table\n    3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-insufficient-indentation",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n 1. Choose colored paper\n 2. Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-missing-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-mixed-child-marker",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   - Choose colored paper\n   - Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-craft-table-third-list-depth",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n      1. Extra detail\n   2. Find the glue\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-too-few-root-items",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-list",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-list"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-wrong-root-order",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Craft table\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards\n\nSet up a clean place for making paper cards.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-alternative-indentation",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n    1. Set aside whites\n    2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-alternative-markers",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1) Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2) Start the washer\n3) Fold the dry clothes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n> 1. Sort the clothes\n>    1. Set aside whites\n>    2. Set aside darks\n> 2. Start the washer\n> 3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-canonical",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-case-spelling",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the CLOTHESlothesz\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-different-prose",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Morning cleanup\n\nClean up the kitchen before leaving home.\n\n1. Gather the dishes\n   1. Stack the bowls\n   2. Collect the mugs\n2. Load the machine\n3. Wipe the counter",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-extra-root-block",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-extra-root-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes\n\n1) Separate task",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n```text\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-flat-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n1. Set aside whites\n2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-indented-code-lookalike",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n    1. Sort the clothes\n    1. Set aside whites\n    2. Set aside darks\n    2. Start the washer\n    3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-insufficient-indentation",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n 1. Set aside whites\n 2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-missing-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\nFinish one load before starting another.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-mixed-child-marker",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   - Set aside whites\n   - Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-third-list-depth",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n      1. Extra detail\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-too-few-root-items",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-list",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-list"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-wrong-root-order",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Laundry routine\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes\n\nFinish one load before starting another.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-alternative-indentation",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n    1. Put away shoes\n    2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-room-reset-alternative-markers",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1) Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2) Make the bed\n3) Close the curtains",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-room-reset-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n> 1. Clear the floor\n>    1. Put away shoes\n>    2. Pick up books\n> 2. Make the bed\n> 3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-canonical",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-room-reset-case-spelling",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Room reset\n\nTIDYidyz the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-room-reset-different-prose",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Entryway reset\n\nStraighten the hall before bedtime.\n\n1. Clear the mat\n   1. Store the boots\n   2. Hang the coats\n2. Sweep the floor\n3. Turn off the lamp",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-room-reset-extra-root-block",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-extra-root-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains\n\n1) Separate task",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n```text\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-flat-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n1. Put away shoes\n2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-indented-code-lookalike",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n    1. Clear the floor\n    1. Put away shoes\n    2. Pick up books\n    2. Make the bed\n    3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-insufficient-indentation",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n 1. Put away shoes\n 2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-missing-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\nTidy the room before turning out the light.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-mixed-child-marker",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   - Put away shoes\n   - Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-room-reset-third-list-depth",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n      1. Extra detail\n   2. Pick up books\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-too-few-root-items",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-list",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-list"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-wrong-root-order",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Room reset\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains\n\nTidy the room before turning out the light.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-alternative-indentation",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n    1. Slice the cucumber\n    2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-alternative-markers",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1) Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2) Warm the tortilla\n3) Roll the wrap",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n> 1. Prepare the filling\n>    1. Slice the cucumber\n>    2. Grate the carrot\n> 2. Warm the tortilla\n> 3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-canonical",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-case-spelling",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. GRATEratez the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-different-prose",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Easy snack\n\nPut together toast with fruit.\n\n1. Prepare the topping\n   1. Slice the banana\n   2. Stir the yogurt\n2. Toast the bread\n3. Add the topping",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-extra-root-block",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap\n\nExtra note.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-extra-root-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap\n\n1) Separate task",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n```text\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-flat-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n1. Slice the cucumber\n2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-indented-code-lookalike",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n    1. Prepare the filling\n    1. Slice the cucumber\n    2. Grate the carrot\n    2. Warm the tortilla\n    3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-insufficient-indentation",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n 1. Slice the cucumber\n 2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-missing-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-mixed-child-marker",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   - Slice the cucumber\n   - Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-third-list-depth",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-list-count",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n      1. Extra detail\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-list-count"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-too-few-root-items",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-list",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-list"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-wrong-root-order",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-root-shape",
+      "source": "# Simple meal\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap\n\nMake a quick vegetable wrap for lunch.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-root-shape"
+    }
+  ]
+}

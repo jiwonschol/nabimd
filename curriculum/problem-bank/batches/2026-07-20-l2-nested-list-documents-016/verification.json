@@ -1,0 +1,2987 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l2-nested-list-documents-016",
+  "engineContractDigest": "79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b",
+  "candidates": [
+    {
+      "candidateId": "l2-nested-checklist-closet-shelf",
+      "revision": 1,
+      "candidateDigest": "6bc4502ed49397691470921a826d30ca6a3d7eee391df13c9e64770ca1bd2d43",
+      "problemDigest": "ab995b47f6d9e18dba4922f49f6c9460d5b88ff513a0a1cc283779c3e4a371fb",
+      "fixtureDefinitionDigest": "3ec68fe88f5fdba0e275ca591f5346b529e64d60d40ce32bb52888d135440c0d",
+      "fixtureResultsDigest": "a7210f8d10288ffba6fea2570ef8288f31026add9b9f48e4f19037eb61d01c14",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-checklist-grocery-basket",
+      "revision": 1,
+      "candidateDigest": "a3497b0e864baed248e6bf4132c34762b1ba8382bb789cdc4aaa54dfaba9dc3d",
+      "problemDigest": "acd40a35e1d9c0458aa79828f2955405a1f73d9a074293c7472cfd749a6f45d0",
+      "fixtureDefinitionDigest": "c6d3178d2bb33dd8d3fe42f9df66b15fa83bd502ebd80a50a3934150f922163f",
+      "fixtureResultsDigest": "aaeace8e31d975384834221270df1823b684f377b313a7c046e87f96fd9f92dc",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-checklist-picnic-bag",
+      "revision": 1,
+      "candidateDigest": "ecbf8790ccfb941325c3a4501aa4f6fbae2c2647913ec78fadd4004f46fa93b4",
+      "problemDigest": "3f9e447063d24c254244c5e2e18200f338e55b64b7923006d27d4c24204607e4",
+      "fixtureDefinitionDigest": "b2172d783fa0cb01c50ade0c0d0041100d1009ed3493883f984f37c964e62306",
+      "fixtureResultsDigest": "7908da30cd2a845e164b6b0871b5c0e85a6e47055800e930f953b330a52b44f9",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-checklist-school-supplies",
+      "revision": 1,
+      "candidateDigest": "13b28e6ee44116452c5f117ec5e06924103dc630198c9077eca47431fe4f5013",
+      "problemDigest": "404ac9103acec853385da2f41a1b2c21859b751960485187e2cfdaa2d8436b60",
+      "fixtureDefinitionDigest": "19efd68dd5f391723841af3b3cef3c31c87832885def46227501693d07771647",
+      "fixtureResultsDigest": "47e9e1aca0e032a7ba982689d6bd5a781188d5c8327b260f9b4d786d68b0c67b",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-outline-pet-care",
+      "revision": 1,
+      "candidateDigest": "10f0a4d2fec6d394e483ce10884957868705a2925d7696f7e2afb78352e77df0",
+      "problemDigest": "fa5b70db00d36f42304ff872bd961e468e36eb40af2a08b780ee0d12499507d5",
+      "fixtureDefinitionDigest": "a0778a13b0430b3e96c407f25246aef66ea4828fa3b1eb3e28f018454a97a2f9",
+      "fixtureResultsDigest": "5cd2e2a0bda7e29a0ea01945adc445a009d88f154a82da597532c0117a24eae0",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-outline-reading-plan",
+      "revision": 1,
+      "candidateDigest": "e9193a7d63e30c5acb13cfa5e1d7cf548f36a3a0931d401fde7727f0419b4c60",
+      "problemDigest": "1c4dfa058d76ca4083cdd97422ff717369fee207b73834f1ff00fabeb3616420",
+      "fixtureDefinitionDigest": "2a026d178897a24be799a4937bb3b2df73c8d877b7ec34a0ea8e7000db1e91a3",
+      "fixtureResultsDigest": "17763236a445ab9b22a71092ed84e2808509abb5f775f852cd320b6f26b9a094",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-outline-small-garden",
+      "revision": 1,
+      "candidateDigest": "93c773fc276d14fc78ee91501ca78340144aa55d8e66558c00d06e0a52a6df4b",
+      "problemDigest": "845b2bce268d8306e7223e1f9c0c271c470300bd2d580ec1f40e71c3a01ebbcc",
+      "fixtureDefinitionDigest": "3dbcb2c84b9907023bfa6df6d3b35570a93b01a2a011c0ba755ab51fbf405a54",
+      "fixtureResultsDigest": "d0200ca864cb477c3e433c50d4a76028f1d173bafbfcd7ae4c623b4000777e91",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-outline-weekend-route",
+      "revision": 1,
+      "candidateDigest": "972e75e5a2f1ecd8b72f93acdd25bc4923b9baef0ca28f9a49794653a12770bc",
+      "problemDigest": "3ada10387ea0e521f3300e565f89c536f0c2077699058c3c5114c881ab47d686",
+      "fixtureDefinitionDigest": "c35eced643e3af3826903ad00cf6397094c633d8193f393c2de6b15b1fa1efb5",
+      "fixtureResultsDigest": "5305d3c9c895fa7508dca106b933c131715acda692f5daeb69a69dcd1bd11fe2",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-steps-craft-table",
+      "revision": 1,
+      "candidateDigest": "95abcb08176a4188dc4c2df9bfe378e71d3d3ca2781fb9bc366eaeaa6d5d8df2",
+      "problemDigest": "421ada72046072bccfb321cef1f8ab150f0e2e191aa6d98083623f47d68ecaa8",
+      "fixtureDefinitionDigest": "920a5aa903c806350f14c7a589a9cab8057863f7c8d74a620620b1b1070bbd3a",
+      "fixtureResultsDigest": "d44c2888cdc5e708878382aea8247eed83c576f5d9a7d833d222f12f44a2e214",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-steps-laundry-routine",
+      "revision": 1,
+      "candidateDigest": "8e6ac82f15635b1be08ee9107d85c0fddca0757210b6ac2468ae460efffe31a3",
+      "problemDigest": "cd9151099fce4821fad8f5d29ff794abd193934cb1a2b2d84670d311cf2c34fa",
+      "fixtureDefinitionDigest": "6fd54c0edca7b4a21fb7858126fa294d303e72797efbcf3f5a4d1a954631b356",
+      "fixtureResultsDigest": "e006d5f960691810f5d8f910d54fbd46690d3c287572da3504e53b8ffef68e9d",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-steps-room-reset",
+      "revision": 1,
+      "candidateDigest": "a4082fc1aaa4db918ce2fc793f8e6b4fb5dfbd3a024a6b5348c0874d0a1a3b96",
+      "problemDigest": "448a79f650c74628e7310d26ebfd6b8aa75d1e4ce032b2b0e01fd51c8207c1c8",
+      "fixtureDefinitionDigest": "1dedfa99f9aeaabcdc9f3a54eda02ade336138536eecae21cc868761f1ce58a8",
+      "fixtureResultsDigest": "201c46b1802f236a63df1b470251382cad2a5e1215569f4fc3ae87cf857b164f",
+      "fixtureCount": 17,
+      "passed": true
+    },
+    {
+      "candidateId": "l2-nested-steps-simple-meal",
+      "revision": 1,
+      "candidateDigest": "83833103874584ad7abce589300de35ca8f4860e95bc23554289ae73d5175c11",
+      "problemDigest": "e55205655d7c9849d572554870111cf2e20f79bc3d3a278b5a0e2dc9890bc1ea",
+      "fixtureDefinitionDigest": "4c4706158b6e7b33e1d73fae87718607a69dee2b8e88c99722c80b5a1de89ac3",
+      "fixtureResultsDigest": "844b78df8d7cd688d86de1e49fbeb615d43cb4d800a0ee546d0daa668811f5b9",
+      "fixtureCount": 17,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-alternative-indentation",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-alternative-markers",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-canonical",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-case-spelling",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-different-prose",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-extra-root-block",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-extra-root-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-flat-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-insufficient-indentation",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-missing-list",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-mixed-child-marker",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-third-list-depth",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-too-few-root-items",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-closet-shelf-wrong-root-order",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-alternative-indentation",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-alternative-markers",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-canonical",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-case-spelling",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-different-prose",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-extra-root-block",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-extra-root-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-flat-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-insufficient-indentation",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-missing-list",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-mixed-child-marker",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-third-list-depth",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-too-few-root-items",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-grocery-basket-wrong-root-order",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-alternative-indentation",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-alternative-markers",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-canonical",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-case-spelling",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-different-prose",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-extra-root-block",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-extra-root-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-flat-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-insufficient-indentation",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-missing-list",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-mixed-child-marker",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-third-list-depth",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-too-few-root-items",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-picnic-bag-wrong-root-order",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-alternative-indentation",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-alternative-markers",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-blockquote-only-nested-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-canonical",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-case-spelling",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-different-prose",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-extra-root-block",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-extra-root-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-fenced-code-lookalike",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-flat-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-indented-code-lookalike",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-insufficient-indentation",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-missing-list",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-mixed-child-marker",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-third-list-depth",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-too-few-root-items",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-checklist-school-supplies-wrong-root-order",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-checklist-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-alternative-indentation",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-alternative-markers",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-canonical",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-case-spelling",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-different-prose",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-extra-root-block",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-extra-root-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-flat-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-indented-code-lookalike",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-insufficient-indentation",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-missing-list",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-mixed-child-marker",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-third-list-depth",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-too-few-root-items",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-pet-care-wrong-root-order",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-alternative-indentation",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-alternative-markers",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-canonical",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-case-spelling",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-different-prose",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-extra-root-block",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-extra-root-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-flat-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-indented-code-lookalike",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-insufficient-indentation",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-missing-list",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-mixed-child-marker",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-third-list-depth",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-too-few-root-items",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-reading-plan-wrong-root-order",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-alternative-indentation",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-alternative-markers",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-canonical",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-case-spelling",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-different-prose",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-extra-root-block",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-extra-root-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-flat-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-indented-code-lookalike",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-insufficient-indentation",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-missing-list",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-mixed-child-marker",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-third-list-depth",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-too-few-root-items",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-small-garden-wrong-root-order",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-alternative-indentation",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-alternative-markers",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-blockquote-only-nested-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-canonical",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-case-spelling",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-different-prose",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-extra-root-block",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-extra-root-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-fenced-code-lookalike",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-flat-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-indented-code-lookalike",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-insufficient-indentation",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-missing-list",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-mixed-child-marker",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-third-list-depth",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-too-few-root-items",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-outline-weekend-route-wrong-root-order",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-outline-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-alternative-indentation",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-alternative-markers",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-canonical",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-case-spelling",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-different-prose",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-extra-root-block",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-extra-root-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-flat-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-indented-code-lookalike",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-insufficient-indentation",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-missing-list",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-mixed-child-marker",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-third-list-depth",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-too-few-root-items",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-craft-table-wrong-root-order",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-alternative-indentation",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-alternative-markers",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-canonical",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-case-spelling",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-different-prose",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-extra-root-block",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-extra-root-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-flat-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-indented-code-lookalike",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-insufficient-indentation",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-missing-list",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-mixed-child-marker",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-third-list-depth",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-too-few-root-items",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-laundry-routine-wrong-root-order",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-alternative-indentation",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-alternative-markers",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-canonical",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-case-spelling",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-different-prose",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-extra-root-block",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-extra-root-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-flat-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-indented-code-lookalike",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-insufficient-indentation",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-missing-list",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-mixed-child-marker",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-third-list-depth",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-too-few-root-items",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-room-reset-wrong-root-order",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-alternative-indentation",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-alternative-markers",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-blockquote-only-nested-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-canonical",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-case-spelling",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-different-prose",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-extra-root-block",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-extra-root-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-fenced-code-lookalike",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-flat-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-indented-code-lookalike",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-insufficient-indentation",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-missing-list",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-mixed-child-marker",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-third-list-depth",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-list-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-too-few-root-items",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l2-nested-steps-simple-meal-wrong-root-order",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "nested-steps-root-shape"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "279cb4d8f8c2eacce2bdb66a6641ec382a340b51888bebff1444d5887ecad5bd"
+}
