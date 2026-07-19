@@ -33,6 +33,7 @@ async function currentProblemFamily(page: Page) {
   if (panelId.includes("-emphasis-")) return "emphasis"
   if (panelId.includes("-inline-code-")) return "inline-code"
   if (panelId.includes("-link-")) return "links"
+  if (panelId.includes("-thematic-break-")) return "thematic-break"
   if (panelId.includes("-order-")) return "ordered-list"
   if (panelId.includes("-list-")) return "unordered-list"
   return "headings"
@@ -48,6 +49,8 @@ async function validDifferentProse(page: Page, words: string) {
       return `Use \`${words}\`.`
     case "links":
       return `Use [${words}](/changed).`
+    case "thematic-break":
+      return `${words} before\n\n---\n\n${words} after`
     case "unordered-list":
       return `- ${words} one\n- ${words} two\n- ${words} three`
     case "ordered-list":
@@ -67,6 +70,8 @@ async function malformedSource(page: Page) {
       return "`No closing"
     case "links":
       return "[No closing](/path"
+    case "thematic-break":
+      return "Before the divider\n\n--\n\nAfter the divider"
     case "unordered-list":
       return "-No space\n-Also malformed\n-Still malformed"
     case "ordered-list":
@@ -86,6 +91,8 @@ async function expectedRepairFeedback(page: Page) {
       return "Wrap at least one meaningful item in backticks."
     case "links":
       return "Add a Markdown link with readable words and a web address."
+    case "thematic-break":
+      return "Add a Markdown divider between the two text blocks."
     case "unordered-list":
       return "Add at least three bullet items, with words after each marker."
     case "ordered-list":
