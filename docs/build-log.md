@@ -1282,7 +1282,7 @@ network-free and grammar-only.
 ### Issue #9 blockquote expansion
 
 The sixth schema-v2 batch adds 24 Level 1–2 blockquote exercises. The Goal
-teaches the portable `> ` form, while grading follows the parsed CommonMark
+teaches the portable `>` marker followed by a space, while grading follows the parsed CommonMark
 blockquote rather than a marker regex. No-space markers, up to three leading
 spaces, lazy continuation, images with visible alt text, headings, lists,
 code, neutral wrappers, and nested quotes can therefore match. Empty quotes,
