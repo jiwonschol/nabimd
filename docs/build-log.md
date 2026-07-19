@@ -1464,3 +1464,55 @@ API key, but both the pre-fix and final-commit `cr --agent` runs remained at
 `connecting_to_review_service` for the full ten-minute review window. They were
 terminated without findings and are not represented as completed reviews. The
 open GitHub PR review remains the separate CodeRabbit gate for this batch.
+
+### Issue #9 Level 3 readable-document pilot
+
+The tenth schema-v2 batch is the first expansion beyond isolated Level 1–2
+syntax. It adds 12 Level 3 workplace documents in three structurally distinct
+retry families: status or handoff notes, how-to notes, and decision records.
+Each family has four different content variants, so a three-problem run and
+`Try another` remain inside one document anatomy without repeating the same
+displayed material.
+
+The initial curriculum proposal allowed 24 Level 3 documents. A separate engine
+audit confirmed that all 24 were expressible, but recommended two 12-problem
+immutable batches. Composite documents contain more interacting checks than a
+single-syntax exercise; one ambiguous candidate would invalidate every seal in
+the batch. The smaller pilot therefore reduces restart cost without weakening
+the 512-problem target. Publication raises Level 3 from four to 16 and the bank
+from 212 to 224 problems, with a 100/100/16/4/4 split.
+
+Every Goal is a 55–71-word plain-US-English workplace document. Runtime grading
+uses only heading order, H2 counts and occurrence scopes, block sequences, list
+shape, blockquote shape, bold presence, and meaningful inline-code presence.
+Heading labels, prose, vocabulary, capitalization, spelling, punctuation,
+length, and semantic truth remain outside the verdict. The batch adds 212
+frozen real-engine fixtures, 17–18 per problem, including direct failure
+evidence for every match check and same-anatomy different-prose variants.
+
+Two predicate limits were found before the manifest was frozen and are recorded
+instead of hidden. Section-scoped inline code can be required in the second H2
+section but not specifically inside its ordered list; authored Goals demonstrate
+the preferred list-item placement while the learner feedback states the actual
+section scope. The existing `list-shape` predicate also counts HTML/comment node
+values as nonempty list-item content even when the preview has no visible words.
+Issue #9 forbids changing existing verdict semantics in this content batch, so
+explicit Matched fixtures preserve that boundary. Editorial inspection still
+requires every authored Goal to contain visible, useful list items.
+
+Final manifest
+`0e96ab6128ea0c4f068244d3f9208abce42e389be82426e8f89fc1521f288c8a`
+contains 12 candidates and 212 passing frozen fixtures. Atlas accepted 12/12
+after replaying all fixtures and 25 independent probes. Orchid independently
+accepted 12/12 after all fixtures and 508 adversarial evaluations. The separate
+editorial review accepted 12/12, confirmed three distinct document anatomies,
+and found no ID, Goal, content-variant, or vocabulary-set collision against the
+published or frozen legacy banks. The sealed batch digest is
+`5edfb1b60e3fa1c6cc2a61180e790a5c6fd62dd84b2e30e0f661ec8761fb712c`.
+
+The configured local `cr --agent` command was invoked after the full test and
+browser gates, but the execution environment rejected the unpublished-source
+export before CodeRabbit started. Authentication was therefore not the cause
+and the local run is not represented as a review. Because the repository and
+PR are public, the open GitHub CodeRabbit review remains the external review
+gate for the exact committed head.

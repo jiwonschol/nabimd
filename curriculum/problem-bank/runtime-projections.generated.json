@@ -2,11 +2,11 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "44155b653051ae658de4290328a311a80eb8651023f38a77c06dd9e0cec02dfa",
+    "bankDigest": "b272ee61167ecf426f04245a4adc9700f5d75fc5de5551573d3bfd64b1e5f424",
     "counts": {
       "1": 100,
       "2": 100,
-      "3": 4,
+      "3": 16,
       "4": 4,
       "5": 4
     }
@@ -16241,6 +16241,1538 @@
         "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
       },
       {
+        "id": "l3-decision-quiet-room-booking",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "decision-context",
+          "blockquote",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable decision record gives the context, preserves the agreed wording, and lists the follow-up work.",
+          "howTo": "Use one H1, an opening paragraph, three H2 sections, a nonempty blockquote for the decision, and an unordered action list.",
+          "example": "# Schedule decision\n\nThis note records a change for the team.\n\n## Context\n\nTwo review times were available.\n\n## Decision\n\n> Use the earlier time.\n\n## Actions\n\n- Update the invite\n- Tell the team\n- Review next month"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "-"
+        ],
+        "title": "Record a quiet-room booking decision",
+        "prompt": "Write a readable booking decision with context, a quoted rule, and clear follow-up work.",
+        "target": "# Quiet room booking decision\n\nThis note records the shared rule for reserving small quiet rooms during the busiest part of the workday.\n\n## Context\n\nLong reservations made it hard for coworkers to find a private space for short calls and focused work.\n\n## Decision\n\n> Reserve quiet rooms in 30-minute blocks between noon and 4:00 p.m.\n\n## Actions\n\n- Update the room guide\n- Add the limit to each calendar\n- Review booking patterns next month",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-decision-quiet-room-booking-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-decision-quiet-room-booking-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections in this short document."
+          },
+          {
+            "id": "l3-decision-quiet-room-booking-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-decision-quiet-room-booking-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put the decision in a nonempty blockquote in the second H2 section."
+          },
+          {
+            "id": "l3-decision-quiet-room-booking-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the third H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and an opening paragraph, then add three ## sections.",
+          "Put a regular paragraph in the first section and a nonempty > blockquote in the second.",
+          "Finish the third section with at least three unordered action items."
+        ],
+        "retryFamily": "level3-decision-record",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "decision-record"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "office-scheduling"
+          ],
+          "terms": [
+            "quiet room",
+            "booking block",
+            "room guide"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "quiet-room-booking-decision",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-decision-reply-template-review",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "decision-context",
+          "blockquote",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable decision record gives the context, preserves the agreed wording, and lists the follow-up work.",
+          "howTo": "Use one H1, an opening paragraph, three H2 sections, a nonempty blockquote for the decision, and an unordered action list.",
+          "example": "# Schedule decision\n\nThis note records a change for the team.\n\n## Context\n\nTwo review times were available.\n\n## Decision\n\n> Use the earlier time.\n\n## Actions\n\n- Update the invite\n- Tell the team\n- Review next month"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "-"
+        ],
+        "title": "Document a reply-template review decision",
+        "prompt": "Organize the decision with a context paragraph, quoted agreement, and three action items.",
+        "target": "# Reply template review decision\n\nThis record keeps the review process clear when the support team creates or changes a customer reply template.\n\n## Context\n\nSmall wording changes were reaching customers before another teammate checked the tone and required details.\n\n## Decision\n\n> One teammate reviews every new reply template before it is shared.\n\n## Actions\n\n- Add a review step to the checklist\n- Name a backup reviewer\n- Ask the support lead to confirm the process",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-decision-reply-template-review-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-decision-reply-template-review-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections in this short document."
+          },
+          {
+            "id": "l3-decision-reply-template-review-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-decision-reply-template-review-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put the decision in a nonempty blockquote in the second H2 section."
+          },
+          {
+            "id": "l3-decision-reply-template-review-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the third H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and an opening paragraph, then add three ## sections.",
+          "Put a regular paragraph in the first section and a nonempty > blockquote in the second.",
+          "Finish the third section with at least three unordered action items."
+        ],
+        "retryFamily": "level3-decision-record",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "decision-record"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "customer-communication"
+          ],
+          "terms": [
+            "reply template",
+            "content review",
+            "support lead"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "reply-template-review-decision",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-decision-report-schedule",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "decision-context",
+          "blockquote",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable decision record gives the context, preserves the agreed wording, and lists the follow-up work.",
+          "howTo": "Use one H1, an opening paragraph, three H2 sections, a nonempty blockquote for the decision, and an unordered action list.",
+          "example": "# Schedule decision\n\nThis note records a change for the team.\n\n## Context\n\nTwo review times were available.\n\n## Decision\n\n> Use the earlier time.\n\n## Actions\n\n- Update the invite\n- Tell the team\n- Review next month"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "-"
+        ],
+        "title": "Make a report schedule decision easy to find",
+        "prompt": "Create a compact decision note with background, the quoted choice, and follow-up actions.",
+        "target": "# Weekly report schedule\n\nThis note records when the operations team will share its weekly report with the rest of the company.\n\n## Context\n\nFriday delivery left little time for questions before the weekend, while Wednesday did not include late updates.\n\n## Decision\n\n> Send the weekly report each Thursday by 3:00 p.m.\n\n## Actions\n\n- Update the reporting calendar\n- Move the reminder to Thursday morning\n- Review the schedule after one month",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-decision-report-schedule-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-decision-report-schedule-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections in this short document."
+          },
+          {
+            "id": "l3-decision-report-schedule-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-decision-report-schedule-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put the decision in a nonempty blockquote in the second H2 section."
+          },
+          {
+            "id": "l3-decision-report-schedule-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the third H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and an opening paragraph, then add three ## sections.",
+          "Put a regular paragraph in the first section and a nonempty > blockquote in the second.",
+          "Finish the third section with at least three unordered action items."
+        ],
+        "retryFamily": "level3-decision-record",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "decision-record"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "reporting-routines"
+          ],
+          "terms": [
+            "weekly report",
+            "Thursday deadline",
+            "calendar reminder"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "report-schedule-decision",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-decision-shared-file-names",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "decision-context",
+          "blockquote",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable decision record gives the context, preserves the agreed wording, and lists the follow-up work.",
+          "howTo": "Use one H1, an opening paragraph, three H2 sections, a nonempty blockquote for the decision, and an unordered action list.",
+          "example": "# Schedule decision\n\nThis note records a change for the team.\n\n## Context\n\nTwo review times were available.\n\n## Decision\n\n> Use the earlier time.\n\n## Actions\n\n- Update the invite\n- Tell the team\n- Review next month"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "-"
+        ],
+        "title": "Record a shared-file naming decision",
+        "prompt": "Write a short decision record with context, a quoted decision, and three actions.",
+        "target": "# Shared file name decision\n\nThis record explains the naming rule chosen for reports that several teams edit during the month.\n\n## Context\n\nRecent files were difficult to sort because dates appeared in different places and several names used unclear labels.\n\n## Decision\n\n> Put the project date first in every final report file name.\n\n## Actions\n\n- Rename the current reports\n- Add an example to the team guide\n- Check the shared folder next Friday",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-decision-shared-file-names-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-decision-shared-file-names-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections in this short document."
+          },
+          {
+            "id": "l3-decision-shared-file-names-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-decision-shared-file-names-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Put the decision in a nonempty blockquote in the second H2 section."
+          },
+          {
+            "id": "l3-decision-shared-file-names-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the third H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and an opening paragraph, then add three ## sections.",
+          "Put a regular paragraph in the first section and a nonempty > blockquote in the second.",
+          "Finish the third section with at least three unordered action items."
+        ],
+        "retryFamily": "level3-decision-record",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "decision-record"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "file-governance"
+          ],
+          "terms": [
+            "file name",
+            "project date",
+            "shared folder"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "shared-file-names-decision",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-handoff-document-review",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable status or handoff separates the current state from the work that comes next.",
+          "howTo": "Use one H1, an opening paragraph, two H2 sections, one bold status, and an unordered action list.",
+          "example": "# Service update\n\nThis note prepares the next team.\n\n## Current state\n\nThe **morning review is complete**.\n\n## Next steps\n\n- Confirm the owner\n- Share the date\n- File the note"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Prepare a document review handoff",
+        "prompt": "Organize a review handoff with one highlighted result and a practical action list.",
+        "target": "# Document review handoff\n\nThis note tells the next editor what is finished and where the remaining review work should begin.\n\n## Current status\n\nThe **opening page is approved**, and all resolved comments have been removed from the working draft.\n\n## Next actions\n\n- Review the final two sections\n- Confirm the chart labels\n- Send the clean draft to the final editor",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-handoff-document-review-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-handoff-document-review-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-handoff-document-review-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-handoff-document-review-status",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 30,
+            "feedback": "Use bold emphasis for the key status in the first H2 section."
+          },
+          {
+            "id": "l3-handoff-document-review-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short opening paragraph.",
+          "Use two ## sections, with one bold status in the first section.",
+          "Finish the second section with at least three unordered list items."
+        ],
+        "retryFamily": "level3-status-handoff-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "status-handoff"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "document-operations"
+          ],
+          "terms": [
+            "opening page",
+            "review comments",
+            "final editor"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "document-review-handoff",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-handoff-event-registration",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable status or handoff separates the current state from the work that comes next.",
+          "howTo": "Use one H1, an opening paragraph, two H2 sections, one bold status, and an unordered action list.",
+          "example": "# Service update\n\nThis note prepares the next team.\n\n## Current state\n\nThe **morning review is complete**.\n\n## Next steps\n\n- Confirm the owner\n- Share the date\n- File the note"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Make an event registration handoff easy to continue",
+        "prompt": "Write a concise handoff with a highlighted current state and three follow-up actions.",
+        "target": "# Event registration handoff\n\nThe evening team can use this note to continue registration work without repeating the earlier afternoon checks.\n\n## Current status\n\nThe **guest list is current through noon**, and printed name badges are sorted beside the registration desk.\n\n## Next actions\n\n- Add the late registrations\n- Print badges for new guests\n- Count the remaining welcome packets",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-handoff-event-registration-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-handoff-event-registration-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-handoff-event-registration-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-handoff-event-registration-status",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 30,
+            "feedback": "Use bold emphasis for the key status in the first H2 section."
+          },
+          {
+            "id": "l3-handoff-event-registration-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short opening paragraph.",
+          "Use two ## sections, with one bold status in the first section.",
+          "Finish the second section with at least three unordered list items."
+        ],
+        "retryFamily": "level3-status-handoff-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "status-handoff"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "event-operations"
+          ],
+          "terms": [
+            "guest list",
+            "name badges",
+            "registration desk"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "event-registration-handoff",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-how-to-organize-project-folder",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "preparation-list",
+          "ordered-procedure",
+          "inline-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable how-to separates what a coworker needs from the steps they should follow.",
+          "howTo": "Use one H1, an opening paragraph, a preparation list, ordered steps, and inline code for an exact file name or interface label.",
+          "example": "# Share a note\n\nUse this guide before sending the file.\n\n## Before you start\n\n- Find the draft\n- Confirm the owner\n- Check the date\n\n## Steps\n\n1. Open `draft.md`\n2. Choose Share\n3. Send the link"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "`"
+        ],
+        "title": "Write a guide for organizing a project folder",
+        "prompt": "Create a short how-to with preparation items, ordered steps, and one exact folder label.",
+        "target": "# Organize a project folder\n\nUse this guide when a shared folder has several drafts and coworkers need one clear place to start.\n\n## Before you start\n\n- Find the approved draft\n- Confirm the project owner\n- Check the latest review date\n\n## Steps\n\n1. Create a folder named `Current`\n2. Move the approved draft into it\n3. Place older drafts in the archive folder",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-how-to-organize-project-folder-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-how-to-organize-project-folder-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-how-to-organize-project-folder-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-how-to-organize-project-folder-preparation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered preparation list with at least three items in the first H2 section."
+          },
+          {
+            "id": "l3-how-to-organize-project-folder-steps",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least three steps in the second H2 section."
+          },
+          {
+            "id": "l3-how-to-organize-project-folder-exact-item",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Mark at least one exact file name or interface label as inline code in the second H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short explanation of the task.",
+          "Use the first ## section for at least three unordered preparation items.",
+          "Use the second ## section for at least three ordered steps and wrap one exact item in backticks."
+        ],
+        "retryFamily": "level3-how-to-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "how-to"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "shared-file-organization"
+          ],
+          "terms": [
+            "project folder",
+            "current files",
+            "archive"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "organize-project-folder",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-how-to-publish-meeting-notes",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "preparation-list",
+          "ordered-procedure",
+          "inline-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable how-to separates what a coworker needs from the steps they should follow.",
+          "howTo": "Use one H1, an opening paragraph, a preparation list, ordered steps, and inline code for an exact file name or interface label.",
+          "example": "# Share a note\n\nUse this guide before sending the file.\n\n## Before you start\n\n- Find the draft\n- Confirm the owner\n- Check the date\n\n## Steps\n\n1. Open `draft.md`\n2. Choose Share\n3. Send the link"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "`"
+        ],
+        "title": "Make meeting-note sharing easy to follow",
+        "prompt": "Write a workplace how-to with a preparation list, ordered steps, and an exact file name.",
+        "target": "# Publish meeting notes\n\nFollow this process so teammates can find the final notes and understand who owns each action.\n\n## Before you start\n\n- Review the attendee list\n- Confirm each action owner\n- Remove private working comments\n\n## Steps\n\n1. Save the final copy as `meeting-notes.md`\n2. Add the file to the shared meeting folder\n3. Send the folder link to all attendees",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-how-to-publish-meeting-notes-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-how-to-publish-meeting-notes-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-how-to-publish-meeting-notes-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-how-to-publish-meeting-notes-preparation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered preparation list with at least three items in the first H2 section."
+          },
+          {
+            "id": "l3-how-to-publish-meeting-notes-steps",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least three steps in the second H2 section."
+          },
+          {
+            "id": "l3-how-to-publish-meeting-notes-exact-item",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Mark at least one exact file name or interface label as inline code in the second H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short explanation of the task.",
+          "Use the first ## section for at least three unordered preparation items.",
+          "Use the second ## section for at least three ordered steps and wrap one exact item in backticks."
+        ],
+        "retryFamily": "level3-how-to-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "how-to"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "meeting-documentation"
+          ],
+          "terms": [
+            "meeting notes",
+            "action owners",
+            "meeting-notes.md"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "publish-meeting-notes",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-how-to-review-inventory-sheet",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "preparation-list",
+          "ordered-procedure",
+          "inline-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable how-to separates what a coworker needs from the steps they should follow.",
+          "howTo": "Use one H1, an opening paragraph, a preparation list, ordered steps, and inline code for an exact file name or interface label.",
+          "example": "# Share a note\n\nUse this guide before sending the file.\n\n## Before you start\n\n- Find the draft\n- Confirm the owner\n- Check the date\n\n## Steps\n\n1. Open `draft.md`\n2. Choose Share\n3. Send the link"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "`"
+        ],
+        "title": "Write a guide for checking an inventory sheet",
+        "prompt": "Create a short checking guide with preparation items, ordered steps, and an exact status value.",
+        "target": "# Review an inventory sheet\n\nUse this guide before the weekly order so the shared sheet reflects what is actually on hand.\n\n## Before you start\n\n- Open the latest inventory sheet\n- Bring the current item count\n- Confirm who will place the order\n\n## Steps\n\n1. Compare each row with the counted items\n2. Mark reviewed rows as `checked`\n3. Share the completed sheet with the order owner",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-how-to-review-inventory-sheet-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-how-to-review-inventory-sheet-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-how-to-review-inventory-sheet-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-how-to-review-inventory-sheet-preparation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered preparation list with at least three items in the first H2 section."
+          },
+          {
+            "id": "l3-how-to-review-inventory-sheet-steps",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least three steps in the second H2 section."
+          },
+          {
+            "id": "l3-how-to-review-inventory-sheet-exact-item",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Mark at least one exact file name or interface label as inline code in the second H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short explanation of the task.",
+          "Use the first ## section for at least three unordered preparation items.",
+          "Use the second ## section for at least three ordered steps and wrap one exact item in backticks."
+        ],
+        "retryFamily": "level3-how-to-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "how-to"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "inventory-review"
+          ],
+          "terms": [
+            "inventory sheet",
+            "item count",
+            "checked"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "review-inventory-sheet",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-how-to-update-team-calendar",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "preparation-list",
+          "ordered-procedure",
+          "inline-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable how-to separates what a coworker needs from the steps they should follow.",
+          "howTo": "Use one H1, an opening paragraph, a preparation list, ordered steps, and inline code for an exact file name or interface label.",
+          "example": "# Share a note\n\nUse this guide before sending the file.\n\n## Before you start\n\n- Find the draft\n- Confirm the owner\n- Check the date\n\n## Steps\n\n1. Open `draft.md`\n2. Choose Share\n3. Send the link"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "1.",
+          "`"
+        ],
+        "title": "Create a clear team-calendar guide",
+        "prompt": "Explain the calendar update with preparation items, ordered steps, and one exact interface label.",
+        "target": "# Update the team calendar\n\nUse these steps when a work session changes and everyone needs the same confirmed date and time.\n\n## Before you start\n\n- Confirm the new time\n- Check the team's time zone\n- Find the current calendar entry\n\n## Steps\n\n1. Open the existing event\n2. Change the date and attendee list\n3. Choose `Save` and send the update",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-how-to-update-team-calendar-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-how-to-update-team-calendar-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-how-to-update-team-calendar-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-how-to-update-team-calendar-preparation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered preparation list with at least three items in the first H2 section."
+          },
+          {
+            "id": "l3-how-to-update-team-calendar-steps",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least three steps in the second H2 section."
+          },
+          {
+            "id": "l3-how-to-update-team-calendar-exact-item",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Mark at least one exact file name or interface label as inline code in the second H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short explanation of the task.",
+          "Use the first ## section for at least three unordered preparation items.",
+          "Use the second ## section for at least three ordered steps and wrap one exact item in backticks."
+        ],
+        "retryFamily": "level3-how-to-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "how-to"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "schedule-maintenance"
+          ],
+          "terms": [
+            "team calendar",
+            "time zone",
+            "Save"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "update-team-calendar",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
         "schemaVersion": 2,
         "id": "l3-meeting-decision",
         "level": 3,
@@ -16525,6 +18057,294 @@
         "contentVariant": "new-teammate-guide",
         "flavor": "standard",
         "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l3-status-help-center-refresh",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable status or handoff separates the current state from the work that comes next.",
+          "howTo": "Use one H1, an opening paragraph, two H2 sections, one bold status, and an unordered action list.",
+          "example": "# Service update\n\nThis note prepares the next team.\n\n## Current state\n\nThe **morning review is complete**.\n\n## Next steps\n\n- Confirm the owner\n- Share the date\n- File the note"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Make a help center update easy to scan",
+        "prompt": "Write a short status note with one highlighted update and a clear action list.",
+        "target": "# Help center refresh\n\nThis note gives the support team a quick view of the article work before the next publishing window.\n\n## Current status\n\nThe **billing article has passed its content review**, and the new screenshots are stored with the latest draft.\n\n## Next actions\n\n- Confirm the article owner\n- Add the approved screenshots\n- Share the publish date with support",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-status-help-center-refresh-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-status-help-center-refresh-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-status-help-center-refresh-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-status-help-center-refresh-status",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 30,
+            "feedback": "Use bold emphasis for the key status in the first H2 section."
+          },
+          {
+            "id": "l3-status-help-center-refresh-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short opening paragraph.",
+          "Use two ## sections, with one bold status in the first section.",
+          "Finish the second section with at least three unordered list items."
+        ],
+        "retryFamily": "level3-status-handoff-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "status-handoff"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "content-operations"
+          ],
+          "terms": [
+            "help center",
+            "article owner",
+            "publish date"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "help-center-refresh",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
+      },
+      {
+        "id": "l3-status-office-move",
+        "schemaVersion": 2,
+        "level": 3,
+        "flavor": "standard",
+        "familyId": "readable-human-document",
+        "skillIds": [
+          "document-outline",
+          "restrained-emphasis",
+          "action-list"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A readable status or handoff separates the current state from the work that comes next.",
+          "howTo": "Use one H1, an opening paragraph, two H2 sections, one bold status, and an unordered action list.",
+          "example": "# Service update\n\nThis note prepares the next team.\n\n## Current state\n\nThe **morning review is complete**.\n\n## Next steps\n\n- Confirm the owner\n- Share the date\n- File the note"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "**",
+          "-"
+        ],
+        "title": "Turn an office move update into a clear note",
+        "prompt": "Create a short move status with one highlighted fact and three next actions.",
+        "target": "# Office move status\n\nThis update helps each team prepare for the move without searching through older email threads.\n\n## Current status\n\nThe **new floor plan is approved**, and desk labels are ready for every group moving on Friday.\n\n## Next actions\n\n- Send the floor plan to the team\n- Place labels on the packed boxes\n- Confirm the move-day contact",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l3-status-office-move-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's H2 block order."
+          },
+          {
+            "id": "l3-status-office-move-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections in this short document."
+          },
+          {
+            "id": "l3-status-office-move-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 without skipping a level."
+          },
+          {
+            "id": "l3-status-office-move-status",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "inline": "strong",
+            "min": 1,
+            "priority": 30,
+            "feedback": "Use bold emphasis for the key status in the first H2 section."
+          },
+          {
+            "id": "l3-status-office-move-actions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Finish the second H2 section with an unordered list of at least three actions."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and a short opening paragraph.",
+          "Use two ## sections, with one bold status in the first section.",
+          "Finish the second section with at least three unordered list items."
+        ],
+        "retryFamily": "level3-status-handoff-document",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "status-handoff"
+        ],
+        "vocabulary": {
+          "profile": "workplace-document",
+          "domains": [
+            "workplace-operations"
+          ],
+          "terms": [
+            "floor plan",
+            "desk labels",
+            "move day"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "office-move-status",
+        "sourceBatchId": "2026-07-19-l3-readable-documents-010"
       },
       {
         "schemaVersion": 2,
@@ -18291,5 +20111,5 @@
       }
     ]
   },
-  "projectionDigest": "25259b7912e9d936facdb29de5a7735bcea7bdd5e887b447befa33b5e7f5fc13"
+  "projectionDigest": "70fdaa10fed896fc8ebc9f9efdae8e0405ef2876cef15c57aae6497322d531d3"
 }
