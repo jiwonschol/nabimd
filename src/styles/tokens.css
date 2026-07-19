@@ -22,6 +22,9 @@
   --muted: #5f5f5a;
   --line: #d7d7d2;
   --focus: #111111;
+  --quote-rule: color-mix(in srgb, var(--ink) 72%, var(--paper));
+  --quote-surface: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  --quote-nested-surface: color-mix(in srgb, var(--ink) 7%, var(--paper));
   --sans: ui-sans-serif, -apple-system, blinkmacsystemfont, "Segoe UI",
     sans-serif;
   --serif: "Source Serif 4", ui-serif, georgia, cambria, "Times New Roman",

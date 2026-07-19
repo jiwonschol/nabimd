@@ -69,4 +69,31 @@ describe("RenderedDocument", () => {
     expect(renderedLabel.tagName).toBe("SPAN")
     expect(renderedLabel).not.toHaveAttribute("href")
   })
+
+  it("keeps blockquotes visibly addressable across nested quote structures", () => {
+    const { container, rerender } = render(
+      <RenderedDocument
+        label="Goal"
+        source={"> A quoted note.\n>\n> > A nested quote.\n>\n> # Quoted heading"}
+      />,
+    )
+
+    const goalQuotes = container.querySelectorAll("blockquote")
+    expect(goalQuotes).toHaveLength(2)
+    expect(goalQuotes[0]).toHaveClass("rendered-document__quote")
+    expect(goalQuotes[1]).toHaveClass("rendered-document__quote")
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Quoted heading" }),
+    ).toBeInTheDocument()
+
+    rerender(
+      <RenderedDocument
+        label="My answer"
+        source={"> A quoted note.\n>\n> > A nested quote.\n>\n> # Quoted heading"}
+      />,
+    )
+
+    expect(container.querySelectorAll("blockquote.rendered-document__quote"))
+      .toHaveLength(2)
+  })
 })

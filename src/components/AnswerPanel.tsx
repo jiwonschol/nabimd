@@ -52,11 +52,18 @@ function ReviewPanel({
         <h3>{failed ? "Markdown mark" : "Document structure"}</h3>
         <div className="answer-review__section">
           <h4>How it should look</h4>
-          <pre>{problem.target}</pre>
+          <div className="answer-review__document">
+            <RenderedDocumentBody source={problem.target} />
+          </div>
         </div>
         <div className="answer-review__section">
           <h4>What you wrote</h4>
-          <pre>{draft || "Nothing yet"}</pre>
+          <div className="answer-review__document">
+            <RenderedDocumentBody
+              emptyMessage="Nothing yet"
+              source={draft}
+            />
+          </div>
         </div>
         <div className="answer-review__section">
           <h4>How to fix it</h4>

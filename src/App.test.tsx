@@ -198,6 +198,8 @@ describe("App", () => {
     const review = screen.getByRole("tabpanel", { name: "Review" })
     expect(review).toHaveTextContent("How it should look")
     expect(review).toHaveTextContent("How to fix it")
+    expect(review.querySelectorAll(".rendered-document__body")).toHaveLength(2)
+    expect(review.querySelector("pre")).toBeNull()
     expect(review).not.toHaveTextContent("Diff")
     expect(editor).not.toHaveFocus()
   })
