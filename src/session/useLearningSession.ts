@@ -138,7 +138,6 @@ export function useLearningSession(storage?: Storage) {
       })
       dispatch({
         type: "next",
-        nextProblemId: transferProblem.id,
         nextProblem: transferProblem,
         nextDraft: transferProblem.starterText,
       })
@@ -150,14 +149,13 @@ export function useLearningSession(storage?: Storage) {
       const nextProblem = getProblem(nextProblemId)
       dispatch({
         type: "next",
-        nextProblemId: nextProblem.id,
         nextProblem,
         nextDraft: nextProblem.starterText,
       })
       return
     }
 
-    dispatch({ type: "next" })
+    dispatch({ type: "completed" })
   }, [problem, session])
 
   return {

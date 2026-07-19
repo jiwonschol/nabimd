@@ -57,8 +57,8 @@ describe("five-level entry choices", () => {
     "spreads the four at-level problems across distinct syntax families for %s",
     (entryId) => {
       const ids = createRunProblemIds(entryId, 0).slice(0, 4)
-      const families = ids.map(
-        (id) => problemBank.find((problem) => problem.id === id)!.skillIds[0],
+      const families = ids.map((id) =>
+        getSyntaxFamily(problemBank.find((problem) => problem.id === id)!),
       )
 
       expect(new Set(families).size).toBe(4)

@@ -234,6 +234,18 @@ describe("App", () => {
     expect(editor).not.toHaveFocus()
   })
 
+  it("does not reveal the canonical answer after a high-level failure", async () => {
+    const { user } = await openLevel(3)
+    const problem = currentProblem()
+
+    await user.click(screen.getByRole("button", { name: "Check" }))
+
+    const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(review).not.toHaveTextContent("How it should look")
+    expect(review).not.toHaveTextContent(problem.target.split("\n")[0]!)
+    expect(review.querySelectorAll(".rendered-document__body")).toHaveLength(1)
+  })
+
   it("keeps Markdown-structure Review optional after Matched", async () => {
     const { user, editor } = await openLevel(1)
     await user.keyboard(matchedWithReview())
