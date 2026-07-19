@@ -1952,12 +1952,13 @@ another" and does not claim that the child marker must match its parent.
 Wording, capitalization, spelling, punctuation, and semantic truth remain
 outside grading.
 
-The immutable fixture set contains 204 real-engine cases, exactly 17 per
+The repaired immutable fixture set contains 252 real-engine cases, exactly 21 per
 candidate. It freezes canonical, different-prose, case/spelling, alternative
 indentation, alternative root markers, and mixed child-marker matches. It also
 rejects flat lists, insufficient indentation, sibling root lists, a third list
 depth, missing or undersized root lists, wrong root order, extra root blocks,
-fenced and indented code lookalikes, and blockquote-only nested lists. The
+fenced and indented code lookalikes, blockquote-only nested lists, and extra
+blockquotes, headings, dividers, or code blocks inside the root list. The
 prior runtime and tracker remain byte-identical at Git blob IDs
 `03e2513cc351ac0cffe0851e0f519a1b568a884a` and
 `e8c0746933ef88348334c6e2326ddb6e8ad1c72a`, preserving 320 published
@@ -1966,14 +1967,14 @@ problems split 136/136/28/16/4. Unanimous review would publish 332 split
 
 Frozen digests:
 
-- generation prompt: `bdc3c446fd28671e1dfee6a4bd375f81b3fd860fab0ddb07e40ba1cdaaad1064`
-- raw candidates: `128678c084b2ea1685c3d1e778b9f2485e0c0ce21e7f99951145af13d02e0d88`
-- normalized candidates: `3dd558308dc8c14086f1a2fc0a6a412a1d4071419ef50dcba4b8958af18aef14`
-- fixture artifact: `ebda8c8404d9043624d6f07efc4daf607687eb28497b7c94e76a1972f469c9b0`
-- verification: `279cb4d8f8c2eacce2bdb66a6641ec382a340b51888bebff1444d5887ecad5bd`
+- generation prompt: `cc89729c9614ce13eb526d1f18190d9de3c1646ccfb7db08d6a0b788e293811f`
+- raw candidates: `429cdf2855c0f70ce73bcf222e274ddfbb23788cbc54303415393350e4598e69`
+- normalized candidates: `5846144d1392857634c58fb4b231a2a0253f76d7826066a5e7c03be7fa6920b6`
+- fixture artifact: `3dc50ed957ac798679e690ae819b4cd861c524ff49747e94731975dce6019698`
+- verification: `7a064ab2b795c836460591b8929b57d433584c60e7aedc97b94296c03142e94f`
 - engine contract: `79062e6a97de9f015e5d3be6d0d59abf0f2e78d160278500f2ba0e3e746e457b`
-- review manifest: `952a1c4c73493ac93c6389a04226589c56172ed760accd6efa8ff1805c824326`
-- prepared summary: `0a92b797e334699ed561171556536cd027b2737cc4816b72214486d97b9ae2d6`
+- review manifest: `56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`
+- prepared summary: `511635520043981162e6970b234ca7f604f9078cd68d16a0a88f8ca6fb66bf56`
 
 TDD began with
 `npx vitest run src/content/batches/nestedListBatch016.test.ts`, which failed
@@ -1982,8 +1983,8 @@ until the Batch 016 support module, package aliases, gate configuration, and
 pre-review artifacts existed. A learner-facing copy test separately rejected
 the article-less `Rebuild nested ...` titles; the final titles use natural
 `Rebuild a nested ...` phrasing. The focused content, structural-predicate, and
-schema-v2 run passes 411 tests in three files. The Batch 016 gate passes seven
-tests, `npm test` passes 9,763 unit and component tests in 51 files,
+schema-v2 run passes 459 tests in three files. The Batch 016 gate passes seven
+tests, `npm test` passes 9,811 unit and component tests in 51 files,
 `npm run typecheck` passes, and `git diff --check` is clean.
 
 Two draft artifact sets were discarded before this immutable freeze. The first
@@ -1995,3 +1996,20 @@ directory contains zero reviewer verdict sets, no `editorial.json`, no
 `awaiting-independent-review`. No Issue #50-owned path, engine predicate,
 runtime AI call, network dependency, GFM extension, image lesson, or vocabulary
 crawler is part of this freeze.
+
+The first committed freeze at `05403c9` did not pass its task review. Its
+manifest
+`952a1c4c73493ac93c6389a04226589c56172ed760accd6efa8ff1805c824326`
+contained the ungrammatical steps-family title `Rebuild a nested steps`. It
+also allowed a learner to insert a blockquote, heading, thematic break, or code
+block inside the root list while retaining the required root anatomy and list
+count. Exact family-title assertions now require `Rebuild a nested step list`.
+Four root-list-scoped recursive `block-count` checks, each with `max: 0` and a
+distinct priority and feedback ID, close the structural hole using only the
+existing engine. Forty-eight new real-engine fixtures exercise every new
+failure ID across all 12 candidates.
+
+No independent or editorial review had begun, so the complete generated
+artifact set was deleted and rebuilt from zero. The repaired manifest
+`56d69a26f0977a54f4c27a6d501a364c6ae5e9ed270d1ce9b99ff5de367dc382`
+supersedes the rejected freeze; the engine contract remains unchanged.

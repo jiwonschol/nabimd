@@ -19,6 +19,12 @@ const expectedRetryFamilies = new Map([
   ["level-2-nested-steps", 4],
 ])
 
+const expectedTitles = new Map([
+  ["level-2-nested-checklist", "Rebuild a nested checklist"],
+  ["level-2-nested-outline", "Rebuild a nested outline"],
+  ["level-2-nested-steps", "Rebuild a nested step list"],
+])
+
 function rootAnatomy(source: string): string[] {
   return fromMarkdown(source).children.map((node) => {
     if (node.type === "heading") return `h${node.depth}`
@@ -66,7 +72,7 @@ describe("Level 2 nested-list document batch 016", () => {
       })
       expect(problem.skillIds.length).toBeGreaterThanOrEqual(2)
       expect(getSyntaxFamily(problem)).toBeNull()
-      expect(problem.title).toMatch(/^Rebuild a nested /)
+      expect(problem.title).toBe(expectedTitles.get(problem.retryFamily))
 
       const learnerFacing = JSON.stringify({
         title: problem.title,
@@ -114,6 +120,38 @@ describe("Level 2 nested-list document batch 016", () => {
           recursive: true,
           min: 2,
           max: 2,
+        }),
+        expect.objectContaining({
+          id: `nested-${problem.retryFamily.replace("level-2-nested-", "")}-no-extra-blockquote`,
+          kind: "block-count",
+          scope: { kind: "block", block: "list", occurrence: 0 },
+          block: "blockquote",
+          recursive: true,
+          max: 0,
+        }),
+        expect.objectContaining({
+          id: `nested-${problem.retryFamily.replace("level-2-nested-", "")}-no-extra-heading`,
+          kind: "block-count",
+          scope: { kind: "block", block: "list", occurrence: 0 },
+          block: "heading",
+          recursive: true,
+          max: 0,
+        }),
+        expect.objectContaining({
+          id: `nested-${problem.retryFamily.replace("level-2-nested-", "")}-no-extra-divider`,
+          kind: "block-count",
+          scope: { kind: "block", block: "list", occurrence: 0 },
+          block: "thematic-break",
+          recursive: true,
+          max: 0,
+        }),
+        expect.objectContaining({
+          id: `nested-${problem.retryFamily.replace("level-2-nested-", "")}-no-extra-code`,
+          kind: "block-count",
+          scope: { kind: "block", block: "list", occurrence: 0 },
+          block: "code",
+          recursive: true,
+          max: 0,
         }),
       ])
     }
@@ -170,6 +208,10 @@ describe("Level 2 nested-list document batch 016", () => {
       "fenced-code-lookalike",
       "indented-code-lookalike",
       "blockquote-only-nested-list",
+      "extra-nested-blockquote",
+      "extra-nested-heading",
+      "extra-nested-divider",
+      "extra-nested-code",
     ] as const
 
     for (const problem of nestedListBatch016Problems) {

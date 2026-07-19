@@ -176,6 +176,37 @@ function blockquoteOnlyNestedList(source: string) {
     .join("\n")}`
 }
 
+function withExtraNestedBlock(
+  source: string,
+  family: NestedListFamily,
+  block: "blockquote" | "heading" | "divider" | "code",
+) {
+  const lines = source.split("\n")
+  const start = listStart(lines)
+  const rootMarker = family === "steps" ? /^\d+\. / : /^- /
+  const nextRootIndex = lines.findIndex(
+    (line, index) => index > start && rootMarker.test(line),
+  )
+  if (nextRootIndex < 0) {
+    throw new Error("Nested-list target has no second root item")
+  }
+  const indent = family === "steps" ? "   " : "  "
+  const nestedBlock =
+    block === "blockquote"
+      ? [`${indent}> Extra note`]
+      : block === "heading"
+        ? [`${indent}### Extra note`]
+        : block === "divider"
+          ? [`${indent}***`]
+          : [
+              `${indent}\`\`\`text`,
+              `${indent}sample`,
+              `${indent}\`\`\``,
+            ]
+  lines.splice(nextRootIndex, 0, "", ...nestedBlock, "")
+  return lines.join("\n")
+}
+
 function materializeFixtures(
   problem: (typeof nestedListBatch016Problems)[number],
   input: (typeof nestedListBatch016Inputs)[number],
@@ -184,6 +215,10 @@ function materializeFixtures(
   const shapeId = `nested-${input.family}-root-shape`
   const rootListId = `nested-${input.family}-root-list`
   const countId = `nested-${input.family}-list-count`
+  const blockquoteId = `nested-${input.family}-no-extra-blockquote`
+  const headingId = `nested-${input.family}-no-extra-heading`
+  const dividerId = `nested-${input.family}-no-extra-divider`
+  const codeId = `nested-${input.family}-no-extra-code`
   const fixtures: readonly FixtureInput[] = [
     { suffix: "canonical", role: "canonical", source: problem.target, expectedStatus: "matched", expectedReviewIds: [] },
     { suffix: "different-prose", role: "different-prose", source: alternateTargets[index]!, expectedStatus: "matched", expectedReviewIds: [] },
@@ -202,6 +237,10 @@ function materializeFixtures(
     { suffix: "fenced-code-lookalike", role: "edge-case", source: codeLookalike(problem.target, input.family, true), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "indented-code-lookalike", role: "edge-case", source: codeLookalike(problem.target, input.family, false), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
     { suffix: "blockquote-only-nested-list", role: "edge-case", source: blockquoteOnlyNestedList(problem.target), expectedStatus: "fail", expectedFeedbackId: shapeId, exercisesCheckId: shapeId },
+    { suffix: "extra-nested-blockquote", role: "edge-case", source: withExtraNestedBlock(problem.target, input.family, "blockquote"), expectedStatus: "fail", expectedFeedbackId: blockquoteId, exercisesCheckId: blockquoteId },
+    { suffix: "extra-nested-heading", role: "edge-case", source: withExtraNestedBlock(problem.target, input.family, "heading"), expectedStatus: "fail", expectedFeedbackId: headingId, exercisesCheckId: headingId },
+    { suffix: "extra-nested-divider", role: "edge-case", source: withExtraNestedBlock(problem.target, input.family, "divider"), expectedStatus: "fail", expectedFeedbackId: dividerId, exercisesCheckId: dividerId },
+    { suffix: "extra-nested-code", role: "edge-case", source: withExtraNestedBlock(problem.target, input.family, "code"), expectedStatus: "fail", expectedFeedbackId: codeId, exercisesCheckId: codeId },
   ]
 
   return fixtures.map((fixture) => ({

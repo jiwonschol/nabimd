@@ -80,6 +80,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -183,6 +239,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -286,6 +398,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -389,6 +557,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-checklist-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-checklist-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -496,6 +720,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -603,6 +883,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -710,6 +1046,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -817,6 +1209,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-outline-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-outline-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -868,7 +1316,7 @@
         "1.",
         "Indent"
       ],
-      "title": "Rebuild a nested steps",
+      "title": "Rebuild a nested step list",
       "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
       "target": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n2. Start the washer\n3. Fold the dry clothes",
       "starterText": "",
@@ -920,6 +1368,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -971,7 +1475,7 @@
         "1.",
         "Indent"
       ],
-      "title": "Rebuild a nested steps",
+      "title": "Rebuild a nested step list",
       "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
       "target": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n2. Warm the tortilla\n3. Roll the wrap",
       "starterText": "",
@@ -1023,6 +1527,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -1074,7 +1634,7 @@
         "1.",
         "Indent"
       ],
-      "title": "Rebuild a nested steps",
+      "title": "Rebuild a nested step list",
       "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
       "target": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n2. Cover the table\n3. Make the cards",
       "starterText": "",
@@ -1126,6 +1686,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],
@@ -1177,7 +1793,7 @@
         "1.",
         "Indent"
       ],
-      "title": "Rebuild a nested steps",
+      "title": "Rebuild a nested step list",
       "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
       "target": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n2. Make the bed\n3. Close the curtains",
       "starterText": "",
@@ -1229,6 +1845,62 @@
           "max": 2,
           "priority": 30,
           "feedback": "Nest exactly one list inside the top-level list."
+        },
+        {
+          "id": "nested-steps-no-extra-blockquote",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 0,
+          "priority": 40,
+          "feedback": "Remove the extra quote inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-heading",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "heading",
+          "recursive": true,
+          "max": 0,
+          "priority": 50,
+          "feedback": "Remove the extra heading inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "recursive": true,
+          "max": 0,
+          "priority": 60,
+          "feedback": "Remove the extra divider inside the list."
+        },
+        {
+          "id": "nested-steps-no-extra-code",
+          "kind": "block-count",
+          "scope": {
+            "kind": "block",
+            "block": "list",
+            "occurrence": 0
+          },
+          "block": "code",
+          "recursive": true,
+          "max": 0,
+          "priority": 70,
+          "feedback": "Remove the extra code block inside the list."
         }
       ],
       "editorialChecks": [],

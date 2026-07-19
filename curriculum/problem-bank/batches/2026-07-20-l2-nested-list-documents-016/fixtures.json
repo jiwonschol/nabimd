@@ -58,6 +58,46 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l2-nested-checklist-closet-shelf-extra-nested-blockquote",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-blockquote",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n\n  > Extra note\n\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-extra-nested-code",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-code",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n\n  ```text\n  sample\n  ```\n\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-code"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-extra-nested-divider",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-divider",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n\n  ***\n\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-checklist-closet-shelf-extra-nested-heading",
+      "problemId": "l2-nested-checklist-closet-shelf",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-heading",
+      "source": "# Closet shelf\n\nSort the clean clothes by where they belong.\n\n- Top shelf\n  - Sweaters\n  - Scarves\n\n  ### Extra note\n\n- Middle shelf\n- Shoe bin",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-heading"
+    },
+    {
       "id": "l2-nested-checklist-closet-shelf-extra-root-block",
       "problemId": "l2-nested-checklist-closet-shelf",
       "problemRevision": 1,
@@ -220,6 +260,46 @@
       "source": "# Market cart\n\nGet a handful of ingredients for supper.\n\n- Vegetables\n  - Bell peppers\n  - Green beans\n- Rice\n- Sesame oil",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-extra-nested-blockquote",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-blockquote",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n\n  > Extra note\n\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-extra-nested-code",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-code",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n\n  ```text\n  sample\n  ```\n\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-code"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-extra-nested-divider",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-divider",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n\n  ***\n\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-checklist-grocery-basket-extra-nested-heading",
+      "problemId": "l2-nested-checklist-grocery-basket",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-heading",
+      "source": "# Grocery basket\n\nPick up a few basics for dinner.\n\n- Produce\n  - Tomatoes\n  - Spinach\n\n  ### Extra note\n\n- Pasta\n- Olive oil",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-heading"
     },
     {
       "id": "l2-nested-checklist-grocery-basket-extra-root-block",
@@ -386,6 +466,46 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l2-nested-checklist-picnic-bag-extra-nested-blockquote",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-blockquote",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n\n  > Extra note\n\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-extra-nested-code",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-code",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n\n  ```text\n  sample\n  ```\n\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-code"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-extra-nested-divider",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-divider",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n\n  ***\n\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-checklist-picnic-bag-extra-nested-heading",
+      "problemId": "l2-nested-checklist-picnic-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-heading",
+      "source": "# Picnic bag\n\nPack lunch before leaving for the park.\n\n- Cold items\n  - Apple slices\n  - Cheese cubes\n\n  ### Extra note\n\n- Dry snacks\n- Napkins",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-heading"
+    },
+    {
       "id": "l2-nested-checklist-picnic-bag-extra-root-block",
       "problemId": "l2-nested-checklist-picnic-bag",
       "problemRevision": 1,
@@ -548,6 +668,46 @@
       "source": "# Class bag\n\nLook through the bag before walking to school.\n\n- Desk tools\n  - Green marker\n  - Eraser\n- Folder\n- Bus pass",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-extra-nested-blockquote",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-blockquote",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n\n  > Extra note\n\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-extra-nested-code",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-code",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n\n  ```text\n  sample\n  ```\n\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-code"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-extra-nested-divider",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-divider",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n\n  ***\n\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-checklist-school-supplies-extra-nested-heading",
+      "problemId": "l2-nested-checklist-school-supplies",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-checklist-no-extra-heading",
+      "source": "# School supplies\n\nCheck the backpack before the first bell.\n\n- Writing tools\n  - Blue pen\n  - Pencil\n\n  ### Extra note\n\n- Notebook\n- Lunch card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-checklist-no-extra-heading"
     },
     {
       "id": "l2-nested-checklist-school-supplies-extra-root-block",
@@ -714,6 +874,46 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l2-nested-outline-pet-care-extra-nested-blockquote",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-blockquote",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n\n  > Extra note\n\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-extra-nested-code",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-code",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n\n  ```text\n  sample\n  ```\n\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-code"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-extra-nested-divider",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-divider",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n\n  ***\n\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-outline-pet-care-extra-nested-heading",
+      "problemId": "l2-nested-outline-pet-care",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-heading",
+      "source": "# Pet care\n\n## Evening routine\n\nSettle the dog in before bedtime.\n\n- Dinner\n  - Fill the bowl\n  - Add fresh water\n\n  ### Extra note\n\n- Short walk\n- Brush coat",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-heading"
+    },
+    {
       "id": "l2-nested-outline-pet-care-extra-root-block",
       "problemId": "l2-nested-outline-pet-care",
       "problemRevision": 1,
@@ -876,6 +1076,46 @@
       "source": "# Listening plan\n\n## This weekend\n\nSpend a little time with music each day.\n\n- Jazz albums\n  - Friday\n  - Sunday\n- Radio play\n- Concert film",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-extra-nested-blockquote",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-blockquote",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n\n  > Extra note\n\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-extra-nested-code",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-code",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n\n  ```text\n  sample\n  ```\n\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-code"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-extra-nested-divider",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-divider",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n\n  ***\n\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-outline-reading-plan-extra-nested-heading",
+      "problemId": "l2-nested-outline-reading-plan",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-heading",
+      "source": "# Reading plan\n\n## This week\n\nMake time for a little reading each evening.\n\n- Short stories\n  - Monday\n  - Wednesday\n\n  ### Extra note\n\n- Travel essay\n- Poetry book",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-heading"
     },
     {
       "id": "l2-nested-outline-reading-plan-extra-root-block",
@@ -1042,6 +1282,46 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l2-nested-outline-small-garden-extra-nested-blockquote",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-blockquote",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n\n  > Extra note\n\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-extra-nested-code",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-code",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n\n  ```text\n  sample\n  ```\n\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-code"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-extra-nested-divider",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-divider",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n\n  ***\n\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-outline-small-garden-extra-nested-heading",
+      "problemId": "l2-nested-outline-small-garden",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-heading",
+      "source": "# Small garden\n\n## Planting notes\n\nUse the sunny end of the yard.\n\n- Herb bed\n  - Basil\n  - Mint\n\n  ### Extra note\n\n- Tomato pot\n- Watering can",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-heading"
+    },
+    {
       "id": "l2-nested-outline-small-garden-extra-root-block",
       "problemId": "l2-nested-outline-small-garden",
       "problemRevision": 1,
@@ -1204,6 +1484,46 @@
       "source": "# Afternoon errands\n\n## First stops\n\nComplete the short trip before sunset.\n\n- Main street\n  - Pharmacy\n  - Hardware store\n- Produce stand\n- Train station",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-extra-nested-blockquote",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-blockquote",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n\n  > Extra note\n\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-extra-nested-code",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-code",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n\n  ```text\n  sample\n  ```\n\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-code"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-extra-nested-divider",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-divider",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n\n  ***\n\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-outline-weekend-route-extra-nested-heading",
+      "problemId": "l2-nested-outline-weekend-route",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-outline-no-extra-heading",
+      "source": "# Weekend route\n\n## Morning stops\n\nFinish the errands before lunch.\n\n- Town center\n  - Bakery\n  - Post office\n\n  ### Extra note\n\n- Farmers market\n- Gas station",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-outline-no-extra-heading"
     },
     {
       "id": "l2-nested-outline-weekend-route-extra-root-block",
@@ -1370,6 +1690,46 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l2-nested-steps-craft-table-extra-nested-blockquote",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-blockquote",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n\n   > Extra note\n\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-extra-nested-code",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-code",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n\n   ```text\n   sample\n   ```\n\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-code"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-extra-nested-divider",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-divider",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n\n   ***\n\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-steps-craft-table-extra-nested-heading",
+      "problemId": "l2-nested-steps-craft-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-heading",
+      "source": "# Craft table\n\nSet up a clean place for making paper cards.\n\n1. Gather supplies\n   1. Choose colored paper\n   2. Find the glue\n\n   ### Extra note\n\n2. Cover the table\n3. Make the cards",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-heading"
+    },
+    {
       "id": "l2-nested-steps-craft-table-extra-root-block",
       "problemId": "l2-nested-steps-craft-table",
       "problemRevision": 1,
@@ -1532,6 +1892,46 @@
       "source": "# Morning cleanup\n\nClean up the kitchen before leaving home.\n\n1. Gather the dishes\n   1. Stack the bowls\n   2. Collect the mugs\n2. Load the machine\n3. Wipe the counter",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-extra-nested-blockquote",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-blockquote",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n\n   > Extra note\n\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-extra-nested-code",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-code",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n\n   ```text\n   sample\n   ```\n\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-code"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-extra-nested-divider",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-divider",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n\n   ***\n\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-steps-laundry-routine-extra-nested-heading",
+      "problemId": "l2-nested-steps-laundry-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-heading",
+      "source": "# Laundry routine\n\nFinish one load before starting another.\n\n1. Sort the clothes\n   1. Set aside whites\n   2. Set aside darks\n\n   ### Extra note\n\n2. Start the washer\n3. Fold the dry clothes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-heading"
     },
     {
       "id": "l2-nested-steps-laundry-routine-extra-root-block",
@@ -1698,6 +2098,46 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l2-nested-steps-room-reset-extra-nested-blockquote",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-blockquote",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n\n   > Extra note\n\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-extra-nested-code",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-code",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n\n   ```text\n   sample\n   ```\n\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-code"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-extra-nested-divider",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-divider",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n\n   ***\n\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-steps-room-reset-extra-nested-heading",
+      "problemId": "l2-nested-steps-room-reset",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-heading",
+      "source": "# Room reset\n\nTidy the room before turning out the light.\n\n1. Clear the floor\n   1. Put away shoes\n   2. Pick up books\n\n   ### Extra note\n\n2. Make the bed\n3. Close the curtains",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-heading"
+    },
+    {
       "id": "l2-nested-steps-room-reset-extra-root-block",
       "problemId": "l2-nested-steps-room-reset",
       "problemRevision": 1,
@@ -1860,6 +2300,46 @@
       "source": "# Easy snack\n\nPut together toast with fruit.\n\n1. Prepare the topping\n   1. Slice the banana\n   2. Stir the yogurt\n2. Toast the bread\n3. Add the topping",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-extra-nested-blockquote",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-blockquote",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n\n   > Extra note\n\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-blockquote"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-extra-nested-code",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-code",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n\n   ```text\n   sample\n   ```\n\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-code"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-extra-nested-divider",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-divider",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n\n   ***\n\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-divider"
+    },
+    {
+      "id": "l2-nested-steps-simple-meal-extra-nested-heading",
+      "problemId": "l2-nested-steps-simple-meal",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-steps-no-extra-heading",
+      "source": "# Simple meal\n\nMake a quick vegetable wrap for lunch.\n\n1. Prepare the filling\n   1. Slice the cucumber\n   2. Grate the carrot\n\n   ### Extra note\n\n2. Warm the tortilla\n3. Roll the wrap",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-steps-no-extra-heading"
     },
     {
       "id": "l2-nested-steps-simple-meal-extra-root-block",

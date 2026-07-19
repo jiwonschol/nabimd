@@ -18,6 +18,7 @@ The links define the portable basic-list syntax surface; they are not vocabulary
 - Teach learners to “nest one list inside another” without claiming that parent and child markers must match.
 - Accept different prose, capitalization, spelling, punctuation, valid indentation, and alternative list markers whenever the Markdown grammar and document shape match.
 - Reject flat lists, insufficient indentation, extra list depth or sibling lists, wrong root order, missing or undersized root lists, extra root blocks, code lookalikes, and blockquote-only nested lists.
+- Keep the nested list focused on list items: reject extra blockquotes, headings, dividers, or code blocks inside its root list.
 - Use only existing CommonMark engine checks. Do not add GFM, HTML, images, runtime AI, network calls, exact-string matching, or vocabulary crawling.
 - Preserve every Issue #50-owned scheduling, session, progress, and heading-flow path unchanged.
 - Defer paragraph-separation lessons because Level 1 scheduling would require the forbidden taxonomy paths.

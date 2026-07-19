@@ -154,6 +154,56 @@ function rootSequence(family: NestedListFamily): MatchCheck {
   }
 }
 
+function nestedBlockExclusions(family: NestedListFamily): MatchCheck[] {
+  const rootListScope = {
+    kind: "block",
+    block: "list",
+    occurrence: 0,
+  } as const
+  return [
+    {
+      id: `nested-${family}-no-extra-blockquote`,
+      kind: "block-count",
+      scope: rootListScope,
+      block: "blockquote",
+      recursive: true,
+      max: 0,
+      priority: 40,
+      feedback: "Remove the extra quote inside the list.",
+    },
+    {
+      id: `nested-${family}-no-extra-heading`,
+      kind: "block-count",
+      scope: rootListScope,
+      block: "heading",
+      recursive: true,
+      max: 0,
+      priority: 50,
+      feedback: "Remove the extra heading inside the list.",
+    },
+    {
+      id: `nested-${family}-no-extra-divider`,
+      kind: "block-count",
+      scope: rootListScope,
+      block: "thematic-break",
+      recursive: true,
+      max: 0,
+      priority: 60,
+      feedback: "Remove the extra divider inside the list.",
+    },
+    {
+      id: `nested-${family}-no-extra-code`,
+      kind: "block-count",
+      scope: rootListScope,
+      block: "code",
+      recursive: true,
+      max: 0,
+      priority: 70,
+      feedback: "Remove the extra code block inside the list.",
+    },
+  ]
+}
+
 function createNestedListProblem(
   input: NestedListBatch016Input,
 ): NormalizedProblem {
@@ -163,7 +213,7 @@ function createNestedListProblem(
       ? "nested checklist"
       : input.family === "outline"
         ? "nested outline"
-        : "nested steps"
+        : "nested step list"
   return {
     id: input.id,
     schemaVersion: 2,
@@ -209,6 +259,7 @@ function createNestedListProblem(
         priority: 30,
         feedback: "Nest exactly one list inside the top-level list.",
       },
+      ...nestedBlockExclusions(input.family),
     ],
     editorialChecks: [],
     hints: [
