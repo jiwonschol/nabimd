@@ -1418,3 +1418,49 @@ grammar-only boundaries, and collisions against the 164 previously published
 problems. Publication raises the deterministic runtime bank to 188 problems
 with an 88/88/4/4/4 split, while live grading remains network-free and
 grammar-only.
+
+### Issue #9 Markdown-divider expansion
+
+The ninth schema-v2 batch adds 24 Level 1–2 Markdown-divider exercises. Every
+authored Goal is a small human-readable note with text before and after the
+divider. Learner grading remains narrower: it asks only whether the CommonMark
+parser produced a real thematic break. `---`, `***`, `___`, spaced and longer
+forms, and valid dividers nested inside otherwise valid Markdown can therefore
+match. Setext headings, too-short or mixed markers, code, comments, raw HTML,
+links, images, escaped markers, and Unicode lookalikes do not. More than one
+divider remains Matched with a single optional Review.
+
+Images were the first candidate for this batch, but the approved curriculum
+blocks that family until local assets and alt-text guidance receive their own
+visual and editorial inspection. The batch switched to the next ready Standard
+Markdown family instead of weakening that stop. Independent pre-review also
+found that the generic match-side block counter was root-only, unlike other
+single-syntax lessons. A backward-compatible `recursive` option was added; its
+default remains root-only for every existing problem, while this batch opts in
+to avoid rejecting a genuine divider inside a blockquote or list.
+
+The first frozen manifest,
+`a8086c617fa593f788fc69f84a0bef08c61d723985d9daf3e66915cd5fd572b7`,
+was not published. Orchid rejected one authored Goal because it used the open
+compound “rain coat” instead of standard US-English “raincoat.” That finding
+did not change grammar-only learner grading, but it correctly raised the
+quality bar for prose shown by the teacher. The Goal, vocabulary, and derived
+fixtures were corrected; the manifest and all three review records were
+discarded and rebuilt from scratch.
+
+Final manifest
+`4f20f8c8d493e57f00ef7f9fe452bec719cbe957c8e8a2b3f78f3a6fb3e9d6eb`
+contains 24 candidates and 1,272 frozen real-engine fixtures. Atlas accepted
+24/24 after all frozen fixtures and 1,632 additional adversarial evaluations
+passed. Orchid independently accepted 24/24 after all frozen fixtures and
+1,920 additional CommonMark probes passed. The separate editorial rerun
+accepted 24/24 and confirmed that the obsolete spelling occurs zero times.
+Publication raises the deterministic runtime bank to 212 problems with a
+100/100/4/4/4 split, while grading remains deterministic, network-free, and
+grammar-only.
+
+Local CodeRabbit CLI authentication was confirmed through the configured agent
+API key, but both the pre-fix and final-commit `cr --agent` runs remained at
+`connecting_to_review_service` for the full ten-minute review window. They were
+terminated without findings and are not represented as completed reviews. The
+open GitHub PR review remains the separate CodeRabbit gate for this batch.

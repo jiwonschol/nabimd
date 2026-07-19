@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "be8b5658128456930ca1e4fc7890de9648043c7355e3e885f15bcb11060e8aab",
-  "acceptedTotal": 188,
+  "bankDigest": "44155b653051ae658de4290328a311a80eb8651023f38a77c06dd9e0cec02dfa",
+  "acceptedTotal": 212,
   "counts": {
     "byLevel": {
-      "1": 88,
-      "2": 88,
+      "1": 100,
+      "2": 100,
       "3": 4,
       "4": 4,
       "5": 4
@@ -17,6 +17,7 @@
       "emphasis": 24,
       "executable-development-spec": 4,
       "headings": 32,
+      "horizontal-rules": 24,
       "inline-code": 24,
       "links": 24,
       "lists": 48,
@@ -26,12 +27,14 @@
       "1/blockquotes": 12,
       "1/emphasis": 12,
       "1/headings": 16,
+      "1/horizontal-rules": 12,
       "1/inline-code": 12,
       "1/links": 12,
       "1/lists": 24,
       "2/blockquotes": 12,
       "2/emphasis": 12,
       "2/headings": 16,
+      "2/horizontal-rules": 12,
       "2/inline-code": 12,
       "2/links": 12,
       "2/lists": 24,
@@ -40,7 +43,7 @@
       "5/agent-ready-work-order": 4
     },
     "byFlavor": {
-      "standard": 188
+      "standard": 212
     },
     "rejected": 0,
     "blocked": 0
@@ -117,7 +120,16 @@
       "accepted": 24,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-19-l1-l2-thematic-breaks-009",
+      "sequence": 9,
+      "batchDigest": "0b4ef5dbe8ffaffd69f368848ef67608b1b5f292ed1fe0a3b66521f30ff2036f",
+      "generated": 24,
+      "accepted": 24,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "77a6619005b55859edd1c25e146a43cf4fe2c942a623b18f9fde10a3913ec592"
+  "trackerDigest": "5cb59aad4005acd0988c5b2e6d9c0e8dafb731296dc6a3f5b75d7d5b8ca874df"
 }

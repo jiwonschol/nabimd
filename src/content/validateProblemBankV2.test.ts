@@ -251,6 +251,35 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
+  it("accepts recursive block-count checks", () => {
+    const recursive = problem("recursive-block-count", {
+      matchChecks: [
+        {
+          id: "nested-thematic-break",
+          kind: "block-count",
+          scope: { kind: "document" },
+          block: "thematic-break",
+          recursive: true,
+          min: 1,
+          priority: 10,
+          feedback: "Add a separator.",
+        },
+      ],
+      editorialChecks: [],
+    })
+    const recursiveFixtures = fixtures(recursive.id).map((fixture) => ({
+      ...fixture,
+      exercisesCheckId: "nested-thematic-break",
+    }))
+
+    expect(
+      validate(
+        [recursive, problem("recursive-block-count-peer")],
+        [...recursiveFixtures, ...fixtures("recursive-block-count-peer")],
+      ),
+    ).toEqual([])
+  })
+
   it("validates list-shape operands and section scope safely", () => {
     const invalid = problem("invalid-list-shape", {
       matchChecks: [
@@ -290,6 +319,7 @@ describe("schema-v2 problem-bank validation", () => {
           scope: { kind: "document" },
           block: "table",
           depth: 7,
+          recursive: "yes",
           min: 1,
           priority: 40,
           feedback: "Add a block.",
@@ -340,6 +370,7 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check missing-scope requires a scope",
         "Problem invalid-list-shape check invalid-block has unsupported block kind: table",
         "Problem invalid-list-shape check invalid-block has invalid heading depth",
+        "Problem invalid-list-shape check invalid-block has invalid recursive flag",
         "Problem invalid-list-shape check invalid-blockquote-shape requires a scope",
         "Problem invalid-list-shape check invalid-blockquote-shape has invalid recursive flag",
         "Problem invalid-list-shape check invalid-blockquote-shape has invalid nonempty-content flag",

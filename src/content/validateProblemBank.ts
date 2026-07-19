@@ -238,6 +238,14 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
               `Problem ${problem.id} check ${check.id} can only use depth with heading blocks`,
             )
           }
+          if (
+            runtimeCheck.recursive !== undefined &&
+            typeof runtimeCheck.recursive !== "boolean"
+          ) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} has invalid recursive flag`,
+            )
+          }
         }
         break
       case "list-shape": {

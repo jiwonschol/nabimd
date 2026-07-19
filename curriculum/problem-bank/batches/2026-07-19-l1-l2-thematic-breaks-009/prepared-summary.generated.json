@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-thematic-breaks-009",
+  "status": "awaiting-independent-review",
+  "candidateCount": 24,
+  "fixtureCount": 1272,
+  "passingCandidateCount": 24,
+  "normalizedArtifactDigest": "d0401c957639d5cf24d4e115a4b9d371991ba9103d4f60f667d3357c5d8824e3",
+  "verificationDigest": "a181889faf607a561077bacb2cb3464e923445f900ba2f37d5d13453736ce475",
+  "manifestDigest": "4f20f8c8d493e57f00ef7f9fe452bec719cbe957c8e8a2b3f78f3a6fb3e9d6eb",
+  "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 188,
+  "preparedSummaryDigest": "4d8257365480742b5ac88d50681c2f1494c38c3182ea337538086e89297533de"
+}
