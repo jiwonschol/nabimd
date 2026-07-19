@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { Evaluation } from "../engine/types"
 import { playSuccessSound } from "../sound/successSound"
 
@@ -8,13 +8,21 @@ type VerdictNoticeProps = {
 
 export function VerdictNotice({ evaluation }: VerdictNoticeProps) {
   const [visible, setVisible] = useState(false)
+  const previousStatus = useRef<Evaluation["status"] | null>(null)
 
   useEffect(() => {
     if (!evaluation) {
+      previousStatus.current = null
       setVisible(false)
       return
     }
-    if (evaluation.status === "matched") playSuccessSound()
+    if (
+      previousStatus.current !== "matched" &&
+      evaluation.status === "matched"
+    ) {
+      playSuccessSound()
+    }
+    previousStatus.current = evaluation.status
     setVisible(true)
     const timer = window.setTimeout(() => setVisible(false), 1600)
     return () => window.clearTimeout(timer)

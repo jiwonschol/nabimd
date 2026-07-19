@@ -82,6 +82,25 @@ describe("successSound", () => {
     expect(window.localStorage.getItem("nabimd.sound-muted")).toBe("true")
   })
 
+  it("immediately silences and resets cached audio when muted", async () => {
+    const { playSuccessSound, setSoundMuted, unlockSuccessSound } =
+      await import("./successSound")
+
+    unlockSuccessSound()
+    playSuccessSound()
+    audio.currentTime = 0.25
+
+    setSoundMuted(true)
+
+    expect(audio.muted).toBe(true)
+    expect(audio.pause).toHaveBeenCalledTimes(2)
+    expect(audio.currentTime).toBe(0)
+
+    setSoundMuted(false)
+
+    expect(audio.muted).toBe(false)
+  })
+
   it("restores the stored mute preference", async () => {
     window.localStorage.setItem("nabimd.sound-muted", "true")
 

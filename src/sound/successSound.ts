@@ -35,6 +35,13 @@ export function readSoundMuted(): boolean {
 
 export function setSoundMuted(muted: boolean) {
   soundMuted = muted
+  if (audio) {
+    audio.muted = muted
+    if (muted) {
+      audio.pause()
+      audio.currentTime = 0
+    }
+  }
   try {
     window.localStorage.setItem(SOUND_MUTED_KEY, String(muted))
   } catch {
