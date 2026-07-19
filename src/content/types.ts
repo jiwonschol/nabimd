@@ -95,6 +95,13 @@ export type MatchCheck =
       requireNonemptyContent?: boolean
     })
   | (MatchCheckBase & {
+      kind: "inline-code-shape"
+      scope: CheckScope
+      min?: number
+      max?: number
+      requireNonemptyContent?: boolean
+    })
+  | (MatchCheckBase & {
       kind: "code-block"
       scope: CheckScope
       min: number
@@ -292,6 +299,40 @@ export type FixtureKind =
   | "indented-code-blockquote"
   | "html-blockquote"
   | "blockquote-fullwidth-marker"
+  | "double-backtick-code"
+  | "literal-backtick-inline-code"
+  | "spaced-inline-code"
+  | "multiline-inline-code"
+  | "inline-code-heading"
+  | "inline-code-list-item"
+  | "inline-code-blockquote-content"
+  | "inline-code-link-label"
+  | "inline-code-emphasis-wrapper"
+  | "entity-literal-inline-code"
+  | "multiple-inline-code"
+  | "empty-plus-real-inline-code"
+  | "unmatched-backtick"
+  | "mismatched-backticks"
+  | "whitespace-only-inline-code"
+  | "nbsp-only-inline-code"
+  | "ideographic-space-only-inline-code"
+  | "zero-width-only-inline-code"
+  | "bom-bidi-only-inline-code"
+  | "control-only-inline-code"
+  | "null-plus-visible-inline-code"
+  | "null-only-inline-code"
+  | "braille-blank-only-inline-code"
+  | "escaped-inline-code"
+  | "fenced-code-only"
+  | "indented-code-only"
+  | "raw-html-code"
+  | "inline-code-image-alt"
+  | "inline-code-definition"
+  | "inline-code-autolink"
+  | "inline-code-comment"
+  | "fullwidth-backtick"
+  | "apostrophe-code"
+  | "empty-backticks"
 
 export type ProblemFixture = {
   id?: string

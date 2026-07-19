@@ -302,6 +302,15 @@ describe("schema-v2 problem-bank validation", () => {
           priority: 50,
           feedback: "Add a blockquote.",
         },
+        {
+          id: "invalid-inline-code-shape",
+          kind: "inline-code-shape",
+          min: -1,
+          max: -2,
+          requireNonemptyContent: "yes",
+          priority: 60,
+          feedback: "Add inline code.",
+        },
       ] as unknown as NormalizedProblem["matchChecks"],
     })
 
@@ -322,6 +331,11 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check invalid-blockquote-shape requires a scope",
         "Problem invalid-list-shape check invalid-blockquote-shape has invalid recursive flag",
         "Problem invalid-list-shape check invalid-blockquote-shape has invalid nonempty-content flag",
+        "Problem invalid-list-shape check invalid-inline-code-shape requires a scope",
+        "Problem invalid-list-shape check invalid-inline-code-shape has invalid min",
+        "Problem invalid-list-shape check invalid-inline-code-shape has invalid max",
+        "Problem invalid-list-shape check invalid-inline-code-shape has min greater than max",
+        "Problem invalid-list-shape check invalid-inline-code-shape has invalid nonempty-content flag",
       ]),
     )
   })

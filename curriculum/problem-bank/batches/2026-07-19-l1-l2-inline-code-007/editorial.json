@@ -1,0 +1,601 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l1-l2-inline-code-007",
+  "editorialRunId": "editorial-batch007-2026-07-19-003",
+  "editorialActor": "codex-editorial-batch007",
+  "reviewedOn": "2026-07-19",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "5b4fc70970a16b0e25eb14c77daea8f69bf525f5e12da5a7be0c63fae73b979c",
+  "evidence": {
+    "candidateCount": 24,
+    "level1GuidedCount": 12,
+    "level2RecallCount": 12,
+    "fixtureCount": 912,
+    "passingFixtureCount": 912,
+    "candidateBindingMismatches": 0,
+    "engineBindingMismatches": 0,
+    "publishedBankCount": 140,
+    "duplicateIds": 0,
+    "duplicateTargets": 0,
+    "duplicateContentVariants": 0,
+    "duplicateVocabularySets": 0,
+    "teachingExampleLeaks": 0,
+    "normalizedArtifactDigest": "85efe1775627508a2bf8954a04f6e4a9001bb13f8da3ed74985a791c2db66a71",
+    "fixtureArtifactDigest": "bf4721b98e314bd844cd8775954506c2ac3a46dfcd88d035fcf66b59bbc44155",
+    "verificationDigest": "9376ba4271609e9eedfb820bb10674bda293b9449bb7f733a957947c72977e3a",
+    "engineContractDigest": "d47def99916b9443336060a558b9e159401f9d224d37c16c29bf59359b746ad9",
+    "preparedSummaryDigest": "51f80e1a8d9b4d1bf0249f57fd5c4d714678ac5e0add4c4d8e7f9d734c138549"
+  },
+  "summary": {
+    "accepted": 24,
+    "rejected": 0,
+    "blocked": 0
+  },
+  "dimensionCounts": {
+    "noviceUsEnglish": {
+      "pass": 24,
+      "fail": 0
+    },
+    "naturalness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "clarity": {
+      "pass": 24,
+      "fail": 0
+    },
+    "usefulness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "ageNeutrality": {
+      "pass": 24,
+      "fail": 0
+    },
+    "workplaceAppropriateness": {
+      "pass": 12,
+      "fail": 0,
+      "notApplicable": 12
+    },
+    "distinctness": {
+      "pass": 24,
+      "fail": 0
+    },
+    "copyrightSafety": {
+      "pass": 24,
+      "fail": 0
+    },
+    "answerLeakage": {
+      "pass": 24,
+      "fail": 0
+    },
+    "grammarOnlyPolicy": {
+      "pass": 24,
+      "fail": 0
+    },
+    "safeCommands": {
+      "pass": 24,
+      "fail": 0
+    },
+    "platformNeutrality": {
+      "pass": 24,
+      "fail": 0
+    },
+    "semanticAppropriateness": {
+      "pass": 24,
+      "fail": 0
+    }
+  },
+  "findings": [],
+  "decisions": [
+    {
+      "candidateId": "l1-inline-code-blue-value",
+      "revision": 1,
+      "candidateDigest": "d54f8e2a4d8a0a4201031e375a214dfa4843a8d0606189d73b4bcb7f83865376",
+      "fixtureResultsDigest": "9cafcf8cf056c0fd9742f45eeafda62d06a5599c8de27e44bef6c7eaf23de9f6",
+      "contentVariant": "blue-value",
+      "vocabularyDomain": "simple-settings",
+      "target": "Set the color to `blue`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-enter-key",
+      "revision": 1,
+      "candidateDigest": "66da47abf3bbb31b10faa6005d2bfd2ecd7fc0ef37f8ce25de77dfeed32e6531",
+      "fixtureResultsDigest": "244809a5ac686cc9c842c14a5418601acb7d2411fc7d1ef7675fe2bb616f6916",
+      "contentVariant": "enter-key",
+      "vocabularyDomain": "keyboard-keys",
+      "target": "Press `Enter` to continue.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-escape-key",
+      "revision": 1,
+      "candidateDigest": "8ca7f6f4df49be5c41ef11bd752805285ffb32b17b52704fca0795232699bdaf",
+      "fixtureResultsDigest": "62643e9e02f808b0bbcc895b7fce27eec9340391722af549fecd5183a09bce08",
+      "contentVariant": "escape-key",
+      "vocabularyDomain": "keyboard-keys",
+      "target": "Press `Escape` to close the menu.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-greeting-command",
+      "revision": 1,
+      "candidateDigest": "8d777b79d3f3a4fd88c227005f5b54de703f53e768cc974088edd7dddf90c080",
+      "fixtureResultsDigest": "022f6e65aabfb726ec3ae1967b4b41a03d263ff8c90eaa42014688325c2d84d1",
+      "contentVariant": "greeting-command",
+      "vocabularyDomain": "beginner-commands",
+      "target": "Run `echo hello` to show a greeting.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-notes-file",
+      "revision": 1,
+      "candidateDigest": "199692c9c349af9cc57f096bf8798dcdcb71ea89b29e4b08358e7e84c91c60ae",
+      "fixtureResultsDigest": "68269e3cd5a9de5eead713b8a60d2be20467c4ca44d1d4c62d0de0fd2ed5ad81",
+      "contentVariant": "notes-file",
+      "vocabularyDomain": "simple-files",
+      "target": "Save the note as `notes.md`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-photo-file",
+      "revision": 1,
+      "candidateDigest": "b079a29d2b619b3012ff2df565632883b6fab6df93eeb7eb97f87728ebfab68c",
+      "fixtureResultsDigest": "164ef82086d519cc7f22c2fb9cfb533ba7b2d69aa503c3eaf49ea9a3e8eb3d19",
+      "contentVariant": "photo-file",
+      "vocabularyDomain": "simple-files",
+      "target": "Find `photo.jpg`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-ready-label",
+      "revision": 1,
+      "candidateDigest": "37144c1b4a5a27a473634396c48a6943fc1bfa0f1ecff954a462c0a2884c41af",
+      "fixtureResultsDigest": "86793f37991f0de90a8bd8606cf69b6bac4331ffbc4516591a1ded0330acbcbb",
+      "contentVariant": "ready-label",
+      "vocabularyDomain": "simple-labels",
+      "target": "Set the label to `ready`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-search-word",
+      "revision": 1,
+      "candidateDigest": "615a3c4df46c5575f654e2ce205ef0a52cd670b88cc00741ceacbea6348147de",
+      "fixtureResultsDigest": "21590a553ac05ebff48cf451cfdaf702440a6a4d3c8c984bfc57df37057c0757",
+      "contentVariant": "search-word",
+      "vocabularyDomain": "simple-search",
+      "target": "Search for `rain`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-small-value",
+      "revision": 1,
+      "candidateDigest": "1b47578341c56b4fd7c0f2e955ec42334a9d6a25a7608b09a347e5c050e03f87",
+      "fixtureResultsDigest": "66c7bd1ef8251e442333e689e5a480ff28b077bd39ae90b8e2b4d72c62fa6e33",
+      "contentVariant": "small-value",
+      "vocabularyDomain": "simple-settings",
+      "target": "Choose `small` for the size.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-space-key",
+      "revision": 1,
+      "candidateDigest": "367c20eebb632054e6f3c81c1a836d9c257d672cd0e8e3b86cf78ca53c5354ce",
+      "fixtureResultsDigest": "b394ff433b044df42590e71369b5aaed3f77e7d66b6db8fe7137e74e24ac0833",
+      "contentVariant": "space-key",
+      "vocabularyDomain": "keyboard-keys",
+      "target": "Press `Space` to pause.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-today-list",
+      "revision": 1,
+      "candidateDigest": "a611c0f0df99daa4ac2b4ccfc29d2dc8ef2fa8e2e4eeced77d9544f98c658a87",
+      "fixtureResultsDigest": "6f3156d0b114fd7b9e9ffa4d143201c4fb20fe313394c595684c73c57c95ad06",
+      "contentVariant": "today-list-file",
+      "vocabularyDomain": "simple-files",
+      "target": "Name the list `today.txt`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l1-inline-code-yes-value",
+      "revision": 1,
+      "candidateDigest": "853216973d3c0815b57d31cc05f80d1159da737e2e1c9e321fd88883a3f0bb59",
+      "fixtureResultsDigest": "0c4653ad13ee085b0efceb5c6b4c760d8613c305185be9852ad4ad4bc42726bb",
+      "contentVariant": "yes-value",
+      "vocabularyDomain": "simple-input",
+      "target": "Type `yes` in the box.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-agenda-file",
+      "revision": 1,
+      "candidateDigest": "2fdd9843c9883779ac570f5511199f082c6c3e2249a91f0d0159bb31b84738ce",
+      "fixtureResultsDigest": "53c7ead3b9900a8ad5188b3b632a6832a6cda25b985b8a5d400c2b384e52bdd7",
+      "contentVariant": "agenda-file",
+      "vocabularyDomain": "meeting-materials",
+      "target": "Attach `agenda.pdf` to the invite.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-done-task",
+      "revision": 1,
+      "candidateDigest": "ec1a51afc22019930826ee0904d216a699592824f68de4ea4643e9d04878378a",
+      "fixtureResultsDigest": "c36eaa23a4458802b9fd00fa228eba9806f2f9b2ed3768441ecf8a47d582da90",
+      "contentVariant": "done-task",
+      "vocabularyDomain": "task-tracking",
+      "target": "Set the task to `done`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-draft-status",
+      "revision": 1,
+      "candidateDigest": "674f978d80e9246d3f34de6fcce95fa2186069d46327e0f44491c59736632491",
+      "fixtureResultsDigest": "62399e7a8c5948e0a68c6584086fa79ebe44ad75be3a93a7a3b803eb4a9d3fbb",
+      "contentVariant": "draft-status",
+      "vocabularyDomain": "work-status",
+      "target": "Set the status to `draft`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-git-status-command",
+      "revision": 1,
+      "candidateDigest": "c4bde8b41e80bdea225cc1cac0d0f3be1c1ec1298c4bedf8ca1d85078fb4182d",
+      "fixtureResultsDigest": "a7c483810807c0750fa279c0c617d3a184cfaea6148cd3b479655b7688673714",
+      "contentVariant": "git-status-command",
+      "vocabularyDomain": "version-control",
+      "target": "Run `git status` before you commit.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-help-command",
+      "revision": 1,
+      "candidateDigest": "b1c064a0549168a938226d11ccaa9f8ee112c72e276782460f3b3dce6918ffc4",
+      "fixtureResultsDigest": "fb4c45dcc94501b5e1fa5f5b6fce149ce877e81141a4db52745b5ba4f3770fdc",
+      "contentVariant": "help-command",
+      "vocabularyDomain": "chat-help",
+      "target": "Type `/help` to see available commands.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-meeting-file",
+      "revision": 1,
+      "candidateDigest": "1e96ea88ac47fe100b0faf2b934d8d697a151e9c199e2e5beb427d8c5304c7f2",
+      "fixtureResultsDigest": "13caa731263d2beb3fd4833f3b311d75e2bedc98fb083af79c492654a593a453",
+      "contentVariant": "meeting-file",
+      "vocabularyDomain": "meeting-notes",
+      "target": "Save the meeting notes in `meeting.md`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-new-line-shortcut",
+      "revision": 1,
+      "candidateDigest": "eeafce5d3b046d7aa7742b3a50fe877d2ce18a16cc096feb7d20dafe807ebcc5",
+      "fixtureResultsDigest": "f82b90cccbf996d4ba4ea820fbd07701af57218418cf22f79c06f6d7acdfc18e",
+      "contentVariant": "new-line-shortcut",
+      "vocabularyDomain": "chat-writing",
+      "target": "Press `Shift+Enter` for a new line.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-notifications-off",
+      "revision": 1,
+      "candidateDigest": "c78e64b6bfbf5c1873515ec8d4d9a486d5718da101acf2f0b43751a3d0868e87",
+      "fixtureResultsDigest": "eeb43e074f620c9e63273327e56513384fe522a325a967857e6663302e0b2188",
+      "contentVariant": "notifications-off",
+      "vocabularyDomain": "notification-setting",
+      "target": "Set notifications to `off`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-readme-file",
+      "revision": 1,
+      "candidateDigest": "d2ca9d506d335cd24ff5f0d8b1f880ebabfc029a7875d57acd480c52116e2b20",
+      "fixtureResultsDigest": "d967b8ea8d991244ee564f3dd306d8388d46f7432ac3966db4cd6b450e3ce227",
+      "contentVariant": "readme-file",
+      "vocabularyDomain": "document-reading",
+      "target": "Read `README.md` before you start.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-short-reply",
+      "revision": 1,
+      "candidateDigest": "4a8271201103d5ce312b41eda9b9b575f043b1e7d37b422e5a7905a568ea3407",
+      "fixtureResultsDigest": "66df7200298299a05b4e2f11b13f60f9b356ac1ac2d18bce4b59e85f59612081",
+      "contentVariant": "short-reply",
+      "vocabularyDomain": "ai-response-setting",
+      "target": "Set the reply length to `short`.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-tab-key",
+      "revision": 1,
+      "candidateDigest": "18c22d675baa073742bd6d73c1e38702cc43c13f9395ad16dc91d00cea10f799",
+      "fixtureResultsDigest": "24beeb49008bb88ade743d578373b63b7371dc79da2659471d4252fdff3bb2e4",
+      "contentVariant": "tab-key",
+      "vocabularyDomain": "form-navigation",
+      "target": "Press `Tab` to move to the next field.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    },
+    {
+      "candidateId": "l2-inline-code-test-command",
+      "revision": 1,
+      "candidateDigest": "215bf9952472e1af7ef05b44d3cd0c3bef93a4a8bc7df390bd6c2e98197106e2",
+      "fixtureResultsDigest": "d98faccff6bd1f071dcce0cb80cea97fecd10bed9f426ad57f21e4b402add27e",
+      "contentVariant": "test-command",
+      "vocabularyDomain": "software-testing",
+      "target": "Run `npm test` before sharing your changes.",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Accepted: natural, useful, distinct, platform-neutral, and semantically appropriate inline-code practice; all editorial dimensions pass."
+    }
+  ],
+  "reviewDigests": [
+    "3b3d2aea2203b7f23a7b482f78d6e0565516036eadd4c585b388f4f9181296a3",
+    "c9818071449cdcc3ce7640b95100b816d156da89c56a1054392c122ea1dfcfc3"
+  ],
+  "editorialDigest": "d2f1a7d3e05a0d93d48f2db46d20605d0eb498c898c7d5aef62d9d9b746b3781"
+}

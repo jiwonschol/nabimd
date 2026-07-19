@@ -2,6 +2,7 @@ import type {
   Blockquote,
   Code,
   Heading,
+  InlineCode,
   List,
   ListItem,
   RootContent,
@@ -183,6 +184,44 @@ function blockquoteHasDirectContent(blockquote: Blockquote): boolean {
   return (blockquote.children as AstNode[]).some(nodeHasNonBlockquoteContent)
 }
 
+function inlineCodeShapePasses(
+  check: Extract<StructuralCheck, { kind: "inline-code-shape" }>,
+  context: EvaluationContext,
+) {
+  const candidates = descendants(
+    nodesInScope(context, check.scope) as AstNode[],
+  ).filter((node): node is InlineCode => node.type === "inlineCode")
+  const count = check.requireNonemptyContent
+    ? candidates.filter((node) =>
+        hasVisibleInlineCodeContent(node, context.source),
+      ).length
+    : candidates.length
+  return inRange(count, check.min, check.max)
+}
+
+function hasVisibleInlineCodeContent(node: InlineCode, source: string): boolean {
+  const start = node.position?.start.offset
+  const end = node.position?.end.offset
+  const raw =
+    typeof start === "number" && typeof end === "number"
+      ? source.slice(start, end)
+      : ""
+  const delimiter = raw.match(/^`+/)?.[0]
+  const value =
+    delimiter && raw.endsWith(delimiter)
+      ? raw.slice(delimiter.length, -delimiter.length)
+      : node.value
+  return (
+    value
+      .normalize("NFKC")
+      .replace(
+        /[\p{White_Space}\p{Default_Ignorable_Code_Point}\p{Cc}\p{Cf}\u2800]/gu,
+        "",
+      )
+      .length > 0
+  )
+}
+
 function nodeHasNonBlockquoteContent(node: AstNode): boolean {
   if (node.type === "blockquote") return false
   if (
@@ -276,6 +315,8 @@ export function structuralCheckPasses(
       return listShapePasses(check, context)
     case "blockquote-shape":
       return blockquoteShapePasses(check, context)
+    case "inline-code-shape":
+      return inlineCodeShapePasses(check, context)
     case "code-block":
       return codeBlockPasses(check, context)
     case "block-sequence":
