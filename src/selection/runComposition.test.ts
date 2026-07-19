@@ -43,7 +43,7 @@ describe("run composition policy", () => {
     const counts = new Map<string, number>()
 
     for (let runNumber = 0; runNumber < 40; runNumber += 1) {
-      for (const id of createRunProblemIds("level-1", runNumber).slice(0, 4)) {
+      for (const id of createRunProblemIds("level-1", runNumber, 17).slice(0, 4)) {
         const family = getSyntaxFamily(getProblem(id))!
         counts.set(family, (counts.get(family) ?? 0) + 1)
       }
@@ -53,6 +53,41 @@ describe("run composition policy", () => {
       counts.get("inline-code")!,
     )
     expect(counts.get("unordered-list")).toBeGreaterThan(counts.get("link")!)
+  })
+
+  it("keeps the first two seeded turns free of repeated problems", () => {
+    const first = createRunProblemIds("level-1", 0, 17)
+    const second = createRunProblemIds("level-1", 1, 17)
+
+    expect(second.every((id) => !first.includes(id))).toBe(true)
+  })
+
+  it("is deterministic for a fixed seed and changes the family ordering for a different seed", () => {
+    const bank = [
+      problem("heading-a", 1, ["heading-h1"]),
+      problem("heading-b", 1, ["heading-h1"]),
+      problem("quote-a", 1, ["blockquote"]),
+      problem("quote-b", 1, ["blockquote"]),
+      problem("ordered-a", 1, ["ordered-list"]),
+      problem("ordered-b", 1, ["ordered-list"]),
+      problem("unordered-a", 1, ["unordered-list"]),
+      problem("unordered-b", 1, ["unordered-list"]),
+      problem("code-a", 2, ["inline-code"]),
+      problem("code-b", 2, ["inline-code"]),
+      problem("link-a", 2, ["inline-link"]),
+      problem("link-b", 2, ["inline-link"]),
+    ]
+
+    const fixed = createTurnProblemIds(1, 0, bank, 17)
+    const repeated = createTurnProblemIds(1, 0, bank, 17)
+    const different = createTurnProblemIds(1, 0, bank, 18)
+    const byId = new Map(bank.map((candidate) => [candidate.id, candidate]))
+
+    expect(repeated).toEqual(fixed)
+    expect(different).not.toEqual(fixed)
+    expect(different.map((id) => getSyntaxFamily(byId.get(id)!))).not.toEqual(
+      fixed.map((id) => getSyntaxFamily(byId.get(id)!)),
+    )
   })
 
   it("keeps a limited two-family pool alternating and caps each family at two", () => {

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest"
 import { createRunProblemIds, entryChoices } from "../content/entryChoices"
 import { getProblem, problemBank } from "../content/problemBank"
 import { PROGRESS_STORAGE_KEY } from "../progress/progressStore"
+import { getSyntaxFamily } from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { useLearningSession } from "./useLearningSession"
 
@@ -15,8 +16,9 @@ function matchCurrent(result: ReturnType<typeof renderLearningSession>["result"]
 function renderLearningSession(
   storage = new MemoryStorage(),
   now: () => number = () => 1_000,
+  createSessionSeed: () => number = () => 0,
 ) {
-  return renderHook(() => useLearningSession(storage, now))
+  return renderHook(() => useLearningSession(storage, now, createSessionSeed))
 }
 
 describe("useLearningSession", () => {
@@ -44,7 +46,7 @@ describe("useLearningSession", () => {
     )
   })
 
-  it("rotates Practice again and restores Start over", () => {
+  it("advances Practice again and Start over to fresh turns", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-3"))
     const original = result.current.problem.id
@@ -54,9 +56,55 @@ describe("useLearningSession", () => {
     expect(result.current.problem.id).not.toBe(original)
 
     act(() => result.current.startOver())
-    expect(result.current.session.runNumber).toBe(0)
-    expect(result.current.problem.id).toBe(original)
+    expect(result.current.session.runNumber).toBe(2)
+    expect(result.current.problem.id).not.toBe(original)
     expect(result.current.session.draft).toBe("")
+  })
+
+  it("keeps one generated seed for progress and restored runs in a browser session", async () => {
+    const storage = new MemoryStorage()
+    const first = renderLearningSession(storage, () => 1_000, () => 17)
+
+    act(() => first.result.current.start("level-1"))
+
+    expect(first.result.current.session.progress.runSeed).toBe(17)
+    expect(first.result.current.session.runProblemIds).toEqual(
+      createRunProblemIds("level-1", 0, 17),
+    )
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain('"runSeed":17')
+    })
+    first.unmount()
+
+    const restored = renderLearningSession(storage, () => 2_000, () => 99)
+
+    expect(restored.result.current.session.progress.runSeed).toBe(17)
+    expect(restored.result.current.session.runProblemIds).toEqual(
+      createRunProblemIds("level-1", 0, 17),
+    )
+  })
+
+  it("builds different opening shapes for separate browser-session seeds", () => {
+    const first = renderLearningSession(
+      new MemoryStorage(),
+      () => 1_000,
+      () => 0,
+    )
+    const second = renderLearningSession(
+      new MemoryStorage(),
+      () => 1_000,
+      () => 17,
+    )
+
+    act(() => first.result.current.start("level-1"))
+    act(() => second.result.current.start("level-1"))
+
+    expect(first.result.current.session.runProblemIds).not.toEqual(
+      second.result.current.session.runProblemIds,
+    )
+    expect(getSyntaxFamily(first.result.current.problem)).not.toBe(
+      getSyntaxFamily(second.result.current.problem),
+    )
   })
 
   it("clears the run and returns to level selection", () => {

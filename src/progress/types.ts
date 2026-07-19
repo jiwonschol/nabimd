@@ -5,6 +5,7 @@ export type ProgressV5 = {
   bankRevision: string
   entryId: EntryId | null
   runNumber: number
+  runSeed: number
   runProblemIds: string[]
   runStepIndex: number
   scheduledStepIndex: number

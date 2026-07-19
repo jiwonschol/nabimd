@@ -40,6 +40,7 @@ export type SessionEvent =
       atMs: number
       entryId: EntryId
       runNumber: number
+      runSeed?: number
       runProblemIds: string[]
       problem: GradableProblem
     }
@@ -144,7 +145,11 @@ function completeSession(
 ): LearningSession {
   const completedAtMs = Math.max(session.runStartedAtMs ?? atMs, atMs)
   const scheduledRunLength = session.entryId
-    ? createRunProblemIds(session.entryId, session.runNumber).length
+    ? createRunProblemIds(
+        session.entryId,
+        session.runNumber,
+        session.progress.runSeed,
+      ).length
     : session.scheduledStepIndex
   return {
     ...session,
@@ -185,6 +190,7 @@ export function learningSessionReducer(
           ...createDefaultProgress(event.problem.id),
           entryId: event.entryId,
           runNumber: event.runNumber,
+          runSeed: event.runSeed ?? session.progress.runSeed,
           runProblemIds: [...event.runProblemIds],
           runStartedAtMs: event.atMs,
         },
@@ -193,7 +199,11 @@ export function learningSessionReducer(
 
     case "returned-to-greeting":
       return createLearningSession(
-        createDefaultProgress(event.problem.id),
+        createDefaultProgress(
+          event.problem.id,
+          undefined,
+          session.progress.runSeed,
+        ),
         event.problem,
       )
 

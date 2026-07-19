@@ -32,7 +32,7 @@ async function replaceSource(
 ) {
   await user.click(editor)
   await user.keyboard("{Control>}a{/Control}{Backspace}")
-  if (source) await user.keyboard(source)
+  if (source) await user.keyboard(source.replaceAll("[", "{[}").replaceAll("]", "{]}"))
 }
 
 function currentProblem() {

@@ -20,8 +20,9 @@ export function getEntryChoice(entryId: EntryId) {
 export function createRunProblemIds(
   entryId: EntryId,
   runNumber: number,
+  seed = 0,
 ): string[] {
-  return createRunProblemIdsForBank(entryId, runNumber, problemBank)
+  return createRunProblemIdsForBank(entryId, runNumber, problemBank, seed)
 }
 
 export function createRunProblemIdsForBank(
@@ -36,7 +37,8 @@ export function createRunProblemIdsForBank(
     | "skillIds"
     | "syntaxTokens"
   >[],
+  seed = 0,
 ): string[] {
   const entry = getEntryChoice(entryId)
-  return createTurnProblemIds(entry.level, runNumber, problems)
+  return createTurnProblemIds(entry.level, runNumber, problems, seed)
 }
