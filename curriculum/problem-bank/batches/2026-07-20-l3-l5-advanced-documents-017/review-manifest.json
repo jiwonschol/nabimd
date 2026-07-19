@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l3-l5-advanced-documents-017",
+  "normalizedArtifactDigest": "d4786d4c65f7eff36939c0e63a70b866d32b2e91f1bae1a05d46a5369e0e581e",
+  "fixtureArtifactDigest": "3c54efb891dd5a9554506b5bd531b58cd7cedef66f46be0f1fcfe1c334c0375c",
+  "verificationDigest": "d2c753ff280d59cab0afed1102b64131968c9e31a2e81630bdb5da52478b850f",
+  "entries": [
+    {
+      "candidateId": "l3-badge-reader-impact-brief",
+      "revision": 1,
+      "candidateDigest": "0a963c57cdfbfcbfb4a1f88a3b27611263ac697d608fef786f999c6304c49349",
+      "problemDigest": "e5559011d9af31d6bb10896d662cf08c9d57d5cc390164c8ad2b47885e3551de",
+      "fixtureDefinitionDigest": "727d3e30255ff7330f497b5f6bdbb21925b5c7065a929524505d3eb3b4de569d",
+      "fixtureResultsDigest": "b82d662d243753fbe5932906a6a89eaa2a0a8418c8588d4930a72a2d438fb034",
+      "fixtureCount": 14,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l3-support-queue-impact-brief",
+      "revision": 1,
+      "candidateDigest": "af7d869971d9b346837067b3025a175f6f26458bb85eb69a6dfb72894a2c254b",
+      "problemDigest": "00716c5d7503e312c3bfbb2e9a024c49406745f2874b8974f6fc05e6444526ea",
+      "fixtureDefinitionDigest": "9f1cf76412191c80dd6a8eb64e9a01b1c2cc299832dd023993684eead0b20a98",
+      "fixtureResultsDigest": "0bb36c92a92491b7137e24e4dddc101c3e57f98acac1e6681e129b234903113c",
+      "fixtureCount": 14,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l4-audit-archive-contract-spec",
+      "revision": 1,
+      "candidateDigest": "a1f91c37cf5e4bbb47deaf04597ae6fcc56f1732a8b20e4fcf1a1fcf4b05c7f6",
+      "problemDigest": "b0391ce32876462e924e6b2224b4e95a4e7680cc0d694f7846c812900d32b511",
+      "fixtureDefinitionDigest": "e2c0c8097e0aa270a0f1122a22c8ddbcd8e3ee6c4cf8bc55b69f1d9cdcc09415",
+      "fixtureResultsDigest": "613c13503b1ec2730eb978edfb6d202a6ff0f7c1aa913eb7a01fab92cafa3e71",
+      "fixtureCount": 18,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l4-contact-import-contract-spec",
+      "revision": 1,
+      "candidateDigest": "51668fb66edbaf2203c15e86aa683c8dc19e3c1506076f1be732e9214b327e8e",
+      "problemDigest": "f250816486c5536f1b76367861da42380cd4cf26eb0226d9ade99ab0aa619eb8",
+      "fixtureDefinitionDigest": "d31cf6bc343686f28e9a158a85c5683f679fcad7f8af4bfe04d3ef46d979999e",
+      "fixtureResultsDigest": "2bfa61ac99cd3f18295dfdae277978226911644d0abcf8afbb34eec8918e3443",
+      "fixtureCount": 18,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l4-customer-digest-contract-spec",
+      "revision": 1,
+      "candidateDigest": "58c7188eccfb502d610715b32dcedc7ef38ed1affcdfe16a32198e0f672c3986",
+      "problemDigest": "3f4ad4f2e2452ef2636bfad4f03d30c8ad19f753409b3bcaa933621ec73ef25d",
+      "fixtureDefinitionDigest": "07431669a2eda8f48accec0b3b817d594acb9d5d223be9ba335b0d77f3691d48",
+      "fixtureResultsDigest": "68e11a1bda66e041dd107e523c613ba6b91a111a6f68dfdeb03445fc80f386d1",
+      "fixtureCount": 18,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l4-support-webhook-contract-spec",
+      "revision": 1,
+      "candidateDigest": "fb23fe9b18ea780dd83926160ffbf7d59b169a58cfa93e5a303beb5e992bc639",
+      "problemDigest": "b8860ec7c21c5cabce14ee313e3f6c53198f7f7427a7316dd41fb06a34d061dc",
+      "fixtureDefinitionDigest": "eea7657c5851a2f0f1f4840909956aad84315b0f5689c6a2204acbfb661153c6",
+      "fixtureResultsDigest": "65767aca99988af9c6393a0de764b7f9b5e1c242e1877d1e567e4dceff24b89e",
+      "fixtureCount": 18,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "831e06d2696f87a825f29c4ebc51d09ed9c845112b9f2b4371f9126ce8502071",
+      "problemDigest": "594215179e5330102698a3867f28820b4681af154b2b3b3cfcd11d4592a127cc",
+      "fixtureDefinitionDigest": "a9642cc7da6e407f54b8230539d9c1c3c20c615559eb7535d098db1cd6f09b63",
+      "fixtureResultsDigest": "c2fdf4a14723179cd2a3599033ced1a98df5a0cdf043abbb03658bf4833fc626",
+      "fixtureCount": 23,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "9e3dc67abc365cc614ea7d070f7a8d624deb90f0da3eb59f02ca588756622696",
+      "problemDigest": "cd4b5962add5ac381809643b51df2a2a051860d3aa8a1779fe708254a19677aa",
+      "fixtureDefinitionDigest": "729b821697a0c71e2b027f4fb09fbb23296ee7e0b209a8edcbdd308f6cd8164d",
+      "fixtureResultsDigest": "7e96791f605ee50af725fd71d534b145255907ea0a1f197245346847044f5026",
+      "fixtureCount": 23,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "32e1107666f0c22802cd4e187b70d286bbb9582755d13bdef88f010b7b03ec6d",
+      "problemDigest": "2594dde2e441adae0cbb1ee076b489b506850788b5123b3dda927bfbc0cf3ddb",
+      "fixtureDefinitionDigest": "9653f4b88f60533f068215ea3e93742d33e00969bf93c6eb8f034915d755ecc0",
+      "fixtureResultsDigest": "32eff20b43c915d630e3faf58b5ee3d0294020baa83b3048c04c67a8e66ecd63",
+      "fixtureCount": 23,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "8a75687a88cf17737e025dea136993037814af8d8e0bab91c321512a71e26a44",
+      "problemDigest": "82383b4d8b4cf5bb834e6e846c23393ba076ba0fa7f10520384af2c696fda6ac",
+      "fixtureDefinitionDigest": "c7cfff38debc06522bdb847e23737ef09388dd58e5994db030a8999ff6e909a2",
+      "fixtureResultsDigest": "32262af7f629fccf99ac7e6d8c14ebe6daf5ea33e5f3056f446c7008934cf16a",
+      "fixtureCount": 23,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "db647cb060d1fe89b23084b4743db3d98c6260f23fa8837b19eba605c277d213",
+      "problemDigest": "08c36b515cf5d7cc251d721dfeaa47b4bce8d2551a799055d86dea08708311cf",
+      "fixtureDefinitionDigest": "25eac54c1d2256541368f2143947028428f0ed19139be51247df31d6dfc73bd4",
+      "fixtureResultsDigest": "77c355be5d5472850f7aa8f14215a55520b3000498910d939a775e7bc9b75a0e",
+      "fixtureCount": 23,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "45d704b4efd9f509c14bd118a248f3c1deb0398028bdd97b20746af8b9e5e165",
+      "problemDigest": "bedb3e06bf804366264669857623bc4972ba199df73732e1a44b6dd272398ba2",
+      "fixtureDefinitionDigest": "ae1679df1a0c300e919857cc3dbe57e8f05e5ff0514c32b2f801ebe2c60f0152",
+      "fixtureResultsDigest": "fe7047e87cadf0704c60504ef19cde4b529cdd354367e7caff284993d2b80434",
+      "fixtureCount": 23,
+      "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9"
+    }
+  ],
+  "manifestDigest": "f83fe83f2996619daa5841f56443432de79e8406fda53e332fa51a783e7c4cc7"
+}
