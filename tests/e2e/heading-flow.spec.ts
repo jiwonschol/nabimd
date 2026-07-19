@@ -27,23 +27,56 @@ async function currentProblemFamily(page: Page) {
   if (!panelId?.startsWith("write-panel-")) {
     throw new Error("The active Write tab must identify its problem")
   }
-  return panelId.includes("-emphasis-") ? "emphasis" : "headings"
+  if (panelId.includes("-blockquote-")) return "blockquote"
+  if (panelId.includes("-emphasis-")) return "emphasis"
+  if (panelId.includes("-order-")) return "ordered-list"
+  if (panelId.includes("-list-")) return "unordered-list"
+  return "headings"
 }
 
 async function validDifferentProse(page: Page, words: string) {
-  return (await currentProblemFamily(page)) === "emphasis"
-    ? `**${words}**`
-    : `# ${words}`
+  switch (await currentProblemFamily(page)) {
+    case "blockquote":
+      return `> ${words}`
+    case "emphasis":
+      return `**${words}**`
+    case "unordered-list":
+      return `- ${words} one\n- ${words} two\n- ${words} three`
+    case "ordered-list":
+      return `1. ${words} one\n2. ${words} two\n3. ${words} three`
+    default:
+      return `# ${words}`
+  }
 }
 
 async function malformedSource(page: Page) {
-  return (await currentProblemFamily(page)) === "emphasis" ? "**No closing" : "#No space"
+  switch (await currentProblemFamily(page)) {
+    case "blockquote":
+      return "Plain words without a blockquote"
+    case "emphasis":
+      return "**No closing"
+    case "unordered-list":
+      return "-No space\n-Also malformed\n-Still malformed"
+    case "ordered-list":
+      return "1.No space\n2.Also malformed\n3.Still malformed"
+    default:
+      return "#No space"
+  }
 }
 
 async function expectedRepairFeedback(page: Page) {
-  return (await currentProblemFamily(page)) === "emphasis"
-    ? "Make at least one phrase bold with Markdown."
-    : "Add one space after the hash symbol."
+  switch (await currentProblemFamily(page)) {
+    case "blockquote":
+      return "Add a blockquote with words inside it."
+    case "emphasis":
+      return "Make at least one phrase bold with Markdown."
+    case "unordered-list":
+      return "Add at least three bullet items, with words after each marker."
+    case "ordered-list":
+      return "Add at least three numbered steps, with words after each marker."
+    default:
+      return "Add one space after the hash symbol."
+  }
 }
 
 test("greets a fresh session with the definitive five-level ladder", async ({

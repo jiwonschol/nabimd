@@ -50,6 +50,75 @@ describe("structural match predicates", () => {
     expect(result).toEqual({ status: "matched", reviewItems: [] })
   })
 
+  it.each([
+    "> Different words",
+    ">Different spelling",
+    "   > Three-space indent",
+    "> First line\nlazy continuation",
+    "> ![Useful alt](photo.png)",
+    "> # Different heading",
+    "> - Different item",
+    ">     visible code",
+    "- Parent\n  > Nested quote",
+    "> [Visible link](/url)",
+    "> <span>Visible text</span>",
+    "> Outer\n>> Inner",
+  ])("matches a nonempty parsed blockquote without grading its prose: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("nonempty-blockquote"),
+          kind: "blockquote-shape",
+          scope: { kind: "document" },
+          recursive: true,
+          requireNonemptyContent: true,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it.each([
+    "Plain text",
+    ">",
+    "> ![](photo.png)",
+    "> ---",
+    "> &nbsp;",
+    "> &#x200B;",
+    "> &#x2060;",
+    "> [label]: /url",
+    "> [](/url)",
+    "> <!-- hidden -->",
+    "> <div></div>",
+    ">\n>>",
+    "\\> escaped",
+    "`> inline code`",
+    "```md\n> fenced code\n```",
+    "    > indented code",
+    "<blockquote>HTML only</blockquote>",
+    "＞ Fullwidth marker",
+  ])("rejects a missing, empty, or lookalike blockquote: %s", (source) => {
+    const result = evaluateProblem(
+      problem([
+        {
+          ...common("nonempty-blockquote"),
+          kind: "blockquote-shape",
+          scope: { kind: "document" },
+          recursive: true,
+          requireNonemptyContent: true,
+        },
+      ]),
+      source,
+    )
+
+    expect(result).toMatchObject({
+      status: "fail",
+      feedbackId: "nonempty-blockquote",
+    })
+  })
+
   it("targets a section by heading depth and occurrence, never heading prose", () => {
     const sectionList = problem([
       {

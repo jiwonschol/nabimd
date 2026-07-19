@@ -89,6 +89,12 @@ export type MatchCheck =
       requireNonemptyItems?: boolean
     })
   | (MatchCheckBase & {
+      kind: "blockquote-shape"
+      scope: CheckScope
+      recursive?: boolean
+      requireNonemptyContent?: boolean
+    })
+  | (MatchCheckBase & {
       kind: "code-block"
       scope: CheckScope
       min: number
@@ -262,6 +268,30 @@ export type FixtureKind =
   | "blank-lines"
   | "nested-under-ordered"
   | "empty-parents-with-children"
+  | "blockquote-no-space"
+  | "blockquote-three-space-indent"
+  | "blockquote-lazy-continuation"
+  | "blockquote-image-alt"
+  | "blockquote-heading-content"
+  | "blockquote-list-content"
+  | "blockquote-code-content"
+  | "blockquote-list-wrapper"
+  | "nested-blockquote"
+  | "multiple-blockquotes"
+  | "empty-blockquote"
+  | "empty-image-alt-blockquote"
+  | "thematic-break-blockquote"
+  | "blockquote-nbsp-only"
+  | "blockquote-zero-width-only"
+  | "blockquote-definition-only"
+  | "blockquote-comment-only"
+  | "blockquote-empty-html-only"
+  | "escaped-blockquote"
+  | "inline-code-blockquote"
+  | "fenced-code-blockquote"
+  | "indented-code-blockquote"
+  | "html-blockquote"
+  | "blockquote-fullwidth-marker"
 
 export type ProblemFixture = {
   id?: string

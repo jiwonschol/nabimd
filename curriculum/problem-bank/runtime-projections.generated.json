@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "7c3c4a2d65b9716335840d6d3eadbdb55b9b8cefc83858b9ddf4ee58d77cf4d4",
+    "bankDigest": "55123a8d6579470bccf4ae1e2cd7670eaf29135259b6bec3c8d3b1068036ca4b",
     "counts": {
-      "1": 52,
-      "2": 52,
+      "1": 64,
+      "2": 64,
       "3": 4,
       "4": 4,
       "5": 4
@@ -13,6 +13,930 @@
   },
   "levels": {
     "1": [
+      {
+        "id": "l1-blockquote-book-by-lamp",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Your book is beside the lamp.",
+        "starterText": "",
+        "protectedContent": [
+          "Your book is beside the lamp."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home-objects"
+          ],
+          "terms": [
+            "Your book is beside the lamp."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "book-by-lamp",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-bring-keys",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Bring your keys.",
+        "starterText": "",
+        "protectedContent": [
+          "Bring your keys."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home-reminder"
+          ],
+          "terms": [
+            "Bring your keys."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "bring-keys",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-bus-arrival",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> The bus will arrive soon.",
+        "starterText": "",
+        "protectedContent": [
+          "The bus will arrive soon."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "daily-travel"
+          ],
+          "terms": [
+            "The bus will arrive soon."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "bus-arrival",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-call-when-home",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Call me when you get home.",
+        "starterText": "",
+        "protectedContent": [
+          "Call me when you get home."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "homecoming-message"
+          ],
+          "terms": [
+            "Call me when you get home."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "call-when-home",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-close-back-door",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Please close the back door.",
+        "starterText": "",
+        "protectedContent": [
+          "Please close the back door."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home-routine"
+          ],
+          "terms": [
+            "Please close the back door."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "close-back-door",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-dinner-table",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Dinner is on the table.",
+        "starterText": "",
+        "protectedContent": [
+          "Dinner is on the table."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "family-meal"
+          ],
+          "terms": [
+            "Dinner is on the table."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "dinner-table",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-dog-water",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> The dog needs fresh water.",
+        "starterText": "",
+        "protectedContent": [
+          "The dog needs fresh water."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "pet-care"
+          ],
+          "terms": [
+            "The dog needs fresh water."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "dog-water",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-milk-in-fridge",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> The milk is in the fridge.",
+        "starterText": "",
+        "protectedContent": [
+          "The milk is in the fridge."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "kitchen-note"
+          ],
+          "terms": [
+            "The milk is in the fridge."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "milk-in-fridge",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-pack-snack",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Pack a snack for later.",
+        "starterText": "",
+        "protectedContent": [
+          "Pack a snack for later."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "food-reminder"
+          ],
+          "terms": [
+            "Pack a snack for later."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "pack-snack",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-shoes-by-door",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Leave your shoes by the door.",
+        "starterText": "",
+        "protectedContent": [
+          "Leave your shoes by the door."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "clothing-routine"
+          ],
+          "terms": [
+            "Leave your shoes by the door."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "shoes-by-door",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-store-closing",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> The store closes at six.",
+        "starterText": "",
+        "protectedContent": [
+          "The store closes at six."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "local-errand"
+          ],
+          "terms": [
+            "The store closes at six."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "store-closing",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l1-blockquote-take-umbrella",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote",
+        "prompt": "Write the callout as a blockquote in Markdown.",
+        "target": "> Take an umbrella today.",
+        "starterText": "",
+        "protectedContent": [
+          "Take an umbrella today."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-1-blockquote",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "weather-reminder"
+          ],
+          "terms": [
+            "Take an umbrella today."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "take-umbrella",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
       {
         "id": "l1-emphasis-family-game",
         "schemaVersion": 2,
@@ -4239,6 +5163,930 @@
       }
     ],
     "2": [
+      {
+        "id": "l2-blockquote-ask-for-help",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Ask for help if you get stuck.",
+        "starterText": "",
+        "protectedContent": [
+          "Ask for help if you get stuck."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "learning-support"
+          ],
+          "terms": [
+            "Ask for help if you get stuck."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "ask-for-help",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-bring-id",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Bring your ID when you check in.",
+        "starterText": "",
+        "protectedContent": [
+          "Bring your ID when you check in."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "check-in-reminder"
+          ],
+          "terms": [
+            "Bring your ID when you check in."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "bring-id",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-friday-deadline",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> The deadline moved to Friday.",
+        "starterText": "",
+        "protectedContent": [
+          "The deadline moved to Friday."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "workplace-deadline"
+          ],
+          "terms": [
+            "The deadline moved to Friday."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "friday-deadline",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-lobby-opening",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> The lobby opens at eight.",
+        "starterText": "",
+        "protectedContent": [
+          "The lobby opens at eight."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "building-schedule"
+          ],
+          "terms": [
+            "The lobby opens at eight."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "lobby-opening",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-meeting-time",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> The team meeting starts at nine.",
+        "starterText": "",
+        "protectedContent": [
+          "The team meeting starts at nine."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "workplace-schedule"
+          ],
+          "terms": [
+            "The team meeting starts at nine."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "meeting-time",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-package-front-desk",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Your package is at the front desk.",
+        "starterText": "",
+        "protectedContent": [
+          "Your package is at the front desk."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "office-delivery"
+          ],
+          "terms": [
+            "Your package is at the front desk."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "package-front-desk",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-pickup-noon",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Pickup begins at noon.",
+        "starterText": "",
+        "protectedContent": [
+          "Pickup begins at noon."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "pickup-schedule"
+          ],
+          "terms": [
+            "Pickup begins at noon."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "pickup-noon",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-printer-paper",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> The printer needs more paper.",
+        "starterText": "",
+        "protectedContent": [
+          "The printer needs more paper."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "office-supplies"
+          ],
+          "terms": [
+            "The printer needs more paper."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "printer-paper",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-save-copy",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Save a copy before you edit.",
+        "starterText": "",
+        "protectedContent": [
+          "Save a copy before you edit."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "computer-routine"
+          ],
+          "terms": [
+            "Save a copy before you edit."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "save-copy",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-shared-folder",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Put updates in the shared folder.",
+        "starterText": "",
+        "protectedContent": [
+          "Put updates in the shared folder."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "document-sharing"
+          ],
+          "terms": [
+            "Put updates in the shared folder."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "shared-folder",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-side-entrance",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> The side entrance is closed today.",
+        "starterText": "",
+        "protectedContent": [
+          "The side entrance is closed today."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "building-notice"
+          ],
+          "terms": [
+            "The side entrance is closed today."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "side-entrance",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
+      {
+        "id": "l2-blockquote-updated-schedule",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "blockquotes",
+        "skillIds": [
+          "blockquote"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A blockquote sets a quote or callout apart from the rest of a document.",
+          "howTo": "Start the line with a greater-than sign, a space, then the words.",
+          "example": "> The window is open."
+        },
+        "syntaxTokens": [
+          ">",
+          "Space",
+          "Words"
+        ],
+        "title": "Blockquote recall",
+        "prompt": "From memory, write the callout as a blockquote in Markdown.",
+        "target": "> Please check the updated schedule.",
+        "starterText": "",
+        "protectedContent": [
+          "Please check the updated schedule."
+        ],
+        "matchChecks": [
+          {
+            "id": "use-blockquote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "recursive": true,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Add a blockquote with words inside it."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-blockquote",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep this short callout in one blockquote."
+          }
+        ],
+        "hints": [
+          "The callout starts at the beginning of the line.",
+          "Type a greater-than sign, one space, then the words.",
+          "Example: `> The window is open.`"
+        ],
+        "retryFamily": "level-2-blockquote-recall",
+        "reviewTags": [
+          "one-focused-blockquote"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "schedule-update"
+          ],
+          "terms": [
+            "Please check the updated schedule."
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "updated-schedule",
+        "sourceBatchId": "2026-07-19-l1-l2-blockquotes-006"
+      },
       {
         "id": "l2-emphasis-bring-an-umbrella",
         "schemaVersion": 2,
@@ -10659,5 +12507,5 @@
       }
     ]
   },
-  "projectionDigest": "453bef44b53f17ed14cab156258fc7212166c646aa7c2b5f242651b8a943a407"
+  "projectionDigest": "8b0bcaed91cc81a855a82cb6feb227e8b9aa3813aee6bd2ffac4ddc98e9fce8c"
 }

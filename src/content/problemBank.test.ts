@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest"
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
+import { blockquoteBatch006Fixtures } from "./batches/blockquoteBatch006Fixtures"
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
 import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
@@ -15,10 +16,10 @@ import {
 import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted foundation, heading, emphasis, bullet-list, and ordered-list expansions", () => {
-    expect(problemBank).toHaveLength(116)
-    expect(getProblemsForLevel(1)).toHaveLength(52)
-    expect(getProblemsForLevel(2)).toHaveLength(52)
+  it("publishes the accepted foundation and six reviewed expansion batches", () => {
+    expect(problemBank).toHaveLength(140)
+    expect(getProblemsForLevel(1)).toHaveLength(64)
+    expect(getProblemsForLevel(2)).toHaveLength(64)
     for (const level of [3, 4, 5] as const) {
       expect(getProblemsForLevel(level)).toHaveLength(4)
     }
@@ -50,6 +51,7 @@ describe("compiled five-level problem bank", () => {
         ...emphasisBatch003Fixtures,
         ...listBatch004Fixtures,
         ...orderedListBatch005Fixtures,
+        ...blockquoteBatch006Fixtures,
       ]),
     ).toEqual([])
   })
