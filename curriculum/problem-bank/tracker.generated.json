@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "de68b5c803888b027a87f015deb117d068862e965052ab3543ddac05c391c7d2",
-  "acceptedTotal": 248,
+  "bankDigest": "668d5e402d02a8e6dfa9aa38c20c7cacedcec28f3c5a50ef25f8ab960112c43f",
+  "acceptedTotal": 272,
   "counts": {
     "byLevel": {
-      "1": 100,
-      "2": 100,
+      "1": 112,
+      "2": 112,
       "3": 28,
       "4": 16,
       "5": 4
@@ -19,9 +19,11 @@
       "headings": 32,
       "horizontal-rules": 24,
       "inline-code": 24,
+      "italic-emphasis": 12,
       "links": 24,
       "lists": 48,
-      "readable-human-document": 28
+      "readable-human-document": 28,
+      "rebuild-real-documents": 12
     },
     "byLevelAndFamily": {
       "1/blockquotes": 12,
@@ -29,6 +31,7 @@
       "1/headings": 16,
       "1/horizontal-rules": 12,
       "1/inline-code": 12,
+      "1/italic-emphasis": 12,
       "1/links": 12,
       "1/lists": 24,
       "2/blockquotes": 12,
@@ -38,12 +41,13 @@
       "2/inline-code": 12,
       "2/links": 12,
       "2/lists": 24,
+      "2/rebuild-real-documents": 12,
       "3/readable-human-document": 28,
       "4/executable-development-spec": 16,
       "5/agent-ready-work-order": 4
     },
     "byFlavor": {
-      "standard": 248
+      "standard": 272
     },
     "rejected": 0,
     "blocked": 0
@@ -156,7 +160,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-20-l1-italic-l2-rebuilds-013",
+      "sequence": 13,
+      "batchDigest": "db5d02720396c66750c9225b6ca22e962264895ce7606f71839e66f48abb0322",
+      "generated": 24,
+      "accepted": 24,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "e85f91934d740e26a7dedafaa878215530a0db03604d773c831ff1b3f25499d9"
+  "trackerDigest": "0f09408574f471dddb331083338b4d6ecb3d59415258e736b332e6135c2c1f04"
 }

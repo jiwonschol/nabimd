@@ -68,6 +68,7 @@ function validDifferentProse() {
 }
 
 function malformedSource() {
+  if (currentProblem().skillIds.length > 1) return "# broken"
   switch (currentSkill()) {
     case "blockquote":
       return "Plain words without a blockquote"
@@ -87,6 +88,7 @@ function malformedSource() {
 }
 
 function validRepair() {
+  if (currentProblem().skillIds.length > 1) return currentProblem().target
   switch (currentSkill()) {
     case "blockquote":
       return "> repaired"

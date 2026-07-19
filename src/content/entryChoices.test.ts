@@ -53,17 +53,29 @@ describe("five-level entry choices", () => {
     }
   })
 
-  it.each(["level-1", "level-2"] as const)(
-    "spreads the four at-level problems across distinct syntax families for %s",
-    (entryId) => {
-      const ids = createRunProblemIds(entryId, 0).slice(0, 4)
-      const families = ids.map((id) =>
-        getSyntaxFamily(problemBank.find((problem) => problem.id === id)!),
-      )
+  it("spreads the four Level 1 problems across distinct syntax families", () => {
+    const ids = createRunProblemIds("level-1", 0).slice(0, 4)
+    const families = ids.map((id) =>
+      getSyntaxFamily(problemBank.find((problem) => problem.id === id)!),
+    )
 
-      expect(new Set(families).size).toBe(4)
-    },
-  )
+    expect(new Set(families).size).toBe(4)
+  })
+
+  it("prefers composite Level 2 rebuilds without adjacent retry families", () => {
+    const problems = createRunProblemIds("level-2", 0)
+      .slice(0, 4)
+      .map((id) => problemBank.find((problem) => problem.id === id)!)
+
+    expect(problems.every((problem) => getSyntaxFamily(problem) === null)).toBe(
+      true,
+    )
+    expect(
+      problems.every((problem, index) =>
+        index === 0 || problem.retryFamily !== problems[index - 1]!.retryFamily,
+      ),
+    ).toBe(true)
+  })
 
   it("never places the same low-level syntax family back-to-back across turns", () => {
     const families = Array.from({ length: 16 }, (_, runNumber) =>

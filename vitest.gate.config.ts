@@ -19,6 +19,7 @@ export default defineConfig({
       "scripts/problem-bank/readableDocumentBatch010Artifacts.gate.ts",
       "scripts/problem-bank/readableDocumentBatch011Artifacts.gate.ts",
       "scripts/problem-bank/developmentSpecBatch012Artifacts.gate.ts",
+      "scripts/problem-bank/italicRebuildBatch013Artifacts.gate.ts",
     ],
   },
 })

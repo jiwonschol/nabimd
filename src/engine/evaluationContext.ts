@@ -1,5 +1,5 @@
 import type { Root, RootContent } from "mdast"
-import type { CheckScope } from "../content/types"
+import type { BlockKind, CheckScope } from "../content/types"
 import { headingsAtLevel, parseMarkdown } from "./markdownAst"
 import { createSectionIndex, type MarkdownSection } from "./sectionIndex"
 
@@ -19,6 +19,15 @@ export type EvaluationContext = {
   headings: readonly ReturnType<typeof headingsAtLevel>[number][]
   lineCount: number
   sourceCharacterCount: number
+}
+
+const nodeTypeByBlock: Readonly<Record<BlockKind, RootContent["type"]>> = {
+  heading: "heading",
+  paragraph: "paragraph",
+  list: "list",
+  code: "code",
+  blockquote: "blockquote",
+  "thematic-break": "thematicBreak",
 }
 
 export function createEvaluationContext(source: string): EvaluationContext {
@@ -46,6 +55,13 @@ export function nodesInScope(
   scope: CheckScope,
 ): readonly RootContent[] {
   if (scope.kind === "document") return context.blocks
+
+  if (scope.kind === "block") {
+    const node = context.blocks.filter(
+      (node) => node.type === nodeTypeByBlock[scope.block],
+    )[scope.occurrence]
+    return node ? [node] : []
+  }
 
   return context.sections.find(
     (section) =>

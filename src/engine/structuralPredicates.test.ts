@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { headingProblems } from "../content/headingProblems"
 import { normalizeProblem } from "../content/normalizeProblem"
-import type { GradableProblem, MatchCheck } from "../content/types"
+import type { CheckScope, GradableProblem, MatchCheck } from "../content/types"
 import { evaluateProblem } from "./evaluateProblem"
 
 function problem(matchChecks: readonly MatchCheck[]): GradableProblem {
@@ -23,6 +23,41 @@ function common(id: string, priority = 10) {
 }
 
 describe("structural match predicates", () => {
+  it("scopes inline presence to one top-level block occurrence", () => {
+    const middleParagraphItalic = problem([
+      {
+        ...common("italic-middle-paragraph"),
+        kind: "inline-presence",
+        scope: {
+          kind: "block",
+          block: "paragraph",
+          occurrence: 0,
+        } as unknown as CheckScope,
+        inline: "emphasis",
+        min: 1,
+      },
+    ])
+
+    expect(
+      evaluateProblem(
+        middleParagraphItalic,
+        "# Plain title\n\n*Middle note.*\n\n- One\n- Two",
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        middleParagraphItalic,
+        "# *Italic title*\n\nMiddle note.\n\n- One\n- Two",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "italic-middle-paragraph" })
+    expect(
+      evaluateProblem(
+        middleParagraphItalic,
+        "# Plain title\n\nMiddle note.\n\n- *One*\n- Two",
+      ),
+    ).toMatchObject({ status: "fail", feedbackId: "italic-middle-paragraph" })
+  })
+
   it.each([
     "# Plan\n\n## Steps\n\n- Prepare\n- Share",
     "# Completely different\n\n## Words changed\n\n- Alpha\n- Beta",

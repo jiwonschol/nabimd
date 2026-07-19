@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "de68b5c803888b027a87f015deb117d068862e965052ab3543ddac05c391c7d2",
+    "bankDigest": "668d5e402d02a8e6dfa9aa38c20c7cacedcec28f3c5a50ef25f8ab960112c43f",
     "counts": {
-      "1": 100,
-      "2": 100,
+      "1": 112,
+      "2": 112,
       "3": 28,
       "4": 16,
       "5": 4
@@ -4056,6 +4056,930 @@
         "curriculumVersion": "2026-07-19",
         "contentVariant": "yes-value",
         "sourceBatchId": "2026-07-19-l1-l2-inline-code-007"
+      },
+      {
+        "id": "l1-italic-blue-marble",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Blue marble*",
+        "starterText": "",
+        "protectedContent": [
+          "Blue marble"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "toys-and-games"
+          ],
+          "terms": [
+            "Blue marble"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "blue-marble",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-cold-water",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Cold water*",
+        "starterText": "",
+        "protectedContent": [
+          "Cold water"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "drinks"
+          ],
+          "terms": [
+            "Cold water"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "cold-water",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-happy-turtle",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Happy turtle*",
+        "starterText": "",
+        "protectedContent": [
+          "Happy turtle"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "animals"
+          ],
+          "terms": [
+            "Happy turtle"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "happy-turtle",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-little-garden",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Little garden*",
+        "starterText": "",
+        "protectedContent": [
+          "Little garden"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "plants"
+          ],
+          "terms": [
+            "Little garden"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "little-garden",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-orange-socks",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Orange socks*",
+        "starterText": "",
+        "protectedContent": [
+          "Orange socks"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "clothes"
+          ],
+          "terms": [
+            "Orange socks"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "orange-socks",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-paper-boat",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Paper boat*",
+        "starterText": "",
+        "protectedContent": [
+          "Paper boat"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "crafts"
+          ],
+          "terms": [
+            "Paper boat"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "paper-boat",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-silver-moon",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Silver moon*",
+        "starterText": "",
+        "protectedContent": [
+          "Silver moon"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "weather-and-sky"
+          ],
+          "terms": [
+            "Silver moon"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "silver-moon",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-soft-pillow",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Soft pillow*",
+        "starterText": "",
+        "protectedContent": [
+          "Soft pillow"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home"
+          ],
+          "terms": [
+            "Soft pillow"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "soft-pillow",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-sunny-window",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Sunny window*",
+        "starterText": "",
+        "protectedContent": [
+          "Sunny window"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "home"
+          ],
+          "terms": [
+            "Sunny window"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "sunny-window",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-warm-soup",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Warm soup*",
+        "starterText": "",
+        "protectedContent": [
+          "Warm soup"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "food"
+          ],
+          "terms": [
+            "Warm soup"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "warm-soup",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-wooden-spoon",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Wooden spoon*",
+        "starterText": "",
+        "protectedContent": [
+          "Wooden spoon"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "kitchen"
+          ],
+          "terms": [
+            "Wooden spoon"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "wooden-spoon",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l1-italic-yellow-kite",
+        "schemaVersion": 2,
+        "level": 1,
+        "flavor": "standard",
+        "familyId": "italic-emphasis",
+        "skillIds": [
+          "italic-emphasis"
+        ],
+        "difficulty": "warmup",
+        "teachingMode": "introduce",
+        "teaching": {
+          "concept": "Italics make a word or short phrase stand out without making it bold.",
+          "howTo": "Wrap the words with one asterisk or one underscore on each side.",
+          "example": "*Quiet music*"
+        },
+        "syntaxTokens": [
+          "*",
+          "Phrase",
+          "*"
+        ],
+        "title": "Italic emphasis",
+        "prompt": "Write one short phrase in italics using Markdown.",
+        "target": "*Yellow kite*",
+        "starterText": "",
+        "protectedContent": [
+          "Yellow kite"
+        ],
+        "matchChecks": [
+          {
+            "id": "use-italic-emphasis",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 10,
+            "feedback": "Make at least one phrase italic with Markdown."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Italic text has one matching marker on each side.",
+          "Type one asterisk, the phrase, then one more asterisk.",
+          "Example: `*Quiet music*`"
+        ],
+        "retryFamily": "level-1-italic-emphasis",
+        "reviewTags": [
+          "focused-italic-emphasis"
+        ],
+        "vocabulary": {
+          "profile": "everyday",
+          "domains": [
+            "outdoor-play"
+          ],
+          "terms": [
+            "Yellow kite"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "yellow-kite",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
       },
       {
         "id": "l1-link-community-notice",
@@ -15136,6 +16060,1402 @@
         "sourceBatchId": "2026-07-19-l1-l2-ordered-lists-005"
       },
       {
+        "id": "l2-rebuild-baking-reminder",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quotation card can combine a title, an italic cue, and a message from a named source.",
+          "howTo": "Use one H1, one italic paragraph, then a quote with text that starts with `>`.",
+          "example": "# Coach's message\n\n*Remember this before the game.*\n\n> Coach: Bring a water bottle."
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          ">"
+        ],
+        "title": "Rebuild a reminder card",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Baking reminder\n\n*Prepare the pan before mixing.*\n\n> Recipe note: Let the bread cool before slicing.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-baking-reminder-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "blockquote"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-baking-reminder-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-baking-reminder-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Finish with a Markdown quote that contains text."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with one quoted message that starts with `>`."
+        ],
+        "retryFamily": "level-2-rebuild-quote-card",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quote-card"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "cooking-routine"
+          ],
+          "terms": [
+            "baking",
+            "bread",
+            "pan"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "baking-reminder",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-cat-supplies",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A small practical note can combine a title, an italic sentence, and a bullet list.",
+          "howTo": "Use one H1, one italic paragraph, then an unordered list with at least two items.",
+          "example": "# Art box\n\n*Bring a few tools for drawing.*\n\n- Paper\n- Crayons"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "-"
+        ],
+        "title": "Rebuild a quick note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Cat supplies\n\n*Check these before dinner.*\n\n- Fresh water\n- Dry food",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-cat-supplies-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-cat-supplies-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-cat-supplies-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least two bullet items that start with `-`."
+        ],
+        "retryFamily": "level-2-rebuild-quick-note",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quick-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-care"
+          ],
+          "terms": [
+            "cat supplies",
+            "water",
+            "food"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "cat-supplies",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-garden-reminder",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quotation card can combine a title, an italic cue, and a message from a named source.",
+          "howTo": "Use one H1, one italic paragraph, then a quote with text that starts with `>`.",
+          "example": "# Coach's message\n\n*Remember this before the game.*\n\n> Coach: Bring a water bottle."
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          ">"
+        ],
+        "title": "Rebuild a reminder card",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Garden reminder\n\n*Check the soil before watering.*\n\n> Garden note: Move the small pot into the shade.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-garden-reminder-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "blockquote"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-garden-reminder-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-garden-reminder-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Finish with a Markdown quote that contains text."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with one quoted message that starts with `>`."
+        ],
+        "retryFamily": "level-2-rebuild-quote-card",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quote-card"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "plant-care"
+          ],
+          "terms": [
+            "garden",
+            "soil",
+            "shade"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "garden-reminder",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-homework-plan",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A short process is easier to follow when a title and italic purpose lead into numbered steps.",
+          "howTo": "Use one H1, one italic paragraph, then an ordered list with at least three steps.",
+          "example": "# Plant a seed\n\n*Follow these steps in order.*\n\n1. Fill the pot\n2. Add the seed\n3. Water the soil"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "1."
+        ],
+        "title": "Rebuild a short process",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Homework plan\n\n*Work through one task at a time.*\n\n1. Read the page\n2. Answer the questions\n3. Check the work",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-homework-plan-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-homework-plan-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-homework-plan-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-rebuild-short-process",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "short-process"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "study-routine"
+          ],
+          "terms": [
+            "homework",
+            "questions",
+            "work"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "homework-plan",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-kitchen-cleanup",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A short process is easier to follow when a title and italic purpose lead into numbered steps.",
+          "howTo": "Use one H1, one italic paragraph, then an ordered list with at least three steps.",
+          "example": "# Plant a seed\n\n*Follow these steps in order.*\n\n1. Fill the pot\n2. Add the seed\n3. Water the soil"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "1."
+        ],
+        "title": "Rebuild a short process",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Kitchen cleanup\n\n*Clean one area at a time.*\n\n1. Wash the cups\n2. Wipe the table\n3. Sweep the floor",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-kitchen-cleanup-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-kitchen-cleanup-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-kitchen-cleanup-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-rebuild-short-process",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "short-process"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "home-routine"
+          ],
+          "terms": [
+            "kitchen",
+            "table",
+            "floor"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "kitchen-cleaning-steps",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-library-visit",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A short process is easier to follow when a title and italic purpose lead into numbered steps.",
+          "howTo": "Use one H1, one italic paragraph, then an ordered list with at least three steps.",
+          "example": "# Plant a seed\n\n*Follow these steps in order.*\n\n1. Fill the pot\n2. Add the seed\n3. Water the soil"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "1."
+        ],
+        "title": "Rebuild a short process",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Library visit\n\n*Get ready before you leave.*\n\n1. Find the book list\n2. Pack the library card\n3. Check the library hours",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-library-visit-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-library-visit-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-library-visit-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-rebuild-short-process",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "short-process"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "library-routine"
+          ],
+          "terms": [
+            "library",
+            "book list",
+            "library hours"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "library-visit",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-morning-routine",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "ordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A short process is easier to follow when a title and italic purpose lead into numbered steps.",
+          "howTo": "Use one H1, one italic paragraph, then an ordered list with at least three steps.",
+          "example": "# Plant a seed\n\n*Follow these steps in order.*\n\n1. Fill the pot\n2. Add the seed\n3. Water the soil"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "1."
+        ],
+        "title": "Rebuild a short process",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Morning routine\n\n*Finish these steps before leaving.*\n\n1. Open the curtains\n2. Pack lunch\n3. Lock the door",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-morning-routine-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-morning-routine-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-morning-routine-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an ordered list of at least three steps."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least three numbered steps."
+        ],
+        "retryFamily": "level-2-rebuild-short-process",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "short-process"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "daily-routine"
+          ],
+          "terms": [
+            "morning",
+            "lunch",
+            "door"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "morning-routine",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-picnic-bag",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A small practical note can combine a title, an italic sentence, and a bullet list.",
+          "howTo": "Use one H1, one italic paragraph, then an unordered list with at least two items.",
+          "example": "# Art box\n\n*Bring a few tools for drawing.*\n\n- Paper\n- Crayons"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "-"
+        ],
+        "title": "Rebuild a quick note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Picnic bag\n\n*Pack light for the park.*\n\n- Water\n- Apples",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-picnic-bag-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-picnic-bag-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-picnic-bag-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least two bullet items that start with `-`."
+        ],
+        "retryFamily": "level-2-rebuild-quick-note",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quick-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "simple-outing"
+          ],
+          "terms": [
+            "picnic",
+            "park",
+            "apples"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "picnic-bag",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-rainy-day",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A small practical note can combine a title, an italic sentence, and a bullet list.",
+          "howTo": "Use one H1, one italic paragraph, then an unordered list with at least two items.",
+          "example": "# Art box\n\n*Bring a few tools for drawing.*\n\n- Paper\n- Crayons"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "-"
+        ],
+        "title": "Rebuild a quick note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Rainy day\n\n*Keep these by the door.*\n\n- Umbrella\n- Boots",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-rainy-day-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-rainy-day-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-rainy-day-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least two bullet items that start with `-`."
+        ],
+        "retryFamily": "level-2-rebuild-quick-note",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quick-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "weather-preparation"
+          ],
+          "terms": [
+            "rainy day",
+            "umbrella",
+            "boots"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "rainy-day-preparation-note",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-reading-reminder",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quotation card can combine a title, an italic cue, and a message from a named source.",
+          "howTo": "Use one H1, one italic paragraph, then a quote with text that starts with `>`.",
+          "example": "# Coach's message\n\n*Remember this before the game.*\n\n> Coach: Bring a water bottle."
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          ">"
+        ],
+        "title": "Rebuild a reminder card",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Reading reminder\n\n*Remember the return date.*\n\n> Librarian: Return the book by Friday.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-reading-reminder-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "blockquote"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-reading-reminder-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-reading-reminder-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Finish with a Markdown quote that contains text."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with one quoted message that starts with `>`."
+        ],
+        "retryFamily": "level-2-rebuild-quote-card",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quote-card"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "reading-routine"
+          ],
+          "terms": [
+            "reading",
+            "librarian",
+            "book"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "reading-reminder",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-school-backpack",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "unordered-list"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A small practical note can combine a title, an italic sentence, and a bullet list.",
+          "howTo": "Use one H1, one italic paragraph, then an unordered list with at least two items.",
+          "example": "# Art box\n\n*Bring a few tools for drawing.*\n\n- Paper\n- Crayons"
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          "-"
+        ],
+        "title": "Rebuild a quick note",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# School backpack\n\n*Bring the tools for class.*\n\n- Notebook\n- Pencil",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-school-backpack-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-school-backpack-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-school-backpack-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Finish with an unordered list of at least two items."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with at least two bullet items that start with `-`."
+        ],
+        "retryFamily": "level-2-rebuild-quick-note",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quick-note"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "study-preparation"
+          ],
+          "terms": [
+            "school backpack",
+            "notebook",
+            "pencil"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "school-backpack",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
+        "id": "l2-rebuild-travel-reminder",
+        "schemaVersion": 2,
+        "level": 2,
+        "flavor": "standard",
+        "familyId": "rebuild-real-documents",
+        "skillIds": [
+          "heading-h1",
+          "italic-emphasis",
+          "blockquote"
+        ],
+        "difficulty": "mixed",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A quotation card can combine a title, an italic cue, and a message from a named source.",
+          "howTo": "Use one H1, one italic paragraph, then a quote with text that starts with `>`.",
+          "example": "# Coach's message\n\n*Remember this before the game.*\n\n> Coach: Bring a water bottle."
+        },
+        "syntaxTokens": [
+          "#",
+          "*",
+          ">"
+        ],
+        "title": "Rebuild a reminder card",
+        "prompt": "Rebuild the rendered document as Markdown. Your wording may differ, but keep the same Markdown shape.",
+        "target": "# Travel reminder\n\n*Read this before the train arrives.*\n\n> Station message: Keep your ticket ready.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l2-rebuild-travel-reminder-shape",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "exact": true,
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "blockquote"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Rebuild the three-block shape shown in the Goal: title, italic note, then the final block."
+          },
+          {
+            "id": "l2-rebuild-travel-reminder-italic",
+            "kind": "inline-presence",
+            "scope": {
+              "kind": "block",
+              "block": "paragraph",
+              "occurrence": 0
+            },
+            "inline": "emphasis",
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 20,
+            "feedback": "Make the middle note italic with Markdown."
+          },
+          {
+            "id": "l2-rebuild-travel-reminder-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "document"
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Finish with a Markdown quote that contains text."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "keep-one-italic-focus",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "emphasis",
+            "max": 1,
+            "review": "Keep italics focused on one short phrase in this exercise."
+          }
+        ],
+        "hints": [
+          "Start with one # title.",
+          "Put one complete sentence in italics below the title.",
+          "Finish with one quoted message that starts with `>`."
+        ],
+        "retryFamily": "level-2-rebuild-quote-card",
+        "reviewTags": [
+          "composite-level-2",
+          "focused-italic-emphasis",
+          "quote-card"
+        ],
+        "vocabulary": {
+          "profile": "everyday-recall",
+          "domains": [
+            "local-travel"
+          ],
+          "terms": [
+            "travel",
+            "station",
+            "ticket"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "travel-reminder",
+        "sourceBatchId": "2026-07-20-l1-italic-l2-rebuilds-013"
+      },
+      {
         "id": "l2-thematic-break-customer-delivery-reply",
         "schemaVersion": 2,
         "level": 2,
@@ -25579,5 +27899,5 @@
       }
     ]
   },
-  "projectionDigest": "7191d47b7cfae33e8487eefa2e4948cb0735cf19afc4dfab91dc7b112eefdea5"
+  "projectionDigest": "a89d2dfff41209b90b13b2927f3feb893e1092238145ecefc99a4ee7b51f1c53"
 }

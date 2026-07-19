@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l1-italic-l2-rebuilds-013",
+  "editorialActor": "codex-editorial-batch013",
+  "editorialRunId": "editorial-batch013-fourth-seal-2026-07-20-001",
+  "reviewedOn": "2026-07-20",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "d920b10c3fd9285dd624fea41b198fb42f5c43927e561071567dda9583e2c3f2",
+  "decisions": [
+    {
+      "candidateId": "l1-italic-blue-marble",
+      "revision": 1,
+      "candidateDigest": "b32d38225ea37439806e3088088203cb8b13e6a6b047a5904e64c15734b28aec",
+      "fixtureResultsDigest": "df6568272d29a5ae09dccfffbd93f4462852d60af1599a465a813338db7d0984",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Concrete, familiar toy vocabulary makes the italic-only task clear; the independent example uses Quiet music rather than repeating the Goal."
+    },
+    {
+      "candidateId": "l1-italic-cold-water",
+      "revision": 1,
+      "candidateDigest": "7ad5181bfa88432e90202419f03bb2a0933d7cf573f3d8d8229ed444830f1257",
+      "fixtureResultsDigest": "fbe2f9ea23e5e338101671daa456be88c935b9e612a337dfb92e7be22524f649",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Cold water is a natural everyday US-English phrase with one unambiguous italic structure and grammar-only evaluation."
+    },
+    {
+      "candidateId": "l1-italic-happy-turtle",
+      "revision": 1,
+      "candidateDigest": "ccbf2acc4fec31838ea7c33e0cd91794cbf0c184173ce6b4c0c19b766a15c044",
+      "fixtureResultsDigest": "9bdc1983d878472d4dcdf822895744b76bad117761c40cd71544fe35dfbcf191",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The simple animal phrase is age-neutral, easy to understand, and isolates italic emphasis without prose grading."
+    },
+    {
+      "candidateId": "l1-italic-little-garden",
+      "revision": 1,
+      "candidateDigest": "f9d5aec09ae7aaee87a75f0c4c2eee4ffa122c1cbbbc8639403cc50a82cdc293",
+      "fixtureResultsDigest": "169dd30cb3a89f907360994e9f1f01cc6876c1a1e4c106ed63ab88bffcc146fa",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Little garden is a familiar home-and-plant phrase whose short rendered Goal clearly demonstrates italic styling."
+    },
+    {
+      "candidateId": "l1-italic-orange-socks",
+      "revision": 1,
+      "candidateDigest": "adf3343efc2957e2290d2705447ac2e9436642af31e4c80a9b01ad9bf5feec24",
+      "fixtureResultsDigest": "474943245814c677f51f0e9eade8a1802932212e7fc92f49b5cf0d253085c843",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "A clear color-plus-object phrase keeps the learner focused on italic markers rather than unfamiliar wording."
+    },
+    {
+      "candidateId": "l1-italic-paper-boat",
+      "revision": 1,
+      "candidateDigest": "e76e20cfa0a067d18cbe75cf2454f645769d2fd04c254548d36167ea93d22318",
+      "fixtureResultsDigest": "32147ffe3adc008ef3e8f91e9cb63d77548bca403e7459f8c42b5ddadf527b2e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The concrete craft phrase is concise, natural, and visually suitable for a first-level italic exercise."
+    },
+    {
+      "candidateId": "l1-italic-silver-moon",
+      "revision": 1,
+      "candidateDigest": "54f868df9ac35c300a5a0bf64094e37ba03d6de741cc98be47f533c0109fa78f",
+      "fixtureResultsDigest": "1c160731c61c652feda726fe3c4b12781f5243423a51e7c7442c331cf6be82db",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Silver moon uses familiar words and a readable descriptive phrase while retaining a single obvious italic target."
+    },
+    {
+      "candidateId": "l1-italic-soft-pillow",
+      "revision": 1,
+      "candidateDigest": "38816833ca1537b4b653253a180337d8ed06050cdabd89258b8c6aa7f7c801ea",
+      "fixtureResultsDigest": "7f349989a42216d7c4e5871d414376dd6583b37e67238c07c9cf5e13a77d12ff",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The familiar home phrase is natural, concrete, and appropriately simple for first exposure to italic emphasis."
+    },
+    {
+      "candidateId": "l1-italic-sunny-window",
+      "revision": 1,
+      "candidateDigest": "a1cf59c57cce1cc02a662da95bf32eca6735c298f1706281a0f21bfe15c32395",
+      "fixtureResultsDigest": "a9d4405223eb2345b1e40eeabc37794e15b0b1c862d3df8c95eb7fed9c674327",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Sunny window is understandable everyday language and gives the learner a compact, distinct rendered Goal."
+    },
+    {
+      "candidateId": "l1-italic-warm-soup",
+      "revision": 1,
+      "candidateDigest": "8e83c74d0571c9429ec9404ebf804537d4acdbc442289f9f844c1b0a5ef0b349",
+      "fixtureResultsDigest": "1f90bbd976f2f3d4fd08cd8f0ce2640d84cedbd26cd05918eca23ee235df293a",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Warm soup is natural everyday vocabulary; earlier fixture text is not reused as the Goal and structural grading remains isolated."
+    },
+    {
+      "candidateId": "l1-italic-wooden-spoon",
+      "revision": 1,
+      "candidateDigest": "6e91cc9a5b4351b851229890119b9e5c4d36aecb40a602fd2dd942892a32a6eb",
+      "fixtureResultsDigest": "47547272742aba0c8099f8c66b6d8e88a95ffeb63ba4fad3b26bbf9e42bd631d",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The concrete kitchen phrase is familiar in US English and cleanly demonstrates one italic span."
+    },
+    {
+      "candidateId": "l1-italic-yellow-kite",
+      "revision": 1,
+      "candidateDigest": "e5d28ca902eecf6cb678ecc2239779cd8849b024339af4f18345d4a247cb8f65",
+      "fixtureResultsDigest": "3ae0aba269d9a36b929ad937a8295e5792cfc17d7a684d8f757377a31a079087",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The simple color-and-object phrase is distinct, while the independent Quiet music example avoids copying the Goal."
+    },
+    {
+      "candidateId": "l2-rebuild-baking-reminder",
+      "revision": 1,
+      "candidateDigest": "c0514d16cb913e06dbd857370656e7ad8fd4c3f43fb789b95fd0f97028e77e27",
+      "fixtureResultsDigest": "f1a603054d9a0beb43ebdc2bd716aeba61bb453a82d234bad9bdc2b3b1b7a7b0",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The pan-and-bread sequence forms a coherent H1, italic cue, and list-or-attributed-quote document with everyday vocabulary."
+    },
+    {
+      "candidateId": "l2-rebuild-cat-supplies",
+      "revision": 1,
+      "candidateDigest": "00875dfb76e12df4e8205bb702a8c1c6464ad87757b2ba53c9cc7b9f959b6d68",
+      "fixtureResultsDigest": "82abb3a55d7b5e9dfc3deba814fd5c1c232a1e3b4e00f9cdc4a94cccd2a69d94",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Checking water and food before dinner gives the three required blocks a clear shared purpose without requiring exact prose."
+    },
+    {
+      "candidateId": "l2-rebuild-garden-reminder",
+      "revision": 1,
+      "candidateDigest": "45fce305cada3d6dde13ac996c190f54d88eb7118d6b10816a25cef5fd9a4343",
+      "fixtureResultsDigest": "0b43ac748f5251e1c0ff11ff795e7bef378b079cd678b1782ddbcbc60dceaf66",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The soil-and-watering cue and garden steps are semantically coherent, readable, and structurally unambiguous."
+    },
+    {
+      "candidateId": "l2-rebuild-homework-plan",
+      "revision": 1,
+      "candidateDigest": "918bd3fac44221d48138a35e7004442ab06628566cc09ea9581d57ba565a847c",
+      "fixtureResultsDigest": "fc60c771e8b9f1f0676f9220d39059022612c504c441372dbf8f23f54429344c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The one-task-at-a-time cue supports the ordered study steps and makes a coherent Level 2 workplace-adjacent practice document."
+    },
+    {
+      "candidateId": "l2-rebuild-kitchen-cleanup",
+      "revision": 1,
+      "candidateDigest": "8e54116d4097d93e67975ebb8d8dc42cf0d6ed7a67f0e8e23b10a67c9a4cc335",
+      "fixtureResultsDigest": "6f1aa94f27dd556174c7b583cd08d5e7a580e0d06a36f10941bf4c8cc21af42e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The corrected cue, Clean one area at a time, now aligns directly with the wash, wipe, and sweep sequence."
+    },
+    {
+      "candidateId": "l2-rebuild-library-visit",
+      "revision": 1,
+      "candidateDigest": "5fae8598a0f68c90851fb687126623a816c00d2bc480eaedf2a768095b7fdfc0",
+      "fixtureResultsDigest": "8a905fbe8d699488e4e7bc2b378264b96d7a06a9dd77a47851939a258ba15c83",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural US library wording and a coherent preparation sequence make the three-block Goal easy to reconstruct."
+    },
+    {
+      "candidateId": "l2-rebuild-morning-routine",
+      "revision": 1,
+      "candidateDigest": "e42cf1800f220e13b8e9e9fce3c92c1e520e53a4e892e79af1b8d371b8d5f902",
+      "fixtureResultsDigest": "fc317e1d5795778e71985f5e4654fa5c78e677cd320523bc2809c6c1fbb816de",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The cue and three morning steps read as one practical document; the fixture example uses unrelated plant content."
+    },
+    {
+      "candidateId": "l2-rebuild-picnic-bag",
+      "revision": 1,
+      "candidateDigest": "e99cfee365592b1e9e99707dbc4bddba95abe962dcf411fefc9d57c881ad171f",
+      "fixtureResultsDigest": "72844395a1848356dcbf2eae7f9d707de2c81f0f6e564428424ed560109bb786",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The light-packing cue and picnic checklist form a natural, self-contained document with clear block structure."
+    },
+    {
+      "candidateId": "l2-rebuild-rainy-day",
+      "revision": 1,
+      "candidateDigest": "792240660e61f4186638ddb3327aae5a0f3f9e4ad02dfdeda416ae684b1130c9",
+      "fixtureResultsDigest": "295dbc7cdf68fc248db231fb1f4c6e20b2fdbd1ae42a900bc3c54ec3821c3d18",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The rainy-day preparation note is materially distinct from the prior heading exercise and uses the unique rainy-day-preparation-note variant."
+    },
+    {
+      "candidateId": "l2-rebuild-reading-reminder",
+      "revision": 1,
+      "candidateDigest": "f3978407361233ed5815e623c1f89375e90bfa8abacc28370134d98141213486",
+      "fixtureResultsDigest": "3763dd79e2dcf2d4ed2486db9c4b7f1cd21e721f35009e9c16b5a65c24330215",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The corrected cue, Remember the return date, now supports the librarian-attributed quote and the surrounding reading reminder."
+    },
+    {
+      "candidateId": "l2-rebuild-school-backpack",
+      "revision": 1,
+      "candidateDigest": "c131003e1afab2b8fa59b8715b39262b1edb98a2d739063c61dd8d4e5bcd53aa",
+      "fixtureResultsDigest": "caf34b3198dd378c14b33cc4f1d604b87aebcb1e396a220ced9399c98190c037",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Natural US school vocabulary and a practical item list produce a coherent Level 2 rebuild task without prose policing."
+    },
+    {
+      "candidateId": "l2-rebuild-travel-reminder",
+      "revision": 1,
+      "candidateDigest": "7a3b09754f717bf11784659c0b8362de4f4d0ae04697438ff00aba83940d4c3d",
+      "fixtureResultsDigest": "897d46d1ab3d27fe5b8beb2187e53edd3f9d1390bbb02a3208c34b03e335967a",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The travel steps are coherent and the quotation has an explicit station-message source label rather than an unattributed voice."
+    }
+  ],
+  "reviewDigests": [
+    "24e12b470eb7c11c5e2ec5fa47241ab16fb0614dfc3f56b0ae2b4de28d548682",
+    "86726e2abb3f3d8c0ffa3dbf79ac135a25ab1080201d6b2afa589dcff47b3fb9"
+  ],
+  "editorialDigest": "eecfb54e58bc93b7003dc3c909f1421650fe4bf7fee0b7b4795fc06f0df70314"
+}

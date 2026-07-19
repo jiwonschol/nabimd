@@ -41,6 +41,33 @@ function problem({ editorial = false }: { editorial?: boolean } = {}): GradableP
 }
 
 describe("bold emphasis predicates", () => {
+  it("can require visible content inside parsed emphasis", () => {
+    const visibleStrongProblem: GradableProblem = {
+      ...problem(),
+      matchChecks: [
+        {
+          ...strongPresence,
+          requireNonemptyContent: true,
+        } as unknown as MatchCheck,
+      ],
+    }
+
+    expect(evaluateProblem(visibleStrongProblem, "**Visible words**")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
+    expect(evaluateProblem(visibleStrongProblem, "**\u200B**")).toMatchObject({
+      status: "fail",
+      feedbackId: "use-bold-emphasis",
+    })
+    expect(
+      evaluateProblem(visibleStrongProblem, "**<!-- hidden -->**"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "use-bold-emphasis",
+    })
+  })
+
   it("requires parsed bold emphasis without grading the valid marker style", () => {
     expect(evaluateProblem(problem(), "**Completely different words**")).toEqual({
       status: "matched",

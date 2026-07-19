@@ -94,7 +94,12 @@ function inlinePresencePasses(
   check: Extract<StructuralCheck, { kind: "inline-presence" }>,
   context: EvaluationContext,
 ) {
-  const count = countInlineNodes(context, check.scope, check.inline)
+  const count = countInlineNodes(
+    context,
+    check.scope,
+    check.inline,
+    check.requireNonemptyContent,
+  )
   return inRange(count, check.min, check.max)
 }
 
@@ -102,9 +107,12 @@ export function countInlineNodes(
   context: EvaluationContext,
   scope: CheckScope,
   inline: InlineKind,
+  requireNonemptyContent = false,
 ) {
   return descendants(nodesInScope(context, scope) as AstNode[]).filter(
-    (node) => node.type === nodeTypeByInline[inline],
+    (node) =>
+      node.type === nodeTypeByInline[inline] &&
+      (!requireNonemptyContent || nodeHasVisibleLinkLabel(node, context.source)),
   ).length
 }
 

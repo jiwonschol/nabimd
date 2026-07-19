@@ -19,6 +19,11 @@ export type VocabularyMetadata = {
 export type CheckScope =
   | { kind: "document" }
   | {
+      kind: "block"
+      block: BlockKind
+      occurrence: number
+    }
+  | {
       kind: "section"
       headingDepth: 1 | 2 | 3 | 4 | 5 | 6
       occurrence: number
@@ -82,6 +87,7 @@ export type MatchCheck =
       inline: InlineKind
       min?: number
       max?: number
+      requireNonemptyContent?: boolean
     })
   | (MatchCheckBase & {
       kind: "heading-depth-order"
@@ -355,6 +361,7 @@ export type FixtureKind =
   | "fullwidth-backtick"
   | "apostrophe-code"
   | "empty-backticks"
+  | `italic-${string}`
   | `link-${string}`
   | "multiple-explicit-links"
   | "multiple-reference-links"
