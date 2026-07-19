@@ -9,6 +9,21 @@ class FakeAudio {
   constructor(readonly src: string) {}
 }
 
+function createDeferredPlayback() {
+  let reject: (reason?: unknown) => void = () => {}
+  let resolve: () => void = () => {}
+  const promise = new Promise<void>((resolvePromise, rejectPromise) => {
+    resolve = resolvePromise
+    reject = rejectPromise
+  })
+  return { promise, reject, resolve }
+}
+
+async function flushPlayback() {
+  await Promise.resolve()
+  await Promise.resolve()
+}
+
 describe("successSound", () => {
   let audio: FakeAudio
 
@@ -42,6 +57,7 @@ describe("successSound", () => {
     const { unlockSuccessSound } = await import("./successSound")
 
     unlockSuccessSound()
+    await flushPlayback()
 
     expect(audio.play).toHaveBeenCalledTimes(1)
     expect(audio.pause).toHaveBeenCalledTimes(1)
@@ -53,6 +69,7 @@ describe("successSound", () => {
 
     document.dispatchEvent(new Event("pointerdown", { bubbles: true }))
     playSuccessSound()
+    await flushPlayback()
 
     expect(audio.play).toHaveBeenCalledTimes(2)
   })
@@ -63,6 +80,7 @@ describe("successSound", () => {
     )
 
     unlockSuccessSound()
+    await flushPlayback()
     playSuccessSound()
 
     expect(audio.play).toHaveBeenCalledTimes(2)
@@ -75,6 +93,7 @@ describe("successSound", () => {
       await import("./successSound")
 
     unlockSuccessSound()
+    await flushPlayback()
     setSoundMuted(true)
     playSuccessSound()
 
@@ -87,6 +106,7 @@ describe("successSound", () => {
       await import("./successSound")
 
     unlockSuccessSound()
+    await flushPlayback()
     playSuccessSound()
     audio.currentTime = 0.25
 
@@ -99,6 +119,84 @@ describe("successSound", () => {
     setSoundMuted(false)
 
     expect(audio.muted).toBe(false)
+  })
+
+  it("retries priming on a later gesture after the first attempt is rejected", async () => {
+    const firstPriming = createDeferredPlayback()
+    audio.play
+      .mockReturnValueOnce(firstPriming.promise)
+      .mockReturnValueOnce(Promise.resolve())
+    const { playSuccessSound } = await import("./successSound")
+
+    document.dispatchEvent(new Event("pointerdown", { bubbles: true }))
+    firstPriming.reject(new Error("blocked"))
+    await flushPlayback()
+
+    document.dispatchEvent(new Event("keydown", { bubbles: true }))
+    await flushPlayback()
+    playSuccessSound()
+
+    expect(audio.play).toHaveBeenCalledTimes(3)
+  })
+
+  it("clears a queued verdict when priming is rejected", async () => {
+    const priming = createDeferredPlayback()
+    audio.play.mockReturnValueOnce(priming.promise)
+    const { playSuccessSound } = await import("./successSound")
+
+    document.dispatchEvent(new Event("pointerdown", { bubbles: true }))
+    playSuccessSound()
+    priming.reject(new Error("blocked"))
+    await flushPlayback()
+
+    expect(audio.play).toHaveBeenCalledTimes(1)
+  })
+
+  it("does not play a verdict before asynchronous priming succeeds", async () => {
+    const priming = createDeferredPlayback()
+    audio.play.mockReturnValueOnce(priming.promise)
+    const { playSuccessSound } = await import("./successSound")
+
+    document.dispatchEvent(new Event("pointerdown", { bubbles: true }))
+    playSuccessSound()
+
+    expect(audio.play).toHaveBeenCalledTimes(1)
+    expect(audio.pause).not.toHaveBeenCalled()
+
+    priming.resolve()
+    await flushPlayback()
+  })
+
+  it("does not start concurrent priming from another gesture", async () => {
+    const priming = createDeferredPlayback()
+    audio.play.mockReturnValueOnce(priming.promise)
+    await import("./successSound")
+
+    document.dispatchEvent(new Event("pointerdown", { bubbles: true }))
+    document.dispatchEvent(new Event("keydown", { bubbles: true }))
+
+    expect(audio.play).toHaveBeenCalledTimes(1)
+
+    priming.resolve()
+    await flushPlayback()
+  })
+
+  it("plays one pending matched verdict after priming succeeds", async () => {
+    const priming = createDeferredPlayback()
+    audio.play
+      .mockReturnValueOnce(priming.promise)
+      .mockReturnValueOnce(Promise.resolve())
+    const { playSuccessSound } = await import("./successSound")
+
+    document.dispatchEvent(new Event("pointerdown", { bubbles: true }))
+    playSuccessSound()
+
+    expect(audio.play).toHaveBeenCalledTimes(1)
+
+    priming.resolve()
+    await flushPlayback()
+
+    expect(audio.play).toHaveBeenCalledTimes(2)
   })
 
   it("restores the stored mute preference", async () => {
@@ -116,6 +214,7 @@ describe("successSound", () => {
     )
 
     unlockSuccessSound()
+    await flushPlayback()
 
     expect(() => playSuccessSound()).not.toThrow()
   })

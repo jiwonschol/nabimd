@@ -4,6 +4,8 @@ const SOUND_MUTED_KEY = "nabimd.sound-muted"
 
 let audio: HTMLAudioElement | null = null
 let unlocked = false
+let priming: Promise<void> | null = null
+let pendingPlayback = false
 let soundMuted: boolean | undefined
 const muteListeners = new Set<(muted: boolean) => void>()
 
@@ -36,7 +38,7 @@ export function readSoundMuted(): boolean {
 export function setSoundMuted(muted: boolean) {
   soundMuted = muted
   if (audio) {
-    audio.muted = muted
+    audio.muted = muted || priming !== null
     if (muted) {
       audio.pause()
       audio.currentTime = 0
@@ -58,29 +60,57 @@ export function subscribeSoundMuted(listener: (muted: boolean) => void) {
 }
 
 export function unlockSuccessSound() {
-  if (unlocked) return
-  unlocked = true
-  removeGestureUnlockListeners()
+  if (unlocked || priming) return
 
   const sound = getAudio()
   if (!sound) return
 
-  const wasMuted = sound.muted
   sound.muted = true
-  sound.currentTime = 0
-  const playback = sound.play()
-  sound.pause()
-  sound.currentTime = 0
-  sound.muted = wasMuted
-  swallowPlaybackRejection(playback)
+  let playback: Promise<void>
+  try {
+    playback = Promise.resolve(sound.play())
+  } catch {
+    sound.muted = readSoundMuted()
+    return
+  }
+
+  priming = playback
+  void playback.then(
+    () => {
+      if (priming !== playback) return
+
+      priming = null
+      unlocked = true
+      removeGestureUnlockListeners()
+      sound.pause()
+      sound.currentTime = 0
+      sound.muted = readSoundMuted()
+
+      const shouldPlayPendingVerdict = pendingPlayback
+      pendingPlayback = false
+      if (shouldPlayPendingVerdict) playSuccessSound()
+    },
+    () => {
+      if (priming !== playback) return
+
+      priming = null
+      pendingPlayback = false
+      sound.muted = readSoundMuted()
+    },
+  )
 }
 
 export function playSuccessSound() {
-  if (!unlocked || readSoundMuted()) return
+  if (!unlocked) {
+    if (priming) pendingPlayback = true
+    return
+  }
+  if (readSoundMuted()) return
 
   const sound = getAudio()
   if (!sound) return
 
+  sound.muted = false
   sound.currentTime = 0
   swallowPlaybackRejection(sound.play())
 }
@@ -95,11 +125,9 @@ function installGestureUnlockListeners() {
   }
   document.addEventListener("pointerdown", unlockFromGesture, {
     capture: true,
-    once: true,
   })
   document.addEventListener("keydown", unlockFromGesture, {
     capture: true,
-    once: true,
   })
 }
 

@@ -78,11 +78,14 @@ describe("ExerciseTopBar", () => {
     setSoundMuted(true)
     renderTopBar("editing")
 
-    fireEvent.click(screen.getByRole("button", { name: "Muted" }))
+    const soundToggle = screen.getByRole("button", {
+      name: "Mute success sound",
+    })
 
-    expect(
-      screen.getByRole("button", { name: "Sound on" }),
-    ).toBeInTheDocument()
+    expect(soundToggle).toHaveTextContent("Muted")
+    fireEvent.click(soundToggle)
+
+    expect(soundToggle).toHaveTextContent("Sound on")
     expect(window.localStorage.getItem("nabimd.sound-muted")).toBe("false")
   })
 })

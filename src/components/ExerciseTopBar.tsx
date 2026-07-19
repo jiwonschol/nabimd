@@ -100,6 +100,7 @@ export function ExerciseTopBar({
           {problemPosition} of {runLength}
         </span>
         <button
+          aria-label="Mute success sound"
           aria-pressed={soundMuted}
           className="sound-control"
           onClick={() => setSoundMuted(!soundMuted)}
