@@ -54,6 +54,16 @@ copied here or promoted automatically.
   spaced and longer forms, and nested valid dividers pass without prose
   grading; Setext headings, code, HTML, comments, malformed markers, and
   lookalikes do not. Extra dividers stay Matched with one optional Review.
+- `2026-07-19-l3-readable-documents-010` — 12 accepted Level 3 status or
+  handoff notes, how-to notes, and decision records with 212 real-engine
+  fixtures. Each anatomy has four different workplace variants for transfer.
+- `2026-07-19-l3-composite-documents-011` — 12 accepted Level 3 meeting
+  agendas, reference notes, and recommendation briefs with 252 real-engine
+  fixtures. Grading checks document structure without grading prose or meaning.
+- `2026-07-19-l4-development-specs-012` — 12 accepted Level 4 interface
+  feature specs, bug investigations, and staged migration plans with 488
+  real-engine fixtures. Verification commands are never executed; the grader
+  checks only the documented Markdown anatomy.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

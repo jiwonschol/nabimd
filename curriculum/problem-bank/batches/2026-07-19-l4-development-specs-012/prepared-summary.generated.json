@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l4-development-specs-012",
+  "status": "awaiting-independent-review",
+  "candidateCount": 12,
+  "fixtureCount": 488,
+  "passingCandidateCount": 12,
+  "normalizedArtifactDigest": "d6222b2f4fb78fea41a9ee5ecb1f6e53f0f2e4c9f7cf4446ca7889be99cc72d1",
+  "verificationDigest": "1fa14301b4d4d7ca4b7cd5da4c7297d72739135d5288699c4ae3427f0ae0e4f1",
+  "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab",
+  "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 236,
+  "preparedSummaryDigest": "07d44b525dc29adb6c3a2f46de1ba869d064d07a1a9ac0229583aae1789c897f"
+}

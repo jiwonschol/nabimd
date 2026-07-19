@@ -2,12 +2,12 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "072513e74355dc6d3aa367cbfd5166f0867476355112c757ab4e79a33f0b57cf",
+    "bankDigest": "de68b5c803888b027a87f015deb117d068862e965052ab3543ddac05c391c7d2",
     "counts": {
       "1": 100,
       "2": 100,
       "3": 28,
-      "4": 4,
+      "4": 16,
       "5": 4
     }
   },
@@ -20645,6 +20645,1830 @@
         "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
       },
       {
+        "id": "l4-api-field-deprecation-migration",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "migration-outline",
+          "three-stage-hierarchy",
+          "rollback-plan",
+          "acceptance-list",
+          "open-decision",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A staged migration specification makes prerequisites, three bounded stages, rollback, acceptance, an open decision, and verification easy to inspect.",
+          "howTo": "Use one H1, six H2 sections, an unordered precondition list, exactly three H3 migration stages with bullet tasks, ordered rollback, bullet acceptance, a quoted open decision, and a fenced verification block.",
+          "example": "# Setting-name migration\n\nDescribe the compatible change.\n\n## Preconditions\n\n- Find current readers\n- Record the fallback\n- Add fixtures\n\n## Migration stages\n\n### Add compatibility\n\n- Read both names\n- Write the new name\n\n### Move callers\n\n- Update the form\n- Update the worker\n\n### Remove the old path\n\n- Delete the alias\n- Update the guide\n\n## Rollback\n\n1. Restore the alias\n2. Restore callers\n3. Run focused checks\n\n## Acceptance\n\n- Existing values still load\n- New values use one name\n- Tests cover both paths\n\n## Open decision\n\n> Decide how long compatibility remains.\n\n## Verification\n\n```sh\nnpm test -- setting-name\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "-",
+          "1.",
+          ">",
+          "```sh"
+        ],
+        "title": "Structure an API-field deprecation",
+        "prompt": "Create a compatibility-focused migration spec with exactly three H3 stages, rollback steps, acceptance items, an open decision, and fenced verification.",
+        "target": "# Project owner field deprecation\n\nReplace the older project-owner response field with a clearer field name while keeping known consumers compatible during the transition.\n\n## Preconditions\n\n- Inventory readers of the existing response field\n- Capture fixtures for current response shapes\n- Record the documented compatibility window\n\n## Migration stages\n\n### Add the new field\n\n- Populate the clearer field from the same source\n- Keep the older field as a compatibility alias\n\n### Move consumers\n\n- Update the project list reader\n- Update the project detail reader\n\n### Complete deprecation\n\n- Remove the older response field\n- Update examples and contract fixtures\n\n## Rollback\n\n1. Restore the compatibility alias\n2. Revert consumers to the earlier field\n3. Run the response-contract fixtures\n\n## Acceptance criteria\n\n- Both fields agree during compatibility\n- Updated consumers use the clearer field\n- Removing the alias leaves contract tests passing\n\n## Open decision\n\n> Decide which release ends the compatibility window.\n\n## Verification\n\n```sh\nnpm test -- project-owner-contract\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-api-field-deprecation-migration-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-stage-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3,
+            "max": 3,
+            "priority": 25,
+            "feedback": "Use exactly three H3 stage headings in this migration specification."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-preconditions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-migration-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 40,
+            "feedback": "Use exactly three H3 stages, each followed directly by one list, in the second H2 section."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-stage-1",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least two items under H3 stage 1."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-stage-2",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 51,
+            "feedback": "Use an unordered list of at least two items under H3 stage 2."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-stage-3",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 52,
+            "feedback": "Use an unordered list of at least two items under H3 stage 3."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-rollback",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fourth H2 section."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the fifth H2 section."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-api-field-deprecation-migration-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 100,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Inside the migration section, add exactly three ### stage headings with at least two bullet tasks under each one.",
+          "Add numbered rollback steps, acceptance bullets, a quoted open decision, and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-staged-migration-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "staged-migration"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "api-field-migration"
+          ],
+          "terms": [
+            "response field",
+            "compatibility alias",
+            "consumer fixture",
+            "deprecation window"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "api-field-deprecation",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-cache-namespace-migration",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "migration-outline",
+          "three-stage-hierarchy",
+          "rollback-plan",
+          "acceptance-list",
+          "open-decision",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A staged migration specification makes prerequisites, three bounded stages, rollback, acceptance, an open decision, and verification easy to inspect.",
+          "howTo": "Use one H1, six H2 sections, an unordered precondition list, exactly three H3 migration stages with bullet tasks, ordered rollback, bullet acceptance, a quoted open decision, and a fenced verification block.",
+          "example": "# Setting-name migration\n\nDescribe the compatible change.\n\n## Preconditions\n\n- Find current readers\n- Record the fallback\n- Add fixtures\n\n## Migration stages\n\n### Add compatibility\n\n- Read both names\n- Write the new name\n\n### Move callers\n\n- Update the form\n- Update the worker\n\n### Remove the old path\n\n- Delete the alias\n- Update the guide\n\n## Rollback\n\n1. Restore the alias\n2. Restore callers\n3. Run focused checks\n\n## Acceptance\n\n- Existing values still load\n- New values use one name\n- Tests cover both paths\n\n## Open decision\n\n> Decide how long compatibility remains.\n\n## Verification\n\n```sh\nnpm test -- setting-name\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "-",
+          "1.",
+          ">",
+          "```sh"
+        ],
+        "title": "Plan a cache-namespace switch",
+        "prompt": "Write a staged cache migration with three H3 task groups, ordered rollback, acceptance bullets, an open decision, and a fenced check block.",
+        "target": "# Cache namespace switch\n\nMove project-summary entries to a versioned cache namespace without making the application depend on both key formats permanently.\n\n## Preconditions\n\n- Inventory current project-summary keys\n- Record the existing expiration behavior\n- Add fixtures for hit, miss, and expired entries\n\n## Migration stages\n\n### Introduce the namespace\n\n- Write new summaries with the versioned prefix\n- Read the new prefix before the old prefix\n\n### Observe compatibility\n\n- Track old-prefix fallback reads\n- Keep cache misses on the existing data path\n\n### Finish the switch\n\n- Remove the old-prefix fallback\n- Delete obsolete namespace helpers\n\n## Rollback\n\n1. Restore the old-prefix reader\n2. Stop new namespace writes\n3. Run the cache behavior fixtures\n\n## Acceptance criteria\n\n- New writes use one versioned prefix\n- Old entries remain readable during compatibility\n- A cache miss still uses the normal data path\n\n## Open decision\n\n> Decide how many expiration windows compatibility should remain.\n\n## Verification\n\n```sh\nnpm test -- project-summary-cache\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-cache-namespace-migration-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-cache-namespace-migration-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-cache-namespace-migration-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-cache-namespace-migration-stage-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3,
+            "max": 3,
+            "priority": 25,
+            "feedback": "Use exactly three H3 stage headings in this migration specification."
+          },
+          {
+            "id": "l4-cache-namespace-migration-preconditions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-cache-namespace-migration-migration-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 40,
+            "feedback": "Use exactly three H3 stages, each followed directly by one list, in the second H2 section."
+          },
+          {
+            "id": "l4-cache-namespace-migration-stage-1",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least two items under H3 stage 1."
+          },
+          {
+            "id": "l4-cache-namespace-migration-stage-2",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 51,
+            "feedback": "Use an unordered list of at least two items under H3 stage 2."
+          },
+          {
+            "id": "l4-cache-namespace-migration-stage-3",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 52,
+            "feedback": "Use an unordered list of at least two items under H3 stage 3."
+          },
+          {
+            "id": "l4-cache-namespace-migration-rollback",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section."
+          },
+          {
+            "id": "l4-cache-namespace-migration-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fourth H2 section."
+          },
+          {
+            "id": "l4-cache-namespace-migration-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the fifth H2 section."
+          },
+          {
+            "id": "l4-cache-namespace-migration-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-cache-namespace-migration-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 100,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Inside the migration section, add exactly three ### stage headings with at least two bullet tasks under each one.",
+          "Add numbered rollback steps, acceptance bullets, a quoted open decision, and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-staged-migration-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "staged-migration"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "cache-namespace-migration"
+          ],
+          "terms": [
+            "cache namespace",
+            "dual read",
+            "key prefix",
+            "expiration window"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "cache-namespace-switch",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-configuration-key-migration",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "migration-outline",
+          "three-stage-hierarchy",
+          "rollback-plan",
+          "acceptance-list",
+          "open-decision",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A staged migration specification makes prerequisites, three bounded stages, rollback, acceptance, an open decision, and verification easy to inspect.",
+          "howTo": "Use one H1, six H2 sections, an unordered precondition list, exactly three H3 migration stages with bullet tasks, ordered rollback, bullet acceptance, a quoted open decision, and a fenced verification block.",
+          "example": "# Setting-name migration\n\nDescribe the compatible change.\n\n## Preconditions\n\n- Find current readers\n- Record the fallback\n- Add fixtures\n\n## Migration stages\n\n### Add compatibility\n\n- Read both names\n- Write the new name\n\n### Move callers\n\n- Update the form\n- Update the worker\n\n### Remove the old path\n\n- Delete the alias\n- Update the guide\n\n## Rollback\n\n1. Restore the alias\n2. Restore callers\n3. Run focused checks\n\n## Acceptance\n\n- Existing values still load\n- New values use one name\n- Tests cover both paths\n\n## Open decision\n\n> Decide how long compatibility remains.\n\n## Verification\n\n```sh\nnpm test -- setting-name\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "-",
+          "1.",
+          ">",
+          "```sh"
+        ],
+        "title": "Plan a configuration-key rename",
+        "prompt": "Write a three-stage migration spec with preconditions, H3 stage lists, rollback, acceptance, an open decision, and fenced verification.",
+        "target": "# Configuration key rename\n\nRename the local preview configuration key while keeping existing developer setups readable during a bounded compatibility period.\n\n## Preconditions\n\n- Find every reader and writer of the current key\n- Record the current fallback behavior\n- Add fixtures for old, new, and missing values\n\n## Migration stages\n\n### Add compatibility\n\n- Read the new key before the old key\n- Write only the new key from updated settings\n\n### Move call sites\n\n- Update the preview launcher\n- Update the local setup command\n\n### Remove the old path\n\n- Delete the compatibility read\n- Update the repository setup guide\n\n## Rollback\n\n1. Restore the old-key reader\n2. Restore the previous call-site values\n3. Run the configuration fixtures\n\n## Acceptance criteria\n\n- Existing local values remain readable during compatibility\n- Updated tools write one configuration key\n- A missing value keeps the documented fallback\n\n## Open decision\n\n> Decide which release removes the compatibility read.\n\n## Verification\n\n```sh\nnpm test -- preview-config\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-configuration-key-migration-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-configuration-key-migration-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-configuration-key-migration-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-configuration-key-migration-stage-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3,
+            "max": 3,
+            "priority": 25,
+            "feedback": "Use exactly three H3 stage headings in this migration specification."
+          },
+          {
+            "id": "l4-configuration-key-migration-preconditions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-configuration-key-migration-migration-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 40,
+            "feedback": "Use exactly three H3 stages, each followed directly by one list, in the second H2 section."
+          },
+          {
+            "id": "l4-configuration-key-migration-stage-1",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least two items under H3 stage 1."
+          },
+          {
+            "id": "l4-configuration-key-migration-stage-2",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 51,
+            "feedback": "Use an unordered list of at least two items under H3 stage 2."
+          },
+          {
+            "id": "l4-configuration-key-migration-stage-3",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 52,
+            "feedback": "Use an unordered list of at least two items under H3 stage 3."
+          },
+          {
+            "id": "l4-configuration-key-migration-rollback",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section."
+          },
+          {
+            "id": "l4-configuration-key-migration-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fourth H2 section."
+          },
+          {
+            "id": "l4-configuration-key-migration-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the fifth H2 section."
+          },
+          {
+            "id": "l4-configuration-key-migration-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-configuration-key-migration-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 100,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Inside the migration section, add exactly three ### stage headings with at least two bullet tasks under each one.",
+          "Add numbered rollback steps, acceptance bullets, a quoted open decision, and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-staged-migration-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "staged-migration"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "configuration-key-migration"
+          ],
+          "terms": [
+            "configuration key",
+            "compatibility read",
+            "call site",
+            "removal window"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "configuration-key-rename",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-duplicate-form-submission-investigation",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "investigation-outline",
+          "evidence-blockquote",
+          "markdown-divider",
+          "ordered-reproduction",
+          "regression-acceptance",
+          "verification-checklist"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A bug investigation specification preserves observed evidence, a reproducible path, bounded constraints, a fix plan, regression acceptance, and verification checks.",
+          "howTo": "Use one H1, seven H2 sections, a quoted observation with a divider, ordered reproduction and fix steps, bullet constraints and regression checks, an open-decision quote, and a verification checklist with inline code.",
+          "example": "# Repeat-action investigation\n\nDescribe the observed behavior.\n\n## Evidence\n\n> The action appears twice after one click.\n\n---\n\n## Reproduction\n\n1. Open the form\n2. Enter a value\n3. Submit once\n4. Review the result\n\n## Constraints\n\n- Keep the request shape\n- Preserve keyboard use\n- Avoid a second state owner\n\n## Fix plan\n\n1. Add a focused test\n2. Guard the action\n3. Remove the duplicate path\n\n## Regression acceptance\n\n- One action creates one result\n- A failed action can be tried again\n- Existing validation still appears\n\n## Open decision\n\n> Decide when the action becomes available again.\n\n## Verification checklist\n\n- Run `npm test -- repeat-action`\n- Run `npm run typecheck`"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "---",
+          "1.",
+          "-",
+          "`"
+        ],
+        "title": "Investigate a duplicate form submission",
+        "prompt": "Write a reproducible bug investigation with quoted evidence, a divider, ordered reproduction, bounded constraints, a fix plan, regression acceptance, and a verification checklist.",
+        "target": "# Duplicate form submission investigation\n\nA settings form sometimes sends the same update twice when the submit button is pressed again before the first request finishes.\n\n## Evidence\n\n> One click produces one request, but a fast second click produces another request before the first response returns.\n\n---\n\n## Reproduction\n\n1. Open the notification settings form\n2. Change one preference\n3. Submit the form twice in quick succession\n4. Review the recorded requests and final status\n\n## Constraints\n\n- Preserve the current request payload\n- Keep validation messages visible\n- Allow another attempt after a failed request\n\n## Fix plan\n\n1. Add a focused test for an in-flight submission\n2. Disable repeated submission while the request is pending\n3. Restore the action after success or failure\n\n## Regression acceptance\n\n- One completed action produces one update request\n- A failed request can be submitted again\n- Existing required-field messages still appear\n\n## Open decision\n\n> Decide whether the pending state needs a text label in addition to the disabled action.\n\n## Verification checklist\n\n- Run `npm test -- settings-submit`\n- Run `npm run typecheck`",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-duplicate-form-submission-investigation-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7,
+            "priority": 15,
+            "feedback": "Use exactly 7 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-evidence-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "thematic-break"
+              }
+            ],
+            "exact": true,
+            "priority": 30,
+            "feedback": "Put one direct blockquote followed by one Markdown divider in the first H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-evidence",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 35,
+            "feedback": "Put a nonempty blockquote in the first H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-reproduction",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least four steps in the second H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-constraints",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least three items in the third H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-fix-plan",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-regression-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the sixth H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct checklist in the final H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-verification-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 95,
+            "feedback": "Use an unordered list of at least two checks in the final H2 section."
+          },
+          {
+            "id": "l4-duplicate-form-submission-investigation-verification-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 2,
+            "requireNonemptyContent": true,
+            "priority": 100,
+            "feedback": "Add at least two nonempty inline-code items to the final checklist."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and seven ## sections; keep the observed evidence in a blockquote followed by a Markdown divider.",
+          "Use at least four numbered reproduction steps, three constraint bullets, three numbered fix steps, and three regression bullets.",
+          "End with a quoted open decision and a bullet verification checklist containing at least two nonempty inline-code items."
+        ],
+        "retryFamily": "level4-bug-investigation-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "bug-investigation"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "form-submission-investigation"
+          ],
+          "terms": [
+            "duplicate request",
+            "submit state",
+            "reproduction path",
+            "regression check"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "duplicate-form-submission",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-editor-save-status-spec",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "development-spec-outline",
+          "dependency-reference",
+          "constraint-blockquote",
+          "ordered-implementation",
+          "acceptance-list",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "An interface feature specification separates scope, dependencies, constraints, implementation, acceptance, and verification.",
+          "howTo": "Use one H1, six H2 sections, bullets for scope and acceptance, a linked dependency with inline code, a quoted constraint, ordered implementation, and a fenced verification block.",
+          "example": "# Interface change\n\nDescribe the outcome.\n\n## Scope\n\n- Include one view\n- Preserve one state\n- Handle an empty result\n\n## Dependencies\n\nFollow the [interface guide](/guides/interface) for `ControlState`.\n\n## Constraints\n\n> Keep the current request contract.\n\n## Implementation\n\n1. Add the state\n2. Connect the control\n3. Cover the result\n\n## Acceptance\n\n- The control is reachable\n- Refresh keeps the choice\n- Empty results remain clear\n\n## Verification\n\n```sh\nnpm test -- interface-change\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "[ ]( )",
+          "`",
+          ">",
+          "1.",
+          "```sh"
+        ],
+        "title": "Define an editor save-status feature",
+        "prompt": "Turn the save-status request into a structured interface specification with dependencies, constraints, implementation steps, acceptance items, and verification.",
+        "target": "# Editor save status\n\nShow a compact save status in the note editor so a writer can distinguish unsaved, saving, saved, and paused work.\n\n## Scope\n\n- Add one status label to the editor header\n- Reflect the state already reported by the save controller\n- Keep the label readable during a temporary connection pause\n\n## Dependencies\n\nUse the [editor status pattern](/guides/editor-status) with the existing `SaveState` value.\n\n## Constraints\n\n> Do not create another timer or a second owner for the saved note state.\n\n## Implementation\n\n1. Map each save state to one short label\n2. Render the label beside the document title\n3. Cover state changes with focused component tests\n\n## Acceptance criteria\n\n- A new edit changes the label from saved to unsaved\n- An active save shows a distinct saving state\n- A connection pause does not claim that the note was saved\n\n## Verification\n\n```sh\nnpm test -- editor-save-status\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-editor-save-status-spec-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-editor-save-status-spec-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-editor-save-status-spec-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-editor-save-status-spec-scope",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-dependency-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": false,
+            "allowAutolinks": false,
+            "priority": 40,
+            "feedback": "Add a descriptive Markdown link with a destination in the second H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-dependency-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 45,
+            "feedback": "Add at least one nonempty inline-code item in the second H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-constraint",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Put a direct nonempty blockquote in the third H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-implementation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 80,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-editor-save-status-spec-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 90,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Use bullets for scope, a linked dependency with inline code, a quoted constraint, and numbered implementation steps.",
+          "Finish with acceptance bullets and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-feature-interface-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "feature-interface"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "note-editor-save-status"
+          ],
+          "terms": [
+            "save state",
+            "status label",
+            "offline pause",
+            "unsaved edit"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "editor-save-status",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-lost-pagination-cursor-investigation",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "investigation-outline",
+          "evidence-blockquote",
+          "markdown-divider",
+          "ordered-reproduction",
+          "regression-acceptance",
+          "verification-checklist"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A bug investigation specification preserves observed evidence, a reproducible path, bounded constraints, a fix plan, regression acceptance, and verification checks.",
+          "howTo": "Use one H1, seven H2 sections, a quoted observation with a divider, ordered reproduction and fix steps, bullet constraints and regression checks, an open-decision quote, and a verification checklist with inline code.",
+          "example": "# Repeat-action investigation\n\nDescribe the observed behavior.\n\n## Evidence\n\n> The action appears twice after one click.\n\n---\n\n## Reproduction\n\n1. Open the form\n2. Enter a value\n3. Submit once\n4. Review the result\n\n## Constraints\n\n- Keep the request shape\n- Preserve keyboard use\n- Avoid a second state owner\n\n## Fix plan\n\n1. Add a focused test\n2. Guard the action\n3. Remove the duplicate path\n\n## Regression acceptance\n\n- One action creates one result\n- A failed action can be tried again\n- Existing validation still appears\n\n## Open decision\n\n> Decide when the action becomes available again.\n\n## Verification checklist\n\n- Run `npm test -- repeat-action`\n- Run `npm run typecheck`"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "---",
+          "1.",
+          "-",
+          "`"
+        ],
+        "title": "Trace a lost pagination cursor",
+        "prompt": "Create a structured bug investigation for pagination state with reproducible evidence and a two-item inline-code verification checklist.",
+        "target": "# Lost pagination cursor investigation\n\nReturning from a project detail page can reset the project list to its first page instead of restoring the page the reader left.\n\n## Evidence\n\n> The browser returns to the list route, but the next page cursor is missing from the restored list state.\n\n---\n\n## Reproduction\n\n1. Open the second page of the project list\n2. Select a project near the middle of the page\n3. Use the browser back action from the detail view\n4. Compare the restored page and list position\n\n## Constraints\n\n- Keep the current route names\n- Preserve active list filters\n- Avoid storing the complete result set in history\n\n## Fix plan\n\n1. Add a navigation fixture with a second-page cursor\n2. Save the cursor in the existing list route state\n3. Restore the cursor before requesting the list page\n\n## Regression acceptance\n\n- Back navigation restores the prior page\n- A new list visit still starts on the first page\n- Changing filters clears an incompatible cursor\n\n## Open decision\n\n> Decide whether the exact row position should also be restored after the page loads.\n\n## Verification checklist\n\n- Run `npm test -- project-pagination`\n- Run `npm run test:e2e -- list-return`",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-lost-pagination-cursor-investigation-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7,
+            "priority": 15,
+            "feedback": "Use exactly 7 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-evidence-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "thematic-break"
+              }
+            ],
+            "exact": true,
+            "priority": 30,
+            "feedback": "Put one direct blockquote followed by one Markdown divider in the first H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-evidence",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 35,
+            "feedback": "Put a nonempty blockquote in the first H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-reproduction",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least four steps in the second H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-constraints",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least three items in the third H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-fix-plan",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-regression-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the sixth H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct checklist in the final H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-verification-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 95,
+            "feedback": "Use an unordered list of at least two checks in the final H2 section."
+          },
+          {
+            "id": "l4-lost-pagination-cursor-investigation-verification-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 2,
+            "requireNonemptyContent": true,
+            "priority": 100,
+            "feedback": "Add at least two nonempty inline-code items to the final checklist."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and seven ## sections; keep the observed evidence in a blockquote followed by a Markdown divider.",
+          "Use at least four numbered reproduction steps, three constraint bullets, three numbered fix steps, and three regression bullets.",
+          "End with a quoted open decision and a bullet verification checklist containing at least two nonempty inline-code items."
+        ],
+        "retryFamily": "level4-bug-investigation-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "bug-investigation"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "pagination-cursor-investigation"
+          ],
+          "terms": [
+            "page cursor",
+            "detail return",
+            "list position",
+            "history state"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "lost-pagination-cursor",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
         "schemaVersion": 2,
         "id": "l4-notification-retry-spec",
         "level": 4,
@@ -20826,6 +22650,1134 @@
         "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
       },
       {
+        "id": "l4-nullable-column-backfill-migration",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "migration-outline",
+          "three-stage-hierarchy",
+          "rollback-plan",
+          "acceptance-list",
+          "open-decision",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A staged migration specification makes prerequisites, three bounded stages, rollback, acceptance, an open decision, and verification easy to inspect.",
+          "howTo": "Use one H1, six H2 sections, an unordered precondition list, exactly three H3 migration stages with bullet tasks, ordered rollback, bullet acceptance, a quoted open decision, and a fenced verification block.",
+          "example": "# Setting-name migration\n\nDescribe the compatible change.\n\n## Preconditions\n\n- Find current readers\n- Record the fallback\n- Add fixtures\n\n## Migration stages\n\n### Add compatibility\n\n- Read both names\n- Write the new name\n\n### Move callers\n\n- Update the form\n- Update the worker\n\n### Remove the old path\n\n- Delete the alias\n- Update the guide\n\n## Rollback\n\n1. Restore the alias\n2. Restore callers\n3. Run focused checks\n\n## Acceptance\n\n- Existing values still load\n- New values use one name\n- Tests cover both paths\n\n## Open decision\n\n> Decide how long compatibility remains.\n\n## Verification\n\n```sh\nnpm test -- setting-name\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "###",
+          "-",
+          "1.",
+          ">",
+          "```sh"
+        ],
+        "title": "Structure a nullable-column backfill",
+        "prompt": "Create a staged data migration specification with three explicit H3 stages, reversible work, acceptance items, an open decision, and verification.",
+        "target": "# Nullable display-name backfill\n\nPopulate the optional project display-name column before the application begins using it as the preferred label.\n\n## Preconditions\n\n- Count rows with a missing display name\n- Record the existing project-name fallback\n- Prepare a repeatable backfill fixture\n\n## Migration stages\n\n### Add compatible reads\n\n- Prefer the display name when it exists\n- Keep the project name as the fallback\n\n### Backfill rows\n\n- Process missing values in bounded batches\n- Record the completed batch cursor\n\n### Switch new writes\n\n- Populate the display name for new projects\n- Keep the fallback while old rows remain\n\n## Rollback\n\n1. Restore project name as the preferred label\n2. Pause the next backfill batch\n3. Preserve the migration journal for review\n\n## Acceptance criteria\n\n- Repeating a completed batch does not change filled rows\n- Missing values keep a readable fallback\n- New projects receive a display name\n\n## Open decision\n\n> Decide when the column can become required for new records.\n\n## Verification\n\n```sh\nnpm test -- display-name-backfill\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-nullable-column-backfill-migration-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-stage-count",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 3,
+            "min": 3,
+            "max": 3,
+            "priority": 25,
+            "feedback": "Use exactly three H3 stage headings in this migration specification."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-preconditions",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-migration-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 3
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 40,
+            "feedback": "Use exactly three H3 stages, each followed directly by one list, in the second H2 section."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-stage-1",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least two items under H3 stage 1."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-stage-2",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 1
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 51,
+            "feedback": "Use an unordered list of at least two items under H3 stage 2."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-stage-3",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 3,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 52,
+            "feedback": "Use an unordered list of at least two items under H3 stage 3."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-rollback",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the third H2 section."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fourth H2 section."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the fifth H2 section."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-nullable-column-backfill-migration-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 100,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Inside the migration section, add exactly three ### stage headings with at least two bullet tasks under each one.",
+          "Add numbered rollback steps, acceptance bullets, a quoted open decision, and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-staged-migration-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "staged-migration"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "nullable-column-migration"
+          ],
+          "terms": [
+            "nullable column",
+            "backfill batch",
+            "fallback value",
+            "migration journal"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "nullable-column-backfill",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-offline-retry-banner-investigation",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "investigation-outline",
+          "evidence-blockquote",
+          "markdown-divider",
+          "ordered-reproduction",
+          "regression-acceptance",
+          "verification-checklist"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A bug investigation specification preserves observed evidence, a reproducible path, bounded constraints, a fix plan, regression acceptance, and verification checks.",
+          "howTo": "Use one H1, seven H2 sections, a quoted observation with a divider, ordered reproduction and fix steps, bullet constraints and regression checks, an open-decision quote, and a verification checklist with inline code.",
+          "example": "# Repeat-action investigation\n\nDescribe the observed behavior.\n\n## Evidence\n\n> The action appears twice after one click.\n\n---\n\n## Reproduction\n\n1. Open the form\n2. Enter a value\n3. Submit once\n4. Review the result\n\n## Constraints\n\n- Keep the request shape\n- Preserve keyboard use\n- Avoid a second state owner\n\n## Fix plan\n\n1. Add a focused test\n2. Guard the action\n3. Remove the duplicate path\n\n## Regression acceptance\n\n- One action creates one result\n- A failed action can be tried again\n- Existing validation still appears\n\n## Open decision\n\n> Decide when the action becomes available again.\n\n## Verification checklist\n\n- Run `npm test -- repeat-action`\n- Run `npm run typecheck`"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "---",
+          "1.",
+          "-",
+          "`"
+        ],
+        "title": "Investigate an offline retry banner",
+        "prompt": "Write an investigation spec for a banner that remains visible after recovery, using the full evidence-to-verification anatomy.",
+        "target": "# Offline retry banner investigation\n\nThe editor can keep showing its offline retry banner after a paused save succeeds when the connection becomes available again.\n\n## Evidence\n\n> The saved status returns, but the offline banner remains above the editor until the page is refreshed.\n\n---\n\n## Reproduction\n\n1. Open a note in the editor\n2. Pause the test connection\n3. Make an edit and wait for the offline banner\n4. Restore the connection and observe the completed retry\n\n## Constraints\n\n- Keep the current retry limit\n- Preserve unsaved text during the connection pause\n- Use the existing save-state owner\n\n## Fix plan\n\n1. Add a test for a successful retry after recovery\n2. Derive banner visibility from the current save state\n3. Remove the stale local banner flag\n\n## Regression acceptance\n\n- The banner appears while the save is paused\n- A successful retry removes the banner\n- A failed retry keeps a useful visible status\n\n## Open decision\n\n> Decide whether a brief recovered message should replace the banner after success.\n\n## Verification checklist\n\n- Run `npm test -- offline-save-banner`\n- Run `npm run typecheck`",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-offline-retry-banner-investigation-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7,
+            "priority": 15,
+            "feedback": "Use exactly 7 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-evidence-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "thematic-break"
+              }
+            ],
+            "exact": true,
+            "priority": 30,
+            "feedback": "Put one direct blockquote followed by one Markdown divider in the first H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-evidence",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 35,
+            "feedback": "Put a nonempty blockquote in the first H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-reproduction",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least four steps in the second H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-constraints",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least three items in the third H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-fix-plan",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-regression-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the sixth H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct checklist in the final H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-verification-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 95,
+            "feedback": "Use an unordered list of at least two checks in the final H2 section."
+          },
+          {
+            "id": "l4-offline-retry-banner-investigation-verification-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 2,
+            "requireNonemptyContent": true,
+            "priority": 100,
+            "feedback": "Add at least two nonempty inline-code items to the final checklist."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and seven ## sections; keep the observed evidence in a blockquote followed by a Markdown divider.",
+          "Use at least four numbered reproduction steps, three constraint bullets, three numbered fix steps, and three regression bullets.",
+          "End with a quoted open decision and a bullet verification checklist containing at least two nonempty inline-code items."
+        ],
+        "retryFamily": "level4-bug-investigation-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "bug-investigation"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "offline-banner-investigation"
+          ],
+          "terms": [
+            "offline banner",
+            "retry result",
+            "connection recovery",
+            "visible status"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "offline-retry-banner",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-project-archive-spec",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "development-spec-outline",
+          "dependency-reference",
+          "constraint-blockquote",
+          "ordered-implementation",
+          "acceptance-list",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "An interface feature specification separates scope, dependencies, constraints, implementation, acceptance, and verification.",
+          "howTo": "Use one H1, six H2 sections, bullets for scope and acceptance, a linked dependency with inline code, a quoted constraint, ordered implementation, and a fenced verification block.",
+          "example": "# Interface change\n\nDescribe the outcome.\n\n## Scope\n\n- Include one view\n- Preserve one state\n- Handle an empty result\n\n## Dependencies\n\nFollow the [interface guide](/guides/interface) for `ControlState`.\n\n## Constraints\n\n> Keep the current request contract.\n\n## Implementation\n\n1. Add the state\n2. Connect the control\n3. Cover the result\n\n## Acceptance\n\n- The control is reachable\n- Refresh keeps the choice\n- Empty results remain clear\n\n## Verification\n\n```sh\nnpm test -- interface-change\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "[ ]( )",
+          "`",
+          ">",
+          "1.",
+          "```sh"
+        ],
+        "title": "Structure a project archive feature",
+        "prompt": "Create a bounded interface spec for archiving completed projects with a linked dependency, quoted constraint, ordered work, acceptance items, and verification.",
+        "target": "# Project archive action\n\nAdd a reversible archive action for completed projects while keeping active work visible in the normal project list.\n\n## Scope\n\n- Offer the action only from a completed project\n- Ask for confirmation before changing the project state\n- Keep archived projects available from the archive view\n\n## Dependencies\n\nFollow the [project state guide](/guides/project-state) and reuse the `ProjectStatus` model.\n\n## Constraints\n\n> This change archives a project; it does not permanently delete project content.\n\n## Implementation\n\n1. Add the archive action to the completed-project menu\n2. Connect the confirmation step to the existing state update\n3. Add the archived state to the archive view query\n\n## Acceptance criteria\n\n- Canceling confirmation leaves the project unchanged\n- An archived project leaves the active project list\n- Restoring a project returns it to the completed list\n\n## Verification\n\n```sh\nnpm test -- project-archive\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-project-archive-spec-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-project-archive-spec-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-project-archive-spec-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-project-archive-spec-scope",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-dependency-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": false,
+            "allowAutolinks": false,
+            "priority": 40,
+            "feedback": "Add a descriptive Markdown link with a destination in the second H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-dependency-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 45,
+            "feedback": "Add at least one nonempty inline-code item in the second H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-constraint",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Put a direct nonempty blockquote in the third H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-implementation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 80,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-project-archive-spec-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 90,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Use bullets for scope, a linked dependency with inline code, a quoted constraint, and numbered implementation steps.",
+          "Finish with acceptance bullets and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-feature-interface-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "feature-interface"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "project-archiving"
+          ],
+          "terms": [
+            "archive action",
+            "confirmation step",
+            "restore period",
+            "active project"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "project-archive-action",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-project-list-export-spec",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "development-spec-outline",
+          "dependency-reference",
+          "constraint-blockquote",
+          "ordered-implementation",
+          "acceptance-list",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "An interface feature specification separates scope, dependencies, constraints, implementation, acceptance, and verification.",
+          "howTo": "Use one H1, six H2 sections, bullets for scope and acceptance, a linked dependency with inline code, a quoted constraint, ordered implementation, and a fenced verification block.",
+          "example": "# Interface change\n\nDescribe the outcome.\n\n## Scope\n\n- Include one view\n- Preserve one state\n- Handle an empty result\n\n## Dependencies\n\nFollow the [interface guide](/guides/interface) for `ControlState`.\n\n## Constraints\n\n> Keep the current request contract.\n\n## Implementation\n\n1. Add the state\n2. Connect the control\n3. Cover the result\n\n## Acceptance\n\n- The control is reachable\n- Refresh keeps the choice\n- Empty results remain clear\n\n## Verification\n\n```sh\nnpm test -- interface-change\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "[ ]( )",
+          "`",
+          ">",
+          "1.",
+          "```sh"
+        ],
+        "title": "Specify a project-list export",
+        "prompt": "Write an interface feature spec with bounded scope, an explicit dependency, a constraint, ordered implementation, acceptance items, and verification.",
+        "target": "# Project list export\n\nAdd a download action for the currently displayed project list without changing how the list is filtered or sorted.\n\n## Scope\n\n- Export only the rows shown by the active filters\n- Include the columns visible in the current view\n- Show a clear empty result when no rows are available\n\n## Dependencies\n\nFollow the [project list interface guide](/guides/project-list) and reuse the existing `ProjectRow` type.\n\n## Constraints\n\n> Keep filtering, sorting, and row selection in the current list owner.\n\n## Implementation\n\n1. Add the download action beside the list controls\n2. Map visible rows and columns into the export format\n3. Start the browser download with a clear file name\n\n## Acceptance criteria\n\n- Active filters affect the downloaded rows\n- Hidden columns do not appear in the file\n- An empty list does not create a misleading file\n\n## Verification\n\n```sh\nnpm test -- project-list-export\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-project-list-export-spec-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-project-list-export-spec-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-project-list-export-spec-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-project-list-export-spec-scope",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-dependency-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": false,
+            "allowAutolinks": false,
+            "priority": 40,
+            "feedback": "Add a descriptive Markdown link with a destination in the second H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-dependency-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 45,
+            "feedback": "Add at least one nonempty inline-code item in the second H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-constraint",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Put a direct nonempty blockquote in the third H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-implementation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 80,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-project-list-export-spec-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 90,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Use bullets for scope, a linked dependency with inline code, a quoted constraint, and numbered implementation steps.",
+          "Finish with acceptance bullets and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-feature-interface-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "feature-interface"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "project-list-export"
+          ],
+          "terms": [
+            "export format",
+            "visible columns",
+            "download name",
+            "empty result"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "project-list-export",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
         "schemaVersion": 2,
         "id": "l4-search-filter-spec",
         "level": 4,
@@ -21005,6 +23957,550 @@
         "contentVariant": "search-filter",
         "flavor": "standard",
         "sourceBatchId": "2026-07-19-milestone-1-foundation-001"
+      },
+      {
+        "id": "l4-stale-permission-badge-investigation",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "investigation-outline",
+          "evidence-blockquote",
+          "markdown-divider",
+          "ordered-reproduction",
+          "regression-acceptance",
+          "verification-checklist"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "A bug investigation specification preserves observed evidence, a reproducible path, bounded constraints, a fix plan, regression acceptance, and verification checks.",
+          "howTo": "Use one H1, seven H2 sections, a quoted observation with a divider, ordered reproduction and fix steps, bullet constraints and regression checks, an open-decision quote, and a verification checklist with inline code.",
+          "example": "# Repeat-action investigation\n\nDescribe the observed behavior.\n\n## Evidence\n\n> The action appears twice after one click.\n\n---\n\n## Reproduction\n\n1. Open the form\n2. Enter a value\n3. Submit once\n4. Review the result\n\n## Constraints\n\n- Keep the request shape\n- Preserve keyboard use\n- Avoid a second state owner\n\n## Fix plan\n\n1. Add a focused test\n2. Guard the action\n3. Remove the duplicate path\n\n## Regression acceptance\n\n- One action creates one result\n- A failed action can be tried again\n- Existing validation still appears\n\n## Open decision\n\n> Decide when the action becomes available again.\n\n## Verification checklist\n\n- Run `npm test -- repeat-action`\n- Run `npm run typecheck`"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "---",
+          "1.",
+          "-",
+          "`"
+        ],
+        "title": "Investigate a stale access badge",
+        "prompt": "Structure an investigation for a stale interface badge using evidence, reproduction, constraints, a fix plan, regression acceptance, an open decision, and inline-code checks.",
+        "target": "# Stale access badge investigation\n\nThe member list can keep an old access badge after a team owner changes a coworker's project role in the same session.\n\n## Evidence\n\n> The detail panel shows the new role while the member-list badge continues to show the earlier role.\n\n---\n\n## Reproduction\n\n1. Open a project member list\n2. Change one test member from viewer to editor\n3. Close the detail panel\n4. Compare the list badge with the updated detail value\n\n## Constraints\n\n- Preserve the existing role update request\n- Keep one source for the member collection\n- Avoid a full page reload after every change\n\n## Fix plan\n\n1. Add a fixture for the updated member response\n2. Update the shared collection after the request succeeds\n3. Remove the separate badge-only cache path\n\n## Regression acceptance\n\n- The list and detail panel show the same role after an update\n- Canceling an edit leaves both views unchanged\n- Reloading the page preserves the updated role\n\n## Open decision\n\n> Decide whether another open member panel should refresh immediately or when it becomes active.\n\n## Verification checklist\n\n- Run `npm test -- member-role-badge`\n- Run `npm run typecheck`",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-stale-permission-badge-investigation-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 7,
+            "max": 7,
+            "priority": 15,
+            "feedback": "Use exactly 7 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-evidence-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "thematic-break"
+              }
+            ],
+            "exact": true,
+            "priority": 30,
+            "feedback": "Put one direct blockquote followed by one Markdown divider in the first H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-evidence",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 35,
+            "feedback": "Put a nonempty blockquote in the first H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-reproduction",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 4,
+            "requireNonemptyItems": true,
+            "priority": 40,
+            "feedback": "Use an ordered list of at least four steps in the second H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-constraints",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 50,
+            "feedback": "Use an unordered list of at least three items in the third H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-fix-plan",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-regression-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-open-decision",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "requireNonemptyContent": true,
+            "priority": 80,
+            "feedback": "Put a direct nonempty blockquote in the sixth H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              }
+            ],
+            "exact": true,
+            "priority": 90,
+            "feedback": "Keep only the H2 heading and one direct checklist in the final H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-verification-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "ordered": false,
+            "minItems": 2,
+            "requireNonemptyItems": true,
+            "priority": 95,
+            "feedback": "Use an unordered list of at least two checks in the final H2 section."
+          },
+          {
+            "id": "l4-stale-permission-badge-investigation-verification-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 6
+            },
+            "min": 2,
+            "requireNonemptyContent": true,
+            "priority": 100,
+            "feedback": "Add at least two nonempty inline-code items to the final checklist."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title and seven ## sections; keep the observed evidence in a blockquote followed by a Markdown divider.",
+          "Use at least four numbered reproduction steps, three constraint bullets, three numbered fix steps, and three regression bullets.",
+          "End with a quoted open decision and a bullet verification checklist containing at least two nonempty inline-code items."
+        ],
+        "retryFamily": "level4-bug-investigation-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "bug-investigation"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "access-badge-investigation"
+          ],
+          "terms": [
+            "display badge",
+            "membership update",
+            "cached view",
+            "refresh boundary"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "stale-permission-badge",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
+      },
+      {
+        "id": "l4-table-density-spec",
+        "schemaVersion": 2,
+        "level": 4,
+        "familyId": "executable-development-spec",
+        "skillIds": [
+          "development-spec-outline",
+          "dependency-reference",
+          "constraint-blockquote",
+          "ordered-implementation",
+          "acceptance-list",
+          "verification-code"
+        ],
+        "difficulty": "makeover",
+        "teachingMode": "recall",
+        "teaching": {
+          "concept": "An interface feature specification separates scope, dependencies, constraints, implementation, acceptance, and verification.",
+          "howTo": "Use one H1, six H2 sections, bullets for scope and acceptance, a linked dependency with inline code, a quoted constraint, ordered implementation, and a fenced verification block.",
+          "example": "# Interface change\n\nDescribe the outcome.\n\n## Scope\n\n- Include one view\n- Preserve one state\n- Handle an empty result\n\n## Dependencies\n\nFollow the [interface guide](/guides/interface) for `ControlState`.\n\n## Constraints\n\n> Keep the current request contract.\n\n## Implementation\n\n1. Add the state\n2. Connect the control\n3. Cover the result\n\n## Acceptance\n\n- The control is reachable\n- Refresh keeps the choice\n- Empty results remain clear\n\n## Verification\n\n```sh\nnpm test -- interface-change\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "[ ]( )",
+          "`",
+          ">",
+          "1.",
+          "```sh"
+        ],
+        "title": "Write a table-density specification",
+        "prompt": "Write an interface feature spec for a table-density control with clear scope, a dependency, a quoted constraint, ordered work, acceptance items, and verification.",
+        "target": "# Table density setting\n\nLet people choose comfortable or compact row spacing for the shared project table without hiding any table content.\n\n## Scope\n\n- Add two density choices to the table controls\n- Apply the choice to header and body rows together\n- Restore the saved preference when the view opens\n\n## Dependencies\n\nUse the [table control pattern](/guides/table-controls) and the existing `TableDensity` value.\n\n## Constraints\n\n> Density changes spacing only; columns, labels, and row actions remain available.\n\n## Implementation\n\n1. Add the density control to the table toolbar\n2. Map each choice to the shared spacing tokens\n3. Save and restore the selected preference\n\n## Acceptance criteria\n\n- Both choices update all table rows\n- Refreshing the view preserves the selected density\n- A missing preference uses the comfortable default\n\n## Verification\n\n```sh\nnpm test -- table-density\nnpm run typecheck\n```",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l4-table-density-spec-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "paragraph"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              }
+            ],
+            "priority": 10,
+            "feedback": "Use one document title, an opening paragraph, and the Goal's section block order."
+          },
+          {
+            "id": "l4-table-density-spec-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 6,
+            "max": 6,
+            "priority": 15,
+            "feedback": "Use exactly 6 H2 sections in this development specification."
+          },
+          {
+            "id": "l4-table-density-spec-hierarchy",
+            "kind": "heading-depth-order",
+            "allowSkippedDepths": false,
+            "priority": 20,
+            "feedback": "Keep heading levels in order: move from H1 to H2 and H3 without skipping a level."
+          },
+          {
+            "id": "l4-table-density-spec-scope",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 30,
+            "feedback": "Use an unordered list of at least three items in the first H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-dependency-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": false,
+            "allowAutolinks": false,
+            "priority": 40,
+            "feedback": "Add a descriptive Markdown link with a destination in the second H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-dependency-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "requireNonemptyContent": true,
+            "priority": 45,
+            "feedback": "Add at least one nonempty inline-code item in the second H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-constraint",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Put a direct nonempty blockquote in the third H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-implementation",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 3
+            },
+            "ordered": true,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 60,
+            "feedback": "Use an ordered list of at least three steps in the fourth H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-acceptance",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 4
+            },
+            "ordered": false,
+            "minItems": 3,
+            "requireNonemptyItems": true,
+            "priority": 70,
+            "feedback": "Use an unordered list of at least three items in the fifth H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-verification-section",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              }
+            ],
+            "exact": true,
+            "priority": 80,
+            "feedback": "Keep only the H2 heading and one direct code block in the final H2 section."
+          },
+          {
+            "id": "l4-table-density-spec-verification-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 5
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "priority": 90,
+            "feedback": "Use one fenced, language-tagged code block in the final H2 section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 and H3 for sections."
+          }
+        ],
+        "hints": [
+          "Start with one # title, an opening paragraph, and six ## sections.",
+          "Use bullets for scope, a linked dependency with inline code, a quoted constraint, and numbered implementation steps.",
+          "Finish with acceptance bullets and one fenced, language-tagged verification block."
+        ],
+        "retryFamily": "level4-feature-interface-spec",
+        "reviewTags": [
+          "one-document-title",
+          "logical-heading-order",
+          "feature-interface"
+        ],
+        "vocabulary": {
+          "profile": "development-spec",
+          "domains": [
+            "data-table-density"
+          ],
+          "terms": [
+            "display density",
+            "row spacing",
+            "saved preference",
+            "default view"
+          ]
+        },
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "contentVariant": "table-density-setting",
+        "flavor": "standard",
+        "sourceBatchId": "2026-07-19-l4-development-specs-012"
       },
       {
         "schemaVersion": 2,
@@ -22083,5 +25579,5 @@
       }
     ]
   },
-  "projectionDigest": "f0ad6b75b1893f260412cddf672920c7fc060366a02b5c8afa38170e9a6e23e3"
+  "projectionDigest": "7191d47b7cfae33e8487eefa2e4948cb0735cf19afc4dfab91dc7b112eefdea5"
 }

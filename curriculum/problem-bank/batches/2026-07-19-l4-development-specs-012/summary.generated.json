@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l4-development-specs-012",
+  "status": "published",
+  "batchDigest": "5e03747f907dd72e712db2e783d6b729d8381632be8a8d8cfe7fd8d7aa76d69d",
+  "bankDigest": "de68b5c803888b027a87f015deb117d068862e965052ab3543ddac05c391c7d2",
+  "projectionDigest": "7191d47b7cfae33e8487eefa2e4948cb0735cf19afc4dfab91dc7b112eefdea5",
+  "trackerDigest": "e85f91934d740e26a7dedafaa878215530a0db03604d773c831ff1b3f25499d9",
+  "generated": 12,
+  "accepted": 12,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 100,
+      "2": 100,
+      "3": 28,
+      "4": 16,
+      "5": 4
+    },
+    "byFamily": {
+      "agent-ready-work-order": 4,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 16,
+      "headings": 32,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "links": 24,
+      "lists": 48,
+      "readable-human-document": 28
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/headings": 16,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "3/readable-human-document": 28,
+      "4/executable-development-spec": 16,
+      "5/agent-ready-work-order": 4
+    },
+    "byFlavor": {
+      "standard": 248
+    }
+  },
+  "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab",
+  "reviewDigests": [
+    "05f516cea538333e4e15524b23864fcd4fa2605ac4acf0af1926207b85e6a60e",
+    "f401934250f753ddd4e3fbde3c774f329e97f0fe964898addd93a84864d8af44"
+  ],
+  "editorialDigest": "a52e7c15fd3ea2f6b917b259a63a2af5cc41e61981d1ba7529e6c813fa858ce5",
+  "summaryDigest": "7afffe80c6fa7c4949ae1dd6f3ee79e7ae40367229ce31987922038696458555"
+}

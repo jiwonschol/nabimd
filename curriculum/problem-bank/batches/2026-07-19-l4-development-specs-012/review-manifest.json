@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-19-l4-development-specs-012",
+  "normalizedArtifactDigest": "d6222b2f4fb78fea41a9ee5ecb1f6e53f0f2e4c9f7cf4446ca7889be99cc72d1",
+  "fixtureArtifactDigest": "173a30ee7801c2c19215293c827fb1c094933dbc9e6872347e0568c6d85330b8",
+  "verificationDigest": "1fa14301b4d4d7ca4b7cd5da4c7297d72739135d5288699c4ae3427f0ae0e4f1",
+  "entries": [
+    {
+      "candidateId": "l4-api-field-deprecation-migration",
+      "revision": 1,
+      "candidateDigest": "167e819c2afaaa0ea41632e4a97aa87d3475aafa04a6c452754b589572e239db",
+      "problemDigest": "478fa292017134d3b987e7349985f35243a84788c705345fa628620f9f0223ff",
+      "fixtureDefinitionDigest": "d21cb000815fe39e80830ccc520f4547b120c138abe0221bfd30a5e577a66c2b",
+      "fixtureResultsDigest": "b587f968962282a6f7fba82c601642249330236e9918158e48095ad821024244",
+      "fixtureCount": 40,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-cache-namespace-migration",
+      "revision": 1,
+      "candidateDigest": "f184069cc27d01b7e7e0b4a157a48f5639aa130679b818e756d610e3555793ae",
+      "problemDigest": "6622d2c2aef0fd3a3123ab16b3a8529f7e87789c2a462731b1dab95ba544be21",
+      "fixtureDefinitionDigest": "1cce1c2e7046c1f9c79fb400aa9dcc98136cad1f9098e9cb94cbf9076048f4b2",
+      "fixtureResultsDigest": "b4769ac2ee614c2d085380011f7eaecee8ca21ae7d6ac29068244a18b59964c8",
+      "fixtureCount": 40,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-configuration-key-migration",
+      "revision": 1,
+      "candidateDigest": "3a1075379e289869ec870b27c213a3d077242d073d368a26a84bb8e7402deb03",
+      "problemDigest": "c8f87f7150e202485fed75197d4693df8278f27e38239aafcea6783506c2bf7c",
+      "fixtureDefinitionDigest": "abfa352f2dc99f675ed6ec117c97896cdf7ca180da3e38ba21215f84c6827290",
+      "fixtureResultsDigest": "bf40b4e272c9cd8a0ad12198c8e5f2de89c26eb033bbfe8e582ffa82fbbe333a",
+      "fixtureCount": 40,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-duplicate-form-submission-investigation",
+      "revision": 1,
+      "candidateDigest": "56393234520ac1e64b1bd3ae92d18b1e0e4cf444d6eca1dc5fe1b93eb5188264",
+      "problemDigest": "ebd4aef0cc4337f57f2ae863fbca95c0b61bd9052ca768ea4eac31a865b89298",
+      "fixtureDefinitionDigest": "526edd5eca825bfb9e7b8aab7b0fe62c111552e7d58f7dd6d0a45a999f9935a6",
+      "fixtureResultsDigest": "92c3fac7388c123ab762c067ea1a7db16a60c528ca8cbe4028bc76a763f35902",
+      "fixtureCount": 43,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-editor-save-status-spec",
+      "revision": 1,
+      "candidateDigest": "0631965e6a2e17bee4eb71cb1e948a65bbafc914f6b725583f106cd327357bc0",
+      "problemDigest": "beee49fb472ef6a04f0417ecf7ca9ce4afc8d0f83f998a0e1549d24d23140c13",
+      "fixtureDefinitionDigest": "22863eaba261e159a6197770c7f85578e4c85f5389fc23decc8711f0423e5dd2",
+      "fixtureResultsDigest": "37dfd501b186ba413cdaeedc7015f22af310afa2de4493cd17b357527415896b",
+      "fixtureCount": 39,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-lost-pagination-cursor-investigation",
+      "revision": 1,
+      "candidateDigest": "1073524510fb0ca4f3668f1963d16aede9eb13741c084fa28755ccf559b1fd97",
+      "problemDigest": "2ed43fc266e1975c838344316a785e009bfdac743ec5e840c09a851e154344e4",
+      "fixtureDefinitionDigest": "f3749f2e323115ca3ecd17120b59eacb12e267d3e80ab9080fcc83bf693ff533",
+      "fixtureResultsDigest": "1544f0236051c88fd3914fe60f306e5c5d765f9b63f53885baf568f4138bbde1",
+      "fixtureCount": 43,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-nullable-column-backfill-migration",
+      "revision": 1,
+      "candidateDigest": "d877f098c414d48bfb8c1e5c6237fd3e3532a44f30c7c739624f2be6d4ca8eac",
+      "problemDigest": "daa4628babc9b5079f0a747d79be583048c9e7663749ecf830bee50031b19d7a",
+      "fixtureDefinitionDigest": "73059b8e11c71025960b8b6710d4dcf80b1f7949a12c77e75d0d96a120b0798d",
+      "fixtureResultsDigest": "f9a55b27dbe9c5467f43dcbbf9be2fc860950aa1b388adec48c2054030d37a7c",
+      "fixtureCount": 40,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-offline-retry-banner-investigation",
+      "revision": 1,
+      "candidateDigest": "a6a093de1354c9db89e7826af83969303812b31e154d803fc6e5bb5918c61072",
+      "problemDigest": "80023d8a2766e57e4a3a4b5b4a541cfde825d17ea4742a28501bbf78641df23b",
+      "fixtureDefinitionDigest": "c05aae4d2005c896e3519f093c7315454af635415ddce77369d9cfc289980498",
+      "fixtureResultsDigest": "fcb33b18dd7a7c7a8259a5391113b8e7616bb50a796ecd17f5d53e59a280d7fe",
+      "fixtureCount": 43,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-project-archive-spec",
+      "revision": 1,
+      "candidateDigest": "1f0b551b8432fbaf796edc6375e8471e9ca3d93d415b830c4fc8c2e148195347",
+      "problemDigest": "ca6f08ad6ce1a521b7e8f3b53b6f93935910c89c13faa3e965f9bb32590ba7dd",
+      "fixtureDefinitionDigest": "180f16b5253db807cba17f4777c0e5bf2019d0954f5db859d15295d15a954a00",
+      "fixtureResultsDigest": "b45722a5b652a471aea5e2fd5f3475f40b74233b755c44a94b5a8268d068af26",
+      "fixtureCount": 39,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-project-list-export-spec",
+      "revision": 1,
+      "candidateDigest": "406fbbc693eb985c45dd0c4dbf022f8c7f35024db770d7067128ce95fe75be0c",
+      "problemDigest": "1d3a252656f9f17444b748e320896eb769df1f8ed03ede4ef187ada22f7b0df5",
+      "fixtureDefinitionDigest": "f8abd223ce00de4d96d4d3425255289a335363220dfaf451aae2576526f6cb1e",
+      "fixtureResultsDigest": "f4e53a22397b7685ccf8a9fd0006d97f0366dc5de726a1230d1aa30f927ad225",
+      "fixtureCount": 39,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-stale-permission-badge-investigation",
+      "revision": 1,
+      "candidateDigest": "dce546445e46d6fa0fa01b646e0eddb6ea3d382da0d781af6ee3cbc719712eff",
+      "problemDigest": "ba87649127930514b8ff8b69caca729ffbd18944f665760a674d45b5fe1e93ad",
+      "fixtureDefinitionDigest": "93ab4f9974a9b893bd158046d203f5631a9399e398d63529e0b393a20193bb5f",
+      "fixtureResultsDigest": "38ca175117288f67722cc569760865805bf70c13761fb6800c1c4bd9224b117c",
+      "fixtureCount": 43,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    },
+    {
+      "candidateId": "l4-table-density-spec",
+      "revision": 1,
+      "candidateDigest": "ab2670222b8b4a15afe76a86513366b6eefcd4c80366d3b68119fb7d3f12ab10",
+      "problemDigest": "fe2429877b8b463a5816f6ee7a1898aa73824e0055881f79df5f6b2bcba8ca42",
+      "fixtureDefinitionDigest": "ed699aed039c9828354b7e1a242f1fb7a305feeef212017d9c45bdb824d888f6",
+      "fixtureResultsDigest": "9d6acbc81ba6f57738bcd8a521da78b18f5f5cb4dfaa9b082f5e4fa0a6324ea6",
+      "fixtureCount": 39,
+      "engineContractDigest": "c875a0323bea22fdd83bb8ba7d214da36b6769ecb7fe89730ab2d211d1391fc8"
+    }
+  ],
+  "manifestDigest": "f4bf9a7241dbe6da2113c13fcaac21d5f5593988674cebaf21e4f2f5e6bcb9ab"
+}
