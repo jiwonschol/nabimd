@@ -1786,16 +1786,20 @@ requires every teaching example to differ from its Goal, all derived evidence
 was deleted, and both independent mechanical reviews restarted from zero.
 
 Final manifest
-`719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde`
-contains 24 accepted candidates and 596 frozen real-engine fixtures. Atlas
-replayed every fixture plus 732 fresh probes; Orchid independently replayed
-every fixture plus 696 fresh probes. Both proved all 12 Level 2 variants
+`2ea7c49635f0d3d5afe3298f795b5dfb439fda82198b2c2e8b4fce9c141948d9`
+contains 24 accepted candidates and 620 frozen real-engine fixtures. The first
+PR-head CodeRabbit review found that a NUL in the fence's info string could
+incorrectly consume a literal replacement character from the visible body.
+The bug was reproduced before the fix; 24 new edge fixtures now freeze that
+boundary, and all mechanical and editorial evidence was regenerated again.
+Atlas replayed every fixture plus 756 fresh probes; Orchid independently
+replayed every fixture plus 744 fresh probes. Both proved all 12 Level 2 variants
 reachable across 256 seeds with no adjacent-family, duplicate, or determinism
 violation. The separate editorial rerun accepted 24/24. Publication raises the
 deterministic bank from 272 to 296, split 124/124/28/16/4, and records fenced
 code blocks as a CommonMark-compatible syntax family supported by Devpost
 without claiming complete Markdown or GFM coverage. The exact published tree
-passed 9,105 unit and component tests, every immutable batch and repository
+passed 9,129 unit and component tests, every immutable batch and repository
 gate, typechecking, the production build and bundle inspection, plus all 13
 Chromium user journeys including keyboard-only completion through the new
 Level 2 code-block challenges.

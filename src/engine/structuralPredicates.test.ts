@@ -798,6 +798,10 @@ describe("structural match predicates", () => {
       status: "matched",
       reviewItems: [],
     })
+    expect(evaluateProblem(visible, "```\u0000\n\uFFFD\n```")).toEqual({
+      status: "matched",
+      reviewItems: [],
+    })
     expect(evaluateProblem(visible, "    Pack lunch")).toEqual({
       status: "matched",
       reviewItems: [],

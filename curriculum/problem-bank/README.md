@@ -13,7 +13,7 @@ carries 1,272, the first Level 3 readable-document expansion carries 212, and
 the second Level 3 composite-document expansion carries 252.
 The first Level 4 development-spec expansion carries 488.
 The first Level 1 italic and Level 2 rebuild expansion carries 420, and the
-first Level 1 code-block and Level 2 code-block-rebuild expansion carries 596.
+first Level 1 code-block and Level 2 code-block-rebuild expansion carries 620.
 Each immutable batch has two sealed independent reviews and one separate
 editorial decision.
 

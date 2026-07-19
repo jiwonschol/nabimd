@@ -165,6 +165,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-book-label-opener-null-literal-replacement",
+      "problemId": "l1-code-block-book-label",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-book-label-ordered-list-container",
       "problemId": "l1-code-block-book-label",
       "problemRevision": 1,
@@ -411,6 +420,15 @@
       "problemRevision": 1,
       "role": "edge-case",
       "source": "```\n\u0000Different everyday words 4\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-code-block-bus-stop-opener-null-literal-replacement",
+      "problemId": "l1-code-block-bus-stop",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -665,6 +683,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-door-sign-opener-null-literal-replacement",
+      "problemId": "l1-code-block-door-sign",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-door-sign-ordered-list-container",
       "problemId": "l1-code-block-door-sign",
       "problemRevision": 1,
@@ -911,6 +938,15 @@
       "problemRevision": 1,
       "role": "edge-case",
       "source": "```\n\u0000Different everyday words 8\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-code-block-garden-tag-opener-null-literal-replacement",
+      "problemId": "l1-code-block-garden-tag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1165,6 +1201,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-laundry-note-opener-null-literal-replacement",
+      "problemId": "l1-code-block-laundry-note",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-laundry-note-ordered-list-container",
       "problemId": "l1-code-block-laundry-note",
       "problemRevision": 1,
@@ -1411,6 +1456,15 @@
       "problemRevision": 1,
       "role": "edge-case",
       "source": "```\n\u0000Different everyday words 11\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-code-block-music-note-opener-null-literal-replacement",
+      "problemId": "l1-code-block-music-note",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1665,6 +1719,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-pet-note-opener-null-literal-replacement",
+      "problemId": "l1-code-block-pet-note",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-pet-note-ordered-list-container",
       "problemId": "l1-code-block-pet-note",
       "problemRevision": 1,
@@ -1911,6 +1974,15 @@
       "problemRevision": 1,
       "role": "edge-case",
       "source": "```\n\u0000Different everyday words 5\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-code-block-phone-reminder-opener-null-literal-replacement",
+      "problemId": "l1-code-block-phone-reminder",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2165,6 +2237,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-picnic-label-opener-null-literal-replacement",
+      "problemId": "l1-code-block-picnic-label",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-picnic-label-ordered-list-container",
       "problemId": "l1-code-block-picnic-label",
       "problemRevision": 1,
@@ -2411,6 +2492,15 @@
       "problemRevision": 1,
       "role": "edge-case",
       "source": "```\n\u0000Different everyday words 9\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-code-block-shoe-box-opener-null-literal-replacement",
+      "problemId": "l1-code-block-shoe-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -2665,6 +2755,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-snack-label-opener-null-literal-replacement",
+      "problemId": "l1-code-block-snack-label",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-snack-label-ordered-list-container",
       "problemId": "l1-code-block-snack-label",
       "problemRevision": 1,
@@ -2915,6 +3014,15 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-code-block-weather-message-opener-null-literal-replacement",
+      "problemId": "l1-code-block-weather-message",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l1-code-block-weather-message-ordered-list-container",
       "problemId": "l1-code-block-weather-message",
       "problemRevision": 1,
@@ -3145,6 +3253,15 @@
       "source": "# Morning alarm\n\n```\n\u0000\n```\n\n1. Get up\n2. Open the curtains\n3. Make breakfast",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-code-block-alarm-routine-code"
+    },
+    {
+      "id": "l2-code-block-alarm-routine-opener-null-literal-replacement",
+      "problemId": "l2-code-block-alarm-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Morning alarm\n\n```\u0000\n�\n```\n\n1. Get up\n2. Open the curtains\n3. Make breakfast",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
     },
     {
       "id": "l2-code-block-alarm-routine-outside-comment-lookalike",
@@ -3380,6 +3497,15 @@
       "expectedFeedbackId": "l2-code-block-bus-reference-code"
     },
     {
+      "id": "l2-code-block-bus-reference-opener-null-literal-replacement",
+      "problemId": "l2-code-block-bus-reference",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Bus card\n\n```\u0000\n�\n```\n\n- North stop\n- Main Street",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l2-code-block-bus-reference-outside-comment-lookalike",
       "problemId": "l2-code-block-bus-reference",
       "problemRevision": 1,
@@ -3611,6 +3737,15 @@
       "source": "# Emergency contact\n\n```\n\u0000\n```\n\n- Call first\n- Leave a message",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-code-block-contact-reference-code"
+    },
+    {
+      "id": "l2-code-block-contact-reference-opener-null-literal-replacement",
+      "problemId": "l2-code-block-contact-reference",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Emergency contact\n\n```\u0000\n�\n```\n\n- Call first\n- Leave a message",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
     },
     {
       "id": "l2-code-block-contact-reference-outside-comment-lookalike",
@@ -3856,6 +3991,15 @@
       "expectedFeedbackId": "l2-code-block-door-copy-code"
     },
     {
+      "id": "l2-code-block-door-copy-opener-null-literal-replacement",
+      "problemId": "l2-code-block-door-copy",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Door message\n\n> Copy this note for the front door.\n\n```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l2-code-block-door-copy-outside-comment-lookalike",
       "problemId": "l2-code-block-door-copy",
       "problemRevision": 1,
@@ -4067,6 +4211,15 @@
       "source": "# Grocery pickup\n\n```\n\u0000\n```\n\n- Bring a bag\n- Check the receipt",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-code-block-grocery-reference-code"
+    },
+    {
+      "id": "l2-code-block-grocery-reference-opener-null-literal-replacement",
+      "problemId": "l2-code-block-grocery-reference",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Grocery pickup\n\n```\u0000\n�\n```\n\n- Bring a bag\n- Check the receipt",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
     },
     {
       "id": "l2-code-block-grocery-reference-outside-comment-lookalike",
@@ -4312,6 +4465,15 @@
       "expectedFeedbackId": "l2-code-block-guest-copy-code"
     },
     {
+      "id": "l2-code-block-guest-copy-opener-null-literal-replacement",
+      "problemId": "l2-code-block-guest-copy",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Guest message\n\n> Copy this note for the spare room.\n\n```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l2-code-block-guest-copy-outside-comment-lookalike",
       "problemId": "l2-code-block-guest-copy",
       "problemRevision": 1,
@@ -4533,6 +4695,15 @@
       "source": "# Library message\n\n> Copy this note for the book cart.\n\n```\n\u0000\n```",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-code-block-library-copy-code"
+    },
+    {
+      "id": "l2-code-block-library-copy-opener-null-literal-replacement",
+      "problemId": "l2-code-block-library-copy",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Library message\n\n> Copy this note for the book cart.\n\n```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
     },
     {
       "id": "l2-code-block-library-copy-outside-comment-lookalike",
@@ -4758,6 +4929,15 @@
       "expectedFeedbackId": "l2-code-block-lunch-copy-code"
     },
     {
+      "id": "l2-code-block-lunch-copy-opener-null-literal-replacement",
+      "problemId": "l2-code-block-lunch-copy",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Lunch label\n\n> Copy this note for the lunch bag.\n\n```\u0000\n�\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l2-code-block-lunch-copy-outside-comment-lookalike",
       "problemId": "l2-code-block-lunch-copy",
       "problemRevision": 1,
@@ -4969,6 +5149,15 @@
       "source": "# Movie setup\n\n```\n\u0000\n```\n\n1. Turn on the screen\n2. Choose the input\n3. Start the movie",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-code-block-movie-routine-code"
+    },
+    {
+      "id": "l2-code-block-movie-routine-opener-null-literal-replacement",
+      "problemId": "l2-code-block-movie-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Movie setup\n\n```\u0000\n�\n```\n\n1. Turn on the screen\n2. Choose the input\n3. Start the movie",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
     },
     {
       "id": "l2-code-block-movie-routine-outside-comment-lookalike",
@@ -5204,6 +5393,15 @@
       "expectedFeedbackId": "l2-code-block-package-routine-code"
     },
     {
+      "id": "l2-code-block-package-routine-opener-null-literal-replacement",
+      "problemId": "l2-code-block-package-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Package pickup\n\n```\u0000\n�\n```\n\n1. Bring the key\n2. Open the locker\n3. Take the box",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l2-code-block-package-routine-outside-comment-lookalike",
       "problemId": "l2-code-block-package-routine",
       "problemRevision": 1,
@@ -5437,6 +5635,15 @@
       "expectedFeedbackId": "l2-code-block-pet-reference-code"
     },
     {
+      "id": "l2-code-block-pet-reference-opener-null-literal-replacement",
+      "problemId": "l2-code-block-pet-reference",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Pet care card\n\n```\u0000\n�\n```\n\n- Fill the water bowl\n- Close the gate",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
       "id": "l2-code-block-pet-reference-outside-comment-lookalike",
       "problemId": "l2-code-block-pet-reference",
       "problemRevision": 1,
@@ -5668,6 +5875,15 @@
       "source": "# Plant timer\n\n```\n\u0000\n```\n\n1. Check the soil\n2. Add water\n3. Empty the tray",
       "expectedStatus": "fail",
       "expectedFeedbackId": "l2-code-block-plant-routine-code"
+    },
+    {
+      "id": "l2-code-block-plant-routine-opener-null-literal-replacement",
+      "problemId": "l2-code-block-plant-routine",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Plant timer\n\n```\u0000\n�\n```\n\n1. Check the soil\n2. Add water\n3. Empty the tray",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
     },
     {
       "id": "l2-code-block-plant-routine-outside-comment-lookalike",

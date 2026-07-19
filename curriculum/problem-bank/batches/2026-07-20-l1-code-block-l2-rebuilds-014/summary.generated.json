@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
   "status": "published",
-  "batchDigest": "13665e7c07f38e7109fcf4c12556001b044523fa2bb2a58e6c6ca2229d302467",
-  "bankDigest": "03b4cdcbfd53639192ae8e305db129670b0c2c97bd5e17fb238e7ff9343ef7f7",
-  "projectionDigest": "df35a86a6484e415701d887bd351314bef214633dad96bc0a389bea4791730c4",
-  "trackerDigest": "3c9277bad5b34fcce1d128a329a3ab1d26f1d13ea2a502b3fb7933cd1ca60f03",
+  "batchDigest": "0db21213f4d54b1bea9ce25c6b3d4ebda8308cedb2f0607256d6c4f16cd9e258",
+  "bankDigest": "a0e6802fc15550542cfabc34fbe5d347084c7f48bb70a607dcc56605092caf41",
+  "projectionDigest": "ce0b7133d2f4b8558ecae760cd8b21a9ef4cb0a650b29a5fa08506ea83e227c0",
+  "trackerDigest": "6a9b852953716ffc5cb84a69f01e9488d2e0f8638354517a9e7d8080e71fd978",
   "generated": 24,
   "accepted": 24,
   "rejected": 0,
@@ -61,11 +61,11 @@
       "standard": 296
     }
   },
-  "manifestDigest": "719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde",
+  "manifestDigest": "2ea7c49635f0d3d5afe3298f795b5dfb439fda82198b2c2e8b4fce9c141948d9",
   "reviewDigests": [
-    "686c77f4212fea73feb7f7fccc8fe848f9409eea4226b28cfcc2fadcb05df4db",
-    "8dcdddf6df23d8dd5f98c0e7fb12a75afcac1705d71c1884d44be99a5a60a3bd"
+    "b40e0f2c8aa18a2ef79e4891721f64d3a96f5d4c7caae81aaeead1e523eac768",
+    "e151c7b64813f6afa717a195a88e9f511515e74141ccb0d6bf53f2d2fb1be41c"
   ],
-  "editorialDigest": "cb271b05e51819bfd3cf7ff523252f1640ccf152e284fa7c5025d33a53cebb60",
-  "summaryDigest": "e279a5f308b178a459332ec45186c014a413e000687d2dee08cfe2b0633b0481"
+  "editorialDigest": "fbb0c479df24cea892d81b2ba5735353e0d36aba392a0202f02ca5d36c735ec3",
+  "summaryDigest": "4a03687b9178844e0ec04fe648d53e5de356ad13c39656211761a88387692435"
 }

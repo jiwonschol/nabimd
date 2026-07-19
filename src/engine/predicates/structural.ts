@@ -519,7 +519,14 @@ function codeBlockPasses(
 }
 
 function codeBlockHasMeaningfulContent(node: Code, source: string): boolean {
-  const rawNullCount = [...sourceForNode(node, source)].filter(
+  let rawContent = sourceForNode(node, source)
+  if (isFencedCode(source, node)) {
+    const lines = rawContent.split(/\r\n?|\n/)
+    lines.shift()
+    if (isClosedFencedCode(source, node)) lines.pop()
+    rawContent = lines.join("\n")
+  }
+  const rawNullCount = [...rawContent].filter(
     (character) => character === "\u0000",
   ).length
   let remainingNullReplacements = rawNullCount

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "03b4cdcbfd53639192ae8e305db129670b0c2c97bd5e17fb238e7ff9343ef7f7",
+  "bankDigest": "a0e6802fc15550542cfabc34fbe5d347084c7f48bb70a607dcc56605092caf41",
   "acceptedTotal": 296,
   "counts": {
     "byLevel": {
@@ -177,12 +177,12 @@
     {
       "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
       "sequence": 14,
-      "batchDigest": "13665e7c07f38e7109fcf4c12556001b044523fa2bb2a58e6c6ca2229d302467",
+      "batchDigest": "0db21213f4d54b1bea9ce25c6b3d4ebda8308cedb2f0607256d6c4f16cd9e258",
       "generated": 24,
       "accepted": 24,
       "rejected": 0,
       "blocked": 0
     }
   ],
-  "trackerDigest": "3c9277bad5b34fcce1d128a329a3ab1d26f1d13ea2a502b3fb7933cd1ca60f03"
+  "trackerDigest": "6a9b852953716ffc5cb84a69f01e9488d2e0f8638354517a9e7d8080e71fd978"
 }

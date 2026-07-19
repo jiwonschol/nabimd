@@ -2,231 +2,447 @@
   "schemaVersion": 2,
   "batchId": "2026-07-20-l1-code-block-l2-rebuilds-014",
   "editorialActor": "codex-editorial-batch014",
-  "editorialRunId": "editorial-batch014-final-seal-2026-07-20-001",
+  "editorialRunId": "editorial-batch014-latest-seal-2026-07-20-001",
   "reviewedOn": "2026-07-20",
   "reviewTimezone": "Asia/Seoul",
-  "manifestDigest": "719c0074c5bf2dd573e8c5956d3dcafc17b2640ae319b74975bbcae3e2ba2bde",
+  "manifestDigest": "2ea7c49635f0d3d5afe3298f795b5dfb439fda82198b2c2e8b4fce9c141948d9",
   "decisions": [
     {
       "candidateId": "l1-code-block-book-label",
       "revision": 1,
       "candidateDigest": "02113545c0bef5f72386e4de4a71495a6e5efc4d18701a2ffde7f09d35036251",
-      "fixtureResultsDigest": "87cd15534d1216f8835466969a4bae5e3ee3d8b04df9850f3e309cb656568e27",
+      "fixtureResultsDigest": "a5e570fefb08f9e21f09b5a0f0dac2ecef9e707a8e14d6b247a646584c3af485",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Return on Tuesday is a natural, familiar reminder that isolates one closed code block; the Keep dry teaching example uses different prose."
     },
     {
       "candidateId": "l1-code-block-bus-stop",
       "revision": 1,
       "candidateDigest": "be7f71bffd197811974082646cfa97bc3530b358876f5b110a586092530ff384",
-      "fixtureResultsDigest": "d2b94ba33bc8f13a06532351d6a536bdb3d06817715923b3b761f8499839a22d",
+      "fixtureResultsDigest": "9091e8261012c364885c95c2bf420c9973294496384ef17fb130c9a9fddd8568",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Meet at Oak Street is concise US-English location language with no specialist knowledge and one unambiguous fenced-block goal."
     },
     {
       "candidateId": "l1-code-block-door-sign",
       "revision": 1,
       "candidateDigest": "eae3957441ff117ddd39d1a57e5773924fcaa04ab0b0ea0c844108ad2f876c1f",
-      "fixtureResultsDigest": "9c67b77e4caa33f613834a0c3e28ac925750e3a6bba1ca1d9fa1d5b92b258ffb",
+      "fixtureResultsDigest": "12604e434fcb3090ff23b36fcc55d9387b93f6e25410aba52dbb59d3da9a54b5",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Back soon is an immediately recognizable door message; it no longer duplicates the teaching example, which is now Keep dry."
     },
     {
       "candidateId": "l1-code-block-garden-tag",
       "revision": 1,
       "candidateDigest": "d307e52da52f5b990fe91f16249d4b45ab50612bf0c5214f0924aedb75854f89",
-      "fixtureResultsDigest": "c4b6ac72aaa9cc402bd60e2b16b11a2fa07b4d638899e5981bf6bc50116a2bb6",
+      "fixtureResultsDigest": "f553414e572891b7217d0940d20b146a9d21498bdba5f213af01442534846340",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Water every morning is simple plant-care language and keeps first exposure focused on visible opening and closing fences."
     },
     {
       "candidateId": "l1-code-block-laundry-note",
       "revision": 1,
       "candidateDigest": "171cfa3df750a38bedfe41de4952d3078ebb65f115fa5a43f5f6c72f04f3d639",
-      "fixtureResultsDigest": "6aa93539ec543382733b33f345a641829d29739da8bd1428f571e9b79c50f312",
+      "fixtureResultsDigest": "5c12906707538f7665835ba74708f6d7dc486877be92c076781105d9194acc16",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Wash in cold water is standard care-label wording, age-neutral, and short enough for a Level 1 fenced-code introduction."
     },
     {
       "candidateId": "l1-code-block-music-note",
       "revision": 1,
       "candidateDigest": "123ed52f104390aba332120c06bf1760e92eb22bea00c548e85cddd8de8f7937",
-      "fixtureResultsDigest": "a8b17e308bfba1b363565ba32da50e65aa8d49521f5d38a6e6a57af18b72e706",
+      "fixtureResultsDigest": "f49b2f26e408a2658d37e1af05b7f959b47ca170e966e12ed528f07fef3ab984",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Play track three is natural everyday media language and adds topical breadth without adding structural difficulty."
     },
     {
       "candidateId": "l1-code-block-pet-note",
       "revision": 1,
       "candidateDigest": "c7a948dc128310c2c50f5868463c776d2d1b59ed07b9d342984a8f185ec3f6aa",
-      "fixtureResultsDigest": "2a83cec3c36ec99f5a7ab7c679a579429b6787bb99545c95e4e433109d778071",
+      "fixtureResultsDigest": "18e917b5057cf2cb5642a09490588978c98df545e972102db11865ef0e64c1d0",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Fresh water at noon is a clear pet-care reminder with familiar words and exactly one intended fenced block."
     },
     {
       "candidateId": "l1-code-block-phone-reminder",
       "revision": 1,
       "candidateDigest": "536a3e28098ee71313d8b7e6b1a0e28829fbe71a9a69767084f7df454d7fb017",
-      "fixtureResultsDigest": "447d0c517d850e608aac7db15f6c7cb4f3752483eadf40ca3dbaa5990ae1519e",
+      "fixtureResultsDigest": "7d74641865b5a82d363cfdd1790d294c09e80a651d8b9c5aa13bf2af0040422b",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Call after lunch is ordinary reminder language whose brevity lets the learner attend only to the fence syntax."
     },
     {
       "candidateId": "l1-code-block-picnic-label",
       "revision": 1,
       "candidateDigest": "01efdead9951b80adccda771a88da147205bb2f255cd37d8f6bf363cc91fb2be",
-      "fixtureResultsDigest": "38b673eb9b094ea5ec0c4ee44ca67cec9de2883787dc02860576df4e771c920e",
+      "fixtureResultsDigest": "29ddf6bdcfce788e1f837a5c141f3d67e5c9ba7cc109add2bd899f2be8120703",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Water and apples uses concrete picnic vocabulary, varies the content domain, and remains an easy single-line goal."
     },
     {
       "candidateId": "l1-code-block-shoe-box",
       "revision": 1,
       "candidateDigest": "2cb8e7b85cef98ca410b3b52242c069eec662d0ea473b595771a788927d23313",
-      "fixtureResultsDigest": "602ff269e27a92fccd3cd3e7775ec4faabea548929db1c57ca7eb89efeed9701",
+      "fixtureResultsDigest": "a1fecf0c6b21d9bc5056803aea3fc3040b5579acc86ffb0bf068734811d70d85",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Rain boots is a familiar two-word label and the shortest variant, providing useful repetition without target duplication."
     },
     {
       "candidateId": "l1-code-block-snack-label",
       "revision": 1,
       "candidateDigest": "3231ae62627840311cd38d8bc5384af75fe6c3d2a3697b48cacff733ae357564",
-      "fixtureResultsDigest": "93b559e73ffe2b0566b1ebf28dd2353335f917c50cbe123a3c13710e78587f0c",
+      "fixtureResultsDigest": "442e464b9fc502eb4b251070e43c9355bb919fefdb21545678e4f77d9538dd6e",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Nuts and raisins is plain food vocabulary and supplies a distinct label-like use case for the same fenced syntax."
     },
     {
       "candidateId": "l1-code-block-weather-message",
       "revision": 1,
       "candidateDigest": "9bf46f3d12c0da1855af8de4a3af5a0352d099c9a10607b1431a1390b029b506",
-      "fixtureResultsDigest": "e1e55a1ede368499d5d77d24bec1d3cd1f6868aa09a7ae9f5e88f01ba3f01a3f",
+      "fixtureResultsDigest": "5fc697a5246e4402209a7c61f9adf3e3814517622fd375abe311567028f9023b",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Bring a light jacket is natural weather advice, familiar to beginners, and structurally limited to one fenced line."
     },
     {
       "candidateId": "l2-code-block-alarm-routine",
       "revision": 1,
       "candidateDigest": "a7ca25cfa6e4bc1f9316dfd749bf8876838ca7b3f896c8e1f926b50cce8a1162",
-      "fixtureResultsDigest": "6be80f881bbc5a8281884968ebec2f1dee35d1b333bbde5bc9da01618cbbeb81",
+      "fixtureResultsDigest": "694bb86149c4eb190df542149d44fa4052e872a1f90f9f94f9110af91a5440bc",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The morning alarm document is a coherent H1-code-ordered-list routine; its Tea timer teaching example is structurally parallel but textually distinct."
     },
     {
       "candidateId": "l2-code-block-bus-reference",
       "revision": 1,
       "candidateDigest": "b879b5c20cb6e7487f2279104e0c1344afb16e8a61436658409050e4134a329d",
-      "fixtureResultsDigest": "550a4224450b9e3729838a21c0e6d40f9be2137bfa25c26d0dc76eb9b9d15c65",
+      "fixtureResultsDigest": "dc12156fd2072ebe9af96a502a261ce4a9055d108aa126af4a9f49fec8fa14c4",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Bus card, Route 8, and two location bullets form a plausible quick reference; the Library card example no longer repeats this target."
     },
     {
       "candidateId": "l2-code-block-contact-reference",
       "revision": 1,
       "candidateDigest": "ef2936c0aaa647c74abdbeeab43b94350cecd12fb2f9ceac0170ca4e43cf6ce4",
-      "fixtureResultsDigest": "28de5ddefa435697e866cbdb5c90960d3724203a8f6b3b78441b69b681ab2604",
+      "fixtureResultsDigest": "0dedad5e58e2e0eeefef2a3fa3b1652e18b4bfe1486dd9961c810fc66101e1eb",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The contact card uses a conventional fictional 555 number and clear follow-up bullets, teaching document shape without external factual claims."
     },
     {
       "candidateId": "l2-code-block-door-copy",
       "revision": 1,
       "candidateDigest": "ceb52403cbe8e0535baa953a39c2d82a2c2bc7d1daccd5d3b8791dcfb6d19538",
-      "fixtureResultsDigest": "170ac2d30e7948e3ea980003dbb450e798cbf1f5303365477b8496eb8285912d",
+      "fixtureResultsDigest": "aa7389e3d824dda8e7fe5c0cba059659113375f0b746e45e43214f454b130142",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The door note naturally separates a quoted instruction from the copy-ready message and gives a clear H1-blockquote-code rebuild."
     },
     {
       "candidateId": "l2-code-block-grocery-reference",
       "revision": 1,
       "candidateDigest": "a8babd19ab479af84475d76aadf7f51b506e4ec9a40a5b9f5b6f4831cee5e730",
-      "fixtureResultsDigest": "b031f71b24d85b4e5d9ffbf0e2a52a66c7061feb1dac5b58d67a1571876a2a4a",
+      "fixtureResultsDigest": "a412525cf9a951cf7e97fa3b35d3d91563d6ab488be72cb542bbe339075a631f",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Order A17 plus bag and receipt reminders is a realistic grocery pickup reference with familiar workplace-and-errand vocabulary."
     },
     {
       "candidateId": "l2-code-block-guest-copy",
       "revision": 1,
       "candidateDigest": "5bb6ca3d8a2694ce041a5fa1495f716cda5d616d3e53fed259df8675fe0cf76a",
-      "fixtureResultsDigest": "648a2048fd5f53c7fc4d682530f48dbfc3b5d260acc309cf3451975282c5f477",
+      "fixtureResultsDigest": "32678f5bda5153a7c654d8937bbcc98b5712cc37ec9ac84649d0c1965db604c3",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The spare-room cue and towel message are natural hospitality language and meaningfully vary the sample-note family."
     },
     {
       "candidateId": "l2-code-block-library-copy",
       "revision": 1,
       "candidateDigest": "8c9308911781726f55c899c4d3dd222de4433d813cfb769460336b05d80c2d49",
-      "fixtureResultsDigest": "8880284fdecf53388b449519f8ce7878724bd9a89cb488c3e48d195146ad2a60",
+      "fixtureResultsDigest": "cb62cdc8d1a06356f1c52752b07ce62807515a9ddfd24a49d41dc9f8de1c4905",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The book-cart cue and Returns go here message form a coherent library note using everyday institutional vocabulary."
     },
     {
       "candidateId": "l2-code-block-lunch-copy",
       "revision": 1,
       "candidateDigest": "f0f612b0ff9b09026e42f40a3ee7134959a229c022787b361a531b2ddf96a534",
-      "fixtureResultsDigest": "2e76fcee48588da9bc57d664533c144cac923ea507a49b2295d1859a053cf8ad",
+      "fixtureResultsDigest": "497d4cb27cc362fb37f5cea8e36a032577264f0289240cef0d286abdb8916e09",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Keep cold is exactly the kind of short copy-ready label the layout describes, paired with an understandable lunch-bag cue."
     },
     {
       "candidateId": "l2-code-block-movie-routine",
       "revision": 1,
       "candidateDigest": "f83b23dafcb9a5b4cbaded2f495c8ad4d37b36aa384c6d086434fc9d9f400a04",
-      "fixtureResultsDigest": "02a401c35c838d1cf45857a45d7f1512df044559086a8781d52cad060f99e4bd",
+      "fixtureResultsDigest": "9ec10aeb64d6bc64f3462320f48b93ddf58454c0e1d4e3e7bf0814e254b1f338",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The HDMI input value and three setup steps create a coherent home-movie routine while preserving the exact Level 2 anatomy."
     },
     {
       "candidateId": "l2-code-block-package-routine",
       "revision": 1,
       "candidateDigest": "805b20c7708ea2f10c89755963612c985e1a05ca6b0dfa60e0037f5041cacc1a",
-      "fixtureResultsDigest": "3397fa804b46853ab6d8d828bee7b7fe6851c2ac6d3c65a8d632099a687ad23c",
+      "fixtureResultsDigest": "93e1a1bd73dea3f58ce6bfec3a2ec415837240107794ec759fbab7cc1556ce26",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Locker 14 and the pickup steps are clear, concrete, and distinct from the other numbered routines without raising the reading level."
     },
     {
       "candidateId": "l2-code-block-pet-reference",
       "revision": 1,
       "candidateDigest": "e58c0bedaa8ea6878bf98f98553965e2fdb4427b9db13bdb7cfa3875ae58b29a",
-      "fixtureResultsDigest": "adf5058e9d38a5f1b52c7fd35cd8bd9773e77feb5d09b63ebe777d8214e92296",
+      "fixtureResultsDigest": "a01b73d130947e07d45c0df3ef2ab900b2e0df5df003655ac2230dcd045703ee",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "The food amount and two care reminders read as a practical pet card and provide meaningful quick-reference variation."
     },
     {
       "candidateId": "l2-code-block-plant-routine",
       "revision": 1,
       "candidateDigest": "a91511f4c742c2a67b4b49383d3108cf484cf668de7a2de1457bfb80e36ff3db",
-      "fixtureResultsDigest": "c5bfe1541da094f4bb1ffcd1b6db86ca574daff29c6cd688b31497ed0b7bb284",
+      "fixtureResultsDigest": "f50e54ab517a420d8f5b66aebfe8a39e4d6f676940634557b0823a4f666ec698",
       "status": "accepted",
-      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
       "notes": "Plant timer works as a compact routine label; the three-day interval and soil, water, and tray steps make the intended care sequence clear."
     }
   ],
   "reviewDigests": [
-    "686c77f4212fea73feb7f7fccc8fe848f9409eea4226b28cfcc2fadcb05df4db",
-    "8dcdddf6df23d8dd5f98c0e7fb12a75afcac1705d71c1884d44be99a5a60a3bd"
+    "b40e0f2c8aa18a2ef79e4891721f64d3a96f5d4c7caae81aaeead1e523eac768",
+    "e151c7b64813f6afa717a195a88e9f511515e74141ccb0d6bf53f2d2fb1be41c"
   ],
-  "editorialDigest": "cb271b05e51819bfd3cf7ff523252f1640ccf152e284fa7c5025d33a53cebb60"
+  "editorialDigest": "fbb0c479df24cea892d81b2ba5735353e0d36aba392a0202f02ca5d36c735ec3"
 }
