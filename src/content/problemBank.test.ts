@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
 import tracker from "../../curriculum/problem-bank/tracker.generated.json"
 import { blockquoteBatch006Fixtures } from "./batches/blockquoteBatch006Fixtures"
+import { advancedDocumentBatch017Fixtures } from "./batches/advancedDocumentBatch017Fixtures"
 import { codeBlockBatch014Fixtures } from "./batches/codeBlockBatch014Fixtures"
 import { developmentSpecBatch012Fixtures } from "./batches/developmentSpecBatch012Fixtures"
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
@@ -28,13 +29,13 @@ import { validateProblemBank } from "./validateProblemBank"
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(tracker.acceptedTotal).toBe(332)
+    expect(tracker.acceptedTotal).toBe(344)
     expect(tracker.counts.byLevel).toEqual({
       1: 136,
       2: 148,
-      3: 28,
-      4: 16,
-      5: 4,
+      3: 30,
+      4: 20,
+      5: 10,
     })
     expect(problemBank).toHaveLength(tracker.acceptedTotal)
     for (const level of [1, 2, 3, 4, 5] as const) {
@@ -79,6 +80,21 @@ describe("compiled five-level problem bank", () => {
         (problem) => problem.familyId === "rebuild-nested-list-documents",
       ),
     ).toHaveLength(12)
+    expect(
+      getProblemsForLevel(3).filter(
+        (problem) => problem.familyId === "readable-human-document",
+      ),
+    ).toHaveLength(trackedFamilies["readable-human-document"] ?? 0)
+    expect(
+      getProblemsForLevel(4).filter(
+        (problem) => problem.familyId === "executable-development-spec",
+      ),
+    ).toHaveLength(trackedFamilies["executable-development-spec"] ?? 0)
+    expect(
+      getProblemsForLevel(5).filter(
+        (problem) => problem.familyId === "agent-ready-work-order",
+      ),
+    ).toHaveLength(trackedFamilies["agent-ready-work-order"] ?? 0)
   })
 
   it("executes the generated runtime projection without a parallel source list", () => {
@@ -118,6 +134,7 @@ describe("compiled five-level problem bank", () => {
       ...codeBlockBatch014Fixtures,
       ...headingDepthBatch015Fixtures,
       ...nestedListBatch016Fixtures,
+      ...advancedDocumentBatch017Fixtures,
     ].filter(({ problemId }) => publishedProblemIds.has(problemId))
 
     expect(

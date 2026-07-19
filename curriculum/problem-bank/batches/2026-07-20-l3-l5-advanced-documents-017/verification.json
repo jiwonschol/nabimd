@@ -1,0 +1,3371 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l3-l5-advanced-documents-017",
+  "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9",
+  "candidates": [
+    {
+      "candidateId": "l3-badge-reader-impact-brief",
+      "revision": 1,
+      "candidateDigest": "9afefbdcc95338e81d1afc71cca0918b9110de093d2352d70d82249c91646d24",
+      "problemDigest": "50c44952254cfbc4f05047116592c8869c4068cfd217da56e2b5b279d6f66acd",
+      "fixtureDefinitionDigest": "727d3e30255ff7330f497b5f6bdbb21925b5c7065a929524505d3eb3b4de569d",
+      "fixtureResultsDigest": "571190981362d3785223a07df972c58831541866adeabcb6b2e6a698690a16f5",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l3-support-queue-impact-brief",
+      "revision": 1,
+      "candidateDigest": "54847fba0ff8a4cc13e677bab5b54898d87e7d7332fb174a19ee4cc48f56a74d",
+      "problemDigest": "228388231faa02b2849eb49303a26b3baa69a0c0ebc668ca7af98eccb329aed7",
+      "fixtureDefinitionDigest": "9f1cf76412191c80dd6a8eb64e9a01b1c2cc299832dd023993684eead0b20a98",
+      "fixtureResultsDigest": "4ce14f0b823288a0cccc10424850f5fbea22281dc3d75979b487af06b9011a5e",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-audit-archive-contract-spec",
+      "revision": 1,
+      "candidateDigest": "3b33217a3e745294f6956d6060c23ad301ef7cc05637e0751e77bfbe65025355",
+      "problemDigest": "1fc3260c00b3d14191999f55873b5227ed7631ed19cbc9791a7c695c158c3ec7",
+      "fixtureDefinitionDigest": "ac318cc69af5e392629e962777dad9abaf46e5448d3ffd276d863b5e1c86dcaf",
+      "fixtureResultsDigest": "799538e7e8048627face7b008a1c8aeee23f510c51a09f30607715250480e7f2",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-contact-import-contract-spec",
+      "revision": 1,
+      "candidateDigest": "4f27976703d7410cb6e3f8ec6fff100c07805d8fde3c10797de3b429b0270bd4",
+      "problemDigest": "490d741a5dd48b4ffc9fd9503904f0ee1e7c8278328b53ad1b7bea6cb21883f8",
+      "fixtureDefinitionDigest": "98b939250a13463fba0c44fbad1159d90f625894bb8b6f81465c3ffe50c35f1b",
+      "fixtureResultsDigest": "2211e56210514c60f6eab5d1d1f99fd892f1a0aab571f7d52d2bb6b01d45f924",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-customer-digest-contract-spec",
+      "revision": 1,
+      "candidateDigest": "7a41bbc451a800c012e6f16831a005d8f27ec337abfe1db654f778e6886bcdcd",
+      "problemDigest": "857aac028036fed99614ebae480004266d94d46d3203e69fe0a87509be408a18",
+      "fixtureDefinitionDigest": "5a239345270d827d0df05fe02cd8a6016fd664b8fddc9ce5159491020f380cbe",
+      "fixtureResultsDigest": "cceee5abcf48491ba1b6109f33aa05d7feaa4e0a8d7fa7a80d58ee383b8c2461",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-support-webhook-contract-spec",
+      "revision": 1,
+      "candidateDigest": "3e2c19c417304ee1dd1a10406adac031081f6a8664e240d737bd0274c1c10e5a",
+      "problemDigest": "c812b0935f074341dbc7372dec90e0bbfa76664afa0e807dc21d4fb6b978304e",
+      "fixtureDefinitionDigest": "58910760fdce822ddfaa33cfad4d8073ffb4913af4bf5cc3febc33c065f16fe8",
+      "fixtureResultsDigest": "0fe746665b03a4978aa078524f90f91296add5e0c0c1b13734c01870ec70cc69",
+      "fixtureCount": 18,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "db836f3bc80f212af1a4a2e9fd652b0cc99fbe441742e817a08626b9ba6bd5e4",
+      "problemDigest": "035419a6ec19de045ceb5b5f474c62775a2b3920a4f90564cf43462b15310efc",
+      "fixtureDefinitionDigest": "64f6b5630bfeadac16008b6d3732ed2e8764abcc4bade92ea92c8690c0ae89df",
+      "fixtureResultsDigest": "c82d9c7d5df24d7ba8b22398aa7b632ae26ad0513d775f4d87f08ae55f3c7103",
+      "fixtureCount": 20,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "dfbed715dd2141f64f7e570b5b9dc2b5264dcaba0d4b1e864652fb089e21a2e9",
+      "problemDigest": "8a1e0e72a01174c5a58c9d4e1e92f9e0844752ef68137899b325653bb4aaa4bc",
+      "fixtureDefinitionDigest": "fbf6a5943948783e859a8e2b84445912315210060e70cdf8760d16815598c82d",
+      "fixtureResultsDigest": "3021affec72504ba9fc60086c5e8034a7bec91b419e5f23bad3e5115ce435a78",
+      "fixtureCount": 23,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "36e0512b804eba5fc1665d9ae1332950a58f6b4648c778c67b163e78f1d8e7a0",
+      "problemDigest": "78ad12e07a50e81051c24027ac7c5622dafc06e8cd374efe43da2c217430e46d",
+      "fixtureDefinitionDigest": "53a7129a6846b48f486c3e708294951a568243b077d50b7c0c52f4b950a3ccd7",
+      "fixtureResultsDigest": "bd5dcfc7237bc6f4753c909909b5fd2b4cf36468ab83edd5b663bccde9b5fef6",
+      "fixtureCount": 20,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "0798f240c2538032ffab599c508d055cd6a6de431f89d870467da584190506ea",
+      "problemDigest": "f7a3ed2f9c5cfec2db5ee1beb612b4a4d0fe78cea3c7f6e3195822a8342ac065",
+      "fixtureDefinitionDigest": "efdc960433fd754ef159646bd89ae7fd13395141fd6f6f65accb251693d06618",
+      "fixtureResultsDigest": "1cfa2b5ae1b2a0f4c80f7731f7d5a796f256b793d735f39999a3236f6f3ce429",
+      "fixtureCount": 21,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "287aba5782848249a713d1bbe6dfc1690b7bf54583736d10407b8e544efc2207",
+      "problemDigest": "9381ea8bd6889364b1159bcceb5a182c3740df9be4d98e4e49efa072e0a84006",
+      "fixtureDefinitionDigest": "57ab732afcecde55d28b42e045335fcbd6ad438f7e2dd4be11f22065ef6dff9f",
+      "fixtureResultsDigest": "482cef907308af53de362f4b0ae9f3b48e226a1ad643a3d7c4d871f0e1533cab",
+      "fixtureCount": 23,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "4a47f9e26e724949eb4008cc0943ce52cbbe8a1fdb0fb4969ae28f2690061f1f",
+      "problemDigest": "87bda677c3a06af580089693275a576b8c8836f1ff7d0a785b1a002f8bbf9c3f",
+      "fixtureDefinitionDigest": "cd826628284640f70a6c8d0bac45fbb25dd8fe0aa117c123639751357a4d4e98",
+      "fixtureResultsDigest": "824d0fc70c84ad49dec59ff5b2960696692c89a7de93f2477ad263af89e50c5a",
+      "fixtureCount": 21,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-canonical",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-case-spelling",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-different-prose",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-duplicate-title-review",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-hierarchy",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-known-impact",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-known-impact"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-known-impact"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-observation",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-outline",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-owner",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-owner"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-owner"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-reference",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-reference"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-reference"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-response",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-response"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-response"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-fails-l3-badge-reader-impact-brief-sections",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-malformed-title",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-badge-reader-impact-brief-missing-title",
+      "problemId": "l3-badge-reader-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-badge-reader-impact-brief-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-canonical",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-case-spelling",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-different-prose",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-duplicate-title-review",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-hierarchy",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-known-impact",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-known-impact"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-known-impact"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-observation",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-outline",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-owner",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-owner"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-owner"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-reference",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-reference"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-reference"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-response",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-response"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-response"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-fails-l3-support-queue-impact-brief-sections",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-malformed-title",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l3-support-queue-impact-brief-missing-title",
+      "problemId": "l3-support-queue-impact-brief",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l3-support-queue-impact-brief-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-canonical",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-case-spelling",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-different-prose",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-duplicate-title-review",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-acceptance",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-acceptance"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-acceptance"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-dependency-code",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-dependency-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-dependency-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-dependency-link",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-dependency-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-dependency-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-failure-cases",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-failure-cases"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-failure-cases"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-failure-rule",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-failure-rule"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-failure-rule"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-hierarchy",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-implementation",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-implementation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-implementation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-outline",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-sections",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-surface",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-surface"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-surface"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-surface-code",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-surface-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-surface-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-fails-l4-audit-archive-contract-spec-verification",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-malformed-title",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-audit-archive-contract-spec-missing-title",
+      "problemId": "l4-audit-archive-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-audit-archive-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-canonical",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-case-spelling",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-different-prose",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-duplicate-title-review",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-acceptance",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-acceptance"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-acceptance"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-dependency-code",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-dependency-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-dependency-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-dependency-link",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-dependency-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-dependency-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-failure-cases",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-failure-cases"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-failure-cases"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-failure-rule",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-failure-rule"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-failure-rule"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-hierarchy",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-implementation",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-implementation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-implementation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-outline",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-sections",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-surface",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-surface"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-surface"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-surface-code",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-surface-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-surface-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-fails-l4-contact-import-contract-spec-verification",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-malformed-title",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-contact-import-contract-spec-missing-title",
+      "problemId": "l4-contact-import-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-contact-import-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-canonical",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-case-spelling",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-different-prose",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-duplicate-title-review",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-acceptance",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-acceptance"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-acceptance"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-dependency-code",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-dependency-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-dependency-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-dependency-link",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-dependency-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-dependency-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-failure-cases",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-failure-cases"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-failure-cases"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-failure-rule",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-failure-rule"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-failure-rule"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-hierarchy",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-implementation",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-implementation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-implementation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-outline",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-sections",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-surface",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-surface"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-surface"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-surface-code",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-surface-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-surface-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-fails-l4-customer-digest-contract-spec-verification",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-malformed-title",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-customer-digest-contract-spec-missing-title",
+      "problemId": "l4-customer-digest-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-customer-digest-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-canonical",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-case-spelling",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-different-prose",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-duplicate-title-review",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-acceptance",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-acceptance"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-acceptance"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-dependency-code",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-dependency-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-dependency-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-dependency-link",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-dependency-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-dependency-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-failure-cases",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-failure-cases"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-failure-cases"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-failure-rule",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-failure-rule"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-failure-rule"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-hierarchy",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-implementation",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-implementation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-implementation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-outline",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-sections",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-surface",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-surface"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-surface"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-surface-code",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-surface-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-surface-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-fails-l4-support-webhook-contract-spec-verification",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-malformed-title",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-support-webhook-contract-spec-missing-title",
+      "problemId": "l4-support-webhook-contract-spec",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-support-webhook-contract-spec-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-canonical",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-case-spelling",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-different-prose",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-duplicate-title-review",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-forbidden",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-forbidden"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-forbidden"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-hierarchy",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-outline",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-reading",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-reading"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-reading"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-regression",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-regression"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-regression"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-report",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-report"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-report"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-scope",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-scope"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-scope"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-scope-code",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-scope-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-scope-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-sections",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-stage-1",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-1"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-1"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-stage-2",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-2"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-2"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-stage-3",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-3"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-3"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-stage-count",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stage-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-fails-l5-analytics-adapter-refactor-work-order-stops",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stops"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-stops"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-malformed-title",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-analytics-adapter-refactor-work-order-missing-title",
+      "problemId": "l5-analytics-adapter-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-analytics-adapter-refactor-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-canonical",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-case-spelling",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-different-prose",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-duplicate-title-review",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-authority",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-authority"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-authority"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-compatibility",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-compatibility"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-compatibility"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-hierarchy",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-nested-system-map",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-nested-system-map"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-nested-system-map"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-outline",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-pause-rule",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-pause-rule"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-pause-rule"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-report",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-report"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-report"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-rollback",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-rollback"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-rollback"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-sections",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-stage-1",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-1"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-1"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-stage-2",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-2"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-2"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-stage-3",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-3"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-3"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-stage-count",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stage-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-stops",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stops"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-stops"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-system-map",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-system-map"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-system-map"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-verification",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-fails-l5-api-contract-rollout-work-order-verification-code",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-verification-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-verification-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-malformed-title",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-api-contract-rollout-work-order-missing-title",
+      "problemId": "l5-api-contract-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-api-contract-rollout-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-canonical",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-case-spelling",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-different-prose",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-duplicate-title-review",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-forbidden",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-forbidden"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-forbidden"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-hierarchy",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-outline",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-reading",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-reading"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-reading"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-regression",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-regression"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-regression"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-report",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-report"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-report"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-scope",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-scope"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-scope"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-scope-code",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-scope-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-scope-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-sections",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stage-1",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-1"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-1"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stage-2",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-2"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-2"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stage-3",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-3"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-3"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stage-count",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stage-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-fails-l5-date-format-refactor-work-order-stops",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stops"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-stops"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-malformed-title",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-date-format-refactor-work-order-missing-title",
+      "problemId": "l5-date-format-refactor-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-date-format-refactor-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-canonical",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-case-spelling",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-different-prose",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-duplicate-title-review",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-authority",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-authority"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-authority"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-constraints",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-constraints"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-constraints"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-evidence",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-evidence"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-evidence"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-evidence-divider",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-hierarchy",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-outline",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-report",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-report"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-report"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-rollback",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-rollback"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-rollback"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-sections",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-stage-1",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-1"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-1"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-stage-2",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-2"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-2"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-stage-3",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-3"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-3"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-stage-count",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stage-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-stops",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stops"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-stops"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-fails-l5-duplicate-job-recovery-work-order-verification",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-malformed-title",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-duplicate-job-recovery-work-order-missing-title",
+      "problemId": "l5-duplicate-job-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-duplicate-job-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-canonical",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-case-spelling",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-different-prose",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-duplicate-title-review",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-authority",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-authority"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-authority"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-compatibility",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-compatibility"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-compatibility"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-hierarchy",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-nested-system-map",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-nested-system-map"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-nested-system-map"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-outline",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-pause-rule",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-pause-rule"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-pause-rule"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-report",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-report"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-report"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-rollback",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-rollback"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-rollback"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-sections",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-stage-1",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-1"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-1"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-stage-2",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-2"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-2"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-stage-3",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-3"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-3"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-stage-count",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stage-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-stops",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stops"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-stops"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-system-map",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-system-map"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-system-map"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-verification",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-fails-l5-notification-schema-rollout-work-order-verification-code",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-verification-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-verification-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-malformed-title",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-notification-schema-rollout-work-order-missing-title",
+      "problemId": "l5-notification-schema-rollout-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-notification-schema-rollout-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-canonical",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-case-spelling",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-different-prose",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-duplicate-title-review",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "one-document-title"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-authority",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-authority"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-authority"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-constraints",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-constraints"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-constraints"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-evidence",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-evidence"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-evidence"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-evidence-divider",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-hierarchy",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-hierarchy"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-hierarchy"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-outline",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-report",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-report"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-report"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-rollback",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-rollback"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-rollback"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-sections",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-stage-1",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-1"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-1"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-stage-2",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-2"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-2"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-stage-3",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-3"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-3"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-stage-count",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-count"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stage-count"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-stops",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stops"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-stops"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-fails-l5-search-index-recovery-work-order-verification",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-verification"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-verification"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-malformed-title",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-search-index-recovery-work-order-missing-title",
+      "problemId": "l5-search-index-recovery-work-order",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-search-index-recovery-work-order-outline"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "ccc887bd6446abb380c52c3f847e10dd0c5fd7a9bb64401762840671f51677e8"
+}

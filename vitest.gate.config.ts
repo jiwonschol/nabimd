@@ -23,6 +23,7 @@ export default defineConfig({
       "scripts/problem-bank/codeBlockBatch014Artifacts.gate.ts",
       "scripts/problem-bank/headingDepthBatch015Artifacts.gate.ts",
       "scripts/problem-bank/nestedListBatch016Artifacts.gate.ts",
+      "scripts/problem-bank/advancedDocumentBatch017Artifacts.gate.ts",
     ],
   },
 })

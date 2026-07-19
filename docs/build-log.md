@@ -2153,3 +2153,166 @@ target. Another 168 accepted problems are required to reach the public
 500-problem floor, and 180 are required to reach the internal 512-problem
 closing target. Paragraph separation and image lessons remain deferred under
 their recorded constraints; publication did not weaken those stop conditions.
+
+## 2026-07-20 — Issue #9 advanced-document Batch 017 checkpoint
+
+Batch 017 adds exactly two Level 3 operational-impact briefs, four Level 4
+integration-contract specs, and six Level 5 agent work orders. The Level 5
+set is divided into evidence recovery, bounded refactoring, and coordinated
+rollout, with two transfer variants in each retry family. The 12 Goals use
+fictional contemporary US workplace contexts and existing Standard Markdown
+predicates only; learner prose, capitalization, spelling, punctuation, and
+domain truth remain outside grading.
+
+Pre-review editorial inspection restarted the immutable cycle twice before
+approval. The first restart capitalized the rendered H1 examples while
+retaining case-insensitive learner grading. The second removed repeated
+teaching examples within retry families. The final frozen scope is commit
+`172e932`, manifest
+`f64697d77c17af5189daecbdd4166b9fc72602186c1226079579730f3ce8a030`,
+engine contract
+`f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9`,
+normalized artifact
+`056e4191a3bbbb4e6b56ac9bb3f6cb02c8b87d58b817bf9730765bbcbee75e0e`,
+fixture artifact
+`5f1fdd81fa090c183f03ca19965e795e3c10f4c7540d35da1c0bbe62837782a1`,
+and verification
+`2d1b18c5fb8c80c8afa7ddb28620a7cbb1fcda3757efbaacae19d102e70fcbf6`.
+
+Atlas replayed 238/238 frozen fixtures, covered 166/166 direct checks, passed
+348/348 fresh probes, and found no collision against the published 332; review
+digest
+`6704c98539a7ed629194b3c175dfd34ebdddc6c541968de18f3c24059ceec7bf`.
+Orchid independently replayed 238/238, covered 166/166 direct checks, passed
+216/216 fresh probes, and found the same zero-collision result; review digest
+`78ef4aa276c13f7819920e5ddc03fa8f4725f5eebcc17ff9c1695210acf25297`.
+Both explicitly checked teaching-example uniqueness. The separate
+`codex-editorial-batch017` actor accepted 12/12 for level fit, vocabulary,
+ambiguity, Goal quality, duplication, licensing, standard flavor, and the
+no-runtime-AI boundary; editorial digest
+`061f3be56e4bbb1eb760b7a1522a5e017f9cc0d8388e2883c2f411e278c67ed8`.
+
+Publishing raised the deterministic bank from 332 to the intermediate
+344-problem checkpoint, split 136/148/30/20/10. Advanced family totals are now
+30 readable human documents, 20 executable development specs, and 10
+agent-ready work orders. Publication digests are batch
+`7824a8848edf2254faae4a68887dfcb780b875dbe7db70546a544fcd1793df50`,
+bank `3b30540b1ef31e9b908f7c91c614649dcd11d5eefacbcfa764cd899c76ecf0cc`,
+runtime projection
+`417c3e6987ef1bce22ebb912a5c923c8d1f13ec172d1c6e94ba948109e3f50a9`,
+and tracker
+`123924a5fb466deadb0ebf032fce62d2a46e5ea7b922e5d4a149f54e1932a161`.
+Issue #9 remains open: this PR uses `Refs #9`, preserves the 512 target and
+completion floors, and intentionally leaves later Level 5 expansion available.
+
+### Batch 017 brevity repair and evidence invalidation
+
+Developer playtesting rejected the first publication candidate as too much
+workplace reading for a Markdown lesson. Its Level 4 lists commonly contained
+four items, while the Level 5 work orders stretched to 84–93 lines and roughly
+2,300–2,500 source characters. Those records were structurally valid, but the
+extra policy, comprehension, and reporting detail taught document operations
+rather than additional Markdown.
+
+The replacement contract caps Level 4 at 28–40 lines and 95–165 words, and
+Level 5 at 40–65 lines and 150–230 words. Every Level 4–5 list contains two or
+three short items. Recovery orders now use eight H2 sections, refactor orders
+seven, and rollout orders seven; each retains three H3 stages and the distinct
+Markdown devices that define its family. Grammar-only grading remains
+unchanged.
+
+The prior Atlas and Orchid reviews, editorial verdict, publication summary,
+and manifest are historical evidence only and cannot authorize the replacement
+content. They were removed from the active artifact set before regeneration.
+The repository-local `authoring-nabimd-problem-banks` skill now captures the
+same brevity budgets, fixture protocol, grammar boundary, and immutable review
+lifecycle for future “Level X” problem-bank requests. Pressure tests before
+and after the skill showed the intended correction: without it, agents proposed
+four- and five-item lists and 80-line work orders; with it, they held Level 4
+and Level 5 to the compact budgets and explicitly refused realism inflation.
+
+The replacement freeze contains 228 real-engine fixtures for 12 candidates.
+Level 4 Goals are exactly 40 lines and 128–135 words; Level 5 Goals are
+59–65 lines and 186–223 words. The active manifest is
+`212139fb20e45aaeb7b114b199bbe4b757484c4952962250bc7d65b262cfbbc4`,
+normalized artifact
+`3e7eb537e69e3f511a29182e1b7d6c33d20826f2eb45e1033f00f4ab7463fdb1`,
+verification
+`bd268af56bef57b82f5902b81e28d271dfac1676e11eab8ba7ca6eb3530bf84a`,
+and prepared summary
+`68d30b086951ff1f500722e97df11dfa072e73d67c4a553f8c0bb3f7c5a83303`.
+The engine contract remains unchanged. Runtime projections and tracker are
+restored to the prior 332-problem checkpoint until two new mechanical reviews
+and one new editorial review accept this exact freeze.
+
+The first replacement Atlas run correctly refused to seal commit `8a6a0af`.
+Although all 228 frozen fixtures, 156 direct checks, 328 fresh probes, the
+Batch 017 gate, focused regressions, and typechecking passed, three integration
+tests still asserted the rejected publication's post-344 state while runtime
+and tracker were intentionally fail-closed at 332. The pre-publication tests
+now assert the truthful 332 split and four-problem Level 5 turn; advanced-family
+assertions follow the tracker so they remain valid on both sides of publication.
+No candidate, fixture, prompt, engine contract, verification, or manifest
+changed. Because the reviewed HEAD changed, both independent mechanical runs
+still restart from zero and no verdict from the blocked run is reusable.
+
+The independent Orchid run also refused to seal `8a6a0af`. Five Level 5 Goals
+displayed `AGENTS.md` as inline code in authority lists even though those
+spans were outside each family's inline-code matcher scope. Removing only the
+backticks still Matched, so the decoration violated the authoring rule that
+every visible Markdown device must be a practiced decision. Those five file
+names are now plain text; the checked inline-code spans in scope and
+verification sections remain. This candidate mutation invalidates the prior
+manifest and requires complete artifact regeneration plus both mechanical and
+editorial reviews from zero.
+
+The superseding pre-review freeze keeps the same 228-fixture matrix and exact
+brevity budgets. Its manifest is
+`f739f876963fb9177328e1c966f91e5037fc7ff07db300010d0b14fadce97549`,
+normalized artifact
+`8487123bf006e8ad424329021e0f825c1a2d908c9fea391c4034492679d9380e`,
+verification
+`ccc887bd6446abb380c52c3f847e10dd0c5fd7a9bb64401762840671f51677e8`,
+and prepared summary
+`f0e475918332bbb704f4a47bad0c8c5163b223d15d2392615180cf23c3d83415`.
+The Batch 017 gate passes 7/7, the complete unit and component suite passes
+9,885/9,885 in 52 files, typechecking passes, and `git diff --check` is clean.
+The runtime bank remains fail-closed at 332 pending fresh reviews.
+
+Both replacement mechanical reviews accepted the exact `f739f876…`
+manifest. Atlas replayed 228/228 frozen fixtures, covered 156/156 direct
+checks, passed 328/328 fresh probes, and found zero collisions against the
+published 332; review digest
+`86ef5a2c8fdcac098be78d4bc1c50ad81fa398de1f9e9550697504b9318d2c98`.
+Orchid independently replayed the same freeze, passed 208 behavioral probes,
+and then removed each of 430 visible Markdown devices one at a time; all 430
+mutations failed in the intended scope. Its combined 638-probe review digest
+is `e3b1154510e018143545e598916a27de836fa9ec170d41cb0b224ce014225bf1`.
+Both runs passed the complete 9,885-test pre-publication suite, typechecking,
+the focused gate, brevity/list limits, deterministic evidence, and collision
+checks. Publication remains blocked pending a separate editorial review.
+
+The separate `codex-editorial-batch017-compact` actor then accepted all 12
+candidates against the same manifest and both mechanical review digests. It
+explicitly checked level fit, US-English clarity, ambiguity, uniqueness,
+licensing, flavor, the no-runtime-AI boundary, visible-syntax purpose, and the
+new “Markdown typing, not company-document reading” contract. Editorial run
+`editorial-batch017-f739f876-compact-2026-07-20-002` is sealed by digest
+`88ed632a0709e48707ae70fc16822b6844ef1e341e5943484b4b9e6412befac2`.
+
+Publishing the accepted replacement twice produced identical artifacts and
+raised the runtime bank from 332 to the intermediate 344 checkpoint, split
+`136/148/30/20/10`. Replacement publication digests are batch
+`ec3826cb3206a4b72fcced2e940714d27e7dec964ecb70e917c11f7a8ccf18dc`,
+bank `be6a660939c623b5d9db2ac38f034c83d86b72f5db6ff5cec1b28503aa5d1dc6`,
+runtime projection
+`89c098f3d79ee963fe5696d2d247585e784ce1a40c1b576c2766010440f29f44`,
+tracker `9c0b9d7daa121d484456249461631dcf947e7e75069a0894e5aa0bc436bb8686`,
+and summary `011d9526bd5712ae135df1378c2d50328e23627883f8cad7897c9246f6862403`.
+
+The final `npm run check` passes typechecking, 18/18 pipeline tests, every
+immutable batch gate, 4/4 repository gates, 9,885/9,885 unit and component
+tests, the compiled-bank gate, a 222-module production build, and bundle
+inspection. Local Chromium E2E passes all 13 learner journeys, including every
+level opening a six-problem turn and a long Level 5 answer scrolling inside
+the editor. Issue #9 remains open and this replacement still uses `Refs #9`.

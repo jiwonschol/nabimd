@@ -83,17 +83,19 @@ The standard syntax families are headings and paragraphs, emphasis, lists,
 blockquotes, inline code, horizontal rules, links, fenced code blocks, and
 images with alt text. Fenced code blocks are a CommonMark-compatible,
 Devpost-supported expansion of the initial basic family list.
-The published 332-problem checkpoint includes ATX heading lessons from H1
-through H6, Level 2 rebuilds whose H1–H3 hierarchy is graded structurally, and
-12 Level 2 nested-list document rebuilds. Its level split is 136/148/28/16/4.
+The published 344-problem checkpoint includes ATX heading lessons from H1
+through H6, Level 2 rebuilds whose H1–H3 hierarchy is graded structurally, 12
+Level 2 nested-list document rebuilds, two operational-impact briefs, four
+integration-contract specs, and six distinct Level 5 work orders. Its level
+split is 136/148/30/20/10.
 Deep headings remain focused syntax lessons, while ordinary sectioned documents
 use the readable H1–H3 range. The nested-list batch requires one root list and
 one descendant list while accepting any valid child marker kind and rejecting
 list items that render without meaningful visible content.
 Paragraph separation remains deferred because Level 1 cannot schedule that
-family without the taxonomy and selection paths owned by Issue #50. At 332
-accepted problems, 168 more are needed to reach the public 500-problem floor
-and 180 more are needed to reach the internal 512-problem closing target.
+family without the taxonomy and selection paths owned by Issue #50. At 344
+accepted problems, 156 more are needed to reach the public 500-problem floor
+and 168 more are needed to reach the internal 512-problem closing target.
 Image exercises remain blocked until their local assets and alt-text guidance
 have been visually and editorially inspected; another ready family may carry
 the minimum count while that stop remains local to images.

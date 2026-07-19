@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-20-l3-l5-advanced-documents-017",
+  "reviewerId": "reviewer-orchid-batch017-visible-scope",
+  "reviewRunId": "orchid-batch017-f739f876-visible-scope-001",
+  "declaredIndependent": true,
+  "manifestDigest": "f739f876963fb9177328e1c966f91e5037fc7ff07db300010d0b14fadce97549",
+  "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9",
+  "frozenFixtureCount": 228,
+  "freshProbeCount": 638,
+  "overallVerdict": "pass",
+  "evidence": {
+    "sourceHead": "45c70f8e41dbce257b74378815c306bd5f94ec4a",
+    "reviewManifestFileSha256": "69f753f1198a4427f0553d171940089af0bb4509c1c01dea7753e1abf8749b67",
+    "normalizedArtifactDigest": "8487123bf006e8ad424329021e0f825c1a2d908c9fea391c4034492679d9380e",
+    "fixtureArtifactDigest": "ad76ceedd8976929dbe789ecfc5c64285af7b273fa9619575374f29d3472fbff",
+    "verificationDigest": "ccc887bd6446abb380c52c3f847e10dd0c5fd7a9bb64401762840671f51677e8",
+    "manifestDigest": "f739f876963fb9177328e1c966f91e5037fc7ff07db300010d0b14fadce97549",
+    "engineContractDigest": "f3060a62eefbbb46f8711a36c3c6947332eecce061940855f70ced3bdfa6c8a9",
+    "candidateCount": 12,
+    "frozenFixtureCount": 228,
+    "frozenOutcomeCounts": {
+      "matched": 48,
+      "fail": 180
+    },
+    "frozenFixtureRoleCounts": {
+      "canonical": 12,
+      "case-or-spelling": 12,
+      "alternate-prose": 12,
+      "matched-with-review": 12,
+      "edge-case": 156,
+      "malformed-required": 12,
+      "missing-required": 12
+    },
+    "directMatchChecksRequired": 156,
+    "directMatchChecksCovered": 156,
+    "behavioralFreshProbeCount": 208,
+    "behavioralFreshOutcomeCounts": {
+      "matched": 70,
+      "fail": 138
+    },
+    "behavioralFreshProbeDigest": "90695b3550e214c39354bd91d79a9876637a3fb62542fc02c4932d80115c1eeb",
+    "visibleDeviceFreshProbeCount": 430,
+    "visibleDeviceFreshOutcomeCounts": {
+      "matched": 0,
+      "fail": 430
+    },
+    "visibleDeviceFreshProbeDigest": "f7c783ad0397294029ea61c1e919f5d72b354df214255cb2e0cc6a9cd00141c2",
+    "combinedFreshProbeCount": 638,
+    "combinedFreshOutcomeCounts": {
+      "matched": 70,
+      "fail": 568
+    },
+    "combinedFreshProbeDigest": "003a54bcf056fba5b2d4d61f6f173e58b3779a994ffece32a5a29b60321496c0",
+    "combinedFreshProbeCountsByCandidate": {
+      "l3-badge-reader-impact-brief": 32,
+      "l3-support-queue-impact-brief": 32,
+      "l4-audit-archive-contract-spec": 47,
+      "l4-contact-import-contract-spec": 47,
+      "l4-customer-digest-contract-spec": 47,
+      "l4-support-webhook-contract-spec": 47,
+      "l5-analytics-adapter-refactor-work-order": 59,
+      "l5-api-contract-rollout-work-order": 74,
+      "l5-date-format-refactor-work-order": 59,
+      "l5-duplicate-job-recovery-work-order": 60,
+      "l5-notification-schema-rollout-work-order": 74,
+      "l5-search-index-recovery-work-order": 60
+    },
+    "visibleDeviceProbeCounts": {
+      "blockquote": 10,
+      "code": 14,
+      "heading": 106,
+      "inlineCode": 18,
+      "link": 6,
+      "list": 68,
+      "listItem": 184,
+      "paragraph": 20,
+      "strong": 2,
+      "thematicBreak": 2
+    },
+    "compactBudgetStats": {
+      "level3": {
+        "lineRange": [25, 25],
+        "wordRange": [120, 124],
+        "maximumListItems": 3
+      },
+      "level4": {
+        "lineRange": [40, 40],
+        "wordRange": [128, 135],
+        "listItemCountRange": [3, 3],
+        "maximumListItemWords": 7
+      },
+      "level5": {
+        "lineRange": [59, 65],
+        "wordRange": [186, 223],
+        "listItemCountRange": [2, 3],
+        "maximumListItemWords": 9
+      }
+    },
+    "publishedCollisionComparands": 332,
+    "publishedCollisionCounts": {
+      "id": 0,
+      "contentVariant": 0,
+      "target": 0,
+      "teachingExample": 0,
+      "vocabulary": 0
+    },
+    "withinBatchCollisionCounts": {
+      "id": 0,
+      "contentVariant": 0,
+      "target": 0,
+      "teachingExample": 0,
+      "vocabulary": 0
+    },
+    "runtimeNetworkCalls": 0,
+    "focusedBatchGateTestsPassed": 7,
+    "fullVitestSuitePassed": 9885,
+    "typecheckPassed": true,
+    "productionBuildPassed": true,
+    "bundleVerificationPassed": true,
+    "repositoryGateFailClosedWithoutEditorial": true,
+    "deterministicReplayPassed": true
+  },
+  "mechanicalChecks": {
+    "exactHeadAndManifestBound": "pass",
+    "sourceArtifactsRecomputed": "pass",
+    "engineContractCurrent": "pass",
+    "allFrozenFixturesReplayed": "pass",
+    "frozenFixtureResultsReproduced": "pass",
+    "everyDirectMatchCheckCovered": "pass",
+    "requiredFixtureRoles": "pass",
+    "grammarOnlyCaseSpellingProseTolerance": "pass",
+    "alternativeCommonMarkForms": "pass",
+    "sectionListCodeQuoteAndLinkBoundaries": "pass",
+    "everyVisibleMarkdownDeviceRequiredInScope": "pass",
+    "compactLineAndWordBudgets": "pass",
+    "compactListAndListItemBudgets": "pass",
+    "collisionUniquenessAgainstPublished332": "pass",
+    "withinBatchUniqueness": "pass",
+    "deterministicSeal": "pass",
+    "focusedBatchGate": "pass",
+    "fullVitestSuite": "pass",
+    "typecheckBuildAndBundle": "pass",
+    "prepublicationRepositoryGate": "pass-fail-closed"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l3-badge-reader-impact-brief",
+      "revision": 1,
+      "candidateDigest": "9afefbdcc95338e81d1afc71cca0918b9110de093d2352d70d82249c91646d24",
+      "fixtureResultsDigest": "571190981362d3785223a07df972c58831541866adeabcb6b2e6a698690a16f5",
+      "verdict": "pass",
+      "freshProbeCount": 32
+    },
+    {
+      "candidateId": "l3-support-queue-impact-brief",
+      "revision": 1,
+      "candidateDigest": "54847fba0ff8a4cc13e677bab5b54898d87e7d7332fb174a19ee4cc48f56a74d",
+      "fixtureResultsDigest": "4ce14f0b823288a0cccc10424850f5fbea22281dc3d75979b487af06b9011a5e",
+      "verdict": "pass",
+      "freshProbeCount": 32
+    },
+    {
+      "candidateId": "l4-audit-archive-contract-spec",
+      "revision": 1,
+      "candidateDigest": "3b33217a3e745294f6956d6060c23ad301ef7cc05637e0751e77bfbe65025355",
+      "fixtureResultsDigest": "799538e7e8048627face7b008a1c8aeee23f510c51a09f30607715250480e7f2",
+      "verdict": "pass",
+      "freshProbeCount": 47
+    },
+    {
+      "candidateId": "l4-contact-import-contract-spec",
+      "revision": 1,
+      "candidateDigest": "4f27976703d7410cb6e3f8ec6fff100c07805d8fde3c10797de3b429b0270bd4",
+      "fixtureResultsDigest": "2211e56210514c60f6eab5d1d1f99fd892f1a0aab571f7d52d2bb6b01d45f924",
+      "verdict": "pass",
+      "freshProbeCount": 47
+    },
+    {
+      "candidateId": "l4-customer-digest-contract-spec",
+      "revision": 1,
+      "candidateDigest": "7a41bbc451a800c012e6f16831a005d8f27ec337abfe1db654f778e6886bcdcd",
+      "fixtureResultsDigest": "cceee5abcf48491ba1b6109f33aa05d7feaa4e0a8d7fa7a80d58ee383b8c2461",
+      "verdict": "pass",
+      "freshProbeCount": 47
+    },
+    {
+      "candidateId": "l4-support-webhook-contract-spec",
+      "revision": 1,
+      "candidateDigest": "3e2c19c417304ee1dd1a10406adac031081f6a8664e240d737bd0274c1c10e5a",
+      "fixtureResultsDigest": "0fe746665b03a4978aa078524f90f91296add5e0c0c1b13734c01870ec70cc69",
+      "verdict": "pass",
+      "freshProbeCount": 47
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "db836f3bc80f212af1a4a2e9fd652b0cc99fbe441742e817a08626b9ba6bd5e4",
+      "fixtureResultsDigest": "c82d9c7d5df24d7ba8b22398aa7b632ae26ad0513d775f4d87f08ae55f3c7103",
+      "verdict": "pass",
+      "freshProbeCount": 59
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "dfbed715dd2141f64f7e570b5b9dc2b5264dcaba0d4b1e864652fb089e21a2e9",
+      "fixtureResultsDigest": "3021affec72504ba9fc60086c5e8034a7bec91b419e5f23bad3e5115ce435a78",
+      "verdict": "pass",
+      "freshProbeCount": 74
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 1,
+      "candidateDigest": "36e0512b804eba5fc1665d9ae1332950a58f6b4648c778c67b163e78f1d8e7a0",
+      "fixtureResultsDigest": "bd5dcfc7237bc6f4753c909909b5fd2b4cf36468ab83edd5b663bccde9b5fef6",
+      "verdict": "pass",
+      "freshProbeCount": 59
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "0798f240c2538032ffab599c508d055cd6a6de431f89d870467da584190506ea",
+      "fixtureResultsDigest": "1cfa2b5ae1b2a0f4c80f7731f7d5a796f256b793d735f39999a3236f6f3ce429",
+      "verdict": "pass",
+      "freshProbeCount": 60
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 1,
+      "candidateDigest": "287aba5782848249a713d1bbe6dfc1690b7bf54583736d10407b8e544efc2207",
+      "fixtureResultsDigest": "482cef907308af53de362f4b0ae9f3b48e226a1ad643a3d7c4d871f0e1533cab",
+      "verdict": "pass",
+      "freshProbeCount": 74
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 1,
+      "candidateDigest": "4a47f9e26e724949eb4008cc0943ce52cbbe8a1fdb0fb4969ae28f2690061f1f",
+      "fixtureResultsDigest": "824d0fc70c84ad49dec59ff5b2960696692c89a7de93f2477ad263af89e50c5a",
+      "verdict": "pass",
+      "freshProbeCount": 60
+    }
+  ],
+  "findings": [],
+  "commands": [
+    "node --import tsx /private/tmp/nabimd-batch017-orchid-review.mts (228 frozen fixtures + 208 fresh behavioral probes)",
+    "node --import tsx /private/tmp/nabimd-batch017-orchid-visible-devices.mts (430 fresh per-device scope-removal probes)",
+    "npm run bank:batch:advanced-document-017:check (7/7)",
+    "npm run typecheck",
+    "npm test -- --reporter=dot (9885/9885)",
+    "npm run bank:gate (1/1)",
+    "npm run build",
+    "npm run bundle:verify",
+    "npm run check (prepublication gates passed through batch 017; repository gate then failed closed only because editorial.json is intentionally absent)"
+  ],
+  "stopConditions": [
+    "Any candidate, fixture, prompt, engine-contract, verification, or manifest change invalidates this digest-bound evidence and requires a fresh independent Orchid review run.",
+    "Any reviewer disagreement or editorial rejection blocks publication of the whole immutable batch."
+  ],
+  "notes": "Independent Orchid mechanical review restarted from zero on exact HEAD 45c70f8e41dbce257b74378815c306bd5f94ec4a and manifest f739f876963fb9177328e1c966f91e5037fc7ff07db300010d0b14fadce97549. All 228 frozen fixtures replayed exactly and all 156 checks had isolated direct failures. A separate 208-probe behavioral matrix verified grammar-only case and prose tolerance, CommonMark alternatives, scoped section, list, quote, link, inline-code, fence, and precedence boundaries. A second 430-probe matrix independently removed or corrupted every visible heading, root paragraph, list, list item, quote, thematic break, fence, link, strong span, and inline-code span; every mutation failed, including the five former decorative AGENTS.md spans, and none duplicated frozen fixtures. Compact Level 3-5 budgets, list-item limits, deterministic seals, and uniqueness against 332 published problems all passed. The full 9,885-test Vitest suite, typecheck, build, bundle check, focused batch gate, and problem-bank gate passed; the repository-wide gate correctly remained fail-closed pending separate editorial evidence.",
+  "reviewDigest": "e3b1154510e018143545e598916a27de836fa9ec170d41cb0b224ce014225bf1"
+}

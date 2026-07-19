@@ -161,7 +161,7 @@ test("every level opens its task-type turn", async ({ page }) => {
       `Level ${index + 1}`,
     )
     await expect(page.getByLabel("Practice progress")).toContainText(
-      `1 of ${index === 4 ? 4 : 6}`,
+      "1 of 6",
     )
     await expect(sourceEditor(page)).toBeFocused()
     await page.getByRole("button", { name: "Nabi Markdown home" }).click()

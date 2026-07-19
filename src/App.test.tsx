@@ -208,7 +208,7 @@ describe("App", () => {
       const view = render(<App />)
       const user = userEvent.setup()
       await user.click(screen.getByRole("button", { name: entry.label }))
-      const expectedLength = entry.level === 5 ? 4 : 6
+      const expectedLength = 6
       expect(screen.getByLabelText("Practice progress")).toHaveTextContent(
         `1 of ${expectedLength}`,
       )
