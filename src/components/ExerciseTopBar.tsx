@@ -1,3 +1,4 @@
+import { ArrowRight, Check, Shuffle, Volume2, VolumeX } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { getEntryChoice, type EntryId } from "../content/entryChoices"
 import type { Evaluation } from "../engine/types"
@@ -18,8 +19,6 @@ type ExerciseTopBarProps = {
   canCheck: boolean
   entryId: EntryId
   evaluation: Evaluation | null
-  hadFailure: boolean
-  hintOpen: boolean
   currentIsTransfer: boolean
   phase: LearningSession["phase"]
   problemPosition: number
@@ -31,25 +30,13 @@ type ExerciseTopBarProps = {
   onCheck: () => void
   onExit: () => void
   onNext: () => void
-  onToggleHint: () => void
   onTryAnother: () => void
-}
-
-function isTextEntryTarget(target: EventTarget | null): boolean {
-  return (
-    target instanceof HTMLElement &&
-    (target.isContentEditable ||
-      target.tagName === "INPUT" ||
-      target.tagName === "TEXTAREA")
-  )
 }
 
 export function ExerciseTopBar({
   canCheck,
   entryId,
   evaluation,
-  hadFailure,
-  hintOpen,
   currentIsTransfer,
   phase,
   problemPosition,
@@ -61,7 +48,6 @@ export function ExerciseTopBar({
   onCheck,
   onExit,
   onNext,
-  onToggleHint,
   onTryAnother,
 }: ExerciseTopBarProps) {
   const nextRef = useRef<HTMLButtonElement>(null)
@@ -84,36 +70,28 @@ export function ExerciseTopBar({
 
   useEffect(() => subscribeSoundMuted(setSoundMutedState), [])
 
-  useEffect(() => {
-    if (phase === "complete") return
-    const toggleFromKeyboard = (event: KeyboardEvent) => {
-      if (event.key !== "?" || isTextEntryTarget(event.target)) return
-      event.preventDefault()
-      onToggleHint()
-    }
-    document.addEventListener("keydown", toggleFromKeyboard)
-    return () => document.removeEventListener("keydown", toggleFromKeyboard)
-  }, [onToggleHint, phase])
-
   return (
     <header className="exercise-topbar">
       <div className="exercise-topbar__start">
         <Wordmark onHome={onExit} />
-        <button className="top-action" onClick={onExit} type="button">
+        <button
+          className="top-action top-action--exit"
+          onClick={onExit}
+          type="button"
+        >
           Exit
         </button>
-        {phase === "complete" ? null : (
-          <button
-            className="top-action"
-            onClick={onTryAnother}
-            type="button"
-          >
-            Try another
-          </button>
-        )}
       </div>
 
-      <div aria-label="Practice progress" className="exercise-progress">
+      <span
+        aria-label={`Practice progress, ${visibleScheduledPosition} of ${scheduledRunLength}`}
+        aria-valuemax={scheduledRunLength}
+        aria-valuemin={1}
+        aria-valuenow={visibleScheduledPosition}
+        className="visually-hidden"
+        role="progressbar"
+      />
+      <div aria-label="Practice details" className="exercise-progress">
         <div className="exercise-progress__meta">
           <span aria-label={entry.label} className="exercise-progress__level">
             <span>{levelNumber}</span>
@@ -130,13 +108,18 @@ export function ExerciseTopBar({
             />
           </span>
           <button
-            aria-label="Mute feedback sounds"
+            aria-label={soundMuted ? "Turn sound on" : "Mute sound"}
             aria-pressed={soundMuted}
             className="sound-control"
+            data-tooltip={soundMuted ? "Turn sound on" : "Mute sound"}
             onClick={() => setSoundMuted(!soundMuted)}
             type="button"
           >
-            {soundMuted ? "Muted" : "Sound on"}
+            {soundMuted ? (
+              <VolumeX aria-hidden="true" size={17} strokeWidth={1.7} />
+            ) : (
+              <Volume2 aria-hidden="true" size={17} strokeWidth={1.7} />
+            )}
           </button>
         </div>
 
@@ -162,9 +145,6 @@ export function ExerciseTopBar({
               )
             })}
           </ol>
-          <span className="exercise-progress__count">
-            {visibleScheduledPosition} of {scheduledRunLength}
-          </span>
           {currentIsTransfer ? (
             <span className="repair-progress">
               <strong>Repair practice</strong>
@@ -179,38 +159,44 @@ export function ExerciseTopBar({
       {phase === "complete" ? null : (
         <div className="exercise-topbar__end">
           <button
-            aria-expanded={hintOpen}
-            aria-keyshortcuts="?"
-            className="top-action"
-            onClick={onToggleHint}
+            aria-label="Try another"
+            className="top-action top-action--icon"
+            data-tooltip="Try another"
+            onClick={onTryAnother}
             type="button"
           >
-            <span>Hint</span>
-            <span aria-hidden="true">?</span>
+            <Shuffle aria-hidden="true" size={19} strokeWidth={1.7} />
           </button>
           <button
+            aria-label={matched ? "Next exercise" : "Check answer"}
             aria-keyshortcuts={shortcut.ariaKeyShortcuts}
             className="top-action top-action--primary"
+            data-tooltip={matched ? "Next exercise" : "Check answer"}
             disabled={!matched && !canCheck}
             onClick={matched ? onNext : onCheck}
             onKeyDown={(event) => {
               if (!matched) return
-              if (isActionShortcut(event.nativeEvent, navigatorLike)) {
+              if (event.repeat) {
                 event.preventDefault()
-                onNext()
                 return
               }
-              if (event.key === " " || event.key === "Enter") {
+              if (
+                isActionShortcut(event.nativeEvent, navigatorLike) ||
+                event.key === " " ||
+                event.key === "Enter"
+              ) {
                 event.preventDefault()
+                onNext()
               }
             }}
             ref={nextRef}
             type="button"
           >
-            <span>{matched ? "Next" : hadFailure ? "Check again" : "Check"}</span>
-            <small aria-hidden="true">
-              {shortcut.label}
-            </small>
+            {matched ? (
+              <ArrowRight aria-hidden="true" size={24} strokeWidth={1.8} />
+            ) : (
+              <Check aria-hidden="true" size={24} strokeWidth={1.8} />
+            )}
           </button>
         </div>
       )}

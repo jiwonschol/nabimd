@@ -51,13 +51,10 @@ export function EditorialDesk({
         canCheck={canCheck}
         entryId={session.entryId!}
         evaluation={session.evaluation}
-        hadFailure={session.hadFailure}
-        hintOpen={session.coach === "hint"}
         currentIsTransfer={session.currentIsTransfer}
         onCheck={check}
         onExit={changeLevel}
         onNext={next}
-        onToggleHint={session.coach === "hint" ? closeCoach : requestHint}
         onTryAnother={tryAnother}
         phase={session.phase}
         problemPosition={problemPosition}
@@ -83,20 +80,19 @@ export function EditorialDesk({
         />
       ) : (
         <>
-          <article className="cbt-workspace">
-            <GoalPanel
-              coach={session.coach}
-              evaluation={session.evaluation}
-              hintLevel={session.hintLevel}
-              onNextHint={requestHint}
-              problem={problem}
-            />
+          <article className="cbt-workspace open-book-shell">
+            <GoalPanel problem={problem} />
             <AnswerPanel
+              coach={session.coach}
               draft={session.draft}
               entryId={session.entryId!}
               evaluation={session.evaluation}
+              hintLevel={session.hintLevel}
               onChange={edit}
               onCheck={check}
+              onCloseHint={closeCoach}
+              onNextHint={requestHint}
+              onRequestHint={requestHint}
               problem={problem}
             />
           </article>

@@ -200,11 +200,12 @@ test("every level opens its task-type turn", async ({ page }) => {
   for (const index of levelLabels.keys()) {
     await page.goto("/")
     await enterLevel(page, (index + 1) as 1 | 2 | 3 | 4 | 5)
-    await expect(page.getByLabel("Practice progress")).toContainText(
+    await expect(page.getByLabel("Practice details")).toContainText(
       `Level ${index + 1}`,
     )
-    await expect(page.getByLabel("Practice progress")).toContainText(
-      "1 of 6",
+    await expect(page.getByRole("progressbar")).toHaveAttribute(
+      "aria-valuenow",
+      "1",
     )
     await expect(sourceEditor(page)).toBeFocused()
     await page.getByRole("button", { name: "Nabi Markdown home" }).click()
@@ -248,7 +249,10 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
 
   const editor = sourceEditor(page)
   await expect(editor).toBeFocused()
-  await expect(page.getByLabel("Markdown pattern")).toBeVisible()
+  await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
+    "aria-selected",
+    "false",
+  )
 
   for (const words of [
     "first answer",
@@ -261,7 +265,7 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
     await editor.fill(await validDifferentProse(page, words))
     await editor.press("Control+Enter")
     await expect(page.getByRole("status")).toContainText("Matched")
-    const next = page.getByRole("button", { name: "Next" })
+    const next = page.getByRole("button", { name: "Next exercise" })
     await expect(next).toBeFocused()
     await page.keyboard.press("Control+Enter")
   }
@@ -288,7 +292,10 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(practiceAgain).toBeFocused()
   await page.keyboard.press("Enter")
   await expect(sourceEditor(page)).toBeFocused()
-  await expect(page.getByLabel("Practice progress")).toContainText("1 of 6")
+  await expect(page.getByRole("progressbar")).toHaveAttribute(
+    "aria-valuenow",
+    "1",
+  )
 })
 
 test("grades Markdown structure without grading capitalization or prose", async ({
@@ -300,7 +307,9 @@ test("grades Markdown structure without grading capitalization or prose", async 
   await sourceEditor(page).fill(await validDifferentProse(page, "aple"))
   await sourceEditor(page).press("Control+Enter")
   await expect(page.getByRole("status")).toContainText("Matched")
-  await expect(page.getByRole("button", { name: "Next" })).toBeVisible()
+  await expect(
+    page.getByRole("button", { name: "Next exercise" }),
+  ).toBeVisible()
 })
 
 test("blocks malformed syntax, then accepts a repair and transfers practice", async ({
@@ -315,7 +324,9 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await editor.fill(await malformedSource(page))
   await editor.press("Control+Enter")
   await expect(page.getByRole("status")).toContainText("Try again")
-  await expect(page.getByRole("button", { name: "Next" })).toHaveCount(0)
+  await expect(
+    page.getByRole("button", { name: "Next exercise" }),
+  ).toHaveCount(0)
   await expect(page.getByRole("tabpanel", { name: "Review" })).toContainText(
     repairFeedback,
   )
@@ -324,12 +335,15 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await expect(editor).toBeFocused()
   await editor.fill(await validDifferentProse(page, "repaired"))
   await editor.press("Control+Enter")
-  await page.getByRole("button", { name: "Next" }).click()
-  await expect(page.getByLabel("Practice progress")).toContainText("1 of 6")
-  await expect(page.getByLabel("Practice progress")).toContainText(
+  await page.getByRole("button", { name: "Next exercise" }).click()
+  await expect(page.getByRole("progressbar")).toHaveAttribute(
+    "aria-valuenow",
+    "1",
+  )
+  await expect(page.getByLabel("Practice details")).toContainText(
     "Repair practice",
   )
-  await expect(page.getByLabel("Practice progress")).toContainText(
+  await expect(page.getByLabel("Practice details")).toContainText(
     "Exercise 2 of 7",
   )
   await expect(page.getByRole("region", { name: "Goal" })).not.toHaveText(
@@ -345,31 +359,27 @@ test("Try another stays in level and serves different content", async ({ page })
   const before = await goal.textContent()
   await page.getByRole("button", { name: "Try another" }).click()
   await expect(goal).not.toHaveText(before ?? "")
-  await expect(page.getByLabel("Practice progress")).toContainText("Level 3")
-  await expect(page.getByLabel("Practice progress")).toContainText("1 of 6")
+  await expect(page.getByLabel("Practice details")).toContainText("Level 3")
+  await expect(page.getByRole("progressbar")).toHaveAttribute(
+    "aria-valuenow",
+    "1",
+  )
 })
 
-test("at-level work shows Hint and challenge work hides it until requested", async ({
+test("keeps Hint out of the way until the learner requests it", async ({
   page,
 }) => {
   await page.goto("/")
   await enterLevel(page, 1)
 
-  const hintButton = page.getByRole("button", { name: "Hint" })
-  const editor = sourceEditor(page)
-  for (let index = 0; index < 4; index += 1) {
-    await expect(hintButton).toHaveAttribute("aria-expanded", "true")
-    await editor.fill(await validDifferentProse(page, `guided ${index}`))
-    await editor.press("Control+Enter")
-    await page.keyboard.press("Control+Enter")
-  }
-
-  await expect(hintButton).toHaveAttribute("aria-expanded", "false")
-  await expect(page.getByRole("complementary", { name: "Hint" })).toHaveCount(0)
+  const hintTab = page.getByRole("tab", { name: "Hint" })
+  await expect(hintTab).toHaveAttribute("aria-selected", "false")
+  await expect(page.getByRole("tabpanel", { name: "Hint" })).toHaveCount(0)
   await page.getByRole("button", { name: "Exit" }).focus()
   await page.keyboard.press("?")
-  await expect(hintButton).toHaveAttribute("aria-expanded", "true")
-  await expect(page.getByRole("complementary", { name: "Hint" })).toBeVisible()
+  await expect(hintTab).toHaveAttribute("aria-selected", "true")
+  await expect(page.getByRole("tabpanel", { name: "Hint" })).toBeVisible()
+  await expect(page.getByLabel("Markdown pattern")).toBeVisible()
 })
 
 test("persists the current draft only for the browser session", async ({ page }) => {
@@ -412,7 +422,7 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   const topbar = page.locator(".exercise-topbar")
   const goal = page.getByRole("region", { name: "Goal" })
   const answer = page.getByRole("region", { name: "Your answer" })
-  await goal.locator(".goal-brief").evaluate((node) => {
+  await goal.locator(".rendered-document__body").evaluate((node) => {
     const paragraph = node.querySelector("p")
     if (paragraph) {
       paragraph.textContent = Array.from(
@@ -442,7 +452,7 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   expect(pageMetrics.body).toBeLessThanOrEqual(pageMetrics.viewport)
   expect(pageMetrics.document).toBeLessThanOrEqual(pageMetrics.viewport)
 
-  const goalScroll = await goal.locator(".goal-brief").evaluate((node) => ({
+  const goalScroll = await goal.locator(".rendered-document__body").evaluate((node) => ({
     clientHeight: node.clientHeight,
     overflowY: window.getComputedStyle(node).overflowY,
     scrollHeight: node.scrollHeight,
@@ -456,19 +466,19 @@ test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {
   await page.goto("/")
   await enterLevel(page, 1)
 
-  const [tryAnother, levelLabel, soundToggle, hint] = await Promise.all([
-    page.getByRole("button", { name: "Try another" }).boundingBox(),
-    page.locator(".exercise-progress__level").boundingBox(),
-    page.getByRole("button", { name: "Mute feedback sounds" }).boundingBox(),
-    page.getByRole("button", { name: "Hint" }).boundingBox(),
+  const [start, progress, end, soundToggle] = await Promise.all([
+    page.locator(".exercise-topbar__start").boundingBox(),
+    page.getByLabel("Practice details").boundingBox(),
+    page.locator(".exercise-topbar__end").boundingBox(),
+    page.getByRole("button", { name: "Mute sound" }).boundingBox(),
   ])
 
-  expect(tryAnother).not.toBeNull()
-  expect(levelLabel).not.toBeNull()
+  expect(start).not.toBeNull()
+  expect(progress).not.toBeNull()
+  expect(end).not.toBeNull()
   expect(soundToggle).not.toBeNull()
-  expect(hint).not.toBeNull()
-  expect(tryAnother!.x + tryAnother!.width).toBeLessThanOrEqual(levelLabel!.x)
-  expect(soundToggle!.x + soundToggle!.width).toBeLessThanOrEqual(hint!.x)
+  expect(start!.x + start!.width).toBeLessThanOrEqual(progress!.x)
+  expect(progress!.x + progress!.width).toBeLessThanOrEqual(end!.x)
 })
 
 test("a long Level 5 answer scrolls inside the editor, not the page", async ({ page }) => {

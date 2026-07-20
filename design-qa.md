@@ -1,4 +1,44 @@
-# Design QA — CBT Editorial Desk
+# Design QA — Open-book Practice
+
+- approved visual truth: `docs/design/practice-open-book-level5-hint-reference.png`
+- matched companion: `docs/design/practice-open-book-level5-next-reference.png`
+- target viewport: `1586 × 992`
+- implementation branch: `feat/issue-60-open-book-practice`
+
+## Current evidence
+
+The implementation now follows the approved two-page Practice contract in code:
+one fixed strip, equal Goal and answer sheets, internal page scrolling, a stable
+Goal, icon tabs for Write/Preview/Review/Hint, and a state-stable Check/Next
+keycap. Automated tests cover the keyboard-only flow, accessible progress,
+focus transfer, tab semantics, tooltip labels, reduced motion, sound preference,
+and long-document rendering. The full repository check and production build are
+the merge gates recorded on the pull request.
+
+## Visual comparison status
+
+A fresh implementation capture from the approved in-app browser workflow was
+not available during this review pass. The approved references remain the visual
+truth, but the older CBT captures below predate the open-book redesign and do
+not prove current pixel-level fidelity. Therefore this report does not mark the
+new Practice design as visually passed.
+
+Before Build Week submission, capture and compare these current states at the
+specified viewport:
+
+- Level 5 Hint and Matched Next at `1586 × 992`;
+- Level 1 Write and Level 5 Write at `1280 × 800`;
+- Greeting, the page-turn midpoint, and the settled Practice paper surface;
+- the stacked narrow layout, keyboard focus tooltips, and reduced motion.
+
+Fix every P0, P1, and P2 visible mismatch before submission. Until that combined
+comparison exists, the accurate result is:
+
+final result: visual comparison pending
+
+---
+
+# Historical Design QA — CBT Editorial Desk
 
 - source: `docs/design/qa/cbt-reference-1586x992.png`
 - implementation: `docs/design/qa/cbt-implementation-matched-1586x992.jpg`
