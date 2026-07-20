@@ -737,6 +737,8 @@ button:focus-visible,
 }
 
 .goal-panel {
+  display: flex;
+  flex-direction: column;
   box-shadow: inset -22px 0 28px -25px rgb(17 17 17 / 38%);
 }
 
@@ -766,11 +768,6 @@ button:focus-visible,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-.goal-panel {
-  display: flex;
-  flex-direction: column;
 }
 
 .answer-hint {
