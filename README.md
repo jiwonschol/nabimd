@@ -52,8 +52,14 @@ Primary Codex task and `/feedback` Session ID:
 
 Follow the public [release tracker](https://github.com/jiwonschol/nabimd/issues/2).
 
-## License
+## Licensing
 
-Code: [GNU Affero General Public License v3.0 or later](LICENSE).
+- **Code:** [GNU Affero General Public License v3.0 or later](LICENSE).
+- **Problem-bank content:** [Creative Commons Attribution-ShareAlike 4.0
+  International](LICENSE-CONTENT). This includes problem statements, teaching
+  copy, Goal documents, and vocabulary ladders.
+- **Brand:** see [TRADEMARKS.md](TRADEMARKS.md).
 
-Brand: see [TRADEMARKS.md](TRADEMARKS.md).
+Effective scope: beginning with the commit that introduced `LICENSE-CONTENT`
+on July 21, 2026, CC BY-SA 4.0 applies to all problem-bank content present in
+this repository and to problem-bank content added later.
