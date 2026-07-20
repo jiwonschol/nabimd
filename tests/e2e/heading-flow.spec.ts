@@ -271,13 +271,12 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   }
 
   await expect(
-    page.getByRole("heading", { name: "Practice complete." }),
+    page.getByRole("heading", { name: "Well done." }),
   ).toBeVisible()
   await expect(page.getByLabel("Score")).toContainText("6 / 6")
   await expect(page.getByLabel("Total time")).toContainText(/\d{2}:\d{2}/)
-  await expect(page.getByLabel("Level standing")).toContainText(
-    "Collecting data",
-  )
+  await expect(page.getByText("Nothing to revisit this time.")).toBeVisible()
+  await expect(page.getByText(/standing|percentile/i)).toHaveCount(0)
   await expect(
     page.getByRole("listitem", { name: "Step 6, completed" }),
   ).toBeVisible()

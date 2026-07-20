@@ -4,6 +4,7 @@ class FakeAudio {
   currentTime = 0
   muted = false
   preload = ""
+  volume = 1
   pause = vi.fn()
   play = vi.fn(() => Promise.resolve())
 
@@ -56,7 +57,7 @@ describe("feedbackSound", () => {
   })
 
   it("primes the audio silently when sound is unlocked", async () => {
-    const { unlockFeedbackSound } = await import("./feedbackSound")
+    const { SOUND_VOLUME, unlockFeedbackSound } = await import("./feedbackSound")
 
     unlockFeedbackSound()
     await flushPlayback()
@@ -64,6 +65,7 @@ describe("feedbackSound", () => {
     expect(audio.play).toHaveBeenCalledTimes(1)
     expect(audio.pause).toHaveBeenCalledTimes(1)
     expect(audio.muted).toBe(false)
+    expect(audio.volume).toBe(SOUND_VOLUME)
   })
 
   it("unlocks sound from the first pointer gesture", async () => {

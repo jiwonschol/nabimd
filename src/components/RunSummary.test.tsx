@@ -1,7 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { StrictMode } from "react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
-import type { RankingClient } from "../ranking/rankingClient"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { RunSummary } from "./RunSummary"
 
@@ -9,21 +8,14 @@ vi.mock("../sound/feedbackSound", () => ({
   playFeedbackSound: vi.fn(),
 }))
 
-function renderSummary(
-  rankingClient: RankingClient,
-  failedProblemIds: string[] = [],
-) {
+function renderSummary(failedProblemIds: string[] = []) {
   render(
     <RunSummary
       elapsedMs={65_000}
       failedProblemIds={failedProblemIds}
-      level={1}
-      levelLabel="Level 1 — Learn the syntax"
       onChangeLevel={vi.fn()}
       onPracticeAgain={vi.fn()}
-      onStartOver={vi.fn()}
-      rankingClient={rankingClient}
-      score={failedProblemIds.length ? 5 : 6}
+      score={failedProblemIds.length ? 6 - failedProblemIds.length : 6}
       total={6}
     />,
   )
@@ -34,78 +26,59 @@ describe("RunSummary", () => {
     vi.clearAllMocks()
   })
 
-  it("shows score, frozen time, collecting status, and replay actions", async () => {
-    const getStanding = vi.fn().mockResolvedValue({ kind: "collecting" })
-    renderSummary({ getStanding })
+  it("closes a clean run with one primary next action", () => {
+    renderSummary()
 
-    expect(screen.getByRole("heading", { name: "Practice complete." })).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Well done." })).toBeVisible()
+    expect(
+      screen.getByText("You kept every Markdown pattern intact."),
+    ).toBeVisible()
     expect(screen.getByLabelText("Score")).toHaveTextContent("6 / 6")
     expect(screen.getByLabelText("Total time")).toHaveTextContent("01:05")
+    expect(screen.getByText("Nothing to revisit this time.")).toBeVisible()
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
-    expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+    expect(screen.queryByText(/standing|percentile|collecting data/i)).not.toBeInTheDocument()
+    expect(screen.queryByRole("button", { name: "Start over" })).not.toBeInTheDocument()
     expect(playFeedbackSound).toHaveBeenCalledWith("summary")
-
-    await waitFor(() => expect(getStanding).toHaveBeenCalledOnce())
-    expect(screen.getByLabelText("Level standing")).toHaveTextContent(
-      "Collecting data",
-    )
-    expect(screen.getByText(/Your time only/)).toBeVisible()
   })
 
-  it("groups failed syntax by family without exposing prose differences", async () => {
-    renderSummary(
-      { getStanding: vi.fn().mockResolvedValue({ kind: "collecting" }) },
-      ["l1-heading-apple", "l1-heading-rainy-day"],
-    )
+  it("turns one failed family into one concise teacher note", () => {
+    renderSummary(["l1-blockquote-milk-in-fridge"])
 
-    expect(screen.getByRole("heading", { name: "Syntax to revisit" })).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Good finish." })).toBeVisible()
+    expect(screen.getByText("One thing to revisit")).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Try block quotes once more." })).toBeVisible()
+    expect(screen.getByText("> Keep this note")).toBeVisible()
+    expect(
+      screen.getByText("Start the line with a greater-than sign, a space, then the words."),
+    ).toBeVisible()
     expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(1)
-    expect(screen.queryByText(/spelling/i)).not.toBeInTheDocument()
   })
 
-  it("renders a future percentile result and falls back after client failure", async () => {
-    const percentile = vi.fn().mockResolvedValue({
-      kind: "percentile",
-      sampleSize: 240,
-      topPercent: 18,
-    })
-    const { unmount } = render(
-      <RunSummary
-        elapsedMs={12_000}
-        failedProblemIds={[]}
-        level={2}
-        levelLabel="Level 2 — Rebuild real documents"
-        onChangeLevel={vi.fn()}
-        onPracticeAgain={vi.fn()}
-        onStartOver={vi.fn()}
-        rankingClient={{ getStanding: percentile }}
-        score={6}
-        total={6}
-      />,
-    )
-    expect(await screen.findByText("About top 18%")).toBeVisible()
-    expect(screen.getByText("Compared with 240 anonymous turns")).toBeVisible()
-    unmount()
+  it("groups repeated failures and keeps a longer review concise", () => {
+    renderSummary([
+      "l1-heading-apple",
+      "l1-heading-rainy-day",
+      "l1-blockquote-milk-in-fridge",
+      "l1-list-pencil-case",
+      "l1-order-plant-seed",
+    ])
 
-    renderSummary({ getStanding: vi.fn().mockRejectedValue(new Error("offline")) })
-    expect(await screen.findByText("Collecting data")).toBeVisible()
+    expect(screen.getByText("A few marks to revisit")).toBeVisible()
+    expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(3)
+    expect(screen.getByText("A quick second round will make these marks easier to recall."))
+      .toBeVisible()
   })
 
-  it("plays the completion cue once during StrictMode effect verification", async () => {
+  it("plays the completion cue once during StrictMode effect verification", () => {
     render(
       <StrictMode>
         <RunSummary
           elapsedMs={12_000}
           failedProblemIds={[]}
-          level={1}
-          levelLabel="Level 1 — Learn the syntax"
           onChangeLevel={vi.fn()}
           onPracticeAgain={vi.fn()}
-          onStartOver={vi.fn()}
-          rankingClient={{
-            getStanding: vi.fn().mockResolvedValue({ kind: "collecting" }),
-          }}
           score={6}
           total={6}
         />
@@ -114,6 +87,5 @@ describe("RunSummary", () => {
 
     expect(playFeedbackSound).toHaveBeenCalledOnce()
     expect(playFeedbackSound).toHaveBeenCalledWith("summary")
-    expect(await screen.findByText("Collecting data")).toBeVisible()
   })
 })

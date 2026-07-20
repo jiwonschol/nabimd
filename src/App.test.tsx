@@ -430,7 +430,7 @@ describe("App", () => {
     ).toBeVisible()
   })
 
-  it("completes a run and offers all replay choices", async () => {
+  it("completes a run with one primary replay choice", async () => {
     const { user } = await openLevel(1)
     for (let index = 0; index < 6; index += 1) {
       const editor = screen.getByRole("textbox", { name: "Your Markdown" })
@@ -441,7 +441,7 @@ describe("App", () => {
 
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
     expect(screen.getByLabelText("Level 1 — Learn the syntax")).toBeVisible()
-    expect(screen.getByRole("button", { name: "Start over" })).toBeVisible()
+    expect(screen.queryByRole("button", { name: "Start over" })).toBeNull()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
   })
 })

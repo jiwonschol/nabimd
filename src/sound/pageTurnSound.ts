@@ -1,4 +1,4 @@
-import { readSoundMuted } from "./feedbackSound"
+import { readSoundMuted, SOUND_VOLUME } from "./feedbackSound"
 import pageTurnSoundAsset from "./nabi-page-turn.mp3?url"
 
 export const PAGE_TURN_SOUND_ASSET = pageTurnSoundAsset
@@ -11,6 +11,7 @@ function getPageTurnAudio(): HTMLAudioElement | null {
 
   pageTurnAudio = new Audio(PAGE_TURN_SOUND_ASSET)
   pageTurnAudio.preload = "auto"
+  pageTurnAudio.volume = SOUND_VOLUME
   return pageTurnAudio
 }
 
