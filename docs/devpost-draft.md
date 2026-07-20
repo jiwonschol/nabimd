@@ -12,6 +12,24 @@ from the previous README follows so no submission material is lost.
 > people, Write for work, and Write for developers; older labels below remain
 > unchanged only because this is a verbatim submission draft.
 
+The preserved bodies also retain their original README-relative link text.
+Use these working repository links when reading the moved draft in place:
+
+- [Build log](build-log.md)
+- [Build Week pedagogy decision](build-week-pedagogy-decision-2026-07-20.md)
+- [Pedagogy and curriculum audit](../nabimd-pedagogy-review-2026-07-19.md)
+- [Submission checklist](submission-checklist.md)
+- [Application design](superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
+- [Heading MVP plan](superpowers/plans/2026-07-18-heading-vertical-mvp.md)
+- [First-exercise design](superpowers/specs/2026-07-18-first-exercise-redesign-design.md)
+- [First-exercise plan](superpowers/plans/2026-07-18-first-exercise-redesign.md)
+- [Level 5 north star](design/level-5-agent-brief-north-star.md)
+- [Problem-bank design](superpowers/specs/2026-07-19-five-level-problem-bank-design.md)
+- [Problem-bank plan](superpowers/plans/2026-07-19-five-level-problem-bank.md)
+- [Problem-bank pipeline](../curriculum/problem-bank/README.md)
+- [Level 5 reference](examples/level-5-agent-work-order-reference.md)
+- [Code license](../LICENSE) and [brand terms](../TRADEMARKS.md)
+
 ## Inspiration
 
 Ten years ago I worked at a tech company and wanted a word processor I could
