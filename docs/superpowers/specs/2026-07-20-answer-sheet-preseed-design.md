@@ -1,13 +1,15 @@
 # Answer Sheet Prose Pre-seed Design
 
-**Status:** Approved by Issue #39's Autonomous execution grant
+**Status:** Historical implementation record; Levels 3–5 blank-composition
+boundary superseded by D15/D17 on 2026-07-21
 
 ## Purpose
 
-Level 1 and Level 2 are reproduction exercises. Their answer sheets should
-open with the target's learner-visible prose already present so the learner
-only has to add Markdown structure. Levels 3–5 remain blank because they are
-composition exercises built from briefs rather than visible targets.
+This design originally limited reproduction to Levels 1–2. Its shipped
+Level 1–2 behavior remains accurate on `main`, but its blank-composition rule for
+Levels 3–5 is no longer the product target. D15/D17 extend the same fixed-Goal,
+prose-first contract to every level through a separately reviewed Practice
+change.
 
 This is a product-behavior change, not a problem-bank expansion. Existing
 accepted candidates, fixtures, review manifests, digests, and generated
@@ -21,8 +23,9 @@ consumer receives that hydrated `Problem`, so first load, retry replacement,
 Next, Start over, and session restore all share one source of truth. A saved
 learner draft continues to take precedence over the starter.
 
-Level 3–5 retain their authored empty `starterText`. The adapter never invents
-a target or prose for a composition problem.
+At the time this record shipped, Levels 3–5 retained their authored empty
+`starterText`. That describes current `main` before the separately reviewed
+Practice change, not the active product target.
 
 ## Markdown-to-prose conversion
 
@@ -54,8 +57,9 @@ sources of truth.
 
 ## Verification
 
-Tests cover the serializer's supported node shapes and whitespace cleanup, all
-published Level 1–2 problems receiving deterministic seeds, Level 3–5 staying
-blank, saved drafts winning over seeds, and a real browser opening Level 1 and
-Level 2 with prose already in the CodeMirror answer sheet. The full immutable
-problem-bank gates must stay green to prove no accepted artifact changed.
+The original tests cover the serializer's supported node shapes and whitespace
+cleanup, all published Level 1–2 problems receiving deterministic seeds, the
+then-current Level 3–5 blank behavior, saved drafts winning over seeds, and a
+real browser opening Level 1 and Level 2 with prose already in the CodeMirror
+answer sheet. The superseding Practice change must update those assertions for
+all levels while keeping the full immutable problem-bank gates green.

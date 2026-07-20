@@ -58,11 +58,14 @@ learner's prose is professionally or factually correct.
 ### Level 5 — Write for developers
 
 Practice Markdown forms common in developer and AI-assisted work: inline code,
-fenced code, blockquotes, external and reference links, nested lists, file
-paths, README fragments, bug reports, PR descriptions, and compact agent
-instructions. Task lists and images remain deferred until dedicated validator,
-preview, fixture, and accessibility contracts exist. Level 5 changes context
-and syntax mix; it does not increase required length or become a final exam.
+fenced code, blockquotes, meaningful links, nested lists, file paths, README
+fragments, bug reports, PR descriptions, and compact agent instructions. A
+reference link is currently an accepted equivalent form, not a distinct lesson,
+because the evaluator cannot yet require reference-link source syntax. Task
+lists, images, and reference-link-specific lessons remain deferred until
+dedicated validator, preview, fixture, and accessibility contracts exist. Level
+5 changes context and syntax mix; it does not increase required length or become
+a final exam.
 
 ## Bank target and distribution
 
@@ -331,7 +334,8 @@ spelling or grammar correction, exact-copy grading, web crawling, or a claim
 that the app can validate the factual safety of an AI work order. Nabi teaches
 and verifies the Markdown structure that makes those documents inspectable.
 
-The anonymized Level 5 reference remains a north star, not an answer to copy.
-Its earlier `Perfect` and protected-prose language is superseded by this spec
-and D9/D10: there is one passing verdict, Matched, and runtime grading is
-structure-only.
+The anonymized long work-order reference is historical anatomy, not the current
+Level 5 endpoint or an answer to copy. Its blank-page authorship, `Perfect`, and
+protected-prose language is superseded by this spec and D9/D10/D15/D17: the
+learner restores structure from a fixed Goal, there is one passing verdict,
+Matched, and runtime grading is structure-only.

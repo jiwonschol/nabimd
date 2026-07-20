@@ -37,10 +37,11 @@ is the habit Nabi exists to build.
    workplace notes, plans, handoffs, decisions, and checklists.
 5. **Level 5 - Write for developers.** Practice the Markdown forms common in
    developer and AI-assisted work: inline code, fenced code, blockquotes,
-   external and reference links, nested lists, file paths, README fragments,
-   bug reports, PR descriptions, and compact agent instructions. Task lists and
-   images with alt text remain future candidates, not current bank requirements,
-   until the validator and preview contracts support them deliberately.
+   external links, nested lists, file paths, README fragments, bug reports, PR
+   descriptions, and compact agent instructions. Reference-link-specific
+   lessons, task lists, and images with alt text remain future candidates, not
+   current bank requirements, until the validator and preview contracts can
+   require them deliberately.
 
 Levels 4 and 5 may have similar reading load and completion time. Level 5 is a
 change of context and syntax mix, not a difficulty spike or a final exam.

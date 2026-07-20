@@ -3,7 +3,7 @@
 
 ## Decisions confirmed by Jiwon (product owner)
 
-- **D1 — Difficulty endpoint is fixed (A-1).** The ladder ends at: *writing a modern AI instruction document from a blank page* — goal, context, guardrails (things the AI must not do), output format. No artificial difficulty beyond that point. Jiwon has already supplied Codex with good example instruction documents (drawn from real Overwater operating prompts). This endpoint is also the long-term retention thesis if Nabi becomes a running service.
+- **D1 — Difficulty endpoint is fixed (superseded 2026-07-21).** The original ladder ended at writing a modern AI instruction document from a blank page. D14, D15, and D17 replace that authorship endpoint for the current five levels: Level 5 now restores Markdown structure in short developer-facing documents from a fixed Goal. The long work-order material remains historical anatomy for future exploration, not the current learner task.
 - **D2 — Levels are infinitely replayable (A-2).** Users self-regulate session length (10 min or 1 hour — they close the tab themselves). The product question therefore shifts to: *which level do you start at, and is the level right for you?* → needs a start/entry choice.
 - **D3 — Progress ladder (clarified 2026-07-20).** The earlier “~5 steps” decision has become a concrete turn contract: Levels 1–4 schedule six problems, four at the selected level plus two next-level challenges. Level 5 schedules six unique at-level problems from the ten currently published work orders. The progress rail represents those scheduled score slots. A failed-check remediation remains outside the scheduled six: the rail holds its current marker while a separate `Repair practice` label exposes the expanded exercise position and total (for example, `Exercise 2 of 7`).
 - **D4 — Hint rhythm (superseded 2026-07-19).** Hint begins open for chosen-level problems and closed for next-level challenges. It remains manually available everywhere. Opening Hint never creates remediation or changes a verdict; only an actual failed Check creates the different-content same-skill repair.
@@ -37,6 +37,6 @@
 6. Regression tests pinning D9 policy + the review's test-gap list.
 
 **Post-contest roadmap (feeds Devpost "What's next" honestly):**
-- Full 5-step ladder to the D1 endpoint (AI instruction documents), using Jiwon's example corpus; new problem families beyond headings; D9 extended with schema-style checks for blank-page composition (title present, guardrail list present, output-format section present, length cap).
+- Expand short developer-facing Markdown forms within the D14–D17 fixed-Goal contract. Blank-page AI-instruction authorship from the former D1 is not part of the current five-level roadmap and would require a separate product decision.
 
 Repo's own cost rule applies ("adding a feature removes an equal-cost planned feature") — the must-land list above is deliberately small-ticket; if Codex judges any item larger than expected, cut from the bottom of the list (6 → 5 → 3), never cut items 1–2.

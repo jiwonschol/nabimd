@@ -25,11 +25,13 @@ syntax mix, not the reading burden. For Levels 4–5, each list item is one shor
 sentence, normally no more than 12 words. Every paragraph, list, quote, link,
 inline-code span, and fence must create a visible Markdown decision.
 
-Current Level 5 lessons may use inline and fenced code, blockquotes, direct and
-reference links, nested lists, file paths, README fragments, bug reports, PR
-descriptions, and compact agent instructions. Do not author task-list or image
-lessons until their dedicated validators, fixtures, preview behavior, and
-accessibility contract exist.
+Current Level 5 lessons may use inline and fenced code, blockquotes, meaningful
+links, nested lists, file paths, README fragments, bug reports, PR descriptions,
+and compact agent instructions. A reference link may pass as an equivalent link
+form, but do not create a reference-link-specific lesson until the evaluator can
+require that source form. Do not author task-list or image lessons until their
+dedicated validators, fixtures, preview behavior, and accessibility contract
+exist.
 
 Every level has one fixed authored Goal. Derive the learner's starter at the
 runtime projection boundary by removing Markdown marks from that Goal while

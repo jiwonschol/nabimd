@@ -1,18 +1,19 @@
 # Level 5 North Star: The Agent-Ready Work Order
 
-**Status:** Product north star; outside the current Build Week implementation  
+**Status:** Historical anatomy reference; blank-page endpoint superseded by
+D14–D17 on 2026-07-21
 **Source:** A real 210-line Overwater Codex work order supplied by Jiwon during
 the first Nabi Markdown MVP review  
 **Use policy:** Learn from its structure; do not republish project-specific
 content verbatim as a learner exercise. The anonymized public reference is
 [`docs/examples/level-5-agent-work-order-reference.md`](../examples/level-5-agent-work-order-reference.md).
 
-## The Level 5 outcome
+## Historical Level 5 outcome
 
-Level 5 is not a larger Markdown editor and it is not generic prompt
-engineering. The learner should be able to turn real project intent into a
-Markdown work order that a contemporary coding agent can execute and a human
-reviewer can audit.
+This section records the former blank-page endpoint. Current Level 5 instead
+asks the learner to restore Markdown structure in a short developer-facing
+document from a fixed Goal. The longer work order remains useful only as a
+source of document anatomy for future, separately approved exploration.
 
 The target artifact is simultaneously:
 
