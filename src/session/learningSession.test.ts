@@ -40,6 +40,27 @@ function editAndCheck(
 }
 
 describe("learningSessionReducer", () => {
+  it("starts reproduction problems from prose and composition problems blank", () => {
+    const levelOne = getProblem("l1-heading-apple")
+    const levelTwo = getProblem("l2-nested-checklist-closet-shelf")
+    const levelThree = getProblem("l3-agenda-break-room-supplies")
+
+    expect(newSession(levelOne).draft).toBe("Apple")
+    expect(newSession(levelTwo).draft).toContain("Closet shelf")
+    expect(newSession(levelTwo).draft).not.toContain("#")
+    expect(newSession(levelThree).draft).toBe("")
+  })
+
+  it("restores a saved learner draft instead of replacing it with the seed", () => {
+    const problem = getProblem("l1-heading-apple")
+    const progress = createDefaultProgress(problem.id)
+    progress.draftByProblemId[problem.id] = "# Saved apple"
+
+    expect(createLearningSession(progress, problem).draft).toBe(
+      "# Saved apple",
+    )
+  })
+
   it("opens the introduced rule without creating transfer debt", () => {
     const session = newSession()
 

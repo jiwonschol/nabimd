@@ -25,7 +25,14 @@ import {
   problemBank,
   problemBankRevision,
 } from "./problemBank"
+import { derivePlaintextStarter } from "./plaintextStarter"
+import type { NormalizedProblem } from "./types"
 import { validateProblemBank } from "./validateProblemBank"
+
+function withoutStarterText(problem: NormalizedProblem) {
+  const { starterText: _starterText, ...rest } = problem
+  return rest
+}
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
@@ -97,14 +104,69 @@ describe("compiled five-level problem bank", () => {
     ).toHaveLength(trackedFamilies["agent-ready-work-order"] ?? 0)
   })
 
-  it("executes the generated runtime projection without a parallel source list", () => {
-    expect(problemBank).toEqual([
+  it("changes only starterText when hydrating the generated runtime projection", () => {
+    const generatedProblems = [
       ...runtimeProjections.levels[1],
       ...runtimeProjections.levels[2],
       ...runtimeProjections.levels[3],
       ...runtimeProjections.levels[4],
       ...runtimeProjections.levels[5],
-    ])
+    ] as unknown as NormalizedProblem[]
+
+    expect(problemBank.map(withoutStarterText)).toEqual(
+      generatedProblems.map(withoutStarterText),
+    )
+  })
+
+  it("pre-fills every reproduction problem with deterministic visible prose", () => {
+    expect(getProblem("l1-heading-apple").starterText).toBe("Apple")
+    expect(getProblem("l1-link-community-notice").starterText).toBe(
+      "The latest update is in the community notice.",
+    )
+    expect(getProblem("l1-code-block-book-label").starterText).toBe(
+      "Return on Tuesday",
+    )
+    expect(
+      getProblem("l1-thematic-break-breakfast-dessert").starterText,
+    ).toBe("Breakfast is ready.\n\nSave dessert for later.")
+    expect(getProblem("l2-nested-checklist-closet-shelf").starterText).toBe(
+      [
+        "Closet shelf",
+        "",
+        "Sort the clean clothes by where they belong.",
+        "",
+        "Top shelf",
+        "Sweaters",
+        "Scarves",
+        "Middle shelf",
+        "Shoe bin",
+      ].join("\n"),
+    )
+
+    for (const problem of problemBank.filter(({ level }) => level <= 2)) {
+      expect(problem.starterText, problem.id).toBe(
+        derivePlaintextStarter(problem.target),
+      )
+      expect(problem.starterText, problem.id).not.toMatch(
+        /[\u00a0\u1680\u2000-\u200d\u202f\u205f\u2060\u3000\ufeff]/,
+      )
+    }
+  })
+
+  it("leaves composition-level starter text unchanged", () => {
+    const generatedById = new Map(
+      [
+        ...runtimeProjections.levels[3],
+        ...runtimeProjections.levels[4],
+        ...runtimeProjections.levels[5],
+      ].map((problem) => [problem.id, problem]),
+    )
+
+    for (const problem of problemBank.filter(({ level }) => level >= 3)) {
+      expect(problem.starterText, problem.id).toBe(
+        generatedById.get(problem.id)?.starterText,
+      )
+    }
   })
 
   it("has a deterministic revision and lookup", () => {

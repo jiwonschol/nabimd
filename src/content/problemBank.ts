@@ -1,4 +1,5 @@
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
+import { derivePlaintextStarter } from "./plaintextStarter"
 import {
   CURRICULUM_LEVELS,
   type CurriculumLevel,
@@ -16,6 +17,13 @@ const publishedLevels = runtimeProjections.levels as unknown as Record<
 
 const compiledProblems = CURRICULUM_LEVELS.flatMap(
   (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
+).map((problem): NormalizedProblem =>
+  problem.level <= 2
+    ? {
+        ...problem,
+        starterText: derivePlaintextStarter(problem.target),
+      }
+    : problem,
 )
 
 if (!compiledProblems[0]) {

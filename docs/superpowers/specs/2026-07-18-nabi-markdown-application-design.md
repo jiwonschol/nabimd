@@ -287,6 +287,22 @@ type Problem = {
 }
 ```
 
+### Runtime starter text
+
+Levels 1–2 are reproduction exercises, so their answer sheets open with the
+target's learner-visible prose and line breaks already present. The runtime
+projection derives this `starterText` by parsing `target` and removing Markdown
+structure: heading and list markers, emphasis delimiters, link destinations,
+blockquote markers, thematic breaks, and code fences. Visible text, code
+content, and image alt text remain. A saved session draft always takes
+precedence over the derived starter.
+
+Levels 3–5 remain blank because they compose from a brief rather than reproduce
+a fixed target. Starter text is a teaching aid, never a grading operand: the
+grammar-only evaluator still accepts different prose. The derivation happens
+at the runtime-projection boundary so accepted problem-bank artifacts and their
+review-bound digests remain immutable.
+
 Each committed problem must include fixtures for:
 
 - one canonical passing answer;

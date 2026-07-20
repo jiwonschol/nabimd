@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react"
+import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import { entryChoices } from "./content/entryChoices"
@@ -25,14 +26,16 @@ async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
   return { user, editor, entry }
 }
 
-async function replaceSource(
-  user: ReturnType<typeof userEvent.setup>,
-  editor: HTMLElement,
-  source: string,
-) {
-  await user.click(editor)
-  await user.keyboard("{Control>}a{/Control}{Backspace}")
-  if (source) await user.keyboard(source.replaceAll("[", "{[}").replaceAll("]", "{]}"))
+function replaceSource(editor: HTMLElement, source: string) {
+  const view = EditorView.findFromDOM(editor)
+  if (!view) throw new Error("Expected a mounted CodeMirror editor")
+
+  act(() => {
+    view.dispatch({
+      changes: { from: 0, to: view.state.doc.length, insert: source },
+      selection: { anchor: source.length },
+    })
+  })
 }
 
 function currentProblem() {
@@ -354,7 +357,7 @@ describe("App", () => {
     await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check" }))
     await user.keyboard("{Alt>}1{/Alt}")
-    await replaceSource(user, editor, validRepair())
+    replaceSource(editor, validRepair())
     await user.click(screen.getByRole("button", { name: "Check again" }))
     await user.click(screen.getByRole("button", { name: "Next" }))
 
@@ -414,7 +417,7 @@ describe("App", () => {
     const { user } = await openLevel(1)
     for (let index = 0; index < 6; index += 1) {
       const editor = screen.getByRole("textbox", { name: "Your Markdown" })
-      await replaceSource(user, editor, currentProblem().target)
+      replaceSource(editor, currentProblem().target)
       await user.click(screen.getByRole("button", { name: "Check" }))
       await user.click(screen.getByRole("button", { name: "Next" }))
     }
