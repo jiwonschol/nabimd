@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 class FakeAudio {
   currentTime = 0
   preload = ""
+  volume = 1
   play = vi.fn(() => Promise.resolve())
 }
 
@@ -35,12 +36,14 @@ describe("pageTurnSound", () => {
     const { PAGE_TURN_SOUND_ASSET, playPageTurnSound } = await import(
       "./pageTurnSound"
     )
+    const { SOUND_VOLUME } = await import("./feedbackSound")
 
     playPageTurnSound()
 
     expect(PAGE_TURN_SOUND_ASSET).toContain("nabi-page-turn.mp3")
     expect(audio.preload).toBe("auto")
     expect(audio.currentTime).toBe(0)
+    expect(audio.volume).toBe(SOUND_VOLUME)
     expect(audio.play).toHaveBeenCalledTimes(1)
   })
 

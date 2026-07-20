@@ -6,6 +6,8 @@ export const FEEDBACK_SOUND_ASSETS = {
 
 export type FeedbackSoundCue = keyof typeof FEEDBACK_SOUND_ASSETS
 
+export const SOUND_VOLUME = 0.7
+
 const SOUND_MUTED_KEY = "nabimd.sound-muted"
 
 let audio: HTMLAudioElement | null = null
@@ -31,6 +33,7 @@ function getAudio(): HTMLAudioElement | null {
   if (typeof Audio === "undefined") return null
   audio = new Audio(FEEDBACK_SOUND_ASSETS[activeCue])
   audio.preload = "auto"
+  audio.volume = SOUND_VOLUME
   return audio
 }
 

@@ -2,8 +2,6 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { EditorialDesk } from "./components/EditorialDesk"
 import { OpenBookLanding } from "./components/OpenBookLanding"
 import type { EntryId } from "./content/entryChoices"
-import { localRankingClient } from "./ranking/localRankingClient"
-import type { RankingClient } from "./ranking/rankingClient"
 import { useLearningSession } from "./session/useLearningSession"
 import { playPageTurnSound } from "./sound/pageTurnSound"
 
@@ -19,11 +17,7 @@ export function getPageTurnDuration() {
     : PAGE_TURN_DURATION_MS
 }
 
-type AppProps = {
-  rankingClient?: RankingClient
-}
-
-export function App({ rankingClient = localRankingClient }: AppProps = {}) {
+export function App() {
   const learningSession = useLearningSession()
   const [turningEntryId, setTurningEntryId] = useState<EntryId | null>(null)
   const turningEntryRef = useRef<EntryId | null>(null)
@@ -77,7 +71,7 @@ export function App({ rankingClient = localRankingClient }: AppProps = {}) {
         data-testid="page-turn-receiver"
         inert={turning || undefined}
       >
-        <EditorialDesk {...learningSession} rankingClient={rankingClient} />
+        <EditorialDesk {...learningSession} />
       </div>
       {turning ? (
         <div className="page-turn-overlay">

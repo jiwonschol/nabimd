@@ -1,9 +1,5 @@
 import type { useLearningSession } from "../session/useLearningSession"
-import {
-  createRunProblemIds,
-  getEntryChoice,
-} from "../content/entryChoices"
-import type { RankingClient } from "../ranking/rankingClient"
+import { createRunProblemIds } from "../content/entryChoices"
 import { AnswerPanel } from "./AnswerPanel"
 import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
@@ -11,9 +7,7 @@ import { GoalPanel } from "./GoalPanel"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 
-type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
-  rankingClient: RankingClient
-}
+type EditorialDeskProps = ReturnType<typeof useLearningSession>
 
 export function EditorialDesk({
   session,
@@ -25,14 +19,11 @@ export function EditorialDesk({
   closeCoach,
   next,
   practiceAgain,
-  startOver,
   changeLevel,
   tryAnother,
-  rankingClient,
 }: EditorialDeskProps) {
   const runLength = session.runProblemIds.length || 1
   const problemPosition = Math.min(session.runStepIndex + 1, runLength)
-  const entry = getEntryChoice(session.entryId!)
   const scheduledRunLength = createRunProblemIds(
     session.entryId!,
     session.runNumber,
@@ -69,12 +60,8 @@ export function EditorialDesk({
         <RunSummary
           elapsedMs={elapsedMs}
           failedProblemIds={session.failedProblemIds}
-          level={entry.level}
-          levelLabel={entry.label}
           onChangeLevel={changeLevel}
           onPracticeAgain={practiceAgain}
-          onStartOver={startOver}
-          rankingClient={rankingClient}
           score={score}
           total={scheduledRunLength}
         />
