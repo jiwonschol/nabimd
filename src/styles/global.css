@@ -171,7 +171,7 @@ button:focus-visible,
   left: 50%;
   width: clamp(34px, 3.7vw, 58px);
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   pointer-events: none;
   transform: translateX(-50%);
 }
@@ -845,13 +845,15 @@ button:focus-visible,
 }
 
 .answer-panel {
+  display: grid;
+  grid-template-rows: var(--panel-header-height) minmax(0, 1fr);
   box-shadow: inset 30px 0 38px -32px rgb(17 17 17 / 36%);
 }
 
 .cbt-panel__header {
   display: flex;
-  min-height: 74px;
-  flex: 0 0 74px;
+  min-height: var(--panel-header-height);
+  flex: 0 0 var(--panel-header-height);
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
@@ -874,7 +876,7 @@ button:focus-visible,
 .writing-sheet__line-numbers {
   position: absolute;
   z-index: 3;
-  top: 74px;
+  top: var(--panel-header-height);
   bottom: 0;
   left: clamp(2rem, 4vw, 3rem);
   width: 3.25rem;
@@ -949,11 +951,6 @@ button:focus-visible,
   font-weight: 400;
   line-height: 1.5;
   white-space: pre-wrap;
-}
-
-.answer-panel {
-  display: grid;
-  grid-template-rows: 74px minmax(0, 1fr);
 }
 
 .answer-panel__header {
