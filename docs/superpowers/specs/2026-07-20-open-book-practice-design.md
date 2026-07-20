@@ -1,6 +1,7 @@
 # Open-book Practice page
 
-**Status:** Visual direction approved by Jiwon on 2026-07-20  
+**Status:** Shared spread and word-processor direction approved by Jiwon on
+2026-07-20; compact instruction-header revision awaits visual approval
 **Tracker:** Issue #60  
 **Primary visual truth:** `docs/design/practice-open-book-level5-hint-reference.png` at 1586 x 992
 
@@ -22,6 +23,9 @@ This redesign changes presentation and the location of Hint. It does not change 
 
 - Practice occupies one viewport. The browser document does not scroll.
 - A single fixed top strip contains navigation, session context, sound, progress, Try another, and the primary Check or Next action.
+- At desktop sizes, reserve 108 px for the fixed top strip and 64 px for the
+  equal page headers so the word processors begin higher without moving the
+  book frame.
 - The left and right page frames are always equal width and equal height on desktop.
 - Long Level 5 documents scroll only inside their page interiors. The strip, page edges, icon tabs, and center seam never move.
 - Summary layout and information hierarchy are out of scope.
@@ -74,16 +78,21 @@ This redesign changes presentation and the location of Hint. It does not change 
 - The unified spread is fixed throughout the page turn. The receiving Practice spread is already visible beneath the transition; only the opaque right leaf moves, while the outgoing left page uses a temporary opaque paper surface to prevent content bleed-through. A transition-only light sweep may brighten the unified raster, but it must never recreate, detach, or move the fold.
 - On desktop the two pages form a strict 50:50 spread. Their top alignment and baseline rhythm match.
 - Remove visible `GOAL`, `YOUR WRITING`, repeated level labels, chapter labels, and other page explanations.
-- The left fixed target is identified by a small bullseye icon. The right modes are identified by their tab icons.
+- The left fixed target is identified by its concise learner instruction. The
+  right modes are identified by their tab icons.
 - There are no dashboard gaps, floating cards, rounded page panels, decorative gradients, ornamental colors, or unrelated entrance animation.
 - On the stacked mobile layout, replace the two-page spread raster with the neutral repeating paper texture because the pages no longer meet horizontally.
 
 ## Goal page
 
 - Goal never changes mode or content after Check and never becomes a brief, hint, review, source, or learner preview.
-- At every level it renders `problem.target`. The Level 3-5 prompt remains available to assistive technology and tests but never replaces the visible target.
+- At every level it renders `problem.target`. The concise `problem.prompt`
+  remains visible in the header as the learner instruction and never replaces
+  the target document.
 - Goal and Answer instantiate the same `WritingProcessor`. Goal selects its read-only mode; Answer selects its edit mode. The shared component owns the row numbers, rules, content inset, font, line height, and only document scrollbar.
-- A small bullseye icon denotes the fixed reference; its accessible label is `Goal`.
+- Do not add a separate Goal label or bullseye. Align the visible instruction
+  with the document-text start so the target itself demonstrates that the left
+  page is the fixed reference.
 - The target is fixed reference ink: no caret, editable focus ring, or answer state appears inside it.
 - Goal uses the ruled writing-paper standard at every level:
   - slim line-number gutter;
@@ -100,6 +109,9 @@ This redesign changes presentation and the location of Hint. It does not change 
 - The selected tab is shown by a black underline. Tooltips and accessible names are `Write`, `Preview` or `Review`, and `Hint`.
 - `Alt+1`, `Alt+2`, and `Alt+3` activate the tabs. Arrow keys move between tabs. Tab remains available for editor indentation and ordinary focus navigation.
 - Every new problem opens Write and focuses the editor.
+- Every level starts from the target's supplied prose, authored blank lines,
+  and line breaks with Markdown structure removed. Learners add Markdown; they
+  do not retype the document.
 - Write uses the same ruled-paper geometry as Goal, with CodeMirror line numbers aligned to the same row height. The caret and focus state are the principal signals that this page is editable.
 - Preview renders only the learner's current answer. It is never a third column.
 - After a failed Check, Preview's slot becomes Review and opens automatically. Review keeps the existing beginner language and grammar-only verdict contract.

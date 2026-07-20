@@ -40,7 +40,7 @@ function editAndCheck(
 }
 
 describe("learningSessionReducer", () => {
-  it("starts reproduction problems from prose and composition problems blank", () => {
+  it("starts every problem from supplied prose without Markdown marks", () => {
     const levelOne = getProblem("l1-heading-apple")
     const levelTwo = getProblem("l2-nested-checklist-closet-shelf")
     const levelThree = getProblem("l3-agenda-break-room-supplies")
@@ -48,7 +48,9 @@ describe("learningSessionReducer", () => {
     expect(newSession(levelOne).draft).toBe("Apple")
     expect(newSession(levelTwo).draft).toContain("Closet shelf")
     expect(newSession(levelTwo).draft).not.toContain("#")
-    expect(newSession(levelThree).draft).toBe("")
+    expect(newSession(levelThree).draft).toBe(levelThree.starterText)
+    expect(newSession(levelThree).draft).toContain("Break room supply review")
+    expect(newSession(levelThree).draft).not.toContain("#")
   })
 
   it("restores a saved learner draft instead of replacing it with the seed", () => {

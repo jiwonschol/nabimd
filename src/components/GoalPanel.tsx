@@ -1,4 +1,3 @@
-import { Target } from "lucide-react"
 import type { GradableProblem } from "../content/types"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WritingProcessor } from "./WritingProcessor"
@@ -16,13 +15,10 @@ export function GoalPanel({ problem }: GoalPanelProps) {
       aria-label="Goal"
       className="cbt-panel goal-panel"
     >
-      <p className="visually-hidden" id={promptId}>
-        {problem.prompt}
-      </p>
       <header className="cbt-panel__header">
-        <span aria-hidden="true" className="panel-icon" title="Goal">
-          <Target size={32} strokeWidth={1.5} />
-        </span>
+        <p className="goal-panel__instruction" id={promptId}>
+          {problem.prompt}
+        </p>
       </header>
       <WritingProcessor
         contentVersion={problem.target}

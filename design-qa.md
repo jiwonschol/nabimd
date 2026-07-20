@@ -35,7 +35,7 @@
   for code-only surfaces outside this processor.
 - Spacing and layout: Landing, Practice, and Summary use the same 50:50 spread.
   The fixed top bar and panel frames do not move at `1280 × 800`.
-- Practice document system: Goal and Answer begin at the same `y=221` baseline
+- Practice document system: Goal and Answer begin at the same document baseline
   at `1280 × 800`. Both use 40px rows whose number, rule, content, and scroll
   position share one document coordinate system.
 - Color: one warm off-white surface spans both pages. No black or white backing
@@ -69,7 +69,7 @@
 - At `1800 × 1000`, Landing and Practice both compute to a `1536px` outer
   width, so the fixed spread and moving leaf share identical geometry.
 - Browser console warnings/errors: 0.
-- Full repository gate: `npm run check` passed with 55 test files and 9,942
+- Full repository gate: `npm run check` passed with 56 test files and 9,942
   tests, followed by the production build and bundle verification.
 - Four independent read-only audits covered editor architecture, visual
   fidelity, responsive keyboard behavior, and cross-screen regressions. All
@@ -98,5 +98,14 @@
 7. Rendered Level 2 headings keep their authored blank row after the heading,
    and nested lists suppress DOM-only spacing and parent return marks. The Goal
    therefore keeps the same visible row sequence as the prewritten answer.
+8. The current Draft shortens the desktop top strip from 140px to 108px and
+   the page headers from 74px to 64px. The unexplained Goal bullseye is replaced
+   by the real learner instruction aligned to the document text. This visible
+   revision is verified locally but remains pending product-owner approval.
+9. Level 3–5 now receive deterministic prewritten prose just like Levels 1–2.
+   The learner keeps authored words, blank lines, and line breaks and supplies
+   only Markdown structure. Level 5 Write, Preview, Hint, Matched, Try again,
+   focused Next, and editor-focus restoration were exercised in the in-app
+   browser at 1280 × 800.
 
-final result: passed
+final result: automated checks passed; visual approval pending

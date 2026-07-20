@@ -72,7 +72,7 @@ describe("global responsive styles", () => {
   })
 
   it("shares one panel-header height across the embedded word processors", () => {
-    expect(tokens).toContain("--panel-header-height: 74px")
+    expect(tokens).toContain("--panel-header-height: 64px")
     expect(styles).toMatch(
       /\.cbt-panel__header\s*\{[^{}]*min-height:\s*var\(--panel-header-height\)[^{}]*flex:\s*0 0 var\(--panel-header-height\)/s,
     )
@@ -168,6 +168,10 @@ describe("global responsive styles", () => {
     expect(styles).not.toMatch(/\.exercise-topbar\s*\{[^{}]*border-bottom:/s)
     expect(styles).toMatch(/\.exercise-topbar__page--left\s*\{[^{}]*padding-right:\s*52px/s)
     expect(styles).toMatch(/\.exercise-topbar__page--right\s*\{[^{}]*padding-left:\s*52px/s)
+    expect(styles).toMatch(
+      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*108px minmax\(0, 1fr\)/s,
+    )
+    expect(styles).toMatch(/\.exercise-topbar\s*\{[^{}]*min-height:\s*108px/s)
   })
 
   it("turns one broad opaque leaf while the Practice spread lights from above", () => {
@@ -232,9 +236,9 @@ describe("global responsive styles", () => {
     )
   })
 
-  it("places the Goal marker at the inner page edge like the approved spread", () => {
+  it("aligns the visible Goal instruction with the document text", () => {
     expect(styles).toMatch(
-      /\.goal-panel > \.cbt-panel__header\s*\{[^{}]*justify-content:\s*flex-end/s,
+      /\.goal-panel > \.cbt-panel__header\s*\{[^{}]*justify-content:\s*flex-start[^{}]*padding-left:\s*calc\(42px \+ 57px \+ 23px\)/s,
     )
   })
 

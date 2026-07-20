@@ -279,7 +279,8 @@ describe("App", () => {
     const highLevelGoal = screen.getByRole("region", { name: "Goal" })
     expect(highLevelGoal.querySelector(".rendered-document__body")).not.toBeNull()
     const prompt = within(highLevelGoal).getByText(highLevelProblem.prompt)
-    expect(prompt).toHaveClass("visually-hidden")
+    expect(prompt).toBeVisible()
+    expect(prompt).toHaveClass("goal-panel__instruction")
     expect(highLevelGoal).toHaveAttribute("aria-describedby", prompt.id)
     const expectedHeading = highLevelProblem.target
       .split("\n")[0]!

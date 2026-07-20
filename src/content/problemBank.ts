@@ -17,13 +17,11 @@ const publishedLevels = runtimeProjections.levels as unknown as Record<
 
 const compiledProblems = CURRICULUM_LEVELS.flatMap(
   (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
-).map((problem): NormalizedProblem =>
-  problem.level <= 2
-    ? {
-        ...problem,
-        starterText: derivePlaintextStarter(problem.target),
-      }
-    : problem,
+).map(
+  (problem): NormalizedProblem => ({
+    ...problem,
+    starterText: derivePlaintextStarter(problem.target),
+  }),
 )
 
 if (!compiledProblems[0]) {
