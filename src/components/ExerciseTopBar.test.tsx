@@ -80,11 +80,13 @@ describe("ExerciseTopBar", () => {
       "step",
     )
     expect(screen.queryByText("1 of 6")).toBeNull()
-    expect(
-      screen.getByLabelText("Practice progress, 1 of 6"),
-    ).toBeVisible()
-    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "1")
-    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuemax", "6")
+    const progress = screen.getByRole("progressbar")
+    expect(progress).toHaveAccessibleName("Practice progress, 1 of 6")
+    expect(progress).toHaveAttribute("aria-valuenow", "1")
+    expect(progress).toHaveAttribute("aria-valuemax", "6")
+    expect(progress).not.toContainElement(
+      screen.getByRole("button", { name: "Mute sound" }),
+    )
     expect(screen.getByText("Repair practice")).toBeVisible()
     expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })

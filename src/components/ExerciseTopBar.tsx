@@ -83,14 +83,15 @@ export function ExerciseTopBar({
         </button>
       </div>
 
-      <div
+      <span
         aria-label={`Practice progress, ${visibleScheduledPosition} of ${scheduledRunLength}`}
         aria-valuemax={scheduledRunLength}
         aria-valuemin={1}
         aria-valuenow={visibleScheduledPosition}
-        className="exercise-progress"
+        className="visually-hidden"
         role="progressbar"
-      >
+      />
+      <div aria-label="Practice details" className="exercise-progress">
         <div className="exercise-progress__meta">
           <span aria-label={entry.label} className="exercise-progress__level">
             <span>{levelNumber}</span>

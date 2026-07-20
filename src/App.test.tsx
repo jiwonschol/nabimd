@@ -212,9 +212,9 @@ describe("App", () => {
       const user = userEvent.setup()
       await user.click(screen.getByRole("button", { name: entry.label }))
       const expectedLength = 6
-      expect(
-        screen.getByLabelText(`Practice progress, 1 of ${expectedLength}`),
-      ).toBeVisible()
+      expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+        `Practice progress, 1 of ${expectedLength}`,
+      )
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
       expect(screen.getByLabelText(entry.label)).toBeVisible()
       expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
@@ -247,7 +247,7 @@ describe("App", () => {
 
   it("keeps the selected task identity visible in the exercise header", async () => {
     await openLevel(2)
-    expect(screen.getByLabelText(/Practice progress/)).toHaveTextContent(
+    expect(screen.getByLabelText("Practice details")).toHaveTextContent(
       "Level 2 — Rebuild real documents",
     )
   })
@@ -266,6 +266,9 @@ describe("App", () => {
     const highLevelProblem = currentProblem()
     const highLevelGoal = screen.getByRole("region", { name: "Goal" })
     expect(highLevelGoal.querySelector(".rendered-document__body")).not.toBeNull()
+    const prompt = within(highLevelGoal).getByText(highLevelProblem.prompt)
+    expect(prompt).toHaveClass("visually-hidden")
+    expect(highLevelGoal).toHaveAttribute("aria-describedby", prompt.id)
     const expectedHeading = highLevelProblem.target
       .split("\n")[0]!
       .replace(/^#+\s*/, "")
@@ -304,7 +307,9 @@ describe("App", () => {
     await user.keyboard(" ")
     const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
     expect(nextEditor).toHaveFocus()
-    expect(screen.getByLabelText("Practice progress, 2 of 6")).toBeVisible()
+    expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+      "Practice progress, 2 of 6",
+    )
 
     fireEvent.keyDown(nextEditor, {
       key: "Enter",
@@ -312,7 +317,9 @@ describe("App", () => {
       repeat: true,
     })
     expect(screen.queryByRole("status")).toBeNull()
-    expect(screen.getByLabelText("Practice progress, 2 of 6")).toBeVisible()
+    expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+      "Practice progress, 2 of 6",
+    )
     expect(nextEditor).toHaveFocus()
   })
 
@@ -413,7 +420,9 @@ describe("App", () => {
     const original = screen.getByRole("region", { name: "Goal" }).textContent
     await user.click(screen.getByRole("button", { name: "Try another" }))
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(original)
-    expect(screen.getByLabelText("Practice progress, 1 of 6")).toBeVisible()
+    expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+      "Practice progress, 1 of 6",
+    )
 
     await user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     expect(
