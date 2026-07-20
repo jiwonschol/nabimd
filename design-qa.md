@@ -109,6 +109,44 @@ final result: passed
 
 ---
 
+## Calm open-book Summary
+
+- source visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-b9f5ea1e-7d7d-4228-adbd-65f6de3f5216.png`
+- implementation screenshot: `/tmp/nabimd-summary-implementation-final.jpg`
+- combined comparison: `/tmp/nabimd-summary-comparison.png`
+- viewport: `1280 x 720`
+- state: completed Level 1 turn with one failed numbered-list family
+
+The Summary continues the same paper, center seam, serif hierarchy, and fixed
+top chrome as Landing and Practice. The left page closes the turn with one
+concrete strength plus quiet score and time details. The right page limits the
+review to the syntax family worth revisiting and keeps `Practice again` inside
+the page as the single primary action.
+
+The content enters through an orchestrated reveal, stagger, and line-drawing
+sequence. It changes only opacity, clipping, and a two-pixel translation, so
+the fixed book frame never shifts. The global reduced-motion rule collapses
+the sequence to one millisecond.
+
+Findings: P0 none; P1 none; P2 none. Decorative branch and bookmark elements
+from the visual exploration were intentionally omitted as P3 differences to
+keep the shipped screen quieter and asset-independent.
+
+Comparison history: the first implementation repeated the level above the
+left-page message. That P2 text duplication was removed because the fixed top
+bar already communicates the level. The second same-state comparison found no
+remaining actionable P0, P1, or P2 difference.
+
+Primary interaction evidence: a real turn was failed once, repaired, completed,
+and summarized as one `Numbered steps` reminder. `Practice again` received
+focus, the document stayed at one viewport (`scrollHeight 720`), and the
+console reported zero warnings or errors. Unit coverage also verifies the clean,
+single-reminder, and grouped-reminder variants.
+
+final result: passed
+
+---
+
 ## Open-book landing gutter follow-up
 
 - source visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-77213ddc-8590-4645-87ee-7468a85d1799.png`
