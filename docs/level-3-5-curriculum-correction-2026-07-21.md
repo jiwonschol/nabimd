@@ -10,7 +10,7 @@ The first advanced-document batch increased difficulty by increasing realism,
 document length, domain vocabulary, and the amount of prose a learner had to
 read and reproduce. The resulting Level 5 Goals were 59-101 lines long. They
 resembled complete company work orders, but completing them felt like doing
-office work rather than practising Markdown.
+office work rather than practicing Markdown.
 
 That is the wrong difficulty axis for Nabi.
 
@@ -33,17 +33,23 @@ is the habit Nabi exists to build.
    document easy for another person to scan.
 4. **Level 4 - Write for work.** Apply the same approachable workload to short
    workplace notes, plans, handoffs, decisions, and checklists.
-5. **Level 5 - Write for developers.** Practise the Markdown forms common in
+5. **Level 5 - Write for developers.** Practice the Markdown forms common in
    developer and AI-assisted work: inline code, fenced code, blockquotes,
-   external and reference links, image links with alt text, task lists, nested
-   lists, file paths, README fragments, bug reports, PR descriptions, and
-   compact agent instructions.
+   external and reference links, nested lists, file paths, README fragments,
+   bug reports, PR descriptions, and compact agent instructions. Task lists and
+   images with alt text remain future candidates, not current bank requirements,
+   until the validator and preview contracts support them deliberately.
 
 Levels 4 and 5 may have similar reading load and completion time. Level 5 is a
 change of context and syntax mix, not a difficulty spike or a final exam.
 
 ## Advanced-problem contract
 
+- Treat size budgets as ceilings, never quotas. Level 4 and Level 5 may be much
+  shorter when the Markdown anatomy is already complete.
+- Keep both Level 4 and Level 5 at or below 40 authored lines and 165 words,
+  including supplied prose. Prefer the shortest coherent miniature.
+- Keep each list to two or three short items.
 - Keep the prose short enough to understand at a glance.
 - Preserve the authored words, blank lines, and line breaks in the learner's
   starter document.
@@ -59,15 +65,18 @@ change of context and syntax mix, not a difficulty spike or a final exam.
   and punctuation remain outside pass/fail.
 - Target a casual one-to-three-minute problem, not a work assignment.
 
-Line count alone is not the governing metric. Reading density and the amount of
-new learner input matter more. A document may contain several short lines when
-the prose and line breaks are already supplied and the learner only adds the
-Markdown marks.
+Line count alone is not the governing metric. The limits above prevent workload
+inflation; they do not create a target to fill. Reading density and the amount
+of new learner input matter more. A document may contain several short lines
+when the prose and line breaks are already supplied and the learner only adds
+the Markdown marks.
 
 ## How to use realistic sources
 
-A real company document is a source of document anatomy, not learner copy.
-Extract a small structural combination from it, such as:
+A realistic or public document may inform document anatomy, but learner content
+must be newly authored from fictional, non-sensitive situations. Never reuse
+proprietary, project-specific, personal, or confidential content. Extract a
+small structural combination from a source, such as:
 
 - title + required reading + constraints;
 - goal + ordered steps + stop condition;
@@ -84,6 +93,11 @@ The product-owner sketch in
 is the current size-and-density reference. It was drafted quickly to communicate
 direction and is not itself a validated Markdown fixture. Its syntax must be
 editorially corrected before it becomes a learner problem.
+
+The sketch does not define an ideal real-world agent contract. Do not expand it
+into a complete work order merely to add professional detail. Before learner
+use, validate only the Markdown anatomy needed by the chosen lesson, the
+runtime grader, the preview renderer, and the short-workload contract above.
 
 ## Consequences for the current bank
 
@@ -108,5 +122,4 @@ useful part was the Markdown anatomy, not the prose volume.
 
 The resolved rule is concise:
 
-> Make the document realistic enough to recognize and short enough to practise.
-
+> Make the document realistic enough to recognize and short enough to practice.

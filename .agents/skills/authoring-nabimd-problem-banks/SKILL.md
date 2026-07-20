@@ -15,11 +15,21 @@ Nabi teaches Markdown by typing, not workplace writing by reading. Realistic con
 |---|---|---:|---|
 | 1 | one construct | 1–3 lines, 1–10 words | 2–3 items when needed |
 | 2 | combine 2–3 constructs | 6–14 lines, 20–60 words | 2–3 items |
-| 3 | readable document | 18–28 lines, 90–150 words | at most 3 items |
-| 4 | compact spec | 28–40 lines, 95–165 words | 2–3 items |
-| 5 | compact agent order | 40–65 lines, 150–230 words | 2–3 items |
+| 3 | readable document | at most 28 lines and 150 words | at most 3 items |
+| 4 | write for work | at most 40 lines and 165 words | 2–3 items |
+| 5 | write for developers | at most 40 lines and 165 words | 2–3 items |
 
-For Levels 4–5, each list item is one short sentence, normally no more than 12 words. Every paragraph, list, quote, link, inline-code span, and fence must create a visible Markdown decision.
+Budgets are ceilings, never quotas. Prefer the shortest coherent miniature, and
+allow Levels 4 and 5 to have the same workload: Level 5 changes the context and
+syntax mix, not the reading burden. For Levels 4–5, each list item is one short
+sentence, normally no more than 12 words. Every paragraph, list, quote, link,
+inline-code span, and fence must create a visible Markdown decision.
+
+Current Level 5 lessons may use inline and fenced code, blockquotes, direct and
+reference links, nested lists, file paths, README fragments, bug reports, PR
+descriptions, and compact agent instructions. Do not author task-list or image
+lessons until their dedicated validators, fixtures, preview behavior, and
+accessibility contract exist.
 
 ## Workflow
 
@@ -27,7 +37,9 @@ For Levels 4–5, each list item is one short sentence, normally no more than 12
 2. Inspect the tracker, latest immutable batch, validators, selection reachability, worktrees, and protected paths.
 3. Freeze level counts and at least two variants per retry family. Use `Refs` for checkpoints; use `Closes` only when the closing gate is met.
 4. Write failing tests for counts, metadata, uniqueness, real-engine canonical matching, and the budgets above. Confirm RED.
-5. Design Markdown anatomy first, then add short fictional US-English nouns.
+5. Design Markdown anatomy first, then add short fictional, non-sensitive
+   US-English nouns. Never republish proprietary, project-specific, personal,
+   or confidential source material.
 6. Grade grammar only. Never grade prose, capitalization, spelling, punctuation, heading labels, or domain truth. Keep `protectedContent: []` unless the product contract changes.
 7. Generate canonical, different-prose, case/spelling, missing, malformed, and matched-with-review fixtures, plus one direct failure per match check. Replay all through `evaluateProblem`; check collisions against the batch and published bank.
 8. Freeze `prepare` artifacts. Any candidate, fixture, prompt, engine contract, verification, or manifest change invalidates all seals.
