@@ -71,6 +71,26 @@ describe("MarkdownSourceEditor", () => {
     expect(onCheck).toHaveBeenCalledOnce()
   })
 
+  it("consumes a repeated action shortcut without checking again", () => {
+    const onCheck = vi.fn()
+    render(
+      <MarkdownSourceEditor
+        onChange={vi.fn()}
+        onCheck={onCheck}
+        value="# Apple"
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+
+    fireEvent.keyDown(editor, {
+      key: "Enter",
+      ctrlKey: true,
+      repeat: true,
+    })
+
+    expect(onCheck).not.toHaveBeenCalled()
+  })
+
   it("adds only the readline motions missing from each platform default", () => {
     expect(
       resolveReadlineNavigationKeymap({ platform: "MacIntel" }).map(
@@ -181,6 +201,47 @@ describe("MarkdownSourceEditor", () => {
       ),
     ).toBe(true)
     expect(view.state.selection.main.head).toBe(view.state.doc.length)
+  })
+
+  it("owns caret shortcuts at document boundaries", () => {
+    render(
+      <MarkdownSourceEditor
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value="alpha beta"
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    view.dispatch({ selection: { anchor: 0 } })
+    const lineStart = new KeyboardEvent("keydown", {
+      bubbles: true,
+      cancelable: true,
+      ctrlKey: true,
+      key: "a",
+    })
+    editor.dispatchEvent(lineStart)
+    expect(lineStart.defaultPrevented).toBe(true)
+    expect(view.state.selection.main).toMatchObject({ anchor: 0, head: 0 })
+
+    view.dispatch({ selection: { anchor: view.state.doc.length } })
+    const wordForward = new KeyboardEvent("keydown", {
+      altKey: true,
+      bubbles: true,
+      cancelable: true,
+      code: "KeyF",
+      key: "ƒ",
+    })
+    editor.dispatchEvent(wordForward)
+    expect(wordForward.defaultPrevented).toBe(true)
+    expect(view.state.selection.main).toMatchObject({
+      anchor: view.state.doc.length,
+      head: view.state.doc.length,
+    })
+    expect(view.state.doc.toString()).toBe("alpha beta")
   })
 
   it("keeps plain Enter as a newline instead of an action", async () => {

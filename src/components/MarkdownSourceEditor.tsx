@@ -40,6 +40,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
       onCheckRef.current()
       return true
     }
+    const navigatorLike = typeof navigator === "undefined" ? {} : navigator
     const view = new EditorView({
       parent: mount,
       doc: value,
@@ -64,10 +65,8 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
           }
         }),
         keymap.of([
-          ...createActionKeyBindings(runCheck),
-          ...resolveReadlineNavigationKeymap(
-            typeof navigator === "undefined" ? {} : navigator,
-          ),
+          ...createActionKeyBindings(runCheck, navigatorLike),
+          ...resolveReadlineNavigationKeymap(navigatorLike),
           ...defaultKeymap,
           ...historyKeymap,
         ]),

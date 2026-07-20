@@ -69,15 +69,32 @@ describe("the shared Check-or-Next shortcut", () => {
     ).toBe(false)
   })
 
-  it("builds the editor keymap from the same three shared definitions", () => {
+  it("uses the shared definitions in the editor without repeating an action", () => {
     const run = vi.fn(() => true)
+    const [binding] = createActionKeyBindings(run, {
+      platform: "MacIntel",
+    })
+    if (!binding) throw new Error("Expected an editor action key binding")
+    const view = {} as Parameters<NonNullable<typeof binding.any>>[0]
+    const enter = (overrides: Partial<KeyboardEvent>) =>
+      ({
+        key: "Enter",
+        altKey: false,
+        ctrlKey: false,
+        metaKey: false,
+        shiftKey: false,
+        repeat: false,
+        ...overrides,
+      }) as KeyboardEvent
+
+    expect(binding.any?.(view, enter({ metaKey: true }))).toBe(true)
+    expect(run).toHaveBeenCalledOnce()
 
     expect(
-      createActionKeyBindings(run).map(({ key, mac, win }) => ({ key, mac, win })),
-    ).toEqual([
-      { key: "Ctrl-Enter", mac: undefined, win: undefined },
-      { key: undefined, mac: "Cmd-Enter", win: undefined },
-      { key: undefined, mac: undefined, win: "Shift-Enter" },
-    ])
+      binding.any?.(view, enter({ metaKey: true, repeat: true })),
+    ).toBe(true)
+    expect(run).toHaveBeenCalledOnce()
+
+    expect(binding.any?.(view, enter({ shiftKey: true }))).toBe(false)
   })
 })

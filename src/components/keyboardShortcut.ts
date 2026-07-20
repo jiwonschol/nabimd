@@ -10,7 +10,6 @@ type ShortcutPlatform = "all" | "apple" | "windows"
 
 type ActionShortcut = {
   aria: string
-  codeMirrorKey: string
   label: string
   platform: ShortcutPlatform
   modifiers: {
@@ -26,7 +25,6 @@ type ActionShortcut = {
 const ACTION_SHORTCUTS: readonly ActionShortcut[] = [
   {
     aria: "Control+Enter",
-    codeMirrorKey: "Ctrl-Enter",
     label: "Ctrl+↩",
     platform: "all",
     modifiers: {
@@ -38,7 +36,6 @@ const ACTION_SHORTCUTS: readonly ActionShortcut[] = [
   },
   {
     aria: "Meta+Enter",
-    codeMirrorKey: "Cmd-Enter",
     label: "⌘↩",
     platform: "apple",
     modifiers: {
@@ -50,7 +47,6 @@ const ACTION_SHORTCUTS: readonly ActionShortcut[] = [
   },
   {
     aria: "Shift+Enter",
-    codeMirrorKey: "Shift-Enter",
     label: "Shift+↩",
     platform: "windows",
     modifiers: {
@@ -98,7 +94,14 @@ export function isActionShortcut(
   event: KeyboardEvent,
   navigatorLike: NavigatorLike,
 ): boolean {
-  if (event.key !== "Enter" || event.repeat) return false
+  return !event.repeat && matchesActionCombination(event, navigatorLike)
+}
+
+function matchesActionCombination(
+  event: KeyboardEvent,
+  navigatorLike: NavigatorLike,
+): boolean {
+  if (event.key !== "Enter") return false
 
   return shortcutsFor(navigatorLike).some((shortcut) =>
     Object.entries(shortcut.modifiers).every(
@@ -108,12 +111,17 @@ export function isActionShortcut(
   )
 }
 
-export function createActionKeyBindings(run: Command): KeyBinding[] {
-  return ACTION_SHORTCUTS.map((shortcut) => {
-    const binding: KeyBinding = { run }
-    if (shortcut.platform === "all") binding.key = shortcut.codeMirrorKey
-    if (shortcut.platform === "apple") binding.mac = shortcut.codeMirrorKey
-    if (shortcut.platform === "windows") binding.win = shortcut.codeMirrorKey
-    return binding
-  })
+export function createActionKeyBindings(
+  run: Command,
+  navigatorLike: NavigatorLike,
+): KeyBinding[] {
+  return [
+    {
+      any(view, event) {
+        if (!matchesActionCombination(event, navigatorLike)) return false
+        if (event.repeat) return true
+        return run(view)
+      },
+    },
+  ]
 }

@@ -2349,3 +2349,15 @@ learner journeys. A separate in-app macOS browser run verified Command-Enter
 Check, Control-Enter Next, non-advancing Space/Enter, every caret motion,
 visible platform labels, an empty error console, and an unobstructed rendered
 exercise screen.
+
+The independent Codex review then found two boundary cases that the initial
+happy-path tests missed. A held action shortcut could emit repeated keydowns
+after Next had focused the new editor, immediately checking its empty draft.
+Also, movement commands returned `false` when the caret was already at a
+boundary, allowing CodeMirror or the browser to reinterpret the same key; on
+some paths `Ctrl+A` could select all or `Option+F` could insert `ƒ`. The editor
+now consumes recognized repeated action keys without running them and owns
+every declared caret shortcut even when no movement is possible. Tests dispatch
+real boundary key events and replay a repeated Check/Next event after the next
+problem mounts. The post-review gate passes 9,892/9,892 tests and the same 13
+Chromium learner journeys.

@@ -293,8 +293,18 @@ describe("App", () => {
     expect(screen.getByLabelText("Practice progress")).toHaveTextContent("1 of 6")
 
     await user.keyboard("{Control>}{Enter}{/Control}")
-    expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
+    const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
+    expect(nextEditor).toHaveFocus()
     expect(screen.getByLabelText("Practice progress")).toHaveTextContent("2 of 6")
+
+    fireEvent.keyDown(nextEditor, {
+      key: "Enter",
+      ctrlKey: true,
+      repeat: true,
+    })
+    expect(screen.queryByRole("status")).toBeNull()
+    expect(screen.getByLabelText("Practice progress")).toHaveTextContent("2 of 6")
+    expect(nextEditor).toHaveFocus()
   })
 
   it("keeps Next unavailable and opens beginner Review after Try again", async () => {
