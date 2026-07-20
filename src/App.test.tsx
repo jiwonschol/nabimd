@@ -225,6 +225,11 @@ describe("App", () => {
   it("keeps teaching behind the answer Hint tab at every chosen level", async () => {
     const first = await openLevel(1)
     const firstHint = screen.getByRole("tab", { name: "Hint" })
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "data-tooltip",
+      "Write",
+    )
+    expect(firstHint).toHaveAttribute("data-tooltip", "Hint")
     expect(firstHint).toHaveAttribute("aria-selected", "false")
     await first.user.click(firstHint)
     expect(

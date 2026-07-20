@@ -38,6 +38,41 @@ button:focus-visible,
   outline-offset: 3px;
 }
 
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.45rem);
+  left: 50%;
+  width: max-content;
+  max-width: 12rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  content: attr(data-tooltip);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 560;
+  line-height: 1.2;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -3px);
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+  white-space: nowrap;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:focus-visible::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
 .app-shell {
   width: min(100%, 72rem);
   height: 100svh;
@@ -693,8 +728,8 @@ button:focus-visible,
 
 .sound-control {
   display: inline-flex;
-  width: 32px;
-  min-height: 32px;
+  width: 44px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   padding: 0;
@@ -1444,7 +1479,7 @@ button:focus-visible,
     min-height: 72px;
     gap: 0.45rem;
     padding: 8px 12px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .exercise-topbar__start,
@@ -1540,5 +1575,17 @@ button:focus-visible,
     opacity: 1;
     transform: translate(-50%, -50%);
     animation: none !important;
+  }
+
+  [data-tooltip]::before,
+  [data-tooltip]:hover::before,
+  [data-tooltip]:focus-visible::before {
+    transform: translate(-50%, 0);
+  }
+
+  .top-action:active,
+  .sound-control:active,
+  .answer-tab:active {
+    transform: none;
   }
 }

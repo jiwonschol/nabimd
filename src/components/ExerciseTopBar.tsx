@@ -106,8 +106,8 @@ export function ExerciseTopBar({
             aria-label={soundMuted ? "Turn sound on" : "Mute sound"}
             aria-pressed={soundMuted}
             className="sound-control"
+            data-tooltip={soundMuted ? "Turn sound on" : "Mute sound"}
             onClick={() => setSoundMuted(!soundMuted)}
-            title={soundMuted ? "Turn sound on" : "Mute sound"}
             type="button"
           >
             {soundMuted ? (
@@ -156,8 +156,8 @@ export function ExerciseTopBar({
           <button
             aria-label="Try another"
             className="top-action top-action--icon"
+            data-tooltip="Try another"
             onClick={onTryAnother}
-            title="Try another"
             type="button"
           >
             <Shuffle aria-hidden="true" size={19} strokeWidth={1.7} />
@@ -166,6 +166,7 @@ export function ExerciseTopBar({
             aria-label={matched ? "Next exercise" : "Check answer"}
             aria-keyshortcuts={shortcut.ariaKeyShortcuts}
             className="top-action top-action--primary"
+            data-tooltip={matched ? "Next exercise" : "Check answer"}
             disabled={!matched && !canCheck}
             onClick={matched ? onNext : onCheck}
             onKeyDown={(event) => {
@@ -180,7 +181,6 @@ export function ExerciseTopBar({
               }
             }}
             ref={nextRef}
-            title={matched ? "Next exercise" : "Check answer"}
             type="button"
           >
             {matched ? (

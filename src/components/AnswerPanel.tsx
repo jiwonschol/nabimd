@@ -287,13 +287,13 @@ export function AnswerPanel({
             aria-keyshortcuts="Alt+1"
             aria-selected={view === "write"}
             className="answer-tab"
+            data-tooltip="Write"
             id={tabIds.write}
             onClick={() => selectView("write")}
             onKeyDown={(event) => moveBetweenTabs(event, "write")}
             ref={writeTabRef}
             role="tab"
             tabIndex={view === "write" ? 0 : -1}
-            title="Write"
             type="button"
           >
             <Pencil aria-hidden="true" size={18} strokeWidth={1.6} />
@@ -304,13 +304,13 @@ export function AnswerPanel({
             aria-keyshortcuts="Alt+2"
             aria-selected={view === secondView}
             className="answer-tab"
+            data-tooltip={secondLabel}
             id={tabIds.second}
             onClick={() => selectView(secondView)}
             onKeyDown={(event) => moveBetweenTabs(event, secondView)}
             ref={secondTabRef}
             role="tab"
             tabIndex={view === secondView ? 0 : -1}
-            title={secondLabel}
             type="button"
           >
             <Eye aria-hidden="true" size={18} strokeWidth={1.6} />
@@ -321,13 +321,13 @@ export function AnswerPanel({
             aria-keyshortcuts="Alt+3 ?"
             aria-selected={view === "hint"}
             className="answer-tab"
+            data-tooltip="Hint"
             id={tabIds.hint}
             onClick={() => selectView("hint")}
             onKeyDown={(event) => moveBetweenTabs(event, "hint")}
             ref={hintTabRef}
             role="tab"
             tabIndex={view === "hint" ? 0 : -1}
-            title="Hint"
             type="button"
           >
             <Lightbulb aria-hidden="true" size={18} strokeWidth={1.6} />

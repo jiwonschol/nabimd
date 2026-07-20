@@ -57,9 +57,11 @@ describe("ExerciseTopBar", () => {
     const soundToggle = screen.getByRole("button", { name: "Turn sound on" })
 
     expect(soundToggle).toHaveAttribute("aria-pressed", "true")
+    expect(soundToggle).toHaveAttribute("data-tooltip", "Turn sound on")
     fireEvent.click(soundToggle)
 
     expect(soundToggle).toHaveAccessibleName("Mute sound")
+    expect(soundToggle).toHaveAttribute("data-tooltip", "Mute sound")
     expect(soundToggle).toHaveAttribute("aria-pressed", "false")
     expect(window.localStorage.getItem("nabimd.sound-muted")).toBe("false")
   })
@@ -108,6 +110,11 @@ describe("ExerciseTopBar", () => {
     renderTopBar("editing")
 
     const check = screen.getByRole("button", { name: "Check answer" })
+    expect(check).toHaveAttribute("data-tooltip", "Check answer")
+    expect(screen.getByRole("button", { name: "Try another" })).toHaveAttribute(
+      "data-tooltip",
+      "Try another",
+    )
     expect(check).not.toHaveTextContent("Control")
     expect(check).not.toHaveTextContent("Check")
   })
