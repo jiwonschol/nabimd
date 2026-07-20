@@ -267,7 +267,7 @@ describe("useLearningSession", () => {
   it("starts with the first compiled problem when no run is active", () => {
     const { result } = renderLearningSession()
     expect(result.current.problem).toBe(getProblem(problemBank[0].id))
-    expect(result.current.session.draft).toBe("")
+    expect(result.current.session.draft).toBe(problemBank[0].starterText)
     expect(result.current.canNext).toBe(false)
   })
 

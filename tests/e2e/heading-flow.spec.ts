@@ -1,4 +1,26 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
+import { readFileSync } from "node:fs"
+import { derivePlaintextStarter } from "../../src/content/plaintextStarter"
+
+type RuntimeProblemSource = {
+  id: string
+  target: string
+}
+
+const runtimeProjection = JSON.parse(
+  readFileSync(
+    new URL(
+      "../../curriculum/problem-bank/runtime-projections.generated.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+) as { levels: Record<string, RuntimeProblemSource[]> }
+const runtimeProblemById = new Map(
+  Object.values(runtimeProjection.levels)
+    .flat()
+    .map((problem) => [problem.id, problem]),
+)
 
 const levelLabels = [
   "Level 1 — Learn the syntax",
@@ -21,6 +43,12 @@ function sourceEditor(page: Page): Locator {
   return page.getByRole("textbox", { name: "Your Markdown" })
 }
 
+async function sourceText(page: Page): Promise<string> {
+  const editor = sourceEditor(page)
+  if ((await editor.locator(".cm-placeholder").count()) > 0) return ""
+  return (await editor.locator(".cm-line").allTextContents()).join("\n")
+}
+
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
   await page.getByRole("button", { name: levelLabels[level - 1] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
@@ -31,26 +59,41 @@ async function enterLevel1(page: Page) {
   await enterLevel(page, 1)
 }
 
+async function resetToGreeting(page: Page) {
+  await page.goto("/")
+  await page.evaluate((storageKey) => {
+    window.sessionStorage.removeItem(storageKey)
+  }, progressStorageKey)
+  await page.reload()
+}
+
 async function currentProblemFamily(page: Page) {
-  const panelId = await page.getByRole("tab", { name: "Write" }).getAttribute("aria-controls")
+  const problemId = await currentProblemId(page)
+  if (problemId.includes("-blockquote-")) return "blockquote"
+  if (problemId.includes("-emphasis-")) return "emphasis"
+  if (problemId.includes("-italic-")) return "italic"
+  if (problemId.includes("-inline-code-")) return "inline-code"
+  if (problemId.includes("-code-block-")) {
+    if (problemId.includes("-copy-")) return "code-block-copy"
+    if (problemId.includes("-reference")) return "code-block-reference"
+    if (problemId.includes("-routine")) return "code-block-routine"
+    return "code-block"
+  }
+  if (problemId.includes("-link-")) return "links"
+  if (problemId.includes("-thematic-break-")) return "thematic-break"
+  if (problemId.includes("-order-")) return "ordered-list"
+  if (problemId.includes("-list-")) return "unordered-list"
+  return "headings"
+}
+
+async function currentProblemId(page: Page) {
+  const panelId = await page
+    .getByRole("tab", { name: "Write" })
+    .getAttribute("aria-controls")
   if (!panelId?.startsWith("write-panel-")) {
     throw new Error("The active Write tab must identify its problem")
   }
-  if (panelId.includes("-blockquote-")) return "blockquote"
-  if (panelId.includes("-emphasis-")) return "emphasis"
-  if (panelId.includes("-italic-")) return "italic"
-  if (panelId.includes("-inline-code-")) return "inline-code"
-  if (panelId.includes("-code-block-")) {
-    if (panelId.includes("-copy-")) return "code-block-copy"
-    if (panelId.includes("-reference")) return "code-block-reference"
-    if (panelId.includes("-routine")) return "code-block-routine"
-    return "code-block"
-  }
-  if (panelId.includes("-link-")) return "links"
-  if (panelId.includes("-thematic-break-")) return "thematic-break"
-  if (panelId.includes("-order-")) return "ordered-list"
-  if (panelId.includes("-list-")) return "unordered-list"
-  return "headings"
+  return panelId.slice("write-panel-".length)
 }
 
 async function validDifferentProse(page: Page, words: string) {
@@ -169,6 +212,31 @@ test("every level opens its task-type turn", async ({ page }) => {
       page.getByRole("heading", { name: "Choose a chapter to begin." }),
     ).toBeVisible()
   }
+})
+
+test("pre-fills reproduction prose but keeps composition blank", async ({
+  page,
+}) => {
+  for (const level of [1, 2] as const) {
+    await resetToGreeting(page)
+    await enterLevel(page, level)
+    const editor = sourceEditor(page)
+    const problemId = await currentProblemId(page)
+    const problem = runtimeProblemById.get(problemId)
+    if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
+    const starterText = derivePlaintextStarter(problem.target)
+
+    expect(starterText).not.toBe("")
+    await expect.poll(() => sourceText(page)).toBe(starterText)
+
+    await page.getByRole("button", { name: "Show invisibles" }).click()
+    await page.getByRole("button", { name: "Hide invisibles" }).click()
+    await expect.poll(() => sourceText(page)).toBe(starterText)
+  }
+
+  await resetToGreeting(page)
+  await enterLevel(page, 3)
+  await expect.poll(() => sourceText(page)).toBe("")
 })
 
 test("completes and replays Level 1 with keyboard input only", async ({ page }) => {

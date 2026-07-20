@@ -2361,3 +2361,39 @@ every declared caret shortcut even when no movement is possible. Tests dispatch
 real boundary key events and replay a repeated Check/Next event after the next
 problem mounts. The post-review gate passes 9,892/9,892 tests and the same 13
 Chromium learner journeys.
+
+## 2026-07-20 — Issue #39 prose-first answer sheets
+
+Playtesting had exposed a mismatch between Nabi's grammar-only promise and its
+blank answer sheet: beginner exercises already showed the finished prose in
+Goal, but still asked the learner to retype every word before practicing the
+Markdown marks. Level 1 and Level 2 now start with that visible prose and its
+line breaks in `answer.md`. Levels 3–5 remain blank because they compose from a
+brief and have no fixed target to strip. A saved learner draft always wins over
+the starter, and the evaluator still ignores prose differences.
+
+The first implementation fork was whether to rewrite all 284 accepted Level
+1–2 records. That would have changed review-bound batch digests for a runtime
+presentation behavior. Instead, one adapter hydrates `starterText` when the
+accepted projections enter the app. A pure mdast serializer removes headings,
+list markers, quote markers, emphasis delimiters, link destinations, dividers,
+and code fences while preserving visible text, code bodies, image alt text, and
+block boundaries. It also removes zero-width characters and normalizes Unicode
+spaces without adding a dependency. Generated projections, candidates,
+fixtures, manifests, and review evidence remain byte-for-byte unchanged.
+
+Browser verification exposed three test-assumption problems rather than
+product defects. CodeMirror renders each source line in a separate `.cm-line`,
+so parent `textContent` hid line breaks; the E2E reader now rebuilds the source
+from those lines. Reloading `/` correctly restored the active session instead
+of returning to the level picker, so cross-level checks now clear only the
+progress record while preserving the deterministic session seed. Finally, an
+empty Level 3 editor exposes `Type Markdown…` as a DOM placeholder, not source;
+the assertion now distinguishes the placeholder from the document value.
+
+Final verification passes `npm run check`: typechecking, 18/18 pipeline tests,
+every immutable batch and repository gate, 9,900/9,900 unit and component
+tests, the compiled-bank gate, a 224-module production build, and bundle
+inspection. Chromium passes all 14 learner journeys, including Level 1–2
+pre-seeding, Invisibles source preservation, Level 3 blank composition,
+session draft persistence, keyboard completion, and the 1280×800 layout.
