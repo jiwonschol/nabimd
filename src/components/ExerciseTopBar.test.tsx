@@ -118,4 +118,23 @@ describe("ExerciseTopBar", () => {
     expect(screen.getByText("Repair practice")).toBeVisible()
     expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })
+
+  it("uses the shared action shortcut for Next and rejects bare Space or Enter", () => {
+    const onNext = vi.fn()
+    renderTopBar("editing", vi.fn(), {
+      evaluation: { status: "matched", reviewItems: [] },
+      onNext,
+    })
+    const next = screen.getByRole("button", { name: "Next" })
+
+    expect(next).toHaveAttribute("aria-keyshortcuts", expect.stringContaining("Control+Enter"))
+    expect(next).not.toHaveTextContent("Space / Enter")
+
+    fireEvent.keyDown(next, { key: " " })
+    fireEvent.keyDown(next, { key: "Enter" })
+    expect(onNext).not.toHaveBeenCalled()
+
+    fireEvent.keyDown(next, { key: "Enter", ctrlKey: true })
+    expect(onNext).toHaveBeenCalledTimes(1)
+  })
 })

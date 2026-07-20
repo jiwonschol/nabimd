@@ -51,7 +51,9 @@ Nabi takes its method from language learning:
 1. Rebuild a rendered target at Levels 1–2, then compose from a brief at
    Levels 3–5.
 2. Produce the Markdown yourself in a plain source editor.
-3. Press **Check** or `Control/Command + Enter` when you are ready.
+3. Press **Check**, or use the same action shortcut for Check and Next:
+   `Control + Enter` everywhere, `Command + Enter` on macOS, or
+   `Shift + Enter` on Windows.
 4. Receive one precise result: **Try again** or **Matched**.
 5. See Hint during the first four chosen-level problems, then try two
    next-level challenges with Hint closed. Hint remains available on request;
@@ -84,7 +86,8 @@ This milestone includes:
 - different-content remediation after a failure and `Try another` at any time;
 - browser-session draft, schedule, and transfer-state persistence;
 - safe local rendering with no runtime AI or learner-content API request;
-- a monochrome CodeMirror editor with optional, non-mutating invisibles; and
+- a monochrome CodeMirror editor with optional, non-mutating invisibles,
+  readline-style caret motion, and IME-safe action shortcuts; and
 - an append-only, digest-bound fixture, independent-review, and editorial gate.
 
 The repository also preserves the earlier 128-candidate GPT-5.6 experiment as

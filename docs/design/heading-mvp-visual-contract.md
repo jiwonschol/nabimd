@@ -53,10 +53,18 @@ capitalization, spelling, punctuation, or exact prose as an error.
 - There are two verdicts only: **Try again** and **Matched**.
 - Each verdict appears briefly in a large, viewport-centered notice. Try again
   uses pale red; Matched uses pale green.
-- After Matched, Check becomes Next and receives focus. Space or Enter advances.
+- After Matched, Check becomes Next and receives focus. Bare Space and Enter do
+  not advance; they remain ordinary typing keys and are safe for IME users.
 - The next problem opens Write and returns focus to the editor.
-- `Cmd+Enter` on macOS and `Ctrl+Enter` elsewhere invokes Check. The filled
-  Check control visibly displays `⌘↩` on macOS or `Ctrl+↩` elsewhere.
+- One action shortcut invokes Check while editing and Next after Matched:
+  `Ctrl+Enter` everywhere, `Cmd+Enter` additionally on macOS, and
+  `Shift+Enter` additionally on Windows. The filled control displays the exact
+  platform set and exposes the same values through `aria-keyshortcuts`.
+- The source editor supports readline caret movement: `Ctrl+A/E` moves to the
+  line start/end, `Ctrl+B/F` moves by character, and `Alt+B/F` moves by word.
+  CodeMirror's audited default `Mod+Home/End` bindings retain document
+  start/end movement. macOS Option-key layouts are handled by physical key
+  code so `Option+B/F` cannot degrade into typed special characters.
 - `Alt+1` opens Write; `Alt+2` opens Preview or Review. `?` toggles Hint when
   focus is not inside a text-entry surface.
 
@@ -115,6 +123,6 @@ viewport for:
 4. monochrome hierarchy and thin-rule rhythm;
 5. Write/Preview/Review beginner language;
 6. internal long-document scrolling;
-7. keyboard-only Check, Next, and editor-focus flow, including the visible
-   platform-appropriate Check shortcut;
+7. keyboard-only Check, Next, and editor-focus flow, including one shared,
+   visible platform-appropriate action shortcut and no Space advance;
 8. absence of an always-visible third preview column.

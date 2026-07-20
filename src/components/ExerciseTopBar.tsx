@@ -7,7 +7,10 @@ import {
   setSoundMuted,
   subscribeSoundMuted,
 } from "../sound/feedbackSound"
-import { resolveCheckShortcut } from "./keyboardShortcut"
+import {
+  isActionShortcut,
+  resolveActionShortcut,
+} from "./keyboardShortcut"
 import { ElapsedTime } from "./ElapsedTime"
 import { Wordmark } from "./Wordmark"
 
@@ -70,8 +73,9 @@ export function ExerciseTopBar({
     phase === "complete"
       ? scheduledRunLength
       : Math.min(scheduledStepIndex + 1, scheduledRunLength)
-  const shortcut = resolveCheckShortcut(
-    typeof navigator === "undefined" ? {} : navigator,
+  const navigatorLike = typeof navigator === "undefined" ? {} : navigator
+  const shortcut = resolveActionShortcut(
+    navigatorLike,
   )
 
   useEffect(() => {
@@ -185,16 +189,27 @@ export function ExerciseTopBar({
             <span aria-hidden="true">?</span>
           </button>
           <button
-            aria-keyshortcuts={matched ? undefined : shortcut.ariaKeyShortcuts}
+            aria-keyshortcuts={shortcut.ariaKeyShortcuts}
             className="top-action top-action--primary"
             disabled={!matched && !canCheck}
             onClick={matched ? onNext : onCheck}
+            onKeyDown={(event) => {
+              if (!matched) return
+              if (isActionShortcut(event.nativeEvent, navigatorLike)) {
+                event.preventDefault()
+                onNext()
+                return
+              }
+              if (event.key === " " || event.key === "Enter") {
+                event.preventDefault()
+              }
+            }}
             ref={nextRef}
             type="button"
           >
             <span>{matched ? "Next" : hadFailure ? "Check again" : "Check"}</span>
             <small aria-hidden="true">
-              {matched ? "Space / Enter" : shortcut.label}
+              {shortcut.label}
             </small>
           </button>
         </div>
