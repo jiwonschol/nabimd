@@ -2397,3 +2397,33 @@ tests, the compiled-bank gate, a 224-module production build, and bundle
 inspection. Chromium passes all 14 learner journeys, including Level 1–2
 pre-seeding, Invisibles source preservation, Level 3 blank composition,
 session draft persistence, keyboard completion, and the 1280×800 layout.
+
+## 2026-07-20 — Choosing practice over a mastery system
+
+The hardest unresolved product question was not how to implement another
+learning feature, but how much learning system Nabi should become. A review of
+retrieval practice, scaffold fading, spacing, and successive relearning led
+Codex to propose persistent local skill history, cross-visit review scheduling,
+and finer mastery states. Jiwon rejected that direction because it would turn a
+quiet ten-minute, no-account practice room into a course that asks the learner
+to return and manage progress.
+
+An adversarial pedagogy audit then changed the diagnosis. It found Levels 1–2
+strong precisely where Nabi stays light: prose-first completion problems,
+explicit Check, penalty-free Hint, two verdicts, and different-content repair.
+The severe defects were instead in Levels 3–5: feedback referred to a Goal the
+learner could not see, some briefs did not disclose every structure being
+graded, first-turn challenges could require unseen syntax, and the transition
+from reproduction to blank-page composition changed too many difficulty axes
+at once.
+
+The accepted direction keeps session-scoped progress, direct access to every
+level, the predictable six-problem turn, and no account, streak, daily goal,
+placement test, level gate, or cross-visit mastery vector. Each level must be
+self-contained on a fresh visit. Follow-up work is divided into three
+independent responsibilities: repair content trust, theme the Practice page,
+and redesign Summary as a calm close rather than a transcript or scoreboard.
+
+The full disagreement, evidence, accepted decision, and explicit division of
+Codex and product-owner contributions are preserved in
+`docs/build-week-pedagogy-decision-2026-07-20.md`.
