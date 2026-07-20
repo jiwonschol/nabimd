@@ -11,8 +11,8 @@
 ## What it is
 
 - **Five levels:** Learn the syntax → Rebuild real documents → Write for people →
-  Write for work → Write for developers. Each level changes the document
-  context while keeping the exercise short.
+  Write a development spec → Write an agent work order. Each level changes the
+  document context while keeping the exercise short.
 - **A short visit:** No login, server, ads, streak, or persistent learner
   profile. Progress lasts for the current browser session and clears when that
   session ends.
@@ -22,8 +22,9 @@
 - **Inspected problems:** Every published exercise passes fixture verification,
   independent review, and an editorial inspection gate before it reaches the
   app.
-- **One loop:** Read the brief, write the source, inspect the render, then prove
-  the same syntax again with different content.
+- **One loop:** Read the brief, write the source, inspect the render, and check
+  the structure. After a failed Check, repair it and prove the same syntax again
+  with different content.
 
 ## Run locally
 

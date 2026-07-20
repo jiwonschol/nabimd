@@ -10,9 +10,9 @@ material is lost.
 > problems, split 136/148/30/20/10 across Levels 1–5. Recheck
 > `curriculum/problem-bank/tracker.generated.json` before using any preserved
 > count. Numeric claims below are historical copy, not a live source of truth.
-> The accepted ladder is now Learn syntax, Rebuild real documents, Write for
-> people, Write for work, and Write for developers; older labels below remain
-> unchanged only because this is a verbatim submission draft.
+> The shipped ladder is Learn syntax, Rebuild real documents, Write for people,
+> Write a development spec, and Write an agent work order; older labels below
+> remain unchanged only because this is a preserved submission draft.
 
 The preserved bodies retain their original visible link text. Use this index
 for the same working repository destinations when reading the draft in place:
