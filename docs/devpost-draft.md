@@ -4,7 +4,7 @@ This file preserves the judge-facing narrative removed from `README.md` by
 Issue #68. The six Devpost field bodies below are verbatim; supporting copy
 from the previous README follows so no submission material is lost.
 
-> **Before pasting:** The generated tracker was verified on 2026-07-21 at 344
+> **Before pasting:** The generated tracker was verified on 2026-07-21 KST at 344
 > accepted problems, split 136/148/30/20/10 across Levels 1–5. Recheck
 > `curriculum/problem-bank/tracker.generated.json` before using any preserved
 > count. Numeric claims below are historical copy, not a live source of truth.
