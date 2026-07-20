@@ -164,7 +164,7 @@ This redesign changes presentation and the location of Hint. It does not change 
   - visible progress omits `N of 6` while the accessible name reports it;
   - sound defaults on, persists mute state, swaps speaker icon and label, and suppresses page-turn audio when muted;
   - the page-turn sound fires once per accepted level selection;
-  - reduced motion removes transforms while preserving the short paper-color transition.
+  - reduced motion removes spatial transforms and reveals the receiving screen without changing the fixed paper or fold.
 - Browser verification covers Greeting, the transition, Level 1 Write, Level 5 Write, Level 5 Hint, failed Review, Matched Next, narrow responsive layout, internal scrolling, keyboard-only completion, tooltips by hover and focus, reduced motion, muted audio, and console errors.
 
 ## Design QA gate
