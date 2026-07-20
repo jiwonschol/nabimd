@@ -54,31 +54,6 @@ function syntaxFamilyLabel(family: string): string {
     .join(" ")
 }
 
-function syntaxExample(label: string, tokens: readonly string[]): string {
-  switch (label) {
-    case "Block quotes":
-      return "> Keep this note"
-    case "Headings":
-      return "# Project notes"
-    case "Numbered steps":
-      return "1. First step"
-    case "Lists":
-      return "- First item"
-    case "Emphasis":
-      return "*Important note*"
-    case "Inline code":
-      return "`npm test`"
-    case "Code blocks":
-      return "```text"
-    case "Links":
-      return "[Read more](https://example.com)"
-    case "Section breaks":
-      return "---"
-    default:
-      return tokens.join("  ")
-  }
-}
-
 function syntaxReminders(problemIds: readonly string[]) {
   const seenFamilies = new Set<string>()
   const reminders = []
@@ -88,13 +63,12 @@ function syntaxReminders(problemIds: readonly string[]) {
     if (seenFamilies.has(problem.retryFamily)) continue
 
     seenFamilies.add(problem.retryFamily)
-    const tokens = [...new Set(problem.syntaxTokens)]
     const label = syntaxFamilyLabel(problem.retryFamily)
     reminders.push({
       family: problem.retryFamily,
       label,
       instruction: problem.teaching.howTo,
-      example: syntaxExample(label, tokens),
+      example: problem.teaching.example,
     })
 
     if (reminders.length === SUMMARY_REVIEW_LIMIT) break

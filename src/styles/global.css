@@ -505,25 +505,6 @@ button:focus-visible,
     box-shadow: none;
   }
 
-  .run-summary.open-book-shell {
-    overflow-y: auto;
-  }
-
-  .run-summary__page {
-    min-height: calc(100svh - 72px);
-    padding: 2.25rem 1.5rem;
-  }
-
-  .run-summary__page--closure {
-    box-shadow: none;
-  }
-
-  .run-summary__page--note {
-    border-top: 1px solid var(--book-line);
-    border-left: 0;
-    box-shadow: none;
-  }
-
   .chapter-entry {
     grid-template-columns: 2.5rem minmax(0, 1fr) auto;
   }
@@ -1494,7 +1475,7 @@ button:focus-visible,
   font-size: 0.76rem;
   text-align: right;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: pre-wrap;
 }
 
 .run-summary__review-list--single {
@@ -1606,6 +1587,27 @@ button:focus-visible,
 @keyframes summary-line-draw {
   to {
     transform: scaleX(1);
+  }
+}
+
+@media (max-width: 760px) {
+  .run-summary.open-book-shell {
+    overflow-y: auto;
+  }
+
+  .run-summary__page {
+    min-height: calc(100svh - 72px);
+    padding: 2.25rem 1.5rem;
+  }
+
+  .run-summary__page--closure {
+    box-shadow: none;
+  }
+
+  .run-summary__page--note {
+    border-top: 1px solid var(--book-line);
+    border-left: 0;
+    box-shadow: none;
   }
 }
 

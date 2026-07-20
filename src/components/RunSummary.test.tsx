@@ -49,7 +49,7 @@ describe("RunSummary", () => {
     expect(screen.getByRole("heading", { name: "Good finish." })).toBeVisible()
     expect(screen.getByText("One thing to revisit")).toBeVisible()
     expect(screen.getByRole("heading", { name: "Try block quotes once more." })).toBeVisible()
-    expect(screen.getByText("> Keep this note")).toBeVisible()
+    expect(screen.getByText("> The window is open.")).toBeVisible()
     expect(
       screen.getByText("Start the line with a greater-than sign, a space, then the words."),
     ).toBeVisible()
@@ -69,6 +69,24 @@ describe("RunSummary", () => {
     expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(3)
     expect(screen.getByText("A quick second round will make these marks easier to recall."))
       .toBeVisible()
+  })
+
+  it("uses the authored example for the exact failed syntax family", () => {
+    renderSummary([
+      "l1-emphasis-family-game",
+      "l1-heading-depth-bring-along",
+      "l1-code-block-book-label",
+    ])
+
+    expect(screen.getByText("**Good news**")).toBeVisible()
+    expect(screen.getByText("### After dinner")).toBeVisible()
+    expect(
+      screen
+        .getByRole("listitem", { name: "Syntax reminder: Code blocks" })
+        .querySelector("code")?.textContent,
+    ).toBe("```\nKeep dry\n```")
+    expect(screen.queryByText("*Important note*")).not.toBeInTheDocument()
+    expect(screen.queryByText("# Project notes")).not.toBeInTheDocument()
   })
 
   it("plays the completion cue once during StrictMode effect verification", () => {
