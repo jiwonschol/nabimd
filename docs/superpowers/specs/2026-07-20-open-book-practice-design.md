@@ -59,6 +59,13 @@ This redesign changes presentation and the location of Hint. It does not change 
 - Tooltips do not duplicate permanently visible text and never obscure the focused control's target.
 - All controls retain a visible two-pixel focus treatment and minimum 44 px pointer target.
 
+## Typography contract
+
+- Continue the established three-role system: the operating interface uses the system sans stack, rendered reading surfaces use Source Serif 4, and Markdown source plus code use JetBrains Mono.
+- Source Serif 4 and JetBrains Mono are self-hosted project assets with their SIL Open Font License files committed beside the fonts. The interface must not depend on a third-party font CDN or an installed system font.
+- Use regular and semibold weights only unless a later visual requirement proves another weight necessary.
+- Preserve fallback stacks and `font-display: swap` so missing or delayed font loading never hides the exercise.
+
 ## Book geometry and paper system
 
 - The workspace is one open-book surface with thin dark outer edges, restrained inner-page shadow, ruled paper, and a realistic stitched center seam.
