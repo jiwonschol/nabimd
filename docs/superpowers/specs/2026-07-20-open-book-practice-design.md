@@ -126,7 +126,7 @@ This redesign changes presentation and the location of Hint. It does not change 
 - Stage 1, approximately 0-220 ms: Greeting keeps its warm book-paper tone. The selected right leaf begins to lift and its moving shadow deepens.
 - Stage 2, approximately 220-520 ms: the leaf passes the center; the revealed paper moves through an intermediate ivory while shadow and restrained page highlight make the work surface feel gently illuminated.
 - Stage 3, approximately 520-720 ms: Practice settles into a warm-neutral work ivory that is brighter than Greeting but is neither stark white nor yellow beige. The moving shadow collapses into the static inner-page shadow.
-- The transition coordinates page rotation, paper background color, restrained brightness, and moving shadow. Do not add a literal lamp, spotlight, glow orb, persistent decorative gradient, or full-screen raster backdrop.
+- The transition coordinates page rotation, paper background color, restrained brightness, and moving shadow. Do not add a literal lamp, spotlight, glow orb, persistent decorative gradient, or a second transition-only raster above the unified spread.
 - Keep the unified spread fixed and visually continuous for the entire transition. Never animate the fold or add another image above it.
 - Play the existing `src/sound/nabi-page-turn.mp3` once from the already unlocked sound channel when the physical leaf begins to move. The animation must not wait for audio playback, and muted preference suppresses it as it does today.
 - Practice does not replay the book animation when tabs, verdicts, or exercises change.
