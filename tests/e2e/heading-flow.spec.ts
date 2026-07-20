@@ -49,51 +49,35 @@ async function sourceText(page: Page): Promise<string> {
   return (await editor.locator(".cm-line").allTextContents()).join("\n")
 }
 
-async function persistedDraft(page: Page, problemId: string) {
+async function hasPersistedDraft(page: Page, problemId: string) {
   return page.evaluate(
     ({ problemId: id, storageKey }) => {
       const saved = window.sessionStorage.getItem(storageKey)
-      if (!saved) return null
+      if (!saved) return false
 
       try {
         const progress = JSON.parse(saved) as {
           draftByProblemId?: Record<string, unknown>
         }
-        const draft = progress.draftByProblemId?.[id]
-        return typeof draft === "string" ? draft : null
+        return Object.prototype.hasOwnProperty.call(
+          progress.draftByProblemId ?? {},
+          id,
+        )
       } catch {
-        return null
+        return false
       }
     },
     { problemId, storageKey: progressStorageKey },
   )
 }
 
-async function completeSourceText(page: Page, problemId: string) {
-  const editor = sourceEditor(page)
-  const modifier = await page.evaluate(() =>
-    /Mac|iPhone|iPad|iPod/.test(navigator.platform) ? "Meta" : "Control",
-  )
-  const probe = "⟦NABI_E2E_DOCUMENT_PROBE⟧"
-
-  // CodeMirror virtualizes off-screen lines. A real edit makes its update
-  // listener persist state.doc.toString(), giving the test the complete
-  // document without adding a production-only debug surface.
-  await editor.press(`${modifier}+a`)
-  await editor.press("ArrowLeft")
-  await editor.pressSequentially(probe)
-  await expect
-    .poll(() => persistedDraft(page, problemId))
-    .toEqual(expect.stringMatching(/^⟦NABI_E2E_DOCUMENT_PROBE⟧/))
-
-  const probedDocument = await persistedDraft(page, problemId)
-  if (!probedDocument?.startsWith(probe)) {
-    throw new Error("The complete CodeMirror document probe was not persisted")
+async function completeSourceText(page: Page) {
+  const document = await page
+    .locator(".markdown-source-editor")
+    .getAttribute("data-e2e-document")
+  if (document === null) {
+    throw new Error("The read-only E2E document bridge is unavailable")
   }
-  const document = probedDocument.slice(probe.length)
-
-  await editor.fill(document)
-  await expect.poll(() => persistedDraft(page, problemId)).toBe(document)
   return document
 }
 
@@ -276,11 +260,25 @@ test("pre-fills Goal-derived reproduction prose at every level", async ({
     const starterText = derivePlaintextStarter(problem.target)
 
     expect(starterText).not.toBe("")
-    expect(await completeSourceText(page, problemId)).toBe(starterText)
+    await expect.poll(() => hasPersistedDraft(page, problemId)).toBe(false)
+    const visibleSource = await sourceText(page)
+    expect(await completeSourceText(page)).toBe(starterText)
+    expect(await sourceText(page)).toBe(visibleSource)
+
+    const modifier = await page.evaluate(() =>
+      /Mac|iPhone|iPad|iPod/.test(navigator.platform) ? "Meta" : "Control",
+    )
+    await editor.focus()
+    await editor.press(`${modifier}+z`)
+    expect(await completeSourceText(page)).toBe(starterText)
+    expect(await sourceText(page)).toBe(visibleSource)
+    await expect.poll(() => hasPersistedDraft(page, problemId)).toBe(false)
 
     await page.getByRole("button", { name: "Show invisibles" }).click()
     await page.getByRole("button", { name: "Hide invisibles" }).click()
-    expect(await completeSourceText(page, problemId)).toBe(starterText)
+    expect(await completeSourceText(page)).toBe(starterText)
+    expect(await sourceText(page)).toBe(visibleSource)
+    await expect.poll(() => hasPersistedDraft(page, problemId)).toBe(false)
   }
 })
 

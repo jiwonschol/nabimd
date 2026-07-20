@@ -12,6 +12,10 @@ import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { createActionKeyBindings } from "./keyboardShortcut"
 
 const externalChange = Annotation.define<boolean>()
+const exposeE2eDocument =
+  import.meta.env.DEV &&
+  typeof navigator !== "undefined" &&
+  navigator.webdriver === true
 
 type MarkdownSourceEditorProps = {
   active?: boolean
@@ -22,6 +26,9 @@ type MarkdownSourceEditorProps = {
 
 export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   const { active = true, value, onChange, onCheck } = _props
+  const e2eDocumentAttributes = exposeE2eDocument
+    ? { "data-e2e-document": value }
+    : {}
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
   const onChangeRef = useRef(onChange)
@@ -109,7 +116,11 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   }, [active])
 
   return (
-    <section aria-label="Your Markdown" className="markdown-source-editor">
+    <section
+      {...e2eDocumentAttributes}
+      aria-label="Your Markdown"
+      className="markdown-source-editor"
+    >
       <header className="document-toolbar">
         <span>Your Markdown</span>
         <span className="markdown-source-editor__file">answer.md</span>

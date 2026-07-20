@@ -23,6 +23,9 @@ describe("MarkdownSourceEditor", () => {
     expect(
       screen.getByRole("button", { name: "Show invisibles" }),
     ).toHaveAttribute("aria-pressed", "false")
+    expect(
+      screen.getByRole("region", { name: "Your Markdown" }),
+    ).not.toHaveAttribute("data-e2e-document")
   })
 
   it("reports source edits and preserves controlled updates", async () => {
