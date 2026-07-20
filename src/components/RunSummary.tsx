@@ -13,7 +13,7 @@ type RunSummaryProps = {
 }
 
 const SUMMARY_REVIEW_LIMIT = 3
-const SUMMARY_EXAMPLE_MAX_LINES = 4
+const SUMMARY_EXAMPLE_MAX_LINES = 12
 const SUMMARY_EXAMPLE_MAX_LENGTH = 120
 
 function completionTitle(score: number, total: number): string {
@@ -56,6 +56,10 @@ function syntaxFamilyLabel(family: string): string {
     .join(" ")
 }
 
+export function joinSyntaxTokens(tokens: readonly string[]): string {
+  return tokens.join("  ")
+}
+
 function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
   const authored = problem.teaching.example.trim()
   if (
@@ -65,7 +69,7 @@ function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
     return authored
   }
 
-  return [...new Set(problem.syntaxTokens)].join("  ")
+  return joinSyntaxTokens(problem.syntaxTokens)
 }
 
 function syntaxReminders(problemIds: readonly string[]) {

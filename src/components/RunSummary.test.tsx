@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react"
 import { StrictMode } from "react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { playFeedbackSound } from "../sound/feedbackSound"
-import { RunSummary } from "./RunSummary"
+import { joinSyntaxTokens, RunSummary } from "./RunSummary"
 
 vi.mock("../sound/feedbackSound", () => ({
   playFeedbackSound: vi.fn(),
@@ -101,6 +101,34 @@ describe("RunSummary", () => {
     expect(
       screen.queryByText(/Setting-name migration/),
     ).not.toBeInTheDocument()
+  })
+
+  it("keeps a short multi-line authored example actionable", () => {
+    renderSummary(["l2-sectioned-process-bird-feeder"])
+
+    const reminder = screen.getByRole("listitem", {
+      name: "Syntax reminder: Sectioned Process",
+    })
+    expect(reminder.querySelector("code")?.textContent).toBe(
+      "# Make cocoa\n\nPrepare a warm drink.\n\n## Steps\n\n1. Heat milk\n2. Add cocoa\n3. Stir well",
+    )
+  })
+
+  it("keeps a short authored example with repeated structural marks", () => {
+    renderSummary(["l1-thematic-break-breakfast-dessert"])
+
+    const reminder = screen.getByRole("listitem", {
+      name: "Syntax reminder: Section breaks",
+    })
+    expect(reminder.querySelector("code")?.textContent).toBe(
+      "Tea is ready.\n\n---\n\nThe cookies are warm.",
+    )
+  })
+
+  it("preserves repeated tokens when a long example needs a compact cue", () => {
+    expect(joinSyntaxTokens(["Blank line", "---", "Blank line"])).toBe(
+      "Blank line  ---  Blank line",
+    )
   })
 
   it("summarizes repeated variants at family level without choosing one document", () => {
