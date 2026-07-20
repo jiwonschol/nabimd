@@ -1,7 +1,9 @@
 # Level 3-5 Curriculum Correction: Familiarity, Not Difficulty
 
-**Date:** 2026-07-21  
-**Status:** Product direction accepted; problem-bank implementation deferred  
+**Date:** 2026-07-21
+
+**Status:** Product direction accepted; problem-bank implementation deferred
+
 **Tracker:** Issue #9
 
 ## Why this correction exists
