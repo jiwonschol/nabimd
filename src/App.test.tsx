@@ -232,11 +232,12 @@ describe("App", () => {
     expect(firstHint).toHaveAttribute("data-tooltip", "Hint")
     expect(firstHint).toHaveAttribute("aria-selected", "false")
     await first.user.click(firstHint)
+    const pattern = within(
+      screen.getByRole("tabpanel", { name: "Hint" }),
+    ).getByLabelText("Markdown pattern")
     expect(
-      within(screen.getByRole("tabpanel", { name: "Hint" })).getByLabelText(
-        "Markdown pattern",
-      ),
-    ).toHaveTextContent(currentProblem().syntaxTokens[0]!)
+      Array.from(pattern.querySelectorAll("code"), (node) => node.textContent),
+    ).toEqual(currentProblem().syntaxTokens)
     await first.user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(

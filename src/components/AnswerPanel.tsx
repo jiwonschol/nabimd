@@ -40,10 +40,12 @@ function isTextEntryTarget(target: EventTarget | null): boolean {
   )
 }
 
-function sourceExamples(tokens: readonly string[]): string[] {
+function sourceExamples(problem: GradableProblem): string[] {
+  if ((problem.level ?? 1) !== 5) return [...problem.syntaxTokens]
+
   let listIndex = 0
 
-  return tokens.map((token) => {
+  return problem.syntaxTokens.map((token) => {
     const mark = token.trim()
 
     if (mark === "#") return "# Title"
@@ -79,7 +81,7 @@ function HintPanel({
   problem: GradableProblem
 }) {
   const visibleHint = problem.hints[Math.max(0, hintLevel - 1)]
-  const examples = sourceExamples(problem.syntaxTokens)
+  const examples = sourceExamples(problem)
 
   return (
     <div className="answer-hint">
