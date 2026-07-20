@@ -31,8 +31,8 @@
   layer interrupts the paper at the center.
 - Image quality and asset fidelity: both sheets, their paper texture, the
   stitched fold, and its tonal falloff are one `1280 × 800` raster asset,
-  `public/images/nabi-open-book-spread.png`. There is no separate spine DOM
-  element or center-shadow construction.
+  `public/images/nabi-open-book-spread.webp` (4.8 KB). There is no separate
+  spine DOM element or center-shadow construction.
 - Copy and content: the production problem-bank content differs from the static
   visual reference as expected; UI labels and curriculum hierarchy are intact.
 
@@ -44,6 +44,8 @@
 - After the turn, the editor receives focus and both writing sheets scroll
   internally.
 - Browser console warnings/errors: 0.
+- Full repository gate: `npm run check` passed with 54 test files and 9,927
+  tests, followed by the production build and bundle verification.
 
 ## Comparison history
 
@@ -53,8 +55,10 @@
 2. The first unified-asset pass left the Landing shell transparent because a
    later `.open-book-shell` shorthand erased the parent background. The
    midpoint comparison exposed content bleeding through the turning page.
-3. The transparent shorthand and receiving-screen animation were removed.
-   Fresh full-view and focused comparisons now show a motionless continuous
-   spread, a lighter integrated fold, and motion confined to the page leaf.
+3. The receiving Practice spread now stays visible beneath the transition.
+   The old left page is a temporary opaque paper surface, while only the
+   opaque right leaf crosses the fixed fold.
+4. Stacked layouts replace the spread raster with the neutral paper texture,
+   so a vertical book fold is never stretched into a mobile interface.
 
 final result: passed

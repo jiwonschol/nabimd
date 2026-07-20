@@ -1,6 +1,6 @@
 /// <reference types="node" />
 
-import { existsSync, readFileSync } from "node:fs"
+import { existsSync, readFileSync, statSync } from "node:fs"
 import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 
@@ -40,12 +40,19 @@ function lastCssBlock(selector: string): string {
 describe("global responsive styles", () => {
   it("uses one motionless open-book image for both sheets and the center fold", () => {
     expect(
-      existsSync(resolve(process.cwd(), "public/images/nabi-open-book-spread.png")),
+      existsSync(resolve(process.cwd(), "public/images/nabi-open-book-spread.webp")),
     ).toBe(true)
+    expect(
+      statSync(resolve(process.cwd(), "public/images/nabi-open-book-spread.webp"))
+        .size,
+    ).toBeLessThan(300_000)
+    expect(
+      existsSync(resolve(process.cwd(), "public/images/nabi-open-book-spread.png")),
+    ).toBe(false)
     expect(
       existsSync(resolve(process.cwd(), "public/images/nabi-book-spine.png")),
     ).toBe(false)
-    expect(styles).toContain('url("/images/nabi-open-book-spread.png")')
+    expect(styles).toContain('url("/images/nabi-open-book-spread.webp")')
     expect(styles).toContain('url("/images/nabi-writing-rule.png")')
     expect(styles).not.toContain("nabi-book-spine.png")
     expect(styles).not.toContain(".book-spine")
@@ -53,7 +60,7 @@ describe("global responsive styles", () => {
     expect(editorialDesk).not.toContain("BookSpine")
     expect(runSummary).not.toContain("BookSpine")
     expect(styles).toMatch(
-      /\.app-shell\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-open-book-spread\.png"\)[^{}]*background-size:\s*100% 100%/s,
+      /\.app-shell\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-open-book-spread\.webp"\)[^{}]*background-size:\s*100% 100%/s,
     )
     expect(styles).toMatch(
       /\.open-book-page\s*\{[^{}]*background:\s*transparent/s,
@@ -89,11 +96,11 @@ describe("global responsive styles", () => {
     expect(styles).toMatch(
       /\.page-turn-stage--active \.page-turn-receiver\s*\{[^{}]*animation:\s*none/s,
     )
-    expect(styles).not.toMatch(
+    expect(styles).toMatch(
       /\.open-book-shell--turning\s*\{[^{}]*background:\s*transparent/s,
     )
     expect(styles).toMatch(
-      /\.open-book-shell--turning \.open-book-page--intro\s*\{[^{}]*animation:\s*none/s,
+      /\.open-book-shell--turning \.open-book-page--intro\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*animation:\s*none/s,
     )
     const turnKeyframes = styles.slice(
       styles.indexOf("@keyframes turn-page-forward"),
@@ -106,6 +113,21 @@ describe("global responsive styles", () => {
       /animation:\s*turn-page-forward var\(--page-turn-duration\)\s+linear both/,
     )
     expect(styles).not.toContain("@keyframes receive-next-page")
+  })
+
+  it("removes the two-page fold when the responsive layout stacks", () => {
+    const landingStack = styles.slice(
+      styles.indexOf("@media (max-width: 760px)"),
+      styles.indexOf("@media (prefers-reduced-motion: reduce)"),
+    )
+    const practiceStack = lastCssBlock("@media (max-width: 900px)")
+
+    expect(landingStack).toMatch(
+      /\.app-shell\.open-book-shell\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
+    )
+    expect(practiceStack).toMatch(
+      /\.app-shell--practice\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
+    )
   })
 
   it("keeps each desktop Summary page internally scrollable", () => {

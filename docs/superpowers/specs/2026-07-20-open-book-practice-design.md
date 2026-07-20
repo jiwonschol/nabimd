@@ -69,13 +69,13 @@ This redesign changes presentation and the location of Hint. It does not change 
 ## Book geometry and paper system
 
 - The workspace is one open-book surface with thin dark outer edges, restrained inner-page shadow, ruled paper, and a realistic stitched center seam.
-- Greeting and Practice share one narrow center-spine image asset: warm folded paper, symmetrical inner shadows, a fine seam, and restrained binding stitches. Content remains HTML and CSS.
-- The spine is fixed throughout the page turn. It is not regenerated as CSS art and is not a full-screen background image.
+- Greeting and Practice share one optimized raster containing both warm paper sheets and their restrained stitched center fold. The fold is inseparable from the paper pixels; there is no separate spine image, DOM layer, pseudo-element, or CSS-drawn seam. Content remains HTML and CSS above transparent page surfaces.
+- The unified spread is fixed throughout the page turn. The receiving Practice spread is already visible beneath the transition; only the opaque right leaf moves, while the outgoing left page uses a temporary opaque paper surface to prevent content bleed-through.
 - On desktop the two pages form a strict 50:50 spread. Their top alignment and baseline rhythm match.
 - Remove visible `GOAL`, `YOUR WRITING`, repeated level labels, chapter labels, and other page explanations.
 - The left fixed target is identified by a small bullseye icon. The right modes are identified by their tab icons.
 - There are no dashboard gaps, floating cards, rounded page panels, decorative gradients, ornamental colors, or unrelated entrance animation.
-- On the stacked mobile layout, hide the physical center-spine asset because the pages no longer meet horizontally.
+- On the stacked mobile layout, replace the two-page spread raster with the neutral repeating paper texture because the pages no longer meet horizontally.
 
 ## Goal page
 
@@ -127,7 +127,7 @@ This redesign changes presentation and the location of Hint. It does not change 
 - Stage 2, approximately 220-520 ms: the leaf passes the center; the revealed paper moves through an intermediate ivory while shadow and restrained page highlight make the work surface feel gently illuminated.
 - Stage 3, approximately 520-720 ms: Practice settles into a warm-neutral work ivory that is brighter than Greeting but is neither stark white nor yellow beige. The moving shadow collapses into the static inner-page shadow.
 - The transition coordinates page rotation, paper background color, restrained brightness, and moving shadow. Do not add a literal lamp, spotlight, glow orb, persistent decorative gradient, or full-screen raster backdrop.
-- Keep the stitched spine fixed and visually continuous for the entire transition.
+- Keep the unified spread fixed and visually continuous for the entire transition. Never animate the fold or add another image above it.
 - Play the existing `src/sound/nabi-page-turn.mp3` once from the already unlocked sound channel when the physical leaf begins to move. The animation must not wait for audio playback, and muted preference suppresses it as it does today.
 - Practice does not replay the book animation when tabs, verdicts, or exercises change.
 - Under `prefers-reduced-motion: reduce`, skip the 3D turn and moving shadow. Use the existing 120 ms paper-color crossfade; the page-turn sound still follows the user's sound preference rather than motion preference.
@@ -135,7 +135,7 @@ This redesign changes presentation and the location of Hint. It does not change 
 ## Responsive behavior
 
 - At 1280 x 800, the complete fixed strip and book frame fit within one browser viewport. Only page interiors may scroll.
-- Below 900 px, stack Goal above the answer page inside the remaining viewport height. Give each an equal share and independent internal scroll, hide the physical spine, and retain the same controls without horizontal overflow.
+- Below 900 px, stack Goal above the answer page inside the remaining viewport height. Give each an equal share and independent internal scroll, swap the spread for neutral paper without a fold, and retain the same controls without horizontal overflow.
 - On narrow layouts, preserve icon tooltips or equivalent accessible descriptions, keyboard operation, focus visibility, and minimum targets.
 
 ## Component boundaries
@@ -146,7 +146,7 @@ This redesign changes presentation and the location of Hint. It does not change 
 - `AnswerPanel` owns Write, Preview or Review, and Hint tabs plus keyboard navigation.
 - A focused presentation helper may derive compact syntax examples from `GradableProblem`. It remains deterministic and adds no runtime AI or external data.
 - A shared ruled-page treatment aligns Goal rendering and CodeMirror without changing the Markdown renderer or editor document model.
-- A shared book-spine component or pseudo-element uses the generated narrow spine asset on Greeting and Practice so the seam cannot visually drift between routes.
+- The app shell owns one shared two-page-and-fold raster on Greeting, Practice, and Summary. Child page surfaces stay transparent, and no component or pseudo-element may recreate or reposition the fold.
 
 ## Accessibility and regression contract
 

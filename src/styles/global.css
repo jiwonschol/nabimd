@@ -94,7 +94,7 @@ button:focus-visible,
   border: 1px solid rgb(17 17 17 / 72%);
   border-radius: 10px;
   background-color: var(--book-paper);
-  background-image: url("/images/nabi-open-book-spread.png");
+  background-image: url("/images/nabi-open-book-spread.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -412,9 +412,12 @@ button:focus-visible,
 
 .open-book-shell--turning {
   border-color: transparent;
+  background: transparent;
 }
 
 .open-book-shell--turning .open-book-page--intro {
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
   opacity: 1;
   animation: none;
 }
@@ -462,6 +465,12 @@ button:focus-visible,
 }
 
 @media (max-width: 760px) {
+  .app-shell.open-book-shell {
+    background-image: url("/images/nabi-book-paper.png");
+    background-repeat: repeat;
+    background-size: auto;
+  }
+
   .open-book-shell {
     display: block;
     overflow-y: auto;
@@ -1754,6 +1763,12 @@ button:focus-visible,
 }
 
 @media (max-width: 900px) {
+  .app-shell--practice {
+    background-image: url("/images/nabi-book-paper.png");
+    background-repeat: repeat;
+    background-size: auto;
+  }
+
   .exercise-topbar {
     grid-template-columns: auto minmax(0, 1fr) auto;
     min-height: 72px;

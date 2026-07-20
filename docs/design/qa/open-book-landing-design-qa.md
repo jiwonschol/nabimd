@@ -162,7 +162,7 @@ final result: passed
 This correction supersedes the separate stitched-spine implementation above.
 The physical book is now one image: both page surfaces, the paper texture, and
 the center fold are inseparable pixels in
-`public/images/nabi-open-book-spread.png`. `BookSpine` no longer exists in the
+`public/images/nabi-open-book-spread.webp`. `BookSpine` no longer exists in the
 component tree, and no center shadow is constructed in CSS.
 
 - Landing comparison: `docs/design/qa/unified-book-spread-landing-comparison.png`
