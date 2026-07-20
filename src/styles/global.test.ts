@@ -6,6 +6,24 @@ import { describe, expect, it } from "vitest"
 
 const styles = readFileSync(resolve(process.cwd(), "src/styles/global.css"), "utf8")
 
+function lastCssBlock(selector: string): string {
+  const start = styles.lastIndexOf(selector)
+  const openingBrace = styles.indexOf("{", start)
+  let depth = 0
+
+  expect(start).toBeGreaterThanOrEqual(0)
+  expect(openingBrace).toBeGreaterThan(start)
+
+  for (let index = openingBrace; index < styles.length; index += 1) {
+    if (styles[index] === "{") depth += 1
+    if (styles[index] !== "}") continue
+    depth -= 1
+    if (depth === 0) return styles.slice(start, index + 1)
+  }
+
+  throw new Error(`Unclosed CSS block: ${selector}`)
+}
+
 describe("global responsive styles", () => {
   it("keeps each desktop Summary page internally scrollable", () => {
     const pageRule = styles.indexOf(".run-summary__page {")
@@ -17,22 +35,23 @@ describe("global responsive styles", () => {
   })
 
   it("removes animation delays for reduced-motion users", () => {
-    const reducedMotion = styles.lastIndexOf("@media (prefers-reduced-motion: reduce)")
+    const reducedMotion = lastCssBlock("@media (prefers-reduced-motion: reduce)")
 
-    expect(reducedMotion).toBeGreaterThanOrEqual(0)
-    expect(styles.slice(reducedMotion)).toContain("animation-delay: 0ms !important")
+    expect(reducedMotion).toMatch(
+      /\*\s*,\s*\*::before,\s*\*::after\s*\{[^{}]*animation-delay:\s*0ms !important/,
+    )
   })
 
   it("keeps the narrow Summary overrides after its desktop rules", () => {
     const desktopSummary = styles.indexOf(".run-summary.open-book-shell {")
-    const narrowMedia = styles.lastIndexOf("@media (max-width: 760px)")
-    const narrowSummary = styles.lastIndexOf(".run-summary.open-book-shell {")
+    const narrowMedia = lastCssBlock("@media (max-width: 760px)")
 
     expect(desktopSummary).toBeGreaterThanOrEqual(0)
-    expect(narrowMedia).toBeGreaterThan(desktopSummary)
-    expect(narrowSummary).toBeGreaterThan(narrowMedia)
-    expect(
-      styles.slice(narrowSummary, styles.indexOf("}", narrowSummary) + 1),
-    ).toContain("overflow-y: auto")
+    expect(styles.lastIndexOf("@media (max-width: 760px)")).toBeGreaterThan(
+      desktopSummary,
+    )
+    expect(narrowMedia).toMatch(
+      /\.run-summary\.open-book-shell\s*\{[^{}]*overflow-y:\s*auto/,
+    )
   })
 })
