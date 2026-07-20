@@ -86,9 +86,12 @@ The user-facing promise is deliberately smaller than guaranteed mastery:
 
 ## What this changes
 
-The five levels keep their existing names, but they are not treated as a gated
-school ladder. Levels 1–2 describe learning modes; Levels 3–5 describe useful
-document contexts. A new visitor may start anywhere.
+At the time of this decision, the five levels kept their existing names while
+ceasing to act as a gated school ladder. D14 later renamed Level 4 to `Write for
+work` and Level 5 to `Write for developers`; the shipped UI temporarily retains
+the former labels until its separately reviewed change lands. Levels 1–2
+describe learning modes; Levels 3–5 describe useful document contexts. A new
+visitor may start anywhere.
 
 That freedom makes transparent questions non-negotiable. Every structure that
 can cause `Try again` must be discoverable from the visible instruction or an

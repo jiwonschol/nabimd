@@ -280,7 +280,7 @@ type Problem = {
     example: string
   }
   prompt: string
-  target?: string
+  target: string
   starterText: string
   protectedContent: string[] // legacy metadata; never a learner-match operand
   matchChecks: MatchCheck[]
