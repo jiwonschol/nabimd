@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react"
-import { getProblem } from "../content/problemBank"
+import { getProblem, problemBank } from "../content/problemBank"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
 
@@ -60,13 +60,27 @@ export function joinSyntaxTokens(tokens: readonly string[]): string {
   return tokens.join("  ")
 }
 
-function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
+function isShortAuthoredExample(problem: ReturnType<typeof getProblem>): boolean {
   const authored = problem.teaching.example.trim()
-  if (
+  return (
     authored.length <= SUMMARY_EXAMPLE_MAX_LENGTH &&
     authored.split("\n").length <= SUMMARY_EXAMPLE_MAX_LINES
-  ) {
-    return authored
+  )
+}
+
+function familyUsesAuthoredExamples(
+  problem: ReturnType<typeof getProblem>,
+): boolean {
+  if (problem.level > 2) return false
+
+  return problemBank
+    .filter((candidate) => candidate.retryFamily === problem.retryFamily)
+    .every(isShortAuthoredExample)
+}
+
+function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
+  if (familyUsesAuthoredExamples(problem)) {
+    return problem.teaching.example.trim()
   }
 
   return joinSyntaxTokens(problem.syntaxTokens)

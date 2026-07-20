@@ -114,6 +114,32 @@ describe("RunSummary", () => {
     )
   })
 
+  it("keeps Level 3 document review to its Markdown marks", () => {
+    renderSummary(["l3-customer-feedback-note"])
+
+    const reminder = screen.getByRole("listitem", {
+      name: "Syntax reminder: Readable",
+    })
+    expect(reminder.querySelector("code")?.textContent).toBe("#  ##  **  -")
+    expect(screen.queryByText("# Update")).not.toBeInTheDocument()
+  })
+
+  it("uses one stable cue when retry variants straddle compact limits", () => {
+    renderSummary([
+      "l2-nested-outline-pet-care",
+      "l2-nested-outline-reading-plan",
+    ])
+
+    const reminders = screen.getAllByRole("listitem", {
+      name: "Syntax reminder: Nested Outline",
+    })
+    expect(reminders).toHaveLength(1)
+    expect(reminders[0]?.querySelector("code")?.textContent).toBe(
+      "#  -  Indent",
+    )
+    expect(screen.queryByText("# Music practice")).not.toBeInTheDocument()
+  })
+
   it("keeps a short authored example with repeated structural marks", () => {
     renderSummary(["l1-thematic-break-breakfast-dessert"])
 
