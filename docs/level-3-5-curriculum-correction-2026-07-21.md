@@ -81,7 +81,7 @@ small structural combination from a source, such as:
 - title + required reading + constraints;
 - goal + ordered steps + stop condition;
 - file list + forbidden action + verification command;
-- short README section + link + image; or
+- short README section + reference link + inline code; or
 - bug summary + reproduction list + fenced output.
 
 Do not compress a long work order mechanically. Author a new miniature from
