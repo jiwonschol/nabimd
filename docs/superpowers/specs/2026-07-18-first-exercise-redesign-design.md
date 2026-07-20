@@ -1,9 +1,23 @@
 # Nabi Markdown First-Exercise Redesign
 
 **Date:** 2026-07-18  
-**Status:** Approved by Jiwon on 2026-07-18
+**Status:** Historical approved milestone; learner-input, grading, and advanced
+curriculum contracts superseded by D9–D17 and the 2026-07-21 curriculum
+correction
 **Scope:** Replace the first shipped H1 exercise content and presentation while
 preserving the verified deterministic learning loop.
+
+## Current-contract note
+
+This document preserves the reasoning behind the first H1 redesign. It is not
+the current source of truth where it describes empty answer sheets,
+blank-composition progression, `Perfect`, a separate Live Preview column, or a
+future long work-order curriculum. The current contract gives every level one
+fixed rendered Goal and pre-seeds the answer with the same learner-visible
+words and line breaks after removing Markdown marks. The learner restores
+structure in a shared CodeMirror writing surface; `Matched` is the only pass
+state. Level 5 uses short developer-facing examples rather than full work
+orders. Later approved visual contracts supersede the layout recorded here.
 
 ## Why this redesign exists
 
@@ -20,12 +34,13 @@ The redesign makes the product read as a learning interaction:
 3. write source in a real Markdown-oriented editor; and
 4. make the live rendering converge on the reference.
 
-## Decisions already made by Jiwon
+## Decisions made for this historical milestone
 
 - Use concise, natural US educational copy.
 - Replace project-document labels with short, concrete content drawn from
   familiar categories such as fruit, weather, and learning tools.
-- Start the source editor empty; a placeholder is not learner content.
+- Start the source editor empty; this milestone decision was later superseded
+  by the all-level Goal-derived starter contract described above.
 - Teach a new syntax rule visibly at Level 1, then hide it by default from
   Level 2 onward so later exercises test recall.
 - Treat Goal as the finished rendered document, not a prose restatement of the
@@ -75,11 +90,11 @@ reveals content vertically inside that frame and does not change either column's
 width. On mobile, the layout stacks and Help returns to content height rather
 than preserving empty desktop space.
 
-## Content and educational copy
+## Historical content and educational copy
 
 The first H1 bank becomes:
 
-| Problem ID | Category | Rendered Goal | Initial source |
+| Problem ID | Category | Rendered Goal | Historical initial source |
 |---|---|---|---|
 | `heading-apple` | fruit | `# Apple` | empty |
 | `heading-rainy-day` | weather | `# Rainy day` | empty |
@@ -158,10 +173,11 @@ baselines, frame tops, and frame bottoms must align exactly.
 The Level 3 document used to validate this geometry is a visual and browser-test
 fixture, not a new learner-facing problem in this milestone.
 
-Level 5 preserves this constrained horizontal reading measure while allowing
-the document surfaces to grow much farther vertically. Nabi is teaching the
-shape of a readable work order, not rewarding lines that stretch across a wide
-IDE canvas.
+The former Level 5 proposal preserved this constrained horizontal reading
+measure while allowing document surfaces to grow vertically for long work
+orders. The current Level 5 contract keeps the same readable measure for much
+shorter developer-facing documents; the long-work-order destination is
+superseded.
 
 ## Markdown source editor
 
@@ -283,8 +299,8 @@ relying on approvals of superseded commits.
 ## Non-goals for this milestone
 
 - expanding the full Level 3 problem bank;
-- implementing the future Level 5 agent-ready work-order curriculum described
-  in `docs/design/level-5-agent-brief-north-star.md`;
+- implementing the now-superseded long Level 5 agent-ready work-order proposal
+  preserved in `docs/design/level-5-agent-brief-north-star.md`;
 - accounts, cloud sync, analytics, payments, or localization;
 - runtime AI generation or grading;
 - syntax-color themes or a general-purpose Markdown IDE; and

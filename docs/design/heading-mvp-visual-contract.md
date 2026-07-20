@@ -22,8 +22,8 @@ top bar, one question sheet, and one answer sheet.
 - The workspace contains exactly two panels: **Goal** on the left and
   **Your answer** on the right.
 - Desktop panels are a fixed 50:50 split with identical frame dimensions.
-- Long Level 5 work orders scroll inside their panel bodies; panel headers and
-  the top bar remain fixed.
+- Longer compact developer documents scroll inside their panel bodies; panel
+  headers and the top bar remain fixed.
 - Goal is an immutable rendered reference, not a prose instruction or answer
   state.
 - Hint expands vertically inside Goal. Level 1 begins open automatically;
@@ -81,7 +81,7 @@ capitalization, spelling, punctuation, or exact prose as an error.
 | Corrective border / wash | `#d7a5a0` / `rgba(255, 246, 245, 0.97)` |
 | UI family | system sans until the selected font license is verified |
 | Editorial display | system serif |
-| Source editor | system monospace |
+| Source editor | self-hosted JetBrains Mono |
 
 There are no gradients, glass effects, syntax colors, decorative shadows,
 mascots, decorative badges, XP, confetti, or card grids. Compact state labels

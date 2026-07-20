@@ -284,9 +284,8 @@ deterministically.
 For Levels 1–4, a scheduled turn contains six problems: four at the chosen
 level followed by two next-level challenges. The first four begin with Hint
 open; the challenges begin with it closed. Hint is always manually available
-and never creates remediation. Level 5 schedules up to six unique at-level
-problems; the current four-problem bank degrades to four rather than duplicating
-content.
+and never creates remediation. Level 5 schedules six unique at-level problems
+from the ten currently published records rather than duplicating content.
 
 Only a failed Check creates a same-skill, different-content remediation. That
 repair may extend a six-problem turn to seven and is exempt from the scheduled

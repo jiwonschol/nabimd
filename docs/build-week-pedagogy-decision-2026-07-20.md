@@ -91,11 +91,15 @@ school ladder. Levels 1–2 describe learning modes; Levels 3–5 describe usefu
 document contexts. A new visitor may start anywhere.
 
 That freedom makes transparent questions non-negotiable. Every structure that
-can cause `Try again` must be discoverable from the visible brief or an
-available reference. Level 3 receives a small bridge from reproduction to
-composition, such as a partially built Markdown skeleton. Level 5 may expose
-its work-order convention as a reference card instead of pretending that a
-first-time visitor already knows it.
+can cause `Try again` must be discoverable from the visible instruction or an
+available Hint. The later D14–D17 correction supersedes the partially built
+skeleton and blank-composition proposal recorded during this review: every
+level now has one fixed rendered Goal, and the answer starts with the same
+learner-visible prose and line breaks with Markdown marks removed. The learner
+restores structure rather than inventing or transcribing a document. Level 5
+uses the same contract for short developer-facing examples; a complete
+work-order convention is historical reference material, not a learner
+prerequisite.
 
 The current interleaved Level 1 selection and six-slot progress rail stay in
 place for the Build Week version. Challenge selection must stop introducing
@@ -114,8 +118,10 @@ percentile or anonymous standing is outside this no-pressure version.
 The accepted follow-up is intentionally split by responsibility:
 
 1. [Repair the Level 3–5 teaching contract](https://github.com/jiwonschol/nabimd/issues/59):
-   self-contained briefs, no invisible Goal references, prerequisite-safe
-   challenges, a Level 2→3 bridge, and precise beginner-facing hint copy.
+   a fixed visible Goal, Goal-derived starter prose, prerequisite-safe
+   challenges, and precise beginner-facing hint copy. This wording reflects
+   the later D14–D17 resolution; the original bridge proposal above is retained
+   only as decision history.
 2. [Bring Practice into the open-book visual world](https://github.com/jiwonschol/nabimd/issues/60)
    without weakening the proven CBT interaction contract.
 3. [Redesign Summary as a calm closing page](https://github.com/jiwonschol/nabimd/issues/61):

@@ -121,8 +121,10 @@ coverage.
 
 ### Current curriculum shape
 
-- The deterministic runtime bank contains 296 inspected problems split
-  124/124/28/16/4 across Levels 1–5.
+- The deterministic runtime bank contains 344 inspected problems split
+  136/148/30/20/10 across Levels 1–5. The accepted Level 4–5 records retain
+  their historical development-spec and work-order metadata until a separately
+  reviewed replacement batch applies the corrected curriculum ladder.
 - Accepted batches remain immutable and digest-bound. Runtime scheduling may
   reclassify how those records are presented, but it does not rewrite their
   accepted evidence.
@@ -280,7 +282,7 @@ type Problem = {
   prompt: string
   target?: string
   starterText: string
-  protectedContent: string[]
+  protectedContent: string[] // legacy metadata; never a learner-match operand
   matchChecks: MatchCheck[]
   editorialChecks: EditorialCheck[]
   hints: [string, string, string]
@@ -288,6 +290,11 @@ type Problem = {
   reviewTags: string[]
 }
 ```
+
+`protectedContent` remains in the conceptual shape because accepted records and
+validators still carry it. D9–D10 supersede its original exact-prose purpose:
+new advanced records keep it empty, and no current match predicate may require
+those words, their case, spelling, punctuation, or labels.
 
 ### Runtime starter text
 
@@ -342,8 +349,8 @@ hasHeading(level)
 usesRequiredSkill
 hasParagraphBreak
 hasList(kind, minimumItems)
-hasEmphasis(kind, protectedText)
-hasLink(protectedLabel)
+hasEmphasis(kind, minimumCount)
+hasLink(minimumCount)
 hasImageWithAltText
 ```
 
@@ -400,8 +407,9 @@ The visual direction is calm, monochrome, editorial, and keyboard-first.
 The first version uses an ink, paper, and warm-gray palette. Source Serif 4
 Regular and Semibold are bundled under the SIL Open Font License 1.1 for
 wordmark, reading, Goal, preview, and status text. Controls keep the system sans
-stack. Markdown source and code deliberately keep the system monospace stack;
-no JetBrains Mono binary is bundled for this change.
+stack. Markdown source and code use the self-hosted JetBrains Mono files and
+their committed SIL Open Font License; the interface does not depend on a
+system-installed monospace font or a third-party font CDN.
 
 The approved butterfly/nib raster source is distributed as metadata-stripped,
 square PNG derivatives sized for their actual surfaces: 128px for the visible
@@ -423,7 +431,8 @@ keep a full-width layout without horizontal scrolling.
 
 ## Accessibility
 
-- Use a native labeled textarea.
+- Use an accessible labeled CodeMirror 6 source editor with a native editing
+  caret and keyboard semantics.
 - Keep a logical Tab order.
 - Run Check with `Cmd/Ctrl + Enter` as well as a visible button.
 - Provide a visible focus ring at least 2 pixels wide.
@@ -442,7 +451,7 @@ keep a full-width layout without horizontal scrolling.
 - TypeScript
 - React
 - Vite
-- Native textarea
+- CodeMirror 6
 - unified/remark/mdast-compatible parsing with raw HTML disabled
 - Small CSS token file and focused component styles
 - `sessionStorage` with a versioned schema and guarded volatile fallback
@@ -583,7 +592,9 @@ learner application remains deterministic and makes no runtime AI call.
   the completion screen only exposes an anonymous standing-client seam and an
   honest collecting-data placeholder until separate backend work is approved
 - Full CommonMark or GFM conformance
-- Tables, footnotes, front matter, raw HTML, nested lists, or document upload
+- Tables, footnotes, front matter, raw HTML, or document upload. Nested lists
+  are already supported structural practice; they are not introduced as an
+  exclusive Level 5 skill.
 - Native apps or a mobile-specific symbol keyboard
 
 ## Risk and cut order
