@@ -35,7 +35,7 @@ This redesign changes presentation and the location of Hint. It does not change 
 - The workspace is one open-book surface with a warm ivory paper token, thin dark outer edge, restrained inner-page shadow, and stitched center seam.
 - The implementation reuses the landing page's Source Serif 4, book-paper palette, wordmark, and page-turn visual vocabulary.
 - There are no dashboard gaps, floating cards, rounded controls, gradients, decorative colors, or ornamental animation.
-- Desktop uses a strict 50:50 spread. Each side has a small uppercase running head: level and chapter at the outer edge, and `GOAL` or `YOUR WRITING` at the inner or opposite edge as shown in the visual truth.
+- Desktop uses a strict 50:50 spread. The page heads contain only `GOAL` and `YOUR WRITING`. Level and chapter labels do not repeat on either page because the fixed top strip already owns level and progress context.
 - The two pages use the same top alignment and baseline rhythm.
 
 ## Goal page
