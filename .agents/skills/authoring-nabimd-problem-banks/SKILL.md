@@ -44,10 +44,10 @@ restores Markdown structure; never require blank-page authorship, transcription,
 or prose reorganization. Keep accepted batch evidence immutable rather than
 writing derived starter text back into sealed candidates.
 
-Do not publish new Level 3–5 content while the app's runtime projection still
-hydrates Levels 1–2 only. Preparation and review may continue, but publication
-requires the separately reviewed all-level Practice projection and its browser
-coverage to be present on the target branch.
+The all-level Practice projection and its browser coverage are publication
+prerequisites. Before publishing new Level 3–5 content, verify that the target
+branch still derives starters for all five levels, preserves Goal line topology,
+and protects real saved drafts. Stop publication if that baseline is absent.
 
 ## Workflow
 

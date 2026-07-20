@@ -75,9 +75,9 @@ The first complete bank contains at least 512 inspected problems:
 |---|---:|---|
 | 1 | 128 | short single-syntax production across the basic syntax surface |
 | 2 | 128 | small real-document rebuilds using familiar syntax |
-| 3 | 96 | readable ordinary-document compositions |
-| 4 | 80 | short workplace-document compositions |
-| 5 | 80 | compact developer-document compositions |
+| 3 | 96 | readable ordinary-document rebuilds |
+| 4 | 80 | short workplace-document rebuilds |
+| 5 | 80 | compact developer-document rebuilds |
 | **Total** | **512** | exceeds the 500-vetted-problem gate |
 
 The count is a floor, never a reason to weaken inspection. Per-level,
@@ -182,9 +182,9 @@ breaks, with Markdown marks removed. The learner restores the requested
 structure instead of inventing or transcribing prose. Higher-level prompts
 describe the Markdown anatomy to practice; they do not turn the answer sheet
 into a blank authorship exercise. All levels use the same deterministic,
-structure-only evaluator. The current `main` runtime still applies this starter
-projection to Levels 1–2 only; Levels 3–5 join it through the separately
-reviewed Practice change rather than this docs-only correction.
+structure-only evaluator. The runtime applies the starter projection to all
+five levels, preserves the Goal's exact line topology, and keeps real saved
+drafts authoritative without rewriting sealed problem-bank evidence.
 
 ## Deterministic structural grading
 
@@ -282,10 +282,10 @@ Scheduling first filters by exact level and `standard` flavor, then rotates
 deterministically.
 
 For Levels 1–4, a scheduled turn contains six problems: four at the chosen
-level followed by two next-level challenges. The first four begin with Hint
-open; the challenges begin with it closed. Hint is always manually available
-and never creates remediation. Level 5 schedules six unique at-level problems
-from the ten currently published records rather than duplicating content.
+level followed by two next-level challenges. Level 5 schedules six unique
+at-level problems from the ten currently published records rather than
+duplicating content. Every problem opens on `Write`; Hint is request-only,
+always available, and never creates remediation.
 
 Only a failed Check creates a same-skill, different-content remediation. That
 repair may extend a six-problem turn to seven and is exempt from the scheduled

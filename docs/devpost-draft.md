@@ -14,6 +14,20 @@ material is lost.
 > Write a development spec, and Write an agent work order; older labels below
 > remain unchanged only because this is a preserved submission draft.
 
+> **Current-contract addendum:** Do not paste the preserved field bodies below
+> without revising them. The approved replacement ladder names Levels 4–5
+> `Write for work` and `Write for developers`; the shipped UI still carries the
+> former labels until its separate change lands. Every problem opens on `Write`
+> and Hint is request-only. Every level uses a fixed Goal and Goal-derived
+> starter prose rather than brief-driven or blank-page composition. The current
+> ten Level 5 records are grandfathered long work orders; short developer
+> documents are the approved next content batch, not a claim about the bank
+> already published. The current roadmap is to finish that replacement batch,
+> preserve grammar-only grading, and verify the approved open-book Practice and
+> calm Summary experience. The composition bridge and AI-work-order endpoint
+> in the preserved `What's next` body are decision history, not the active
+> roadmap.
+
 The preserved bodies retain their original visible link text. Use this index
 for the same working repository destinations when reading the draft in place:
 

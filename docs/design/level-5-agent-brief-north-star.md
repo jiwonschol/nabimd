@@ -10,10 +10,13 @@ content verbatim as a learner exercise. The anonymized public reference is
 
 ## Historical Level 5 outcome
 
-This section records the former blank-page endpoint. Current Level 5 instead
-asks the learner to restore Markdown structure in a short developer-facing
-document from a fixed Goal. The longer work order remains useful only as a
-source of document anatomy for future, separately approved exploration.
+This section records the former blank-page endpoint. The approved replacement
+for Level 5 asks the learner to restore Markdown structure in a short
+developer-facing document from a fixed Goal. The published bank has not yet
+completed that content replacement: its ten grandfathered Level 5 work-order
+records remain valid immutable artifacts until a separately reviewed batch
+supersedes their learner-facing role. The longer work order remains useful as a
+source of document anatomy, not as the replacement curriculum's target length.
 
 The target artifact is simultaneously:
 
@@ -25,8 +28,10 @@ The target artifact is simultaneously:
 - accountable through a defined final report.
 
 This was the original long-form interpretation of Nabi's founding claim. The
-current curriculum keeps the useful Markdown anatomy while rejecting its
-reading burden and blank-page authorship task.
+approved curriculum correction keeps the useful Markdown anatomy while
+rejecting its reading burden and blank-page authorship task; the current
+published records are grandfathered evidence, not proof that the replacement
+batch has landed.
 
 ## Why the Overwater example qualifies
 
@@ -145,8 +150,10 @@ The former long-document proposal would have required:
 - clear versioning of the agent conventions being taught.
 
 That exploration helped establish internal document scrolling and a constrained
-reading measure. It no longer implies that a learner will author a tall work
-order; current Level 5 Goals are compact developer documents.
+reading measure. It no longer implies that a learner should author a tall work
+order. Compact developer Goals are the approved replacement direction, while
+the ten currently published Level 5 records remain grandfathered until that
+separate content batch lands.
 
 The horizontal reading measure remains deliberately constrained because even a
 short developer document becomes harder to scan when lines stretch across an
@@ -173,8 +180,10 @@ contract.
 
 For Build Week, the Overwater document is evidence of an explored and rejected
 long-form direction. Its project-specific content is not republished, and its
-shape is not the product's current destination. Issue #9 implements the short,
+shape is not the product's approved destination. Issue #9 governs the short,
 fixed-Goal structural curriculum described in the definitive
 [`five-level problem-bank design`](../superpowers/specs/2026-07-19-five-level-problem-bank-design.md),
-including deterministic Level 5 predicates and compact fictional developer
-exercises. No agent integration or runtime AI call is added.
+including deterministic Level 5 predicates and the next compact fictional
+developer batch. The existing ten long records remain published only under the
+immutable-batch grandfathering rule. No agent integration or runtime AI call
+is added.
