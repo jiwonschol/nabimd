@@ -31,6 +31,13 @@ descriptions, and compact agent instructions. Do not author task-list or image
 lessons until their dedicated validators, fixtures, preview behavior, and
 accessibility contract exist.
 
+Every level has one fixed authored Goal. Derive the learner's starter at the
+runtime projection boundary by removing Markdown marks from that Goal while
+preserving its learner-visible words, blank lines, and line breaks. The learner
+restores Markdown structure; never require blank-page authorship, transcription,
+or prose reorganization. Keep accepted batch evidence immutable rather than
+writing derived starter text back into sealed candidates.
+
 ## Workflow
 
 1. Read the issue and every comment, especially refinements, `Do not`, grants, and stop conditions.

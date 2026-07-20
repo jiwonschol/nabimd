@@ -173,12 +173,15 @@ correction does not weaken the active validator. `contentVariant` is used only
 to prevent remediation from repeating displayed material. Goal text, vocabulary
 terms, and content variants are never equality operands in learner grading.
 
-Every level presents the authored Goal as the fixed target. The answer sheet
-starts with that Goal's learner-visible words and line breaks, with Markdown
-marks removed. The learner restores the requested structure instead of
-inventing or transcribing prose. Higher-level prompts describe the Markdown
-anatomy to practice; they do not turn the answer sheet into a blank authorship
-exercise. All levels use the same deterministic, structure-only evaluator.
+The approved target contract gives every level the authored Goal as the fixed
+target. The answer sheet starts with that Goal's learner-visible words and line
+breaks, with Markdown marks removed. The learner restores the requested
+structure instead of inventing or transcribing prose. Higher-level prompts
+describe the Markdown anatomy to practice; they do not turn the answer sheet
+into a blank authorship exercise. All levels use the same deterministic,
+structure-only evaluator. The current `main` runtime still applies this starter
+projection to Levels 1–2 only; Levels 3–5 join it through the separately
+reviewed Practice change rather than this docs-only correction.
 
 ## Deterministic structural grading
 
