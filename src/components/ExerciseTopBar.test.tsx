@@ -9,7 +9,6 @@ import { ExerciseTopBar } from "./ExerciseTopBar"
 
 function renderTopBar(
   phase: "editing" | "complete",
-  onToggleHint = vi.fn(),
   overrides: Partial<ComponentProps<typeof ExerciseTopBar>> = {},
 ) {
   render(
@@ -17,13 +16,10 @@ function renderTopBar(
       canCheck
       entryId="level-1"
       evaluation={null}
-      hadFailure={false}
-      hintOpen={false}
       currentIsTransfer={false}
       onCheck={vi.fn()}
       onExit={vi.fn()}
       onNext={vi.fn()}
-      onToggleHint={onToggleHint}
       onTryAnother={vi.fn()}
       phase={phase}
       problemPosition={1}
@@ -35,7 +31,6 @@ function renderTopBar(
       {...overrides}
     />,
   )
-  return onToggleHint
 }
 
 describe("ExerciseTopBar", () => {
@@ -49,60 +44,28 @@ describe("ExerciseTopBar", () => {
     vi.restoreAllMocks()
   })
 
-  it("toggles Hint with ? only during an active exercise", () => {
-    const activeToggle = renderTopBar("editing")
-    fireEvent.keyDown(document, { key: "?" })
-    expect(activeToggle).toHaveBeenCalledTimes(1)
-  })
+  it("keeps Hint with the answer page rather than duplicating it in the top bar", () => {
+    renderTopBar("editing")
 
-  it("does not create hidden Hint state after completion", () => {
-    const completedToggle = renderTopBar("complete")
-    fireEvent.keyDown(document, { key: "?" })
-    expect(completedToggle).not.toHaveBeenCalled()
-  })
-
-  it("does not toggle Hint while typing a question mark", () => {
-    const activeToggle = renderTopBar("editing")
-    const input = document.createElement("input")
-    document.body.append(input)
-
-    fireEvent.keyDown(input, { key: "?" })
-
-    expect(activeToggle).not.toHaveBeenCalled()
-    input.remove()
-  })
-
-  it("prevents the browser action for a handled Hint shortcut", () => {
-    const activeToggle = renderTopBar("editing")
-    const event = new KeyboardEvent("keydown", {
-      bubbles: true,
-      cancelable: true,
-      key: "?",
-    })
-
-    document.dispatchEvent(event)
-
-    expect(activeToggle).toHaveBeenCalledTimes(1)
-    expect(event.defaultPrevented).toBe(true)
+    expect(screen.queryByRole("button", { name: "Hint" })).toBeNull()
   })
 
   it("reflects and toggles the persisted sound preference", () => {
     setSoundMuted(true)
     renderTopBar("editing")
 
-    const soundToggle = screen.getByRole("button", {
-      name: "Mute feedback sounds",
-    })
+    const soundToggle = screen.getByRole("button", { name: "Turn sound on" })
 
-    expect(soundToggle).toHaveTextContent("Muted")
+    expect(soundToggle).toHaveAttribute("aria-pressed", "true")
     fireEvent.click(soundToggle)
 
-    expect(soundToggle).toHaveTextContent("Sound on")
+    expect(soundToggle).toHaveAccessibleName("Mute sound")
+    expect(soundToggle).toHaveAttribute("aria-pressed", "false")
     expect(window.localStorage.getItem("nabimd.sound-muted")).toBe("false")
   })
 
   it("renders scheduled steps separately from repair practice", () => {
-    renderTopBar("editing", vi.fn(), {
+    renderTopBar("editing", {
       currentIsTransfer: true,
       problemPosition: 2,
       runLength: 7,
@@ -114,27 +77,38 @@ describe("ExerciseTopBar", () => {
       "aria-current",
       "step",
     )
-    expect(screen.getByText("1 of 6")).toBeVisible()
+    expect(screen.queryByText("1 of 6")).toBeNull()
+    expect(
+      screen.getByLabelText("Practice progress, 1 of 6"),
+    ).toBeVisible()
     expect(screen.getByText("Repair practice")).toBeVisible()
     expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })
 
-  it("uses the shared action shortcut for Next and rejects bare Space or Enter", () => {
+  it("lets the focused Next keycap advance with Space, Enter, or the shared shortcut", () => {
     const onNext = vi.fn()
-    renderTopBar("editing", vi.fn(), {
+    renderTopBar("editing", {
       evaluation: { status: "matched", reviewItems: [] },
       onNext,
     })
-    const next = screen.getByRole("button", { name: "Next" })
+    const next = screen.getByRole("button", { name: "Next exercise" })
 
     expect(next).toHaveAttribute("aria-keyshortcuts", expect.stringContaining("Control+Enter"))
     expect(next).not.toHaveTextContent("Space / Enter")
 
     fireEvent.keyDown(next, { key: " " })
     fireEvent.keyDown(next, { key: "Enter" })
-    expect(onNext).not.toHaveBeenCalled()
+    expect(onNext).toHaveBeenCalledTimes(2)
 
     fireEvent.keyDown(next, { key: "Enter", ctrlKey: true })
-    expect(onNext).toHaveBeenCalledTimes(1)
+    expect(onNext).toHaveBeenCalledTimes(3)
+  })
+
+  it("names the primary keycap by action without shortcut copy", () => {
+    renderTopBar("editing")
+
+    const check = screen.getByRole("button", { name: "Check answer" })
+    expect(check).not.toHaveTextContent("Control")
+    expect(check).not.toHaveTextContent("Check")
   })
 })
