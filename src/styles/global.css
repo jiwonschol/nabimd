@@ -1568,10 +1568,6 @@ button:focus-visible,
   animation-delay: 1240ms;
 }
 
-.summary-ink--10 {
-  animation-delay: 1380ms;
-}
-
 @keyframes summary-ink-reveal {
   from {
     opacity: 0.12;

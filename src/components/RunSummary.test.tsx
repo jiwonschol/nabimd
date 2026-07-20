@@ -101,6 +101,28 @@ describe("RunSummary", () => {
     ).toBeVisible()
   })
 
+  it("keeps checklist families more specific than generic lists", () => {
+    renderSummary([
+      "l2-sectioned-checklist-bake-sale",
+      "l2-nested-checklist-closet-shelf",
+    ])
+
+    expect(
+      screen.getByRole("listitem", { name: "Syntax reminder: Sectioned Checklist" }),
+    ).toBeVisible()
+    expect(
+      screen.getByRole("listitem", { name: "Syntax reminder: Nested Checklist" }),
+    ).toBeVisible()
+  })
+
+  it("keeps the autofocused replay action visible immediately", () => {
+    renderSummary()
+
+    const replay = screen.getByRole("button", { name: "Practice again" })
+    expect(replay).toHaveFocus()
+    expect(replay.parentElement).not.toHaveClass("summary-ink")
+  })
+
   it("uses the authored example for the exact failed syntax family", () => {
     renderSummary([
       "l1-emphasis-family-game",
@@ -152,6 +174,17 @@ describe("RunSummary", () => {
     })
     expect(reminder.querySelector("code")?.textContent).toBe(
       "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide",
+    )
+  })
+
+  it("keeps a short nested-step example structurally complete", () => {
+    renderSummary(["l2-nested-steps-room-reset"])
+
+    const reminder = screen.getByRole("listitem", {
+      name: "Syntax reminder: Nested Steps",
+    })
+    expect(reminder.querySelector("code")?.textContent).toBe(
+      "# Fruit bowl\n\nPut together a quick afternoon snack.\n\n1. Prepare the fruit\n   1. Rinse the grapes\n   2. Slice the pear\n2. Add yogurt",
     )
   })
 

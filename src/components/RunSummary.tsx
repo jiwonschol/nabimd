@@ -14,7 +14,7 @@ type RunSummaryProps = {
 
 const SUMMARY_REVIEW_LIMIT = 3
 const SUMMARY_EXAMPLE_MAX_LINES = 12
-const SUMMARY_EXAMPLE_MAX_LENGTH = 120
+const SUMMARY_EXAMPLE_MAX_LENGTH = 160
 
 function completionTitle(score: number, total: number): string {
   return score === total ? "Well done." : "Good finish."
@@ -35,9 +35,18 @@ function strengthStatement(score: number, total: number): string {
 function syntaxFamilyLabel(family: string): string {
   if (family.includes("blockquote")) return "Block quotes"
   if (family.includes("heading")) return "Headings"
-  if (family.includes("unordered-list")) return "Lists"
-  if (family.includes("ordered-list")) return "Numbered steps"
-  if (family.includes("list")) return "Lists"
+  if (
+    family.endsWith("unordered-list") ||
+    family.endsWith("unordered-list-recall")
+  ) {
+    return "Lists"
+  }
+  if (
+    family.endsWith("ordered-list") ||
+    family.endsWith("ordered-list-recall")
+  ) {
+    return "Numbered steps"
+  }
   if (family.includes("inline-code")) return "Inline code"
   if (family.includes("code-block") || family.includes("fenced-code")) {
     return "Code blocks"
@@ -260,7 +269,7 @@ export function RunSummary({
           )}
         </div>
 
-        <div className="run-summary__actions summary-ink summary-ink--10">
+        <div className="run-summary__actions">
           <button
             autoFocus
             className="primary-button run-summary__practice-again"
