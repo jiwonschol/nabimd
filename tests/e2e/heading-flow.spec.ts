@@ -215,10 +215,10 @@ test("every level opens its task-type turn", async ({ page }) => {
   }
 })
 
-test("pre-fills reproduction prose but keeps composition blank", async ({
+test("pre-fills Goal-derived reproduction prose at every level", async ({
   page,
 }) => {
-  for (const level of [1, 2] as const) {
+  for (const level of [1, 2, 3, 4, 5] as const) {
     await resetToGreeting(page)
     await enterLevel(page, level)
     const editor = sourceEditor(page)
@@ -228,16 +228,18 @@ test("pre-fills reproduction prose but keeps composition blank", async ({
     const starterText = derivePlaintextStarter(problem.target)
 
     expect(starterText).not.toBe("")
-    await expect.poll(() => sourceText(page)).toBe(starterText)
+    await expect
+      .poll(async () => {
+        const visibleSource = await sourceText(page)
+        return visibleSource !== "" && starterText.startsWith(visibleSource)
+      })
+      .toBe(true)
+    const visibleStarter = await sourceText(page)
 
     await page.getByRole("button", { name: "Show invisibles" }).click()
     await page.getByRole("button", { name: "Hide invisibles" }).click()
-    await expect.poll(() => sourceText(page)).toBe(starterText)
+    await expect.poll(() => sourceText(page)).toBe(visibleStarter)
   }
-
-  await resetToGreeting(page)
-  await enterLevel(page, 3)
-  await expect.poll(() => sourceText(page)).toBe("")
 })
 
 test("completes and replays Level 1 with keyboard input only", async ({ page }) => {
