@@ -106,8 +106,7 @@ button:focus-visible,
 .app-shell--practice {
   display: grid;
   grid-template-rows: 108px minmax(0, 1fr);
-  width: calc(100% - 12px);
-  max-width: none;
+  width: min(calc(100% - 12px), 96rem);
   gap: 0;
   padding: 0;
   border: 1px solid rgb(17 17 17 / 72%);
@@ -465,7 +464,7 @@ button:focus-visible,
 }
 
 @media (max-width: 760px) {
-  .app-shell.open-book-shell {
+  .app-shell.open-book-shell:not(.open-book-shell--turning) {
     background-image: url("/images/nabi-book-paper.png");
     background-repeat: repeat;
     background-size: auto;

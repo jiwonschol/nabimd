@@ -123,10 +123,22 @@ describe("global responsive styles", () => {
     const practiceStack = lastCssBlock("@media (max-width: 900px)")
 
     expect(landingStack).toMatch(
-      /\.app-shell\.open-book-shell\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
+      /\.app-shell\.open-book-shell:not\(\.open-book-shell--turning\)\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
+    )
+    expect(landingStack).not.toMatch(
+      /\.app-shell\.open-book-shell\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)/s,
     )
     expect(practiceStack).toMatch(
       /\.app-shell--practice\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
+    )
+  })
+
+  it("keeps Landing, Practice, and Summary on the same wide-screen geometry", () => {
+    expect(styles).toMatch(
+      /\.app-shell--practice\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 96rem\)/s,
+    )
+    expect(styles).not.toMatch(
+      /\.app-shell--practice\s*\{[^{}]*max-width:\s*none/s,
     )
   })
 

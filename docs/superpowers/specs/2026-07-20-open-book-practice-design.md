@@ -123,14 +123,14 @@ This redesign changes presentation and the location of Hint. It does not change 
 ## Three-stage entrance and sound
 
 - The existing 720 ms page-turn remains the sole Greeting-to-Practice entrance motion.
-- Stage 1, approximately 0-220 ms: Greeting keeps its warm book-paper tone. The selected right leaf begins to lift and its moving shadow deepens.
-- Stage 2, approximately 220-520 ms: the leaf passes the center; the revealed paper moves through an intermediate ivory while shadow and restrained page highlight make the work surface feel gently illuminated.
-- Stage 3, approximately 520-720 ms: Practice settles into a warm-neutral work ivory that is brighter than Greeting but is neither stark white nor yellow beige. The moving shadow collapses into the static inner-page shadow.
-- The transition coordinates page rotation, paper background color, restrained brightness, and moving shadow. Do not add a literal lamp, spotlight, glow orb, persistent decorative gradient, or a second transition-only raster above the unified spread.
+- Stage 1, approximately 0-220 ms: the unified spread and outgoing left page remain fixed. The selected opaque right leaf begins to lift and its restrained moving shadow deepens.
+- Stage 2, approximately 220-520 ms: the leaf crosses the fixed fold and progressively reveals the already-settled Practice spread beneath it. Neither the fold nor the receiving screen moves, fades, scales, or changes brightness.
+- Stage 3, approximately 520-720 ms: the leaf clears the receiving right page and its moving shadow collapses. The same unified spread remains visible before, during, and after the turn.
+- The transition coordinates only the right leaf's geometry, opacity, and moving shadow. Do not add a literal lamp, spotlight, glow orb, persistent decorative gradient, brightness animation, or a second transition-only raster above the unified spread.
 - Keep the unified spread fixed and visually continuous for the entire transition. Never animate the fold or add another image above it.
 - Play the existing `src/sound/nabi-page-turn.mp3` once from the already unlocked sound channel when the physical leaf begins to move. The animation must not wait for audio playback, and muted preference suppresses it as it does today.
 - Practice does not replay the book animation when tabs, verdicts, or exercises change.
-- Under `prefers-reduced-motion: reduce`, skip the 3D turn and moving shadow. Use the existing 120 ms paper-color crossfade; the page-turn sound still follows the user's sound preference rather than motion preference.
+- Under `prefers-reduced-motion: reduce`, skip the spatial turn and moving shadow, then reveal the already-fixed receiving spread without animating its paper or fold. The page-turn sound still follows the user's sound preference rather than motion preference.
 
 ## Responsive behavior
 

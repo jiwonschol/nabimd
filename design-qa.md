@@ -43,8 +43,12 @@
 - The receiving Practice shell has no scale, opacity, or brightness animation.
 - After the turn, the editor receives focus and both writing sheets scroll
   internally.
+- At `760 × 800`, the active transition overlay computes to a transparent
+  background while the receiving Practice shell uses the neutral paper tile.
+- At `1800 × 1000`, Landing and Practice both compute to a `1536px` outer
+  width, so the fixed spread and moving leaf share identical geometry.
 - Browser console warnings/errors: 0.
-- Full repository gate: `npm run check` passed with 54 test files and 9,927
+- Full repository gate: `npm run check` passed with 54 test files and 9,928
   tests, followed by the production build and bundle verification.
 
 ## Comparison history
