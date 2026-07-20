@@ -29,7 +29,11 @@ describe("derivePlaintextStarter", () => {
         "Tickets",
         "Print copy",
         "",
+        "",
+        "",
+        "",
         "Gate 4",
+        "",
       ].join("\n"),
     )
   })
@@ -46,7 +50,15 @@ describe("derivePlaintextStarter", () => {
     ].join("\n")
 
     expect(derivePlaintextStarter(target)).toBe(
-      "Use quiet mode, npm test, and the guide.\n\nWeather chart",
+      [
+        "Use quiet mode, npm test, and the guide.",
+        "",
+        "Weather chart",
+        "",
+        "",
+        "",
+        "",
+      ].join("\n"),
     )
   })
 
@@ -63,10 +75,64 @@ describe("derivePlaintextStarter", () => {
       derivePlaintextStarter(
         ["```text", "  first", "    second", "```"].join("\n"),
       ),
-    ).toBe("  first\n    second")
+    ).toBe(["", "  first", "    second", ""].join("\n"))
   })
 
-  it("returns an empty starter for a target with no visible content", () => {
-    expect(derivePlaintextStarter("---\n\n<!-- hidden -->")).toBe("")
+  it("keeps placeholder lines for a target with no visible content", () => {
+    expect(derivePlaintextStarter("---\n\n<!-- hidden -->")).toBe("\n\n")
+  })
+
+  it("keeps a thematic-break placeholder without changing line topology", () => {
+    const target = [
+      "# Brief",
+      "",
+      "Purpose.",
+      "",
+      "---",
+      "",
+      "## Agenda",
+      "",
+      "- Item",
+    ].join("\n")
+    const starter = derivePlaintextStarter(target)
+
+    expect(starter).toBe(
+      [
+        "Brief",
+        "",
+        "Purpose.",
+        "",
+        "",
+        "",
+        "Agenda",
+        "",
+        "Item",
+      ].join("\n"),
+    )
+    expect(starter.split("\n")).toHaveLength(target.split("\n").length)
+  })
+
+  it("removes only fence delimiters and preserves Markdown-looking payload", () => {
+    const target = [
+      "## Final report",
+      "",
+      "```markdown",
+      "# Implementation report  ",
+      "  - Scope:\t",
+      "```",
+    ].join("\n")
+    const starter = derivePlaintextStarter(target)
+
+    expect(starter).toBe(
+      [
+        "Final report",
+        "",
+        "",
+        "# Implementation report  ",
+        "  - Scope:\t",
+        "",
+      ].join("\n"),
+    )
+    expect(starter.split("\n")).toHaveLength(target.split("\n").length)
   })
 })

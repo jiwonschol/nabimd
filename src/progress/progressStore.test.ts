@@ -37,6 +37,9 @@ class ThrowingStorage extends MemoryStorage {
 }
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
+const legacyStarterlessBankRevision = problemBank
+  .map((problem) => `${problem.id}@${problem.revision}`)
+  .join("|")
 function isEligibleTransferProblemId(
   currentProblemId: string,
   candidateProblemId: string,
@@ -174,6 +177,48 @@ describe("progressStore v5", () => {
         problemBankRevision,
       ),
     ).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
+  it("migrates only legacy empty high-level drafts to Goal-derived starters", () => {
+    const ids = createRunProblemIds("level-3", 0)
+    const currentProblemId = ids[1]!
+    const genuineDraftProblemId = ids[2]!
+    const lowLevelProblemId = problemBank.find(
+      (problem) => problem.level === 1,
+    )!.id
+    const progress = createDefaultProgress(
+      currentProblemId,
+      legacyStarterlessBankRevision,
+    )
+    progress.entryId = "level-3"
+    progress.runProblemIds = ids
+    progress.runStepIndex = 1
+    progress.scheduledStepIndex = 1
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId = {
+      [currentProblemId]: "",
+      [genuineDraftProblemId]: "## Genuine learner draft",
+      [lowLevelProblemId]: "",
+    }
+    saveProgress(storage, progress)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+      problemBankRevision,
+    )
+
+    expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
+    expect(loaded.bankRevision).toBe(problemBankRevision)
+    expect(loaded.entryId).toBe("level-3")
+    expect(loaded.runProblemIds).toEqual(ids)
+    expect(loaded.runStepIndex).toBe(1)
+    expect(loaded.draftByProblemId[currentProblemId]).toBeUndefined()
+    expect(loaded.draftByProblemId[genuineDraftProblemId]).toBe(
+      "## Genuine learner draft",
+    )
+    expect(loaded.draftByProblemId[lowLevelProblemId]).toBe("")
   })
 
   it("restores an allowed same-level replacement", () => {

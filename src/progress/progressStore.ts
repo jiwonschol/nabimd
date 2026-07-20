@@ -2,7 +2,11 @@ import {
   createRunProblemIds,
   isEntryId,
 } from "../content/entryChoices"
-import { problemBankRevision } from "../content/problemBank"
+import {
+  getProblem,
+  preStarterProjectionProblemBankRevision,
+  problemBankRevision,
+} from "../content/problemBank"
 import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
@@ -253,6 +257,43 @@ function cloneProgress(progress: ProgressV5): ProgressV5 {
   }
 }
 
+function migrateLegacyStarterProjection(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+  expectedBankRevision: string,
+): unknown {
+  if (
+    expectedBankRevision !== problemBankRevision ||
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.bankRevision !== preStarterProjectionProblemBankRevision ||
+    !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const draftByProblemId = { ...value.draftByProblemId }
+  for (const [problemId, draft] of Object.entries(draftByProblemId)) {
+    if (
+      draft === "" &&
+      validProblemIds.has(problemId) &&
+      getProblem(problemId).level >= 3
+    ) {
+      // The previous runtime automatically persisted an empty string for
+      // high-level exercises whose compiled starter was empty. Removing only
+      // those entries lets the new Goal-derived starter become the fallback;
+      // every non-empty learner draft remains authoritative.
+      delete draftByProblemId[problemId]
+    }
+  }
+
+  return {
+    ...value,
+    bankRevision: expectedBankRevision,
+    draftByProblemId,
+  }
+}
+
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
@@ -274,7 +315,11 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = JSON.parse(saved)
+    const parsed: unknown = migrateLegacyStarterProjection(
+      JSON.parse(saved),
+      validProblemIds,
+      expectedBankRevision,
+    )
     return isProgressV5(
       parsed,
       validProblemIds,

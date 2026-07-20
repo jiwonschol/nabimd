@@ -28,6 +28,7 @@ import {
 import { derivePlaintextStarter } from "./plaintextStarter"
 import type { NormalizedProblem } from "./types"
 import { validateProblemBank } from "./validateProblemBank"
+import { evaluateProblem } from "../engine/evaluateProblem"
 
 function withoutStarterText(problem: NormalizedProblem) {
   const { starterText: _starterText, ...rest } = problem
@@ -118,17 +119,17 @@ describe("compiled five-level problem bank", () => {
     )
   })
 
-  it("pre-fills every problem with deterministic visible prose", () => {
+  it("pre-fills every problem with deterministic visible prose and exact line topology", () => {
     expect(getProblem("l1-heading-apple").starterText).toBe("Apple")
     expect(getProblem("l1-link-community-notice").starterText).toBe(
       "The latest update is in the community notice.",
     )
     expect(getProblem("l1-code-block-book-label").starterText).toBe(
-      "Return on Tuesday",
+      "\nReturn on Tuesday\n",
     )
     expect(
       getProblem("l1-thematic-break-breakfast-dessert").starterText,
-    ).toBe("Breakfast is ready.\n\nSave dessert for later.")
+    ).toBe("Breakfast is ready.\n\n\n\nSave dessert for later.")
     expect(getProblem("l2-nested-checklist-closet-shelf").starterText).toBe(
       [
         "Closet shelf",
@@ -147,10 +148,52 @@ describe("compiled five-level problem bank", () => {
       expect(problem.starterText, problem.id).toBe(
         derivePlaintextStarter(problem.target),
       )
+      expect(problem.starterText.split("\n"), problem.id).toHaveLength(
+        problem.target.replace(/\r\n?/g, "\n").split("\n").length,
+      )
       expect(problem.starterText, problem.id).not.toMatch(
         /[\u00a0\u1680\u2000-\u200d\u202f\u205f\u2060\u3000\ufeff]/,
       )
+      expect(evaluateProblem(problem, problem.starterText).status, problem.id).toBe(
+        "fail",
+      )
     }
+  })
+
+  it("keeps the Level 3 thematic-break line as an empty insertion point", () => {
+    const problem = getProblem("l3-agenda-break-room-supplies")
+    const targetLines = problem.target.split("\n")
+    const starterLines = problem.starterText.split("\n")
+    const dividerLine = targetLines.indexOf("---")
+
+    expect(dividerLine).toBeGreaterThan(0)
+    expect(starterLines).toHaveLength(targetLines.length)
+    expect(starterLines[dividerLine]).toBe("")
+    expect(starterLines[dividerLine - 1]).toBe("")
+    expect(starterLines[dividerLine + 1]).toBe("")
+    expect(starterLines[dividerLine + 2]).toBe("Agenda")
+  })
+
+  it("keeps the Level 5 report payload verbatim between empty fence lines", () => {
+    const problem = getProblem("l5-auth-migration-work-order")
+    const targetLines = problem.target.split("\n")
+    const starterLines = problem.starterText.split("\n")
+    const openingFenceLine = targetLines.indexOf("```markdown")
+    const closingFenceLine = targetLines.findIndex(
+      (line, index) => index > openingFenceLine && line === "```",
+    )
+
+    expect(openingFenceLine).toBeGreaterThan(0)
+    expect(closingFenceLine).toBeGreaterThan(openingFenceLine)
+    expect(starterLines).toHaveLength(targetLines.length)
+    expect(starterLines[openingFenceLine]).toBe("")
+    expect(starterLines[closingFenceLine]).toBe("")
+    expect(starterLines.slice(openingFenceLine + 1, closingFenceLine)).toEqual(
+      targetLines.slice(openingFenceLine + 1, closingFenceLine),
+    )
+    expect(starterLines).toContain("# Implementation report")
+    expect(starterLines).toContain("- Compatibility evidence")
+    expect(evaluateProblem(problem, problem.starterText).status).toBe("fail")
   })
 
   it("has a deterministic revision and lookup", () => {
