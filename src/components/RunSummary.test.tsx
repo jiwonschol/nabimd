@@ -170,11 +170,27 @@ describe("RunSummary", () => {
     renderSummary(["l3-customer-feedback-note"])
 
     const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Readable",
+      name: "Syntax reminder: Readable documents",
     })
     expect(reminder.querySelector("code")?.textContent).toBe(
       "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide",
     )
+  })
+
+  it.each([
+    ["l2-rebuild-cat-supplies", "Quick notes"],
+    ["l2-rebuild-homework-plan", "Short processes"],
+    ["l2-rebuild-baking-reminder", "Quote cards"],
+    ["l4-accessible-dialog-spec", "Development specs"],
+    ["l5-auth-migration-work-order", "Agent work orders"],
+  ])("uses a learner-facing family label for %s", (problemId, label) => {
+    renderSummary([problemId])
+
+    expect(
+      screen.getByRole("heading", {
+        name: `Try ${label.toLowerCase()} once more.`,
+      }),
+    ).toBeVisible()
   })
 
   it("keeps a short nested-step example structurally complete", () => {

@@ -15,6 +15,14 @@ type RunSummaryProps = {
 const SUMMARY_REVIEW_LIMIT = 3
 const SUMMARY_EXAMPLE_MAX_LINES = 12
 const SUMMARY_EXAMPLE_MAX_LENGTH = 160
+const FAMILY_LABELS: Readonly<Record<string, string>> = {
+  "level-2-rebuild-quick-note": "Quick notes",
+  "level-2-rebuild-quote-card": "Quote cards",
+  "level-2-rebuild-short-process": "Short processes",
+  "level3-readable-document": "Readable documents",
+  "level4-development-spec": "Development specs",
+  "level5-agent-work-order": "Agent work orders",
+}
 
 function completionTitle(score: number, total: number): string {
   return score === total ? "Well done." : "Good finish."
@@ -33,6 +41,9 @@ function strengthStatement(score: number, total: number): string {
 }
 
 function syntaxFamilyLabel(family: string): string {
+  const exactLabel = FAMILY_LABELS[family]
+  if (exactLabel) return exactLabel
+
   if (family.includes("blockquote")) return "Block quotes"
   if (family.includes("heading")) return "Headings"
   if (
