@@ -1,19 +1,21 @@
 # Devpost submission draft
 
 This file preserves the judge-facing narrative removed from `README.md` by
-Issue #68. The six Devpost field bodies below are verbatim; supporting copy
-from the previous README follows so no submission material is lost.
+Issue #68. The six Devpost field bodies below preserve their visible text
+verbatim; only repository link destinations are updated for this file's new
+location. Supporting copy from the previous README follows so no submission
+material is lost.
 
-> **Before pasting:** The generated tracker was verified on 2026-07-21 KST at 344
-> accepted problems, split 136/148/30/20/10 across Levels 1–5. Recheck
+> **Before pasting:** The generated tracker currently contains 344 accepted
+> problems, split 136/148/30/20/10 across Levels 1–5. Recheck
 > `curriculum/problem-bank/tracker.generated.json` before using any preserved
 > count. Numeric claims below are historical copy, not a live source of truth.
 > The accepted ladder is now Learn syntax, Rebuild real documents, Write for
 > people, Write for work, and Write for developers; older labels below remain
 > unchanged only because this is a verbatim submission draft.
 
-The preserved bodies also retain their original README-relative link text.
-Use these working repository links when reading the moved draft in place:
+The preserved bodies retain their original visible link text. Use this index
+for the same working repository destinations when reading the draft in place:
 
 - [Build log](build-log.md)
 - [Build Week pedagogy decision](build-week-pedagogy-decision-2026-07-20.md)
@@ -99,7 +101,7 @@ session-scoped practice. Follow-up work now focuses on self-contained briefs,
 prerequisite-safe challenges, a small Level 2→3 bridge, and a calmer Summary.
 The full reasoning and the division between Codex research and Jiwon's product
 decision are recorded in the
-[Build Week pedagogy decision](docs/build-week-pedagogy-decision-2026-07-20.md).
+[Build Week pedagogy decision](build-week-pedagogy-decision-2026-07-20.md).
 
 ### Helpful feedback without automatic correction
 
@@ -310,12 +312,12 @@ three-column editor with the familiar CBT two-panel composition; kept runtime
 grading deterministic; and defined Level 5 as a human-reviewable, AI-executable
 work order rather than a vendor-specific prompt template.
 
-The dated [build log](docs/build-log.md) records these decisions and failures
+The dated [build log](build-log.md) records these decisions and failures
 while they happen. The public commit sequence preserves the implementation
 work behind the summary.
 
 The hardest product decision is preserved separately in
-[Practice, not a mastery system](docs/build-week-pedagogy-decision-2026-07-20.md):
+[Practice, not a mastery system](build-week-pedagogy-decision-2026-07-20.md):
 learning science supported a much heavier long-term model, but the accepted
 product keeps only the mechanisms that improve a quiet ten-minute visit.
 
@@ -359,19 +361,19 @@ npm run check
 
 ### Build Week evidence
 
-- [Build log](docs/build-log.md)
-- [Pedagogy decision: practice, not a mastery system](docs/build-week-pedagogy-decision-2026-07-20.md)
-- [Read-only pedagogy and curriculum audit](nabimd-pedagogy-review-2026-07-19.md)
-- [Submission checklist](docs/submission-checklist.md)
-- [Approved application design](docs/superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
-- [Heading MVP execution plan](docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md)
-- [Approved first-exercise redesign](docs/superpowers/specs/2026-07-18-first-exercise-redesign-design.md)
-- [C6 redesign execution plan](docs/superpowers/plans/2026-07-18-first-exercise-redesign.md)
-- [Level 5 agent-brief north star](docs/design/level-5-agent-brief-north-star.md)
-- [Approved five-level problem-bank design](docs/superpowers/specs/2026-07-19-five-level-problem-bank-design.md)
-- [Five-level problem-bank execution plan](docs/superpowers/plans/2026-07-19-five-level-problem-bank.md)
-- [Problem-bank pipeline](curriculum/problem-bank/README.md)
-- [Anonymized Level 5 reference](docs/examples/level-5-agent-work-order-reference.md)
+- [Build log](build-log.md)
+- [Pedagogy decision: practice, not a mastery system](build-week-pedagogy-decision-2026-07-20.md)
+- [Read-only pedagogy and curriculum audit](../nabimd-pedagogy-review-2026-07-19.md)
+- [Submission checklist](submission-checklist.md)
+- [Approved application design](superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
+- [Heading MVP execution plan](superpowers/plans/2026-07-18-heading-vertical-mvp.md)
+- [Approved first-exercise redesign](superpowers/specs/2026-07-18-first-exercise-redesign-design.md)
+- [C6 redesign execution plan](superpowers/plans/2026-07-18-first-exercise-redesign.md)
+- [Level 5 agent-brief north star](design/level-5-agent-brief-north-star.md)
+- [Approved five-level problem-bank design](superpowers/specs/2026-07-19-five-level-problem-bank-design.md)
+- [Five-level problem-bank execution plan](superpowers/plans/2026-07-19-five-level-problem-bank.md)
+- [Problem-bank pipeline](../curriculum/problem-bank/README.md)
+- [Anonymized Level 5 reference](examples/level-5-agent-work-order-reference.md)
 - [Public demo](https://nabimd.vercel.app)
 - Primary Codex task and `/feedback` Session ID:
   `019f7290-4f9c-7c01-beaa-bc106cbdd874`
@@ -379,7 +381,7 @@ npm run check
 ### License
 
 The code is licensed under the [GNU Affero General Public License v3.0 or
-later](LICENSE). [TRADEMARKS.md](TRADEMARKS.md) describes the separate treatment
+later](../LICENSE). [TRADEMARKS.md](../TRADEMARKS.md) describes the separate treatment
 of the Nabi Markdown name and future visual identity.
 
 Commercial licensing may be offered later. No pricing or commercial terms are
