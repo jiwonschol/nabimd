@@ -763,6 +763,10 @@ button:focus-visible,
   background: var(--book-paper);
 }
 
+.cbt-workspace.open-book-shell {
+  font-family: var(--sans);
+}
+
 .cbt-panel {
   min-width: 0;
   min-height: 0;

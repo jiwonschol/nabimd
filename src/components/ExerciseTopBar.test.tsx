@@ -83,6 +83,8 @@ describe("ExerciseTopBar", () => {
     expect(
       screen.getByLabelText("Practice progress, 1 of 6"),
     ).toBeVisible()
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuenow", "1")
+    expect(screen.getByRole("progressbar")).toHaveAttribute("aria-valuemax", "6")
     expect(screen.getByText("Repair practice")).toBeVisible()
     expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })
@@ -103,6 +105,10 @@ describe("ExerciseTopBar", () => {
     expect(onNext).toHaveBeenCalledTimes(2)
 
     fireEvent.keyDown(next, { key: "Enter", ctrlKey: true })
+    expect(onNext).toHaveBeenCalledTimes(3)
+
+    fireEvent.keyDown(next, { key: "Enter", repeat: true })
+    fireEvent.keyDown(next, { key: " ", repeat: true })
     expect(onNext).toHaveBeenCalledTimes(3)
   })
 

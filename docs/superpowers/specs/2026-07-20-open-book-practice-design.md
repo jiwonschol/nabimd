@@ -173,13 +173,14 @@ This redesign changes presentation and the location of Hint. It does not change 
 - Repeat the comparison for the Matched Next state.
 - Inspect the Greeting and page-turn midpoint against their references for paper-family continuity, fixed spine, leaf geometry, moving shadow, and absence of a visible route cut. Midpoint copy is explicitly non-normative.
 - Also inspect 1280 x 800 Level 1 Write and Level 5 Write because the selected reference alone does not prove short-target balance or editable-paper alignment.
-- Fix all P0, P1, and P2 mismatches before handoff. P3 polish may be listed as follow-up.
-- Save the final report to project-root `design-qa.md` with `final result: passed` before the PR is ready.
+- The implementation PR may become ready after the automated layout, interaction, accessibility, and review gates pass. It must not claim that a visual comparison passed without fresh same-viewport captures from the approved browser workflow.
+- Complete the same-viewport comparison before Build Week submission. Fix all P0, P1, and P2 mismatches before submission; P3 polish may be listed as follow-up.
+- Record current automated evidence and any pending visual comparison honestly in project-root `design-qa.md`. Add `final result: passed` only after the current implementation has been compared against the approved references.
 
 ## Delivery
 
 - The implementation PR closes Issue #60.
-- It includes this spec, approved visual references, tests, browser evidence, and the updated design-QA report.
+- It includes this spec, approved visual references, tests, and an updated design-QA report that distinguishes automated evidence from pending visual inspection.
 - CodeRabbit is used when it has a healthy heartbeat. If it fails to respond or invocation fails, an independent Codex review supplies the merge evidence. A visibly active CodeRabbit review is allowed to finish and its actionable findings are addressed before merge.
 
 ## Out of scope

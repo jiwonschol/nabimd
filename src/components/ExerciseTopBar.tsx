@@ -85,7 +85,11 @@ export function ExerciseTopBar({
 
       <div
         aria-label={`Practice progress, ${visibleScheduledPosition} of ${scheduledRunLength}`}
+        aria-valuemax={scheduledRunLength}
+        aria-valuemin={1}
+        aria-valuenow={visibleScheduledPosition}
         className="exercise-progress"
+        role="progressbar"
       >
         <div className="exercise-progress__meta">
           <span aria-label={entry.label} className="exercise-progress__level">
@@ -171,6 +175,10 @@ export function ExerciseTopBar({
             onClick={matched ? onNext : onCheck}
             onKeyDown={(event) => {
               if (!matched) return
+              if (event.repeat) {
+                event.preventDefault()
+                return
+              }
               if (
                 isActionShortcut(event.nativeEvent, navigatorLike) ||
                 event.key === " " ||
