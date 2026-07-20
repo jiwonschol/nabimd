@@ -1,6 +1,7 @@
 import { Target } from "lucide-react"
 import type { GradableProblem } from "../content/types"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { WritingProcessor } from "./WritingProcessor"
 
 type GoalPanelProps = {
   problem: GradableProblem
@@ -8,28 +9,28 @@ type GoalPanelProps = {
 
 export function GoalPanel({ problem }: GoalPanelProps) {
   const promptId = `${problem.id}-goal-prompt`
-  const lineNumbers = Array.from({ length: 40 }, (_, index) => index + 1)
 
   return (
     <section
       aria-describedby={promptId}
       aria-label="Goal"
-      className="cbt-panel goal-panel writing-sheet"
+      className="cbt-panel goal-panel"
     >
       <p className="visually-hidden" id={promptId}>
         {problem.prompt}
       </p>
       <header className="cbt-panel__header">
         <span aria-hidden="true" className="panel-icon" title="Goal">
-          <Target size={18} strokeWidth={1.6} />
+          <Target size={32} strokeWidth={1.5} />
         </span>
       </header>
-      <ol aria-hidden="true" className="writing-sheet__line-numbers">
-        {lineNumbers.map((line) => (
-          <li key={line}>{line}</li>
-        ))}
-      </ol>
-      <RenderedDocumentBody source={problem.target} />
+      <WritingProcessor
+        contentVersion={problem.target}
+        label="Goal document"
+        mode="read-only"
+      >
+        <RenderedDocumentBody source={problem.target} />
+      </WritingProcessor>
     </section>
   )
 }

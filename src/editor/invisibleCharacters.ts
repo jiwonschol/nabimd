@@ -1,9 +1,8 @@
-import type { Extension } from "@codemirror/state"
+import { RangeSetBuilder, type Extension } from "@codemirror/state"
 import {
   Decoration,
   type DecorationSet,
   EditorView,
-  MatchDecorator,
   ViewPlugin,
   WidgetType,
 } from "@codemirror/view"
@@ -11,21 +10,17 @@ import {
 export type InvisibleCharacter = {
   from: number
   to: number
-  kind:
-    | "space"
-    | "tab"
-    | "non-breaking-space"
-    | "ideographic-space"
+  kind: "tab" | "line-break" | "non-breaking-space" | "ideographic-space"
 }
 
 function invisibleCharacterKind(
   character: string | undefined,
 ): InvisibleCharacter["kind"] | null {
   switch (character) {
-    case " ":
-      return "space"
     case "\t":
       return "tab"
+    case "\n":
+      return "line-break"
     case "\u00a0":
       return "non-breaking-space"
     case "\u3000":
@@ -52,12 +47,12 @@ export function findInvisibleCharacters(source: string): InvisibleCharacter[] {
   return characters
 }
 
-class InvisibleCharacterWidget extends WidgetType {
+class FormattingMarkWidget extends WidgetType {
   constructor(private readonly kind: InvisibleCharacter["kind"]) {
     super()
   }
 
-  override eq(other: InvisibleCharacterWidget): boolean {
+  override eq(other: FormattingMarkWidget): boolean {
     return this.kind === other.kind
   }
 
@@ -66,8 +61,8 @@ class InvisibleCharacterWidget extends WidgetType {
     marker.ariaHidden = "true"
     marker.className = `cm-invisible-character cm-invisible-character--${this.kind}`
     marker.textContent = {
-      space: "·",
       tab: "→",
+      "line-break": "↵",
       "non-breaking-space": "⍽",
       "ideographic-space": "□",
     }[this.kind]
@@ -79,27 +74,46 @@ class InvisibleCharacterWidget extends WidgetType {
   }
 }
 
-const invisibleDecorator = new MatchDecorator({
-  regexp: /[ \t\u00a0\u3000]/g,
-  decoration: (match) =>
-    Decoration.replace({
-      widget: new InvisibleCharacterWidget(invisibleCharacterKind(match[0])!),
-    }),
-})
+function buildFormattingMarks(view: EditorView): DecorationSet {
+  const builder = new RangeSetBuilder<Decoration>()
+  const document = view.state.doc
 
-const invisibleCharacterPlugin = ViewPlugin.fromClass(
+  for (let lineNumber = 1; lineNumber <= document.lines; lineNumber += 1) {
+    const line = document.line(lineNumber)
+
+    for (let position = line.from; position < line.to; position += 1) {
+      const kind = invisibleCharacterKind(document.sliceString(position, position + 1))
+      if (!kind || kind === "line-break") continue
+      builder.add(
+        position,
+        position + 1,
+        Decoration.replace({ widget: new FormattingMarkWidget(kind) }),
+      )
+    }
+
+    builder.add(
+      line.to,
+      line.to,
+      Decoration.widget({
+        side: 1,
+        widget: new FormattingMarkWidget("line-break"),
+      }),
+    )
+  }
+
+  return builder.finish()
+}
+
+const formattingMarkPlugin = ViewPlugin.fromClass(
   class {
     decorations: DecorationSet
 
     constructor(view: EditorView) {
-      this.decorations = invisibleDecorator.createDeco(view)
+      this.decorations = buildFormattingMarks(view)
     }
 
-    update(update: Parameters<typeof invisibleDecorator.updateDeco>[0]) {
-      this.decorations = invisibleDecorator.updateDeco(
-        update,
-        this.decorations,
-      )
+    update(update: { docChanged: boolean; view: EditorView }) {
+      if (update.docChanged) this.decorations = buildFormattingMarks(update.view)
     }
   },
   {
@@ -108,5 +122,5 @@ const invisibleCharacterPlugin = ViewPlugin.fromClass(
 )
 
 export function invisibleCharacters(): Extension {
-  return invisibleCharacterPlugin
+  return formattingMarkPlugin
 }

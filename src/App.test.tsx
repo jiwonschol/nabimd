@@ -381,7 +381,7 @@ describe("App", () => {
     const originalGoal = screen.getByRole("region", { name: "Goal" }).textContent
     await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
-    await user.keyboard("{Alt>}1{/Alt}")
+    await user.click(screen.getByRole("tab", { name: "Write" }))
     replaceSource(editor, validRepair())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     await user.click(screen.getByRole("button", { name: "Next exercise" }))
@@ -398,23 +398,54 @@ describe("App", () => {
 
   it("uses one fixed bar and exactly two workspace panels", async () => {
     await openLevel(5)
+    const answerPanel = screen.getByRole("region", { name: "Your answer" })
+    const answerHeader = answerPanel.querySelector(".answer-panel__header")
+    expect(answerHeader).not.toBeNull()
     expect(screen.getByRole("button", { name: "Exit" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Try another" })).toBeVisible()
     expect(screen.getByRole("tab", { name: "Hint" })).toBeVisible()
     expect(screen.getByRole("region", { name: "Goal" })).toHaveClass("cbt-panel")
-    expect(screen.getByRole("region", { name: "Your answer" })).toHaveClass("cbt-panel")
+    expect(answerPanel).toHaveClass("cbt-panel")
+    expect(
+      within(answerHeader as HTMLElement).queryByRole("button", {
+        name: "Show invisibles",
+      }),
+    ).toBeNull()
+    expect(screen.queryByText("answer.md")).toBeNull()
     expect(screen.queryByTestId("practice-book-spine")).toBeNull()
-    expect(screen.getByRole("region", { name: "Goal" })).toHaveClass(
+    expect(
+      screen
+        .getByRole("region", { name: "Goal" })
+        .querySelector(".writing-processor"),
+    ).not.toBeNull()
+    expect(answerPanel.querySelector(".markdown-source-editor")).not.toBeNull()
+    expect(screen.getByRole("region", { name: "Goal" })).not.toHaveClass(
       "writing-sheet",
     )
-    expect(screen.getByRole("region", { name: "Your answer" })).toHaveClass(
-      "writing-sheet",
-    )
+    expect(answerPanel).not.toHaveClass("writing-sheet")
     expect(screen.queryByRole("region", { name: "Live preview" })).toBeNull()
     expect(screen.queryByRole("contentinfo")).toBeNull()
   })
 
-  it("switches Write, Preview, and Hint without consuming editor Tab", async () => {
+  it("uses one writing processor in read-only and edit modes", async () => {
+    await openLevel(5)
+
+    const goal = screen.getByRole("textbox", { name: "Goal document" })
+    const answer = screen.getByRole("textbox", { name: "Your Markdown" })
+    const goalProcessor = goal.closest(".writing-processor")
+    const answerProcessor = answer.closest(".writing-processor")
+
+    expect(goalProcessor).not.toBeNull()
+    expect(answerProcessor).not.toBeNull()
+    expect(goalProcessor).toHaveAttribute("data-mode", "read-only")
+    expect(answerProcessor).toHaveAttribute("data-mode", "edit")
+    expect(goalProcessor?.querySelector(".writing-processor__rows")).not.toBeNull()
+    expect(answerProcessor?.querySelector(".writing-processor__rows")).not.toBeNull()
+    expect(goalProcessor?.querySelector(".writing-processor__content")).not.toBeNull()
+    expect(answerProcessor?.querySelector(".writing-processor__content")).not.toBeNull()
+  })
+
+  it("scopes view shortcuts to the focused editor", async () => {
     const { user, editor } = await openLevel(1)
     await user.keyboard("# Preview words")
     const writeTab = screen.getByRole("tab", { name: "Write" })
@@ -423,15 +454,22 @@ describe("App", () => {
     await user.keyboard("{Alt>}2{/Alt}")
     expect(previewTab).toHaveAttribute("aria-selected", "true")
     expect(previewTab).toHaveFocus()
-    expect(screen.getByRole("tabpanel", { name: "Preview" })).toHaveTextContent(
-      "Preview words",
+    expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
+    const previewPanel = screen.getByRole("tabpanel", { name: "Preview" })
+    expect(previewPanel).toHaveTextContent("Preview words")
+    expect(previewPanel).toHaveClass("answer-panel__body--sheet")
+    expect(previewPanel).not.toHaveClass("answer-panel__body--reading")
+    expect(previewPanel.querySelectorAll(".writing-processor")).toHaveLength(
+      1,
     )
     await user.keyboard("{ArrowRight}")
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveFocus()
-    await user.keyboard("{Alt>}3{/Alt}")
     expect(screen.getByRole("tabpanel", { name: "Hint" })).toBeVisible()
     await user.keyboard("{Alt>}1{/Alt}")
+    expect(screen.getByRole("tabpanel", { name: "Hint" })).toBeVisible()
+    await user.click(writeTab)
     expect(editor).toHaveFocus()
+    expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
   })
 
   it("returns home and can reissue content at the same step", async () => {
