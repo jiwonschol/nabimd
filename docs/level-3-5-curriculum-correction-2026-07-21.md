@@ -53,9 +53,11 @@ change of context and syntax mix, not a difficulty spike or a final exam.
   including supplied prose. Prefer the shortest coherent miniature.
 - Keep each list to two or three short items.
 - Keep the prose short enough to understand at a glance.
-- Preserve the authored words, blank lines, and line breaks in the learner's
-  starter document.
-- Ask the learner to add Markdown structure, not to invent or transcribe prose.
+- At every level, derive the learner's starter from the authored Goal by
+  removing Markdown marks while preserving its words, blank lines, and line
+  breaks.
+- Ask the learner to restore Markdown structure, not to invent, transcribe, or
+  reorganize prose.
 - Raise complexity through syntax variety, hierarchy, placement, and at most
   one useful nesting level.
 - Keep list items short, normally one sentence and often only a phrase.

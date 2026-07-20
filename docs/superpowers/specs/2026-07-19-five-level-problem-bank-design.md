@@ -166,15 +166,19 @@ type Problem = {
 
 `teachingMode`, `everyday-recall`, `development-spec`, and `agent-workflow` are
 legacy schema values retained to keep accepted, digest-bound batches immutable;
-they do not define the corrected learner-facing ladder. A Level 5 problem that
-specifically teaches an agent convention requires valid convention metadata;
-other developer-document exercises do not. `contentVariant` is used only to
-prevent remediation from repeating displayed material. Goal text, vocabulary
+they do not define the corrected learner-facing ladder. The current publisher
+still requires convention metadata for every Level 5 record. A later schema
+change may limit that metadata to agent-convention lessons, but this docs-only
+correction does not weaken the active validator. `contentVariant` is used only
+to prevent remediation from repeating displayed material. Goal text, vocabulary
 terms, and content variants are never equality operands in learner grading.
 
-Levels 1–2 present a rendered target to rebuild. Levels 3–5 present a brief and
-ask the learner to compose a document. Both routes use the same deterministic,
-structure-only evaluator.
+Every level presents the authored Goal as the fixed target. The answer sheet
+starts with that Goal's learner-visible words and line breaks, with Markdown
+marks removed. The learner restores the requested structure instead of
+inventing or transcribing prose. Higher-level prompts describe the Markdown
+anatomy to practice; they do not turn the answer sheet into a blank authorship
+exercise. All levels use the same deterministic, structure-only evaluator.
 
 ## Deterministic structural grading
 
@@ -264,10 +268,12 @@ drift, and bank-wide count regressions.
 
 ## Runtime selection contract
 
-The entry chooser exposes exactly Levels 1–5 with these learner-facing task
-types: Learn the syntax, Rebuild real documents, Write for people, Write for
-work, and Write for developers. Scheduling first filters by exact level and
-`standard` flavor, then rotates deterministically.
+The corrected learner-facing task types are Learn the syntax, Rebuild real
+documents, Write for people, Write for work, and Write for developers. The
+current app retains the former Level 4–5 labels until a separately reviewed UI
+change lands; this docs-only correction does not silently mutate that runtime.
+Scheduling first filters by exact level and `standard` flavor, then rotates
+deterministically.
 
 For Levels 1–4, a scheduled turn contains six problems: four at the chosen
 level followed by two next-level challenges. The first four begin with Hint
