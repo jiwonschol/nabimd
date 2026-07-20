@@ -2,22 +2,26 @@
 
 [![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/jiwonschol/nabimd?utm_source=oss&utm_medium=github&utm_campaign=jiwonschol%2Fnabimd&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
 
-> Build Markdown fluency by rebuilding small, readable documents—one quest at
-> a time.
+> Open a page. Type for ten minutes. Leave Markdown feeling a little more
+> natural.
 
-Nabi Markdown is an English-first Markdown practice app for the **Education**
-track of [OpenAI Build Week](https://openai.devpost.com/). It teaches production,
-not recognition: a beginner rebuilds a rendered target, an advanced learner
-composes from a brief, and everyone writes the Markdown source and checks it
-explicitly. After a mistake, the learner proves the same skill with different
-content.
+Nabi Markdown is an English-first, drop-in Markdown practice app for the
+**Education** track of [OpenAI Build Week](https://openai.devpost.com/). Choose
+one of five levels, write the source yourself, inspect what it renders, and
+check the Markdown explicitly. A beginner adds marks to supplied prose; an
+advanced learner composes a short document from a brief.
 
-The playable curriculum now spans five levels: Learn the syntax, Rebuild real
+Nabi is deliberately lighter than a managed course. There is no account,
+placement test, streak, XP, lives, or long-term learner profile. Progress lasts
+for the browser session, every level is directly selectable, Hint is
+penalty-free, and a mistake leads to a different prompt using the same syntax—not
+to a permanent red mark.
+
+The playable curriculum spans five levels: Learn the syntax, Rebuild real
 documents, Write for people, Write a development spec, and Write an agent work
-order. The
-first schema-v2 milestone is intentionally small and deeply tested; the public
-tracker, not a marketing estimate, is the source of truth as the bank grows
-toward 512 inspected problems.
+order. Levels 1–2 are guided learning modes; Levels 3–5 are useful document
+contexts rather than locked ranks. The public tracker, not a marketing
+estimate, is the source of truth as the inspected problem bank grows.
 
 **Live demo:** [nabimd.vercel.app](https://nabimd.vercel.app)
 
@@ -46,7 +50,7 @@ is already in their heads. Nobody ever told them the format that carries it.
 Markdown takes ten minutes to understand and months to use without thinking.
 Most tutorials solve the first problem and ignore the second.
 
-Nabi takes its method from language learning:
+Nabi takes a small, practical part of its method from language learning:
 
 1. Rebuild a rendered target at Levels 1–2, then compose from a brief at
    Levels 3–5.
@@ -61,6 +65,10 @@ Nabi takes its method from language learning:
    Review remains optional.
 6. After repairing a failure, solve a different prompt that uses the same
    syntax so recall—not answer memorization—is tested.
+
+The loop ends with the visit. Nabi does not schedule spaced review, remember
+weak skills across browser sessions, or turn casual practice into a daily
+obligation.
 
 Matched means the requested Markdown structure is present. Case, spelling,
 punctuation, and wording are not graded. Try again is reserved for missing or
@@ -135,12 +143,36 @@ The dated [build log](docs/build-log.md) records these decisions and failures
 while they happen. The public commit sequence preserves the implementation
 work behind the summary.
 
+The hardest product decision is preserved separately in
+[Practice, not a mastery system](docs/build-week-pedagogy-decision-2026-07-20.md):
+learning science supported a much heavier long-term model, but the accepted
+product keeps only the mechanisms that improve a quiet ten-minute visit.
+
 ## Development log
 
 Follow the public [release tracker](https://github.com/jiwonschol/nabimd/issues/2)
 for the implementation sequence and shipped evidence.
 
 ## Challenges we ran into
+
+### Choosing practice over a mastery system
+
+The technically coherent learning-science direction was to remember weak
+syntax families, schedule spaced review, and distinguish supported answers
+from stable recall. That would have made Nabi a more complete learning system
+and a less inviting product. Jiwon identified the conflict: the reason to open
+Nabi is that it asks for almost nothing—no account, plan, streak, or promise to
+return.
+
+Codex then reconciled the research with an adversarial repo audit. The audit
+showed that Levels 1–2 were already strong because they were lightweight, while
+the trust-breaking defects were concrete Level 3–5 briefs that graded invisible
+requirements. The product rejected cross-visit mastery tracking and kept
+session-scoped practice. Follow-up work now focuses on self-contained briefs,
+prerequisite-safe challenges, a small Level 2→3 bridge, and a calmer Summary.
+The full reasoning and the division between Codex research and Jiwon's product
+decision are recorded in the
+[Build Week pedagogy decision](docs/build-week-pedagogy-decision-2026-07-20.md).
 
 ### Helpful feedback without automatic correction
 
@@ -228,6 +260,12 @@ We also learned that the best retry is not the same answer again. A new prompt
 using the same rule reveals whether the syntax moved from short-term correction
 into recall.
 
+The deeper lesson was that learning science can recommend effective mechanisms
+without deciding how much product a visitor wants. Explicit production,
+completion problems, precise feedback, and one near-transfer retry improve
+Nabi's ten-minute visit. Persistent mastery tracking would replace that visit
+with a course, so it stays out.
+
 ## Run locally
 
 Requires Node.js `22.13` or later.
@@ -264,6 +302,8 @@ npm run check
 ## Build Week evidence
 
 - [Build log](docs/build-log.md)
+- [Pedagogy decision: practice, not a mastery system](docs/build-week-pedagogy-decision-2026-07-20.md)
+- [Read-only pedagogy and curriculum audit](nabimd-pedagogy-review-2026-07-19.md)
 - [Submission checklist](docs/submission-checklist.md)
 - [Approved application design](docs/superpowers/specs/2026-07-18-nabi-markdown-application-design.md)
 - [Heading MVP execution plan](docs/superpowers/plans/2026-07-18-heading-vertical-mvp.md)
@@ -280,10 +320,13 @@ npm run check
 
 ## What's next for Nabi Markdown
 
-First, expand the proven fixture contract to the 512-problem distribution in
-small reviewed batches. GPT-5.6 helps generate vocabulary, candidates, and
-counterexamples at build time; accepted and rejected results remain inspectable
-in the repository, and it never grades a learner at runtime.
+First, repair the advanced teaching contract: every graded Level 3–5 structure
+must be discoverable from the visible brief, challenges must respect introduced
+syntax, and the first composition problems need a small bridge from Level 2.
+Then bring Practice and Summary into the open-book visual world already
+established by the landing page. Problem-bank expansion continues in small,
+reviewed batches; GPT-5.6 helps at build time and never grades a learner at
+runtime.
 
 Markdown is the first code many people write with AI. It should not be the
 first thing nobody teaches them.
