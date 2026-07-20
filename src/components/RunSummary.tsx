@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef } from "react"
 import { getProblem, problemBank } from "../content/problemBank"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
-import { BookSpine } from "./BookSpine"
 
 type RunSummaryProps = {
   score: number
@@ -182,7 +181,6 @@ export function RunSummary({
       className="run-summary open-book-shell"
       aria-labelledby="completion-title"
     >
-      <BookSpine testId="summary-book-spine" />
       <section className="run-summary__page run-summary__page--closure open-book-page">
         <img
           alt=""

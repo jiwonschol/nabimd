@@ -1,6 +1,5 @@
 import { entryChoices, type EntryId } from "../content/entryChoices"
 import { Wordmark } from "./Wordmark"
-import { BookSpine } from "./BookSpine"
 
 type OpenBookLandingProps = {
   onChoose: (entryId: EntryId) => void
@@ -32,7 +31,6 @@ export function OpenBookLanding({
       className={`app-shell open-book-shell${turning ? " open-book-shell--turning" : ""}`}
       data-testid={turning ? "page-turn-transition" : undefined}
     >
-      <BookSpine testId="landing-book-spine" />
       <section className="open-book-page open-book-page--intro">
         <Wordmark />
         <div className="open-book-intro">

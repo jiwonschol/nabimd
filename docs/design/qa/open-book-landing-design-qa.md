@@ -94,7 +94,7 @@ continues to separate the sections.
 
 final result: passed
 
-## Approved book-design restoration (authoritative)
+## Previous book-design restoration (historical)
 
 This section supersedes the earlier Practice and Summary visual assessment.
 The approved raster references are the source of truth; the production UI is
@@ -154,5 +154,27 @@ Summary evidence uses a completed run with one syntax family to revisit.
 - P3: the animated leaf uses a browser-safe planar curl rather than reproducing
   every irregular edge of the raster motion mock. Summary wording follows the
   actual missed syntax family instead of the mock's sample content.
+
+final result: passed
+
+## Unified spread correction (latest authoritative result)
+
+This correction supersedes the separate stitched-spine implementation above.
+The physical book is now one image: both page surfaces, the paper texture, and
+the center fold are inseparable pixels in
+`public/images/nabi-open-book-spread.png`. `BookSpine` no longer exists in the
+component tree, and no center shadow is constructed in CSS.
+
+- Landing comparison: `docs/design/qa/unified-book-spread-landing-comparison.png`
+- Practice comparison: `docs/design/qa/unified-book-spread-practice-comparison.png`
+- Focused fold comparison: `docs/design/qa/unified-book-spread-fold-focused-comparison.png`
+- Page-turn midpoint: `docs/design/qa/unified-book-spread-turn-midpoint-1280x800.png`
+- Viewport: `1280 × 800`
+
+The latest midpoint capture confirms that the open-book image remains fixed.
+Only the selected page leaf moves; the receiving Practice shell no longer
+scales, fades, or changes brightness. The fold is intentionally lighter than
+the earlier reference so it blends into the warm paper instead of reading as a
+detached vertical object.
 
 final result: passed

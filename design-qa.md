@@ -1,174 +1,60 @@
-# Design QA — Open-book Practice
+# Design QA — Unified open-book spread
 
-- approved visual truth: `docs/design/practice-open-book-level5-hint-reference.png`
-- matched companion: `docs/design/practice-open-book-level5-next-reference.png`
-- target viewport: `1586 × 992`
-- implementation branch: `feat/issue-60-open-book-practice`
-
-## Current evidence
-
-The implementation now follows the approved two-page Practice contract in code:
-one fixed strip, equal Goal and answer sheets, internal page scrolling, a stable
-Goal, icon tabs for Write/Preview/Review/Hint, and a state-stable Check/Next
-keycap. Automated tests cover the keyboard-only flow, accessible progress,
-focus transfer, tab semantics, tooltip labels, reduced motion, sound preference,
-and long-document rendering. The full repository check and production build are
-the merge gates recorded on the pull request.
-
-## Visual comparison status
-
-A fresh implementation capture from the approved in-app browser workflow was
-not available during this review pass. The approved references remain the visual
-truth, but the older CBT captures below predate the open-book redesign and do
-not prove current pixel-level fidelity. Therefore this report does not mark the
-new Practice design as visually passed.
-
-Before Build Week submission, capture and compare these current states at the
-specified viewport:
-
-- Level 5 Hint and Matched Next at `1586 × 992`;
-- Level 1 Write and Level 5 Write at `1280 × 800`;
-- Greeting, the page-turn midpoint, and the settled Practice paper surface;
-- the stacked narrow layout, keyboard focus tooltips, and reduced motion.
-
-Fix every P0, P1, and P2 visible mismatch before submission. Until that combined
-comparison exists, the accurate result is:
-
-final result: visual comparison pending
-
----
-
-# Historical Design QA — CBT Editorial Desk
-
-- source: `docs/design/qa/cbt-reference-1586x992.png`
-- implementation: `docs/design/qa/cbt-implementation-matched-1586x992.jpg`
-- combined comparison: `docs/design/qa/cbt-comparison-1586x992.png`
-- viewport: `1586 × 992`
-- state: Matched, Hint closed, Next focused, lower-level answer in Preview
-
-## Full-view comparison
-
-The reference and implementation were joined side by side at their native,
-identical viewport. The comparison verifies the fixed single top bar, absence
-of a bottom bar, equal Goal/answer frames, thin monochrome rules, top-right Hint
-and Next controls, and the viewport-centered pale-green Matched notice.
-
-The reference uses a long Level 5 work order and a structural Review while the
-current runtime problem is a Level 1 H1. That content-density difference is
-intentional: Issue #9 owns the expanded bank. It does not change the layout
-contract. An independent 80-line source check verifies the long-document
-scrolling behavior in the implemented frame.
-
-No focused crop was needed after the full-view comparison because the remaining
-differences were content density rather than a local component mismatch. The
-center notice and top-bar controls are fully visible at native resolution in
-the combined image. Failure Review received separate captures at
-`docs/design/qa/cbt-implementation-try-again-1586x992.jpg` and
-`docs/design/qa/cbt-implementation-review-1586x992.jpg`.
+- Source visual truth: `docs/design/open-book-greeting-shared-spine-reference.png`
+- Practice source: `docs/design/practice-open-book-level5-hint-reference.png`
+- Landing implementation: `docs/design/qa/unified-book-spread-landing-1280x800.png`
+- Practice implementation: `docs/design/qa/unified-book-spread-practice-1280x800.png`
+- Page-turn midpoint: `docs/design/qa/unified-book-spread-turn-midpoint-1280x800.png`
+- Landing comparison: `docs/design/qa/unified-book-spread-landing-comparison.png`
+- Practice comparison: `docs/design/qa/unified-book-spread-practice-comparison.png`
+- Focused fold comparison: `docs/design/qa/unified-book-spread-fold-focused-comparison.png`
+- Viewport: `1280 × 800`
+- States: fresh Landing, Level 5 page-turn midpoint, settled Level 5 Practice
 
 ## Findings
 
 - P0: none.
 - P1: none.
 - P2: none.
-- P3: the selected reference shows long Level 5 content and a Goal-header Hint
-  label; the implementation uses current Level 1 content and keeps the only
-  interactive Hint control in the fixed top bar. This follows the approved
-  fixed-chrome contract and avoids duplicate controls.
+- P3: the production fold is intentionally lighter than the approved source.
+  This follows the latest direction that the crease should blend into the
+  paper instead of reading as a detached dark strip.
+
+## Required fidelity surfaces
+
+- Typography: the implementation preserves `Source Serif 4` for the editorial
+  pages and `JetBrains Mono` for Markdown source. The hierarchy and wrapping
+  remain consistent with the approved screens.
+- Spacing and layout: Landing, Practice, and Summary use the same 50:50 spread.
+  The fixed top bar and panel frames do not move at `1280 × 800`.
+- Color: one warm off-white surface spans both pages. No black or white backing
+  layer interrupts the paper at the center.
+- Image quality and asset fidelity: both sheets, their paper texture, the
+  stitched fold, and its tonal falloff are one `1280 × 800` raster asset,
+  `public/images/nabi-open-book-spread.png`. There is no separate spine DOM
+  element or center-shadow construction.
+- Copy and content: the production problem-bank content differs from the static
+  visual reference as expected; UI labels and curriculum hierarchy are intact.
+
+## Interaction verification
+
+- The static spread remains fixed during the greeting-to-Practice transition.
+- Only the chosen right-hand page leaf runs the page-turn animation.
+- The receiving Practice shell has no scale, opacity, or brightness animation.
+- After the turn, the editor receives focus and both writing sheets scroll
+  internally.
+- Browser console warnings/errors: 0.
 
 ## Comparison history
 
-1. The first implementation capture was accidentally taken at the browser's
-   default `1280 × 720`; it was rejected as non-comparable.
-2. The browser viewport was explicitly set to `1586 × 992`, the same Matched
-   state was recaptured, and the two native-size images were combined.
-3. The native comparison found no P0, P1, or P2 visual issue. No design-fix
-   iteration was required.
-
-## Primary interactions tested
-
-- Level 1 entry opens Write with editor focus.
-- Hint closes vertically without changing the 50:50 panel widths.
-- Lowercase source passes on Markdown structure and preserves its casing.
-- A malformed heading opens Review with beginner-facing labels.
-- Try another changes content without advancing the progress position.
-- The Nabi Markdown wordmark returns to the level chooser.
-- An 80-line answer scrolls inside CodeMirror while the document stays fixed.
-- Automated Chromium coverage proves keyboard-only greeting-to-completion,
-  Check → focused Next → Space/Enter → focused editor, and Alt+1/Alt+2 tabs.
-
-## Browser evidence
-
-- Goal and answer panels: `772 × 880` pixels each.
-- Document: `scrollHeight 992`, `clientHeight 992`, `scrollWidth 1586`,
-  `clientWidth 1586`.
-- Long editor: `scrollHeight 2582`, `clientHeight 782`.
-- Console warnings/errors: 0.
-
-final result: passed
-
----
-
-## Calm open-book Summary
-
-- source visual truth: [`docs/design/qa/summary-source-1280x720.png`](docs/design/qa/summary-source-1280x720.png)
-- implementation screenshot: [`docs/design/qa/summary-implementation-1280x720.jpg`](docs/design/qa/summary-implementation-1280x720.jpg)
-- combined comparison: [`docs/design/qa/summary-comparison.png`](docs/design/qa/summary-comparison.png)
-- viewport: `1280 x 720`
-- state: completed Level 1 turn with one failed numbered-list family
-
-The Summary continues the same paper, center seam, serif hierarchy, and fixed
-top chrome as Landing and Practice. The left page closes the turn with one
-concrete strength plus quiet score and time details. The right page limits the
-review to the syntax family worth revisiting and keeps `Practice again` inside
-the page as the single primary action.
-
-The content enters through an orchestrated reveal, stagger, and line-drawing
-sequence. It changes only opacity, clipping, and a two-pixel translation, so
-the fixed book frame never shifts. The global reduced-motion rule collapses
-the sequence to one millisecond.
-
-Findings: P0 none; P1 none; P2 none. Decorative branch and bookmark elements
-from the visual exploration were intentionally omitted as P3 differences to
-keep the shipped screen quieter and asset-independent.
-
-Comparison history: the first implementation repeated the level above the
-left-page message. That P2 text duplication was removed because the fixed top
-bar already communicates the level. The second same-state comparison found no
-remaining actionable P0, P1, or P2 difference.
-
-Primary interaction evidence: a real turn was failed once, repaired, completed,
-and summarized as one `Numbered steps` reminder. `Practice again` received
-focus, the document stayed at one viewport (`scrollHeight 720`), and the
-console reported zero warnings or errors. Unit coverage also verifies the clean,
-single-reminder, and grouped-reminder variants.
-
-final result: passed
-
----
-
-## Open-book landing gutter follow-up
-
-- source visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-77213ddc-8590-4645-87ee-7468a85d1799.png`
-- implementation screenshot: `/private/tmp/nabimd-realistic-gutter-1280x720.png`
-- full-view comparison: `/private/tmp/nabimd-realistic-gutter-comparison.png`
-- focused region comparison: `/private/tmp/nabimd-gutter-focused-comparison.png`
-- viewport: `1280 x 720`
-- state: fresh landing; Level 1 page-turn midpoint also checked
-
-The earlier one-sided shadow read as a dividing line. Symmetrical inset page
-shadows and a fine center spine now reproduce the source's visible book gutter
-without changing the page composition, typography, color tokens, imagery, or
-copy. A focused center crop confirms the narrow seam and soft tonal falloff.
-The compact `760 x 720` layout removes the spine and shadows when the pages
-stack. The Level 1 turn completed with editor focus and no console warnings or
-errors.
-
-Findings: P0 none; P1 none; P2 none. The slightly wider tonal falloff is an
-intentional P3 adaptation for laptop displays.
-
-Comparison history: the original border-like treatment was the P2 finding;
-the revised same-viewport capture and focused crop show the corrected bound-book
-cue. No actionable P0, P1, or P2 differences remain.
+1. The previous restoration used a separately positioned `BookSpine` image.
+   Its coordinate system detached the fold from the paper and made it appear
+   to move during the transition. This was a P1 architecture mismatch.
+2. The first unified-asset pass left the Landing shell transparent because a
+   later `.open-book-shell` shorthand erased the parent background. The
+   midpoint comparison exposed content bleeding through the turning page.
+3. The transparent shorthand and receiving-screen animation were removed.
+   Fresh full-view and focused comparisons now show a motionless continuous
+   spread, a lighter integrated fold, and motion confined to the page leaf.
 
 final result: passed

@@ -403,10 +403,7 @@ describe("App", () => {
     expect(screen.getByRole("tab", { name: "Hint" })).toBeVisible()
     expect(screen.getByRole("region", { name: "Goal" })).toHaveClass("cbt-panel")
     expect(screen.getByRole("region", { name: "Your answer" })).toHaveClass("cbt-panel")
-    expect(screen.getByTestId("practice-book-spine")).toHaveAttribute(
-      "aria-hidden",
-      "true",
-    )
+    expect(screen.queryByTestId("practice-book-spine")).toBeNull()
     expect(screen.getByRole("region", { name: "Goal" })).toHaveClass(
       "writing-sheet",
     )
@@ -465,10 +462,7 @@ describe("App", () => {
     expect(screen.getByRole("heading", { name: "Summary" })).toBeVisible()
     expect(screen.queryByLabelText("Level 1 — Learn the syntax")).toBeNull()
     expect(screen.getByRole("button", { name: "Home" })).toBeVisible()
-    expect(screen.getByTestId("summary-book-spine")).toHaveAttribute(
-      "aria-hidden",
-      "true",
-    )
+    expect(screen.queryByTestId("summary-book-spine")).toBeNull()
     expect(screen.queryByRole("button", { name: "Start over" })).toBeNull()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
   })

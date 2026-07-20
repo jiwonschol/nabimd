@@ -94,10 +94,13 @@ button:focus-visible,
   border: 1px solid rgb(17 17 17 / 72%);
   border-radius: 10px;
   background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background-image: url("/images/nabi-open-book-spread.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   box-shadow:
     0 1px 0 rgb(255 255 255 / 72%) inset,
-    0 4px 18px rgb(17 17 17 / 13%);
+    0 3px 14px rgb(17 17 17 / 7%);
 }
 
 .app-shell--practice {
@@ -105,10 +108,9 @@ button:focus-visible,
   grid-template-rows: 108px minmax(0, 1fr);
   width: calc(100% - 12px);
   max-width: none;
-  gap: 7px;
+  gap: 0;
   padding: 0;
   border: 1px solid rgb(17 17 17 / 72%);
-  background: #11110f;
 }
 
 .wordmark {
@@ -158,37 +160,21 @@ button:focus-visible,
   width: min(100%, 96rem);
   max-width: none;
   border-color: rgb(17 17 17 / 72%);
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
   font-family: var(--serif);
-}
-
-.book-spine {
-  position: absolute;
-  z-index: 5;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: clamp(34px, 3.7vw, 58px);
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-  transform: translateX(-50%);
 }
 
 .open-book-page {
   min-width: 0;
   min-height: 0;
   padding: clamp(2.25rem, 4.6vw, 5rem);
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background: transparent;
 }
 
 .open-book-page--intro {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   gap: clamp(1.2rem, 2.4vh, 2rem);
-  box-shadow: inset -28px 0 36px -31px rgb(17 17 17 / 34%);
+  box-shadow: none;
 }
 
 .open-book-page--intro .wordmark {
@@ -275,7 +261,7 @@ button:focus-visible,
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: clamp(1.25rem, 2.8vh, 2rem);
-  box-shadow: inset 28px 0 36px -31px rgb(17 17 17 / 34%);
+  box-shadow: none;
 }
 
 .chapter-index-header h2 {
@@ -409,9 +395,7 @@ button:focus-visible,
 }
 
 .page-turn-stage--active .page-turn-receiver {
-  animation: receive-next-page var(--page-turn-duration)
-    cubic-bezier(0.22, 0.72, 0.2, 1) both;
-  will-change: opacity, transform;
+  animation: none;
 }
 
 .page-turn-overlay {
@@ -428,7 +412,6 @@ button:focus-visible,
 
 .open-book-shell--turning {
   border-color: transparent;
-  background: transparent;
 }
 
 .open-book-shell--turning .open-book-page--intro {
@@ -439,8 +422,10 @@ button:focus-visible,
 .open-book-shell--turning .open-book-page--chapters {
   position: relative;
   z-index: 2;
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
   animation: turn-page-forward var(--page-turn-duration) linear both;
-  box-shadow: -24px 10px 34px -24px rgb(17 17 17 / 70%);
+  box-shadow: -18px 8px 28px -24px rgb(17 17 17 / 24%);
   transform-origin: left center;
   will-change: clip-path, transform, opacity;
 }
@@ -476,28 +461,10 @@ button:focus-visible,
   }
 }
 
-@keyframes receive-next-page {
-  0%,
-  18% {
-    opacity: 0.78;
-    filter: brightness(0.96);
-    transform: scale(0.996);
-  }
-  100% {
-    opacity: 1;
-    filter: brightness(1);
-    transform: scale(1);
-  }
-}
-
 @media (max-width: 760px) {
   .open-book-shell {
     display: block;
     overflow-y: auto;
-  }
-
-  .book-spine {
-    display: none;
   }
 
   .open-book-page {
@@ -547,7 +514,6 @@ button:focus-visible,
     --page-turn-duration: 120ms;
   }
 
-  .page-turn-stage--active .page-turn-receiver,
   .open-book-shell--turning .open-book-page--intro,
   .open-book-shell--turning .open-book-page--chapters {
     animation-duration: 120ms;
@@ -566,13 +532,9 @@ button:focus-visible,
   min-height: 108px;
   padding: 16px 42px;
   border: 0;
+  border-bottom: 7px solid #11110f;
   border-radius: 9px 9px 1px 1px;
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
-}
-
-.exercise-topbar--summary {
-  border-bottom: 0;
+  background: transparent;
 }
 
 .exercise-topbar__summary-title {
@@ -820,8 +782,7 @@ button:focus-visible,
   overflow: hidden;
   border: 0;
   border-radius: 1px 1px 9px 9px;
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background: transparent;
 }
 
 .cbt-workspace.open-book-shell {
@@ -833,21 +794,20 @@ button:focus-visible,
   min-height: 0;
   overflow: hidden;
   border: 0;
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background: transparent;
 }
 
 .goal-panel {
   position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: inset -30px 0 38px -32px rgb(17 17 17 / 36%);
+  box-shadow: none;
 }
 
 .answer-panel {
   display: grid;
   grid-template-rows: var(--panel-header-height) minmax(0, 1fr);
-  box-shadow: inset 30px 0 38px -32px rgb(17 17 17 / 36%);
+  box-shadow: none;
 }
 
 .cbt-panel__header {
@@ -901,8 +861,7 @@ button:focus-visible,
 .answer-hint {
   min-height: 100%;
   padding: clamp(1.5rem, 3.2vw, 3rem);
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background: transparent;
 }
 
 .answer-hint > p,
@@ -1005,8 +964,7 @@ button:focus-visible,
 
 .answer-panel__body--reading {
   overflow: auto;
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background: transparent;
 }
 
 .rendered-document,
@@ -1014,8 +972,7 @@ button:focus-visible,
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background-color: var(--book-paper);
-  background-image: url("/images/nabi-book-paper.png");
+  background: transparent;
 }
 
 .rendered-document,
@@ -1455,11 +1412,11 @@ button:focus-visible,
 }
 
 .run-summary__page--closure {
-  box-shadow: inset -30px 0 38px -32px rgb(17 17 17 / 36%);
+  box-shadow: none;
 }
 
 .run-summary__page--note {
-  box-shadow: inset 30px 0 38px -32px rgb(17 17 17 / 36%);
+  box-shadow: none;
 }
 
 .run-summary__sprig {
