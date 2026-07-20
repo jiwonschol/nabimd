@@ -89,6 +89,39 @@ describe("RunSummary", () => {
     expect(screen.queryByText("# Project notes")).not.toBeInTheDocument()
   })
 
+  it("keeps a higher-level family compact instead of replaying its document", () => {
+    renderSummary(["l4-api-field-deprecation-migration"])
+
+    const reminder = screen.getByRole("listitem", {
+      name: "Syntax reminder: Staged Migration",
+    })
+    expect(reminder.querySelector("code")?.textContent).toBe(
+      "#  ##  ###  -  1.  >  ```sh",
+    )
+    expect(
+      screen.queryByText(/Setting-name migration/),
+    ).not.toBeInTheDocument()
+  })
+
+  it("summarizes repeated variants at family level without choosing one document", () => {
+    renderSummary([
+      "l5-analytics-adapter-refactor-work-order",
+      "l5-date-format-refactor-work-order",
+    ])
+
+    const reminders = screen.getAllByRole("listitem", {
+      name: "Syntax reminder: Bounded Refactor",
+    })
+    expect(reminders).toHaveLength(1)
+    const [reminder] = reminders
+    expect(reminder).toBeDefined()
+    expect(reminder!.querySelector("code")?.textContent).toBe(
+      "#  ##  ###  1.  -  `  ```bash  ```markdown",
+    )
+    expect(screen.queryByText(/Storage adapter/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Currency helper/)).not.toBeInTheDocument()
+  })
+
   it("plays the completion cue once during StrictMode effect verification", () => {
     render(
       <StrictMode>

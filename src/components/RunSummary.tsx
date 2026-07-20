@@ -13,6 +13,8 @@ type RunSummaryProps = {
 }
 
 const SUMMARY_REVIEW_LIMIT = 3
+const SUMMARY_EXAMPLE_MAX_LINES = 4
+const SUMMARY_EXAMPLE_MAX_LENGTH = 120
 
 function completionTitle(score: number, total: number): string {
   return score === total ? "Well done." : "Good finish."
@@ -54,27 +56,56 @@ function syntaxFamilyLabel(family: string): string {
     .join(" ")
 }
 
+function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
+  const authored = problem.teaching.example.trim()
+  if (
+    authored.length <= SUMMARY_EXAMPLE_MAX_LENGTH &&
+    authored.split("\n").length <= SUMMARY_EXAMPLE_MAX_LINES
+  ) {
+    return authored
+  }
+
+  return [...new Set(problem.syntaxTokens)].join("  ")
+}
+
 function syntaxReminders(problemIds: readonly string[]) {
-  const seenFamilies = new Set<string>()
-  const reminders = []
+  const remindersByFamily = new Map<
+    string,
+    {
+      family: string
+      label: string
+      examples: Set<string>
+      instructions: Set<string>
+    }
+  >()
 
   for (const problemId of problemIds) {
     const problem = getProblem(problemId)
-    if (seenFamilies.has(problem.retryFamily)) continue
-
-    seenFamilies.add(problem.retryFamily)
-    const label = syntaxFamilyLabel(problem.retryFamily)
-    reminders.push({
+    const reminder = remindersByFamily.get(problem.retryFamily) ?? {
       family: problem.retryFamily,
-      label,
-      instruction: problem.teaching.howTo,
-      example: problem.teaching.example,
-    })
-
-    if (reminders.length === SUMMARY_REVIEW_LIMIT) break
+      label: syntaxFamilyLabel(problem.retryFamily),
+      examples: new Set<string>(),
+      instructions: new Set<string>(),
+    }
+    reminder.examples.add(compactSyntaxExample(problem))
+    reminder.instructions.add(problem.teaching.howTo)
+    remindersByFamily.set(problem.retryFamily, reminder)
   }
 
-  return reminders
+  return [...remindersByFamily.values()]
+    .slice(0, SUMMARY_REVIEW_LIMIT)
+    .map((reminder) => {
+      const instructions = [...reminder.instructions]
+      return {
+        family: reminder.family,
+        label: reminder.label,
+        example: [...reminder.examples].join("\n\n"),
+        instruction:
+          instructions.length === 1
+            ? instructions[0]
+            : "Review each mark shown, then build the structure again.",
+      }
+    })
 }
 
 export function RunSummary({
