@@ -58,6 +58,14 @@ describe("derivePlaintextStarter", () => {
     ).toBe("Blue sky\n\nWide space")
   })
 
+  it("preserves meaningful indentation inside fenced code bodies", () => {
+    expect(
+      derivePlaintextStarter(
+        ["```text", "  first", "    second", "```"].join("\n"),
+      ),
+    ).toBe("  first\n    second")
+  })
+
   it("returns an empty starter for a target with no visible content", () => {
     expect(derivePlaintextStarter("---\n\n<!-- hidden -->")).toBe("")
   })

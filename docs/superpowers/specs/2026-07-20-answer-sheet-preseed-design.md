@@ -59,4 +59,3 @@ published Level 1–2 problems receiving deterministic seeds, Level 3–5 stayin
 blank, saved drafts winning over seeds, and a real browser opening Level 1 and
 Level 2 with prose already in the CodeMirror answer sheet. The full immutable
 problem-bank gates must stay green to prove no accepted artifact changed.
-

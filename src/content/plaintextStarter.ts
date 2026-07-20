@@ -57,7 +57,7 @@ function normalizePlaintext(value: string): string {
     .map((line) => line.replace(/[ \t]+$/g, ""))
     .join("\n")
     .replace(/\n{3,}/g, "\n\n")
-    .trim()
+    .replace(/^\n+|\n+$/g, "")
 }
 
 export function derivePlaintextStarter(target: string): string {
