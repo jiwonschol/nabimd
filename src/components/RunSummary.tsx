@@ -35,15 +35,15 @@ function strengthStatement(score: number, total: number): string {
 function syntaxFamilyLabel(family: string): string {
   if (family.includes("blockquote")) return "Block quotes"
   if (family.includes("heading")) return "Headings"
+  if (family.includes("unordered-list")) return "Lists"
   if (family.includes("ordered-list")) return "Numbered steps"
   if (family.includes("list")) return "Lists"
   if (family.includes("inline-code")) return "Inline code"
   if (family.includes("code-block") || family.includes("fenced-code")) {
     return "Code blocks"
   }
-  if (family.includes("italic") || family.includes("emphasis")) {
-    return "Emphasis"
-  }
+  if (family.includes("italic")) return "Italics"
+  if (family.includes("bold") || family.includes("emphasis")) return "Bold"
   if (family.includes("link")) return "Links"
   if (family.includes("thematic-break")) return "Section breaks"
 

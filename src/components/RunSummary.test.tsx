@@ -81,6 +81,26 @@ describe("RunSummary", () => {
     expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(2)
   })
 
+  it("calls an unordered-list reminder a list instead of numbered steps", () => {
+    renderSummary(["l1-list-pencil-case"])
+
+    expect(screen.getByRole("heading", { name: "Try lists once more." })).toBeVisible()
+  })
+
+  it("keeps bold and italic reminders distinct", () => {
+    renderSummary([
+      "l1-emphasis-family-game",
+      "l1-italic-yellow-kite",
+    ])
+
+    expect(
+      screen.getByRole("listitem", { name: "Syntax reminder: Bold" }),
+    ).toBeVisible()
+    expect(
+      screen.getByRole("listitem", { name: "Syntax reminder: Italics" }),
+    ).toBeVisible()
+  })
+
   it("uses the authored example for the exact failed syntax family", () => {
     renderSummary([
       "l1-emphasis-family-game",
