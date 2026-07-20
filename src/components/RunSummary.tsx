@@ -68,20 +68,28 @@ function isShortAuthoredExample(problem: ReturnType<typeof getProblem>): boolean
   )
 }
 
-function familyUsesAuthoredExamples(
-  problem: ReturnType<typeof getProblem>,
-): boolean {
-  if (problem.level > 2) return false
-
-  return problemBank
-    .filter((candidate) => candidate.retryFamily === problem.retryFamily)
-    .every(isShortAuthoredExample)
-}
-
 function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
-  if (familyUsesAuthoredExamples(problem)) {
+  const family = problemBank.filter(
+    (candidate) => candidate.retryFamily === problem.retryFamily,
+  )
+  const tokenShapes = new Set(
+    family.map((candidate) => JSON.stringify(candidate.syntaxTokens)),
+  )
+
+  if (tokenShapes.size > 1 && isShortAuthoredExample(problem)) {
     return problem.teaching.example.trim()
   }
+
+  const representative = family
+    .filter(isShortAuthoredExample)
+    .sort(
+      (left, right) =>
+        left.teaching.example.trim().length -
+          right.teaching.example.trim().length ||
+        left.id.localeCompare(right.id),
+    )[0]
+
+  if (representative) return representative.teaching.example.trim()
 
   return joinSyntaxTokens(problem.syntaxTokens)
 }

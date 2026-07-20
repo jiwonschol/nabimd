@@ -114,14 +114,15 @@ describe("RunSummary", () => {
     )
   })
 
-  it("keeps Level 3 document review to its Markdown marks", () => {
+  it("keeps a short shared Level 3 example structurally complete", () => {
     renderSummary(["l3-customer-feedback-note"])
 
     const reminder = screen.getByRole("listitem", {
       name: "Syntax reminder: Readable",
     })
-    expect(reminder.querySelector("code")?.textContent).toBe("#  ##  **  -")
-    expect(screen.queryByText("# Update")).not.toBeInTheDocument()
+    expect(reminder.querySelector("code")?.textContent).toBe(
+      "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide",
+    )
   })
 
   it("uses one stable cue when retry variants straddle compact limits", () => {
@@ -135,9 +136,8 @@ describe("RunSummary", () => {
     })
     expect(reminders).toHaveLength(1)
     expect(reminders[0]?.querySelector("code")?.textContent).toBe(
-      "#  -  Indent",
+      "# Music practice\n\n## Evening set\n\nPlay a short session after dinner.\n\n- Warm-up\n  - Scales\n  - Chords\n- New song",
     )
-    expect(screen.queryByText("# Music practice")).not.toBeInTheDocument()
   })
 
   it("keeps a short authored example with repeated structural marks", () => {
