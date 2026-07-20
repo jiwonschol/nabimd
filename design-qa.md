@@ -111,9 +111,9 @@ final result: passed
 
 ## Calm open-book Summary
 
-- source visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-b9f5ea1e-7d7d-4228-adbd-65f6de3f5216.png`
-- implementation screenshot: `/tmp/nabimd-summary-implementation-final.jpg`
-- combined comparison: `/tmp/nabimd-summary-comparison.png`
+- source visual truth: [`docs/design/qa/summary-source-1280x720.png`](docs/design/qa/summary-source-1280x720.png)
+- implementation screenshot: [`docs/design/qa/summary-implementation-1280x720.jpg`](docs/design/qa/summary-implementation-1280x720.jpg)
+- combined comparison: [`docs/design/qa/summary-comparison.png`](docs/design/qa/summary-comparison.png)
 - viewport: `1280 x 720`
 - state: completed Level 1 turn with one failed numbered-list family
 

@@ -71,6 +71,16 @@ describe("RunSummary", () => {
       .toBeVisible()
   })
 
+  it("names a two-family review without calling it three", () => {
+    renderSummary([
+      "l1-heading-apple",
+      "l1-blockquote-milk-in-fridge",
+    ])
+
+    expect(screen.getByRole("heading", { name: "Keep these two close." })).toBeVisible()
+    expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(2)
+  })
+
   it("uses the authored example for the exact failed syntax family", () => {
     renderSummary([
       "l1-emphasis-family-game",

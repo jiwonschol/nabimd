@@ -223,7 +223,7 @@ export function RunSummary({
                 className="run-summary__note-title run-summary__note-title--compact summary-ink summary-ink--6"
                 id="syntax-review-title"
               >
-                Keep these three close.
+                Keep these {reminders.length === 3 ? "three" : "two"} close.
               </h3>
               <ul className="run-summary__review-list">
                 {reminders.map((reminder, index) => (
