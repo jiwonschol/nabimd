@@ -135,4 +135,39 @@ describe("derivePlaintextStarter", () => {
     )
     expect(starter.split("\n")).toHaveLength(target.split("\n").length)
   })
+
+  it("finds fenced code after blockquote container markers", () => {
+    const target = [
+      "> ```markdown",
+      "> # Quoted heading",
+      "> - Quoted item",
+      "> ```",
+    ].join("\n")
+
+    expect(derivePlaintextStarter(target)).toBe(
+      ["", "# Quoted heading", "- Quoted item", ""].join("\n"),
+    )
+  })
+
+  it("finds fenced code inside a deeply nested list", () => {
+    const target = [
+      "- Outer",
+      "  - Inner",
+      "    ```markdown",
+      "    # Nested heading",
+      "    - Nested item",
+      "    ```",
+    ].join("\n")
+
+    expect(derivePlaintextStarter(target)).toBe(
+      [
+        "Outer",
+        "Inner",
+        "",
+        "# Nested heading",
+        "- Nested item",
+        "",
+      ].join("\n"),
+    )
+  })
 })

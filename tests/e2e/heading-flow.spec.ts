@@ -49,6 +49,54 @@ async function sourceText(page: Page): Promise<string> {
   return (await editor.locator(".cm-line").allTextContents()).join("\n")
 }
 
+async function persistedDraft(page: Page, problemId: string) {
+  return page.evaluate(
+    ({ problemId: id, storageKey }) => {
+      const saved = window.sessionStorage.getItem(storageKey)
+      if (!saved) return null
+
+      try {
+        const progress = JSON.parse(saved) as {
+          draftByProblemId?: Record<string, unknown>
+        }
+        const draft = progress.draftByProblemId?.[id]
+        return typeof draft === "string" ? draft : null
+      } catch {
+        return null
+      }
+    },
+    { problemId, storageKey: progressStorageKey },
+  )
+}
+
+async function completeSourceText(page: Page, problemId: string) {
+  const editor = sourceEditor(page)
+  const modifier = await page.evaluate(() =>
+    /Mac|iPhone|iPad|iPod/.test(navigator.platform) ? "Meta" : "Control",
+  )
+  const probe = "⟦NABI_E2E_DOCUMENT_PROBE⟧"
+
+  // CodeMirror virtualizes off-screen lines. A real edit makes its update
+  // listener persist state.doc.toString(), giving the test the complete
+  // document without adding a production-only debug surface.
+  await editor.press(`${modifier}+a`)
+  await editor.press("ArrowLeft")
+  await editor.pressSequentially(probe)
+  await expect
+    .poll(() => persistedDraft(page, problemId))
+    .toEqual(expect.stringMatching(/^⟦NABI_E2E_DOCUMENT_PROBE⟧/))
+
+  const probedDocument = await persistedDraft(page, problemId)
+  if (!probedDocument?.startsWith(probe)) {
+    throw new Error("The complete CodeMirror document probe was not persisted")
+  }
+  const document = probedDocument.slice(probe.length)
+
+  await editor.fill(document)
+  await expect.poll(() => persistedDraft(page, problemId)).toBe(document)
+  return document
+}
+
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
   await page.getByRole("button", { name: levelLabels[level - 1] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
@@ -228,17 +276,11 @@ test("pre-fills Goal-derived reproduction prose at every level", async ({
     const starterText = derivePlaintextStarter(problem.target)
 
     expect(starterText).not.toBe("")
-    await expect
-      .poll(async () => {
-        const visibleSource = await sourceText(page)
-        return visibleSource !== "" && starterText.startsWith(visibleSource)
-      })
-      .toBe(true)
-    const visibleStarter = await sourceText(page)
+    expect(await completeSourceText(page, problemId)).toBe(starterText)
 
     await page.getByRole("button", { name: "Show invisibles" }).click()
     await page.getByRole("button", { name: "Hide invisibles" }).click()
-    await expect.poll(() => sourceText(page)).toBe(visibleStarter)
+    expect(await completeSourceText(page, problemId)).toBe(starterText)
   }
 })
 

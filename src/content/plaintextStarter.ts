@@ -40,7 +40,7 @@ function projectVisibleText(
 
 function projectNode(
   node: Nodes,
-  sourceLines: readonly string[],
+  source: string,
   outputLines: string[],
   literalLineIndexes: Set<number>,
 ): void {
@@ -71,7 +71,9 @@ function projectNode(
       return
     case "code": {
       if (startLine === undefined) return
-      const sourceOpening = sourceLines[startLine - 1] ?? ""
+      const startOffset = node.position?.start.offset
+      const sourceOpening =
+        startOffset === undefined ? "" : source.slice(startOffset)
       const contentStartLine = fencedCodeOpening.test(sourceOpening)
         ? startLine + 1
         : startLine
@@ -94,7 +96,7 @@ function projectNode(
         for (const child of node.children) {
           projectNode(
             child as Nodes,
-            sourceLines,
+            source,
             outputLines,
             literalLineIndexes,
           )
@@ -111,7 +113,7 @@ export function derivePlaintextStarter(target: string): string {
 
   projectNode(
     fromMarkdown(normalizedTarget),
-    sourceLines,
+    normalizedTarget,
     outputLines,
     literalLineIndexes,
   )
