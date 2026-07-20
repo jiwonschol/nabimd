@@ -19,11 +19,15 @@ Nabi teaches Markdown by typing, not workplace writing by reading. Realistic con
 | 4 | write for work | at most 40 lines and 165 words | 2–3 items |
 | 5 | write for developers | at most 40 lines and 165 words | 2–3 items |
 
-Budgets are ceilings, never quotas. Prefer the shortest coherent miniature, and
-allow Levels 4 and 5 to have the same workload: Level 5 changes the context and
-syntax mix, not the reading burden. For Levels 4–5, each list item is one short
-sentence, normally no more than 12 words. Every paragraph, list, quote, link,
-inline-code span, and fence must create a visible Markdown decision.
+These ceilings apply to every new or re-authored candidate. Older immutable
+accepted batches keep their review-bound historical limits until a replacement
+batch supersedes them; do not reject unrelated work or rewrite sealed evidence
+because an existing Goal exceeds the corrected ceiling. Budgets are ceilings,
+never quotas. Prefer the shortest coherent miniature, and allow Levels 4 and 5
+to have the same workload: Level 5 changes the context and syntax mix, not the
+reading burden. For Levels 4–5, each list item is one short sentence, normally
+no more than 12 words. Every paragraph, list, quote, link, inline-code span, and
+fence must create a visible Markdown decision.
 
 Current Level 5 lessons may use inline and fenced code, blockquotes, meaningful
 links, nested lists, file paths, README fragments, bug reports, PR descriptions,
@@ -39,6 +43,11 @@ preserving its learner-visible words, blank lines, and line breaks. The learner
 restores Markdown structure; never require blank-page authorship, transcription,
 or prose reorganization. Keep accepted batch evidence immutable rather than
 writing derived starter text back into sealed candidates.
+
+Do not publish new Level 3–5 content while the app's runtime projection still
+hydrates Levels 1–2 only. Preparation and review may continue, but publication
+requires the separately reviewed all-level Practice projection and its browser
+coverage to be present on the target branch.
 
 ## Workflow
 

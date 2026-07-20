@@ -61,7 +61,7 @@ recall, confidence, or a quick session.
 The main course uses an editorial-apprenticeship rhythm:
 
 ```text
-Notice → Learn → Recall → Repair → Compose
+Notice → Learn → Recall → Repair → Rebuild
 ```
 
 A 10-to-20-minute session introduces a small pattern, requires production with
@@ -70,9 +70,11 @@ skills to a short useful document.
 
 ### Studio
 
-Document Makeovers ask the learner to turn an unstructured brief into a
-human-readable Markdown document. Studio is most useful for advanced learners,
-but it is not locked behind a self-reported level.
+Document Makeovers give the learner a fixed rendered Goal and the same prose
+with Markdown marks removed. The learner restores a human-readable Markdown
+document without inventing, transcribing, or reorganizing its words. Studio is
+most useful for advanced learners, but it is not locked behind a self-reported
+level.
 
 Level indicates which new work is available. It does not remove easier work or
 trap the learner in a single activity type.
@@ -289,19 +291,20 @@ type Problem = {
 
 ### Runtime starter text
 
-Levels 1–2 are reproduction exercises, so their answer sheets open with the
-target's learner-visible prose and line breaks already present. The runtime
-projection derives this `starterText` by parsing `target` and removing Markdown
-structure: heading and list markers, emphasis delimiters, link destinations,
-blockquote markers, thematic breaks, and code fences. Visible text, code
-content, and image alt text remain. A saved session draft always takes
-precedence over the derived starter.
+Every level is a reproduction exercise with a fixed rendered Goal. Its answer
+sheet opens with the Goal's learner-visible prose, blank lines, and line breaks
+already present. The runtime projection derives this `starterText` by parsing
+`target` and removing Markdown structure: heading and list markers, emphasis
+delimiters, link destinations, blockquote markers, thematic breaks, and code
+fences. Visible text, code content, and image alt text remain. A saved session
+draft always takes precedence over the derived starter.
 
-Levels 3–5 remain blank because they compose from a brief rather than reproduce
-a fixed target. Starter text is a teaching aid, never a grading operand: the
-grammar-only evaluator still accepts different prose. The derivation happens
-at the runtime-projection boundary so accepted problem-bank artifacts and their
-review-bound digests remain immutable.
+Starter text is a teaching aid, never a grading operand: the grammar-only
+evaluator still accepts different prose. The derivation happens at the
+runtime-projection boundary so accepted problem-bank artifacts and their
+review-bound digests remain immutable. Current `main` hydrates Levels 1–2 only;
+the separately reviewed Practice change extends this approved contract and its
+tests to Levels 3–5.
 
 Each committed problem must include fixtures for:
 
