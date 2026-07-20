@@ -40,6 +40,33 @@ function isTextEntryTarget(target: EventTarget | null): boolean {
   )
 }
 
+function sourceExamples(tokens: readonly string[]): string[] {
+  let listIndex = 0
+
+  return tokens.map((token) => {
+    const mark = token.trim()
+
+    if (mark === "#") return "# Title"
+    if (mark === "##") return "## Section"
+    if (mark === "###") return "### Phase"
+    if (mark === "1.") return "1. Read AGENTS.md"
+    if (mark === ">") return "> Pause when..."
+    if (mark === "`") return "`npm test`"
+    if (mark.startsWith("```")) return `${mark}\n...\n\`\`\``
+    if (mark === "-") {
+      const example =
+        token !== mark || listIndex > 0
+          ? "  - Versioned schema"
+          : "- API provider"
+      listIndex += 1
+      return example
+    }
+    if (mark === "**") return "**Important**"
+    if (mark === "*" || mark === "_") return "*Emphasis*"
+    return token
+  })
+}
+
 function HintPanel({
   evaluation,
   hintLevel,
@@ -52,12 +79,13 @@ function HintPanel({
   problem: GradableProblem
 }) {
   const visibleHint = problem.hints[Math.max(0, hintLevel - 1)]
+  const examples = sourceExamples(problem.syntaxTokens)
 
   return (
     <div className="answer-hint">
       <div aria-label="Markdown pattern" className="syntax-sequence">
-        {problem.syntaxTokens.map((token, index) => (
-          <code key={`${token}-${index}`}>{token}</code>
+        {examples.map((example, index) => (
+          <code key={`${problem.syntaxTokens[index]}-${index}`}>{example}</code>
         ))}
       </div>
       <p>{problem.teaching.howTo}</p>
@@ -278,7 +306,10 @@ export function AnswerPanel({
   )
 
   return (
-    <section aria-label="Your answer" className="cbt-panel answer-panel">
+    <section
+      aria-label="Your answer"
+      className="cbt-panel answer-panel writing-sheet"
+    >
       <header className="cbt-panel__header answer-panel__header">
         <div aria-label="Answer view" className="answer-tabs" role="tablist">
           <button

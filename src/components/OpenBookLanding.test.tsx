@@ -16,6 +16,10 @@ describe("OpenBookLanding", () => {
     expect(
       screen.getByText("Brief → Write source → Inspect render → Prove again"),
     ).toBeVisible()
+    expect(screen.getByTestId("landing-book-spine")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    )
 
     for (const entry of entryChoices) {
       expect(screen.getByRole("button", { name: entry.label })).toBeVisible()

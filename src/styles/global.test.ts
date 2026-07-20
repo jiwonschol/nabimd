@@ -5,6 +5,10 @@ import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 
 const styles = readFileSync(resolve(process.cwd(), "src/styles/global.css"), "utf8")
+const bookSpine = readFileSync(
+  resolve(process.cwd(), "src/components/BookSpine.tsx"),
+  "utf8",
+)
 
 function lastCssBlock(selector: string): string {
   const start = styles.lastIndexOf(selector)
@@ -25,6 +29,29 @@ function lastCssBlock(selector: string): string {
 }
 
 describe("global responsive styles", () => {
+  it("uses the approved paper, ruled-sheet, and stitched-spine assets", () => {
+    expect(styles).toContain('url("/images/nabi-book-paper.png")')
+    expect(styles).toContain('url("/images/nabi-writing-rule.png")')
+    expect(bookSpine).toContain('src="/images/nabi-book-spine.png"')
+    expect(styles).not.toMatch(/\.open-book-shell::after\s*\{[^{}]*box-shadow:/s)
+  })
+
+  it("keeps the landing leaf opaque while a broad page crosses the spine", () => {
+    expect(styles).toMatch(
+      /\.open-book-shell--turning \.open-book-page--intro\s*\{[^{}]*animation:\s*none/s,
+    )
+    const turnKeyframes = styles.slice(
+      styles.indexOf("@keyframes turn-page-forward"),
+      styles.indexOf("@keyframes receive-next-page"),
+    )
+    expect(turnKeyframes).toContain("clip-path: polygon(")
+    expect(turnKeyframes).toMatch(/88%\s*\{[^{}]*opacity:\s*1/s)
+    expect(turnKeyframes).not.toContain("rotateY(-78deg)")
+    expect(styles).toMatch(
+      /animation:\s*turn-page-forward var\(--page-turn-duration\)\s+linear both/,
+    )
+  })
+
   it("keeps each desktop Summary page internally scrollable", () => {
     const pageRule = styles.indexOf(".run-summary__page {")
 

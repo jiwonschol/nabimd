@@ -88,19 +88,27 @@ button:focus-visible,
 
 .app-shell {
   width: min(100%, 72rem);
-  height: 100svh;
-  margin: 0 auto;
+  height: calc(100svh - 12px);
+  margin: 6px auto;
   overflow: hidden;
-  border-inline: 1px solid var(--line);
-  background: var(--paper);
+  border: 1px solid rgb(17 17 17 / 72%);
+  border-radius: 10px;
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 72%) inset,
+    0 4px 18px rgb(17 17 17 / 13%);
 }
 
 .app-shell--practice {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  width: 100%;
+  grid-template-rows: 108px minmax(0, 1fr);
+  width: calc(100% - 12px);
   max-width: none;
-  border: 0;
+  gap: 7px;
+  padding: 0;
+  border: 1px solid rgb(17 17 17 / 72%);
+  background: #11110f;
 }
 
 .wordmark {
@@ -149,38 +157,38 @@ button:focus-visible,
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: min(100%, 96rem);
   max-width: none;
-  border-color: var(--book-line);
-  background: var(--book-paper);
+  border-color: rgb(17 17 17 / 72%);
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
   font-family: var(--serif);
 }
 
-.open-book-shell::after {
+.book-spine {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 1px;
-  background: rgb(17 17 17 / 18%);
-  box-shadow:
-    -5px 0 12px rgb(17 17 17 / 10%),
-    5px 0 12px rgb(17 17 17 / 10%);
-  content: "";
+  width: clamp(34px, 3.7vw, 58px);
+  height: 100%;
+  object-fit: fill;
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .open-book-page {
   min-width: 0;
   min-height: 0;
   padding: clamp(2.25rem, 4.6vw, 5rem);
-  background: var(--book-paper);
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
 }
 
 .open-book-page--intro {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   gap: clamp(1.2rem, 2.4vh, 2rem);
-  box-shadow: inset -22px 0 28px -25px rgb(17 17 17 / 38%);
+  box-shadow: inset -28px 0 36px -31px rgb(17 17 17 / 34%);
 }
 
 .open-book-page--intro .wordmark {
@@ -267,8 +275,7 @@ button:focus-visible,
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: clamp(1.25rem, 2.8vh, 2rem);
-  border-left: 1px solid rgb(17 17 17 / 16%);
-  box-shadow: inset 22px 0 28px -25px rgb(17 17 17 / 38%);
+  box-shadow: inset 28px 0 36px -31px rgb(17 17 17 / 34%);
 }
 
 .chapter-index-header h2 {
@@ -425,30 +432,37 @@ button:focus-visible,
 }
 
 .open-book-shell--turning .open-book-page--intro {
-  animation: release-previous-page var(--page-turn-duration) ease-in-out both;
+  opacity: 1;
+  animation: none;
 }
 
 .open-book-shell--turning .open-book-page--chapters {
   position: relative;
   z-index: 2;
-  animation: turn-page-forward var(--page-turn-duration)
-    cubic-bezier(0.55, 0.02, 0.18, 0.98) both;
-  backface-visibility: hidden;
-  box-shadow: -18px 0 26px -24px #111111;
+  animation: turn-page-forward var(--page-turn-duration) linear both;
+  box-shadow: -24px 10px 34px -24px rgb(17 17 17 / 70%);
   transform-origin: left center;
-  will-change: transform, opacity;
+  will-change: clip-path, transform, opacity;
 }
 
 @keyframes turn-page-forward {
   0% {
-    transform: rotateY(0deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateX(0) rotateZ(0deg) scaleX(1);
   }
   45% {
-    transform: rotateY(-78deg);
+    clip-path: polygon(0 0, 96% 5%, 72% 100%, 0 96%);
+    transform: translateX(-45%) rotateZ(-2.5deg) scaleX(0.84);
+  }
+  88% {
+    opacity: 1;
+    clip-path: polygon(0 0, 88% 10%, 48% 100%, 0 93%);
+    transform: translateX(-88%) rotateZ(-4.5deg) scaleX(0.44);
   }
   100% {
     opacity: 0;
-    transform: rotateY(-168deg);
+    clip-path: polygon(0 0, 84% 12%, 42% 100%, 0 92%);
+    transform: translateX(-102%) rotateZ(-5deg) scaleX(0.34);
   }
 }
 
@@ -465,12 +479,14 @@ button:focus-visible,
 @keyframes receive-next-page {
   0%,
   18% {
-    opacity: 0.36;
-    transform: translateX(1.25rem) scale(0.992);
+    opacity: 0.78;
+    filter: brightness(0.96);
+    transform: scale(0.996);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    filter: brightness(1);
+    transform: scale(1);
   }
 }
 
@@ -480,7 +496,7 @@ button:focus-visible,
     overflow-y: auto;
   }
 
-  .open-book-shell::after {
+  .book-spine {
     display: none;
   }
 
@@ -547,10 +563,40 @@ button:focus-visible,
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1.5rem);
-  min-height: 84px;
-  padding: 12px 20px;
-  border-bottom: 1px solid var(--book-line);
-  background: var(--book-paper);
+  min-height: 108px;
+  padding: 16px 42px;
+  border: 0;
+  border-radius: 9px 9px 1px 1px;
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
+}
+
+.exercise-topbar--summary {
+  border-bottom: 0;
+}
+
+.exercise-topbar__summary-title {
+  position: relative;
+  margin: 0;
+  padding: 0.35rem 0;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.exercise-topbar__summary-title::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: currentcolor;
+  content: "";
+}
+
+.top-action--home {
+  width: 52px;
+  padding: 0;
 }
 
 .exercise-topbar__start,
@@ -772,8 +818,10 @@ button:focus-visible,
   margin: 0 auto;
   padding: 0;
   overflow: hidden;
-  border-inline: 1px solid var(--book-line);
-  background: var(--book-paper);
+  border: 0;
+  border-radius: 1px 1px 9px 9px;
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
 }
 
 .cbt-workspace.open-book-shell {
@@ -785,28 +833,29 @@ button:focus-visible,
   min-height: 0;
   overflow: hidden;
   border: 0;
-  background: var(--book-paper);
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
 }
 
 .goal-panel {
+  position: relative;
   display: flex;
   flex-direction: column;
-  box-shadow: inset -22px 0 28px -25px rgb(17 17 17 / 38%);
+  box-shadow: inset -30px 0 38px -32px rgb(17 17 17 / 36%);
 }
 
 .answer-panel {
-  border-left: 1px solid rgb(17 17 17 / 16%);
-  box-shadow: inset 22px 0 28px -25px rgb(17 17 17 / 38%);
+  box-shadow: inset 30px 0 38px -32px rgb(17 17 17 / 36%);
 }
 
 .cbt-panel__header {
   display: flex;
-  min-height: 52px;
-  flex: 0 0 52px;
+  min-height: 74px;
+  flex: 0 0 74px;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  padding: 0 1.25rem;
+  padding: 0 clamp(2.1rem, 5vw, 5.2rem);
   border-bottom: 1px solid var(--book-line);
   color: var(--muted);
   font-size: 0.72rem;
@@ -822,10 +871,36 @@ button:focus-visible,
   justify-content: center;
 }
 
+.writing-sheet__line-numbers {
+  position: absolute;
+  z-index: 3;
+  top: 74px;
+  bottom: 0;
+  left: clamp(2rem, 4vw, 3rem);
+  width: 3.25rem;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-right: 1px solid rgb(90 82 72 / 15%);
+  color: #726b61;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 36px;
+  list-style: none;
+  text-align: center;
+  pointer-events: none;
+}
+
+.writing-sheet__line-numbers li {
+  height: 36px;
+  border-bottom: 1px solid rgb(90 82 72 / 12%);
+}
+
 .answer-hint {
   min-height: 100%;
   padding: clamp(1.5rem, 3.2vw, 3rem);
-  background: var(--book-paper);
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
 }
 
 .answer-hint > p,
@@ -858,26 +933,27 @@ button:focus-visible,
 }
 
 .syntax-sequence {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  display: grid;
+  gap: clamp(0.75rem, 1.7vh, 1.25rem);
 }
 
 .syntax-sequence code {
-  display: inline-flex;
-  min-height: 2rem;
+  display: block;
+  min-height: 1.5rem;
   align-items: center;
-  padding: 0.25rem 0.55rem;
-  border: 1px solid var(--line);
+  padding: 0;
+  border: 0;
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 520;
+  font-size: clamp(0.86rem, 1.25vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: pre-wrap;
 }
 
 .answer-panel {
   display: grid;
-  grid-template-rows: 52px minmax(0, 1fr);
+  grid-template-rows: 74px minmax(0, 1fr);
 }
 
 .answer-panel__header {
@@ -932,6 +1008,8 @@ button:focus-visible,
 
 .answer-panel__body--reading {
   overflow: auto;
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
 }
 
 .rendered-document,
@@ -939,7 +1017,8 @@ button:focus-visible,
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background: var(--paper);
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
 }
 
 .rendered-document,
@@ -979,6 +1058,37 @@ button:focus-visible,
 .answer-panel__body--reading > .rendered-document__body {
   flex: 1 1 auto;
   height: 100%;
+}
+
+.goal-panel > .rendered-document__body {
+  position: relative;
+  z-index: 2;
+  padding: 0.2rem clamp(2.75rem, 7.8vw, 7.6rem);
+  background-color: transparent;
+  background-image: url("/images/nabi-writing-rule.png");
+  background-repeat: repeat-y;
+  background-size: 100% 36px;
+  font-size: 0.98rem;
+  line-height: 36px;
+}
+
+.goal-panel > .rendered-document__body h1,
+.goal-panel > .rendered-document__body h2,
+.goal-panel > .rendered-document__body h3,
+.goal-panel > .rendered-document__body p,
+.goal-panel > .rendered-document__body li {
+  line-height: 36px;
+}
+
+.goal-panel > .rendered-document__body h1 {
+  margin: 0 0 36px;
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  letter-spacing: -0.025em;
+}
+
+.goal-panel > .rendered-document__body h2 {
+  margin: 36px 0 0;
+  font-size: clamp(1rem, 1.45vw, 1.2rem);
 }
 
 .rendered-document__body > :first-child {
@@ -1101,7 +1211,10 @@ button:focus-visible,
 }
 
 .markdown-source-editor__mount .cm-editor {
-  background: var(--paper);
+  background-color: transparent;
+  background-image: url("/images/nabi-writing-rule.png");
+  background-repeat: repeat-y;
+  background-size: 100% 36px;
   color: var(--ink);
   font-family: var(--mono);
   font-size: clamp(1rem, 1.35vw, 1.2rem);
@@ -1110,27 +1223,39 @@ button:focus-visible,
 .markdown-source-editor__mount .cm-scroller {
   overflow: auto;
   font-family: inherit;
-  line-height: 1.65;
+  line-height: 36px;
 }
 
 .markdown-source-editor__mount .cm-content {
-  padding: 1.5rem 0;
+  padding: 0;
   caret-color: var(--ink);
 }
 
 .markdown-source-editor__mount .cm-line {
-  padding: 0 1.25rem;
+  min-height: 36px;
+  padding: 0 clamp(1.25rem, 3.4vw, 3.2rem);
 }
 
 .markdown-source-editor__mount .cm-gutters {
   min-width: 3rem;
   border-right: 1px solid #ecece8;
-  background: #fafaf8;
+  background-color: transparent;
+  background-image: url("/images/nabi-writing-rule.png");
+  background-repeat: repeat-y;
+  background-size: 100% 36px;
   color: #9a9a94;
 }
 
 .markdown-source-editor__mount .cm-gutterElement {
   padding-inline: 0.75rem;
+}
+
+.markdown-source-editor__mount .cm-lineNumbers .cm-gutterElement {
+  min-width: 3rem;
+  height: 36px;
+  color: #726b61;
+  font-size: 0.82rem;
+  line-height: 36px;
 }
 
 .markdown-source-editor__mount .cm-activeLine,
@@ -1318,10 +1443,12 @@ button:focus-visible,
   min-height: 0;
   margin: 0 auto;
   overflow: hidden;
-  border-inline: 1px solid var(--book-line);
+  border: 0;
+  border-radius: 1px 1px 9px 9px;
 }
 
 .run-summary__page {
+  position: relative;
   display: grid;
   min-height: 0;
   grid-template-rows: minmax(0, 1fr) auto;
@@ -1331,12 +1458,30 @@ button:focus-visible,
 }
 
 .run-summary__page--closure {
-  box-shadow: inset -22px 0 28px -25px rgb(17 17 17 / 38%);
+  box-shadow: inset -30px 0 38px -32px rgb(17 17 17 / 36%);
 }
 
 .run-summary__page--note {
-  border-left: 1px solid rgb(17 17 17 / 16%);
-  box-shadow: inset 22px 0 28px -25px rgb(17 17 17 / 38%);
+  box-shadow: inset 30px 0 38px -32px rgb(17 17 17 / 36%);
+}
+
+.run-summary__sprig {
+  position: absolute;
+  top: clamp(3rem, 9vh, 6rem);
+  left: clamp(3rem, 7vw, 6.5rem);
+  width: clamp(4.5rem, 8vw, 7.5rem);
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.run-summary__bookmark {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: clamp(2.5rem, 5vw, 5rem);
+  width: clamp(3rem, 5.5vw, 5.5rem);
+  height: auto;
+  mix-blend-mode: multiply;
 }
 
 .run-summary__closure-copy,
@@ -1365,7 +1510,7 @@ button:focus-visible,
   margin: 0;
   padding-bottom: 1.35rem;
   font-family: var(--serif);
-  font-size: clamp(3.8rem, 6.2vw, 6.5rem);
+  font-size: clamp(3rem, 4.8vw, 4.9rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.94;
@@ -1437,7 +1582,7 @@ button:focus-visible,
   max-width: 12ch;
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 4.4vw, 4.6rem);
+  font-size: clamp(2.4rem, 3.8vw, 4rem);
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 1;

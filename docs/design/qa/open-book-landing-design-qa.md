@@ -93,3 +93,66 @@ continues to separate the sections.
 - Console warnings/errors: 0.
 
 final result: passed
+
+## Approved book-design restoration (authoritative)
+
+This section supersedes the earlier Practice and Summary visual assessment.
+The approved raster references are the source of truth; the production UI is
+not allowed to reinterpret the binding, writing sheets, paper color, or page
+transition as generic CSS shadows.
+
+### Sources and implementation evidence
+
+- Practice source: `docs/design/practice-open-book-level5-hint-reference.png`
+- Practice implementation: `docs/design/qa/restore-practice-hint-1280x800.png`
+- Practice comparison: `docs/design/qa/restore-practice-comparison.png`
+- Practice focused comparison: `docs/design/qa/restore-practice-focus-comparison.png`
+- Page-turn source: `docs/design/landing-practice-turn-midpoint-motion-reference.png`
+- Page-turn implementation: `docs/design/qa/restore-page-turn-midpoint-1280x800.png`
+- Page-turn comparison: `docs/design/qa/restore-page-turn-comparison.png`
+- Summary source: `docs/design/qa/summary-source-1280x720.png`
+- Summary implementation: `docs/design/qa/restore-summary-1280x800.png`
+- Summary comparison: `docs/design/qa/restore-summary-comparison.png`
+- Summary focused comparison: `docs/design/qa/restore-summary-focus-comparison.png`
+- Viewport: 1280 x 800
+
+The Practice evidence uses Level 5 with the Hint sheet open. The transition
+evidence captures the midpoint between the landing spread and Practice. The
+Summary evidence uses a completed run with one syntax family to revisit.
+
+### Required surfaces
+
+- Typography: `Source Serif 4` is loaded for editorial headings and
+  `JetBrains Mono` is loaded for Markdown source. Browser-computed font loading
+  was confirmed for both families.
+- Layout: Practice remains a fixed 50:50 spread beneath fixed chrome. Long
+  documents scroll inside their page, not the browser window.
+- Color: landing, Practice chrome, writing sheets, and Summary share the same
+  extracted paper surface and warm-white tone.
+- Assets: the binding, paper grain, writing rules, bookmark, and summary sprig
+  are real source-extracted assets. The central binding is not CSS shadow art.
+- Copy and content: runtime exercise and review content may differ from the
+  reference mock. Repeated labels and explanatory chrome remain removed.
+
+### Comparison history
+
+1. The previously shipped implementation was blocked at P1. It used a generic
+   center shadow, a flat white editor, no aligned writing rules, and no visible
+   physical binding. Summary inherited the same incomplete shell.
+2. The restoration introduced the approved paper, stitched spine, ruled Goal
+   and answer sheets, summary ornaments, and shared header surface. The first
+   transition capture still left a translucent sliver at the midpoint.
+3. The turning leaf became opaque and broad enough to cross the spine, the
+   receiving page gained its light-on transition, and Level 5 Hint examples
+   were expanded to match the approved vertical answer-key rhythm.
+
+### Findings
+
+- P0: none.
+- P1: none.
+- P2: none.
+- P3: the animated leaf uses a browser-safe planar curl rather than reproducing
+  every irregular edge of the raster motion mock. Summary wording follows the
+  actual missed syntax family instead of the mock's sample content.
+
+final result: passed
