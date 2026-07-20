@@ -38,6 +38,10 @@ describe("RunSummary", () => {
     expect(screen.getByText("Nothing to revisit this time.")).toBeVisible()
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+    expect(screen.getByTestId("summary-book-spine")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    )
     expect(screen.queryByText(/standing|percentile|collecting data/i)).not.toBeInTheDocument()
     expect(screen.queryByRole("button", { name: "Start over" })).not.toBeInTheDocument()
     expect(playFeedbackSound).toHaveBeenCalledWith("summary")

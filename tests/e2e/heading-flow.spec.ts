@@ -277,9 +277,9 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(page.getByLabel("Total time")).toContainText(/\d{2}:\d{2}/)
   await expect(page.getByText("Nothing to revisit this time.")).toBeVisible()
   await expect(page.getByText(/standing|percentile/i)).toHaveCount(0)
-  await expect(
-    page.getByRole("listitem", { name: "Step 6, completed" }),
-  ).toBeVisible()
+  await expect(page.getByRole("heading", { name: "Summary" })).toBeVisible()
+  await expect(page.getByRole("button", { name: "Home" })).toBeVisible()
+  await expect(page.getByRole("list", { name: "Turn steps" })).toHaveCount(0)
   const pageMetrics = await page.evaluate(() => ({
     body: document.body.scrollHeight,
     document: document.documentElement.scrollHeight,

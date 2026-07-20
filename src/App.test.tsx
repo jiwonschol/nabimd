@@ -232,17 +232,29 @@ describe("App", () => {
     expect(firstHint).toHaveAttribute("data-tooltip", "Hint")
     expect(firstHint).toHaveAttribute("aria-selected", "false")
     await first.user.click(firstHint)
+    const pattern = within(
+      screen.getByRole("tabpanel", { name: "Hint" }),
+    ).getByLabelText("Markdown pattern")
     expect(
-      within(screen.getByRole("tabpanel", { name: "Hint" })).getAllByText(
-        currentProblem().syntaxTokens[0]!,
-      )[0],
-    ).toBeVisible()
+      Array.from(pattern.querySelectorAll("code"), (node) => node.textContent),
+    ).toEqual(currentProblem().syntaxTokens)
     await first.user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
       "aria-selected",
       "false",
     )
+  })
+
+  it("turns Level 5 syntax marks into readable source examples", async () => {
+    const { user } = await openLevel(5)
+    await user.click(screen.getByRole("tab", { name: "Hint" }))
+
+    const hint = screen.getByRole("tabpanel", { name: "Hint" })
+    expect(within(hint).getByText("# Title")).toBeVisible()
+    expect(within(hint).getByText("## Section")).toBeVisible()
+    expect(within(hint).getByText("### Phase")).toBeVisible()
+    expect(within(hint).getByText("1. Read AGENTS.md")).toBeVisible()
   })
 
   it("keeps the selected task identity visible in the exercise header", async () => {
@@ -391,6 +403,16 @@ describe("App", () => {
     expect(screen.getByRole("tab", { name: "Hint" })).toBeVisible()
     expect(screen.getByRole("region", { name: "Goal" })).toHaveClass("cbt-panel")
     expect(screen.getByRole("region", { name: "Your answer" })).toHaveClass("cbt-panel")
+    expect(screen.getByTestId("practice-book-spine")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    )
+    expect(screen.getByRole("region", { name: "Goal" })).toHaveClass(
+      "writing-sheet",
+    )
+    expect(screen.getByRole("region", { name: "Your answer" })).toHaveClass(
+      "writing-sheet",
+    )
     expect(screen.queryByRole("region", { name: "Live preview" })).toBeNull()
     expect(screen.queryByRole("contentinfo")).toBeNull()
   })
@@ -440,7 +462,13 @@ describe("App", () => {
     }
 
     expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
-    expect(screen.getByLabelText("Level 1 — Learn the syntax")).toBeVisible()
+    expect(screen.getByRole("heading", { name: "Summary" })).toBeVisible()
+    expect(screen.queryByLabelText("Level 1 — Learn the syntax")).toBeNull()
+    expect(screen.getByRole("button", { name: "Home" })).toBeVisible()
+    expect(screen.getByTestId("summary-book-spine")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    )
     expect(screen.queryByRole("button", { name: "Start over" })).toBeNull()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
   })

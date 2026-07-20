@@ -6,6 +6,7 @@ import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
+import { BookSpine } from "./BookSpine"
 
 type EditorialDeskProps = ReturnType<typeof useLearningSession>
 
@@ -68,6 +69,7 @@ export function EditorialDesk({
       ) : (
         <>
           <article className="cbt-workspace open-book-shell">
+            <BookSpine testId="practice-book-spine" />
             <GoalPanel problem={problem} />
             <AnswerPanel
               coach={session.coach}

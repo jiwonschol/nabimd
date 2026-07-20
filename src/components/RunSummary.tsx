@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from "react"
 import { getProblem, problemBank } from "../content/problemBank"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
+import { BookSpine } from "./BookSpine"
 
 type RunSummaryProps = {
   score: number
@@ -181,7 +182,14 @@ export function RunSummary({
       className="run-summary open-book-shell"
       aria-labelledby="completion-title"
     >
+      <BookSpine testId="summary-book-spine" />
       <section className="run-summary__page run-summary__page--closure open-book-page">
+        <img
+          alt=""
+          aria-hidden="true"
+          className="run-summary__sprig"
+          src="/images/nabi-summary-sprig.png"
+        />
         <div className="run-summary__closure-copy">
           <h2
             className="run-summary__title summary-ink summary-ink--1"
@@ -212,6 +220,12 @@ export function RunSummary({
         className="run-summary__page run-summary__page--note open-book-page"
         aria-labelledby="syntax-review-title"
       >
+        <img
+          alt=""
+          aria-hidden="true"
+          className="run-summary__bookmark"
+          src="/images/nabi-bookmark.png"
+        />
         <div className="run-summary__note-copy">
           {singleReminder ? (
             <>
