@@ -216,9 +216,9 @@ async function expectedRepairFeedback(page: Page) {
     case "thematic-break":
       return "Add a Markdown divider between the two text blocks."
     case "unordered-list":
-      return "Add at least three bullet items, with words after each marker."
+      return "Put one space after each bullet marker, for example `- Item`."
     case "ordered-list":
-      return "Add at least three numbered steps, with words after each marker."
+      return "Put one space after each numbered marker, for example `1. Step`."
     default:
       return "Add one space after the hash symbol."
   }

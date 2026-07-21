@@ -8,6 +8,7 @@ import {
   isEntryId,
 } from "./entryChoices"
 import { getSyntaxFamily } from "../selection/runComposition"
+import { getExerciseMode } from "./exerciseMode"
 
 describe("five-level entry choices", () => {
   it("exposes the task-type ladder", () => {
@@ -50,6 +51,21 @@ describe("five-level entry choices", () => {
       expect(ids).toHaveLength(6)
       expect(problems.slice(0, 4).every((problem) => problem.level === entry.level)).toBe(true)
       expect(problems.slice(4).every((problem) => problem.level === entry.level + 1)).toBe(true)
+    }
+  })
+
+  it("keeps every cross-level challenge self-contained with a visible target", () => {
+    for (const entry of entryChoices.filter((item) => item.level < 5)) {
+      const challenges = createRunProblemIds(entry.id, 0)
+        .slice(4)
+        .map((id) => problemBank.find((problem) => problem.id === id)!)
+
+      for (const challenge of challenges) {
+        expect(getExerciseMode(challenge.level)).toBe("target")
+        expect(challenge.starterText.split("\n")).toHaveLength(
+          challenge.target.split("\n").length,
+        )
+      }
     }
   })
 
