@@ -4,6 +4,53 @@ import { headingCheckPasses } from "./predicates/heading"
 import { structuralCheckPasses } from "./predicates/structural"
 import type { MatchFailure } from "./types"
 
+type ListShapeCheck = Extract<MatchCheck, { kind: "list-shape" }>
+
+function isThematicBreak(line: string): boolean {
+  const trimmed = line.trim()
+  return /^([-+*])\1{2,}$/.test(trimmed)
+}
+
+function missingBulletSpaceCount(source: string): number {
+  return source.split("\n").filter((line) => {
+    if (isThematicBreak(line)) return false
+    return /^[ \t]{0,3}[-+*]\S/.test(line)
+  }).length
+}
+
+function missingNumberedSpaceCount(source: string): number {
+  return source.split("\n").filter((line) =>
+    /^[ \t]{0,3}\d{1,9}[.)]\S/.test(line),
+  ).length
+}
+
+function listFailureMessage(
+  check: ListShapeCheck,
+  source: string,
+): string {
+  if (
+    check.ordered !== true &&
+    missingBulletSpaceCount(source) >= check.minItems
+  ) {
+    return "Put one space after each bullet marker, for example `- Item`."
+  }
+
+  if (
+    check.ordered !== false &&
+    missingNumberedSpaceCount(source) >= check.minItems
+  ) {
+    return "Put one space after each numbered marker, for example `1. Step`."
+  }
+
+  return check.feedback
+}
+
+function failureMessage(check: MatchCheck, source: string): string {
+  return check.kind === "list-shape"
+    ? listFailureMessage(check, source)
+    : check.feedback
+}
+
 function checkPasses(
   check: MatchCheck,
   context: EvaluationContext,
@@ -43,7 +90,7 @@ export function evaluateMatch(
     .filter(({ check }) => !checkPasses(check, context))
     .map(({ check }) => ({
       feedbackId: check.id,
-      message: check.feedback,
+      message: failureMessage(check, context.source),
       check,
     }))
 

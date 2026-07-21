@@ -115,6 +115,20 @@ describe("schema-v2 problem-bank validation", () => {
     expect(validate(problems, problemFixtures)).toEqual([])
   })
 
+  it("rejects literal developer newline escapes in visible learner copy", () => {
+    const invalid = problem("literal-newline-escape", {
+      teaching: {
+        concept: "A visible structure",
+        howTo: "Type a marker\\nthen the words.",
+        example: "- Item",
+      },
+    })
+
+    expect(validate([invalid])).toContain(
+      "Problem literal-newline-escape teaching howTo contains a literal \\n escape",
+    )
+  })
+
   it.each([
     [1, "everyday", "introduce"],
     [2, "everyday-recall", "recall"],

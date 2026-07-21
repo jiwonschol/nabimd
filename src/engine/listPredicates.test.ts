@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { headingProblems } from "../content/headingProblems"
 import { normalizeProblem } from "../content/normalizeProblem"
-import type { GradableProblem } from "../content/types"
+import type { GradableProblem, MatchCheck } from "../content/types"
 import { evaluateProblem } from "./evaluateProblem"
 
 const bulletListProblem: GradableProblem = {
@@ -110,6 +110,53 @@ describe("unordered-list predicates", () => {
           message: "Keep this short note together as one bullet list.",
         },
       ],
+    })
+  })
+
+  it("explains the missing space after repeated bullet markers", () => {
+    expect(
+      evaluateProblem(bulletListProblem, "-One\n-Two\n-Three"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "use-bullet-list",
+      message: "Put one space after each bullet marker, for example `- Item`.",
+    })
+  })
+
+  it("explains the missing space after repeated numbered markers", () => {
+    const baseListCheck = bulletListProblem.matchChecks[0]! as Extract<
+      MatchCheck,
+      { kind: "list-shape" }
+    >
+    const orderedListProblem: GradableProblem = {
+      ...bulletListProblem,
+      id: "ordered-list-predicate-test",
+      matchChecks: [
+        {
+          ...baseListCheck,
+          id: "use-numbered-list",
+          ordered: true,
+          feedback: "Make a numbered list with at least three items.",
+        },
+      ],
+    }
+
+    expect(
+      evaluateProblem(orderedListProblem, "1.One\n2.Two\n3.Three"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "use-numbered-list",
+      message: "Put one space after each numbered marker, for example `1. Step`.",
+    })
+  })
+
+  it("does not describe thematic breaks as missing bullet spaces", () => {
+    expect(
+      evaluateProblem(bulletListProblem, "---\n---\n---"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "use-bullet-list",
+      message: "Make a bullet list with at least three items.",
     })
   })
 })

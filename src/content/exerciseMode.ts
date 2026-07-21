@@ -1,9 +1,9 @@
 import type { CurriculumLevel } from "./types"
 import { curriculumLevels } from "./curriculumLevels"
 
-export type ExerciseMode = "target" | "brief"
+export type ExerciseMode = "target"
 
-/** Levels 1–2 reproduce a reference; Levels 3–5 compose from a brief. */
+/** Every level reproduces a fixed rendered Goal from Goal-derived starter prose. */
 export function getExerciseMode(level: CurriculumLevel): ExerciseMode {
   const definition = curriculumLevels.find(
     (candidate) => candidate.level === level,

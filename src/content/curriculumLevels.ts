@@ -20,26 +20,26 @@ export const curriculumLevels = [
     level: 3,
     label: "Level 3 — Write for people",
     taskType: "write-for-people",
-    exerciseMode: "brief",
+    exerciseMode: "target",
   },
   {
     id: "level-4",
     level: 4,
     label: "Level 4 — Write a development spec",
     taskType: "development-spec",
-    exerciseMode: "brief",
+    exerciseMode: "target",
   },
   {
     id: "level-5",
     level: 5,
     label: "Level 5 — Write an agent work order",
     taskType: "agent-work-order",
-    exerciseMode: "brief",
+    exerciseMode: "target",
   },
 ] as const satisfies readonly {
   id: string
   level: CurriculumLevel
   label: string
   taskType: string
-  exerciseMode: "target" | "brief"
+  exerciseMode: "target"
 }[]

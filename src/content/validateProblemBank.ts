@@ -683,6 +683,19 @@ export function validateProblemBank(
     if (problem.hints.length !== 3) {
       errors.push(`Problem ${problem.id} must provide exactly three hints`)
     }
+    const learnerCopy = [
+      ["prompt", problem.prompt],
+      ["teaching concept", problem.teaching.concept],
+      ["teaching howTo", problem.teaching.howTo],
+      ["teaching example", problem.teaching.example],
+    ] as const
+    learnerCopy.forEach(([field, copy]) => {
+      if (copy.includes("\\n")) {
+        errors.push(
+          `Problem ${problem.id} ${field} contains a literal \\n escape`,
+        )
+      }
+    })
     for (const field of ["concept", "howTo", "example"] as const) {
       if (!problem.teaching[field].trim()) {
         errors.push(`Problem ${problem.id} has blank teaching ${field}`)
