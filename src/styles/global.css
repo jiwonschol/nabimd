@@ -164,20 +164,19 @@ button:focus-visible,
 }
 
 .app-shell.open-book-shell {
-  width: min(calc(100% - 12px), 104rem);
+  width: min(calc(100% - 12px), 96rem);
 }
 
 .open-book-page {
   min-width: 0;
   min-height: 0;
-  padding: clamp(2.25rem, 4.6vw, 5rem);
+  padding: clamp(2rem, 3.4vw, 3.5rem) clamp(2.25rem, 3.4vw, 4.25rem);
   background: transparent;
 }
 
 .open-book-page--intro {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
-  gap: clamp(1.2rem, 2.4vh, 2rem);
+  grid-template-rows: auto minmax(0, 1fr);
   box-shadow: none;
 }
 
@@ -195,100 +194,57 @@ button:focus-visible,
 }
 
 .open-book-intro {
-  grid-row: 2;
-  align-self: center;
-  max-width: 38rem;
+  align-self: start;
+  max-width: 34rem;
+  margin-top: clamp(5.5rem, 15.1vh, 9.5rem);
+  margin-left: 0.6rem;
 }
 
-.open-book-kicker,
-.chapter-index-header p {
-  margin: 0 0 1rem;
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 680;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.open-book-intro h2 {
-  max-width: 7ch;
+.open-book-motto {
   margin: 0;
-  font-size: clamp(3.6rem, 6.6vw, 6.4rem);
+  font-family: var(--serif);
+  text-wrap: balance;
+}
+
+.open-book-motto__lead {
+  display: block;
+  margin: 0;
+  font-size: clamp(3rem, 5.55vw, 4.4rem);
   font-weight: 400;
-  letter-spacing: -0.055em;
-  line-height: 0.93;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  white-space: nowrap;
 }
 
-.open-book-deck {
-  max-width: 24rem;
-  margin: clamp(1.5rem, 3vh, 2.6rem) 0 0;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--book-line);
-  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-  line-height: 1.45;
-}
-
-.open-book-method {
-  display: grid;
-  grid-row: 3;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem 1.5rem;
-  margin: 0;
-  padding: 1.15rem 0 0;
-  border-top: 1px solid var(--book-line);
-  list-style: none;
-}
-
-.open-book-method li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-}
-
-.open-book-method span {
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.65rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.1em;
-}
-
-.open-book-method strong {
-  font-size: 1rem;
+.open-book-motto__body {
+  display: block;
+  margin: clamp(1.4rem, 4.1vh, 2.25rem) 0 0;
+  font-size: clamp(1.6rem, 2.53vw, 2.03rem);
   font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.39;
 }
 
-.open-book-method-line {
-  grid-row: 4;
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.025em;
-  line-height: 1.5;
+.open-book-motto__body > span {
+  display: block;
 }
 
 .open-book-page--chapters {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: clamp(1.25rem, 2.8vh, 2rem);
+  gap: clamp(1rem, 3vh, 1.4rem);
+  padding: clamp(7rem, 21.3vh, 13rem) clamp(2.75rem, 5.3vw, 5.5rem)
+    clamp(3rem, 8vh, 5rem);
   box-shadow: none;
 }
 
 .chapter-index-header h2 {
-  max-width: 9ch;
-  margin: 0 0 0.85rem;
-  font-size: clamp(2.6rem, 4vw, 4.2rem);
+  margin: 0;
+  font-size: clamp(1.5rem, 2.2vw, 1.75rem);
   font-weight: 400;
-  letter-spacing: -0.045em;
-  line-height: 0.96;
-}
-
-.chapter-index-header > span {
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.92rem;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .chapter-index {
@@ -307,26 +263,23 @@ button:focus-visible,
 .chapter-entry {
   display: grid;
   width: 100%;
-  min-height: clamp(4.35rem, 9.3vh, 7rem);
-  grid-template-columns: 3.2rem minmax(0, 1fr) auto auto;
+  min-height: clamp(4.7rem, 11.45vh, 6.75rem);
+  grid-template-columns: clamp(5.6rem, 7.4vw, 6rem) minmax(0, 1fr) 1.6rem;
   align-items: center;
-  gap: clamp(0.8rem, 1.6vw, 1.5rem);
-  padding: 0.35rem;
+  gap: clamp(0.75rem, 1.4vw, 1.2rem);
+  padding: 0;
   border: 0;
   border-bottom: 1px solid var(--book-line);
   background: transparent;
   font-family: var(--serif);
   text-align: left;
   cursor: pointer;
-  transition:
-    background-color var(--motion) ease-out,
-    padding var(--motion) ease-out;
+  transition: background-color var(--motion) ease-out;
 }
 
 .chapter-entry:hover,
 .chapter-entry:focus-visible {
-  padding-inline: 0.85rem;
-  background: #ece7de;
+  background: rgb(17 17 17 / 3%);
 }
 
 .chapter-entry:active,
@@ -340,51 +293,35 @@ button:focus-visible,
   opacity: 1;
 }
 
-.chapter-entry__number {
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.1em;
-}
-
 .chapter-entry__copy {
-  display: grid;
+  display: block;
   min-width: 0;
-  gap: 0.3rem;
+  overflow: hidden;
 }
 
 .chapter-entry__copy strong {
+  display: block;
   overflow: hidden;
-  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
   font-weight: 400;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   line-height: 1.1;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.chapter-entry__copy small {
-  overflow: hidden;
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  line-height: 1.35;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .chapter-entry__level {
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  font-family: var(--mono);
+  font-size: clamp(0.72rem, 0.95vw, 0.78rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .chapter-entry__arrow {
-  font-size: 1.45rem;
+  justify-self: end;
+  font-size: 1.65rem;
+  line-height: 1;
   transition: transform var(--motion) ease-out;
 }
 
@@ -569,6 +506,84 @@ button:focus-visible,
   }
 }
 
+@media (max-width: 900px) and (min-width: 761px) {
+  .open-book-page {
+    padding-inline: 1.5rem;
+  }
+
+  .open-book-intro {
+    min-width: 0;
+    margin-top: clamp(4rem, 10vh, 6rem);
+    margin-left: 0;
+  }
+
+  .open-book-motto {
+    min-width: 0;
+  }
+
+  .open-book-motto__lead {
+    font-size: clamp(2.15rem, 4.6vw, 2.6rem);
+  }
+
+  .open-book-motto__body {
+    font-size: clamp(1.18rem, 2.45vw, 1.4rem);
+    line-height: 1.35;
+  }
+
+  .open-book-page--chapters {
+    padding-inline: 1.75rem;
+  }
+
+  .chapter-index-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .chapter-entry {
+    grid-template-columns: 4.4rem minmax(0, 1fr) 1.4rem;
+  }
+
+  .chapter-entry__level {
+    font-size: 0.68rem;
+  }
+
+  .chapter-entry__copy strong {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-height: 540px) and (min-width: 761px) {
+  .open-book-page {
+    padding-block: 1.25rem;
+  }
+
+  .open-book-intro {
+    margin-top: 2rem;
+  }
+
+  .open-book-motto__lead {
+    font-size: 2.5rem;
+  }
+
+  .open-book-motto__body {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .open-book-page--chapters {
+    padding-top: 2.2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .chapter-index-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .chapter-entry {
+    min-height: 4rem;
+  }
+}
+
 @media (max-width: 760px) {
   .app-shell.open-book-shell:not(.open-book-shell--turning) {
     background-image: url("/images/nabi-book-paper.png");
@@ -587,27 +602,39 @@ button:focus-visible,
   }
 
   .open-book-page--intro {
-    min-height: 62svh;
+    min-height: 70svh;
     box-shadow: none;
   }
 
-  .open-book-intro h2 {
-    font-size: clamp(3.4rem, 17vw, 5.2rem);
+  .open-book-intro {
+    margin-top: clamp(3.5rem, 10vh, 5rem);
+    margin-left: 0;
+  }
+
+  .open-book-motto__lead {
+    font-size: clamp(2.85rem, 13vw, 4.25rem);
+    white-space: normal;
+  }
+
+  .open-book-motto__body {
+    font-size: clamp(1.55rem, 7vw, 2rem);
   }
 
   .open-book-page--chapters {
     min-height: 100svh;
+    padding: 3.5rem 1.35rem;
     border-top: 1px solid var(--book-line);
     border-left: 0;
     box-shadow: none;
   }
 
   .chapter-entry {
-    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    grid-template-columns: 5.4rem minmax(0, 1fr) auto;
   }
 
-  .chapter-entry__level {
-    display: none;
+  .chapter-index-header h2 {
+    font-size: clamp(1.4rem, 6vw, 1.65rem);
+    white-space: normal;
   }
 
   .open-book-shell--turning .open-book-page--chapters {

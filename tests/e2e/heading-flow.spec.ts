@@ -196,6 +196,57 @@ test("greets a fresh session with the definitive five-level ladder", async ({
   await expect(sourceEditor(page)).toHaveCount(0)
 })
 
+test("keeps every chapter reachable in a short landscape viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 812, height: 375 })
+  await page.goto("/")
+
+  const introMetrics = await page
+    .locator(".open-book-page--intro")
+    .evaluate((element) => ({
+      clientHeight: element.clientHeight,
+      overflowY: window.getComputedStyle(element).overflowY,
+      scrollHeight: element.scrollHeight,
+    }))
+  const mottoBodySize = await page
+    .locator(".open-book-motto__body")
+    .evaluate((element) =>
+      Number.parseFloat(window.getComputedStyle(element).fontSize),
+    )
+  const instructionSize = await page
+    .getByRole("heading", { name: "Choose a chapter to begin." })
+    .evaluate((element) =>
+      Number.parseFloat(window.getComputedStyle(element).fontSize),
+    )
+
+  expect(introMetrics.overflowY).not.toBe("auto")
+  expect(introMetrics.scrollHeight).toBeLessThanOrEqual(
+    introMetrics.clientHeight,
+  )
+  expect(mottoBodySize).toBeGreaterThan(instructionSize)
+  await page.getByRole("button", { name: levelLabels[4] }).click()
+  await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
+  await expect(sourceEditor(page)).toBeFocused()
+})
+
+test("keeps the open-book landing inside a tablet viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1024 })
+  await page.goto("/")
+
+  const pageMetrics = await page
+    .locator(".open-book-page--intro")
+    .evaluate((element) => ({
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+    }))
+
+  expect(pageMetrics.scrollWidth).toBeLessThanOrEqual(pageMetrics.clientWidth)
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(768)
+})
+
 test("every level opens its task-type turn", async ({ page }) => {
   for (const index of levelLabels.keys()) {
     await page.goto("/")
@@ -278,7 +329,9 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(page.getByText("Nothing to revisit this time.")).toBeVisible()
   await expect(page.getByText(/standing|percentile/i)).toHaveCount(0)
   await expect(page.getByRole("heading", { name: "Summary" })).toBeVisible()
-  await expect(page.getByRole("button", { name: "Home" })).toBeVisible()
+  await expect(
+    page.getByRole("button", { name: "Home", exact: true }),
+  ).toBeVisible()
   await expect(page.getByRole("list", { name: "Turn steps" })).toHaveCount(0)
   const pageMetrics = await page.evaluate(() => ({
     body: document.body.scrollHeight,
