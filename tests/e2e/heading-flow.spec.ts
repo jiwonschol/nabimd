@@ -562,9 +562,41 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
     await page.keyboard.press("Control+Enter")
   }
 
+  const transition = page.getByTestId("summary-page-turn-transition")
+  await expect(transition).toBeVisible()
   await expect(
     page.getByRole("heading", { name: "Well done." }),
-  ).toBeVisible()
+  ).toBeFocused()
+  const openingFrame = await page.evaluate(() => {
+    const app = document.querySelector<HTMLElement>(
+      ".page-turn-receiver > .app-shell",
+    )
+    const summary = document.querySelector<HTMLElement>(".run-summary")
+    const ink = document.querySelector<HTMLElement>(".summary-ink")
+    if (!app || !summary || !ink) throw new Error("Expected the Summary frame")
+    return {
+      app: app.getBoundingClientRect().toJSON(),
+      clipPath: getComputedStyle(ink).clipPath,
+      summary: summary.getBoundingClientRect().toJSON(),
+    }
+  })
+  expect(openingFrame.clipPath).toBe("none")
+  await expect(transition).toHaveCount(0)
+  const settledFrame = await page.evaluate(() => {
+    const app = document.querySelector<HTMLElement>(
+      ".page-turn-receiver > .app-shell",
+    )
+    const summary = document.querySelector<HTMLElement>(".run-summary")
+    if (!app || !summary) throw new Error("Expected the settled Summary frame")
+    return {
+      app: app.getBoundingClientRect().toJSON(),
+      summary: summary.getBoundingClientRect().toJSON(),
+    }
+  })
+  expect(settledFrame).toEqual({
+    app: openingFrame.app,
+    summary: openingFrame.summary,
+  })
   await expect(page.getByLabel("Score")).toContainText("6 / 6")
   await expect(page.getByLabel("Total time")).toContainText(/\d{2}:\d{2}/)
   await expect(page.getByText("Nothing to revisit this time.")).toBeVisible()
@@ -582,7 +614,8 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   expect(pageMetrics.body).toBeLessThanOrEqual(pageMetrics.viewport)
   expect(pageMetrics.document).toBeLessThanOrEqual(pageMetrics.viewport)
   const practiceAgain = page.getByRole("button", { name: "Practice again" })
-  await expect(practiceAgain).toBeFocused()
+  await expect(practiceAgain).not.toBeFocused()
+  await practiceAgain.focus()
   await page.keyboard.press("Enter")
   await expect(sourceEditor(page)).toBeFocused()
   await expect(page.getByRole("progressbar")).toHaveAttribute(
@@ -1144,11 +1177,68 @@ test("opens a narrow Summary on praise without scrolling to its action", async (
   }
 
   const summary = page.locator(".run-summary")
+  await expect(page.getByTestId("summary-page-turn-transition")).toBeVisible()
   await expect(page.getByRole("heading", { name: "Well done." })).toBeVisible()
   await expect(page.getByRole("heading", { name: "Well done." })).toBeFocused()
+  await expect(page.getByTestId("summary-page-turn-transition")).toHaveCount(0)
   expect(await summary.evaluate((element) => element.scrollTop)).toBe(0)
   await expect(page.getByRole("button", { name: "Practice again" })).not.toBeFocused()
 })
+
+for (const viewport of [
+  { width: 1024, height: 768 },
+  { width: 375, height: 812 },
+]) {
+  test(`keeps the completed book stable at ${viewport.width}x${viewport.height}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport)
+    await page.goto("/")
+    await enterLevel1(page)
+
+    for (let turn = 0; turn < 6; turn += 1) {
+      const problem = runtimeProblemById.get(await currentProblemId(page))
+      if (!problem) throw new Error("Expected the current runtime problem")
+      await sourceEditor(page).fill(problem.target)
+      await sourceEditor(page).press("Control+Enter")
+      await expect(
+        page.getByRole("button", { name: "Next exercise" }),
+      ).toBeFocused()
+      await page.keyboard.press("Control+Enter")
+    }
+
+    await expect(page.getByRole("heading", { name: "Well done." })).toBeFocused()
+    await expect(page.getByTestId("summary-page-turn-transition")).toHaveCount(0)
+    const geometry = await page.evaluate(() => {
+      const app = document.querySelector<HTMLElement>(
+        ".page-turn-receiver > .app-shell",
+      )
+      const summary = document.querySelector<HTMLElement>(".run-summary")
+      if (!app || !summary) throw new Error("Expected the Summary book")
+      const appBox = app.getBoundingClientRect()
+      const summaryBox = summary.getBoundingClientRect()
+      return {
+        appBottom: appBox.bottom,
+        appLeft: appBox.left,
+        appRight: appBox.right,
+        appTop: appBox.top,
+        documentHeight: document.documentElement.scrollHeight,
+        documentWidth: document.documentElement.scrollWidth,
+        summaryBottom: summaryBox.bottom,
+        summaryLeft: summaryBox.left,
+        summaryRight: summaryBox.right,
+        summaryTop: summaryBox.top,
+      }
+    })
+
+    expect(geometry.documentWidth).toBeLessThanOrEqual(viewport.width)
+    expect(geometry.documentHeight).toBeLessThanOrEqual(viewport.height)
+    expect(geometry.summaryLeft).toBeGreaterThanOrEqual(geometry.appLeft)
+    expect(geometry.summaryRight).toBeLessThanOrEqual(geometry.appRight)
+    expect(geometry.summaryTop).toBeGreaterThanOrEqual(geometry.appTop)
+    expect(geometry.summaryBottom).toBeLessThanOrEqual(geometry.appBottom)
+  })
+}
 
 test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 })

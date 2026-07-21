@@ -31,6 +31,7 @@ type AnswerPanelProps = {
   onCloseHint: () => void
   onNextHint: () => void
   onRequestHint: () => void
+  interactive?: boolean
 }
 
 function sourceExamples(problem: GradableProblem): string[] {
@@ -212,6 +213,7 @@ export function AnswerPanel({
   onCloseHint,
   onNextHint,
   onRequestHint,
+  interactive = true,
 }: AnswerPanelProps) {
   const [view, setView] = useState<AnswerView>("write")
   const writeTabRef = useRef<HTMLButtonElement>(null)
@@ -267,9 +269,10 @@ export function AnswerPanel({
   }
 
   useEffect(() => {
+    if (!interactive) return
     setView("write")
     onCloseHint()
-  }, [onCloseHint, problem.id])
+  }, [interactive, onCloseHint, problem.id])
 
   useEffect(() => {
     if (!evaluation) return
@@ -341,6 +344,7 @@ export function AnswerPanel({
   }
 
   useEffect(() => {
+    if (!interactive) return
     const openHintFromKeyboard = (event: KeyboardEvent) => {
       if (
         event.key !== "?" ||
@@ -373,7 +377,7 @@ export function AnswerPanel({
 
     document.addEventListener("keydown", openHintFromKeyboard)
     return () => document.removeEventListener("keydown", openHintFromKeyboard)
-  }, [focusTab, selectView, view])
+  }, [focusTab, interactive, selectView, view])
 
   const moveBetweenTabs = (
     event: ReactKeyboardEvent<HTMLButtonElement>,
@@ -515,7 +519,7 @@ export function AnswerPanel({
         role="tabpanel"
       >
         <WordProcessorPage
-          active={view === "write"}
+          active={interactive && view === "write"}
           blankGuides={blankGuides}
           key={problem.id}
           label="Your Markdown"

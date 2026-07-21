@@ -10,6 +10,7 @@ type RunSummaryProps = {
   failedProblemIds: readonly string[]
   onPracticeAgain: () => void
   onChangeLevel: () => void
+  motionReady?: boolean
 }
 
 const SUMMARY_REVIEW_LIMIT = 3
@@ -161,10 +162,10 @@ export function RunSummary({
   failedProblemIds,
   onPracticeAgain,
   onChangeLevel,
+  motionReady = true,
 }: RunSummaryProps) {
   const playedSummarySound = useRef(false)
   const completionTitleRef = useRef<HTMLHeadingElement>(null)
-  const practiceAgainRef = useRef<HTMLButtonElement>(null)
   const reminders = useMemo(
     () => syntaxReminders(failedProblemIds),
     [failedProblemIds],
@@ -177,24 +178,15 @@ export function RunSummary({
   }, [])
 
   useEffect(() => {
-    const narrow =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(max-width: 760px)").matches
-    const short =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(max-height: 680px)").matches
-    const target = narrow || short
-      ? completionTitleRef.current
-      : practiceAgainRef.current
-    target?.focus({ preventScroll: true })
+    completionTitleRef.current?.focus({ preventScroll: true })
   }, [])
 
   const singleReminder = reminders.length === 1 ? reminders[0] : null
 
   return (
     <section
-      className="run-summary open-book-shell"
-      aria-labelledby="completion-title"
+      aria-label="Run summary"
+      className={`run-summary open-book-shell${motionReady ? "" : " run-summary--waiting"}`}
     >
       <section className="run-summary__page run-summary__page--closure open-book-page">
         <img
@@ -280,7 +272,7 @@ export function RunSummary({
                     aria-label={`Syntax reminder: ${reminder.label}`}
                     className="summary-ink"
                     key={reminder.family}
-                    style={{ animationDelay: `${900 + index * 140}ms` }}
+                    style={{ animationDelay: `${660 + index * 120}ms` }}
                   >
                     <strong>{reminder.label}</strong>
                     <code>{reminder.example}</code>
@@ -309,11 +301,10 @@ export function RunSummary({
           )}
         </div>
 
-        <div className="run-summary__actions">
+        <div className="run-summary__actions summary-ink summary-ink--actions">
           <button
             className="primary-button run-summary__practice-again"
             onClick={onPracticeAgain}
-            ref={practiceAgainRef}
             type="button"
           >
             Practice again
