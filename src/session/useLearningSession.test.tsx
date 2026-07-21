@@ -71,6 +71,26 @@ describe("useLearningSession", () => {
     )
   })
 
+  it("advances the run when the same level is re-entered", () => {
+    const { result } = renderLearningSession(
+      new MemoryStorage(),
+      () => 1_000,
+      () => 17,
+    )
+
+    act(() => result.current.start("level-1"))
+    const firstVisitProblemId = result.current.problem.id
+
+    act(() => result.current.changeLevel())
+    act(() => result.current.start("level-1"))
+
+    expect(result.current.session.runNumber).toBe(1)
+    expect(result.current.problem.id).not.toBe(firstVisitProblemId)
+    expect(result.current.session.runProblemIds).toEqual(
+      createRunProblemIds("level-1", 1, 17),
+    )
+  })
+
   it("keeps one generated seed for progress and restored runs in a browser session", async () => {
     const storage = new MemoryStorage()
     const first = renderLearningSession(storage, () => 1_000, () => 17)

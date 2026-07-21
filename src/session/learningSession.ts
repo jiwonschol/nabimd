@@ -34,6 +34,18 @@ export type LearningSession = {
   progress: ProgressV5
 }
 
+export type PracticeHistorySnapshot = Pick<
+  LearningSession,
+  | "entryId"
+  | "runNumber"
+  | "runProblemIds"
+  | "runStepIndex"
+  | "scheduledStepIndex"
+  | "currentProblemId"
+  | "currentIsTransfer"
+  | "runStartedAtMs"
+>
+
 export type SessionEvent =
   | {
       type: "started"
@@ -44,7 +56,15 @@ export type SessionEvent =
       runProblemIds: string[]
       problem: GradableProblem
     }
-  | { type: "returned-to-greeting"; problem: GradableProblem }
+  | {
+      type: "returned-to-greeting"
+      problem: GradableProblem
+    }
+  | {
+      type: "history-navigated"
+      snapshot: PracticeHistorySnapshot
+      problem: GradableProblem
+    }
   | { type: "edited"; value: string }
   | {
       type: "checked"
@@ -199,11 +219,32 @@ export function learningSessionReducer(
 
     case "returned-to-greeting":
       return createLearningSession(
-        createDefaultProgress(
-          event.problem.id,
-          undefined,
-          session.progress.runSeed,
-        ),
+        {
+          ...createDefaultProgress(
+            event.problem.id,
+            undefined,
+            session.progress.runSeed,
+          ),
+          runNumber: session.runNumber + 1,
+        },
+        event.problem,
+      )
+
+    case "history-navigated":
+      return createLearningSession(
+        {
+          ...session.progress,
+          entryId: event.snapshot.entryId,
+          runNumber: event.snapshot.runNumber,
+          runProblemIds: [...event.snapshot.runProblemIds],
+          runStepIndex: event.snapshot.runStepIndex,
+          scheduledStepIndex: event.snapshot.scheduledStepIndex,
+          currentProblemId: event.snapshot.currentProblemId,
+          currentIsTransfer: event.snapshot.currentIsTransfer,
+          pendingTransferFamily: null,
+          runStartedAtMs: event.snapshot.runStartedAtMs,
+          runCompletedAtMs: null,
+        },
         event.problem,
       )
 

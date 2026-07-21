@@ -358,6 +358,50 @@ test("every level opens its task-type turn", async ({ page }) => {
   }
 })
 
+test("re-entering a level starts a different run", async ({ page }) => {
+  await page.goto("/")
+  await enterLevel(page, 1)
+  const firstProblemId = await currentProblemId(page)
+
+  await page.getByRole("button", { name: "Nabi Markdown home" }).click()
+  await expect(
+    page.getByRole("heading", { name: "Choose a chapter to begin." }),
+  ).toBeVisible()
+
+  await enterLevel(page, 1)
+  expect(await currentProblemId(page)).not.toBe(firstProblemId)
+})
+
+test("browser history moves between problems and the level picker", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await enterLevel(page, 1)
+  const firstProblemId = await currentProblemId(page)
+  const firstProblem = runtimeProblemById.get(firstProblemId)
+  if (!firstProblem) throw new Error(`Missing runtime problem: ${firstProblemId}`)
+
+  await sourceEditor(page).fill(firstProblem.target)
+  await sourceEditor(page).press("Control+Enter")
+  await page.getByRole("button", { name: "Next exercise" }).click()
+  const secondProblemId = await currentProblemId(page)
+  expect(secondProblemId).not.toBe(firstProblemId)
+
+  await page.goBack()
+  await expect.poll(() => currentProblemId(page)).toBe(firstProblemId)
+
+  await page.goBack()
+  await expect(
+    page.getByRole("heading", { name: "Choose a chapter to begin." }),
+  ).toBeVisible()
+
+  await page.goForward()
+  await expect.poll(() => currentProblemId(page)).toBe(firstProblemId)
+
+  await page.goForward()
+  await expect.poll(() => currentProblemId(page)).toBe(secondProblemId)
+})
+
 test("pre-fills Goal-derived reproduction prose at every level", async ({
   page,
 }) => {
