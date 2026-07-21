@@ -243,9 +243,9 @@ Also assert a subsequent `checked` event replaces the old failure, and a matchin
 
 Run `npm test -- src/session/learningSession.test.ts` and confirm the persistence assertion fails.
 
-**Step 2: Preserve evaluation on edit**
+**Step 2: Preserve only failed evaluation on edit**
 
-Remove `evaluation: null` from the `edited` transition. The existing `phase: "editing"` continues to keep Next disabled, while replacement/navigation transitions continue to clear feedback.
+Replace the unconditional clear with `evaluation: session.evaluation?.status === "fail" ? session.evaluation : null`. The existing `phase: "editing"` keeps Next disabled; clearing a prior Matched evaluation also prevents the top bar from showing a stale Next control, while replacement/navigation transitions continue to clear feedback.
 
 **Step 3: Run session and App tests**
 
@@ -285,4 +285,3 @@ Review the complete branch diff once. Fix actionable findings once, rerun focuse
 **Step 4: Publish, merge, and deploy**
 
 Push the branch, open a PR referencing issue #78 as future work (not closing it), merge after the single review and green checks, synchronize `main`, and verify the production deployment and primary browser regression.
-
