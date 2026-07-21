@@ -220,7 +220,7 @@ describe("global responsive styles", () => {
       styles.indexOf("@media (max-width: 760px)"),
       styles.indexOf("@media (prefers-reduced-motion: reduce)"),
     )
-    const practiceStack = lastCssBlock("@media (max-width: 900px)")
+    const practiceStack = lastCssBlock("@media (max-width: 900px) {")
 
     expect(landingStack).toMatch(
       /\.app-shell\.open-book-shell:not\(\.open-book-shell--turning\)\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
@@ -259,6 +259,33 @@ describe("global responsive styles", () => {
     expect(styles).toMatch(
       /\.answer-tabs\s*\{[^{}]*width:\s*100%[^{}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[^{}]*padding-inline:\s*3%\s*7%/s,
     )
+  })
+
+  it("keeps feedback on one keyboard-reachable reading scroller", () => {
+    expect(styles).toMatch(
+      /\.answer-panel__body--reading\s*\{[^{}]*overflow:\s*auto/s,
+    )
+    expect(styles).toMatch(
+      /\.answer-panel__body--reading:focus-visible\s*\{[^{}]*(?:outline|box-shadow):/s,
+    )
+    expect(styles).toMatch(
+      /\.answer-review__corrections[\s\S]*?list-style:\s*none/s,
+    )
+    expect(styles).not.toMatch(
+      /\.answer-hint__corrections,[\s\S]*?\.answer-review__corrections\s*\{[^{}]*overflow-y:\s*auto/s,
+    )
+  })
+
+  it("derives narrow Summary pages from the actual Practice chrome", () => {
+    expect(tokens).toContain("--practice-topbar-height: 108px")
+    const practiceStack = lastCssBlock("@media (max-width: 900px) {")
+    const summaryStack = lastCssBlock("@media (max-width: 760px)")
+
+    expect(practiceStack).toContain("--practice-topbar-height: 140px")
+    expect(summaryStack).toMatch(
+      /\.run-summary__page\s*\{[^{}]*min-height:\s*calc\(100svh - var\(--practice-topbar-height\) - 12px\)/s,
+    )
+    expect(summaryStack).not.toContain("100svh - 72px")
   })
 
   it("keeps each desktop Summary page internally scrollable", () => {

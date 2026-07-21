@@ -124,6 +124,24 @@ describe("RunSummary", () => {
     expect(replay.parentElement).not.toHaveClass("summary-ink")
   })
 
+  it("opens a narrow Summary on the teacher's praise instead of the lower action", () => {
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(max-width: 760px)",
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      })),
+    )
+
+    renderSummary()
+
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
+    vi.unstubAllGlobals()
+  })
+
   it("uses the authored example for the exact failed syntax family", () => {
     renderSummary([
       "l1-emphasis-family-game",

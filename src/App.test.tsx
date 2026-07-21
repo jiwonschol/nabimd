@@ -369,6 +369,9 @@ describe("App", () => {
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
     const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(review).toHaveAttribute("tabindex", "0")
+    expect(review).toHaveFocus()
+    expect(screen.getByRole("tab", { name: "Review" })).not.toHaveFocus()
     expect(
       within(review).getByRole("list", { name: "Required corrections" }),
     ).toBeVisible()
@@ -376,6 +379,10 @@ describe("App", () => {
     expect(review.querySelector("pre")).toBeNull()
     expect(review).not.toHaveTextContent("Diff")
     expect(editor).not.toHaveFocus()
+
+    await user.keyboard("{Alt>}1{/Alt}")
+    await user.keyboard("{Alt>}2{/Alt}")
+    expect(screen.getByRole("tab", { name: "Review" })).toHaveFocus()
   })
 
   it("keeps failed Review available while editing until a successful recheck", async () => {

@@ -278,6 +278,21 @@ test("keeps the open-book landing inside a tablet viewport", async ({ page }) =>
   ).toBeLessThanOrEqual(768)
 })
 
+test("keeps the landing wordmark clear of the motto in a short book", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 500 })
+  await page.goto("/")
+
+  const [wordmark, motto] = await Promise.all([
+    page.locator(".open-book-page--intro > .wordmark").boundingBox(),
+    page.locator(".open-book-motto").boundingBox(),
+  ])
+  expect(wordmark).not.toBeNull()
+  expect(motto).not.toBeNull()
+  expect(wordmark!.y + wordmark!.height + 8).toBeLessThanOrEqual(motto!.y)
+})
+
 test("keeps the same book spread geometry across the page turn", async ({
   page,
 }) => {
@@ -564,6 +579,102 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   }))
   expect(goalScroll.overflowY).toBe("auto")
   expect(goalScroll.scrollHeight).toBeGreaterThan(goalScroll.clientHeight)
+})
+
+test("keeps the Practice chrome groups disjoint at 1024px", async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await page.goto("/")
+  await enterLevel(page, 5)
+
+  const [exit, level] = await Promise.all([
+    page.getByRole("button", { name: "Exit" }).boundingBox(),
+    page.locator(".exercise-progress__level").boundingBox(),
+  ])
+  expect(exit).not.toBeNull()
+  expect(level).not.toBeNull()
+  expect(exit!.x + exit!.width + 8).toBeLessThanOrEqual(level!.x)
+})
+
+test("keeps short-landscape Practice as two usable book pages", async ({ page }) => {
+  await page.setViewportSize({ width: 812, height: 375 })
+  await page.goto("/")
+  await enterLevel(page, 3)
+
+  const [goal, answer] = await Promise.all([
+    page.getByRole("region", { name: "Goal" }).boundingBox(),
+    page.getByRole("region", { name: "Your answer" }).boundingBox(),
+  ])
+  expect(goal).not.toBeNull()
+  expect(answer).not.toBeNull()
+  expect(Math.abs(goal!.y - answer!.y)).toBeLessThanOrEqual(1)
+  expect(Math.abs(goal!.width - answer!.width)).toBeLessThanOrEqual(1)
+  expect(goal!.height).toBeGreaterThan(150)
+  expect(answer!.height).toBeGreaterThan(150)
+})
+
+test("moves failed Review focus to its single reading scroller", async ({ page }) => {
+  await page.setViewportSize({ width: 756, height: 672 })
+  await page.goto("/")
+  await enterLevel(page, 3)
+
+  const editor = sourceEditor(page)
+  await editor.fill("")
+  await editor.press("Control+Enter")
+  const reviewTab = page.getByRole("tab", { name: "Review" })
+  const review = page.getByRole("tabpanel", { name: "Review" })
+  await expect(review).toBeFocused()
+  await expect(reviewTab).not.toBeFocused()
+  await expect(reviewTab).toHaveAttribute("aria-selected", "true")
+
+  const metrics = await review.evaluate((panel) => {
+    const list = panel.querySelector<HTMLElement>(".answer-review__corrections")
+    const firstItem = list?.querySelector<HTMLElement>("li")
+    const panelStyle = window.getComputedStyle(panel)
+    const listStyle = list ? window.getComputedStyle(list) : null
+    const itemStyle = firstItem ? window.getComputedStyle(firstItem, "::before") : null
+    return {
+      panelOverflowY: panelStyle.overflowY,
+      panelTabIndex: panel.tabIndex,
+      listOverflowY: listStyle?.overflowY,
+      listStyleType: listStyle?.listStyleType,
+      counterContent: itemStyle?.content,
+    }
+  })
+  expect(metrics.panelOverflowY).toBe("auto")
+  expect(metrics.panelTabIndex).toBe(0)
+  expect(metrics.listOverflowY).toBe("visible")
+  expect(metrics.listStyleType).toBe("none")
+  expect(metrics.counterContent).not.toBe("none")
+
+  const beforeScroll = await review.evaluate((panel) => panel.scrollTop)
+  await page.keyboard.press("PageDown")
+  await expect
+    .poll(() => review.evaluate((panel) => panel.scrollTop))
+    .toBeGreaterThan(beforeScroll)
+})
+
+test("opens a narrow Summary on praise without scrolling to its action", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 760, height: 800 })
+  await page.goto("/")
+  await enterLevel1(page)
+
+  for (let turn = 0; turn < 6; turn += 1) {
+    const problem = runtimeProblemById.get(await currentProblemId(page))
+    if (!problem) throw new Error("Expected the current runtime problem")
+    const editor = sourceEditor(page)
+    await editor.fill(problem.target)
+    await editor.press("Control+Enter")
+    await expect(page.getByRole("button", { name: "Next exercise" })).toBeFocused()
+    await page.keyboard.press("Control+Enter")
+  }
+
+  const summary = page.locator(".run-summary")
+  await expect(page.getByRole("heading", { name: "Well done." })).toBeVisible()
+  await expect(page.getByRole("heading", { name: "Well done." })).toBeFocused()
+  expect(await summary.evaluate((element) => element.scrollTop)).toBe(0)
+  await expect(page.getByRole("button", { name: "Practice again" })).not.toBeFocused()
 })
 
 test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {

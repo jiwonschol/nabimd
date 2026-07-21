@@ -59,6 +59,7 @@ export function ExerciseTopBar({
 }: ExerciseTopBarProps) {
   const nextRef = useRef<HTMLButtonElement>(null)
   const [soundMuted, setSoundMutedState] = useState(() => readSoundMuted())
+  const [summaryTooltipReady, setSummaryTooltipReady] = useState(false)
   const matched = evaluation?.status === "matched"
   const entry = getEntryChoice(entryId)
   const [levelNumber, levelName] = entry.label.split(" — ", 2)
@@ -74,6 +75,17 @@ export function ExerciseTopBar({
   }, [matched])
 
   useEffect(() => subscribeSoundMuted(setSoundMutedState), [])
+
+  useEffect(() => {
+    if (phase !== "complete") {
+      setSummaryTooltipReady(false)
+      return
+    }
+
+    const armSummaryTooltip = () => setSummaryTooltipReady(true)
+    window.addEventListener("pointermove", armSummaryTooltip, { once: true })
+    return () => window.removeEventListener("pointermove", armSummaryTooltip)
+  }, [phase])
 
   if (phase === "complete") {
     return (
@@ -93,7 +105,7 @@ export function ExerciseTopBar({
           <button
             aria-label="Home"
             className="top-action top-action--home"
-            data-tooltip="Home"
+            data-tooltip={summaryTooltipReady ? "Home" : undefined}
             onClick={onExit}
             type="button"
           >
