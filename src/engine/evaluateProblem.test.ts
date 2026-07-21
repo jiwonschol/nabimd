@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest"
-import { getHeadingProblem } from "../content/headingProblems"
+import { getHeadingProblem, headingProblems } from "../content/headingProblems"
+import { normalizeProblem } from "../content/normalizeProblem"
 import { headingProblemFixtures } from "../content/problemFixtures"
+import type { GradableProblem } from "../content/types"
 import { evaluateProblem } from "./evaluateProblem"
 
 describe("evaluateProblem", () => {
@@ -43,10 +45,48 @@ describe("evaluateProblem", () => {
       "#Apple",
     )
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       status: "fail",
       feedbackId: "space-after-hash",
       message: "Add one space after the hash symbol.",
+    })
+  })
+
+  it("collects every failed match check in priority order", () => {
+    const compositeProblem: GradableProblem = {
+      ...normalizeProblem(headingProblems[0]),
+      id: "composite-feedback-test",
+      matchChecks: [
+        {
+          id: "required-owner",
+          kind: "inline-presence",
+          scope: { kind: "document" },
+          inline: "strong",
+          min: 1,
+          priority: 20,
+          feedback: "Make Owner bold.",
+        },
+        {
+          id: "required-title",
+          kind: "has-heading",
+          level: 1,
+          priority: 10,
+          feedback: "Add one document title.",
+        },
+      ],
+      editorialChecks: [],
+    }
+
+    const result = evaluateProblem(compositeProblem, "")
+
+    expect(result).toMatchObject({
+      status: "fail",
+      feedbackId: "required-title",
+      message: "Add one document title.",
+      failures: [
+        { feedbackId: "required-title", message: "Add one document title." },
+        { feedbackId: "required-owner", message: "Make Owner bold." },
+      ],
     })
   })
 
@@ -56,7 +96,7 @@ describe("evaluateProblem", () => {
       "#Apple   ",
     )
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       status: "fail",
       feedbackId: "space-after-hash",
       message: "Add one space after the hash symbol.",
@@ -69,7 +109,7 @@ describe("evaluateProblem", () => {
       "Apple\n=====",
     )
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       status: "fail",
       feedbackId: "use-hash-heading-style",
       message:
@@ -111,7 +151,7 @@ describe("evaluateProblem", () => {
       ["escaped hash", "\\# Apple"],
       ["blockquote-nested H1", "> # Apple"],
     ])("keeps %s outside the requested top-level hash H1", (_label, source) => {
-      expect(evaluateProblem(getHeadingProblem("heading-apple"), source)).toEqual({
+      expect(evaluateProblem(getHeadingProblem("heading-apple"), source)).toMatchObject({
         status: "fail",
         feedbackId: "use-h1-heading",
         message: "Start the title with one hash symbol and one space.",
@@ -119,7 +159,7 @@ describe("evaluateProblem", () => {
     })
 
     it("fails empty input because the requested H1 is missing", () => {
-      expect(evaluateProblem(getHeadingProblem("heading-apple"), "")).toEqual({
+      expect(evaluateProblem(getHeadingProblem("heading-apple"), "")).toMatchObject({
         status: "fail",
         feedbackId: "use-h1-heading",
         message: "Start the title with one hash symbol and one space.",
@@ -129,7 +169,7 @@ describe("evaluateProblem", () => {
     it.each(["#Apple today", "#apple", " #Apple today", "   #apple"])(
       "prioritizes the missing separator in %s",
       (source) => {
-        expect(evaluateProblem(getHeadingProblem("heading-apple"), source)).toEqual({
+        expect(evaluateProblem(getHeadingProblem("heading-apple"), source)).toMatchObject({
           status: "fail",
           feedbackId: "space-after-hash",
           message: "Add one space after the hash symbol.",
@@ -138,7 +178,7 @@ describe("evaluateProblem", () => {
     )
 
     it("diagnoses an NBSP separator as a visible spacing trap", () => {
-      expect(evaluateProblem(getHeadingProblem("heading-apple"), "#\u00a0Apple")).toEqual({
+      expect(evaluateProblem(getHeadingProblem("heading-apple"), "#\u00a0Apple")).toMatchObject({
         status: "fail",
         feedbackId: "space-after-hash",
         message: "Add one space after the hash symbol.",
@@ -155,7 +195,7 @@ describe("evaluateProblem", () => {
     it("acknowledges a matching Setext H1 before requesting hash style", () => {
       expect(
         evaluateProblem(getHeadingProblem("heading-rainy-day"), "Rainy day\n========="),
-      ).toEqual({
+      ).toMatchObject({
         status: "fail",
         feedbackId: "use-hash-heading-style",
         message:
@@ -166,7 +206,7 @@ describe("evaluateProblem", () => {
     it("requests hash style for Setext without grading capitalization", () => {
       expect(
         evaluateProblem(getHeadingProblem("heading-apple"), "apple\n====="),
-      ).toEqual({
+      ).toMatchObject({
         status: "fail",
         feedbackId: "use-hash-heading-style",
         message:

@@ -1,7 +1,16 @@
+import type { MatchCheck } from "../content/types"
+
+export type MatchFailureItem = {
+  feedbackId: string
+  message: string
+  check: MatchCheck
+}
+
 export type MatchFailure = {
   status: "fail"
   feedbackId: string
   message: string
+  failures: readonly MatchFailureItem[]
 }
 
 export type ReviewItem = {

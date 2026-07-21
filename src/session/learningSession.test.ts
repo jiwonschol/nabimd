@@ -186,6 +186,50 @@ describe("learningSessionReducer", () => {
     expect(transfer.progress.recentProblemIds).toContain("heading-apple")
   })
 
+  it("keeps failed feedback while editing until Check replaces it", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+    const edited = learningSessionReducer(failed, {
+      type: "edited",
+      value: "# Apple",
+    })
+
+    expect(edited.phase).toBe("editing")
+    expect(edited.evaluation).toBe(failed.evaluation)
+    expect(canAdvance(edited)).toBe(false)
+
+    const rechecked = learningSessionReducer(edited, {
+      type: "checked",
+      evaluation: evaluateProblem(apple, "# Apple"),
+      retryFamily: apple.retryFamily,
+    })
+
+    expect(rechecked.evaluation?.status).toBe("matched")
+    expect(rechecked.evaluation).not.toBe(failed.evaluation)
+  })
+
+  it("replaces one failed evaluation with a different failed recheck", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+    const rechecked = editAndCheck(failed, apple, "Apple\n=====")
+
+    expect(failed.evaluation?.status).toBe("fail")
+    expect(rechecked.evaluation?.status).toBe("fail")
+    expect(rechecked.evaluation).not.toBe(failed.evaluation)
+    if (
+      failed.evaluation?.status === "fail" &&
+      rechecked.evaluation?.status === "fail"
+    ) {
+      expect(
+        failed.evaluation.failures.map((failure) => failure.feedbackId),
+      ).toEqual(["space-after-hash", "use-h1-heading"])
+      expect(
+        rechecked.evaluation.failures.map((failure) => failure.feedbackId),
+      ).toEqual(["use-hash-heading-style", "use-h1-heading"])
+      expect(
+        rechecked.evaluation.failures.map((failure) => failure.feedbackId),
+      ).not.toContain("space-after-hash")
+    }
+  })
+
   it("restores any transfer as a clean recall exercise", () => {
     const progress = createDefaultProgress("heading-apple")
     progress.currentIsTransfer = true
