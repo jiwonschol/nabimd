@@ -2553,16 +2553,16 @@ button:focus-visible,
     gap: 0.45rem;
   }
 
-  .exercise-topbar__start {
+  .exercise-topbar--summary > .exercise-topbar__start {
     grid-area: start;
   }
 
-  .exercise-topbar__summary-title {
+  .exercise-topbar--summary > .exercise-topbar__summary-title {
     grid-area: progress;
     justify-self: center;
   }
 
-  .exercise-topbar__end {
+  .exercise-topbar--summary > .exercise-topbar__end {
     grid-area: end;
   }
 

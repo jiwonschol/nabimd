@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from "node:fs/promises"
+import { access, readFile, readdir, writeFile } from "node:fs/promises"
 import { dirname, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
@@ -110,7 +110,22 @@ const resolveInstalledDependency = (packages, fromLocation, dependencyName) => {
   }
 }
 
-const collectProductionLocations = (lockfile) => {
+const isPackageInstalled = async (packageLocation) => {
+  try {
+    await access(resolve(repositoryRoot, packageLocation, "package.json"))
+    return true
+  } catch (error) {
+    if (error && typeof error === "object" && error.code === "ENOENT") {
+      return false
+    }
+    throw error
+  }
+}
+
+export const collectProductionLocations = async (
+  lockfile,
+  { isInstalled = isPackageInstalled } = {},
+) => {
   const packages = lockfile.packages
   const rootPackage = packages?.[""]
 
@@ -120,10 +135,69 @@ const collectProductionLocations = (lockfile) => {
     )
   }
 
-  const pending = Object.keys(rootPackage.dependencies ?? {}).map((name) =>
-    resolveInstalledDependency(packages, "", name),
-  )
+  const pending = []
   const visited = new Set()
+
+  const enqueueDependencies = async (
+    packageEntry,
+    fromLocation,
+    { includePeerDependencies = true } = {},
+  ) => {
+    const optionalNames = new Set(
+      Object.keys(packageEntry.optionalDependencies ?? {}),
+    )
+    const requiredNames = new Set(
+      Object.keys(packageEntry.dependencies ?? {}).filter(
+        (name) => !optionalNames.has(name),
+      ),
+    )
+
+    if (includePeerDependencies) {
+      for (const peerName of Object.keys(packageEntry.peerDependencies ?? {})) {
+        if (
+          packageEntry.peerDependenciesMeta?.[peerName]?.optional !== true &&
+          !optionalNames.has(peerName)
+        ) {
+          requiredNames.add(peerName)
+        }
+      }
+    }
+
+    for (const dependencyName of [...requiredNames].sort(compareCodePoints)) {
+      const packageLocation = resolveInstalledDependency(
+        packages,
+        fromLocation,
+        dependencyName,
+      )
+      if (!(await isInstalled(packageLocation))) {
+        throw new Error(
+          `Required production dependency ${dependencyName} from ${fromLocation || "the project root"} is not installed`,
+        )
+      }
+      pending.push(packageLocation)
+    }
+
+    for (const dependencyName of [...optionalNames].sort(compareCodePoints)) {
+      let packageLocation
+      try {
+        packageLocation = resolveInstalledDependency(
+          packages,
+          fromLocation,
+          dependencyName,
+        )
+      } catch {
+        continue
+      }
+
+      if (await isInstalled(packageLocation)) {
+        pending.push(packageLocation)
+      }
+    }
+  }
+
+  await enqueueDependencies(rootPackage, "", {
+    includePeerDependencies: false,
+  })
 
   while (pending.length > 0) {
     const packageLocation = pending.shift()
@@ -142,23 +216,7 @@ const collectProductionLocations = (lockfile) => {
     }
 
     visited.add(packageLocation)
-
-    const requiredPeerDependencies = Object.keys(
-      packageEntry.peerDependencies ?? {},
-    ).filter(
-      (name) => packageEntry.peerDependenciesMeta?.[name]?.optional !== true,
-    )
-    const childNames = new Set([
-      ...Object.keys(packageEntry.dependencies ?? {}),
-      ...Object.keys(packageEntry.optionalDependencies ?? {}),
-      ...requiredPeerDependencies,
-    ])
-
-    for (const childName of [...childNames].sort(compareCodePoints)) {
-      pending.push(
-        resolveInstalledDependency(packages, packageLocation, childName),
-      )
-    }
+    await enqueueDependencies(packageEntry, packageLocation)
   }
 
   return [...visited]
@@ -430,7 +488,7 @@ ${renderLicenseGroups(entries)}
 
 const generateNotices = async () => {
   const lockfile = JSON.parse(await readFile(lockfilePath, "utf8"))
-  const packageLocations = collectProductionLocations(lockfile)
+  const packageLocations = await collectProductionLocations(lockfile)
   const entriesByIdentity = new Map()
 
   for (const packageLocation of packageLocations) {
@@ -538,4 +596,9 @@ const main = async () => {
   )
 }
 
-await main()
+if (
+  process.argv[1] &&
+  resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+) {
+  await main()
+}

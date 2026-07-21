@@ -851,6 +851,39 @@ test("keeps the Practice chrome groups disjoint at 1024px", async ({ page }) => 
   expect(exit!.x + exit!.width + 8).toBeLessThanOrEqual(level!.x)
 })
 
+for (const width of [320, 480, 760]) {
+  test(`keeps mobile Practice actions above the workspace at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 800 })
+    await page.goto("/")
+    await enterLevel(page, 1)
+
+    const [actions, tryAnother, check, workspace] = await Promise.all([
+      page.locator(".exercise-topbar__end").boundingBox(),
+      page.getByRole("button", { name: "Try another" }).boundingBox(),
+      page.getByRole("button", { name: "Check answer" }).boundingBox(),
+      page.locator(".cbt-workspace").boundingBox(),
+    ])
+
+    for (const box of [actions, tryAnother, check, workspace]) {
+      expect(box).not.toBeNull()
+    }
+
+    for (const box of [actions!, tryAnother!, check!]) {
+      expect(
+        box.y + box.height,
+        `mobile topbar actions must end before the workspace starts: ${JSON.stringify({
+          actions,
+          check,
+          tryAnother,
+          workspace,
+        })}`,
+      ).toBeLessThanOrEqual(workspace!.y)
+    }
+  })
+}
+
 for (const viewport of [
   { width: 901, height: 768 },
   { width: 800, height: 500 },

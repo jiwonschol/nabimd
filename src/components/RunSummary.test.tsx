@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { StrictMode } from "react"
-import { beforeEach, describe, expect, it, vi } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { joinSyntaxTokens, RunSummary } from "./RunSummary"
 
@@ -24,6 +24,10 @@ function renderSummary(failedProblemIds: string[] = []) {
 describe("RunSummary", () => {
   beforeEach(() => {
     vi.clearAllMocks()
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
   })
 
   it("closes a clean run with one primary next action", () => {
@@ -139,7 +143,6 @@ describe("RunSummary", () => {
 
     expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
     expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
-    vi.unstubAllGlobals()
   })
 
   it("opens a short desktop Summary on the teacher's praise", () => {
@@ -157,7 +160,6 @@ describe("RunSummary", () => {
 
     expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
     expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
-    vi.unstubAllGlobals()
   })
 
   it("uses the authored example for the exact failed syntax family", () => {

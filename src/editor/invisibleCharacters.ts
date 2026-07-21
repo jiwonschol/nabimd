@@ -113,7 +113,8 @@ export function buildFormattingMarks(
       const text = line.text
       const visibleFrom = Math.max(range.from, line.from)
       const visibleTo = Math.min(range.to, line.to)
-      const leadingWhitespaceLength = text.match(/^[ \t]*/)?.[0].length ?? 0
+      const leadingWhitespaceLength =
+        text.match(/^[ \t\u00a0\u3000]*/)?.[0].length ?? 0
 
       for (
         let offset = visibleFrom - line.from;

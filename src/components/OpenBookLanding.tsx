@@ -23,6 +23,7 @@ export function OpenBookLanding({
       aria-hidden={turning || undefined}
       className={`app-shell open-book-shell${turning ? " open-book-shell--turning" : ""}`}
       data-testid={turning ? "page-turn-transition" : undefined}
+      inert={turning || undefined}
     >
       <section
         aria-labelledby="open-book-motto-lead"
@@ -81,7 +82,7 @@ export function OpenBookLanding({
 
         <nav aria-label="Project links" className="open-book-legal-links">
           <a
-            aria-label="Source code (AGPL-3.0) on GitHub"
+            aria-label="Source code (AGPL-3.0) on GitHub (opens in a new tab)"
             className="open-book-legal-links__link"
             href="https://github.com/jiwonschol/nabimd"
             rel="noopener noreferrer"
@@ -93,7 +94,7 @@ export function OpenBookLanding({
             ·
           </span>
           <a
-            aria-label="Third-party licenses"
+            aria-label="Third-party licenses (opens in a new tab)"
             className="open-book-legal-links__link"
             href="/third-party-licenses.html"
             rel="noopener noreferrer"

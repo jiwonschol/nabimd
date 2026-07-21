@@ -68,4 +68,27 @@ describe("findInvisibleCharacters", () => {
       { from: 14, to: 14 },
     ])
   })
+
+  it("keeps ordinary spaces leading after non-breaking and ideographic spaces", () => {
+    const state = EditorState.create({ doc: "\u00a0  item\n\u3000\tchild" })
+    const decorations = buildFormattingMarks({
+      state,
+      visibleRanges: [{ from: 0, to: state.doc.length }],
+    })
+    const positions: Array<{ from: number; to: number }> = []
+
+    decorations.between(0, state.doc.length, (from, to) => {
+      positions.push({ from, to })
+    })
+
+    expect(positions).toEqual([
+      { from: 0, to: 1 },
+      { from: 1, to: 2 },
+      { from: 2, to: 3 },
+      { from: 7, to: 7 },
+      { from: 8, to: 9 },
+      { from: 9, to: 10 },
+      { from: 15, to: 15 },
+    ])
+  })
 })

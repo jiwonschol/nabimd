@@ -17,6 +17,8 @@ type MdNode = {
   identifier?: string
   label?: string | null
   ordered?: boolean | null
+  start?: number | null
+  value?: string
   position?: {
     start: { line: number; offset?: number }
     end: { line: number; offset?: number }
@@ -96,6 +98,136 @@ function lineByNumber(lines: SourceLine[], number: number): SourceLine | null {
   return lines[number - 1] ?? null
 }
 
+function conceal(
+  tokens: RenderedMarkdownToken[],
+  source: string,
+  from: number,
+  to: number,
+) {
+  let segmentFrom = from
+
+  while (segmentFrom < to) {
+    const newline = source.indexOf("\n", segmentFrom)
+    const segmentTo = newline === -1 || newline >= to ? to : newline
+    if (segmentFrom < segmentTo) {
+      tokens.push({
+        from: segmentFrom,
+        kind: "replace",
+        replacement: "conceal",
+        source: source.slice(segmentFrom, segmentTo),
+        to: segmentTo,
+      })
+    }
+    if (newline === -1 || newline >= to) break
+    segmentFrom = newline + 1
+  }
+}
+
+function fenceMarker(raw: string): string | null {
+  return /^(`{3,}|~{3,})/.exec(raw)?.[1] ?? null
+}
+
+function visualColumn(text: string, rawColumn: number): number {
+  let column = 0
+  for (let index = 0; index < rawColumn; index += 1) {
+    column =
+      text[index] === "\t" ? column + (4 - (column % 4)) : column + 1
+  }
+  return column
+}
+
+function rawCodeContentFrom(line: SourceLine, value: string): number | null {
+  if (!value) return null
+  if (line.text.endsWith(value)) return line.to - value.length
+
+  const withoutNormalizedIndent = value.trimStart()
+  if (
+    withoutNormalizedIndent &&
+    line.text.endsWith(withoutNormalizedIndent)
+  ) {
+    return line.to - withoutNormalizedIndent.length
+  }
+  return null
+}
+
+function closingFenceFrom(
+  line: SourceLine,
+  openingVisualColumn: number,
+  openingMarker: string,
+  quoteDepth: number,
+  listDepth: number,
+): number | null {
+  const minimum = openingMarker.length
+  const markerCharacter = openingMarker.charAt(0)
+  const quoteMarkers = findContainerQuoteMarkers(
+    line.text,
+    quoteDepth,
+    listDepth,
+  )
+  if (!quoteMarkers) return null
+  const contentColumn = quoteMarkers.at(-1)?.to ?? 0
+  const suffix = line.text.slice(contentColumn)
+  const match = /^([ \t]*)(`{3,}|~{3,})[ \t]*$/.exec(suffix)
+  const leading = match?.[1] ?? ""
+  const marker = match?.[2]
+  if (!marker || marker[0] !== markerCharacter || marker.length < minimum) {
+    return null
+  }
+
+  const markerColumn = contentColumn + leading.length
+  const markerVisualColumn = visualColumn(line.text, markerColumn)
+  const contentVisualColumn = visualColumn(line.text, contentColumn)
+  if (
+    listDepth === 0 &&
+    markerVisualColumn - contentVisualColumn > 3
+  ) {
+    return null
+  }
+  if (
+    listDepth > 0 &&
+    Math.abs(markerVisualColumn - openingVisualColumn) > 3
+  ) {
+    return null
+  }
+
+  return line.from + markerColumn
+}
+
+type ContainerMarker = { from: number; to: number }
+
+function findContainerQuoteMarkers(
+  text: string,
+  quoteDepth: number,
+  listDepth: number,
+): ContainerMarker[] | null {
+  if (quoteDepth === 0) return []
+
+  const markers: ContainerMarker[] = []
+  let cursor = 0
+  let remainingLists = listDepth
+
+  while (cursor < text.length && markers.length < quoteDepth) {
+    while (text[cursor] === " " || text[cursor] === "\t") cursor += 1
+
+    if (remainingLists > 0) {
+      const listMarker = /^(?:\d+[.)]|[-+*])[ \t]+/.exec(text.slice(cursor))
+      if (listMarker) {
+        cursor += listMarker[0].length
+        remainingLists -= 1
+        continue
+      }
+    }
+
+    if (text[cursor] !== ">") return null
+    const from = cursor
+    cursor += 1
+    if (text[cursor] === " " || text[cursor] === "\t") cursor += 1
+    markers.push({ from, to: cursor })
+  }
+
+  return markers.length === quoteDepth ? markers : null
+}
+
 function addConcealedDelimiters(
   tokens: RenderedMarkdownToken[],
   node: MdNode,
@@ -107,22 +239,10 @@ function addConcealedDelimiters(
   if (!outer || !inner) return
 
   if (outer.from < inner.from) {
-    tokens.push({
-      from: outer.from,
-      kind: "replace",
-      replacement: "conceal",
-      source: source.slice(outer.from, inner.from),
-      to: inner.from,
-    })
+    conceal(tokens, source, outer.from, inner.from)
   }
   if (inner.to < outer.to) {
-    tokens.push({
-      from: inner.to,
-      kind: "replace",
-      replacement: "conceal",
-      source: source.slice(inner.to, outer.to),
-      to: outer.to,
-    })
+    conceal(tokens, source, inner.to, outer.to)
   }
   if (inner.from < inner.to) {
     tokens.push({
@@ -155,33 +275,57 @@ export function findRenderedMarkdownTokens(
     mdastExtensions: [gfmFromMarkdown()],
   }) as unknown as MdNode
 
-  const visit = (node: MdNode, parent?: MdNode) => {
+  const visit = (node: MdNode, parent?: MdNode, ancestors: MdNode[] = []) => {
     const nodeOffsets = offsets(node)
 
     switch (node.type) {
       case "heading": {
-        const line = node.position
+        const first = node.position
           ? lineByNumber(lines, node.position.start.line)
           : null
-        if (line && nodeOffsets) {
-          const relativeStart = nodeOffsets.from - line.from
-          const prefix = /^(#{1,6})[ \t]+/.exec(
-            line.text.slice(relativeStart),
-          )?.[0]
-          if (prefix) {
+        const last = node.position
+          ? lineByNumber(lines, node.position.end.line)
+          : null
+        if (first && last && nodeOffsets) {
+          const relativeStart = nodeOffsets.from - first.from
+          const atx = /^(#{1,6})(?:[ \t]+|$)/.exec(
+            first.text.slice(relativeStart),
+          )
+          const inner = childBounds(node)
+          const className = `cm-rendered-heading cm-rendered-heading--${node.depth ?? 1}`
+
+          if (atx) {
+            if (!inner) {
+              conceal(tokens, source, nodeOffsets.from, nodeOffsets.to)
+              break
+            }
+            conceal(tokens, source, nodeOffsets.from, inner.from)
             tokens.push({
-              from: nodeOffsets.from,
-              kind: "replace",
-              replacement: "conceal",
-              source: prefix,
-              to: nodeOffsets.from + prefix.length,
-            })
-            tokens.push({
-              className: `cm-rendered-heading cm-rendered-heading--${node.depth ?? 1}`,
-              from: nodeOffsets.from + prefix.length,
+              className,
+              from: inner.from,
               kind: "mark",
-              to: line.to,
+              to: inner.to,
             })
+            conceal(tokens, source, inner.to, nodeOffsets.to)
+            break
+          }
+
+          if (first.number !== last.number && inner) {
+            tokens.push({
+              className,
+              from: inner.from,
+              kind: "mark",
+              to: inner.to,
+            })
+            const underline = /(?:=+|-+)[ \t]*$/.exec(last.text)
+            if (underline) {
+              conceal(
+                tokens,
+                source,
+                last.from + (underline.index ?? 0),
+                last.to,
+              )
+            }
           }
         }
         break
@@ -276,8 +420,12 @@ export function findRenderedMarkdownTokens(
           taskMarker?.[0] ??
           /^(\d+[.)]|[-+*])([ \t]+)/.exec(itemSource)?.[0]
         if (!marker) break
-        const authoredMarker = marker.trimEnd()
-        const nested = nodeOffsets.from > line.from
+        const listDepth = ancestors.filter(
+          (ancestor) => ancestor.type === "list",
+        ).length
+        const nested = listDepth > 1
+        const itemIndex = parent?.children?.indexOf(node) ?? -1
+        const ordinal = (parent?.start ?? 1) + Math.max(itemIndex, 0)
         tokens.push({
           from: nodeOffsets.from,
           glyph:
@@ -286,7 +434,7 @@ export function findRenderedMarkdownTokens(
                 ? "☑"
                 : "☐"
               : parent?.ordered
-                ? authoredMarker
+                ? `${ordinal}.`
                 : nested
                   ? "◦"
                   : "•",
@@ -411,7 +559,13 @@ export function findRenderedMarkdownTokens(
         break
       }
       case "blockquote": {
-        if (!node.position) break
+        if (!node.position || !nodeOffsets) break
+        const quoteDepth =
+          ancestors.filter((ancestor) => ancestor.type === "blockquote")
+            .length + 1
+        const listDepth = ancestors.filter(
+          (ancestor) => ancestor.type === "list",
+        ).length
         for (
           let number = node.position.start.line;
           number <= node.position.end.line;
@@ -419,23 +573,30 @@ export function findRenderedMarkdownTokens(
         ) {
           const line = lineByNumber(lines, number)
           if (!line) continue
-          const match = /^([ \t]*)(>[ \t]?)/.exec(line.text)
-          if (!match) continue
-          const leading = match[1]?.length ?? 0
-          const marker = match[2] ?? ">"
-          const markerFrom = line.from + leading
+          const markers = findContainerQuoteMarkers(
+            line.text,
+            quoteDepth,
+            listDepth,
+          )
+          const marker = markers?.at(-1)
+          if (!marker) continue
+          const markerFrom = line.from + marker.from
+          const markerTo = line.from + marker.to
+          if (markerFrom < nodeOffsets.from || markerFrom >= nodeOffsets.to) {
+            continue
+          }
           tokens.push({
             from: markerFrom,
             glyph: "│",
             kind: "replace",
             replacement: "quote",
-            source: marker,
-            to: markerFrom + marker.length,
+            source: source.slice(markerFrom, markerTo),
+            to: markerTo,
           })
-          if (markerFrom + marker.length < line.to) {
+          if (markerTo < line.to) {
             tokens.push({
               className: "cm-rendered-quote",
-              from: markerFrom + marker.length,
+              from: markerTo,
               kind: "mark",
               to: line.to,
             })
@@ -444,33 +605,66 @@ export function findRenderedMarkdownTokens(
         break
       }
       case "code": {
-        if (!node.position) break
+        if (!node.position || !nodeOffsets) break
         const first = lineByNumber(lines, node.position.start.line)
         const last = lineByNumber(lines, node.position.end.line)
-        const fenced = first ? /^[ \t]*(`{3,}|~{3,})/.test(first.text) : false
-        if (fenced && first && last) {
-          const concealFence = (line: SourceLine) => {
-            const leading = /^[ \t]*/.exec(line.text)?.[0].length ?? 0
+        const openingColumn = first ? nodeOffsets.from - first.from : 0
+        const openingVisualColumn = first
+          ? visualColumn(first.text, openingColumn)
+          : 0
+        const openingMarker = first
+          ? fenceMarker(first.text.slice(openingColumn))
+          : null
+        if (openingMarker && first && last) {
+          tokens.push({
+            from: nodeOffsets.from,
+            kind: "replace",
+            replacement: "fence",
+            source: first.text.slice(openingColumn),
+            to: first.to,
+          })
+          const quoteDepth = ancestors.filter(
+            (ancestor) => ancestor.type === "blockquote",
+          ).length
+          const listDepth = ancestors.filter(
+            (ancestor) => ancestor.type === "list",
+          ).length
+          const valueLines = (node.value ?? "").split("\n")
+          const closingFrom =
+            last.number === first.number
+              ? null
+              : closingFenceFrom(
+                  last,
+                  openingVisualColumn,
+                  openingMarker,
+                  quoteDepth,
+                  listDepth,
+                )
+          if (closingFrom !== null) {
             tokens.push({
-              from: line.from + leading,
+              from: closingFrom,
               kind: "replace",
               replacement: "fence",
-              source: line.text.slice(leading),
-              to: line.to,
+              source: source.slice(closingFrom, last.to),
+              to: last.to,
             })
           }
-          concealFence(first)
-          if (last.number !== first.number) concealFence(last)
           for (
             let number = first.number + 1;
-            number < last.number;
+            number <= last.number - (closingFrom === null ? 0 : 1);
             number += 1
           ) {
             const line = lineByNumber(lines, number)
-            if (line && line.from < line.to) {
+            const value = valueLines[number - first.number - 1] ?? ""
+            const contentFrom = line ? rawCodeContentFrom(line, value) : null
+            if (
+              line &&
+              contentFrom !== null &&
+              contentFrom >= line.from
+            ) {
               tokens.push({
                 className: "cm-rendered-code-block",
-                from: line.from,
+                from: contentFrom,
                 kind: "mark",
                 to: line.to,
               })
@@ -497,28 +691,11 @@ export function findRenderedMarkdownTokens(
         })
         break
       }
-      case "html": {
-        if (!node.position) break
-        for (
-          let number = node.position.start.line;
-          number <= node.position.end.line;
-          number += 1
-        ) {
-          const line = lineByNumber(lines, number)
-          if (!line || line.from === line.to) continue
-          tokens.push({
-            from: line.from,
-            kind: "replace",
-            replacement: "fence",
-            source: line.text,
-            to: line.to,
-          })
-        }
-        break
-      }
     }
 
-    node.children?.forEach((child) => visit(child, node))
+    node.children?.forEach((child) =>
+      visit(child, node, [...ancestors, node]),
+    )
   }
 
   visit(root)

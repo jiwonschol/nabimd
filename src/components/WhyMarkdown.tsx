@@ -166,7 +166,7 @@ export function WhyMarkdown() {
         tabIndex={animated ? undefined : 0}
       >
         {WHY_REASONS.map((reason, index) => {
-          const isActive = phase?.index === index
+          const activeState = phase?.index === index ? phase.state : null
           const leadGlyphs = visibleGlyphCount(reason.lead)
           const supportStartMs = leadGlyphs
             ? (leadGlyphs - 1) * GLYPH_DELAY_MS + GLYPH_ENTER_MS + LEAD_PAUSE_MS
@@ -176,7 +176,7 @@ export function WhyMarkdown() {
               aria-label={
                 animated ? `${reason.lead} ${reason.support}` : undefined
               }
-              className={`open-book-why__reason${isActive ? ` open-book-why__reason--${phase.state}` : ""}`}
+              className={`open-book-why__reason${activeState ? ` open-book-why__reason--${activeState}` : ""}`}
               key={reason.lead}
             >
               {animated ? (
