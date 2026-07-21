@@ -13,6 +13,21 @@ const failedEvaluation: Evaluation = {
   status: "fail",
   feedbackId: "missing-mark",
   message: "Add Markdown marks.",
+  failures: [
+    {
+      feedbackId: "missing-mark",
+      message: "Add Markdown marks.",
+      check: {
+        id: "missing-mark",
+        priority: 1,
+        feedback: "Add Markdown marks.",
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "strong",
+        min: 1,
+      },
+    },
+  ],
 }
 
 const matchedEvaluation: Evaluation = {

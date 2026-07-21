@@ -11,6 +11,7 @@ import type { EntryId } from "../content/entryChoices"
 import { getExerciseMode } from "../content/exerciseMode"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
+import { correctionCues } from "../feedback/correctionCues"
 import type { LearningSession } from "../session/learningSession"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 import { RenderedDocumentBody } from "./RenderedDocument"
@@ -72,7 +73,39 @@ function HintPanel({
   onNextHint: () => void
   problem: GradableProblem
 }) {
-  const visibleHint = problem.hints[Math.max(0, hintLevel - 1)]
+  if (evaluation?.status === "fail") {
+    const corrections = correctionCues(evaluation.failures)
+    const showsMessages = hintLevel >= 2
+
+    return (
+      <div className="answer-hint answer-hint--corrections">
+        <ol
+          aria-label="Failed Markdown patterns"
+          className="answer-hint__corrections"
+        >
+          {corrections.map((cue) => (
+            <li
+              className="answer-hint__correction"
+              key={`${cue.id}-${cue.label}`}
+            >
+              <h4>{cue.label}</h4>
+              {showsMessages ? <p>{cue.message}</p> : null}
+              {cue.example ? <code>{cue.example}</code> : null}
+            </li>
+          ))}
+        </ol>
+        <div className="answer-hint__coaching">
+          <span>{Math.min(hintLevel, 2)} of 2</span>
+          {hintLevel < 2 ? (
+            <button className="text-button" onClick={onNextHint} type="button">
+              Next hint
+            </button>
+          ) : null}
+        </div>
+      </div>
+    )
+  }
+
   const examples = sourceExamples(problem)
 
   return (
@@ -83,17 +116,6 @@ function HintPanel({
         ))}
       </div>
       <p>{problem.teaching.howTo}</p>
-      {evaluation?.status === "fail" ? (
-        <div className="answer-hint__coaching">
-          <p>{visibleHint}</p>
-          <span>{hintLevel} of 3</span>
-          {hintLevel < 3 ? (
-            <button className="text-button" onClick={onNextHint} type="button">
-              Next hint
-            </button>
-          ) : null}
-        </div>
-      ) : null}
     </div>
   )
 }
@@ -109,56 +131,71 @@ function ReviewPanel({
 }) {
   const failed = evaluation.status === "fail"
   const reviewItems = failed ? [] : evaluation.reviewItems
+  const corrections = failed ? correctionCues(evaluation.failures) : []
   const showsReferenceAnswer = getExerciseMode(problem.level ?? 1) === "target"
 
   return (
-    <div className="answer-review">
+    <div
+      className={`answer-review${failed ? " answer-review--corrections" : ""}`}
+    >
       <div className="answer-review__summary">
         <p>
           {failed
-            ? showsReferenceAnswer
-              ? "Compare the expected Markdown with what you wrote."
-              : "Review the document structure and revise your Markdown."
+            ? "Review each required correction and revise your Markdown."
             : "Your Markdown matched. These notes are optional improvements."}
         </p>
         <span>
           {failed
-            ? "1 thing to fix"
+            ? `${corrections.length} ${corrections.length === 1 ? "thing" : "things"} to fix`
             : `${reviewItems.length} ${reviewItems.length === 1 ? "thing" : "things"} to review`}
         </span>
       </div>
-      <div className="answer-review__card">
-        <h3>{failed ? "Markdown mark" : "Document structure"}</h3>
-        {showsReferenceAnswer ? (
+      {failed ? (
+        <ol
+          aria-label="Required corrections"
+          className="answer-review__corrections"
+        >
+          {corrections.map((cue) => (
+            <li
+              className="answer-review__correction"
+              key={`${cue.id}-${cue.label}`}
+            >
+              <h4>{cue.label}</h4>
+              <p>{cue.message}</p>
+              {cue.example ? <code>{cue.example}</code> : null}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <div className="answer-review__card">
+          <h3>Document structure</h3>
+          {showsReferenceAnswer ? (
+            <div className="answer-review__section">
+              <h4>How it should look</h4>
+              <div className="answer-review__document">
+                <RenderedDocumentBody source={problem.target} />
+              </div>
+            </div>
+          ) : null}
           <div className="answer-review__section">
-            <h4>How it should look</h4>
+            <h4>What you wrote</h4>
             <div className="answer-review__document">
-              <RenderedDocumentBody source={problem.target} />
+              <RenderedDocumentBody
+                emptyMessage="Nothing yet"
+                source={draft}
+              />
             </div>
           </div>
-        ) : null}
-        <div className="answer-review__section">
-          <h4>What you wrote</h4>
-          <div className="answer-review__document">
-            <RenderedDocumentBody
-              emptyMessage="Nothing yet"
-              source={draft}
-            />
-          </div>
-        </div>
-        <div className="answer-review__section">
-          <h4>How to fix it</h4>
-          {failed ? (
-            <p>{evaluation.message}</p>
-          ) : (
+          <div className="answer-review__section">
+            <h4>How to fix it</h4>
             <ul>
               {reviewItems.map((item) => (
                 <li key={item.id}>{item.message}</li>
               ))}
             </ul>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

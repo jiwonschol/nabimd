@@ -2,8 +2,11 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react"
 import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { entryChoices } from "./content/entryChoices"
+import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
+import { evaluateProblem } from "./engine/evaluateProblem"
+import { correctionCues } from "./feedback/correctionCues"
+import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
 import { playPageTurnSound } from "./sound/pageTurnSound"
 import { App } from "./App"
 
@@ -49,6 +52,23 @@ function currentProblem() {
 
 function currentSkill() {
   return currentProblem().skillIds[0]
+}
+
+function useSessionSeedForFirstProblem(
+  level: 1 | 2 | 3 | 4 | 5,
+  predicate: (problem: ReturnType<typeof getProblem>) => boolean,
+) {
+  const entry = entryChoices.find((choice) => choice.level === level)!
+
+  for (let seed = 0; seed < 1_000; seed += 1) {
+    const firstProblemId = createRunProblemIds(entry.id, 0, seed)[0]!
+    if (predicate(getProblem(firstProblemId))) {
+      window.sessionStorage.setItem(SESSION_SEED_STORAGE_KEY, String(seed))
+      return
+    }
+  }
+
+  throw new Error(`Expected a selectable Level ${level} problem`)
 }
 
 function validDifferentProse() {
@@ -252,6 +272,9 @@ describe("App", () => {
     await user.click(screen.getByRole("tab", { name: "Hint" }))
 
     const hint = screen.getByRole("tabpanel", { name: "Hint" })
+    expect(within(hint).getAllByRole("code")).toHaveLength(
+      currentProblem().syntaxTokens.length,
+    )
     expect(within(hint).getByText("# Title")).toBeVisible()
     expect(within(hint).getByText("## Section")).toBeVisible()
     expect(within(hint).getByText("### Phase")).toBeVisible()
@@ -346,24 +369,81 @@ describe("App", () => {
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
     const review = screen.getByRole("tabpanel", { name: "Review" })
-    expect(review).toHaveTextContent("How it should look")
-    expect(review).toHaveTextContent("How to fix it")
-    expect(review.querySelectorAll(".rendered-document__body")).toHaveLength(2)
+    expect(
+      within(review).getByRole("list", { name: "Required corrections" }),
+    ).toBeVisible()
+    expect(review.querySelector(".rendered-document__body")).toBeNull()
     expect(review.querySelector("pre")).toBeNull()
     expect(review).not.toHaveTextContent("Diff")
     expect(editor).not.toHaveFocus()
   })
 
-  it("does not reveal the canonical answer after a high-level failure", async () => {
-    const { user } = await openLevel(3)
+  it("lists every high-level correction without rendering either document", async () => {
+    useSessionSeedForFirstProblem(3, (problem) =>
+      problem.matchChecks.some(
+        (check) => check.kind === "inline-presence" && check.inline === "strong",
+      ),
+    )
+    const { user, editor } = await openLevel(3)
     const problem = currentProblem()
 
+    replaceSource(editor, "")
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
+    const evaluation = evaluateProblem(problem, "")
+    if (evaluation.status !== "fail") {
+      throw new Error("Expected an empty composite document to fail")
+    }
+    const expectedCues = correctionCues(evaluation.failures)
     const review = screen.getByRole("tabpanel", { name: "Review" })
-    expect(review).not.toHaveTextContent("How it should look")
+    const corrections = within(review).getByRole("list", {
+      name: "Required corrections",
+    })
+    const correctionItems = within(corrections).getAllByRole("listitem")
+    expect(correctionItems).toHaveLength(expectedCues.length)
+    expectedCues.forEach((cue, index) => {
+      const item = within(correctionItems[index]!)
+      expect(item.getByText(cue.label)).toBeVisible()
+      expect(item.getByText(cue.message)).toBeVisible()
+      if (cue.example) expect(item.getByText(cue.example)).toBeVisible()
+      else expect(correctionItems[index]!.querySelector("code")).toBeNull()
+    })
+    expect(within(corrections).getByText("Bold text")).toBeVisible()
+    expect(within(corrections).getByText("**Important**")).toBeVisible()
     expect(review).not.toHaveTextContent(problem.target.split("\n")[0]!)
-    expect(review.querySelectorAll(".rendered-document__body")).toHaveLength(1)
+    expect(review.querySelector(".rendered-document__body")).toBeNull()
+  })
+
+  it("scopes post-failure Hint to every and only failed correction", async () => {
+    useSessionSeedForFirstProblem(3, (problem) =>
+      problem.matchChecks.some(
+        (check) => check.kind === "inline-presence" && check.inline === "strong",
+      ),
+    )
+    const { user, editor } = await openLevel(3)
+    const problem = currentProblem()
+    const boldCheck = problem.matchChecks.find(
+      (check) => check.kind === "inline-presence" && check.inline === "strong",
+    )
+    if (!boldCheck) throw new Error("Expected a bold requirement")
+    const withoutBold = problem.target.replace(/\*\*(.*?)\*\*/, "$1")
+
+    replaceSource(editor, withoutBold)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("tab", { name: "Hint" }))
+
+    const hint = screen.getByRole("tabpanel", { name: "Hint" })
+    expect(within(hint).getByText("Bold text")).toBeVisible()
+    expect(within(hint).getByText("**Important**")).toBeVisible()
+    expect(within(hint).queryByText("# Title")).toBeNull()
+    expect(within(hint).queryByText(problem.teaching.howTo)).toBeNull()
+    for (const authoredHint of problem.hints) {
+      expect(within(hint).queryByText(authoredHint)).toBeNull()
+    }
+
+    await user.click(within(hint).getByRole("button", { name: "Next hint" }))
+    expect(within(hint).getByText(boldCheck.feedback)).toBeVisible()
+    expect(within(hint).queryByRole("button", { name: "Next hint" })).toBeNull()
   })
 
   it("keeps Markdown-structure Review optional after Matched", async () => {
