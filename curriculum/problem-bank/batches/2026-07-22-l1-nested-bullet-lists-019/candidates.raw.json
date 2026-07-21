@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "sequence": 19,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-22",
+  "candidates": [
+    {
+      "id": "l1-nested-bullets-lunch-tray",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "nested-lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An indented bullet belongs to the item above it.",
+        "howTo": "Type a hyphen and a space for every bullet. Put two spaces before each smaller bullet.",
+        "example": "- Travel bag\n  - Hat\n  - Map"
+      },
+      "syntaxTokens": [
+        "- Item",
+        "  - Nested item"
+      ],
+      "title": "Indented bullet list",
+      "prompt": "Write one main bullet. Indent two smaller bullets under it.",
+      "target": "- Lunch tray\n  - Sandwich\n  - Apple",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "nested-bullet-list-count",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "min": 2,
+          "max": 2,
+          "priority": 10,
+          "feedback": "Make one smaller bullet list inside the first bullet. Indent its lines so Markdown nests them."
+        },
+        {
+          "id": "nested-bullet-root-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 1,
+          "maxItems": 1,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 20,
+          "feedback": "Start the outer item with a bullet marker, such as `- Item`."
+        },
+        {
+          "id": "nested-bullet-child-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Put two visible bullet items inside the outer item. Indent their markers so Markdown nests them."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-nested-bullet-warmup-focused",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "paragraph",
+          "recursive": false,
+          "max": 0,
+          "review": "Keep this warm-up focused on one nested bullet list."
+        }
+      ],
+      "hints": [
+        "Type `- ` before all three lines.",
+        "Add two spaces before the second and third bullet markers.",
+        "Pattern: `- Item` then `  - Nested item`."
+      ],
+      "retryFamily": "level-1-nested-unordered-list",
+      "reviewTags": [
+        "one-syntax",
+        "nested-bullet-list",
+        "indentation"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "lunch",
+          "sandwich",
+          "apple"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "nested-bullets-lunch-tray"
+    },
+    {
+      "id": "l1-nested-bullets-game-box",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "nested-lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An indented bullet belongs to the item above it.",
+        "howTo": "Type a hyphen and a space for every bullet. Put two spaces before each smaller bullet.",
+        "example": "- Art box\n  - Paper\n  - Glue"
+      },
+      "syntaxTokens": [
+        "- Item",
+        "  - Nested item"
+      ],
+      "title": "Indented bullet list",
+      "prompt": "Write one main bullet. Indent two smaller bullets under it.",
+      "target": "- Game box\n  - Cards\n  - Dice",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "nested-bullet-list-count",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "min": 2,
+          "max": 2,
+          "priority": 10,
+          "feedback": "Make one smaller bullet list inside the first bullet. Indent its lines so Markdown nests them."
+        },
+        {
+          "id": "nested-bullet-root-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 1,
+          "maxItems": 1,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 20,
+          "feedback": "Start the outer item with a bullet marker, such as `- Item`."
+        },
+        {
+          "id": "nested-bullet-child-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Put two visible bullet items inside the outer item. Indent their markers so Markdown nests them."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-nested-bullet-warmup-focused",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "paragraph",
+          "recursive": false,
+          "max": 0,
+          "review": "Keep this warm-up focused on one nested bullet list."
+        }
+      ],
+      "hints": [
+        "Type `- ` before all three lines.",
+        "Add two spaces before the second and third bullet markers.",
+        "Pattern: `- Item` then `  - Nested item`."
+      ],
+      "retryFamily": "level-1-nested-unordered-list",
+      "reviewTags": [
+        "one-syntax",
+        "nested-bullet-list",
+        "indentation"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "games"
+        ],
+        "terms": [
+          "game",
+          "cards",
+          "dice"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "nested-bullets-game-box"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "nested-lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An indented bullet belongs to the item above it.",
+        "howTo": "Type a hyphen and a space for every bullet. Put two spaces before each smaller bullet.",
+        "example": "- Rain gear\n  - Boots\n  - Coat"
+      },
+      "syntaxTokens": [
+        "- Item",
+        "  - Nested item"
+      ],
+      "title": "Indented bullet list",
+      "prompt": "Write one main bullet. Indent two smaller bullets under it.",
+      "target": "- Garden bag\n  - Seeds\n  - Gloves",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "nested-bullet-list-count",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "min": 2,
+          "max": 2,
+          "priority": 10,
+          "feedback": "Make one smaller bullet list inside the first bullet. Indent its lines so Markdown nests them."
+        },
+        {
+          "id": "nested-bullet-root-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 1,
+          "maxItems": 1,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 20,
+          "feedback": "Start the outer item with a bullet marker, such as `- Item`."
+        },
+        {
+          "id": "nested-bullet-child-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Put two visible bullet items inside the outer item. Indent their markers so Markdown nests them."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-nested-bullet-warmup-focused",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "paragraph",
+          "recursive": false,
+          "max": 0,
+          "review": "Keep this warm-up focused on one nested bullet list."
+        }
+      ],
+      "hints": [
+        "Type `- ` before all three lines.",
+        "Add two spaces before the second and third bullet markers.",
+        "Pattern: `- Item` then `  - Nested item`."
+      ],
+      "retryFamily": "level-1-nested-unordered-list",
+      "reviewTags": [
+        "one-syntax",
+        "nested-bullet-list",
+        "indentation"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "gardening"
+        ],
+        "terms": [
+          "garden",
+          "seeds",
+          "gloves"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "nested-bullets-garden-bag"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "nested-lists",
+      "skillIds": [
+        "unordered-list"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "An indented bullet belongs to the item above it.",
+        "howTo": "Type a hyphen and a space for every bullet. Put two spaces before each smaller bullet.",
+        "example": "- Desk tray\n  - Pens\n  - Tape"
+      },
+      "syntaxTokens": [
+        "- Item",
+        "  - Nested item"
+      ],
+      "title": "Indented bullet list",
+      "prompt": "Write one main bullet. Indent two smaller bullets under it.",
+      "target": "- Bedside table\n  - Book\n  - Glasses",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "nested-bullet-list-count",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "list",
+          "recursive": true,
+          "min": 2,
+          "max": 2,
+          "priority": 10,
+          "feedback": "Make one smaller bullet list inside the first bullet. Indent its lines so Markdown nests them."
+        },
+        {
+          "id": "nested-bullet-root-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 1,
+          "maxItems": 1,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 20,
+          "feedback": "Start the outer item with a bullet marker, such as `- Item`."
+        },
+        {
+          "id": "nested-bullet-child-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "document"
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireNonemptyItems": true,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Put two visible bullet items inside the outer item. Indent their markers so Markdown nests them."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-nested-bullet-warmup-focused",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "paragraph",
+          "recursive": false,
+          "max": 0,
+          "review": "Keep this warm-up focused on one nested bullet list."
+        }
+      ],
+      "hints": [
+        "Type `- ` before all three lines.",
+        "Add two spaces before the second and third bullet markers.",
+        "Pattern: `- Item` then `  - Nested item`."
+      ],
+      "retryFamily": "level-1-nested-unordered-list",
+      "reviewTags": [
+        "one-syntax",
+        "nested-bullet-list",
+        "indentation"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home"
+        ],
+        "terms": [
+          "bedside",
+          "book",
+          "glasses"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "nested-bullets-bedside-table"
+    }
+  ]
+}

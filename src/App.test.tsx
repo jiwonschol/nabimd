@@ -79,6 +79,9 @@ function useSessionSeedForFirstProblem(
 }
 
 function validDifferentProse() {
+  if (currentProblem().familyId === "nested-lists") {
+    return "- Completely different\n  - misspeled words\n  - anything works"
+  }
   switch (currentSkill()) {
     case "blockquote":
       return "> completely different words"
@@ -275,6 +278,13 @@ describe("App", () => {
   })
 
   it("turns Level 5 syntax marks into readable source examples", async () => {
+    useSessionSeedForFirstProblem(
+      5,
+      (problem) =>
+        problem.syntaxTokens.includes("```bash") &&
+        problem.syntaxTokens.includes("**") &&
+        problem.syntaxTokens.includes("1."),
+    )
     const { user } = await openLevel(5)
     await user.click(screen.getByRole("tab", { name: "Hint" }))
 

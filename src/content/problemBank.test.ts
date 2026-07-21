@@ -14,6 +14,7 @@ import { italicRebuildBatch013Fixtures } from "./batches/italicRebuildBatch013Fi
 import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
 import { nestedListBatch016Fixtures } from "./batches/nestedListBatch016Fixtures"
+import { nestedBulletBatch019Fixtures } from "./batches/nestedBulletBatch019Fixtures"
 import { orderedListBatch005Fixtures } from "./batches/orderedListBatch005Fixtures"
 import { readableDocumentBatch010Fixtures } from "./batches/readableDocumentBatch010Fixtures"
 import { readableDocumentBatch011Fixtures } from "./batches/readableDocumentBatch011Fixtures"
@@ -43,9 +44,9 @@ function authoredWordCount(source: string) {
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(tracker.acceptedTotal).toBe(344)
+    expect(tracker.acceptedTotal).toBe(348)
     expect(tracker.counts.byLevel).toEqual({
-      1: 136,
+      1: 140,
       2: 148,
       3: 30,
       4: 20,
@@ -95,6 +96,11 @@ describe("compiled five-level problem bank", () => {
       ),
     ).toHaveLength(12)
     expect(
+      getProblemsForLevel(1).filter(
+        (problem) => problem.familyId === "nested-lists",
+      ),
+    ).toHaveLength(trackedFamilies["nested-lists"] ?? 0)
+    expect(
       getProblemsForLevel(3).filter(
         (problem) => problem.familyId === "readable-human-document",
       ),
@@ -127,6 +133,9 @@ describe("compiled five-level problem bank", () => {
 
   it("pre-fills every problem with deterministic visible prose and exact line topology", () => {
     expect(getProblem("l1-heading-apple").starterText).toBe("Apple")
+    expect(getProblem("l1-nested-bullets-lunch-tray").starterText).toBe(
+      "Lunch tray\nSandwich\nApple",
+    )
     expect(getProblem("l1-link-community-notice").starterText).toBe(
       "The latest update is in the community notice.",
     )
@@ -260,6 +269,7 @@ describe("compiled five-level problem bank", () => {
       ...nestedListBatch016Fixtures,
       ...advancedDocumentBatch017Fixtures,
       ...advancedDocumentReplacementBatch018Fixtures,
+      ...nestedBulletBatch019Fixtures,
     ].filter(({ problemId, problemRevision }) =>
       publishedProblemRevisions.has(`${problemId}@${problemRevision ?? 1}`),
     )

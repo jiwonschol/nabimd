@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "normalizedArtifactDigest": "b4effccae20b811db4e396402349da3ac1d00ee23db3dd522f32978682e418d8",
+  "fixtureArtifactDigest": "2a7b91d2d5217c85519d4027ad859a646be19fb348f9c64a53438bc645818b63",
+  "verificationDigest": "623618de42674ca1766b2e0c6c8bc60ee3925e3d8519be05002bd8d32955aabb",
+  "entries": [
+    {
+      "candidateId": "l1-nested-bullets-bedside-table",
+      "revision": 1,
+      "candidateDigest": "6deb40e5b657667a633c81096d5c629cd71bf8c1fd7a4bc6ce2a735aeca74f0c",
+      "problemDigest": "92da06895a9f9e16be8f138e267fa9f1acfd7fa2099d797d0f9a964e8c9539f0",
+      "fixtureDefinitionDigest": "fb9652b7ba2de00111f2ee30898a8ea799422dfb868338956c7f2a3a0c16b6bb",
+      "fixtureResultsDigest": "bc55208054b7f57f97fb3ce06a83c98f559dd8cbf7efe17e48d32a03269b7e61",
+      "fixtureCount": 14,
+      "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555"
+    },
+    {
+      "candidateId": "l1-nested-bullets-game-box",
+      "revision": 1,
+      "candidateDigest": "5e17a92f83b61446e3f257e0d659f33599f0f8131f566663baa70efb688cc1cf",
+      "problemDigest": "045b3fbcbd477f7dbb5ca4a772160347b7b1016d65b9aa5c004ea39521676052",
+      "fixtureDefinitionDigest": "5d67e30ecb108db366fffb651b1cb872860c086d877572410e5b7d6887cf16ed",
+      "fixtureResultsDigest": "be8550d35cb0b531517d1b38ebe79c03836910151f0303c5eb01adaa09b80520",
+      "fixtureCount": 14,
+      "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555"
+    },
+    {
+      "candidateId": "l1-nested-bullets-garden-bag",
+      "revision": 1,
+      "candidateDigest": "4c74e3dd1dd16476ae7ed3a404fe7f622f9591f150f3842bd70fe98bc2ddea2c",
+      "problemDigest": "ea348cf215769072bd717ef8f10802f0ed59c7bd5c52b79b4d6ea99cab881b0a",
+      "fixtureDefinitionDigest": "73a00a0c2fdb6ed401e3768a915df1bbf3cda495f88a4f6707fca3b60ce850cf",
+      "fixtureResultsDigest": "bc4f2d2a01d979649e9e9c1cb3bccaee27764346f980caf4a220d5d1c5dc89fa",
+      "fixtureCount": 14,
+      "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555"
+    },
+    {
+      "candidateId": "l1-nested-bullets-lunch-tray",
+      "revision": 1,
+      "candidateDigest": "dcc7f8fbcce434535938f4288e438167fa4b5d40981e17a7b2f3068d978137ed",
+      "problemDigest": "58d9cbd8514c05349b7ff572f50d9150c09098ab9e4419d37ab178359ce452a8",
+      "fixtureDefinitionDigest": "24f873374616ea55f71b6f8667bcae80c2b6ea8e2d1aee9ab8544d8f9de6e98b",
+      "fixtureResultsDigest": "500b95198f52291bba454061452e7df670ffc00141e2d8ec6a4700703e24e1f2",
+      "fixtureCount": 14,
+      "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555"
+    }
+  ],
+  "manifestDigest": "16a1bf8adcf777cf0c14806099ca1259e506460e77e7cefe948adf71f7888cb3"
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "status": "published",
+  "batchDigest": "5699925d2df68ed28e3d10ab8f6f2d06b524ef4bab27bc5b3836004471d79431",
+  "bankDigest": "2be7809fb83fbf58962013cac25c587ac65eaa3338a1702fc4bf0bdc0a7214a8",
+  "projectionDigest": "0bf2fbb72cc50ab16c82cef5af9c9e5e848fb376d978c1a43285435f8f261ed3",
+  "trackerDigest": "7041d0182ad9502479f5e9b51d3c587892cd09f08196bf74aceef8bcd686c9e4",
+  "generated": 4,
+  "accepted": 4,
+  "rejected": 0,
+  "blocked": 0,
+  "counts": {
+    "byLevel": {
+      "1": 140,
+      "2": 148,
+      "3": 30,
+      "4": 20,
+      "5": 10
+    },
+    "byFamily": {
+      "agent-ready-work-order": 10,
+      "blockquotes": 24,
+      "emphasis": 24,
+      "executable-development-spec": 12,
+      "fenced-code-blocks": 12,
+      "headings": 44,
+      "horizontal-rules": 24,
+      "inline-code": 24,
+      "italic-emphasis": 12,
+      "links": 24,
+      "lists": 48,
+      "nested-lists": 4,
+      "readable-human-document": 30,
+      "rebuild-code-block-documents": 12,
+      "rebuild-nested-list-documents": 12,
+      "rebuild-real-documents": 12,
+      "rebuild-sectioned-documents": 12,
+      "workplace-issue-note": 4,
+      "workplace-process-change": 4
+    },
+    "byLevelAndFamily": {
+      "1/blockquotes": 12,
+      "1/emphasis": 12,
+      "1/fenced-code-blocks": 12,
+      "1/headings": 28,
+      "1/horizontal-rules": 12,
+      "1/inline-code": 12,
+      "1/italic-emphasis": 12,
+      "1/links": 12,
+      "1/lists": 24,
+      "1/nested-lists": 4,
+      "2/blockquotes": 12,
+      "2/emphasis": 12,
+      "2/headings": 16,
+      "2/horizontal-rules": 12,
+      "2/inline-code": 12,
+      "2/links": 12,
+      "2/lists": 24,
+      "2/rebuild-code-block-documents": 12,
+      "2/rebuild-nested-list-documents": 12,
+      "2/rebuild-real-documents": 12,
+      "2/rebuild-sectioned-documents": 12,
+      "3/readable-human-document": 30,
+      "4/executable-development-spec": 12,
+      "4/workplace-issue-note": 4,
+      "4/workplace-process-change": 4,
+      "5/agent-ready-work-order": 10
+    },
+    "byFlavor": {
+      "standard": 348
+    }
+  },
+  "manifestDigest": "16a1bf8adcf777cf0c14806099ca1259e506460e77e7cefe948adf71f7888cb3",
+  "reviewDigests": [
+    "c31a0d30b585e101f8eb6b1b99ae452d40219bfe7ece9cf06f96facefdf95ed0",
+    "f5fd854531e2eb0ef4c9049f4cba98e326d15a3ec788e1073eefb53a0c8e9eb4"
+  ],
+  "editorialDigest": "094267253986e23efad3229bd31d940b59c237b4a59e66577756029fac38d908",
+  "summaryDigest": "ab5b0e8cbb16b881f3daaa19a8d3257f03d7ff475ae8eee0c2b4052e9d305f96"
+}

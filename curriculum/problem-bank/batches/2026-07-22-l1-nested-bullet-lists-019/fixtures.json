@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "fixtures": [
+    {
+      "id": "l1-nested-bullets-bedside-table-alternate-markers",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* Everyday group\n  * First item\n  * Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-canonical",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Bedside table\n  - Book\n  - Glasses",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-case-spelling",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- UPPER GROOP\n  - misspeled ONE\n  - ANYTHING TWO",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-different-prose",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Changed group 4\n  - Alpha word\n  - Beta word",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-extra-note",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Bedside table\n  - Book\n  - Glasses\n\nA short extra note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-nested-bullet-warmup-focused"
+      ]
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-fenced-lookalike",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "```markdown\n- Everyday group\n  - First item\n  - Second item\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-flat-bullets",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n- First item\n- Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-four-space-indent",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n    - First item\n    - Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-hidden-child-item",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  - <!-- hidden -->\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-missing",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "Everyday group\nFirst item\nSecond item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-ordered-child-list",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  1. First item\n  2. Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-ordered-root-list",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-root-list",
+      "source": "1. Everyday group\n   - First item\n   - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-root-list"
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-tab-indent",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n\t- First item\n\t- Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-bedside-table-third-list-depth",
+      "problemId": "l1-nested-bullets-bedside-table",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n  - First item\n    - Extra depth\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-alternate-markers",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* Everyday group\n  * First item\n  * Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-game-box-canonical",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Game box\n  - Cards\n  - Dice",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-game-box-case-spelling",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- UPPER GROOP\n  - misspeled ONE\n  - ANYTHING TWO",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-game-box-different-prose",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Changed group 2\n  - Alpha word\n  - Beta word",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-game-box-extra-note",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Game box\n  - Cards\n  - Dice\n\nA short extra note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-nested-bullet-warmup-focused"
+      ]
+    },
+    {
+      "id": "l1-nested-bullets-game-box-fenced-lookalike",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "```markdown\n- Everyday group\n  - First item\n  - Second item\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-flat-bullets",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n- First item\n- Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-four-space-indent",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n    - First item\n    - Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-game-box-hidden-child-item",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  - <!-- hidden -->\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-missing",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "Everyday group\nFirst item\nSecond item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-ordered-child-list",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  1. First item\n  2. Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-ordered-root-list",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-root-list",
+      "source": "1. Everyday group\n   - First item\n   - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-root-list"
+    },
+    {
+      "id": "l1-nested-bullets-game-box-tab-indent",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n\t- First item\n\t- Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-game-box-third-list-depth",
+      "problemId": "l1-nested-bullets-game-box",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n  - First item\n    - Extra depth\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-alternate-markers",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* Everyday group\n  * First item\n  * Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-canonical",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Garden bag\n  - Seeds\n  - Gloves",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-case-spelling",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- UPPER GROOP\n  - misspeled ONE\n  - ANYTHING TWO",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-different-prose",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Changed group 3\n  - Alpha word\n  - Beta word",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-extra-note",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Garden bag\n  - Seeds\n  - Gloves\n\nA short extra note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-nested-bullet-warmup-focused"
+      ]
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-fenced-lookalike",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "```markdown\n- Everyday group\n  - First item\n  - Second item\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-flat-bullets",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n- First item\n- Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-four-space-indent",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n    - First item\n    - Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-hidden-child-item",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  - <!-- hidden -->\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-missing",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "Everyday group\nFirst item\nSecond item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-ordered-child-list",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  1. First item\n  2. Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-ordered-root-list",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-root-list",
+      "source": "1. Everyday group\n   - First item\n   - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-root-list"
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-tab-indent",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n\t- First item\n\t- Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-garden-bag-third-list-depth",
+      "problemId": "l1-nested-bullets-garden-bag",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n  - First item\n    - Extra depth\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-alternate-markers",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "* Everyday group\n  * First item\n  * Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-canonical",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "- Lunch tray\n  - Sandwich\n  - Apple",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-case-spelling",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- UPPER GROOP\n  - misspeled ONE\n  - ANYTHING TWO",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-different-prose",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Changed group 1\n  - Alpha word\n  - Beta word",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-extra-note",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Lunch tray\n  - Sandwich\n  - Apple\n\nA short extra note.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-nested-bullet-warmup-focused"
+      ]
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-fenced-lookalike",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "```markdown\n- Everyday group\n  - First item\n  - Second item\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-flat-bullets",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n- First item\n- Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-four-space-indent",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n    - First item\n    - Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-hidden-child-item",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  - <!-- hidden -->\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-missing",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "Everyday group\nFirst item\nSecond item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-ordered-child-list",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-child-list",
+      "source": "- Everyday group\n  1. First item\n  2. Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-child-list"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-ordered-root-list",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-root-list",
+      "source": "1. Everyday group\n   - First item\n   - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-root-list"
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-tab-indent",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "- Everyday group\n\t- First item\n\t- Second item",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-nested-bullets-lunch-tray-third-list-depth",
+      "problemId": "l1-nested-bullets-lunch-tray",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "nested-bullet-list-count",
+      "source": "- Everyday group\n  - First item\n    - Extra depth\n  - Second item",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "nested-bullet-list-count"
+    }
+  ]
+}
