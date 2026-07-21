@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest"
-import { derivePlaintextStarter } from "./plaintextStarter"
+import {
+  deriveMarkdownBlankGuides,
+  derivePlaintextStarter,
+} from "./plaintextStarter"
 
 describe("derivePlaintextStarter", () => {
   it("keeps learner-visible prose while removing Markdown structure", () => {
@@ -169,5 +172,37 @@ describe("derivePlaintextStarter", () => {
         "",
       ].join("\n"),
     )
+  })
+})
+
+describe("deriveMarkdownBlankGuides", () => {
+  it("locates hidden Markdown marks in the projected starter text", () => {
+    const target = [
+      "## Study **tools**",
+      "",
+      "1. Read the guide",
+    ].join("\n")
+
+    expect(deriveMarkdownBlankGuides(target)).toEqual([
+      { from: 0, markers: "##" },
+      { from: 6, markers: "**" },
+      { from: 11, markers: "**" },
+      { from: 13, markers: "1." },
+    ])
+  })
+
+  it("keeps a guide on a line whose Markdown has no visible prose", () => {
+    expect(deriveMarkdownBlankGuides("---\n\nWords")).toEqual([
+      { from: 0, markers: "---" },
+    ])
+  })
+
+  it("combines nested prefix marks into one positional guide", () => {
+    expect(
+      deriveMarkdownBlankGuides("> - **Note**"),
+    ).toEqual([
+      { from: 0, markers: ">-**" },
+      { from: 4, markers: "**" },
+    ])
   })
 })

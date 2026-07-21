@@ -5,6 +5,8 @@ import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
+import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
+import { getProblemsForLevel } from "../content/problemBank"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 
 describe("MarkdownSourceEditor", () => {
@@ -373,6 +375,98 @@ describe("MarkdownSourceEditor", () => {
         screen.getByRole("textbox", { name: "Your Markdown" }),
       ).toHaveTextContent("# Study toolsNext"),
     )
+  })
+
+  it("shows positional blank cells without putting answer marks in the document", async () => {
+    const onChange = vi.fn()
+    const { container } = render(
+      <MarkdownSourceEditor
+        blankGuides={{
+          guides: [{ from: 0, markers: "##" }],
+          starterText: "Study tools",
+        }}
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value="Study tools"
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    const cells = container.querySelectorAll(".cm-markdown-blank-guide__cell")
+    expect(cells).toHaveLength(2)
+    expect(container.querySelector(".cm-markdown-blank-guide")).toHaveTextContent(
+      "",
+    )
+    expect(container.querySelector(".cm-markdown-blank-guide")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    )
+    expect(view.state.doc.toString()).toBe("Study tools")
+    expect(onChange).not.toHaveBeenCalled()
+
+    view.dispatch({ changes: { from: 0, insert: "#" } })
+    expect(
+      container.querySelectorAll(".cm-markdown-blank-guide__cell"),
+    ).toHaveLength(1)
+
+    view.dispatch({ changes: { from: 1, insert: "# " } })
+    await waitFor(() =>
+      expect(container.querySelector(".cm-markdown-blank-guide")).toBeNull(),
+    )
+    expect(view.state.doc.toString()).toBe("## Study tools")
+    expect(onChange).toHaveBeenLastCalledWith("## Study tools")
+
+    view.dispatch({ changes: { from: 0, to: 3, insert: "" } })
+    expect(
+      container.querySelectorAll(".cm-markdown-blank-guide__cell"),
+    ).toHaveLength(2)
+    expect(view.state.doc.toString()).toBe("Study tools")
+  })
+
+  it("recognizes marks already present in a restored draft", () => {
+    const { container } = render(
+      <MarkdownSourceEditor
+        blankGuides={{
+          guides: [
+            { from: 0, markers: "**" },
+            { from: 5, markers: "**" },
+          ],
+          starterText: "Tools",
+        }}
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value="**Tools**"
+      />,
+    )
+
+    expect(container.querySelector(".cm-markdown-blank-guide")).toBeNull()
+    expect(
+      EditorView.findFromDOM(
+        screen.getByRole("textbox", { name: "Your Markdown" }),
+      )?.state.doc.toString(),
+    ).toBe("**Tools**")
+  })
+
+  it("recognizes every mark already present in a restored composite draft", () => {
+    const problem = getProblemsForLevel(3)[0]
+    expect(problem).toBeDefined()
+    if (!problem) return
+    const { container } = render(
+      <MarkdownSourceEditor
+        blankGuides={{
+          guides: deriveMarkdownBlankGuides(problem.target),
+          starterText: problem.starterText,
+        }}
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value={problem.target}
+      />,
+    )
+
+    expect(container.querySelector(".cm-markdown-blank-guide")).toBeNull()
   })
 
   it("shows leading and between-word source spaces as formatting dots", () => {

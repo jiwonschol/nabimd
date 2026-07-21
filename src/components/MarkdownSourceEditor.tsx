@@ -19,6 +19,10 @@ import {
   useRef,
 } from "react"
 import { invisibleCharacters } from "../editor/invisibleCharacters"
+import {
+  markdownBlankGuides,
+  type MarkdownBlankGuideSource,
+} from "../editor/markdownBlankGuides"
 import { renderedMarkdown } from "../editor/renderedMarkdown"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { createActionKeyBindings } from "./keyboardShortcut"
@@ -69,6 +73,7 @@ function removeOneIndent(view: EditorView): boolean {
 
 type MarkdownSourceEditorProps = {
   active?: boolean
+  blankGuides?: MarkdownBlankGuideSource
   showInvisibles?: boolean
   value: string
   onChange: (value: string) => void
@@ -77,6 +82,7 @@ type MarkdownSourceEditorProps = {
 
 type MarkdownWordProcessorBaseProps = {
   active?: boolean
+  blankGuides?: MarkdownBlankGuideSource
   label: string
   showInvisibles?: boolean
   value: string
@@ -101,6 +107,7 @@ type MarkdownWordProcessorProps = MarkdownWordProcessorBaseProps &
 export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const {
     active = true,
+    blankGuides,
     label,
     presentation,
     readOnly,
@@ -177,6 +184,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
               ],
         ),
         invisibleCompartmentRef.current.of([]),
+        ...(blankGuides ? [markdownBlankGuides(blankGuides)] : []),
         presentationCompartmentRef.current.of(
           presentation === "rendered" ? renderedMarkdown() : [],
         ),
@@ -306,6 +314,7 @@ export function MarkdownSourceEditor(props: MarkdownSourceEditorProps) {
   return (
     <MarkdownWordProcessor
       active={props.active}
+      blankGuides={props.blankGuides}
       label="Your Markdown"
       onChange={props.onChange}
       onCheck={props.onCheck}

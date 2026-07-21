@@ -9,6 +9,7 @@ import {
 } from "react"
 import type { EntryId } from "../content/entryChoices"
 import { getExerciseMode } from "../content/exerciseMode"
+import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { correctionCues } from "../feedback/correctionCues"
@@ -228,6 +229,13 @@ export function AnswerPanel({
   const secondView: AnswerView = reviewAvailable ? "review" : "preview"
   const secondLabel = reviewAvailable ? "Review" : "Preview"
   const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
+  const blankGuides = useMemo(
+    () => ({
+      guides: deriveMarkdownBlankGuides(problem.target),
+      starterText: problem.starterText,
+    }),
+    [problem.starterText, problem.target],
+  )
 
   const selectView = useCallback(
     (nextView: AnswerView) => {
@@ -508,6 +516,7 @@ export function AnswerPanel({
       >
         <WordProcessorPage
           active={view === "write"}
+          blankGuides={blankGuides}
           key={problem.id}
           label="Your Markdown"
           leadingBlankRows={leadingBlankRows}

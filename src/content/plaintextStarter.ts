@@ -4,6 +4,7 @@ import { fromMarkdown } from "mdast-util-from-markdown"
 const unicodeSpaces = /[\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000]/g
 const zeroWidthCharacters = /[\u200b-\u200d\u2060\ufeff]/g
 const fencedCodeOpening = /^ {0,3}(?:`{3,}|~{3,})/
+const alwaysMarkdownMark = /[#*_~`>\[\]()!|\\<>=]/
 
 function isParent(node: Nodes): node is Parents {
   return "children" in node
@@ -186,4 +187,104 @@ export function derivePlaintextStarter(target: string): string {
         : line.replace(/[ \t]+$/g, ""),
     )
     .join("\n")
+}
+
+export type MarkdownBlankGuide = {
+  from: number
+  markers: string
+}
+
+function hiddenMarkdownMarks(gap: string, atLineStart: boolean): string {
+  const contextualPositions = new Set<number>()
+  if (atLineStart) {
+    for (const match of gap.matchAll(/(?:^|\s)(\d+[.)])(?=\s|$)/g)) {
+      const marker = match[1]
+      if (!marker || match.index === undefined) continue
+      const markerStart = match.index + match[0].indexOf(marker)
+      for (let offset = 0; offset < marker.length; offset += 1) {
+        contextualPositions.add(markerStart + offset)
+      }
+    }
+    for (const match of gap.matchAll(/(?:^|\s)([-+])(?=\s|$)/g)) {
+      const marker = match[1]
+      if (!marker || match.index === undefined) continue
+      contextualPositions.add(match.index + match[0].indexOf(marker))
+    }
+    if (/^\s*-{3,}\s*$/.test(gap)) {
+      for (let index = 0; index < gap.length; index += 1) {
+        if (gap[index] === "-") contextualPositions.add(index)
+      }
+    }
+  }
+
+  return Array.from(gap)
+    .filter(
+      (character, index) =>
+        contextualPositions.has(index) || alwaysMarkdownMark.test(character),
+    )
+    .join("")
+}
+
+function guidesForLine(
+  targetLine: string,
+  starterLine: string,
+  lineStart: number,
+): MarkdownBlankGuide[] {
+  const guides: MarkdownBlankGuide[] = []
+  let targetCursor = 0
+
+  const appendGap = (gapEnd: number, starterColumn: number) => {
+    if (gapEnd <= targetCursor) return
+    const markers = hiddenMarkdownMarks(
+      targetLine.slice(targetCursor, gapEnd),
+      starterColumn === 0,
+    )
+    if (markers) {
+      const from = lineStart + starterColumn
+      const previous = guides.at(-1)
+      if (previous?.from === from) previous.markers += markers
+      else guides.push({ from, markers })
+    }
+  }
+
+  for (let starterColumn = 0; starterColumn < starterLine.length; starterColumn += 1) {
+    const character = starterLine[starterColumn]
+    const targetPosition = targetLine.indexOf(character ?? "", targetCursor)
+    if (targetPosition < 0) continue
+    appendGap(targetPosition, starterColumn)
+    targetCursor = targetPosition + 1
+  }
+
+  appendGap(targetLine.length, starterLine.length)
+  return guides
+}
+
+/**
+ * Describes only the positions and lengths of Markdown marks removed from the
+ * learner's starter text. The actual characters stay internal and are never
+ * inserted into, or rendered as text inside, the answer document.
+ */
+export function deriveMarkdownBlankGuides(
+  target: string,
+): MarkdownBlankGuide[] {
+  const normalizedTarget = target.replace(/\r\n?/g, "\n")
+  const starter = derivePlaintextStarter(normalizedTarget)
+  const targetLines = normalizedTarget.split("\n")
+  const starterLines = starter.split("\n")
+  const guides: MarkdownBlankGuide[] = []
+  let lineStart = 0
+
+  for (let lineIndex = 0; lineIndex < starterLines.length; lineIndex += 1) {
+    const starterLine = starterLines[lineIndex] ?? ""
+    guides.push(
+      ...guidesForLine(
+        targetLines[lineIndex] ?? "",
+        starterLine,
+        lineStart,
+      ),
+    )
+    lineStart += starterLine.length + 1
+  }
+
+  return guides
 }
