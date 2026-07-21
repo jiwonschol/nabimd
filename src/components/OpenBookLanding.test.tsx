@@ -14,6 +14,9 @@ describe("OpenBookLanding", () => {
       screen.getByRole("heading", { name: "Markdown is easy." }),
     ).toBeVisible()
     expect(
+      screen.getByRole("region", { name: "Markdown is easy." }),
+    ).toBeVisible()
+    expect(
       screen.getByText("Learning to use it well is just as easy."),
     ).toBeVisible()
     expect(screen.getByText("Nobody ever showed you —")).toBeVisible()

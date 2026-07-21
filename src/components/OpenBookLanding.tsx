@@ -23,11 +23,16 @@ export function OpenBookLanding({
       className={`app-shell open-book-shell${turning ? " open-book-shell--turning" : ""}`}
       data-testid={turning ? "page-turn-transition" : undefined}
     >
-      <section className="open-book-page open-book-page--intro">
+      <section
+        aria-labelledby="open-book-motto-lead"
+        className="open-book-page open-book-page--intro"
+      >
         <Wordmark />
         <div className="open-book-intro">
           <div className="open-book-motto">
-            <h2 className="open-book-motto__lead">Markdown is easy.</h2>
+            <h2 className="open-book-motto__lead" id="open-book-motto-lead">
+              Markdown is easy.
+            </h2>
             <p className="open-book-motto__body">
               <span>Learning to use it well is just as easy.</span>{" "}
               <span>Nobody ever showed you —</span>{" "}

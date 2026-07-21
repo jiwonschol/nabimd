@@ -71,11 +71,12 @@ final result: passed
 
 # Design QA — Landing motto hierarchy
 
-- Approved visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-20fecd46-fb14-46cb-9546-74bc87f4a724.png`
-- Final implementation: `/private/tmp/nabimd-landing-1280-final.png`
-- Full comparison: `/private/tmp/nabimd-landing-comparison-final.png`
-- Focused chapter comparison: `/private/tmp/nabimd-index-focus-final-comparison.png`
-- Responsive evidence: `/private/tmp/nabimd-landing-390x700.png`, `/private/tmp/nabimd-landing-812x375.png`
+- Approved visual truth: `docs/design/qa/landing-motto-approved.png`
+- Final implementation: `docs/design/qa/landing-motto-implementation-1280x720.png`
+- Full comparison: `docs/design/qa/landing-motto-comparison-1280x720.png`
+- Focused chapter comparison: `docs/design/qa/landing-motto-chapters-comparison.png`
+- Responsive evidence: committed browser regressions in
+  `tests/e2e/heading-flow.spec.ts`
 - Viewports: `1280 × 720`, `768 × 1024`, `390 × 700`, `812 × 375`
 - State: fresh Landing
 
