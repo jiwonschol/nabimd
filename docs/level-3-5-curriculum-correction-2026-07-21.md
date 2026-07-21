@@ -37,7 +37,7 @@ is the habit Nabi exists to build.
    workplace notes, plans, handoffs, decisions, and checklists.
 5. **Level 5 - Write for developers.** Practice the Markdown forms common in
    developer and AI-assisted work: inline code, fenced code, blockquotes,
-   external links, nested lists, file paths, README fragments, bug reports, PR
+   meaningful links, nested lists, file paths, README fragments, bug reports, PR
    descriptions, and compact agent instructions. Reference-link-specific
    lessons, task lists, and images with alt text remain future candidates, not
    current bank requirements, until the validator and preview contracts can
@@ -86,7 +86,7 @@ small structural combination from a source, such as:
 - title + required reading + constraints;
 - goal + ordered steps + stop condition;
 - file list + forbidden action + verification command;
-- short README section + reference link + inline code; or
+- short README section + meaningful link + inline code; or
 - bug summary + reproduction list + fenced output.
 
 Do not compress a long work order mechanically. Author a new miniature from
