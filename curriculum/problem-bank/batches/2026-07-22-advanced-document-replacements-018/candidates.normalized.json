@@ -1,0 +1,4842 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-advanced-document-replacements-018",
+  "sequence": 18,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-07-22",
+  "promptSha256": "6da4573b53a634d9cfbcf2791a3d575b337d7718b6fa68aa2e525db0e9647fd6",
+  "rawArtifactDigest": "3aa166bfae1f55b8992ea8a43894315cead4aa071a23cbf25e345b13a6d0c925",
+  "candidateCount": 18,
+  "candidates": [
+    {
+      "id": "l4-api-field-deprecation-migration",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-process-change",
+      "skillIds": [
+        "change-outline",
+        "ordered-change",
+        "guardrail-quote",
+        "fenced-record"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace change note separates preparation, ordered steps, what must stay safe, completion checks, and a record.",
+        "howTo": "Use five H2 sections, short lists, one blockquote, and one fenced text record.",
+        "example": "# Meeting room name change\n\nRename one shared room while the old sign remains visible for a short handoff.\n\n## Before\n\n- Record the current bookings"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        "1.",
+        ">",
+        "```text"
+      ],
+      "title": "Structure an API-field deprecation",
+      "prompt": "Rebuild a compact meeting-room change note with preparation, ordered steps, one safety note, completion checks, and a record.",
+      "target": "# Meeting room name change\n\nRename one shared room while the old sign remains visible for a short handoff.\n\n## Before\n\n- Record the current bookings\n- List teams using the room\n\n## Steps\n\n1. Post the new room name\n2. Update future bookings\n3. Remove the old sign\n\n## Keep\n\n> Existing bookings must keep their original times.\n\n## Done when\n\n- New notices use one room name\n- Reception has the updated map\n\n## Record\n\n```text\nOwner: Office team | Status: confirmed\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-api-field-deprecation-migration-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-preconditions",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-migration",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-guardrail",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-acceptance",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-api-field-deprecation-migration-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and five ## sections.",
+        "Use bullets for preparation, numbers for the steps, and a quote for what must stay safe.",
+        "Finish with completion bullets and one fenced text record."
+      ],
+      "retryFamily": "level4-staged-migration-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-migration"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "api-field-migration"
+        ],
+        "terms": [
+          "response field",
+          "compatibility alias",
+          "consumer fixture",
+          "deprecation window"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "api-field-deprecation-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "996090344926ad552a1cb088b73b5e3db31390cda8560d0098ba4a910284a9f6"
+    },
+    {
+      "id": "l4-cache-namespace-migration",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-process-change",
+      "skillIds": [
+        "change-outline",
+        "ordered-change",
+        "guardrail-quote",
+        "fenced-record"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace change note separates preparation, ordered steps, what must stay safe, completion checks, and a record.",
+        "howTo": "Use five H2 sections, short lists, one blockquote, and one fenced text record.",
+        "example": "# Supply cabinet relabeling\n\nMove shared supplies to clearer shelves without interrupting the morning shift.\n\n## Before\n\n- Photograph the current shelves"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        "1.",
+        ">",
+        "```text"
+      ],
+      "title": "Plan a cache-namespace switch",
+      "prompt": "Rebuild a compact supply-cabinet change note with preparation, three ordered steps, a safety note, completion checks, and a record.",
+      "target": "# Supply cabinet relabeling\n\nMove shared supplies to clearer shelves without interrupting the morning shift.\n\n## Before\n\n- Photograph the current shelves\n- Count frequently used items\n\n## Steps\n\n1. Place temporary labels\n2. Move one shelf at a time\n3. Remove outdated labels\n\n## Keep\n\n> Keep daily supplies available during the move.\n\n## Done when\n\n- Every shelf has one label\n- The stock sheet matches the cabinet\n\n## Record\n\n```text\nOwner: Facilities | Status: checked\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-cache-namespace-migration-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-cache-namespace-migration-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-cache-namespace-migration-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l4-cache-namespace-migration-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-cache-namespace-migration-preconditions",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-cache-namespace-migration-migration",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-cache-namespace-migration-guardrail",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-cache-namespace-migration-acceptance",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-cache-namespace-migration-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and five ## sections.",
+        "Use bullets for preparation, numbers for the steps, and a quote for what must stay safe.",
+        "Finish with completion bullets and one fenced text record."
+      ],
+      "retryFamily": "level4-staged-migration-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-migration"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "cache-namespace-migration"
+        ],
+        "terms": [
+          "cache namespace",
+          "dual read",
+          "key prefix",
+          "expiration window"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "cache-namespace-switch-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "e34de74fa848911860a01858b523b36798e97cad1ec21c61fd0af02333ab0932"
+    },
+    {
+      "id": "l4-configuration-key-migration",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-process-change",
+      "skillIds": [
+        "change-outline",
+        "ordered-change",
+        "guardrail-quote",
+        "fenced-record"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace change note separates preparation, ordered steps, what must stay safe, completion checks, and a record.",
+        "howTo": "Use five H2 sections, short lists, one blockquote, and one fenced text record.",
+        "example": "# Shift handoff format change\n\nMove the closing note to one shared format while teams learn the new headings.\n\n## Before\n\n- Save one current handoff"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        "1.",
+        ">",
+        "```text"
+      ],
+      "title": "Plan a configuration-key rename",
+      "prompt": "Rebuild a compact shift-handoff change note with a short preparation list and clear proof.",
+      "target": "# Shift handoff format change\n\nMove the closing note to one shared format while teams learn the new headings.\n\n## Before\n\n- Save one current handoff\n- List required details\n\n## Steps\n\n1. Post the new template\n2. Use it for one shift\n3. Archive the old template\n\n## Keep\n\n> Urgent items must remain visible during the change.\n\n## Done when\n\n- Each note has one owner\n- Open items carry into the next shift\n\n## Record\n\n```text\nOwner: Store lead | Status: adopted\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-configuration-key-migration-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-configuration-key-migration-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-configuration-key-migration-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l4-configuration-key-migration-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-configuration-key-migration-preconditions",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-configuration-key-migration-migration",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-configuration-key-migration-guardrail",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-configuration-key-migration-acceptance",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-configuration-key-migration-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and five ## sections.",
+        "Use bullets for preparation, numbers for the steps, and a quote for what must stay safe.",
+        "Finish with completion bullets and one fenced text record."
+      ],
+      "retryFamily": "level4-staged-migration-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-migration"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "configuration-key-migration"
+        ],
+        "terms": [
+          "configuration key",
+          "compatibility read",
+          "call site",
+          "removal window"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "configuration-key-rename-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "2ec3d5fce64d05b7a911ef06c464a41a3fd9d9cd3416f20a4d3d621cb3d9e40f"
+    },
+    {
+      "id": "l4-duplicate-form-submission-investigation",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-issue-note",
+      "skillIds": [
+        "investigation-outline",
+        "evidence-blockquote",
+        "markdown-divider",
+        "ordered-reproduction",
+        "inline-code-verification"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace issue note separates observed evidence, reproduction, what changes, and checks.",
+        "howTo": "Use a quote and divider for evidence, numbered reproduction, short bullets, and inline-code labels.",
+        "example": "# Duplicate supply request issue\n\nTrace why one paper request can appear twice on the weekly order sheet.\n\n## Evidence\n\n> Request SR-18 appeared in two rows after one handoff."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        ">",
+        "---",
+        "1.",
+        "-",
+        "`"
+      ],
+      "title": "Investigate a duplicate form submission",
+      "prompt": "Rebuild a compact duplicate-request issue note with evidence, reproduction, what changes, and checks.",
+      "target": "# Duplicate supply request issue\n\nTrace why one paper request can appear twice on the weekly order sheet.\n\n## Evidence\n\n> Request SR-18 appeared in two rows after one handoff.\n\n---\n\n## Reproduce\n\n1. Open the order sheet\n2. Copy the afternoon notes\n3. Review request `SR-18`\n\n## What changes\n\n- Keep one sheet owner\n- Preserve the original request date\n\n## Verification\n\n- Compare label `SR-18`\n- Confirm status `ready`",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-duplicate-form-submission-investigation-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "thematic-break"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 4,
+          "max": 4,
+          "priority": 15,
+          "feedback": "Use exactly 4 H2 sections."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-evidence",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "max": 1,
+          "priority": 35,
+          "feedback": "Put one Markdown divider after the evidence."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-reproduction",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-fix",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-verification",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-duplicate-form-submission-investigation-verification-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 65,
+          "feedback": "Put nonempty inline code in both verification bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and four ## sections.",
+        "Quote the evidence, add one divider, then number three reproduction steps.",
+        "Finish with change bullets and two checks written with inline code."
+      ],
+      "retryFamily": "level4-bug-investigation-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-investigation"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "form-submission-investigation"
+        ],
+        "terms": [
+          "duplicate request",
+          "submit state",
+          "reproduction path",
+          "regression check"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "duplicate-form-submission-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "a698979a857282c3db57ed8cbda61e9998179a30994ead0cc9bc39df161dcefd"
+    },
+    {
+      "id": "l4-lost-pagination-cursor-investigation",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-issue-note",
+      "skillIds": [
+        "investigation-outline",
+        "evidence-blockquote",
+        "markdown-divider",
+        "ordered-reproduction",
+        "inline-code-verification"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace issue note separates observed evidence, reproduction, what changes, and checks.",
+        "howTo": "Use a quote and divider for evidence, numbered reproduction, short bullets, and inline-code labels.",
+        "example": "# Missing handoff note issue\n\nTrace why one closing note can disappear before the morning team reads it.\n\n## Evidence\n\n> The morning board did not show note H-24 after the evening close."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        ">",
+        "---",
+        "1.",
+        "-",
+        "`"
+      ],
+      "title": "Trace a lost pagination cursor",
+      "prompt": "Rebuild a compact missing-handoff issue note with quoted evidence and two visible label checks.",
+      "target": "# Missing handoff note issue\n\nTrace why one closing note can disappear before the morning team reads it.\n\n## Evidence\n\n> The morning board did not show note H-24 after the evening close.\n\n---\n\n## Reproduce\n\n1. Open the closing folder\n2. Post note `H-24`\n3. Check the morning board\n\n## What changes\n\n- Keep one handoff folder\n- Preserve the closing timestamp\n\n## Verification\n\n- Find label `H-24`\n- Confirm state `posted`",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-lost-pagination-cursor-investigation-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "thematic-break"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 4,
+          "max": 4,
+          "priority": 15,
+          "feedback": "Use exactly 4 H2 sections."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-evidence",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "max": 1,
+          "priority": 35,
+          "feedback": "Put one Markdown divider after the evidence."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-reproduction",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-fix",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-verification",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-lost-pagination-cursor-investigation-verification-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 65,
+          "feedback": "Put nonempty inline code in both verification bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and four ## sections.",
+        "Quote the evidence, add one divider, then number three reproduction steps.",
+        "Finish with change bullets and two checks written with inline code."
+      ],
+      "retryFamily": "level4-bug-investigation-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-investigation"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "pagination-cursor-investigation"
+        ],
+        "terms": [
+          "page cursor",
+          "detail return",
+          "list position",
+          "history state"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "lost-pagination-cursor-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "41d6203dbbca7e3af446c621dc10cf161503e47c6d0477b2d3e8e2c36e950766"
+    },
+    {
+      "id": "l4-nullable-column-backfill-migration",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-process-change",
+      "skillIds": [
+        "change-outline",
+        "ordered-change",
+        "guardrail-quote",
+        "fenced-record"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace change note separates preparation, ordered steps, what must stay safe, completion checks, and a record.",
+        "howTo": "Use five H2 sections, short lists, one blockquote, and one fenced text record.",
+        "example": "# Emergency contact card update\n\nAdd one missing contact label in small groups before printing the next card set.\n\n## Before\n\n- Count cards missing a label"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        "1.",
+        ">",
+        "```text"
+      ],
+      "title": "Structure a nullable-column backfill",
+      "prompt": "Rebuild a compact contact-card update note with a short preparation list, ordered work, a safety note, and proof.",
+      "target": "# Emergency contact card update\n\nAdd one missing contact label in small groups before printing the next card set.\n\n## Before\n\n- Count cards missing a label\n- Confirm the approved wording\n\n## Steps\n\n1. Update one small group\n2. Review the remaining cards\n3. Print the approved set\n\n## Keep\n\n> Do not replace a label that is already correct.\n\n## Done when\n\n- Existing labels remain unchanged\n- The update log names each group\n\n## Record\n\n```text\nOwner: People team | Status: reviewed\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-nullable-column-backfill-migration-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-preconditions",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-migration",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-guardrail",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-acceptance",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-nullable-column-backfill-migration-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and five ## sections.",
+        "Use bullets for preparation, numbers for the steps, and a quote for what must stay safe.",
+        "Finish with completion bullets and one fenced text record."
+      ],
+      "retryFamily": "level4-staged-migration-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-migration"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "nullable-column-migration"
+        ],
+        "terms": [
+          "nullable column",
+          "backfill batch",
+          "fallback value",
+          "migration journal"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "nullable-column-backfill-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "cb24d5605d77983a22951318ba24a44dc0550e7af8962860ee25a8e19d55af29"
+    },
+    {
+      "id": "l4-offline-retry-banner-investigation",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-issue-note",
+      "skillIds": [
+        "investigation-outline",
+        "evidence-blockquote",
+        "markdown-divider",
+        "ordered-reproduction",
+        "inline-code-verification"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace issue note separates observed evidence, reproduction, what changes, and checks.",
+        "howTo": "Use a quote and divider for evidence, numbered reproduction, short bullets, and inline-code labels.",
+        "example": "# Stale delivery board issue\n\nTrace why a completed delivery can remain on the waiting board.\n\n## Evidence\n\n> Delivery D-07 was logged as received, but its card stayed under Waiting."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        ">",
+        "---",
+        "1.",
+        "-",
+        "`"
+      ],
+      "title": "Investigate an offline retry banner",
+      "prompt": "Rebuild a compact delivery-board issue note with a short reproduction path and inline-code checks.",
+      "target": "# Stale delivery board issue\n\nTrace why a completed delivery can remain on the waiting board.\n\n## Evidence\n\n> Delivery D-07 was logged as received, but its card stayed under Waiting.\n\n---\n\n## Reproduce\n\n1. Open the delivery log\n2. Mark item `D-07` complete\n3. Review the waiting board\n\n## What changes\n\n- Keep one board owner\n- Preserve the receipt time\n\n## Verification\n\n- Find card `D-07`\n- Confirm state `complete`",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-offline-retry-banner-investigation-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "thematic-break"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 4,
+          "max": 4,
+          "priority": 15,
+          "feedback": "Use exactly 4 H2 sections."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-evidence",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "max": 1,
+          "priority": 35,
+          "feedback": "Put one Markdown divider after the evidence."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-reproduction",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-fix",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-verification",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-offline-retry-banner-investigation-verification-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 65,
+          "feedback": "Put nonempty inline code in both verification bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and four ## sections.",
+        "Quote the evidence, add one divider, then number three reproduction steps.",
+        "Finish with change bullets and two checks written with inline code."
+      ],
+      "retryFamily": "level4-bug-investigation-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-investigation"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "offline-banner-investigation"
+        ],
+        "terms": [
+          "offline banner",
+          "retry result",
+          "connection recovery",
+          "visible status"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "offline-retry-banner-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "aae632a9d6ab0cd3736bf7b73d19d678f071a7be5ca0cdf47af6619e248cc870"
+    },
+    {
+      "id": "l4-stale-permission-badge-investigation",
+      "schemaVersion": 2,
+      "level": 4,
+      "familyId": "workplace-issue-note",
+      "skillIds": [
+        "investigation-outline",
+        "evidence-blockquote",
+        "markdown-divider",
+        "ordered-reproduction",
+        "inline-code-verification"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A compact workplace issue note separates observed evidence, reproduction, what changes, and checks.",
+        "howTo": "Use a quote and divider for evidence, numbered reproduction, short bullets, and inline-code labels.",
+        "example": "# Stale training roster issue\n\nTrace why a completed course can remain marked open on the weekly roster.\n\n## Evidence\n\n> Course T-12 stayed open after the attendance sheet was signed."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        ">",
+        "---",
+        "1.",
+        "-",
+        "`"
+      ],
+      "title": "Investigate a stale access badge",
+      "prompt": "Rebuild a compact stale-roster issue note with clear evidence, reproduction, boundaries, and checks.",
+      "target": "# Stale training roster issue\n\nTrace why a completed course can remain marked open on the weekly roster.\n\n## Evidence\n\n> Course T-12 stayed open after the attendance sheet was signed.\n\n---\n\n## Reproduce\n\n1. Open the weekly roster\n2. Mark course `T-12` complete\n3. Return to the team list\n\n## What changes\n\n- Keep one roster owner\n- Preserve the attendance record\n\n## Verification\n\n- Find course `T-12`\n- Confirm state `complete`",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-stale-permission-badge-investigation-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "thematic-break"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 4,
+          "max": 4,
+          "priority": 15,
+          "feedback": "Use exactly 4 H2 sections."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-evidence",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "max": 1,
+          "priority": 35,
+          "feedback": "Put one Markdown divider after the evidence."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-reproduction",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-fix",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-verification",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-stale-permission-badge-investigation-verification-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 65,
+          "feedback": "Put nonempty inline code in both verification bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one # title and four ## sections.",
+        "Quote the evidence, add one divider, then number three reproduction steps.",
+        "Finish with change bullets and two checks written with inline code."
+      ],
+      "retryFamily": "level4-bug-investigation-spec",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level4-investigation"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "access-badge-investigation"
+        ],
+        "terms": [
+          "display badge",
+          "membership update",
+          "cached view",
+          "refresh boundary"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "stale-permission-badge-compact-r2",
+      "flavor": "standard",
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "11c716498be44ed1571b7aae6e3fbe2a6a9dd6ff31fceb7987624ee0f8cef641"
+    },
+    {
+      "id": "l5-analytics-adapter-refactor-work-order",
+      "schemaVersion": 2,
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "scope-boundary",
+        "ordered-refactor",
+        "guardrail-list",
+        "verification-contract",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A refactor brief names the files, ordered changes, guardrails, proof, and report shape.",
+        "howTo": "Use inline-code file paths, three numbered actions, short guardrails, a command fence, and bold report labels.",
+        "example": "# Analytics adapter refactor brief\n\nReplace the legacy adapter while preserving event names, consent, and payload allowlists.\n\n## Files\n\n- Edit `adapter.ts`"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "`",
+        "-",
+        "1.",
+        "```bash",
+        "**"
+      ],
+      "title": "Write a bounded analytics adapter refactor order",
+      "prompt": "Rebuild a compact developer refactor brief for replacing an analytics adapter.",
+      "target": "# Analytics adapter refactor brief\n\nReplace the legacy adapter while preserving event names, consent, and payload allowlists.\n\n## Files\n\n- Edit `adapter.ts`\n- Edit `adapter.test.ts`\n\n## Refactor\n\n1. Pin event fixtures\n2. Add the approved client\n3. Move verified callers\n\n## Guardrails\n\n- Keep raw customer text out\n- Do not bypass consent\n\n## Verify\n\n```bash\nnpm test --workspace packages/analytics\n```\n\n## Report\n\n- **Changed:** adapter boundary\n- **Checked:** consent and payloads",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-files",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-file-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 35,
+          "feedback": "Write both file paths as nonempty inline code."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-plan",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-guardrails",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 70,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-analytics-adapter-refactor-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "inline": "strong",
+          "min": 2,
+          "priority": 75,
+          "feedback": "Use bold labels in both report bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-report-labels-focused",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "strong",
+          "max": 2,
+          "review": "Keep bold focused on the two report labels."
+        }
+      ],
+      "hints": [
+        "Name two files with inline code before the ordered refactor.",
+        "Use three numbered actions and two guardrails.",
+        "Finish with a command fence and two bold report labels."
+      ],
+      "retryFamily": "level5-bounded-refactor-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-refactor"
+      ],
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "event-instrumentation"
+        ],
+        "terms": [
+          "authority boundary",
+          "event contract",
+          "forbidden shortcut",
+          "regression guard",
+          "commit contract"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "analytics-adapter-replacement-compact-r2",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "1074e297ec285c9a03a6a524339bafa389f342de42ca772fd36331c46d4031f1"
+    },
+    {
+      "id": "l5-api-contract-rollout-work-order",
+      "schemaVersion": 2,
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "nested-system-map",
+        "ordered-rollout",
+        "pause-condition",
+        "inline-code-verification",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A rollout brief maps ownership, orders the release, states a pause rule, and records proof.",
+        "howTo": "Use a nested system map, three numbered rollout steps, a pause quote, inline-code checks, and a fenced report template.",
+        "example": "# API contract rollout brief\n\nMove one versioned response from the provider to supported consumers with a pause rule.\n\n## System map\n\n- API provider"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        "  -",
+        "1.",
+        ">",
+        "`",
+        "```markdown"
+      ],
+      "title": "Write a coordinated API contract rollout order",
+      "prompt": "Rebuild a compact developer rollout brief for one versioned API response.",
+      "target": "# API contract rollout brief\n\nMove one versioned response from the provider to supported consumers with a pause rule.\n\n## System map\n\n- API provider\n  - Versioned schema\n  - Compatibility adapter\n- Web and mobile consumers\n\n## Rollout\n\n1. Publish the compatible response\n2. Move supported consumers\n3. Remove the old adapter\n\n## Pause\n\n> Pause when one supported consumer cannot read the response.\n\n## Checks\n\n- Run `npm test --workspace apps/api`\n- Run `npm test --workspace apps/web`\n\n## Report\n\n```markdown\n# API rollout report\n- Result:\n- Evidence:\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-api-contract-rollout-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-system-map",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-nested-map",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Nest two visible details under the provider."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-rollout",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-pause",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-checks",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-check-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 65,
+          "feedback": "Put nonempty inline code in both check bullets."
+        },
+        {
+          "id": "l5-api-contract-rollout-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one nested provider map and one consumer.",
+        "Number three rollout steps, then quote the pause rule.",
+        "Finish with two inline-code checks and one fenced report template."
+      ],
+      "retryFamily": "level5-coordinated-rollout-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-rollout"
+      ],
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "multi-consumer-delivery"
+        ],
+        "terms": [
+          "consumer contract",
+          "compatibility window",
+          "dependency order",
+          "release gate",
+          "rollback trigger"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "versioned-api-contract-rollout-compact-r2",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "f16226766f20f3afdf5bec0c1465e0a79bd77532703a2dc23709c3b0ed5d950f"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "l5-auth-migration-work-order",
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "authority-order",
+        "scope-boundary",
+        "ordered-execution",
+        "stop-condition",
+        "verification-contract",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "AI-assisted development",
+          "engineering operations"
+        ],
+        "terms": [
+          "source of truth",
+          "migration",
+          "rollback",
+          "regression guard"
+        ]
+      },
+      "teaching": {
+        "concept": "A compact agent brief makes authority, scope, action, stopping, proof, and reporting easy to scan.",
+        "howTo": "Use ordered reading and action lists, inline code, a linked authority, a stop quote, a command fence, and bold report labels.",
+        "example": "# Session verification migration brief\n\nMove verification behind the approved signed-session adapter without changing login behavior.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1.",
+        "-",
+        "[ ]( )",
+        "`",
+        ">",
+        "```bash",
+        "**"
+      ],
+      "title": "Prepare a safe authentication migration order",
+      "prompt": "Rebuild a compact developer brief for migrating session verification safely.",
+      "target": "# Session verification migration brief\n\nMove verification behind the approved signed-session adapter without changing login behavior.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)\n2. Read the signed-session decision\n\n## Scope\n\n- Edit `sessionVerifier.ts`\n- Preserve account identifiers\n\n## Plan\n\n1. Pin current session fixtures\n2. Add the signed verifier\n3. Test the login flows\n\n## Stop\n\n> Stop if rollback would invalidate every active session.\n\n## Verify\n\n```bash\nnpm test --workspace apps/auth -- sessions\n```\n\n## Report\n\n- **Changed:** verifier boundary\n- **Checked:** login and rollback",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-auth-migration-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-auth-migration-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-auth-migration-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 6,
+          "max": 6,
+          "priority": 15,
+          "feedback": "Use exactly 6 H2 sections."
+        },
+        {
+          "id": "l5-auth-migration-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-auth-migration-work-order-authority",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-auth-migration-work-order-authority-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 35,
+          "feedback": "Use one descriptive Markdown link in the reading list."
+        },
+        {
+          "id": "l5-auth-migration-work-order-scope",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-auth-migration-work-order-scope-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 45,
+          "feedback": "Use nonempty inline code in the scope list."
+        },
+        {
+          "id": "l5-auth-migration-work-order-plan",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-auth-migration-work-order-stop",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-auth-migration-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-auth-migration-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 80,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-auth-migration-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "inline": "strong",
+          "min": 2,
+          "priority": 85,
+          "feedback": "Use bold labels in both report bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Separate authority, scope, and the ordered plan before the stop rule.",
+        "Use a link in Read first and inline code for the file boundary.",
+        "Finish with a command fence and two bold report labels."
+      ],
+      "retryFamily": "level5-agent-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-agent-brief"
+      ],
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "auth-migration-compact-r3",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "6c87c3993eefcc9e36198fb0fdb343661b38d832bf7befb97bca69ffaeac9992"
+    },
+    {
+      "id": "l5-date-format-refactor-work-order",
+      "schemaVersion": 2,
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "scope-boundary",
+        "ordered-refactor",
+        "guardrail-list",
+        "verification-contract",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A refactor brief names the files, ordered changes, guardrails, proof, and report shape.",
+        "howTo": "Use inline-code file paths, three numbered actions, short guardrails, a command fence, and bold report labels.",
+        "example": "# Date formatting refactor brief\n\nConsolidate duplicate formatting while preserving locale, time-zone, and accessibility behavior.\n\n## Files\n\n- Edit `date.ts`"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "`",
+        "-",
+        "1.",
+        "```bash",
+        "**"
+      ],
+      "title": "Write a bounded date formatting refactor order",
+      "prompt": "Rebuild a compact developer refactor brief for shared date formatting.",
+      "target": "# Date formatting refactor brief\n\nConsolidate duplicate formatting while preserving locale, time-zone, and accessibility behavior.\n\n## Files\n\n- Edit `date.ts`\n- Edit `date.test.ts`\n\n## Refactor\n\n1. Pin current display fixtures\n2. Create one shared helper\n3. Move approved callers\n\n## Guardrails\n\n- Keep stored timestamps unchanged\n- Review snapshots before updating\n\n## Verify\n\n```bash\nnpm test --workspace packages/formatting\n```\n\n## Report\n\n- **Changed:** shared helper\n- **Checked:** locale boundaries",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-date-format-refactor-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-files",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-file-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 35,
+          "feedback": "Write both file paths as nonempty inline code."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-plan",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-guardrails",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 70,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-date-format-refactor-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "inline": "strong",
+          "min": 2,
+          "priority": 75,
+          "feedback": "Use bold labels in both report bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-report-labels-focused",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "strong",
+          "max": 2,
+          "review": "Keep bold focused on the two report labels."
+        }
+      ],
+      "hints": [
+        "Name two files with inline code before the ordered refactor.",
+        "Use three numbered actions and two guardrails.",
+        "Finish with a command fence and two bold report labels."
+      ],
+      "retryFamily": "level5-bounded-refactor-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-refactor"
+      ],
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "repository-maintenance"
+        ],
+        "terms": [
+          "source precedence",
+          "comprehension gate",
+          "scope boundary",
+          "regression guard",
+          "commit contract"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "shared-date-format-refactor-compact-r2",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "51c09f1f6c5f637da1e5693fbb2ff7d15a8b101984f4fa513b739e5384fe6a38"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "l5-dependency-upgrade-work-order",
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "authority-order",
+        "scope-boundary",
+        "ordered-execution",
+        "stop-condition",
+        "verification-contract",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "AI-assisted development",
+          "engineering operations"
+        ],
+        "terms": [
+          "advisory",
+          "compatibility",
+          "rollback",
+          "authority boundary"
+        ]
+      },
+      "teaching": {
+        "concept": "A compact agent brief makes authority, scope, action, stopping, proof, and reporting easy to scan.",
+        "howTo": "Use ordered reading and action lists, inline code, a linked authority, a stop quote, a command fence, and bold report labels.",
+        "example": "# Request-signing upgrade brief\n\nUpgrade the approved library while preserving the public signing contract and runtime support.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1.",
+        "-",
+        "[ ]( )",
+        "`",
+        ">",
+        "```bash",
+        "**"
+      ],
+      "title": "Write a controlled dependency-upgrade order",
+      "prompt": "Rebuild a compact developer brief for a controlled request-signing dependency upgrade.",
+      "target": "# Request-signing upgrade brief\n\nUpgrade the approved library while preserving the public signing contract and runtime support.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)\n2. Read the security advisory\n\n## Scope\n\n- Edit `requestSigning.ts`\n- Keep credentials out of fixtures\n\n## Plan\n\n1. Pin compatibility fixtures\n2. Upgrade the direct dependency\n3. Review transitive changes\n\n## Stop\n\n> Stop if the approved release drops a required runtime.\n\n## Verify\n\n```bash\nnpm test --workspace packages/request-signing\n```\n\n## Report\n\n- **Changed:** package and adapter\n- **Checked:** compatibility matrix",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-dependency-upgrade-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 6,
+          "max": 6,
+          "priority": 15,
+          "feedback": "Use exactly 6 H2 sections."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-authority",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-authority-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 35,
+          "feedback": "Use one descriptive Markdown link in the reading list."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-scope",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-scope-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 45,
+          "feedback": "Use nonempty inline code in the scope list."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-plan",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-stop",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 80,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-dependency-upgrade-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "inline": "strong",
+          "min": 2,
+          "priority": 85,
+          "feedback": "Use bold labels in both report bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Separate authority, scope, and the ordered plan before the stop rule.",
+        "Use a link in Read first and inline code for the file boundary.",
+        "Finish with a command fence and two bold report labels."
+      ],
+      "retryFamily": "level5-agent-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-agent-brief"
+      ],
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "dependency-upgrade-compact-r3",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "d4f67c6bfac3a9d0ca5bdd9daec8f57842b42aab3ffaebb5179724f08ebfab52"
+    },
+    {
+      "id": "l5-duplicate-job-recovery-work-order",
+      "schemaVersion": 2,
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "evidence-boundary",
+        "ordered-recovery",
+        "constraint-list",
+        "verification-contract",
+        "linked-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A recovery brief keeps evidence, repair order, constraints, proof, and reporting visible without becoming an incident report.",
+        "howTo": "Use quoted evidence, one divider, three numbered actions, short constraints, a command fence, and a linked report item.",
+        "example": "# Duplicate job recovery brief\n\nRestore one idempotent worker path while preserving delivery evidence.\n\n## Evidence\n\n> One queue message produced the same delivery identifier twice."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        ">",
+        "---",
+        "1.",
+        "-",
+        "```bash",
+        "**",
+        "[ ]( )"
+      ],
+      "title": "Write a duplicate job recovery work order",
+      "prompt": "Rebuild a compact developer recovery brief for duplicate job delivery.",
+      "target": "# Duplicate job recovery brief\n\nRestore one idempotent worker path while preserving delivery evidence.\n\n## Evidence\n\n> One queue message produced the same delivery identifier twice.\n\n---\n\n## Recovery\n\n1. Add a duplicate-delivery fixture\n2. Guard the stable identifier\n3. Run the worker suite\n\n## Constraints\n\n- Keep customer records\n- Exclude message bodies from logs\n\n## Verify\n\n```bash\nnpm test --workspace apps/worker -- duplicate-delivery\n```\n\n## Report\n\n- **Result:** one delivery path\n- [Recovery note](/reports/job-recovery)",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-duplicate-job-recovery-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "thematic-break"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-evidence",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "max": 1,
+          "priority": 35,
+          "feedback": "Put one Markdown divider after the evidence."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-recovery",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-constraints",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 70,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "inline": "strong",
+          "min": 1,
+          "priority": 75,
+          "feedback": "Use a bold label in the report list."
+        },
+        {
+          "id": "l5-duplicate-job-recovery-work-order-report-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 80,
+          "feedback": "Use one descriptive Markdown link in the report list."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Quote the evidence and separate it with one divider.",
+        "Use three numbered recovery actions and two short constraints.",
+        "Finish with a command fence, a bold result, and one report link."
+      ],
+      "retryFamily": "level5-evidence-recovery-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-recovery"
+      ],
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "production-recovery"
+        ],
+        "terms": [
+          "evidence boundary",
+          "containment",
+          "idempotency",
+          "rollback trigger",
+          "audit trail"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "duplicate-job-delivery-recovery-compact-r2",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "f415dfe0bcbb5f0941f7553bb6c066bbac7ad914e015f3854eff795fb8a16bd2"
+    },
+    {
+      "id": "l5-notification-schema-rollout-work-order",
+      "schemaVersion": 2,
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "nested-system-map",
+        "ordered-rollout",
+        "pause-condition",
+        "inline-code-verification",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A rollout brief maps ownership, orders the release, states a pause rule, and records proof.",
+        "howTo": "Use a nested system map, three numbered rollout steps, a pause quote, inline-code checks, and a fenced report template.",
+        "example": "# Preference schema rollout brief\n\nMove one preference schema across the API and worker without changing saved choices.\n\n## System map\n\n- API schema owner"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "-",
+        "  -",
+        "1.",
+        ">",
+        "`",
+        "```markdown"
+      ],
+      "title": "Write a coordinated preference schema rollout order",
+      "prompt": "Rebuild a compact developer rollout brief for notification preferences.",
+      "target": "# Preference schema rollout brief\n\nMove one preference schema across the API and worker without changing saved choices.\n\n## System map\n\n- API schema owner\n  - Preference contract\n  - Compatibility mapping\n- Delivery worker\n\n## Rollout\n\n1. Add the compatible schema\n2. Move the worker reader\n3. Remove old fields\n\n## Pause\n\n> Pause when a saved choice cannot map to the new schema.\n\n## Checks\n\n- Run `npm test --workspace apps/api`\n- Run `npm test --workspace apps/worker`\n\n## Report\n\n```markdown\n# Preference rollout report\n- Result:\n- Evidence:\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-notification-schema-rollout-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-system-map",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-nested-map",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "recursive": true,
+          "descendantsOnly": true,
+          "requireVisibleItems": true,
+          "priority": 35,
+          "feedback": "Nest two visible details under the provider."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-rollout",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-pause",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "requireNonemptyContent": true,
+          "priority": 50,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-checks",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 60,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-check-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 2,
+          "requireNonemptyContent": true,
+          "priority": 65,
+          "feedback": "Put nonempty inline code in both check bullets."
+        },
+        {
+          "id": "l5-notification-schema-rollout-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Start with one nested provider map and one consumer.",
+        "Number three rollout steps, then quote the pause rule.",
+        "Finish with two inline-code checks and one fenced report template."
+      ],
+      "retryFamily": "level5-coordinated-rollout-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-rollout"
+      ],
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "cross-service-delivery"
+        ],
+        "terms": [
+          "schema owner",
+          "consumer order",
+          "compatibility guard",
+          "pause condition",
+          "owner evidence"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "notification-preference-schema-rollout-compact-r2",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "b6fac703ff690ad8ca551149b89bd6cb8988cc862ea634a6568c9f3954565ced"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "l5-performance-recovery-work-order",
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "authority-order",
+        "scope-boundary",
+        "ordered-execution",
+        "stop-condition",
+        "verification-contract",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "AI-assisted development",
+          "engineering operations"
+        ],
+        "terms": [
+          "baseline",
+          "performance budget",
+          "stop condition",
+          "final report"
+        ]
+      },
+      "teaching": {
+        "concept": "A compact agent brief makes authority, scope, action, stopping, proof, and reporting easy to scan.",
+        "howTo": "Use ordered reading and action lists, inline code, a linked authority, a stop quote, a command fence, and bold report labels.",
+        "example": "# Report performance recovery brief\n\nImprove one measured report path while preserving authorization, order, and export fields.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1.",
+        "-",
+        "[ ]( )",
+        "`",
+        ">",
+        "```bash",
+        "**"
+      ],
+      "title": "Build an auditable performance recovery order",
+      "prompt": "Rebuild a compact developer brief for evidence-led report performance recovery.",
+      "target": "# Report performance recovery brief\n\nImprove one measured report path while preserving authorization, order, and export fields.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)\n2. Read the performance budget\n\n## Scope\n\n- Edit `monthlyReport.ts`\n- Use the existing benchmark fixture\n\n## Plan\n\n1. Record a stable baseline\n2. Make one bounded change\n3. Repeat the same benchmark\n\n## Stop\n\n> Stop if the baseline cannot reproduce the slow path.\n\n## Verify\n\n```bash\nnpm run benchmark -- monthly-report\n```\n\n## Report\n\n- **Changed:** measured query path\n- **Checked:** order and authorization",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-performance-recovery-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 6,
+          "max": 6,
+          "priority": 15,
+          "feedback": "Use exactly 6 H2 sections."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-authority",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-authority-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 35,
+          "feedback": "Use one descriptive Markdown link in the reading list."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-scope",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-scope-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 45,
+          "feedback": "Use nonempty inline code in the scope list."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-plan",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-stop",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 80,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-performance-recovery-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "inline": "strong",
+          "min": 2,
+          "priority": 85,
+          "feedback": "Use bold labels in both report bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Separate authority, scope, and the ordered plan before the stop rule.",
+        "Use a link in Read first and inline code for the file boundary.",
+        "Finish with a command fence and two bold report labels."
+      ],
+      "retryFamily": "level5-agent-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-agent-brief"
+      ],
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "performance-recovery-compact-r3",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "66fd5a7ee8c68d857fff3995795f38437fa07d34ffd6fd8a50f1ff126ed8cbbe"
+    },
+    {
+      "schemaVersion": 2,
+      "id": "l5-release-context-work-order",
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "authority-order",
+        "scope-boundary",
+        "ordered-execution",
+        "stop-condition",
+        "verification-contract",
+        "final-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "AI-assisted development",
+          "engineering operations"
+        ],
+        "terms": [
+          "authority order",
+          "hard constraint",
+          "stop condition",
+          "evidence"
+        ]
+      },
+      "teaching": {
+        "concept": "A compact agent brief makes authority, scope, action, stopping, proof, and reporting easy to scan.",
+        "howTo": "Use ordered reading and action lists, inline code, a linked authority, a stop quote, a command fence, and bold report labels.",
+        "example": "# Shared release context brief\n\nRestore the approved release context from storage without fetching it during requests.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)"
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        "1.",
+        "-",
+        "[ ]( )",
+        "`",
+        ">",
+        "```bash",
+        "**"
+      ],
+      "title": "Write a bounded release-context work order",
+      "prompt": "Rebuild a compact developer brief for restoring shared release context.",
+      "target": "# Shared release context brief\n\nRestore the approved release context from storage without fetching it during requests.\n\n## Read first\n\n1. Read [agent rules](/AGENTS.md)\n2. Read the storage decision\n\n## Scope\n\n- Edit `releaseContext.ts`\n- Preserve the public response type\n\n## Plan\n\n1. Pin the context contract\n2. Add idempotent storage\n3. Move the request reader\n\n## Stop\n\n> Stop if migration history cannot be reconciled safely.\n\n## Verify\n\n```bash\nnpm test --workspace apps/api -- release-context\n```\n\n## Report\n\n- **Changed:** storage and reader\n- **Checked:** request regression",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-release-context-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-release-context-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-release-context-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 6,
+          "max": 6,
+          "priority": 15,
+          "feedback": "Use exactly 6 H2 sections."
+        },
+        {
+          "id": "l5-release-context-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-release-context-work-order-authority",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-release-context-work-order-authority-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 35,
+          "feedback": "Use one descriptive Markdown link in the reading list."
+        },
+        {
+          "id": "l5-release-context-work-order-scope",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-release-context-work-order-scope-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 45,
+          "feedback": "Use nonempty inline code in the scope list."
+        },
+        {
+          "id": "l5-release-context-work-order-plan",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-release-context-work-order-stop",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-release-context-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 70,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-release-context-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 80,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-release-context-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 5
+          },
+          "inline": "strong",
+          "min": 2,
+          "priority": 85,
+          "feedback": "Use bold labels in both report bullets."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Separate authority, scope, and the ordered plan before the stop rule.",
+        "Use a link in Read first and inline code for the file boundary.",
+        "Finish with a command fence and two bold report labels."
+      ],
+      "retryFamily": "level5-agent-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-agent-brief"
+      ],
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "release-context-compact-r3",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "2bcab8aa5b2293287f0235171b6879f3e838016b324a3cce62f610b28be4da6f"
+    },
+    {
+      "id": "l5-search-index-recovery-work-order",
+      "schemaVersion": 2,
+      "level": 5,
+      "familyId": "agent-ready-work-order",
+      "skillIds": [
+        "evidence-boundary",
+        "ordered-recovery",
+        "constraint-list",
+        "verification-contract",
+        "linked-report"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A recovery brief keeps evidence, repair order, constraints, proof, and reporting visible without becoming an incident report.",
+        "howTo": "Use quoted evidence, one divider, three numbered actions, short constraints, a command fence, and a linked report item.",
+        "example": "# Search index recovery brief\n\nRepair stale facets while the primary database remains the source of truth.\n\n## Evidence\n\n> One record has different categories in the database and index."
+      },
+      "syntaxTokens": [
+        "#",
+        "##",
+        ">",
+        "---",
+        "1.",
+        "-",
+        "```bash",
+        "**",
+        "[ ]( )"
+      ],
+      "title": "Write a search index recovery work order",
+      "prompt": "Rebuild a compact developer recovery brief for a stale search index.",
+      "target": "# Search index recovery brief\n\nRepair stale facets while the primary database remains the source of truth.\n\n## Evidence\n\n> One record has different categories in the database and index.\n\n---\n\n## Recovery\n\n1. Capture one mismatch in a fixture\n2. Update the index mapping\n3. Rebuild only the checked records\n\n## Constraints\n\n- Keep primary records unchanged\n- Do not invent missing results\n\n## Verify\n\n```bash\nnpm test --workspace apps/search -- consistency\n```\n\n## Report\n\n- **Result:** consistent facets\n- [Recovery note](/reports/index-recovery)",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l5-search-index-recovery-work-order-limits",
+          "kind": "document-limits",
+          "maxLines": 40,
+          "priority": 5,
+          "feedback": "Keep the Markdown document within 40 lines."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "thematic-break"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "code"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's compact block order."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 5,
+          "max": 5,
+          "priority": 15,
+          "feedback": "Use exactly 5 H2 sections."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-evidence",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Use one visible blockquote in this section."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-divider",
+          "kind": "block-count",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "block": "thematic-break",
+          "min": 1,
+          "max": 1,
+          "priority": 35,
+          "feedback": "Put one Markdown divider after the evidence."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-recovery",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-constraints",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 2
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 50,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-verification-code",
+          "kind": "code-block",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 3
+          },
+          "min": 1,
+          "max": 1,
+          "requireLanguageTag": true,
+          "requireFenced": true,
+          "requireNonemptyContent": true,
+          "priority": 60,
+          "feedback": "Use one nonempty, language-tagged fenced block in this section."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-report",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 70,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-report-emphasis",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "inline": "strong",
+          "min": 1,
+          "priority": 75,
+          "feedback": "Use a bold label in the report list."
+        },
+        {
+          "id": "l5-search-index-recovery-work-order-report-link",
+          "kind": "link-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 4
+          },
+          "min": 1,
+          "requireNonemptyLabel": true,
+          "requireNonemptyDestination": true,
+          "allowReferences": true,
+          "allowAutolinks": false,
+          "priority": 80,
+          "feedback": "Use one descriptive Markdown link in the report list."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "one-document-title",
+          "kind": "single-h1",
+          "review": "Keep one H1 as the document title; use H2 for sections."
+        },
+        {
+          "id": "keep-one-blockquote",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "blockquote",
+          "recursive": true,
+          "max": 1,
+          "review": "Keep the callout focused in one blockquote."
+        }
+      ],
+      "hints": [
+        "Quote the evidence and separate it with one divider.",
+        "Use three numbered recovery actions and two short constraints.",
+        "Finish with a command fence, a bold result, and one report link."
+      ],
+      "retryFamily": "level5-evidence-recovery-work-order",
+      "reviewTags": [
+        "one-document-title",
+        "compact-document",
+        "level5-recovery"
+      ],
+      "vocabulary": {
+        "profile": "agent-workflow",
+        "domains": [
+          "search-operations"
+        ],
+        "terms": [
+          "baseline",
+          "index consistency",
+          "rebuild boundary",
+          "rollback trigger",
+          "regression guard"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "search-index-consistency-recovery-compact-r2",
+      "flavor": "standard",
+      "convention": {
+        "id": "nabi-agent-work-order",
+        "version": "2026.07",
+        "reviewedOn": "2026-07-22"
+      },
+      "sourceBatch": "2026-07-22-advanced-document-replacements-018",
+      "candidateDigest": "05ec66a5671341c33be0b40ecac2fb9d186d724747575e486cb5e00c11e12675"
+    }
+  ],
+  "artifactDigest": "8484818d474ee1a4f75b4529cf71b87eccd5524353d11a8d31fe62aecb38fe70"
+}

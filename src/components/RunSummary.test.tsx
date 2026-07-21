@@ -208,7 +208,7 @@ describe("RunSummary", () => {
       name: "Syntax reminder: Staged Migration",
     })
     expect(reminder.querySelector("code")?.textContent).toBe(
-      "#  ##  ###  -  1.  >  ```sh",
+      "#  ##  -  1.  >  ```text",
     )
     expect(
       screen.queryByText(/Setting-name migration/),
@@ -309,7 +309,7 @@ describe("RunSummary", () => {
     const [reminder] = reminders
     expect(reminder).toBeDefined()
     expect(reminder!.querySelector("code")?.textContent).toBe(
-      "#  ##  ###  1.  -  `  ```bash  ```markdown",
+      "#  ##  `  -  1.  ```bash  **",
     )
     expect(screen.queryByText(/Storage adapter/)).not.toBeInTheDocument()
     expect(screen.queryByText(/Currency helper/)).not.toBeInTheDocument()

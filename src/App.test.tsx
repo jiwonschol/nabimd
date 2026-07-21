@@ -284,8 +284,11 @@ describe("App", () => {
     )
     expect(within(hint).getByText("# Title")).toBeVisible()
     expect(within(hint).getByText("## Section")).toBeVisible()
-    expect(within(hint).getByText("### Phase")).toBeVisible()
     expect(within(hint).getByText("1. Read AGENTS.md")).toBeVisible()
+    expect(
+      Array.from(hint.querySelectorAll("code"), (node) => node.textContent),
+    ).toContain("```bash\n...\n```")
+    expect(within(hint).getByText("**Important**")).toBeVisible()
   })
 
   it("keeps the selected task identity visible in the exercise header", async () => {
@@ -402,7 +405,9 @@ describe("App", () => {
 
     await user.keyboard("{Alt>}1{/Alt}")
     await user.keyboard("{Alt>}2{/Alt}")
-    expect(screen.getByRole("tab", { name: "Review" })).toHaveFocus()
+    await waitFor(() => {
+      expect(screen.getByRole("tab", { name: "Review" })).toHaveFocus()
+    })
   })
 
   it("keeps failed Review available while editing until a successful recheck", async () => {

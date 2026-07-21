@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-advanced-document-replacements-018",
+  "editorialActor": "codex-editorial-batch018-independent",
+  "editorialRunId": "editorial-batch018-65843e5c-20260722-kst-001",
+  "reviewedOn": "2026-07-22",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "65843e5c49c5686d8258ab0f74419e25e4adf56e44de87d715e1836bf9b86343",
+  "decisions": [
+    {
+      "candidateId": "l4-api-field-deprecation-migration",
+      "revision": 2,
+      "candidateDigest": "996090344926ad552a1cb088b73b5e3db31390cda8560d0098ba4a910284a9f6",
+      "fixtureResultsDigest": "975c7eb64112bab091eaaaeaffe0bced1b4c71c2a5ba617ff01ef6076a3a3729",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The meeting-room rename is an ordinary workplace miniature with clear US English. Its 29-line, 72-word Goal makes five H2 sections, short bullet and numbered lists, one quote, and one text fence visible without requiring domain knowledge or prose authorship."
+    },
+    {
+      "candidateId": "l4-cache-namespace-migration",
+      "revision": 2,
+      "candidateDigest": "e34de74fa848911860a01858b523b36798e97cad1ec21c61fd0af02333ab0932",
+      "fixtureResultsDigest": "bad26b4614eadd65bdf3a5fa1a839b1f1e355f2c3324e8c51dc15962530be377",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The supply-cabinet change is familiar, fictional, and distinct from the other process variants. At 29 lines and 66 words, it uses each list, quote, heading, and fenced record as a Markdown decision rather than decorative workplace prose."
+    },
+    {
+      "candidateId": "l4-configuration-key-migration",
+      "revision": 2,
+      "candidateDigest": "2ec3d5fce64d05b7a911ef06c464a41a3fd9d9cd3416f20a4d3d621cb3d9e40f",
+      "fixtureResultsDigest": "4297a5f77c260b6fa376da85e166d87aacb0b4b13c5c85d8d9021aa4108d1d81",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The shift-handoff change fits Level 4 work writing and uses natural, accessible vocabulary. Its 29 lines and 73 words preserve the shared process-change anatomy while the scenario and visible record differ materially from its retry siblings."
+    },
+    {
+      "candidateId": "l4-duplicate-form-submission-investigation",
+      "revision": 2,
+      "candidateDigest": "a698979a857282c3db57ed8cbda61e9998179a30994ead0cc9bc39df161dcefd",
+      "fixtureResultsDigest": "557fc58ac0a6acdb17ab22ee93d5399dfaeacbd0843833f36aa35a658898f8ec",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The duplicate supply request is a recognizable workplace issue rather than a software debugging task. The 25-line, 60-word Goal gives the quote, divider, ordered reproduction, bullets, and inline-code labels a clear instructional purpose."
+    },
+    {
+      "candidateId": "l4-lost-pagination-cursor-investigation",
+      "revision": 2,
+      "candidateDigest": "41d6203dbbca7e3af446c621dc10cf161503e47c6d0477b2d3e8e2c36e950766",
+      "fixtureResultsDigest": "047ae2e3405a834fef9225f37bc3594c31958bf600af4ab512ed64d18b854c91",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The missing handoff note uses plain workplace language and a fictional label without requiring operational expertise. Its 25 lines and 62 words keep the issue-note structure compact, unambiguous, and visibly different from the other variants."
+    },
+    {
+      "candidateId": "l4-nullable-column-backfill-migration",
+      "revision": 2,
+      "candidateDigest": "cb24d5605d77983a22951318ba24a44dc0550e7af8962860ee25a8e19d55af29",
+      "fixtureResultsDigest": "660ad2a0ebbdf54824fe1056a68af1894de031c1a657459b4207f3ae9c72eda0",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The emergency-contact card update is a short ordinary-work task with no sensitive real data. Its 29-line, 73-word Goal uses small lists, one safety quote, and one text record to teach structure while supplied prose carries the scenario."
+    },
+    {
+      "candidateId": "l4-offline-retry-banner-investigation",
+      "revision": 2,
+      "candidateDigest": "aae632a9d6ab0cd3736bf7b73d19d678f071a7be5ca0cdf47af6619e248cc870",
+      "fixtureResultsDigest": "fb5e204b0f8ab49474e5fc7fd3dbdffd4e50e5cc785bc4ff71bc04f82e46a2c6",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The delivery-board issue is concise, natural workplace English after the receipt wording correction, and uses only a fictional identifier. Its 25 lines and 61 words keep every Markdown device purposeful and the task casual."
+    },
+    {
+      "candidateId": "l4-stale-permission-badge-investigation",
+      "revision": 2,
+      "candidateDigest": "11c716498be44ed1571b7aae6e3fbe2a6a9dd6ff31fceb7987624ee0f8cef641",
+      "fixtureResultsDigest": "0979fe7704f94eb2099e41b8dbf169389dba93aff2b9eb20b6cb9703d1be673a",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The training-roster issue is an ordinary workplace miniature with a distinct scenario and fictional course label. The 25-line, 62-word Goal is easy to scan and asks for Markdown restoration rather than business reasoning."
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 2,
+      "candidateDigest": "1074e297ec285c9a03a6a524339bafa389f342de42ca772fd36331c46d4031f1",
+      "fixtureResultsDigest": "e9aa71fb020e361650c93e93b4a589f98268cc6b38657f7281ea4f84d3fc89c6",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The fictional adapter refactor fits the developer-only Level 5 context without asking the learner to judge engineering truth. Its 30 lines and 62 words use inline-code paths, short lists, a command fence, and bold labels as explicit Markdown decisions."
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 2,
+      "candidateDigest": "f16226766f20f3afdf5bec0c1465e0a79bd77532703a2dc23709c3b0ed5d950f",
+      "fixtureResultsDigest": "7125a1e81f34f71765d08a5309325640282ab6bba9980a2eacee4d0f756d6ec8",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The API rollout provides a clear Level 5 nested-list example and stays independent of any real service. At 33 lines and 73 words, its hierarchy, pause quote, inline-code checks, and Markdown fence add syntax variety without a workload spike."
+    },
+    {
+      "candidateId": "l5-auth-migration-work-order",
+      "revision": 3,
+      "candidateDigest": "6c87c3993eefcc9e36198fb0fdb343661b38d832bf7befb97bca69ffaeac9992",
+      "fixtureResultsDigest": "bce56e6ad1e9f4087972949071234a91a1e19fe3d612a8c1a43607596ceebd4e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The session-verification brief is a compact developer instruction document with natural corrected wording. Its 34 lines and 75 words use a link, inline code, ordered and unordered lists, a quote, a command fence, and bold report labels without runtime AI."
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 2,
+      "candidateDigest": "51c09f1f6c5f637da1e5693fbb2ff7d15a8b101984f4fa513b739e5384fe6a38",
+      "fixtureResultsDigest": "6a0257c16550a6c4c6e4fa115cfb30f4156ff8eadb56cdf2eff9b919d8e06cb8",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The date-formatting refactor is a recognizable developer task with no real project dependency. The 30-line, 59-word Goal is the shortest Level 5 variant and keeps all file paths, steps, guardrails, command, and report labels instructionally useful."
+    },
+    {
+      "candidateId": "l5-dependency-upgrade-work-order",
+      "revision": 3,
+      "candidateDigest": "d4f67c6bfac3a9d0ca5bdd9daec8f57842b42aab3ffaebb5179724f08ebfab52",
+      "fixtureResultsDigest": "3d0f8b49ebdca3a6d8d4bd8de2994dbbface505341f972dfdca08c14a10f24ff",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The request-signing upgrade is a distinct, fictional developer brief whose security vocabulary remains readable from supplied prose. Its 34 lines and 76 words teach a rich Markdown mix without requiring dependency research or network access."
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 2,
+      "candidateDigest": "f415dfe0bcbb5f0941f7553bb6c066bbac7ad914e015f3854eff795fb8a16bd2",
+      "fixtureResultsDigest": "43ee30cb4584a64dc9d59af7e5ad15ba3eeef5d138de0f5908185872911096c6",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The duplicate-job recovery is a focused developer miniature and does not reproduce any real incident. Its 31 lines and 63 words make the evidence quote, divider, ordered recovery, command fence, strong label, and descriptive link visible without excess prose."
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 2,
+      "candidateDigest": "b6fac703ff690ad8ca551149b89bd6cb8988cc862ea634a6568c9f3954565ced",
+      "fixtureResultsDigest": "93d7da21b641f4c54d54a7b0873483e9b069591eceadb3470284a18feed75bbf",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The preference-schema rollout is structurally parallel but textually distinct from the API rollout. Its 33 lines and 73 words keep the nested map, three steps, pause quote, two inline-code checks, and fenced report compact and standard-compatible."
+    },
+    {
+      "candidateId": "l5-performance-recovery-work-order",
+      "revision": 3,
+      "candidateDigest": "66fd5a7ee8c68d857fff3995795f38437fa07d34ffd6fd8a50f1ff126ed8cbbe",
+      "fixtureResultsDigest": "037ada3a5edecb5cfe0c6c400a59f67347d6df22893b37cefce63aff7a0b35ef",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The performance-recovery brief is a bounded developer scenario whose benchmark terms remain supplied context rather than graded knowledge. At 34 lines and 79 words, it is the largest replacement but remains comfortably within a casual one-to-three-minute Markdown restoration task."
+    },
+    {
+      "candidateId": "l5-release-context-work-order",
+      "revision": 3,
+      "candidateDigest": "2bcab8aa5b2293287f0235171b6879f3e838016b324a3cce62f610b28be4da6f",
+      "fixtureResultsDigest": "d0c2780ce606de540721a505065045b13780a82ddcd44d1617f4a8919095dcd7",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The release-context brief now uses direct, natural developer English and a distinct storage scenario. Its 34 lines and 77 words combine the Level 5 structures without asking the learner to resolve migration history or contact an external service."
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 2,
+      "candidateDigest": "05ec66a5671341c33be0b40ecac2fb9d186d724747575e486cb5e00c11e12675",
+      "fixtureResultsDigest": "cfb8dfeecd7b9c8ea241b0f00c305c9766323cc7407f8040516efc86ccf6238d",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "The search-index recovery uses corrected, concrete action wording and differs materially from duplicate delivery. Its 31 lines and 70 words teach quote, divider, ordered steps, constraints, fenced verification, bold text, and a link without domain-truth grading."
+    }
+  ],
+  "reviewDigests": [
+    "60a27c53777ef7712083c7279373c0e15f4d49a2372253606fec0b7eff6aa30c",
+    "da0a02304e3b769ac280f6d2d5b394873ccf7674b82f5a4836c0f47af9a5aa2b"
+  ],
+  "editorialDigest": "87dd5359fa1cb10d8a14cf430aa6b151c63ce9312c83a1e97ec2e5a0745d2544"
+}

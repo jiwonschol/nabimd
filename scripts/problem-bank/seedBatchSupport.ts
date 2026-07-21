@@ -527,12 +527,50 @@ function publicationDriftErrors({
   ).flat() as JsonRecord[]
   for (const problem of expectedProblems) {
     const published = committedProblems.find(
-      (candidate) =>
-        candidate.id === problem.id && candidate.revision === problem.revision,
+      (candidate) => candidate.id === problem.id,
     )
-    if (canonicalJson(published) !== canonicalJson(problem)) {
+    if (!published) {
       errors.push(
         `Published runtime bank no longer contains foundation problem ${String(problem.id)}@${String(problem.revision)}`,
+      )
+      continue
+    }
+
+    const publishedRevision = published.revision ?? 1
+    const foundationRevision = problem.revision ?? 1
+    if (
+      typeof publishedRevision !== "number" ||
+      !Number.isInteger(publishedRevision) ||
+      publishedRevision < 1
+    ) {
+      errors.push(
+        `Published runtime bank has invalid revision ${String(publishedRevision)} for foundation problem ${String(problem.id)}`,
+      )
+      continue
+    }
+    if (
+      typeof foundationRevision !== "number" ||
+      !Number.isInteger(foundationRevision) ||
+      foundationRevision < 1
+    ) {
+      errors.push(
+        `Sealed foundation problem ${String(problem.id)} has invalid revision ${String(foundationRevision)}`,
+      )
+      continue
+    }
+    if (publishedRevision < foundationRevision) {
+      errors.push(
+        `Published runtime bank regressed foundation problem ${String(problem.id)} from revision ${foundationRevision} to ${publishedRevision}`,
+      )
+      continue
+    }
+
+    if (
+      publishedRevision === foundationRevision &&
+      canonicalJson(published) !== canonicalJson(problem)
+    ) {
+      errors.push(
+        `Published runtime bank changed sealed foundation problem ${String(problem.id)}@${foundationRevision}`,
       )
     }
   }

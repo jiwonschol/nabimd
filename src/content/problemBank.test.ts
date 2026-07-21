@@ -3,6 +3,7 @@ import runtimeProjections from "../../curriculum/problem-bank/runtime-projection
 import tracker from "../../curriculum/problem-bank/tracker.generated.json"
 import { blockquoteBatch006Fixtures } from "./batches/blockquoteBatch006Fixtures"
 import { advancedDocumentBatch017Fixtures } from "./batches/advancedDocumentBatch017Fixtures"
+import { advancedDocumentReplacementBatch018Fixtures } from "./batches/advancedDocumentReplacementBatch018Fixtures"
 import { codeBlockBatch014Fixtures } from "./batches/codeBlockBatch014Fixtures"
 import { developmentSpecBatch012Fixtures } from "./batches/developmentSpecBatch012Fixtures"
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
@@ -34,6 +35,10 @@ import { evaluateProblem } from "../engine/evaluateProblem"
 function withoutStarterText(problem: NormalizedProblem) {
   const { starterText: _starterText, ...rest } = problem
   return rest
+}
+
+function authoredWordCount(source: string) {
+  return source.match(/[A-Za-z0-9][A-Za-z0-9'`.:/-]*/g)?.length ?? 0
 }
 
 describe("compiled five-level problem bank", () => {
@@ -175,11 +180,11 @@ describe("compiled five-level problem bank", () => {
     expect(starterLines[dividerLine + 2]).toBe("Agenda")
   })
 
-  it("keeps the Level 5 report payload verbatim between empty fence lines", () => {
+  it("keeps the Level 5 command payload verbatim between empty fence lines", () => {
     const problem = getProblem("l5-auth-migration-work-order")
     const targetLines = problem.target.split("\n")
     const starterLines = problem.starterText.split("\n")
-    const openingFenceLine = targetLines.indexOf("```markdown")
+    const openingFenceLine = targetLines.indexOf("```bash")
     const closingFenceLine = targetLines.findIndex(
       (line, index) => index > openingFenceLine && line === "```",
     )
@@ -192,9 +197,30 @@ describe("compiled five-level problem bank", () => {
     expect(starterLines.slice(openingFenceLine + 1, closingFenceLine)).toEqual(
       targetLines.slice(openingFenceLine + 1, closingFenceLine),
     )
-    expect(starterLines).toContain("# Implementation report")
-    expect(starterLines).toContain("- Compatibility evidence")
+    expect(starterLines).toContain(
+      "npm test --workspace apps/auth -- sessions",
+    )
     expect(evaluateProblem(problem, problem.starterText).status).toBe("fail")
+  })
+
+  it("keeps every published advanced Goal inside the current practice ceiling", () => {
+    const ceilings = {
+      3: { lines: 28, words: 150 },
+      4: { lines: 40, words: 165 },
+      5: { lines: 40, words: 165 },
+    } as const
+
+    for (const problem of problemBank.filter(
+      (candidate) => (candidate.level ?? 0) >= 3,
+    )) {
+      const level = problem.level as keyof typeof ceilings
+      expect(problem.target.split("\n").length, problem.id).toBeLessThanOrEqual(
+        ceilings[level].lines,
+      )
+      expect(authoredWordCount(problem.target), problem.id).toBeLessThanOrEqual(
+        ceilings[level].words,
+      )
+    }
   })
 
   it("has a deterministic revision and lookup", () => {
@@ -211,7 +237,9 @@ describe("compiled five-level problem bank", () => {
   })
 
   it("passes the schema-v2 bank and fixture contract", () => {
-    const publishedProblemIds = new Set(problemBank.map(({ id }) => id))
+    const publishedProblemRevisions = new Set(
+      problemBank.map(({ id, revision }) => `${id}@${revision}`),
+    )
     const publishedFixtures = [
       ...level12SeedFixtures,
       ...level35SeedFixtures,
@@ -231,7 +259,10 @@ describe("compiled five-level problem bank", () => {
       ...headingDepthBatch015Fixtures,
       ...nestedListBatch016Fixtures,
       ...advancedDocumentBatch017Fixtures,
-    ].filter(({ problemId }) => publishedProblemIds.has(problemId))
+      ...advancedDocumentReplacementBatch018Fixtures,
+    ].filter(({ problemId, problemRevision }) =>
+      publishedProblemRevisions.has(`${problemId}@${problemRevision ?? 1}`),
+    )
 
     expect(
       validateProblemBank(problemBank, publishedFixtures),

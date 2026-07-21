@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "be6a660939c623b5d9db2ac38f034c83d86b72f5db6ff5cec1b28503aa5d1dc6",
+  "bankDigest": "8502943c22ee6c97006d4f385575cfcd46516777c89ee360a75a708c978a4936",
   "acceptedTotal": 344,
   "counts": {
     "byLevel": {
@@ -15,7 +15,7 @@
       "agent-ready-work-order": 10,
       "blockquotes": 24,
       "emphasis": 24,
-      "executable-development-spec": 20,
+      "executable-development-spec": 12,
       "fenced-code-blocks": 12,
       "headings": 44,
       "horizontal-rules": 24,
@@ -27,7 +27,9 @@
       "rebuild-code-block-documents": 12,
       "rebuild-nested-list-documents": 12,
       "rebuild-real-documents": 12,
-      "rebuild-sectioned-documents": 12
+      "rebuild-sectioned-documents": 12,
+      "workplace-issue-note": 4,
+      "workplace-process-change": 4
     },
     "byLevelAndFamily": {
       "1/blockquotes": 12,
@@ -51,7 +53,9 @@
       "2/rebuild-real-documents": 12,
       "2/rebuild-sectioned-documents": 12,
       "3/readable-human-document": 30,
-      "4/executable-development-spec": 20,
+      "4/executable-development-spec": 12,
+      "4/workplace-issue-note": 4,
+      "4/workplace-process-change": 4,
       "5/agent-ready-work-order": 10
     },
     "byFlavor": {
@@ -213,7 +217,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-22-advanced-document-replacements-018",
+      "sequence": 18,
+      "batchDigest": "a0942651706346cf73a7d44d49404f1c90322abd7343c161a82fef4fced5363d",
+      "generated": 18,
+      "accepted": 18,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "9c0b9d7daa121d484456249461631dcf947e7e75069a0894e5aa0bc436bb8686"
+  "trackerDigest": "cc3cadbc6e73d70361bc9f8161e4a0ba5857b33148cbb5d038ecf336432bf4a5"
 }
