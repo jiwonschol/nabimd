@@ -557,7 +557,7 @@ button:focus-visible,
   }
 
   .open-book-intro {
-    margin-top: 2rem;
+    margin-top: 4rem;
   }
 
   .open-book-motto__lead {
@@ -1232,25 +1232,37 @@ button:focus-visible,
 }
 
 .answer-hint--corrections {
-  display: grid;
-  height: 100%;
-  min-height: 0;
-  grid-template-rows: minmax(0, 1fr) auto;
+  min-height: 100%;
 }
 
 .answer-hint__corrections,
 .answer-review__corrections {
-  min-height: 0;
+  counter-reset: correction;
   margin: 0;
-  padding-left: 1.5rem;
-  overflow-y: auto;
+  padding: 0;
+  list-style: none;
 }
 
 .answer-hint__correction,
 .answer-review__correction {
+  position: relative;
+  counter-increment: correction;
   margin-bottom: 0.75rem;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 1rem 0.85rem 3.2rem;
   border: 1px solid var(--line);
+}
+
+.answer-hint__correction::before,
+.answer-review__correction::before {
+  position: absolute;
+  top: 0.85rem;
+  left: 1rem;
+  min-width: 1.35rem;
+  color: var(--muted);
+  content: counter(correction) ".";
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .answer-hint__correction:last-child,
@@ -1362,6 +1374,21 @@ button:focus-visible,
     color 140ms ease;
 }
 
+.answer-tab__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-tab:focus-visible {
+  outline: none;
+}
+
+.answer-tab:focus-visible .answer-tab__icon {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
 .answer-tab[aria-selected="true"] {
   color: var(--ink);
 }
@@ -1395,6 +1422,11 @@ button:focus-visible,
 .answer-panel__body--reading {
   overflow: auto;
   background: transparent;
+}
+
+.answer-panel__body--reading:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgb(17 17 17 / 55%);
 }
 
 .answer-panel__body--reading.answer-panel__body--sheet {
@@ -1697,21 +1729,19 @@ button:focus-visible,
 }
 
 .answer-review--corrections {
-  display: grid;
-  height: 100%;
-  min-height: 0;
-  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 100%;
 }
 
 .answer-review__summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
 .answer-review__summary p {
+  min-width: 0;
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
@@ -1843,6 +1873,15 @@ button:focus-visible,
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--paper);
+}
+
+.primary-button:hover {
+  background: #292927;
+}
+
+.primary-button:active {
+  box-shadow: inset 0 2px 4px rgb(17 17 17 / 16%);
+  transform: translateY(2px) scale(0.98);
 }
 
 .text-button {
@@ -2156,7 +2195,7 @@ button:focus-visible,
   }
 
   .run-summary__page {
-    min-height: calc(100svh - 72px);
+    min-height: calc(100svh - var(--practice-topbar-height) - 12px);
     padding: 2.25rem 1.5rem;
   }
 
@@ -2209,7 +2248,7 @@ button:focus-visible,
   }
 
   .exercise-progress {
-    min-width: 13rem;
+    min-width: 7.5rem;
   }
 
   .exercise-progress__level-name {
@@ -2223,6 +2262,8 @@ button:focus-visible,
   }
 
   .app-shell--practice {
+    --practice-topbar-height: 140px;
+
     grid-template-rows: 140px minmax(0, 1fr);
     background-image: url("/images/nabi-book-paper.png");
     background-repeat: repeat;
@@ -2312,6 +2353,24 @@ button:focus-visible,
   }
 }
 
+@media (max-width: 900px) and (min-width: 761px) and (max-height: 540px) {
+  .app-shell--practice {
+    background-image: url("/images/nabi-open-book-spread.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .cbt-workspace.open-book-shell {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .cbt-workspace .goal-panel {
+    border-bottom: 0;
+  }
+}
+
 @media (max-width: 620px) {
   .wordmark__home > span:last-child,
   .open-book-page--intro > .wordmark > span:last-child {
@@ -2326,6 +2385,29 @@ button:focus-visible,
 
   .answer-tab {
     min-width: 3rem;
+  }
+
+  .answer-review__summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .answer-review__summary span {
+    justify-self: start;
+  }
+
+  .verdict-notice {
+    width: min(24rem, calc(100vw - 2rem));
+    min-height: 8rem;
+    padding: 1.25rem;
+  }
+
+  .verdict-notice strong {
+    font-size: clamp(2.2rem, 12vw, 3.25rem);
+  }
+
+  .verdict-notice span {
+    font-size: 0.92rem;
   }
 
   .goal-panel > .cbt-panel__header {

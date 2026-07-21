@@ -126,4 +126,13 @@ describe("ExerciseTopBar", () => {
     expect(check).not.toHaveTextContent("Control")
     expect(check).not.toHaveTextContent("Check")
   })
+
+  it("waits for deliberate pointer movement before showing the Summary Home tooltip", () => {
+    renderTopBar("complete")
+    const home = screen.getByRole("button", { name: "Home" })
+
+    expect(home).not.toHaveAttribute("data-tooltip")
+    fireEvent.pointerMove(window)
+    expect(home).toHaveAttribute("data-tooltip", "Home")
+  })
 })

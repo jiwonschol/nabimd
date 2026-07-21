@@ -369,6 +369,9 @@ describe("App", () => {
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
     const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(review).toHaveAttribute("tabindex", "0")
+    expect(review).toHaveFocus()
+    expect(screen.getByRole("tab", { name: "Review" })).not.toHaveFocus()
     expect(
       within(review).getByRole("list", { name: "Required corrections" }),
     ).toBeVisible()
@@ -376,6 +379,10 @@ describe("App", () => {
     expect(review.querySelector("pre")).toBeNull()
     expect(review).not.toHaveTextContent("Diff")
     expect(editor).not.toHaveFocus()
+
+    await user.keyboard("{Alt>}1{/Alt}")
+    await user.keyboard("{Alt>}2{/Alt}")
+    expect(screen.getByRole("tab", { name: "Review" })).toHaveFocus()
   })
 
   it("keeps failed Review available while editing until a successful recheck", async () => {
@@ -398,6 +405,22 @@ describe("App", () => {
     expect(screen.getByRole("tab", { name: "Preview" })).toBeVisible()
     expect(screen.queryByRole("tab", { name: "Review" })).toBeNull()
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
+  })
+
+  it("refocuses Review after a repeated failure without blocking Write", async () => {
+    const { user, editor } = await openLevel(1)
+    await user.keyboard(malformedSource())
+    const check = screen.getByRole("button", { name: "Check answer" })
+
+    await user.click(check)
+    const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(review).toHaveFocus()
+
+    await user.click(check)
+    expect(review).toHaveFocus()
+
+    await user.keyboard("{Alt>}1{/Alt}")
+    expect(editor).toHaveFocus()
   })
 
   it("replaces Review and Hint feedback after a different failed recheck", async () => {

@@ -163,6 +163,8 @@ export function RunSummary({
   onChangeLevel,
 }: RunSummaryProps) {
   const playedSummarySound = useRef(false)
+  const completionTitleRef = useRef<HTMLHeadingElement>(null)
+  const practiceAgainRef = useRef<HTMLButtonElement>(null)
   const reminders = useMemo(
     () => syntaxReminders(failedProblemIds),
     [failedProblemIds],
@@ -172,6 +174,16 @@ export function RunSummary({
     if (playedSummarySound.current) return
     playedSummarySound.current = true
     playFeedbackSound("summary")
+  }, [])
+
+  useEffect(() => {
+    const narrow =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(max-width: 760px)").matches
+    const target = narrow
+      ? completionTitleRef.current
+      : practiceAgainRef.current
+    target?.focus({ preventScroll: true })
   }, [])
 
   const singleReminder = reminders.length === 1 ? reminders[0] : null
@@ -192,6 +204,8 @@ export function RunSummary({
           <h2
             className="run-summary__title summary-ink summary-ink--1"
             id="completion-title"
+            ref={completionTitleRef}
+            tabIndex={-1}
           >
             {completionTitle(score, total)}
           </h2>
@@ -294,9 +308,9 @@ export function RunSummary({
 
         <div className="run-summary__actions">
           <button
-            autoFocus
             className="primary-button run-summary__practice-again"
             onClick={onPracticeAgain}
+            ref={practiceAgainRef}
             type="button"
           >
             Practice again

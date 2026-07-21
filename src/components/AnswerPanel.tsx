@@ -218,7 +218,10 @@ export function AnswerPanel({
   const secondTabRef = useRef<HTMLButtonElement>(null)
   const hintTabRef = useRef<HTMLButtonElement>(null)
   const writePanelRef = useRef<HTMLDivElement>(null)
+  const secondPanelRef = useRef<HTMLDivElement>(null)
+  const hintPanelRef = useRef<HTMLDivElement>(null)
   const pendingTabFocus = useRef<AnswerView | null>(null)
+  const pendingReadingFocus = useRef<"second" | "hint" | null>(null)
   const pendingEditorFocus = useRef(false)
   const reviewAvailable =
     evaluation?.status === "fail" ||
@@ -251,6 +254,7 @@ export function AnswerPanel({
   const selectViewFromPointer = (nextView: AnswerView) => {
     pendingEditorFocus.current = false
     pendingTabFocus.current = null
+    pendingReadingFocus.current = null
     selectView(nextView)
   }
 
@@ -265,9 +269,8 @@ export function AnswerPanel({
       evaluation.status === "fail" ||
       (evaluation.status === "matched" && evaluation.reviewItems.length > 0)
     ) {
-      if (writePanelRef.current?.contains(document.activeElement)) {
-        pendingTabFocus.current = "review"
-      }
+      pendingTabFocus.current = null
+      pendingReadingFocus.current = "second"
       setView("review")
       return
     }
@@ -275,6 +278,21 @@ export function AnswerPanel({
   }, [entryId, evaluation])
 
   useEffect(() => {
+    const readingTarget = pendingReadingFocus.current
+    if (readingTarget) {
+      const readingTargetIsVisible =
+        readingTarget === "second" ? view === secondView : view === "hint"
+      if (!readingTargetIsVisible) return
+
+      pendingReadingFocus.current = null
+      const panel =
+        readingTarget === "second"
+          ? secondPanelRef.current
+          : hintPanelRef.current
+      panel?.focus({ preventScroll: true })
+      return
+    }
+
     if (pendingEditorFocus.current && view === "write") {
       pendingEditorFocus.current = false
       writePanelRef.current
@@ -287,7 +305,32 @@ export function AnswerPanel({
     if (!target) return
     pendingTabFocus.current = null
     focusTab(target)
-  }, [focusTab, view])
+  }, [entryId, evaluation, focusTab, secondView, view])
+
+  const moveWithinReadingPanel = (
+    event: ReactKeyboardEvent<HTMLDivElement>,
+  ) => {
+    if (event.target !== event.currentTarget) return
+
+    if (event.key === "PageDown" || event.key === "PageUp") {
+      event.preventDefault()
+      const direction = event.key === "PageDown" ? 1 : -1
+      event.currentTarget.scrollTop +=
+        direction * Math.max(40, event.currentTarget.clientHeight - 40)
+      return
+    }
+
+    if ((event.metaKey || event.ctrlKey) && event.key === "Home") {
+      event.preventDefault()
+      event.currentTarget.scrollTop = 0
+      return
+    }
+
+    if ((event.metaKey || event.ctrlKey) && event.key === "End") {
+      event.preventDefault()
+      event.currentTarget.scrollTop = event.currentTarget.scrollHeight
+    }
+  }
 
   useEffect(() => {
     const openHintFromKeyboard = (event: KeyboardEvent) => {
@@ -309,6 +352,7 @@ export function AnswerPanel({
       }
 
       event.preventDefault()
+      pendingReadingFocus.current = null
       pendingEditorFocus.current = false
       if (view === "hint") {
         pendingTabFocus.current = null
@@ -333,6 +377,7 @@ export function AnswerPanel({
     const currentIndex = tabs.indexOf(current)
     const direction = event.key === "ArrowRight" ? 1 : -1
     const target = tabs[(currentIndex + direction + tabs.length) % tabs.length]!
+    pendingReadingFocus.current = null
     pendingEditorFocus.current = false
     pendingTabFocus.current = target
     selectView(target)
@@ -347,6 +392,7 @@ export function AnswerPanel({
     }
 
     event.preventDefault()
+    pendingReadingFocus.current = null
     const target =
       event.key === "1" ? "write" : event.key === "2" ? secondView : "hint"
     if (target === "write") {
@@ -407,7 +453,9 @@ export function AnswerPanel({
             tabIndex={view === "write" ? 0 : -1}
             type="button"
           >
-            <Pencil aria-hidden="true" size={40} strokeWidth={1.5} />
+            <span className="answer-tab__icon">
+              <Pencil aria-hidden="true" size={40} strokeWidth={1.5} />
+            </span>
           </button>
           <button
             aria-label={secondLabel}
@@ -424,7 +472,9 @@ export function AnswerPanel({
             tabIndex={view === secondView ? 0 : -1}
             type="button"
           >
-            <Eye aria-hidden="true" size={40} strokeWidth={1.5} />
+            <span className="answer-tab__icon">
+              <Eye aria-hidden="true" size={40} strokeWidth={1.5} />
+            </span>
           </button>
           <button
             aria-label="Hint"
@@ -441,7 +491,9 @@ export function AnswerPanel({
             tabIndex={view === "hint" ? 0 : -1}
             type="button"
           >
-            <Lightbulb aria-hidden="true" size={40} strokeWidth={1.5} />
+            <span className="answer-tab__icon">
+              <Lightbulb aria-hidden="true" size={40} strokeWidth={1.5} />
+            </span>
           </button>
         </div>
       </header>
@@ -476,7 +528,10 @@ export function AnswerPanel({
         className={`answer-panel__body${secondView === "preview" ? " answer-panel__body--sheet" : " answer-panel__body--reading"}`}
         hidden={view !== secondView}
         id={tabIds.secondPanel}
+        onKeyDown={moveWithinReadingPanel}
+        ref={secondPanelRef}
         role="tabpanel"
+        tabIndex={view === secondView && secondView === "review" ? 0 : -1}
       >
         {secondView === "review" && evaluation ? (
           <ReviewPanel draft={draft} evaluation={evaluation} problem={problem} />
@@ -500,7 +555,10 @@ export function AnswerPanel({
         className="answer-panel__body answer-panel__body--reading"
         hidden={view !== "hint"}
         id={tabIds.hintPanel}
+        onKeyDown={moveWithinReadingPanel}
+        ref={hintPanelRef}
         role="tabpanel"
+        tabIndex={view === "hint" ? 0 : -1}
       >
         <HintPanel
           evaluation={evaluation}
