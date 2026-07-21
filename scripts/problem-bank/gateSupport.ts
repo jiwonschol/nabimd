@@ -66,10 +66,22 @@ export async function buildGateInput() {
         }
         return { fixture, actual }
       })
+    // Sealed legacy review evidence predates evaluator diagnostics, so digest only its reviewed fields.
+    const digestResults = results.map(({ fixture, actual }) => ({
+      fixture,
+      actual:
+        actual.status === "fail"
+          ? {
+              status: actual.status,
+              feedbackId: actual.feedbackId,
+              message: actual.message,
+            }
+          : { status: actual.status, reviewItems: actual.reviewItems },
+    }))
     fixtureDigests[problem.id] = createFixtureReviewDigest({
       candidateDigest: candidate?.candidateDigest,
       problem,
-      results,
+      results: digestResults,
     })
     fixtureCounts[problem.id] = results.length
   }
