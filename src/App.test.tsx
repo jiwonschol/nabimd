@@ -400,6 +400,57 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
   })
 
+  it("replaces Review and Hint feedback after a different failed recheck", async () => {
+    useSessionSeedForFirstProblem(3, (problem) =>
+      problem.matchChecks.some(
+        (check) =>
+          check.kind === "inline-presence" && check.inline === "strong",
+      ),
+    )
+    const { user, editor } = await openLevel(3)
+    const problem = currentProblem()
+    const oldRequirement = problem.matchChecks.find(
+      (check) =>
+        check.kind === "inline-presence" && check.inline === "strong",
+    )
+    const newRequirement = problem.matchChecks.find(
+      (check) => check.kind === "list-shape" && check.ordered === false,
+    )
+    if (!oldRequirement || !newRequirement) {
+      throw new Error("Expected distinct composite-document requirements")
+    }
+
+    replaceSource(editor, problem.target.replace(/\*\*(.*?)\*\*/, "$1"))
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    const firstReview = screen.getByRole("tabpanel", { name: "Review" })
+    expect(within(firstReview).getByText(oldRequirement.feedback)).toBeVisible()
+    expect(within(firstReview).queryByText(newRequirement.feedback)).toBeNull()
+
+    await user.click(screen.getByRole("tab", { name: "Hint" }))
+    const firstHint = screen.getByRole("tabpanel", { name: "Hint" })
+    await user.click(
+      within(firstHint).getByRole("button", { name: "Next hint" }),
+    )
+    expect(within(firstHint).getByText(oldRequirement.feedback)).toBeVisible()
+
+    replaceSource(editor, problem.target.replace(/^- /gm, ""))
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    const recheckedReview = screen.getByRole("tabpanel", { name: "Review" })
+    expect(
+      within(recheckedReview).getByText(newRequirement.feedback),
+    ).toBeVisible()
+    expect(
+      within(recheckedReview).queryByText(oldRequirement.feedback),
+    ).toBeNull()
+
+    await user.click(screen.getByRole("tab", { name: "Hint" }))
+    const recheckedHint = screen.getByRole("tabpanel", { name: "Hint" })
+    expect(within(recheckedHint).getByText(newRequirement.feedback)).toBeVisible()
+    expect(within(recheckedHint).queryByText(oldRequirement.feedback)).toBeNull()
+  })
+
   it("lists every high-level correction without rendering either document", async () => {
     useSessionSeedForFirstProblem(3, (problem) =>
       problem.matchChecks.some(
