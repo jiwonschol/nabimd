@@ -1,18 +1,22 @@
-# Level 5 North Star: The Agent-Ready Work Order
+# Historical Level 5 Anatomy: The Agent-Ready Work Order
 
-**Status:** Product north star; outside the current Build Week implementation  
+**Status:** Superseded historical anatomy reference; not a product north star,
+current curriculum endpoint, or learner exercise
 **Source:** A real 210-line Overwater Codex work order supplied by Jiwon during
 the first Nabi Markdown MVP review  
 **Use policy:** Learn from its structure; do not republish project-specific
 content verbatim as a learner exercise. The anonymized public reference is
 [`docs/examples/level-5-agent-work-order-reference.md`](../examples/level-5-agent-work-order-reference.md).
 
-## The Level 5 outcome
+## Historical Level 5 outcome
 
-Level 5 is not a larger Markdown editor and it is not generic prompt
-engineering. The learner should be able to turn real project intent into a
-Markdown work order that a contemporary coding agent can execute and a human
-reviewer can audit.
+This section records the former blank-page endpoint. The approved replacement
+for Level 5 asks the learner to restore Markdown structure in a short
+developer-facing document from a fixed Goal. The published bank has not yet
+completed that content replacement: its ten grandfathered Level 5 work-order
+records remain valid immutable artifacts until a separately reviewed batch
+supersedes their learner-facing role. The longer work order remains useful as a
+source of document anatomy, not as the replacement curriculum's target length.
 
 The target artifact is simultaneously:
 
@@ -23,8 +27,11 @@ The target artifact is simultaneously:
 - testable through commands and observable outcomes; and
 - accountable through a defined final report.
 
-This is the long-term version of Nabi's founding claim: Markdown is not merely
-formatting. It is a portable structure for thinking with people and AI.
+This was the original long-form interpretation of Nabi's founding claim. The
+approved curriculum correction keeps the useful Markdown anatomy while
+rejecting its reading burden and blank-page authorship task; the current
+published records are grandfathered evidence, not proof that the replacement
+batch has landed.
 
 ## Why the Overwater example qualifies
 
@@ -50,7 +57,13 @@ The document also demonstrates a more important skill: it distinguishes
 without waiting, but it must stop when evidence contradicts the plan or when
 progress would require new authority.
 
-## Proposed five-level progression
+## Former proposed five-level progression
+
+The progression below is decision history and is not an active curriculum
+contract. The definitive ladder is maintained in the
+[`five-level problem-bank design`](../superpowers/specs/2026-07-19-five-level-problem-bank-design.md):
+Level 4 is short workplace writing and Level 5 is equally approachable,
+developer-facing Markdown practice.
 
 ### Level 1 — See and produce syntax
 
@@ -84,12 +97,12 @@ ordered context, explicit authority boundaries, staged autonomy, forbidden
 shortcuts, stop conditions, regression guards, and a completion-report
 contract. The result must remain easy for a human maintainer to inspect.
 
-## The Level 5 learning task
+## Former Level 5 learning task
 
 Do not ask the learner to reproduce the Overwater document exactly. That would
 test transcription and domain familiarity rather than document judgment.
 
-Use a document-makeover challenge:
+The superseded proposal used this document-makeover challenge:
 
 1. provide a realistic but anonymized bundle of engineering notes;
 2. provide a rendered agent-ready Goal;
@@ -97,13 +110,14 @@ Use a document-makeover challenge:
 4. check structural requirements deterministically; and
 5. offer editorial Review for clarity, authority, and human scanability.
 
-The public curriculum should replace Overwater names, paths, services, and
-incident details with a fictional project. It may preserve the work-order
-anatomy and the fact that the plan follows earlier failed attempts.
+The proposed public curriculum would have replaced Overwater names, paths,
+services, and incident details with a fictional project while preserving the
+work-order anatomy and the fact that the plan followed earlier failed attempts.
 
-## Deterministic evaluation remains possible
+## Historical deterministic-evaluation rationale
 
-Level 5 does not require runtime AI grading. A curated problem can declare:
+The long-form proposal did not require runtime AI grading. A curated problem
+could have declared:
 
 - required heading levels and structural section positions;
 - required ordering relationships;
@@ -113,22 +127,21 @@ Level 5 does not require runtime AI grading. A curated problem can declare:
 - required verification categories;
 - a required final-report template.
 
-The Markdown AST can determine whether those structures exist. Curated text
+The Markdown AST could determine whether those structures existed. Curated text
 checks do not participate in learner grading: title wording, case, spelling,
 punctuation, and semantic truth never affect the verdict. Build-time editorial
-inspection confirms that each Goal demonstrates a credible work order before it
-is published.
+inspection would have confirmed that each Goal demonstrated a credible work
+order before publication.
 
-### Matched
+### Matched in the former proposal
 
-The work order contains the requested Markdown anatomy. This is the only pass
-state. Optional Review may point out additional Markdown-structure refinements,
-but it never creates a second grade or revokes Matched.
+The work order contained the requested Markdown anatomy. `Matched` was its only
+pass state. Optional Review could point out additional Markdown-structure
+refinements, but it never created a second grade or revoked Matched.
 
-## UI implications for the long term
+## Historical UI implications
 
-The Level 3-sized Goal selected during the first MVP redesign is the minimum
-future-facing reference surface. Level 5 will eventually require:
+The former long-document proposal would have required:
 
 - tall, equal-height source and preview panes;
 - scrollable Goal, source, and preview documents;
@@ -136,40 +149,41 @@ future-facing reference surface. Level 5 will eventually require:
 - navigation among required sections without turning Nabi into an IDE; and
 - clear versioning of the agent conventions being taught.
 
-Those needs validate the current decision to size the layout from a moderate
-document rather than a one-line heading. They do not belong in the current H1
-implementation milestone.
+That exploration helped establish internal document scrolling and a constrained
+reading measure. It no longer implies that a learner should author a tall work
+order. Compact developer Goals are the approved replacement direction, while
+the ten currently published Level 5 records remain grandfathered until that
+separate content batch lands.
 
-The horizontal reading measure should remain deliberately constrained. Work
-orders become harder to audit when long lines stretch across an IDE-sized
-canvas; their growth is primarily vertical. The Level 1 workspace therefore
-looks spacious now so the same document geometry can hold a much taller Level
-5 Goal, source, and preview later.
+The horizontal reading measure remains deliberately constrained because even a
+short developer document becomes harder to scan when lines stretch across an
+IDE-sized canvas. This layout rationale survives; the expectation of a much
+taller Level 5 work order does not.
 
-## Keeping “current best practice” honest
+## Historical convention-maintenance rationale
 
-Agent conventions change. A Level 5 problem must carry a curriculum version,
-the agent convention set it targets, and a review date. Nabi should teach the
-durable reasoning pattern—context, constraints, authority, verification, and
-reporting—while periodically revising filenames, tool instructions, and agent
-interfaces that become obsolete.
+The long-form proposal noted that agent conventions change and therefore
+required a curriculum version, convention set, and review date. Existing
+accepted Level 5 records retain that metadata for digest compatibility. The
+current compact developer curriculum may revisit the schema separately; this
+historical document does not require every future developer-facing lesson to
+teach an agent convention.
 
 The app should never label one vendor-specific template as a timeless universal
 standard.
 
-That change is also part of Nabi's long-term value. Repeated practice should
-make the anatomy of an agent instruction document feel automatic, while dated
-curriculum versions give learners a reason to return when agent conventions
-change. Maintaining and reviewing those advanced sets may support future paid
-content, but pricing and monetization remain explicitly outside the Build Week
-project.
+The proposal treated dated agent conventions as a possible reason to return.
+That commercial and curriculum direction is not part of the current Build Week
+contract.
 
 ## Current boundary
 
-For Build Week, the Overwater document is evidence of the product's destination
-and a source for curriculum design. Its project-specific content is not
-republished. Issue #9 implements the five-level structural curriculum described
-in the definitive
+For Build Week, the Overwater document is evidence of an explored and rejected
+long-form direction. Its project-specific content is not republished, and its
+shape is not the product's approved destination. Issue #9 governs the short,
+fixed-Goal structural curriculum described in the definitive
 [`five-level problem-bank design`](../superpowers/specs/2026-07-19-five-level-problem-bank-design.md),
-including deterministic Level 5 predicates and inspected fictional exercises.
-No agent integration or runtime AI call is added.
+including deterministic Level 5 predicates and the next compact fictional
+developer batch. The existing ten long records remain published only under the
+immutable-batch grandfathering rule. No agent integration or runtime AI call
+is added.

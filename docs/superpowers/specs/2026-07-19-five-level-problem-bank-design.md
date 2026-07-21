@@ -9,9 +9,9 @@ build-time publication pipeline
 ## Product promise
 
 Nabi teaches Markdown as a writing habit. A learner begins by producing one
-visible syntax pattern and ends by structuring a work order that a person can
-review and a coding agent can execute. The learner is always graded on Markdown
-structure, never on copying the Goal's prose.
+visible syntax pattern and ends by combining familiar forms in short workplace
+and developer documents. The learner is always graded on Markdown structure,
+never on copying the Goal's prose.
 
 The learner app has two verdicts:
 
@@ -42,25 +42,30 @@ available. Hint use never changes the grading rule or creates remediation.
 
 ### Level 3 — Write for people
 
-Combine syntax families into short workplace documents that another person can
+Combine syntax families into short ordinary documents that another person can
 scan. Exercises teach one document title, logical heading hierarchy, short
 paragraph rhythm, appropriate list structure, code blocks, links, and
 restrained emphasis.
 
-### Level 4 — Write a development spec
+### Level 4 — Write for work
 
-Turn requirements into a document whose structure supports implementation.
-Exercises combine scope, dependencies, constraints, acceptance criteria,
-verification, and unresolved decisions. Nabi verifies the declared Markdown
-anatomy; it does not decide whether the learner's prose is technically true.
+Apply the same approachable workload to short workplace notes, plans,
+handoffs, decisions, and checklists. Complexity comes from combining familiar
+Markdown forms, not from business vocabulary, prose volume, or typing stamina.
+Nabi verifies the declared Markdown anatomy; it does not decide whether the
+learner's prose is professionally or factually correct.
 
-### Level 5 — Write an agent work order
+### Level 5 — Write for developers
 
-Structure a contemporary coding-agent work order with ordered context,
-authority boundaries, staged execution, forbidden shortcuts, stop conditions,
-verification, and a final-report contract. Every Level 5 problem records the
-agent-convention version and review date it teaches. Durable document anatomy
-is the lesson; no vendor-specific template is presented as timeless.
+Practice Markdown forms common in developer and AI-assisted work: inline code,
+fenced code, blockquotes, meaningful links, nested lists, file paths, README
+fragments, bug reports, PR descriptions, and compact agent instructions. A
+reference link is currently an accepted equivalent form, not a distinct lesson,
+because the evaluator cannot yet require reference-link source syntax. Task
+lists, images, and reference-link-specific lessons remain deferred until
+dedicated validator, preview, fixture, and accessibility contracts exist. Level
+5 changes context and syntax mix; it does not increase required length or become
+a final exam.
 
 ## Bank target and distribution
 
@@ -70,9 +75,9 @@ The first complete bank contains at least 512 inspected problems:
 |---|---:|---|
 | 1 | 128 | short single-syntax production across the basic syntax surface |
 | 2 | 128 | small real-document rebuilds using familiar syntax |
-| 3 | 96 | readable workplace-document compositions |
-| 4 | 80 | executable development specifications |
-| 5 | 80 | agent-ready work orders |
+| 3 | 96 | readable ordinary-document rebuilds |
+| 4 | 80 | short workplace-document rebuilds |
+| 5 | 80 | compact developer-document rebuilds |
 | **Total** | **512** | exceeds the 500-vetted-problem gate |
 
 The count is a floor, never a reason to weaken inspection. Per-level,
@@ -109,9 +114,13 @@ predicate.
 |---|---|---|
 | 1 | `everyday` | fruit, weather, learning tools, home, errands, leisure |
 | 2 | `everyday-recall` | routines, preparation, study, sharing, simple plans |
-| 3 | `workplace-document` | meetings, handoffs, decisions, status, customer notes |
-| 4 | `development-spec` | scope, dependency, constraint, acceptance, verification |
-| 5 | `agent-workflow` | authority, source of truth, stage, prohibition, stop condition, regression guard |
+| 3 | `workplace-document` | reading notes, notices, simple plans, how-to notes |
+| 4 | `development-spec` | meetings, handoffs, decisions, status, checklists |
+| 5 | `agent-workflow` | README fragments, bugs, PRs, code, links, agent notes |
+
+The profile identifiers are retained for accepted-batch compatibility. Their
+domains follow the corrected ladder above; the legacy names do not turn Level
+4 into a development-spec exam or Level 5 into a full agent-work-order exam.
 
 GPT-5.6 may generate and refine vocabulary ladders at build time. V1 does not
 crawl third-party sites. Inspection checks contemporary US-English fit,
@@ -158,16 +167,24 @@ type Problem = {
 }
 ```
 
-`teachingMode` and the `everyday-recall` vocabulary profile are legacy schema
-values retained to keep accepted, digest-bound batches immutable; they are not
-the learner-facing Level 2 identity. A Level 5 problem requires valid convention
-metadata. `contentVariant` is used only to prevent remediation from repeating
-displayed material. Goal text, vocabulary terms, and content variants are never
-equality operands in learner grading.
+`teachingMode`, `everyday-recall`, `development-spec`, and `agent-workflow` are
+legacy schema values retained to keep accepted, digest-bound batches immutable;
+they do not define the corrected learner-facing ladder. The current publisher
+still requires convention metadata for every Level 5 record. A later schema
+change may limit that metadata to agent-convention lessons, but this docs-only
+correction does not weaken the active validator. `contentVariant` is used only
+to prevent remediation from repeating displayed material. Goal text, vocabulary
+terms, and content variants are never equality operands in learner grading.
 
-Levels 1–2 present a rendered target to rebuild. Levels 3–5 present a brief and
-ask the learner to compose a document. Both routes use the same deterministic,
-structure-only evaluator.
+The approved target contract gives every level the authored Goal as the fixed
+target. The answer sheet starts with that Goal's learner-visible words and line
+breaks, with Markdown marks removed. The learner restores the requested
+structure instead of inventing or transcribing prose. Higher-level prompts
+describe the Markdown anatomy to practice; they do not turn the answer sheet
+into a blank authorship exercise. All levels use the same deterministic,
+structure-only evaluator. The runtime applies the starter projection to all
+five levels, preserves the Goal's exact line topology, and keeps real saved
+drafts authoritative without rewriting sealed problem-bank evidence.
 
 ## Deterministic structural grading
 
@@ -257,17 +274,18 @@ drift, and bank-wide count regressions.
 
 ## Runtime selection contract
 
-The entry chooser exposes exactly Levels 1–5 with these learner-facing task
-types: Learn the syntax, Rebuild real documents, Write for people, Write a
-development spec, and Write an agent work order. Scheduling first filters by
-exact level and `standard` flavor, then rotates deterministically.
+The corrected learner-facing task types are Learn the syntax, Rebuild real
+documents, Write for people, Write for work, and Write for developers. The
+current app retains the former Level 4–5 labels until a separately reviewed UI
+change lands; this docs-only correction does not silently mutate that runtime.
+Scheduling first filters by exact level and `standard` flavor, then rotates
+deterministically.
 
 For Levels 1–4, a scheduled turn contains six problems: four at the chosen
-level followed by two next-level challenges. The first four begin with Hint
-open; the challenges begin with it closed. Hint is always manually available
-and never creates remediation. Level 5 schedules up to six unique at-level
-problems; the current four-problem bank degrades to four rather than duplicating
-content.
+level followed by two next-level challenges. Level 5 schedules six unique
+at-level problems from the ten currently published records rather than
+duplicating content. Every problem opens on `Write`; Hint is request-only,
+always available, and never creates remediation.
 
 Only a failed Check creates a same-skill, different-content remediation. That
 repair may extend a six-problem turn to seven and is exempt from the scheduled
@@ -290,20 +308,21 @@ that revision or schedule contract changes.
 
 ## Level 3–5 structural archetypes
 
-Level 3 rotates short human documents such as meeting notes, decision records,
-how-to notes, status updates, and handoffs. Their anatomy combines a single H1,
+Level 3 rotates short human documents such as reading notes, event notices,
+how-to notes, simple plans, and handoffs. Their anatomy combines a single H1,
 ordered H2 hierarchy, short paragraphs, and the list or code structure suited
 to the document.
 
-Level 4 rotates feature specs, bug-fix specs, migration plans, accessibility
-changes, and test plans. Their anatomy combines one title, multiple sections,
-scope or constraints, acceptance items, verification commands, and a place for
-open decisions.
+Level 4 rotates short workplace notes, status updates, meeting records,
+decisions, checklists, and handoffs. Their anatomy combines one title, a small
+number of sections, concise prose, and two or three short list items where the
+lesson requires them.
 
-Level 5 rotates implementation work orders, recovery plans, refactors,
-dependency upgrades, data migrations, and release-readiness work. Their anatomy
-combines mission/context, ordered reading or authority, staged work,
-prohibitions, stop conditions, verification, and final reporting.
+Level 5 rotates README fragments, bug reports, PR descriptions, compact
+implementation notes, and short agent instructions. Their anatomy combines
+developer-facing forms such as inline or fenced code, links, blockquotes,
+nested lists, and file paths without demanding a complete real-world work
+order.
 
 These names describe editorial archetypes, not strings the learner must copy.
 
@@ -314,7 +333,8 @@ spelling or grammar correction, exact-copy grading, web crawling, or a claim
 that the app can validate the factual safety of an AI work order. Nabi teaches
 and verifies the Markdown structure that makes those documents inspectable.
 
-The anonymized Level 5 reference remains a north star, not an answer to copy.
-Its earlier `Perfect` and protected-prose language is superseded by this spec
-and D9/D10: there is one passing verdict, Matched, and runtime grading is
-structure-only.
+The anonymized long work-order reference is historical anatomy, not the current
+Level 5 endpoint or an answer to copy. Its blank-page authorship, `Perfect`, and
+protected-prose language is superseded by this spec and D9/D10/D15/D17: the
+learner restores structure from a fixed Goal, there is one passing verdict,
+Matched, and runtime grading is structure-only.

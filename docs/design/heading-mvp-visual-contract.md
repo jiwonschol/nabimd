@@ -1,7 +1,9 @@
 # CBT Editorial Desk Visual Contract
 
-**Status:** Approved direction consolidated on 2026-07-19
-**Reference:** `docs/superpowers/specs/2026-07-19-cbt-editorial-desk-design.md`
+**Status:** Historical CBT foundation; superseded where it conflicts with the
+approved open-book Practice contract
+**Current reference:**
+[`2026-07-20-open-book-practice-design.md`](../superpowers/specs/2026-07-20-open-book-practice-design.md)
 
 This contract supersedes the first Heading MVP's four-surface Editorial Desk.
 The familiar computer-based-test frame is now the product grammar: one fixed
@@ -22,15 +24,14 @@ top bar, one question sheet, and one answer sheet.
 - The workspace contains exactly two panels: **Goal** on the left and
   **Your answer** on the right.
 - Desktop panels are a fixed 50:50 split with identical frame dimensions.
-- Long Level 5 work orders scroll inside their panel bodies; panel headers and
-  the top bar remain fixed.
+- Longer compact developer documents scroll inside their panel bodies; panel
+  headers and the top bar remain fixed.
 - Goal is an immutable rendered reference, not a prose instruction or answer
   state.
-- Hint expands vertically inside Goal. Level 1 begins open automatically;
-  recall levels begin closed.
-- Your answer offers **Write** and **Preview**. After a failed Check, Preview
-  becomes **Review** and opens automatically. A separate Live Preview column
-  does not exist.
+- Your answer offers **Write**, **Preview**, and request-only **Hint**. Every
+  problem opens on Write. After a failed Check, Preview becomes **Review** and
+  opens automatically while Hint remains reachable. A separate Live Preview
+  column does not exist.
 
 ## Beginner-facing language
 
@@ -53,8 +54,9 @@ capitalization, spelling, punctuation, or exact prose as an error.
 - There are two verdicts only: **Try again** and **Matched**.
 - Each verdict appears briefly in a large, viewport-centered notice. Try again
   uses pale red; Matched uses pale green.
-- After Matched, Check becomes Next and receives focus. Bare Space and Enter do
-  not advance; they remain ordinary typing keys and are safe for IME users.
+- After Matched, Check becomes Next and receives focus. Space or Enter on that
+  focused action advances; plain Space and Enter inside the editor remain
+  ordinary typing keys and are safe for IME users.
 - The next problem opens Write and returns focus to the editor.
 - One action shortcut invokes Check while editing and Next after Matched:
   `Ctrl+Enter` everywhere, `Cmd+Enter` additionally on macOS, and
@@ -81,7 +83,7 @@ capitalization, spelling, punctuation, or exact prose as an error.
 | Corrective border / wash | `#d7a5a0` / `rgba(255, 246, 245, 0.97)` |
 | UI family | system sans until the selected font license is verified |
 | Editorial display | system serif |
-| Source editor | system monospace |
+| Source editor | self-hosted JetBrains Mono |
 
 There are no gradients, glass effects, syntax colors, decorative shadows,
 mascots, decorative badges, XP, confetti, or card grids. Compact state labels
@@ -123,6 +125,6 @@ viewport for:
 4. monochrome hierarchy and thin-rule rhythm;
 5. Write/Preview/Review beginner language;
 6. internal long-document scrolling;
-7. keyboard-only Check, Next, and editor-focus flow, including one shared,
-   visible platform-appropriate action shortcut and no Space advance;
+7. keyboard-only Check, focused-Next Space/Enter, and editor-focus flow,
+   including one shared, visible platform-appropriate action shortcut;
 8. absence of an always-visible third preview column.

@@ -1,6 +1,8 @@
 # Nabi Markdown Application Design
 
-**Status:** Written spec approved by Jiwon on 2026-07-18
+**Status:** Historical application foundation approved on 2026-07-18. Later
+decisions D14–D17 and the open-book Practice contract supersede its curriculum,
+Hint, and visual sections where noted.
 
 **Scope:** OpenAI Build Week application experience, learning model, grading,
 problem bank, architecture, verification, and submission evidence
@@ -9,8 +11,8 @@ problem bank, architecture, verification, and submission evidence
 
 Build a polished, English-first Markdown practice web application for the
 Education track of OpenAI Build Week. A learner should be able to start a real
-exercise within seconds, type Markdown from memory, receive help only after an
-explicit check, and continue practicing until the syntax becomes natural.
+exercise within seconds, type Markdown directly, request help without automatic
+correction, and receive a verdict only after an explicit Check.
 
 Nabi is not trying to make text easier for a machine to parse. Modern models
 already tolerate unstructured input. Nabi teaches people to create source and
@@ -61,7 +63,7 @@ recall, confidence, or a quick session.
 The main course uses an editorial-apprenticeship rhythm:
 
 ```text
-Notice → Learn → Recall → Repair → Compose
+Notice → Learn → Recall → Repair → Rebuild
 ```
 
 A 10-to-20-minute session introduces a small pattern, requires production with
@@ -70,9 +72,11 @@ skills to a short useful document.
 
 ### Studio
 
-Document Makeovers ask the learner to turn an unstructured brief into a
-human-readable Markdown document. Studio is most useful for advanced learners,
-but it is not locked behind a self-reported level.
+Document Makeovers give the learner a fixed rendered Goal and the same prose
+with Markdown marks removed. The learner restores a human-readable Markdown
+document without inventing, transcribing, or reorganizing its words. Studio is
+most useful for advanced learners, but it is not locked behind a self-reported
+level.
 
 Level indicates which new work is available. It does not remove easier work or
 trap the learner in a single activity type.
@@ -85,9 +89,10 @@ short welcome, and exactly five level choices matching the definitive
 curriculum ladder.
 
 One pointer click or keyboard activation opens the problem desk directly with
-no intermediate page. The first four problems belong to the selected level and
-begin with Hint open. The final two are next-level challenges and begin with
-Hint closed. Hint remains manually available in either role.
+no intermediate page. Levels 1–4 schedule four problems from the selected level
+followed by two next-level challenges; Level 5 schedules six unique at-level
+problems. Every problem opens on `Write`. Hint remains available on request in
+every role and never changes the verdict.
 
 ## Course and problem-bank scope
 
@@ -119,8 +124,10 @@ coverage.
 
 ### Current curriculum shape
 
-- The deterministic runtime bank contains 296 inspected problems split
-  124/124/28/16/4 across Levels 1–5.
+- The deterministic runtime bank contains 344 inspected problems split
+  136/148/30/20/10 across Levels 1–5. The accepted Level 4–5 records retain
+  their historical development-spec and work-order metadata until a separately
+  reviewed replacement batch applies the corrected curriculum ladder.
 - Accepted batches remain immutable and digest-bound. Runtime scheduling may
   reclassify how those records are presented, but it does not rewrite their
   accepted evidence.
@@ -212,11 +219,10 @@ evaluated only after `Check` or `Cmd/Ctrl + Enter`.
 
 ### Hint before Matched
 
-Hint is a rescue ladder, not autocomplete. It starts open for the four
-chosen-level problems and closed for the two next-level challenges. The learner
-can close or reopen it at any time. Merely using Hint never creates a transfer
-obligation or changes the grade. After a failed check, repeated requests reveal
-progressively stronger help.
+Hint is a rescue ladder, not autocomplete. Every problem starts on `Write` with
+Hint closed; the learner opens it explicitly from the answer page. Merely using
+Hint never creates a transfer obligation or changes the grade. Repeated requests
+reveal progressively stronger help.
 
 1. Concept hint
 2. Exact syntax recipe, such as `#` + `Space` + `Title`
@@ -226,9 +232,11 @@ Hints never insert text, copy the answer, or complete the exercise.
 
 ### Review after Matched
 
-Review is optional and never opens automatically. One review action shows all
-applicable Markdown-structure refinements at once, capped at three because the
-documents are short. The learner can revise or select Next immediately.
+Review is optional in grading terms: it can never revoke Matched. When a Check
+produces Markdown-structure refinements, the answer page opens Review and shows
+them at once, capped at three because the documents are short. The learner can
+revise or select Next immediately. A Matched result with no refinement opens
+Preview instead.
 
 This separation protects the feeling of success: Matched is not presented as
 another failure merely because optional polish remains.
@@ -276,9 +284,9 @@ type Problem = {
     example: string
   }
   prompt: string
-  target?: string
+  target: string
   starterText: string
-  protectedContent: string[]
+  protectedContent: string[] // legacy metadata; never a learner-match operand
   matchChecks: MatchCheck[]
   editorialChecks: EditorialCheck[]
   hints: [string, string, string]
@@ -287,21 +295,27 @@ type Problem = {
 }
 ```
 
+`protectedContent` remains in the conceptual shape because accepted records and
+validators still carry it. D9–D10 supersede its original exact-prose purpose:
+new advanced records keep it empty, and no current match predicate may require
+those words, their case, spelling, punctuation, or labels.
+
 ### Runtime starter text
 
-Levels 1–2 are reproduction exercises, so their answer sheets open with the
-target's learner-visible prose and line breaks already present. The runtime
-projection derives this `starterText` by parsing `target` and removing Markdown
-structure: heading and list markers, emphasis delimiters, link destinations,
-blockquote markers, thematic breaks, and code fences. Visible text, code
-content, and image alt text remain. A saved session draft always takes
-precedence over the derived starter.
+Every level is a reproduction exercise with a fixed rendered Goal. Its answer
+sheet opens with the Goal's learner-visible prose, blank lines, and line breaks
+already present. The runtime projection derives this `starterText` by parsing
+`target` and removing Markdown structure: heading and list markers, emphasis
+delimiters, link destinations, blockquote markers, thematic breaks, and code
+fences. Visible text, code content, and image alt text remain. A saved session
+draft always takes precedence over the derived starter.
 
-Levels 3–5 remain blank because they compose from a brief rather than reproduce
-a fixed target. Starter text is a teaching aid, never a grading operand: the
-grammar-only evaluator still accepts different prose. The derivation happens
-at the runtime-projection boundary so accepted problem-bank artifacts and their
-review-bound digests remain immutable.
+Starter text is a teaching aid, never a grading operand: the grammar-only
+evaluator still accepts different prose. The derivation happens at the
+runtime-projection boundary so accepted problem-bank artifacts and their
+review-bound digests remain immutable. The runtime applies this projection to
+all five levels, preserves the Goal's exact line topology, and keeps real saved
+drafts authoritative.
 
 Each committed problem must include fixtures for:
 
@@ -339,8 +353,8 @@ hasHeading(level)
 usesRequiredSkill
 hasParagraphBreak
 hasList(kind, minimumItems)
-hasEmphasis(kind, protectedText)
-hasLink(protectedLabel)
+hasEmphasis(kind, minimumCount)
+hasLink(minimumCount)
 hasImageWithAltText
 ```
 
@@ -383,7 +397,14 @@ account, database, cloud sync, or personal profile is part of Build Week.
 
 The visual direction is calm, monochrome, editorial, and keyboard-first.
 
-### Editorial Desk
+The Editorial Desk and Help-panel layout below is retained as historical MVP
+context. It is not the current visual contract. The approved target is the
+fixed top strip and equal-page open-book desk in
+[`2026-07-20-open-book-practice-design.md`](./2026-07-20-open-book-practice-design.md):
+Goal remains fixed on the left, while the answer page owns `Write`, `Preview`
+or `Review`, and request-only `Hint` on the right.
+
+### Historical Editorial Desk
 
 - Header: Nabi wordmark, compact progress, current problem count
 - Learning stage: instruction, an aligned Goal/Help row, and an aligned
@@ -397,8 +418,9 @@ The visual direction is calm, monochrome, editorial, and keyboard-first.
 The first version uses an ink, paper, and warm-gray palette. Source Serif 4
 Regular and Semibold are bundled under the SIL Open Font License 1.1 for
 wordmark, reading, Goal, preview, and status text. Controls keep the system sans
-stack. Markdown source and code deliberately keep the system monospace stack;
-no JetBrains Mono binary is bundled for this change.
+stack. Markdown source and code use the self-hosted JetBrains Mono files and
+their committed SIL Open Font License; the interface does not depend on a
+system-installed monospace font or a third-party font CDN.
 
 The approved butterfly/nib raster source is distributed as metadata-stripped,
 square PNG derivatives sized for their actual surfaces: 128px for the visible
@@ -406,7 +428,7 @@ wordmark and 64px for the favicon. The full 1254px working source is not shipped
 to browsers. At 360px and below, header gutters and spacing compact while the
 visible Nabi Markdown name and readable problem progress both remain present.
 
-### Help panel
+### Historical Help panel
 
 - Desktop: Help stays aligned beside Goal and reveals its content downward
   within the panel.
@@ -415,12 +437,14 @@ visible Nabi Markdown name and readable problem progress both remain present.
 - Help opens only by explicit user action except for a level's first
   introduction, and never edits the source.
 
-At 780 pixels or below, Goal, Help, source, and preview stack in that order and
-keep a full-width layout without horizontal scrolling.
+The former four-surface mobile stack is likewise superseded. Current responsive
+behavior preserves the same two semantic book pages and their internal scroll
+contract; it does not reintroduce a separate Help or Live Preview surface.
 
 ## Accessibility
 
-- Use a native labeled textarea.
+- Use an accessible labeled CodeMirror 6 source editor with a native editing
+  caret and keyboard semantics.
 - Keep a logical Tab order.
 - Run Check with `Cmd/Ctrl + Enter` as well as a visible button.
 - Provide a visible focus ring at least 2 pixels wide.
@@ -439,7 +463,7 @@ keep a full-width layout without horizontal scrolling.
 - TypeScript
 - React
 - Vite
-- Native textarea
+- CodeMirror 6
 - unified/remark/mdast-compatible parsing with raw HTML disabled
 - Small CSS token file and focused component styles
 - `sessionStorage` with a versioned schema and guarded volatile fallback
@@ -454,7 +478,7 @@ src/content        skill catalog, problems, fixtures, copy
 src/engine         parsing, source checks, match checks, editorial checks
 src/selection      retry, transfer, review-weight, and recent-item selection
 src/progress       versioned local persistence and recovery
-src/components     Editorial Desk, editor, status, Help panel, progress
+src/components     open-book desk, editor, status, answer tabs, progress
 src/pages          first problem, home, learning session
 tests/fixtures     bank-wide grading contracts
 ```
@@ -535,10 +559,12 @@ Build one complete heading family before expanding the bank:
 9. Unit, component, and browser proof
 10. First static deployment
 
-### Expansion
+### Historical expansion checkpoint
 
-After the heading MVP passes, add the remaining predicates and the 33-problem
-bank. Problem-bank growth must not precede a stable schema and fixture harness.
+The original next checkpoint was a 33-problem bank after the heading MVP. That
+count is historical: the generated tracker is now the only source of truth for
+published totals. Problem-bank growth still must not bypass the stable schema,
+fixture, independent-review, and editorial gates.
 
 ### Polish
 
@@ -580,7 +606,9 @@ learner application remains deterministic and makes no runtime AI call.
   the completion screen only exposes an anonymous standing-client seam and an
   honest collecting-data placeholder until separate backend work is approved
 - Full CommonMark or GFM conformance
-- Tables, footnotes, front matter, raw HTML, nested lists, or document upload
+- Tables, footnotes, front matter, raw HTML, or document upload. Nested lists
+  are already supported structural practice; they are not introduced as an
+  exclusive Level 5 skill.
 - Native apps or a mobile-specific symbol keyboard
 
 ## Risk and cut order

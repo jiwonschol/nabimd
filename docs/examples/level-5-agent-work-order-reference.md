@@ -1,6 +1,7 @@
 # Level 5 Reference: An Agent-Ready Work Order
 
-**Status:** Future curriculum reference; not a current Nabi exercise
+**Status:** Historical anatomy reference; not a current Nabi exercise or
+learner target
 
 **Scenario:** Fictional repository and services
 
@@ -8,11 +9,11 @@
 Jiwon. Project names, paths, incidents, vendors, credentials, and operational
 details have been removed or replaced.
 
-This example shows the document shape Nabi ultimately wants learners to produce.
-It is intentionally taller than it is wide. The goal is not to memorize this
-template, but to understand how mission, evidence, authority, execution, and
-verification fit together in a document that both a coding agent and a human
-reviewer can follow.
+This example preserves the former long work-order direction for historical
+context. The current Level 5 target is a short developer-facing Markdown
+exercise built from a fixed Goal; it does not ask learners to author this shape.
+Future work may still study how mission, evidence, authority, execution, and
+verification fit together, but only through a separate product decision.
 
 ---
 

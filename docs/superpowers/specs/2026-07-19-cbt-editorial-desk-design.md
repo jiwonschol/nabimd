@@ -7,7 +7,10 @@
 
 Nabi Markdown should borrow the interaction grammar of a familiar computer-based test: a stable question sheet on the left, an answer sheet on the right, and every action in one fixed top bar. A learner should not need to learn the interface before learning Markdown.
 
-The layout must remain useful when a future Level 5 exercise is a long, real company work order. The browser viewport is the frame; long documents scroll inside equal panels instead of moving the page chrome.
+The layout must remain useful when a Level 5 exercise is a longer compact
+developer document. The browser viewport is the frame; document content scrolls
+inside equal panels instead of moving the page chrome. The former full company
+work-order destination was superseded on 2026-07-21.
 
 ## Outcome contract
 
