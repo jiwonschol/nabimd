@@ -1944,6 +1944,7 @@ button:focus-visible,
   min-height: clamp(7rem, 17vh, 9rem);
   margin: 0;
   padding: 0;
+  overflow: hidden;
   list-style: none;
 }
 
@@ -1995,4 +1996,13 @@ button:focus-visible,
 
 .open-book-why--static .open-book-why__reason + .open-book-why__reason {
   margin-top: clamp(1rem, 2.6vh, 1.5rem);
+}
+
+/* Too little vertical room for an ambient surface on the two-page spread —
+   drop it so the motto and the chapter list keep the short landscape page,
+   matching how the motto itself compacts under the same query. */
+@media (max-height: 540px) and (min-width: 761px) {
+  .open-book-why {
+    display: none;
+  }
 }

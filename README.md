@@ -13,6 +13,10 @@
 - **Five levels:** Learn the syntax → Rebuild real documents → Write for people →
   Write a development spec → Write an agent work order. Each level changes the
   document context while keeping the exercise short.
+- **A reason to start:** The landing answers "why bother with a format this
+  simple?" — five reasons to learn Markdown drift in below the motto, so the
+  payoff is clear before the first quest. Reduced-motion visitors see the full
+  list at once, and the motto keeps the page.
 - **A short visit:** No login, server, ads, streak, or persistent learner
   profile. Progress lasts for the current browser session and clears when that
   session ends.

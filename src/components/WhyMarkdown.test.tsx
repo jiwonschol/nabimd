@@ -22,16 +22,38 @@ function stubReducedMotion(matches: boolean) {
   )
 }
 
+// jsdom ships no Web Animations API, so the component would otherwise always
+// take its static fallback. Provide a minimal animate() so the animated branch
+// is actually exercised, then restore the original afterwards.
+const NATIVE_ANIMATE = Object.getOwnPropertyDescriptor(
+  Element.prototype,
+  "animate",
+)
+
+function enableWebAnimations() {
+  Object.defineProperty(Element.prototype, "animate", {
+    configurable: true,
+    writable: true,
+    value: () => ({ cancel() {} }),
+  })
+}
+
 afterEach(() => {
   vi.unstubAllGlobals()
+  if (NATIVE_ANIMATE) {
+    Object.defineProperty(Element.prototype, "animate", NATIVE_ANIMATE)
+  } else {
+    delete (Element.prototype as { animate?: unknown }).animate
+  }
 })
 
 describe("WhyMarkdown", () => {
-  it("shows the opening question and all five reasons verbatim when motion is reduced", () => {
+  it("shows the opening question and all five reasons verbatim, in order, when motion is reduced", () => {
     stubReducedMotion(true)
     render(<WhyMarkdown />)
 
     const region = screen.getByRole("region", { name: "Why learn Markdown" })
+    expect(region).toHaveClass("open-book-why--static")
     expect(within(region).getByText(WHY_OPENING_QUESTION)).toBeVisible()
 
     const reasons = within(region).getAllByRole("listitem")
@@ -43,11 +65,13 @@ describe("WhyMarkdown", () => {
     })
   })
 
-  it("keeps every reason and the question in the DOM in the given order for assistive tech", () => {
+  it("animates but keeps every reason and the question in the DOM in the given order for assistive tech", () => {
     stubReducedMotion(false)
+    enableWebAnimations()
     render(<WhyMarkdown />)
 
     const region = screen.getByRole("region", { name: "Why learn Markdown" })
+    expect(region).not.toHaveClass("open-book-why--static")
     expect(within(region).getByText(WHY_OPENING_QUESTION)).toBeInTheDocument()
 
     const reasons = within(region).getAllByRole("listitem")
