@@ -6,12 +6,14 @@ import {
 } from "./invisibleCharacters"
 
 describe("findInvisibleCharacters", () => {
-  it("marks leading spaces, tabs, and line breaks without marking word spaces", () => {
+  it("marks leading and between-word spaces, tabs, and line breaks", () => {
     expect(findInvisibleCharacters("  # Rainy\tday\nNext words")).toEqual([
       { from: 0, to: 1, kind: "space" },
       { from: 1, to: 2, kind: "space" },
+      { from: 3, to: 4, kind: "space" },
       { from: 9, to: 10, kind: "tab" },
       { from: 13, to: 14, kind: "line-break" },
+      { from: 18, to: 19, kind: "space" },
     ])
   })
 
@@ -25,6 +27,7 @@ describe("findInvisibleCharacters", () => {
 
   it("distinguishes NBSP and ideographic-space traps", () => {
     expect(findInvisibleCharacters("# \t\u00a0\u3000Apple")).toEqual([
+      { from: 1, to: 2, kind: "space" },
       { from: 2, to: 3, kind: "tab" },
       { from: 3, to: 4, kind: "non-breaking-space" },
       { from: 4, to: 5, kind: "ideographic-space" },
@@ -49,7 +52,7 @@ describe("findInvisibleCharacters", () => {
     ])
   })
 
-  it("decorates only the spaces before the first visible character", () => {
+  it("decorates every ordinary space on the visible line", () => {
     const state = EditorState.create({ doc: "   nested item" })
     const decorations = buildFormattingMarks({
       state,
@@ -65,6 +68,7 @@ describe("findInvisibleCharacters", () => {
       { from: 0, to: 1 },
       { from: 1, to: 2 },
       { from: 2, to: 3 },
+      { from: 9, to: 10 },
       { from: 14, to: 14 },
     ])
   })

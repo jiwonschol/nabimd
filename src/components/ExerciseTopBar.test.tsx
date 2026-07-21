@@ -108,7 +108,7 @@ describe("ExerciseTopBar", () => {
     expect(progress.nextElementSibling).toContainElement(tryAnother)
   })
 
-  it("lets the focused Next keycap advance with Space, Enter, or the shared shortcut", () => {
+  it("shows one shared shortcut and never treats Space as Next", () => {
     const onNext = vi.fn()
     renderTopBar("editing", {
       evaluation: { status: "matched", reviewItems: [] },
@@ -117,21 +117,23 @@ describe("ExerciseTopBar", () => {
     const next = screen.getByRole("button", { name: "Next exercise" })
 
     expect(next).toHaveAttribute("aria-keyshortcuts", expect.stringContaining("Control+Enter"))
-    expect(next).not.toHaveTextContent("Space / Enter")
+    expect(next).toHaveTextContent("Ctrl+↩")
 
     fireEvent.keyDown(next, { key: " " })
+    expect(onNext).not.toHaveBeenCalled()
+
     fireEvent.keyDown(next, { key: "Enter" })
-    expect(onNext).toHaveBeenCalledTimes(2)
+    expect(onNext).toHaveBeenCalledTimes(1)
 
     fireEvent.keyDown(next, { key: "Enter", ctrlKey: true })
-    expect(onNext).toHaveBeenCalledTimes(3)
+    expect(onNext).toHaveBeenCalledTimes(2)
 
     fireEvent.keyDown(next, { key: "Enter", repeat: true })
     fireEvent.keyDown(next, { key: " ", repeat: true })
-    expect(onNext).toHaveBeenCalledTimes(3)
+    expect(onNext).toHaveBeenCalledTimes(2)
   })
 
-  it("names the primary keycap by action without shortcut copy", () => {
+  it("shows the shortcut beside both Check and Next", () => {
     renderTopBar("editing")
 
     const check = screen.getByRole("button", { name: "Check answer" })
@@ -140,8 +142,13 @@ describe("ExerciseTopBar", () => {
       "data-tooltip",
       "Try another",
     )
-    expect(check).not.toHaveTextContent("Control")
-    expect(check).not.toHaveTextContent("Check")
+    expect(check).toHaveTextContent("Ctrl+↩")
+
+    renderTopBar("editing", {
+      evaluation: { status: "matched", reviewItems: [] },
+    })
+    expect(screen.getByRole("button", { name: "Next exercise" }))
+      .toHaveTextContent("Ctrl+↩")
   })
 
   it("waits for deliberate pointer movement before showing the Summary Home tooltip", () => {

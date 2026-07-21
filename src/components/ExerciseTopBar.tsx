@@ -222,13 +222,16 @@ export function ExerciseTopBar({
             onClick={matched ? onNext : onCheck}
             onKeyDown={(event) => {
               if (!matched) return
+              if (event.key === " ") {
+                event.preventDefault()
+                return
+              }
               if (event.repeat) {
                 event.preventDefault()
                 return
               }
               if (
                 isActionShortcut(event.nativeEvent, navigatorLike) ||
-                event.key === " " ||
                 event.key === "Enter"
               ) {
                 event.preventDefault()
@@ -243,6 +246,7 @@ export function ExerciseTopBar({
             ) : (
               <Check aria-hidden="true" size={24} strokeWidth={1.8} />
             )}
+            <span className="top-action__shortcut">{shortcut.label}</span>
           </button>
         </div>
       </div>

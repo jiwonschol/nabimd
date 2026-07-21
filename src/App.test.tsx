@@ -361,7 +361,7 @@ describe("App", () => {
     await user.keyboard("{Control>}{Enter}{/Control}")
     expect(screen.getByRole("button", { name: "Next exercise" })).toHaveFocus()
 
-    await user.keyboard(" ")
+    await user.keyboard("{Control>}{Enter}{/Control}")
     const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
     expect(nextEditor).toHaveFocus()
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(

@@ -164,6 +164,9 @@ describe("global responsive styles", () => {
       /\.cm-invisible-character\s*\{[^{}]*min-width:\s*0\.62em[^{}]*font-family:\s*var\(--mono\)[^{}]*user-select:\s*none/s,
     )
     expect(styles).toMatch(
+      /\.cm-invisible-character\s*\{[^{}]*color:\s*rgb\(168 92 92 \/ 62%\)/s,
+    )
+    expect(styles).toMatch(
       /\.cm-invisible-character--tab\s*\{[^{}]*min-width:\s*1\.4em/s,
     )
     expect(styles).toMatch(
@@ -179,6 +182,12 @@ describe("global responsive styles", () => {
     expect(styles).not.toContain("list-style-position: inside")
     expect(styles).not.toContain("--rendered-leading-indent")
     expect(styles).not.toMatch(/li li::before\s*\{[^{}]*content:\s*"→"/s)
+  })
+
+  it("gives rendered Markdown headings a descending size scale", () => {
+    expect(styles).toMatch(/\.cm-rendered-heading--1\s*\{[^{}]*font-size:/s)
+    expect(styles).toMatch(/\.cm-rendered-heading--2\s*\{[^{}]*font-size:/s)
+    expect(styles).toMatch(/\.cm-rendered-heading--3\s*\{[^{}]*font-size:/s)
   })
 
   it("uses a genuinely transparent wordmark asset", () => {
