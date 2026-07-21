@@ -14,6 +14,7 @@ import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { WritingProcessor } from "./WritingProcessor"
 
 type AnswerView = "write" | "preview" | "review" | "hint"
 
@@ -29,15 +30,6 @@ type AnswerPanelProps = {
   onCloseHint: () => void
   onNextHint: () => void
   onRequestHint: () => void
-}
-
-function isTextEntryTarget(target: EventTarget | null): boolean {
-  return (
-    target instanceof HTMLElement &&
-    (target.isContentEditable ||
-      target.tagName === "INPUT" ||
-      target.tagName === "TEXTAREA")
-  )
 }
 
 function sourceExamples(problem: GradableProblem): string[] {
@@ -190,6 +182,7 @@ export function AnswerPanel({
   const hintTabRef = useRef<HTMLButtonElement>(null)
   const writePanelRef = useRef<HTMLDivElement>(null)
   const pendingTabFocus = useRef<AnswerView | null>(null)
+  const pendingEditorFocus = useRef(false)
   const reviewAvailable =
     evaluation?.status === "fail" ||
     (evaluation?.status === "matched" && evaluation.reviewItems.length > 0)
@@ -207,6 +200,22 @@ export function AnswerPanel({
     },
     [coach, onCloseHint, onRequestHint],
   )
+
+  const focusTab = useCallback((target: AnswerView) => {
+    const targetRef =
+      target === "write"
+        ? writeTabRef
+        : target === "hint"
+          ? hintTabRef
+          : secondTabRef
+    targetRef.current?.focus()
+  }, [])
+
+  const selectViewFromPointer = (nextView: AnswerView) => {
+    pendingEditorFocus.current = false
+    pendingTabFocus.current = null
+    selectView(nextView)
+  }
 
   useEffect(() => {
     setView("write")
@@ -229,57 +238,53 @@ export function AnswerPanel({
   }, [entryId, evaluation])
 
   useEffect(() => {
-    const switchView = (event: KeyboardEvent) => {
-      if (
-        !event.altKey ||
-        (event.key !== "1" && event.key !== "2" && event.key !== "3")
-      ) {
-        return
-      }
-      event.preventDefault()
-      const target =
-        event.key === "1" ? "write" : event.key === "2" ? secondView : "hint"
-      if (target === "write" && view === "write") {
-        writePanelRef.current
-          ?.querySelector<HTMLElement>('[role="textbox"]')
-          ?.focus()
-        return
-      }
-      if (
-        target !== "write" &&
-        writePanelRef.current?.contains(document.activeElement)
-      ) {
-        pendingTabFocus.current = target
-      }
-      selectView(target)
+    if (pendingEditorFocus.current && view === "write") {
+      pendingEditorFocus.current = false
+      writePanelRef.current
+        ?.querySelector<HTMLElement>('[role="textbox"]')
+        ?.focus()
+      return
     }
-    document.addEventListener("keydown", switchView)
-    return () => document.removeEventListener("keydown", switchView)
-  }, [secondView, selectView, view])
 
-  useEffect(() => {
-    const openHint = (event: KeyboardEvent) => {
-      if (event.key !== "?" || isTextEntryTarget(event.target)) return
-      event.preventDefault()
-      pendingTabFocus.current = "hint"
-      selectView("hint")
-    }
-    document.addEventListener("keydown", openHint)
-    return () => document.removeEventListener("keydown", openHint)
-  }, [selectView])
-
-  useEffect(() => {
     const target = pendingTabFocus.current
     if (!target) return
     pendingTabFocus.current = null
-    const targetRef =
-      target === "write"
-        ? writeTabRef
-        : target === "hint"
-          ? hintTabRef
-          : secondTabRef
-    targetRef.current?.focus()
-  }, [view])
+    focusTab(target)
+  }, [focusTab, view])
+
+  useEffect(() => {
+    const openHintFromKeyboard = (event: KeyboardEvent) => {
+      if (
+        event.key !== "?" ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey
+      ) {
+        return
+      }
+
+      const target = event.target
+      if (
+        target instanceof Element &&
+        target.closest('input, textarea, select, [contenteditable="true"]')
+      ) {
+        return
+      }
+
+      event.preventDefault()
+      pendingEditorFocus.current = false
+      if (view === "hint") {
+        pendingTabFocus.current = null
+        focusTab("hint")
+        return
+      }
+      pendingTabFocus.current = "hint"
+      selectView("hint")
+    }
+
+    document.addEventListener("keydown", openHintFromKeyboard)
+    return () => document.removeEventListener("keydown", openHintFromKeyboard)
+  }, [focusTab, selectView, view])
 
   const moveBetweenTabs = (
     event: ReactKeyboardEvent<HTMLButtonElement>,
@@ -291,6 +296,41 @@ export function AnswerPanel({
     const currentIndex = tabs.indexOf(current)
     const direction = event.key === "ArrowRight" ? 1 : -1
     const target = tabs[(currentIndex + direction + tabs.length) % tabs.length]!
+    pendingEditorFocus.current = false
+    pendingTabFocus.current = target
+    selectView(target)
+  }
+
+  const switchViewShortcut = (event: ReactKeyboardEvent<HTMLElement>) => {
+    if (
+      !event.altKey ||
+      (event.key !== "1" && event.key !== "2" && event.key !== "3")
+    ) {
+      return
+    }
+
+    event.preventDefault()
+    const target =
+      event.key === "1" ? "write" : event.key === "2" ? secondView : "hint"
+    if (target === "write") {
+      pendingTabFocus.current = null
+      if (view === "write") {
+        pendingEditorFocus.current = false
+        writePanelRef.current
+          ?.querySelector<HTMLElement>('[role="textbox"]')
+          ?.focus()
+      } else {
+        pendingEditorFocus.current = true
+        selectView("write")
+      }
+      return
+    }
+    pendingEditorFocus.current = false
+    if (view === target) {
+      pendingTabFocus.current = null
+      focusTab(target)
+      return
+    }
     pendingTabFocus.current = target
     selectView(target)
   }
@@ -310,7 +350,8 @@ export function AnswerPanel({
   return (
     <section
       aria-label="Your answer"
-      className="cbt-panel answer-panel writing-sheet"
+      className="cbt-panel answer-panel"
+      onKeyDownCapture={switchViewShortcut}
     >
       <header className="cbt-panel__header answer-panel__header">
         <div aria-label="Answer view" className="answer-tabs" role="tablist">
@@ -322,14 +363,14 @@ export function AnswerPanel({
             className="answer-tab"
             data-tooltip="Write"
             id={tabIds.write}
-            onClick={() => selectView("write")}
+            onClick={() => selectViewFromPointer("write")}
             onKeyDown={(event) => moveBetweenTabs(event, "write")}
             ref={writeTabRef}
             role="tab"
             tabIndex={view === "write" ? 0 : -1}
             type="button"
           >
-            <Pencil aria-hidden="true" size={18} strokeWidth={1.6} />
+            <Pencil aria-hidden="true" size={40} strokeWidth={1.5} />
           </button>
           <button
             aria-label={secondLabel}
@@ -339,14 +380,14 @@ export function AnswerPanel({
             className="answer-tab"
             data-tooltip={secondLabel}
             id={tabIds.second}
-            onClick={() => selectView(secondView)}
+            onClick={() => selectViewFromPointer(secondView)}
             onKeyDown={(event) => moveBetweenTabs(event, secondView)}
             ref={secondTabRef}
             role="tab"
             tabIndex={view === secondView ? 0 : -1}
             type="button"
           >
-            <Eye aria-hidden="true" size={18} strokeWidth={1.6} />
+            <Eye aria-hidden="true" size={40} strokeWidth={1.5} />
           </button>
           <button
             aria-label="Hint"
@@ -356,39 +397,46 @@ export function AnswerPanel({
             className="answer-tab"
             data-tooltip="Hint"
             id={tabIds.hint}
-            onClick={() => selectView("hint")}
+            onClick={() => selectViewFromPointer("hint")}
             onKeyDown={(event) => moveBetweenTabs(event, "hint")}
             ref={hintTabRef}
             role="tab"
             tabIndex={view === "hint" ? 0 : -1}
             type="button"
           >
-            <Lightbulb aria-hidden="true" size={18} strokeWidth={1.6} />
+            <Lightbulb aria-hidden="true" size={40} strokeWidth={1.5} />
           </button>
         </div>
       </header>
 
       <div
         aria-labelledby={tabIds.write}
-        className="answer-panel__body"
+        className="answer-panel__body answer-panel__body--sheet"
         hidden={view !== "write"}
         id={tabIds.writePanel}
         ref={writePanelRef}
         role="tabpanel"
       >
-        <MarkdownSourceEditor
-          active={view === "write"}
+        <WritingProcessor
           key={problem.id}
-          onChange={onChange}
-          onCheck={onCheck}
-          value={draft}
-        />
+          label="Your Markdown"
+          mode="edit"
+        >
+          <MarkdownSourceEditor
+            active={view === "write"}
+            key={problem.id}
+            onChange={onChange}
+            onCheck={onCheck}
+            showInvisibles
+            value={draft}
+          />
+        </WritingProcessor>
       </div>
 
       <div
         aria-label={secondLabel}
         aria-labelledby={tabIds.second}
-        className="answer-panel__body answer-panel__body--reading"
+        className={`answer-panel__body${secondView === "preview" ? " answer-panel__body--sheet" : " answer-panel__body--reading"}`}
         hidden={view !== secondView}
         id={tabIds.secondPanel}
         role="tabpanel"
@@ -396,10 +444,16 @@ export function AnswerPanel({
         {secondView === "review" && evaluation ? (
           <ReviewPanel draft={draft} evaluation={evaluation} problem={problem} />
         ) : (
-          <RenderedDocumentBody
-            emptyMessage="Your preview will appear here."
-            source={draft}
-          />
+          <WritingProcessor
+            key={`${problem.id}-preview`}
+            label="Rendered answer"
+            mode="read-only"
+          >
+            <RenderedDocumentBody
+              emptyMessage="Your preview will appear here."
+              source={draft}
+            />
+          </WritingProcessor>
         )}
       </div>
 

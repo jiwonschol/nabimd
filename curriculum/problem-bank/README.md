@@ -22,6 +22,20 @@ Level 5 recovery, refactor, and coordinated-rollout work orders.
 Each immutable batch has two sealed independent reviews and one separate
 editorial decision.
 
+## Content license
+
+Beginning with the commit that introduced the repository-root
+[`LICENSE-CONTENT`](../../LICENSE-CONTENT) on July 21, 2026, all problem-bank
+content present in this repository and all problem-bank content added later is
+licensed under Creative Commons Attribution-ShareAlike 4.0 International. This
+includes problem statements, teaching copy, Goal documents, and vocabulary
+ladders.
+
+Generated batches inherit that content license. The generate, normalize,
+verify, inspect, and publish stages do not replace it with a different license.
+Batch authors and editors must therefore contribute only material that the
+project can distribute under CC BY-SA 4.0.
+
 The earlier 128-candidate GPT-5.6 artifact remains frozen schema-v1 evidence.
 Its 16 accepted headings and 112 unsupported-family candidates are preserved
 for audit history but do not count toward the schema-v2 tracker.

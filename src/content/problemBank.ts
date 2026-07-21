@@ -37,7 +37,12 @@ export const preStarterProjectionProblemBankRevision = problemBank
   .map((problem) => `${problem.id}@${problem.revision}`)
   .join("|")
 
-export const STARTER_PROJECTION_REVISION = 1
+export const flattenedStarterProjectionProblemBankRevision = [
+  preStarterProjectionProblemBankRevision,
+  "starter-projection@1",
+].join("|")
+
+export const STARTER_PROJECTION_REVISION = 2
 export const problemBankRevision = [
   preStarterProjectionProblemBankRevision,
   `starter-projection@${STARTER_PROJECTION_REVISION}`,

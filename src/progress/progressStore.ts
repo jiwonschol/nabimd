@@ -3,6 +3,7 @@ import {
   isEntryId,
 } from "../content/entryChoices"
 import {
+  flattenedStarterProjectionProblemBankRevision,
   getProblem,
   preStarterProjectionProblemBankRevision,
   problemBankRevision,
@@ -258,7 +259,7 @@ function cloneProgress(progress: ProgressV5): ProgressV5 {
   }
 }
 
-function migrateLegacyStarterProjection(
+function migrateStarterProjectionRevision(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
   expectedBankRevision: string,
@@ -267,8 +268,15 @@ function migrateLegacyStarterProjection(
     expectedBankRevision !== problemBankRevision ||
     !isRecord(value) ||
     value.version !== 5 ||
-    value.bankRevision !== preStarterProjectionProblemBankRevision ||
     !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const sourceBankRevision = value.bankRevision
+  if (
+    sourceBankRevision !== preStarterProjectionProblemBankRevision &&
+    sourceBankRevision !== flattenedStarterProjectionProblemBankRevision
   ) {
     return value
   }
@@ -278,8 +286,14 @@ function migrateLegacyStarterProjection(
     if (!validProblemIds.has(problemId) || typeof draft !== "string") continue
 
     const problem = getProblem(problemId)
+    if (problem.level <= 2 && draft === "") continue
+
+    const legacyPlaintextStarter = deriveLegacyPlaintextStarter(problem.target)
     const legacyAutomaticStarter =
-      problem.level <= 2 ? deriveLegacyPlaintextStarter(problem.target) : ""
+      sourceBankRevision === preStarterProjectionProblemBankRevision &&
+      problem.level >= 3
+        ? ""
+        : legacyPlaintextStarter
     if (draft === legacyAutomaticStarter) {
       // The previous runtime persisted its generated starter when navigating
       // to a problem. Remove only an exact generated value so the new
@@ -317,7 +331,7 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migrateLegacyStarterProjection(
+    const parsed: unknown = migrateStarterProjectionRevision(
       JSON.parse(saved),
       validProblemIds,
       expectedBankRevision,

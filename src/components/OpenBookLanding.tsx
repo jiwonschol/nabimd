@@ -6,14 +6,6 @@ type OpenBookLandingProps = {
   turningEntryId: EntryId | null
 }
 
-const levelDescriptions = [
-  "Learn the building blocks of Markdown.",
-  "Mix familiar marks to express meaning.",
-  "Make documents clear and consistent.",
-  "Write specifications people can use.",
-  "Give agents precise instructions.",
-] as const
-
 function splitEntryLabel(label: string) {
   const [levelLabel, title = label] = label.split(" — ", 2)
   return { levelLabel, title }
@@ -31,36 +23,23 @@ export function OpenBookLanding({
       className={`app-shell open-book-shell${turning ? " open-book-shell--turning" : ""}`}
       data-testid={turning ? "page-turn-transition" : undefined}
     >
-      <section className="open-book-page open-book-page--intro">
+      <section
+        aria-labelledby="open-book-motto-lead"
+        className="open-book-page open-book-page--intro"
+      >
         <Wordmark />
         <div className="open-book-intro">
-          <p className="open-book-kicker">A short daily writing practice</p>
-          <h2>Structure becomes instinct.</h2>
-          <p className="open-book-deck">
-            Learn Markdown in short, repeatable briefs.
-          </p>
+          <div className="open-book-motto">
+            <h2 className="open-book-motto__lead" id="open-book-motto-lead">
+              Markdown is easy.
+            </h2>
+            <p className="open-book-motto__body">
+              <span>Learning to use it well is just as easy.</span>{" "}
+              <span>Nobody ever showed you —</span>{" "}
+              <span>that is the only reason you haven't.</span>
+            </p>
+          </div>
         </div>
-        <ol aria-label="How practice works" className="open-book-method">
-          <li>
-            <span>01</span>
-            <strong>Brief</strong>
-          </li>
-          <li>
-            <span>02</span>
-            <strong>Write source</strong>
-          </li>
-          <li>
-            <span>03</span>
-            <strong>Inspect render</strong>
-          </li>
-          <li>
-            <span>04</span>
-            <strong>Prove again</strong>
-          </li>
-        </ol>
-        <p className="open-book-method-line">
-          Brief → Write source → Inspect render → Prove again
-        </p>
       </section>
 
       <section
@@ -68,13 +47,11 @@ export function OpenBookLanding({
         className="open-book-page open-book-page--chapters"
       >
         <header className="chapter-index-header">
-          <p>Five levels · ten quiet minutes at a time</p>
           <h2 id="chapter-index-title">Choose a chapter to begin.</h2>
-          <span>There is no wrong place to start.</span>
         </header>
 
         <ol className="chapter-index">
-          {entryChoices.map((entry, index) => {
+          {entryChoices.map((entry) => {
             const { levelLabel, title } = splitEntryLabel(entry.label)
             const selected = turningEntryId === entry.id
             return (
@@ -87,14 +64,10 @@ export function OpenBookLanding({
                   onClick={() => onChoose(entry.id)}
                   type="button"
                 >
-                  <span className="chapter-entry__number">
-                    {String(entry.level).padStart(2, "0")}
-                  </span>
+                  <span className="chapter-entry__level">{levelLabel}</span>
                   <span className="chapter-entry__copy">
                     <strong>{title}</strong>
-                    <small>{levelDescriptions[index]}</small>
                   </span>
-                  <span className="chapter-entry__level">{levelLabel}</span>
                   <span aria-hidden="true" className="chapter-entry__arrow">
                     →
                   </span>

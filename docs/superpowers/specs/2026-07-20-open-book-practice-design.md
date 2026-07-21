@@ -1,6 +1,7 @@
 # Open-book Practice page
 
-**Status:** Visual direction approved by Jiwon on 2026-07-20  
+**Status:** Shared spread and word-processor direction approved by Jiwon on
+2026-07-20; compact instruction-header revision awaits visual approval
 **Tracker:** Issue #60  
 **Primary visual truth:** `docs/design/practice-open-book-level5-hint-reference.png` at 1586 x 992
 
@@ -22,6 +23,9 @@ This redesign changes presentation and the location of Hint. It does not change 
 
 - Practice occupies one viewport. The browser document does not scroll.
 - A single fixed top strip contains navigation, session context, sound, progress, Try another, and the primary Check or Next action.
+- At desktop sizes, reserve 108 px for the fixed top strip and 64 px for the
+  equal page headers so the word processors begin higher without moving the
+  book frame.
 - The left and right page frames are always equal width and equal height on desktop.
 - Long Level 5 documents scroll only inside their page interiors. The strip, page edges, icon tabs, and center seam never move.
 - Summary layout and information hierarchy are out of scope.
@@ -61,7 +65,8 @@ This redesign changes presentation and the location of Hint. It does not change 
 
 ## Typography contract
 
-- Continue the established three-role system: the operating interface uses the system sans stack, rendered reading surfaces use Source Serif 4, and Markdown source plus code use JetBrains Mono.
+- Goal and Answer are two modes of the same writing processor, so both document surfaces, both line-number gutters, and both sets of row metrics use the self-hosted Source Serif 4. Goal is read-only; Answer is editable. Mode must never change their document typeface or geometry.
+- The operating interface continues to use the system sans stack. JetBrains Mono is reserved for code-only surfaces outside the shared Practice writing processor; it is not the Answer editor font.
 - Source Serif 4 and JetBrains Mono are self-hosted project assets with their SIL Open Font License files committed beside the fonts. The interface must not depend on a third-party font CDN or an installed system font.
 - Use regular and semibold weights only unless a later visual requirement proves another weight necessary.
 - Preserve fallback stacks and `font-display: swap` so missing or delayed font loading never hides the exercise.
@@ -70,18 +75,24 @@ This redesign changes presentation and the location of Hint. It does not change 
 
 - The workspace is one open-book surface with thin dark outer edges, restrained inner-page shadow, ruled paper, and a realistic stitched center seam.
 - Greeting and Practice share one optimized raster containing both warm paper sheets and their restrained stitched center fold. The fold is inseparable from the paper pixels; there is no separate spine image, DOM layer, pseudo-element, or CSS-drawn seam. Content remains HTML and CSS above transparent page surfaces.
-- The unified spread is fixed throughout the page turn. The receiving Practice spread is already visible beneath the transition; only the opaque right leaf moves, while the outgoing left page uses a temporary opaque paper surface to prevent content bleed-through.
+- The unified spread is fixed throughout the page turn. The receiving Practice spread is already visible beneath the transition; only the opaque right leaf moves, while the outgoing left page uses a temporary opaque paper surface to prevent content bleed-through. A transition-only light sweep may brighten the unified raster, but it must never recreate, detach, or move the fold.
 - On desktop the two pages form a strict 50:50 spread. Their top alignment and baseline rhythm match.
 - Remove visible `GOAL`, `YOUR WRITING`, repeated level labels, chapter labels, and other page explanations.
-- The left fixed target is identified by a small bullseye icon. The right modes are identified by their tab icons.
+- The left fixed target is identified by its concise learner instruction. The
+  right modes are identified by their tab icons.
 - There are no dashboard gaps, floating cards, rounded page panels, decorative gradients, ornamental colors, or unrelated entrance animation.
 - On the stacked mobile layout, replace the two-page spread raster with the neutral repeating paper texture because the pages no longer meet horizontally.
 
 ## Goal page
 
 - Goal never changes mode or content after Check and never becomes a brief, hint, review, source, or learner preview.
-- At every level it renders `problem.target`. The Level 3-5 prompt remains available to assistive technology and tests but never replaces the visible target.
-- A small bullseye icon denotes the fixed reference; its accessible label is `Goal`.
+- At every level it renders `problem.target`. The concise `problem.prompt`
+  remains visible in the header as the learner instruction and never replaces
+  the target document.
+- Goal and Answer instantiate the same `WritingProcessor`. Goal selects its read-only mode; Answer selects its edit mode. The shared component owns the row numbers, rules, content inset, font, line height, and only document scrollbar.
+- Do not add a separate Goal label or bullseye. Align the visible instruction
+  with the document-text start so the target itself demonstrates that the left
+  page is the fixed reference.
 - The target is fixed reference ink: no caret, editable focus ring, or answer state appears inside it.
 - Goal uses the ruled writing-paper standard at every level:
   - slim line-number gutter;
@@ -98,6 +109,9 @@ This redesign changes presentation and the location of Hint. It does not change 
 - The selected tab is shown by a black underline. Tooltips and accessible names are `Write`, `Preview` or `Review`, and `Hint`.
 - `Alt+1`, `Alt+2`, and `Alt+3` activate the tabs. Arrow keys move between tabs. Tab remains available for editor indentation and ordinary focus navigation.
 - Every new problem opens Write and focuses the editor.
+- Every level starts from the target's supplied prose, authored blank lines,
+  and line breaks with Markdown structure removed. Learners add Markdown; they
+  do not retype the document.
 - Write uses the same ruled-paper geometry as Goal, with CodeMirror line numbers aligned to the same row height. The caret and focus state are the principal signals that this page is editable.
 - Preview renders only the learner's current answer. It is never a third column.
 - After a failed Check, Preview's slot becomes Review and opens automatically. Review keeps the existing beginner language and grammar-only verdict contract.
@@ -123,14 +137,14 @@ This redesign changes presentation and the location of Hint. It does not change 
 ## Three-stage entrance and sound
 
 - The existing 720 ms page-turn remains the sole Greeting-to-Practice entrance motion.
-- Stage 1, approximately 0-220 ms: the unified spread and outgoing left page remain fixed. The selected opaque right leaf begins to lift and its restrained moving shadow deepens.
-- Stage 2, approximately 220-520 ms: the leaf crosses the fixed fold and progressively reveals the already-settled Practice spread beneath it. Neither the fold nor the receiving screen moves, fades, scales, or changes brightness.
-- Stage 3, approximately 520-720 ms: the leaf clears the receiving right page and its moving shadow collapses. The same unified spread remains visible before, during, and after the turn.
-- The transition coordinates only the right leaf's geometry, opacity, and moving shadow. Do not add a literal lamp, spotlight, glow orb, persistent decorative gradient, brightness animation, or a second transition-only raster above the unified spread.
-- Keep the unified spread fixed and visually continuous for the entire transition. Never animate the fold or add another image above it.
+- Stage 1, approximately 0-220 ms: Greeting keeps its warm book-paper tone. The selected opaque right leaf begins to lift and its restrained moving shadow deepens.
+- Stage 2, approximately 220-520 ms: the leaf crosses the fixed fold and progressively reveals Practice. A transition-only highlight opens quickly from the top center while the whole receiving spread moves from warm paper toward work ivory.
+- Stage 3, approximately 520-720 ms: the leaf clears the receiving page, the moving shadow collapses, and Practice settles slightly brighter than Greeting without becoming stark white.
+- The transition coordinates the right leaf's geometry, its blank paper reverse, restrained brightness, and moving shadow. Do not add a literal lamp, glow orb, persistent decorative gradient, or a second transition-only raster above the unified spread.
+- Keep the unified spread and the left-page wordmark fixed and visually continuous for the entire transition. Never animate the fold or add another image above it. Only the turning leaf moves.
 - Play the existing `src/sound/nabi-page-turn.mp3` once from the already unlocked sound channel when the physical leaf begins to move. The animation must not wait for audio playback, and muted preference suppresses it as it does today.
 - Practice does not replay the book animation when tabs, verdicts, or exercises change.
-- Under `prefers-reduced-motion: reduce`, skip the spatial turn and moving shadow, then reveal the already-fixed receiving spread without animating its paper or fold. The page-turn sound still follows the user's sound preference rather than motion preference.
+- Under `prefers-reduced-motion: reduce`, skip the spatial turn and moving shadow and use a short paper-tone crossfade. The page-turn sound still follows the user's sound preference rather than motion preference.
 
 ## Responsive behavior
 
@@ -164,7 +178,7 @@ This redesign changes presentation and the location of Hint. It does not change 
   - visible progress omits `N of 6` while the accessible name reports it;
   - sound defaults on, persists mute state, swaps speaker icon and label, and suppresses page-turn audio when muted;
   - the page-turn sound fires once per accepted level selection;
-  - reduced motion removes spatial transforms and reveals the receiving screen without changing the fixed paper or fold.
+  - reduced motion removes spatial transforms while preserving a short paper-tone crossfade.
 - Browser verification covers Greeting, the transition, Level 1 Write, Level 5 Write, Level 5 Hint, failed Review, Matched Next, narrow responsive layout, internal scrolling, keyboard-only completion, tooltips by hover and focus, reduced motion, muted audio, and console errors.
 
 ## Design QA gate

@@ -22,8 +22,9 @@ const testOnlySentinels = [
   "# Extra document title",
   "Skipped supporting detail",
   "data-e2e-document",
-  "__nabimdReadDocumentForE2E",
 ]
+
+const automationContractSentinels = ["__nabimdReadDocumentForE2E"]
 
 const leaked = testOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
 if (leaked.length > 0) {
@@ -32,6 +33,15 @@ if (leaked.length > 0) {
   )
 }
 
+const missingAutomationContracts = automationContractSentinels.filter(
+  (sentinel) => !bundle.includes(sentinel),
+)
+if (missingAutomationContracts.length > 0) {
+  throw new Error(
+    `Production bundle is missing supported automation contracts: ${missingAutomationContracts.join(", ")}`,
+  )
+}
+
 console.log(
-  `Production bundle excludes ${testOnlySentinels.length} test-only sentinels across ${javascriptFiles.length} JavaScript asset(s).`,
+  `Production bundle excludes ${testOnlySentinels.length} test-only sentinels and retains ${automationContractSentinels.length} supported automation contract(s) across ${javascriptFiles.length} JavaScript asset(s).`,
 )

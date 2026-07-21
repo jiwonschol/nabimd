@@ -20,6 +20,7 @@ import { thematicBreakBatch009Fixtures } from "./batches/thematicBreakBatch009Fi
 import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
 import {
+  flattenedStarterProjectionProblemBankRevision,
   getProblem,
   getProblemsForLevel,
   problemBank,
@@ -199,6 +200,12 @@ describe("compiled five-level problem bank", () => {
   it("has a deterministic revision and lookup", () => {
     expect(problemBankRevision).toContain("l1-")
     expect(problemBankRevision).toContain("l5-")
+    expect(
+      flattenedStarterProjectionProblemBankRevision.endsWith(
+        "|starter-projection@1",
+      ),
+    ).toBe(true)
+    expect(problemBankRevision.endsWith("|starter-projection@2")).toBe(true)
     expect(getProblem(problemBank[0].id)).toBe(problemBank[0])
     expect(() => getProblem("missing-problem")).toThrow("Unknown problem")
   })
