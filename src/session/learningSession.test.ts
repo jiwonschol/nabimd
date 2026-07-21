@@ -186,6 +186,27 @@ describe("learningSessionReducer", () => {
     expect(transfer.progress.recentProblemIds).toContain("heading-apple")
   })
 
+  it("keeps failed feedback while editing until Check replaces it", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+    const edited = learningSessionReducer(failed, {
+      type: "edited",
+      value: "# Apple",
+    })
+
+    expect(edited.phase).toBe("editing")
+    expect(edited.evaluation).toBe(failed.evaluation)
+    expect(canAdvance(edited)).toBe(false)
+
+    const rechecked = learningSessionReducer(edited, {
+      type: "checked",
+      evaluation: evaluateProblem(apple, "# Apple"),
+      retryFamily: apple.retryFamily,
+    })
+
+    expect(rechecked.evaluation?.status).toBe("matched")
+    expect(rechecked.evaluation).not.toBe(failed.evaluation)
+  })
+
   it("restores any transfer as a clean recall exercise", () => {
     const progress = createDefaultProgress("heading-apple")
     progress.currentIsTransfer = true

@@ -378,6 +378,28 @@ describe("App", () => {
     expect(editor).not.toHaveFocus()
   })
 
+  it("keeps failed Review available while editing until a successful recheck", async () => {
+    const { user, editor } = await openLevel(1)
+    await user.keyboard(malformedSource())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    replaceSource(editor, validRepair())
+
+    const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(
+      within(review).getByRole("list", { name: "Required corrections" }),
+    ).toBeVisible()
+    expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
+    expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
+
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+    expect(screen.getByRole("tab", { name: "Preview" })).toBeVisible()
+    expect(screen.queryByRole("tab", { name: "Review" })).toBeNull()
+    expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
+  })
+
   it("lists every high-level correction without rendering either document", async () => {
     useSessionSeedForFirstProblem(3, (problem) =>
       problem.matchChecks.some(

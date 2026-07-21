@@ -212,7 +212,8 @@ export function learningSessionReducer(
         ...session,
         phase: "editing",
         draft: event.value,
-        evaluation: null,
+        evaluation:
+          session.evaluation?.status === "fail" ? session.evaluation : null,
         coach: session.coach,
         progress: {
           ...session.progress,
