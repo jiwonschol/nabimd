@@ -82,6 +82,9 @@ describe("global responsive styles", () => {
     expect(styles).toMatch(
       /\.answer-panel\s*\{[^{}]*grid-template-rows:\s*var\(--panel-header-height\) minmax\(0, 1fr\)/s,
     )
+    expect(styles).toMatch(
+      /\.writing-processor__scroll:focus-visible\s*\{[^{}]*outline:\s*2px solid/s,
+    )
   })
 
   it("aligns both writing sheets to one row and gutter contract", () => {
@@ -95,7 +98,10 @@ describe("global responsive styles", () => {
       /\.goal-panel > \.writing-processor\s*\{[^{}]*margin:\s*0 52px 0 42px/s,
     )
     expect(styles).toMatch(
-      /\.markdown-source-editor__mount \.cm-scroller\s*\{[^{}]*padding-left:\s*0[^{}]*overflow:\s*visible[^{}]*line-height:\s*var\(--sheet-row-height\)/s,
+      /\.markdown-source-editor__mount \.cm-scroller\s*\{[^{}]*padding-left:\s*0[^{}]*overflow-x:\s*hidden[^{}]*overflow-y:\s*auto[^{}]*line-height:\s*var\(--sheet-row-height\)/s,
+    )
+    expect(styles).toMatch(
+      /\.writing-processor\[data-mode="edit"\] > \.writing-processor__scroll\s*\{[^{}]*overflow:\s*hidden/s,
     )
     expect(styles).toMatch(
       /\.writing-processor__content\s*\{[^{}]*margin-left:\s*57px[^{}]*padding:\s*0 25px 0 23px/s,
@@ -154,7 +160,7 @@ describe("global responsive styles", () => {
 
   it("locks the Greeting wordmark to the Practice and Summary coordinates", () => {
     expect(styles).toMatch(
-      /\.app-shell\.open-book-shell\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 104rem\)/s,
+      /\.app-shell\.open-book-shell\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 96rem\)/s,
     )
     expect(styles).toMatch(
       /\.open-book-page--intro > \.wordmark\s*\{[^{}]*position:\s*absolute[^{}]*top:\s*26\.5px[^{}]*left:\s*42px[^{}]*min-height:\s*48px[^{}]*font-size:\s*clamp\(1\.35rem, 1\.8vw, 1\.75rem\)/s,

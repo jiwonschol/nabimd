@@ -394,4 +394,26 @@ describe("MarkdownSourceEditor", () => {
     await user.keyboard("{Shift>}{Tab}{/Shift}")
     await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("item"))
   })
+
+  it("does not deindent the first unselected line at a selection boundary", async () => {
+    const onChange = vi.fn()
+    render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value={"\tfirst\n\tsecond"}
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    view.dispatch({ selection: { anchor: 0, head: 7 } })
+    fireEvent.keyDown(editor, { key: "Tab", shiftKey: true })
+
+    await waitFor(() =>
+      expect(onChange).toHaveBeenLastCalledWith("first\n\tsecond"),
+    )
+  })
 })

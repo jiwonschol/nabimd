@@ -24,7 +24,12 @@ function removeOneIndent(view: EditorView): boolean {
 
   for (const range of view.state.selection.ranges) {
     const firstLine = view.state.doc.lineAt(range.from).number
-    const lastLine = view.state.doc.lineAt(range.to).number
+    const rangeEndLine = view.state.doc.lineAt(range.to)
+    const lastPosition =
+      range.from !== range.to && rangeEndLine.from === range.to
+        ? range.to - 1
+        : range.to
+    const lastLine = view.state.doc.lineAt(lastPosition).number
     for (let lineNumber = firstLine; lineNumber <= lastLine; lineNumber += 1) {
       if (seenLines.has(lineNumber)) continue
       seenLines.add(lineNumber)

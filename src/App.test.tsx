@@ -230,6 +230,7 @@ describe("App", () => {
       "Write",
     )
     expect(firstHint).toHaveAttribute("data-tooltip", "Hint")
+    expect(firstHint).toHaveAttribute("aria-keyshortcuts", "Alt+3 ?")
     expect(firstHint).toHaveAttribute("aria-selected", "false")
     await first.user.click(firstHint)
     const pattern = within(
@@ -446,7 +447,7 @@ describe("App", () => {
     expect(answerProcessor?.querySelector(".writing-processor__content")).not.toBeNull()
   })
 
-  it("scopes view shortcuts to the focused editor", async () => {
+  it("keeps view shortcuts active across Write, Preview, and Hint", async () => {
     const { user, editor } = await openLevel(1)
     await user.keyboard("# Preview words")
     const writeTab = screen.getByRole("tab", { name: "Write" })
@@ -467,10 +468,41 @@ describe("App", () => {
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveFocus()
     expect(screen.getByRole("tabpanel", { name: "Hint" })).toBeVisible()
     await user.keyboard("{Alt>}1{/Alt}")
-    expect(screen.getByRole("tabpanel", { name: "Hint" })).toBeVisible()
-    await user.click(writeTab)
+    expect(writeTab).toHaveAttribute("aria-selected", "true")
     expect(editor).toHaveFocus()
     expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
+  })
+
+  it("opens Hint with ? outside the editor without stealing typed question marks", async () => {
+    const { user, editor } = await openLevel(1)
+
+    await user.keyboard("question?")
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+
+    screen.getByRole("button", { name: "Exit" }).focus()
+    await user.keyboard("?")
+
+    expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+    expect(editor).not.toHaveFocus()
+  })
+
+  it("does not leave stale focus when a shortcut selects the current tab", async () => {
+    const { user } = await openLevel(1)
+    const hintTab = screen.getByRole("tab", { name: "Hint" })
+    const previewTab = screen.getByRole("tab", { name: "Preview" })
+
+    await user.keyboard("{Alt>}3{/Alt}")
+    await user.keyboard("{Alt>}3{/Alt}")
+    expect(hintTab).toHaveFocus()
+
+    await user.click(previewTab)
+    expect(previewTab).toHaveFocus()
   })
 
   it("returns home and can reissue content at the same step", async () => {

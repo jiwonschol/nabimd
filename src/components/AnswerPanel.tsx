@@ -182,6 +182,7 @@ export function AnswerPanel({
   const hintTabRef = useRef<HTMLButtonElement>(null)
   const writePanelRef = useRef<HTMLDivElement>(null)
   const pendingTabFocus = useRef<AnswerView | null>(null)
+  const pendingEditorFocus = useRef(false)
   const reviewAvailable =
     evaluation?.status === "fail" ||
     (evaluation?.status === "matched" && evaluation.reviewItems.length > 0)
@@ -199,6 +200,22 @@ export function AnswerPanel({
     },
     [coach, onCloseHint, onRequestHint],
   )
+
+  const focusTab = useCallback((target: AnswerView) => {
+    const targetRef =
+      target === "write"
+        ? writeTabRef
+        : target === "hint"
+          ? hintTabRef
+          : secondTabRef
+    targetRef.current?.focus()
+  }, [])
+
+  const selectViewFromPointer = (nextView: AnswerView) => {
+    pendingEditorFocus.current = false
+    pendingTabFocus.current = null
+    selectView(nextView)
+  }
 
   useEffect(() => {
     setView("write")
@@ -221,17 +238,53 @@ export function AnswerPanel({
   }, [entryId, evaluation])
 
   useEffect(() => {
+    if (pendingEditorFocus.current && view === "write") {
+      pendingEditorFocus.current = false
+      writePanelRef.current
+        ?.querySelector<HTMLElement>('[role="textbox"]')
+        ?.focus()
+      return
+    }
+
     const target = pendingTabFocus.current
     if (!target) return
     pendingTabFocus.current = null
-    const targetRef =
-      target === "write"
-        ? writeTabRef
-        : target === "hint"
-          ? hintTabRef
-          : secondTabRef
-    targetRef.current?.focus()
-  }, [view])
+    focusTab(target)
+  }, [focusTab, view])
+
+  useEffect(() => {
+    const openHintFromKeyboard = (event: KeyboardEvent) => {
+      if (
+        event.key !== "?" ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey
+      ) {
+        return
+      }
+
+      const target = event.target
+      if (
+        target instanceof Element &&
+        target.closest('input, textarea, select, [contenteditable="true"]')
+      ) {
+        return
+      }
+
+      event.preventDefault()
+      pendingEditorFocus.current = false
+      if (view === "hint") {
+        pendingTabFocus.current = null
+        focusTab("hint")
+        return
+      }
+      pendingTabFocus.current = "hint"
+      selectView("hint")
+    }
+
+    document.addEventListener("keydown", openHintFromKeyboard)
+    return () => document.removeEventListener("keydown", openHintFromKeyboard)
+  }, [focusTab, selectView, view])
 
   const moveBetweenTabs = (
     event: ReactKeyboardEvent<HTMLButtonElement>,
@@ -243,11 +296,12 @@ export function AnswerPanel({
     const currentIndex = tabs.indexOf(current)
     const direction = event.key === "ArrowRight" ? 1 : -1
     const target = tabs[(currentIndex + direction + tabs.length) % tabs.length]!
+    pendingEditorFocus.current = false
     pendingTabFocus.current = target
     selectView(target)
   }
 
-  const switchViewFromEditor = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+  const switchViewShortcut = (event: ReactKeyboardEvent<HTMLElement>) => {
     if (
       !event.altKey ||
       (event.key !== "1" && event.key !== "2" && event.key !== "3")
@@ -259,9 +313,22 @@ export function AnswerPanel({
     const target =
       event.key === "1" ? "write" : event.key === "2" ? secondView : "hint"
     if (target === "write") {
-      writePanelRef.current
-        ?.querySelector<HTMLElement>('[role="textbox"]')
-        ?.focus()
+      pendingTabFocus.current = null
+      if (view === "write") {
+        pendingEditorFocus.current = false
+        writePanelRef.current
+          ?.querySelector<HTMLElement>('[role="textbox"]')
+          ?.focus()
+      } else {
+        pendingEditorFocus.current = true
+        selectView("write")
+      }
+      return
+    }
+    pendingEditorFocus.current = false
+    if (view === target) {
+      pendingTabFocus.current = null
+      focusTab(target)
       return
     }
     pendingTabFocus.current = target
@@ -284,6 +351,7 @@ export function AnswerPanel({
     <section
       aria-label="Your answer"
       className="cbt-panel answer-panel"
+      onKeyDownCapture={switchViewShortcut}
     >
       <header className="cbt-panel__header answer-panel__header">
         <div aria-label="Answer view" className="answer-tabs" role="tablist">
@@ -295,7 +363,7 @@ export function AnswerPanel({
             className="answer-tab"
             data-tooltip="Write"
             id={tabIds.write}
-            onClick={() => selectView("write")}
+            onClick={() => selectViewFromPointer("write")}
             onKeyDown={(event) => moveBetweenTabs(event, "write")}
             ref={writeTabRef}
             role="tab"
@@ -312,7 +380,7 @@ export function AnswerPanel({
             className="answer-tab"
             data-tooltip={secondLabel}
             id={tabIds.second}
-            onClick={() => selectView(secondView)}
+            onClick={() => selectViewFromPointer(secondView)}
             onKeyDown={(event) => moveBetweenTabs(event, secondView)}
             ref={secondTabRef}
             role="tab"
@@ -324,12 +392,12 @@ export function AnswerPanel({
           <button
             aria-label="Hint"
             aria-controls={tabIds.hintPanel}
-            aria-keyshortcuts="Alt+3"
+            aria-keyshortcuts="Alt+3 ?"
             aria-selected={view === "hint"}
             className="answer-tab"
             data-tooltip="Hint"
             id={tabIds.hint}
-            onClick={() => selectView("hint")}
+            onClick={() => selectViewFromPointer("hint")}
             onKeyDown={(event) => moveBetweenTabs(event, "hint")}
             ref={hintTabRef}
             role="tab"
@@ -346,7 +414,6 @@ export function AnswerPanel({
         className="answer-panel__body answer-panel__body--sheet"
         hidden={view !== "write"}
         id={tabIds.writePanel}
-        onKeyDownCapture={switchViewFromEditor}
         ref={writePanelRef}
         role="tabpanel"
       >

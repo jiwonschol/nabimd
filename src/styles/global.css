@@ -1054,6 +1054,15 @@ button:focus-visible,
   scrollbar-width: thin;
 }
 
+.writing-processor__scroll:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.writing-processor[data-mode="edit"] > .writing-processor__scroll {
+  overflow: hidden;
+}
+
 .writing-processor__scroll::-webkit-scrollbar,
 .answer-panel__body--reading::-webkit-scrollbar {
   width: 12px;
@@ -1086,6 +1095,12 @@ button:focus-visible,
   min-height: 100%;
 }
 
+.writing-processor[data-mode="edit"] .writing-processor__canvas,
+.writing-processor[data-mode="edit"] .writing-processor__content {
+  height: 100%;
+  min-height: 0;
+}
+
 .writing-processor__rows {
   position: absolute;
   z-index: 0;
@@ -1099,6 +1114,7 @@ button:focus-visible,
   line-height: var(--sheet-row-height);
   list-style: none;
   pointer-events: none;
+  will-change: transform;
 }
 
 .writing-processor__row {
@@ -1528,10 +1544,9 @@ button:focus-visible,
 }
 
 .markdown-source-editor__mount,
-.markdown-source-editor__mount .cm-editor,
-.markdown-source-editor__mount .cm-scroller {
-  min-height: 100%;
-  height: auto;
+.markdown-source-editor__mount .cm-editor {
+  min-height: 0;
+  height: 100%;
 }
 
 .markdown-source-editor__mount .cm-editor {
@@ -1582,8 +1597,11 @@ button:focus-visible,
 }
 
 .markdown-source-editor__mount .cm-scroller {
+  min-height: 0;
+  height: 100%;
   padding-left: 0;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: inherit;
   line-height: var(--sheet-row-height);
 }

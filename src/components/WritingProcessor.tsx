@@ -24,27 +24,74 @@ export function WritingProcessor({
 }: WritingProcessorProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const rowsRef = useRef<HTMLOListElement>(null)
   const [rowCount, setRowCount] = useState(MIN_ROWS)
   const readOnly = mode === "read-only"
 
   useLayoutEffect(() => {
     const scroll = scrollRef.current
     const content = contentRef.current
-    if (!scroll || !content) return
+    const rows = rowsRef.current
+    if (!scroll || !content || !rows) return
+
+    let editorScroll: HTMLElement | null = null
+    let measuredContent: HTMLElement = content
+    let resizeObserver: ResizeObserver | null = null
+    let mountObserver: MutationObserver | null = null
 
     const measure = () => {
-      const height = Math.max(scroll.clientHeight, content.scrollHeight)
+      const height = Math.max(
+        editorScroll?.clientHeight ?? scroll.clientHeight,
+        editorScroll?.scrollHeight ?? measuredContent.scrollHeight,
+      )
       setRowCount(Math.max(MIN_ROWS, Math.ceil(height / ROW_HEIGHT)))
     }
 
-    measure()
-    if (typeof ResizeObserver === "undefined") return
+    const syncRows = () => {
+      rows.style.transform = editorScroll
+        ? `translateY(${-editorScroll.scrollTop}px)`
+        : ""
+    }
 
-    const observer = new ResizeObserver(measure)
-    observer.observe(scroll)
-    observer.observe(content)
-    return () => observer.disconnect()
-  }, [contentVersion])
+    const attach = () => {
+      const nextEditorScroll = readOnly
+        ? null
+        : content.querySelector<HTMLElement>(".cm-scroller")
+      if (!readOnly && !nextEditorScroll) return false
+
+      editorScroll = nextEditorScroll
+      measuredContent =
+        editorScroll?.querySelector<HTMLElement>(".cm-content") ?? content
+      editorScroll?.addEventListener("scroll", syncRows, { passive: true })
+
+      if (typeof ResizeObserver !== "undefined") {
+        resizeObserver = new ResizeObserver(measure)
+        resizeObserver.observe(editorScroll ?? scroll)
+        resizeObserver.observe(measuredContent)
+      }
+
+      measure()
+      syncRows()
+      return true
+    }
+
+    if (!attach() && typeof MutationObserver !== "undefined") {
+      mountObserver = new MutationObserver(() => {
+        if (attach()) {
+          mountObserver?.disconnect()
+          mountObserver = null
+        }
+      })
+      mountObserver.observe(content, { childList: true, subtree: true })
+    }
+
+    return () => {
+      editorScroll?.removeEventListener("scroll", syncRows)
+      resizeObserver?.disconnect()
+      mountObserver?.disconnect()
+      rows.style.transform = ""
+    }
+  }, [contentVersion, readOnly])
 
   const moveWithinDocument = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     if (!readOnly) return
@@ -84,7 +131,11 @@ export function WritingProcessor({
         tabIndex={readOnly ? 0 : undefined}
       >
         <div className="writing-processor__canvas">
-          <ol aria-hidden="true" className="writing-processor__rows">
+          <ol
+            aria-hidden="true"
+            className="writing-processor__rows"
+            ref={rowsRef}
+          >
             {Array.from({ length: rowCount }, (_, index) => (
               <li className="writing-processor__row" key={index + 1}>
                 <span>{index + 1}</span>

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 import { RenderedDocumentBody } from "./RenderedDocument"
@@ -67,5 +67,36 @@ describe("WritingProcessor", () => {
     expect(sheet.scrollTop).toBe(0)
     fireEvent.keyDown(sheet, { key: "End", metaKey: true })
     expect(sheet.scrollTop).toBe(1600)
+  })
+
+  it("syncs rows when the edit scroller mounts after the processor", async () => {
+    const { container } = render(
+      <WritingProcessor
+        contentVersion="A prefilled document"
+        label="Your Markdown"
+        mode="edit"
+      >
+        <MarkdownSourceEditor
+          onChange={vi.fn()}
+          onCheck={vi.fn()}
+          value="A prefilled document"
+        />
+      </WritingProcessor>,
+    )
+
+    await screen.findByRole("textbox", { name: "Your Markdown" })
+    const scroller = container.querySelector<HTMLElement>(".cm-scroller")
+    const rows = container.querySelector<HTMLElement>(
+      ".writing-processor__rows",
+    )
+    expect(scroller).not.toBeNull()
+    expect(rows).not.toBeNull()
+
+    scroller!.scrollTop = 240
+    fireEvent.scroll(scroller!)
+
+    await waitFor(() => {
+      expect(rows).toHaveStyle({ transform: "translateY(-240px)" })
+    })
   })
 })
