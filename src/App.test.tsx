@@ -407,6 +407,22 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
   })
 
+  it("refocuses Review after a repeated failure without blocking Write", async () => {
+    const { user, editor } = await openLevel(1)
+    await user.keyboard(malformedSource())
+    const check = screen.getByRole("button", { name: "Check answer" })
+
+    await user.click(check)
+    const review = screen.getByRole("tabpanel", { name: "Review" })
+    expect(review).toHaveFocus()
+
+    await user.click(check)
+    expect(review).toHaveFocus()
+
+    await user.keyboard("{Alt>}1{/Alt}")
+    expect(editor).toHaveFocus()
+  })
+
   it("replaces Review and Hint feedback after a different failed recheck", async () => {
     useSessionSeedForFirstProblem(3, (problem) =>
       problem.matchChecks.some(

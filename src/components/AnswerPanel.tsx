@@ -280,6 +280,10 @@ export function AnswerPanel({
   useEffect(() => {
     const readingTarget = pendingReadingFocus.current
     if (readingTarget) {
+      const readingTargetIsVisible =
+        readingTarget === "second" ? view === secondView : view === "hint"
+      if (!readingTargetIsVisible) return
+
       pendingReadingFocus.current = null
       const panel =
         readingTarget === "second"
@@ -301,7 +305,7 @@ export function AnswerPanel({
     if (!target) return
     pendingTabFocus.current = null
     focusTab(target)
-  }, [focusTab, view])
+  }, [entryId, evaluation, focusTab, secondView, view])
 
   const moveWithinReadingPanel = (
     event: ReactKeyboardEvent<HTMLDivElement>,
@@ -348,6 +352,7 @@ export function AnswerPanel({
       }
 
       event.preventDefault()
+      pendingReadingFocus.current = null
       pendingEditorFocus.current = false
       if (view === "hint") {
         pendingTabFocus.current = null
@@ -372,6 +377,7 @@ export function AnswerPanel({
     const currentIndex = tabs.indexOf(current)
     const direction = event.key === "ArrowRight" ? 1 : -1
     const target = tabs[(currentIndex + direction + tabs.length) % tabs.length]!
+    pendingReadingFocus.current = null
     pendingEditorFocus.current = false
     pendingTabFocus.current = target
     selectView(target)
@@ -386,6 +392,7 @@ export function AnswerPanel({
     }
 
     event.preventDefault()
+    pendingReadingFocus.current = null
     const target =
       event.key === "1" ? "write" : event.key === "2" ? secondView : "hint"
     if (target === "write") {
