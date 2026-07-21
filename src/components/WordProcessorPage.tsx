@@ -1,3 +1,4 @@
+import type { MarkdownBlankGuideSource } from "../editor/markdownBlankGuides"
 import { MarkdownWordProcessor } from "./MarkdownSourceEditor"
 import { WritingProcessor } from "./WritingProcessor"
 
@@ -17,6 +18,7 @@ type WordProcessorPageProps = WordProcessorPageBaseProps &
       }
     | {
         active?: boolean
+        blankGuides?: MarkdownBlankGuideSource
         onChange: (value: string) => void
         onCheck: () => void
         presentation: "source"
@@ -39,6 +41,7 @@ export function WordProcessorPage(props: WordProcessorPageProps) {
   ) : (
     <MarkdownWordProcessor
       active={props.active}
+      blankGuides={props.blankGuides}
       label={label}
       onChange={props.onChange}
       onCheck={props.onCheck}

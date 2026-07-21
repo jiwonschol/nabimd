@@ -1,6 +1,9 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
-import { derivePlaintextStarter } from "../../src/content/plaintextStarter"
+import {
+  deriveMarkdownBlankGuides,
+  derivePlaintextStarter,
+} from "../../src/content/plaintextStarter"
 
 type RuntimeProblemSource = {
   id: string
@@ -486,6 +489,43 @@ test("pre-fills Goal-derived reproduction prose at every level", async ({
     expect(await sourceText(page)).toBe(starterText)
     await expect.poll(() => hasPersistedDraft(page, problemId)).toBe(false)
   }
+})
+
+test("shows Level 3 mark positions as non-document blank guides", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await enterLevel(page, 3)
+  const problemId = await currentProblemId(page)
+  const problem = runtimeProblemById.get(problemId)
+  if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
+
+  const guides = deriveMarkdownBlankGuides(problem.target)
+  const expectedCellCount = guides.reduce(
+    (count, guide) => count + guide.markers.length,
+    0,
+  )
+  expect(expectedCellCount).toBeGreaterThan(1)
+  await expect(page.locator(".cm-markdown-blank-guide__cell")).toHaveCount(
+    expectedCellCount,
+  )
+  await expect(page.locator(".cm-markdown-blank-guide__cell").first()).toBeVisible()
+  await expect(page.locator(".cm-markdown-blank-guide").first()).toHaveText("")
+  expect(await sourceText(page)).toBe(derivePlaintextStarter(problem.target))
+
+  await sourceEditor(page).fill(problem.target)
+  const remainingGuides = await page
+    .locator(".cm-markdown-blank-guide")
+    .evaluateAll((elements) =>
+      elements.map((element) => ({
+        cells: element.childElementCount,
+        line: element.closest(".cm-line")?.textContent ?? "",
+      })),
+    )
+  expect(remainingGuides).toEqual([])
+  expect(await sourceText(page)).toBe(problem.target)
+  await sourceEditor(page).press("Control+Enter")
+  await expect(page.getByRole("status")).toContainText("Matched")
 })
 
 test("completes and replays Level 1 with keyboard input only", async ({ page }) => {

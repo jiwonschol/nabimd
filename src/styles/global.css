@@ -1276,6 +1276,26 @@ button:focus-visible,
   transform: translateX(-50%);
 }
 
+.cm-markdown-blank-guide {
+  position: relative;
+  display: inline-flex;
+  width: 0;
+  height: 0;
+  align-items: flex-end;
+  gap: 0.12em;
+  pointer-events: none;
+  vertical-align: baseline;
+}
+
+.cm-markdown-blank-guide__cell {
+  flex: 0 0 0.48em;
+  width: 0.48em;
+  height: 0.72em;
+  border-bottom: 1px solid rgb(90 82 72 / 42%);
+  background: rgb(90 82 72 / 6%);
+  transform: translateY(0.08em);
+}
+
 .answer-hint {
   min-height: 100%;
   padding-block: clamp(1.5rem, 3.2vw, 3rem);
