@@ -16,7 +16,7 @@ describe("correctionCue", () => {
     [
       failure({ ...checkBase("heading-spacing"), kind: "heading-spacing", level: 1 }),
       "Level 1 heading",
-      "# Section",
+      "# Title",
     ],
     [
       failure({ ...checkBase("hash-heading-style"), kind: "hash-heading-style", level: 2 }),
@@ -55,7 +55,7 @@ describe("correctionCue", () => {
     ],
     [
       failure({ ...checkBase("divider-count"), kind: "block-count", scope: { kind: "document" }, block: "thematic-break", min: 1 }),
-      "Thematic break",
+      "Markdown divider",
       "---",
     ],
     [
@@ -71,7 +71,7 @@ describe("correctionCue", () => {
     [
       failure({ ...checkBase("emphasis"), kind: "inline-presence", scope: { kind: "document" }, inline: "emphasis", min: 1 }),
       "Italic text",
-      "*Important*",
+      "*Note*",
     ],
     [
       failure({ ...checkBase("strong"), kind: "inline-presence", scope: { kind: "document" }, inline: "strong", min: 1 }),
@@ -85,7 +85,7 @@ describe("correctionCue", () => {
     ],
     [
       failure({ ...checkBase("link"), kind: "inline-presence", scope: { kind: "document" }, inline: "link", min: 1 }),
-      "Link",
+      "Markdown link",
       "[Label](https://example.com)",
     ],
     [
@@ -95,13 +95,13 @@ describe("correctionCue", () => {
     ],
     [
       failure({ ...checkBase("depth-order"), kind: "heading-depth-order", allowSkippedDepths: false }),
-      "Heading levels",
+      "Heading order",
       null,
     ],
     [
       failure({ ...checkBase("ordered-list"), kind: "list-shape", scope: { kind: "document" }, ordered: true, minItems: 1 }),
       "Ordered list",
-      "1. Item",
+      "1. Step",
     ],
     [
       failure({ ...checkBase("bullet-list"), kind: "list-shape", scope: { kind: "document" }, ordered: false, minItems: 1 }),
@@ -130,17 +130,17 @@ describe("correctionCue", () => {
     ],
     [
       failure({ ...checkBase("link-shape"), kind: "link-shape", scope: { kind: "document" }, requireNonemptyLabel: true, requireNonemptyDestination: true, allowReferences: false, allowAutolinks: false, min: 1 }),
-      "Link",
+      "Markdown link",
       "[Label](https://example.com)",
     ],
     [
       failure({ ...checkBase("code-block"), kind: "code-block", scope: { kind: "document" }, min: 1, requireFenced: true }),
-      "Code block",
+      "Fenced code block",
       "```\ncode\n```",
     ],
     [
       failure({ ...checkBase("language-code-block"), kind: "code-block", scope: { kind: "document" }, min: 1, requireFenced: true, requireLanguageTag: true }),
-      "Code block",
+      "Fenced code block with a language",
       "```text\ncode\n```",
     ],
     [
@@ -149,8 +149,18 @@ describe("correctionCue", () => {
       null,
     ],
     [
+      failure({ ...checkBase("section-sequence"), kind: "block-sequence", scope: { kind: "section", headingDepth: 2, occurrence: 0 }, sequence: [{ block: "paragraph" }] }),
+      "Section order",
+      null,
+    ],
+    [
+      failure({ ...checkBase("block-sequence"), kind: "block-sequence", scope: { kind: "block", block: "list", occurrence: 0 }, sequence: [{ block: "paragraph" }] }),
+      "Block order",
+      null,
+    ],
+    [
       failure({ ...checkBase("limits"), kind: "document-limits", maxLines: 3 }),
-      "Document limits",
+      "Document size",
       null,
     ],
   ] as const)("describes %s", (item, label, example) => {

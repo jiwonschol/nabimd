@@ -16,7 +16,11 @@ function headingCue(
   failure: MatchFailureItem,
   level: 1 | 2 | 3 | 4 | 5 | 6,
 ): CorrectionCue {
-  return cue(failure, `Level ${level} heading`, `${"#".repeat(level)} Section`)
+  return cue(
+    failure,
+    `Level ${level} heading`,
+    level === 1 ? "# Title" : `${"#".repeat(level)} Section`,
+  )
 }
 
 function blockLabel(
@@ -47,13 +51,13 @@ function inlinePresentation(inline: InlineKind): {
 } {
   switch (inline) {
     case "emphasis":
-      return { label: "Italic text", example: "*Important*" }
+      return { label: "Italic text", example: "*Note*" }
     case "strong":
       return { label: "Bold text", example: "**Important**" }
     case "inline-code":
       return { label: "Inline code", example: "`command`" }
     case "link":
-      return { label: "Link", example: "[Label](https://example.com)" }
+      return { label: "Markdown link", example: "[Label](https://example.com)" }
     case "image":
       return {
         label: "Image",
@@ -70,7 +74,7 @@ function listPresentation(
 ): { label: string; example: string } {
   const label =
     ordered === true ? "Ordered list" : ordered === false ? "Bullet list" : "List"
-  const example = ordered === true ? "1. Item" : "- Item"
+  const example = ordered === true ? "1. Step" : "- Item"
 
   if (!descendantsOnly) return { label, example }
 
@@ -78,6 +82,19 @@ function listPresentation(
     label: `Nested ${label.toLowerCase()}`,
     example:
       ordered === true ? "1. Parent\n   1. Child" : "- Parent\n  - Child",
+  }
+}
+
+function sequenceLabel(check: Extract<MatchCheck, { kind: "block-sequence" }>): string {
+  switch (check.scope.kind) {
+    case "document":
+      return "Document order"
+    case "section":
+      return "Section order"
+    case "block":
+      return "Block order"
+    default:
+      return assertNever(check.scope)
   }
 }
 
@@ -105,7 +122,9 @@ export function correctionCue(failure: MatchFailureItem): CorrectionCue {
     case "block-count":
       return cue(
         failure,
-        blockLabel(check.block, check.depth),
+        check.block === "thematic-break" && (check.min ?? 0) > 0
+          ? "Markdown divider"
+          : blockLabel(check.block, check.depth),
         check.block === "thematic-break" && (check.min ?? 0) > 0
           ? "---"
           : null,
@@ -115,7 +134,7 @@ export function correctionCue(failure: MatchFailureItem): CorrectionCue {
       return cue(failure, presentation.label, presentation.example)
     }
     case "heading-depth-order":
-      return cue(failure, "Heading levels", null)
+      return cue(failure, "Heading order", null)
     case "list-shape": {
       const presentation = listPresentation(check.ordered, check.descendantsOnly)
       return cue(failure, presentation.label, presentation.example)
@@ -125,17 +144,19 @@ export function correctionCue(failure: MatchFailureItem): CorrectionCue {
     case "inline-code-shape":
       return cue(failure, "Inline code", "`command`")
     case "link-shape":
-      return cue(failure, "Link", "[Label](https://example.com)")
+      return cue(failure, "Markdown link", "[Label](https://example.com)")
     case "code-block":
       return cue(
         failure,
-        "Code block",
+        check.requireLanguageTag
+          ? "Fenced code block with a language"
+          : "Fenced code block",
         `\`\`\`${check.requireLanguageTag ? "text" : ""}\ncode\n\`\`\``,
       )
     case "block-sequence":
-      return cue(failure, "Document order", null)
+      return cue(failure, sequenceLabel(check), null)
     case "document-limits":
-      return cue(failure, "Document limits", null)
+      return cue(failure, "Document size", null)
     default:
       return assertNever(check)
   }
