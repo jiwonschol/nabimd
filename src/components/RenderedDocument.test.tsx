@@ -124,4 +124,5 @@ describe("RenderedDocument", () => {
       "Kept with the document.",
     )
   })
+
 })

@@ -13,9 +13,8 @@ import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { correctionCues } from "../feedback/correctionCues"
 import type { LearningSession } from "../session/learningSession"
-import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 import { RenderedDocumentBody } from "./RenderedDocument"
-import { WritingProcessor } from "./WritingProcessor"
+import { WordProcessorPage } from "./WordProcessorPage"
 
 type AnswerView = "write" | "preview" | "review" | "hint"
 
@@ -228,6 +227,7 @@ export function AnswerPanel({
     (evaluation?.status === "matched" && evaluation.reviewItems.length > 0)
   const secondView: AnswerView = reviewAvailable ? "review" : "preview"
   const secondLabel = reviewAvailable ? "Review" : "Preview"
+  const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
 
   const selectView = useCallback(
     (nextView: AnswerView) => {
@@ -506,20 +506,16 @@ export function AnswerPanel({
         ref={writePanelRef}
         role="tabpanel"
       >
-        <WritingProcessor
+        <WordProcessorPage
+          active={view === "write"}
           key={problem.id}
           label="Your Markdown"
-          mode="edit"
-        >
-          <MarkdownSourceEditor
-            active={view === "write"}
-            key={problem.id}
-            onChange={onChange}
-            onCheck={onCheck}
-            showInvisibles
-            value={draft}
-          />
-        </WritingProcessor>
+          leadingBlankRows={leadingBlankRows}
+          onChange={onChange}
+          onCheck={onCheck}
+          presentation="source"
+          value={draft}
+        />
       </div>
 
       <div
@@ -536,16 +532,13 @@ export function AnswerPanel({
         {secondView === "review" && evaluation ? (
           <ReviewPanel draft={draft} evaluation={evaluation} problem={problem} />
         ) : (
-          <WritingProcessor
+          <WordProcessorPage
             key={`${problem.id}-preview`}
             label="Rendered answer"
-            mode="read-only"
-          >
-            <RenderedDocumentBody
-              emptyMessage="Your preview will appear here."
-              source={draft}
-            />
-          </WritingProcessor>
+            leadingBlankRows={leadingBlankRows}
+            presentation="rendered"
+            value={draft}
+          />
         )}
       </div>
 

@@ -11,20 +11,27 @@ const MIN_ROWS = 24
 
 type WritingProcessorProps = {
   children: ReactNode
+  engine?: "codemirror" | "flow"
   label: string
+  leadingBlankRows?: number
   mode: "read-only" | "edit"
+  page?: "rendered" | "source"
 }
 
 export function WritingProcessor({
   children,
+  engine,
   label,
+  leadingBlankRows = 0,
   mode,
+  page,
 }: WritingProcessorProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const rowsRef = useRef<HTMLOListElement>(null)
   const [rowCount, setRowCount] = useState(MIN_ROWS)
   const readOnly = mode === "read-only"
+  const usesCodeMirror = engine === "codemirror" || mode === "edit"
 
   useLayoutEffect(() => {
     const scroll = scrollRef.current
@@ -38,11 +45,17 @@ export function WritingProcessor({
     let mountObserver: MutationObserver | null = null
 
     const measure = () => {
+      const configuredRowHeight = Number.parseFloat(
+        getComputedStyle(scroll).getPropertyValue("--sheet-row-height"),
+      )
+      const rowHeight = Number.isFinite(configuredRowHeight)
+        ? configuredRowHeight
+        : ROW_HEIGHT
       const height = Math.max(
         editorScroll?.clientHeight ?? scroll.clientHeight,
         editorScroll?.scrollHeight ?? measuredContent.scrollHeight,
       )
-      setRowCount(Math.max(MIN_ROWS, Math.ceil(height / ROW_HEIGHT)))
+      setRowCount(Math.max(MIN_ROWS, Math.ceil(height / rowHeight)))
     }
 
     const syncRows = () => {
@@ -52,10 +65,10 @@ export function WritingProcessor({
     }
 
     const attach = () => {
-      const nextEditorScroll = readOnly
-        ? null
-        : content.querySelector<HTMLElement>(".cm-scroller")
-      if (!readOnly && !nextEditorScroll) return false
+      const nextEditorScroll = usesCodeMirror
+        ? content.querySelector<HTMLElement>(".cm-scroller")
+        : null
+      if (usesCodeMirror && !nextEditorScroll) return false
 
       editorScroll = nextEditorScroll
       measuredContent =
@@ -89,10 +102,10 @@ export function WritingProcessor({
       mountObserver?.disconnect()
       rows.style.transform = ""
     }
-  }, [readOnly])
+  }, [usesCodeMirror])
 
   const moveWithinDocument = (event: ReactKeyboardEvent<HTMLDivElement>) => {
-    if (!readOnly) return
+    if (!readOnly || usesCodeMirror) return
     const scroll = scrollRef.current
     if (!scroll) return
 
@@ -117,16 +130,22 @@ export function WritingProcessor({
   }
 
   return (
-    <div className="writing-processor" data-mode={mode}>
+    <div
+      className={`writing-processor${page ? " word-processor-page" : ""}`}
+      data-engine={usesCodeMirror ? "codemirror" : "flow"}
+      data-leading-blank-rows={leadingBlankRows || undefined}
+      data-mode={mode}
+      data-page={page}
+    >
       <div
-        aria-label={readOnly ? label : undefined}
-        aria-multiline={readOnly ? "true" : undefined}
-        aria-readonly={readOnly ? "true" : undefined}
+        aria-label={readOnly && !usesCodeMirror ? label : undefined}
+        aria-multiline={readOnly && !usesCodeMirror ? "true" : undefined}
+        aria-readonly={readOnly && !usesCodeMirror ? "true" : undefined}
         className="writing-processor__scroll"
         onKeyDown={moveWithinDocument}
         ref={scrollRef}
-        role={readOnly ? "textbox" : undefined}
-        tabIndex={readOnly ? 0 : undefined}
+        role={readOnly && !usesCodeMirror ? "textbox" : undefined}
+        tabIndex={readOnly && !usesCodeMirror ? 0 : undefined}
       >
         <div className="writing-processor__canvas">
           <ol

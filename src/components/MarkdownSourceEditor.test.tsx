@@ -375,6 +375,27 @@ describe("MarkdownSourceEditor", () => {
     )
   })
 
+  it("shows each leading source space as one formatting dot", () => {
+    const { container } = render(
+      <MarkdownSourceEditor
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        showInvisibles
+        value={"   nested item"}
+      />,
+    )
+
+    const marks = container.querySelectorAll(".cm-invisible-character--space")
+    expect(marks).toHaveLength(3)
+    marks.forEach((mark) => {
+      expect(mark).toHaveTextContent("·")
+      expect(mark).toHaveAttribute("aria-hidden", "true")
+    })
+    expect(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveTextContent("···nested item↵")
+  })
+
   it("shows distinct glyphs for NBSP and ideographic space", () => {
     const onChange = vi.fn()
     const { container } = render(

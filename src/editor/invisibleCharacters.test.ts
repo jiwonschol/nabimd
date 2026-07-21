@@ -6,10 +6,12 @@ import {
 } from "./invisibleCharacters"
 
 describe("findInvisibleCharacters", () => {
-  it("finds tabs and line breaks without marking ordinary spaces", () => {
-    expect(findInvisibleCharacters("# Rainy\tday\nNext")).toEqual([
-      { from: 7, to: 8, kind: "tab" },
-      { from: 11, to: 12, kind: "line-break" },
+  it("marks leading spaces, tabs, and line breaks without marking word spaces", () => {
+    expect(findInvisibleCharacters("  # Rainy\tday\nNext words")).toEqual([
+      { from: 0, to: 1, kind: "space" },
+      { from: 1, to: 2, kind: "space" },
+      { from: 9, to: 10, kind: "tab" },
+      { from: 13, to: 14, kind: "line-break" },
     ])
   })
 
@@ -44,6 +46,26 @@ describe("findInvisibleCharacters", () => {
     expect(positions).toEqual([
       { from: 7, to: 8 },
       { from: 8, to: 8 },
+    ])
+  })
+
+  it("decorates only the spaces before the first visible character", () => {
+    const state = EditorState.create({ doc: "   nested item" })
+    const decorations = buildFormattingMarks({
+      state,
+      visibleRanges: [{ from: 0, to: state.doc.length }],
+    })
+    const positions: Array<{ from: number; to: number }> = []
+
+    decorations.between(0, state.doc.length, (from, to) => {
+      positions.push({ from, to })
+    })
+
+    expect(positions).toEqual([
+      { from: 0, to: 1 },
+      { from: 1, to: 2 },
+      { from: 2, to: 3 },
+      { from: 14, to: 14 },
     ])
   })
 })
