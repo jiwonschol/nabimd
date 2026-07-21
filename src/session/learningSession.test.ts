@@ -40,7 +40,7 @@ function editAndCheck(
 }
 
 describe("learningSessionReducer", () => {
-  it("starts every problem from supplied prose without Markdown marks", () => {
+  it("starts every level from its Goal-derived prose", () => {
     const levelOne = getProblem("l1-heading-apple")
     const levelTwo = getProblem("l2-nested-checklist-closet-shelf")
     const levelThree = getProblem("l3-agenda-break-room-supplies")

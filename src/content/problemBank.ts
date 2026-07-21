@@ -37,10 +37,16 @@ export const preStarterProjectionProblemBankRevision = problemBank
   .map((problem) => `${problem.id}@${problem.revision}`)
   .join("|")
 
-const STARTER_PROJECTION_REVISION = 1
+export const flattenedStarterProjectionProblemBankRevision = [
+  preStarterProjectionProblemBankRevision,
+  "starter-projection@1",
+].join("|")
 
-export const problemBankRevision =
-  `${preStarterProjectionProblemBankRevision}|starter-projection@${STARTER_PROJECTION_REVISION}`
+export const STARTER_PROJECTION_REVISION = 2
+export const problemBankRevision = [
+  preStarterProjectionProblemBankRevision,
+  `starter-projection@${STARTER_PROJECTION_REVISION}`,
+].join("|")
 
 export function getProblem(id: string): NormalizedProblem {
   const problem = problemBank.find((candidate) => candidate.id === id)

@@ -29,7 +29,7 @@ const automationContractSentinels = ["__nabimdReadDocumentForE2E"]
 const leaked = testOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
 if (leaked.length > 0) {
   throw new Error(
-    `Production bundle contains test-only problem fixtures: ${leaked.join(", ")}`,
+    `Production bundle contains test-only sentinels: ${leaked.join(", ")}`,
   )
 }
 
