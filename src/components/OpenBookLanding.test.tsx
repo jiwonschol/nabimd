@@ -11,11 +11,28 @@ describe("OpenBookLanding", () => {
     render(<OpenBookLanding onChoose={onChoose} turningEntryId={null} />)
 
     expect(
-      screen.getByRole("heading", { name: "Structure becomes instinct." }),
+      screen.getByRole("heading", { name: "Markdown is easy." }),
     ).toBeVisible()
     expect(
-      screen.getByText("Brief → Write source → Inspect render → Prove again"),
+      screen.getByText("Learning to use it well is just as easy."),
     ).toBeVisible()
+    expect(screen.getByText("Nobody ever showed you —")).toBeVisible()
+    expect(
+      screen.getByText("that is the only reason you haven't."),
+    ).toBeVisible()
+    expect(screen.queryByText("Structure becomes instinct.")).toBeNull()
+    expect(screen.queryByText("A short daily writing practice")).toBeNull()
+    expect(
+      screen.queryByText("Brief → Write source → Inspect render → Prove again"),
+    ).toBeNull()
+    expect(screen.queryByRole("list", { name: "How practice works" })).toBeNull()
+    expect(
+      screen.queryByText("Five levels · ten quiet minutes at a time"),
+    ).toBeNull()
+    expect(screen.queryByText("There is no wrong place to start.")).toBeNull()
+    expect(
+      screen.queryByText("Learn the building blocks of Markdown."),
+    ).toBeNull()
     expect(screen.queryByTestId("landing-book-spine")).toBeNull()
 
     for (const entry of entryChoices) {

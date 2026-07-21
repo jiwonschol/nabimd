@@ -66,3 +66,56 @@
    so a vertical book fold is never stretched into a mobile interface.
 
 final result: passed
+
+---
+
+# Design QA — Landing motto hierarchy
+
+- Approved visual truth: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-20fecd46-fb14-46cb-9546-74bc87f4a724.png`
+- Final implementation: `/private/tmp/nabimd-landing-1280-final.png`
+- Full comparison: `/private/tmp/nabimd-landing-comparison-final.png`
+- Focused chapter comparison: `/private/tmp/nabimd-index-focus-final-comparison.png`
+- Responsive evidence: `/private/tmp/nabimd-landing-390x700.png`, `/private/tmp/nabimd-landing-812x375.png`
+- Viewports: `1280 × 720`, `768 × 1024`, `390 × 700`, `812 × 375`
+- State: fresh Landing
+
+## Findings
+
+- P0: none.
+- P1: none.
+- P2: none after the short-landscape regression was fixed.
+- P3: the production paper seam and row dividers remain slightly quieter than
+  the static reference. The difference does not alter hierarchy or behavior.
+
+## Fidelity and interaction verification
+
+- The left page contains only the Nabi wordmark and the approved four-line
+  motto. `Markdown is easy.` leads the hierarchy in Source Serif 4.
+- The right page contains only the chapter instruction and five level rows.
+  Level labels use JetBrains Mono; chapter titles use Source Serif 4.
+- The five-level meta line, method strip, row numbers, descriptions, and
+  supporting sentence are absent by design.
+- The open-book surface, center seam, and existing page-turn interaction are
+  preserved.
+- Level 3 opened from the desktop viewport and Level 5 opened from the short
+  landscape viewport; the Practice editor received focus in both flows.
+- At `390 × 700`, the spread stacks without horizontal overflow and all five
+  level choices remain reachable.
+- At `812 × 375`, the left page no longer creates an unfocusable nested scroll
+  region. A browser regression test enforces the contract and reaches Level 5.
+- At `768 × 1024`, the two-page layout scales its type and insets without
+  crossing the center seam or creating horizontal page overflow.
+- Browser console warnings/errors: 0 during visual inspection.
+
+## Comparison history
+
+1. The first pass retained too much explanatory copy and made the chapter
+   instruction compete with the product motto.
+2. The hierarchy pass removed nonessential text, restored five simple rows,
+   and separated the display serif from the functional mono labels.
+3. Side-by-side inspection corrected the right-page scale, outer inset, row
+   rhythm, and title truncation.
+4. Independent review found one inaccessible short-landscape overflow region;
+   the final responsive rule makes the left page fit without its own scrollbar.
+
+final result: passed
