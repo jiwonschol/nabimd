@@ -62,7 +62,7 @@ export function ExerciseTopBar({
   const [summaryTooltipReady, setSummaryTooltipReady] = useState(false)
   const matched = evaluation?.status === "matched"
   const entry = getEntryChoice(entryId)
-  const [levelNumber, levelName] = entry.label.split(" — ", 2)
+  const levelLabel = `Level ${entry.level}`
   const visibleScheduledPosition =
     phase === "complete"
       ? scheduledRunLength
@@ -138,18 +138,39 @@ export function ExerciseTopBar({
             Exit
           </button>
         </div>
+      </div>
+
+      <div className="exercise-topbar__page exercise-topbar__page--right">
+        <div className="exercise-topbar__time">
+          <span className="elapsed-control">
+            <ElapsedTime
+              completedAtMs={runCompletedAtMs}
+              startedAtMs={runStartedAtMs}
+            />
+          </span>
+          <button
+            aria-label={soundMuted ? "Turn sound on" : "Mute sound"}
+            aria-pressed={soundMuted}
+            className="sound-control"
+            data-tooltip={soundMuted ? "Turn sound on" : "Mute sound"}
+            onClick={() => setSoundMuted(!soundMuted)}
+            type="button"
+          >
+            {soundMuted ? (
+              <VolumeX aria-hidden="true" size={17} strokeWidth={1.7} />
+            ) : (
+              <Volume2 aria-hidden="true" size={17} strokeWidth={1.7} />
+            )}
+          </button>
+        </div>
+
         <div
           aria-label="Practice details"
           className="exercise-progress"
           role="group"
         >
-          <span aria-label={entry.label} className="exercise-progress__level">
-            <span>{levelNumber}</span>
-            {levelName ? (
-              <span className="exercise-progress__level-name">
-                {` — ${levelName}`}
-              </span>
-            ) : null}
+          <span aria-label={levelLabel} className="exercise-progress__level">
+            {levelLabel}
           </span>
           <div className="exercise-progress__run">
             <ol aria-label="Turn steps" className="turn-progress">
@@ -180,31 +201,6 @@ export function ExerciseTopBar({
               </span>
             ) : null}
           </div>
-        </div>
-      </div>
-
-      <div className="exercise-topbar__page exercise-topbar__page--right">
-        <div className="exercise-topbar__time">
-          <span className="elapsed-control">
-            <ElapsedTime
-              completedAtMs={runCompletedAtMs}
-              startedAtMs={runStartedAtMs}
-            />
-          </span>
-          <button
-            aria-label={soundMuted ? "Turn sound on" : "Mute sound"}
-            aria-pressed={soundMuted}
-            className="sound-control"
-            data-tooltip={soundMuted ? "Turn sound on" : "Mute sound"}
-            onClick={() => setSoundMuted(!soundMuted)}
-            type="button"
-          >
-            {soundMuted ? (
-              <VolumeX aria-hidden="true" size={17} strokeWidth={1.7} />
-            ) : (
-              <Volume2 aria-hidden="true" size={17} strokeWidth={1.7} />
-            )}
-          </button>
         </div>
 
         <div className="exercise-topbar__end">

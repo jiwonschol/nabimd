@@ -2,6 +2,7 @@
   "name": "nabimd",
   "private": true,
   "version": "0.1.0",
+  "license": "AGPL-3.0-or-later",
   "type": "module",
   "engines": {
     "node": ">=22.13"
@@ -12,6 +13,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "third-party-notices:generate": "node scripts/generate-third-party-notices.mjs",
+    "third-party-notices:check": "node scripts/generate-third-party-notices.mjs --check",
+    "prebuild": "npm run third-party-notices:generate",
     "build": "tsc -b && vite build",
     "bank:generate": "node scripts/problem-bank/normalize.mjs",
     "bank:generate:check": "node scripts/problem-bank/normalize.mjs --check",
@@ -74,7 +78,7 @@
     "bank:batch:generate:check": "npm run bank:batch:foundation:check && npm run bank:batch:heading-002:check && npm run bank:batch:emphasis-003:check && npm run bank:batch:list-004:check && npm run bank:batch:ordered-list-005:check && npm run bank:batch:blockquote-006:check && npm run bank:batch:inline-code-007:check && npm run bank:batch:link-008:check && npm run bank:batch:thematic-break-009:check && npm run bank:batch:readable-document-010:check && npm run bank:batch:composite-document-011:check && npm run bank:batch:development-spec-012:check && npm run bank:batch:italic-rebuild-013:check && npm run bank:batch:code-block-014:check && npm run bank:batch:heading-depth-015:check && npm run bank:batch:nested-list-016:check && npm run bank:batch:advanced-document-017:check",
     "bank:repository:gate": "vitest run scripts/problem-bank/repositoryBankGate.gate.ts --config vitest.gate.config.ts --reporter=verbose",
     "bundle:verify": "node scripts/verifyProductionBundle.mjs",
-    "check": "npm run typecheck && npm run bank:generate:check && npm run bank:batch:test && npm run bank:batch:generate:check && npm run bank:repository:gate && npm test && npm run bank:gate && npm run build && npm run bundle:verify"
+    "check": "npm run typecheck && npm run third-party-notices:check && npm run bank:generate:check && npm run bank:batch:test && npm run bank:batch:generate:check && npm run bank:repository:gate && npm test && npm run bank:gate && npm run build && npm run bundle:verify"
   },
   "dependencies": {
     "@codemirror/commands": "6.10.4",
@@ -83,6 +87,8 @@
     "@codemirror/view": "6.43.6",
     "lucide-react": "^1.25.0",
     "mdast-util-from-markdown": "2.0.3",
+    "mdast-util-gfm": "3.1.0",
+    "micromark-extension-gfm": "3.0.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-markdown": "10.1.0",

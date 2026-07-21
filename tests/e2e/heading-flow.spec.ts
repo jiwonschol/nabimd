@@ -44,18 +44,22 @@ function sourceEditor(page: Page): Locator {
 }
 
 async function sourceText(page: Page): Promise<string> {
-  return page.locator(".markdown-source-editor__mount").evaluate((mount) => {
-    const readDocument = (
-      mount as HTMLDivElement & {
-        __nabimdReadDocumentForE2E?: () => string
-      }
-    ).__nabimdReadDocumentForE2E
+  return page
+    .locator(
+      '.answer-panel .markdown-word-processor[data-presentation="source"] .markdown-source-editor__mount',
+    )
+    .evaluate((mount) => {
+      const readDocument = (
+        mount as HTMLDivElement & {
+          __nabimdReadDocumentForE2E?: () => string
+        }
+      ).__nabimdReadDocumentForE2E
 
-    if (typeof readDocument !== "function") {
-      throw new Error("Expected the supported CodeMirror document reader")
-    }
-    return readDocument()
-  })
+      if (typeof readDocument !== "function") {
+        throw new Error("Expected the supported CodeMirror document reader")
+      }
+      return readDocument()
+    })
 }
 
 async function hasPersistedDraft(page: Page, problemId: string) {
@@ -225,6 +229,31 @@ test("greets a fresh session with the definitive five-level ladder", async ({
     await expect(page.getByRole("button", { name: label })).toBeVisible()
   }
   await expect(sourceEditor(page)).toHaveCount(0)
+})
+
+test("opens third-party licenses in a new tab and keeps the landing open", async ({
+  page,
+}) => {
+  await page.goto("/")
+  const landingUrl = page.url()
+  const licensesLink = page.getByRole("link", {
+    name: "Third-party licenses",
+  })
+
+  const popupPromise = page.waitForEvent("popup")
+  await licensesLink.click()
+  const licensesPage = await popupPromise
+  await licensesPage.waitForLoadState("domcontentloaded")
+
+  expect(new URL(licensesPage.url()).pathname).toBe(
+    "/third-party-licenses.html",
+  )
+  expect(page.url()).toBe(landingUrl)
+  await expect(
+    page.getByRole("heading", { name: "Markdown is easy." }),
+  ).toBeVisible()
+
+  await licensesPage.close()
 })
 
 test("keeps every chapter reachable in a short landscape viewport", async ({
@@ -438,7 +467,9 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await page.goto("/")
   await enterLevel1(page)
   const editor = sourceEditor(page)
-  const originalGoal = await page.getByRole("region", { name: "Goal" }).textContent()
+  const originalGoal = await page
+    .getByRole("region", { name: "Goal", exact: true })
+    .textContent()
   const repairFeedback = await expectedRepairFeedback(page)
 
   await editor.fill(await malformedSource(page))
@@ -466,7 +497,9 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await expect(page.getByLabel("Practice details")).toContainText(
     "Exercise 2 of 7",
   )
-  await expect(page.getByRole("region", { name: "Goal" })).not.toHaveText(
+  await expect(
+    page.getByRole("region", { name: "Goal", exact: true }),
+  ).not.toHaveText(
     originalGoal ?? "",
   )
 })
@@ -475,7 +508,7 @@ test("Try another stays in level and serves different content", async ({ page })
   await page.goto("/")
   await enterLevel(page, 3)
 
-  const goal = page.getByRole("region", { name: "Goal" })
+  const goal = page.getByRole("region", { name: "Goal", exact: true })
   const before = await goal.textContent()
   await page.getByRole("button", { name: "Try another" }).click()
   await expect(goal).not.toHaveText(before ?? "")
@@ -540,17 +573,8 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   await enterLevel(page, 5)
 
   const topbar = page.locator(".exercise-topbar")
-  const goal = page.getByRole("region", { name: "Goal" })
+  const goal = page.getByRole("region", { name: "Goal", exact: true })
   const answer = page.getByRole("region", { name: "Your answer" })
-  await goal.locator(".rendered-document__body").evaluate((node) => {
-    const paragraph = node.querySelector("p")
-    if (paragraph) {
-      paragraph.textContent = Array.from(
-        { length: 80 },
-        (_, index) => `Work-order requirement ${index + 1}.`,
-      ).join(" ")
-    }
-  })
   const [topbarBox, goalBox, answerBox] = await Promise.all([
     topbar.boundingBox(),
     goal.boundingBox(),
@@ -572,13 +596,245 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   expect(pageMetrics.body).toBeLessThanOrEqual(pageMetrics.viewport)
   expect(pageMetrics.document).toBeLessThanOrEqual(pageMetrics.viewport)
 
-  const goalScroll = await goal.locator(".writing-processor__scroll").evaluate((node) => ({
+  const goalScroll = await goal.locator(".cm-scroller").evaluate((node) => ({
     clientHeight: node.clientHeight,
     overflowY: window.getComputedStyle(node).overflowY,
     scrollHeight: node.scrollHeight,
   }))
   expect(goalScroll.overflowY).toBe("auto")
   expect(goalScroll.scrollHeight).toBeGreaterThan(goalScroll.clientHeight)
+})
+
+test("keeps Goal and Write on the same source rows for Bus card", async ({
+  page,
+}) => {
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "13")
+  }, sessionSeedStorageKey)
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/")
+  await enterLevel(page, 2)
+
+  expect(await currentProblemId(page)).toBe("l2-code-block-bus-reference")
+  const problem = runtimeProblemById.get("l2-code-block-bus-reference")
+  if (!problem) throw new Error("Bus card must exist in the runtime bank")
+  await sourceEditor(page).fill(problem.target)
+
+  const assertSharedRows = async (expectedHeight: number) => {
+    const [goalEditable, answerEditable] = await Promise.all([
+      page
+        .locator(".goal-panel .cm-content")
+        .getAttribute("contenteditable"),
+      sourceEditor(page).getAttribute("contenteditable"),
+    ])
+    expect(goalEditable).toBe("false")
+    expect(answerEditable).toBe("true")
+
+    const rows = await page.evaluate(() => {
+      const collect = (selector: string) =>
+        Array.from(document.querySelectorAll<HTMLElement>(selector)).map(
+          (row) => {
+            const box = row.getBoundingClientRect()
+            return {
+              height: box.height,
+              text: row.innerText,
+              top: box.top,
+            }
+          },
+        )
+      return {
+        answer: collect(".answer-panel [role='tabpanel']:not([hidden]) .cm-line"),
+        answerGutter: collect(".answer-panel [role='tabpanel']:not([hidden]) .writing-processor__row"),
+        goal: collect(".goal-panel .cm-line"),
+        goalGutter: collect(".goal-panel .writing-processor__row"),
+      }
+    })
+
+    expect(rows.goal).toHaveLength(8)
+    expect(rows.answer).toHaveLength(8)
+    for (let index = 0; index < 8; index += 1) {
+      expect(Math.abs(rows.goal[index]!.top - rows.answer[index]!.top))
+        .toBeLessThanOrEqual(1)
+      expect(Math.abs(rows.goal[index]!.height - rows.answer[index]!.height))
+        .toBeLessThanOrEqual(1)
+      expect(Math.abs(rows.goal[index]!.height - expectedHeight))
+        .toBeLessThanOrEqual(1)
+      const gutterIndex = index + 2
+      const goalGutterDelta = Math.abs(
+        rows.goal[index]!.top - rows.goalGutter[gutterIndex]!.top,
+      )
+      const answerGutterDelta = Math.abs(
+        rows.answer[index]!.top - rows.answerGutter[gutterIndex]!.top,
+      )
+      expect(
+        goalGutterDelta,
+        `Goal row ${index + 1}: ${JSON.stringify(rows)}`,
+      ).toBeLessThanOrEqual(1)
+      expect(
+        answerGutterDelta,
+        `Answer row ${index + 1}: ${JSON.stringify(rows)}`,
+      ).toBeLessThanOrEqual(1)
+    }
+    for (const index of [1, 2, 4, 5]) {
+      expect(rows.goal[index]!.text.trim()).toBe("↵")
+    }
+  }
+
+  await assertSharedRows(40)
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await assertSharedRows(36)
+})
+
+test("Preview is the same rendered word processor as Goal", async ({ page }) => {
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "13")
+  }, sessionSeedStorageKey)
+  await page.setViewportSize({ width: 1280, height: 800 })
+  await page.goto("/")
+  await enterLevel(page, 2)
+
+  expect(await currentProblemId(page)).toBe("l2-code-block-bus-reference")
+  const problem = runtimeProblemById.get("l2-code-block-bus-reference")
+  if (!problem) throw new Error("Bus card must exist in the runtime bank")
+  await sourceEditor(page).fill(problem.target)
+  await page.getByRole("tab", { name: "Preview" }).click()
+
+  const preview = page.getByRole("tabpanel", { name: "Preview" })
+  const renderedProcessor = preview.locator(
+    '.markdown-word-processor[data-presentation="rendered"]',
+  )
+  await expect(renderedProcessor).toHaveCount(1)
+  await expect(
+    preview.locator(
+      '.writing-processor[data-engine="codemirror"][data-mode="read-only"]',
+    ),
+  ).toHaveCount(1)
+  await expect(renderedProcessor.locator(".cm-content")).toHaveAttribute(
+    "contenteditable",
+    "false",
+  )
+  await expect(
+    preview.locator(
+      ".writing-processor__content > .rendered-document__body",
+    ),
+  ).toHaveCount(0)
+
+  const assertRenderedParity = async () => {
+    const metrics = await page.evaluate(() => {
+      const collect = (selector: string) =>
+        Array.from(document.querySelectorAll<HTMLElement>(selector)).map(
+          (line) => {
+            const box = line.getBoundingClientRect()
+            const style = window.getComputedStyle(line)
+            return {
+              fontFamily: style.fontFamily,
+              fontSize: style.fontSize,
+              fontWeight: style.fontWeight,
+              height: box.height,
+              lineHeight: style.lineHeight,
+              text: line.innerText,
+              top: box.top,
+            }
+          },
+        )
+      return {
+        goal: collect(".goal-panel .cm-line"),
+        preview: collect(
+          '.answer-panel [role="tabpanel"]:not([hidden]) .cm-line',
+        ),
+      }
+    })
+
+    expect(metrics.goal).toHaveLength(problem.target.split("\n").length)
+    expect(metrics.preview).toHaveLength(metrics.goal.length)
+    metrics.goal.forEach((goalLine, index) => {
+      const previewLine = metrics.preview[index]!
+      expect(previewLine.text).toBe(goalLine.text)
+      expect(previewLine.fontFamily).toBe(goalLine.fontFamily)
+      expect(previewLine.fontSize).toBe(goalLine.fontSize)
+      expect(previewLine.fontWeight).toBe(goalLine.fontWeight)
+      expect(previewLine.lineHeight).toBe(goalLine.lineHeight)
+      expect(Math.abs(previewLine.top - goalLine.top)).toBeLessThanOrEqual(1)
+      expect(Math.abs(previewLine.height - goalLine.height)).toBeLessThanOrEqual(1)
+    })
+  }
+
+  await assertRenderedParity()
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await assertRenderedParity()
+
+  await page.getByRole("tab", { name: "Write" }).click()
+  await sourceEditor(page).fill(
+    Array.from({ length: 40 }, (_, index) => `Document line ${index + 1}`).join(
+      "\n",
+    ),
+  )
+  await page.getByRole("tab", { name: "Preview" }).click()
+  await expect(preview.locator(".cm-line")).toHaveCount(40)
+  const previewScroller = preview.locator(".cm-scroller")
+  await previewScroller.evaluate((node) => {
+    node.scrollTop = 120
+    node.dispatchEvent(new Event("scroll"))
+  })
+  await expect
+    .poll(() =>
+      preview.locator(".writing-processor__rows").getAttribute("style"),
+    )
+    .toContain("translateY(-120px)")
+  expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
+})
+
+test("collapsed link syntax cannot add visual rows to the rendered Goal", async ({
+  page,
+}) => {
+  const problemId = "l3-reference-office-purchase"
+  const seed = 6
+  await page.addInitScript(
+    ({ storageKey, value }) => {
+      window.sessionStorage.setItem(storageKey, String(value))
+    },
+    { storageKey: sessionSeedStorageKey, value: seed },
+  )
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await page.goto("/")
+  await enterLevel(page, 3)
+
+  expect(await currentProblemId(page)).toBe(problemId)
+  const problem = runtimeProblemById.get(problemId)
+  if (!problem) throw new Error(`${problemId} must exist in the runtime bank`)
+
+  const metrics = await page.evaluate(() => {
+    const measure = (selector: string) =>
+      Array.from(document.querySelectorAll<HTMLElement>(selector)).map(
+        (line) => {
+          const box = line.getBoundingClientRect()
+          return {
+            height: box.height,
+            top: box.top,
+          }
+        },
+      )
+    return {
+      answer: measure(
+        ".answer-panel [role='tabpanel']:not([hidden]) .cm-line",
+      ),
+      goal: measure(".goal-panel .cm-line"),
+    }
+  })
+
+  expect(metrics.goal).toHaveLength(problem.target.split("\n").length)
+  expect(metrics.answer).toHaveLength(metrics.goal.length)
+  metrics.goal.forEach((goalLine, index) => {
+    const answerLine = metrics.answer[index]!
+    expect(
+      Math.abs(goalLine.top - answerLine.top),
+      `line ${index + 1}: ${JSON.stringify(metrics)}`,
+    ).toBeLessThanOrEqual(1)
+    expect(
+      Math.abs(goalLine.height - answerLine.height),
+      `line ${index + 1}: ${JSON.stringify(metrics)}`,
+    ).toBeLessThanOrEqual(1)
+  })
 })
 
 test("keeps the Practice chrome groups disjoint at 1024px", async ({ page }) => {
@@ -595,13 +851,86 @@ test("keeps the Practice chrome groups disjoint at 1024px", async ({ page }) => 
   expect(exit!.x + exit!.width + 8).toBeLessThanOrEqual(level!.x)
 })
 
+for (const width of [320, 480, 760]) {
+  test(`keeps mobile Practice actions above the workspace at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 800 })
+    await page.goto("/")
+    await enterLevel(page, 1)
+
+    const [actions, tryAnother, check, workspace] = await Promise.all([
+      page.locator(".exercise-topbar__end").boundingBox(),
+      page.getByRole("button", { name: "Try another" }).boundingBox(),
+      page.getByRole("button", { name: "Check answer" }).boundingBox(),
+      page.locator(".cbt-workspace").boundingBox(),
+    ])
+
+    for (const box of [actions, tryAnother, check, workspace]) {
+      expect(box).not.toBeNull()
+    }
+
+    for (const box of [actions!, tryAnother!, check!]) {
+      expect(
+        box.y + box.height,
+        `mobile topbar actions must end before the workspace starts: ${JSON.stringify({
+          actions,
+          check,
+          tryAnother,
+          workspace,
+        })}`,
+      ).toBeLessThanOrEqual(workspace!.y)
+    }
+  })
+}
+
+for (const viewport of [
+  { width: 901, height: 768 },
+  { width: 800, height: 500 },
+]) {
+  test(`keeps Level 5 readable in a ${viewport.width}x${viewport.height} desktop window`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport)
+    await page.goto("/")
+    await enterLevel(page, 5)
+
+    const [start, progress, goal, answer, header, instruction] = await Promise.all([
+      page.locator(".exercise-topbar__start").boundingBox(),
+      page.locator(".exercise-progress").boundingBox(),
+      page.getByRole("region", { name: "Goal", exact: true }).boundingBox(),
+      page.getByRole("region", { name: "Your answer" }).boundingBox(),
+      page.locator(".goal-panel > .cbt-panel__header").boundingBox(),
+      page.locator(".goal-panel__instruction").boundingBox(),
+    ])
+
+    for (const box of [start, progress, goal, answer, header, instruction]) {
+      expect(box).not.toBeNull()
+    }
+
+    expect(start!.x + start!.width).toBeLessThanOrEqual(progress!.x)
+    expect(Math.abs(goal!.y - answer!.y)).toBeLessThanOrEqual(1)
+    expect(Math.abs(goal!.width - answer!.width)).toBeLessThanOrEqual(1)
+    expect(instruction!.y).toBeGreaterThanOrEqual(header!.y)
+    expect(instruction!.y + instruction!.height).toBeLessThanOrEqual(
+      header!.y + header!.height + 1,
+    )
+
+    const horizontalFlow = await page.evaluate(() => ({
+      document: document.documentElement.scrollWidth,
+      viewport: window.innerWidth,
+    }))
+    expect(horizontalFlow.document).toBeLessThanOrEqual(horizontalFlow.viewport)
+  })
+}
+
 test("keeps short-landscape Practice as two usable book pages", async ({ page }) => {
   await page.setViewportSize({ width: 812, height: 375 })
   await page.goto("/")
   await enterLevel(page, 3)
 
   const [goal, answer] = await Promise.all([
-    page.getByRole("region", { name: "Goal" }).boundingBox(),
+    page.getByRole("region", { name: "Goal", exact: true }).boundingBox(),
     page.getByRole("region", { name: "Your answer" }).boundingBox(),
   ])
   expect(goal).not.toBeNull()
@@ -711,12 +1040,16 @@ test("a long Level 5 answer scrolls inside the editor, not the page", async ({ p
   await editor.press("Control+End")
   await editor.pressSequentially(" tail")
 
-  const editorScroll = await page.locator(".cm-scroller").evaluate((node) => ({
-    clientHeight: node.clientHeight,
-    overflowY: window.getComputedStyle(node).overflowY,
-    scrollTop: node.scrollTop,
-    scrollHeight: node.scrollHeight,
-  }))
+  const editorScroll = await page
+    .locator(
+      '.answer-panel [role="tabpanel"]:not([hidden]) .cm-scroller',
+    )
+    .evaluate((node) => ({
+      clientHeight: node.clientHeight,
+      overflowY: window.getComputedStyle(node).overflowY,
+      scrollTop: node.scrollTop,
+      scrollHeight: node.scrollHeight,
+    }))
   expect(editorScroll.overflowY).toBe("auto")
   expect(editorScroll.scrollHeight).toBeGreaterThan(editorScroll.clientHeight)
   expect(editorScroll.scrollTop).toBeGreaterThan(0)
@@ -756,9 +1089,71 @@ test("Preview uses local rendering and never fetches learner media", async ({
   await enterLevel1(page)
   await sourceEditor(page).fill("![tracking pixel](https://example.com/pixel.png)")
   await page.keyboard.press("Alt+2")
-  await expect(page.getByText("[Image: tracking pixel]")).toBeVisible()
+  await expect(
+    page
+      .getByRole("tabpanel", { name: "Preview" })
+      .locator(".cm-rendered-widget--image"),
+  ).toHaveText("[Image: tracking pixel]")
   await expect(page.getByRole("img")).toHaveCount(0)
   expect(runtimeRequests).toEqual([])
+})
+
+test("Preview renders Devpost GFM inside the shared word-processor page", async ({
+  page,
+}) => {
+  const source = [
+    "~~Archived~~",
+    "",
+    "- [x] Verified",
+    "1. [x] Ordered task",
+    "",
+    "| Item | Owner |",
+    "| --- | --- |",
+    "| Release | Nabi |",
+    "| A \\| B | Nabi |",
+    "",
+    "Read [guide][docs].[^1]",
+    "",
+    "[docs]: https://example.com/guide",
+    "[^1]: Kept with the document.",
+  ].join("\n")
+
+  await page.goto("/")
+  await enterLevel1(page)
+  await sourceEditor(page).fill(source)
+  await page.keyboard.press("Alt+2")
+
+  const preview = page.getByRole("tabpanel", { name: "Preview" })
+  const processor = preview.locator(
+    '.word-processor-page[data-page="rendered"]',
+  )
+  await expect(processor).toHaveCount(1)
+  await expect(processor.locator(".cm-line")).toHaveCount(14)
+  await expect(processor.locator(".cm-rendered-delete")).toHaveText(
+    "Archived",
+  )
+  await expect(
+    processor.locator(".cm-rendered-widget--list .cm-rendered-widget__glyph"),
+  ).toHaveText(["☑", "☑"])
+  await expect(processor.locator(".cm-rendered-table-header")).toContainText(
+    "Item",
+  )
+  await expect(processor.locator(".cm-rendered-widget--table-pipe")).toHaveCount(
+    9,
+  )
+  await expect(
+    processor.locator(".cm-rendered-widget--escaped-pipe"),
+  ).toHaveText("|")
+  await expect(
+    processor.locator(".cm-rendered-widget--table-separator"),
+  ).toHaveCount(1)
+  await expect(processor.locator(".cm-rendered-link")).toHaveText("guide")
+  await expect(processor.locator(".cm-rendered-widget--footnote")).toHaveCount(
+    2,
+  )
+  await expect(processor.locator(".cm-rendered-widget--definition")).toHaveCount(
+    1,
+  )
 })
 
 test("loads the Nabi brand and Source Serif without console noise", async ({ page }) => {
@@ -777,7 +1172,9 @@ test("loads the Nabi brand and Source Serif without console noise", async ({ pag
   )
   await enterLevel1(page)
   await expect(
-    page.getByRole("region", { name: "Goal" }).locator(".rendered-document__body"),
+    page
+      .getByRole("region", { name: "Goal", exact: true })
+      .locator(".cm-content"),
   ).toHaveCSS("font-family", /Source Serif 4/)
   expect(consoleNoise).toEqual([])
 })

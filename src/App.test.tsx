@@ -236,7 +236,7 @@ describe("App", () => {
         `Practice progress, 1 of ${expectedLength}`,
       )
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
-      expect(screen.getByLabelText(entry.label)).toBeVisible()
+      expect(screen.getByLabelText(`Level ${entry.level}`)).toBeVisible()
       expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
       view.unmount()
     }
@@ -283,15 +283,21 @@ describe("App", () => {
 
   it("keeps the selected task identity visible in the exercise header", async () => {
     await openLevel(2)
-    expect(
-      screen.getByRole("group", { name: "Practice details" }),
-    ).toHaveTextContent("Level 2 — Rebuild real documents")
+    const practiceDetails = screen.getByRole("group", {
+      name: "Practice details",
+    })
+    expect(practiceDetails).toHaveTextContent("Level 2")
+    expect(practiceDetails).not.toHaveTextContent("Rebuild real documents")
   })
 
   it("renders the authored target as the fixed Goal at every level", async () => {
     const targetView = await openLevel(2)
     const targetGoal = screen.getByRole("region", { name: "Goal" })
-    expect(targetGoal.querySelector(".rendered-document__body")).not.toBeNull()
+    expect(
+      targetGoal.querySelector(
+        '.markdown-word-processor[data-presentation="rendered"]',
+      ),
+    ).not.toBeNull()
 
     await targetView.user.click(
       screen.getByRole("button", { name: "Nabi Markdown home" }),
@@ -301,7 +307,11 @@ describe("App", () => {
     )
     const highLevelProblem = currentProblem()
     const highLevelGoal = screen.getByRole("region", { name: "Goal" })
-    expect(highLevelGoal.querySelector(".rendered-document__body")).not.toBeNull()
+    expect(
+      highLevelGoal.querySelector(
+        '.markdown-word-processor[data-presentation="rendered"]',
+      ),
+    ).not.toBeNull()
     const prompt = within(highLevelGoal).getByText(highLevelProblem.prompt)
     expect(prompt).toBeVisible()
     expect(prompt).toHaveClass("goal-panel__instruction")
@@ -309,11 +319,14 @@ describe("App", () => {
     const expectedHeading = highLevelProblem.target
       .split("\n")[0]!
       .replace(/^#+\s*/, "")
-    expect(
-      within(highLevelGoal).getByRole("heading", {
-        name: expectedHeading,
-      }),
-    ).toBeVisible()
+    const goalDocument = within(highLevelGoal).getByRole("region", {
+      name: "Goal document",
+    })
+    expect(goalDocument).toHaveTextContent(expectedHeading)
+    expect(goalDocument.querySelector(".cm-content")).toHaveAttribute(
+      "contenteditable",
+      "false",
+    )
     expect(highLevelGoal).not.toHaveTextContent("Build from this brief")
   })
 
@@ -567,7 +580,9 @@ describe("App", () => {
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(
       originalGoal,
     )
-    expect(screen.getByLabelText(entryChoices[1].label)).toBeVisible()
+    expect(
+      screen.getByLabelText(`Level ${entryChoices[1].level}`),
+    ).toBeVisible()
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
       "aria-selected",
       "false",
@@ -608,7 +623,7 @@ describe("App", () => {
   it("uses one writing processor in read-only and edit modes", async () => {
     await openLevel(5)
 
-    const goal = screen.getByRole("textbox", { name: "Goal document" })
+    const goal = screen.getByRole("region", { name: "Goal document" })
     const answer = screen.getByRole("textbox", { name: "Your Markdown" })
     const goalProcessor = goal.closest(".writing-processor")
     const answerProcessor = answer.closest(".writing-processor")
@@ -617,10 +632,113 @@ describe("App", () => {
     expect(answerProcessor).not.toBeNull()
     expect(goalProcessor).toHaveAttribute("data-mode", "read-only")
     expect(answerProcessor).toHaveAttribute("data-mode", "edit")
+    expect(goalProcessor).toHaveAttribute("data-engine", "codemirror")
+    expect(answerProcessor).toHaveAttribute("data-engine", "codemirror")
+    expect(goal).toHaveAttribute("data-presentation", "rendered")
+    expect(answer.closest(".markdown-word-processor")).toHaveAttribute(
+      "data-presentation",
+      "source",
+    )
+    expect(goal.querySelector(".cm-content")).toHaveAttribute(
+      "contenteditable",
+      "false",
+    )
+    expect(answer).toHaveAttribute("contenteditable", "true")
     expect(goalProcessor?.querySelector(".writing-processor__rows")).not.toBeNull()
     expect(answerProcessor?.querySelector(".writing-processor__rows")).not.toBeNull()
     expect(goalProcessor?.querySelector(".writing-processor__content")).not.toBeNull()
     expect(answerProcessor?.querySelector(".writing-processor__content")).not.toBeNull()
+  })
+
+  it("renders Preview through the same read-only word processor as Goal", async () => {
+    const { user, editor } = await openLevel(1)
+    const source = "# Preview words\n\n- First item"
+    replaceSource(editor, source)
+
+    await user.click(screen.getByRole("tab", { name: "Preview" }))
+
+    const preview = screen.getByRole("tabpanel", { name: "Preview" })
+    const processor = preview.querySelector(
+      '.markdown-word-processor[data-presentation="rendered"]',
+    )
+    expect(processor).not.toBeNull()
+    expect(processor?.closest(".writing-processor")).toHaveAttribute(
+      "data-engine",
+      "codemirror",
+    )
+    expect(
+      preview.querySelector(
+        ".writing-processor__content > .rendered-document__body",
+      ),
+    ).toBeNull()
+
+    const content = processor?.querySelector<HTMLElement>(".cm-content")
+    expect(content).not.toBeNull()
+    if (!content) return
+
+    const view = EditorView.findFromDOM(content)
+    expect(view?.state.doc.toString()).toBe(source)
+    expect(content).toHaveAttribute("contenteditable", "false")
+  })
+
+  it("uses one word-processor page shell for Goal, Write, and Preview", async () => {
+    const { user, editor } = await openLevel(2)
+    const problem = currentProblem()
+    const editorView = EditorView.findFromDOM(editor)
+    expect(editorView?.state.doc.toString()).toBe(problem.starterText)
+
+    const goalPage = screen
+      .getByRole("region", { name: "Goal" })
+      .querySelector('.word-processor-page[data-page="rendered"]')
+    const writePage = screen
+      .getByRole("tabpanel", { name: "Write" })
+      .querySelector('.word-processor-page[data-page="source"]')
+    expect(goalPage).not.toBeNull()
+    expect(writePage).not.toBeNull()
+    expect(goalPage).toHaveClass("writing-processor", "word-processor-page")
+    expect(writePage).toHaveClass("writing-processor", "word-processor-page")
+
+    const goalContent = goalPage?.querySelector<HTMLElement>(".cm-content")
+    const writeContent = writePage?.querySelector<HTMLElement>(".cm-content")
+    expect(goalContent).not.toBeNull()
+    expect(writeContent).not.toBeNull()
+    if (!goalContent || !writeContent) return
+    expect(EditorView.findFromDOM(goalContent)?.state.doc.toString()).toBe(
+      problem.target,
+    )
+    expect(goalContent).toHaveAttribute("contenteditable", "false")
+    expect(writeContent).toHaveAttribute("contenteditable", "true")
+
+    const source = "# Live page\n\n- One\n- Two"
+    replaceSource(editor, source)
+    await user.click(screen.getByRole("tab", { name: "Preview" }))
+
+    const previewPage = screen
+      .getByRole("tabpanel", { name: "Preview" })
+      .querySelector('.word-processor-page[data-page="rendered"]')
+    expect(previewPage).not.toBeNull()
+    const previewContent = previewPage?.querySelector<HTMLElement>(".cm-content")
+    expect(previewContent).not.toBeNull()
+    if (!previewContent) return
+    expect(EditorView.findFromDOM(previewContent)?.state.doc.toString()).toBe(
+      source,
+    )
+    expect(previewPage).toHaveClass("writing-processor", "word-processor-page")
+    expect(previewContent).toHaveAttribute("contenteditable", "false")
+    expect(EditorView.findFromDOM(goalContent)?.state.doc.toString()).toBe(
+      problem.target,
+    )
+
+    await user.click(screen.getByRole("tab", { name: "Write" }))
+    const updatedSource = "## Updated live page\n\n1. First\n2. Second"
+    replaceSource(editor, updatedSource)
+    await user.click(screen.getByRole("tab", { name: "Preview" }))
+    expect(EditorView.findFromDOM(previewContent)?.state.doc.toString()).toBe(
+      updatedSource,
+    )
+    expect(EditorView.findFromDOM(goalContent)?.state.doc.toString()).toBe(
+      problem.target,
+    )
   })
 
   it("keeps view shortcuts active across Write, Preview, and Hint", async () => {

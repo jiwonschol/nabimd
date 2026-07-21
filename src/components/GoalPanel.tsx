@@ -1,6 +1,5 @@
 import type { GradableProblem } from "../content/types"
-import { RenderedDocumentBody } from "./RenderedDocument"
-import { WritingProcessor } from "./WritingProcessor"
+import { WordProcessorPage } from "./WordProcessorPage"
 
 type GoalPanelProps = {
   problem: GradableProblem
@@ -8,6 +7,7 @@ type GoalPanelProps = {
 
 export function GoalPanel({ problem }: GoalPanelProps) {
   const promptId = `${problem.id}-goal-prompt`
+  const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
 
   return (
     <section
@@ -16,17 +16,17 @@ export function GoalPanel({ problem }: GoalPanelProps) {
       className="cbt-panel goal-panel"
     >
       <header className="cbt-panel__header">
-        <p className="goal-panel__instruction" id={promptId}>
+        <h2 className="goal-panel__instruction" id={promptId}>
           {problem.prompt}
-        </p>
+        </h2>
       </header>
-      <WritingProcessor
+      <WordProcessorPage
         key={problem.id}
         label="Goal document"
-        mode="read-only"
-      >
-        <RenderedDocumentBody source={problem.target} />
-      </WritingProcessor>
+        leadingBlankRows={leadingBlankRows}
+        presentation="rendered"
+        value={problem.target}
+      />
     </section>
   )
 }

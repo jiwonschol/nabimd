@@ -4,7 +4,9 @@
 > project owner's direction with three supplied cues for Matched, Try again,
 > and the turn summary. The implementation now lives in
 > `src/sound/feedbackSound.ts`; this file remains as the historical #37 plan.
-
+>
+> Licensing correction (2026-07-21): the Kenney/CC0 description below applies only to the removed temporary cue; the three shipped MP3 cues are Mixkit sound effects governed by the Mixkit Free License and User Terms.
+>
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Play one restrained success chime when a verdict becomes `matched`, with a persistent mute control and browser-safe first-gesture unlock.

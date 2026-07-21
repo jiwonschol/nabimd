@@ -74,6 +74,9 @@ describe("global responsive styles", () => {
   it("shares one panel-header height across the embedded word processors", () => {
     expect(tokens).toContain("--panel-header-height: 64px")
     expect(styles).toMatch(
+      /\.cbt-workspace\s*\{[^{}]*--panel-header-height:\s*104px[^{}]*--panel-controls-height:\s*64px/s,
+    )
+    expect(styles).toMatch(
       /\.cbt-panel__header\s*\{[^{}]*min-height:\s*var\(--panel-header-height\)[^{}]*flex:\s*0 0 var\(--panel-header-height\)/s,
     )
     expect(styles).toMatch(
@@ -101,7 +104,7 @@ describe("global responsive styles", () => {
       /\.markdown-source-editor__mount \.cm-scroller\s*\{[^{}]*padding-left:\s*0[^{}]*overflow-x:\s*hidden[^{}]*overflow-y:\s*auto[^{}]*line-height:\s*var\(--sheet-row-height\)/s,
     )
     expect(styles).toMatch(
-      /\.writing-processor\[data-mode="edit"\] > \.writing-processor__scroll\s*\{[^{}]*overflow:\s*hidden/s,
+      /\.writing-processor\[data-engine="codemirror"\] > \.writing-processor__scroll\s*\{[^{}]*overflow:\s*hidden/s,
     )
     expect(styles).toMatch(
       /\.writing-processor__content\s*\{[^{}]*margin-left:\s*57px[^{}]*padding:\s*0 25px 0 23px/s,
@@ -112,6 +115,19 @@ describe("global responsive styles", () => {
     expect(styles).toMatch(
       /\.markdown-source-editor__mount \.cm-line\s*\{[^{}]*min-height:\s*var\(--sheet-row-height\)[^{}]*padding:\s*0/s,
     )
+    expect(styles).toMatch(
+      /\.writing-processor\[data-leading-blank-rows="2"\][\s\S]*?padding-top:\s*calc\(var\(--sheet-row-height\) \+ var\(--sheet-row-height\)\)/s,
+    )
+  })
+
+  it("keeps compact practice progress in the right-side action sequence", () => {
+    expect(styles).toMatch(
+      /\.exercise-topbar__page--right\s*\{[^{}]*display:\s*grid[^{}]*grid-template-columns:\s*auto minmax\(0,\s*1fr\) auto[^{}]*align-items:\s*center/s,
+    )
+    expect(styles).toMatch(
+      /\.exercise-progress\s*\{[^{}]*display:\s*flex[^{}]*min-width:\s*0[^{}]*align-items:\s*center[^{}]*justify-content:\s*center/s,
+    )
+    expect(styles).not.toContain("exercise-progress__level-name")
   })
 
   it("gives both processor modes one selected font and one row implementation", () => {
@@ -128,25 +144,41 @@ describe("global responsive styles", () => {
     expect(styles).not.toContain(".writing-sheet-row")
   })
 
-  it("keeps Goal formatting marks out of the rendered line box", () => {
+  it("keeps rendered Goal styling inside the shared CodeMirror line box", () => {
     expect(styles).toMatch(
-      /\.writing-processor__content > \.rendered-document__body h1::after,[\s\S]*?\.writing-processor__content > \.rendered-document__body li::after\s*\{[^{}]*line-height:\s*0/s,
+      /\.markdown-source-editor__mount \.cm-line\s*\{[^{}]*min-height:\s*var\(--sheet-row-height\)[^{}]*padding:\s*0/s,
+    )
+    expect(styles).toMatch(
+      /\.markdown-word-processor\[data-presentation="rendered"\] \.cm-line\s*\{[^{}]*cursor:\s*default/s,
+    )
+    expect(styles).toMatch(
+      /\.markdown-word-processor\[data-presentation="rendered"\]:focus-visible\s*\{[^{}]*outline:\s*2px solid/s,
+    )
+    expect(styles).toMatch(
+      /\.cm-rendered-widget--conceal\s*\{[^{}]*width:\s*0[^{}]*overflow:\s*hidden/s,
     )
   })
 
-  it("renders the authored blank row after a level-two heading", () => {
+  it("renders nested source markers without introducing another row engine", () => {
     expect(styles).toMatch(
-      /\.writing-processor__content > \.rendered-document__body h2\s*\{[^{}]*margin:\s*0 0 var\(--sheet-row-height\)/s,
-    )
-  })
-
-  it("keeps nested list rows consecutive with the authored source", () => {
-    expect(styles).toMatch(
-      /\.writing-processor__content > \.rendered-document__body li > ul,[\s\S]*?\.writing-processor__content > \.rendered-document__body li > ol\s*\{[^{}]*margin-bottom:\s*0/s,
+      /\.cm-invisible-character\s*\{[^{}]*min-width:\s*0\.62em[^{}]*font-family:\s*var\(--mono\)[^{}]*user-select:\s*none/s,
     )
     expect(styles).toMatch(
-      /\.writing-processor__content\s*>\s*\.rendered-document__body\s*li:has\(> ul, > ol\)::after\s*\{[^{}]*content:\s*none/s,
+      /\.cm-invisible-character--tab\s*\{[^{}]*min-width:\s*1\.4em/s,
     )
+    expect(styles).toMatch(
+      /\.cm-rendered-widget__measure\s*\{[^{}]*visibility:\s*hidden/s,
+    )
+    expect(styles).toMatch(
+      /\.cm-rendered-widget__glyph\s*\{[^{}]*position:\s*absolute/s,
+    )
+    expect(styles).toMatch(
+      /\.cm-rendered-widget--fence\s*\{[^{}]*width:\s*0/s,
+    )
+    expect(styles).not.toContain("rendered-document__body--source-guided")
+    expect(styles).not.toContain("list-style-position: inside")
+    expect(styles).not.toContain("--rendered-leading-indent")
+    expect(styles).not.toMatch(/li li::before\s*\{[^{}]*content:\s*"→"/s)
   })
 
   it("uses a genuinely transparent wordmark asset", () => {
@@ -220,7 +252,7 @@ describe("global responsive styles", () => {
       styles.indexOf("@media (max-width: 760px)"),
       styles.indexOf("@media (prefers-reduced-motion: reduce)"),
     )
-    const practiceStack = lastCssBlock("@media (max-width: 900px) {")
+    const practiceStack = lastCssBlock("@media (max-width: 760px) {")
 
     expect(landingStack).toMatch(
       /\.app-shell\.open-book-shell:not\(\.open-book-shell--turning\)\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
@@ -257,7 +289,10 @@ describe("global responsive styles", () => {
 
   it("distributes the three answer modes across the answer page", () => {
     expect(styles).toMatch(
-      /\.answer-tabs\s*\{[^{}]*width:\s*100%[^{}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[^{}]*padding-inline:\s*3%\s*7%/s,
+      /\.answer-tabs\s*\{[^{}]*width:\s*100%[^{}]*height:\s*var\(--panel-controls-height\)[^{}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[^{}]*align-self:\s*flex-start[^{}]*padding-inline:\s*3%\s*7%[^{}]*transform:\s*translate\(4px,\s*0\)/s,
+    )
+    expect(styles).toMatch(
+      /\.answer-tab\[aria-selected="true"\]::after\s*\{[^{}]*bottom:\s*3px[^{}]*left:\s*50%[^{}]*width:\s*6px[^{}]*height:\s*6px[^{}]*border-radius:\s*50%[^{}]*transform:\s*translateX\(-50%\)/s,
     )
   })
 
@@ -278,7 +313,7 @@ describe("global responsive styles", () => {
 
   it("derives narrow Summary pages from the actual Practice chrome", () => {
     expect(tokens).toContain("--practice-topbar-height: 108px")
-    const practiceStack = lastCssBlock("@media (max-width: 900px) {")
+    const practiceStack = lastCssBlock("@media (max-width: 760px) {")
     const summaryStack = lastCssBlock("@media (max-width: 760px)")
 
     expect(practiceStack).toContain("--practice-topbar-height: 140px")
@@ -294,6 +329,56 @@ describe("global responsive styles", () => {
     expect(pageRule).toBeGreaterThanOrEqual(0)
     expect(styles.slice(pageRule, styles.indexOf("}", pageRule) + 1)).toContain(
       "overflow-y: auto",
+    )
+    expect(styles).toMatch(
+      /\.run-summary__closure-copy,[\s\S]*?\.run-summary__note-copy\s*\{[^{}]*align-self:\s*safe center/s,
+    )
+  })
+
+  it("keeps the book spread side by side in narrow desktop windows", () => {
+    const narrowDesktop = lastCssBlock(
+      "@media (max-width: 1040px) and (min-width: 761px)",
+    )
+
+    expect(narrowDesktop).toMatch(
+      /\.exercise-topbar\s*\{[^{}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/s,
+    )
+    expect(narrowDesktop).toMatch(
+      /\.cbt-workspace\.open-book-shell\s*\{[^{}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)[^{}]*grid-template-rows:\s*minmax\(0, 1fr\)/s,
+    )
+    expect(narrowDesktop).toMatch(
+      /\.cbt-workspace\s*\{[^{}]*--panel-header-height:\s*104px/s,
+    )
+    expect(narrowDesktop).toMatch(
+      /\.run-summary__metrics > div\s*\{[^{}]*min-width:\s*0[^{}]*flex:\s*1 1 0/s,
+    )
+  })
+
+  it("compacts the fixed book chrome in short desktop windows", () => {
+    const shortDesktop = lastCssBlock(
+      "@media (max-height: 680px) and (min-width: 761px)",
+    )
+
+    expect(shortDesktop).toMatch(
+      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*88px minmax\(0, 1fr\)/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.exercise-topbar\s*\{[^{}]*min-height:\s*88px/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.open-book-page--chapters\s*\{[^{}]*padding-top:\s*4rem/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.run-summary__closure-copy,[\s\S]*?\.run-summary__note-copy\s*\{[^{}]*align-self:\s*start/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.run-summary__page\s*\{[^{}]*grid-template-rows:\s*auto auto[^{}]*align-content:\s*start/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.run-summary__sprig\s*\{[^{}]*display:\s*none/s,
+    )
+    expect(styles.lastIndexOf("@media (max-height: 680px) and (min-width: 761px)")).toBeGreaterThan(
+      styles.indexOf(".open-book-why__support"),
     )
   })
 

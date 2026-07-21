@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 
 type Reason = { lead: string; support: string }
+type Phase = { index: number; state: "active" | "exiting" } | null
 
 export const WHY_OPENING_QUESTION = "Why bother with a format this simple?"
 
@@ -31,18 +32,36 @@ export const WHY_REASONS: Reason[] = [
   },
 ]
 
-// The reasons cycle one at a time across three decelerating passes, then rest.
-// "Slowness" lives in the holds, not the fade: the rise reuses the app's own
-// reveal curve (summary-ink-reveal) rather than a dreamy loader-length fade.
-const PASSES = [
-  { enterMs: 640, travel: 12, holdMs: 2200, gapMs: 900 },
-  { enterMs: 780, travel: 9, holdMs: 3000, gapMs: 1200 },
-  { enterMs: 920, travel: 6, holdMs: 3800, gapMs: 1600 },
-]
-const EXIT_MS = 480
-const ONSET_MS = 1400
-const ENTER_EASING = "cubic-bezier(0.22, 0.72, 0.2, 1)"
-const EXIT_EASING = "cubic-bezier(0.32, 0, 0.67, 0)"
+export const GLYPH_DELAY_MS = 32
+export const GLYPH_ENTER_MS = 96
+export const LEAD_PAUSE_MS = 240
+export const HOLD_MS = 4500
+export const WHY_EXIT_MS = 220
+export const WHY_GAP_MS = 160
+export const ONSET_MS = 1400
+
+const splitGraphemes = (copy: string) => {
+  if (typeof Intl.Segmenter === "function") {
+    return Array.from(new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(copy), ({ segment }) => segment)
+  }
+  return Array.from(copy)
+}
+
+const visibleGlyphCount = (copy: string) => splitGraphemes(copy).filter((glyph) => !/\s/.test(glyph)).length
+
+export function revealDuration(reason: Reason) {
+  const leadGlyphs = visibleGlyphCount(reason.lead)
+  const supportGlyphs = visibleGlyphCount(reason.support)
+  if (!leadGlyphs) return supportGlyphs ? (supportGlyphs - 1) * GLYPH_DELAY_MS + GLYPH_ENTER_MS : 0
+  if (!supportGlyphs) return (leadGlyphs - 1) * GLYPH_DELAY_MS + GLYPH_ENTER_MS
+  return (
+    (leadGlyphs - 1) * GLYPH_DELAY_MS +
+    GLYPH_ENTER_MS +
+    LEAD_PAUSE_MS +
+    (supportGlyphs - 1) * GLYPH_DELAY_MS +
+    GLYPH_ENTER_MS
+  )
+}
 
 function prefersReducedMotion() {
   return (
@@ -52,10 +71,6 @@ function prefersReducedMotion() {
   )
 }
 
-// Fall back to the static list whenever we cannot animate cleanly — reduced
-// motion, or an environment without the Web Animations API (older browsers,
-// jsdom). The static state shows all five reasons, which is also the most
-// legible outcome, so degradation only ever reveals more, never less.
 function canAnimateReasons() {
   return (
     typeof Element !== "undefined" &&
@@ -75,65 +90,67 @@ function shuffle<T>(values: T[]) {
   return result
 }
 
+function AnimatedCopy({ copy, startDelayMs = 0 }: { copy: string; startDelayMs?: number }) {
+  let glyphIndex = 0
+  return (
+    <>
+      {copy.split(" ").map((word, wordIndex, words) => (
+        <Fragment key={`${word}-${wordIndex}`}>
+          <span className="open-book-why__word">
+            {splitGraphemes(word).map((glyph, index) => {
+              const delay = startDelayMs + glyphIndex * GLYPH_DELAY_MS
+              glyphIndex += 1
+              return (
+                <span
+                  aria-hidden="true"
+                  className="open-book-why__glyph"
+                  key={`${glyph}-${index}`}
+                  style={{ animationDelay: `${delay}ms` }}
+                >
+                  {glyph}
+                </span>
+              )
+            })}
+          </span>
+          {wordIndex < words.length - 1 ? " " : null}
+        </Fragment>
+      ))}
+    </>
+  )
+}
+
 export function WhyMarkdown() {
-  const reasonRefs = useRef<Array<HTMLLIElement | null>>([])
   const [animated] = useState(canAnimateReasons)
+  const [phase, setPhase] = useState<Phase>(null)
 
   useEffect(() => {
     if (!animated) return
 
-    // One shuffled order, reused across all three passes; the terminal frame is
-    // whatever the shuffle dealt last, so each visit rests on a different reason.
     const order = shuffle(WHY_REASONS.map((_, index) => index))
-    const sequence = PASSES.flatMap((pass) =>
-      order.map((idx) => ({ idx, ...pass })),
-    )
-
+    const sequence = [...order, ...order, ...order]
     const timers: number[] = []
-    const animations: Animation[] = []
     let cancelled = false
 
     const play = (step: number) => {
       if (cancelled) return
-      const frame = sequence[step]
-      if (!frame) return
-      const node = reasonRefs.current[frame.idx]
-      if (node) {
-        animations.push(
-          node.animate(
-            [
-              { opacity: 0, transform: `translateY(${frame.travel}px)` },
-              { opacity: 1, transform: "translateY(0)" },
-            ],
-            { duration: frame.enterMs, easing: ENTER_EASING, fill: "forwards" },
-          ),
-        )
-      }
-      if (step >= sequence.length - 1) return // rest on the final reason
+      const index = sequence[step]
+      if (index === undefined) return
+      setPhase({ index, state: "active" })
+      if (step === sequence.length - 1) return
+      const reason = WHY_REASONS[index]!
       timers.push(
         window.setTimeout(() => {
-          if (node) {
-            animations.push(
-              node.animate([{ opacity: 1 }, { opacity: 0 }], {
-                duration: EXIT_MS,
-                easing: EXIT_EASING,
-                fill: "forwards",
-              }),
-            )
-          }
-          timers.push(
-            window.setTimeout(() => play(step + 1), EXIT_MS + frame.gapMs),
-          )
-        }, frame.holdMs),
+          if (cancelled) return
+          setPhase({ index, state: "exiting" })
+          timers.push(window.setTimeout(() => play(step + 1), WHY_EXIT_MS + WHY_GAP_MS))
+        }, revealDuration(reason) + HOLD_MS),
       )
     }
 
     timers.push(window.setTimeout(() => play(0), ONSET_MS))
-
     return () => {
       cancelled = true
       timers.forEach((id) => window.clearTimeout(id))
-      animations.forEach((animation) => animation.cancel())
     }
   }, [animated])
 
@@ -148,18 +165,38 @@ export function WhyMarkdown() {
         className="open-book-why__stage"
         tabIndex={animated ? undefined : 0}
       >
-        {WHY_REASONS.map((reason, index) => (
-          <li
-            className="open-book-why__reason"
-            key={reason.lead}
-            ref={(node) => {
-              reasonRefs.current[index] = node
-            }}
-          >
-            <span className="open-book-why__lead">{reason.lead}</span>
-            <span className="open-book-why__support">{reason.support}</span>
-          </li>
-        ))}
+        {WHY_REASONS.map((reason, index) => {
+          const activeState = phase?.index === index ? phase.state : null
+          const leadGlyphs = visibleGlyphCount(reason.lead)
+          const supportStartMs = leadGlyphs
+            ? (leadGlyphs - 1) * GLYPH_DELAY_MS + GLYPH_ENTER_MS + LEAD_PAUSE_MS
+            : 0
+          return (
+            <li
+              aria-label={
+                animated ? `${reason.lead} ${reason.support}` : undefined
+              }
+              className={`open-book-why__reason${activeState ? ` open-book-why__reason--${activeState}` : ""}`}
+              key={reason.lead}
+            >
+              {animated ? (
+                <>
+                  <span aria-hidden="true" className="open-book-why__lead">
+                    <AnimatedCopy copy={reason.lead} />
+                  </span>
+                  <span aria-hidden="true" className="open-book-why__support">
+                    <AnimatedCopy copy={reason.support} startDelayMs={supportStartMs} />
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="open-book-why__lead">{reason.lead}</span>
+                  <span className="open-book-why__support">{reason.support}</span>
+                </>
+              )}
+            </li>
+          )
+        })}
       </ul>
     </section>
   )

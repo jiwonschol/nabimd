@@ -38,6 +38,29 @@ describe("OpenBookLanding", () => {
     ).toBeNull()
     expect(screen.queryByTestId("landing-book-spine")).toBeNull()
 
+    const sourceLink = screen.getByRole("link", {
+      name: "Source code (AGPL-3.0) on GitHub (opens in a new tab)",
+    })
+    expect(sourceLink).toHaveAttribute(
+      "href",
+      "https://github.com/jiwonschol/nabimd",
+    )
+    expect(sourceLink).toHaveAttribute("target", "_blank")
+    expect(sourceLink).toHaveAttribute("rel", "noopener noreferrer")
+
+    const thirdPartyLicensesLink = screen.getByRole("link", {
+      name: "Third-party licenses (opens in a new tab)",
+    })
+    expect(thirdPartyLicensesLink).toHaveAttribute(
+      "href",
+      "/third-party-licenses.html",
+    )
+    expect(thirdPartyLicensesLink).toHaveAttribute("target", "_blank")
+    expect(thirdPartyLicensesLink).toHaveAttribute(
+      "rel",
+      "noopener noreferrer",
+    )
+
     for (const entry of entryChoices) {
       expect(screen.getByRole("button", { name: entry.label })).toBeVisible()
     }
@@ -64,5 +87,25 @@ describe("OpenBookLanding", () => {
     expect(buttons).toHaveLength(entryChoices.length)
     buttons.forEach((button) => expect(button).toBeDisabled())
     expect(buttons[1]).toHaveAttribute("aria-current", "true")
+  })
+
+  it("makes all hidden landing content inert while the page is turning", () => {
+    render(
+      <OpenBookLanding
+        onChoose={vi.fn()}
+        turningEntryId={entryChoices[1].id}
+      />,
+    )
+
+    const transition = screen.getByTestId("page-turn-transition")
+    expect(transition).toHaveAttribute("aria-hidden", "true")
+    expect(transition).toHaveAttribute("inert")
+
+    const projectLinks = transition.querySelector(
+      'nav[aria-label="Project links"]',
+    )
+    expect(projectLinks).not.toBeNull()
+    expect(projectLinks?.querySelectorAll("a")).toHaveLength(2)
+    expect(projectLinks?.closest("[inert]")).toBe(transition)
   })
 })

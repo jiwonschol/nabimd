@@ -91,6 +91,23 @@ describe("ExerciseTopBar", () => {
     expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })
 
+  it("places compact level progress between sound and Try another", () => {
+    renderTopBar("editing")
+
+    const sound = screen.getByRole("button", { name: "Mute sound" })
+    const progress = screen.getByRole("group", { name: "Practice details" })
+    const tryAnother = screen.getByRole("button", { name: "Try another" })
+    const rightPage = sound.closest(".exercise-topbar__page--right")
+
+    expect(progress).toHaveTextContent("Level 1")
+    expect(progress).not.toHaveTextContent("Learn the syntax")
+    expect(rightPage).toContainElement(progress)
+    expect(sound.closest(".exercise-topbar__time")?.nextElementSibling).toBe(
+      progress,
+    )
+    expect(progress.nextElementSibling).toContainElement(tryAnother)
+  })
+
   it("lets the focused Next keycap advance with Space, Enter, or the shared shortcut", () => {
     const onNext = vi.fn()
     renderTopBar("editing", {

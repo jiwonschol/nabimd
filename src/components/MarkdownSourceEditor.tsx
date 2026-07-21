@@ -4,17 +4,25 @@ import {
   historyKeymap,
   insertTab,
 } from "@codemirror/commands"
-import { Annotation, Compartment } from "@codemirror/state"
+import { Annotation, Compartment, EditorState } from "@codemirror/state"
 import { search, searchKeymap } from "@codemirror/search"
 import {
   EditorView,
   keymap,
   placeholder,
 } from "@codemirror/view"
-import { useEffect, useId, useLayoutEffect, useRef } from "react"
+import {
+  type KeyboardEvent as ReactKeyboardEvent,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+} from "react"
 import { invisibleCharacters } from "../editor/invisibleCharacters"
+import { renderedMarkdown } from "../editor/renderedMarkdown"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { createActionKeyBindings } from "./keyboardShortcut"
+import { RenderedDocumentBody } from "./RenderedDocument"
 
 const externalChange = Annotation.define<boolean>()
 const e2eDocumentReaderKey = "__nabimdReadDocumentForE2E"
@@ -67,13 +75,39 @@ type MarkdownSourceEditorProps = {
   onCheck: () => void
 }
 
-export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
+type MarkdownWordProcessorBaseProps = {
+  active?: boolean
+  label: string
+  showInvisibles?: boolean
+  value: string
+}
+
+type MarkdownWordProcessorProps = MarkdownWordProcessorBaseProps &
+  (
+    | {
+        onChange?: never
+        onCheck?: never
+        presentation: "rendered"
+        readOnly: true
+      }
+    | {
+        onChange: (value: string) => void
+        onCheck: () => void
+        presentation: "source"
+        readOnly: false
+      }
+  )
+
+export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const {
     active = true,
+    label,
+    presentation,
+    readOnly,
     showInvisibles = false,
     value,
-    onChange,
-    onCheck,
+    onChange = () => undefined,
+    onCheck = () => undefined,
   } = _props
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
@@ -81,6 +115,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   const onChangeRef = useRef(onChange)
   const onCheckRef = useRef(onCheck)
   const invisibleCompartmentRef = useRef(new Compartment())
+  const presentationCompartmentRef = useRef(new Compartment())
 
   onChangeRef.current = onChange
   onCheckRef.current = onCheck
@@ -98,15 +133,21 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
       parent: mount,
       doc: value,
       extensions: [
-        history(),
+        ...(readOnly ? [] : [history()]),
         search({ top: true }),
         EditorView.lineWrapping,
-        placeholder("Type Markdown…"),
+        ...(readOnly ? [] : [placeholder("Type Markdown…")]),
+        EditorState.readOnly.of(readOnly),
+        EditorView.editable.of(!readOnly),
         EditorView.contentAttributes.of({
-          role: "textbox",
-          "aria-label": "Your Markdown",
-          "aria-describedby": tabEscapeHintId,
-          "aria-multiline": "true",
+          ...(readOnly
+            ? { "aria-hidden": "true" }
+            : {
+                "aria-describedby": tabEscapeHintId,
+                "aria-label": label,
+                "aria-multiline": "true",
+                role: "textbox",
+              }),
           spellcheck: "false",
         }),
         EditorView.updateListener.of((update) => {
@@ -118,20 +159,27 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
             onChangeRef.current(update.state.doc.toString())
           }
         }),
-        keymap.of([
-          ...createActionKeyBindings(runCheck, navigatorLike),
-          ...searchKeymap,
-          ...resolveReadlineNavigationKeymap(navigatorLike),
-          {
-            key: "Tab",
-            run: insertTab,
-            shift: removeOneIndent,
-            preventDefault: true,
-          },
-          ...defaultKeymap,
-          ...historyKeymap,
-        ]),
+        keymap.of(
+          readOnly
+            ? [...searchKeymap, ...defaultKeymap]
+            : [
+                ...createActionKeyBindings(runCheck, navigatorLike),
+                ...searchKeymap,
+                ...resolveReadlineNavigationKeymap(navigatorLike),
+                {
+                  key: "Tab",
+                  run: insertTab,
+                  shift: removeOneIndent,
+                  preventDefault: true,
+                },
+                ...defaultKeymap,
+                ...historyKeymap,
+              ],
+        ),
         invisibleCompartmentRef.current.of([]),
+        presentationCompartmentRef.current.of(
+          presentation === "rendered" ? renderedMarkdown() : [],
+        ),
       ],
     })
 
@@ -176,15 +224,95 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   }, [showInvisibles])
 
   useEffect(() => {
+    const view = viewRef.current
+    if (!view) return
+
+    view.dispatch({
+      effects: presentationCompartmentRef.current.reconfigure(
+        presentation === "rendered" ? renderedMarkdown() : [],
+      ),
+    })
+  }, [presentation])
+
+  useEffect(() => {
     if (active) viewRef.current?.focus()
   }, [active])
 
+  const navigateReadOnlyDocument = (
+    event: ReactKeyboardEvent<HTMLElement>,
+  ) => {
+    if (!readOnly) return
+    const scroller = mountRef.current?.querySelector<HTMLElement>(".cm-scroller")
+    if (!scroller) return
+    const configuredRowHeight = Number.parseFloat(
+      getComputedStyle(scroller).getPropertyValue("--sheet-row-height"),
+    )
+    const rowHeight = Number.isFinite(configuredRowHeight)
+      ? configuredRowHeight
+      : 40
+    const page = Math.max(rowHeight, scroller.clientHeight - rowHeight)
+
+    if (event.key === "PageDown" || event.key === "PageUp") {
+      event.preventDefault()
+      scroller.scrollTop += event.key === "PageDown" ? page : -page
+      return
+    }
+
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault()
+      scroller.scrollTop += event.key === "ArrowDown" ? rowHeight : -rowHeight
+      return
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault()
+      scroller.scrollTop = 0
+      return
+    }
+
+    if (event.key === "End") {
+      event.preventDefault()
+      scroller.scrollTop = scroller.scrollHeight
+    }
+  }
+
   return (
-    <section aria-label="Your Markdown" className="markdown-source-editor">
-      <p className="visually-hidden" id={tabEscapeHintId}>
-        Press Escape, then Tab to leave the editor.
-      </p>
+    <section
+      aria-label={label}
+      className="markdown-word-processor markdown-source-editor"
+      data-presentation={presentation}
+      onKeyDown={navigateReadOnlyDocument}
+      tabIndex={readOnly ? 0 : undefined}
+    >
+      {readOnly ? (
+        <div
+          aria-label={`${label} rendered structure`}
+          className="visually-hidden markdown-word-processor__semantic-document"
+          role="document"
+        >
+          <RenderedDocumentBody source={value} />
+        </div>
+      ) : (
+        <p className="visually-hidden" id={tabEscapeHintId}>
+          Press Escape, then Tab to leave the editor.
+        </p>
+      )}
       <div className="markdown-source-editor__mount" ref={mountRef} />
     </section>
+  )
+}
+
+export function MarkdownSourceEditor(props: MarkdownSourceEditorProps) {
+  return (
+    <MarkdownWordProcessor
+      active={props.active}
+      label="Your Markdown"
+      onChange={props.onChange}
+      onCheck={props.onCheck}
+      presentation="source"
+      readOnly={false}
+      showInvisibles={props.showInvisibles}
+      value={props.value}
+    />
   )
 }

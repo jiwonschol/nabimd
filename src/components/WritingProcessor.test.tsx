@@ -1,6 +1,9 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
-import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
+import {
+  MarkdownSourceEditor,
+  MarkdownWordProcessor,
+} from "./MarkdownSourceEditor"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WritingProcessor } from "./WritingProcessor"
 
@@ -41,6 +44,21 @@ describe("WritingProcessor", () => {
       "contenteditable",
       "true",
     )
+  })
+
+  it("reserves real processor rows before low-level document content", () => {
+    const { container } = render(
+      <WritingProcessor
+        label="Goal document"
+        leadingBlankRows={2}
+        mode="read-only"
+      >
+        <RenderedDocumentBody source="# Reading plan" />
+      </WritingProcessor>,
+    )
+
+    const processor = container.querySelector(".writing-processor")
+    expect(processor).toHaveAttribute("data-leading-blank-rows", "2")
   })
 
   it("owns document navigation keys in read-only mode", () => {
@@ -94,6 +112,79 @@ describe("WritingProcessor", () => {
     await waitFor(() => {
       expect(rows).toHaveStyle({ transform: "translateY(-240px)" })
     })
+  })
+
+  it("uses the same scroller and gutter synchronization in rendered read-only mode", async () => {
+    const { container } = render(
+      <WritingProcessor
+        engine="codemirror"
+        label="Goal document"
+        mode="read-only"
+      >
+        <MarkdownWordProcessor
+          active={false}
+          label="Goal document"
+          presentation="rendered"
+          readOnly
+          showInvisibles
+          value={"# Bus card\n\n```\nRoute 8\n```\n\n- North stop\n- Main Street"}
+        />
+      </WritingProcessor>,
+    )
+
+    const processor = await screen.findByRole("region", {
+      name: "Goal document",
+    })
+    const scroller = container.querySelector<HTMLElement>(".cm-scroller")
+    const editor = container.querySelector<HTMLElement>(".cm-content")
+    const rows = container.querySelector<HTMLElement>(
+      ".writing-processor__rows",
+    )
+    expect(processor).toHaveAttribute("tabindex", "0")
+    expect(editor).toHaveAttribute("contenteditable", "false")
+    expect(editor).toHaveAttribute("aria-hidden", "true")
+    expect(scroller).not.toBeNull()
+    expect(rows).not.toBeNull()
+
+    scroller!.scrollTop = 160
+    fireEvent.scroll(scroller!)
+
+    await waitFor(() => {
+      expect(rows).toHaveStyle({ transform: "translateY(-160px)" })
+    })
+  })
+
+  it("lets keyboard-only learners scroll the read-only word processor", async () => {
+    const { container } = render(
+      <WritingProcessor
+        engine="codemirror"
+        label="Goal document"
+        mode="read-only"
+      >
+        <MarkdownWordProcessor
+          active={false}
+          label="Goal document"
+          presentation="rendered"
+          readOnly
+          value={"# Long goal\n\nOne\n\nTwo\n\nThree"}
+        />
+      </WritingProcessor>,
+    )
+
+    const processor = await screen.findByRole("region", {
+      name: "Goal document",
+    })
+    const scroller = container.querySelector<HTMLElement>(".cm-scroller")
+    expect(scroller).not.toBeNull()
+    Object.defineProperty(scroller!, "clientHeight", {
+      configurable: true,
+      value: 400,
+    })
+
+    fireEvent.keyDown(processor, { key: "PageDown" })
+    expect(scroller!.scrollTop).toBe(360)
+    fireEvent.keyDown(processor, { key: "PageUp" })
+    expect(scroller!.scrollTop).toBe(0)
   })
 
   it("keeps one editor scroll subscription while controlled text changes", async () => {

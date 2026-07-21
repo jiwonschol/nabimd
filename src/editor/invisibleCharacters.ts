@@ -11,13 +11,21 @@ import {
 export type InvisibleCharacter = {
   from: number
   to: number
-  kind: "tab" | "line-break" | "non-breaking-space" | "ideographic-space"
+  kind:
+    | "space"
+    | "tab"
+    | "line-break"
+    | "non-breaking-space"
+    | "ideographic-space"
 }
 
 function invisibleCharacterKind(
   character: string | undefined,
+  leading = false,
 ): InvisibleCharacter["kind"] | null {
   switch (character) {
+    case " ":
+      return leading ? "space" : null
     case "\t":
       return "tab"
     case "\n":
@@ -33,16 +41,25 @@ function invisibleCharacterKind(
 
 export function findInvisibleCharacters(source: string): InvisibleCharacter[] {
   const characters: InvisibleCharacter[] = []
+  let leading = true
 
   for (let position = 0; position < source.length; position += 1) {
-    const kind = invisibleCharacterKind(source[position])
-    if (!kind) continue
+    const character = source[position]
+    const kind = invisibleCharacterKind(character, leading)
 
-    characters.push({
-      from: position,
-      to: position + 1,
-      kind,
-    })
+    if (kind) {
+      characters.push({
+        from: position,
+        to: position + 1,
+        kind,
+      })
+    }
+
+    if (character === "\n") {
+      leading = true
+    } else if (!/[ \t\u00a0\u3000]/.test(character ?? "")) {
+      leading = false
+    }
   }
 
   return characters
@@ -62,6 +79,7 @@ class FormattingMarkWidget extends WidgetType {
     marker.ariaHidden = "true"
     marker.className = `cm-invisible-character cm-invisible-character--${this.kind}`
     marker.textContent = {
+      space: "·",
       tab: "→",
       "line-break": "↵",
       "non-breaking-space": "⍽",
@@ -95,13 +113,18 @@ export function buildFormattingMarks(
       const text = line.text
       const visibleFrom = Math.max(range.from, line.from)
       const visibleTo = Math.min(range.to, line.to)
+      const leadingWhitespaceLength =
+        text.match(/^[ \t\u00a0\u3000]*/)?.[0].length ?? 0
 
       for (
         let offset = visibleFrom - line.from;
         offset < visibleTo - line.from;
         offset += 1
       ) {
-        const kind = invisibleCharacterKind(text[offset])
+        const kind = invisibleCharacterKind(
+          text[offset],
+          offset < leadingWhitespaceLength,
+        )
         if (!kind || kind === "line-break") continue
         marks.push({
           decoration: Decoration.replace({
