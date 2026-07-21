@@ -55,9 +55,19 @@ describe("GoalPanel", () => {
     const marks = container.querySelectorAll(
       ".cm-invisible-character--space",
     )
-    expect(marks).toHaveLength(6)
-    expect(Array.from(marks).map((mark) => mark.textContent).join(""))
-      .toBe("······")
+    expect(marks).toHaveLength(23)
+    expect(
+      container.querySelectorAll(".cm-invisible-character--word-space"),
+    ).toHaveLength(17)
+    expect(
+      Array.from(marks)
+        .filter(
+          (mark) =>
+            !mark.classList.contains("cm-invisible-character--word-space"),
+        )
+        .map((mark) => mark.textContent)
+        .join(""),
+    ).toBe("······")
   })
 
   it("uses the shared CodeMirror word processor without collapsing source rows", () => {

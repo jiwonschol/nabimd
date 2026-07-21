@@ -21,11 +21,10 @@ export type InvisibleCharacter = {
 
 function invisibleCharacterKind(
   character: string | undefined,
-  leading = false,
 ): InvisibleCharacter["kind"] | null {
   switch (character) {
     case " ":
-      return leading ? "space" : null
+      return "space"
     case "\t":
       return "tab"
     case "\n":
@@ -41,11 +40,10 @@ function invisibleCharacterKind(
 
 export function findInvisibleCharacters(source: string): InvisibleCharacter[] {
   const characters: InvisibleCharacter[] = []
-  let leading = true
 
   for (let position = 0; position < source.length; position += 1) {
     const character = source[position]
-    const kind = invisibleCharacterKind(character, leading)
+    const kind = invisibleCharacterKind(character)
 
     if (kind) {
       characters.push({
@@ -53,12 +51,6 @@ export function findInvisibleCharacters(source: string): InvisibleCharacter[] {
         to: position + 1,
         kind,
       })
-    }
-
-    if (character === "\n") {
-      leading = true
-    } else if (!/[ \t\u00a0\u3000]/.test(character ?? "")) {
-      leading = false
     }
   }
 
@@ -115,21 +107,23 @@ export function buildFormattingMarks(
       const visibleTo = Math.min(range.to, line.to)
       const leadingWhitespaceLength =
         text.match(/^[ \t\u00a0\u3000]*/)?.[0].length ?? 0
-
       for (
         let offset = visibleFrom - line.from;
         offset < visibleTo - line.from;
         offset += 1
       ) {
-        const kind = invisibleCharacterKind(
-          text[offset],
-          offset < leadingWhitespaceLength,
-        )
+        const kind = invisibleCharacterKind(text[offset])
         if (!kind || kind === "line-break") continue
+        const wordSpace = kind === "space" && offset >= leadingWhitespaceLength
         marks.push({
-          decoration: Decoration.replace({
-            widget: new FormattingMarkWidget(kind),
-          }),
+          decoration: wordSpace
+            ? Decoration.mark({
+                class:
+                  "cm-invisible-character--space cm-invisible-character--word-space",
+              })
+            : Decoration.replace({
+                widget: new FormattingMarkWidget(kind),
+              }),
           from: line.from + offset,
           to: line.from + offset + 1,
         })

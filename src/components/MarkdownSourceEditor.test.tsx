@@ -334,7 +334,7 @@ describe("MarkdownSourceEditor", () => {
     beforeEditor.remove()
   })
 
-  it("renders line-break marks without replacing ordinary spaces", async () => {
+  it("renders line-break and space marks without changing the source", async () => {
     const onChange = vi.fn()
     const { rerender } = render(
       <MarkdownSourceEditor
@@ -375,7 +375,7 @@ describe("MarkdownSourceEditor", () => {
     )
   })
 
-  it("shows each leading source space as one formatting dot", () => {
+  it("shows leading and between-word source spaces as formatting dots", () => {
     const { container } = render(
       <MarkdownSourceEditor
         onChange={vi.fn()}
@@ -386,11 +386,12 @@ describe("MarkdownSourceEditor", () => {
     )
 
     const marks = container.querySelectorAll(".cm-invisible-character--space")
-    expect(marks).toHaveLength(3)
-    marks.forEach((mark) => {
+    expect(marks).toHaveLength(4)
+    Array.from(marks).slice(0, 3).forEach((mark) => {
       expect(mark).toHaveTextContent("·")
       expect(mark).toHaveAttribute("aria-hidden", "true")
     })
+    expect(marks[3]).toHaveClass("cm-invisible-character--word-space")
     expect(
       screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toHaveTextContent("···nested item↵")

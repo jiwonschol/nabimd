@@ -35,7 +35,9 @@ const sessionSeedStorageKey = "nabimd.session-seed.v1"
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "0")
+    if (window.sessionStorage.getItem(storageKey) === null) {
+      window.sessionStorage.setItem(storageKey, "0")
+    }
   }, sessionSeedStorageKey)
 })
 
@@ -400,6 +402,64 @@ test("browser history moves between problems and the level picker", async ({
 
   await page.goForward()
   await expect.poll(() => currentProblemId(page)).toBe(secondProblemId)
+})
+
+test("makes practice syntax scale, spacing, and the shared shortcut visible", async ({
+  page,
+}) => {
+  const consoleNoise: string[] = []
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleNoise.push(message.text())
+  })
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "1")
+  }, sessionSeedStorageKey)
+  await page.goto("/")
+  await enterLevel(page, 2)
+  expect(await currentProblemId(page)).toBe("l2-sectioned-message-bus-stop")
+
+  const headingSizes = await Promise.all(
+    [1, 2, 3].map((depth) =>
+      page
+        .locator(`.goal-panel .cm-rendered-heading--${depth}`)
+        .first()
+        .evaluate((element) =>
+          Number.parseFloat(window.getComputedStyle(element).fontSize),
+        ),
+    ),
+  )
+  expect(headingSizes[0]).toBeGreaterThan(headingSizes[1]!)
+  expect(headingSizes[1]).toBeGreaterThan(headingSizes[2]!)
+
+  const betweenWordSpace = page
+    .locator(".goal-panel .cm-invisible-character--space")
+    .first()
+  await expect(betweenWordSpace).toBeVisible()
+  await expect(betweenWordSpace).toHaveClass(/cm-invisible-character--word-space/)
+  const spaceStyle = await betweenWordSpace.evaluate((element) => ({
+    color: window.getComputedStyle(element).color,
+    glyph: window.getComputedStyle(element, "::after").content,
+  }))
+  expect(spaceStyle).toEqual({
+    color: "rgba(168, 92, 92, 0.62)",
+    glyph: '"·"',
+  })
+
+  const problem = runtimeProblemById.get(await currentProblemId(page))
+  if (!problem) throw new Error("Expected the seeded Level 2 problem")
+  const check = page.getByRole("button", { name: "Check answer" })
+  await expect(check).toContainText("Ctrl+↩")
+  await sourceEditor(page).fill(problem.target)
+  await sourceEditor(page).press("Control+Enter")
+
+  const next = page.getByRole("button", { name: "Next exercise" })
+  await expect(next).toContainText("Ctrl+↩")
+  const matchedProblemId = await currentProblemId(page)
+  await next.press("Space")
+  expect(await currentProblemId(page)).toBe(matchedProblemId)
+  await next.press("Control+Enter")
+  expect(await currentProblemId(page)).not.toBe(matchedProblemId)
+  expect(consoleNoise).toEqual([])
 })
 
 test("pre-fills Goal-derived reproduction prose at every level", async ({

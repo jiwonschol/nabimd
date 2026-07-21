@@ -770,10 +770,20 @@ button:focus-visible,
 }
 
 .top-action--primary {
-  width: clamp(6.5rem, 8vw, 8.7rem);
+  width: clamp(8rem, 9vw, 9.5rem);
+  gap: 0.55rem;
   border: 1px solid var(--ink);
   background: var(--ink);
   color: var(--paper);
+}
+
+.top-action__shortcut {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 570;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .top-action--icon {
@@ -1238,7 +1248,7 @@ button:focus-visible,
 .cm-invisible-character {
   display: inline-block;
   min-width: 0.62em;
-  color: rgb(95 95 90 / 68%);
+  color: rgb(168 92 92 / 62%);
   font-family: var(--mono);
   line-height: inherit;
   text-align: center;
@@ -1249,6 +1259,21 @@ button:focus-visible,
 .cm-invisible-character--tab {
   min-width: 1.4em;
   text-align: left;
+}
+
+.cm-invisible-character--word-space {
+  position: relative;
+  color: rgb(168 92 92 / 62%);
+}
+
+.cm-invisible-character--word-space::after {
+  position: absolute;
+  left: 50%;
+  color: inherit;
+  content: "·";
+  line-height: inherit;
+  pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .answer-hint {
@@ -1793,6 +1818,19 @@ button:focus-visible,
 .cm-rendered-heading {
   font-weight: 650;
   letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.cm-rendered-heading--1 {
+  font-size: 1.34em;
+}
+
+.cm-rendered-heading--2 {
+  font-size: 1.2em;
+}
+
+.cm-rendered-heading--3 {
+  font-size: 1.08em;
 }
 
 .cm-rendered-heading--2,
@@ -2426,7 +2464,7 @@ button:focus-visible,
   }
 
   .top-action--primary {
-    width: clamp(5.5rem, 11vw, 6.5rem);
+    width: clamp(7.5rem, 13vw, 8rem);
   }
 
   .cbt-workspace {
