@@ -179,13 +179,15 @@ describe("progressStore v5", () => {
     ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
-  it("migrates only legacy empty high-level drafts to Goal-derived starters", () => {
+  it("migrates only legacy auto-generated drafts to Goal-derived starters", () => {
     const ids = createRunProblemIds("level-3", 0)
     const currentProblemId = ids[1]!
     const genuineDraftProblemId = ids[2]!
     const lowLevelProblemId = problemBank.find(
       (problem) => problem.level === 1,
     )!.id
+    const legacyProjectedProblemId =
+      "l1-thematic-break-breakfast-dessert"
     const progress = createDefaultProgress(
       currentProblemId,
       legacyStarterlessBankRevision,
@@ -199,6 +201,8 @@ describe("progressStore v5", () => {
       [currentProblemId]: "",
       [genuineDraftProblemId]: "## Genuine learner draft",
       [lowLevelProblemId]: "",
+      [legacyProjectedProblemId]:
+        "Breakfast is ready.\n\nSave dessert for later.",
     }
     saveProgress(storage, progress)
 
@@ -219,6 +223,9 @@ describe("progressStore v5", () => {
       "## Genuine learner draft",
     )
     expect(loaded.draftByProblemId[lowLevelProblemId]).toBe("")
+    expect(
+      loaded.draftByProblemId[legacyProjectedProblemId],
+    ).toBeUndefined()
   })
 
   it("restores an allowed same-level replacement", () => {

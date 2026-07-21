@@ -22,6 +22,7 @@ const testOnlySentinels = [
   "# Extra document title",
   "Skipped supporting detail",
   "data-e2e-document",
+  "__nabimdReadDocumentForE2E",
 ]
 
 const leaked = testOnlySentinels.filter((sentinel) => bundle.includes(sentinel))

@@ -72,13 +72,18 @@ async function hasPersistedDraft(page: Page, problemId: string) {
 }
 
 async function completeSourceText(page: Page) {
-  const document = await page
-    .locator(".markdown-source-editor")
-    .getAttribute("data-e2e-document")
-  if (document === null) {
-    throw new Error("The read-only E2E document bridge is unavailable")
-  }
-  return document
+  return page.locator(".markdown-source-editor__mount").evaluate((mount) => {
+    const readDocument = (
+      mount as HTMLElement & {
+        __nabimdReadDocumentForE2E?: () => string
+      }
+    ).__nabimdReadDocumentForE2E
+
+    if (typeof readDocument !== "function") {
+      throw new Error("The read-only E2E document bridge is unavailable")
+    }
+    return readDocument()
+  })
 }
 
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {

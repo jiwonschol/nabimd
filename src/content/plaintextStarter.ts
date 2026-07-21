@@ -9,6 +9,67 @@ function isParent(node: Nodes): node is Parents {
   return "children" in node
 }
 
+function legacyVisibleChildren(node: Parents, separator: string): string {
+  return node.children
+    .map((child) => legacyVisibleText(child as Nodes))
+    .filter((value) => value.length > 0)
+    .join(separator)
+}
+
+function legacyVisibleText(node: Nodes): string {
+  switch (node.type) {
+    case "root":
+    case "blockquote":
+      return legacyVisibleChildren(node, "\n\n")
+    case "list":
+    case "listItem":
+      return legacyVisibleChildren(node, "\n")
+    case "heading":
+    case "paragraph":
+    case "emphasis":
+    case "strong":
+    case "link":
+    case "linkReference":
+      return legacyVisibleChildren(node, "")
+    case "text":
+    case "inlineCode":
+    case "code":
+      return node.value
+    case "image":
+    case "imageReference":
+      return node.alt ?? ""
+    case "break":
+      return "\n"
+    case "definition":
+    case "html":
+    case "thematicBreak":
+      return ""
+    default:
+      return isParent(node) ? legacyVisibleChildren(node, "") : ""
+  }
+}
+
+function normalizeLegacyPlaintext(value: string): string {
+  return value
+    .replace(/\r\n?/g, "\n")
+    .replace(unicodeSpaces, " ")
+    .replace(zeroWidthCharacters, "")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+$/g, ""))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/^\n+|\n+$/g, "")
+}
+
+/**
+ * Reproduces the starter projection shipped before line topology was
+ * preserved. It is intentionally retained only to identify auto-generated
+ * persisted drafts during the one-step storage migration.
+ */
+export function deriveLegacyPlaintextStarter(target: string): string {
+  return normalizeLegacyPlaintext(legacyVisibleText(fromMarkdown(target)))
+}
+
 function normalizeVisibleText(value: string): string {
   return value
     .replace(/\r\n?/g, "\n")

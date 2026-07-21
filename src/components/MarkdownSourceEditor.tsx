@@ -12,10 +12,15 @@ import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { createActionKeyBindings } from "./keyboardShortcut"
 
 const externalChange = Annotation.define<boolean>()
+const e2eDocumentReaderKey = "__nabimdReadDocumentForE2E"
 const exposeE2eDocument =
   import.meta.env.DEV &&
   typeof navigator !== "undefined" &&
   navigator.webdriver === true
+
+type E2eDocumentMount = HTMLDivElement & {
+  [e2eDocumentReaderKey]?: () => string
+}
 
 type MarkdownSourceEditorProps = {
   active?: boolean
@@ -26,9 +31,6 @@ type MarkdownSourceEditorProps = {
 
 export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   const { active = true, value, onChange, onCheck } = _props
-  const e2eDocumentAttributes = exposeE2eDocument
-    ? { "data-e2e-document": value }
-    : {}
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
   const onChangeRef = useRef(onChange)
@@ -82,9 +84,19 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
     })
 
     viewRef.current = view
+    if (exposeE2eDocument) {
+      Object.defineProperty(mount as E2eDocumentMount, e2eDocumentReaderKey, {
+        configurable: true,
+        enumerable: false,
+        value: () => view.state.doc.toString(),
+      })
+    }
     if (active) view.focus()
 
     return () => {
+      if (exposeE2eDocument) {
+        delete (mount as E2eDocumentMount)[e2eDocumentReaderKey]
+      }
       viewRef.current = null
       view.destroy()
     }
@@ -116,11 +128,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   }, [active])
 
   return (
-    <section
-      {...e2eDocumentAttributes}
-      aria-label="Your Markdown"
-      className="markdown-source-editor"
-    >
+    <section aria-label="Your Markdown" className="markdown-source-editor">
       <header className="document-toolbar">
         <span>Your Markdown</span>
         <span className="markdown-source-editor__file">answer.md</span>

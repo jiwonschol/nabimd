@@ -7,6 +7,7 @@ import {
   preStarterProjectionProblemBankRevision,
   problemBankRevision,
 } from "../content/problemBank"
+import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
@@ -274,15 +275,16 @@ function migrateLegacyStarterProjection(
 
   const draftByProblemId = { ...value.draftByProblemId }
   for (const [problemId, draft] of Object.entries(draftByProblemId)) {
-    if (
-      draft === "" &&
-      validProblemIds.has(problemId) &&
-      getProblem(problemId).level >= 3
-    ) {
-      // The previous runtime automatically persisted an empty string for
-      // high-level exercises whose compiled starter was empty. Removing only
-      // those entries lets the new Goal-derived starter become the fallback;
-      // every non-empty learner draft remains authoritative.
+    if (!validProblemIds.has(problemId) || typeof draft !== "string") continue
+
+    const problem = getProblem(problemId)
+    const legacyAutomaticStarter =
+      problem.level <= 2 ? deriveLegacyPlaintextStarter(problem.target) : ""
+    if (draft === legacyAutomaticStarter) {
+      // The previous runtime persisted its generated starter when navigating
+      // to a problem. Remove only an exact generated value so the new
+      // topology-preserving starter becomes the fallback. Any learner edit,
+      // including a deliberately empty low-level draft, remains authoritative.
       delete draftByProblemId[problemId]
     }
   }
