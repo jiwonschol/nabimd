@@ -23,10 +23,14 @@ consumer receives that hydrated `Problem`, so first load, retry replacement,
 Next, Start over, and session restore all share one source of truth. A saved
 learner draft continues to take precedence over the starter.
 
-The all-level extension includes a narrow migration for the prior runtime's
-automatically persisted empty Level 3–5 drafts. Only those legacy empty entries
-are removed so the derived starter can become the fallback. Non-empty learner
-work and lower-level empty drafts remain untouched.
+The all-level extension includes a narrow migration to projection revision
+`starter-projection@2`. It accepts both the bare pre-projection bank revision
+and `starter-projection@1`. From the bare revision it removes only exact
+automatic values: the former flattened starter at Levels 1–2 and the former
+empty draft at Levels 3–5. From `@1` it removes the exact flattened starter at
+every level, plus empty Level 3–5 drafts left during that transition. The new
+topology-preserving starter can then become the fallback. Genuine edits and
+intentional empty Level 1–2 drafts remain authoritative.
 
 ## Markdown-to-prose conversion
 
