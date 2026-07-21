@@ -2,7 +2,11 @@ import {
   createRunProblemIds,
   isEntryId,
 } from "../content/entryChoices"
-import { problemBankRevision } from "../content/problemBank"
+import {
+  preStarterProjectionProblemBankRevision,
+  problemBank,
+  problemBankRevision,
+} from "../content/problemBank"
 import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
@@ -10,6 +14,11 @@ export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
 // A browser session cannot legitimately reach this many six-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
+const legacyAutomaticBlankDraftIds = new Set(
+  problemBank
+    .filter((problem) => problem.level >= 3)
+    .map((problem) => problem.id),
+)
 
 export function createDefaultProgress(
   currentProblemId: string,
@@ -253,6 +262,39 @@ function cloneProgress(progress: ProgressV5): ProgressV5 {
   }
 }
 
+function migrateStarterProjectionRevision(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+  expectedBankRevision: string,
+): unknown {
+  if (
+    expectedBankRevision !== problemBankRevision ||
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.bankRevision !== preStarterProjectionProblemBankRevision ||
+    !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const draftByProblemId = { ...value.draftByProblemId }
+  for (const [problemId, draft] of Object.entries(draftByProblemId)) {
+    if (
+      draft === "" &&
+      validProblemIds.has(problemId) &&
+      legacyAutomaticBlankDraftIds.has(problemId)
+    ) {
+      delete draftByProblemId[problemId]
+    }
+  }
+
+  return {
+    ...value,
+    bankRevision: expectedBankRevision,
+    draftByProblemId,
+  }
+}
+
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
@@ -274,7 +316,11 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = JSON.parse(saved)
+    const parsed = migrateStarterProjectionRevision(
+      JSON.parse(saved) as unknown,
+      validProblemIds,
+      expectedBankRevision,
+    )
     return isProgressV5(
       parsed,
       validProblemIds,

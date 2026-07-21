@@ -106,17 +106,6 @@ export function ExerciseTopBar({
 
   return (
     <header className="exercise-topbar">
-      <div className="exercise-topbar__start">
-        <Wordmark onHome={onExit} />
-        <button
-          className="top-action top-action--exit"
-          onClick={onExit}
-          type="button"
-        >
-          Exit
-        </button>
-      </div>
-
       <span
         aria-label={`Practice progress, ${visibleScheduledPosition} of ${scheduledRunLength}`}
         aria-valuemax={scheduledRunLength}
@@ -125,8 +114,23 @@ export function ExerciseTopBar({
         className="visually-hidden"
         role="progressbar"
       />
-      <div aria-label="Practice details" className="exercise-progress">
-        <div className="exercise-progress__meta">
+
+      <div className="exercise-topbar__page exercise-topbar__page--left">
+        <div className="exercise-topbar__start">
+          <Wordmark onHome={onExit} />
+          <button
+            className="top-action top-action--exit"
+            onClick={onExit}
+            type="button"
+          >
+            Exit
+          </button>
+        </div>
+        <div
+          aria-label="Practice details"
+          className="exercise-progress"
+          role="group"
+        >
           <span aria-label={entry.label} className="exercise-progress__level">
             <span>{levelNumber}</span>
             {levelName ? (
@@ -135,6 +139,40 @@ export function ExerciseTopBar({
               </span>
             ) : null}
           </span>
+          <div className="exercise-progress__run">
+            <ol aria-label="Turn steps" className="turn-progress">
+              {Array.from({ length: scheduledRunLength }, (_, index) => {
+                const completed = index < scheduledStepIndex
+                const current = index === scheduledStepIndex
+                const state = completed
+                  ? "completed"
+                  : current
+                    ? "current"
+                    : "upcoming"
+                return (
+                  <li
+                    aria-current={current ? "step" : undefined}
+                    aria-label={`Step ${index + 1}, ${state}`}
+                    className={`turn-progress__step turn-progress__step--${state}`}
+                    key={index}
+                  />
+                )
+              })}
+            </ol>
+            {currentIsTransfer ? (
+              <span className="repair-progress">
+                <strong>Repair practice</strong>
+                <span>
+                  Exercise {problemPosition} of {runLength}
+                </span>
+              </span>
+            ) : null}
+          </div>
+        </div>
+      </div>
+
+      <div className="exercise-topbar__page exercise-topbar__page--right">
+        <div className="exercise-topbar__time">
           <span className="elapsed-control">
             <ElapsedTime
               completedAtMs={runCompletedAtMs}
@@ -157,78 +195,48 @@ export function ExerciseTopBar({
           </button>
         </div>
 
-        <div className="exercise-progress__run">
-          <ol aria-label="Turn steps" className="turn-progress">
-            {Array.from({ length: scheduledRunLength }, (_, index) => {
-              const completed = index < scheduledStepIndex
-              const current = index === scheduledStepIndex
-              const state = completed
-                ? "completed"
-                : current
-                  ? "current"
-                  : "upcoming"
-              return (
-                <li
-                  aria-current={current ? "step" : undefined}
-                  aria-label={`Step ${index + 1}, ${state}`}
-                  className={`turn-progress__step turn-progress__step--${state}`}
-                  key={index}
-                />
-              )
-            })}
-          </ol>
-          {currentIsTransfer ? (
-            <span className="repair-progress">
-              <strong>Repair practice</strong>
-              <span>
-                Exercise {problemPosition} of {runLength}
-              </span>
-            </span>
-          ) : null}
+        <div className="exercise-topbar__end">
+          <button
+            aria-label="Try another"
+            className="top-action top-action--icon"
+            data-tooltip="Try another"
+            onClick={onTryAnother}
+            type="button"
+          >
+            <Shuffle aria-hidden="true" size={19} strokeWidth={1.7} />
+          </button>
+          <button
+            aria-label={matched ? "Next exercise" : "Check answer"}
+            aria-keyshortcuts={shortcut.ariaKeyShortcuts}
+            className="top-action top-action--primary"
+            data-tooltip={matched ? "Next exercise" : "Check answer"}
+            disabled={!matched && !canCheck}
+            onClick={matched ? onNext : onCheck}
+            onKeyDown={(event) => {
+              if (!matched) return
+              if (event.repeat) {
+                event.preventDefault()
+                return
+              }
+              if (
+                isActionShortcut(event.nativeEvent, navigatorLike) ||
+                event.key === " " ||
+                event.key === "Enter"
+              ) {
+                event.preventDefault()
+                onNext()
+              }
+            }}
+            ref={nextRef}
+            type="button"
+          >
+            {matched ? (
+              <ArrowRight aria-hidden="true" size={24} strokeWidth={1.8} />
+            ) : (
+              <Check aria-hidden="true" size={24} strokeWidth={1.8} />
+            )}
+          </button>
         </div>
-      </div>
-
-      <div className="exercise-topbar__end">
-        <button
-          aria-label="Try another"
-          className="top-action top-action--icon"
-          data-tooltip="Try another"
-          onClick={onTryAnother}
-          type="button"
-        >
-          <Shuffle aria-hidden="true" size={19} strokeWidth={1.7} />
-        </button>
-        <button
-          aria-label={matched ? "Next exercise" : "Check answer"}
-          aria-keyshortcuts={shortcut.ariaKeyShortcuts}
-          className="top-action top-action--primary"
-          data-tooltip={matched ? "Next exercise" : "Check answer"}
-          disabled={!matched && !canCheck}
-          onClick={matched ? onNext : onCheck}
-          onKeyDown={(event) => {
-            if (!matched) return
-            if (event.repeat) {
-              event.preventDefault()
-              return
-            }
-            if (
-              isActionShortcut(event.nativeEvent, navigatorLike) ||
-              event.key === " " ||
-              event.key === "Enter"
-            ) {
-              event.preventDefault()
-              onNext()
-            }
-          }}
-          ref={nextRef}
-          type="button"
-        >
-          {matched ? (
-            <ArrowRight aria-hidden="true" size={24} strokeWidth={1.8} />
-          ) : (
-            <Check aria-hidden="true" size={24} strokeWidth={1.8} />
-          )}
-        </button>
       </div>
     </header>
   )

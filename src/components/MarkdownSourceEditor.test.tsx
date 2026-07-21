@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { defaultKeymap } from "@codemirror/commands"
+import { searchKeymap, searchPanelOpen } from "@codemirror/search"
 import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
@@ -7,7 +8,7 @@ import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
 
 describe("MarkdownSourceEditor", () => {
-  it("presents a restrained Markdown file editor", () => {
+  it("presents only the writing surface without a second toolbar", () => {
     render(
       <MarkdownSourceEditor
         onChange={vi.fn()}
@@ -16,13 +17,21 @@ describe("MarkdownSourceEditor", () => {
       />,
     )
 
-    expect(screen.getByText("answer.md")).toBeVisible()
+    expect(screen.queryByText("answer.md")).toBeNull()
     expect(
       screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toBeVisible()
     expect(
-      screen.getByRole("button", { name: "Show invisibles" }),
-    ).toHaveAttribute("aria-pressed", "false")
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveAccessibleDescription(
+      "Press Escape, then Tab to leave the editor.",
+    )
+    expect(
+      screen.getByText("Press Escape, then Tab to leave the editor."),
+    ).toHaveClass("visually-hidden")
+    expect(
+      screen.queryByRole("button", { name: "Show invisibles" }),
+    ).toBeNull()
   })
 
   it("reports source edits and preserves controlled updates", async () => {
@@ -113,6 +122,32 @@ describe("MarkdownSourceEditor", () => {
         expect.objectContaining({ mac: "Ctrl-b" }),
       ]),
     )
+    expect(searchKeymap).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ key: "Mod-f" }),
+        expect.objectContaining({ key: "F3", shift: expect.any(Function) }),
+        expect.objectContaining({ key: "Mod-g" }),
+        expect.objectContaining({ key: "Mod-Alt-g" }),
+      ]),
+    )
+  })
+
+  it("opens search with Control+F before readline navigation can consume it", () => {
+    render(
+      <MarkdownSourceEditor
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value="alpha beta"
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    fireEvent.keyDown(editor, { ctrlKey: true, key: "f" })
+
+    expect(searchPanelOpen(view.state)).toBe(true)
   })
 
   it("executes line, character, and word motions without editing the document", () => {
@@ -299,52 +334,56 @@ describe("MarkdownSourceEditor", () => {
     beforeEditor.remove()
   })
 
-  it("toggles invisible decorations without changing source", async () => {
-    const user = userEvent.setup()
+  it("renders line-break marks without replacing ordinary spaces", async () => {
     const onChange = vi.fn()
-    render(
+    const { rerender } = render(
       <MarkdownSourceEditor
         onChange={onChange}
         onCheck={vi.fn()}
-        value="# Study tools"
+        showInvisibles={false}
+        value={"# Study tools\nNext"}
       />,
     )
 
-    await user.click(
-      screen.getByRole("button", { name: "Show invisibles" }),
-    )
-
-    expect(
-      screen.getByRole("button", { name: "Hide invisibles" }),
-    ).toHaveAttribute("aria-pressed", "true")
-    expect(
-      screen.getByRole("textbox", { name: "Your Markdown" }),
-    ).toHaveTextContent("#·Study·tools")
-    expect(onChange).not.toHaveBeenCalled()
-
-    await user.click(
-      screen.getByRole("button", { name: "Hide invisibles" }),
+    rerender(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        showInvisibles
+        value={"# Study tools\nNext"}
+      />,
     )
 
     expect(
       screen.getByRole("textbox", { name: "Your Markdown" }),
-    ).toHaveTextContent("# Study tools")
+    ).toHaveTextContent("# Study tools↵Next↵")
     expect(onChange).not.toHaveBeenCalled()
+
+    rerender(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        showInvisibles={false}
+        value={"# Study tools\nNext"}
+      />,
+    )
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole("textbox", { name: "Your Markdown" }),
+      ).toHaveTextContent("# Study toolsNext"),
+    )
   })
 
-  it("shows distinct glyphs for NBSP and ideographic space", async () => {
-    const user = userEvent.setup()
+  it("shows distinct glyphs for NBSP and ideographic space", () => {
     const onChange = vi.fn()
     const { container } = render(
       <MarkdownSourceEditor
         onChange={onChange}
         onCheck={vi.fn()}
+        showInvisibles
         value={"#\u00a0Apple\u3000"}
       />,
-    )
-
-    await user.click(
-      screen.getByRole("button", { name: "Show invisibles" }),
     )
 
     expect(
@@ -357,5 +396,50 @@ describe("MarkdownSourceEditor", () => {
       screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toHaveTextContent("#⍽Apple□")
     expect(onChange).not.toHaveBeenCalled()
+  })
+
+  it("keeps Tab and Shift+Tab inside the focused word processor", async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        showInvisibles
+        value="item"
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+
+    await user.click(editor)
+    await user.keyboard("{Home}{Tab}")
+
+    await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("\titem"))
+    expect(editor).toHaveTextContent("→item↵")
+
+    await user.keyboard("{Shift>}{Tab}{/Shift}")
+    await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("item"))
+  })
+
+  it("does not deindent the first unselected line at a selection boundary", async () => {
+    const onChange = vi.fn()
+    render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value={"\tfirst\n\tsecond"}
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    view.dispatch({ selection: { anchor: 0, head: 7 } })
+    fireEvent.keyDown(editor, { key: "Tab", shiftKey: true })
+
+    await waitFor(() =>
+      expect(onChange).toHaveBeenLastCalledWith("first\n\tsecond"),
+    )
   })
 })

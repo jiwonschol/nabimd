@@ -96,4 +96,32 @@ describe("RenderedDocument", () => {
     expect(container.querySelectorAll("blockquote.rendered-document__quote"))
       .toHaveLength(2)
   })
+
+  it("renders the Devpost extended Markdown used in Preview", () => {
+    const { container } = render(
+      <RenderedDocument
+        label="My answer"
+        source={[
+          "~~Archived~~",
+          "",
+          "- [x] Verified",
+          "",
+          "| Item | Owner |",
+          "| --- | --- |",
+          "| Release | Nabi |",
+          "",
+          "A note.[^1]",
+          "",
+          "[^1]: Kept with the document.",
+        ].join("\n")}
+      />,
+    )
+
+    expect(container.querySelector("del")).toHaveTextContent("Archived")
+    expect(container.querySelector('input[type="checkbox"]')).toBeChecked()
+    expect(container.querySelector("table")).toHaveTextContent("Release")
+    expect(container.querySelector("[data-footnotes]")).toHaveTextContent(
+      "Kept with the document.",
+    )
+  })
 })
