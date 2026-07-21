@@ -44,9 +44,18 @@ function sourceEditor(page: Page): Locator {
 }
 
 async function sourceText(page: Page): Promise<string> {
-  const editor = sourceEditor(page)
-  if ((await editor.locator(".cm-placeholder").count()) > 0) return ""
-  return (await editor.locator(".cm-line").allTextContents()).join("\n")
+  return page.locator(".markdown-source-editor__mount").evaluate((mount) => {
+    const readDocument = (
+      mount as HTMLDivElement & {
+        __nabimdReadDocumentForE2E?: () => string
+      }
+    ).__nabimdReadDocumentForE2E
+
+    if (typeof readDocument !== "function") {
+      throw new Error("Expected the development-only CodeMirror document reader")
+    }
+    return readDocument()
+  })
 }
 
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
@@ -247,6 +256,23 @@ test("keeps the open-book landing inside a tablet viewport", async ({ page }) =>
   ).toBeLessThanOrEqual(768)
 })
 
+test("keeps the same book spread geometry across the page turn", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1800, height: 1000 })
+  await page.goto("/")
+
+  const landing = await page.locator(".app-shell.open-book-shell").boundingBox()
+  expect(landing).not.toBeNull()
+
+  await enterLevel(page, 5)
+  const practice = await page.locator(".app-shell--practice").boundingBox()
+  expect(practice).not.toBeNull()
+
+  expect(Math.abs(practice!.x - landing!.x)).toBeLessThanOrEqual(1)
+  expect(Math.abs(practice!.width - landing!.width)).toBeLessThanOrEqual(1)
+})
+
 test("every level opens its task-type turn", async ({ page }) => {
   for (const index of levelLabels.keys()) {
     await page.goto("/")
@@ -266,10 +292,10 @@ test("every level opens its task-type turn", async ({ page }) => {
   }
 })
 
-test("pre-fills reproduction prose but keeps composition blank", async ({
+test("pre-fills reproduction prose at every level", async ({
   page,
 }) => {
-  for (const level of [1, 2] as const) {
+  for (const level of [1, 2, 3, 4, 5] as const) {
     await resetToGreeting(page)
     await enterLevel(page, level)
     const editor = sourceEditor(page)
@@ -280,15 +306,7 @@ test("pre-fills reproduction prose but keeps composition blank", async ({
 
     expect(starterText).not.toBe("")
     await expect.poll(() => sourceText(page)).toBe(starterText)
-
-    await page.getByRole("button", { name: "Show invisibles" }).click()
-    await page.getByRole("button", { name: "Hide invisibles" }).click()
-    await expect.poll(() => sourceText(page)).toBe(starterText)
   }
-
-  await resetToGreeting(page)
-  await enterLevel(page, 3)
-  await expect.poll(() => sourceText(page)).toBe("")
 })
 
 test("completes and replays Level 1 with keyboard input only", async ({ page }) => {
@@ -300,6 +318,10 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
 
   const editor = sourceEditor(page)
   await expect(editor).toBeFocused()
+  await editor.press("Escape")
+  await editor.press("Tab")
+  await expect(editor).not.toBeFocused()
+  await editor.focus()
   await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
     "aria-selected",
     "false",
@@ -455,7 +477,7 @@ test("persists the current draft only for the browser session", async ({ page })
   await page.waitForTimeout(1_100)
 
   await page.reload()
-  await expect(editor).toHaveText("# saved draft")
+  await expect.poll(() => sourceText(page)).toBe("# saved draft")
   await expect(page.getByLabel("Elapsed time")).not.toHaveText("00:00")
   const restoredStartedAt = await page.evaluate((key) => {
     const progress = JSON.parse(window.sessionStorage.getItem(key) ?? "{}") as {
@@ -504,7 +526,7 @@ test("keeps Goal and Answer equal with fixed chrome at 1280x800", async ({ page 
   expect(pageMetrics.body).toBeLessThanOrEqual(pageMetrics.viewport)
   expect(pageMetrics.document).toBeLessThanOrEqual(pageMetrics.viewport)
 
-  const goalScroll = await goal.locator(".rendered-document__body").evaluate((node) => ({
+  const goalScroll = await goal.locator(".writing-processor__scroll").evaluate((node) => ({
     clientHeight: node.clientHeight,
     overflowY: window.getComputedStyle(node).overflowY,
     scrollHeight: node.scrollHeight,
@@ -542,13 +564,36 @@ test("a long Level 5 answer scrolls inside the editor, not the page", async ({ p
     { length: 80 },
     (_, index) => `## Work item ${index + 1}\n\n- Owner\n- Deadline\n- Verification`,
   ).join("\n\n")
-  await sourceEditor(page).fill(longSource)
+  const editor = sourceEditor(page)
+  await editor.fill(longSource)
+  await editor.press("Control+End")
+  await editor.pressSequentially(" tail")
 
   const editorScroll = await page.locator(".cm-scroller").evaluate((node) => ({
     clientHeight: node.clientHeight,
+    overflowY: window.getComputedStyle(node).overflowY,
+    scrollTop: node.scrollTop,
     scrollHeight: node.scrollHeight,
   }))
+  expect(editorScroll.overflowY).toBe("auto")
   expect(editorScroll.scrollHeight).toBeGreaterThan(editorScroll.clientHeight)
+  expect(editorScroll.scrollTop).toBeGreaterThan(0)
+  await expect
+    .poll(() =>
+      page
+        .getByRole("tabpanel", { name: "Write" })
+        .locator(".writing-processor__rows")
+        .getAttribute("style"),
+    )
+    .toContain("translateY(-")
+  await expect
+    .poll(() =>
+      page
+        .getByRole("tabpanel", { name: "Write" })
+        .locator(".cm-invisible-character--line-break")
+        .count(),
+    )
+    .toBeGreaterThan(0)
   expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
 })
 

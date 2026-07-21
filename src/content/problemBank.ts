@@ -17,13 +17,11 @@ const publishedLevels = runtimeProjections.levels as unknown as Record<
 
 const compiledProblems = CURRICULUM_LEVELS.flatMap(
   (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
-).map((problem): NormalizedProblem =>
-  problem.level <= 2
-    ? {
-        ...problem,
-        starterText: derivePlaintextStarter(problem.target),
-      }
-    : problem,
+).map(
+  (problem): NormalizedProblem => ({
+    ...problem,
+    starterText: derivePlaintextStarter(problem.target),
+  }),
 )
 
 if (!compiledProblems[0]) {
@@ -35,9 +33,14 @@ export const problemBank: readonly [
   ...NormalizedProblem[],
 ] = [compiledProblems[0], ...compiledProblems.slice(1)]
 
-export const problemBankRevision = problemBank
+export const preStarterProjectionProblemBankRevision = problemBank
   .map((problem) => `${problem.id}@${problem.revision}`)
   .join("|")
+
+const STARTER_PROJECTION_REVISION = 1
+
+export const problemBankRevision =
+  `${preStarterProjectionProblemBankRevision}|starter-projection@${STARTER_PROJECTION_REVISION}`
 
 export function getProblem(id: string): NormalizedProblem {
   const problem = problemBank.find((candidate) => candidate.id === id)

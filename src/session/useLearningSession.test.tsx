@@ -58,7 +58,9 @@ describe("useLearningSession", () => {
     act(() => result.current.startOver())
     expect(result.current.session.runNumber).toBe(2)
     expect(result.current.problem.id).not.toBe(original)
-    expect(result.current.session.draft).toBe("")
+    expect(result.current.session.draft).toBe(
+      result.current.problem.starterText,
+    )
   })
 
   it("keeps one generated seed for progress and restored runs in a browser session", async () => {

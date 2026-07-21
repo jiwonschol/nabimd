@@ -125,7 +125,8 @@ Summary evidence uses a completed run with one syntax family to revisit.
 - Typography: `Source Serif 4` is loaded for editorial headings and
   `JetBrains Mono` is loaded for Markdown source. Browser-computed font loading
   was confirmed for both families.
-- Layout: Practice remains a fixed 50:50 spread beneath fixed chrome. Long
+- Layout: Landing and Practice share the same 96rem outer book geometry;
+  Practice remains a fixed 50:50 working spread beneath fixed chrome. Long
   documents scroll inside their page, not the browser window.
 - Color: landing, Practice chrome, writing sheets, and Summary share the same
   extracted paper surface and warm-white tone.

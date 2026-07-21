@@ -118,7 +118,7 @@ describe("compiled five-level problem bank", () => {
     )
   })
 
-  it("pre-fills every reproduction problem with deterministic visible prose", () => {
+  it("pre-fills every problem with deterministic visible prose", () => {
     expect(getProblem("l1-heading-apple").starterText).toBe("Apple")
     expect(getProblem("l1-link-community-notice").starterText).toBe(
       "The latest update is in the community notice.",
@@ -143,7 +143,7 @@ describe("compiled five-level problem bank", () => {
       ].join("\n"),
     )
 
-    for (const problem of problemBank.filter(({ level }) => level <= 2)) {
+    for (const problem of problemBank) {
       expect(problem.starterText, problem.id).toBe(
         derivePlaintextStarter(problem.target),
       )
@@ -153,25 +153,10 @@ describe("compiled five-level problem bank", () => {
     }
   })
 
-  it("leaves composition-level starter text unchanged", () => {
-    const generatedById = new Map(
-      [
-        ...runtimeProjections.levels[3],
-        ...runtimeProjections.levels[4],
-        ...runtimeProjections.levels[5],
-      ].map((problem) => [problem.id, problem]),
-    )
-
-    for (const problem of problemBank.filter(({ level }) => level >= 3)) {
-      expect(problem.starterText, problem.id).toBe(
-        generatedById.get(problem.id)?.starterText,
-      )
-    }
-  })
-
   it("has a deterministic revision and lookup", () => {
     expect(problemBankRevision).toContain("l1-")
     expect(problemBankRevision).toContain("l5-")
+    expect(problemBankRevision.endsWith("|starter-projection@1")).toBe(true)
     expect(getProblem(problemBank[0].id)).toBe(problemBank[0])
     expect(() => getProblem("missing-problem")).toThrow("Unknown problem")
   })

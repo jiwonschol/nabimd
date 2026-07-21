@@ -16,20 +16,32 @@ const bundle = (
   )
 ).join("\n")
 
-const fixtureOnlySentinels = [
+const testOnlySentinels = [
   "l1-heading-apple-different-prose",
   "Bicycle repair",
   "# Extra document title",
   "Skipped supporting detail",
+  "data-e2e-document",
 ]
 
-const leaked = fixtureOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
+const automationContractSentinels = ["__nabimdReadDocumentForE2E"]
+
+const leaked = testOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
 if (leaked.length > 0) {
   throw new Error(
     `Production bundle contains test-only problem fixtures: ${leaked.join(", ")}`,
   )
 }
 
+const missingAutomationContracts = automationContractSentinels.filter(
+  (sentinel) => !bundle.includes(sentinel),
+)
+if (missingAutomationContracts.length > 0) {
+  throw new Error(
+    `Production bundle is missing supported automation contracts: ${missingAutomationContracts.join(", ")}`,
+  )
+}
+
 console.log(
-  `Production bundle excludes ${fixtureOnlySentinels.length} fixture-only sentinels across ${javascriptFiles.length} JavaScript asset(s).`,
+  `Production bundle excludes ${testOnlySentinels.length} test-only sentinels and retains ${automationContractSentinels.length} supported automation contract(s) across ${javascriptFiles.length} JavaScript asset(s).`,
 )
