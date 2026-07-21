@@ -1,5 +1,6 @@
 import { entryChoices, type EntryId } from "../content/entryChoices"
 import { Wordmark } from "./Wordmark"
+import { WhyMarkdown } from "./WhyMarkdown"
 
 type OpenBookLandingProps = {
   onChoose: (entryId: EntryId) => void
@@ -39,6 +40,7 @@ export function OpenBookLanding({
               <span>that is the only reason you haven't.</span>
             </p>
           </div>
+          {turning ? null : <WhyMarkdown />}
         </div>
       </section>
 
