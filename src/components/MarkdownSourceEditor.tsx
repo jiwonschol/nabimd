@@ -18,8 +18,10 @@ import { createActionKeyBindings } from "./keyboardShortcut"
 
 const externalChange = Annotation.define<boolean>()
 const e2eDocumentReaderKey = "__nabimdReadDocumentForE2E"
+// Remote deployment E2E runs the production bundle. The webdriver gate keeps
+// this same-page read-only bridge unavailable to ordinary browsing while
+// avoiding CodeMirror private DOM fields in supported browser automation.
 const exposeE2eDocument =
-  import.meta.env.DEV &&
   typeof navigator !== "undefined" &&
   navigator.webdriver === true
 
