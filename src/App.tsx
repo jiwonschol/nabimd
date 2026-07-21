@@ -11,6 +11,8 @@ export const REDUCED_PAGE_TURN_DURATION_MS = 120
 
 const HISTORY_MARKER = "nabimd-practice-v1"
 
+type LearningSessionController = ReturnType<typeof useLearningSession>
+
 type AppHistoryState =
   | { marker: typeof HISTORY_MARKER; view: "landing" }
   | {
@@ -53,6 +55,8 @@ export function getPageTurnDuration() {
 export function App() {
   const learningSession = useLearningSession()
   const [turningEntryId, setTurningEntryId] = useState<EntryId | null>(null)
+  const [summarySnapshot, setSummarySnapshot] =
+    useState<LearningSessionController | null>(null)
   const turningEntryRef = useRef<EntryId | null>(null)
 
   useEffect(() => {
@@ -137,20 +141,57 @@ export function App() {
     if (learningSession.session.entryId) return
     turningEntryRef.current = null
     setTurningEntryId(null)
+    setSummarySnapshot(null)
   }, [learningSession.session.entryId])
 
   useEffect(() => {
-    if (turningEntryId || !learningSession.session.entryId) return
+    if (!summarySnapshot) return
+    if (learningSession.session.phase !== "complete") {
+      setSummarySnapshot(null)
+      return
+    }
+
+    const timer = window.setTimeout(
+      () => setSummarySnapshot(null),
+      getPageTurnDuration(),
+    )
+    return () => window.clearTimeout(timer)
+  }, [learningSession.session.phase, summarySnapshot])
+
+  useEffect(() => {
+    if (
+      turningEntryId ||
+      summarySnapshot ||
+      !learningSession.session.entryId
+    ) {
+      return
+    }
     document
       .querySelector<HTMLElement>('[role="textbox"][aria-label="Your Markdown"]')
       ?.focus()
-  }, [learningSession.session.entryId, turningEntryId])
+  }, [learningSession.session.entryId, summarySnapshot, turningEntryId])
+
+  const advance = useCallback(() => {
+    const { session } = learningSession
+    const willComplete =
+      learningSession.canNext &&
+      !(session.needsTransfer && !session.currentIsTransfer) &&
+      !session.runProblemIds[session.runStepIndex + 1]
+
+    if (willComplete) {
+      turningEntryRef.current = null
+      setTurningEntryId(null)
+      setSummarySnapshot(learningSession)
+    }
+    learningSession.next()
+  }, [learningSession])
 
   if (!learningSession.session.entryId) {
     return <OpenBookLanding onChoose={chooseLevel} turningEntryId={null} />
   }
 
   const turning = turningEntryId !== null
+  const summaryTurning = summarySnapshot !== null
 
   return (
     <div className={`page-turn-stage${turning ? " page-turn-stage--active" : ""}`}>
@@ -159,7 +200,11 @@ export function App() {
         data-testid="page-turn-receiver"
         inert={turning || undefined}
       >
-        <EditorialDesk {...learningSession} />
+        <EditorialDesk
+          {...learningSession}
+          next={advance}
+          summaryMotionReady={!summaryTurning}
+        />
       </div>
       {turning ? (
         <div className="page-turn-overlay">
@@ -167,6 +212,16 @@ export function App() {
             onChoose={chooseLevel}
             turningEntryId={turningEntryId}
           />
+        </div>
+      ) : null}
+      {summarySnapshot ? (
+        <div
+          aria-hidden="true"
+          className="summary-page-turn-overlay"
+          data-testid="summary-page-turn-transition"
+          inert
+        >
+          <EditorialDesk {...summarySnapshot} transitionSnapshot />
         </div>
       ) : null}
     </div>

@@ -40,7 +40,8 @@ describe("RunSummary", () => {
     expect(screen.getByLabelText("Score")).toHaveTextContent("6 / 6")
     expect(screen.getByLabelText("Total time")).toHaveTextContent("01:05")
     expect(screen.getByText("Nothing to revisit this time.")).toBeVisible()
-    expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
     expect(screen.queryByTestId("summary-book-spine")).toBeNull()
     expect(screen.queryByText(/standing|percentile|collecting data/i)).not.toBeInTheDocument()
@@ -120,12 +121,32 @@ describe("RunSummary", () => {
     ).toBeVisible()
   })
 
-  it("keeps the autofocused replay action visible immediately", () => {
+  it("reveals the replay action after the teacher note without focusing past it", () => {
     renderSummary()
 
     const replay = screen.getByRole("button", { name: "Practice again" })
-    expect(replay).toHaveFocus()
-    expect(replay.parentElement).not.toHaveClass("summary-ink")
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(replay).not.toHaveFocus()
+    expect(replay.parentElement).toHaveClass("summary-ink", "summary-ink--actions")
+  })
+
+  it("holds the teacher reveal until the physical page turn has completed", () => {
+    render(
+      <RunSummary
+        elapsedMs={65_000}
+        failedProblemIds={[]}
+        motionReady={false}
+        onChangeLevel={vi.fn()}
+        onPracticeAgain={vi.fn()}
+        score={6}
+        total={6}
+      />,
+    )
+
+    expect(screen.getByLabelText("Run summary")).toHaveClass(
+      "run-summary--waiting",
+    )
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
   })
 
   it("opens a narrow Summary on the teacher's praise instead of the lower action", () => {

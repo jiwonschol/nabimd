@@ -23,6 +23,7 @@ import { ElapsedTime } from "./ElapsedTime"
 import { Wordmark } from "./Wordmark"
 
 type ExerciseTopBarProps = {
+  autofocusActions?: boolean
   canCheck: boolean
   entryId: EntryId
   evaluation: Evaluation | null
@@ -41,6 +42,7 @@ type ExerciseTopBarProps = {
 }
 
 export function ExerciseTopBar({
+  autofocusActions = true,
   canCheck,
   entryId,
   evaluation,
@@ -71,8 +73,8 @@ export function ExerciseTopBar({
   const shortcut = resolveActionShortcut(navigatorLike)
 
   useEffect(() => {
-    if (matched) nextRef.current?.focus()
-  }, [matched])
+    if (autofocusActions && matched) nextRef.current?.focus()
+  }, [autofocusActions, matched])
 
   useEffect(() => subscribeSoundMuted(setSoundMutedState), [])
 

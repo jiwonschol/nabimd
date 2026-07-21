@@ -256,6 +256,34 @@ describe("global responsive styles", () => {
     expect(styles).toContain("ellipse(0% 0% at 50% 0%)")
   })
 
+  it("turns the completed Practice spread without moving the Summary book", () => {
+    expect(styles).toMatch(
+      /\.summary-page-turn-overlay\s*\{[^{}]*position:\s*absolute[^{}]*pointer-events:\s*none[^{}]*perspective:/s,
+    )
+    expect(styles).toMatch(
+      /\.summary-page-turn-overlay \.cbt-panel:nth-of-type\(2\)\s*\{[^{}]*animation:\s*turn-summary-page-forward var\(--page-turn-duration\)/s,
+    )
+    expect(styles).toMatch(
+      /\.summary-page-turn-overlay \.cbt-panel:nth-of-type\(1\)\s*\{[^{}]*animation:\s*release-summary-left-page var\(--page-turn-duration\)/s,
+    )
+  })
+
+  it("reveals complete Summary elements without clipping words or reflowing text", () => {
+    const summaryInkStart = styles.indexOf(".summary-ink {")
+    const summaryInk = styles.slice(
+      summaryInkStart,
+      styles.indexOf("}", summaryInkStart) + 1,
+    )
+    expect(summaryInk).toContain("opacity: 0")
+    expect(summaryInk).toContain("transform: translateY(2px)")
+    expect(summaryInk).toContain("260ms")
+    expect(summaryInk).not.toContain("clip-path")
+    expect(summaryInk).not.toContain("width:")
+    expect(styles).toMatch(
+      /\.summary-ink--actions\s*\{[^{}]*animation-delay:\s*1180ms/s,
+    )
+  })
+
   it("removes the two-page fold when the responsive layout stacks", () => {
     const landingStack = styles.slice(
       styles.indexOf("@media (max-width: 760px)"),
@@ -396,6 +424,12 @@ describe("global responsive styles", () => {
 
     expect(reducedMotion).toMatch(
       /\*\s*,\s*\*::before,\s*\*::after\s*\{[^{}]*animation-delay:\s*0ms !important/,
+    )
+    expect(reducedMotion).toMatch(
+      /\.summary-page-turn-overlay\s*\{[^{}]*animation:\s*summary-overlay-fade 120ms/s,
+    )
+    expect(reducedMotion).toMatch(
+      /\.summary-page-turn-overlay \.cbt-panel\s*\{[^{}]*animation:\s*none !important/s,
     )
   })
 

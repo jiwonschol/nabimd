@@ -7,7 +7,10 @@ import { GoalPanel } from "./GoalPanel"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 
-type EditorialDeskProps = ReturnType<typeof useLearningSession>
+type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
+  summaryMotionReady?: boolean
+  transitionSnapshot?: boolean
+}
 
 export function EditorialDesk({
   session,
@@ -21,6 +24,8 @@ export function EditorialDesk({
   practiceAgain,
   changeLevel,
   tryAnother,
+  summaryMotionReady = true,
+  transitionSnapshot = false,
 }: EditorialDeskProps) {
   const runLength = session.runProblemIds.length || 1
   const problemPosition = Math.min(session.runStepIndex + 1, runLength)
@@ -39,6 +44,7 @@ export function EditorialDesk({
   return (
     <main className="app-shell app-shell--practice">
       <ExerciseTopBar
+        autofocusActions={!transitionSnapshot}
         canCheck={canCheck}
         entryId={session.entryId!}
         evaluation={session.evaluation}
@@ -63,6 +69,7 @@ export function EditorialDesk({
           onChangeLevel={changeLevel}
           onPracticeAgain={practiceAgain}
           score={score}
+          motionReady={summaryMotionReady}
           total={scheduledRunLength}
         />
       ) : (
@@ -81,6 +88,7 @@ export function EditorialDesk({
               onNextHint={requestHint}
               onRequestHint={requestHint}
               problem={problem}
+              interactive={!transitionSnapshot}
             />
           </article>
           <VerdictNotice evaluation={session.evaluation} />

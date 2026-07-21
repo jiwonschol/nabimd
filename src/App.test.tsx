@@ -15,7 +15,7 @@ import { evaluateProblem } from "./engine/evaluateProblem"
 import { correctionCues } from "./feedback/correctionCues"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
 import { playPageTurnSound } from "./sound/pageTurnSound"
-import { App } from "./App"
+import { App, PAGE_TURN_DURATION_MS } from "./App"
 
 vi.mock("./sound/pageTurnSound", () => ({
   playPageTurnSound: vi.fn(),
@@ -875,12 +875,30 @@ describe("App", () => {
       await user.click(screen.getByRole("button", { name: "Next exercise" }))
     }
 
-    expect(screen.getByRole("button", { name: "Practice again" })).toHaveFocus()
+    expect(screen.getByTestId("summary-page-turn-transition")).toBeVisible()
+    expect(screen.getByTestId("summary-page-turn-transition")).toHaveAttribute(
+      "inert",
+    )
+    expect(screen.getByLabelText("Run summary")).toHaveClass(
+      "run-summary--waiting",
+    )
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
     expect(screen.getByRole("heading", { name: "Summary" })).toBeVisible()
     expect(screen.queryByLabelText("Level 1 — Learn the syntax")).toBeNull()
     expect(screen.getByRole("button", { name: "Home" })).toBeVisible()
     expect(screen.queryByTestId("summary-book-spine")).toBeNull()
     expect(screen.queryByRole("button", { name: "Start over" })).toBeNull()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId("summary-page-turn-transition")).toBeNull()
+        expect(screen.getByLabelText("Run summary")).not.toHaveClass(
+          "run-summary--waiting",
+        )
+      },
+      { timeout: PAGE_TURN_DURATION_MS + 400 },
+    )
   })
 })
