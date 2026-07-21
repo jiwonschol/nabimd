@@ -492,4 +492,89 @@ describe("renderedMarkdown", () => {
       "code",
     ])
   })
+
+  it("marks lazy blockquote continuation rows without consuming newlines", () => {
+    const sources = [
+      ["> first", "second"].join("\n"),
+      ["> > first", "> second"].join("\n"),
+      ["- > first", "  second"].join("\n"),
+    ]
+
+    for (const source of sources) {
+      const tokens = findRenderedMarkdownTokens(source)
+      const secondLineFrom = source.indexOf("\n") + 1
+      const quoteMarks = tokens.filter(
+        (token): token is MarkToken =>
+          token.kind === "mark" && token.className === "cm-rendered-quote",
+      )
+
+      expect(
+        quoteMarks.some(
+          (token) => token.from <= secondLineFrom && token.to === source.length,
+        ),
+        source,
+      ).toBe(true)
+      expect(tokens.filter((token) => token.kind === "line"), source).toHaveLength(
+        2,
+      )
+      for (const token of tokens) {
+        if (token.kind === "line") continue
+        expect(source.slice(token.from, token.to), source).not.toContain("\n")
+      }
+    }
+  })
+
+  it("renders one-to-three-space-indented footnote definition prefixes", () => {
+    for (const indent of [" ", "  ", "   "]) {
+      const source = `${indent}[^note]: First line\n${indent}    continued`
+      const tokens = findRenderedMarkdownTokens(source)
+      const footnotes = tokens.filter(
+        (token): token is ReplacementToken =>
+          token.kind === "replace" && token.replacement === "footnote",
+      )
+
+      expect(footnotes, source).toEqual([
+        expect.objectContaining({
+          from: indent.length,
+          glyph: "[note] ",
+          source: "[^note]: ",
+          to: indent.length + "[^note]: ".length,
+        }),
+      ])
+      expect(source.slice(0, footnotes[0]?.from), source).toBe(indent)
+      expect(footnotes[0]?.source, source).not.toContain("\n")
+    }
+  })
+
+  it("replaces only the actual GFM table delimiter row", () => {
+    const source = [
+      "| Left | Right |",
+      "| --- | --- |",
+      "| --- | --- |",
+    ].join("\n")
+    const tokens = findRenderedMarkdownTokens(source)
+    const separators = tokens.filter(
+      (token): token is ReplacementToken =>
+        token.kind === "replace" && token.replacement === "table-separator",
+    )
+    const bodyLine = source.split("\n")[2] ?? ""
+    const bodyFrom = source.lastIndexOf(bodyLine)
+    const bodyPipes = tokens.filter(
+      (token): token is ReplacementToken =>
+        token.kind === "replace" &&
+        token.replacement === "table-pipe" &&
+        token.from >= bodyFrom,
+    )
+
+    expect(separators.map((token) => token.source)).toEqual(["| --- | --- |"])
+    expect(bodyPipes).toHaveLength(3)
+    expect(
+      tokens.some(
+        (token) =>
+          token.kind === "replace" &&
+          token.from === bodyFrom &&
+          token.to === source.length,
+      ),
+    ).toBe(false)
+  })
 })

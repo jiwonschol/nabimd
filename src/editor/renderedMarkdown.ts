@@ -454,9 +454,11 @@ export function findRenderedMarkdownTokens(
         ) {
           const line = lineByNumber(lines, number)
           if (!line || line.from === line.to) continue
-          const separator = /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$/.test(
-            line.text,
-          )
+          const separator =
+            number === node.position.start.line + 1 &&
+            /^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$/.test(
+              line.text,
+            )
           if (separator) {
             tokens.push({
               from: line.from,
@@ -527,15 +529,18 @@ export function findRenderedMarkdownTokens(
         if (!nodeOffsets || !node.position) break
         const line = lineByNumber(lines, node.position.start.line)
         if (!line) break
-        const prefix = /^\[\^[^\]]+\]:[ \t]*/.exec(line.text)?.[0]
+        const match = /^( {0,3})(\[\^[^\]]+\]:[ \t]*)/.exec(line.text)
+        const indent = match?.[1] ?? ""
+        const prefix = match?.[2]
         if (!prefix) break
+        const prefixFrom = line.from + indent.length
         tokens.push({
-          from: line.from,
+          from: prefixFrom,
           glyph: `[${node.label ?? node.identifier ?? "note"}] `,
           kind: "replace",
           replacement: "footnote",
           source: prefix,
-          to: line.from + prefix.length,
+          to: prefixFrom + prefix.length,
         })
         break
       }
@@ -579,7 +584,19 @@ export function findRenderedMarkdownTokens(
             listDepth,
           )
           const marker = markers?.at(-1)
-          if (!marker) continue
+          if (!marker) {
+            const lazyFrom = Math.max(line.from, nodeOffsets.from)
+            const lazyTo = Math.min(line.to, nodeOffsets.to)
+            if (lazyFrom < lazyTo) {
+              tokens.push({
+                className: "cm-rendered-quote",
+                from: lazyFrom,
+                kind: "mark",
+                to: lazyTo,
+              })
+            }
+            continue
+          }
           const markerFrom = line.from + marker.from
           const markerTo = line.from + marker.to
           if (markerFrom < nodeOffsets.from || markerFrom >= nodeOffsets.to) {
