@@ -16,14 +16,16 @@ const bundle = (
   )
 ).join("\n")
 
-const fixtureOnlySentinels = [
+const testOnlySentinels = [
   "l1-heading-apple-different-prose",
   "Bicycle repair",
   "# Extra document title",
   "Skipped supporting detail",
+  "data-e2e-document",
+  "__nabimdReadDocumentForE2E",
 ]
 
-const leaked = fixtureOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
+const leaked = testOnlySentinels.filter((sentinel) => bundle.includes(sentinel))
 if (leaked.length > 0) {
   throw new Error(
     `Production bundle contains test-only problem fixtures: ${leaked.join(", ")}`,
@@ -31,5 +33,5 @@ if (leaked.length > 0) {
 }
 
 console.log(
-  `Production bundle excludes ${fixtureOnlySentinels.length} fixture-only sentinels across ${javascriptFiles.length} JavaScript asset(s).`,
+  `Production bundle excludes ${testOnlySentinels.length} test-only sentinels across ${javascriptFiles.length} JavaScript asset(s).`,
 )

@@ -106,7 +106,7 @@ button:focus-visible,
 .app-shell--practice {
   display: grid;
   grid-template-rows: 108px minmax(0, 1fr);
-  width: min(calc(100% - 12px), 104rem);
+  width: min(calc(100% - 12px), 96rem);
   gap: 0;
   padding: 0;
   border: 1px solid rgb(17 17 17 / 72%);
@@ -1180,7 +1180,6 @@ button:focus-visible,
 .writing-processor__content > .rendered-document__body code {
   overflow-wrap: anywhere;
   white-space: pre-wrap;
-  word-break: break-word;
 }
 
 .writing-processor__content > .rendered-document__body ul,

@@ -11,12 +11,21 @@ import {
   keymap,
   placeholder,
 } from "@codemirror/view"
-import { useEffect, useLayoutEffect, useRef } from "react"
+import { useEffect, useId, useLayoutEffect, useRef } from "react"
 import { invisibleCharacters } from "../editor/invisibleCharacters"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { createActionKeyBindings } from "./keyboardShortcut"
 
 const externalChange = Annotation.define<boolean>()
+const e2eDocumentReaderKey = "__nabimdReadDocumentForE2E"
+const exposeE2eDocument =
+  import.meta.env.DEV &&
+  typeof navigator !== "undefined" &&
+  navigator.webdriver === true
+
+type E2eDocumentMount = HTMLDivElement & {
+  [e2eDocumentReaderKey]?: () => string
+}
 
 function removeOneIndent(view: EditorView): boolean {
   const changes: { from: number; to: number }[] = []
@@ -66,6 +75,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
   } = _props
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
+  const tabEscapeHintId = useId()
   const onChangeRef = useRef(onChange)
   const onCheckRef = useRef(onCheck)
   const invisibleCompartmentRef = useRef(new Compartment())
@@ -93,6 +103,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
         EditorView.contentAttributes.of({
           role: "textbox",
           "aria-label": "Your Markdown",
+          "aria-describedby": tabEscapeHintId,
           "aria-multiline": "true",
           spellcheck: "false",
         }),
@@ -107,6 +118,7 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
         }),
         keymap.of([
           ...createActionKeyBindings(runCheck, navigatorLike),
+          ...searchKeymap,
           ...resolveReadlineNavigationKeymap(navigatorLike),
           {
             key: "Tab",
@@ -114,7 +126,6 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
             shift: removeOneIndent,
             preventDefault: true,
           },
-          ...searchKeymap,
           ...defaultKeymap,
           ...historyKeymap,
         ]),
@@ -123,9 +134,19 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
     })
 
     viewRef.current = view
+    if (exposeE2eDocument) {
+      Object.defineProperty(mount as E2eDocumentMount, e2eDocumentReaderKey, {
+        configurable: true,
+        enumerable: false,
+        value: () => view.state.doc.toString(),
+      })
+    }
     if (active) view.focus()
 
     return () => {
+      if (exposeE2eDocument) {
+        delete (mount as E2eDocumentMount)[e2eDocumentReaderKey]
+      }
       viewRef.current = null
       view.destroy()
     }
@@ -158,6 +179,9 @@ export function MarkdownSourceEditor(_props: MarkdownSourceEditorProps) {
 
   return (
     <section aria-label="Your Markdown" className="markdown-source-editor">
+      <p className="visually-hidden" id={tabEscapeHintId}>
+        Press Escape, then Tab to leave the editor.
+      </p>
       <div className="markdown-source-editor__mount" ref={mountRef} />
     </section>
   )

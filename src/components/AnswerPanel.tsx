@@ -418,7 +418,7 @@ export function AnswerPanel({
         role="tabpanel"
       >
         <WritingProcessor
-          contentVersion={draft}
+          key={problem.id}
           label="Your Markdown"
           mode="edit"
         >
@@ -445,7 +445,7 @@ export function AnswerPanel({
           <ReviewPanel draft={draft} evaluation={evaluation} problem={problem} />
         ) : (
           <WritingProcessor
-            contentVersion={draft}
+            key={`${problem.id}-preview`}
             label="Rendered answer"
             mode="read-only"
           >

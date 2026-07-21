@@ -260,9 +260,9 @@ describe("App", () => {
 
   it("keeps the selected task identity visible in the exercise header", async () => {
     await openLevel(2)
-    expect(screen.getByLabelText("Practice details")).toHaveTextContent(
-      "Level 2 — Rebuild real documents",
-    )
+    expect(
+      screen.getByRole("group", { name: "Practice details" }),
+    ).toHaveTextContent("Level 2 — Rebuild real documents")
   })
 
   it("renders the authored target as the fixed Goal at every level", async () => {

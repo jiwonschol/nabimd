@@ -21,7 +21,7 @@ export function GoalPanel({ problem }: GoalPanelProps) {
         </p>
       </header>
       <WritingProcessor
-        contentVersion={problem.target}
+        key={problem.id}
         label="Goal document"
         mode="read-only"
       >

@@ -233,13 +233,20 @@ describe("global responsive styles", () => {
     )
   })
 
-  it("keeps Landing, Practice, and Summary on the same wide-screen geometry", () => {
+  it("keeps the Landing and Practice pages in the same book geometry", () => {
     expect(styles).toMatch(
-      /\.app-shell--practice\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 104rem\)/s,
+      /\.app-shell\.open-book-shell\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 96rem\)/s,
+    )
+    expect(styles).toMatch(
+      /\.app-shell--practice\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 96rem\)/s,
     )
     expect(styles).not.toMatch(
       /\.app-shell--practice\s*\{[^{}]*max-width:\s*none/s,
     )
+  })
+
+  it("does not use deprecated word-break values", () => {
+    expect(styles).not.toContain("word-break: break-word")
   })
 
   it("aligns the visible Goal instruction with the document text", () => {

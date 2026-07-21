@@ -9,14 +9,12 @@ describe("WritingProcessor", () => {
     const { container } = render(
       <>
         <WritingProcessor
-          contentVersion="# Reading plan"
           label="Goal document"
           mode="read-only"
         >
           <RenderedDocumentBody source="# Reading plan" />
         </WritingProcessor>
         <WritingProcessor
-          contentVersion=""
           label="Your Markdown"
           mode="edit"
         >
@@ -48,7 +46,6 @@ describe("WritingProcessor", () => {
   it("owns document navigation keys in read-only mode", () => {
     render(
       <WritingProcessor
-        contentVersion="Long goal"
         label="Goal document"
         mode="read-only"
       >
@@ -72,7 +69,6 @@ describe("WritingProcessor", () => {
   it("syncs rows when the edit scroller mounts after the processor", async () => {
     const { container } = render(
       <WritingProcessor
-        contentVersion="A prefilled document"
         label="Your Markdown"
         mode="edit"
       >
@@ -98,5 +94,49 @@ describe("WritingProcessor", () => {
     await waitFor(() => {
       expect(rows).toHaveStyle({ transform: "translateY(-240px)" })
     })
+  })
+
+  it("keeps one editor scroll subscription while controlled text changes", async () => {
+    const onChange = vi.fn()
+    const { container, rerender } = render(
+      <WritingProcessor
+        label="Your Markdown"
+        mode="edit"
+      >
+        <MarkdownSourceEditor
+          onChange={onChange}
+          onCheck={vi.fn()}
+          value="first"
+        />
+      </WritingProcessor>,
+    )
+    await screen.findByRole("textbox", { name: "Your Markdown" })
+    const scroller = container.querySelector<HTMLElement>(".cm-scroller")
+    expect(scroller).not.toBeNull()
+    const addEventListener = vi.spyOn(scroller!, "addEventListener")
+
+    rerender(
+      <WritingProcessor
+        label="Your Markdown"
+        mode="edit"
+      >
+        <MarkdownSourceEditor
+          onChange={onChange}
+          onCheck={vi.fn()}
+          value="second"
+        />
+      </WritingProcessor>,
+    )
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole("textbox", { name: "Your Markdown" }),
+      ).toHaveTextContent("second"),
+    )
+    expect(addEventListener).not.toHaveBeenCalledWith(
+      "scroll",
+      expect.any(Function),
+      expect.anything(),
+    )
   })
 })

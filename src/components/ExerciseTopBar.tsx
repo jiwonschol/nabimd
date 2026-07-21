@@ -126,7 +126,11 @@ export function ExerciseTopBar({
             Exit
           </button>
         </div>
-        <div aria-label="Practice details" className="exercise-progress">
+        <div
+          aria-label="Practice details"
+          className="exercise-progress"
+          role="group"
+        >
           <span aria-label={entry.label} className="exercise-progress__level">
             <span>{levelNumber}</span>
             {levelName ? (

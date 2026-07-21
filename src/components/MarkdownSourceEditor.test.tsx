@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { defaultKeymap } from "@codemirror/commands"
-import { searchKeymap } from "@codemirror/search"
+import { searchKeymap, searchPanelOpen } from "@codemirror/search"
 import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
@@ -21,6 +21,14 @@ describe("MarkdownSourceEditor", () => {
     expect(
       screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toBeVisible()
+    expect(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    ).toHaveAccessibleDescription(
+      "Press Escape, then Tab to leave the editor.",
+    )
+    expect(
+      screen.getByText("Press Escape, then Tab to leave the editor."),
+    ).toHaveClass("visually-hidden")
     expect(
       screen.queryByRole("button", { name: "Show invisibles" }),
     ).toBeNull()
@@ -122,6 +130,24 @@ describe("MarkdownSourceEditor", () => {
         expect.objectContaining({ key: "Mod-Alt-g" }),
       ]),
     )
+  })
+
+  it("opens search with Control+F before readline navigation can consume it", () => {
+    render(
+      <MarkdownSourceEditor
+        onChange={vi.fn()}
+        onCheck={vi.fn()}
+        value="alpha beta"
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    fireEvent.keyDown(editor, { ctrlKey: true, key: "f" })
+
+    expect(searchPanelOpen(view.state)).toBe(true)
   })
 
   it("executes line, character, and word motions without editing the document", () => {

@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { createRunProblemIds } from "../content/entryChoices"
-import { getProblem, problemBank, problemBankRevision } from "../content/problemBank"
+import {
+  getProblem,
+  preStarterProjectionProblemBankRevision,
+  problemBank,
+  problemBankRevision,
+} from "../content/problemBank"
 import {
   isEligibleTransferProblem,
   selectTransferProblem,
@@ -174,6 +179,68 @@ describe("progressStore v5", () => {
         problemBankRevision,
       ),
     ).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
+  it("migrates only legacy automatic empty drafts for Levels 3 to 5", () => {
+    const ids = createRunProblemIds("level-5", 0)
+    const progress = createDefaultProgress(
+      ids[0]!,
+      preStarterProjectionProblemBankRevision,
+    )
+    progress.entryId = "level-5"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[ids[0]!] = ""
+    saveProgress(storage, progress)
+
+    const migrated = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(migrated.bankRevision).toBe(problemBankRevision)
+    expect(migrated.entryId).toBe("level-5")
+    expect(migrated.currentProblemId).toBe(ids[0])
+    expect(migrated.draftByProblemId).not.toHaveProperty(ids[0]!)
+  })
+
+  it("preserves real learner drafts while migrating the starter revision", () => {
+    const ids = createRunProblemIds("level-4", 0)
+    const progress = createDefaultProgress(
+      ids[0]!,
+      preStarterProjectionProblemBankRevision,
+    )
+    progress.entryId = "level-4"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[ids[0]!] = "My real draft"
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId)
+        .draftByProblemId[ids[0]!],
+    ).toBe("My real draft")
+  })
+
+  it("preserves an intentionally empty Level 1 or 2 learner draft", () => {
+    const ids = createRunProblemIds("level-2", 0)
+    const progress = createDefaultProgress(
+      ids[0]!,
+      preStarterProjectionProblemBankRevision,
+    )
+    progress.entryId = "level-2"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[ids[0]!] = ""
+    saveProgress(storage, progress)
+
+    const migrated = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+    expect(migrated.draftByProblemId).toHaveProperty(ids[0]!, "")
   })
 
   it("restores an allowed same-level replacement", () => {

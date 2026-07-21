@@ -11,14 +11,12 @@ const MIN_ROWS = 24
 
 type WritingProcessorProps = {
   children: ReactNode
-  contentVersion: string
   label: string
   mode: "read-only" | "edit"
 }
 
 export function WritingProcessor({
   children,
-  contentVersion,
   label,
   mode,
 }: WritingProcessorProps) {
@@ -91,7 +89,7 @@ export function WritingProcessor({
       mountObserver?.disconnect()
       rows.style.transform = ""
     }
-  }, [contentVersion, readOnly])
+  }, [readOnly])
 
   const moveWithinDocument = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     if (!readOnly) return

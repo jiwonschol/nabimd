@@ -156,6 +156,7 @@ describe("compiled five-level problem bank", () => {
   it("has a deterministic revision and lookup", () => {
     expect(problemBankRevision).toContain("l1-")
     expect(problemBankRevision).toContain("l5-")
+    expect(problemBankRevision.endsWith("|starter-projection@1")).toBe(true)
     expect(getProblem(problemBank[0].id)).toBe(problemBank[0])
     expect(() => getProblem("missing-problem")).toThrow("Unknown problem")
   })

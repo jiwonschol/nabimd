@@ -44,22 +44,17 @@ function sourceEditor(page: Page): Locator {
 }
 
 async function sourceText(page: Page): Promise<string> {
-  const editor = sourceEditor(page)
-  return editor.evaluate((node) => {
-    type CodeMirrorContent = HTMLElement & {
-      cmTile?: {
-        root?: {
-          view?: { state?: { doc?: { toString: () => string } } }
-        }
+  return page.locator(".markdown-source-editor__mount").evaluate((mount) => {
+    const readDocument = (
+      mount as HTMLDivElement & {
+        __nabimdReadDocumentForE2E?: () => string
       }
-    }
+    ).__nabimdReadDocumentForE2E
 
-    const content = node as CodeMirrorContent
-    const documentText = content.cmTile?.root?.view?.state?.doc?.toString()
-    if (typeof documentText !== "string") {
-      throw new Error("Expected the CodeMirror document model")
+    if (typeof readDocument !== "function") {
+      throw new Error("Expected the development-only CodeMirror document reader")
     }
-    return documentText
+    return readDocument()
   })
 }
 
@@ -261,6 +256,23 @@ test("keeps the open-book landing inside a tablet viewport", async ({ page }) =>
   ).toBeLessThanOrEqual(768)
 })
 
+test("keeps the same book spread geometry across the page turn", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1800, height: 1000 })
+  await page.goto("/")
+
+  const landing = await page.locator(".app-shell.open-book-shell").boundingBox()
+  expect(landing).not.toBeNull()
+
+  await enterLevel(page, 5)
+  const practice = await page.locator(".app-shell--practice").boundingBox()
+  expect(practice).not.toBeNull()
+
+  expect(Math.abs(practice!.x - landing!.x)).toBeLessThanOrEqual(1)
+  expect(Math.abs(practice!.width - landing!.width)).toBeLessThanOrEqual(1)
+})
+
 test("every level opens its task-type turn", async ({ page }) => {
   for (const index of levelLabels.keys()) {
     await page.goto("/")
@@ -306,6 +318,10 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
 
   const editor = sourceEditor(page)
   await expect(editor).toBeFocused()
+  await editor.press("Escape")
+  await editor.press("Tab")
+  await expect(editor).not.toBeFocused()
+  await editor.focus()
   await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
     "aria-selected",
     "false",
@@ -570,6 +586,14 @@ test("a long Level 5 answer scrolls inside the editor, not the page", async ({ p
         .getAttribute("style"),
     )
     .toContain("translateY(-")
+  await expect
+    .poll(() =>
+      page
+        .getByRole("tabpanel", { name: "Write" })
+        .locator(".cm-invisible-character--line-break")
+        .count(),
+    )
+    .toBeGreaterThan(0)
   expect(await page.evaluate(() => document.documentElement.scrollTop)).toBe(0)
 })
 
