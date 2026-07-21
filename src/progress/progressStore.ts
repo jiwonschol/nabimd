@@ -294,9 +294,13 @@ function migrateStarterProjectionRevision(
       problem.level >= 3
         ? ""
         : legacyPlaintextStarter
-    if (draft === legacyAutomaticStarter) {
-      // The previous runtime persisted its generated starter when navigating
-      // to a problem. Remove only an exact generated value so the new
+    const isFlattenedHighLevelBlank =
+      sourceBankRevision === flattenedStarterProjectionProblemBankRevision &&
+      problem.level >= 3 &&
+      draft === ""
+    if (draft === legacyAutomaticStarter || isFlattenedHighLevelBlank) {
+      // Previous runtimes persisted automatic starters when navigating to a
+      // problem. Remove only a known automatic value so the new
       // topology-preserving starter becomes the fallback. Any learner edit,
       // including a deliberately empty low-level draft, remains authoritative.
       delete draftByProblemId[problemId]

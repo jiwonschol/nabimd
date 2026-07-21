@@ -291,6 +291,28 @@ describe("progressStore v5", () => {
     )
   })
 
+  it("migrates an empty high-level draft persisted under flattened @1", () => {
+    const problem = getProblem("l5-auth-migration-work-order")
+    const progress = createDefaultProgress(
+      problem.id,
+      flattenedStarterProjectionProblemBankRevision,
+    )
+    progress.draftByProblemId[problem.id] = ""
+    saveProgress(storage, progress)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.bankRevision).toBe(problemBankRevision)
+    expect(loaded.draftByProblemId[problem.id]).toBeUndefined()
+    expect(createLearningSession(loaded, problem).draft).toBe(
+      problem.starterText,
+    )
+  })
+
   it("restores an allowed same-level replacement", () => {
     const baseline = createRunProblemIds("level-1", 0)
     const replacement = problemBank.find(
