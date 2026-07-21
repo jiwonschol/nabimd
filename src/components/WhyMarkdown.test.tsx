@@ -127,6 +127,7 @@ describe("WhyMarkdown", () => {
     expect(reasons).toHaveLength(WHY_REASONS.length)
     WHY_REASONS.forEach((reason, index) => {
       const item = reasons[index]!
+      expect(item).not.toHaveAttribute("aria-label")
       expect(within(item).getByText(reason.lead)).toBeVisible()
       expect(within(item).getByText(reason.support)).toBeVisible()
     })
@@ -143,6 +144,12 @@ describe("WhyMarkdown", () => {
     expect(within(region).getByText(WHY_OPENING_QUESTION)).toBeInTheDocument()
 
     const reasons = within(region).getAllByRole("listitem")
+    WHY_REASONS.forEach((reason, index) => {
+      expect(reasons[index]).toHaveAttribute(
+        "aria-label",
+        `${reason.lead} ${reason.support}`,
+      )
+    })
     expect(reasons.map((item) => item.textContent)).toEqual(
       WHY_REASONS.map((reason) => `${reason.lead}${reason.support}`),
     )

@@ -173,7 +173,9 @@ export function WhyMarkdown() {
             : 0
           return (
             <li
-              aria-label={`${reason.lead} ${reason.support}`}
+              aria-label={
+                animated ? `${reason.lead} ${reason.support}` : undefined
+              }
               className={`open-book-why__reason${isActive ? ` open-book-why__reason--${phase.state}` : ""}`}
               key={reason.lead}
             >
