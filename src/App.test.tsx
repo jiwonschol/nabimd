@@ -1,4 +1,11 @@
-import { act, fireEvent, render, screen, within } from "@testing-library/react"
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react"
 import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
@@ -815,6 +822,48 @@ describe("App", () => {
     expect(
       screen.getByRole("heading", { name: "Choose a chapter to begin." }),
     ).toBeVisible()
+  })
+
+  it("uses browser Back to revisit the previous problem and then the landing", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblemId = currentProblem().id
+    replaceSource(editor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(firstProblemId)
+
+    act(() => window.history.back())
+    await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
+
+    act(() => window.history.back())
+    await waitFor(() =>
+      expect(
+        screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+      ).toBeVisible(),
+    )
+  })
+
+  it("keeps browser Forward symmetric after returning to the landing", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblemId = currentProblem().id
+    replaceSource(editor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    const secondProblemId = currentProblem().id
+
+    act(() => window.history.back())
+    await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
+    act(() => window.history.back())
+    await waitFor(() =>
+      expect(
+        screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+      ).toBeVisible(),
+    )
+
+    act(() => window.history.forward())
+    await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
+    act(() => window.history.forward())
+    await waitFor(() => expect(currentProblem().id).toBe(secondProblemId))
   })
 
   it("completes a run with one primary replay choice", async () => {

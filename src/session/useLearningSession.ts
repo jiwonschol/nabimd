@@ -20,6 +20,7 @@ import {
   canAdvance,
   createLearningSession,
   learningSessionReducer,
+  type PracticeHistorySnapshot,
 } from "./learningSession"
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
@@ -110,9 +111,9 @@ export function useLearningSession(
   const start = useCallback(
     (entryId: EntryId) => {
       getEntryChoice(entryId)
-      startRun(entryId, 0)
+      startRun(entryId, session.runNumber)
     },
-    [startRun],
+    [session.runNumber, startRun],
   )
 
   const practiceAgain = useCallback(() => {
@@ -126,8 +127,27 @@ export function useLearningSession(
   }, [session.entryId, session.runNumber, startRun])
 
   const changeLevel = useCallback(() => {
-    dispatch({ type: "returned-to-greeting", problem: problemBank[0] })
+    dispatch({
+      type: "returned-to-greeting",
+      problem: problemBank[0],
+    })
   }, [])
+
+  const returnToGreetingFromHistory = useCallback(() => {
+    dispatch({
+      type: "returned-to-greeting",
+      problem: problemBank[0],
+    })
+  }, [])
+
+  const navigateToHistory = useCallback(
+    (snapshot: PracticeHistorySnapshot) => {
+      if (snapshot.entryId === null) return
+      const problem = getProblem(snapshot.currentProblemId)
+      dispatch({ type: "history-navigated", snapshot, problem })
+    },
+    [],
+  )
 
   const tryAnother = useCallback(() => {
     const excludedProblemIds = new Set([
@@ -204,6 +224,8 @@ export function useLearningSession(
     practiceAgain,
     startOver,
     changeLevel,
+    returnToGreetingFromHistory,
+    navigateToHistory,
     tryAnother,
     edit,
     check,
