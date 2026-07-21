@@ -35,6 +35,14 @@ export const REQUIRED_EDITORIAL_CHECKS = Object.freeze([
 
 const KEBAB_CASE = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+const CURRENT_AUTHORING_POLICY_SEQUENCE = 18
+const AUTHORING_BUDGET_BY_LEVEL = Object.freeze({
+  1: { maxLines: 3, maxWords: 10 },
+  2: { maxLines: 14, maxWords: 60 },
+  3: { maxLines: 28, maxWords: 150 },
+  4: { maxLines: 40, maxWords: 165 },
+  5: { maxLines: 40, maxWords: 165 },
+})
 const PROSE_GRADING_FIELDS = new Set([
   "caseSensitive",
   "expectedText",
@@ -99,6 +107,73 @@ function findForbiddenGradingField(value, path = "matchChecks") {
     if (found) return found
   }
   return null
+}
+
+function authoredLineCount(source) {
+  return source.length === 0 ? 0 : source.split(/\r?\n/).length
+}
+
+function authoredWordCount(source) {
+  return source.match(/[A-Za-z0-9][A-Za-z0-9'`.:/-]*/g)?.length ?? 0
+}
+
+function validateCurrentAuthoringBudget(candidate, batch, id, errors) {
+  if (
+    !Number.isInteger(batch.sequence) ||
+    batch.sequence < CURRENT_AUTHORING_POLICY_SEQUENCE ||
+    !Number.isInteger(candidate.level) ||
+    typeof candidate.target !== "string"
+  ) {
+    return
+  }
+
+  const budget = AUTHORING_BUDGET_BY_LEVEL[candidate.level]
+  if (!budget) return
+
+  const lineCount = authoredLineCount(candidate.target)
+  const wordCount = authoredWordCount(candidate.target)
+  if (lineCount > budget.maxLines) {
+    errors.push(
+      `Candidate ${id} target has ${lineCount} lines; Level ${candidate.level} allows at most ${budget.maxLines}`,
+    )
+  }
+  if (wordCount > budget.maxWords) {
+    errors.push(
+      `Candidate ${id} target has ${wordCount} words; Level ${candidate.level} allows at most ${budget.maxWords}`,
+    )
+  }
+
+  if (candidate.level < 3) return
+
+  const documentLimits = Array.isArray(candidate.matchChecks)
+    ? candidate.matchChecks.filter(
+        (check) => isRecord(check) && check.kind === "document-limits",
+      )
+    : []
+  if (documentLimits.length !== 1) {
+    errors.push(
+      `Candidate ${id} Level ${candidate.level} requires exactly one document-limits check`,
+    )
+    return
+  }
+
+  const maxLines = documentLimits[0].maxLines
+  if (!Number.isInteger(maxLines) || maxLines < 0) {
+    errors.push(
+      `Candidate ${id} document-limits requires a non-negative integer maxLines`,
+    )
+    return
+  }
+  if (maxLines > budget.maxLines) {
+    errors.push(
+      `Candidate ${id} document-limits maxLines ${maxLines} exceeds Level ${candidate.level} ceiling ${budget.maxLines}`,
+    )
+  }
+  if (lineCount > maxLines) {
+    errors.push(
+      `Candidate ${id} target has ${lineCount} lines but document-limits allows ${maxLines}`,
+    )
+  }
 }
 
 function validateCandidate(candidate, batch) {
@@ -214,6 +289,7 @@ function validateCandidate(candidate, batch) {
   if (batch.curriculumVersion !== candidate.curriculumVersion && candidate.curriculumVersion !== undefined) {
     errors.push(`Candidate ${id} curriculumVersion must match its batch`)
   }
+  validateCurrentAuthoringBudget(candidate, batch, id, errors)
   return errors
 }
 

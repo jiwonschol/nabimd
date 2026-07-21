@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-advanced-document-replacements-018",
+  "status": "awaiting-independent-review",
+  "candidateCount": 18,
+  "fixtureCount": 304,
+  "passingCandidateCount": 18,
+  "normalizedArtifactDigest": "8484818d474ee1a4f75b4529cf71b87eccd5524353d11a8d31fe62aecb38fe70",
+  "verificationDigest": "5225d95e85865bd1c5a760f6e57130fdae82a39f985882ebc21779d25097dd7a",
+  "manifestDigest": "65843e5c49c5686d8258ab0f74419e25e4adf56e44de87d715e1836bf9b86343",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 344,
+  "preparedSummaryDigest": "62c9318a72e38617721381e57bb44971a4052fbc2cb206b2401b4144702539b6"
+}

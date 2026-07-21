@@ -189,5 +189,17 @@ describe("schema-v2 foundation seed batch", () => {
       status: "published",
       errors: [],
     })
+
+    const malformedRevision = structuredClone(committed)
+    const foundationId = computed.normalized.candidates[0]!.id
+    const foundationProjection = Object.values(
+      malformedRevision.runtimeProjections.levels,
+    )
+      .flat()
+      .find((problem) => problem.id === foundationId)!
+    foundationProjection.revision = "not-a-number"
+    expect(
+      checkSeedBatchState({ computed, committed: malformedRevision }).errors,
+    ).toContainEqual(expect.stringContaining("has invalid revision"))
   })
 })

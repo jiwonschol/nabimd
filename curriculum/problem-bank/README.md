@@ -16,9 +16,13 @@ The first Level 1 italic and Level 2 rebuild expansion carries 420, and the
 first Level 1 code-block and Level 2 code-block-rebuild expansion carries 620.
 The first ATX H2–H6 and Level 2 sectioned-document expansion carries 419.
 The first Level 2 nested-list document expansion carries 300.
-The first mixed advanced-document expansion carries 238 frozen fixtures for
+The first mixed advanced-document expansion carries 228 frozen fixtures for
 two Level 3 operational briefs, four Level 4 integration contracts, and six
 Level 5 recovery, refactor, and coordinated-rollout work orders.
+The compact advanced-document replacement batch carries 304 frozen fixtures
+for eight Level 4 workplace miniatures and ten Level 5 developer miniatures.
+It supersedes only the current over-length revisions, so the published total
+and level split remain unchanged.
 Each immutable batch has two sealed independent reviews and one separate
 editorial decision.
 

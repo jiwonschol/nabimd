@@ -282,8 +282,13 @@ describe("Level 3-5 advanced-document batch 017", () => {
   })
 
   it("does not collide with the accepted bank or within the batch", () => {
+    const batchIds = new Set(
+      advancedDocumentBatch017Problems.map((problem) => problem.id),
+    )
     const previousBank = problemBank.filter(
-      (problem) => problem.sourceBatchId !== advancedDocumentBatch017Id,
+      (problem) =>
+        problem.sourceBatchId !== advancedDocumentBatch017Id &&
+        !batchIds.has(problem.id),
     )
     const priorIds = new Set(previousBank.map((problem) => problem.id))
     const priorTargets = new Set(previousBank.map((problem) => problem.target))

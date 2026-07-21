@@ -73,6 +73,71 @@ function rawBatch(overrides = {}) {
   }
 }
 
+const authoringBudgets = Object.freeze({
+  1: { maxLines: 3, maxWords: 10 },
+  2: { maxLines: 14, maxWords: 60 },
+  3: { maxLines: 28, maxWords: 150 },
+  4: { maxLines: 40, maxWords: 165 },
+  5: { maxLines: 40, maxWords: 165 },
+})
+
+function targetWithSize(lineCount, wordCount) {
+  const lines = Array.from({ length: lineCount }, () => [])
+  for (let index = 0; index < wordCount; index += 1) {
+    lines[index % lineCount].push(`word${index + 1}`)
+  }
+  return lines.map((line) => line.join(" ")).join("\n")
+}
+
+function currentPolicyCandidate(level, overrides = {}) {
+  const profileByLevel = {
+    1: "everyday",
+    2: "everyday-recall",
+    3: "workplace-document",
+    4: "development-spec",
+    5: "agent-workflow",
+  }
+  const baseCheck = {
+    id: "has-h1",
+    kind: "has-heading",
+    priority: 10,
+    feedback: "Add a main heading.",
+  }
+  const budget = authoringBudgets[level]
+  return rawCandidate({
+    level,
+    teachingMode: level === 1 ? "introduce" : "recall",
+    vocabulary: {
+      profile: profileByLevel[level],
+      domains: ["practice"],
+      terms: ["document"],
+    },
+    target: targetWithSize(budget.maxLines, budget.maxWords),
+    matchChecks: level >= 3
+      ? [
+          baseCheck,
+          {
+            id: "document-budget",
+            kind: "document-limits",
+            maxLines: budget.maxLines,
+            priority: 20,
+            feedback: "Keep the document within the practice length.",
+          },
+        ]
+      : [baseCheck],
+    ...(level === 5
+      ? {
+          convention: {
+            id: "nabi-agent-work-order",
+            version: "2026.07",
+            reviewedOn: "2026-07-22",
+          },
+        }
+      : {}),
+    ...overrides,
+  })
+}
+
 function fixtures(
   candidateId = "heading-garden-notes",
   batchId = "2026-07-19-l1-headings-001",
@@ -223,6 +288,167 @@ test("normalization rejects invalid level metadata and non-standard flavor", () 
   assert.throws(
     () => normalizeBatch(rawBatch({ candidates: [rawCandidate({ level: 5, teachingMode: "recall", vocabulary: { profile: "agent-workflow", domains: ["agents"], terms: ["guardrail"] } })] }), "prompt\n"),
     /Level 5 requires convention metadata/,
+  )
+})
+
+test("sequence 18 enforces the line and word ceilings for every curriculum level", () => {
+  for (const [levelText, budget] of Object.entries(authoringBudgets)) {
+    const level = Number(levelText)
+    assert.doesNotThrow(() =>
+      normalizeBatch(
+        rawBatch({
+          sequence: 18,
+          candidates: [currentPolicyCandidate(level)],
+        }),
+        "prompt\n",
+      ),
+    )
+
+    assert.throws(
+      () =>
+        normalizeBatch(
+          rawBatch({
+            sequence: 18,
+            candidates: [
+              currentPolicyCandidate(level, {
+                target: targetWithSize(budget.maxLines + 1, budget.maxLines + 1),
+              }),
+            ],
+          }),
+          "prompt\n",
+        ),
+      new RegExp(
+        `Candidate heading-garden-notes target has ${budget.maxLines + 1} lines; Level ${level} allows at most ${budget.maxLines}`,
+      ),
+    )
+
+    assert.throws(
+      () =>
+        normalizeBatch(
+          rawBatch({
+            sequence: 18,
+            candidates: [
+              currentPolicyCandidate(level, {
+                target: targetWithSize(1, budget.maxWords + 1),
+              }),
+            ],
+          }),
+          "prompt\n",
+        ),
+      new RegExp(
+        `Candidate heading-garden-notes target has ${budget.maxWords + 1} words; Level ${level} allows at most ${budget.maxWords}`,
+      ),
+    )
+  }
+})
+
+test("sequence 18 requires one bounded document-limits check for Levels 3 through 5", () => {
+  const check = currentPolicyCandidate(4).matchChecks.find(
+    (candidate) => candidate.kind === "document-limits",
+  )
+  assert.ok(check)
+
+  for (const level of [3, 4, 5]) {
+    const withoutLimit = currentPolicyCandidate(level, {
+      matchChecks: [
+        {
+          id: "has-h1",
+          kind: "has-heading",
+          priority: 10,
+          feedback: "Add a main heading.",
+        },
+      ],
+    })
+    assert.throws(
+      () =>
+        normalizeBatch(
+          rawBatch({ sequence: 18, candidates: [withoutLimit] }),
+          "prompt\n",
+        ),
+      new RegExp(
+        `Candidate heading-garden-notes Level ${level} requires exactly one document-limits check`,
+      ),
+    )
+
+    const duplicateLimit = currentPolicyCandidate(level)
+    duplicateLimit.matchChecks.push({ ...check, id: "second-document-budget" })
+    assert.throws(
+      () =>
+        normalizeBatch(
+          rawBatch({ sequence: 18, candidates: [duplicateLimit] }),
+          "prompt\n",
+        ),
+      new RegExp(
+        `Candidate heading-garden-notes Level ${level} requires exactly one document-limits check`,
+      ),
+    )
+  }
+})
+
+test("sequence 18 constrains the declared document limit and the authored target", () => {
+  const missingMaxLines = currentPolicyCandidate(4)
+  missingMaxLines.matchChecks = missingMaxLines.matchChecks.map((check) => {
+    if (check.kind !== "document-limits") return check
+    const { maxLines: _maxLines, ...withoutMaxLines } = check
+    return { ...withoutMaxLines, maxBlocks: 20 }
+  })
+  assert.throws(
+    () =>
+      normalizeBatch(
+        rawBatch({ sequence: 18, candidates: [missingMaxLines] }),
+        "prompt\n",
+      ),
+    /Candidate heading-garden-notes document-limits requires a non-negative integer maxLines/,
+  )
+
+  const overPolicy = currentPolicyCandidate(4)
+  overPolicy.matchChecks = overPolicy.matchChecks.map((check) =>
+    check.kind === "document-limits" ? { ...check, maxLines: 41 } : check,
+  )
+  assert.throws(
+    () =>
+      normalizeBatch(
+        rawBatch({ sequence: 18, candidates: [overPolicy] }),
+        "prompt\n",
+      ),
+    /Candidate heading-garden-notes document-limits maxLines 41 exceeds Level 4 ceiling 40/,
+  )
+
+  const targetExceedsDeclaration = currentPolicyCandidate(4, {
+    target: targetWithSize(10, 10),
+  })
+  targetExceedsDeclaration.matchChecks = targetExceedsDeclaration.matchChecks.map(
+    (check) =>
+      check.kind === "document-limits" ? { ...check, maxLines: 9 } : check,
+  )
+  assert.throws(
+    () =>
+      normalizeBatch(
+        rawBatch({ sequence: 18, candidates: [targetExceedsDeclaration] }),
+        "prompt\n",
+      ),
+    /Candidate heading-garden-notes target has 10 lines but document-limits allows 9/,
+  )
+})
+
+test("sequence 17 and earlier batches keep their historical authoring budgets", () => {
+  const legacy = currentPolicyCandidate(5, {
+    target: targetWithSize(101, 500),
+    matchChecks: [
+      {
+        id: "has-h1",
+        kind: "has-heading",
+        priority: 10,
+        feedback: "Add a main heading.",
+      },
+    ],
+  })
+
+  assert.doesNotThrow(() =>
+    normalizeBatch(
+      rawBatch({ sequence: 17, candidates: [legacy] }),
+      "prompt\n",
+    ),
   )
 })
 

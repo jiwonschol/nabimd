@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-advanced-document-replacements-018",
+  "reviewerId": "reviewer-orchid-batch018-independent-mechanical",
+  "reviewRunId": "orchid-batch018-65843e5c-adversarial-001",
+  "declaredIndependent": true,
+  "manifestDigest": "65843e5c49c5686d8258ab0f74419e25e4adf56e44de87d715e1836bf9b86343",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "frozenFixtureCount": 304,
+  "freshProbeCount": 126,
+  "overallVerdict": "pass",
+  "evidence": {
+    "sourceHead": "808cb4104d35c9b846aad03ff1e521b0fadaf524",
+    "reviewManifestFileSha256": "90294acdbde4d332fdf36a64a73d64fdca03e58725e5d869f61e5e19c3502e7a",
+    "normalizedArtifactDigest": "8484818d474ee1a4f75b4529cf71b87eccd5524353d11a8d31fe62aecb38fe70",
+    "fixtureArtifactDigest": "db4bfc46decf3cf5a5ba584bd80c8740b954dcee57373136850863f7731b11a5",
+    "verificationDigest": "5225d95e85865bd1c5a760f6e57130fdae82a39f985882ebc21779d25097dd7a",
+    "manifestDigest": "65843e5c49c5686d8258ab0f74419e25e4adf56e44de87d715e1836bf9b86343",
+    "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+    "candidateCount": 18,
+    "frozenFixtureCount": 304,
+    "frozenOutcomeCounts": {
+      "matched": 72,
+      "fail": 232
+    },
+    "frozenFixtureRoleCounts": {
+      "canonical": 18,
+      "case-or-spelling": 18,
+      "alternate-prose": 18,
+      "edge-case": 196,
+      "malformed-required": 18,
+      "matched-with-review": 18,
+      "missing-required": 18
+    },
+    "directMatchChecksRequired": 196,
+    "directMatchChecksCovered": 196,
+    "freshProbeCount": 126,
+    "freshOutcomeCounts": {
+      "matched": 90,
+      "fail": 36
+    },
+    "freshProbeDigest": "5fe065e6732ebbbe5ea4a900c89a79c31c533e59f9b359910eadf540bdf61b89",
+    "freshProbeCountsByCandidate": {
+      "l4-api-field-deprecation-migration": 7,
+      "l4-cache-namespace-migration": 7,
+      "l4-configuration-key-migration": 7,
+      "l4-nullable-column-backfill-migration": 7,
+      "l4-duplicate-form-submission-investigation": 7,
+      "l4-lost-pagination-cursor-investigation": 7,
+      "l4-offline-retry-banner-investigation": 7,
+      "l4-stale-permission-badge-investigation": 7,
+      "l5-auth-migration-work-order": 7,
+      "l5-dependency-upgrade-work-order": 7,
+      "l5-performance-recovery-work-order": 7,
+      "l5-release-context-work-order": 7,
+      "l5-duplicate-job-recovery-work-order": 7,
+      "l5-search-index-recovery-work-order": 7,
+      "l5-date-format-refactor-work-order": 7,
+      "l5-analytics-adapter-refactor-work-order": 7,
+      "l5-api-contract-rollout-work-order": 7,
+      "l5-notification-schema-rollout-work-order": 7
+    },
+    "adversarialMatrix": {
+      "crlf": 18,
+      "equivalentCommonMarkMarkers": 18,
+      "grammarOnlyProse": 18,
+      "exactFortyLineBoundary": 18,
+      "overFortyLineBoundary": 18,
+      "malformedStructure": 18,
+      "editorialBoundary": 18
+    },
+    "compactBudgetStats": {
+      "level4": {
+        "minLines": 25,
+        "maxLines": 29,
+        "minWords": 60,
+        "maxWords": 73,
+        "maxListItems": 3
+      },
+      "level5": {
+        "minLines": 30,
+        "maxLines": 34,
+        "minWords": 56,
+        "maxWords": 77,
+        "maxListItems": 3
+      }
+    },
+    "revisionContinuityChecked": 18,
+    "runtimeNetworkCalls": 0,
+    "deterministicReplayPassed": true
+  },
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "sourceArtifactsRecomputed": "pass",
+    "engineContractCurrent": "pass",
+    "allFrozenFixturesReplayed": "pass",
+    "frozenFixtureResultsReproduced": "pass",
+    "everyDirectMatchCheckCovered": "pass",
+    "requiredFixtureRoles": "pass",
+    "appendOnlyRevisionContinuity": "pass",
+    "grammarOnlyChecksAndProtectedContent": "pass",
+    "compactLineWordAndListBudgets": "pass",
+    "crlfLineEndings": "pass",
+    "equivalentCommonMarkMarkers": "pass",
+    "documentLimitBoundary": "pass",
+    "malformedStructureBoundary": "pass",
+    "editorialBoundary": "pass",
+    "deterministicManifestAndEngineBinding": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l4-api-field-deprecation-migration",
+      "revision": 2,
+      "candidateDigest": "996090344926ad552a1cb088b73b5e3db31390cda8560d0098ba4a910284a9f6",
+      "fixtureResultsDigest": "975c7eb64112bab091eaaaeaffe0bced1b4c71c2a5ba617ff01ef6076a3a3729",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-cache-namespace-migration",
+      "revision": 2,
+      "candidateDigest": "e34de74fa848911860a01858b523b36798e97cad1ec21c61fd0af02333ab0932",
+      "fixtureResultsDigest": "bad26b4614eadd65bdf3a5fa1a839b1f1e355f2c3324e8c51dc15962530be377",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-configuration-key-migration",
+      "revision": 2,
+      "candidateDigest": "2ec3d5fce64d05b7a911ef06c464a41a3fd9d9cd3416f20a4d3d621cb3d9e40f",
+      "fixtureResultsDigest": "4297a5f77c260b6fa376da85e166d87aacb0b4b13c5c85d8d9021aa4108d1d81",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-duplicate-form-submission-investigation",
+      "revision": 2,
+      "candidateDigest": "a698979a857282c3db57ed8cbda61e9998179a30994ead0cc9bc39df161dcefd",
+      "fixtureResultsDigest": "557fc58ac0a6acdb17ab22ee93d5399dfaeacbd0843833f36aa35a658898f8ec",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-lost-pagination-cursor-investigation",
+      "revision": 2,
+      "candidateDigest": "41d6203dbbca7e3af446c621dc10cf161503e47c6d0477b2d3e8e2c36e950766",
+      "fixtureResultsDigest": "047ae2e3405a834fef9225f37bc3594c31958bf600af4ab512ed64d18b854c91",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-nullable-column-backfill-migration",
+      "revision": 2,
+      "candidateDigest": "cb24d5605d77983a22951318ba24a44dc0550e7af8962860ee25a8e19d55af29",
+      "fixtureResultsDigest": "660ad2a0ebbdf54824fe1056a68af1894de031c1a657459b4207f3ae9c72eda0",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-offline-retry-banner-investigation",
+      "revision": 2,
+      "candidateDigest": "aae632a9d6ab0cd3736bf7b73d19d678f071a7be5ca0cdf47af6619e248cc870",
+      "fixtureResultsDigest": "fb5e204b0f8ab49474e5fc7fd3dbdffd4e50e5cc785bc4ff71bc04f82e46a2c6",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l4-stale-permission-badge-investigation",
+      "revision": 2,
+      "candidateDigest": "11c716498be44ed1571b7aae6e3fbe2a6a9dd6ff31fceb7987624ee0f8cef641",
+      "fixtureResultsDigest": "0979fe7704f94eb2099e41b8dbf169389dba93aff2b9eb20b6cb9703d1be673a",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-analytics-adapter-refactor-work-order",
+      "revision": 2,
+      "candidateDigest": "1074e297ec285c9a03a6a524339bafa389f342de42ca772fd36331c46d4031f1",
+      "fixtureResultsDigest": "e9aa71fb020e361650c93e93b4a589f98268cc6b38657f7281ea4f84d3fc89c6",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-api-contract-rollout-work-order",
+      "revision": 2,
+      "candidateDigest": "f16226766f20f3afdf5bec0c1465e0a79bd77532703a2dc23709c3b0ed5d950f",
+      "fixtureResultsDigest": "7125a1e81f34f71765d08a5309325640282ab6bba9980a2eacee4d0f756d6ec8",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-auth-migration-work-order",
+      "revision": 3,
+      "candidateDigest": "6c87c3993eefcc9e36198fb0fdb343661b38d832bf7befb97bca69ffaeac9992",
+      "fixtureResultsDigest": "bce56e6ad1e9f4087972949071234a91a1e19fe3d612a8c1a43607596ceebd4e",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-date-format-refactor-work-order",
+      "revision": 2,
+      "candidateDigest": "51c09f1f6c5f637da1e5693fbb2ff7d15a8b101984f4fa513b739e5384fe6a38",
+      "fixtureResultsDigest": "6a0257c16550a6c4c6e4fa115cfb30f4156ff8eadb56cdf2eff9b919d8e06cb8",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-dependency-upgrade-work-order",
+      "revision": 3,
+      "candidateDigest": "d4f67c6bfac3a9d0ca5bdd9daec8f57842b42aab3ffaebb5179724f08ebfab52",
+      "fixtureResultsDigest": "3d0f8b49ebdca3a6d8d4bd8de2994dbbface505341f972dfdca08c14a10f24ff",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-duplicate-job-recovery-work-order",
+      "revision": 2,
+      "candidateDigest": "f415dfe0bcbb5f0941f7553bb6c066bbac7ad914e015f3854eff795fb8a16bd2",
+      "fixtureResultsDigest": "43ee30cb4584a64dc9d59af7e5ad15ba3eeef5d138de0f5908185872911096c6",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-notification-schema-rollout-work-order",
+      "revision": 2,
+      "candidateDigest": "b6fac703ff690ad8ca551149b89bd6cb8988cc862ea634a6568c9f3954565ced",
+      "fixtureResultsDigest": "93d7da21b641f4c54d54a7b0873483e9b069591eceadb3470284a18feed75bbf",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-performance-recovery-work-order",
+      "revision": 3,
+      "candidateDigest": "66fd5a7ee8c68d857fff3995795f38437fa07d34ffd6fd8a50f1ff126ed8cbbe",
+      "fixtureResultsDigest": "037ada3a5edecb5cfe0c6c400a59f67347d6df22893b37cefce63aff7a0b35ef",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-release-context-work-order",
+      "revision": 3,
+      "candidateDigest": "2bcab8aa5b2293287f0235171b6879f3e838016b324a3cce62f610b28be4da6f",
+      "fixtureResultsDigest": "d0c2780ce606de540721a505065045b13780a82ddcd44d1617f4a8919095dcd7",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    },
+    {
+      "candidateId": "l5-search-index-recovery-work-order",
+      "revision": 2,
+      "candidateDigest": "05ec66a5671341c33be0b40ecac2fb9d186d724747575e486cb5e00c11e12675",
+      "fixtureResultsDigest": "cfb8dfeecd7b9c8ea241b0f00c305c9766323cc7407f8040516efc86ccf6238d",
+      "verdict": "pass",
+      "freshProbeCount": 7
+    }
+  ],
+  "findings": [],
+  "commands": [
+    "node --import tsx /private/tmp/orchid-batch018-review.mts (304 frozen fixtures + 126 fresh adversarial probes)"
+  ],
+  "stopConditions": [
+    "Any candidate, fixture, prompt, engine-contract, verification, or manifest change invalidates this digest-bound evidence and requires a fresh independent Orchid review run.",
+    "Any reviewer disagreement or editorial rejection blocks publication of the whole immutable batch."
+  ],
+  "notes": "Independent Orchid mechanical review recomputed the frozen artifacts and replayed all 304 fixtures through evaluateProblem. All 196 match checks had one isolated direct failure. A separate 126-probe matrix covered CRLF input, equivalent CommonMark list/divider/fence markers, grammar-only prose variation, exact and exceeded 40-line boundaries, malformed structures, and editorial-only boundaries for every candidate. All 18 append-only revisions continue the published predecessor by exactly one; all targets remain within the Level 4/5 40-line, 165-word, and three-item-list ceilings.",
+  "reviewDigest": "da0a02304e3b769ac280f6d2d5b394873ccf7674b82f5a4836c0f47af9a5aa2b"
+}

@@ -153,8 +153,13 @@ describe("Level 4 development-spec batch 012", () => {
   })
 
   it("does not collide with the previously published bank", () => {
+    const batchIds = new Set(
+      developmentSpecBatch012Problems.map((problem) => problem.id),
+    )
     const priorProblems = problemBank.filter(
-      (problem) => problem.sourceBatchId !== developmentSpecBatch012Id,
+      (problem) =>
+        problem.sourceBatchId !== developmentSpecBatch012Id &&
+        !batchIds.has(problem.id),
     )
     const priorIds = new Set(priorProblems.map((problem) => problem.id))
     const priorVariants = new Set(

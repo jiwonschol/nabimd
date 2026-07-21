@@ -93,6 +93,13 @@ function compactSyntaxExample(problem: ReturnType<typeof getProblem>): string {
   const family = problemBank.filter(
     (candidate) => candidate.retryFamily === problem.retryFamily,
   )
+
+  if (problem.level >= 4) {
+    return joinSyntaxTokens([
+      ...new Set(family.flatMap((candidate) => candidate.syntaxTokens)),
+    ])
+  }
+
   const tokenShapes = new Set(
     family.map((candidate) => JSON.stringify(candidate.syntaxTokens)),
   )

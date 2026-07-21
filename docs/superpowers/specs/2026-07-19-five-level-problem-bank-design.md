@@ -90,9 +90,10 @@ images with alt text. Fenced code blocks are a CommonMark-compatible,
 Devpost-supported expansion of the initial basic family list.
 The published 344-problem checkpoint includes ATX heading lessons from H1
 through H6, Level 2 rebuilds whose H1–H3 hierarchy is graded structurally, 12
-Level 2 nested-list document rebuilds, two operational-impact briefs, four
-integration-contract specs, and six distinct Level 5 work orders. Its level
-split is 136/148/30/20/10.
+Level 2 nested-list document rebuilds, compact Level 4 workplace notes, and
+compact Level 5 developer briefs. Its level split is 136/148/30/20/10. The
+current advanced-document revisions stay at or below 40 authored lines and 165
+words, and each carries an enforceable `document-limits` guard.
 Deep headings remain focused syntax lessons, while ordinary sectioned documents
 use the readable H1–H3 range. The nested-list batch requires one root list and
 one descendant list while accepting any valid child marker kind and rejecting

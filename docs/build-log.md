@@ -2429,3 +2429,36 @@ and redesign Summary as a calm close rather than a transcript or scoreboard.
 The full disagreement, evidence, accepted decision, and explicit division of
 Codex and product-owner contributions are preserved in
 `docs/build-week-pedagogy-decision-2026-07-20.md`.
+
+## 2026-07-22 — Compact advanced-document replacements
+
+Issue #9's curriculum correction is now executable data rather than a note
+about future work. Batch 018 publishes the next append-only revisions for all
+18 current Level 4–5 Goals that exceeded the corrected ceiling: eight Level 4
+records become short workplace change or issue notes, and ten Level 5 records
+become short developer briefs. Stable IDs are preserved, historical evidence
+is untouched, and the compiled bank remains 344 problems with the same
+`136/148/30/20/10` split.
+
+The replacement Goals are 25–34 physical lines and 56–77 words. Every list has
+two or three items, every Goal carries exactly one real `document-limits`
+check capped at 40 lines, and the sequence-18 authoring pipeline now rejects
+future candidates that exceed the level line or word ceiling. The learner is
+still graded on Markdown structure only; prose, capitalization, spelling, and
+domain truth remain outside the verdict.
+
+Editorial preflight materially changed the batch before evidence was frozen.
+The first draft still treated Level 4 as API and migration work. It was
+rewritten into ordinary meeting-room, supply, handoff, contact-card, delivery,
+and roster miniatures, and several technical or awkward phrases were replaced
+with plain US English. A mechanical preflight also found that the first
+`matched-with-review` fixtures did not trigger any review. The final fixtures
+now exercise a real nested-blockquote or focused-bold editorial boundary while
+preserving the exact root document anatomy.
+
+The frozen batch contains 304 real-engine fixtures and 196 directly covered
+match checks. Atlas replayed all fixtures and added 72 adversarial probes;
+Orchid independently replayed them and added 126 different probes. Both
+mechanical reviews passed, the separate editorial actor accepted 18/18, and
+the published evidence is bound to manifest
+`65843e5c49c5686d8258ab0f74419e25e4adf56e44de87d715e1836bf9b86343`.
