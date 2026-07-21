@@ -477,6 +477,9 @@ describe("App", () => {
     const { user, editor } = await openLevel(1)
 
     await user.keyboard("question?")
+    expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toContain(
+      "question?",
+    )
     expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
       "aria-selected",
       "true",
