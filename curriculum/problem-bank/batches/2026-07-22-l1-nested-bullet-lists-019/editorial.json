@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "editorialActor": "codex-editorial-batch019-independent",
+  "editorialRunId": "editorial-batch019-16a1bf8a-20260722-kst-001",
+  "reviewedOn": "2026-07-22",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "16a1bf8adcf777cf0c14806099ca1259e506460e77e7cefe948adf71f7888cb3",
+  "decisions": [
+    {
+      "candidateId": "l1-nested-bullets-bedside-table",
+      "revision": 1,
+      "candidateDigest": "6deb40e5b657667a633c81096d5c629cd71bf8c1fd7a4bc6ce2a735aeca74f0c",
+      "fixtureResultsDigest": "bc55208054b7f57f97fb3ce06a83c98f559dd8cbf7efe17e48d32a03269b7e61",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Bedside table, Book, and Glasses form an immediately legible parent-child group. Every word supports the indentation decision, while the distinct Desk tray example stays concise."
+    },
+    {
+      "candidateId": "l1-nested-bullets-game-box",
+      "revision": 1,
+      "candidateDigest": "5e17a92f83b61446e3f257e0d659f33599f0f8131f566663baa70efb688cc1cf",
+      "fixtureResultsDigest": "be8550d35cb0b531517d1b38ebe79c03836910151f0303c5eb01adaa09b80520",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Cards and Dice are clear contents of a Game box. The four-word Goal and separate Art box example teach hierarchy without prose or domain burden."
+    },
+    {
+      "candidateId": "l1-nested-bullets-garden-bag",
+      "revision": 1,
+      "candidateDigest": "4c74e3dd1dd16476ae7ed3a404fe7f622f9591f150f3842bd70fe98bc2ddea2c",
+      "fixtureResultsDigest": "bc4f2d2a01d979649e9e9c1cb3bccaee27764346f980caf4a220d5d1c5dc89fa",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Seeds and Gloves fit naturally beneath Garden bag without requiring gardening knowledge. The Rain gear example is short, fictional, and structurally focused."
+    },
+    {
+      "candidateId": "l1-nested-bullets-lunch-tray",
+      "revision": 1,
+      "candidateDigest": "dcc7f8fbcce434535938f4288e438167fa4b5d40981e17a7b2f3068d978137ed",
+      "fixtureResultsDigest": "500b95198f52291bba454061452e7df670ffc00141e2d8ec6a4700703e24e1f2",
+      "status": "accepted",
+      "checks": { "levelFit": "pass", "vocabularyFit": "pass", "ambiguity": "pass", "goalQuality": "pass", "duplication": "pass", "licensing": "pass", "flavor": "pass", "runtimeAiBoundary": "pass" },
+      "notes": "Lunch tray with Sandwich and Apple is familiar and immediately shows containment. The Travel bag example reinforces the same Markdown shape without adding writing work."
+    }
+  ],
+  "reviewDigests": [
+    "c31a0d30b585e101f8eb6b1b99ae452d40219bfe7ece9cf06f96facefdf95ed0",
+    "f5fd854531e2eb0ef4c9049f4cba98e326d15a3ec788e1073eefb53a0c8e9eb4"
+  ],
+  "editorialDigest": "094267253986e23efad3229bd31d940b59c237b4a59e66577756029fac38d908"
+}

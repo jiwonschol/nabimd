@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "reviewerId": "reviewer-orchid-batch019-independent-mechanical",
+  "reviewRunId": "orchid-batch019-16a1bf8a-adversarial-001",
+  "declaredIndependent": true,
+  "manifestDigest": "16a1bf8adcf777cf0c14806099ca1259e506460e77e7cefe948adf71f7888cb3",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "frozenFixtureCount": 56,
+  "freshProbeCount": 60,
+  "overallVerdict": "pass",
+  "evidence": {
+    "sourceHead": "2ba417a64022767e704f77823a156270e7ca6f83",
+    "rawArtifactDigest": "800887a991e3ddc28f7d6a1443e963f59cc98355ce2142e86514d2636c97fcad",
+    "normalizedArtifactDigest": "b4effccae20b811db4e396402349da3ac1d00ee23db3dd522f32978682e418d8",
+    "fixtureArtifactDigest": "2a7b91d2d5217c85519d4027ad859a646be19fb348f9c64a53438bc645818b63",
+    "verificationDigest": "623618de42674ca1766b2e0c6c8bc60ee3925e3d8519be05002bd8d32955aabb",
+    "promptSha256": "2497e01d35a404ed393cd1681c4ed3da494d5e4a6c591053b0450c74aeb18594",
+    "candidateCount": 4,
+    "frozenOutcomeCount": 56,
+    "directMatchChecksRequired": 12,
+    "directMatchChecksCovered": 12,
+    "freshOutcomeCount": 60,
+    "schedulingReplayTurns": 200,
+    "deterministicReplayPassed": true,
+    "runtimeNetworkCalls": 0
+  },
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "sourceArtifactsRecomputed": "pass",
+    "engineContractCurrent": "pass",
+    "frozenFixturesReplayed56Of56": "pass",
+    "exactFrozenVerdictsAndReviewIds": "pass",
+    "directCheckCoverage12Of12": "pass",
+    "starterTopology": "pass",
+    "selectionReachability": "pass",
+    "grammarOnlyPredicates": "pass",
+    "equivalentMarkersAndIndentation": "pass",
+    "malformedAdversarialCases": "pass",
+    "deterministicSeal": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l1-nested-bullets-bedside-table",
+      "revision": 1,
+      "candidateDigest": "6deb40e5b657667a633c81096d5c629cd71bf8c1fd7a4bc6ce2a735aeca74f0c",
+      "fixtureResultsDigest": "bc55208054b7f57f97fb3ce06a83c98f559dd8cbf7efe17e48d32a03269b7e61",
+      "verdict": "pass",
+      "freshProbeCount": 15
+    },
+    {
+      "candidateId": "l1-nested-bullets-game-box",
+      "revision": 1,
+      "candidateDigest": "5e17a92f83b61446e3f257e0d659f33599f0f8131f566663baa70efb688cc1cf",
+      "fixtureResultsDigest": "be8550d35cb0b531517d1b38ebe79c03836910151f0303c5eb01adaa09b80520",
+      "verdict": "pass",
+      "freshProbeCount": 15
+    },
+    {
+      "candidateId": "l1-nested-bullets-garden-bag",
+      "revision": 1,
+      "candidateDigest": "4c74e3dd1dd16476ae7ed3a404fe7f622f9591f150f3842bd70fe98bc2ddea2c",
+      "fixtureResultsDigest": "bc4f2d2a01d979649e9e9c1cb3bccaee27764346f980caf4a220d5d1c5dc89fa",
+      "verdict": "pass",
+      "freshProbeCount": 15
+    },
+    {
+      "candidateId": "l1-nested-bullets-lunch-tray",
+      "revision": 1,
+      "candidateDigest": "dcc7f8fbcce434535938f4288e438167fa4b5d40981e17a7b2f3068d978137ed",
+      "fixtureResultsDigest": "500b95198f52291bba454061452e7df670ffc00141e2d8ec6a4700703e24e1f2",
+      "verdict": "pass",
+      "freshProbeCount": 15
+    }
+  ],
+  "reviewDigest": "c31a0d30b585e101f8eb6b1b99ae452d40219bfe7ece9cf06f96facefdf95ed0"
+}

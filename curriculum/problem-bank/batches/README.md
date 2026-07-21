@@ -64,6 +64,11 @@ copied here or promoted automatically.
   feature specs, bug investigations, and staged migration plans with 488
   real-engine fixtures. Verification commands are never executed; the grader
   checks only the documented Markdown anatomy.
+- `2026-07-22-l1-nested-bullet-lists-019` — four accepted three-line Level 1
+  nested-bullet warmups with 56 real-engine fixtures. The lesson teaches a
+  simple two-space indent while accepting equivalent CommonMark markers,
+  four-space indentation, and tab indentation; prose and literal spacing are
+  not graded.
 
 Mechanical preparation writes only the new batch directory. Publication
 recompiles the global runtime projection and tracker from every accepted batch;

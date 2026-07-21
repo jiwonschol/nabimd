@@ -2462,3 +2462,33 @@ Orchid independently replayed them and added 126 different probes. Both
 mechanical reviews passed, the separate editorial actor accepted 18/18, and
 the published evidence is bound to manifest
 `65843e5c49c5686d8258ab0f74419e25e4adf56e44de87d715e1836bf9b86343`.
+
+## 2026-07-22 — Level 1 nested-bullet indentation checkpoint
+
+Issue #9's added Level 1 breadth request is implemented as the smallest
+coherent syntax addition: four three-line warmups in one retry family. Each
+Goal contains one outer unordered item and exactly two indented child items,
+using only four familiar learner-visible words. The teaching copy shows the
+simple two-space form, while structural grading accepts equivalent CommonMark
+markers, four-space indentation, and tab indentation. Wording,
+capitalization, spelling, and literal space count remain outside the verdict.
+
+The frozen Batch 019 contains 4 candidates and 56 real-engine fixtures with
+12/12 direct match checks covered. Atlas replayed 56/56 fixtures and passed 64
+fresh probes; review digest
+`f5fd854531e2eb0ef4c9049f4cba98e326d15a3ec788e1073eefb53a0c8e9eb4`.
+Orchid independently replayed 56/56 fixtures and passed 60 different probes,
+including a 200-turn scheduling reachability run; review digest
+`c31a0d30b585e101f8eb6b1b99ae452d40219bfe7ece9cf06f96facefdf95ed0`.
+The separate editorial actor accepted 4/4 under digest
+`094267253986e23efad3229bd31d940b59c237b4a59e66577756029fac38d908`.
+
+Publication raises the deterministic bank to 348 accepted problems, split
+`140/148/30/20/10`. Published digests are batch
+`5699925d2df68ed28e3d10ab8f6f2d06b524ef4bab27bc5b3836004471d79431`,
+bank `2be7809fb83fbf58962013cac25c587ac65eaa3338a1702fc4bf0bdc0a7214a8`,
+runtime projection
+`0bf2fbb72cc50ab16c82cef5af9c9e5e848fb376d978c1a43285435f8f261ed3`,
+and tracker `7041d0182ad9502479f5e9b51d3c587892cd09f08196bf74aceef8bcd686c9e4`.
+Issue #9 remains open: 152 more accepted problems are needed for the public
+500-problem floor and 164 for the internal 512 target.

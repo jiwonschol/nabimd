@@ -6,8 +6,8 @@ verbatim; only repository link destinations are updated for this file's new
 location. Supporting copy from the previous README follows so no submission
 material is lost.
 
-> **Before pasting:** The generated tracker currently contains 344 accepted
-> problems, split 136/148/30/20/10 across Levels 1–5. Recheck
+> **Before pasting:** The generated tracker currently contains 348 accepted
+> problems, split 140/148/30/20/10 across Levels 1–5. Recheck
 > `curriculum/problem-bank/tracker.generated.json` before using any preserved
 > count. Numeric claims below are historical copy, not a live source of truth.
 > The shipped ladder is Learn syntax, Rebuild real documents, Write for people,
@@ -268,7 +268,7 @@ This milestone includes:
 
 - five selectable curriculum levels with six scheduled problems per turn:
   four at the selected level and two next-level challenges;
-- a 344-problem deterministic bank split 136/148/30/20/10 across Levels 1–5,
+- a 348-problem deterministic bank split 140/148/30/20/10 across Levels 1–5,
   including reviewed ATX H2–H6 lessons, H1–H3 sectioned-document rebuilds,
   practical nested-list document rebuilds, operational briefs, integration
   contracts, and agent-ready work orders;

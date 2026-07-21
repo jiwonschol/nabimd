@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l1-nested-bullet-lists-019",
+  "status": "awaiting-independent-review",
+  "candidateCount": 4,
+  "fixtureCount": 56,
+  "passingCandidateCount": 4,
+  "normalizedArtifactDigest": "b4effccae20b811db4e396402349da3ac1d00ee23db3dd522f32978682e418d8",
+  "verificationDigest": "623618de42674ca1766b2e0c6c8bc60ee3925e3d8519be05002bd8d32955aabb",
+  "manifestDigest": "16a1bf8adcf777cf0c14806099ca1259e506460e77e7cefe948adf71f7888cb3",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 344,
+  "preparedSummaryDigest": "777aff15d67ef7d72c7ede0f2f35c3aad53a28ba4efaa06dcb5608cc71da45e2"
+}
