@@ -52,10 +52,32 @@ async function sourceText(page: Page): Promise<string> {
     ).__nabimdReadDocumentForE2E
 
     if (typeof readDocument !== "function") {
-      throw new Error("Expected the development-only CodeMirror document reader")
+      throw new Error("Expected the supported CodeMirror document reader")
     }
     return readDocument()
   })
+}
+
+async function hasPersistedDraft(page: Page, problemId: string) {
+  return page.evaluate(
+    ({ problemId: id, storageKey }) => {
+      const saved = window.sessionStorage.getItem(storageKey)
+      if (!saved) return false
+
+      try {
+        const progress = JSON.parse(saved) as {
+          draftByProblemId?: Record<string, unknown>
+        }
+        return Object.prototype.hasOwnProperty.call(
+          progress.draftByProblemId ?? {},
+          id,
+        )
+      } catch {
+        return false
+      }
+    },
+    { problemId, storageKey: progressStorageKey },
+  )
 }
 
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
@@ -292,7 +314,7 @@ test("every level opens its task-type turn", async ({ page }) => {
   }
 })
 
-test("pre-fills reproduction prose at every level", async ({
+test("pre-fills Goal-derived reproduction prose at every level", async ({
   page,
 }) => {
   for (const level of [1, 2, 3, 4, 5] as const) {
@@ -305,7 +327,16 @@ test("pre-fills reproduction prose at every level", async ({
     const starterText = derivePlaintextStarter(problem.target)
 
     expect(starterText).not.toBe("")
+    await expect.poll(() => hasPersistedDraft(page, problemId)).toBe(false)
     await expect.poll(() => sourceText(page)).toBe(starterText)
+
+    const modifier = await page.evaluate(() =>
+      /Mac|iPhone|iPad|iPod/.test(navigator.platform) ? "Meta" : "Control",
+    )
+    await editor.focus()
+    await editor.press(`${modifier}+z`)
+    expect(await sourceText(page)).toBe(starterText)
+    await expect.poll(() => hasPersistedDraft(page, problemId)).toBe(false)
   }
 })
 

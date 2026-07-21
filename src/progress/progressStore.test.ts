@@ -1,16 +1,19 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import { createRunProblemIds } from "../content/entryChoices"
 import {
+  flattenedStarterProjectionProblemBankRevision,
   getProblem,
   preStarterProjectionProblemBankRevision,
   problemBank,
   problemBankRevision,
 } from "../content/problemBank"
+import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import {
   isEligibleTransferProblem,
   selectTransferProblem,
 } from "../selection/selectTransferProblem"
 import { MemoryStorage } from "../test/MemoryStorage"
+import { createLearningSession } from "../session/learningSession"
 import {
   MAX_PERSISTED_RUN_NUMBER,
   PROGRESS_STORAGE_KEY,
@@ -42,6 +45,8 @@ class ThrowingStorage extends MemoryStorage {
 }
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
+const legacyStarterlessBankRevision =
+  preStarterProjectionProblemBankRevision
 function isEligibleTransferProblemId(
   currentProblemId: string,
   candidateProblemId: string,
@@ -181,66 +186,131 @@ describe("progressStore v5", () => {
     ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
-  it("migrates only legacy automatic empty drafts for Levels 3 to 5", () => {
-    const ids = createRunProblemIds("level-5", 0)
+  it("migrates only legacy auto-generated drafts to Goal-derived starters", () => {
+    const ids = createRunProblemIds("level-3", 0)
+    const currentProblemId = ids[1]!
+    const genuineDraftProblemId = ids[2]!
+    const lowLevelProblemId = problemBank.find(
+      (problem) => problem.level === 1,
+    )!.id
+    const legacyProjectedProblemId =
+      "l1-thematic-break-breakfast-dessert"
     const progress = createDefaultProgress(
-      ids[0]!,
-      preStarterProjectionProblemBankRevision,
+      currentProblemId,
+      legacyStarterlessBankRevision,
     )
-    progress.entryId = "level-5"
+    progress.entryId = "level-3"
     progress.runProblemIds = ids
+    progress.runStepIndex = 1
+    progress.scheduledStepIndex = 1
     progress.runStartedAtMs = 1_000
-    progress.draftByProblemId[ids[0]!] = ""
+    progress.draftByProblemId = {
+      [currentProblemId]: "",
+      [genuineDraftProblemId]: "## Genuine learner draft",
+      [lowLevelProblemId]: "",
+      [legacyProjectedProblemId]:
+        "Breakfast is ready.\n\nSave dessert for later.",
+    }
     saveProgress(storage, progress)
 
-    const migrated = loadProgress(
+    const loaded = loadProgress(
       storage,
       validProblemIds,
       isEligibleTransferProblemId,
+      problemBankRevision,
     )
 
-    expect(migrated.bankRevision).toBe(problemBankRevision)
-    expect(migrated.entryId).toBe("level-5")
-    expect(migrated.currentProblemId).toBe(ids[0])
-    expect(migrated.draftByProblemId).not.toHaveProperty(ids[0]!)
-  })
-
-  it("preserves real learner drafts while migrating the starter revision", () => {
-    const ids = createRunProblemIds("level-4", 0)
-    const progress = createDefaultProgress(
-      ids[0]!,
-      preStarterProjectionProblemBankRevision,
+    expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
+    expect(loaded.bankRevision).toBe(problemBankRevision)
+    expect(loaded.entryId).toBe("level-3")
+    expect(loaded.runProblemIds).toEqual(ids)
+    expect(loaded.runStepIndex).toBe(1)
+    expect(loaded.draftByProblemId[currentProblemId]).toBeUndefined()
+    expect(loaded.draftByProblemId[genuineDraftProblemId]).toBe(
+      "## Genuine learner draft",
     )
-    progress.entryId = "level-4"
-    progress.runProblemIds = ids
-    progress.runStartedAtMs = 1_000
-    progress.draftByProblemId[ids[0]!] = "My real draft"
-    saveProgress(storage, progress)
-
+    expect(loaded.draftByProblemId[lowLevelProblemId]).toBe("")
     expect(
-      loadProgress(storage, validProblemIds, isEligibleTransferProblemId)
-        .draftByProblemId[ids[0]!],
-    ).toBe("My real draft")
+      loaded.draftByProblemId[legacyProjectedProblemId],
+    ).toBeUndefined()
   })
 
-  it("preserves an intentionally empty Level 1 or 2 learner draft", () => {
-    const ids = createRunProblemIds("level-2", 0)
-    const progress = createDefaultProgress(
-      ids[0]!,
-      preStarterProjectionProblemBankRevision,
+  it("migrates flattened @1 starters to exact Goal topology without replacing learner drafts", () => {
+    const topologyProblem = getProblem("l3-agenda-break-room-supplies")
+    const editedProblem = problemBank.find(
+      (problem) => problem.level === 4,
+    )!
+    const lowLevelProblem = getProblem("l1-heading-apple")
+    const lowLevelTwoProblem = getProblem(
+      "l2-nested-checklist-closet-shelf",
     )
-    progress.entryId = "level-2"
-    progress.runProblemIds = ids
-    progress.runStartedAtMs = 1_000
-    progress.draftByProblemId[ids[0]!] = ""
+    const lowLevelProjectedProblem = getProblem(
+      "l1-thematic-break-breakfast-dessert",
+    )
+    const progress = createDefaultProgress(
+      topologyProblem.id,
+      flattenedStarterProjectionProblemBankRevision,
+    )
+    progress.draftByProblemId = {
+      [topologyProblem.id]: deriveLegacyPlaintextStarter(
+        topologyProblem.target,
+      ),
+      [editedProblem.id]: "## Genuine learner draft",
+      [lowLevelProblem.id]: "",
+      [lowLevelTwoProblem.id]: "",
+      [lowLevelProjectedProblem.id]: deriveLegacyPlaintextStarter(
+        lowLevelProjectedProblem.target,
+      ),
+    }
     saveProgress(storage, progress)
 
-    const migrated = loadProgress(
+    const loaded = loadProgress(
       storage,
       validProblemIds,
       isEligibleTransferProblemId,
     )
-    expect(migrated.draftByProblemId).toHaveProperty(ids[0]!, "")
+
+    expect(loaded.bankRevision).toBe(problemBankRevision)
+    expect(loaded.draftByProblemId[topologyProblem.id]).toBeUndefined()
+    expect(loaded.draftByProblemId[editedProblem.id]).toBe(
+      "## Genuine learner draft",
+    )
+    expect(loaded.draftByProblemId).toHaveProperty(lowLevelProblem.id, "")
+    expect(loaded.draftByProblemId).toHaveProperty(lowLevelTwoProblem.id, "")
+    expect(
+      loaded.draftByProblemId[lowLevelProjectedProblem.id],
+    ).toBeUndefined()
+
+    const restored = createLearningSession(loaded, topologyProblem)
+    expect(restored.draft).toBe(topologyProblem.starterText)
+    expect(restored.draft).not.toBe(
+      deriveLegacyPlaintextStarter(topologyProblem.target),
+    )
+    expect(restored.draft.split("\n")).toHaveLength(
+      topologyProblem.target.split("\n").length,
+    )
+  })
+
+  it("migrates an empty high-level draft persisted under flattened @1", () => {
+    const problem = getProblem("l5-auth-migration-work-order")
+    const progress = createDefaultProgress(
+      problem.id,
+      flattenedStarterProjectionProblemBankRevision,
+    )
+    progress.draftByProblemId[problem.id] = ""
+    saveProgress(storage, progress)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.bankRevision).toBe(problemBankRevision)
+    expect(loaded.draftByProblemId[problem.id]).toBeUndefined()
+    expect(createLearningSession(loaded, problem).draft).toBe(
+      problem.starterText,
+    )
   })
 
   it("restores an allowed same-level replacement", () => {

@@ -1,8 +1,16 @@
 import { act, renderHook, waitFor } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { createRunProblemIds, entryChoices } from "../content/entryChoices"
-import { getProblem, problemBank } from "../content/problemBank"
-import { PROGRESS_STORAGE_KEY } from "../progress/progressStore"
+import {
+  getProblem,
+  problemBank,
+  problemBankRevision,
+} from "../content/problemBank"
+import {
+  PROGRESS_STORAGE_KEY,
+  createDefaultProgress,
+  saveProgress,
+} from "../progress/progressStore"
 import { getSyntaxFamily } from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { useLearningSession } from "./useLearningSession"
@@ -217,6 +225,48 @@ describe("useLearningSession", () => {
     expect(restored.result.current.session.entryId).toBe("level-4")
     expect(restored.result.current.problem.id).toBe(expectedProblem)
     expect(restored.result.current.session.draft).toBe("# Saved draft")
+  })
+
+  it("restores a Goal-derived starter after migrating a legacy empty high-level draft", () => {
+    const storage = new MemoryStorage()
+    const ids = createRunProblemIds("level-5", 0)
+    const currentProblemId = ids[1]!
+    const genuineDraftProblemId = ids[2]!
+    const legacyStarterlessBankRevision = problemBank
+      .map((problem) => `${problem.id}@${problem.revision}`)
+      .join("|")
+    const progress = createDefaultProgress(
+      currentProblemId,
+      legacyStarterlessBankRevision,
+    )
+    progress.entryId = "level-5"
+    progress.runProblemIds = ids
+    progress.runStepIndex = 1
+    progress.scheduledStepIndex = 1
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId = {
+      [currentProblemId]: "",
+      [genuineDraftProblemId]: "## Preserve this learner draft",
+    }
+    saveProgress(storage, progress)
+
+    const restored = renderLearningSession(storage)
+
+    expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
+    expect(restored.result.current.problem.id).toBe(currentProblemId)
+    expect(restored.result.current.session.draft).toBe(
+      getProblem(currentProblemId).starterText,
+    )
+    expect(
+      restored.result.current.session.progress.draftByProblemId[
+        currentProblemId
+      ],
+    ).toBeUndefined()
+    expect(
+      restored.result.current.session.progress.draftByProblemId[
+        genuineDraftProblemId
+      ],
+    ).toBe("## Preserve this learner draft")
   })
 
   it("preserves the original turn clock across reload and freezes completion", async () => {

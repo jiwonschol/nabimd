@@ -3,10 +3,12 @@ import {
   isEntryId,
 } from "../content/entryChoices"
 import {
+  flattenedStarterProjectionProblemBankRevision,
+  getProblem,
   preStarterProjectionProblemBankRevision,
-  problemBank,
   problemBankRevision,
 } from "../content/problemBank"
+import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
@@ -14,11 +16,6 @@ export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
 // A browser session cannot legitimately reach this many six-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
-const legacyAutomaticBlankDraftIds = new Set(
-  problemBank
-    .filter((problem) => problem.level >= 3)
-    .map((problem) => problem.id),
-)
 
 export function createDefaultProgress(
   currentProblemId: string,
@@ -271,19 +268,41 @@ function migrateStarterProjectionRevision(
     expectedBankRevision !== problemBankRevision ||
     !isRecord(value) ||
     value.version !== 5 ||
-    value.bankRevision !== preStarterProjectionProblemBankRevision ||
     !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const sourceBankRevision = value.bankRevision
+  if (
+    sourceBankRevision !== preStarterProjectionProblemBankRevision &&
+    sourceBankRevision !== flattenedStarterProjectionProblemBankRevision
   ) {
     return value
   }
 
   const draftByProblemId = { ...value.draftByProblemId }
   for (const [problemId, draft] of Object.entries(draftByProblemId)) {
-    if (
-      draft === "" &&
-      validProblemIds.has(problemId) &&
-      legacyAutomaticBlankDraftIds.has(problemId)
-    ) {
+    if (!validProblemIds.has(problemId) || typeof draft !== "string") continue
+
+    const problem = getProblem(problemId)
+    if (problem.level <= 2 && draft === "") continue
+
+    const legacyPlaintextStarter = deriveLegacyPlaintextStarter(problem.target)
+    const legacyAutomaticStarter =
+      sourceBankRevision === preStarterProjectionProblemBankRevision &&
+      problem.level >= 3
+        ? ""
+        : legacyPlaintextStarter
+    const isFlattenedHighLevelBlank =
+      sourceBankRevision === flattenedStarterProjectionProblemBankRevision &&
+      problem.level >= 3 &&
+      draft === ""
+    if (draft === legacyAutomaticStarter || isFlattenedHighLevelBlank) {
+      // Previous runtimes persisted automatic starters when navigating to a
+      // problem. Remove only a known automatic value so the new
+      // topology-preserving starter becomes the fallback. Any learner edit,
+      // including a deliberately empty low-level draft, remains authoritative.
       delete draftByProblemId[problemId]
     }
   }
@@ -316,8 +335,8 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed = migrateStarterProjectionRevision(
-      JSON.parse(saved) as unknown,
+    const parsed: unknown = migrateStarterProjectionRevision(
+      JSON.parse(saved),
       validProblemIds,
       expectedBankRevision,
     )
