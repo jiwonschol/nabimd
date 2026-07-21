@@ -220,7 +220,7 @@ describe("global responsive styles", () => {
       styles.indexOf("@media (max-width: 760px)"),
       styles.indexOf("@media (prefers-reduced-motion: reduce)"),
     )
-    const practiceStack = lastCssBlock("@media (max-width: 900px) {")
+    const practiceStack = lastCssBlock("@media (max-width: 760px) {")
 
     expect(landingStack).toMatch(
       /\.app-shell\.open-book-shell:not\(\.open-book-shell--turning\)\s*\{[^{}]*background-image:\s*url\("\/images\/nabi-book-paper\.png"\)[^{}]*background-repeat:\s*repeat/s,
@@ -278,7 +278,7 @@ describe("global responsive styles", () => {
 
   it("derives narrow Summary pages from the actual Practice chrome", () => {
     expect(tokens).toContain("--practice-topbar-height: 108px")
-    const practiceStack = lastCssBlock("@media (max-width: 900px) {")
+    const practiceStack = lastCssBlock("@media (max-width: 760px) {")
     const summaryStack = lastCssBlock("@media (max-width: 760px)")
 
     expect(practiceStack).toContain("--practice-topbar-height: 140px")
@@ -294,6 +294,56 @@ describe("global responsive styles", () => {
     expect(pageRule).toBeGreaterThanOrEqual(0)
     expect(styles.slice(pageRule, styles.indexOf("}", pageRule) + 1)).toContain(
       "overflow-y: auto",
+    )
+    expect(styles).toMatch(
+      /\.run-summary__closure-copy,[\s\S]*?\.run-summary__note-copy\s*\{[^{}]*align-self:\s*safe center/s,
+    )
+  })
+
+  it("keeps the book spread side by side in narrow desktop windows", () => {
+    const narrowDesktop = lastCssBlock(
+      "@media (max-width: 1040px) and (min-width: 761px)",
+    )
+
+    expect(narrowDesktop).toMatch(
+      /\.exercise-topbar\s*\{[^{}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/s,
+    )
+    expect(narrowDesktop).toMatch(
+      /\.cbt-workspace\.open-book-shell\s*\{[^{}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)[^{}]*grid-template-rows:\s*minmax\(0, 1fr\)/s,
+    )
+    expect(narrowDesktop).toMatch(
+      /\.cbt-workspace\s*\{[^{}]*--panel-header-height:\s*96px/s,
+    )
+    expect(narrowDesktop).toMatch(
+      /\.run-summary__metrics > div\s*\{[^{}]*min-width:\s*0[^{}]*flex:\s*1 1 0/s,
+    )
+  })
+
+  it("compacts the fixed book chrome in short desktop windows", () => {
+    const shortDesktop = lastCssBlock(
+      "@media (max-height: 680px) and (min-width: 761px)",
+    )
+
+    expect(shortDesktop).toMatch(
+      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*88px minmax\(0, 1fr\)/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.exercise-topbar\s*\{[^{}]*min-height:\s*88px/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.open-book-page--chapters\s*\{[^{}]*padding-top:\s*4rem/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.run-summary__closure-copy,[\s\S]*?\.run-summary__note-copy\s*\{[^{}]*align-self:\s*start/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.run-summary__page\s*\{[^{}]*grid-template-rows:\s*auto auto[^{}]*align-content:\s*start/s,
+    )
+    expect(shortDesktop).toMatch(
+      /\.run-summary__sprig\s*\{[^{}]*display:\s*none/s,
+    )
+    expect(styles.lastIndexOf("@media (max-height: 680px) and (min-width: 761px)")).toBeGreaterThan(
+      styles.indexOf(".open-book-why__support"),
     )
   })
 

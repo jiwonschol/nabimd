@@ -46,7 +46,7 @@ export function OpenBookLanding({
 
       <section
         aria-labelledby="chapter-index-title"
-        className="open-book-page open-book-page--chapters"
+        className="open-book-page open-book-page--chapters open-book-page--chapters-with-legal"
       >
         <header className="chapter-index-header">
           <h2 id="chapter-index-title">Choose a chapter to begin.</h2>
@@ -78,6 +78,30 @@ export function OpenBookLanding({
             )
           })}
         </ol>
+
+        <nav aria-label="Project links" className="open-book-legal-links">
+          <a
+            aria-label="Source code (AGPL-3.0) on GitHub"
+            className="open-book-legal-links__link"
+            href="https://github.com/jiwonschol/nabimd"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Source code
+          </a>
+          <span aria-hidden="true" className="open-book-legal-links__separator">
+            ·
+          </span>
+          <a
+            aria-label="Third-party licenses"
+            className="open-book-legal-links__link"
+            href="/third-party-licenses.html"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Third-party licenses
+          </a>
+        </nav>
       </section>
     </main>
   )

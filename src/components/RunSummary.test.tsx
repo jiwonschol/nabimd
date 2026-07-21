@@ -142,6 +142,24 @@ describe("RunSummary", () => {
     vi.unstubAllGlobals()
   })
 
+  it("opens a short desktop Summary on the teacher's praise", () => {
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockImplementation((query: string) => ({
+        matches: query === "(max-height: 680px)",
+        media: query,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      })),
+    )
+
+    renderSummary()
+
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
+    vi.unstubAllGlobals()
+  })
+
   it("uses the authored example for the exact failed syntax family", () => {
     renderSummary([
       "l1-emphasis-family-game",

@@ -62,6 +62,11 @@ Follow the public [release tracker](https://github.com/jiwonschol/nabimd/issues/
 - **Problem-bank content:** [Creative Commons Attribution-ShareAlike 4.0
   International](LICENSE-CONTENT). This includes problem statements, teaching
   copy, Goal documents, and vocabulary ladders.
+- **Fonts:** [Source Serif 4](public/fonts/source-serif-4/LICENSE.md) and
+  [JetBrains Mono](public/fonts/jetbrains-mono/LICENSE.txt) are licensed under
+  the SIL Open Font License 1.1.
+- **Audio:** the three shipped sound effects are governed by the Mixkit Free
+  License and User Terms; see [public/audio/LICENSE.md](public/audio/LICENSE.md).
 - **Brand:** see [TRADEMARKS.md](TRADEMARKS.md).
 
 Effective scope: beginning with the commit that introduced `LICENSE-CONTENT`

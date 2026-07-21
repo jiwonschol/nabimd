@@ -1703,6 +1703,8 @@ native `Audio` controller so it remains replaceable without an audio library.
 The preference is the one deliberate localStorage exception: learning progress
 stays session-scoped, while an accessibility mute choice survives the visit.
 
+Licensing correction (2026-07-21): the Kenney/CC0 description above applies only to the removed temporary cue; the three shipped MP3 cues are Mixkit sound effects governed by the Mixkit Free License and User Terms.
+
 Browser autoplay policy created the important engineering boundary. The first
 pointer or keyboard gesture primes muted audio asynchronously; a verdict that
 arrives during that promise is queued once, rejection leaves later gestures

@@ -1943,7 +1943,7 @@ button:focus-visible,
 
 .run-summary__closure-copy,
 .run-summary__note-copy {
-  align-self: center;
+  align-self: safe center;
   max-width: 34rem;
 }
 
@@ -2189,27 +2189,6 @@ button:focus-visible,
   }
 }
 
-@media (max-width: 760px) {
-  .run-summary.open-book-shell {
-    overflow-y: auto;
-  }
-
-  .run-summary__page {
-    min-height: calc(100svh - var(--practice-topbar-height) - 12px);
-    padding: 2.25rem 1.5rem;
-  }
-
-  .run-summary__page--closure {
-    box-shadow: none;
-  }
-
-  .run-summary__page--note {
-    border-top: 1px solid var(--book-line);
-    border-left: 0;
-    box-shadow: none;
-  }
-}
-
 @keyframes help-down {
   from {
     opacity: 0;
@@ -2256,7 +2235,157 @@ button:focus-visible,
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1040px) and (min-width: 761px) {
+  .exercise-topbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 22px 24px 10px;
+  }
+
+  .exercise-topbar--summary {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .exercise-topbar__page--left {
+    padding-right: 28px;
+  }
+
+  .exercise-topbar__page--right {
+    padding-left: 28px;
+  }
+
+  .exercise-topbar__start,
+  .exercise-topbar__end {
+    gap: 0.35rem;
+  }
+
+  .exercise-topbar .wordmark {
+    gap: 0.35rem;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+  }
+
+  .exercise-topbar .wordmark__mark {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .top-action--exit {
+    padding-inline: 0.25rem;
+  }
+
+  .top-action--exit::before {
+    margin-right: 0.55rem;
+  }
+
+  .exercise-progress {
+    min-width: 5.75rem;
+  }
+
+  .turn-progress {
+    gap: 0.35rem;
+  }
+
+  .turn-progress__step {
+    width: 7px;
+    height: 7px;
+    flex-basis: 7px;
+  }
+
+  .exercise-topbar__time {
+    gap: 0.15rem;
+  }
+
+  .sound-control,
+  .top-action--icon {
+    width: 44px;
+  }
+
+  .top-action--primary {
+    width: clamp(5.5rem, 11vw, 6.5rem);
+  }
+
+  .cbt-workspace {
+    --panel-header-height: 96px;
+    --sheet-row-height: 36px;
+  }
+
+  .cbt-workspace.open-book-shell {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .goal-panel > .cbt-panel__header {
+    padding-right: 28px;
+    padding-left: calc(24px + 48px + 16px);
+  }
+
+  .goal-panel > .writing-processor {
+    margin: 0 28px 0 24px;
+  }
+
+  .answer-panel__body--sheet {
+    margin: 0 24px 0 28px;
+  }
+
+  .writing-processor {
+    font-size: 1rem;
+  }
+
+  .writing-processor__row {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .writing-processor__content {
+    margin-left: 48px;
+    padding: 0 18px 0 16px;
+  }
+
+  .run-summary__page {
+    padding: clamp(1.5rem, 3.25vw, 2.25rem);
+  }
+
+  .run-summary__title {
+    font-size: clamp(2.45rem, 5vw, 3.25rem);
+  }
+
+  .run-summary__note-title,
+  .run-summary__note-title--compact {
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+  }
+
+  .run-summary__metrics {
+    width: 100%;
+  }
+
+  .run-summary__metrics > div {
+    min-width: 0;
+    flex: 1 1 0;
+    padding-right: 0.75rem;
+  }
+
+  .run-summary__metrics > div + div {
+    padding-left: 0.75rem;
+  }
+
+  .run-summary__metrics dd {
+    font-size: 1.15rem;
+  }
+
+  .run-summary__review-list li {
+    grid-template-columns: minmax(0, 1fr) minmax(6rem, auto);
+  }
+
+  .run-summary__review-list code {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .run-summary__practice-again {
+    width: min(16rem, 100%);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 760px) {
   .open-book-page--intro > .wordmark {
     top: 27px;
   }
@@ -2350,6 +2479,25 @@ button:focus-visible,
 
   .rendered-document__body {
     padding: 1.2rem;
+  }
+
+  .run-summary.open-book-shell {
+    overflow-y: auto;
+  }
+
+  .run-summary__page {
+    min-height: calc(100svh - var(--practice-topbar-height) - 12px);
+    padding: 2.25rem 1.5rem;
+  }
+
+  .run-summary__page--closure {
+    box-shadow: none;
+  }
+
+  .run-summary__page--note {
+    border-top: 1px solid var(--book-line);
+    border-left: 0;
+    box-shadow: none;
   }
 }
 
@@ -2580,6 +2728,76 @@ button:focus-visible,
   margin-top: clamp(1rem, 2.6vh, 1.5rem);
 }
 
+@media (max-height: 680px) and (min-width: 761px) {
+  .open-book-intro {
+    margin-top: 4rem;
+  }
+
+  .open-book-motto__lead {
+    font-size: clamp(2.4rem, 4vw, 3.25rem);
+  }
+
+  .open-book-motto__body {
+    margin-top: 1rem;
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+    line-height: 1.3;
+  }
+
+  .open-book-why {
+    margin-top: 1.25rem;
+  }
+
+  .open-book-why__question {
+    margin-bottom: 0.5rem;
+  }
+
+  .open-book-why__stage {
+    min-height: 5.75rem;
+  }
+
+  .open-book-why__support {
+    line-height: 1.35;
+  }
+
+  .open-book-page--chapters {
+    gap: 0.6rem;
+    padding-top: 4rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .chapter-entry {
+    min-height: clamp(3.6rem, 9vh, 4.25rem);
+  }
+
+  .app-shell--practice {
+    --practice-topbar-height: 88px;
+
+    grid-template-rows: 88px minmax(0, 1fr);
+  }
+
+  .exercise-topbar {
+    min-height: 88px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+  }
+
+  .run-summary__page {
+    grid-template-rows: auto auto;
+    align-content: start;
+    gap: 1rem;
+    padding-block: 1.5rem;
+  }
+
+  .run-summary__closure-copy,
+  .run-summary__note-copy {
+    align-self: start;
+  }
+
+  .run-summary__sprig {
+    display: none;
+  }
+}
+
 /* Too little vertical room for an ambient surface on the two-page spread —
    drop it so the motto and the chapter list keep the short landscape page,
    matching how the motto itself compacts under the same query. */
@@ -2587,4 +2805,42 @@ button:focus-visible,
   .open-book-why {
     display: none;
   }
+}
+
+/* Quiet project/legal references at the foot of the landing chapter page. */
+.open-book-page--chapters-with-legal {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.open-book-legal-links {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.65rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.open-book-legal-links__link {
+  color: var(--muted);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--motion) ease-out;
+}
+
+.open-book-legal-links__link:hover {
+  color: var(--ink);
+}
+
+.open-book-legal-links__link:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.open-book-legal-links__separator {
+  color: var(--muted);
 }

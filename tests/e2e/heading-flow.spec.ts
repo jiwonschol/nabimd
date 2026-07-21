@@ -227,6 +227,31 @@ test("greets a fresh session with the definitive five-level ladder", async ({
   await expect(sourceEditor(page)).toHaveCount(0)
 })
 
+test("opens third-party licenses in a new tab and keeps the landing open", async ({
+  page,
+}) => {
+  await page.goto("/")
+  const landingUrl = page.url()
+  const licensesLink = page.getByRole("link", {
+    name: "Third-party licenses",
+  })
+
+  const popupPromise = page.waitForEvent("popup")
+  await licensesLink.click()
+  const licensesPage = await popupPromise
+  await licensesPage.waitForLoadState("domcontentloaded")
+
+  expect(new URL(licensesPage.url()).pathname).toBe(
+    "/third-party-licenses.html",
+  )
+  expect(page.url()).toBe(landingUrl)
+  await expect(
+    page.getByRole("heading", { name: "Markdown is easy." }),
+  ).toBeVisible()
+
+  await licensesPage.close()
+})
+
 test("keeps every chapter reachable in a short landscape viewport", async ({
   page,
 }) => {
@@ -594,6 +619,46 @@ test("keeps the Practice chrome groups disjoint at 1024px", async ({ page }) => 
   expect(level).not.toBeNull()
   expect(exit!.x + exit!.width + 8).toBeLessThanOrEqual(level!.x)
 })
+
+for (const viewport of [
+  { width: 901, height: 768 },
+  { width: 800, height: 500 },
+]) {
+  test(`keeps Level 5 readable in a ${viewport.width}x${viewport.height} desktop window`, async ({
+    page,
+  }) => {
+    await page.setViewportSize(viewport)
+    await page.goto("/")
+    await enterLevel(page, 5)
+
+    const [start, progress, goal, answer, header, instruction] = await Promise.all([
+      page.locator(".exercise-topbar__start").boundingBox(),
+      page.locator(".exercise-progress").boundingBox(),
+      page.getByRole("region", { name: "Goal" }).boundingBox(),
+      page.getByRole("region", { name: "Your answer" }).boundingBox(),
+      page.locator(".goal-panel > .cbt-panel__header").boundingBox(),
+      page.locator(".goal-panel__instruction").boundingBox(),
+    ])
+
+    for (const box of [start, progress, goal, answer, header, instruction]) {
+      expect(box).not.toBeNull()
+    }
+
+    expect(start!.x + start!.width).toBeLessThanOrEqual(progress!.x)
+    expect(Math.abs(goal!.y - answer!.y)).toBeLessThanOrEqual(1)
+    expect(Math.abs(goal!.width - answer!.width)).toBeLessThanOrEqual(1)
+    expect(instruction!.y).toBeGreaterThanOrEqual(header!.y)
+    expect(instruction!.y + instruction!.height).toBeLessThanOrEqual(
+      header!.y + header!.height + 1,
+    )
+
+    const horizontalFlow = await page.evaluate(() => ({
+      document: document.documentElement.scrollWidth,
+      viewport: window.innerWidth,
+    }))
+    expect(horizontalFlow.document).toBeLessThanOrEqual(horizontalFlow.viewport)
+  })
+}
 
 test("keeps short-landscape Practice as two usable book pages", async ({ page }) => {
   await page.setViewportSize({ width: 812, height: 375 })

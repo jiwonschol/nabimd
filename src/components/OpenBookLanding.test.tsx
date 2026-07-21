@@ -38,6 +38,29 @@ describe("OpenBookLanding", () => {
     ).toBeNull()
     expect(screen.queryByTestId("landing-book-spine")).toBeNull()
 
+    const sourceLink = screen.getByRole("link", {
+      name: "Source code (AGPL-3.0) on GitHub",
+    })
+    expect(sourceLink).toHaveAttribute(
+      "href",
+      "https://github.com/jiwonschol/nabimd",
+    )
+    expect(sourceLink).toHaveAttribute("target", "_blank")
+    expect(sourceLink).toHaveAttribute("rel", "noopener noreferrer")
+
+    const thirdPartyLicensesLink = screen.getByRole("link", {
+      name: "Third-party licenses",
+    })
+    expect(thirdPartyLicensesLink).toHaveAttribute(
+      "href",
+      "/third-party-licenses.html",
+    )
+    expect(thirdPartyLicensesLink).toHaveAttribute("target", "_blank")
+    expect(thirdPartyLicensesLink).toHaveAttribute(
+      "rel",
+      "noopener noreferrer",
+    )
+
     for (const entry of entryChoices) {
       expect(screen.getByRole("button", { name: entry.label })).toBeVisible()
     }

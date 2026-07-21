@@ -180,7 +180,10 @@ export function RunSummary({
     const narrow =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(max-width: 760px)").matches
-    const target = narrow
+    const short =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(max-height: 680px)").matches
+    const target = narrow || short
       ? completionTitleRef.current
       : practiceAgainRef.current
     target?.focus({ preventScroll: true })
