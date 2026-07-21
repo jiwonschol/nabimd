@@ -1074,7 +1074,7 @@ describe("structural match predicates", () => {
       "# Only a title",
     )
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       status: "fail",
       feedbackId: "first",
       message: "Fix first.",

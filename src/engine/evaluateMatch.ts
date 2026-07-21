@@ -39,15 +39,21 @@ export function evaluateMatch(
         left.declarationIndex - right.declarationIndex,
     )
 
-  for (const { check } of checksByPriority) {
-    if (!checkPasses(check, context)) {
-      return {
-        status: "fail",
-        feedbackId: check.id,
-        message: check.feedback,
-      }
-    }
-  }
+  const failures = checksByPriority
+    .filter(({ check }) => !checkPasses(check, context))
+    .map(({ check }) => ({
+      feedbackId: check.id,
+      message: check.feedback,
+      check,
+    }))
 
-  return null
+  const firstFailure = failures[0]
+  if (!firstFailure) return null
+
+  return {
+    status: "fail",
+    feedbackId: firstFailure.feedbackId,
+    message: firstFailure.message,
+    failures,
+  }
 }
