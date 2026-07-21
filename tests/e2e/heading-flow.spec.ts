@@ -681,6 +681,61 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   )
 })
 
+test("groups a Level 3 heading substitution into one exact bold correction", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await page.evaluate(
+    ({ progressKey, seedKey }) => {
+      window.sessionStorage.removeItem(progressKey)
+      window.sessionStorage.setItem(seedKey, "42")
+    },
+    { progressKey: progressStorageKey, seedKey: sessionSeedStorageKey },
+  )
+  await page.reload()
+  await enterLevel(page, 3)
+
+  const problemId = await currentProblemId(page)
+  expect(problemId).toBe("l3-badge-reader-impact-brief")
+  const problem = runtimeProblemById.get(problemId)
+  if (!problem) throw new Error("Expected the seeded Level 3 problem")
+  const malformed = problem.target.replace("**Owner:**", "# Owner:")
+
+  await sourceEditor(page).fill(malformed)
+  await sourceEditor(page).press("Control+Enter")
+
+  const review = page.getByRole("tabpanel", { name: "Review" })
+  const corrections = review.getByRole("list", { name: "Required corrections" })
+  await expect(corrections.getByRole("listitem")).toHaveCount(1)
+  await expect(corrections.getByText("Bold text")).toBeVisible()
+  await expect(corrections.getByText("In “Owner and next update”")).toBeVisible()
+  await expect(corrections.getByText("**Owner:**")).toBeVisible()
+  const checkedExcerpt = await corrections
+    .getByText("You wrote")
+    .locator("..")
+    .locator("code")
+    .textContent()
+  expect(checkedExcerpt).toContain("# Owner:")
+
+  await page.getByRole("tab", { name: "Hint" }).click()
+  const hint = page.getByRole("tabpanel", { name: "Hint" })
+  await expect(
+    hint.getByRole("list", { name: "Failed Markdown patterns" })
+      .getByRole("listitem"),
+  ).toHaveCount(1)
+  await expect(hint.getByText("**Owner:**")).toBeVisible()
+
+  await page.getByRole("tab", { name: "Write" }).click()
+  await sourceEditor(page).fill(problem.target)
+  await page.getByRole("tab", { name: "Review" }).click()
+  await expect(
+    corrections.getByText("You wrote").locator("..").locator("code"),
+  ).toHaveText(checkedExcerpt ?? "")
+
+  await page.getByRole("button", { name: "Check answer" }).click()
+  await expect(page.getByRole("status")).toContainText("Matched")
+})
+
 test("Try another stays in level and serves different content", async ({ page }) => {
   await page.goto("/")
   await enterLevel(page, 3)

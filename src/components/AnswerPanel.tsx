@@ -12,7 +12,7 @@ import { getExerciseMode } from "../content/exerciseMode"
 import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
-import { correctionCues } from "../feedback/correctionCues"
+import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WordProcessorPage } from "./WordProcessorPage"
@@ -64,18 +64,20 @@ function sourceExamples(problem: GradableProblem): string[] {
 }
 
 function HintPanel({
+  draft,
   evaluation,
   hintLevel,
   onNextHint,
   problem,
 }: {
+  draft: string
   evaluation: Evaluation | null
   hintLevel: LearningSession["hintLevel"]
   onNextHint: () => void
   problem: GradableProblem
 }) {
   if (evaluation?.status === "fail") {
-    const corrections = correctionCues(evaluation.failures)
+    const corrections = buildReviewCorrections(problem, evaluation, draft)
     const showsMessages = hintLevel >= 2
 
     return (
@@ -87,11 +89,27 @@ function HintPanel({
           {corrections.map((cue) => (
             <li
               className="answer-hint__correction"
-              key={`${cue.id}-${cue.label}`}
+              key={cue.id}
             >
+              {showsMessages ? (
+                <span className="answer-hint__location">{cue.location}</span>
+              ) : null}
               <h4>{cue.label}</h4>
-              {showsMessages ? <p>{cue.message}</p> : null}
-              {cue.example ? <code>{cue.example}</code> : null}
+              {showsMessages && cue.learnerExcerpt ? (
+                <div className="answer-correction__source">
+                  <span>You wrote</span>
+                  <code>{cue.learnerExcerpt}</code>
+                </div>
+              ) : null}
+              {cue.requiredSource ? (
+                <div className="answer-correction__source">
+                  <span>Use</span>
+                  <code>{cue.requiredSource}</code>
+                </div>
+              ) : null}
+              {showsMessages || !cue.requiredSource ? (
+                <p>{cue.repairInstruction}</p>
+              ) : null}
             </li>
           ))}
         </ol>
@@ -132,7 +150,9 @@ function ReviewPanel({
 }) {
   const failed = evaluation.status === "fail"
   const reviewItems = failed ? [] : evaluation.reviewItems
-  const corrections = failed ? correctionCues(evaluation.failures) : []
+  const corrections = failed
+    ? buildReviewCorrections(problem, evaluation, draft)
+    : []
   const showsReferenceAnswer = getExerciseMode(problem.level ?? 1) === "target"
 
   return (
@@ -159,11 +179,23 @@ function ReviewPanel({
           {corrections.map((cue) => (
             <li
               className="answer-review__correction"
-              key={`${cue.id}-${cue.label}`}
+              key={cue.id}
             >
+              <span className="answer-review__location">{cue.location}</span>
               <h4>{cue.label}</h4>
-              <p>{cue.message}</p>
-              {cue.example ? <code>{cue.example}</code> : null}
+              {cue.learnerExcerpt ? (
+                <div className="answer-correction__source">
+                  <span>You wrote</span>
+                  <code>{cue.learnerExcerpt}</code>
+                </div>
+              ) : null}
+              {cue.requiredSource ? (
+                <div className="answer-correction__source">
+                  <span>Use</span>
+                  <code>{cue.requiredSource}</code>
+                </div>
+              ) : null}
+              <p>{cue.repairInstruction}</p>
             </li>
           ))}
         </ol>
@@ -567,6 +599,7 @@ export function AnswerPanel({
         tabIndex={view === "hint" ? 0 : -1}
       >
         <HintPanel
+          draft={draft}
           evaluation={evaluation}
           hintLevel={hintLevel}
           onNextHint={onNextHint}

@@ -12,7 +12,7 @@ import { afterEach, describe, expect, it, vi } from "vitest"
 import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
 import { evaluateProblem } from "./engine/evaluateProblem"
-import { correctionCues } from "./feedback/correctionCues"
+import { buildReviewCorrections } from "./feedback/reviewCorrections"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
 import { playPageTurnSound } from "./sound/pageTurnSound"
 import { App, PAGE_TURN_DURATION_MS } from "./App"
@@ -410,12 +410,20 @@ describe("App", () => {
     await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
+    const review = screen.getByRole("tabpanel", { name: "Review" })
+    const checkedExcerpt = within(review)
+      .getByText("You wrote")
+      .parentElement?.querySelector("code")?.textContent
+    expect(checkedExcerpt).toContain(malformedSource())
+
     replaceSource(editor, validRepair())
 
-    const review = screen.getByRole("tabpanel", { name: "Review" })
     expect(
       within(review).getByRole("list", { name: "Required corrections" }),
     ).toBeVisible()
+    expect(
+      within(review).getByText("You wrote").parentElement?.querySelector("code"),
+    ).toHaveProperty("textContent", checkedExcerpt)
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
 
@@ -510,22 +518,28 @@ describe("App", () => {
     if (evaluation.status !== "fail") {
       throw new Error("Expected an empty composite document to fail")
     }
-    const expectedCues = correctionCues(evaluation.failures)
+    const expectedCorrections = buildReviewCorrections(
+      problem,
+      evaluation,
+      "",
+    )
     const review = screen.getByRole("tabpanel", { name: "Review" })
     const corrections = within(review).getByRole("list", {
       name: "Required corrections",
     })
     const correctionItems = within(corrections).getAllByRole("listitem")
-    expect(correctionItems).toHaveLength(expectedCues.length)
-    expectedCues.forEach((cue, index) => {
+    expect(correctionItems).toHaveLength(expectedCorrections.length)
+    expectedCorrections.forEach((correction, index) => {
       const item = within(correctionItems[index]!)
-      expect(item.getByText(cue.label)).toBeVisible()
-      expect(item.getByText(cue.message)).toBeVisible()
-      if (cue.example) expect(item.getByText(cue.example)).toBeVisible()
+      expect(item.getByText(correction.label)).toBeVisible()
+      expect(item.getByText(correction.location)).toBeVisible()
+      expect(item.getByText(correction.repairInstruction)).toBeVisible()
+      if (correction.requiredSource) {
+        expect(item.getByText(correction.requiredSource)).toBeVisible()
+      }
       else expect(correctionItems[index]!.querySelector("code")).toBeNull()
     })
     expect(within(corrections).getByText("Bold text")).toBeVisible()
-    expect(within(corrections).getByText("**Important**")).toBeVisible()
     expect(review).not.toHaveTextContent(problem.target.split("\n")[0]!)
     expect(review.querySelector(".rendered-document__body")).toBeNull()
   })
@@ -543,6 +557,18 @@ describe("App", () => {
     )
     if (!boldCheck) throw new Error("Expected a bold requirement")
     const withoutBold = problem.target.replace(/\*\*(.*?)\*\*/, "$1")
+    const evaluation = evaluateProblem(problem, withoutBold)
+    if (evaluation.status !== "fail") {
+      throw new Error("Expected missing bold syntax to fail")
+    }
+    const boldCorrection = buildReviewCorrections(
+      problem,
+      evaluation,
+      withoutBold,
+    ).find((correction) => correction.id === boldCheck.id)
+    if (!boldCorrection?.requiredSource) {
+      throw new Error("Expected an exact bold source cue")
+    }
 
     replaceSource(editor, withoutBold)
     await user.click(screen.getByRole("button", { name: "Check answer" }))
@@ -550,7 +576,7 @@ describe("App", () => {
 
     const hint = screen.getByRole("tabpanel", { name: "Hint" })
     expect(within(hint).getByText("Bold text")).toBeVisible()
-    expect(within(hint).getByText("**Important**")).toBeVisible()
+    expect(within(hint).getByText(boldCorrection.requiredSource)).toBeVisible()
     expect(within(hint).queryByText("# Title")).toBeNull()
     expect(within(hint).queryByText(problem.teaching.howTo)).toBeNull()
     for (const authoredHint of problem.hints) {

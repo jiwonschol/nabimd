@@ -1439,6 +1439,15 @@ button:focus-visible,
   font-size: 0.8rem;
 }
 
+.answer-hint__location,
+.answer-review__location {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 0.76rem;
+}
+
 .answer-hint__correction p,
 .answer-review__correction p {
   margin: 0.55rem 0 0;
@@ -1453,6 +1462,30 @@ button:focus-visible,
   font-family: var(--mono);
   font-size: 0.86rem;
   white-space: pre-wrap;
+}
+
+.answer-correction__source {
+  display: grid;
+  grid-template-columns: 4.2rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.65rem;
+  margin-top: 0.55rem;
+}
+
+.answer-correction__source > span {
+  padding-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.answer-correction__source > code {
+  min-width: 0;
+  margin: 0;
+  padding: 0.12rem 0.25rem;
+  background: rgb(90 82 72 / 7%);
+  overflow-wrap: anywhere;
 }
 
 .answer-hint > p,

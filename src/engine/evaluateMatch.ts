@@ -3,6 +3,7 @@ import type { EvaluationContext } from "./evaluationContext"
 import { headingCheckPasses } from "./predicates/heading"
 import { structuralCheckPasses } from "./predicates/structural"
 import type { MatchFailure } from "./types"
+import { diagnoseMatchFailure } from "./matchDiagnostics"
 
 type ListShapeCheck = Extract<MatchCheck, { kind: "list-shape" }>
 
@@ -88,10 +89,16 @@ export function evaluateMatch(
 
   const failures = checksByPriority
     .filter(({ check }) => !checkPasses(check, context))
-    .map(({ check }) => ({
+    .map(({ check, declarationIndex }) => ({
       feedbackId: check.id,
       message: failureMessage(check, context.source),
       check,
+      diagnostic: diagnoseMatchFailure(
+        problem,
+        check,
+        context,
+        declarationIndex,
+      ),
     }))
 
   const firstFailure = failures[0]
@@ -102,5 +109,6 @@ export function evaluateMatch(
     feedbackId: firstFailure.feedbackId,
     message: firstFailure.message,
     failures,
+    checkedSource: context.source,
   }
 }
