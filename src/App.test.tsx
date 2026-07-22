@@ -426,10 +426,13 @@ describe("App", () => {
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
     const review = screen.getByRole("tabpanel", { name: "Review" })
-    const checkedExcerpt = within(review)
-      .getByText("You wrote")
-      .parentElement?.querySelector("code")?.textContent
-    expect(checkedExcerpt).toContain(malformedSource())
+    const checkedExcerpts = within(review)
+      .getAllByText("You wrote")
+      .map((label) => label.parentElement?.querySelector("code")?.textContent)
+    expect(checkedExcerpts).not.toHaveLength(0)
+    for (const checkedExcerpt of checkedExcerpts) {
+      expect(checkedExcerpt).toContain(malformedSource())
+    }
 
     replaceSource(editor, validRepair())
 
@@ -437,8 +440,10 @@ describe("App", () => {
       within(review).getByRole("list", { name: "Required corrections" }),
     ).toBeVisible()
     expect(
-      within(review).getByText("You wrote").parentElement?.querySelector("code"),
-    ).toHaveProperty("textContent", checkedExcerpt)
+      within(review)
+        .getAllByText("You wrote")
+        .map((label) => label.parentElement?.querySelector("code")?.textContent),
+    ).toEqual(checkedExcerpts)
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
 
