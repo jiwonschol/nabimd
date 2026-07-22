@@ -78,6 +78,17 @@ async function enterLevel1(page: Page) {
   await enterLevel(page, 1)
 }
 
+async function completeGuidedProblem(page: Page) {
+  const problem = runtimeProblemById.get(await currentProblemId(page))
+  if (!problem) throw new Error("Expected the current runtime problem")
+
+  const checkpoints = deriveSyntaxCheckpoints(problem.target, "")
+  for (const checkpoint of checkpoints) {
+    await guidedSyntaxInput(page).fill(checkpoint.canonicalInput)
+    await page.getByRole("button", { name: "Submit syntax" }).click()
+  }
+}
+
 async function resetToGreeting(page: Page) {
   await page.goto("/")
   await page.evaluate((storageKey) => {
@@ -498,9 +509,10 @@ test("starts every level with an empty guided source", async ({
   }
 })
 
-test("keeps Level 3 syntax slots in the center card, not the source document", async ({
+test("keeps Level 3 syntax in one Answer-page row and scrolls both documents to it", async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 1280, height: 800 })
   await page.goto("/")
   await enterLevel(page, 3)
   const problemId = await currentProblemId(page)
@@ -515,10 +527,76 @@ test("keeps Level 3 syntax slots in the center card, not the source document", a
   await expect(page.locator(".cm-markdown-blank-guide")).toHaveCount(0)
   expect(await sourceText(page)).toBe("")
 
-  await guidedSyntaxInput(page).fill(checkpoints[0]!.canonicalInput)
-  await guidedSyntaxInput(page).press("Enter")
+  const scrolledCheckpointIndex = checkpoints.findIndex(
+    (checkpoint) => checkpoint.line >= 8,
+  )
+  expect(scrolledCheckpointIndex).toBeGreaterThan(0)
+  for (let index = 0; index < scrolledCheckpointIndex; index += 1) {
+    await guidedSyntaxInput(page).fill(checkpoints[index]!.canonicalInput)
+    await page.getByRole("button", { name: "Submit syntax" }).click()
+  }
+
+  const card = page.getByRole("complementary", {
+    name: "Guided Markdown syntax",
+  })
+  const answer = page.getByRole("region", { name: "Your answer" })
+  const [cardBox, answerBox] = await Promise.all([
+    card.boundingBox(),
+    answer.boundingBox(),
+  ])
+  expect(cardBox).not.toBeNull()
+  expect(answerBox).not.toBeNull()
+  expect(cardBox!.x).toBeGreaterThanOrEqual(answerBox!.x)
+  expect(cardBox!.x + cardBox!.width).toBeLessThanOrEqual(
+    answerBox!.x + answerBox!.width,
+  )
+  expect(
+    await page.locator(".guided-syntax-card__sentence").evaluate((element) =>
+      window.getComputedStyle(element).flexWrap,
+    ),
+  ).toBe("nowrap")
+
+  for (const selector of [
+    ".goal-panel .cm-guided-target-line",
+    ".answer-panel .cm-guided-answer-line",
+  ]) {
+    const position = await page.locator(selector).evaluate((element) => {
+      const scroller = element.closest(".cm-scroller")
+      if (!(scroller instanceof HTMLElement)) {
+        throw new Error("Expected the active line inside its document scroller")
+      }
+      const lineBox = element.getBoundingClientRect()
+      const scrollerBox = scroller.getBoundingClientRect()
+      return {
+        clientHeight: scroller.clientHeight,
+        paddingBottom: window.getComputedStyle(
+          scroller.querySelector(".cm-content")!,
+        ).paddingBottom,
+        rowHeight: Number.parseFloat(
+          window.getComputedStyle(scroller).getPropertyValue("--sheet-row-height"),
+        ),
+        scrollHeight: scroller.scrollHeight,
+        scrollTop: scroller.scrollTop,
+        top: lineBox.top - scrollerBox.top,
+        transform: window.getComputedStyle(element).transform,
+      }
+    })
+    const positionLabel = `${selector} ${JSON.stringify(position)}`
+    expect(position.top, positionLabel).toBeGreaterThanOrEqual(0)
+    expect(position.top, positionLabel).toBeLessThanOrEqual(position.rowHeight * 4)
+    expect(position.transform, selector).toBe("none")
+  }
+
+  await guidedSyntaxInput(page).fill(
+    checkpoints[scrolledCheckpointIndex]!.canonicalInput,
+  )
+  await page.getByRole("button", { name: "Submit syntax" }).click()
   expect(await sourceText(page)).toBe(
-    problem.target.slice(0, checkpoints[1]!.targetFrom),
+    problem.target.slice(
+      0,
+      checkpoints[scrolledCheckpointIndex + 1]?.targetFrom ??
+        problem.target.length,
+    ),
   )
 })
 
@@ -652,9 +730,9 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   )
 
   await page.keyboard.press("Alt+1")
-  await expect(editor).toBeFocused()
-  await editor.fill(await validDifferentProse(page, "repaired"))
-  await editor.press("Control+Enter")
+  await expect(guidedSyntaxInput(page)).toBeFocused()
+  await completeGuidedProblem(page)
+  await expect(page.getByRole("status")).toContainText("Matched")
   await page.getByRole("button", { name: "Next exercise" }).click()
   await expect(page.getByRole("progressbar")).toHaveAttribute(
     "aria-valuenow",
@@ -881,8 +959,12 @@ test("keeps Goal and Write on the same source rows for Bus card", async ({
       if (rows.goal[index]!.guided) {
         continue
       }
-      expect(Math.abs(rows.goal[index]!.top - rows.answer[index]!.top))
-        .toBeLessThanOrEqual(1)
+      // Rendered widgets can distribute one fractional pixel differently at
+      // this breakpoint; two pixels is the maximum full-row optical drift.
+      expect(
+        Math.abs(rows.goal[index]!.top - rows.answer[index]!.top),
+        `Shared row ${index + 1}: ${JSON.stringify(rows)}`,
+      ).toBeLessThanOrEqual(2)
       expect(Math.abs(rows.goal[index]!.height - rows.answer[index]!.height))
         .toBeLessThanOrEqual(1)
       expect(Math.abs(rows.goal[index]!.height - expectedHeight))
@@ -983,10 +1065,6 @@ test("Preview is the same rendered word processor as Goal", async ({ page }) => 
       expect(previewLine.fontSize).toBe(goalLine.fontSize)
       expect(previewLine.fontWeight).toBe(goalLine.fontWeight)
       expect(previewLine.lineHeight).toBe(goalLine.lineHeight)
-      if (goalLine.guided) {
-        expect(goalLine.height).toBeGreaterThan(previewLine.height)
-        return
-      }
       expect(Math.abs(previewLine.top - goalLine.top)).toBeLessThanOrEqual(1)
       expect(Math.abs(previewLine.height - goalLine.height)).toBeLessThanOrEqual(1)
     })

@@ -913,11 +913,16 @@ describe("App", () => {
 
   it("keeps view shortcuts active while the guided syntax input owns focus", async () => {
     const { user } = await openLevel(1)
+    const answer = screen.getByRole("region", { name: "Your answer" })
+    const card = screen.getByRole("complementary", {
+      name: "Guided Markdown syntax",
+    })
     const syntaxInput = screen.getByRole("textbox", {
       name: /Markdown syntax for line/,
     })
     const previewTab = screen.getByRole("tab", { name: "Preview" })
 
+    expect(answer).toContainElement(card)
     expect(syntaxInput).toHaveFocus()
     await user.keyboard("{Alt>}2{/Alt}")
 

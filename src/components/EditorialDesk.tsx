@@ -4,7 +4,6 @@ import { AnswerPanel } from "./AnswerPanel"
 import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
-import { GuidedSyntaxCard } from "./GuidedSyntaxCard"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 import { useGuidedSyntaxPractice } from "../guided/useGuidedSyntaxPractice"
@@ -102,25 +101,6 @@ export function EditorialDesk({
               guided={guided}
               interactive={!transitionSnapshot}
             />
-            {session.phase === "editing" && guided.checkpoint ? (
-              <GuidedSyntaxCard
-                attempts={guided.attempts}
-                canGoBack={guided.canGoBack}
-                canGoForward={guided.canGoForward}
-                checkpoint={guided.checkpoint}
-                current={guided.currentIndex + 1}
-                hintOpen={guided.hintOpen}
-                instruction={problem.prompt}
-                key={problem.id}
-                onBack={guided.goBack}
-                onForward={guided.goForward}
-                onSubmit={guided.submit}
-                onToggleHint={guided.toggleHint}
-                onValueChange={guided.setValue}
-                total={guided.checkpoints.length}
-                value={guided.value}
-              />
-            ) : null}
           </article>
           <VerdictNotice evaluation={session.evaluation} />
         </>

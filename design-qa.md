@@ -172,18 +172,18 @@ final result: passed
 
 - Approved interaction mock: `docs/design/qa/guided-syntax-approved.png`
 - Optical-focus reference: `docs/design/qa/guided-syntax-optical-focus.png`
-- Corrected implementation: `docs/design/qa/guided-syntax-corrected.png`
-- Side-by-side comparison: `docs/design/qa/guided-syntax-comparison.png`
-- Verified implementation: local feature preview at 1280 × 720, Level 3, checkpoint 3 of 11
+- Earlier corrected implementation: `docs/design/qa/guided-syntax-corrected.png`
+- Earlier side-by-side comparison: `docs/design/qa/guided-syntax-comparison.png`
+- Latest implementation inspected locally at 1280 × 800, Level 3, a checkpoint below row 8
 
 The approved mock and the implementation screenshot were placed side by side in one comparison image before this review.
 
 ## Review
 
 - **Book frame and chrome:** pass. The existing Nabi paper, binding, wordmark, level, progress, audio, shuffle, and check controls remain fixed and visually unchanged.
-- **Center of attention:** pass after correction. The syntax card is fixed at the viewport center, is larger than the document text, and contains the brief, locked prose, and syntax slots in a clear hierarchy.
+- **Answer-page interaction:** pass after correction. The syntax card now belongs to the right Answer page instead of covering the book center. Its exercise is one visual row, with long locked prose clipped to the local syntax context instead of wrapping into a second row.
 - **Progressive answer:** pass. The source page begins empty and gains only completed source blocks; future prose is not prefilled and editor blank-guide decorations are suppressed in guided mode.
-- **Current location:** pass. Goal and Answer scroll inside their own CodeMirror scrollers. The Goal line gets a wide frameless optical emphasis; page headers and instructions do not move.
+- **Current location:** pass. Goal and Answer scroll only inside their shared CodeMirror word-processor frame and move to the current source row. The temporary magnifier enlargement is disabled so native Markdown heading hierarchy remains legible; page headers and instructions do not move.
 - **History controls:** pass. Back, checkpoint count, and Forward sit in the card header. Forward is disabled for unseen checkpoints, and browser history preserves the built draft.
 - **Hint:** pass. The card reveals only the canonical syntax, including visible spaces, with no prose explanation or autofill.
 - **Typography and spacing:** pass. Existing Source Serif, sans, mono, ink, muted, and paper tokens are reused. No new color system, icon style, or card language was introduced.
@@ -192,7 +192,7 @@ The approved mock and the implementation screenshot were placed side by side in 
 
 ## Intentional differences from the early mock
 
-- The card repeats the short learner instruction above the syntax exercise so the centered interaction remains understandable after the document scrollers move away from the top rows.
+- The card repeats the short learner instruction above the syntax exercise so the local Answer-page interaction remains understandable after the document scrollers move away from the top rows.
 - The implementation uses the app's existing Lucide icon set and paper tokens instead of reproducing approximate assets from the mock.
 - The implementation keeps the full production top bar and Answer tabs because both are approved, functional parts of the current Practice page.
 
@@ -205,4 +205,4 @@ The approved mock and the implementation screenshot were placed side by side in 
 
 ## Correction pass after the first deployed preview
 
-The first preview did not pass visual review: the active Goal row used an opaque white rectangle, the syntax slots read as placeholder boxes, the card hierarchy was too weak, and `Enter` was only a keyboard legend. The corrected pass removes the opaque Goal surface, enlarges the frameless optical focus, restores the brief and checkpoint hierarchy from the approved mock, gives the active slot a visible caret, and makes `Enter` a real button that submits the same action by mouse or keyboard. Browser verification also covered clicking that button through to a matched result.
+The first preview did not pass visual review: the active Goal row used an opaque white rectangle, the syntax slots read as placeholder boxes, the card hierarchy was too weak, and `Enter` was only a keyboard legend. A second correction made `Enter` a real mouse and keyboard action and restored the brief and checkpoint hierarchy. The latest correction then moved the card from the viewport center into the Answer page, fixed the exercise to one row, disabled the Goal magnifier, and changed scrolling to follow the current source row in both word-processor pages.

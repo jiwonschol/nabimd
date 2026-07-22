@@ -114,7 +114,7 @@ function guidedFocusLineDecoration(
 ) {
   if (activeOffset === undefined || focusTreatment === undefined) return null
   const offset = Math.max(0, Math.min(activeOffset, value.length))
-  const lineFrom = value.lastIndexOf("\n", Math.max(0, offset - 1)) + 1
+  const lineFrom = guidedFocusLineFrom(value, offset)
   const lineTo = value.indexOf("\n", offset)
   const lineLength = (lineTo < 0 ? value.length : lineTo) - lineFrom
   const className =
@@ -122,6 +122,36 @@ function guidedFocusLineDecoration(
       ? `cm-guided-target-line${lineLength > 34 ? " cm-guided-target-line--long" : ""}`
       : "cm-guided-answer-line"
   return Decoration.line({ attributes: { class: className } }).range(lineFrom)
+}
+
+function guidedFocusLineFrom(value: string, activeOffset: number): number {
+  const offset = Math.max(0, Math.min(activeOffset, value.length))
+  return value.lastIndexOf("\n", Math.max(0, offset - 1)) + 1
+}
+
+function guidedFocusRowHeight(view: EditorView): number {
+  const configured = Number.parseFloat(
+    getComputedStyle(view.scrollDOM).getPropertyValue("--sheet-row-height"),
+  )
+  return Number.isFinite(configured) ? configured : view.defaultLineHeight
+}
+
+function guidedFocusLineTop(
+  view: EditorView,
+  selector: string,
+  fallbackOffset: number,
+): number {
+  const activeLine = view.dom.querySelector<HTMLElement>(selector)
+  if (!activeLine) return view.lineBlockAt(fallbackOffset).top
+  const lineBox = activeLine.getBoundingClientRect()
+  const scrollBox = view.scrollDOM.getBoundingClientRect()
+  return view.scrollDOM.scrollTop + lineBox.top - scrollBox.top
+}
+
+function setGuidedScrollTop(view: EditorView, scrollTop: number): void {
+  if (view.scrollDOM.scrollTop === scrollTop) return
+  view.scrollDOM.scrollTop = scrollTop
+  view.scrollDOM.dispatchEvent(new Event("scroll"))
 }
 
 function guidedFocusDecoration(
@@ -291,6 +321,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     const view = viewRef.current
     if (!view) return
     if (activeOffset === undefined || focusTreatment === undefined) {
+      view.contentDOM.style.removeProperty("padding-bottom")
       view.dispatch({
         effects: guidedFocusCompartmentRef.current.reconfigure([]),
       })
@@ -298,12 +329,19 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     }
 
     const offset = Math.max(0, Math.min(activeOffset, view.state.doc.length))
+    const focusLineFrom = guidedFocusLineFrom(
+      view.state.doc.toString(),
+      offset,
+    )
     const decoration = guidedFocusLineDecoration(
       view.state.doc.toString(),
       offset,
       focusTreatment,
     )
-
+    const focusLineSelector =
+      focusTreatment === "goal"
+        ? ".cm-guided-target-line"
+        : ".cm-guided-answer-line"
     view.dispatch({
       effects: [
         guidedFocusCompartmentRef.current.reconfigure(
@@ -313,16 +351,57 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
         ),
       ],
     })
-    view.requestMeasure({
-      key: "guided-syntax-scroll",
-      read: (measuredView) => ({
-        lineTop: measuredView.lineBlockAt(offset).top,
-        rowHeight: measuredView.defaultLineHeight,
-      }),
-      write: ({ lineTop, rowHeight }, measuredView) => {
-        measuredView.scrollDOM.scrollTop = Math.max(0, lineTop - rowHeight * 3)
-      },
-    })
+
+    const positionActiveLine = () => {
+      view.requestMeasure({
+        key: "guided-syntax-scroll-space",
+        read: (measuredView) => ({
+          clientHeight: measuredView.scrollDOM.clientHeight,
+          currentPadding: Number.parseFloat(
+            getComputedStyle(measuredView.contentDOM).paddingBottom,
+          ),
+          lineTop: guidedFocusLineTop(
+            measuredView,
+            focusLineSelector,
+            focusLineFrom,
+          ),
+          rowHeight: guidedFocusRowHeight(measuredView),
+          scrollHeight: measuredView.scrollDOM.scrollHeight,
+        }),
+        write: (
+          { clientHeight, currentPadding, lineTop, rowHeight, scrollHeight },
+          measuredView,
+        ) => {
+          const targetScrollTop = Math.max(0, lineTop - rowHeight * 3)
+          const baseScrollHeight =
+            scrollHeight - (Number.isFinite(currentPadding) ? currentPadding : 0)
+          const requiredPadding = Math.max(
+            0,
+            targetScrollTop + clientHeight - baseScrollHeight + rowHeight * 2,
+          )
+          measuredView.contentDOM.style.paddingBottom = `${requiredPadding}px`
+          measuredView.requestMeasure({
+            key: "guided-syntax-scroll-position",
+            read: (positionedView) =>
+              Math.max(
+                0,
+                guidedFocusLineTop(
+                  positionedView,
+                  focusLineSelector,
+                  focusLineFrom,
+                ) - guidedFocusRowHeight(positionedView) * 3,
+              ),
+            write: (positionedTarget, positionedView) => {
+              setGuidedScrollTop(positionedView, positionedTarget)
+            },
+          })
+        },
+      })
+    }
+
+    positionActiveLine()
+    window.addEventListener("resize", positionActiveLine)
+    return () => window.removeEventListener("resize", positionActiveLine)
   }, [activeOffset, focusTreatment, value])
 
   const navigateReadOnlyDocument = (

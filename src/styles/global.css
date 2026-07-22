@@ -1094,6 +1094,7 @@ button:focus-visible,
 }
 
 .answer-panel {
+  position: relative;
   display: grid;
   grid-template-rows: var(--panel-header-height) minmax(0, 1fr);
   box-shadow: none;
@@ -3220,16 +3221,16 @@ button:focus-visible,
 /* Guided syntax practice: the book remains the context while one small piece
    of Markdown becomes the only active decision. */
 .guided-syntax-card {
-  position: fixed;
+  position: absolute;
   z-index: 30;
   top: 50%;
   left: 50%;
   display: grid;
-  width: min(clamp(38rem, 48vw, 44rem), calc(100vw - 4rem));
-  min-height: 17rem;
-  grid-template-rows: auto minmax(7.5rem, 1fr) auto;
-  gap: 1.25rem;
-  padding: 1.35rem 1.65rem 1.4rem;
+  width: min(32rem, calc(100% - 2.5rem));
+  min-height: 13rem;
+  grid-template-rows: auto minmax(4.5rem, 1fr) auto;
+  gap: 0.9rem;
+  padding: 1.1rem 1.25rem 1.15rem;
   border: 1px solid rgb(76 69 61 / 28%);
   background-color: rgb(247 243 235 / 97%);
   background-image: url("/images/nabi-book-paper.png");
@@ -3250,12 +3251,16 @@ button:focus-visible,
 }
 
 .guided-syntax-card__instruction {
-  max-width: 25rem;
+  display: -webkit-box;
+  max-width: 20rem;
+  overflow: hidden;
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(1.05rem, 1.45vw, 1.35rem);
   font-weight: 600;
   line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .guided-syntax-card__history {
@@ -3315,7 +3320,8 @@ button:focus-visible,
   min-width: 0;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1rem 1.15rem;
+  padding: 0.65rem 0.75rem 0.8rem;
+  overflow: hidden;
   cursor: text;
 }
 
@@ -3331,24 +3337,29 @@ button:focus-visible,
 
 .guided-syntax-card__sentence {
   display: flex;
+  width: 100%;
   min-width: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   justify-content: center;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
   line-height: 1.5;
   text-align: center;
-  white-space: pre-wrap;
+  white-space: nowrap;
 }
 
 .guided-syntax-card__locked {
-  white-space: pre-wrap;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .guided-syntax-card__slots {
   display: inline-flex;
+  flex: 0 0 auto;
   gap: 0.14em;
   margin-inline: 0.18em;
   vertical-align: baseline;
@@ -3489,39 +3500,17 @@ button:focus-visible,
     background-color 220ms ease;
 }
 
-.markdown-word-processor[data-guided-focus] .cm-content {
-  padding-bottom: 46%;
-}
-
 .markdown-source-editor__mount .cm-line.cm-guided-target-line {
-  isolation: isolate;
   background: transparent;
   filter: none;
-  transform: scale(1.55);
-}
-
-.markdown-source-editor__mount .cm-line.cm-guided-target-line::before {
-  position: absolute;
-  z-index: -1;
-  top: -0.85em;
-  left: -1.25em;
-  width: min(34rem, 82%);
-  height: 3.2em;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgb(255 252 245 / 72%) 0%,
-    rgb(255 252 245 / 38%) 56%,
-    transparent 78%
-  );
-  content: "";
-  pointer-events: none;
+  transform: none;
 }
 
 .markdown-source-editor__mount .cm-line.cm-guided-target-line--long {
-  transform: scale(1.2);
+  transform: none;
 }
 
 .markdown-source-editor__mount .cm-line.cm-guided-answer-line {
-  background: rgb(255 252 245 / 34%);
+  background: transparent;
+  transform: none;
 }

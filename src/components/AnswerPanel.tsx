@@ -16,6 +16,7 @@ import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
 import type { GuidedSyntaxController } from "../guided/useGuidedSyntaxPractice"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { GuidedSyntaxCard } from "./GuidedSyntaxCard"
 import { WordProcessorPage } from "./WordProcessorPage"
 
 type AnswerView = "write" | "preview" | "review" | "hint"
@@ -649,6 +650,26 @@ export function AnswerPanel({
           problem={problem}
         />
       </div>
+
+      {interactive && view === "write" && guided?.checkpoint ? (
+        <GuidedSyntaxCard
+          attempts={guided.attempts}
+          canGoBack={guided.canGoBack}
+          canGoForward={guided.canGoForward}
+          checkpoint={guided.checkpoint}
+          current={guided.currentIndex + 1}
+          hintOpen={guided.hintOpen}
+          instruction={problem.prompt}
+          key={problem.id}
+          onBack={guided.goBack}
+          onForward={guided.goForward}
+          onSubmit={guided.submit}
+          onToggleHint={guided.toggleHint}
+          onValueChange={guided.setValue}
+          total={guided.checkpoints.length}
+          value={guided.value}
+        />
+      ) : null}
     </section>
   )
 }
