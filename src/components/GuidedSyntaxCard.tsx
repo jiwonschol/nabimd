@@ -12,6 +12,7 @@ export type GuidedSyntaxCardProps = {
   checkpoint: SyntaxCheckpoint
   current: number
   hintOpen: boolean
+  instruction: string
   onBack: () => void
   onForward: () => void
   onSubmit: (value: string) => void
@@ -26,10 +27,12 @@ function visibleSyntax(value: string): string {
 }
 
 function SegmentView({
+  activeInputIndex,
   inputOffset,
   segment,
   typedValue,
 }: {
+  activeInputIndex: number
   inputOffset: number
   segment: GuidedSyntaxSegment
   typedValue: string
@@ -46,6 +49,9 @@ function SegmentView({
         return (
           <span
             className="guided-syntax-card__slot"
+            data-active={
+              inputOffset + index === activeInputIndex || undefined
+            }
             data-filled={typed !== "" || undefined}
             data-space={expected === " " || undefined}
             key={`${inputOffset + index}-${expected}`}
@@ -65,6 +71,7 @@ export function GuidedSyntaxCard({
   checkpoint,
   current,
   hintOpen,
+  instruction,
   onBack,
   onForward,
   onSubmit,
@@ -82,6 +89,10 @@ export function GuidedSyntaxCard({
       return { id: `${checkpoint.id}-${index}`, inputOffset: offset, segment }
     })
   }, [checkpoint])
+  const activeInputIndex = Math.min(
+    value.length,
+    Math.max(0, checkpoint.canonicalInput.length - 1),
+  )
 
   useEffect(() => {
     inputRef.current?.focus({ preventScroll: true })
@@ -93,28 +104,31 @@ export function GuidedSyntaxCard({
       className="guided-syntax-card"
       data-attempts={attempts}
     >
-      <header className="guided-syntax-card__history">
-        <button
-          aria-label="Previous syntax"
-          className="guided-syntax-card__history-button"
-          disabled={!canGoBack}
-          onClick={onBack}
-          type="button"
-        >
-          <ChevronLeft aria-hidden="true" size={22} strokeWidth={1.5} />
-        </button>
-        <span aria-label={`Syntax ${current} of ${total}`}>
-          {current} / {total}
-        </span>
-        <button
-          aria-label="Next visited syntax"
-          className="guided-syntax-card__history-button"
-          disabled={!canGoForward}
-          onClick={onForward}
-          type="button"
-        >
-          <ChevronRight aria-hidden="true" size={22} strokeWidth={1.5} />
-        </button>
+      <header className="guided-syntax-card__header">
+        <h2 className="guided-syntax-card__instruction">{instruction}</h2>
+        <div className="guided-syntax-card__history">
+          <button
+            aria-label="Previous syntax"
+            className="guided-syntax-card__history-button"
+            disabled={!canGoBack}
+            onClick={onBack}
+            type="button"
+          >
+            <ChevronLeft aria-hidden="true" size={22} strokeWidth={1.5} />
+          </button>
+          <span aria-label={`Syntax ${current} of ${total}`}>
+            {current} / {total}
+          </span>
+          <button
+            aria-label="Next visited syntax"
+            className="guided-syntax-card__history-button"
+            disabled={!canGoForward}
+            onClick={onForward}
+            type="button"
+          >
+            <ChevronRight aria-hidden="true" size={22} strokeWidth={1.5} />
+          </button>
+        </div>
       </header>
 
       <label className="guided-syntax-card__exercise">
@@ -139,6 +153,7 @@ export function GuidedSyntaxCard({
         <span className="guided-syntax-card__sentence">
           {segments.map(({ id, inputOffset, segment }) => (
             <SegmentView
+              activeInputIndex={activeInputIndex}
               inputOffset={inputOffset}
               key={id}
               segment={segment}
@@ -167,7 +182,14 @@ export function GuidedSyntaxCard({
             </code>
           ) : null}
         </div>
-        <kbd>Enter ↵</kbd>
+        <button
+          aria-label="Submit syntax"
+          className="guided-syntax-card__submit"
+          onClick={() => onSubmit(value)}
+          type="button"
+        >
+          Enter <span aria-hidden="true">↵</span>
+        </button>
       </div>
     </aside>
   )

@@ -430,7 +430,9 @@ export function AnswerPanel({
     selectView(target)
   }
 
-  const switchViewShortcut = (event: ReactKeyboardEvent<HTMLElement>) => {
+  const switchViewShortcut = useCallback((
+    event: ReactKeyboardEvent<HTMLElement> | KeyboardEvent,
+  ) => {
     if (
       !event.altKey ||
       (event.key !== "1" && event.key !== "2" && event.key !== "3")
@@ -463,7 +465,25 @@ export function AnswerPanel({
     }
     pendingTabFocus.current = target
     selectView(target)
-  }
+  }, [focusTab, secondView, selectView, view])
+
+  useEffect(() => {
+    if (!interactive) return
+    const switchViewOutsideAnswerPanel = (event: KeyboardEvent) => {
+      const target = event.target
+      if (
+        target instanceof Element &&
+        target.closest(".answer-panel") !== null
+      ) {
+        return
+      }
+      switchViewShortcut(event)
+    }
+
+    document.addEventListener("keydown", switchViewOutsideAnswerPanel)
+    return () =>
+      document.removeEventListener("keydown", switchViewOutsideAnswerPanel)
+  }, [interactive, switchViewShortcut])
 
   const tabIds = useMemo(
     () => ({

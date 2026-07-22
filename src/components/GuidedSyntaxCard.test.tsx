@@ -25,6 +25,7 @@ function renderCard(overrides: Partial<Parameters<typeof GuidedSyntaxCard>[0]> =
     checkpoint,
     current: 3,
     hintOpen: false,
+    instruction: "Make Next steps a level-two heading.",
     onBack: vi.fn(),
     onForward: vi.fn(),
     onSubmit: vi.fn(),
@@ -44,6 +45,11 @@ describe("GuidedSyntaxCard", () => {
     const onValueChange = vi.fn()
     const { rerender, props } = renderCard({ onSubmit, onValueChange })
 
+    expect(
+      screen.getByRole("heading", {
+        name: "Make Next steps a level-two heading.",
+      }),
+    ).toBeVisible()
     expect(screen.getByText("Next steps")).toBeVisible()
     const input = screen.getByRole("textbox", {
       name: "Markdown syntax for line 21",
@@ -60,6 +66,17 @@ describe("GuidedSyntaxCard", () => {
     )
     await user.click(screen.getByRole("textbox", { name: "Markdown syntax for line 21" }))
     await user.keyboard("{Enter}")
+    expect(onSubmit).toHaveBeenCalledWith("## ")
+  })
+
+  it("submits the current syntax from the visible Enter button", async () => {
+    const user = userEvent.setup()
+    const onSubmit = vi.fn()
+    renderCard({ onSubmit, value: "## " })
+
+    await user.click(screen.getByRole("button", { name: "Submit syntax" }))
+
+    expect(onSubmit).toHaveBeenCalledOnce()
     expect(onSubmit).toHaveBeenCalledWith("## ")
   })
 

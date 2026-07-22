@@ -365,6 +365,11 @@ describe("App", () => {
   })
 
   it("checks only on explicit action and accepts different prose", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
     const { user, editor } = await openLevel(1)
     replaceSource(editor, validDifferentProse())
     expect(screen.queryByRole("status")).toBeNull()
@@ -906,6 +911,20 @@ describe("App", () => {
     expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
   })
 
+  it("keeps view shortcuts active while the guided syntax input owns focus", async () => {
+    const { user } = await openLevel(1)
+    const syntaxInput = screen.getByRole("textbox", {
+      name: /Markdown syntax for line/,
+    })
+    const previewTab = screen.getByRole("tab", { name: "Preview" })
+
+    expect(syntaxInput).toHaveFocus()
+    await user.keyboard("{Alt>}2{/Alt}")
+
+    expect(previewTab).toHaveAttribute("aria-selected", "true")
+    expect(previewTab).toHaveFocus()
+  })
+
   it("opens Hint with ? outside the editor without stealing typed question marks", async () => {
     const { user, editor } = await openLevel(1)
 
@@ -948,6 +967,9 @@ describe("App", () => {
     const original = screen.getByRole("region", { name: "Goal" }).textContent
     await user.click(screen.getByRole("button", { name: "Try another" }))
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(original)
+    expect(
+      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+    ).toHaveFocus()
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 1 of 6",
     )

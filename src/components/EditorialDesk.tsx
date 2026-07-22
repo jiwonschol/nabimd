@@ -110,6 +110,8 @@ export function EditorialDesk({
                 checkpoint={guided.checkpoint}
                 current={guided.currentIndex + 1}
                 hintOpen={guided.hintOpen}
+                instruction={problem.prompt}
+                key={problem.id}
                 onBack={guided.goBack}
                 onForward={guided.goForward}
                 onSubmit={guided.submit}

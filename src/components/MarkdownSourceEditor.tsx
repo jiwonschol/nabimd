@@ -107,12 +107,12 @@ type MarkdownWordProcessorProps = MarkdownWordProcessorBaseProps &
       }
   )
 
-function guidedFocusDecoration(
+function guidedFocusLineDecoration(
   value: string,
   activeOffset: number | undefined,
   focusTreatment: MarkdownWordProcessorBaseProps["focusTreatment"],
 ) {
-  if (activeOffset === undefined || focusTreatment === undefined) return []
+  if (activeOffset === undefined || focusTreatment === undefined) return null
   const offset = Math.max(0, Math.min(activeOffset, value.length))
   const lineFrom = value.lastIndexOf("\n", Math.max(0, offset - 1)) + 1
   const lineTo = value.indexOf("\n", offset)
@@ -121,11 +121,22 @@ function guidedFocusDecoration(
     focusTreatment === "goal"
       ? `cm-guided-target-line${lineLength > 34 ? " cm-guided-target-line--long" : ""}`
       : "cm-guided-answer-line"
-  return EditorView.decorations.of(
-    Decoration.set([
-      Decoration.line({ attributes: { class: className } }).range(lineFrom),
-    ]),
+  return Decoration.line({ attributes: { class: className } }).range(lineFrom)
+}
+
+function guidedFocusDecoration(
+  value: string,
+  activeOffset: number | undefined,
+  focusTreatment: MarkdownWordProcessorBaseProps["focusTreatment"],
+) {
+  const decoration = guidedFocusLineDecoration(
+    value,
+    activeOffset,
+    focusTreatment,
   )
+  return decoration
+    ? EditorView.decorations.of(Decoration.set([decoration]))
+    : []
 }
 
 export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
@@ -287,19 +298,18 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     }
 
     const offset = Math.max(0, Math.min(activeOffset, view.state.doc.length))
-    const line = view.state.doc.lineAt(offset)
-    const className =
-      focusTreatment === "goal"
-        ? `cm-guided-target-line${line.length > 34 ? " cm-guided-target-line--long" : ""}`
-        : "cm-guided-answer-line"
-    const decoration = Decoration.line({
-      attributes: { class: className },
-    }).range(line.from)
+    const decoration = guidedFocusLineDecoration(
+      view.state.doc.toString(),
+      offset,
+      focusTreatment,
+    )
 
     view.dispatch({
       effects: [
         guidedFocusCompartmentRef.current.reconfigure(
-          EditorView.decorations.of(Decoration.set([decoration])),
+          decoration
+            ? EditorView.decorations.of(Decoration.set([decoration]))
+            : [],
         ),
       ],
     })

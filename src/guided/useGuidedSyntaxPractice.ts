@@ -95,6 +95,9 @@ export function useGuidedSyntaxPractice({
   const [currentIndex, setCurrentIndex] = useState(
     Math.min(initialCompleted, Math.max(0, checkpoints.length - 1)),
   )
+  const [historyFloorIndex, setHistoryFloorIndex] = useState(
+    Math.min(initialCompleted, Math.max(0, checkpoints.length - 1)),
+  )
   const [completedCount, setCompletedCount] = useState(initialCompleted)
   const [guidedDraft, setGuidedDraft] = useState(() =>
     restoreGuidedDraft(problem, checkpoints, draft, initialCompleted),
@@ -128,6 +131,7 @@ export function useGuidedSyntaxPractice({
       restoredCompleted,
     )
     setCurrentIndex(restoredIndex)
+    setHistoryFloorIndex(restoredIndex)
     setCompletedCount(restoredCompleted)
     guidedDraftRef.current = restoredDraft
     setGuidedDraft(restoredDraft)
@@ -278,10 +282,17 @@ export function useGuidedSyntaxPractice({
     [checkpoints, onChange, problem.target],
   )
 
+  const lastVisitedIndex = Math.min(
+    completedCount,
+    Math.max(0, checkpoints.length - 1),
+  )
+  const canGoBack = currentIndex > historyFloorIndex
+  const canGoForward = currentIndex < lastVisitedIndex
+
   return {
     attempts: checkpoint ? (attemptsById[checkpoint.id] ?? 0) : 0,
-    canGoBack: currentIndex > 0,
-    canGoForward: currentIndex < completedCount,
+    canGoBack,
+    canGoForward,
     checkpoint,
     checkpoints,
     completed: checkpoints.length > 0 && completedCount >= checkpoints.length,
@@ -290,8 +301,12 @@ export function useGuidedSyntaxPractice({
     draft: guidedDraft,
     checkDraft: () => onCheck(guidedDraftRef.current),
     editDraft,
-    goBack: () => window.history.back(),
-    goForward: () => window.history.forward(),
+    goBack: () => {
+      if (canGoBack) window.history.back()
+    },
+    goForward: () => {
+      if (canGoForward) window.history.forward()
+    },
     hintOpen,
     setValue,
     submit,

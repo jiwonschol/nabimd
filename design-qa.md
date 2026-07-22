@@ -170,8 +170,10 @@ final result: passed
 
 ## Visual target
 
-- Approved interaction mock: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-aa267893-3fc0-4532-87bb-f0c98d2ad780.png`
-- Optical-focus reference: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-260a1b44-3fe1-410a-9f95-c76951da5730.png`
+- Approved interaction mock: `docs/design/qa/guided-syntax-approved.png`
+- Optical-focus reference: `docs/design/qa/guided-syntax-optical-focus.png`
+- Corrected implementation: `docs/design/qa/guided-syntax-corrected.png`
+- Side-by-side comparison: `docs/design/qa/guided-syntax-comparison.png`
 - Verified implementation: local feature preview at 1280 × 720, Level 3, checkpoint 3 of 11
 
 The approved mock and the implementation screenshot were placed side by side in one comparison image before this review.
@@ -179,7 +181,7 @@ The approved mock and the implementation screenshot were placed side by side in 
 ## Review
 
 - **Book frame and chrome:** pass. The existing Nabi paper, binding, wordmark, level, progress, audio, shuffle, and check controls remain fixed and visually unchanged.
-- **Center of attention:** pass. The syntax card is fixed at the viewport center, is larger than the document text, and contains only locked prose plus syntax slots.
+- **Center of attention:** pass after correction. The syntax card is fixed at the viewport center, is larger than the document text, and contains the brief, locked prose, and syntax slots in a clear hierarchy.
 - **Progressive answer:** pass. The source page begins empty and gains only completed source blocks; future prose is not prefilled and editor blank-guide decorations are suppressed in guided mode.
 - **Current location:** pass. Goal and Answer scroll inside their own CodeMirror scrollers. The Goal line gets a wide frameless optical emphasis; page headers and instructions do not move.
 - **History controls:** pass. Back, checkpoint count, and Forward sit in the card header. Forward is disabled for unseen checkpoints, and browser history preserves the built draft.
@@ -190,7 +192,7 @@ The approved mock and the implementation screenshot were placed side by side in 
 
 ## Intentional differences from the early mock
 
-- The card omits the extra prose instruction row. The user later established the center card as the syntax-only authority; the persistent page instruction remains above the Goal.
+- The card repeats the short learner instruction above the syntax exercise so the centered interaction remains understandable after the document scrollers move away from the top rows.
 - The implementation uses the app's existing Lucide icon set and paper tokens instead of reproducing approximate assets from the mock.
 - The implementation keeps the full production top bar and Answer tabs because both are approved, functional parts of the current Practice page.
 
@@ -198,5 +200,9 @@ The approved mock and the implementation screenshot were placed side by side in 
 
 - `npm run check` — passed
 - `E2E_PORT=4176 npm run test:e2e` — 40 passed
-- Full Vitest suite — 10,118 passed
+- Full Vitest suite — 10,122 passed
 - All 360 published problems derive at least one guided syntax checkpoint and rebuild their exact target when completed.
+
+## Correction pass after the first deployed preview
+
+The first preview did not pass visual review: the active Goal row used an opaque white rectangle, the syntax slots read as placeholder boxes, the card hierarchy was too weak, and `Enter` was only a keyboard legend. The corrected pass removes the opaque Goal surface, enlarges the frameless optical focus, restores the brief and checkpoint hierarchy from the approved mock, gives the active slot a visible caret, and makes `Enter` a real button that submits the same action by mouse or keyboard. Browser verification also covered clicking that button through to a matched result.
