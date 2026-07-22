@@ -69,6 +69,35 @@ describe("MarkdownSourceEditor", () => {
     expect(onChange).toHaveBeenCalledTimes(editCallCount)
   })
 
+  it("does not let a stale controlled echo overwrite newer local input", () => {
+    const onChange = vi.fn()
+    const { rerender } = render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value=""
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    view.dispatch({ changes: { from: 0, insert: "q" } })
+    view.dispatch({ changes: { from: 1, insert: "u" } })
+    expect(view.state.doc.toString()).toBe("qu")
+
+    rerender(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value="q"
+      />,
+    )
+
+    expect(view.state.doc.toString()).toBe("qu")
+  })
+
   it("checks with the universal Control plus Enter shortcut", () => {
     const onCheck = vi.fn()
     render(

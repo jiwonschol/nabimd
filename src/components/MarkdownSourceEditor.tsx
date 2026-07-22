@@ -185,6 +185,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   } = _props
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
+  const pendingLocalValuesRef = useRef<string[]>([])
   const tabEscapeHintId = useId()
   const onChangeRef = useRef(onChange)
   const onCheckRef = useRef(onCheck)
@@ -231,7 +232,9 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
             (transaction) => transaction.annotation(externalChange) === true,
           )
           if (!isExternal) {
-            onChangeRef.current(update.state.doc.toString())
+            const nextValue = update.state.doc.toString()
+            pendingLocalValuesRef.current.push(nextValue)
+            onChangeRef.current(nextValue)
           }
         }),
         keymap.of(
@@ -283,7 +286,17 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
 
   useLayoutEffect(() => {
     const view = viewRef.current
-    if (!view || view.state.doc.toString() === value) return
+    if (!view) return
+
+    const currentValue = view.state.doc.toString()
+    const echoedValueIndex = pendingLocalValuesRef.current.lastIndexOf(value)
+    if (echoedValueIndex >= 0) {
+      pendingLocalValuesRef.current.splice(0, echoedValueIndex + 1)
+      if (currentValue !== value) return
+    }
+    if (currentValue === value) return
+
+    pendingLocalValuesRef.current = []
 
     view.dispatch({
       changes: { from: 0, to: view.state.doc.length, insert: value },
