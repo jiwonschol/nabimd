@@ -103,7 +103,15 @@ export function acceptedGuidedSyntaxInputs(
     )
   }
 
+  const isSetextHeading =
+    canonicalParts.length === 1 &&
+    /^(?:=+|-+)$/.test(canonicalParts[0] ?? "") &&
+    checkpoint.segments.some(
+      (segment) => segment.kind === "locked" && segment.value.endsWith("\n"),
+    )
+
   if (
+    !isSetextHeading &&
     canonicalParts.length === 1 &&
     ["---", "***", "___"].includes(canonicalParts[0] ?? "")
   ) {
@@ -321,7 +329,33 @@ function markNodeSyntax(
 
   switch (node.type) {
     case "heading":
-      if (range) markPrefix(source, mask, range.from, /^ {0,3}#{1,6}[\t ]+/)
+      if (range) {
+        const headingStart = lineStartAt(source, range.from)
+        const headingLine = source.slice(
+          headingStart,
+          lineEndAt(source, headingStart),
+        )
+        if (/^ {0,3}#{1,6}[\t ]+/.test(headingLine)) {
+          markPrefix(source, mask, range.from, /^ {0,3}#{1,6}[\t ]+/)
+          break
+        }
+
+        const underlineStart = lineStartAt(
+          source,
+          Math.max(range.from, range.to - 1),
+        )
+        const underlineEnd = lineEndAt(source, underlineStart)
+        const underline = source.slice(underlineStart, underlineEnd)
+        const marker = underline.match(/^ {0,3}(=+|-+)[\t ]*$/)
+        if (marker?.[1]) {
+          const markerFrom = underlineStart + underline.indexOf(marker[1])
+          markRange(mask, {
+            from: markerFrom,
+            to: markerFrom + marker[1].length,
+          })
+          groupedRanges.push({ from: headingStart, to: underlineEnd })
+        }
+      }
       break
     case "blockquote":
       if (range) {

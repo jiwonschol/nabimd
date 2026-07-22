@@ -25,6 +25,27 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it.each(["===", "---"])(
+    "keeps a Setext %s underline with its heading text",
+    (underline) => {
+      const target = `Release notes\n${underline}`
+      const checkpoints = deriveSyntaxCheckpoints(target, "Release notes\n")
+
+      expect(checkpoints).toHaveLength(1)
+      expect(checkpoints[0]).toMatchObject({
+        canonicalInput: underline,
+        line: 1,
+        targetFrom: 0,
+        targetTo: target.length,
+      })
+      expect(checkpoints[0]?.segments).toEqual([
+        { kind: "locked", value: "Release notes\n" },
+        { kind: "input", value: underline },
+      ])
+      expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([underline])
+    },
+  )
+
   it("groups both sides of paired emphasis into one checkpoint", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "Use **final draft** today.",
