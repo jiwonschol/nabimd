@@ -11,6 +11,23 @@
 > 근거: [조사 문서](beginner-language-app-grammar-research-2026-07-22.md)(G번호) ·
 > [갭 분석](beginner-language-app-gap-analysis-2026-07-22.md)
 
+## 확정된 결정 (2026-07-22, Jiwon)
+
+문서 등록 직후 Jiwon이 다음을 확정했다. 본문의 해당 절은 원문대로 두고 상태만
+여기서 갱신한다.
+
+- **P0 — 드릴 혈통 확정.** "마크다운 문법은 코스형으로 갈 만한 복잡한 난이도가
+  아니다." 드릴형을 거부한 적은 없다 — nabimd는 리콜 드릴형의 느낌을 갖는다.
+- **P1 — 채택 확정 + 키보드 계약 추가.** 오답 순간 재설계를 승인하며, 거기에
+  **'키보드'로 넘어가는 쾌감**을 더한다:
+  1. 6문제 턴 전체가 키보드만으로 완주 가능해야 한다 — 입력 → 정답확인 →
+     다음 문제 진행. (한 문제 입력 후 마우스를 만지는 것도 허용 — 강제가 아니라
+     보장이다.)
+  2. 뒤로가기(앞 문제)도 키보드로 볼 수 있어야 한다.
+  3. 힌트는 `H` 같은 단축키로 슬쩍 보였다가, 같은 키를 다시 누르면 닫힌다.
+  4. Enter는 당연히 텍스트 입력이다 (플레인 Enter를 다른 기능에 뺏기지 않는다).
+- 구현은 별도 이슈로 진행한다 — #100은 docs 전용이다.
+
 **Conflict legend:**
 - `충돌 없음` — no confirmed decision is touched.
 - `⚠️ D-x 재검토 필요` — the proposal's letter or spirit touches a confirmed
@@ -19,6 +36,8 @@
   rejection is explicit and reasoned, not accidental.
 
 ## P0. The framing question that precedes every proposal below
+
+> ✅ **2026-07-22 확정 — 드릴 혈통.** 상단 '확정된 결정' 참조.
 
 Research Part 1.6: the genre has two lineages — **course apps** (Duolingo:
 teach-first, exercise ladders, guided entry) and **recall-drill apps**
@@ -35,6 +54,8 @@ lineage's feel nabimd owns* will settle several proposals at once.
 ## A. 닮아야 할 후보 (adopt candidates)
 
 ### P1. Rebuild the wrong-answer moment (G10) — `충돌 없음`
+
+> ✅ **2026-07-22 채택 확정 + 키보드 계약 추가.** 상단 '확정된 결정' 참조.
 Make `Try again` behave like the genre's most-designed screen: the verdict
 surface **persists until the learner dismisses or retypes** (no 1.6 s
 auto-vanish), and carries the **top pinpointed correction in place** — the
