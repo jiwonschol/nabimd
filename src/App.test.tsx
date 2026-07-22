@@ -944,8 +944,10 @@ describe("App", () => {
       "true",
     )
 
-    screen.getByRole("button", { name: "Exit" }).focus()
-    await user.keyboard("?")
+    const exit = screen.getByRole("button", { name: "Exit" })
+    exit.focus()
+    expect(exit).toHaveFocus()
+    fireEvent.keyDown(exit, { key: "?" })
 
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
       "aria-selected",
