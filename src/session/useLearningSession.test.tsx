@@ -54,7 +54,48 @@ describe("useLearningSession", () => {
     )
   })
 
-  it("advances Practice again and Start over to fresh turns", () => {
+  it("locks step navigation while a failed Check awaits its repair", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.canGoToPreviousStep).toBe(true)
+
+    act(() => result.current.edit(""))
+    act(() => result.current.check())
+    expect(result.current.session.needsTransfer).toBe(true)
+    expect(result.current.canGoToPreviousStep).toBe(false)
+    expect(result.current.canGoToNextStep).toBe(false)
+
+    const stepBefore = result.current.session.runStepIndex
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(stepBefore)
+    expect(result.current.session.needsTransfer).toBe(true)
+  })
+
+  it("drops future step snapshots when Try another changes the schedule", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(0)
+    expect(result.current.canGoToNextStep).toBe(true)
+
+    const scheduleBefore = [...result.current.session.runProblemIds]
+    act(() => result.current.tryAnother())
+    expect(result.current.session.runProblemIds).not.toEqual(scheduleBefore)
+
+    // The old step-1 snapshot belongs to the abandoned schedule; following it
+    // would restore the pre-replacement run and skip the unfinished step.
+    expect(result.current.canGoToNextStep).toBe(false)
+    const stepBefore = result.current.session.runStepIndex
+    act(() => result.current.goToNextStep())
+    expect(result.current.session.runStepIndex).toBe(stepBefore)
+  })
+
+  it("advances Practice again to fresh turns", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-3"))
     const original = result.current.problem.id
@@ -63,7 +104,7 @@ describe("useLearningSession", () => {
     expect(result.current.session.runNumber).toBe(1)
     expect(result.current.problem.id).not.toBe(original)
 
-    act(() => result.current.startOver())
+    act(() => result.current.practiceAgain())
     expect(result.current.session.runNumber).toBe(2)
     expect(result.current.problem.id).not.toBe(original)
     expect(result.current.session.draft).toBe(

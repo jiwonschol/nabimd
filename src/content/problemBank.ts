@@ -15,14 +15,42 @@ const publishedLevels = runtimeProjections.levels as unknown as Record<
   readonly NormalizedProblem[]
 >
 
+/**
+ * Per-level ceilings for what practice may serve. Published batches stay
+ * immutable evidence; problems over these budgets are retired from runtime
+ * only (2026-07-22 direction: every level practices Markdown syntax in
+ * one-to-three minutes — never document-length typing).
+ */
+export const RUNTIME_TARGET_BUDGETS: Readonly<
+  Record<CurriculumLevel, { maxLines: number; maxWords?: number }>
+> = {
+  1: { maxLines: 5 },
+  2: { maxLines: 14 },
+  3: { maxLines: 28 },
+  4: { maxLines: 20, maxWords: 120 },
+  5: { maxLines: 20, maxWords: 120 },
+}
+
+export function withinRuntimeBudget(
+  problem: Pick<NormalizedProblem, "level" | "target">,
+): boolean {
+  const budget = RUNTIME_TARGET_BUDGETS[problem.level]
+  if (problem.target.split("\n").length > budget.maxLines) return false
+  if (budget.maxWords === undefined) return true
+  const words = problem.target.split(/\s+/).filter(Boolean).length
+  return words <= budget.maxWords
+}
+
 const compiledProblems = CURRICULUM_LEVELS.flatMap(
   (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
-).map(
-  (problem): NormalizedProblem => ({
-    ...problem,
-    starterText: derivePlaintextStarter(problem.target),
-  }),
 )
+  .filter(withinRuntimeBudget)
+  .map(
+    (problem): NormalizedProblem => ({
+      ...problem,
+      starterText: derivePlaintextStarter(problem.target),
+    }),
+  )
 
 if (!compiledProblems[0]) {
   throw new Error("The compiled problem bank must not be empty")

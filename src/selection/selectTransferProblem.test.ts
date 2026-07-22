@@ -74,20 +74,20 @@ describe("selectTransferProblem", () => {
     }
   })
 
-  it("keeps every Level 4 specification transfer inside its structural family", () => {
+  it("keeps every Level 4 workplace transfer inside its structural family", () => {
     const retryFamilies = [
-      "level4-development-spec",
-      "level4-feature-interface-spec",
-      "level4-bug-investigation-spec",
-      "level4-staged-migration-spec",
+      "level-4-workplace-handoff",
+      "level-4-workplace-decision",
+      "level-4-workplace-checklist",
+      "level-4-workplace-status",
     ] as const
 
     for (const retryFamily of retryFamilies) {
       const family = getProblemsForLevel(4).filter(
         (problem) => problem.retryFamily === retryFamily,
       )
-      expect(family).toHaveLength(4)
-      expect(new Set(family.map((problem) => problem.contentVariant)).size).toBe(4)
+      expect(family).toHaveLength(3)
+      expect(new Set(family.map((problem) => problem.contentVariant)).size).toBe(3)
 
       const current = family[0]!
       const selected = selectTransferProblem({

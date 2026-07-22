@@ -1,0 +1,1937 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l4-workplace-notes-021",
+  "sequence": 21,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "claude-fable-5-build-time-authoring",
+  "generatedOn": "2026-07-22",
+  "promptSha256": "6e562e9539fe84fc8d40cfc1026f2a5c7e3b2ad6b511d0de1b4af7bff74114e4",
+  "rawArtifactDigest": "ea912493834b0be07ca9f6f6c5e2dcce47532708af0b13bad7ebb72863fbb68c",
+  "candidateCount": 12,
+  "candidates": [
+    {
+      "id": "l4-checklist-kiosk-shutdown",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "unordered-list",
+        "inline-code"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A checklist uses bullets for tasks and inline code for the exact command to type.",
+        "howTo": "Type `#` and `##` for the headings, `- ` before each task, and wrap the command in backticks.",
+        "example": "# Shutdown note\n\nThree things at closing time.\n\n## Before you go\n\n- Count the drawer\n- Run `report end` on the tablet\n- Cover the stand"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "- Task",
+        "`command`"
+      ],
+      "title": "Short checklist",
+      "prompt": "Rebuild the short checklist: one title, one H2 section, three bullets, and keep the command as inline code.",
+      "target": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n## Before you go\n\n- Count the cash drawer\n- Run `report daily` on the tablet\n- Cover the display shelf",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-checklist-kiosk-shutdown-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-checklist-kiosk-shutdown-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-checklist-kiosk-shutdown-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 1,
+          "max": 1,
+          "priority": 15,
+          "feedback": "Use exactly 1 H2 section heading."
+        },
+        {
+          "id": "l4-checklist-kiosk-shutdown-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-checklist-kiosk-shutdown-task-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-checklist-kiosk-shutdown-command-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Wrap the command in single backticks so it reads as code."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-checklist-kiosk-shutdown-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Every task line starts with `- ` and one space.",
+        "Wrap only the command in single backticks.",
+        "Pattern: `- Run \\`command\\` on the machine`."
+      ],
+      "retryFamily": "level-4-workplace-checklist",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "checklist"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "market"
+        ],
+        "terms": [
+          "kiosk",
+          "drawer",
+          "tablet"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-checklist-kiosk-shutdown",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "a954072db13addc37b0c36eee662d2e41fd2df0c7d8e3fdc3e68ad247cc5e03f"
+    },
+    {
+      "id": "l4-checklist-studio-closing",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "unordered-list",
+        "inline-code"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A checklist uses bullets for tasks and inline code for the exact command to type.",
+        "howTo": "Type `#` and `##` for the headings, `- ` before each task, and wrap the command in backticks.",
+        "example": "# Closing note\n\nThree things before you go.\n\n## Before you leave\n\n- Lock the door\n- Run `save all` on the computer\n- Turn off the lamp"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "- Task",
+        "`command`"
+      ],
+      "title": "Short checklist",
+      "prompt": "Rebuild the short checklist: one title, one H2 section, three bullets, and keep the command as inline code.",
+      "target": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n## Before you leave\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer\n- Turn off the hallway lights",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-checklist-studio-closing-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-checklist-studio-closing-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-checklist-studio-closing-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 1,
+          "max": 1,
+          "priority": 15,
+          "feedback": "Use exactly 1 H2 section heading."
+        },
+        {
+          "id": "l4-checklist-studio-closing-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-checklist-studio-closing-task-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-checklist-studio-closing-command-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Wrap the command in single backticks so it reads as code."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-checklist-studio-closing-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Every task line starts with `- ` and one space.",
+        "Wrap only the command in single backticks.",
+        "Pattern: `- Run \\`command\\` on the machine`."
+      ],
+      "retryFamily": "level-4-workplace-checklist",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "checklist"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "studio"
+        ],
+        "terms": [
+          "studio",
+          "cabinet",
+          "backup"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-checklist-studio-closing",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "9b490c68ffc12aeff7ad00f3deb941b40ffbbdb802900b2c1a5ec58d87dc728c"
+    },
+    {
+      "id": "l4-checklist-workshop-opening",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "unordered-list",
+        "inline-code"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A checklist uses bullets for tasks and inline code for the exact command to type.",
+        "howTo": "Type `#` and `##` for the headings, `- ` before each task, and wrap the command in backticks.",
+        "example": "# Opening note\n\nThree things before opening.\n\n## Before you open\n\n- Unlock the case\n- Run `till open` on the register\n- Turn on the sign"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "- Task",
+        "`command`"
+      ],
+      "title": "Short checklist",
+      "prompt": "Rebuild the short checklist: one title, one H2 section, three bullets, and keep the command as inline code.",
+      "target": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n## Before you open\n\n- Unlock the tool wall\n- Run `till start` on the register\n- Prop open the side door",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-checklist-workshop-opening-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-checklist-workshop-opening-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-checklist-workshop-opening-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 1,
+          "max": 1,
+          "priority": 15,
+          "feedback": "Use exactly 1 H2 section heading."
+        },
+        {
+          "id": "l4-checklist-workshop-opening-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-checklist-workshop-opening-task-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 3 visible items in this section."
+        },
+        {
+          "id": "l4-checklist-workshop-opening-command-code",
+          "kind": "inline-code-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 40,
+          "feedback": "Wrap the command in single backticks so it reads as code."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-checklist-workshop-opening-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Every task line starts with `- ` and one space.",
+        "Wrap only the command in single backticks.",
+        "Pattern: `- Run \\`command\\` on the machine`."
+      ],
+      "retryFamily": "level-4-workplace-checklist",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "checklist"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "workshop"
+        ],
+        "terms": [
+          "workshop",
+          "register",
+          "visitors"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-checklist-workshop-opening",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "eebe17713a0690b68834390f552c5b79b61848b3f903706cd8bf328e1bf1ddcb"
+    },
+    {
+      "id": "l4-decision-printer-queue",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "blockquote",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A decision note quotes the rule with a blockquote and numbers the steps in order.",
+        "howTo": "Type `#` and `##` for the headings, `> ` before the decision, and `1. 2. 3.` before the steps.",
+        "example": "# Print note\n\nWhere big jobs go now.\n\n## Decision\n\n> Big jobs use the big printer.\n\n## Steps\n\n1. Check the size\n2. Choose the printer"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "> Decision",
+        "1. Step"
+      ],
+      "title": "Team decision note",
+      "prompt": "Rebuild the short decision note: one title, a blockquote under Decision, and three numbered steps.",
+      "target": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-decision-printer-queue-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-decision-printer-queue-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-decision-printer-queue-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-decision-printer-queue-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-decision-printer-queue-decision-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Write the decision as one blockquote in the Decision section."
+        },
+        {
+          "id": "l4-decision-printer-queue-steps-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-decision-printer-queue-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "The decision line starts with `> ` and one space.",
+        "The steps use `1. `, `2. `, `3. ` with one space after the dot.",
+        "Pattern: `# Title`, `## Decision`, `> Rule`, `## Steps`, `1. Step`."
+      ],
+      "retryFamily": "level-4-workplace-decision",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "decision"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "office"
+        ],
+        "terms": [
+          "printer",
+          "queue",
+          "pages"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-decision-printer-queue",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "4ba42beadbc1e053691cb959a29c87b9555f1308d11c27ebd9963d751b6e9467"
+    },
+    {
+      "id": "l4-decision-recycling-bins",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "blockquote",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A decision note quotes the rule with a blockquote and numbers the steps in order.",
+        "howTo": "Type `#` and `##` for the headings, `> ` before the decision, and `1. 2. 3.` before the steps.",
+        "example": "# Kitchen note\n\nWhy the bins changed.\n\n## Decision\n\n> Sort waste by the printed label.\n\n## Steps\n\n1. Read the label\n2. Sort the item"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "> Decision",
+        "1. Step"
+      ],
+      "title": "Team decision note",
+      "prompt": "Rebuild the short decision note: one title, a blockquote under Decision, and three numbered steps.",
+      "target": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-decision-recycling-bins-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-decision-recycling-bins-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-decision-recycling-bins-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-decision-recycling-bins-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-decision-recycling-bins-decision-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Write the decision as one blockquote in the Decision section."
+        },
+        {
+          "id": "l4-decision-recycling-bins-steps-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-decision-recycling-bins-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "The decision line starts with `> ` and one space.",
+        "The steps use `1. `, `2. `, `3. ` with one space after the dot.",
+        "Pattern: `# Title`, `## Decision`, `> Rule`, `## Steps`, `1. Step`."
+      ],
+      "retryFamily": "level-4-workplace-decision",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "decision"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "facilities"
+        ],
+        "terms": [
+          "recycling",
+          "bins",
+          "labels"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-decision-recycling-bins",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "538fec7c277fc2dca72193713160828926615edaf378ad730d2b16a3ac2783cf"
+    },
+    {
+      "id": "l4-decision-room-booking",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "blockquote",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A decision note quotes the rule with a blockquote and numbers the steps in order.",
+        "howTo": "Type `#` and `##` for the headings, `> ` before the decision, and `1. 2. 3.` before the steps.",
+        "example": "# Small change note\n\nOne sentence of context.\n\n## Decision\n\n> The one rule everyone follows.\n\n## Steps\n\n1. First step\n2. Second step"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "> Decision",
+        "1. Step"
+      ],
+      "title": "Team decision note",
+      "prompt": "Rebuild the short decision note: one title, a blockquote under Decision, and three numbered steps.",
+      "target": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-decision-room-booking-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-decision-room-booking-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "blockquote"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-decision-room-booking-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-decision-room-booking-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-decision-room-booking-decision-quote",
+          "kind": "blockquote-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "requireNonemptyContent": true,
+          "priority": 30,
+          "feedback": "Write the decision as one blockquote in the Decision section."
+        },
+        {
+          "id": "l4-decision-room-booking-steps-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 3,
+          "maxItems": 3,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 3 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-decision-room-booking-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "The decision line starts with `> ` and one space.",
+        "The steps use `1. `, `2. `, `3. ` with one space after the dot.",
+        "Pattern: `# Title`, `## Decision`, `> Rule`, `## Steps`, `1. Step`."
+      ],
+      "retryFamily": "level-4-workplace-decision",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "decision"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "office"
+        ],
+        "terms": [
+          "booking",
+          "sheet",
+          "slot"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-decision-room-booking",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "e705cdfc56e85bee74fe2646bced52cfb17d4436e4a6ade53383518501c16703"
+    },
+    {
+      "id": "l4-handoff-cafe-counter",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A handoff note uses one H1 title and H2 sections so the next person can scan it.",
+        "howTo": "Type `#` before the title, `##` before each section name, and `- ` before each item.",
+        "example": "# Shift notes\n\nWhat the next crew should know.\n\n## Today\n\n- Delivery stored\n- Machine cleaned"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "## Section",
+        "- Item"
+      ],
+      "title": "Shift handoff note",
+      "prompt": "Rebuild the short handoff note: one title, two H2 sections, and a two-item bullet list in each section.",
+      "target": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n## Tomorrow\n\n- Rotate the pastry stock\n- Post the new menu card",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-handoff-cafe-counter-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-handoff-cafe-counter-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-handoff-cafe-counter-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-handoff-cafe-counter-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-handoff-cafe-counter-today-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-handoff-cafe-counter-tomorrow-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-handoff-cafe-counter-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Start the title with `# ` and each section with `## `.",
+        "Every list line starts with `- ` and one space.",
+        "Pattern: `# Title`, `## Section`, then `- Item` lines."
+      ],
+      "retryFamily": "level-4-workplace-handoff",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "handoff"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "cafe"
+        ],
+        "terms": [
+          "cafe",
+          "espresso",
+          "pastry"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-handoff-cafe-counter",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "2f8ef8a05c5f09a3faf9a53bb60f883638e6a146b210e003026b19861ae79ac8"
+    },
+    {
+      "id": "l4-handoff-front-desk",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A handoff note uses one H1 title and H2 sections so the next person can scan it.",
+        "howTo": "Type `#` before the title, `##` before each section name, and `- ` before each item.",
+        "example": "# Desk notes\n\nShort notes for the next shift.\n\n## Today\n\n- Task done\n- Other task done"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "## Section",
+        "- Item"
+      ],
+      "title": "Shift handoff note",
+      "prompt": "Rebuild the short handoff note: one title, two H2 sections, and a two-item bullet list in each section.",
+      "target": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n## Tomorrow\n\n- Order badge sleeves\n- Water the lobby plants",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-handoff-front-desk-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-handoff-front-desk-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-handoff-front-desk-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-handoff-front-desk-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-handoff-front-desk-today-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-handoff-front-desk-tomorrow-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-handoff-front-desk-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Start the title with `# ` and each section with `## `.",
+        "Every list line starts with `- ` and one space.",
+        "Pattern: `# Title`, `## Section`, then `- Item` lines."
+      ],
+      "retryFamily": "level-4-workplace-handoff",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "handoff"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "reception"
+        ],
+        "terms": [
+          "handoff",
+          "badges",
+          "lobby"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-handoff-front-desk",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "e8418c52f9daf29fff5fb9c57bde4c3b47a7aeb1c8eb3fdd7e1b0f2b163111db"
+    },
+    {
+      "id": "l4-handoff-library-desk",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "unordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A handoff note uses one H1 title and H2 sections so the next person can scan it.",
+        "howTo": "Type `#` before the title, `##` before each section name, and `- ` before each item.",
+        "example": "# Counter notes\n\nWhat the opener should know.\n\n## Today\n\n- Shelf tidied\n- Door locked"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "## Section",
+        "- Item"
+      ],
+      "title": "Shift handoff note",
+      "prompt": "Rebuild the short handoff note: one title, two H2 sections, and a two-item bullet list in each section.",
+      "target": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n- Study rooms locked\n\n## Tomorrow\n\n- Restock printer paper\n- Update the events board",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-handoff-library-desk-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-handoff-library-desk-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-handoff-library-desk-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-handoff-library-desk-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-handoff-library-desk-today-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-handoff-library-desk-tomorrow-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-handoff-library-desk-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Start the title with `# ` and each section with `## `.",
+        "Every list line starts with `- ` and one space.",
+        "Pattern: `# Title`, `## Section`, then `- Item` lines."
+      ],
+      "retryFamily": "level-4-workplace-handoff",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "handoff"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "library"
+        ],
+        "terms": [
+          "library",
+          "books",
+          "shelved"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-handoff-library-desk",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "495ff6ff5e61d44828a6437226eed9d7f7f341e2970b7327146c6eafb3f8d3c1"
+    },
+    {
+      "id": "l4-status-newsletter-move",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "bold-emphasis",
+        "unordered-list",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A status note bolds the one deadline and splits work into Done bullets and Next numbered steps.",
+        "howTo": "Type `#` and `##` for the headings, `**` around the deadline, `- ` for Done, and `1. 2.` for Next.",
+        "example": "# Move status\n\nShort update. **One bold cutoff date.**\n\n## Done\n\n- List copied\n- Note drafted\n\n## Next\n\n1. Send a test\n2. Close the old one"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "**Deadline**",
+        "- Done item",
+        "1. Next step"
+      ],
+      "title": "Status update note",
+      "prompt": "Rebuild the short status note: one bold sentence, a two-item bullet list, and two numbered steps.",
+      "target": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue\n2. Retire the old address",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-status-newsletter-move-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-status-newsletter-move-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-status-newsletter-move-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-status-newsletter-move-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-status-newsletter-move-bold-note",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "strong",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 25,
+          "feedback": "Make the deadline sentence bold with double asterisks."
+        },
+        {
+          "id": "l4-status-newsletter-move-done-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-status-newsletter-move-next-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-status-newsletter-move-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Wrap the deadline sentence in double asterisks: `**like this**`.",
+        "Done uses `- ` bullets; Next uses `1. ` and `2. `.",
+        "Pattern: `# Title`, bold sentence, `## Done`, `## Next`."
+      ],
+      "retryFamily": "level-4-workplace-status",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "status"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "communications"
+        ],
+        "terms": [
+          "newsletter",
+          "sender",
+          "readers"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-status-newsletter-move",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "c36eaf6627401d068556f883470f7292d69fb8161391192f52c03d0c297d1b2a"
+    },
+    {
+      "id": "l4-status-signage-update",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "bold-emphasis",
+        "unordered-list",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A status note bolds the one deadline and splits work into Done bullets and Next numbered steps.",
+        "howTo": "Type `#` and `##` for the headings, `**` around the deadline, `- ` for Done, and `1. 2.` for Next.",
+        "example": "# Sign status\n\nShort update. **One bold install date.**\n\n## Done\n\n- Sizes measured\n- Text proofread\n\n## Next\n\n1. Book a helper\n2. Remove the old sign"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "**Deadline**",
+        "- Done item",
+        "1. Next step"
+      ],
+      "title": "Status update note",
+      "prompt": "Rebuild the short status note: one bold sentence, a two-item bullet list, and two numbered steps.",
+      "target": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-status-signage-update-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-status-signage-update-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-status-signage-update-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-status-signage-update-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-status-signage-update-bold-note",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "strong",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 25,
+          "feedback": "Make the deadline sentence bold with double asterisks."
+        },
+        {
+          "id": "l4-status-signage-update-done-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-status-signage-update-next-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-status-signage-update-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Wrap the deadline sentence in double asterisks: `**like this**`.",
+        "Done uses `- ` bullets; Next uses `1. ` and `2. `.",
+        "Pattern: `# Title`, bold sentence, `## Done`, `## Next`."
+      ],
+      "retryFamily": "level-4-workplace-status",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "status"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "facilities"
+        ],
+        "terms": [
+          "signage",
+          "lobby",
+          "installer"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-status-signage-update",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "b00a54a02e2d70c3344a00b21dcd4a92baf072e823da0f757494f8222d1cd150"
+    },
+    {
+      "id": "l4-status-website-refresh",
+      "schemaVersion": 2,
+      "level": 4,
+      "flavor": "standard",
+      "familyId": "workplace-notes",
+      "skillIds": [
+        "heading-hierarchy",
+        "bold-emphasis",
+        "unordered-list",
+        "ordered-list"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A status note bolds the one deadline and splits work into Done bullets and Next numbered steps.",
+        "howTo": "Type `#` and `##` for the headings, `**` around the deadline, `- ` for Done, and `1. 2.` for Next.",
+        "example": "# Project status\n\nShort update. **One bold deadline.**\n\n## Done\n\n- First piece shipped\n- Second piece checked\n\n## Next\n\n1. Gather notes\n2. Update the page"
+      },
+      "syntaxTokens": [
+        "# Title",
+        "**Deadline**",
+        "- Done item",
+        "1. Next step"
+      ],
+      "title": "Status update note",
+      "prompt": "Rebuild the short status note: one bold sentence, a two-item bullet list, and two numbered steps.",
+      "target": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "l4-status-website-refresh-limits",
+          "kind": "document-limits",
+          "maxLines": 16,
+          "priority": 5,
+          "feedback": "Keep the note within 16 lines, like the Goal."
+        },
+        {
+          "id": "l4-status-website-refresh-outline",
+          "kind": "block-sequence",
+          "scope": {
+            "kind": "document"
+          },
+          "sequence": [
+            {
+              "block": "heading",
+              "depth": 1
+            },
+            {
+              "block": "paragraph"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            },
+            {
+              "block": "heading",
+              "depth": 2
+            },
+            {
+              "block": "list"
+            }
+          ],
+          "exact": true,
+          "priority": 10,
+          "feedback": "Match the Goal's block order exactly."
+        },
+        {
+          "id": "l4-status-website-refresh-sections",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "heading",
+          "depth": 2,
+          "min": 2,
+          "max": 2,
+          "priority": 15,
+          "feedback": "Use exactly 2 H2 section headings."
+        },
+        {
+          "id": "l4-status-website-refresh-hierarchy",
+          "kind": "heading-depth-order",
+          "allowSkippedDepths": false,
+          "priority": 20,
+          "feedback": "Keep one H1 title followed by H2 sections."
+        },
+        {
+          "id": "l4-status-website-refresh-bold-note",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "strong",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "priority": 25,
+          "feedback": "Make the deadline sentence bold with double asterisks."
+        },
+        {
+          "id": "l4-status-website-refresh-done-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 0
+          },
+          "ordered": false,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 30,
+          "feedback": "Use a bullet list with 2 visible items in this section."
+        },
+        {
+          "id": "l4-status-website-refresh-next-list",
+          "kind": "list-shape",
+          "scope": {
+            "kind": "section",
+            "headingDepth": 2,
+            "occurrence": 1
+          },
+          "ordered": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "requireVisibleItems": true,
+          "priority": 40,
+          "feedback": "Use a numbered list with 2 visible items in this section."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "l4-status-website-refresh-no-italics",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "emphasis",
+          "max": 0,
+          "review": "This form reads best without italics; save emphasis for the bold deadline style."
+        }
+      ],
+      "hints": [
+        "Wrap the deadline sentence in double asterisks: `**like this**`.",
+        "Done uses `- ` bullets; Next uses `1. ` and `2. `.",
+        "Pattern: `# Title`, bold sentence, `## Done`, `## Next`."
+      ],
+      "retryFamily": "level-4-workplace-status",
+      "reviewTags": [
+        "compact-document",
+        "workplace-note",
+        "status"
+      ],
+      "vocabulary": {
+        "profile": "development-spec",
+        "domains": [
+          "web"
+        ],
+        "terms": [
+          "website",
+          "banner",
+          "feedback"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "workplace-status-website-refresh",
+      "sourceBatch": "2026-07-22-l4-workplace-notes-021",
+      "candidateDigest": "cd4f1aaaa21eb646ae2cafc107a5edacd3ca5ee9407a5b7e14593d8f3669f671"
+    }
+  ],
+  "artifactDigest": "96ebf199ce58c7f63919e8ee316a29e2adf0ad6f7a619ac7078b54f6d47b1b30"
+}

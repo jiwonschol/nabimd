@@ -6,7 +6,6 @@ import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
-import { useGuidedSyntaxPractice } from "../guided/useGuidedSyntaxPractice"
 
 type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
   summaryMotionReady?: boolean
@@ -17,11 +16,15 @@ export function EditorialDesk({
   session,
   problem,
   canCheck,
+  canGoToPreviousStep,
+  canGoToNextStep,
   edit,
   check,
   requestHint,
   closeCoach,
   next,
+  goToPreviousStep,
+  goToNextStep,
   practiceAgain,
   changeLevel,
   tryAnother,
@@ -41,24 +44,22 @@ export function EditorialDesk({
     session.runCompletedAtMs,
     session.runCompletedAtMs ?? Date.now(),
   )
-  const guided = useGuidedSyntaxPractice({
-    draft: session.draft,
-    onChange: edit,
-    onCheck: check,
-    problem,
-  })
 
   return (
     <main className="app-shell app-shell--practice">
       <ExerciseTopBar
         autofocusActions={!transitionSnapshot}
         canCheck={canCheck}
+        canGoToPreviousStep={canGoToPreviousStep}
+        canGoToNextStep={canGoToNextStep}
         entryId={session.entryId!}
         evaluation={session.evaluation}
         currentIsTransfer={session.currentIsTransfer}
-        onCheck={guided.checkDraft}
+        onCheck={() => check()}
         onExit={changeLevel}
         onNext={next}
+        onPreviousStep={goToPreviousStep}
+        onNextStep={goToNextStep}
         onTryAnother={tryAnother}
         phase={session.phase}
         problemPosition={problemPosition}
@@ -82,10 +83,7 @@ export function EditorialDesk({
       ) : (
         <>
           <article className="cbt-workspace open-book-shell">
-            <GoalPanel
-              activeOffset={guided.checkpoint?.activeOffset}
-              problem={problem}
-            />
+            <GoalPanel problem={problem} />
             <AnswerPanel
               coach={session.coach}
               draft={session.draft}
@@ -93,12 +91,11 @@ export function EditorialDesk({
               evaluation={session.evaluation}
               hintLevel={session.hintLevel}
               onChange={edit}
-              onCheck={check}
+              onCheck={() => check()}
               onCloseHint={closeCoach}
               onNextHint={requestHint}
               onRequestHint={requestHint}
               problem={problem}
-              guided={guided}
               interactive={!transitionSnapshot}
             />
           </article>

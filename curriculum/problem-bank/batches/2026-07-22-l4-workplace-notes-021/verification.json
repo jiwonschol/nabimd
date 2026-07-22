@@ -1,0 +1,2153 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l4-workplace-notes-021",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "candidates": [
+    {
+      "candidateId": "l4-checklist-kiosk-shutdown",
+      "revision": 1,
+      "candidateDigest": "a954072db13addc37b0c36eee662d2e41fd2df0c7d8e3fdc3e68ad247cc5e03f",
+      "problemDigest": "0b622f1b0cc9d06f12c181a1f1d49c9bcdadd03db9e6dabbc603570a6a73d61c",
+      "fixtureDefinitionDigest": "b32ed2cf504a2b2843bc46730f97fe93ef7689e3dbae0337d77d760e3b957fd6",
+      "fixtureResultsDigest": "3fdaad3aa23759025e85d3f2517eb36a28dc2a279d008e74a96be0cba548649e",
+      "fixtureCount": 11,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-checklist-studio-closing",
+      "revision": 1,
+      "candidateDigest": "9b490c68ffc12aeff7ad00f3deb941b40ffbbdb802900b2c1a5ec58d87dc728c",
+      "problemDigest": "53f54e2c46d517f0e0cfbcb8d048b0a4a25a8cd5037c9617d9612ba34ae15048",
+      "fixtureDefinitionDigest": "5aab9edb608760ca4e6ef0897c1ceec28bd2c14246e37e1c2dc28f7c6afcf385",
+      "fixtureResultsDigest": "454acd197706c11ce2152251e025f5b33fb05008de27bca639e7775b538ba6fb",
+      "fixtureCount": 11,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-checklist-workshop-opening",
+      "revision": 1,
+      "candidateDigest": "eebe17713a0690b68834390f552c5b79b61848b3f903706cd8bf328e1bf1ddcb",
+      "problemDigest": "f99a3129b8cbaf351b08babe431f579d614019a6b792403509c289a2a4714506",
+      "fixtureDefinitionDigest": "d93e5fd424e2263bcb6d2ef6f7170d3036d0f587772db2086edbe0f44eefd5b5",
+      "fixtureResultsDigest": "63ac82020e106becfecc89ef0d8490aafef50391aeb110c82931c8fa361aefac",
+      "fixtureCount": 11,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-decision-printer-queue",
+      "revision": 1,
+      "candidateDigest": "4ba42beadbc1e053691cb959a29c87b9555f1308d11c27ebd9963d751b6e9467",
+      "problemDigest": "df5f9a05487613319abc53a0cff36444f1ac83c168aa3c52c4208cb2cee9efea",
+      "fixtureDefinitionDigest": "3829646c944aa4f96067395cd8ee6359c2d7cce2446886c11af51d2eaa274c55",
+      "fixtureResultsDigest": "b776fd2f8ae504843253d034a14f1d51a550aecf37f1acbd7fced789078f1559",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-decision-recycling-bins",
+      "revision": 1,
+      "candidateDigest": "538fec7c277fc2dca72193713160828926615edaf378ad730d2b16a3ac2783cf",
+      "problemDigest": "2619f38f6d75bf91d7b27588b99aed798d0d33c4cd739982a3fc60dad4a4343d",
+      "fixtureDefinitionDigest": "5fd09dc911ca9f4316c7b296e9b0c5147fbba2fb8ef4044e4bc55457f75f999b",
+      "fixtureResultsDigest": "c17eaf904800ac7eaf6237bb342ea478696eb472171901944fb126e950c2dd19",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-decision-room-booking",
+      "revision": 1,
+      "candidateDigest": "e705cdfc56e85bee74fe2646bced52cfb17d4436e4a6ade53383518501c16703",
+      "problemDigest": "c17490d8a8c79475ad81bfa426d24dd41bd04f447bef6671b42251a03e3f5f20",
+      "fixtureDefinitionDigest": "bdda0fde8907f6588d33a9d558148effeeadb99efb5a06d9ef72e5cb3d1ebd0e",
+      "fixtureResultsDigest": "568bd5bac93ab350443b91c7e22a63656b2a8499b2472e3e214b39e9f031bc57",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-handoff-cafe-counter",
+      "revision": 1,
+      "candidateDigest": "2f8ef8a05c5f09a3faf9a53bb60f883638e6a146b210e003026b19861ae79ac8",
+      "problemDigest": "121eb24d5286d39a7f1cd87f5dd5df8a8dbbf890fca1937cb00233360d5cd0e2",
+      "fixtureDefinitionDigest": "857d9ae9b3730c8bca35928f9c819540905d417a5f17ef9f8627fbb80a2f7c2e",
+      "fixtureResultsDigest": "bd563f98134d639496d1024dfff2de37aefe163061e509c04d0b9d1b2a8b76ab",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-handoff-front-desk",
+      "revision": 1,
+      "candidateDigest": "e8418c52f9daf29fff5fb9c57bde4c3b47a7aeb1c8eb3fdd7e1b0f2b163111db",
+      "problemDigest": "10463b479190ce6f4db6c4a233349844fbcbc30a48a3b169ec4e19033a0418f7",
+      "fixtureDefinitionDigest": "8c94553c54c12b0b2059fe22450007fd8b730634faf57196226e97541c220d8a",
+      "fixtureResultsDigest": "18241efe466e4093281ed86646de4ba116ffffffffaf68795e276a913f7143af",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-handoff-library-desk",
+      "revision": 1,
+      "candidateDigest": "495ff6ff5e61d44828a6437226eed9d7f7f341e2970b7327146c6eafb3f8d3c1",
+      "problemDigest": "8216bf21df904d8122226d288f7b7692a7254a6e5a3be0732d605377991a2ab1",
+      "fixtureDefinitionDigest": "2038109eb870ac62fb97287f0d69f5b04f3e630d3fa831ac3ea82a6f6411ae1d",
+      "fixtureResultsDigest": "1a5e758c801d7823ff21dd97844ee371c8f75003c7f3f092b139ea05d665f402",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-status-newsletter-move",
+      "revision": 1,
+      "candidateDigest": "c36eaf6627401d068556f883470f7292d69fb8161391192f52c03d0c297d1b2a",
+      "problemDigest": "fc980c7f3ebb843aeeafc5daf888ddc239ba1c356fb6d9649166da51772ca678",
+      "fixtureDefinitionDigest": "0fe82c1cfad364f05e252ea35beac78353582183190bb795ab73110406c7a87a",
+      "fixtureResultsDigest": "6062e599cdace01adc610330ce045343fe254fb88efc5d84e42583603e29b126",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-status-signage-update",
+      "revision": 1,
+      "candidateDigest": "b00a54a02e2d70c3344a00b21dcd4a92baf072e823da0f757494f8222d1cd150",
+      "problemDigest": "99c97c2fcbc5d5c1412be134611c61a521343abc25cdb6fea02ce52e13049aed",
+      "fixtureDefinitionDigest": "6f2802f7754a257d61bb7c915b54b3cdd9a30edd24a5b29a30a337c59bf6d6a8",
+      "fixtureResultsDigest": "9d4e9f3af9f6f767b72ca66863603954d9d849007bee94586f7727924ef4ea0d",
+      "fixtureCount": 12,
+      "passed": true
+    },
+    {
+      "candidateId": "l4-status-website-refresh",
+      "revision": 1,
+      "candidateDigest": "cd4f1aaaa21eb646ae2cafc107a5edacd3ca5ee9407a5b7e14593d8f3669f671",
+      "problemDigest": "d5bc76aaf34e5ae88bf84b4f182d3ce0714a828961af956893d31f942652ddb0",
+      "fixtureDefinitionDigest": "db85a667d5b60ce5323711a01b5fdae151f929ea8fd269d067a8aded09524e46",
+      "fixtureResultsDigest": "ac8162b0ecf7c8f287049a49df5860ff6b5a9d85fc8dcf04ca07a264f832139d",
+      "fixtureCount": 12,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-canonical",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-case-spelling",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-crlf",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-different-prose",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-italic-aside",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-checklist-kiosk-shutdown-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-checklist-kiosk-shutdown-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-missing",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-missing-section",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-over-limit",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-plain-command",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-command-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-command-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-short-tasks",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-task-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-task-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-kiosk-shutdown-skipped-depth",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-kiosk-shutdown-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-canonical",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-case-spelling",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-crlf",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-different-prose",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-italic-aside",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-checklist-studio-closing-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-checklist-studio-closing-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-missing",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-missing-section",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-over-limit",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-plain-command",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-command-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-command-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-short-tasks",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-task-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-task-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-studio-closing-skipped-depth",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-studio-closing-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-canonical",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-case-spelling",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-crlf",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-different-prose",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-italic-aside",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-checklist-workshop-opening-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-checklist-workshop-opening-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-missing",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-missing-section",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-over-limit",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-plain-command",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-command-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-command-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-short-tasks",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-task-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-task-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-checklist-workshop-opening-skipped-depth",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-checklist-workshop-opening-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-canonical",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-case-spelling",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-crlf",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-different-prose",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-italic-aside",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-decision-printer-queue-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-decision-printer-queue-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-missing",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-missing-section",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-over-limit",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-plain-decision",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-short-steps",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-steps-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-steps-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-skipped-depth",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-printer-queue-tight-numbers",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-printer-queue-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-canonical",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-case-spelling",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-crlf",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-different-prose",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-italic-aside",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-decision-recycling-bins-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-decision-recycling-bins-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-missing",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-missing-section",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-over-limit",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-plain-decision",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-short-steps",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-steps-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-steps-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-skipped-depth",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-recycling-bins-tight-numbers",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-recycling-bins-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-canonical",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-case-spelling",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-crlf",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-different-prose",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-italic-aside",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-decision-room-booking-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-decision-room-booking-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-missing",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-missing-section",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-over-limit",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-plain-decision",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-short-steps",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-steps-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-steps-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-skipped-depth",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-decision-room-booking-tight-numbers",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-decision-room-booking-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-canonical",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-case-spelling",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-crlf",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-different-prose",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-flat-bullets",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-italic-aside",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-handoff-cafe-counter-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-handoff-cafe-counter-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-missing",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-missing-section",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-over-limit",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-short-today",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-today-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-today-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-short-tomorrow",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-tomorrow-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-tomorrow-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-cafe-counter-skipped-depth",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-cafe-counter-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-canonical",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-case-spelling",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-crlf",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-different-prose",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-flat-bullets",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-italic-aside",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-handoff-front-desk-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-handoff-front-desk-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-missing",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-missing-section",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-over-limit",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-short-today",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-today-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-today-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-short-tomorrow",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-tomorrow-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-tomorrow-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-front-desk-skipped-depth",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-front-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-canonical",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-case-spelling",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-crlf",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-different-prose",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-flat-bullets",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-italic-aside",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-handoff-library-desk-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-handoff-library-desk-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-missing",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-missing-section",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-over-limit",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-short-today",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-today-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-today-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-short-tomorrow",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-tomorrow-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-tomorrow-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-handoff-library-desk-skipped-depth",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-handoff-library-desk-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-canonical",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-case-spelling",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-crlf",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-different-prose",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-italic-aside",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-status-newsletter-move-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-status-newsletter-move-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-missing",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-missing-section",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-over-limit",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-plain-deadline",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-bold-note"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-bold-note"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-short-done",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-done-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-done-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-short-next",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-next-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-next-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-newsletter-move-skipped-depth",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-newsletter-move-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-canonical",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-case-spelling",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-crlf",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-different-prose",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-italic-aside",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-status-signage-update-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-status-signage-update-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-missing",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-missing-section",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-over-limit",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-plain-deadline",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-bold-note"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-bold-note"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-short-done",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-done-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-done-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-short-next",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-next-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-next-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-signage-update-skipped-depth",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-signage-update-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-canonical",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-case-spelling",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-crlf",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-different-prose",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-italic-aside",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-status-website-refresh-no-italics"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "l4-status-website-refresh-no-italics"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-missing",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-missing-section",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-over-limit",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-plain-deadline",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-bold-note"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-bold-note"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-short-done",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-done-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-done-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-short-next",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-next-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-next-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l4-status-website-refresh-skipped-depth",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l4-status-website-refresh-outline"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "aa0f2054e8b67e81974d99eb96354b72289016f2cb627848f3d4516e1b68668c"
+}

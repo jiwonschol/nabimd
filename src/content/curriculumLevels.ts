@@ -25,14 +25,14 @@ export const curriculumLevels = [
   {
     id: "level-4",
     level: 4,
-    label: "Level 4 — Write a development spec",
+    label: "Level 4 — Write for work",
     taskType: "development-spec",
     exerciseMode: "target",
   },
   {
     id: "level-5",
     level: 5,
-    label: "Level 5 — Write an agent work order",
+    label: "Level 5 — Write for developers",
     taskType: "agent-work-order",
     exerciseMode: "target",
   },

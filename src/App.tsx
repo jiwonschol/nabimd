@@ -121,9 +121,16 @@ export function App() {
       : { marker: HISTORY_MARKER, view: "landing" }
 
     if (!sameHistoryLocation(window.history.state, historyState)) {
-      window.history.pushState(historyState, "")
+      // In-app previous/next moves rewrite the current entry so browser Back
+      // still walks real steps instead of bouncing to the step just left.
+      if (learningSession.consumeHistoryReplaceHint()) {
+        window.history.replaceState(historyState, "")
+      } else {
+        window.history.pushState(historyState, "")
+      }
     }
   }, [
+    learningSession.consumeHistoryReplaceHint,
     learningSession.session.currentIsTransfer,
     learningSession.session.currentProblemId,
     learningSession.session.entryId,
@@ -187,7 +194,7 @@ export function App() {
       return
     }
     document
-      .querySelector<HTMLElement>(".guided-syntax-card__input")
+      .querySelector<HTMLElement>('.answer-panel [role="textbox"]')
       ?.focus()
   }, [learningSession.session.entryId, summarySnapshot, turningEntryId])
 

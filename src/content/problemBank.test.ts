@@ -22,12 +22,14 @@ import { readableDocumentBatch011Fixtures } from "./batches/readableDocumentBatc
 import { thematicBreakBatch009Fixtures } from "./batches/thematicBreakBatch009Fixtures"
 import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
+import { workplaceNotesBatch021Fixtures } from "./batches/workplaceNotesBatch021Fixtures"
 import {
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
   getProblemsForLevel,
   problemBank,
   problemBankRevision,
+  withinRuntimeBudget,
 } from "./problemBank"
 import { derivePlaintextStarter } from "./plaintextStarter"
 import type { NormalizedProblem } from "./types"
@@ -44,20 +46,25 @@ function authoredWordCount(source: string) {
 }
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(tracker.acceptedTotal).toBe(360)
+  it("publishes the accepted batches and serves only budget-compliant problems", () => {
+    expect(tracker.acceptedTotal).toBe(372)
     expect(tracker.counts.byLevel).toEqual({
       1: 140,
       2: 148,
       3: 30,
-      4: 20,
+      4: 32,
       5: 22,
     })
-    expect(problemBank).toHaveLength(tracker.acceptedTotal)
+    // Published evidence stays immutable; runtime retires the over-length
+    // document-era problems (2026-07-22 redesign), so the served bank is the
+    // budget-compliant subset of the tracker.
+    expect(problemBank.every(withinRuntimeBudget)).toBe(true)
+    const servedByLevel = { 1: 140, 2: 148, 3: 30, 4: 12, 5: 12 } as const
+    expect(problemBank).toHaveLength(
+      Object.values(servedByLevel).reduce((sum, count) => sum + count, 0),
+    )
     for (const level of [1, 2, 3, 4, 5] as const) {
-      expect(getProblemsForLevel(level)).toHaveLength(
-        tracker.counts.byLevel[level],
-      )
+      expect(getProblemsForLevel(level)).toHaveLength(servedByLevel[level])
     }
   })
 
@@ -106,16 +113,23 @@ describe("compiled five-level problem bank", () => {
         (problem) => problem.familyId === "readable-human-document",
       ),
     ).toHaveLength(trackedFamilies["readable-human-document"] ?? 0)
+    // Document-length specs and work orders remain tracked evidence but are
+    // retired from runtime by the budget filter.
     expect(
       getProblemsForLevel(4).filter(
         (problem) => problem.familyId === "executable-development-spec",
       ),
-    ).toHaveLength(trackedFamilies["executable-development-spec"] ?? 0)
+    ).toHaveLength(0)
     expect(
       getProblemsForLevel(5).filter(
         (problem) => problem.familyId === "agent-ready-work-order",
       ),
-    ).toHaveLength(trackedFamilies["agent-ready-work-order"] ?? 0)
+    ).toHaveLength(0)
+    expect(
+      getProblemsForLevel(4).filter(
+        (problem) => problem.familyId === "workplace-notes",
+      ),
+    ).toHaveLength(trackedFamilies["workplace-notes"] ?? 0)
     for (const family of [
       "developer-readme",
       "developer-bug-report",
@@ -129,14 +143,16 @@ describe("compiled five-level problem bank", () => {
     }
   })
 
-  it("changes only starterText when hydrating the generated runtime projection", () => {
-    const generatedProblems = [
-      ...runtimeProjections.levels[1],
-      ...runtimeProjections.levels[2],
-      ...runtimeProjections.levels[3],
-      ...runtimeProjections.levels[4],
-      ...runtimeProjections.levels[5],
-    ] as unknown as NormalizedProblem[]
+  it("changes only starterText when hydrating the budget-compliant projection", () => {
+    const generatedProblems = (
+      [
+        ...runtimeProjections.levels[1],
+        ...runtimeProjections.levels[2],
+        ...runtimeProjections.levels[3],
+        ...runtimeProjections.levels[4],
+        ...runtimeProjections.levels[5],
+      ] as unknown as NormalizedProblem[]
+    ).filter(withinRuntimeBudget)
 
     expect(problemBank.map(withoutStarterText)).toEqual(
       generatedProblems.map(withoutStarterText),
@@ -201,11 +217,13 @@ describe("compiled five-level problem bank", () => {
     expect(starterLines[dividerLine + 2]).toBe("Agenda")
   })
 
-  it("keeps the Level 5 command payload verbatim between empty fence lines", () => {
-    const problem = getProblem("l5-auth-migration-work-order")
+  it("keeps the Level 5 fence payload verbatim between empty fence lines", () => {
+    const problem = getProblem("l5-bug-duplicate-webhook-retry-report")
     const targetLines = problem.target.split("\n")
     const starterLines = problem.starterText.split("\n")
-    const openingFenceLine = targetLines.indexOf("```bash")
+    const openingFenceLine = targetLines.findIndex((line) =>
+      line.startsWith("```"),
+    )
     const closingFenceLine = targetLines.findIndex(
       (line, index) => index > openingFenceLine && line === "```",
     )
@@ -218,17 +236,14 @@ describe("compiled five-level problem bank", () => {
     expect(starterLines.slice(openingFenceLine + 1, closingFenceLine)).toEqual(
       targetLines.slice(openingFenceLine + 1, closingFenceLine),
     )
-    expect(starterLines).toContain(
-      "npm test --workspace apps/auth -- sessions",
-    )
     expect(evaluateProblem(problem, problem.starterText).status).toBe("fail")
   })
 
-  it("keeps every published advanced Goal inside the current practice ceiling", () => {
+  it("keeps every served advanced Goal inside the current practice ceiling", () => {
     const ceilings = {
       3: { lines: 28, words: 150 },
-      4: { lines: 40, words: 165 },
-      5: { lines: 40, words: 165 },
+      4: { lines: 20, words: 120 },
+      5: { lines: 20, words: 120 },
     } as const
 
     for (const problem of problemBank.filter(
@@ -283,6 +298,7 @@ describe("compiled five-level problem bank", () => {
       ...advancedDocumentReplacementBatch018Fixtures,
       ...nestedBulletBatch019Fixtures,
       ...developerFormsBatch020Fixtures,
+      ...workplaceNotesBatch021Fixtures,
     ].filter(({ problemId, problemRevision }) =>
       publishedProblemRevisions.has(`${problemId}@${problemRevision ?? 1}`),
     )

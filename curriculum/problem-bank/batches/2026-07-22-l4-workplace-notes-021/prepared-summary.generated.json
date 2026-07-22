@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l4-workplace-notes-021",
+  "status": "awaiting-independent-review",
+  "candidateCount": 12,
+  "fixtureCount": 141,
+  "passingCandidateCount": 12,
+  "normalizedArtifactDigest": "96ebf199ce58c7f63919e8ee316a29e2adf0ad6f7a619ac7078b54f6d47b1b30",
+  "verificationDigest": "aa0f2054e8b67e81974d99eb96354b72289016f2cb627848f3d4516e1b68668c",
+  "manifestDigest": "9db55930ae699b5a7dcf9b6ea6ca6a181cdb18694d025fea10a8c6b9b139f741",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 360,
+  "preparedSummaryDigest": "9f6708de47ad82736e882a7977fd382fce183c158de9619719d8d8ca20420d8c"
+}

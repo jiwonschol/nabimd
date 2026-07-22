@@ -2,11 +2,10 @@ import type { GradableProblem } from "../content/types"
 import { WordProcessorPage } from "./WordProcessorPage"
 
 type GoalPanelProps = {
-  activeOffset?: number
   problem: GradableProblem
 }
 
-export function GoalPanel({ activeOffset, problem }: GoalPanelProps) {
+export function GoalPanel({ problem }: GoalPanelProps) {
   const promptId = `${problem.id}-goal-prompt`
   const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
 
@@ -22,8 +21,6 @@ export function GoalPanel({ activeOffset, problem }: GoalPanelProps) {
         </h2>
       </header>
       <WordProcessorPage
-        activeOffset={activeOffset}
-        focusTreatment={activeOffset === undefined ? undefined : "goal"}
         key={problem.id}
         label="Goal document"
         leadingBlankRows={leadingBlankRows}

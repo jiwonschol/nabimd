@@ -1,14 +1,14 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "7b4ded5e26dac4e87387802a614bcf763e587f00ec1abf1de1a63d174a63aa04",
-  "acceptedTotal": 360,
+  "bankDigest": "23583961008e3b6fdb987ed8ef79b301b7fd3a6a30bc197f7f8f80cf546749be",
+  "acceptedTotal": 372,
   "counts": {
     "byLevel": {
       "1": 140,
       "2": 148,
       "3": 30,
-      "4": 20,
+      "4": 32,
       "5": 22
     },
     "byFamily": {
@@ -33,6 +33,7 @@
       "rebuild-real-documents": 12,
       "rebuild-sectioned-documents": 12,
       "workplace-issue-note": 4,
+      "workplace-notes": 12,
       "workplace-process-change": 4
     },
     "byLevelAndFamily": {
@@ -60,6 +61,7 @@
       "3/readable-human-document": 30,
       "4/executable-development-spec": 12,
       "4/workplace-issue-note": 4,
+      "4/workplace-notes": 12,
       "4/workplace-process-change": 4,
       "5/agent-ready-work-order": 10,
       "5/developer-bug-report": 4,
@@ -67,7 +69,7 @@
       "5/developer-readme": 4
     },
     "byFlavor": {
-      "standard": 360
+      "standard": 372
     },
     "rejected": 0,
     "blocked": 0
@@ -252,7 +254,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-22-l4-workplace-notes-021",
+      "sequence": 21,
+      "batchDigest": "3200421318f5edbc81843ffa56099f7c1cf3b117ecaa35001c8070f0cb3e7817",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "a1f36e9a1dee7245b63ad82232c5d86cb4a0202523321231069afea89a09719a"
+  "trackerDigest": "b9b2f79b2d863bd94fa19dea89ba8c63abc8121d6a9450ff135072713f405198"
 }

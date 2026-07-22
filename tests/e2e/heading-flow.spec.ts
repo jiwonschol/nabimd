@@ -1,6 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
-import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
+import { derivePlaintextStarter } from "../../src/content/plaintextStarter"
 
 type RuntimeProblemSource = {
   id: string
@@ -26,8 +26,8 @@ const levelLabels = [
   "Level 1 — Learn the syntax",
   "Level 2 — Rebuild real documents",
   "Level 3 — Write for people",
-  "Level 4 — Write a development spec",
-  "Level 5 — Write an agent work order",
+  "Level 4 — Write for work",
+  "Level 5 — Write for developers",
 ] as const
 
 const progressStorageKey = "nabimd.progress.v5"
@@ -43,10 +43,6 @@ test.beforeEach(async ({ page }) => {
 
 function sourceEditor(page: Page): Locator {
   return page.getByRole("textbox", { name: "Your Markdown" })
-}
-
-function guidedSyntaxInput(page: Page): Locator {
-  return page.getByRole("textbox", { name: /Markdown syntax for line/ })
 }
 
 async function sourceText(page: Page): Promise<string> {
@@ -71,22 +67,19 @@ async function sourceText(page: Page): Promise<string> {
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
   await page.getByRole("button", { name: levelLabels[level - 1] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
-  await expect(guidedSyntaxInput(page)).toBeFocused()
+  await expect(sourceEditor(page)).toBeFocused()
 }
 
 async function enterLevel1(page: Page) {
   await enterLevel(page, 1)
 }
 
-async function completeGuidedProblem(page: Page) {
+async function completeProblem(page: Page) {
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
 
-  const checkpoints = deriveSyntaxCheckpoints(problem.target, "")
-  for (const checkpoint of checkpoints) {
-    await guidedSyntaxInput(page).fill(checkpoint.canonicalInput)
-    await page.getByRole("button", { name: "Submit syntax" }).click()
-  }
+  await sourceEditor(page).fill(problem.target)
+  await sourceEditor(page).press("Control+Enter")
 }
 
 async function resetToGreeting(page: Page) {
@@ -282,7 +275,7 @@ test("keeps every chapter reachable in a short landscape viewport", async ({
   expect(mottoBodySize).toBeGreaterThan(instructionSize)
   await page.getByRole("button", { name: levelLabels[4] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
-  await expect(guidedSyntaxInput(page)).toBeFocused()
+  await expect(sourceEditor(page)).toBeFocused()
 })
 
 test("keeps the open-book landing inside a tablet viewport", async ({ page }) => {
@@ -345,7 +338,7 @@ test("every level opens its task-type turn", async ({ page }) => {
       "aria-valuenow",
       "1",
     )
-    await expect(guidedSyntaxInput(page)).toBeFocused()
+    await expect(sourceEditor(page)).toBeFocused()
     await page.getByRole("button", { name: "Nabi Markdown home" }).click()
     await expect(
       page.getByRole("heading", { name: "Choose a chapter to begin." }),
@@ -397,37 +390,56 @@ test("browser history moves between problems and the level picker", async ({
   await expect.poll(() => currentProblemId(page)).toBe(secondProblemId)
 })
 
-test("guided syntax builds the source and uses browser history without undoing it", async ({
+test("keeps the editor editable immediately after Try again", async ({
   page,
 }) => {
   await page.goto("/")
-  await enterLevel(page, 3)
+  await enterLevel1(page)
+  const editor = sourceEditor(page)
 
-  const problemId = await currentProblemId(page)
-  const problem = runtimeProblemById.get(problemId)
-  if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
-  const checkpoints = deriveSyntaxCheckpoints(problem.target, "")
-  expect(checkpoints.length).toBeGreaterThan(1)
+  await editor.fill(await malformedSource(page))
+  await editor.press("Control+Enter")
+  await expect(page.getByRole("status")).toContainText("Try again")
+  await expect(page.getByRole("tab", { name: "Write" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  )
+  await expect(editor).toBeFocused()
 
-  const syntax = guidedSyntaxInput(page)
-  await expect(syntax).toBeFocused()
-  expect(await sourceText(page)).toBe("")
-
-  await syntax.fill(checkpoints[0]!.canonicalInput)
-  await syntax.press("Enter")
-  await expect(page.getByLabel(`Syntax 2 of ${checkpoints.length}`)).toBeVisible()
-  const progressedSource = await sourceText(page)
-  expect(progressedSource.length).toBeGreaterThan(0)
-
-  await page.goBack()
-  await expect(page.getByLabel(`Syntax 1 of ${checkpoints.length}`)).toBeVisible()
-  expect(await sourceText(page)).toBe(progressedSource)
-
-  await page.goForward()
-  await expect(page.getByLabel(`Syntax 2 of ${checkpoints.length}`)).toBeVisible()
+  await completeProblem(page)
+  await expect(page.getByRole("status")).toContainText("Matched")
 })
 
-test("accepts the second italic syntax from Hint with the mouse Enter action", async ({
+test("navigates visited problems with the in-app previous and next controls", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await enterLevel1(page)
+  const firstProblemId = await currentProblemId(page)
+  const previous = page.getByRole("button", { name: "Previous exercise" })
+  const nextVisited = page.getByRole("button", {
+    name: "Next visited exercise",
+  })
+  await expect(previous).toBeDisabled()
+  await expect(nextVisited).toBeDisabled()
+
+  await completeProblem(page)
+  await page.getByRole("button", { name: "Next exercise" }).click()
+  const secondProblemId = await currentProblemId(page)
+  expect(secondProblemId).not.toBe(firstProblemId)
+  await expect(previous).toBeEnabled()
+
+  await previous.click()
+  await expect.poll(() => currentProblemId(page)).toBe(firstProblemId)
+  await expect(previous).toBeDisabled()
+  await expect(nextVisited).toBeEnabled()
+
+  await nextVisited.click()
+  await expect.poll(() => currentProblemId(page)).toBe(secondProblemId)
+  await expect(nextVisited).toBeDisabled()
+})
+
+test("accepts the second italic syntax typed into the editor", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
@@ -437,11 +449,8 @@ test("accepts the second italic syntax from Hint with the mouse Enter action", a
   await enterLevel(page, 1)
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
 
-  await page.getByRole("button", { name: "Show syntax hint" }).click()
-  await expect(page.getByText("** or __", { exact: true })).toBeVisible()
-
-  await guidedSyntaxInput(page).fill("__")
-  await page.getByRole("button", { name: "Submit syntax" }).click()
+  await sourceEditor(page).fill("_Paper boat_")
+  await sourceEditor(page).press("Control+Enter")
 
   await expect(page.getByRole("button", { name: "Next exercise" })).toBeVisible()
   expect(await sourceText(page)).toBe("_Paper boat_")
@@ -505,7 +514,7 @@ test("makes practice syntax scale, spacing, and the shared shortcut visible", as
   expect(consoleNoise).toEqual([])
 })
 
-test("starts every level with an empty guided source", async ({
+test("starts every level with the Goal-derived starter prose", async ({
   page,
 }) => {
   for (const level of [1, 2, 3, 4, 5] as const) {
@@ -515,109 +524,17 @@ test("starts every level with an empty guided source", async ({
     const problemId = await currentProblemId(page)
     const problem = runtimeProblemById.get(problemId)
     if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
-    const checkpoints = deriveSyntaxCheckpoints(problem.target, "")
-    expect(checkpoints.length).toBeGreaterThan(0)
-    await expect.poll(() => sourceText(page)).toBe("")
-    await expect(guidedSyntaxInput(page)).toBeFocused()
+    const starter = derivePlaintextStarter(problem.target)
+    expect(starter).not.toBe(problem.target)
+    await expect.poll(() => sourceText(page)).toBe(starter)
+    await expect(editor).toBeFocused()
 
     const modifier = await page.evaluate(() =>
       /Mac|iPhone|iPad|iPod/.test(navigator.platform) ? "Meta" : "Control",
     )
-    await editor.focus()
     await editor.press(`${modifier}+z`)
-    expect(await sourceText(page)).toBe("")
+    expect(await sourceText(page)).toBe(starter)
   }
-})
-
-test("keeps Level 3 syntax in one Answer-page row and scrolls both documents to it", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 1280, height: 800 })
-  await page.goto("/")
-  await enterLevel(page, 3)
-  const problemId = await currentProblemId(page)
-  const problem = runtimeProblemById.get(problemId)
-  if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
-
-  const checkpoints = deriveSyntaxCheckpoints(problem.target, "")
-  expect(checkpoints.length).toBeGreaterThan(1)
-  await expect(page.locator(".guided-syntax-card__slot")).toHaveCount(
-    checkpoints[0]!.canonicalInput.length,
-  )
-  await expect(page.locator(".cm-markdown-blank-guide")).toHaveCount(0)
-  expect(await sourceText(page)).toBe("")
-
-  const scrolledCheckpointIndex = checkpoints.findIndex(
-    (checkpoint) => checkpoint.line >= 8,
-  )
-  expect(scrolledCheckpointIndex).toBeGreaterThan(0)
-  for (let index = 0; index < scrolledCheckpointIndex; index += 1) {
-    await guidedSyntaxInput(page).fill(checkpoints[index]!.canonicalInput)
-    await page.getByRole("button", { name: "Submit syntax" }).click()
-  }
-
-  const card = page.getByRole("complementary", {
-    name: "Guided Markdown syntax",
-  })
-  const answer = page.getByRole("region", { name: "Your answer" })
-  const [cardBox, answerBox] = await Promise.all([
-    card.boundingBox(),
-    answer.boundingBox(),
-  ])
-  expect(cardBox).not.toBeNull()
-  expect(answerBox).not.toBeNull()
-  expect(cardBox!.x).toBeGreaterThanOrEqual(answerBox!.x)
-  expect(cardBox!.x + cardBox!.width).toBeLessThanOrEqual(
-    answerBox!.x + answerBox!.width,
-  )
-  expect(
-    await page.locator(".guided-syntax-card__sentence").evaluate((element) =>
-      window.getComputedStyle(element).flexWrap,
-    ),
-  ).toBe("nowrap")
-
-  for (const selector of [
-    ".goal-panel .cm-guided-target-line",
-    ".answer-panel .cm-guided-answer-line",
-  ]) {
-    const position = await page.locator(selector).evaluate((element) => {
-      const scroller = element.closest(".cm-scroller")
-      if (!(scroller instanceof HTMLElement)) {
-        throw new Error("Expected the active line inside its document scroller")
-      }
-      const lineBox = element.getBoundingClientRect()
-      const scrollerBox = scroller.getBoundingClientRect()
-      return {
-        clientHeight: scroller.clientHeight,
-        paddingBottom: window.getComputedStyle(
-          scroller.querySelector(".cm-content")!,
-        ).paddingBottom,
-        rowHeight: Number.parseFloat(
-          window.getComputedStyle(scroller).getPropertyValue("--sheet-row-height"),
-        ),
-        scrollHeight: scroller.scrollHeight,
-        scrollTop: scroller.scrollTop,
-        top: lineBox.top - scrollerBox.top,
-        transform: window.getComputedStyle(element).transform,
-      }
-    })
-    const positionLabel = `${selector} ${JSON.stringify(position)}`
-    expect(position.top, positionLabel).toBeGreaterThanOrEqual(0)
-    expect(position.top, positionLabel).toBeLessThanOrEqual(position.rowHeight * 4)
-    expect(position.transform, selector).toBe("none")
-  }
-
-  await guidedSyntaxInput(page).fill(
-    checkpoints[scrolledCheckpointIndex]!.canonicalInput,
-  )
-  await page.getByRole("button", { name: "Submit syntax" }).click()
-  expect(await sourceText(page)).toBe(
-    problem.target.slice(
-      0,
-      checkpoints[scrolledCheckpointIndex + 1]?.targetFrom ??
-        problem.target.length,
-    ),
-  )
 })
 
 test("completes and replays Level 1 with keyboard input only", async ({ page }) => {
@@ -627,24 +544,15 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(page.getByRole("button", { name: levelLabels[0] })).toBeFocused()
   await page.keyboard.press("Enter")
 
-  await expect(guidedSyntaxInput(page)).toBeFocused()
+  await expect(sourceEditor(page)).toBeFocused()
   await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
     "aria-selected",
     "false",
   )
 
   for (let exercise = 0; exercise < 6; exercise += 1) {
-    const problemId = await currentProblemId(page)
-    const problem = runtimeProblemById.get(problemId)
-    if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
-    const checkpoints = deriveSyntaxCheckpoints(problem.target, "")
-
-    for (const checkpoint of checkpoints) {
-      const syntax = guidedSyntaxInput(page)
-      await expect(syntax).toBeFocused()
-      await syntax.fill(checkpoint.canonicalInput)
-      await syntax.press("Enter")
-    }
+    await expect(sourceEditor(page)).toBeFocused()
+    await completeProblem(page)
 
     await expect(page.getByRole("status")).toContainText("Matched")
     const next = page.getByRole("button", { name: "Next exercise" })
@@ -707,7 +615,7 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(practiceAgain).not.toBeFocused()
   await practiceAgain.focus()
   await page.keyboard.press("Enter")
-  await expect(guidedSyntaxInput(page)).toBeFocused()
+  await expect(sourceEditor(page)).toBeFocused()
   await expect(page.getByRole("progressbar")).toHaveAttribute(
     "aria-valuenow",
     "1",
@@ -745,13 +653,14 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await expect(
     page.getByRole("button", { name: "Next exercise" }),
   ).toHaveCount(0)
+  await page.getByRole("tab", { name: "Review" }).click()
   await expect(page.getByRole("tabpanel", { name: "Review" })).toContainText(
     repairFeedback,
   )
 
   await page.keyboard.press("Alt+1")
-  await expect(guidedSyntaxInput(page)).toBeFocused()
-  await completeGuidedProblem(page)
+  await expect(sourceEditor(page)).toBeFocused()
+  await completeProblem(page)
   await expect(page.getByRole("status")).toContainText("Matched")
   await page.getByRole("button", { name: "Next exercise" }).click()
   await expect(page.getByRole("progressbar")).toHaveAttribute(
@@ -793,6 +702,7 @@ test("groups a Level 3 heading substitution into one exact bold correction", asy
 
   await sourceEditor(page).fill(malformed)
   await sourceEditor(page).press("Control+Enter")
+  await page.getByRole("tab", { name: "Review" }).click()
 
   const review = page.getByRole("tabpanel", { name: "Review" })
   const corrections = review.getByRole("list", { name: "Required corrections" })
@@ -958,7 +868,6 @@ test("keeps Goal and Write on the same source rows for Bus card", async ({
           (row) => {
             const box = row.getBoundingClientRect()
             return {
-              guided: row.classList.contains("cm-guided-target-line"),
               height: box.height,
               text: row.innerText,
               top: box.top,
@@ -976,9 +885,6 @@ test("keeps Goal and Write on the same source rows for Bus card", async ({
     expect(rows.goal).toHaveLength(8)
     expect(rows.answer).toHaveLength(8)
     for (let index = 0; index < 8; index += 1) {
-      if (rows.goal[index]!.guided) {
-        continue
-      }
       // Rendered widgets can distribute one fractional pixel differently at
       // this breakpoint; two pixels is the maximum full-row optical drift.
       expect(
@@ -1057,7 +963,6 @@ test("Preview is the same rendered word processor as Goal", async ({ page }) => 
             const box = line.getBoundingClientRect()
             const style = window.getComputedStyle(line)
             return {
-              guided: line.classList.contains("cm-guided-target-line"),
               fontFamily: style.fontFamily,
               fontSize: style.fontSize,
               fontWeight: style.fontWeight,
@@ -1141,7 +1046,6 @@ test("collapsed link syntax cannot add visual rows to the rendered Goal", async 
         (line) => {
           const box = line.getBoundingClientRect()
           return {
-            guided: line.classList.contains("cm-guided-target-line"),
             height: box.height,
             top: box.top,
           }
@@ -1155,18 +1059,14 @@ test("collapsed link syntax cannot add visual rows to the rendered Goal", async 
     }
   })
 
+  // The rendered Goal must keep one visual line per source line even though
+  // the link marks are concealed; the count parity above is the actual
+  // collapsed-link claim. The heading row anchors the shared row grid —
+  // paragraph rows wrap differently between the serif rendered page and the
+  // mono source page, so only the single-row heading compares exactly.
   expect(metrics.goal).toHaveLength(problem.target.split("\n").length)
   expect(metrics.answer).toHaveLength(metrics.goal.length)
-  const activeIndex = metrics.goal.findIndex((line) => line.guided)
-  expect(activeIndex).toBeGreaterThanOrEqual(0)
-  expect(
-    Math.abs(
-      metrics.goal[activeIndex]!.top - metrics.answer[activeIndex]!.top,
-    ),
-  ).toBeLessThanOrEqual(1)
-  expect(metrics.goal[activeIndex]!.height).toBe(
-    metrics.answer[activeIndex]!.height,
-  )
+  expect(metrics.goal[0]!.height).toBe(metrics.answer[0]!.height)
 })
 
 test("keeps the Practice chrome groups disjoint at 1024px", async ({ page }) => {
@@ -1281,11 +1181,15 @@ test("moves failed Review focus to its single reading scroller", async ({ page }
   const editor = sourceEditor(page)
   await editor.fill("")
   await editor.press("Control+Enter")
+  await expect(page.getByRole("status")).toContainText("Try again")
+  await expect(editor).toBeFocused()
+
   const reviewTab = page.getByRole("tab", { name: "Review" })
+  await reviewTab.click()
   const review = page.getByRole("tabpanel", { name: "Review" })
-  await expect(review).toBeFocused()
-  await expect(reviewTab).not.toBeFocused()
   await expect(reviewTab).toHaveAttribute("aria-selected", "true")
+  await review.focus()
+  await expect(review).toBeFocused()
 
   const metrics = await review.evaluate((panel) => {
     const list = panel.querySelector<HTMLElement>(".answer-review__corrections")
