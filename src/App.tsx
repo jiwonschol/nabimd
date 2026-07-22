@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react"
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react"
 import { EditorialDesk } from "./components/EditorialDesk"
 import { OpenBookLanding } from "./components/OpenBookLanding"
 import type { EntryId } from "./content/entryChoices"
@@ -59,7 +65,10 @@ export function App() {
     useState<LearningSessionController | null>(null)
   const turningEntryRef = useRef<EntryId | null>(null)
   const sessionRef = useRef(learningSession.session)
-  sessionRef.current = learningSession.session
+
+  useLayoutEffect(() => {
+    sessionRef.current = learningSession.session
+  }, [learningSession.session])
 
   useEffect(() => {
     const landingState: AppHistoryState = {
