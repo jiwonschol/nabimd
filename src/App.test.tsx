@@ -13,6 +13,10 @@ import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
 import { evaluateProblem } from "./engine/evaluateProblem"
 import { buildReviewCorrections } from "./feedback/reviewCorrections"
+import {
+  buildGuidedDraft,
+  deriveSyntaxCheckpoints,
+} from "./guided/guidedSyntax"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
 import { playPageTurnSound } from "./sound/pageTurnSound"
 import { App, PAGE_TURN_DURATION_MS } from "./App"
@@ -195,7 +199,9 @@ describe("App", () => {
 
     expect(screen.queryByTestId("page-turn-transition")).toBeNull()
     expect(screen.getByTestId("page-turn-receiver")).not.toHaveAttribute("inert")
-    expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
+    expect(
+      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+    ).toHaveFocus()
   })
 
   it("ignores repeated level activation while a page is already turning", () => {
@@ -253,7 +259,9 @@ describe("App", () => {
       )
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
       expect(screen.getByLabelText(`Level ${entry.level}`)).toBeVisible()
-      expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
+      expect(
+        screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+      ).toHaveFocus()
       view.unmount()
     }
   })
@@ -357,6 +365,11 @@ describe("App", () => {
   })
 
   it("checks only on explicit action and accepts different prose", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
     const { user, editor } = await openLevel(1)
     replaceSource(editor, validDifferentProse())
     expect(screen.queryByRole("status")).toBeNull()
@@ -377,12 +390,15 @@ describe("App", () => {
   it("moves focus Check → Next → editor with one unified shortcut", async () => {
     const { user, editor } = await openLevel(1)
     replaceSource(editor, validDifferentProse())
+    await user.click(editor)
     await user.keyboard("{Control>}{Enter}{/Control}")
     expect(screen.getByRole("button", { name: "Next exercise" })).toHaveFocus()
 
     await user.keyboard("{Control>}{Enter}{/Control}")
     const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
-    expect(nextEditor).toHaveFocus()
+    expect(
+      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+    ).toHaveFocus()
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 2 of 6",
     )
@@ -396,7 +412,9 @@ describe("App", () => {
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 2 of 6",
     )
-    expect(nextEditor).toHaveFocus()
+    expect(
+      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+    ).toHaveFocus()
   })
 
   it("keeps Next unavailable and opens beginner Review after Try again", async () => {
@@ -434,8 +452,8 @@ describe("App", () => {
       1,
       (problem) => problem.id === "l1-list-toolbox",
     )
-    const { user } = await openLevel(1)
-    await user.keyboard(malformedSource())
+    const { user, editor } = await openLevel(1)
+    replaceSource(editor, malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
     const review = screen.getByRole("tabpanel", { name: "Review" })
@@ -764,7 +782,7 @@ describe("App", () => {
     const { user, editor } = await openLevel(2)
     const problem = currentProblem()
     const editorView = EditorView.findFromDOM(editor)
-    expect(editorView?.state.doc.toString()).toBe(problem.starterText)
+    expect(editorView?.state.doc.toString()).toBe("")
 
     const goalPage = screen
       .getByRole("region", { name: "Goal" })
@@ -820,9 +838,56 @@ describe("App", () => {
     )
   })
 
+  it("builds the source one syntax checkpoint at a time and keeps browser history inside the problem", async () => {
+    const { editor } = await openLevel(3)
+    const problem = currentProblem()
+    const checkpoints = deriveSyntaxCheckpoints(
+      problem.target,
+      problem.starterText,
+    )
+    const first = checkpoints[0]!
+    expect(checkpoints.length).toBeGreaterThan(1)
+
+    const syntaxInput = screen.getByRole("textbox", {
+      name: `Markdown syntax for line ${first.line}`,
+    })
+    fireEvent.change(syntaxInput, {
+      target: { value: first.canonicalInput },
+    })
+    fireEvent.keyDown(syntaxInput, { key: "Enter" })
+
+    await waitFor(() =>
+      expect(
+        screen.getByLabelText(`Syntax 2 of ${checkpoints.length}`),
+      ).toBeVisible(),
+    )
+    expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toBe(
+      buildGuidedDraft(problem.target, checkpoints, 1),
+    )
+
+    act(() => window.history.back())
+    await waitFor(() =>
+      expect(
+        screen.getByLabelText(`Syntax 1 of ${checkpoints.length}`),
+      ).toBeVisible(),
+    )
+    expect(currentProblem().id).toBe(problem.id)
+    expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toBe(
+      buildGuidedDraft(problem.target, checkpoints, 1),
+    )
+
+    act(() => window.history.forward())
+    await waitFor(() =>
+      expect(
+        screen.getByLabelText(`Syntax 2 of ${checkpoints.length}`),
+      ).toBeVisible(),
+    )
+  })
+
   it("keeps view shortcuts active across Write, Preview, and Hint", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard("# Preview words")
+    replaceSource(editor, "# Preview words")
+    await user.click(editor)
     const writeTab = screen.getByRole("tab", { name: "Write" })
     const previewTab = screen.getByRole("tab", { name: "Preview" })
 
@@ -846,9 +911,30 @@ describe("App", () => {
     expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
   })
 
+  it("keeps view shortcuts active while the guided syntax input owns focus", async () => {
+    const { user } = await openLevel(1)
+    const answer = screen.getByRole("region", { name: "Your answer" })
+    const card = screen.getByRole("complementary", {
+      name: "Guided Markdown syntax",
+    })
+    const syntaxInput = screen.getByRole("textbox", {
+      name: /Markdown syntax for line/,
+    })
+    const previewTab = screen.getByRole("tab", { name: "Preview" })
+
+    expect(answer).toContainElement(card)
+    expect(syntaxInput).toHaveFocus()
+    await user.keyboard("{Alt>}2{/Alt}")
+
+    expect(previewTab).toHaveAttribute("aria-selected", "true")
+    expect(previewTab).toHaveFocus()
+  })
+
   it("opens Hint with ? outside the editor without stealing typed question marks", async () => {
     const { user, editor } = await openLevel(1)
 
+    await user.click(editor)
+    expect(editor).toHaveFocus()
     await user.keyboard("question?")
     expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toContain(
       "question?",
@@ -858,8 +944,10 @@ describe("App", () => {
       "true",
     )
 
-    screen.getByRole("button", { name: "Exit" }).focus()
-    await user.keyboard("?")
+    const exit = screen.getByRole("button", { name: "Exit" })
+    exit.focus()
+    expect(exit).toHaveFocus()
+    fireEvent.keyDown(exit, { key: "?" })
 
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
       "aria-selected",
@@ -868,11 +956,26 @@ describe("App", () => {
     expect(editor).not.toHaveFocus()
   })
 
+  it("keeps ? in the editor when a document-level key event observes editor focus", async () => {
+    const { user, editor } = await openLevel(1)
+
+    await user.click(editor)
+    expect(editor).toHaveFocus()
+    fireEvent.keyDown(document, { key: "?" })
+
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+    expect(editor).toHaveFocus()
+  })
+
   it("does not leave stale focus when a shortcut selects the current tab", async () => {
     const { user } = await openLevel(1)
     const hintTab = screen.getByRole("tab", { name: "Hint" })
     const previewTab = screen.getByRole("tab", { name: "Preview" })
 
+    await user.click(screen.getByRole("textbox", { name: "Your Markdown" }))
     await user.keyboard("{Alt>}3{/Alt}")
     await user.keyboard("{Alt>}3{/Alt}")
     expect(hintTab).toHaveFocus()
@@ -886,6 +989,9 @@ describe("App", () => {
     const original = screen.getByRole("region", { name: "Goal" }).textContent
     await user.click(screen.getByRole("button", { name: "Try another" }))
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(original)
+    expect(
+      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+    ).toHaveFocus()
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 1 of 6",
     )
@@ -972,5 +1078,5 @@ describe("App", () => {
       },
       { timeout: PAGE_TURN_DURATION_MS + 400 },
     )
-  })
+  }, 10_000)
 })

@@ -7,7 +7,10 @@ import { describe, expect, it, vi } from "vitest"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
 import { getProblemsForLevel } from "../content/problemBank"
-import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
+import {
+  MarkdownSourceEditor,
+  MarkdownWordProcessor,
+} from "./MarkdownSourceEditor"
 
 describe("MarkdownSourceEditor", () => {
   it("presents only the writing surface without a second toolbar", () => {
@@ -64,6 +67,35 @@ describe("MarkdownSourceEditor", () => {
 
     await waitFor(() => expect(editor).toHaveTextContent("# Rainy day"))
     expect(onChange).toHaveBeenCalledTimes(editCallCount)
+  })
+
+  it("does not let a stale controlled echo overwrite newer local input", () => {
+    const onChange = vi.fn()
+    const { rerender } = render(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value=""
+      />,
+    )
+    const editor = screen.getByRole("textbox", { name: "Your Markdown" })
+    const view = EditorView.findFromDOM(editor)
+    expect(view).not.toBeNull()
+    if (!view) return
+
+    view.dispatch({ changes: { from: 0, insert: "q" } })
+    view.dispatch({ changes: { from: 1, insert: "u" } })
+    expect(view.state.doc.toString()).toBe("qu")
+
+    rerender(
+      <MarkdownSourceEditor
+        onChange={onChange}
+        onCheck={vi.fn()}
+        value="q"
+      />,
+    )
+
+    expect(view.state.doc.toString()).toBe("qu")
   })
 
   it("checks with the universal Control plus Enter shortcut", () => {
@@ -557,5 +589,24 @@ describe("MarkdownSourceEditor", () => {
     await waitFor(() =>
       expect(onChange).toHaveBeenLastCalledWith("first\n\tsecond"),
     )
+  })
+
+  it("marks and centers the active Goal line without making it editable", async () => {
+    const { container } = render(
+      <MarkdownWordProcessor
+        activeOffset={16}
+        focusTreatment="goal"
+        label="Goal document"
+        presentation="rendered"
+        readOnly
+        showInvisibles
+        value={"# First\n\n## Active line\n\nLast"}
+      />,
+    )
+
+    await waitFor(() =>
+      expect(container.querySelector(".cm-guided-target-line")).not.toBeNull(),
+    )
+    expect(screen.queryByRole("textbox", { name: "Goal document" })).toBeNull()
   })
 })

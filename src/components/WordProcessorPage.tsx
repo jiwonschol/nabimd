@@ -3,6 +3,8 @@ import { MarkdownWordProcessor } from "./MarkdownSourceEditor"
 import { WritingProcessor } from "./WritingProcessor"
 
 type WordProcessorPageBaseProps = {
+  activeOffset?: number
+  focusTreatment?: "answer" | "goal"
   label: string
   leadingBlankRows?: number
   value: string
@@ -15,6 +17,7 @@ type WordProcessorPageProps = WordProcessorPageBaseProps &
         onChange?: never
         onCheck?: never
         presentation: "rendered"
+        readOnly?: true
       }
     | {
         active?: boolean
@@ -22,18 +25,30 @@ type WordProcessorPageProps = WordProcessorPageBaseProps &
         onChange: (value: string) => void
         onCheck: () => void
         presentation: "source"
+        readOnly?: false
+      }
+    | {
+        active?: never
+        blankGuides?: never
+        onChange?: never
+        onCheck?: never
+        presentation: "source"
+        readOnly: true
       }
   )
 
 export function WordProcessorPage(props: WordProcessorPageProps) {
   const { label, leadingBlankRows = 0, presentation, value } = props
   const rendered = presentation === "rendered"
+  const readOnly = rendered || props.readOnly === true
 
-  const processor = rendered ? (
+  const processor = readOnly ? (
     <MarkdownWordProcessor
       active={false}
+      activeOffset={props.activeOffset}
+      focusTreatment={props.focusTreatment}
       label={label}
-      presentation="rendered"
+      presentation={presentation}
       readOnly
       showInvisibles
       value={value}
@@ -41,7 +56,9 @@ export function WordProcessorPage(props: WordProcessorPageProps) {
   ) : (
     <MarkdownWordProcessor
       active={props.active}
+      activeOffset={props.activeOffset}
       blankGuides={props.blankGuides}
+      focusTreatment={props.focusTreatment}
       label={label}
       onChange={props.onChange}
       onCheck={props.onCheck}
@@ -57,7 +74,7 @@ export function WordProcessorPage(props: WordProcessorPageProps) {
       engine="codemirror"
       label={label}
       leadingBlankRows={leadingBlankRows}
-      mode={rendered ? "read-only" : "edit"}
+      mode={readOnly ? "read-only" : "edit"}
       page={presentation}
     >
       {processor}

@@ -163,3 +163,46 @@ final result: automated checks passed; visual approval pending
    the final responsive rule makes the left page fit without its own scrollbar.
 
 final result: passed
+
+---
+
+# Guided syntax practice — design QA
+
+## Visual target
+
+- Approved interaction mock: `docs/design/qa/guided-syntax-approved.png`
+- Optical-focus reference: `docs/design/qa/guided-syntax-optical-focus.png`
+- Earlier corrected implementation: `docs/design/qa/guided-syntax-corrected.png`
+- Earlier side-by-side comparison: `docs/design/qa/guided-syntax-comparison.png`
+- Latest implementation inspected locally at 1280 × 800, Level 3, a checkpoint below row 8
+
+The approved mock and the implementation screenshot were placed side by side in one comparison image before this review.
+
+## Review
+
+- **Book frame and chrome:** pass. The existing Nabi paper, binding, wordmark, level, progress, audio, shuffle, and check controls remain fixed and visually unchanged.
+- **Answer-page interaction:** pass after correction. The syntax card now belongs to the right Answer page instead of covering the book center. Its exercise is one visual row, with long locked prose clipped to the local syntax context instead of wrapping into a second row.
+- **Progressive answer:** pass. The source page begins empty and gains only completed source blocks; future prose is not prefilled and editor blank-guide decorations are suppressed in guided mode.
+- **Current location:** pass. Goal and Answer scroll only inside their shared CodeMirror word-processor frame and move to the current source row. The temporary magnifier enlargement is disabled so native Markdown heading hierarchy remains legible; page headers and instructions do not move.
+- **History controls:** pass. Back, checkpoint count, and Forward sit in the card header. Forward is disabled for unseen checkpoints, and browser history preserves the built draft.
+- **Hint:** pass. The card reveals only the canonical syntax, including visible spaces, with no prose explanation or autofill.
+- **Typography and spacing:** pass. Existing Source Serif, sans, mono, ink, muted, and paper tokens are reused. No new color system, icon style, or card language was introduced.
+- **Responsive desktop:** pass at 1280 × 800, 1024 × 768, 901 × 768, and 800 × 500. The two-page frame remains fixed and only the document scrollers move.
+- **Reduced motion and accessibility:** pass. Focus rings, accessible labels, disabled history states, keyboard-only completion, and reduced-motion fallbacks are covered.
+
+## Intentional differences from the early mock
+
+- The card repeats the short learner instruction above the syntax exercise so the local Answer-page interaction remains understandable after the document scrollers move away from the top rows.
+- The implementation uses the app's existing Lucide icon set and paper tokens instead of reproducing approximate assets from the mock.
+- The implementation keeps the full production top bar and Answer tabs because both are approved, functional parts of the current Practice page.
+
+## Verification evidence
+
+- `npm run check` — passed
+- `E2E_PORT=4176 npm run test:e2e` — 40 passed
+- Full Vitest suite — 10,122 passed
+- All 360 published problems derive at least one guided syntax checkpoint and rebuild their exact target when completed.
+
+## Correction pass after the first deployed preview
+
+The first preview did not pass visual review: the active Goal row used an opaque white rectangle, the syntax slots read as placeholder boxes, the card hierarchy was too weak, and `Enter` was only a keyboard legend. A second correction made `Enter` a real mouse and keyboard action and restored the brief and checkpoint hierarchy. The latest correction then moved the card from the viewport center into the Answer page, fixed the exercise to one row, disabled the Goal magnifier, and changed scrolling to follow the current source row in both word-processor pages.

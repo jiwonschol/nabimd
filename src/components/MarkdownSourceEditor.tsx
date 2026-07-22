@@ -7,6 +7,7 @@ import {
 import { Annotation, Compartment, EditorState } from "@codemirror/state"
 import { search, searchKeymap } from "@codemirror/search"
 import {
+  Decoration,
   EditorView,
   keymap,
   placeholder,
@@ -82,7 +83,9 @@ type MarkdownSourceEditorProps = {
 
 type MarkdownWordProcessorBaseProps = {
   active?: boolean
+  activeOffset?: number
   blankGuides?: MarkdownBlankGuideSource
+  focusTreatment?: "answer" | "goal"
   label: string
   showInvisibles?: boolean
   value: string
@@ -93,7 +96,7 @@ type MarkdownWordProcessorProps = MarkdownWordProcessorBaseProps &
     | {
         onChange?: never
         onCheck?: never
-        presentation: "rendered"
+        presentation: "rendered" | "source"
         readOnly: true
       }
     | {
@@ -104,10 +107,74 @@ type MarkdownWordProcessorProps = MarkdownWordProcessorBaseProps &
       }
   )
 
+function guidedFocusLineDecoration(
+  value: string,
+  activeOffset: number | undefined,
+  focusTreatment: MarkdownWordProcessorBaseProps["focusTreatment"],
+) {
+  if (activeOffset === undefined || focusTreatment === undefined) return null
+  const offset = Math.max(0, Math.min(activeOffset, value.length))
+  const lineFrom = guidedFocusLineFrom(value, offset)
+  const lineTo = value.indexOf("\n", offset)
+  const lineLength = (lineTo < 0 ? value.length : lineTo) - lineFrom
+  const className =
+    focusTreatment === "goal"
+      ? `cm-guided-target-line${lineLength > 34 ? " cm-guided-target-line--long" : ""}`
+      : "cm-guided-answer-line"
+  return Decoration.line({ attributes: { class: className } }).range(lineFrom)
+}
+
+function guidedFocusLineFrom(value: string, activeOffset: number): number {
+  const offset = Math.max(0, Math.min(activeOffset, value.length))
+  return value.lastIndexOf("\n", Math.max(0, offset - 1)) + 1
+}
+
+function guidedFocusRowHeight(view: EditorView): number {
+  const configured = Number.parseFloat(
+    getComputedStyle(view.scrollDOM).getPropertyValue("--sheet-row-height"),
+  )
+  return Number.isFinite(configured) ? configured : view.defaultLineHeight
+}
+
+function guidedFocusLineTop(
+  view: EditorView,
+  selector: string,
+  fallbackOffset: number,
+): number {
+  const activeLine = view.dom.querySelector<HTMLElement>(selector)
+  if (!activeLine) return view.lineBlockAt(fallbackOffset).top
+  const lineBox = activeLine.getBoundingClientRect()
+  const scrollBox = view.scrollDOM.getBoundingClientRect()
+  return view.scrollDOM.scrollTop + lineBox.top - scrollBox.top
+}
+
+function setGuidedScrollTop(view: EditorView, scrollTop: number): void {
+  if (view.scrollDOM.scrollTop === scrollTop) return
+  view.scrollDOM.scrollTop = scrollTop
+  view.scrollDOM.dispatchEvent(new Event("scroll"))
+}
+
+function guidedFocusDecoration(
+  value: string,
+  activeOffset: number | undefined,
+  focusTreatment: MarkdownWordProcessorBaseProps["focusTreatment"],
+) {
+  const decoration = guidedFocusLineDecoration(
+    value,
+    activeOffset,
+    focusTreatment,
+  )
+  return decoration
+    ? EditorView.decorations.of(Decoration.set([decoration]))
+    : []
+}
+
 export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   const {
     active = true,
+    activeOffset,
     blankGuides,
+    focusTreatment,
     label,
     presentation,
     readOnly,
@@ -118,11 +185,13 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   } = _props
   const mountRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
+  const pendingLocalValuesRef = useRef<string[]>([])
   const tabEscapeHintId = useId()
   const onChangeRef = useRef(onChange)
   const onCheckRef = useRef(onCheck)
   const invisibleCompartmentRef = useRef(new Compartment())
   const presentationCompartmentRef = useRef(new Compartment())
+  const guidedFocusCompartmentRef = useRef(new Compartment())
 
   onChangeRef.current = onChange
   onCheckRef.current = onCheck
@@ -163,7 +232,9 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
             (transaction) => transaction.annotation(externalChange) === true,
           )
           if (!isExternal) {
-            onChangeRef.current(update.state.doc.toString())
+            const nextValue = update.state.doc.toString()
+            pendingLocalValuesRef.current.push(nextValue)
+            onChangeRef.current(nextValue)
           }
         }),
         keymap.of(
@@ -184,6 +255,9 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
               ],
         ),
         invisibleCompartmentRef.current.of([]),
+        guidedFocusCompartmentRef.current.of(
+          guidedFocusDecoration(value, activeOffset, focusTreatment),
+        ),
         ...(blankGuides ? [markdownBlankGuides(blankGuides)] : []),
         presentationCompartmentRef.current.of(
           presentation === "rendered" ? renderedMarkdown() : [],
@@ -212,7 +286,17 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
 
   useLayoutEffect(() => {
     const view = viewRef.current
-    if (!view || view.state.doc.toString() === value) return
+    if (!view) return
+
+    const currentValue = view.state.doc.toString()
+    const echoedValueIndex = pendingLocalValuesRef.current.lastIndexOf(value)
+    if (echoedValueIndex >= 0) {
+      pendingLocalValuesRef.current.splice(0, echoedValueIndex + 1)
+      if (currentValue !== value) return
+    }
+    if (currentValue === value) return
+
+    pendingLocalValuesRef.current = []
 
     view.dispatch({
       changes: { from: 0, to: view.state.doc.length, insert: value },
@@ -245,6 +329,93 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
   useEffect(() => {
     if (active) viewRef.current?.focus()
   }, [active])
+
+  useLayoutEffect(() => {
+    const view = viewRef.current
+    if (!view) return
+    if (activeOffset === undefined || focusTreatment === undefined) {
+      view.contentDOM.style.removeProperty("padding-bottom")
+      view.dispatch({
+        effects: guidedFocusCompartmentRef.current.reconfigure([]),
+      })
+      return
+    }
+
+    const offset = Math.max(0, Math.min(activeOffset, view.state.doc.length))
+    const focusLineFrom = guidedFocusLineFrom(
+      view.state.doc.toString(),
+      offset,
+    )
+    const decoration = guidedFocusLineDecoration(
+      view.state.doc.toString(),
+      offset,
+      focusTreatment,
+    )
+    const focusLineSelector =
+      focusTreatment === "goal"
+        ? ".cm-guided-target-line"
+        : ".cm-guided-answer-line"
+    view.dispatch({
+      effects: [
+        guidedFocusCompartmentRef.current.reconfigure(
+          decoration
+            ? EditorView.decorations.of(Decoration.set([decoration]))
+            : [],
+        ),
+      ],
+    })
+
+    const positionActiveLine = () => {
+      view.requestMeasure({
+        key: "guided-syntax-scroll-space",
+        read: (measuredView) => ({
+          clientHeight: measuredView.scrollDOM.clientHeight,
+          currentPadding: Number.parseFloat(
+            getComputedStyle(measuredView.contentDOM).paddingBottom,
+          ),
+          lineTop: guidedFocusLineTop(
+            measuredView,
+            focusLineSelector,
+            focusLineFrom,
+          ),
+          rowHeight: guidedFocusRowHeight(measuredView),
+          scrollHeight: measuredView.scrollDOM.scrollHeight,
+        }),
+        write: (
+          { clientHeight, currentPadding, lineTop, rowHeight, scrollHeight },
+          measuredView,
+        ) => {
+          const targetScrollTop = Math.max(0, lineTop - rowHeight * 3)
+          const baseScrollHeight =
+            scrollHeight - (Number.isFinite(currentPadding) ? currentPadding : 0)
+          const requiredPadding = Math.max(
+            0,
+            targetScrollTop + clientHeight - baseScrollHeight + rowHeight * 2,
+          )
+          measuredView.contentDOM.style.paddingBottom = `${requiredPadding}px`
+          measuredView.requestMeasure({
+            key: "guided-syntax-scroll-position",
+            read: (positionedView) =>
+              Math.max(
+                0,
+                guidedFocusLineTop(
+                  positionedView,
+                  focusLineSelector,
+                  focusLineFrom,
+                ) - guidedFocusRowHeight(positionedView) * 3,
+              ),
+            write: (positionedTarget, positionedView) => {
+              setGuidedScrollTop(positionedView, positionedTarget)
+            },
+          })
+        },
+      })
+    }
+
+    positionActiveLine()
+    window.addEventListener("resize", positionActiveLine)
+    return () => window.removeEventListener("resize", positionActiveLine)
+  }, [activeOffset, focusTreatment, value])
 
   const navigateReadOnlyDocument = (
     event: ReactKeyboardEvent<HTMLElement>,
@@ -288,6 +459,7 @@ export function MarkdownWordProcessor(_props: MarkdownWordProcessorProps) {
     <section
       aria-label={label}
       className="markdown-word-processor markdown-source-editor"
+      data-guided-focus={focusTreatment}
       data-presentation={presentation}
       onKeyDown={navigateReadOnlyDocument}
       tabIndex={readOnly ? 0 : undefined}

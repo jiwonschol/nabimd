@@ -14,7 +14,9 @@ import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
+import type { GuidedSyntaxController } from "../guided/useGuidedSyntaxPractice"
 import { RenderedDocumentBody } from "./RenderedDocument"
+import { GuidedSyntaxCard } from "./GuidedSyntaxCard"
 import { WordProcessorPage } from "./WordProcessorPage"
 
 type AnswerView = "write" | "preview" | "review" | "hint"
@@ -26,8 +28,9 @@ type AnswerPanelProps = {
   coach: LearningSession["coach"]
   hintLevel: LearningSession["hintLevel"]
   problem: GradableProblem
+  guided?: GuidedSyntaxController
   onChange: (value: string) => void
-  onCheck: () => void
+  onCheck: (value?: string) => void
   onCloseHint: () => void
   onNextHint: () => void
   onRequestHint: () => void
@@ -240,6 +243,7 @@ export function AnswerPanel({
   coach,
   hintLevel,
   problem,
+  guided,
   onChange,
   onCheck,
   onCloseHint,
@@ -387,10 +391,15 @@ export function AnswerPanel({
         return
       }
 
-      const target = event.target
-      if (
+      const isTextEntryContext = (target: EventTarget | null) =>
         target instanceof Element &&
-        target.closest('input, textarea, select, [contenteditable="true"]')
+        target.closest(
+          'input, textarea, select, [contenteditable]:not([contenteditable="false"])',
+        ) !== null
+
+      if (
+        isTextEntryContext(event.target) ||
+        isTextEntryContext(document.activeElement)
       ) {
         return
       }
@@ -427,7 +436,9 @@ export function AnswerPanel({
     selectView(target)
   }
 
-  const switchViewShortcut = (event: ReactKeyboardEvent<HTMLElement>) => {
+  const switchViewShortcut = useCallback((
+    event: ReactKeyboardEvent<HTMLElement> | KeyboardEvent,
+  ) => {
     if (
       !event.altKey ||
       (event.key !== "1" && event.key !== "2" && event.key !== "3")
@@ -460,7 +471,25 @@ export function AnswerPanel({
     }
     pendingTabFocus.current = target
     selectView(target)
-  }
+  }, [focusTab, secondView, selectView, view])
+
+  useEffect(() => {
+    if (!interactive) return
+    const switchViewOutsideAnswerPanel = (event: KeyboardEvent) => {
+      const target = event.target
+      if (
+        target instanceof Element &&
+        target.closest(".answer-panel") !== null
+      ) {
+        return
+      }
+      switchViewShortcut(event)
+    }
+
+    document.addEventListener("keydown", switchViewOutsideAnswerPanel)
+    return () =>
+      document.removeEventListener("keydown", switchViewOutsideAnswerPanel)
+  }, [interactive, switchViewShortcut])
 
   const tabIds = useMemo(
     () => ({
@@ -551,15 +580,27 @@ export function AnswerPanel({
         role="tabpanel"
       >
         <WordProcessorPage
-          active={interactive && view === "write"}
-          blankGuides={blankGuides}
+          {...(guided
+            ? {
+                active: false,
+                activeOffset: guided.checkpoint?.activeOffset,
+                focusTreatment: "answer" as const,
+                onChange: guided.editDraft,
+                onCheck: guided.checkDraft,
+                readOnly: false as const,
+              }
+            : {
+                active: interactive && view === "write",
+                blankGuides,
+                onChange,
+                onCheck,
+                readOnly: false as const,
+              })}
           key={problem.id}
           label="Your Markdown"
           leadingBlankRows={leadingBlankRows}
-          onChange={onChange}
-          onCheck={onCheck}
           presentation="source"
-          value={draft}
+          value={guided?.draft ?? draft}
         />
       </div>
 
@@ -582,7 +623,15 @@ export function AnswerPanel({
             label="Rendered answer"
             leadingBlankRows={leadingBlankRows}
             presentation="rendered"
-            value={draft}
+            activeOffset={
+              guided && view === secondView
+                ? guided.checkpoint?.activeOffset
+                : undefined
+            }
+            focusTreatment={
+              guided && view === secondView ? "answer" : undefined
+            }
+            value={guided?.draft ?? draft}
           />
         )}
       </div>
@@ -606,6 +655,26 @@ export function AnswerPanel({
           problem={problem}
         />
       </div>
+
+      {interactive && view === "write" && guided?.checkpoint ? (
+        <GuidedSyntaxCard
+          attempts={guided.attempts}
+          canGoBack={guided.canGoBack}
+          canGoForward={guided.canGoForward}
+          checkpoint={guided.checkpoint}
+          current={guided.currentIndex + 1}
+          hintOpen={guided.hintOpen}
+          instruction={problem.prompt}
+          key={problem.id}
+          onBack={guided.goBack}
+          onForward={guided.goForward}
+          onSubmit={guided.submit}
+          onToggleHint={guided.toggleHint}
+          onValueChange={guided.setValue}
+          total={guided.checkpoints.length}
+          value={guided.value}
+        />
+      ) : null}
     </section>
   )
 }
