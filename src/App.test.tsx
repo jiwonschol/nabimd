@@ -87,14 +87,20 @@ function validDifferentProse() {
       return "> completely different words"
     case "bold-emphasis":
       return "**completely different words**"
+    case "italic-emphasis":
+      return "*completely different words*"
     case "inline-code":
       return "Use `completely different words`."
-    case "links":
+    case "inline-link":
       return "Use [completely different words](/changed)."
     case "unordered-list":
       return "- Alpha\n- Bravo\n- Charlie"
     case "ordered-list":
       return "1. Alpha\n2. Bravo\n3. Charlie"
+    case "code-block":
+      return "```\ncompletely different\n```"
+    case "thematic-break":
+      return "First part.\n\n---\n\nSecond part."
     default:
       return "# completely different words"
   }

@@ -1,6 +1,7 @@
 import { problemBank } from "./problemBank"
 import type { NormalizedProblem } from "./types"
-import { createTurnProblemIds } from "../selection/runComposition"
+import { createTurnProblemIds, getSyntaxFamily } from "../selection/runComposition"
+import { EXCLUDED_SYNTAX_FAMILIES } from "../selection/runPolicy"
 import { curriculumLevels } from "./curriculumLevels"
 
 export const entryChoices = curriculumLevels
@@ -40,5 +41,12 @@ export function createRunProblemIdsForBank(
   seed = 0,
 ): string[] {
   const entry = getEntryChoice(entryId)
-  return createTurnProblemIds(entry.level, runNumber, problems, seed)
+  // Drop the isolated single-syntax drills the curriculum retired (numbered
+  // lists). Composite rebuild documents report no single family, so ordered
+  // lists embedded in them are kept.
+  const served = problems.filter((problem) => {
+    const family = getSyntaxFamily(problem)
+    return family === null || !EXCLUDED_SYNTAX_FAMILIES.has(family)
+  })
+  return createTurnProblemIds(entry.level, runNumber, served, seed)
 }
