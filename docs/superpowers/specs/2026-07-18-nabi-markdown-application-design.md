@@ -124,10 +124,11 @@ coverage.
 
 ### Current curriculum shape
 
-- The deterministic runtime bank contains 348 inspected problems split
-  140/148/30/20/10 across Levels 1–5. Level 1 now includes focused three-line
+- The deterministic runtime bank contains 360 inspected problems split
+  140/148/30/20/22 across Levels 1–5. Level 1 now includes focused three-line
   nested-bullet warmups, and the accepted Level 4–5 revisions follow the
-  corrected compact workplace/developer curriculum ladder.
+  corrected compact workplace/developer curriculum ladder. Level 5 includes
+  short README quick starts, bug reports, and pull-request descriptions.
 - Accepted batches remain immutable and digest-bound. Runtime scheduling may
   reclassify how those records are presented, but it does not rewrite their
   accepted evidence.

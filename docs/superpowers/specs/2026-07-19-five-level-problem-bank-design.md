@@ -88,11 +88,12 @@ The standard syntax families are headings and paragraphs, emphasis, lists,
 blockquotes, inline code, horizontal rules, links, fenced code blocks, and
 images with alt text. Fenced code blocks are a CommonMark-compatible,
 Devpost-supported expansion of the initial basic family list.
-The published 348-problem checkpoint includes ATX heading lessons from H1
+The published 360-problem checkpoint includes ATX heading lessons from H1
 through H6, Level 2 rebuilds whose H1–H3 hierarchy is graded structurally, 12
 Level 2 nested-list document rebuilds, four Level 1 nested-bullet indentation
-warmups, compact Level 4 workplace notes, and compact Level 5 developer briefs.
-Its level split is 140/148/30/20/10. The
+warmups, compact Level 4 workplace notes, and compact Level 5 developer briefs,
+README quick starts, bug reports, and pull-request descriptions. Its level split
+is 140/148/30/20/22. The
 current advanced-document revisions stay at or below 40 authored lines and 165
 words, and each carries an enforceable `document-limits` guard.
 Deep headings remain focused syntax lessons, while ordinary sectioned documents
@@ -100,9 +101,9 @@ use the readable H1–H3 range. The nested-list batch requires one root list and
 one descendant list while accepting any valid child marker kind and rejecting
 list items that render without meaningful visible content.
 Paragraph separation remains deferred because Level 1 cannot schedule that
-family without the taxonomy and selection paths owned by Issue #50. At 348
-accepted problems, 152 more are needed to reach the public 500-problem floor
-and 164 more are needed to reach the internal 512-problem closing target.
+family without the taxonomy and selection paths owned by Issue #50. At 360
+accepted problems, 140 more are needed to reach the public 500-problem floor
+and 152 more are needed to reach the internal 512-problem closing target.
 Image exercises remain blocked until their local assets and alt-text guidance
 have been visually and editorially inspected; another ready family may carry
 the minimum count while that stop remains local to images.

@@ -352,7 +352,7 @@ describe("App", () => {
 
   it("checks only on explicit action and accepts different prose", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard(validDifferentProse())
+    replaceSource(editor, validDifferentProse())
     expect(screen.queryByRole("status")).toBeNull()
 
     await user.click(screen.getByRole("button", { name: "Check answer" }))
@@ -363,14 +363,14 @@ describe("App", () => {
   it("checks with the universal Control + Enter shortcut", async () => {
     const { user, editor } = await openLevel(1)
     await user.click(editor)
-    await user.keyboard(validDifferentProse())
+    replaceSource(editor, validDifferentProse())
     fireEvent.keyDown(editor, { key: "Enter", ctrlKey: true })
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
   })
 
   it("moves focus Check → Next → editor with one unified shortcut", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard(validDifferentProse())
+    replaceSource(editor, validDifferentProse())
     await user.keyboard("{Control>}{Enter}{/Control}")
     expect(screen.getByRole("button", { name: "Next exercise" })).toHaveFocus()
 
@@ -414,6 +414,9 @@ describe("App", () => {
     expect(editor).not.toHaveFocus()
 
     await user.keyboard("{Alt>}1{/Alt}")
+    await waitFor(() => {
+      expect(screen.getByRole("textbox", { name: "Your Markdown" })).toHaveFocus()
+    })
     await user.keyboard("{Alt>}2{/Alt}")
     await waitFor(() => {
       expect(screen.getByRole("tab", { name: "Review" })).toHaveFocus()
@@ -421,24 +424,39 @@ describe("App", () => {
   })
 
   it("keeps failed Review available while editing until a successful recheck", async () => {
-    const { user, editor } = await openLevel(1)
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) => problem.id === "l1-list-toolbox",
+    )
+    const { user } = await openLevel(1)
     await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
     const review = screen.getByRole("tabpanel", { name: "Review" })
-    const checkedExcerpt = within(review)
-      .getByText("You wrote")
-      .parentElement?.querySelector("code")?.textContent
-    expect(checkedExcerpt).toContain(malformedSource())
+    const checkedExcerpts = within(review)
+      .getAllByText("You wrote")
+      .map((label) => label.parentElement?.querySelector("code")?.textContent)
+    expect(checkedExcerpts).not.toHaveLength(0)
+    for (const checkedExcerpt of checkedExcerpts) {
+      expect(checkedExcerpt).toContain(malformedSource())
+    }
 
-    replaceSource(editor, validRepair())
+    await user.click(screen.getByRole("tab", { name: "Write" }))
+    const activeEditor = screen.getByRole("textbox", { name: "Your Markdown" })
+    replaceSource(activeEditor, validRepair())
+    await user.click(screen.getByRole("tab", { name: "Review" }))
 
     expect(
-      within(review).getByRole("list", { name: "Required corrections" }),
+      within(screen.getByRole("tabpanel", { name: "Review" })).getByRole(
+        "list",
+        { name: "Required corrections" },
+      ),
     ).toBeVisible()
     expect(
-      within(review).getByText("You wrote").parentElement?.querySelector("code"),
-    ).toHaveProperty("textContent", checkedExcerpt)
+      within(screen.getByRole("tabpanel", { name: "Review" }))
+        .getAllByText("You wrote")
+        .map((label) => label.parentElement?.querySelector("code")?.textContent),
+    ).toEqual(checkedExcerpts)
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
 
@@ -604,8 +622,12 @@ describe("App", () => {
   })
 
   it("keeps Markdown-structure Review optional after Matched", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) => problem.id === "l1-list-toolbox",
+    )
     const { user, editor } = await openLevel(1)
-    await user.keyboard(matchedWithReview())
+    replaceSource(editor, matchedWithReview())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
@@ -616,12 +638,15 @@ describe("App", () => {
   })
 
   it("uses a different same-level problem after repair", async () => {
-    const { user, editor } = await openLevel(2)
+    const { user } = await openLevel(2)
     const originalGoal = screen.getByRole("region", { name: "Goal" }).textContent
     await user.keyboard(malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     await user.click(screen.getByRole("tab", { name: "Write" }))
-    replaceSource(editor, validRepair())
+    replaceSource(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+      validRepair(),
+    )
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     await user.click(screen.getByRole("button", { name: "Next exercise" }))
 

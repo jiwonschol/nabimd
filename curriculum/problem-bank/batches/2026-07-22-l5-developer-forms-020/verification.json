@@ -1,0 +1,5051 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l5-developer-forms-020",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "candidates": [
+    {
+      "candidateId": "l5-bug-duplicate-webhook-retry-report",
+      "revision": 1,
+      "candidateDigest": "af5b9433e6f80826af806dc69fc5ec59a46f110438b34d636a4f3e97ce52ec79",
+      "problemDigest": "52392aef72fae7d2aeb75c54a3ea3582ab119aec1942791645a1b1a5fa5a029f",
+      "fixtureDefinitionDigest": "a7394f711f6700b06af0b28f288fa2bb9bb9d6a2eab9c5837731bd0fe9d72db2",
+      "fixtureResultsDigest": "fddda214ef86d10dada599763168ce4feecc8271a21e28425b34d4d3b7a51ba5",
+      "fixtureCount": 26,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-bug-lost-draft-shortcut-report",
+      "revision": 1,
+      "candidateDigest": "e02ec57246d177b0b52910907303256f44073cbf2cc831b940a6a4f795b7f530",
+      "problemDigest": "aa918b7d1755afad1cef5a08c39edc90944965d996a476feec489951ec4acfef",
+      "fixtureDefinitionDigest": "150b7cfb309a31d619c171b295fd4de3bbdbadff4685af56b0d4c07f9ed3558e",
+      "fixtureResultsDigest": "35c85160ad46fe7ba975c8f9b6ac1dd3c0d33a077dad76c8760a4769d404d4c4",
+      "fixtureCount": 26,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-bug-missing-cli-flag-report",
+      "revision": 1,
+      "candidateDigest": "c43814cfa167ad27833856efd70032d9b78c5bc5622b1bc5794ac2d607140a82",
+      "problemDigest": "f23dc84a518eee828beb60bb139fff3a511e1ffa80889f6431f9cbdddeec905c",
+      "fixtureDefinitionDigest": "6dcc595bf6387fe3d104c2b948a5be46290951fd5a5d945a76516fe5481c4b9f",
+      "fixtureResultsDigest": "cfd603dbb3a41d0e19426b9caf07138395e521f93209e884fd543ff0d667dc13",
+      "fixtureCount": 26,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-bug-stale-config-cache-report",
+      "revision": 1,
+      "candidateDigest": "99c870063f0fc014f8613df1ed31f3bbaa737bd87ac71b48fcb771e1417cffa6",
+      "problemDigest": "85a83a2d0cd99a36580c947d11b291d3e18bdd3d65078ca9c920e7b61687015a",
+      "fixtureDefinitionDigest": "33e442fdb1abc1a855e44e117e01582639fb1508a63fca22451679b608c624c0",
+      "fixtureResultsDigest": "20c59c1a7a7512113fb65ee03e51b2d8866dca3cf6e650d72c0e155b1b5d50c0",
+      "fixtureCount": 26,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-pr-guard-duplicate-export-description",
+      "revision": 1,
+      "candidateDigest": "e85a04112d00e36bb230db2c55c68f6bbeca1650b0f788859666a9a2ac61250b",
+      "problemDigest": "04f9e5ca347bdde5857cf111d349ee9a0c4e9d2514abeb855d8730706de920ee",
+      "fixtureDefinitionDigest": "9141a11abbe78241a2ead2ec5dc7b32bed516d3becfcb558f4c9a6648772db6f",
+      "fixtureResultsDigest": "5a6610f6d03068aea780a429ed1b48496886e3279951d7cd3395dd5735f9d769",
+      "fixtureCount": 32,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-pr-normalize-timeout-description",
+      "revision": 1,
+      "candidateDigest": "3f98af6761edffbe9973c095665a2d6dad74fe896d8bc938e64b92787c6c242a",
+      "problemDigest": "42843ff5a11b2055a4e0ddd9210161830a82a3d44f6e8f772e6485d0337e1c29",
+      "fixtureDefinitionDigest": "6b408b5a11404187cf3eb54ac0445e4162961c5d15f6357bfa0176d19df71972",
+      "fixtureResultsDigest": "5132e6397620b85f3d806735f7aa9d57e042a54f62d03c7077de66aeb5fcc204",
+      "fixtureCount": 32,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-pr-response-version-description",
+      "revision": 1,
+      "candidateDigest": "01aec39b8afc425a1132b1077a401a0c06386b49156eff50cac8d17db4584b81",
+      "problemDigest": "56ba069a51996a3535242e90ad7ac256bfd17e69bb715bf5c1961b5cd6775c8e",
+      "fixtureDefinitionDigest": "7f32fe5de0f874f4b9509993856583b635925a5aa442b99f7226cd509a05a71b",
+      "fixtureResultsDigest": "f5c429331a9acd4abe39c2e45345ddc650ef9d7e15f97d5f1d691e4051b803f2",
+      "fixtureCount": 32,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-pr-restore-saved-draft-description",
+      "revision": 1,
+      "candidateDigest": "71aac2b7bc712aca6606a3474c746f76eaf4d6bdfceb2788eb3f01cd46214796",
+      "problemDigest": "2dc2071207ea269e4eb5819e8373b25a3cad828e7f7a2667e8e1467e5caba5be",
+      "fixtureDefinitionDigest": "cb3f350a0d89a6af0c0813a9fb22db92d305f5518496ca528f7e9028fe6c4aa4",
+      "fixtureResultsDigest": "797206952b988818fcdcf41e02dee846390dad166b6921b40f8d1ce4e72fdaa1",
+      "fixtureCount": 32,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-readme-config-validator-quick-start",
+      "revision": 1,
+      "candidateDigest": "0568c8f71e601e077f971877f91be39e2dfb2a06fff40c0d7b80c52d96b3f07b",
+      "problemDigest": "dcebb3e92abc8c98e29e6ffefa60769a26ee7fdd174ed47e57ff81fcaf40c42a",
+      "fixtureDefinitionDigest": "676f2dc159baabdda176845c4d64779ded971bf64e6df42c2a0b148cd1119b1b",
+      "fixtureResultsDigest": "61862a2d13735a1d13592eb606a3e17e712e07ee2ff664e5743f6a487984421f",
+      "fixtureCount": 29,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-readme-csv-preview-quick-start",
+      "revision": 1,
+      "candidateDigest": "5fde86c54398b606401234625bdfa0a317c5460733d74c4013f32c27e9213f8e",
+      "problemDigest": "a5a9444ee2cb555d72c0cf132d961fc649d9d4216be03548b73b3b6fbc023320",
+      "fixtureDefinitionDigest": "34666343128fa77e72398d47d54be119a9de5e955f388dedb7c88d153d631325",
+      "fixtureResultsDigest": "56934a39bb3ae32b99b72fd69f114adf028e7edc55d93427097f8cb9dee1b37e",
+      "fixtureCount": 29,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-readme-log-filter-quick-start",
+      "revision": 1,
+      "candidateDigest": "c821b8369a336277677bbc6210cdd024f006d0462b4a2ae948c641866e75c108",
+      "problemDigest": "9b59eed9dbd9981692a31ebcca4ae4b7acb60f0ae70f6afc5c288cbc39554aa4",
+      "fixtureDefinitionDigest": "9227c5c9cf6ce49fdc6e4bd1780aa18b986272c57927cefd158fdaacd51fb988",
+      "fixtureResultsDigest": "294f8a4a462db3451a79fd3a7f24a49d4142233659ae97a05690f4b1a712f442",
+      "fixtureCount": 29,
+      "passed": true
+    },
+    {
+      "candidateId": "l5-readme-release-note-quick-start",
+      "revision": 1,
+      "candidateDigest": "6195701efd90983b557f43f60ebe271635897a8a5f5103f86059a4997519092a",
+      "problemDigest": "01909eb3c7d7c4a51963455349cb001b4c98037d62c8023ac1e8175dd8fc19db",
+      "fixtureDefinitionDigest": "fc2e5b88a3941ccfb5ffeecfbb61f3695e608eb3c3876e9a722f761b0e8ae99e",
+      "fixtureResultsDigest": "f6174a23ffa6bc20e442b349747a98d97c93aacb2f334c4cadbbec66d040483f",
+      "fixtureCount": 29,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-alternate-list-markers",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-alternate-tilde-fence",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-blockquote-in-wrong-section",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-canonical",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-case-spelling",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-different-prose",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-empty-blockquote",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-empty-fence",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-empty-inline-code",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-empty-list-item",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-code",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-inline-code",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-limits",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-list",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-observation",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-outline",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-fails-l5-bug-duplicate-webhook-retry-report-sections",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-indented-code-lookalike",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-inline-code-in-wrong-section",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-malformed-title",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-matched-review-contract",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-missing-title",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-one-list-item",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-three-list-items",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-unclosed-fence",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-duplicate-webhook-retry-report-untagged-fence",
+      "problemId": "l5-bug-duplicate-webhook-retry-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-duplicate-webhook-retry-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-alternate-list-markers",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-alternate-tilde-fence",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-blockquote-in-wrong-section",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-canonical",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-case-spelling",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-different-prose",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-empty-blockquote",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-empty-fence",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-empty-inline-code",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-empty-list-item",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-code",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-inline-code",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-limits",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-list",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-observation",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-outline",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-fails-l5-bug-lost-draft-shortcut-report-sections",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-indented-code-lookalike",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-inline-code-in-wrong-section",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-malformed-title",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-matched-review-contract",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-missing-title",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-one-list-item",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-three-list-items",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-unclosed-fence",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-lost-draft-shortcut-report-untagged-fence",
+      "problemId": "l5-bug-lost-draft-shortcut-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-lost-draft-shortcut-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-alternate-list-markers",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-alternate-tilde-fence",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-blockquote-in-wrong-section",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-canonical",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-case-spelling",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-different-prose",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-empty-blockquote",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-empty-fence",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-empty-inline-code",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-empty-list-item",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-code",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-inline-code",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-limits",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-list",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-observation",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-outline",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-fails-l5-bug-missing-cli-flag-report-sections",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-indented-code-lookalike",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-inline-code-in-wrong-section",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-malformed-title",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-matched-review-contract",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-missing-title",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-one-list-item",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-three-list-items",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-unclosed-fence",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-missing-cli-flag-report-untagged-fence",
+      "problemId": "l5-bug-missing-cli-flag-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-missing-cli-flag-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-alternate-list-markers",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-alternate-tilde-fence",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-blockquote-in-wrong-section",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-canonical",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-case-spelling",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-different-prose",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-empty-blockquote",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-empty-fence",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-empty-inline-code",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-empty-list-item",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-code",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-inline-code",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-limits",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-list",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-observation",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-observation"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-observation"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-outline",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-fails-l5-bug-stale-config-cache-report-sections",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-indented-code-lookalike",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-inline-code-in-wrong-section",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-malformed-title",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-matched-review-contract",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-observation"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-missing-title",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-one-list-item",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-three-list-items",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-unclosed-fence",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-bug-stale-config-cache-report-untagged-fence",
+      "problemId": "l5-bug-stale-config-cache-report",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-bug-stale-config-cache-report-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-alternate-list-markers",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-alternate-tilde-fence",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-angle-bracket-link-destination",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-blockquote-in-wrong-section",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-canonical",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-case-spelling",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-different-prose",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-empty-blockquote",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-empty-fence",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-empty-inline-code",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-empty-link-destination",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-empty-link-label",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-empty-list-item",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-code",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-inline-code",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-limits",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-link",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-list",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-outline",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-quote",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-fails-l5-pr-guard-duplicate-export-description-sections",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-indented-code-lookalike",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-inline-code-in-wrong-section",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-link-in-wrong-section",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-malformed-title",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-matched-review-contract",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-missing-title",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-one-list-item",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-reference-link",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-three-list-items",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-unclosed-fence",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-guard-duplicate-export-description-untagged-fence",
+      "problemId": "l5-pr-guard-duplicate-export-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-guard-duplicate-export-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-alternate-list-markers",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-alternate-tilde-fence",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-angle-bracket-link-destination",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-blockquote-in-wrong-section",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-canonical",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-case-spelling",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-different-prose",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-empty-blockquote",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-empty-fence",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-empty-inline-code",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-empty-link-destination",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-empty-link-label",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-empty-list-item",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-code",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-inline-code",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-limits",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-link",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-list",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-outline",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-quote",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-fails-l5-pr-normalize-timeout-description-sections",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-indented-code-lookalike",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-inline-code-in-wrong-section",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-link-in-wrong-section",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-malformed-title",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-matched-review-contract",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-missing-title",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-one-list-item",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-reference-link",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-three-list-items",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-unclosed-fence",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-normalize-timeout-description-untagged-fence",
+      "problemId": "l5-pr-normalize-timeout-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-normalize-timeout-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-alternate-list-markers",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-alternate-tilde-fence",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-angle-bracket-link-destination",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-blockquote-in-wrong-section",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-canonical",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-case-spelling",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-different-prose",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-empty-blockquote",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-empty-fence",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-empty-inline-code",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-empty-link-destination",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-empty-link-label",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-empty-list-item",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-code",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-inline-code",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-limits",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-link",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-list",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-outline",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-quote",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-fails-l5-pr-response-version-description-sections",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-indented-code-lookalike",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-inline-code-in-wrong-section",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-link-in-wrong-section",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-malformed-title",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-matched-review-contract",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-missing-title",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-one-list-item",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-reference-link",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-three-list-items",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-unclosed-fence",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-response-version-description-untagged-fence",
+      "problemId": "l5-pr-response-version-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-response-version-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-alternate-list-markers",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-alternate-tilde-fence",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-angle-bracket-link-destination",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-blockquote-in-wrong-section",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-canonical",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-case-spelling",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-different-prose",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-empty-blockquote",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-empty-fence",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-empty-inline-code",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-empty-link-destination",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-empty-link-label",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-empty-list-item",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-code",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-inline-code",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-limits",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-link",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-list",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-outline",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-quote",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-quote"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-quote"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-fails-l5-pr-restore-saved-draft-description-sections",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-indented-code-lookalike",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-inline-code-in-wrong-section",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-link-in-wrong-section",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-malformed-title",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-matched-review-contract",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-boundary"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-missing-title",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-one-list-item",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-reference-link",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-three-list-items",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-unclosed-fence",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-pr-restore-saved-draft-description-untagged-fence",
+      "problemId": "l5-pr-restore-saved-draft-description",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-pr-restore-saved-draft-description-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-alternate-list-markers",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-alternate-tilde-fence",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-angle-bracket-link-destination",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-canonical",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-case-spelling",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-different-prose",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-empty-fence",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-empty-inline-code",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-empty-link-destination",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-empty-link-label",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-empty-list-item",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-code",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-inline-code",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-limits",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-link",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-list",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-outline",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-fails-l5-readme-config-validator-quick-start-sections",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-indented-code-lookalike",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-inline-code-in-wrong-section",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-link-in-wrong-section",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-malformed-title",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-matched-review-contract",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-missing-title",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-one-list-item",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-reference-link",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-three-list-items",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-unclosed-fence",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-config-validator-quick-start-untagged-fence",
+      "problemId": "l5-readme-config-validator-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-config-validator-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-alternate-list-markers",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-alternate-tilde-fence",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-angle-bracket-link-destination",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-canonical",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-case-spelling",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-different-prose",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-empty-fence",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-empty-inline-code",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-empty-link-destination",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-empty-link-label",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-empty-list-item",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-code",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-inline-code",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-limits",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-link",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-list",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-outline",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-fails-l5-readme-csv-preview-quick-start-sections",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-indented-code-lookalike",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-inline-code-in-wrong-section",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-link-in-wrong-section",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-malformed-title",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-matched-review-contract",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-missing-title",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-one-list-item",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-reference-link",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-three-list-items",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-unclosed-fence",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-csv-preview-quick-start-untagged-fence",
+      "problemId": "l5-readme-csv-preview-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-csv-preview-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-alternate-list-markers",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-alternate-tilde-fence",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-angle-bracket-link-destination",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-canonical",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-case-spelling",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-different-prose",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-empty-fence",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-empty-inline-code",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-empty-link-destination",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-empty-link-label",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-empty-list-item",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-code",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-inline-code",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-limits",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-link",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-list",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-outline",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-fails-l5-readme-log-filter-quick-start-sections",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-indented-code-lookalike",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-inline-code-in-wrong-section",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-link-in-wrong-section",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-malformed-title",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-matched-review-contract",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-missing-title",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-one-list-item",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-reference-link",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-three-list-items",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-unclosed-fence",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-log-filter-quick-start-untagged-fence",
+      "problemId": "l5-readme-log-filter-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-log-filter-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-alternate-list-markers",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-alternate-tilde-fence",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-angle-bracket-link-destination",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-canonical",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-case-spelling",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-different-prose",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-empty-fence",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-empty-inline-code",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-empty-link-destination",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-empty-link-label",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-empty-list-item",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-code",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-inline-code",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-limits",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-limits"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-limits"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-link",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-list",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-outline",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-fails-l5-readme-release-note-quick-start-sections",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-sections"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-sections"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-indented-code-lookalike",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-inline-code-in-wrong-section",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-inline-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-inline-code"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-link-in-wrong-section",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-link"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-malformed-title",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-matched-review-contract",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-inline-code-focused"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-missing-title",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-one-list-item",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-reference-link",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-three-list-items",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-list"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-unclosed-fence",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-outline"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l5-readme-release-note-quick-start-untagged-fence",
+      "problemId": "l5-readme-release-note-quick-start",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "l5-readme-release-note-quick-start-code"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "078d5d2e5fb4c13e89945f51575fef1108937b86dd8c34034c6f83fe3b30bbfa"
+}

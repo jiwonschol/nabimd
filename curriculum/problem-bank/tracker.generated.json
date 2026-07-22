@@ -1,19 +1,22 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "2be7809fb83fbf58962013cac25c587ac65eaa3338a1702fc4bf0bdc0a7214a8",
-  "acceptedTotal": 348,
+  "bankDigest": "7b4ded5e26dac4e87387802a614bcf763e587f00ec1abf1de1a63d174a63aa04",
+  "acceptedTotal": 360,
   "counts": {
     "byLevel": {
       "1": 140,
       "2": 148,
       "3": 30,
       "4": 20,
-      "5": 10
+      "5": 22
     },
     "byFamily": {
       "agent-ready-work-order": 10,
       "blockquotes": 24,
+      "developer-bug-report": 4,
+      "developer-pr-description": 4,
+      "developer-readme": 4,
       "emphasis": 24,
       "executable-development-spec": 12,
       "fenced-code-blocks": 12,
@@ -58,10 +61,13 @@
       "4/executable-development-spec": 12,
       "4/workplace-issue-note": 4,
       "4/workplace-process-change": 4,
-      "5/agent-ready-work-order": 10
+      "5/agent-ready-work-order": 10,
+      "5/developer-bug-report": 4,
+      "5/developer-pr-description": 4,
+      "5/developer-readme": 4
     },
     "byFlavor": {
-      "standard": 348
+      "standard": 360
     },
     "rejected": 0,
     "blocked": 0
@@ -237,7 +243,16 @@
       "accepted": 4,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-07-22-l5-developer-forms-020",
+      "sequence": 20,
+      "batchDigest": "00c06e0573f4f451003ac55ebb8b7d4db0de8abbedc52352d2369a09593a778c",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "7041d0182ad9502479f5e9b51d3c587892cd09f08196bf74aceef8bcd686c9e4"
+  "trackerDigest": "a1f36e9a1dee7245b63ad82232c5d86cb4a0202523321231069afea89a09719a"
 }

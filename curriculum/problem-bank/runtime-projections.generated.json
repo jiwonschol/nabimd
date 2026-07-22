@@ -2,13 +2,13 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "2be7809fb83fbf58962013cac25c587ac65eaa3338a1702fc4bf0bdc0a7214a8",
+    "bankDigest": "7b4ded5e26dac4e87387802a614bcf763e587f00ec1abf1de1a63d174a63aa04",
     "counts": {
       "1": 140,
       "2": 148,
       "3": 30,
       "4": 20,
-      "5": 10
+      "5": 22
     }
   },
   "levels": {
@@ -36246,6 +36246,822 @@
         "sourceBatchId": "2026-07-22-advanced-document-replacements-018"
       },
       {
+        "id": "l5-bug-duplicate-webhook-retry-report",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-bug-report",
+        "retryFamily": "level5-bug-report",
+        "skillIds": [
+          "bug-report-outline",
+          "observed-quote",
+          "ordered-reproduction",
+          "fenced-evidence",
+          "inline-code-verification"
+        ],
+        "teaching": {
+          "concept": "A compact bug report separates the observed symptom, reproduction, evidence, and a verification command.",
+          "howTo": "Use one title, three H2 sections, a quote, two numbered steps, a fenced evidence block, and one inline command.",
+          "example": "# Blank export\n\n## Observed\n\n> The downloaded report has no rows.\n\n## Reproduce"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "1.",
+          "```text",
+          "`"
+        ],
+        "title": "Write a duplicate webhook retry report",
+        "prompt": "Rebuild a compact bug report for a webhook retry that records one event twice.",
+        "target": "# Duplicate webhook retry\n\n## Observed\n\n> One retry stores the same delivery identifier twice.\n\n## Reproduce\n\n1. Send one delayed callback\n2. Allow the retry to finish\n\n## Evidence\n\n```text\ndeliveryRows=2 expectedRows=1\n```\n\nRun `npm test -- webhook-retry`.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-observation",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one visible blockquote in the Observed section."
+          },
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-bug-duplicate-webhook-retry-report-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one nonempty inline-code span in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-observation",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the observed symptom in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Quote the observation and number two reproduction steps.",
+          "Finish with a fenced evidence line and one inline command."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-bug-report"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "software-debugging",
+            "webhooks"
+          ],
+          "terms": [
+            "webhook",
+            "retry",
+            "delivery",
+            "test"
+          ]
+        },
+        "contentVariant": "duplicate-webhook-retry-report",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-bug-lost-draft-shortcut-report",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-bug-report",
+        "retryFamily": "level5-bug-report",
+        "skillIds": [
+          "bug-report-outline",
+          "observed-quote",
+          "ordered-reproduction",
+          "fenced-evidence",
+          "inline-code-verification"
+        ],
+        "teaching": {
+          "concept": "A compact bug report separates the observed symptom, reproduction, evidence, and a verification command.",
+          "howTo": "Use one title, three H2 sections, a quote, two numbered steps, a fenced evidence block, and one inline command.",
+          "example": "# Double toast\n\n## Observed\n\n> One save shows the same message twice.\n\n## Reproduce"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "1.",
+          "```text",
+          "`"
+        ],
+        "title": "Write a lost draft shortcut report",
+        "prompt": "Rebuild a compact bug report for a keyboard shortcut that clears a saved draft.",
+        "target": "# Lost draft shortcut\n\n## Observed\n\n> The save shortcut clears the second paragraph before storage finishes.\n\n## Reproduce\n\n1. Write two paragraphs\n2. Press the save shortcut\n\n## Evidence\n\n```text\nsavedLines=1 expectedLines=2\n```\n\nRun `npm test -- draft-shortcut`.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-observation",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one visible blockquote in the Observed section."
+          },
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-bug-lost-draft-shortcut-report-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one nonempty inline-code span in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-observation",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the observed symptom in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Quote the observation and number two reproduction steps.",
+          "Finish with a fenced evidence line and one inline command."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-bug-report"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "software-debugging",
+            "editor"
+          ],
+          "terms": [
+            "draft",
+            "shortcut",
+            "storage",
+            "test"
+          ]
+        },
+        "contentVariant": "lost-draft-shortcut-report",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-bug-missing-cli-flag-report",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-bug-report",
+        "retryFamily": "level5-bug-report",
+        "skillIds": [
+          "bug-report-outline",
+          "observed-quote",
+          "ordered-reproduction",
+          "fenced-evidence",
+          "inline-code-verification"
+        ],
+        "teaching": {
+          "concept": "A compact bug report separates the observed symptom, reproduction, evidence, and a verification command.",
+          "howTo": "Use one title, three H2 sections, a quote, two numbered steps, a fenced evidence block, and one inline command.",
+          "example": "# Late status\n\n## Observed\n\n> The ready label appears after navigation.\n\n## Reproduce"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "1.",
+          "```text",
+          "`"
+        ],
+        "title": "Write a missing CLI flag report",
+        "prompt": "Rebuild a compact bug report for a CLI flag that disappears from help output.",
+        "target": "# Missing CLI flag\n\n## Observed\n\n> The quiet flag works but does not appear in the help list.\n\n## Reproduce\n\n1. Generate the command help output\n2. Search for the quiet flag\n\n## Evidence\n\n```text\nflag=--quiet helpEntry=missing\n```\n\nRun `npm test -- cli-help`.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-bug-missing-cli-flag-report-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-bug-missing-cli-flag-report-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-bug-missing-cli-flag-report-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-bug-missing-cli-flag-report-observation",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one visible blockquote in the Observed section."
+          },
+          {
+            "id": "l5-bug-missing-cli-flag-report-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-bug-missing-cli-flag-report-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-bug-missing-cli-flag-report-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one nonempty inline-code span in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-observation",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the observed symptom in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Quote the observation and number two reproduction steps.",
+          "Finish with a fenced evidence line and one inline command."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-bug-report"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "software-debugging",
+            "command-line"
+          ],
+          "terms": [
+            "CLI",
+            "flag",
+            "help",
+            "test"
+          ]
+        },
+        "contentVariant": "missing-cli-flag-report",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-bug-stale-config-cache-report",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-bug-report",
+        "retryFamily": "level5-bug-report",
+        "skillIds": [
+          "bug-report-outline",
+          "observed-quote",
+          "ordered-reproduction",
+          "fenced-evidence",
+          "inline-code-verification"
+        ],
+        "teaching": {
+          "concept": "A compact bug report separates the observed symptom, reproduction, evidence, and a verification command.",
+          "howTo": "Use one title, three H2 sections, a quote, two numbered steps, a fenced evidence block, and one inline command.",
+          "example": "# Delayed search\n\n## Observed\n\n> Results appear after the spinner stops.\n\n## Reproduce"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          ">",
+          "1.",
+          "```text",
+          "`"
+        ],
+        "title": "Write a stale config cache report",
+        "prompt": "Rebuild a compact bug report with an observed symptom, reproduction, evidence, and a verification command.",
+        "target": "# Stale config cache\n\n## Observed\n\n> A saved theme still uses the previous value after reload.\n\n## Reproduce\n\n1. Save the new theme\n2. Reload the settings page\n\n## Evidence\n\n```text\nexpected=light actual=dark\n```\n\nRun `npm test -- config-cache`.",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-bug-stale-config-cache-report-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-bug-stale-config-cache-report-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-bug-stale-config-cache-report-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-bug-stale-config-cache-report-observation",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one visible blockquote in the Observed section."
+          },
+          {
+            "id": "l5-bug-stale-config-cache-report-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-bug-stale-config-cache-report-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-bug-stale-config-cache-report-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one nonempty inline-code span in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-observation",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the observed symptom in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Quote the observation and number two reproduction steps.",
+          "Finish with a fenced evidence line and one inline command."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-bug-report"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "software-debugging",
+            "configuration"
+          ],
+          "terms": [
+            "cache",
+            "config",
+            "reload",
+            "test"
+          ]
+        },
+        "contentVariant": "stale-config-cache-report",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
         "id": "l5-date-format-refactor-work-order",
         "schemaVersion": 2,
         "level": 5,
@@ -37697,6 +38513,1702 @@
         "sourceBatchId": "2026-07-22-advanced-document-replacements-018"
       },
       {
+        "id": "l5-pr-guard-duplicate-export-description",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-pr-description",
+        "retryFamily": "level5-pr-description",
+        "skillIds": [
+          "pr-outline",
+          "change-list",
+          "inline-code-file",
+          "boundary-quote",
+          "fenced-verification",
+          "issue-link"
+        ],
+        "teaching": {
+          "concept": "A compact pull-request description makes the change, boundary, verification, and related issue easy to review.",
+          "howTo": "Use one title, three H2 sections, two bullets, inline code, one boundary quote, a command fence, and one descriptive link.",
+          "example": "# Keep upload order\n\n## Change\n\n- Update `uploadQueue.ts`\n- Preserve file order"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "`",
+          ">",
+          "```bash",
+          "[ ]( )"
+        ],
+        "title": "Write a duplicate export PR description",
+        "prompt": "Rebuild a compact pull-request description for preventing duplicate exports.",
+        "target": "# Guard duplicate exports\n\n## Change\n\n- Update `exportQueue.ts`\n- Keep existing file names\n\n## Boundary\n\n> Do not merge separate export requests.\n\n## Verify\n\n```bash\nnpm test -- export-queue\n```\n\n[Related export issue](/issues/export-duplicates)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-pr-guard-duplicate-export-description-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 30,
+            "feedback": "Use a bullet list with two visible items in this section."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 40,
+            "feedback": "Use one nonempty inline-code span in this section."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one visible blockquote in the Boundary section."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-pr-guard-duplicate-export-description-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 70,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-boundary",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the review boundary in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Use two change bullets, with one file or symbol in inline code, then quote the boundary.",
+          "Finish with a fenced verification command and one related link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-pr-description"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "code-review",
+            "exports"
+          ],
+          "terms": [
+            "pull request",
+            "export",
+            "queue",
+            "verification"
+          ]
+        },
+        "contentVariant": "guard-duplicate-export-description",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-pr-normalize-timeout-description",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-pr-description",
+        "retryFamily": "level5-pr-description",
+        "skillIds": [
+          "pr-outline",
+          "change-list",
+          "inline-code-file",
+          "boundary-quote",
+          "fenced-verification",
+          "issue-link"
+        ],
+        "teaching": {
+          "concept": "A compact pull-request description makes the change, boundary, verification, and related issue easy to review.",
+          "howTo": "Use one title, three H2 sections, two bullets, inline code, one boundary quote, a command fence, and one descriptive link.",
+          "example": "# Bound upload retries\n\n## Change\n\n- Update `uploadRetry.ts`\n- Keep the retry cap"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "`",
+          ">",
+          "```bash",
+          "[ ]( )"
+        ],
+        "title": "Write a timeout handling PR description",
+        "prompt": "Rebuild a compact pull-request description for consistent timeout handling.",
+        "target": "# Normalize timeout handling\n\n## Change\n\n- Update `requestTimeout.ts`\n- Preserve retry limits\n\n## Boundary\n\n> Do not turn cancellations into retries.\n\n## Verify\n\n```bash\nnpm test -- request-timeout\n```\n\n[Related timeout issue](/issues/timeout-handling)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-pr-normalize-timeout-description-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 30,
+            "feedback": "Use a bullet list with two visible items in this section."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 40,
+            "feedback": "Use one nonempty inline-code span in this section."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one visible blockquote in the Boundary section."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-pr-normalize-timeout-description-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 70,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-boundary",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the review boundary in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Use two change bullets, with one file or symbol in inline code, then quote the boundary.",
+          "Finish with a fenced verification command and one related link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-pr-description"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "code-review",
+            "networking"
+          ],
+          "terms": [
+            "pull request",
+            "timeout",
+            "retry",
+            "verification"
+          ]
+        },
+        "contentVariant": "normalize-timeout-handling-description",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-pr-response-version-description",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-pr-description",
+        "retryFamily": "level5-pr-description",
+        "skillIds": [
+          "pr-outline",
+          "change-list",
+          "inline-code-file",
+          "boundary-quote",
+          "fenced-verification",
+          "issue-link"
+        ],
+        "teaching": {
+          "concept": "A compact pull-request description makes the change, boundary, verification, and related issue easy to review.",
+          "howTo": "Use one title, three H2 sections, two bullets, inline code, one boundary quote, a command fence, and one descriptive link.",
+          "example": "# Explain the cache key\n\n## Change\n\n- Update `cacheGuide.md`\n- Keep the current examples"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "`",
+          ">",
+          "```bash",
+          "[ ]( )"
+        ],
+        "title": "Write a response version PR description",
+        "prompt": "Rebuild a compact pull-request description for documenting one response version.",
+        "target": "# Document response version\n\n## Change\n\n- Update `responseSchema.md`\n- Keep current examples\n\n## Boundary\n\n> Do not promise fields outside the schema.\n\n## Verify\n\n```bash\nnpm test -- response-schema\n```\n\n[Related schema issue](/issues/response-version)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-pr-response-version-description-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-pr-response-version-description-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-pr-response-version-description-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-pr-response-version-description-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 30,
+            "feedback": "Use a bullet list with two visible items in this section."
+          },
+          {
+            "id": "l5-pr-response-version-description-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 40,
+            "feedback": "Use one nonempty inline-code span in this section."
+          },
+          {
+            "id": "l5-pr-response-version-description-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one visible blockquote in the Boundary section."
+          },
+          {
+            "id": "l5-pr-response-version-description-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-pr-response-version-description-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 70,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-boundary",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the review boundary in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Use two change bullets, with one file or symbol in inline code, then quote the boundary.",
+          "Finish with a fenced verification command and one related link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-pr-description"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "code-review",
+            "api-documentation"
+          ],
+          "terms": [
+            "pull request",
+            "response",
+            "schema",
+            "verification"
+          ]
+        },
+        "contentVariant": "document-response-version-description",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-pr-restore-saved-draft-description",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-pr-description",
+        "retryFamily": "level5-pr-description",
+        "skillIds": [
+          "pr-outline",
+          "change-list",
+          "inline-code-file",
+          "boundary-quote",
+          "fenced-verification",
+          "issue-link"
+        ],
+        "teaching": {
+          "concept": "A compact pull-request description makes the change, boundary, verification, and related issue easy to review.",
+          "howTo": "Use one title, three H2 sections, two bullets, inline code, one boundary quote, a command fence, and one descriptive link.",
+          "example": "# Retain scroll position\n\n## Change\n\n- Update `scrollStore.ts`\n- Preserve the current row"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "-",
+          "`",
+          ">",
+          "```bash",
+          "[ ]( )"
+        ],
+        "title": "Write a saved draft PR description",
+        "prompt": "Rebuild a compact pull-request description for restoring saved drafts.",
+        "target": "# Restore saved drafts\n\n## Change\n\n- Update `draftStore.ts`\n- Preserve unsent text\n\n## Boundary\n\n> Do not replace a newer local draft.\n\n## Verify\n\n```bash\nnpm test -- draft-store\n```\n\n[Related draft issue](/issues/saved-drafts)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-pr-restore-saved-draft-description-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "blockquote"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 3,
+            "max": 3,
+            "priority": 15,
+            "feedback": "Use exactly 3 H2 sections."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "ordered": false,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 30,
+            "feedback": "Use a bullet list with two visible items in this section."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyContent": true,
+            "priority": 40,
+            "feedback": "Use one nonempty inline-code span in this section."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-quote",
+            "kind": "blockquote-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use one visible blockquote in the Boundary section."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 60,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-pr-restore-saved-draft-description-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 2
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 70,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-one-boundary",
+            "kind": "max-block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "blockquote",
+            "recursive": true,
+            "max": 1,
+            "review": "Keep the review boundary in one short blockquote."
+          }
+        ],
+        "hints": [
+          "Start with one # title and three ## sections.",
+          "Use two change bullets, with one file or symbol in inline code, then quote the boundary.",
+          "Finish with a fenced verification command and one related link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-pr-description"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "code-review",
+            "editor"
+          ],
+          "terms": [
+            "pull request",
+            "draft",
+            "storage",
+            "verification"
+          ]
+        },
+        "contentVariant": "restore-saved-draft-description",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-readme-config-validator-quick-start",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-readme",
+        "retryFamily": "level5-readme-quick-start",
+        "skillIds": [
+          "readme-outline",
+          "fenced-install",
+          "ordered-usage",
+          "inline-code",
+          "meaningful-link"
+        ],
+        "teaching": {
+          "concept": "A compact README quick start separates installation, usage, commands, and supporting documentation.",
+          "howTo": "Use one title, two H2 sections, a language-tagged command fence, two numbered steps, two inline-code spans in the Try it section, and one descriptive link.",
+          "example": "# Name formatter\n\n## Install\n\n```bash\nnpm install name-format\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "```bash",
+          "1.",
+          "`",
+          "[ ]( )"
+        ],
+        "title": "Write a config validator quick start",
+        "prompt": "Rebuild a compact README quick start for installing and trying a config validator.",
+        "target": "# Config validator quick start\n\n## Install\n\n```bash\nnpm install config-lens\n```\n\n## Try it\n\n1. Run `config-lens app.json`\n2. Open `validation.txt`\n\n[Read the validation guide](/docs/validation-guide)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-readme-config-validator-quick-start-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-readme-config-validator-quick-start-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-readme-config-validator-quick-start-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections."
+          },
+          {
+            "id": "l5-readme-config-validator-quick-start-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-readme-config-validator-quick-start-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-readme-config-validator-quick-start-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 2,
+            "max": 2,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use two nonempty inline-code spans in this section."
+          },
+          {
+            "id": "l5-readme-config-validator-quick-start-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 60,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-inline-code-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "inline-code",
+            "max": 2,
+            "review": "Keep inline code focused on the two usage commands."
+          }
+        ],
+        "hints": [
+          "Start with one # title and two ## sections.",
+          "Put the install command in a language-tagged fence.",
+          "Number two usage steps, add two inline-code spans in the Try it section, and finish with one link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-readme-quick-start"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "developer-tools",
+            "documentation"
+          ],
+          "terms": [
+            "config",
+            "validator",
+            "report",
+            "guide"
+          ]
+        },
+        "contentVariant": "config-validator-quick-start",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-readme-csv-preview-quick-start",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-readme",
+        "retryFamily": "level5-readme-quick-start",
+        "skillIds": [
+          "readme-outline",
+          "fenced-install",
+          "ordered-usage",
+          "inline-code",
+          "meaningful-link"
+        ],
+        "teaching": {
+          "concept": "A compact README quick start separates installation, usage, commands, and supporting documentation.",
+          "howTo": "Use one title, two H2 sections, a language-tagged command fence, two numbered steps, two inline-code spans in the Try it section, and one descriptive link.",
+          "example": "# JSON viewer\n\n## Install\n\n```bash\nnpm install json-view\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "```bash",
+          "1.",
+          "`",
+          "[ ]( )"
+        ],
+        "title": "Write a CSV preview quick start",
+        "prompt": "Rebuild a compact README quick start for installing and trying a CSV preview tool.",
+        "target": "# CSV preview quick start\n\n## Install\n\n```bash\nnpm install csv-window\n```\n\n## Try it\n\n1. Run `csv-window sample.csv`\n2. Open `preview.html`\n\n[Read the preview guide](/docs/preview-guide)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-readme-csv-preview-quick-start-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-readme-csv-preview-quick-start-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-readme-csv-preview-quick-start-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections."
+          },
+          {
+            "id": "l5-readme-csv-preview-quick-start-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-readme-csv-preview-quick-start-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-readme-csv-preview-quick-start-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 2,
+            "max": 2,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use two nonempty inline-code spans in this section."
+          },
+          {
+            "id": "l5-readme-csv-preview-quick-start-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 60,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-inline-code-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "inline-code",
+            "max": 2,
+            "review": "Keep inline code focused on the two usage commands."
+          }
+        ],
+        "hints": [
+          "Start with one # title and two ## sections.",
+          "Put the install command in a language-tagged fence.",
+          "Number two usage steps, add two inline-code spans in the Try it section, and finish with one link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-readme-quick-start"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "developer-tools",
+            "documentation"
+          ],
+          "terms": [
+            "CSV",
+            "preview",
+            "file",
+            "guide"
+          ]
+        },
+        "contentVariant": "csv-preview-quick-start",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-readme-log-filter-quick-start",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-readme",
+        "retryFamily": "level5-readme-quick-start",
+        "skillIds": [
+          "readme-outline",
+          "fenced-install",
+          "ordered-usage",
+          "inline-code",
+          "meaningful-link"
+        ],
+        "teaching": {
+          "concept": "A compact README quick start separates installation, usage, commands, and supporting documentation.",
+          "howTo": "Use one title, two H2 sections, a language-tagged command fence, two numbered steps, two inline-code spans in the Try it section, and one descriptive link.",
+          "example": "# Image sizer\n\n## Install\n\n```bash\nnpm install image-size\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "```bash",
+          "1.",
+          "`",
+          "[ ]( )"
+        ],
+        "title": "Write a log filter quick start",
+        "prompt": "Rebuild a compact README quick start for installing and trying a log filter.",
+        "target": "# Log filter quick start\n\n## Install\n\n```bash\nnpm install clear-log\n```\n\n## Try it\n\n1. Run `clear-log app.log`\n2. Open `filtered.log`\n\n[Read the filter guide](/docs/filter-guide)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-readme-log-filter-quick-start-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-readme-log-filter-quick-start-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-readme-log-filter-quick-start-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections."
+          },
+          {
+            "id": "l5-readme-log-filter-quick-start-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-readme-log-filter-quick-start-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-readme-log-filter-quick-start-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 2,
+            "max": 2,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use two nonempty inline-code spans in this section."
+          },
+          {
+            "id": "l5-readme-log-filter-quick-start-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 60,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-inline-code-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "inline-code",
+            "max": 2,
+            "review": "Keep inline code focused on the two usage commands."
+          }
+        ],
+        "hints": [
+          "Start with one # title and two ## sections.",
+          "Put the install command in a language-tagged fence.",
+          "Number two usage steps, add two inline-code spans in the Try it section, and finish with one link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-readme-quick-start"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "developer-tools",
+            "documentation"
+          ],
+          "terms": [
+            "log",
+            "filter",
+            "command",
+            "guide"
+          ]
+        },
+        "contentVariant": "log-filter-quick-start",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
+        "id": "l5-readme-release-note-quick-start",
+        "schemaVersion": 2,
+        "revision": 1,
+        "curriculumVersion": "2026-07-19",
+        "level": 5,
+        "flavor": "standard",
+        "teachingMode": "recall",
+        "difficulty": "makeover",
+        "familyId": "developer-readme",
+        "retryFamily": "level5-readme-quick-start",
+        "skillIds": [
+          "readme-outline",
+          "fenced-install",
+          "ordered-usage",
+          "inline-code",
+          "meaningful-link"
+        ],
+        "teaching": {
+          "concept": "A compact README quick start separates installation, usage, commands, and supporting documentation.",
+          "howTo": "Use one title, two H2 sections, a language-tagged command fence, two numbered steps, two inline-code spans in the Try it section, and one descriptive link.",
+          "example": "# Port checker\n\n## Install\n\n```bash\nnpm install port-check\n```"
+        },
+        "syntaxTokens": [
+          "#",
+          "##",
+          "```bash",
+          "1.",
+          "`",
+          "[ ]( )"
+        ],
+        "title": "Write a release-note checker quick start",
+        "prompt": "Rebuild a compact README quick start for installing and trying a release-note checker.",
+        "target": "# Release-note checker quick start\n\n## Install\n\n```bash\nnpm install note-check\n```\n\n## Try it\n\n1. Run `note-check CHANGELOG.md`\n2. Open `note-report.txt`\n\n[Read the checker guide](/docs/checker-guide)",
+        "starterText": "",
+        "protectedContent": [],
+        "matchChecks": [
+          {
+            "id": "l5-readme-release-note-quick-start-limits",
+            "kind": "document-limits",
+            "maxLines": 40,
+            "priority": 5,
+            "feedback": "Keep the Markdown document within 40 lines."
+          },
+          {
+            "id": "l5-readme-release-note-quick-start-outline",
+            "kind": "block-sequence",
+            "scope": {
+              "kind": "document"
+            },
+            "sequence": [
+              {
+                "block": "heading",
+                "depth": 1
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "code"
+              },
+              {
+                "block": "heading",
+                "depth": 2
+              },
+              {
+                "block": "list"
+              },
+              {
+                "block": "paragraph"
+              }
+            ],
+            "priority": 10,
+            "feedback": "Match the Goal's compact block order."
+          },
+          {
+            "id": "l5-readme-release-note-quick-start-sections",
+            "kind": "block-count",
+            "scope": {
+              "kind": "document"
+            },
+            "block": "heading",
+            "depth": 2,
+            "min": 2,
+            "max": 2,
+            "priority": 15,
+            "feedback": "Use exactly 2 H2 sections."
+          },
+          {
+            "id": "l5-readme-release-note-quick-start-code",
+            "kind": "code-block",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 0
+            },
+            "min": 1,
+            "max": 1,
+            "requireLanguageTag": true,
+            "requireFenced": true,
+            "requireClosedFence": true,
+            "requireNonemptyContent": true,
+            "priority": 30,
+            "feedback": "Use one closed, nonempty, language-tagged fenced block in this section."
+          },
+          {
+            "id": "l5-readme-release-note-quick-start-list",
+            "kind": "list-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "ordered": true,
+            "minItems": 2,
+            "maxItems": 2,
+            "requireVisibleItems": true,
+            "priority": 40,
+            "feedback": "Use a numbered list with two visible items in this section."
+          },
+          {
+            "id": "l5-readme-release-note-quick-start-inline-code",
+            "kind": "inline-code-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 2,
+            "max": 2,
+            "requireNonemptyContent": true,
+            "priority": 50,
+            "feedback": "Use two nonempty inline-code spans in this section."
+          },
+          {
+            "id": "l5-readme-release-note-quick-start-link",
+            "kind": "link-shape",
+            "scope": {
+              "kind": "section",
+              "headingDepth": 2,
+              "occurrence": 1
+            },
+            "min": 1,
+            "max": 1,
+            "requireNonemptyLabel": true,
+            "requireNonemptyDestination": true,
+            "allowReferences": true,
+            "allowAutolinks": false,
+            "priority": 60,
+            "feedback": "Use one descriptive Markdown link in this section."
+          }
+        ],
+        "editorialChecks": [
+          {
+            "id": "one-document-title",
+            "kind": "single-h1",
+            "review": "Keep one H1 as the document title; use H2 for sections."
+          },
+          {
+            "id": "keep-inline-code-focused",
+            "kind": "max-inline-count",
+            "scope": {
+              "kind": "document"
+            },
+            "inline": "inline-code",
+            "max": 2,
+            "review": "Keep inline code focused on the two usage commands."
+          }
+        ],
+        "hints": [
+          "Start with one # title and two ## sections.",
+          "Put the install command in a language-tagged fence.",
+          "Number two usage steps, add two inline-code spans in the Try it section, and finish with one link."
+        ],
+        "reviewTags": [
+          "one-document-title",
+          "compact-document",
+          "level5-readme-quick-start"
+        ],
+        "vocabulary": {
+          "profile": "agent-workflow",
+          "domains": [
+            "developer-tools",
+            "documentation"
+          ],
+          "terms": [
+            "release note",
+            "checker",
+            "report",
+            "guide"
+          ]
+        },
+        "contentVariant": "release-note-checker-quick-start",
+        "convention": {
+          "id": "nabi-agent-work-order",
+          "version": "2026.07",
+          "reviewedOn": "2026-07-22"
+        },
+        "sourceBatchId": "2026-07-22-l5-developer-forms-020"
+      },
+      {
         "schemaVersion": 2,
         "id": "l5-release-context-work-order",
         "level": 5,
@@ -38297,5 +40809,5 @@
       }
     ]
   },
-  "projectionDigest": "0bf2fbb72cc50ab16c82cef5af9c9e5e848fb376d978c1a43285435f8f261ed3"
+  "projectionDigest": "f5fedf2bc5cee805c6e41e36d891250c0c324655362f12831bda0b04acbdcd1e"
 }

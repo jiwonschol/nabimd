@@ -26,6 +26,7 @@ export default defineConfig({
       "scripts/problem-bank/advancedDocumentBatch017Artifacts.gate.ts",
       "scripts/problem-bank/advancedDocumentReplacementBatch018Artifacts.gate.ts",
       "scripts/problem-bank/nestedBulletBatch019Artifacts.gate.ts",
+      "scripts/problem-bank/developerFormsBatch020Artifacts.gate.ts",
     ],
   },
 })

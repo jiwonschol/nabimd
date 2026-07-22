@@ -1,8 +1,8 @@
 # Problem-bank pipeline
 
 Nabi treats curriculum as executable product data, not a pile of prompts. The
-schema-v2 tracker currently publishes 344 inspected `standard` problems: 136 at
-Level 1, 148 at Level 2, 30 at Level 3, 20 at Level 4, and 10 at Level 5. The
+schema-v2 tracker currently publishes 360 inspected `standard` problems: 140 at
+Level 1, 148 at Level 2, 30 at Level 3, 20 at Level 4, and 22 at Level 5. The
 foundation batch carries 184 real-engine fixtures, the heading expansion
 carries 192, and the first bold-emphasis expansion carries 216. The first
 bullet-list expansion carries 360; the first ordered-list expansion carries
@@ -23,6 +23,9 @@ The compact advanced-document replacement batch carries 304 frozen fixtures
 for eight Level 4 workplace miniatures and ten Level 5 developer miniatures.
 It supersedes only the current over-length revisions, so the published total
 and level split remain unchanged.
+The Level 1 nested-bullet batch carries 56 frozen fixtures. The compact Level 5
+developer-forms batch carries 348 frozen fixtures for README quick starts, bug
+reports, and pull-request descriptions.
 Each immutable batch has two sealed independent reviews and one separate
 editorial decision.
 
@@ -96,7 +99,7 @@ latest when the alias was committed.
   compiled publish set and progress toward the closing target.
 
 The 512-problem closing bank remains a target, not a quantity claim. The tracker
-currently reports 344. New families publish in small batches only after their
+currently reports 360. New families publish in small batches only after their
 real predicate, counterexamples, fixtures, independent agreement, and editorial
 acceptance all exist.
 
@@ -119,4 +122,4 @@ before compilation. The compiler publishes only the accepted set and derives
 The tracker target is 512 inspected `standard` problems: 128 each at Levels 1
 and 2, 96 at Level 3, and 80 each at Levels 4 and 5. Quantity never overrides a
 fixture, review, or editorial failure. The current distribution is
-136/148/30/20/10.
+140/148/30/20/22.

@@ -2492,3 +2492,28 @@ runtime projection
 and tracker `7041d0182ad9502479f5e9b51d3c587892cd09f08196bf74aceef8bcd686c9e4`.
 Issue #9 remains open: 152 more accepted problems are needed for the public
 500-problem floor and 164 for the internal 512 target.
+
+## 2026-07-22 — Compact Level 5 developer forms
+
+Batch 020 broadens Level 5 without turning it into a final exam. Twelve short
+problems add three forms developers regularly read and write: README quick
+starts, bug reports, and pull-request descriptions. Each family has four
+content variants. Goals stay between 14 and 18 physical lines and 23 to 37
+authored words; difficulty comes from placing headings, lists, links, quotes,
+inline code, and fenced code rather than from reading or typing volume.
+
+Pre-freeze review materially changed the batch. The first outline check used an
+exact block sequence that rejected otherwise supported reference links, README
+copy claimed a narrower inline-code placement than the grader enforced, and
+teaching examples repeated inside each family. The outline became a
+non-conflicting sequence check, redundant hierarchy grading was removed,
+learner-facing wording was aligned to the actual section scope, and all twelve
+examples became distinct before any evidence was sealed.
+
+The final manifest binds 12 candidates, 348 frozen real-engine fixtures, and 88
+direct match-check paths. Atlas replayed every fixture and passed 224 fresh
+adversarial probes; Orchid independently replayed them and passed 184 different
+AST and scope probes plus a 200-turn reachability run. Both observed zero
+runtime network calls. Separate editorial review accepted 12/12. Publication
+raises the deterministic bank to 360 problems split `140/148/30/20/22`, leaving
+140 to the public 500 floor and 152 to the internal 512 closing target.
