@@ -514,6 +514,9 @@ test("shows Level 3 mark positions as non-document blank guides", async ({
   expect(await sourceText(page)).toBe(derivePlaintextStarter(problem.target))
 
   await sourceEditor(page).fill(problem.target)
+  // The blank-guide decorations recompute asynchronously after the fill; wait
+  // for them to clear before snapshotting so the read never races the editor.
+  await expect(page.locator(".cm-markdown-blank-guide")).toHaveCount(0)
   const remainingGuides = await page
     .locator(".cm-markdown-blank-guide")
     .evaluateAll((elements) =>

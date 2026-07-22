@@ -123,7 +123,7 @@ describe("useLearningSession", () => {
     const second = renderLearningSession(
       new MemoryStorage(),
       () => 1_000,
-      () => 17,
+      () => 1,
     )
 
     act(() => first.result.current.start("level-1"))

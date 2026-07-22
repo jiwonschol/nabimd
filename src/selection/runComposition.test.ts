@@ -2,7 +2,11 @@ import { describe, expect, it } from "vitest"
 import { createRunProblemIds } from "../content/entryChoices"
 import { getProblem } from "../content/problemBank"
 import { createTurnProblemIds, getSyntaxFamily } from "./runComposition"
-import { RUN_POLICY, SYNTAX_FAMILY_WEIGHTS } from "./runPolicy"
+import {
+  EXCLUDED_SYNTAX_FAMILIES,
+  RUN_POLICY,
+  SYNTAX_FAMILY_WEIGHTS,
+} from "./runPolicy"
 
 describe("run composition policy", () => {
   const problem = (
@@ -26,29 +30,23 @@ describe("run composition policy", () => {
       hintShownCount: 4,
       challengeLevelOffset: 1,
     })
-    expect(SYNTAX_FAMILY_WEIGHTS["ordered-list"]).toBeGreaterThan(
-      SYNTAX_FAMILY_WEIGHTS.heading,
-    )
-    expect(SYNTAX_FAMILY_WEIGHTS["unordered-list"]).toBeGreaterThan(
-      SYNTAX_FAMILY_WEIGHTS.heading,
-    )
-    for (const rareFamily of ["inline-code", "link", "image"] as const) {
-      expect(SYNTAX_FAMILY_WEIGHTS[rareFamily]).toBeLessThan(
-        SYNTAX_FAMILY_WEIGHTS.heading,
-      )
-    }
+    // No family is privileged: a practice run should feel varied, not
+    // list-heavy the way weight 1.25 used to make it.
+    expect(new Set(Object.values(SYNTAX_FAMILY_WEIGHTS))).toEqual(new Set([1]))
+    // Numbered-list drills are retired from every served run.
+    expect(EXCLUDED_SYNTAX_FAMILIES.has("ordered-list")).toBe(true)
   })
 
   it("schedules a one-syntax code-block lesson as its own family", () => {
     expect(getSyntaxFamily(problem("block", 1, ["code-block"]))).toBe(
       "code-block",
     )
-    expect(SYNTAX_FAMILY_WEIGHTS["code-block"]).toBeLessThan(
+    expect(SYNTAX_FAMILY_WEIGHTS["code-block"]).toBe(
       SYNTAX_FAMILY_WEIGHTS.heading,
     )
   })
 
-  it("makes lists recur more often than rare families across many turns", () => {
+  it("retires numbered-list drills and serves every family evenly", () => {
     const counts = new Map<string, number>()
 
     for (let runNumber = 0; runNumber < 40; runNumber += 1) {
@@ -58,10 +56,17 @@ describe("run composition policy", () => {
       }
     }
 
-    expect(counts.get("ordered-list")).toBeGreaterThan(
-      counts.get("inline-code")!,
+    // Numbered lists never reach a learner again.
+    expect(counts.get("ordered-list") ?? 0).toBe(0)
+
+    // Bullets used to dominate; now no family is served far more than another.
+    const served = [...counts.values()]
+    expect(Math.max(...served) - Math.min(...served)).toBeLessThanOrEqual(4)
+
+    // The families the old policy suppressed now appear as often as bullets.
+    expect(counts.get("unordered-list") ?? 0).toBeLessThanOrEqual(
+      (counts.get("inline-code") ?? 0) + 2,
     )
-    expect(counts.get("unordered-list")).toBeGreaterThan(counts.get("link")!)
   })
 
   it("keeps the first two seeded turns free of repeated problems", () => {
