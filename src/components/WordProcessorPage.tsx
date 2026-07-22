@@ -3,8 +3,6 @@ import { MarkdownWordProcessor } from "./MarkdownSourceEditor"
 import { WritingProcessor } from "./WritingProcessor"
 
 type WordProcessorPageBaseProps = {
-  activeOffset?: number
-  focusTreatment?: "answer" | "goal"
   label: string
   leadingBlankRows?: number
   value: string
@@ -45,8 +43,6 @@ export function WordProcessorPage(props: WordProcessorPageProps) {
   const processor = readOnly ? (
     <MarkdownWordProcessor
       active={false}
-      activeOffset={props.activeOffset}
-      focusTreatment={props.focusTreatment}
       label={label}
       presentation={presentation}
       readOnly
@@ -56,9 +52,7 @@ export function WordProcessorPage(props: WordProcessorPageProps) {
   ) : (
     <MarkdownWordProcessor
       active={props.active}
-      activeOffset={props.activeOffset}
       blankGuides={props.blankGuides}
-      focusTreatment={props.focusTreatment}
       label={label}
       onChange={props.onChange}
       onCheck={props.onCheck}

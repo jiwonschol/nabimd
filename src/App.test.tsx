@@ -13,10 +13,6 @@ import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
 import { evaluateProblem } from "./engine/evaluateProblem"
 import { buildReviewCorrections } from "./feedback/reviewCorrections"
-import {
-  buildGuidedDraft,
-  deriveSyntaxCheckpoints,
-} from "./guided/guidedSyntax"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
 import { playPageTurnSound } from "./sound/pageTurnSound"
 import { App, PAGE_TURN_DURATION_MS } from "./App"
@@ -200,7 +196,7 @@ describe("App", () => {
     expect(screen.queryByTestId("page-turn-transition")).toBeNull()
     expect(screen.getByTestId("page-turn-receiver")).not.toHaveAttribute("inert")
     expect(
-      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+      screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toHaveFocus()
   })
 
@@ -260,7 +256,7 @@ describe("App", () => {
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
       expect(screen.getByLabelText(`Level ${entry.level}`)).toBeVisible()
       expect(
-        screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+        screen.getByRole("textbox", { name: "Your Markdown" }),
       ).toHaveFocus()
       view.unmount()
     }
@@ -397,7 +393,7 @@ describe("App", () => {
     await user.keyboard("{Control>}{Enter}{/Control}")
     const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
     expect(
-      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+      screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toHaveFocus()
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 2 of 6",
@@ -413,29 +409,33 @@ describe("App", () => {
       "Practice progress, 2 of 6",
     )
     expect(
-      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+      screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toHaveFocus()
   })
 
-  it("keeps Next unavailable and opens beginner Review after Try again", async () => {
+  it("keeps Next unavailable and stays on Write after Try again", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard(malformedSource())
+    replaceSource(editor, malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
     expect(screen.getByRole("status")).toHaveTextContent("Try again")
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
     expect(screen.getByRole("button", { name: "Check answer" })).toBeVisible()
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+    await waitFor(() => expect(editor).toHaveFocus())
+
+    await user.click(screen.getByRole("tab", { name: "Review" }))
     const review = screen.getByRole("tabpanel", { name: "Review" })
     expect(review).toHaveAttribute("tabindex", "0")
-    expect(review).toHaveFocus()
-    expect(screen.getByRole("tab", { name: "Review" })).not.toHaveFocus()
     expect(
       within(review).getByRole("list", { name: "Required corrections" }),
     ).toBeVisible()
     expect(review.querySelector(".rendered-document__body")).toBeNull()
     expect(review.querySelector("pre")).toBeNull()
     expect(review).not.toHaveTextContent("Diff")
-    expect(editor).not.toHaveFocus()
 
     await user.keyboard("{Alt>}1{/Alt}")
     await waitFor(() => {
@@ -456,6 +456,7 @@ describe("App", () => {
     replaceSource(editor, malformedSource())
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
+    await user.click(screen.getByRole("tab", { name: "Review" }))
     const review = screen.getByRole("tabpanel", { name: "Review" })
     const checkedExcerpts = within(review)
       .getAllByText("You wrote")
@@ -492,20 +493,16 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
   })
 
-  it("refocuses Review after a repeated failure without blocking Write", async () => {
+  it("returns focus to the editor after every failed Check", async () => {
     const { user, editor } = await openLevel(1)
-    await user.keyboard(malformedSource())
+    replaceSource(editor, malformedSource())
     const check = screen.getByRole("button", { name: "Check answer" })
 
     await user.click(check)
-    const review = screen.getByRole("tabpanel", { name: "Review" })
-    expect(review).toHaveFocus()
+    await waitFor(() => expect(editor).toHaveFocus())
 
     await user.click(check)
-    expect(review).toHaveFocus()
-
-    await user.keyboard("{Alt>}1{/Alt}")
-    expect(editor).toHaveFocus()
+    await waitFor(() => expect(editor).toHaveFocus())
   })
 
   it("replaces Review and Hint feedback after a different failed recheck", async () => {
@@ -531,6 +528,7 @@ describe("App", () => {
     replaceSource(editor, problem.target.replace(/\*\*(.*?)\*\*/, "$1"))
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
+    await user.click(screen.getByRole("tab", { name: "Review" }))
     const firstReview = screen.getByRole("tabpanel", { name: "Review" })
     expect(within(firstReview).getByText(oldRequirement.feedback)).toBeVisible()
     expect(within(firstReview).queryByText(newRequirement.feedback)).toBeNull()
@@ -545,6 +543,7 @@ describe("App", () => {
     replaceSource(editor, problem.target.replace(/^- /gm, ""))
     await user.click(screen.getByRole("button", { name: "Check answer" }))
 
+    await user.click(screen.getByRole("tab", { name: "Review" }))
     const recheckedReview = screen.getByRole("tabpanel", { name: "Review" })
     expect(
       within(recheckedReview).getByText(newRequirement.feedback),
@@ -570,6 +569,7 @@ describe("App", () => {
 
     replaceSource(editor, "")
     await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("tab", { name: "Review" }))
 
     const evaluation = evaluateProblem(problem, "")
     if (evaluation.status !== "fail") {
@@ -782,7 +782,7 @@ describe("App", () => {
     const { user, editor } = await openLevel(2)
     const problem = currentProblem()
     const editorView = EditorView.findFromDOM(editor)
-    expect(editorView?.state.doc.toString()).toBe("")
+    expect(editorView?.state.doc.toString()).toBe(problem.starterText)
 
     const goalPage = screen
       .getByRole("region", { name: "Goal" })
@@ -838,50 +838,87 @@ describe("App", () => {
     )
   })
 
-  it("builds the source one syntax checkpoint at a time and keeps browser history inside the problem", async () => {
-    const { editor } = await openLevel(3)
+  it("pre-fills the answer sheet with the Goal's prose so only the marks are missing", async () => {
+    const { editor } = await openLevel(1)
     const problem = currentProblem()
-    const checkpoints = deriveSyntaxCheckpoints(
-      problem.target,
+
+    expect(problem.starterText).not.toBe("")
+    expect(problem.starterText).not.toBe(problem.target)
+    expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toBe(
       problem.starterText,
     )
-    const first = checkpoints[0]!
-    expect(checkpoints.length).toBeGreaterThan(1)
+  })
 
-    const syntaxInput = screen.getByRole("textbox", {
-      name: `Markdown syntax for line ${first.line}`,
-    })
-    fireEvent.change(syntaxInput, {
-      target: { value: first.canonicalInput },
-    })
-    fireEvent.keyDown(syntaxInput, { key: "Enter" })
+  it("lets the learner retype immediately after Try again", async () => {
+    const { user, editor } = await openLevel(1)
+    replaceSource(editor, malformedSource())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
 
-    await waitFor(() =>
-      expect(
-        screen.getByLabelText(`Syntax 2 of ${checkpoints.length}`),
-      ).toBeVisible(),
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
     )
+
+    replaceSource(editor, validDifferentProse())
     expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toBe(
-      buildGuidedDraft(problem.target, checkpoints, 1),
+      validDifferentProse(),
     )
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+  })
+
+  it("moves between visited problems with the in-app previous and next controls", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblem = currentProblem()
+    const previousButton = screen.getByRole("button", {
+      name: "Previous exercise",
+    })
+    const nextVisitedButton = screen.getByRole("button", {
+      name: "Next visited exercise",
+    })
+    expect(previousButton).toBeDisabled()
+    expect(nextVisitedButton).toBeDisabled()
+
+    const firstAnswer = validDifferentProse()
+    replaceSource(editor, firstAnswer)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(firstProblem.id)
+    expect(previousButton).toBeEnabled()
+    expect(nextVisitedButton).toBeDisabled()
+
+    await user.click(previousButton)
+    expect(currentProblem().id).toBe(firstProblem.id)
+    const restoredEditor = screen.getByRole("textbox", {
+      name: "Your Markdown",
+    })
+    expect(EditorView.findFromDOM(restoredEditor)?.state.doc.toString()).toBe(
+      firstAnswer,
+    )
+    expect(previousButton).toBeDisabled()
+    expect(nextVisitedButton).toBeEnabled()
+
+    await user.click(nextVisitedButton)
+    expect(currentProblem().id).not.toBe(firstProblem.id)
+    expect(nextVisitedButton).toBeDisabled()
+  })
+
+  it("keeps browser history on problem steps inside the practice run", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblem = currentProblem()
+
+    replaceSource(editor, validDifferentProse())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    const secondProblem = currentProblem()
+    expect(secondProblem.id).not.toBe(firstProblem.id)
 
     act(() => window.history.back())
-    await waitFor(() =>
-      expect(
-        screen.getByLabelText(`Syntax 1 of ${checkpoints.length}`),
-      ).toBeVisible(),
-    )
-    expect(currentProblem().id).toBe(problem.id)
-    expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toBe(
-      buildGuidedDraft(problem.target, checkpoints, 1),
-    )
+    await waitFor(() => expect(currentProblem().id).toBe(firstProblem.id))
 
     act(() => window.history.forward())
-    await waitFor(() =>
-      expect(
-        screen.getByLabelText(`Syntax 2 of ${checkpoints.length}`),
-      ).toBeVisible(),
-    )
+    await waitFor(() => expect(currentProblem().id).toBe(secondProblem.id))
   })
 
   it("keeps view shortcuts active across Write, Preview, and Hint", async () => {
@@ -911,19 +948,11 @@ describe("App", () => {
     expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
   })
 
-  it("keeps view shortcuts active while the guided syntax input owns focus", async () => {
-    const { user } = await openLevel(1)
-    const answer = screen.getByRole("region", { name: "Your answer" })
-    const card = screen.getByRole("complementary", {
-      name: "Guided Markdown syntax",
-    })
-    const syntaxInput = screen.getByRole("textbox", {
-      name: /Markdown syntax for line/,
-    })
+  it("keeps view shortcuts active while the editor owns focus", async () => {
+    const { user, editor } = await openLevel(1)
     const previewTab = screen.getByRole("tab", { name: "Preview" })
 
-    expect(answer).toContainElement(card)
-    expect(syntaxInput).toHaveFocus()
+    expect(editor).toHaveFocus()
     await user.keyboard("{Alt>}2{/Alt}")
 
     expect(previewTab).toHaveAttribute("aria-selected", "true")
@@ -990,7 +1019,7 @@ describe("App", () => {
     await user.click(screen.getByRole("button", { name: "Try another" }))
     expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(original)
     expect(
-      screen.getByRole("textbox", { name: /Markdown syntax for line/ }),
+      screen.getByRole("textbox", { name: "Your Markdown" }),
     ).toHaveFocus()
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 1 of 6",

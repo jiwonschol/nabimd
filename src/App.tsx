@@ -187,7 +187,7 @@ export function App() {
       return
     }
     document
-      .querySelector<HTMLElement>(".guided-syntax-card__input")
+      .querySelector<HTMLElement>('.answer-panel [role="textbox"]')
       ?.focus()
   }, [learningSession.session.entryId, summarySnapshot, turningEntryId])
 

@@ -591,22 +591,17 @@ describe("MarkdownSourceEditor", () => {
     )
   })
 
-  it("marks and centers the active Goal line without making it editable", async () => {
-    const { container } = render(
+  it("keeps the rendered Goal document read-only", () => {
+    render(
       <MarkdownWordProcessor
-        activeOffset={16}
-        focusTreatment="goal"
         label="Goal document"
         presentation="rendered"
         readOnly
         showInvisibles
-        value={"# First\n\n## Active line\n\nLast"}
+        value={"# First\n\n## Section\n\nLast"}
       />,
     )
 
-    await waitFor(() =>
-      expect(container.querySelector(".cm-guided-target-line")).not.toBeNull(),
-    )
     expect(screen.queryByRole("textbox", { name: "Goal document" })).toBeNull()
   })
 })

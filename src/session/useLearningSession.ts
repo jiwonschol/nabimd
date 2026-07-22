@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from "react"
+import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 import {
   createRunProblemIds,
   getEntryChoice,
@@ -121,11 +121,6 @@ export function useLearningSession(
     startRun(session.entryId, session.runNumber + 1)
   }, [session.entryId, session.runNumber, startRun])
 
-  const startOver = useCallback(() => {
-    if (!session.entryId) return
-    startRun(session.entryId, session.runNumber + 1)
-  }, [session.entryId, session.runNumber, startRun])
-
   const changeLevel = useCallback(() => {
     dispatch({
       type: "returned-to-greeting",
@@ -148,6 +143,54 @@ export function useLearningSession(
     },
     [],
   )
+
+  // Every visited run step keeps its last-known snapshot so the in-app
+  // previous/next controls can restore it exactly like a browser Back.
+  const stepSnapshotsRef = useRef(
+    new Map<number, PracticeHistorySnapshot>(),
+  )
+
+  useEffect(() => {
+    stepSnapshotsRef.current = new Map()
+  }, [session.entryId, session.runNumber])
+
+  useEffect(() => {
+    if (!session.entryId) return
+    if (session.runStepIndex >= session.runProblemIds.length) return
+    stepSnapshotsRef.current.set(session.runStepIndex, {
+      entryId: session.entryId,
+      runNumber: session.runNumber,
+      runProblemIds: [...session.runProblemIds],
+      runStepIndex: session.runStepIndex,
+      scheduledStepIndex: session.scheduledStepIndex,
+      currentProblemId: session.currentProblemId,
+      currentIsTransfer: session.currentIsTransfer,
+      runStartedAtMs: session.runStartedAtMs,
+    })
+  }, [session])
+
+  const goToStep = useCallback((stepIndex: number) => {
+    const snapshot = stepSnapshotsRef.current.get(stepIndex)
+    if (!snapshot || snapshot.entryId === null) return
+    dispatch({
+      type: "history-navigated",
+      snapshot,
+      problem: getProblem(snapshot.currentProblemId),
+    })
+  }, [])
+
+  const goToPreviousStep = useCallback(
+    () => goToStep(session.runStepIndex - 1),
+    [goToStep, session.runStepIndex],
+  )
+
+  const goToNextStep = useCallback(
+    () => goToStep(session.runStepIndex + 1),
+    [goToStep, session.runStepIndex],
+  )
+
+  const inActiveRun =
+    session.entryId !== null && session.phase !== "complete"
 
   const tryAnother = useCallback(() => {
     const excludedProblemIds = new Set([
@@ -224,9 +267,12 @@ export function useLearningSession(
     problem,
     canCheck: session.phase !== "complete",
     canNext: canAdvance(session),
+    canGoToPreviousStep:
+      inActiveRun && stepSnapshotsRef.current.has(session.runStepIndex - 1),
+    canGoToNextStep:
+      inActiveRun && stepSnapshotsRef.current.has(session.runStepIndex + 1),
     start,
     practiceAgain,
-    startOver,
     changeLevel,
     returnToGreetingFromHistory,
     navigateToHistory,
@@ -236,5 +282,7 @@ export function useLearningSession(
     requestHint,
     closeCoach,
     next,
+    goToPreviousStep,
+    goToNextStep,
   }
 }

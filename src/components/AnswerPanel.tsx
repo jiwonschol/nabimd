@@ -14,9 +14,7 @@ import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
-import type { GuidedSyntaxController } from "../guided/useGuidedSyntaxPractice"
 import { RenderedDocumentBody } from "./RenderedDocument"
-import { GuidedSyntaxCard } from "./GuidedSyntaxCard"
 import { WordProcessorPage } from "./WordProcessorPage"
 
 type AnswerView = "write" | "preview" | "review" | "hint"
@@ -28,7 +26,6 @@ type AnswerPanelProps = {
   coach: LearningSession["coach"]
   hintLevel: LearningSession["hintLevel"]
   problem: GradableProblem
-  guided?: GuidedSyntaxController
   onChange: (value: string) => void
   onCheck: (value?: string) => void
   onCloseHint: () => void
@@ -243,7 +240,6 @@ export function AnswerPanel({
   coach,
   hintLevel,
   problem,
-  guided,
   onChange,
   onCheck,
   onCloseHint,
@@ -312,10 +308,17 @@ export function AnswerPanel({
 
   useEffect(() => {
     if (!evaluation) return
-    if (
-      evaluation.status === "fail" ||
-      (evaluation.status === "matched" && evaluation.reviewItems.length > 0)
-    ) {
+    // A failed Check must never take the editor away: the learner stays on
+    // Write with the verdict visible and retypes immediately. Review stays
+    // reachable as a tab.
+    if (evaluation.status === "fail") {
+      pendingTabFocus.current = null
+      pendingReadingFocus.current = null
+      pendingEditorFocus.current = true
+      setView("write")
+      return
+    }
+    if (evaluation.reviewItems.length > 0) {
       pendingTabFocus.current = null
       pendingReadingFocus.current = "second"
       setView("review")
@@ -580,27 +583,16 @@ export function AnswerPanel({
         role="tabpanel"
       >
         <WordProcessorPage
-          {...(guided
-            ? {
-                active: false,
-                activeOffset: guided.checkpoint?.activeOffset,
-                focusTreatment: "answer" as const,
-                onChange: guided.editDraft,
-                onCheck: guided.checkDraft,
-                readOnly: false as const,
-              }
-            : {
-                active: interactive && view === "write",
-                blankGuides,
-                onChange,
-                onCheck,
-                readOnly: false as const,
-              })}
+          active={interactive && view === "write"}
+          blankGuides={blankGuides}
           key={problem.id}
           label="Your Markdown"
           leadingBlankRows={leadingBlankRows}
+          onChange={onChange}
+          onCheck={onCheck}
           presentation="source"
-          value={guided?.draft ?? draft}
+          readOnly={false}
+          value={draft}
         />
       </div>
 
@@ -623,15 +615,7 @@ export function AnswerPanel({
             label="Rendered answer"
             leadingBlankRows={leadingBlankRows}
             presentation="rendered"
-            activeOffset={
-              guided && view === secondView
-                ? guided.checkpoint?.activeOffset
-                : undefined
-            }
-            focusTreatment={
-              guided && view === secondView ? "answer" : undefined
-            }
-            value={guided?.draft ?? draft}
+            value={draft}
           />
         )}
       </div>
@@ -656,25 +640,6 @@ export function AnswerPanel({
         />
       </div>
 
-      {interactive && view === "write" && guided?.checkpoint ? (
-        <GuidedSyntaxCard
-          attempts={guided.attempts}
-          canGoBack={guided.canGoBack}
-          canGoForward={guided.canGoForward}
-          checkpoint={guided.checkpoint}
-          current={guided.currentIndex + 1}
-          hintOpen={guided.hintOpen}
-          instruction={problem.prompt}
-          key={problem.id}
-          onBack={guided.goBack}
-          onForward={guided.goForward}
-          onSubmit={guided.submit}
-          onToggleHint={guided.toggleHint}
-          onValueChange={guided.setValue}
-          total={guided.checkpoints.length}
-          value={guided.value}
-        />
-      ) : null}
     </section>
   )
 }

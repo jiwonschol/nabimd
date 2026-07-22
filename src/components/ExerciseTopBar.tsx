@@ -1,6 +1,8 @@
 import {
   ArrowRight,
   Check,
+  ChevronLeft,
+  ChevronRight,
   House,
   Shuffle,
   Volume2,
@@ -25,6 +27,8 @@ import { Wordmark } from "./Wordmark"
 type ExerciseTopBarProps = {
   autofocusActions?: boolean
   canCheck: boolean
+  canGoToPreviousStep: boolean
+  canGoToNextStep: boolean
   entryId: EntryId
   evaluation: Evaluation | null
   currentIsTransfer: boolean
@@ -38,12 +42,16 @@ type ExerciseTopBarProps = {
   onCheck: () => void
   onExit: () => void
   onNext: () => void
+  onPreviousStep: () => void
+  onNextStep: () => void
   onTryAnother: () => void
 }
 
 export function ExerciseTopBar({
   autofocusActions = true,
   canCheck,
+  canGoToPreviousStep,
+  canGoToNextStep,
   entryId,
   evaluation,
   currentIsTransfer,
@@ -57,6 +65,8 @@ export function ExerciseTopBar({
   onCheck,
   onExit,
   onNext,
+  onPreviousStep,
+  onNextStep,
   onTryAnother,
 }: ExerciseTopBarProps) {
   const nextRef = useRef<HTMLButtonElement>(null)
@@ -206,6 +216,26 @@ export function ExerciseTopBar({
         </div>
 
         <div className="exercise-topbar__end">
+          <button
+            aria-label="Previous exercise"
+            className="top-action top-action--icon"
+            data-tooltip="Previous exercise"
+            disabled={!canGoToPreviousStep}
+            onClick={onPreviousStep}
+            type="button"
+          >
+            <ChevronLeft aria-hidden="true" size={19} strokeWidth={1.7} />
+          </button>
+          <button
+            aria-label="Next visited exercise"
+            className="top-action top-action--icon"
+            data-tooltip="Next visited exercise"
+            disabled={!canGoToNextStep}
+            onClick={onNextStep}
+            type="button"
+          >
+            <ChevronRight aria-hidden="true" size={19} strokeWidth={1.7} />
+          </button>
           <button
             aria-label="Try another"
             className="top-action top-action--icon"

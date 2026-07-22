@@ -54,7 +54,7 @@ describe("useLearningSession", () => {
     )
   })
 
-  it("advances Practice again and Start over to fresh turns", () => {
+  it("advances Practice again to fresh turns", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-3"))
     const original = result.current.problem.id
@@ -63,7 +63,7 @@ describe("useLearningSession", () => {
     expect(result.current.session.runNumber).toBe(1)
     expect(result.current.problem.id).not.toBe(original)
 
-    act(() => result.current.startOver())
+    act(() => result.current.practiceAgain())
     expect(result.current.session.runNumber).toBe(2)
     expect(result.current.problem.id).not.toBe(original)
     expect(result.current.session.draft).toBe(
