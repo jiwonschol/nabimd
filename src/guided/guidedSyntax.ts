@@ -15,6 +15,37 @@ export type SyntaxCheckpoint = {
   segments: readonly GuidedSyntaxSegment[]
 }
 
+export function acceptsGuidedSyntaxInput(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+): boolean {
+  if (value === checkpoint.canonicalInput) return true
+  if (value.length !== checkpoint.canonicalInput.length) return false
+
+  return (
+    /^\*+$/.test(checkpoint.canonicalInput) &&
+    (/^\*+$/.test(value) || /^_+$/.test(value))
+  )
+}
+
+function renderCheckpointWithInput(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+): string {
+  let inputOffset = 0
+  return checkpoint.segments
+    .map((segment) => {
+      if (segment.kind === "locked") return segment.value
+      const replacement = value.slice(
+        inputOffset,
+        inputOffset + segment.value.length,
+      )
+      inputOffset += segment.value.length
+      return replacement
+    })
+    .join("")
+}
+
 type SourceRange = { from: number; to: number }
 
 function isParent(node: Nodes): node is Parents {
@@ -301,9 +332,27 @@ export function buildGuidedDraft(
   target: string,
   checkpoints: readonly SyntaxCheckpoint[],
   completedCount: number,
+  completedValues: Readonly<Record<string, string>> = {},
 ): string {
   if (completedCount <= 0 || checkpoints.length === 0) return ""
-  if (completedCount >= checkpoints.length) return target
-  const nextCheckpoint = checkpoints[completedCount]
-  return target.slice(0, nextCheckpoint?.targetFrom ?? target.length)
+  const boundedCount = Math.min(completedCount, checkpoints.length)
+  const nextCheckpoint = checkpoints[boundedCount]
+  const draftEnd = nextCheckpoint?.targetFrom ?? target.length
+  const parts: string[] = []
+  let cursor = 0
+
+  for (const checkpoint of checkpoints.slice(0, boundedCount)) {
+    parts.push(target.slice(cursor, checkpoint.targetFrom))
+    const submittedValue = completedValues[checkpoint.id]
+    const acceptedValue =
+      submittedValue !== undefined &&
+      acceptsGuidedSyntaxInput(checkpoint, submittedValue)
+        ? submittedValue
+        : checkpoint.canonicalInput
+    parts.push(renderCheckpointWithInput(checkpoint, acceptedValue))
+    cursor = checkpoint.targetTo
+  }
+
+  parts.push(target.slice(cursor, draftEnd))
+  return parts.join("")
 }

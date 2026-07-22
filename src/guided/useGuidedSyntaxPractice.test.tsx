@@ -52,6 +52,30 @@ describe("useGuidedSyntaxPractice", () => {
     expect(result.current.completed).toBe(true)
   })
 
+  it("accepts underscore delimiters for an italic checkpoint and preserves them in the draft", () => {
+    const italicProblem = {
+      id: "guided-italic-test",
+      target: "*Quiet music*",
+      starterText: "Quiet music",
+    }
+    const onChange = vi.fn()
+    const onCheck = vi.fn()
+    const { result } = renderHook(() =>
+      useGuidedSyntaxPractice({
+        draft: italicProblem.starterText,
+        onChange,
+        onCheck,
+        problem: italicProblem,
+      }),
+    )
+
+    act(() => result.current.submit("__"))
+
+    expect(onChange).toHaveBeenLastCalledWith("_Quiet music_")
+    expect(onCheck).toHaveBeenCalledWith("_Quiet music_")
+    expect(result.current.completed).toBe(true)
+  })
+
   it("keeps an incorrect answer in place and calls attention to Hint after two attempts", () => {
     const { result } = renderHook(() =>
       useGuidedSyntaxPractice({

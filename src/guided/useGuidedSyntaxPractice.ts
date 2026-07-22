@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import { buildGuidedDraft, deriveSyntaxCheckpoints } from "./guidedSyntax"
+import {
+  acceptsGuidedSyntaxInput,
+  buildGuidedDraft,
+  deriveSyntaxCheckpoints,
+} from "./guidedSyntax"
 
 const GUIDED_HISTORY_MARKER = "nabimd-guided-syntax-v1"
 
@@ -194,9 +198,10 @@ export function useGuidedSyntaxPractice({
         0,
         checkpoint.canonicalInput.length,
       )
-      setValues((current) => ({ ...current, [checkpoint.id]: boundedValue }))
+      const nextValues = { ...values, [checkpoint.id]: boundedValue }
+      setValues(nextValues)
 
-      if (boundedValue !== checkpoint.canonicalInput) {
+      if (!acceptsGuidedSyntaxInput(checkpoint, boundedValue)) {
         setAttemptsById((current) => ({
           ...current,
           [checkpoint.id]: (current[checkpoint.id] ?? 0) + 1,
@@ -209,6 +214,7 @@ export function useGuidedSyntaxPractice({
         problem.target,
         checkpoints,
         nextCompletedCount,
+        nextValues,
       )
       setCompletedCount(nextCompletedCount)
       guidedDraftRef.current = nextDraft
@@ -251,6 +257,7 @@ export function useGuidedSyntaxPractice({
       onCheck,
       problem.id,
       problem.target,
+      values,
     ],
   )
 
