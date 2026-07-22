@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l5-developer-forms-020",
+  "status": "awaiting-independent-review",
+  "candidateCount": 12,
+  "fixtureCount": 348,
+  "passingCandidateCount": 12,
+  "normalizedArtifactDigest": "627574675dc5dcff129f3b0cb9a757e4d8db63e9072f4c32d0f694124a41f620",
+  "verificationDigest": "078d5d2e5fb4c13e89945f51575fef1108937b86dd8c34034c6f83fe3b30bbfa",
+  "manifestDigest": "b76a82b7e4a0ab8b265f176d48ae41a2622a4400782f903460b4deb8aace560d",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 348,
+  "preparedSummaryDigest": "766ef19e151e13e1602a8d3f78359581875c42cc5e068df3260d08b860e38b40"
+}

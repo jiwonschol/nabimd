@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l5-developer-forms-020",
+  "reviewerId": "reviewer-orchid-batch020-independent-mechanical",
+  "reviewRunId": "orchid-batch020-b76a82b7-ast-scope-001",
+  "declaredIndependent": true,
+  "manifestDigest": "b76a82b7e4a0ab8b265f176d48ae41a2622a4400782f903460b4deb8aace560d",
+  "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+  "frozenFixtureCount": 348,
+  "freshProbeCount": 184,
+  "overallVerdict": "pass",
+  "evidence": {
+    "sourceHead": "680cfdd4462c6ef42313746671d179ee86eb72e2",
+    "reviewManifestFileSha256": "825d6f459ae73076fb33ae0170a8be72c7f652000f92a21b938c5d18dd22774d",
+    "normalizedArtifactDigest": "627574675dc5dcff129f3b0cb9a757e4d8db63e9072f4c32d0f694124a41f620",
+    "fixtureArtifactDigest": "b7084f80ee49d4d70344159eb29291eed56f8d421704172f59f4bdcf97bb63bd",
+    "verificationDigest": "078d5d2e5fb4c13e89945f51575fef1108937b86dd8c34034c6f83fe3b30bbfa",
+    "manifestDigest": "b76a82b7e4a0ab8b265f176d48ae41a2622a4400782f903460b4deb8aace560d",
+    "engineContractDigest": "52176de80c151f143c0745ee84efe5f549c2e91331826199dcc021d69a79c555",
+    "candidateCount": 12,
+    "manifestUniqueCandidateIds": 12,
+    "frozenFixtureCount": 348,
+    "frozenOutcomeCounts": {
+      "matched": 88,
+      "fail": 260
+    },
+    "frozenDirectMatchChecksRequired": 88,
+    "frozenDirectMatchChecksCovered": 88,
+    "freshProbeCount": 184,
+    "freshOutcomeCounts": {
+      "matched": 80,
+      "fail": 104
+    },
+    "freshProbeCountsPerFamily": {
+      "README quick-start": 60,
+      "bug-report": 60,
+      "PR-description": 64
+    },
+    "freshProbeDigest": "82cb08ae6f1ba6926d0375b6717beb239a9202efcdb5c036764213cfe32dbdae",
+    "schedulingReplayTurns": 200,
+    "reachableCandidates": 12,
+    "minimumScheduleOccurrences": 18,
+    "maximumScheduleOccurrences": 91,
+    "runtimeNetworkCalls": 0,
+    "sealedManifestStableAfterReplay": true,
+    "stopRestartConditionTriggered": false
+  },
+  "mechanicalChecks": {
+    "exactManifestBound": "pass",
+    "sourceArtifactsRecomputed": "pass",
+    "engineContractCurrent": "pass",
+    "frozenFixturesReplayed348Of348": "pass",
+    "exactFrozenVerdictsAndReviewIds": "pass",
+    "directCheckCoverage88Of88": "pass",
+    "astStructuralBoundaries": "pass",
+    "wrongSectionScopeIsolation": "pass",
+    "fencedAndInlineLookalikeExclusion": "pass",
+    "directAndReferenceLinkForms": "pass",
+    "autolinkExclusion": "pass",
+    "grammarOnlyProseCaseTransfer": "pass",
+    "selectionReachability200Turns": "pass",
+    "runtimeNetworkFree": "pass",
+    "deterministicSeal": "pass"
+  },
+  "verdicts": [
+    {
+      "candidateId": "l5-bug-duplicate-webhook-retry-report",
+      "revision": 1,
+      "candidateDigest": "af5b9433e6f80826af806dc69fc5ec59a46f110438b34d636a4f3e97ce52ec79",
+      "fixtureResultsDigest": "fddda214ef86d10dada599763168ce4feecc8271a21e28425b34d4d3b7a51ba5",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 26 frozen fixtures and 15 fresh Orchid bug-report probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-bug-lost-draft-shortcut-report",
+      "revision": 1,
+      "candidateDigest": "e02ec57246d177b0b52910907303256f44073cbf2cc831b940a6a4f795b7f530",
+      "fixtureResultsDigest": "35c85160ad46fe7ba975c8f9b6ac1dd3c0d33a077dad76c8760a4769d404d4c4",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 26 frozen fixtures and 15 fresh Orchid bug-report probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-bug-missing-cli-flag-report",
+      "revision": 1,
+      "candidateDigest": "c43814cfa167ad27833856efd70032d9b78c5bc5622b1bc5794ac2d607140a82",
+      "fixtureResultsDigest": "cfd603dbb3a41d0e19426b9caf07138395e521f93209e884fd543ff0d667dc13",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 26 frozen fixtures and 15 fresh Orchid bug-report probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-bug-stale-config-cache-report",
+      "revision": 1,
+      "candidateDigest": "99c870063f0fc014f8613df1ed31f3bbaa737bd87ac71b48fcb771e1417cffa6",
+      "fixtureResultsDigest": "20c59c1a7a7512113fb65ee03e51b2d8866dca3cf6e650d72c0e155b1b5d50c0",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 26 frozen fixtures and 15 fresh Orchid bug-report probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-pr-guard-duplicate-export-description",
+      "revision": 1,
+      "candidateDigest": "e85a04112d00e36bb230db2c55c68f6bbeca1650b0f788859666a9a2ac61250b",
+      "fixtureResultsDigest": "5a6610f6d03068aea780a429ed1b48496886e3279951d7cd3395dd5735f9d769",
+      "verdict": "pass",
+      "freshProbeCount": 16,
+      "notes": "Replayed 32 frozen fixtures and 16 fresh Orchid PR-description probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-pr-normalize-timeout-description",
+      "revision": 1,
+      "candidateDigest": "3f98af6761edffbe9973c095665a2d6dad74fe896d8bc938e64b92787c6c242a",
+      "fixtureResultsDigest": "5132e6397620b85f3d806735f7aa9d57e042a54f62d03c7077de66aeb5fcc204",
+      "verdict": "pass",
+      "freshProbeCount": 16,
+      "notes": "Replayed 32 frozen fixtures and 16 fresh Orchid PR-description probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-pr-response-version-description",
+      "revision": 1,
+      "candidateDigest": "01aec39b8afc425a1132b1077a401a0c06386b49156eff50cac8d17db4584b81",
+      "fixtureResultsDigest": "f5c429331a9acd4abe39c2e45345ddc650ef9d7e15f97d5f1d691e4051b803f2",
+      "verdict": "pass",
+      "freshProbeCount": 16,
+      "notes": "Replayed 32 frozen fixtures and 16 fresh Orchid PR-description probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-pr-restore-saved-draft-description",
+      "revision": 1,
+      "candidateDigest": "71aac2b7bc712aca6606a3474c746f76eaf4d6bdfceb2788eb3f01cd46214796",
+      "fixtureResultsDigest": "797206952b988818fcdcf41e02dee846390dad166b6921b40f8d1ce4e72fdaa1",
+      "verdict": "pass",
+      "freshProbeCount": 16,
+      "notes": "Replayed 32 frozen fixtures and 16 fresh Orchid PR-description probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-readme-config-validator-quick-start",
+      "revision": 1,
+      "candidateDigest": "0568c8f71e601e077f971877f91be39e2dfb2a06fff40c0d7b80c52d96b3f07b",
+      "fixtureResultsDigest": "61862a2d13735a1d13592eb606a3e17e712e07ee2ff664e5743f6a487984421f",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 29 frozen fixtures and 15 fresh Orchid README quick-start probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-readme-csv-preview-quick-start",
+      "revision": 1,
+      "candidateDigest": "5fde86c54398b606401234625bdfa0a317c5460733d74c4013f32c27e9213f8e",
+      "fixtureResultsDigest": "56934a39bb3ae32b99b72fd69f114adf028e7edc55d93427097f8cb9dee1b37e",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 29 frozen fixtures and 15 fresh Orchid README quick-start probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-readme-log-filter-quick-start",
+      "revision": 1,
+      "candidateDigest": "c821b8369a336277677bbc6210cdd024f006d0462b4a2ae948c641866e75c108",
+      "fixtureResultsDigest": "294f8a4a462db3451a79fd3a7f24a49d4142233659ae97a05690f4b1a712f442",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 29 frozen fixtures and 15 fresh Orchid README quick-start probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    },
+    {
+      "candidateId": "l5-readme-release-note-quick-start",
+      "revision": 1,
+      "candidateDigest": "6195701efd90983b557f43f60ebe271635897a8a5f5103f86059a4997519092a",
+      "fixtureResultsDigest": "f6174a23ffa6bc20e442b349747a98d97c93aacb2f334c4cadbbec66d040483f",
+      "verdict": "pass",
+      "freshProbeCount": 15,
+      "notes": "Replayed 29 frozen fixtures and 15 fresh Orchid README quick-start probes through evaluateProblem; section scope, AST lookalikes, link forms where applicable, grammar-only prose transfer, and malformed boundaries passed."
+    }
+  ],
+  "reviewDigest": "cd0b361ca2a485525bf3fd85b69680a41f7d90b5574e3fcde8d2b3ef1d1cf4f0"
+}

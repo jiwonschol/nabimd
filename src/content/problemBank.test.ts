@@ -6,6 +6,7 @@ import { advancedDocumentBatch017Fixtures } from "./batches/advancedDocumentBatc
 import { advancedDocumentReplacementBatch018Fixtures } from "./batches/advancedDocumentReplacementBatch018Fixtures"
 import { codeBlockBatch014Fixtures } from "./batches/codeBlockBatch014Fixtures"
 import { developmentSpecBatch012Fixtures } from "./batches/developmentSpecBatch012Fixtures"
+import { developerFormsBatch020Fixtures } from "./batches/developerFormsBatch020Fixtures"
 import { emphasisBatch003Fixtures } from "./batches/emphasisBatch003Fixtures"
 import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
 import { headingDepthBatch015Fixtures } from "./batches/headingDepthBatch015Fixtures"
@@ -44,13 +45,13 @@ function authoredWordCount(source: string) {
 
 describe("compiled five-level problem bank", () => {
   it("publishes the accepted foundation and reviewed expansion batches", () => {
-    expect(tracker.acceptedTotal).toBe(348)
+    expect(tracker.acceptedTotal).toBe(360)
     expect(tracker.counts.byLevel).toEqual({
       1: 140,
       2: 148,
       3: 30,
       4: 20,
-      5: 10,
+      5: 22,
     })
     expect(problemBank).toHaveLength(tracker.acceptedTotal)
     for (const level of [1, 2, 3, 4, 5] as const) {
@@ -115,6 +116,17 @@ describe("compiled five-level problem bank", () => {
         (problem) => problem.familyId === "agent-ready-work-order",
       ),
     ).toHaveLength(trackedFamilies["agent-ready-work-order"] ?? 0)
+    for (const family of [
+      "developer-readme",
+      "developer-bug-report",
+      "developer-pr-description",
+    ]) {
+      expect(
+        getProblemsForLevel(5).filter(
+          (problem) => problem.familyId === family,
+        ),
+      ).toHaveLength(trackedFamilies[family] ?? 0)
+    }
   })
 
   it("changes only starterText when hydrating the generated runtime projection", () => {
@@ -270,6 +282,7 @@ describe("compiled five-level problem bank", () => {
       ...advancedDocumentBatch017Fixtures,
       ...advancedDocumentReplacementBatch018Fixtures,
       ...nestedBulletBatch019Fixtures,
+      ...developerFormsBatch020Fixtures,
     ].filter(({ problemId, problemRevision }) =>
       publishedProblemRevisions.has(`${problemId}@${problemRevision ?? 1}`),
     )
