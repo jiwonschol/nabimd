@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest"
 import { createRunProblemIds } from "../content/entryChoices"
-import { getProblem } from "../content/problemBank"
+import { getProblem, getProblemsForLevel } from "../content/problemBank"
 import { createTurnProblemIds, getSyntaxFamily } from "./runComposition"
 import {
   EXCLUDED_SYNTAX_FAMILIES,
   RUN_POLICY,
   SYNTAX_FAMILY_WEIGHTS,
+  type SyntaxFamily,
 } from "./runPolicy"
 
 describe("run composition policy", () => {
@@ -59,8 +60,25 @@ describe("run composition policy", () => {
     // Numbered lists never reach a learner again.
     expect(counts.get("ordered-list") ?? 0).toBe(0)
 
+    // Every eligible family must actually be served. A family that is never
+    // selected has a count of zero — the worst kind of imbalance — and would
+    // otherwise hide from the spread check below, which only sees the families
+    // that did appear.
+    const eligibleFamilies = new Set<SyntaxFamily>()
+    for (const problem of getProblemsForLevel(1)) {
+      const family = getSyntaxFamily(problem)
+      if (family && !EXCLUDED_SYNTAX_FAMILIES.has(family)) {
+        eligibleFamilies.add(family)
+      }
+    }
+    for (const family of eligibleFamilies) {
+      expect(counts.get(family) ?? 0).toBeGreaterThan(0)
+    }
+
     // Bullets used to dominate; now no family is served far more than another.
-    const served = [...counts.values()]
+    // Build the spread from the full eligible set so a missing family counts as
+    // zero rather than being silently dropped.
+    const served = [...eligibleFamilies].map((family) => counts.get(family) ?? 0)
     expect(Math.max(...served) - Math.min(...served)).toBeLessThanOrEqual(4)
 
     // The families the old policy suppressed now appear as often as bullets.
