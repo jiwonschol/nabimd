@@ -4,8 +4,10 @@ import { AnswerPanel } from "./AnswerPanel"
 import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
 import { GoalPanel } from "./GoalPanel"
+import { GuidedSyntaxCard } from "./GuidedSyntaxCard"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
+import { useGuidedSyntaxPractice } from "../guided/useGuidedSyntaxPractice"
 
 type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
   summaryMotionReady?: boolean
@@ -40,6 +42,12 @@ export function EditorialDesk({
     session.runCompletedAtMs,
     session.runCompletedAtMs ?? Date.now(),
   )
+  const guided = useGuidedSyntaxPractice({
+    draft: session.draft,
+    onChange: edit,
+    onCheck: check,
+    problem,
+  })
 
   return (
     <main className="app-shell app-shell--practice">
@@ -49,7 +57,7 @@ export function EditorialDesk({
         entryId={session.entryId!}
         evaluation={session.evaluation}
         currentIsTransfer={session.currentIsTransfer}
-        onCheck={check}
+        onCheck={guided.checkDraft}
         onExit={changeLevel}
         onNext={next}
         onTryAnother={tryAnother}
@@ -75,7 +83,10 @@ export function EditorialDesk({
       ) : (
         <>
           <article className="cbt-workspace open-book-shell">
-            <GoalPanel problem={problem} />
+            <GoalPanel
+              activeOffset={guided.checkpoint?.activeOffset}
+              problem={problem}
+            />
             <AnswerPanel
               coach={session.coach}
               draft={session.draft}
@@ -88,8 +99,26 @@ export function EditorialDesk({
               onNextHint={requestHint}
               onRequestHint={requestHint}
               problem={problem}
+              guided={guided}
               interactive={!transitionSnapshot}
             />
+            {session.phase === "editing" && guided.checkpoint ? (
+              <GuidedSyntaxCard
+                attempts={guided.attempts}
+                canGoBack={guided.canGoBack}
+                canGoForward={guided.canGoForward}
+                checkpoint={guided.checkpoint}
+                current={guided.currentIndex + 1}
+                hintOpen={guided.hintOpen}
+                onBack={guided.goBack}
+                onForward={guided.goForward}
+                onSubmit={guided.submit}
+                onToggleHint={guided.toggleHint}
+                onValueChange={guided.setValue}
+                total={guided.checkpoints.length}
+                value={guided.value}
+              />
+            ) : null}
           </article>
           <VerdictNotice evaluation={session.evaluation} />
         </>

@@ -163,3 +163,40 @@ final result: automated checks passed; visual approval pending
    the final responsive rule makes the left page fit without its own scrollbar.
 
 final result: passed
+
+---
+
+# Guided syntax practice — design QA
+
+## Visual target
+
+- Approved interaction mock: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-aa267893-3fc0-4532-87bb-f0c98d2ad780.png`
+- Optical-focus reference: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/exec-260a1b44-3fe1-410a-9f95-c76951da5730.png`
+- Verified implementation: local feature preview at 1280 × 720, Level 3, checkpoint 3 of 11
+
+The approved mock and the implementation screenshot were placed side by side in one comparison image before this review.
+
+## Review
+
+- **Book frame and chrome:** pass. The existing Nabi paper, binding, wordmark, level, progress, audio, shuffle, and check controls remain fixed and visually unchanged.
+- **Center of attention:** pass. The syntax card is fixed at the viewport center, is larger than the document text, and contains only locked prose plus syntax slots.
+- **Progressive answer:** pass. The source page begins empty and gains only completed source blocks; future prose is not prefilled and editor blank-guide decorations are suppressed in guided mode.
+- **Current location:** pass. Goal and Answer scroll inside their own CodeMirror scrollers. The Goal line gets a wide frameless optical emphasis; page headers and instructions do not move.
+- **History controls:** pass. Back, checkpoint count, and Forward sit in the card header. Forward is disabled for unseen checkpoints, and browser history preserves the built draft.
+- **Hint:** pass. The card reveals only the canonical syntax, including visible spaces, with no prose explanation or autofill.
+- **Typography and spacing:** pass. Existing Source Serif, sans, mono, ink, muted, and paper tokens are reused. No new color system, icon style, or card language was introduced.
+- **Responsive desktop:** pass at 1280 × 800, 1024 × 768, 901 × 768, and 800 × 500. The two-page frame remains fixed and only the document scrollers move.
+- **Reduced motion and accessibility:** pass. Focus rings, accessible labels, disabled history states, keyboard-only completion, and reduced-motion fallbacks are covered.
+
+## Intentional differences from the early mock
+
+- The card omits the extra prose instruction row. The user later established the center card as the syntax-only authority; the persistent page instruction remains above the Goal.
+- The implementation uses the app's existing Lucide icon set and paper tokens instead of reproducing approximate assets from the mock.
+- The implementation keeps the full production top bar and Answer tabs because both are approved, functional parts of the current Practice page.
+
+## Verification evidence
+
+- `npm run check` — passed
+- `E2E_PORT=4176 npm run test:e2e` — 40 passed
+- Full Vitest suite — 10,118 passed
+- All 360 published problems derive at least one guided syntax checkpoint and rebuild their exact target when completed.

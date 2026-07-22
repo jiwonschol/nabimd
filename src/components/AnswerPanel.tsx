@@ -14,6 +14,7 @@ import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
+import type { GuidedSyntaxController } from "../guided/useGuidedSyntaxPractice"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WordProcessorPage } from "./WordProcessorPage"
 
@@ -26,8 +27,9 @@ type AnswerPanelProps = {
   coach: LearningSession["coach"]
   hintLevel: LearningSession["hintLevel"]
   problem: GradableProblem
+  guided?: GuidedSyntaxController
   onChange: (value: string) => void
-  onCheck: () => void
+  onCheck: (value?: string) => void
   onCloseHint: () => void
   onNextHint: () => void
   onRequestHint: () => void
@@ -240,6 +242,7 @@ export function AnswerPanel({
   coach,
   hintLevel,
   problem,
+  guided,
   onChange,
   onCheck,
   onCloseHint,
@@ -551,15 +554,27 @@ export function AnswerPanel({
         role="tabpanel"
       >
         <WordProcessorPage
-          active={interactive && view === "write"}
-          blankGuides={blankGuides}
+          {...(guided
+            ? {
+                active: false,
+                activeOffset: guided.checkpoint?.activeOffset,
+                focusTreatment: "answer" as const,
+                onChange: guided.editDraft,
+                onCheck: guided.checkDraft,
+                readOnly: false as const,
+              }
+            : {
+                active: interactive && view === "write",
+                blankGuides,
+                onChange,
+                onCheck,
+                readOnly: false as const,
+              })}
           key={problem.id}
           label="Your Markdown"
           leadingBlankRows={leadingBlankRows}
-          onChange={onChange}
-          onCheck={onCheck}
           presentation="source"
-          value={draft}
+          value={guided?.draft ?? draft}
         />
       </div>
 
@@ -582,7 +597,15 @@ export function AnswerPanel({
             label="Rendered answer"
             leadingBlankRows={leadingBlankRows}
             presentation="rendered"
-            value={draft}
+            activeOffset={
+              guided && view === secondView
+                ? guided.checkpoint?.activeOffset
+                : undefined
+            }
+            focusTreatment={
+              guided && view === secondView ? "answer" : undefined
+            }
+            value={guided?.draft ?? draft}
           />
         )}
       </div>

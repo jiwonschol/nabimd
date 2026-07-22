@@ -58,6 +58,8 @@ export function App() {
   const [summarySnapshot, setSummarySnapshot] =
     useState<LearningSessionController | null>(null)
   const turningEntryRef = useRef<EntryId | null>(null)
+  const sessionRef = useRef(learningSession.session)
+  sessionRef.current = learningSession.session
 
   useEffect(() => {
     const landingState: AppHistoryState = {
@@ -70,6 +72,15 @@ export function App() {
       if (!isAppHistoryState(event.state)) return
       if (event.state.view === "landing") {
         learningSession.returnToGreetingFromHistory()
+        return
+      }
+      const current = sessionRef.current
+      if (
+        current.entryId === event.state.snapshot.entryId &&
+        current.runNumber === event.state.snapshot.runNumber &&
+        current.runStepIndex === event.state.snapshot.runStepIndex &&
+        current.currentProblemId === event.state.snapshot.currentProblemId
+      ) {
         return
       }
       learningSession.navigateToHistory(event.state.snapshot)
@@ -167,7 +178,7 @@ export function App() {
       return
     }
     document
-      .querySelector<HTMLElement>('[role="textbox"][aria-label="Your Markdown"]')
+      .querySelector<HTMLElement>(".guided-syntax-card__input")
       ?.focus()
   }, [learningSession.session.entryId, summarySnapshot, turningEntryId])
 

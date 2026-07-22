@@ -7,7 +7,10 @@ import { describe, expect, it, vi } from "vitest"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
 import { getProblemsForLevel } from "../content/problemBank"
-import { MarkdownSourceEditor } from "./MarkdownSourceEditor"
+import {
+  MarkdownSourceEditor,
+  MarkdownWordProcessor,
+} from "./MarkdownSourceEditor"
 
 describe("MarkdownSourceEditor", () => {
   it("presents only the writing surface without a second toolbar", () => {
@@ -557,5 +560,24 @@ describe("MarkdownSourceEditor", () => {
     await waitFor(() =>
       expect(onChange).toHaveBeenLastCalledWith("first\n\tsecond"),
     )
+  })
+
+  it("marks and centers the active Goal line without making it editable", async () => {
+    const { container } = render(
+      <MarkdownWordProcessor
+        activeOffset={16}
+        focusTreatment="goal"
+        label="Goal document"
+        presentation="rendered"
+        readOnly
+        showInvisibles
+        value={"# First\n\n## Active line\n\nLast"}
+      />,
+    )
+
+    await waitFor(() =>
+      expect(container.querySelector(".cm-guided-target-line")).not.toBeNull(),
+    )
+    expect(screen.queryByRole("textbox", { name: "Goal document" })).toBeNull()
   })
 })

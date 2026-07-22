@@ -167,10 +167,14 @@ export function useLearningSession(
     dispatch({ type: "problem-replaced", problem: replacement })
   }, [problem, session.progress.recentProblemIds, session.runProblemIds])
 
-  const check = useCallback(() => {
+  const check = useCallback((draftOverride?: string) => {
+    const candidate = draftOverride ?? session.draft
+    if (draftOverride !== undefined && draftOverride !== session.draft) {
+      dispatch({ type: "edited", value: draftOverride })
+    }
     dispatch({
       type: "checked",
-      evaluation: evaluateProblem(problem, session.draft),
+      evaluation: evaluateProblem(problem, candidate),
       retryFamily: problem.retryFamily,
     })
   }, [problem, session.draft])
