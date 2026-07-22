@@ -391,10 +391,15 @@ export function AnswerPanel({
         return
       }
 
-      const target = event.target
-      if (
+      const isTextEntryContext = (target: EventTarget | null) =>
         target instanceof Element &&
-        target.closest('input, textarea, select, [contenteditable="true"]')
+        target.closest(
+          'input, textarea, select, [contenteditable]:not([contenteditable="false"])',
+        ) !== null
+
+      if (
+        isTextEntryContext(event.target) ||
+        isTextEntryContext(document.activeElement)
       ) {
         return
       }

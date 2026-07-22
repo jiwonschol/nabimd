@@ -934,6 +934,7 @@ describe("App", () => {
     const { user, editor } = await openLevel(1)
 
     await user.click(editor)
+    expect(editor).toHaveFocus()
     await user.keyboard("question?")
     expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toContain(
       "question?",
@@ -951,6 +952,20 @@ describe("App", () => {
       "true",
     )
     expect(editor).not.toHaveFocus()
+  })
+
+  it("keeps ? in the editor when a document-level key event observes editor focus", async () => {
+    const { user, editor } = await openLevel(1)
+
+    await user.click(editor)
+    expect(editor).toHaveFocus()
+    fireEvent.keyDown(document, { key: "?" })
+
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+    expect(editor).toHaveFocus()
   })
 
   it("does not leave stale focus when a shortcut selects the current tab", async () => {
