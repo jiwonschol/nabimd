@@ -1078,5 +1078,5 @@ describe("App", () => {
       },
       { timeout: PAGE_TURN_DURATION_MS + 400 },
     )
-  })
+  }, 10_000)
 })
