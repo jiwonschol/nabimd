@@ -11,6 +11,13 @@ body,
   height: 100%;
 }
 
+#root {
+  /* Contain .app-shell's 6px outer margin: without a formatting context it
+     collapses through #root and pushes the document 6px past the viewport,
+     leaving a phantom scrollbar on every screen. */
+  display: flow-root;
+}
+
 html {
   background: var(--canvas);
 }
@@ -248,11 +255,19 @@ button:focus-visible,
 }
 
 .chapter-index {
+  display: grid;
   min-height: 0;
+  /* Five rows share the available box exactly, so the list never outgrows
+     it by a few pixels and sprouts scrollbars. The cap keeps rows from
+     growing past their previous per-entry maximum on tall windows;
+     overflow stays as a last resort for pathologically short viewports. */
+  max-height: 33.75rem;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   border-top: 1px solid var(--book-line);
+  grid-auto-rows: minmax(min-content, 1fr);
   list-style: none;
 }
 
@@ -263,7 +278,8 @@ button:focus-visible,
 .chapter-entry {
   display: grid;
   width: 100%;
-  min-height: clamp(4.7rem, 11.45vh, 6.75rem);
+  height: 100%;
+  min-height: 0;
   grid-template-columns: clamp(5.6rem, 7.4vw, 6rem) minmax(0, 1fr) 1.6rem;
   align-items: center;
   gap: clamp(0.75rem, 1.4vw, 1.2rem);
@@ -323,11 +339,14 @@ button:focus-visible,
   font-size: 1.65rem;
   line-height: 1;
   transition: transform var(--motion) ease-out;
+  /* Rest inset, slide to the edge on hover: the old outward slide poked
+     past the list box and summoned a horizontal scrollbar. */
+  transform: translateX(-0.35rem);
 }
 
 .chapter-entry:hover .chapter-entry__arrow,
 .chapter-entry:focus-visible .chapter-entry__arrow {
-  transform: translateX(0.35rem);
+  transform: translateX(0);
 }
 
 .page-turn-stage {
