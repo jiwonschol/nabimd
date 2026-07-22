@@ -2177,6 +2177,100 @@ button:focus-visible,
   font-size: 1.05rem;
 }
 
+/* Try again holds (issue #102): the failed verdict docks at the bottom with
+   the top pinpointed correction and stays until the learner retypes or
+   closes it. The editor above remains fully visible and focused. */
+.verdict-notice--holding {
+  top: auto;
+  bottom: 1.1rem;
+  display: grid;
+  width: min(46rem, calc(100vw - 2rem));
+  min-height: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.5rem 1.6rem;
+  padding: 1.05rem 2.9rem 1.05rem 1.4rem;
+  transform: translateX(-50%);
+  text-align: left;
+  animation: verdict-hold-in 220ms ease-out both;
+  box-shadow: 0 14px 34px rgb(63 41 33 / 16%);
+}
+
+.verdict-notice__verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.verdict-notice--holding strong {
+  font-size: clamp(1.7rem, 2.6vw, 2.15rem);
+}
+
+.verdict-notice--holding span {
+  font-size: 0.92rem;
+}
+
+.verdict-notice__correction {
+  min-width: 0;
+}
+
+.verdict-notice__correction h4 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.verdict-notice__correction h4 small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.verdict-notice__source {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.verdict-notice__source code {
+  margin-left: 0.35rem;
+  padding: 0.12rem 0.3rem;
+  background: rgb(90 82 72 / 8%);
+  overflow-wrap: anywhere;
+}
+
+.verdict-notice__correction p {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.verdict-notice__more {
+  color: var(--muted);
+}
+
+.verdict-notice__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: grid;
+  padding: 0.35rem;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  place-items: center;
+}
+
+.verdict-notice__close:hover,
+.verdict-notice__close:focus-visible {
+  color: inherit;
+}
+
 .primary-button,
 .text-button {
   border-radius: 0;
@@ -2539,6 +2633,17 @@ button:focus-visible,
   100% {
     opacity: 0;
     transform: translate(-50%, -53%);
+  }
+}
+
+@keyframes verdict-hold-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%);
   }
 }
 
@@ -2940,6 +3045,10 @@ button:focus-visible,
     opacity: 1;
     transform: translate(-50%, -50%);
     animation: none !important;
+  }
+
+  .verdict-notice--holding {
+    transform: translateX(-50%);
   }
 
   .summary-page-turn-overlay {

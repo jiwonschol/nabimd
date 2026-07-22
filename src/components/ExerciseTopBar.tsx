@@ -8,7 +8,7 @@ import {
   Volume2,
   VolumeX,
 } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { getEntryChoice, type EntryId } from "../content/entryChoices"
 import type { Evaluation } from "../engine/types"
 import type { LearningSession } from "../session/learningSession"
@@ -25,7 +25,6 @@ import { ElapsedTime } from "./ElapsedTime"
 import { Wordmark } from "./Wordmark"
 
 type ExerciseTopBarProps = {
-  autofocusActions?: boolean
   canCheck: boolean
   canGoToPreviousStep: boolean
   canGoToNextStep: boolean
@@ -48,7 +47,6 @@ type ExerciseTopBarProps = {
 }
 
 export function ExerciseTopBar({
-  autofocusActions = true,
   canCheck,
   canGoToPreviousStep,
   canGoToNextStep,
@@ -69,7 +67,6 @@ export function ExerciseTopBar({
   onNextStep,
   onTryAnother,
 }: ExerciseTopBarProps) {
-  const nextRef = useRef<HTMLButtonElement>(null)
   const [soundMuted, setSoundMutedState] = useState(() => readSoundMuted())
   const [summaryTooltipReady, setSummaryTooltipReady] = useState(false)
   const matched = evaluation?.status === "matched"
@@ -81,10 +78,6 @@ export function ExerciseTopBar({
       : Math.min(scheduledStepIndex + 1, scheduledRunLength)
   const navigatorLike = typeof navigator === "undefined" ? {} : navigator
   const shortcut = resolveActionShortcut(navigatorLike)
-
-  useEffect(() => {
-    if (autofocusActions && matched) nextRef.current?.focus()
-  }, [autofocusActions, matched])
 
   useEffect(() => subscribeSoundMuted(setSoundMutedState), [])
 
@@ -217,9 +210,10 @@ export function ExerciseTopBar({
 
         <div className="exercise-topbar__end">
           <button
+            aria-keyshortcuts="Alt+P"
             aria-label="Previous exercise"
             className="top-action top-action--icon"
-            data-tooltip="Previous exercise"
+            data-tooltip="Previous exercise (Alt+P)"
             disabled={!canGoToPreviousStep}
             onClick={onPreviousStep}
             type="button"
@@ -227,9 +221,10 @@ export function ExerciseTopBar({
             <ChevronLeft aria-hidden="true" size={19} strokeWidth={1.7} />
           </button>
           <button
+            aria-keyshortcuts="Alt+N"
             aria-label="Next visited exercise"
             className="top-action top-action--icon"
-            data-tooltip="Next visited exercise"
+            data-tooltip="Next visited exercise (Alt+N)"
             disabled={!canGoToNextStep}
             onClick={onNextStep}
             type="button"
@@ -270,7 +265,6 @@ export function ExerciseTopBar({
                 onNext()
               }
             }}
-            ref={nextRef}
             type="button"
           >
             {matched ? (
