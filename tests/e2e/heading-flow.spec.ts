@@ -26,8 +26,8 @@ const levelLabels = [
   "Level 1 — Learn the syntax",
   "Level 2 — Rebuild real documents",
   "Level 3 — Write for people",
-  "Level 4 — Write a development spec",
-  "Level 5 — Write an agent work order",
+  "Level 4 — Write for work",
+  "Level 5 — Write for developers",
 ] as const
 
 const progressStorageKey = "nabimd.progress.v5"

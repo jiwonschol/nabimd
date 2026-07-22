@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l4-workplace-notes-021",
+  "editorialActor": "claude-editorial-batch021-independent",
+  "editorialRunId": "editorial-batch021-9db55930-20260722-kst-001",
+  "reviewedOn": "2026-07-22",
+  "reviewTimezone": "Asia/Seoul",
+  "manifestDigest": "9db55930ae699b5a7dcf9b6ea6ca6a181cdb18694d025fea10a8c6b9b139f741",
+  "reviewDigests": [
+    "ee327bad00154606c17aa86b03b1d4821a3539b19e2e58a403fbd98bf4265b37",
+    "f1df7536641d62c82da625a82e3b5ed52688748b17d41ea15a4848f89c8b6dec"
+  ],
+  "decisions": [
+    {
+      "candidateId": "l4-checklist-kiosk-shutdown",
+      "revision": 1,
+      "candidateDigest": "a954072db13addc37b0c36eee662d2e41fd2df0c7d8e3fdc3e68ad247cc5e03f",
+      "fixtureResultsDigest": "3fdaad3aa23759025e85d3f2517eb36a28dc2a279d008e74a96be0cba548649e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Kiosk variant keeps the inline-code command placement decision visible."
+    },
+    {
+      "candidateId": "l4-checklist-studio-closing",
+      "revision": 1,
+      "candidateDigest": "9b490c68ffc12aeff7ad00f3deb941b40ffbbdb802900b2c1a5ec58d87dc728c",
+      "fixtureResultsDigest": "454acd197706c11ce2152251e025f5b33fb05008de27bca639e7775b538ba6fb",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Nine-line checklist keeps one command in inline code among three bullets."
+    },
+    {
+      "candidateId": "l4-checklist-workshop-opening",
+      "revision": 1,
+      "candidateDigest": "eebe17713a0690b68834390f552c5b79b61848b3f903706cd8bf328e1bf1ddcb",
+      "fixtureResultsDigest": "63ac82020e106becfecc89ef0d8490aafef50391aeb110c82931c8fa361aefac",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Opening variant mirrors the closing checklist without duplicating its prose."
+    },
+    {
+      "candidateId": "l4-decision-printer-queue",
+      "revision": 1,
+      "candidateDigest": "4ba42beadbc1e053691cb959a29c87b9555f1308d11c27ebd9963d751b6e9467",
+      "fixtureResultsDigest": "b776fd2f8ae504843253d034a14f1d51a550aecf37f1acbd7fced789078f1559",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Printer variant repeats the decision anatomy with fresh prose and no jargon."
+    },
+    {
+      "candidateId": "l4-decision-recycling-bins",
+      "revision": 1,
+      "candidateDigest": "538fec7c277fc2dca72193713160828926615edaf378ad730d2b16a3ac2783cf",
+      "fixtureResultsDigest": "c17eaf904800ac7eaf6237bb342ea478696eb472171901944fb126e950c2dd19",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Everyday facilities scenario; quote and numbered steps carry the whole lesson."
+    },
+    {
+      "candidateId": "l4-decision-room-booking",
+      "revision": 1,
+      "candidateDigest": "e705cdfc56e85bee74fe2646bced52cfb17d4436e4a6ade53383518501c16703",
+      "fixtureResultsDigest": "568bd5bac93ab350443b91c7e22a63656b2a8499b2472e3e214b39e9f031bc57",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Blockquote decision plus three ordered steps; the rule sentence reads at a glance."
+    },
+    {
+      "candidateId": "l4-handoff-cafe-counter",
+      "revision": 1,
+      "candidateDigest": "2f8ef8a05c5f09a3faf9a53bb60f883638e6a146b210e003026b19861ae79ac8",
+      "fixtureResultsDigest": "bd563f98134d639496d1024dfff2de37aefe163061e509c04d0b9d1b2a8b76ab",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Cafe variant keeps both lists to two visible items and one context sentence."
+    },
+    {
+      "candidateId": "l4-handoff-front-desk",
+      "revision": 1,
+      "candidateDigest": "e8418c52f9daf29fff5fb9c57bde4c3b47a7aeb1c8eb3fdd7e1b0f2b163111db",
+      "fixtureResultsDigest": "18241efe466e4093281ed86646de4ba116ffffffffaf68795e276a913f7143af",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Two two-item shift lists under scannable H2 sections; everyday reception vocabulary at 13 lines."
+    },
+    {
+      "candidateId": "l4-handoff-library-desk",
+      "revision": 1,
+      "candidateDigest": "495ff6ff5e61d44828a6437226eed9d7f7f341e2970b7327146c6eafb3f8d3c1",
+      "fixtureResultsDigest": "1a5e758c801d7823ff21dd97844ee371c8f75003c7f3f092b139ea05d665f402",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Same handoff anatomy with library vocabulary; no domain knowledge required to finish quickly."
+    },
+    {
+      "candidateId": "l4-status-newsletter-move",
+      "revision": 1,
+      "candidateDigest": "c36eaf6627401d068556f883470f7292d69fb8161391192f52c03d0c297d1b2a",
+      "fixtureResultsDigest": "6062e599cdace01adc610330ce045343fe254fb88efc5d84e42583603e29b126",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Newsletter variant keeps one bold cutoff and two-item lists."
+    },
+    {
+      "candidateId": "l4-status-signage-update",
+      "revision": 1,
+      "candidateDigest": "b00a54a02e2d70c3344a00b21dcd4a92baf072e823da0f757494f8222d1cd150",
+      "fixtureResultsDigest": "9d4e9f3af9f6f767b72ca66863603954d9d849007bee94586f7727924ef4ea0d",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Signage variant completes the status family with fresh everyday prose."
+    },
+    {
+      "candidateId": "l4-status-website-refresh",
+      "revision": 1,
+      "candidateDigest": "cd4f1aaaa21eb646ae2cafc107a5edacd3ca5ee9407a5b7e14593d8f3669f671",
+      "fixtureResultsDigest": "ac8162b0ecf7c8f287049a49df5860ff6b5a9d85fc8dcf04ca07a264f832139d",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Bold deadline sentence plus Done bullets and Next steps at 13 lines."
+    }
+  ],
+  "editorialDigest": "cdc5ce49c43c55421bfb3fd47d1081a13923bc0178840bda1f983a79dd61eb4a"
+}

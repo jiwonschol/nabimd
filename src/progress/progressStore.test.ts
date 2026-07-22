@@ -292,7 +292,7 @@ describe("progressStore v5", () => {
   })
 
   it("migrates an empty high-level draft persisted under flattened @1", () => {
-    const problem = getProblem("l5-auth-migration-work-order")
+    const problem = getProblem("l5-bug-duplicate-webhook-retry-report")
     const progress = createDefaultProgress(
       problem.id,
       flattenedStarterProjectionProblemBankRevision,

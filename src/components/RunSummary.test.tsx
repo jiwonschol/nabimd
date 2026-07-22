@@ -202,16 +202,16 @@ describe("RunSummary", () => {
   })
 
   it("keeps a higher-level family compact instead of replaying its document", () => {
-    renderSummary(["l4-api-field-deprecation-migration"])
+    renderSummary(["l4-decision-room-booking"])
 
     const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Staged Migration",
+      name: "Syntax reminder: Decision notes",
     })
     expect(reminder.querySelector("code")?.textContent).toBe(
-      "#  ##  -  1.  >  ```text",
+      "# Title  > Decision  1. Step",
     )
     expect(
-      screen.queryByText(/Setting-name migration/),
+      screen.queryByText(/shared booking sheet/),
     ).not.toBeInTheDocument()
   })
 
@@ -241,8 +241,8 @@ describe("RunSummary", () => {
     ["l2-rebuild-cat-supplies", "Quick notes"],
     ["l2-rebuild-homework-plan", "Short processes"],
     ["l2-rebuild-baking-reminder", "Quote cards"],
-    ["l4-accessible-dialog-spec", "Development specs"],
-    ["l5-auth-migration-work-order", "Agent work orders"],
+    ["l4-handoff-front-desk", "Handoff notes"],
+    ["l4-checklist-studio-closing", "Checklists"],
   ])("uses a learner-facing family label for %s", (problemId, label) => {
     renderSummary([problemId])
 
@@ -298,21 +298,21 @@ describe("RunSummary", () => {
 
   it("summarizes repeated variants at family level without choosing one document", () => {
     renderSummary([
-      "l5-analytics-adapter-refactor-work-order",
-      "l5-date-format-refactor-work-order",
+      "l4-status-website-refresh",
+      "l4-status-newsletter-move",
     ])
 
     const reminders = screen.getAllByRole("listitem", {
-      name: "Syntax reminder: Bounded Refactor",
+      name: "Syntax reminder: Status notes",
     })
     expect(reminders).toHaveLength(1)
     const [reminder] = reminders
     expect(reminder).toBeDefined()
     expect(reminder!.querySelector("code")?.textContent).toBe(
-      "#  ##  `  -  1.  ```bash  **",
+      "# Title  **Deadline**  - Done item  1. Next step",
     )
-    expect(screen.queryByText(/Storage adapter/)).not.toBeInTheDocument()
-    expect(screen.queryByText(/Currency helper/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Feedback closes Friday/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/old address stops Monday/)).not.toBeInTheDocument()
   })
 
   it("plays the completion cue once during StrictMode effect verification", () => {

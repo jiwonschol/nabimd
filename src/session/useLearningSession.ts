@@ -138,6 +138,12 @@ export function useLearningSession(
   const navigateToHistory = useCallback(
     (snapshot: PracticeHistorySnapshot) => {
       if (snapshot.entryId === null) return
+      // History entries survive deploys; a snapshot may reference problems
+      // that a newer bank no longer serves. Ignore it instead of crashing.
+      if (!validProblemIds.has(snapshot.currentProblemId)) return
+      if (!snapshot.runProblemIds.every((id) => validProblemIds.has(id))) {
+        return
+      }
       const problem = getProblem(snapshot.currentProblemId)
       dispatch({ type: "history-navigated", snapshot, problem })
     },

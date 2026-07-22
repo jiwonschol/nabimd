@@ -27,14 +27,14 @@
     },
     {
       "level": 4,
-      "name": "executable-development-specifications",
+      "name": "compact-workplace-documents",
       "minimumAccepted": 80,
       "teachingMode": "recall",
       "vocabularyProfile": "development-spec"
     },
     {
       "level": 5,
-      "name": "human-reviewable-ai-executable-work-orders",
+      "name": "compact-developer-documents",
       "minimumAccepted": 80,
       "teachingMode": "recall",
       "vocabularyProfile": "agent-workflow",

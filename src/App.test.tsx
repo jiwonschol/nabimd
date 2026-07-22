@@ -292,7 +292,6 @@ describe("App", () => {
       5,
       (problem) =>
         problem.syntaxTokens.includes("```bash") &&
-        problem.syntaxTokens.includes("**") &&
         problem.syntaxTokens.includes("1."),
     )
     const { user } = await openLevel(5)
@@ -308,7 +307,7 @@ describe("App", () => {
     expect(
       Array.from(hint.querySelectorAll("code"), (node) => node.textContent),
     ).toContain("```bash\n...\n```")
-    expect(within(hint).getByText("**Important**")).toBeVisible()
+    expect(within(hint).getByText("`npm test`")).toBeVisible()
   })
 
   it("keeps the selected task identity visible in the exercise header", async () => {

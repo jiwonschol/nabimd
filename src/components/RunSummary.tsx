@@ -21,8 +21,10 @@ const FAMILY_LABELS: Readonly<Record<string, string>> = {
   "level-2-rebuild-quote-card": "Quote cards",
   "level-2-rebuild-short-process": "Short processes",
   "level3-readable-document": "Readable documents",
-  "level4-development-spec": "Development specs",
-  "level5-agent-work-order": "Agent work orders",
+  "level-4-workplace-handoff": "Handoff notes",
+  "level-4-workplace-decision": "Decision notes",
+  "level-4-workplace-checklist": "Checklists",
+  "level-4-workplace-status": "Status notes",
 }
 
 function completionTitle(score: number, total: number): string {

@@ -1,0 +1,1380 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-07-22-l4-workplace-notes-021",
+  "fixtures": [
+    {
+      "id": "l4-checklist-kiosk-shutdown-canonical",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n## Before you go\n\n- Count the cash drawer\n- Run `report daily` on the tablet\n- Cover the display shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-case-spelling",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# KIOSK SHUTDOWN CHECKLIST\n\nDO THESE WHEN THE MARKET CLOSES.\n\n## BEFORE YOU GO\n\n- COUNT THE CASH DRAWER\n- RUN `REPORT DAILY` ON THE TABLET\n- COVER THE DISPLAY SHELF",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-crlf",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Kiosk shutdown checklist\r\n\r\nDo these when the market closes.\r\n\r\n## Before you go\r\n\r\n- Count the cash drawer\r\n- Run `report daily` on the tablet\r\n- Cover the display shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-different-prose",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Gamma closing list\n\nThree gamma things before leaving.\n\n## Before you leave\n\n- Close the gamma drawer\n- Run `gamma stop` on the machine\n- Cover the gamma bench",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-italic-aside",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Kiosk shutdown checklist\n\n*Do* these when the market closes.\n\n## Before you go\n\n- Count the cash drawer\n- Run `report daily` on the tablet\n- Cover the display shelf",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-checklist-kiosk-shutdown-no-italics"
+      ]
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-missing",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-checklist-kiosk-shutdown-outline",
+      "source": "Kiosk shutdown checklist\n\nDo these when the market closes.\n\nBefore you go\n\nCount the cash drawer\nRun report daily on the tablet\nCover the display shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-kiosk-shutdown-outline"
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-missing-section",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-kiosk-shutdown-sections",
+      "source": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n\n- Count the cash drawer\n- Run `report daily` on the tablet\n- Cover the display shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-kiosk-shutdown-outline"
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-over-limit",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-kiosk-shutdown-limits",
+      "source": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n## Before you go\n\n- Count the cash drawer\n- Run `report daily` on the tablet\n- Cover the display shelf\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-kiosk-shutdown-limits"
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-plain-command",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-checklist-kiosk-shutdown-command-code",
+      "source": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n## Before you go\n\n- Count the cash drawer\n- Run report daily on the tablet\n- Cover the display shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-kiosk-shutdown-command-code"
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-short-tasks",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-kiosk-shutdown-task-list",
+      "source": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n## Before you go\n\n- Count the cash drawer\n- Run `report daily` on the tablet",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-kiosk-shutdown-task-list"
+    },
+    {
+      "id": "l4-checklist-kiosk-shutdown-skipped-depth",
+      "problemId": "l4-checklist-kiosk-shutdown",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-kiosk-shutdown-hierarchy",
+      "source": "# Kiosk shutdown checklist\n\nDo these when the market closes.\n\n### Before you go\n\n- Count the cash drawer\n- Run `report daily` on the tablet\n- Cover the display shelf",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-kiosk-shutdown-outline"
+    },
+    {
+      "id": "l4-checklist-studio-closing-canonical",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n## Before you leave\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer\n- Turn off the hallway lights",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-studio-closing-case-spelling",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# STUDIO CLOSING CHECKLIST\n\nDO THESE BEFORE LEAVING THE STUDIO.\n\n## BEFORE YOU LEAVE\n\n- LOCK THE SUPPLY CABINET\n- RUN `BACKUP NOW` ON THE DESK COMPUTER\n- TURN OFF THE HALLWAY LIGHTS",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-studio-closing-crlf",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Studio closing checklist\r\n\r\nDo these before leaving the studio.\r\n\r\n## Before you leave\r\n\r\n- Lock the supply cabinet\r\n- Run `backup now` on the desk computer\r\n- Turn off the hallway lights",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-studio-closing-different-prose",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Alpha closing list\n\nThree alpha things before leaving.\n\n## Before you leave\n\n- Close the alpha drawer\n- Run `alpha stop` on the machine\n- Cover the alpha bench",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-studio-closing-italic-aside",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Studio closing checklist\n\n*Do* these before leaving the studio.\n\n## Before you leave\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer\n- Turn off the hallway lights",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-checklist-studio-closing-no-italics"
+      ]
+    },
+    {
+      "id": "l4-checklist-studio-closing-missing",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-checklist-studio-closing-outline",
+      "source": "Studio closing checklist\n\nDo these before leaving the studio.\n\nBefore you leave\n\nLock the supply cabinet\nRun backup now on the desk computer\nTurn off the hallway lights",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-studio-closing-outline"
+    },
+    {
+      "id": "l4-checklist-studio-closing-missing-section",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-studio-closing-sections",
+      "source": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer\n- Turn off the hallway lights",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-studio-closing-outline"
+    },
+    {
+      "id": "l4-checklist-studio-closing-over-limit",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-studio-closing-limits",
+      "source": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n## Before you leave\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer\n- Turn off the hallway lights\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-studio-closing-limits"
+    },
+    {
+      "id": "l4-checklist-studio-closing-plain-command",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-checklist-studio-closing-command-code",
+      "source": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n## Before you leave\n\n- Lock the supply cabinet\n- Run backup now on the desk computer\n- Turn off the hallway lights",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-studio-closing-command-code"
+    },
+    {
+      "id": "l4-checklist-studio-closing-short-tasks",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-studio-closing-task-list",
+      "source": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n## Before you leave\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-studio-closing-task-list"
+    },
+    {
+      "id": "l4-checklist-studio-closing-skipped-depth",
+      "problemId": "l4-checklist-studio-closing",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-studio-closing-hierarchy",
+      "source": "# Studio closing checklist\n\nDo these before leaving the studio.\n\n### Before you leave\n\n- Lock the supply cabinet\n- Run `backup now` on the desk computer\n- Turn off the hallway lights",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-studio-closing-outline"
+    },
+    {
+      "id": "l4-checklist-workshop-opening-canonical",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n## Before you open\n\n- Unlock the tool wall\n- Run `till start` on the register\n- Prop open the side door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-workshop-opening-case-spelling",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# WORKSHOP OPENING CHECKLIST\n\nDO THESE BEFORE THE FIRST VISITORS ARRIVE.\n\n## BEFORE YOU OPEN\n\n- UNLOCK THE TOOL WALL\n- RUN `TILL START` ON THE REGISTER\n- PROP OPEN THE SIDE DOOR",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-workshop-opening-crlf",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Workshop opening checklist\r\n\r\nDo these before the first visitors arrive.\r\n\r\n## Before you open\r\n\r\n- Unlock the tool wall\r\n- Run `till start` on the register\r\n- Prop open the side door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-workshop-opening-different-prose",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Beta closing list\n\nThree beta things before leaving.\n\n## Before you leave\n\n- Close the beta drawer\n- Run `beta stop` on the machine\n- Cover the beta bench",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-checklist-workshop-opening-italic-aside",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Workshop opening checklist\n\n*Do* these before the first visitors arrive.\n\n## Before you open\n\n- Unlock the tool wall\n- Run `till start` on the register\n- Prop open the side door",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-checklist-workshop-opening-no-italics"
+      ]
+    },
+    {
+      "id": "l4-checklist-workshop-opening-missing",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-checklist-workshop-opening-outline",
+      "source": "Workshop opening checklist\n\nDo these before the first visitors arrive.\n\nBefore you open\n\nUnlock the tool wall\nRun till start on the register\nProp open the side door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-workshop-opening-outline"
+    },
+    {
+      "id": "l4-checklist-workshop-opening-missing-section",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-workshop-opening-sections",
+      "source": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n\n- Unlock the tool wall\n- Run `till start` on the register\n- Prop open the side door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-workshop-opening-outline"
+    },
+    {
+      "id": "l4-checklist-workshop-opening-over-limit",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-workshop-opening-limits",
+      "source": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n## Before you open\n\n- Unlock the tool wall\n- Run `till start` on the register\n- Prop open the side door\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-workshop-opening-limits"
+    },
+    {
+      "id": "l4-checklist-workshop-opening-plain-command",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-checklist-workshop-opening-command-code",
+      "source": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n## Before you open\n\n- Unlock the tool wall\n- Run till start on the register\n- Prop open the side door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-workshop-opening-command-code"
+    },
+    {
+      "id": "l4-checklist-workshop-opening-short-tasks",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-workshop-opening-task-list",
+      "source": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n## Before you open\n\n- Unlock the tool wall\n- Run `till start` on the register",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-workshop-opening-task-list"
+    },
+    {
+      "id": "l4-checklist-workshop-opening-skipped-depth",
+      "problemId": "l4-checklist-workshop-opening",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-checklist-workshop-opening-hierarchy",
+      "source": "# Workshop opening checklist\n\nDo these before the first visitors arrive.\n\n### Before you open\n\n- Unlock the tool wall\n- Run `till start` on the register\n- Prop open the side door",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-checklist-workshop-opening-outline"
+    },
+    {
+      "id": "l4-decision-printer-queue-canonical",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-printer-queue-case-spelling",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# PRINTER QUEUE CHANGE\n\nLARGE JOBS MOVE TO THE COPY ROOM PRINTER.\n\n## DECISION\n\n> SEND JOBS OVER TEN PAGES TO THE COPY ROOM.\n\n## STEPS\n\n1. COUNT YOUR PAGES\n2. PICK THE RIGHT PRINTER\n3. COLLECT THE PRINTOUT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-printer-queue-crlf",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Printer queue change\r\n\r\nLarge jobs move to the copy room printer.\r\n\r\n## Decision\r\n\r\n> Send jobs over ten pages to the copy room.\r\n\r\n## Steps\r\n\r\n1. Count your pages\r\n2. Pick the right printer\r\n3. Collect the printout",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-printer-queue-different-prose",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Gamma routine change\n\nThe gamma routine moves this week.\n\n## Decision\n\n> Follow the gamma routine every morning.\n\n## Steps\n\n1. Read the gamma note\n2. Follow each part\n3. Tell the next person",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-printer-queue-italic-aside",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Printer queue change\n\n*Large* jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-decision-printer-queue-no-italics"
+      ]
+    },
+    {
+      "id": "l4-decision-printer-queue-missing",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-decision-printer-queue-outline",
+      "source": "Printer queue change\n\nLarge jobs move to the copy room printer.\n\nDecision\n\nSend jobs over ten pages to the copy room.\n\nSteps\n\nCount your pages\nPick the right printer\nCollect the printout",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-outline"
+    },
+    {
+      "id": "l4-decision-printer-queue-missing-section",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-printer-queue-sections",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-outline"
+    },
+    {
+      "id": "l4-decision-printer-queue-over-limit",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-printer-queue-limits",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-limits"
+    },
+    {
+      "id": "l4-decision-printer-queue-plain-decision",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-printer-queue-decision-quote",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\nSend jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-outline"
+    },
+    {
+      "id": "l4-decision-printer-queue-short-steps",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-printer-queue-steps-list",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-steps-list"
+    },
+    {
+      "id": "l4-decision-printer-queue-skipped-depth",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-printer-queue-hierarchy",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n### Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1. Count your pages\n2. Pick the right printer\n3. Collect the printout",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-outline"
+    },
+    {
+      "id": "l4-decision-printer-queue-tight-numbers",
+      "problemId": "l4-decision-printer-queue",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-decision-printer-queue-outline",
+      "source": "# Printer queue change\n\nLarge jobs move to the copy room printer.\n\n## Decision\n\n> Send jobs over ten pages to the copy room.\n\n## Steps\n\n1.Count your pages\n2.Pick the right printer\n3.Collect the printout",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-printer-queue-outline"
+    },
+    {
+      "id": "l4-decision-recycling-bins-canonical",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-recycling-bins-case-spelling",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# RECYCLING BIN CHANGE\n\nTHE KITCHEN BINS GET NEW LABELS THIS WEEK.\n\n## DECISION\n\n> SORT PAPER AND PLASTIC INTO THE LABELED BINS.\n\n## STEPS\n\n1. CHECK THE BIN LABEL\n2. EMPTY YOUR DESK TRAY\n3. FLATTEN THE BOXES",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-recycling-bins-crlf",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Recycling bin change\r\n\r\nThe kitchen bins get new labels this week.\r\n\r\n## Decision\r\n\r\n> Sort paper and plastic into the labeled bins.\r\n\r\n## Steps\r\n\r\n1. Check the bin label\r\n2. Empty your desk tray\r\n3. Flatten the boxes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-recycling-bins-different-prose",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Beta routine change\n\nThe beta routine moves this week.\n\n## Decision\n\n> Follow the beta routine every morning.\n\n## Steps\n\n1. Read the beta note\n2. Follow each part\n3. Tell the next person",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-recycling-bins-italic-aside",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Recycling bin change\n\n*The* kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-decision-recycling-bins-no-italics"
+      ]
+    },
+    {
+      "id": "l4-decision-recycling-bins-missing",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-decision-recycling-bins-outline",
+      "source": "Recycling bin change\n\nThe kitchen bins get new labels this week.\n\nDecision\n\nSort paper and plastic into the labeled bins.\n\nSteps\n\nCheck the bin label\nEmpty your desk tray\nFlatten the boxes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-outline"
+    },
+    {
+      "id": "l4-decision-recycling-bins-missing-section",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-recycling-bins-sections",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-outline"
+    },
+    {
+      "id": "l4-decision-recycling-bins-over-limit",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-recycling-bins-limits",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-limits"
+    },
+    {
+      "id": "l4-decision-recycling-bins-plain-decision",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-recycling-bins-decision-quote",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\nSort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-outline"
+    },
+    {
+      "id": "l4-decision-recycling-bins-short-steps",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-recycling-bins-steps-list",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-steps-list"
+    },
+    {
+      "id": "l4-decision-recycling-bins-skipped-depth",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-recycling-bins-hierarchy",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n### Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1. Check the bin label\n2. Empty your desk tray\n3. Flatten the boxes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-outline"
+    },
+    {
+      "id": "l4-decision-recycling-bins-tight-numbers",
+      "problemId": "l4-decision-recycling-bins",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-decision-recycling-bins-outline",
+      "source": "# Recycling bin change\n\nThe kitchen bins get new labels this week.\n\n## Decision\n\n> Sort paper and plastic into the labeled bins.\n\n## Steps\n\n1.Check the bin label\n2.Empty your desk tray\n3.Flatten the boxes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-recycling-bins-outline"
+    },
+    {
+      "id": "l4-decision-room-booking-canonical",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-room-booking-case-spelling",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# MEETING ROOM BOOKING CHANGE\n\nWE ARE MOVING TO ONE SHARED BOOKING SHEET.\n\n## DECISION\n\n> BOOK ROOMS ON THE SHARED SHEET, NOT IN CHAT.\n\n## STEPS\n\n1. OPEN THE SHARED SHEET\n2. PICK A FREE SLOT\n3. ADD YOUR TEAM NAME",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-room-booking-crlf",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Meeting room booking change\r\n\r\nWe are moving to one shared booking sheet.\r\n\r\n## Decision\r\n\r\n> Book rooms on the shared sheet, not in chat.\r\n\r\n## Steps\r\n\r\n1. Open the shared sheet\r\n2. Pick a free slot\r\n3. Add your team name",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-room-booking-different-prose",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Alpha routine change\n\nThe alpha routine moves this week.\n\n## Decision\n\n> Follow the alpha routine every morning.\n\n## Steps\n\n1. Read the alpha note\n2. Follow each part\n3. Tell the next person",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-decision-room-booking-italic-aside",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Meeting room booking change\n\n*We* are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-decision-room-booking-no-italics"
+      ]
+    },
+    {
+      "id": "l4-decision-room-booking-missing",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-decision-room-booking-outline",
+      "source": "Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\nDecision\n\nBook rooms on the shared sheet, not in chat.\n\nSteps\n\nOpen the shared sheet\nPick a free slot\nAdd your team name",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-outline"
+    },
+    {
+      "id": "l4-decision-room-booking-missing-section",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-room-booking-sections",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-outline"
+    },
+    {
+      "id": "l4-decision-room-booking-over-limit",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-room-booking-limits",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-limits"
+    },
+    {
+      "id": "l4-decision-room-booking-plain-decision",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-room-booking-decision-quote",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\nBook rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-outline"
+    },
+    {
+      "id": "l4-decision-room-booking-short-steps",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-room-booking-steps-list",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-steps-list"
+    },
+    {
+      "id": "l4-decision-room-booking-skipped-depth",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-decision-room-booking-hierarchy",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n### Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1. Open the shared sheet\n2. Pick a free slot\n3. Add your team name",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-outline"
+    },
+    {
+      "id": "l4-decision-room-booking-tight-numbers",
+      "problemId": "l4-decision-room-booking",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-decision-room-booking-outline",
+      "source": "# Meeting room booking change\n\nWe are moving to one shared booking sheet.\n\n## Decision\n\n> Book rooms on the shared sheet, not in chat.\n\n## Steps\n\n1.Open the shared sheet\n2.Pick a free slot\n3.Add your team name",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-decision-room-booking-outline"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-canonical",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n## Tomorrow\n\n- Rotate the pastry stock\n- Post the new menu card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-cafe-counter-case-spelling",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# CAFE COUNTER HANDOFF\n\nNOTES FROM THE MORNING CREW FOR THE AFTERNOON CREW.\n\n## TODAY\n\n- MILK DELIVERY ARRIVED\n- ESPRESSO MACHINE CLEANED\n\n## TOMORROW\n\n- ROTATE THE PASTRY STOCK\n- POST THE NEW MENU CARD",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-cafe-counter-crlf",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Cafe counter handoff\r\n\r\nNotes from the morning crew for the afternoon crew.\r\n\r\n## Today\r\n\r\n- Milk delivery arrived\r\n- Espresso machine cleaned\r\n\r\n## Tomorrow\r\n\r\n- Rotate the pastry stock\r\n- Post the new menu card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-cafe-counter-different-prose",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Gamma desk swap notes\n\nShort gamma notes from one crew to the next.\n\n## Today\n\n- Gamma chairs counted\n- Gamma boards wiped\n\n## Tomorrow\n\n- Refill the gamma tray\n- Check the gamma locks",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-cafe-counter-flat-bullets",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-handoff-cafe-counter-outline",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n-Milk delivery arrived\n-Espresso machine cleaned\n\n## Tomorrow\n\n-Rotate the pastry stock\n-Post the new menu card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-outline"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-italic-aside",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Cafe counter handoff\n\n*Notes* from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n## Tomorrow\n\n- Rotate the pastry stock\n- Post the new menu card",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-handoff-cafe-counter-no-italics"
+      ]
+    },
+    {
+      "id": "l4-handoff-cafe-counter-missing",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-handoff-cafe-counter-outline",
+      "source": "Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\nToday\n\nMilk delivery arrived\nEspresso machine cleaned\n\nTomorrow\n\nRotate the pastry stock\nPost the new menu card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-outline"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-missing-section",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-cafe-counter-sections",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n\n- Rotate the pastry stock\n- Post the new menu card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-outline"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-over-limit",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-cafe-counter-limits",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n## Tomorrow\n\n- Rotate the pastry stock\n- Post the new menu card\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-limits"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-short-today",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-cafe-counter-today-list",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n\n\n## Tomorrow\n\n- Rotate the pastry stock\n- Post the new menu card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-today-list"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-short-tomorrow",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-cafe-counter-tomorrow-list",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n## Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n## Tomorrow\n\n- Rotate the pastry stock\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-tomorrow-list"
+    },
+    {
+      "id": "l4-handoff-cafe-counter-skipped-depth",
+      "problemId": "l4-handoff-cafe-counter",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-cafe-counter-hierarchy",
+      "source": "# Cafe counter handoff\n\nNotes from the morning crew for the afternoon crew.\n\n### Today\n\n- Milk delivery arrived\n- Espresso machine cleaned\n\n## Tomorrow\n\n- Rotate the pastry stock\n- Post the new menu card",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-cafe-counter-outline"
+    },
+    {
+      "id": "l4-handoff-front-desk-canonical",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n## Tomorrow\n\n- Order badge sleeves\n- Water the lobby plants",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-front-desk-case-spelling",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# FRONT DESK HANDOFF\n\nNOTES FROM THE AFTERNOON SHIFT FOR THE MORNING TEAM.\n\n## TODAY\n\n- MAIL CART EMPTIED\n- VISITOR BADGES RESTOCKED\n\n## TOMORROW\n\n- ORDER BADGE SLEEVES\n- WATER THE LOBBY PLANTS",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-front-desk-crlf",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Front desk handoff\r\n\r\nNotes from the afternoon shift for the morning team.\r\n\r\n## Today\r\n\r\n- Mail cart emptied\r\n- Visitor badges restocked\r\n\r\n## Tomorrow\r\n\r\n- Order badge sleeves\r\n- Water the lobby plants",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-front-desk-different-prose",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Alpha desk swap notes\n\nShort alpha notes from one crew to the next.\n\n## Today\n\n- Alpha chairs counted\n- Alpha boards wiped\n\n## Tomorrow\n\n- Refill the alpha tray\n- Check the alpha locks",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-front-desk-flat-bullets",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-handoff-front-desk-outline",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n-Mail cart emptied\n-Visitor badges restocked\n\n## Tomorrow\n\n-Order badge sleeves\n-Water the lobby plants",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-outline"
+    },
+    {
+      "id": "l4-handoff-front-desk-italic-aside",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Front desk handoff\n\n*Notes* from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n## Tomorrow\n\n- Order badge sleeves\n- Water the lobby plants",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-handoff-front-desk-no-italics"
+      ]
+    },
+    {
+      "id": "l4-handoff-front-desk-missing",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-handoff-front-desk-outline",
+      "source": "Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\nToday\n\nMail cart emptied\nVisitor badges restocked\n\nTomorrow\n\nOrder badge sleeves\nWater the lobby plants",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-outline"
+    },
+    {
+      "id": "l4-handoff-front-desk-missing-section",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-front-desk-sections",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n\n- Order badge sleeves\n- Water the lobby plants",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-outline"
+    },
+    {
+      "id": "l4-handoff-front-desk-over-limit",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-front-desk-limits",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n## Tomorrow\n\n- Order badge sleeves\n- Water the lobby plants\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-limits"
+    },
+    {
+      "id": "l4-handoff-front-desk-short-today",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-front-desk-today-list",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n\n\n## Tomorrow\n\n- Order badge sleeves\n- Water the lobby plants",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-today-list"
+    },
+    {
+      "id": "l4-handoff-front-desk-short-tomorrow",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-front-desk-tomorrow-list",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n## Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n## Tomorrow\n\n- Order badge sleeves\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-tomorrow-list"
+    },
+    {
+      "id": "l4-handoff-front-desk-skipped-depth",
+      "problemId": "l4-handoff-front-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-front-desk-hierarchy",
+      "source": "# Front desk handoff\n\nNotes from the afternoon shift for the morning team.\n\n### Today\n\n- Mail cart emptied\n- Visitor badges restocked\n\n## Tomorrow\n\n- Order badge sleeves\n- Water the lobby plants",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-front-desk-outline"
+    },
+    {
+      "id": "l4-handoff-library-desk-canonical",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n- Study rooms locked\n\n## Tomorrow\n\n- Restock printer paper\n- Update the events board",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-library-desk-case-spelling",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# LIBRARY DESK HANDOFF\n\nNOTES FROM THE CLOSING SHIFT FOR TOMORROW'S OPENER.\n\n## TODAY\n\n- RETURNED BOOKS SHELVED\n- STUDY ROOMS LOCKED\n\n## TOMORROW\n\n- RESTOCK PRINTER PAPER\n- UPDATE THE EVENTS BOARD",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-library-desk-crlf",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Library desk handoff\r\n\r\nNotes from the closing shift for tomorrow's opener.\r\n\r\n## Today\r\n\r\n- Returned books shelved\r\n- Study rooms locked\r\n\r\n## Tomorrow\r\n\r\n- Restock printer paper\r\n- Update the events board",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-library-desk-different-prose",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Beta desk swap notes\n\nShort beta notes from one crew to the next.\n\n## Today\n\n- Beta chairs counted\n- Beta boards wiped\n\n## Tomorrow\n\n- Refill the beta tray\n- Check the beta locks",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-handoff-library-desk-flat-bullets",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-handoff-library-desk-outline",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n-Returned books shelved\n-Study rooms locked\n\n## Tomorrow\n\n-Restock printer paper\n-Update the events board",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-outline"
+    },
+    {
+      "id": "l4-handoff-library-desk-italic-aside",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Library desk handoff\n\n*Notes* from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n- Study rooms locked\n\n## Tomorrow\n\n- Restock printer paper\n- Update the events board",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-handoff-library-desk-no-italics"
+      ]
+    },
+    {
+      "id": "l4-handoff-library-desk-missing",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-handoff-library-desk-outline",
+      "source": "Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\nToday\n\nReturned books shelved\nStudy rooms locked\n\nTomorrow\n\nRestock printer paper\nUpdate the events board",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-outline"
+    },
+    {
+      "id": "l4-handoff-library-desk-missing-section",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-library-desk-sections",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n- Study rooms locked\n\n\n- Restock printer paper\n- Update the events board",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-outline"
+    },
+    {
+      "id": "l4-handoff-library-desk-over-limit",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-library-desk-limits",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n- Study rooms locked\n\n## Tomorrow\n\n- Restock printer paper\n- Update the events board\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-limits"
+    },
+    {
+      "id": "l4-handoff-library-desk-short-today",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-library-desk-today-list",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n\n\n## Tomorrow\n\n- Restock printer paper\n- Update the events board",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-today-list"
+    },
+    {
+      "id": "l4-handoff-library-desk-short-tomorrow",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-library-desk-tomorrow-list",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n## Today\n\n- Returned books shelved\n- Study rooms locked\n\n## Tomorrow\n\n- Restock printer paper\n",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-tomorrow-list"
+    },
+    {
+      "id": "l4-handoff-library-desk-skipped-depth",
+      "problemId": "l4-handoff-library-desk",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-handoff-library-desk-hierarchy",
+      "source": "# Library desk handoff\n\nNotes from the closing shift for tomorrow's opener.\n\n### Today\n\n- Returned books shelved\n- Study rooms locked\n\n## Tomorrow\n\n- Restock printer paper\n- Update the events board",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-handoff-library-desk-outline"
+    },
+    {
+      "id": "l4-status-newsletter-move-canonical",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue\n2. Retire the old address",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-newsletter-move-case-spelling",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# NEWSLETTER MOVE STATUS\n\nTHE NEW SENDER IS READY. **THE OLD ADDRESS STOPS MONDAY.**\n\n## DONE\n\n- READER LIST COPIED\n- WELCOME NOTE DRAFTED\n\n## NEXT\n\n1. SEND THE TEST ISSUE\n2. RETIRE THE OLD ADDRESS",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-newsletter-move-crlf",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Newsletter move status\r\n\r\nThe new sender is ready. **The old address stops Monday.**\r\n\r\n## Done\r\n\r\n- Reader list copied\r\n- Welcome note drafted\r\n\r\n## Next\r\n\r\n1. Send the test issue\r\n2. Retire the old address",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-newsletter-move-different-prose",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Beta project status\n\nThe beta piece shipped. **Review closes soon.**\n\n## Done\n\n- Beta draft finished\n- Beta copy checked\n\n## Next\n\n1. Share the beta notes\n2. Update the beta page",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-newsletter-move-italic-aside",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Newsletter move status\n\n*The* new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue\n2. Retire the old address",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-status-newsletter-move-no-italics"
+      ]
+    },
+    {
+      "id": "l4-status-newsletter-move-missing",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-status-newsletter-move-outline",
+      "source": "Newsletter move status\n\nThe new sender is ready. The old address stops Monday.\n\nDone\n\nReader list copied\nWelcome note drafted\n\nNext\n\nSend the test issue\nRetire the old address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-outline"
+    },
+    {
+      "id": "l4-status-newsletter-move-missing-section",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-newsletter-move-sections",
+      "source": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n\n1. Send the test issue\n2. Retire the old address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-outline"
+    },
+    {
+      "id": "l4-status-newsletter-move-over-limit",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-newsletter-move-limits",
+      "source": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue\n2. Retire the old address\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-limits"
+    },
+    {
+      "id": "l4-status-newsletter-move-plain-deadline",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-status-newsletter-move-bold-note",
+      "source": "# Newsletter move status\n\nThe new sender is ready. The old address stops Monday.\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue\n2. Retire the old address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-bold-note"
+    },
+    {
+      "id": "l4-status-newsletter-move-short-done",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-newsletter-move-done-list",
+      "source": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n\n\n## Next\n\n1. Send the test issue\n2. Retire the old address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-done-list"
+    },
+    {
+      "id": "l4-status-newsletter-move-short-next",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-newsletter-move-next-list",
+      "source": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n## Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-next-list"
+    },
+    {
+      "id": "l4-status-newsletter-move-skipped-depth",
+      "problemId": "l4-status-newsletter-move",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-newsletter-move-hierarchy",
+      "source": "# Newsletter move status\n\nThe new sender is ready. **The old address stops Monday.**\n\n### Done\n\n- Reader list copied\n- Welcome note drafted\n\n## Next\n\n1. Send the test issue\n2. Retire the old address",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-newsletter-move-outline"
+    },
+    {
+      "id": "l4-status-signage-update-canonical",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-signage-update-case-spelling",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# LOBBY SIGNAGE STATUS\n\nTHE NEW SIGNS ARRIVED. **INSTALLATION HAPPENS THURSDAY.**\n\n## DONE\n\n- OLD SIGNS MEASURED\n- NEW SIGNS PROOFREAD\n\n## NEXT\n\n1. BOOK THE INSTALLER\n2. RECYCLE THE OLD SIGNS",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-signage-update-crlf",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Lobby signage status\r\n\r\nThe new signs arrived. **Installation happens Thursday.**\r\n\r\n## Done\r\n\r\n- Old signs measured\r\n- New signs proofread\r\n\r\n## Next\r\n\r\n1. Book the installer\r\n2. Recycle the old signs",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-signage-update-different-prose",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Gamma project status\n\nThe gamma piece shipped. **Review closes soon.**\n\n## Done\n\n- Gamma draft finished\n- Gamma copy checked\n\n## Next\n\n1. Share the gamma notes\n2. Update the gamma page",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-signage-update-italic-aside",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Lobby signage status\n\n*The* new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-status-signage-update-no-italics"
+      ]
+    },
+    {
+      "id": "l4-status-signage-update-missing",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-status-signage-update-outline",
+      "source": "Lobby signage status\n\nThe new signs arrived. Installation happens Thursday.\n\nDone\n\nOld signs measured\nNew signs proofread\n\nNext\n\nBook the installer\nRecycle the old signs",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-outline"
+    },
+    {
+      "id": "l4-status-signage-update-missing-section",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-signage-update-sections",
+      "source": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n\n1. Book the installer\n2. Recycle the old signs",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-outline"
+    },
+    {
+      "id": "l4-status-signage-update-over-limit",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-signage-update-limits",
+      "source": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-limits"
+    },
+    {
+      "id": "l4-status-signage-update-plain-deadline",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-status-signage-update-bold-note",
+      "source": "# Lobby signage status\n\nThe new signs arrived. Installation happens Thursday.\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-bold-note"
+    },
+    {
+      "id": "l4-status-signage-update-short-done",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-signage-update-done-list",
+      "source": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-done-list"
+    },
+    {
+      "id": "l4-status-signage-update-short-next",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-signage-update-next-list",
+      "source": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n## Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-next-list"
+    },
+    {
+      "id": "l4-status-signage-update-skipped-depth",
+      "problemId": "l4-status-signage-update",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-signage-update-hierarchy",
+      "source": "# Lobby signage status\n\nThe new signs arrived. **Installation happens Thursday.**\n\n### Done\n\n- Old signs measured\n- New signs proofread\n\n## Next\n\n1. Book the installer\n2. Recycle the old signs",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-signage-update-outline"
+    },
+    {
+      "id": "l4-status-website-refresh-canonical",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-website-refresh-case-spelling",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "# WEBSITE REFRESH STATUS\n\nTHE NEW BANNER IS LIVE. **FEEDBACK CLOSES FRIDAY.**\n\n## DONE\n\n- NEW BANNER PUBLISHED\n- OLD LINKS CHECKED\n\n## NEXT\n\n1. COLLECT FEEDBACK NOTES\n2. UPDATE THE PHOTO PAGE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-website-refresh-crlf",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "source": "# Website refresh status\r\n\r\nThe new banner is live. **Feedback closes Friday.**\r\n\r\n## Done\r\n\r\n- New banner published\r\n- Old links checked\r\n\r\n## Next\r\n\r\n1. Collect feedback notes\r\n2. Update the photo page",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-website-refresh-different-prose",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "# Alpha project status\n\nThe alpha piece shipped. **Review closes soon.**\n\n## Done\n\n- Alpha draft finished\n- Alpha copy checked\n\n## Next\n\n1. Share the alpha notes\n2. Update the alpha page",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l4-status-website-refresh-italic-aside",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "# Website refresh status\n\n*The* new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "l4-status-website-refresh-no-italics"
+      ]
+    },
+    {
+      "id": "l4-status-website-refresh-missing",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "l4-status-website-refresh-outline",
+      "source": "Website refresh status\n\nThe new banner is live. Feedback closes Friday.\n\nDone\n\nNew banner published\nOld links checked\n\nNext\n\nCollect feedback notes\nUpdate the photo page",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-outline"
+    },
+    {
+      "id": "l4-status-website-refresh-missing-section",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-website-refresh-sections",
+      "source": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n- Old links checked\n\n\n1. Collect feedback notes\n2. Update the photo page",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-outline"
+    },
+    {
+      "id": "l4-status-website-refresh-over-limit",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-website-refresh-limits",
+      "source": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page\n- Extra reminder line 1\n- Extra reminder line 2\n- Extra reminder line 3\n- Extra reminder line 4\n- Extra reminder line 5\n- Extra reminder line 6\n- Extra reminder line 7\n- Extra reminder line 8",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-limits"
+    },
+    {
+      "id": "l4-status-website-refresh-plain-deadline",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "l4-status-website-refresh-bold-note",
+      "source": "# Website refresh status\n\nThe new banner is live. Feedback closes Friday.\n\n## Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-bold-note"
+    },
+    {
+      "id": "l4-status-website-refresh-short-done",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-website-refresh-done-list",
+      "source": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-done-list"
+    },
+    {
+      "id": "l4-status-website-refresh-short-next",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-website-refresh-next-list",
+      "source": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n## Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-next-list"
+    },
+    {
+      "id": "l4-status-website-refresh-skipped-depth",
+      "problemId": "l4-status-website-refresh",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "l4-status-website-refresh-hierarchy",
+      "source": "# Website refresh status\n\nThe new banner is live. **Feedback closes Friday.**\n\n### Done\n\n- New banner published\n- Old links checked\n\n## Next\n\n1. Collect feedback notes\n2. Update the photo page",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "l4-status-website-refresh-outline"
+    }
+  ]
+}
