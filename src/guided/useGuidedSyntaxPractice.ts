@@ -31,9 +31,51 @@ function completedCountFromDraft(
   checkpoints: ReturnType<typeof deriveSyntaxCheckpoints>,
   draft: string,
 ): number {
-  if (draft === target) return checkpoints.length
-  for (let count = checkpoints.length - 1; count > 0; count -= 1) {
-    if (buildGuidedDraft(target, checkpoints, count) === draft) return count
+  for (let count = checkpoints.length; count > 0; count -= 1) {
+    const draftEnd = checkpoints[count]?.targetFrom ?? target.length
+    if (draft.length !== draftEnd) continue
+
+    let cursor = 0
+    let matches = true
+    for (const checkpoint of checkpoints.slice(0, count)) {
+      if (
+        draft.slice(cursor, checkpoint.targetFrom) !==
+        target.slice(cursor, checkpoint.targetFrom)
+      ) {
+        matches = false
+        break
+      }
+
+      let segmentOffset = checkpoint.targetFrom
+      let submittedSyntax = ""
+      for (const segment of checkpoint.segments) {
+        const actual = draft.slice(
+          segmentOffset,
+          segmentOffset + segment.value.length,
+        )
+        if (segment.kind === "locked") {
+          if (actual !== segment.value) {
+            matches = false
+            break
+          }
+        } else {
+          submittedSyntax += actual
+        }
+        segmentOffset += segment.value.length
+      }
+      if (!matches || !acceptsGuidedSyntaxInput(checkpoint, submittedSyntax)) {
+        matches = false
+        break
+      }
+      cursor = checkpoint.targetTo
+    }
+
+    if (
+      matches &&
+      draft.slice(cursor, draftEnd) === target.slice(cursor, draftEnd)
+    ) {
+      return count
+    }
   }
   return 0
 }
@@ -42,15 +84,42 @@ function historyStateFor(problemId: string, index: number): GuidedHistoryState {
   return { marker: GUIDED_HISTORY_MARKER, problemId, index }
 }
 
+function completedValuesFromDraft(
+  checkpoints: ReturnType<typeof deriveSyntaxCheckpoints>,
+  draft: string,
+  completedCount: number,
+): Record<string, string> {
+  return Object.fromEntries(
+    checkpoints.slice(0, completedCount).map((checkpoint) => {
+      let segmentOffset = checkpoint.targetFrom
+      let submittedSyntax = ""
+      for (const segment of checkpoint.segments) {
+        if (segment.kind === "input") {
+          submittedSyntax += draft.slice(
+            segmentOffset,
+            segmentOffset + segment.value.length,
+          )
+        }
+        segmentOffset += segment.value.length
+      }
+      return [
+        checkpoint.id,
+        acceptsGuidedSyntaxInput(checkpoint, submittedSyntax)
+          ? submittedSyntax
+          : checkpoint.canonicalInput,
+      ]
+    }),
+  )
+}
+
 function restoreGuidedDraft(
   problem: GuidedProblem,
   checkpoints: ReturnType<typeof deriveSyntaxCheckpoints>,
   draft: string,
   completedCount: number,
 ): string {
-  if (completedCount > 0 || draft === "") {
-    return buildGuidedDraft(problem.target, checkpoints, completedCount)
-  }
+  if (completedCount > 0) return draft
+  if (draft === "") return buildGuidedDraft(problem.target, checkpoints, 0)
   // A fresh legacy session still carries the old prose-only starter. Guided
   // practice intentionally begins on an empty source page, while a learner's
   // own saved draft must survive a reload and remain manually editable.
@@ -109,11 +178,7 @@ export function useGuidedSyntaxPractice({
   const guidedDraftRef = useRef(guidedDraft)
   guidedDraftRef.current = guidedDraft
   const [values, setValues] = useState<Record<string, string>>(() =>
-    Object.fromEntries(
-      checkpoints
-        .slice(0, initialCompleted)
-        .map((checkpoint) => [checkpoint.id, checkpoint.canonicalInput]),
-    ),
+    completedValuesFromDraft(checkpoints, draft, initialCompleted),
   )
   const [attemptsById, setAttemptsById] = useState<Record<string, number>>({})
   const [hintOpen, setHintOpen] = useState(false)
@@ -140,13 +205,7 @@ export function useGuidedSyntaxPractice({
     guidedDraftRef.current = restoredDraft
     setGuidedDraft(restoredDraft)
     if (draft !== restoredDraft) onChangeRef.current(restoredDraft)
-    setValues(
-      Object.fromEntries(
-        checkpoints
-          .slice(0, restoredCompleted)
-          .map((checkpoint) => [checkpoint.id, checkpoint.canonicalInput]),
-      ),
-    )
+    setValues(completedValuesFromDraft(checkpoints, draft, restoredCompleted))
     setAttemptsById({})
     setHintOpen(false)
 
@@ -279,11 +338,7 @@ export function useGuidedSyntaxPractice({
         Math.min(nextCompletedCount, Math.max(0, checkpoints.length - 1)),
       )
       setValues(
-        Object.fromEntries(
-          checkpoints
-            .slice(0, nextCompletedCount)
-            .map((item) => [item.id, item.canonicalInput]),
-        ),
+        completedValuesFromDraft(checkpoints, nextDraft, nextCompletedCount),
       )
     },
     [checkpoints, onChange, problem.target],

@@ -95,6 +95,22 @@ describe("GuidedSyntaxCard", () => {
     expect(screen.getByText("##␠")).toBeVisible()
   })
 
+  it("shows both accepted italic answers in Hint", () => {
+    const italicCheckpoint: SyntaxCheckpoint = {
+      ...checkpoint,
+      canonicalInput: "**",
+      segments: [
+        { kind: "input", value: "*" },
+        { kind: "locked", value: "Quiet music" },
+        { kind: "input", value: "*" },
+      ],
+    }
+
+    renderCard({ checkpoint: italicCheckpoint, hintOpen: true })
+
+    expect(screen.getByText("** or __")).toBeVisible()
+  })
+
   it("exposes visited history without enabling unseen forward progress", () => {
     renderCard({ canGoBack: true, canGoForward: false })
 

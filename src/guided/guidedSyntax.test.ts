@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest"
 import { problemBank } from "../content/problemBank"
+import { evaluateProblem } from "../engine/evaluateProblem"
 import {
+  acceptedGuidedSyntaxInputs,
   buildGuidedDraft,
   deriveSyntaxCheckpoints,
 } from "./guidedSyntax"
@@ -38,6 +40,65 @@ describe("deriveSyntaxCheckpoints", () => {
       { kind: "input", value: "**" },
       { kind: "locked", value: " today." },
     ])
+  })
+
+  it("offers the standard equivalent markers for paired emphasis", () => {
+    const italic = deriveSyntaxCheckpoints("*Quiet music*", "Quiet music")[0]!
+    const bold = deriveSyntaxCheckpoints("**Important**", "Important")[0]!
+
+    expect(acceptedGuidedSyntaxInputs(italic)).toEqual(["**", "__"])
+    expect(acceptedGuidedSyntaxInputs(bold)).toEqual(["****", "____"])
+  })
+
+  it.each([
+    ["- Pens", "Pens", ["- ", "* ", "+ "]],
+    ["  - Child", "Child", ["  - ", "  * ", "  + "]],
+    ["1. First", "First", ["1. ", "1) "]],
+    ["---", "", ["---", "***", "___"]],
+    ["```\nhello\n```", "\nhello\n", ["``````", "~~~~~~"]],
+  ] as const)("offers standard equivalents for %s", (target, starter, expected) => {
+    const checkpoint = deriveSyntaxCheckpoints(target, starter)[0]!
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(expected)
+  })
+
+  it.each([
+    ["* Pens", "Pens", ["* ", "- ", "+ "]],
+    ["1) First", "First", ["1) ", "1. "]],
+    ["_Quiet music_", "Quiet music", ["__", "**"]],
+    ["__Important__", "Important", ["____", "****"]],
+    ["***", "", ["***", "---", "___"]],
+    ["~~~\nhello\n~~~", "\nhello\n", ["~~~~~~", "``````"]],
+  ] as const)("keeps equivalent answers symmetric for %s", (target, starter, expected) => {
+    const checkpoint = deriveSyntaxCheckpoints(target, starter)[0]!
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(expected)
+  })
+
+  it("combines independent equivalents inside one syntax checkpoint", () => {
+    const checkpoint = deriveSyntaxCheckpoints(
+      "- **Changed:** adapter boundary",
+      "Changed: adapter boundary",
+    )[0]!
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual([
+      "- ****",
+      "* ****",
+      "+ ****",
+      "- ____",
+      "* ____",
+      "+ ____",
+    ])
+  })
+
+  it.each([
+    ["## Next steps", "Next steps", ["## "]],
+    ["> A useful note", "A useful note", ["> "]],
+    ["Press `Enter`.", "Press Enter.", ["``"]],
+    ["Read the [guide](/guide).", "Read the guide.", ["[]()"]],
+    ["See ![Map](/map.png).", "See Map.", ["![]()"]],
+    ["First line  \nSecond line", "First line\nSecond line", ["  "]],
+  ] as const)("keeps non-equivalent syntax exact for %s", (target, starter, expected) => {
+    const checkpoint = deriveSyntaxCheckpoints(target, starter)[0]!
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(expected)
   })
 
   it("locks a link destination while asking only for Markdown punctuation", () => {
@@ -139,6 +200,46 @@ describe("published problem-bank coverage", () => {
         buildGuidedDraft(problem.target, checkpoints, checkpoints.length),
         problem.id,
       ).toBe(problem.target)
+    }
+  })
+
+  it("keeps every accepted alternative valid through the real grading engine", () => {
+    for (const problem of problemBank) {
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+
+      for (const checkpoint of checkpoints) {
+        const alternatives = acceptedGuidedSyntaxInputs(checkpoint)
+        expect(alternatives[0], checkpoint.id).toBe(checkpoint.canonicalInput)
+        expect(new Set(alternatives).size, checkpoint.id).toBe(alternatives.length)
+        expect(
+          alternatives.every(
+            (alternative) => alternative.length === checkpoint.canonicalInput.length,
+          ),
+          checkpoint.id,
+        ).toBe(true)
+
+        for (const alternative of alternatives) {
+          const completedValues = Object.fromEntries(
+            checkpoints.map((candidate) => [
+              candidate.id,
+              candidate.id === checkpoint.id
+                ? alternative
+                : candidate.canonicalInput,
+            ]),
+          )
+          const draft = buildGuidedDraft(
+            problem.target,
+            checkpoints,
+            checkpoints.length,
+            completedValues,
+          )
+          expect(evaluateProblem(problem, draft).status, `${problem.id}: ${alternative}`)
+            .not.toBe("fail")
+        }
+      }
     }
   })
 })

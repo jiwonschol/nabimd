@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, Lightbulb } from "lucide-react"
 import { useEffect, useMemo, useRef } from "react"
+import { acceptedGuidedSyntaxInputs } from "../guided/guidedSyntax"
 import type {
   GuidedSyntaxSegment,
   SyntaxCheckpoint,
@@ -178,7 +179,9 @@ export function GuidedSyntaxCard({
           </button>
           {hintOpen ? (
             <code className="guided-syntax-card__hint-answer">
-              {visibleSyntax(checkpoint.canonicalInput)}
+              {acceptedGuidedSyntaxInputs(checkpoint)
+                .map(visibleSyntax)
+                .join(" or ")}
             </code>
           ) : null}
         </div>

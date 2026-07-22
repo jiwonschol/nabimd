@@ -76,6 +76,76 @@ describe("useGuidedSyntaxPractice", () => {
     expect(result.current.completed).toBe(true)
   })
 
+  it.each([
+    ["strong", "**Important**", "Important", "____", "__Important__"],
+    ["thematic break", "Before\n\n---\n\nAfter", "Before\n\n\n\nAfter", "***", "Before\n\n***\n\nAfter"],
+    ["code fence", "```\nhello\n```", "\nhello\n", "~~~~~~", "~~~\nhello\n~~~"],
+  ] as const)("accepts and preserves the equivalent %s form", (_name, target, starterText, input, expected) => {
+    const alternateProblem = {
+      id: `guided-${_name}`,
+      target,
+      starterText,
+    }
+    const onCheck = vi.fn()
+    const { result } = renderHook(() =>
+      useGuidedSyntaxPractice({
+        draft: starterText,
+        onChange: vi.fn(),
+        onCheck,
+        problem: alternateProblem,
+      }),
+    )
+
+    act(() => result.current.submit(input))
+
+    expect(onCheck).toHaveBeenCalledWith(expected)
+    expect(result.current.completed).toBe(true)
+  })
+
+  it("keeps a valid list structure when equivalent bullet markers are mixed", () => {
+    const listProblem = {
+      id: "guided-list-test",
+      target: "- Pens\n- Paper\n- Glue",
+      starterText: "Pens\nPaper\nGlue",
+    }
+    const onCheck = vi.fn()
+    const { result } = renderHook(() =>
+      useGuidedSyntaxPractice({
+        draft: listProblem.starterText,
+        onChange: vi.fn(),
+        onCheck,
+        problem: listProblem,
+      }),
+    )
+
+    act(() => result.current.submit("* "))
+    act(() => result.current.submit("+ "))
+    act(() => result.current.submit("- "))
+
+    expect(onCheck).toHaveBeenCalledWith("* Pens\n* Paper\n* Glue")
+    expect(result.current.completed).toBe(true)
+  })
+
+  it("restores a completed draft that uses equivalent Markdown markers", () => {
+    const italicProblem = {
+      id: "guided-italic-restore-test",
+      target: "*Quiet music*",
+      starterText: "Quiet music",
+    }
+    const { result } = renderHook(() =>
+      useGuidedSyntaxPractice({
+        draft: "_Quiet music_",
+        onChange: vi.fn(),
+        onCheck: vi.fn(),
+        problem: italicProblem,
+      }),
+    )
+
+    expect(result.current.draft).toBe("_Quiet music_")
+    expect(result.current.completed).toBe(true)
+    expect(result.current.canGoForward).toBe(false)
+  })
+
   it("keeps an incorrect answer in place and calls attention to Hint after two attempts", () => {
     const { result } = renderHook(() =>
       useGuidedSyntaxPractice({

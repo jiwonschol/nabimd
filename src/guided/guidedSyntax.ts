@@ -15,17 +15,111 @@ export type SyntaxCheckpoint = {
   segments: readonly GuidedSyntaxSegment[]
 }
 
+function expandInputForms(
+  forms: string[][],
+  transform: (form: readonly string[]) => string[] | null,
+): void {
+  for (const form of [...forms]) {
+    const alternative = transform(form)
+    if (alternative) forms.push(alternative)
+  }
+}
+
+function replacePairedDelimiter(
+  form: readonly string[],
+  from: string,
+  to: string,
+): string[] | null {
+  const openingIndex = form.findIndex((part) => part.endsWith(from))
+  if (openingIndex < 0) return null
+  const closingIndex = form.findIndex(
+    (part, index) => index > openingIndex && part === from,
+  )
+  if (closingIndex < 0) return null
+
+  const alternative = [...form]
+  alternative[openingIndex] = `${form[openingIndex]!.slice(0, -from.length)}${to}`
+  alternative[closingIndex] = to
+  return alternative
+}
+
+export function acceptedGuidedSyntaxInputs(
+  checkpoint: SyntaxCheckpoint,
+): readonly string[] {
+  const canonicalParts = checkpoint.segments
+    .filter(
+      (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
+        segment.kind === "input",
+    )
+    .map((segment) => segment.value)
+  const forms = [canonicalParts]
+
+  const canonicalFirst = canonicalParts[0]
+  const unorderedMatch = canonicalFirst?.match(/^(\s*)([-+*])(\s+)/)
+  if (canonicalFirst && unorderedMatch) {
+    for (const marker of ["-", "*", "+"] as const) {
+      if (marker === unorderedMatch[2]) continue
+      const alternative = [...canonicalParts]
+      alternative[0] = `${unorderedMatch[1] ?? ""}${marker}${unorderedMatch[3] ?? ""}${canonicalFirst.slice(unorderedMatch[0].length)}`
+      forms.push(alternative)
+    }
+  }
+
+  const orderedMatch = canonicalFirst?.match(/^(\s*\d+)([.)])(\s+)/)
+  if (canonicalFirst && orderedMatch) {
+    const delimiter = orderedMatch[2] === "." ? ")" : "."
+    const alternative = [...canonicalParts]
+    alternative[0] = `${orderedMatch[1] ?? ""}${delimiter}${orderedMatch[3] ?? ""}${canonicalFirst.slice(orderedMatch[0].length)}`
+    forms.push(alternative)
+  }
+
+  const pairedDelimiter = (
+    [
+      ["**", "__"],
+      ["__", "**"],
+      ["*", "_"],
+      ["_", "*"],
+    ] as const
+  ).find(([from, to]) =>
+    replacePairedDelimiter(canonicalParts, from, to) !== null,
+  )
+  if (pairedDelimiter) {
+    const [from, to] = pairedDelimiter
+    expandInputForms(forms, (form) =>
+      replacePairedDelimiter(form, from, to),
+    )
+  }
+
+  if (
+    canonicalParts.length === 2 &&
+    canonicalParts[0] === canonicalParts[1] &&
+    (canonicalParts[0] === "```" || canonicalParts[0] === "~~~")
+  ) {
+    const alternativeFence = canonicalParts[0] === "```" ? "~~~" : "```"
+    expandInputForms(forms, (form) =>
+      form[0] === canonicalParts[0] && form[1] === canonicalParts[1]
+        ? [alternativeFence, alternativeFence]
+        : null,
+    )
+  }
+
+  if (
+    canonicalParts.length === 1 &&
+    ["---", "***", "___"].includes(canonicalParts[0] ?? "")
+  ) {
+    for (const divider of ["---", "***", "___"]) {
+      if (divider !== canonicalParts[0]) forms.push([divider])
+    }
+  }
+
+  return [...new Set(forms.map((form) => form.join("")))]
+}
+
 export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): boolean {
-  if (value === checkpoint.canonicalInput) return true
-  if (value.length !== checkpoint.canonicalInput.length) return false
-
-  return (
-    /^\*+$/.test(checkpoint.canonicalInput) &&
-    (/^\*+$/.test(value) || /^_+$/.test(value))
-  )
+  return acceptedGuidedSyntaxInputs(checkpoint).includes(value)
 }
 
 function renderCheckpointWithInput(
@@ -44,6 +138,55 @@ function renderCheckpointWithInput(
       return replacement
     })
     .join("")
+}
+
+type GuidedListStyle = {
+  orderedDelimiter?: "." | ")"
+  unorderedMarker?: "-" | "*" | "+"
+}
+
+function listStyleFromInput(value: string): GuidedListStyle {
+  const unordered = value.match(/^\s*([-+*])\s/)
+  if (unordered?.[1]) {
+    return { unorderedMarker: unordered[1] as "-" | "*" | "+" }
+  }
+  const ordered = value.match(/^\s*\d+([.)])\s/)
+  if (ordered?.[1]) {
+    return { orderedDelimiter: ordered[1] as "." | ")" }
+  }
+  return {}
+}
+
+function coherentListStyle(
+  checkpoints: readonly SyntaxCheckpoint[],
+  completedValues: Readonly<Record<string, string>>,
+): GuidedListStyle {
+  const style: GuidedListStyle = {}
+  for (const checkpoint of checkpoints) {
+    const value = completedValues[checkpoint.id] ?? checkpoint.canonicalInput
+    const candidate = listStyleFromInput(value)
+    style.unorderedMarker ??= candidate.unorderedMarker
+    style.orderedDelimiter ??= candidate.orderedDelimiter
+    if (style.unorderedMarker && style.orderedDelimiter) break
+  }
+  return style
+}
+
+function normalizeListStyle(value: string, style: GuidedListStyle): string {
+  let normalized = value
+  if (style.unorderedMarker) {
+    normalized = normalized.replace(
+      /^(\s*)[-+*](\s)/,
+      `$1${style.unorderedMarker}$2`,
+    )
+  }
+  if (style.orderedDelimiter) {
+    normalized = normalized.replace(
+      /^(\s*\d+)[.)](\s)/,
+      `$1${style.orderedDelimiter}$2`,
+    )
+  }
+  return normalized
 }
 
 type SourceRange = { from: number; to: number }
@@ -340,8 +483,10 @@ export function buildGuidedDraft(
   const draftEnd = nextCheckpoint?.targetFrom ?? target.length
   const parts: string[] = []
   let cursor = 0
+  const completedCheckpoints = checkpoints.slice(0, boundedCount)
+  const listStyle = coherentListStyle(completedCheckpoints, completedValues)
 
-  for (const checkpoint of checkpoints.slice(0, boundedCount)) {
+  for (const checkpoint of completedCheckpoints) {
     parts.push(target.slice(cursor, checkpoint.targetFrom))
     const submittedValue = completedValues[checkpoint.id]
     const acceptedValue =
@@ -349,7 +494,12 @@ export function buildGuidedDraft(
       acceptsGuidedSyntaxInput(checkpoint, submittedValue)
         ? submittedValue
         : checkpoint.canonicalInput
-    parts.push(renderCheckpointWithInput(checkpoint, acceptedValue))
+    parts.push(
+      renderCheckpointWithInput(
+        checkpoint,
+        normalizeListStyle(acceptedValue, listStyle),
+      ),
+    )
     cursor = checkpoint.targetTo
   }
 

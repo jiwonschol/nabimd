@@ -427,6 +427,26 @@ test("guided syntax builds the source and uses browser history without undoing i
   await expect(page.getByLabel(`Syntax 2 of ${checkpoints.length}`)).toBeVisible()
 })
 
+test("accepts the second italic syntax from Hint with the mouse Enter action", async ({
+  page,
+}) => {
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "23")
+  }, sessionSeedStorageKey)
+  await page.goto("/")
+  await enterLevel(page, 1)
+  expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
+
+  await page.getByRole("button", { name: "Show syntax hint" }).click()
+  await expect(page.getByText("** or __", { exact: true })).toBeVisible()
+
+  await guidedSyntaxInput(page).fill("__")
+  await page.getByRole("button", { name: "Submit syntax" }).click()
+
+  await expect(page.getByRole("button", { name: "Next exercise" })).toBeVisible()
+  expect(await sourceText(page)).toBe("_Paper boat_")
+})
+
 test("makes practice syntax scale, spacing, and the shared shortcut visible", async ({
   page,
 }) => {
