@@ -1,8 +1,8 @@
 # Practice Functional Redesign — Diagnosis and Rebuild
 
-**Date:** 2026-07-22 · **Status:** In progress (this session) · **Owner directive:** post-Build-Week full functional redesign of the practice page. Visual redesign is explicitly out of scope for this pass; functionality first.
+**Date:** 2026-07-22 · **Status:** Complete — PR #99 open (review turnover in progress) · **Owner directive:** post-Build-Week full functional redesign of the practice page. Visual redesign is explicitly out of scope for this pass; functionality first.
 
-> 경계 선언: 이 문서는 이 세션의 SoT다. 구현은 이 세션에서 진행하되, 푸시·PR·배포는 하지 않는다(로컬 커밋까지만).
+> 경계 선언: 이 문서는 이 세션의 SoT다. 구현·검증까지 이 세션에서 완료했고, 처음에는 로컬 커밋까지만 두었다가 2026-07-22 Jiwon 지시로 push + PR #99를 열었다. 배포는 여전히 하지 않는다.
 
 ## §0 Scope — owner's directives (2026-07-22 message)
 
@@ -73,7 +73,7 @@ Verified first-hand in the running app plus two code-trace reports. The engine, 
 
 ### WS-C Content
 1. **Runtime retirement** (established PR #96 pattern — artifacts stay immutable): exclude from projections/selection every problem whose target exceeds the new runtime budget. Retires batch 012 entirely, 017's 40-liners, 018's 25–34-liners, and the 4 over-length milestone-001 records.
-2. **New L4 batch 021 "workplace notes"** through the standard pipeline: 12 problems, composite syntax (heading + list + bold/inline-code + blockquote mixes), 8–18 authored lines, ≤ 120 words, batch-020 tone. L4 = short workplace notes/handoffs/checklists per the corrected ladder.
+2. **New L4 batch 021 "workplace notes"** through the standard pipeline: 12 problems total across four families, composite syntax (heading + list + bold/inline-code + blockquote mixes), 8–18 authored lines, ≤ 120 words, batch-020 tone. L4 = short workplace notes/handoffs/checklists per the corrected ladder.
 3. D14 renames in `curriculumLevels.ts` + landing/summary labels; correct `curriculum-v2.json` L4/L5 identities to the 2026-07-21 ladder (short forms, familiarity-not-difficulty).
 4. L5 stays on batch 020 (+018 compact survivors if any pass the budget).
 
@@ -104,5 +104,5 @@ Verified first-hand in the running app plus two code-trace reports. The engine, 
 
 - 2026-07-22: Diagnosis complete (live repro + 2 code traces). Plan written. Implementation starting: WS-A. (Update this log and the §0 status column as workstreams actually land — never pre-record results.)
 - 2026-07-22 (cont.): WS-A+B landed (guided layer removed end-to-end; D17 starter back; failed Check stays on Write with editor focus; in-app Prev/Next via per-step snapshots reusing the history-navigated reducer path; per-blank history pushes gone). Unit suite 10,109 green; e2e 41 green after spec rework.
-- 2026-07-22 (cont.): WS-C landed. Batch 021 `2026-07-22-l4-workplace-notes-021` authored (12 problems × 4 families, 9–13 lines, 141 fixtures) and published through the sealed pipeline (prepare → 2 mechanical review replays → editorial → publish; tracker 360→372). Runtime budget filter retires all document-length problems (served: L1 140 / L2 148 / L3 30 / L4 12 / L5 12; max lines 5/11/25/13/18). D14 labels shipped (`Write for work` / `Write for developers`); curriculum-v2 L4/L5 identities corrected to compact documents. WS-D landed: `runtimeBudget.gate.ts` in the gate chain + updated bank tests. Unit suite 10,114 green.
+- 2026-07-22 (cont.): WS-C landed. Batch 021 `2026-07-22-l4-workplace-notes-021` authored (12 problems across 4 families, 9–13 lines, 141 fixtures) and published through the sealed pipeline (prepare → 2 mechanical review replays → editorial → publish; tracker 360→372). Runtime budget filter retires all document-length problems (served: L1 140 / L2 148 / L3 30 / L4 12 / L5 12; max lines 5/11/25/13/18). D14 labels shipped (`Write for work` / `Write for developers`); curriculum-v2 L4/L5 identities corrected to compact documents. WS-D landed: `runtimeBudget.gate.ts` in the gate chain + updated bank tests. Unit suite 10,114 green.
 - 2026-07-22 (final gates): G1 `npm run check` exit 0 (typecheck · 21 batch gates · runtime-budget gate · repository immutability gate · 10,114 unit tests · build · bundle verify) and full e2e 41/41 exit 0 — both after WS-C. G3/G4 verified live in the browser: L1 wrong `*` → Try again keeps Write selected + editor focused, immediate retype to backticks → Matched; in-app Prev restores step 0 with draft intact, Next-visited returns; browser Back moves problem-by-problem, never exits the site; L4 run = 4 workplace notes + 2 compact L5 forms, first goal 13 lines. Local commits only — push/PR/배포는 Jiwon 결정 대기.

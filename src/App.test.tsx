@@ -903,6 +903,33 @@ describe("App", () => {
     expect(nextVisitedButton).toBeDisabled()
   })
 
+  it("keeps browser Back walking backwards after an in-app previous move", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblem = currentProblem()
+    replaceSource(editor, validDifferentProse())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(firstProblem.id)
+
+    await user.click(screen.getByRole("button", { name: "Previous exercise" }))
+    expect(currentProblem().id).toBe(firstProblem.id)
+
+    // The in-app move rewrote the top history entry, so Back must not bounce
+    // forward to the step that was just left.
+    await act(async () => {
+      window.history.back()
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    })
+    expect(currentProblem().id).toBe(firstProblem.id)
+
+    act(() => window.history.back())
+    await waitFor(() =>
+      expect(
+        screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+      ).toBeVisible(),
+    )
+  })
+
   it("keeps browser history on problem steps inside the practice run", async () => {
     const { user, editor } = await openLevel(1)
     const firstProblem = currentProblem()
