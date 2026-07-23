@@ -21,17 +21,52 @@ vi.mock("./sound/pageTurnSound", () => ({
   playPageTurnSound: vi.fn(),
 }))
 
-afterEach(() => {
+afterEach(async () => {
   vi.mocked(playPageTurnSound).mockClear()
   vi.unstubAllGlobals()
   vi.useRealTimers()
+  // jsdom queues history traversals (back/forward/go and the popstate heals
+  // they trigger) as macrotasks. A traversal a test did not await — easy to
+  // miss when the restore is rejected and the session never changes — would
+  // otherwise fire into the NEXT test's App and restore a stale entry there,
+  // so every test drains the queue on the way out.
+  await drainHistoryTraversals()
+  // Each test owns its run: leftover progress (an owed repair, a mid-run
+  // step) from the previous test otherwise leaks through the shared jsdom
+  // sessionStorage into the next mount.
+  window.sessionStorage.clear()
 })
+
+function stubReducedMotionPreference() {
+  vi.stubGlobal(
+    "matchMedia",
+    vi.fn().mockReturnValue({
+      matches: true,
+      media: "(prefers-reduced-motion: reduce)",
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }),
+  )
+}
 
 async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
   const user = userEvent.setup()
+  // jsdom has no matchMedia, so the page turn would hold the practice sheet
+  // inert on a real 720ms timer — long enough for the next interactions to be
+  // swallowed. Prefer reduced motion and wait the turn out before returning.
+  stubReducedMotionPreference()
   render(<App />)
   const entry = entryChoices.find((choice) => choice.level === level)!
   await user.click(screen.getByRole("button", { name: entry.label }))
+  await waitFor(() => {
+    expect(screen.getByTestId("page-turn-receiver")).not.toHaveAttribute(
+      "inert",
+    )
+  })
   const editor = screen.getByRole("textbox", { name: "Your Markdown" })
   return { user, editor, entry }
 }
@@ -45,6 +80,18 @@ function replaceSource(editor: HTMLElement, source: string) {
       changes: { from: 0, to: view.state.doc.length, insert: source },
       selection: { anchor: source.length },
     })
+  })
+}
+
+// Flushes jsdom's queued history traversals (back/forward/go and the popstate
+// heals they trigger). The afterEach above runs this for every test; call it
+// mid-test only when an assertion needs the traversal's outcome and the
+// session itself does not change (e.g. a rejected restore).
+function drainHistoryTraversals() {
+  return act(async () => {
+    for (let i = 0; i < 4; i += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    }
   })
 }
 
@@ -101,8 +148,12 @@ function validDifferentProse() {
       return "```\ncompletely different\n```"
     case "thematic-break":
       return "First part.\n\n---\n\nSecond part."
-    default:
-      return "# completely different words"
+    default: {
+      // Heading problems grade the mark depth, so echo the target's marks:
+      // l1-heading-depth-* rejects a lone "#" even with different prose.
+      const headingMarks = currentProblem().target.match(/^#+(?= )/m)?.[0] ?? "#"
+      return `${headingMarks} completely different words`
+    }
   }
 }
 
@@ -214,19 +265,7 @@ describe("App", () => {
 
   it("shortens the handoff when reduced motion is preferred", () => {
     vi.useFakeTimers()
-    vi.stubGlobal(
-      "matchMedia",
-      vi.fn().mockReturnValue({
-        matches: true,
-        media: "(prefers-reduced-motion: reduce)",
-        onchange: null,
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      }),
-    )
+    stubReducedMotionPreference()
     render(<App />)
 
     fireEvent.click(
@@ -1299,6 +1338,70 @@ describe("App", () => {
     await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
     act(() => window.history.forward())
     await waitFor(() => expect(currentProblem().id).toBe(secondProblemId))
+  })
+
+  it("walks the history pointer back when Back is rejected on an owed repair", async () => {
+    const { user, editor } = await openLevel(1)
+    const failedProblemId = currentProblem().id
+    replaceSource(editor, "not markdown")
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    replaceSource(editor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    const repairProblemId = currentProblem().id
+    expect(repairProblemId).not.toBe(failedProblemId)
+
+    // Back while the repair is owed: the restore is rejected, and the pointer
+    // must walk forward again so it sits on the repair entry, not behind it.
+    act(() => window.history.back())
+    await drainHistoryTraversals()
+    const healedState = window.history.state as {
+      snapshot?: { currentProblemId?: string }
+    } | null
+    expect(healedState?.snapshot?.currentProblemId).toBe(repairProblemId)
+    expect(currentProblem().id).toBe(repairProblemId)
+
+    // Complete the repair and advance; the resulting pushState must extend
+    // the walk. Had the pointer stayed behind, this push would truncate the
+    // repair entry and Back would skip straight to the failed exercise.
+    const repairEditor = screen.getByRole("textbox", { name: "Your Markdown" })
+    replaceSource(repairEditor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(repairProblemId)
+
+    act(() => window.history.back())
+    await waitFor(() => expect(currentProblem().id).toBe(repairProblemId))
+    await drainHistoryTraversals()
+  })
+
+  it("walks the history pointer forward when Forward is rejected on an owed repair", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblemId = currentProblem().id
+    replaceSource(editor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    const secondProblemId = currentProblem().id
+
+    // Walk back to the first step so a real entry sits ahead of the pointer.
+    act(() => window.history.back())
+    await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
+
+    // Fail it: a repair is now owed while the second step's entry lies ahead.
+    const editorNow = screen.getByRole("textbox", { name: "Your Markdown" })
+    replaceSource(editorNow, "not markdown")
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    // Forward into the ahead entry is rejected; the heal must walk the
+    // pointer BACK toward the current entry, not further forward.
+    act(() => window.history.forward())
+    await drainHistoryTraversals()
+    const healedState = window.history.state as {
+      snapshot?: { currentProblemId?: string }
+    } | null
+    expect(healedState?.snapshot?.currentProblemId).toBe(firstProblemId)
+    expect(currentProblem().id).toBe(firstProblemId)
+    expect(currentProblem().id).not.toBe(secondProblemId)
   })
 
   it("completes a run with one primary replay choice", async () => {

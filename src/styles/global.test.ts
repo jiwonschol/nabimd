@@ -122,10 +122,10 @@ describe("global responsive styles", () => {
 
   it("keeps compact practice progress in the right-side action sequence", () => {
     expect(styles).toMatch(
-      /\.exercise-topbar__page--right\s*\{[^{}]*display:\s*grid[^{}]*grid-template-columns:\s*auto minmax\(0,\s*1fr\) auto[^{}]*align-items:\s*center/s,
+      /\.exercise-topbar__page--right\s*\{[^{}]*display:\s*grid[^{}]*grid-template-columns:\s*minmax\(0,\s*1fr\) auto[^{}]*align-items:\s*center/s,
     )
     expect(styles).toMatch(
-      /\.exercise-progress\s*\{[^{}]*display:\s*flex[^{}]*min-width:\s*0[^{}]*align-items:\s*center[^{}]*justify-content:\s*center/s,
+      /\.exercise-progress\s*\{[^{}]*display:\s*flex[^{}]*min-width:\s*0[^{}]*flex-direction:\s*column[^{}]*align-items:\s*center[^{}]*justify-content:\s*center/s,
     )
     expect(styles).not.toContain("exercise-progress__level-name")
   })
@@ -216,7 +216,7 @@ describe("global responsive styles", () => {
     expect(styles).toMatch(/\.exercise-topbar__page--left\s*\{[^{}]*padding-right:\s*52px/s)
     expect(styles).toMatch(/\.exercise-topbar__page--right\s*\{[^{}]*padding-left:\s*52px/s)
     expect(styles).toMatch(
-      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*108px minmax\(0, 1fr\)/s,
+      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*auto minmax\(0, 1fr\)/s,
     )
     expect(styles).toMatch(/\.exercise-topbar\s*\{[^{}]*min-height:\s*108px/s)
   })
@@ -397,7 +397,7 @@ describe("global responsive styles", () => {
     )
 
     expect(shortDesktop).toMatch(
-      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*88px minmax\(0, 1fr\)/s,
+      /\.app-shell--practice\s*\{[^{}]*grid-template-rows:\s*auto minmax\(0, 1fr\)/s,
     )
     expect(shortDesktop).toMatch(
       /\.exercise-topbar\s*\{[^{}]*min-height:\s*88px/s,
