@@ -95,7 +95,7 @@ describe("ExerciseTopBar", () => {
     expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
   })
 
-  it("places compact level progress between sound and Try another", () => {
+  it("stacks level, time, and sound above the rail, ahead of Try another", () => {
     renderTopBar("editing")
 
     const sound = screen.getByRole("button", { name: "Mute sound" })
@@ -106,9 +106,13 @@ describe("ExerciseTopBar", () => {
     expect(progress).toHaveTextContent("Level 1")
     expect(progress).not.toHaveTextContent("Learn the syntax")
     expect(rightPage).toContainElement(progress)
-    expect(sound.closest(".exercise-topbar__time")?.nextElementSibling).toBe(
-      progress,
-    )
+    const meta = sound.closest(".exercise-progress__meta")
+    expect(meta).not.toBeNull()
+    expect(progress).toContainElement(meta as HTMLElement)
+    expect(meta).toContainElement(screen.getByLabelText("Level 1"))
+    expect(
+      meta?.nextElementSibling?.querySelector(".turn-progress"),
+    ).not.toBeNull()
     expect(progress.nextElementSibling).toContainElement(tryAnother)
   })
 
