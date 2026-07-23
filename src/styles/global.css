@@ -1775,6 +1775,12 @@ button:focus-visible,
   box-shadow: 0 0 0 2.5px rgb(168 92 92 / 28%);
 }
 
+.center-card__box-space {
+  /* A typed space shows as the standard editor middle dot — present enough
+     to read as "that was the spacebar", shaded well below full ink. */
+  color: rgb(17 17 17 / 34%);
+}
+
 .center-card__line[data-verdict="retry"] .center-card__box {
   border-color: #c2726c;
   background: rgb(255 246 245);

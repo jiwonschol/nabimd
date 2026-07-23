@@ -215,7 +215,13 @@ export function CenterCard({
                   }`}
                   key={box}
                 >
-                  {value[box] ?? ""}
+                  {value[box] === " " ? (
+                    // A typed space stays visible in its box, using the same
+                    // middle-dot convention as the book's invisible marks.
+                    <span className="center-card__box-space">·</span>
+                  ) : (
+                    value[box] ?? ""
+                  )}
                 </span>
               ))}
               <input

@@ -400,6 +400,12 @@ describe("App", () => {
     fireEvent.change(firstBoxInput(), { target: { value: "#" } })
     expect(screen.queryByRole("status")).toBeNull()
 
+    // A typed space stays visible in its box as the book's middle dot.
+    fireEvent.change(firstBoxInput(), { target: { value: "# " } })
+    expect(
+      document.querySelector(".center-card__box-space")?.textContent,
+    ).toBe("·")
+
     completeProblemViaCard()
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
