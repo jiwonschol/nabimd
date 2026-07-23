@@ -13,12 +13,30 @@ import {
 } from "../progress/progressStore"
 import { getSyntaxFamily } from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
+import type { PracticeHistorySnapshot } from "./learningSession"
 import { useLearningSession } from "./useLearningSession"
 
 function matchCurrent(result: ReturnType<typeof renderLearningSession>["result"]) {
   act(() => result.current.edit(result.current.problem.target))
   act(() => result.current.check())
   expect(result.current.canNext).toBe(true)
+}
+
+// Mirrors the snapshot App.tsx records into each browser history entry.
+function captureSnapshot(
+  result: ReturnType<typeof renderLearningSession>["result"],
+): PracticeHistorySnapshot {
+  const { session } = result.current
+  return {
+    entryId: session.entryId,
+    runNumber: session.runNumber,
+    runProblemIds: [...session.runProblemIds],
+    runStepIndex: session.runStepIndex,
+    scheduledStepIndex: session.scheduledStepIndex,
+    currentProblemId: session.currentProblemId,
+    currentIsTransfer: session.currentIsTransfer,
+    runStartedAtMs: session.runStartedAtMs,
+  }
 }
 
 function renderLearningSession(
@@ -71,6 +89,185 @@ describe("useLearningSession", () => {
     act(() => result.current.goToPreviousStep())
     expect(result.current.session.runStepIndex).toBe(stepBefore)
     expect(result.current.session.needsTransfer).toBe(true)
+  })
+
+  it("keeps the owed repair when Prev is pressed on the repair step", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+    expect(result.current.session.needsTransfer).toBe(true)
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    const repairProblemId = result.current.problem.id
+    const repairedRunLength = result.current.session.runProblemIds.length
+
+    // Step 0's snapshot still holds the pre-splice schedule; restoring it
+    // would rewind the run and silently drop the owed repair exercise.
+    expect(result.current.canGoToPreviousStep).toBe(false)
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(1)
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    expect(result.current.session.runProblemIds).toHaveLength(repairedRunLength)
+
+    for (let step = 1; step < repairedRunLength; step += 1) {
+      expect(result.current.session.runStepIndex).toBe(step)
+      matchCurrent(result)
+      act(() => result.current.next())
+    }
+
+    expect(result.current.session.phase).toBe("complete")
+    expect(result.current.session.progress.completedProblemIds).toContain(
+      repairProblemId,
+    )
+  })
+
+  it("locks the repair step even when stale forward snapshots exist", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+
+    // Visit steps 0..2 so forward snapshots of the pre-splice schedule exist,
+    // then walk back and fail step 0 to splice a repair exercise.
+    matchCurrent(result)
+    act(() => result.current.next())
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.runStepIndex).toBe(2)
+    act(() => result.current.goToPreviousStep())
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(0)
+
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    const repairProblemId = result.current.problem.id
+    const repairedRunLength = result.current.session.runProblemIds.length
+
+    // The step-1/2 snapshots recorded before the splice belong to the
+    // abandoned schedule; neither direction may leave the unfinished repair.
+    expect(result.current.canGoToPreviousStep).toBe(false)
+    expect(result.current.canGoToNextStep).toBe(false)
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(1)
+    expect(result.current.session.currentIsTransfer).toBe(true)
+
+    for (let step = 1; step < repairedRunLength; step += 1) {
+      matchCurrent(result)
+      act(() => result.current.next())
+    }
+    expect(result.current.session.phase).toBe("complete")
+    expect(result.current.session.progress.completedProblemIds).toContain(
+      repairProblemId,
+    )
+  })
+
+  it("unlocks step navigation after the repair exercise is completed", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    const repairProblemId = result.current.problem.id
+
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.currentIsTransfer).toBe(false)
+    expect(result.current.session.runStepIndex).toBe(2)
+
+    // Revisiting the now-completed repair step is plain review, not an owed
+    // repair, so navigation must stay unlocked there.
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(1)
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    expect(result.current.canGoToPreviousStep).toBe(true)
+
+    act(() => result.current.goToPreviousStep())
+    expect(result.current.session.runStepIndex).toBe(0)
+    expect(result.current.session.progress.completedProblemIds).toContain(
+      repairProblemId,
+    )
+  })
+
+  it("keeps the owed repair when browser Back restores a pre-splice snapshot", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+    const preSpliceSnapshot = captureSnapshot(result)
+
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    const repairProblemId = result.current.problem.id
+    const repairedRunLength = result.current.session.runProblemIds.length
+
+    // popstate → navigateToHistory with the step-0 entry recorded before the
+    // splice: restoring it would rewind to the pre-splice schedule and the
+    // pruning effect would then silently drop the owed repair exercise.
+    act(() => result.current.navigateToHistory(preSpliceSnapshot))
+    expect(result.current.session.runStepIndex).toBe(1)
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    expect(result.current.session.runProblemIds).toHaveLength(repairedRunLength)
+
+    for (let step = 1; step < repairedRunLength; step += 1) {
+      matchCurrent(result)
+      act(() => result.current.next())
+    }
+    expect(result.current.session.phase).toBe("complete")
+    expect(result.current.session.progress.completedProblemIds).toContain(
+      repairProblemId,
+    )
+  })
+
+  it("locks history navigation while a failed Check awaits its repair", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+    const stepZeroSnapshot = captureSnapshot(result)
+    matchCurrent(result)
+    act(() => result.current.next())
+
+    act(() => result.current.edit(""))
+    act(() => result.current.check())
+    expect(result.current.session.needsTransfer).toBe(true)
+
+    // The history restore nulls pendingTransferFamily, so honoring browser
+    // Back in this window would silently cancel the owed transfer exercise.
+    act(() => result.current.navigateToHistory(stepZeroSnapshot))
+    expect(result.current.session.runStepIndex).toBe(1)
+    expect(result.current.session.needsTransfer).toBe(true)
+  })
+
+  it("allows history navigation again after the repair is completed", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    const repairSnapshot = captureSnapshot(result)
+
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.runStepIndex).toBe(2)
+    expect(result.current.session.currentIsTransfer).toBe(false)
+
+    // Revisiting the now-completed repair step via browser Back is plain
+    // review; the lock must not outlive the owed repair.
+    act(() => result.current.navigateToHistory(repairSnapshot))
+    expect(result.current.session.runStepIndex).toBe(1)
+    expect(result.current.session.currentIsTransfer).toBe(true)
   })
 
   it("drops future step snapshots when Try another changes the schedule", () => {
