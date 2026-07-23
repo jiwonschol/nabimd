@@ -92,7 +92,24 @@ export function App() {
       ) {
         return
       }
-      learningSession.navigateToHistory(event.state.snapshot)
+      if (!learningSession.navigateToHistory(event.state.snapshot)) {
+        // The pop already moved the pointer, so walk it back toward the entry
+        // matching the current session: left alone, a later pushState would
+        // truncate (after Back) or append past (after Forward) steps the
+        // learner never left. The popped snapshot's position tells which side
+        // the pointer landed on; each healed hop fires another popstate, so a
+        // multi-entry jump converges one entry at a time until the
+        // same-location check above stops the cascade.
+        const popped = event.state.snapshot
+        if (popped.runNumber !== current.runNumber) {
+          window.history.go(popped.runNumber < current.runNumber ? 1 : -1)
+        } else if (popped.runStepIndex !== current.runStepIndex) {
+          window.history.go(popped.runStepIndex < current.runStepIndex ? 1 : -1)
+        }
+        // Equal run and step means an abandoned-branch twin of the current
+        // entry; its side is unknowable, so skip the heal rather than risk
+        // walking the pointer further away.
+      }
     }
 
     window.addEventListener("popstate", handlePopState)
