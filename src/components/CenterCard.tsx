@@ -33,9 +33,15 @@ export function describeCheckpoint(checkpoint: SyntaxCheckpoint): string {
   )
 
   if (/^(?:=+|-+)$/.test(mark) && lockedBreak) {
-    return "Underline the heading"
+    // Setext: equals signs make an H1, dashes an H2.
+    return `Underline the ${mark.startsWith("=") ? "H1" : "H2"} heading`
   }
-  if (mark.startsWith("#")) return "Give this line its heading marks"
+  if (mark.startsWith("#")) {
+    // The rendered Goal cannot teach depth by eye alone, so the exercise
+    // names it outright: writing the right Hn is the skill being asked for.
+    const depth = mark.match(/^#+/)?.[0]?.length ?? 1
+    return `Give this line its H${depth} heading marks`
+  }
   if (["---", "***", "___"].includes(mark)) return "Add the section divider"
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     return "Mark this line as a bullet item"

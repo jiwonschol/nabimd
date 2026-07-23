@@ -191,6 +191,13 @@ export function useCenterCard({
   const submit = useCallback(() => {
     if (!checkpoint) return
     const joined = segmentValues.join("")
+    if (joined === "") {
+      // An empty Enter is not an attempt: hold the slot without counting a
+      // miss toward the Summary.
+      setVerdict("retry")
+      playFeedbackSound("retry")
+      return
+    }
     if (!acceptsGuidedSyntaxInput(checkpoint, joined)) {
       // A wrong mark clears the boxes for a fresh attempt from the first
       // box, counts once toward the Summary, and holds the slot.

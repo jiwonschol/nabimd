@@ -2232,6 +2232,14 @@ button:focus-visible,
   background: rgb(90 82 72 / 7%);
 }
 
+/* A code block reads as code, not body prose: tinted panel rows, inset from
+   the left margin with a quiet rule. */
+.cm-rendered-code-block-line {
+  padding-left: 1.2rem;
+  border-left: 3px solid rgb(90 82 72 / 28%);
+  background: rgb(90 82 72 / 8%);
+}
+
 .cm-rendered-link {
   text-decoration: underline;
   text-decoration-thickness: 0.08em;
