@@ -127,7 +127,7 @@ export function createLearningSession(
     runStepIndex: progress.runStepIndex,
     scheduledStepIndex: progress.scheduledStepIndex,
     currentProblemId: problem.id,
-    draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
+    draft: progress.draftByProblemId[problem.id] ?? "",
     evaluation: null,
     teachingMode,
     retryFamily: problem.retryFamily,
@@ -342,7 +342,7 @@ export function learningSessionReducer(
         ...session,
         phase: "editing",
         currentProblemId: event.problem.id,
-        draft: event.problem.starterText,
+        draft: "",
         evaluation: null,
         teachingMode: keepsIntroduction ? "introduce" : "recall",
         retryFamily: event.problem.retryFamily,
@@ -358,7 +358,7 @@ export function learningSessionReducer(
           currentProblemId: event.problem.id,
           draftByProblemId: {
             ...session.progress.draftByProblemId,
-            [event.problem.id]: event.problem.starterText,
+            [event.problem.id]: "",
           },
           recentProblemIds: appendUnique(
             session.progress.recentProblemIds,

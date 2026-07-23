@@ -1,6 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
-import { derivePlaintextStarter } from "../../src/content/plaintextStarter"
+import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
 
 type RuntimeProblemSource = {
   id: string
@@ -41,15 +41,18 @@ test.beforeEach(async ({ page }) => {
   }, sessionSeedStorageKey)
 })
 
-function sourceEditor(page: Page): Locator {
-  return page.getByRole("textbox", { name: "Your Markdown" })
+function cardBoxInput(page: Page): Locator {
+  return page.getByRole("textbox", { name: /^Marks \d+ of \d+$/ }).first()
 }
 
-async function sourceText(page: Page): Promise<string> {
+// Reads the growing document (the rendered processor on the answer page)
+// through the webdriver-gated automation contract.
+async function documentText(page: Page): Promise<string> {
   return page
     .locator(
-      '.answer-panel .markdown-word-processor[data-presentation="source"] .markdown-source-editor__mount',
+      '.answer-panel [role="tabpanel"]:not([hidden]) .markdown-word-processor[data-presentation="rendered"] .markdown-source-editor__mount',
     )
+    .last()
     .evaluate((mount) => {
       const readDocument = (
         mount as HTMLDivElement & {
@@ -67,27 +70,65 @@ async function sourceText(page: Page): Promise<string> {
 async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
   await page.getByRole("button", { name: levelLabels[level - 1] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
-  await expect(sourceEditor(page)).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
 }
 
 async function enterLevel1(page: Page) {
   await enterLevel(page, 1)
 }
 
+function slotMarksFor(target: string): string[] {
+  return deriveSyntaxCheckpoints(target, "").map(
+    (checkpoint) => checkpoint.canonicalInput,
+  )
+}
+
+// Types one slot's marks into the card boxes (keystrokes route across box
+// groups via the card's own focus advance) and confirms with Enter.
+async function submitSlot(page: Page, marks: string) {
+  const input = cardBoxInput(page)
+  await expect(input).toBeVisible()
+  if (!(await input.evaluate((el) => el === document.activeElement))) {
+    await input.click()
+  }
+  await page.keyboard.type(marks)
+  await page.keyboard.press("Enter")
+}
+
 async function completeProblem(page: Page) {
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
 
-  await sourceEditor(page).fill(problem.target)
-  await sourceEditor(page).press("Control+Enter")
+  for (const marks of slotMarksFor(problem.target)) {
+    await submitSlot(page, marks)
+  }
 }
 
 async function completeProblemAndAdvance(page: Page) {
   const beforeId = await currentProblemId(page)
   await completeProblem(page)
-  // Matched auto-advances after the verdict beat — one chord per problem,
-  // no second key and no click (issue #102).
+  // Matched auto-advances after the verdict beat — no extra key, no click.
   await expect.poll(() => currentProblemId(page)).not.toBe(beforeId)
+}
+
+// Some regressions need document content the card would never accept (long
+// filler, tracking pixels, foreign GFM). Those tests inject the draft into
+// the saved session and reload — the render path is identical.
+async function injectDraft(page: Page, source: string) {
+  const problemId = await currentProblemId(page)
+  await page.evaluate(
+    ({ key, problemId, source }) => {
+      const progress = JSON.parse(
+        window.sessionStorage.getItem(key) ?? "null",
+      ) as { draftByProblemId: Record<string, string> } | null
+      if (!progress) throw new Error("Expected saved progress")
+      progress.draftByProblemId[problemId] = source
+      window.sessionStorage.setItem(key, JSON.stringify(progress))
+    },
+    { key: progressStorageKey, problemId, source },
+  )
+  await page.reload()
+  await expect.poll(() => documentText(page)).toBe(source)
 }
 
 async function resetToGreeting(page: Page) {
@@ -98,24 +139,6 @@ async function resetToGreeting(page: Page) {
   await page.reload()
 }
 
-async function currentProblemFamily(page: Page) {
-  const problemId = await currentProblemId(page)
-  if (problemId.includes("-blockquote-")) return "blockquote"
-  if (problemId.includes("-emphasis-")) return "emphasis"
-  if (problemId.includes("-italic-")) return "italic"
-  if (problemId.includes("-inline-code-")) return "inline-code"
-  if (problemId.includes("-code-block-")) {
-    if (problemId.includes("-copy-")) return "code-block-copy"
-    if (problemId.includes("-reference")) return "code-block-reference"
-    if (problemId.includes("-routine")) return "code-block-routine"
-    return "code-block"
-  }
-  if (problemId.includes("-link-")) return "links"
-  if (problemId.includes("-thematic-break-")) return "thematic-break"
-  if (problemId.includes("-order-")) return "ordered-list"
-  if (problemId.includes("-list-")) return "unordered-list"
-  return "headings"
-}
 
 async function currentProblemId(page: Page) {
   const panelId = await page
@@ -127,93 +150,8 @@ async function currentProblemId(page: Page) {
   return panelId.slice("write-panel-".length)
 }
 
-async function validDifferentProse(page: Page, words: string) {
-  switch (await currentProblemFamily(page)) {
-    case "blockquote":
-      return `> ${words}`
-    case "emphasis":
-      return `**${words}**`
-    case "italic":
-      return `*${words}*`
-    case "inline-code":
-      return `Use \`${words}\`.`
-    case "code-block":
-      return `\`\`\`\n${words}\n\`\`\``
-    case "code-block-copy":
-      return `# ${words}\n\n> ${words}\n\n\`\`\`\n${words}\n\`\`\``
-    case "code-block-reference":
-      return `# ${words}\n\n\`\`\`\n${words}\n\`\`\`\n\n- ${words} one\n- ${words} two`
-    case "code-block-routine":
-      return `# ${words}\n\n\`\`\`\n${words}\n\`\`\`\n\n1. ${words} one\n2. ${words} two\n3. ${words} three`
-    case "links":
-      return `Use [${words}](/changed).`
-    case "thematic-break":
-      return `${words} before\n\n---\n\n${words} after`
-    case "unordered-list":
-      return `- ${words} one\n- ${words} two\n- ${words} three`
-    case "ordered-list":
-      return `1. ${words} one\n2. ${words} two\n3. ${words} three`
-    default:
-      return `# ${words}`
-  }
-}
 
-async function malformedSource(page: Page) {
-  switch (await currentProblemFamily(page)) {
-    case "blockquote":
-      return "Plain words without a blockquote"
-    case "emphasis":
-      return "**No closing"
-    case "italic":
-      return "*No closing"
-    case "inline-code":
-      return "`No closing"
-    case "code-block":
-    case "code-block-copy":
-    case "code-block-reference":
-    case "code-block-routine":
-      return "```\nNo closing fence"
-    case "links":
-      return "[No closing](/path"
-    case "thematic-break":
-      return "Before the divider\n\n--\n\nAfter the divider"
-    case "unordered-list":
-      return "-No space\n-Also malformed\n-Still malformed"
-    case "ordered-list":
-      return "1.No space\n2.Also malformed\n3.Still malformed"
-    default:
-      return "#No space"
-  }
-}
 
-async function expectedRepairFeedback(page: Page) {
-  switch (await currentProblemFamily(page)) {
-    case "blockquote":
-      return "Add a blockquote with words inside it."
-    case "emphasis":
-      return "Make at least one phrase bold with Markdown."
-    case "italic":
-      return "Make at least one phrase italic with Markdown."
-    case "inline-code":
-      return "Wrap at least one meaningful item in backticks."
-    case "code-block":
-      return "Put text between matching lines of three backticks."
-    case "code-block-copy":
-    case "code-block-reference":
-    case "code-block-routine":
-      return "Rebuild the three-block shape shown in the Goal."
-    case "links":
-      return "Add a Markdown link with readable words and a web address."
-    case "thematic-break":
-      return "Add a Markdown divider between the two text blocks."
-    case "unordered-list":
-      return "Put one space after each bullet marker, for example `- Item`."
-    case "ordered-list":
-      return "Put one space after each numbered marker, for example `1. Step`."
-    default:
-      return "Add one space after the hash symbol."
-  }
-}
 
 test("greets a fresh session with the definitive five-level ladder", async ({
   page,
@@ -224,7 +162,7 @@ test("greets a fresh session with the definitive five-level ladder", async ({
   for (const label of levelLabels) {
     await expect(page.getByRole("button", { name: label })).toBeVisible()
   }
-  await expect(sourceEditor(page)).toHaveCount(0)
+  await expect(cardBoxInput(page)).toHaveCount(0)
 })
 
 test("opens third-party licenses in a new tab and keeps the landing open", async ({
@@ -283,7 +221,7 @@ test("keeps every chapter reachable in a short landscape viewport", async ({
   expect(mottoBodySize).toBeGreaterThan(instructionSize)
   await page.getByRole("button", { name: levelLabels[4] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
-  await expect(sourceEditor(page)).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
 })
 
 test("keeps the open-book landing inside a tablet viewport", async ({ page }) => {
@@ -346,7 +284,7 @@ test("every level opens its task-type turn", async ({ page }) => {
       "aria-valuenow",
       "1",
     )
-    await expect(sourceEditor(page)).toBeFocused()
+    await expect(cardBoxInput(page)).toBeFocused()
     await page.getByRole("button", { name: "Nabi Markdown home" }).click()
     await expect(
       page.getByRole("heading", { name: "Choose a chapter to begin." }),
@@ -377,8 +315,7 @@ test("browser history moves between problems and the level picker", async ({
   const firstProblem = runtimeProblemById.get(firstProblemId)
   if (!firstProblem) throw new Error(`Missing runtime problem: ${firstProblemId}`)
 
-  await sourceEditor(page).fill(firstProblem.target)
-  await sourceEditor(page).press("Control+Enter")
+  await completeProblem(page)
   await expect.poll(() => currentProblemId(page)).not.toBe(firstProblemId)
   const secondProblemId = await currentProblemId(page)
 
@@ -397,22 +334,22 @@ test("browser history moves between problems and the level picker", async ({
   await expect.poll(() => currentProblemId(page)).toBe(secondProblemId)
 })
 
-test("keeps the editor editable immediately after Try again", async ({
+test("keeps the card ready for retyping immediately after a slot Try again", async ({
   page,
 }) => {
   await page.goto("/")
   await enterLevel1(page)
-  const editor = sourceEditor(page)
 
-  await editor.fill(await malformedSource(page))
-  await editor.press("Control+Enter")
+  await submitSlot(page, "x")
   await expect(page.getByRole("status")).toContainText("Try again")
   await expect(page.getByRole("tab", { name: "Write" })).toHaveAttribute(
     "aria-selected",
     "true",
   )
-  await expect(editor).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
 
+  // The wrong mark stays selected-for-replacement: clear and retype.
+  await page.keyboard.press("Backspace")
   await completeProblem(page)
   await expect(page.getByRole("status")).toContainText("Matched")
 })
@@ -445,7 +382,7 @@ test("navigates visited problems with the in-app previous and next controls", as
   await expect(nextVisited).toBeDisabled()
 })
 
-test("accepts the second italic syntax typed into the editor", async ({
+test("accepts the second italic syntax typed into the card", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
@@ -455,11 +392,11 @@ test("accepts the second italic syntax typed into the editor", async ({
   await enterLevel(page, 1)
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
 
-  await sourceEditor(page).fill("_Paper boat_")
-  expect(await sourceText(page)).toBe("_Paper boat_")
-  await sourceEditor(page).press("Control+Enter")
-
+  // The card accepts the underscore pair in place of the canonical asterisks
+  // and lands it in the document exactly as typed.
+  await submitSlot(page, "__")
   await expect(page.getByRole("status")).toContainText("Matched")
+  expect(await documentText(page)).toBe("_Paper boat_")
 })
 
 test("makes practice syntax scale, spacing, and the shared shortcut visible", async ({
@@ -503,40 +440,37 @@ test("makes practice syntax scale, spacing, and the shared shortcut visible", as
     glyph: '"·"',
   })
 
-  const problem = runtimeProblemById.get(await currentProblemId(page))
-  if (!problem) throw new Error("Expected the seeded Level 2 problem")
   const check = page.getByRole("button", { name: "Check answer" })
   await expect(check).toContainText("Ctrl+↩")
   const matchedProblemId = await currentProblemId(page)
-  await sourceEditor(page).fill(problem.target)
-  await sourceEditor(page).press("Control+Enter")
+  await completeProblem(page)
 
-  // The one chord judged the answer and, after the verdict beat, moved the
+  // The final slot judged the answer and, after the verdict beat, moved the
   // run forward by itself.
   await expect.poll(() => currentProblemId(page)).not.toBe(matchedProblemId)
   expect(consoleNoise).toEqual([])
 })
 
-test("starts every level with the Goal-derived starter prose", async ({
+test("starts every level blank and grows the document from the card", async ({
   page,
 }) => {
   for (const level of [1, 2, 3, 4, 5] as const) {
     await resetToGreeting(page)
     await enterLevel(page, level)
-    const editor = sourceEditor(page)
     const problemId = await currentProblemId(page)
     const problem = runtimeProblemById.get(problemId)
     if (!problem) throw new Error(`Missing runtime problem: ${problemId}`)
-    const starter = derivePlaintextStarter(problem.target)
-    expect(starter).not.toBe(problem.target)
-    await expect.poll(() => sourceText(page)).toBe(starter)
-    await expect(editor).toBeFocused()
 
-    const modifier = await page.evaluate(() =>
-      /Mac|iPhone|iPad|iPod/.test(navigator.platform) ? "Meta" : "Control",
-    )
-    await editor.press(`${modifier}+z`)
-    expect(await sourceText(page)).toBe(starter)
+    // The page opens blank; the first accepted slot grows the document into
+    // a prefix of the Goal.
+    await expect.poll(() => documentText(page)).toBe("")
+    await expect(cardBoxInput(page)).toBeFocused()
+
+    await submitSlot(page, slotMarksFor(problem.target)[0]!)
+    await expect.poll(async () => {
+      const grown = await documentText(page)
+      return grown !== "" && problem.target.startsWith(grown)
+    }).toBe(true)
   }
 })
 
@@ -547,14 +481,14 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(page.getByRole("button", { name: levelLabels[0] })).toBeFocused()
   await page.keyboard.press("Enter")
 
-  await expect(sourceEditor(page)).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
   await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
     "aria-selected",
     "false",
   )
 
   for (let exercise = 0; exercise < 6; exercise += 1) {
-    await expect(sourceEditor(page)).toBeFocused()
+    await expect(cardBoxInput(page)).toBeFocused()
     if (exercise < 5) {
       await completeProblemAndAdvance(page)
     } else {
@@ -617,7 +551,7 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   await expect(practiceAgain).not.toBeFocused()
   await practiceAgain.focus()
   await page.keyboard.press("Enter")
-  await expect(sourceEditor(page)).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
   await expect(page.getByRole("progressbar")).toHaveAttribute(
     "aria-valuenow",
     "1",
@@ -629,31 +563,25 @@ test("drives the drill loop — verdict hold, fix, auto-advance, Alt navigation,
 }) => {
   await page.goto("/")
   await enterLevel1(page)
-  const editor = sourceEditor(page)
   const firstProblemId = await currentProblemId(page)
 
-  // A wrong answer holds: the verdict stays past the old toast life and
-  // carries the pinpointed correction, while the editor stays focused.
-  await editor.fill(await malformedSource(page))
-  await editor.press("Control+Enter")
+  // A wrong mark holds the slot: the card verdict stays put while the boxes
+  // remain focused for the retry.
+  await submitSlot(page, "x")
   const verdict = page.getByRole("status")
   await expect(verdict).toContainText("Try again")
   await page.waitForTimeout(2000)
   await expect(verdict).toContainText("Try again")
-  await expect(verdict).toContainText("Use")
-  await expect(editor).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
 
   // Retyping puts the verdict away without any extra key.
-  await editor.fill(await validDifferentProse(page, "drill words"))
+  await page.keyboard.press("Backspace")
   await expect(page.getByRole("status")).toHaveCount(0)
 
-  // One chord judges and, after the beat, advances — no second key. The
-  // repair transfer scheduled by the earlier miss arrives first.
-  await editor.press("Control+Enter")
+  // The accepted slots grow the document and, after the beat, the run
+  // advances — no second key.
+  await completeProblem(page)
   await expect.poll(() => currentProblemId(page)).not.toBe(firstProblemId)
-  await expect(page.getByLabel("Practice details")).toContainText(
-    "Repair practice",
-  )
   await completeProblemAndAdvance(page)
   const thirdProblemId = await currentProblemId(page)
 
@@ -663,7 +591,7 @@ test("drives the drill loop — verdict hold, fix, auto-advance, Alt navigation,
   await page.keyboard.press("Alt+N")
   await expect.poll(() => currentProblemId(page)).toBe(thirdProblemId)
 
-  // Alt+H peeks at the Hint; the same key closes it and hands the editor
+  // Alt+H peeks at the Hint; the same key closes it and hands the card
   // back, ready to type.
   await page.keyboard.press("Alt+H")
   await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
@@ -675,53 +603,36 @@ test("drives the drill loop — verdict hold, fix, auto-advance, Alt navigation,
     "aria-selected",
     "true",
   )
-  await expect(sourceEditor(page)).toBeFocused()
-
-  // Plain Enter is still just typing.
-  const linesBefore = (await sourceText(page)).split("\n").length
-  await sourceEditor(page).press("End")
-  await sourceEditor(page).press("Enter")
-  expect((await sourceText(page)).split("\n").length).toBe(linesBefore + 1)
+  await expect(cardBoxInput(page)).toBeFocused()
 })
 
-test("grades Markdown structure without grading capitalization or prose", async ({
+test("blocks an early Check, then accepts the repair and transfers practice", async ({
   page,
 }) => {
   await page.goto("/")
   await enterLevel1(page)
-
-  await sourceEditor(page).fill(await validDifferentProse(page, "aple"))
-  await sourceEditor(page).press("Control+Enter")
-  await expect(page.getByRole("status")).toContainText("Matched")
-  await expect(
-    page.getByRole("button", { name: "Next exercise" }),
-  ).toBeVisible()
-})
-
-test("blocks malformed syntax, then accepts a repair and transfers practice", async ({
-  page,
-}) => {
-  await page.goto("/")
-  await enterLevel1(page)
-  const editor = sourceEditor(page)
   const originalGoal = await page
     .getByRole("region", { name: "Goal", exact: true })
     .textContent()
-  const repairFeedback = await expectedRepairFeedback(page)
 
-  await editor.fill(await malformedSource(page))
-  await editor.press("Control+Enter")
+  // Asking for judgment on the not-yet-grown document fails it and owes a
+  // repair.
+  await page.getByRole("button", { name: "Check answer" }).click()
   await expect(page.getByRole("status")).toContainText("Try again")
   await expect(
     page.getByRole("button", { name: "Next exercise" }),
   ).toHaveCount(0)
   await page.getByRole("tab", { name: "Review" }).click()
-  await expect(page.getByRole("tabpanel", { name: "Review" })).toContainText(
-    repairFeedback,
-  )
+  await expect(
+    page
+      .getByRole("tabpanel", { name: "Review" })
+      .getByRole("list", { name: "Required corrections" })
+      .getByRole("listitem")
+      .first(),
+  ).toBeVisible()
 
   await page.keyboard.press("Alt+1")
-  await expect(sourceEditor(page)).toBeFocused()
+  await expect(cardBoxInput(page)).toBeFocused()
   await completeProblem(page)
   await expect(page.getByRole("status")).toContainText("Matched")
   // The repaired answer flows straight into the transfer exercise.
@@ -740,62 +651,6 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   ).not.toHaveText(
     originalGoal ?? "",
   )
-})
-
-test("groups a Level 3 heading substitution into one exact bold correction", async ({
-  page,
-}) => {
-  await page.goto("/")
-  await page.evaluate(
-    ({ progressKey, seedKey }) => {
-      window.sessionStorage.removeItem(progressKey)
-      window.sessionStorage.setItem(seedKey, "42")
-    },
-    { progressKey: progressStorageKey, seedKey: sessionSeedStorageKey },
-  )
-  await page.reload()
-  await enterLevel(page, 3)
-
-  const problemId = await currentProblemId(page)
-  expect(problemId).toBe("l3-badge-reader-impact-brief")
-  const problem = runtimeProblemById.get(problemId)
-  if (!problem) throw new Error("Expected the seeded Level 3 problem")
-  const malformed = problem.target.replace("**Owner:**", "# Owner:")
-
-  await sourceEditor(page).fill(malformed)
-  await sourceEditor(page).press("Control+Enter")
-  await page.getByRole("tab", { name: "Review" }).click()
-
-  const review = page.getByRole("tabpanel", { name: "Review" })
-  const corrections = review.getByRole("list", { name: "Required corrections" })
-  await expect(corrections.getByRole("listitem")).toHaveCount(1)
-  await expect(corrections.getByText("Bold text")).toBeVisible()
-  await expect(corrections.getByText("In “Owner and next update”")).toBeVisible()
-  await expect(corrections.getByText("**Owner:**")).toBeVisible()
-  const checkedExcerpt = await corrections
-    .getByText("You wrote")
-    .locator("..")
-    .locator("code")
-    .textContent()
-  expect(checkedExcerpt).toContain("# Owner:")
-
-  await page.getByRole("tab", { name: "Hint" }).click()
-  const hint = page.getByRole("tabpanel", { name: "Hint" })
-  await expect(
-    hint.getByRole("list", { name: "Failed Markdown patterns" })
-      .getByRole("listitem"),
-  ).toHaveCount(1)
-  await expect(hint.getByText("**Owner:**")).toBeVisible()
-
-  await page.getByRole("tab", { name: "Write" }).click()
-  await sourceEditor(page).fill(problem.target)
-  await page.getByRole("tab", { name: "Review" }).click()
-  await expect(
-    corrections.getByText("You wrote").locator("..").locator("code"),
-  ).toHaveText(checkedExcerpt ?? "")
-
-  await page.getByRole("button", { name: "Check answer" }).click()
-  await expect(page.getByRole("status")).toContainText("Matched")
 })
 
 test("Try another stays in level and serves different content", async ({ page }) => {
@@ -829,11 +684,17 @@ test("keeps Hint out of the way until the learner requests it", async ({
   await expect(page.getByLabel("Markdown pattern")).toBeVisible()
 })
 
-test("persists the current draft only for the browser session", async ({ page }) => {
+test("persists the grown document only for the browser session", async ({ page }) => {
   await page.goto("/")
-  await enterLevel1(page)
-  const editor = sourceEditor(page)
-  await editor.fill("# saved draft")
+  // A multi-slot Level 2 problem: growing the first slot never completes the
+  // problem, so no auto-advance races the reload below.
+  await enterLevel(page, 2)
+  const problem = runtimeProblemById.get(await currentProblemId(page))
+  if (!problem) throw new Error("Expected the current runtime problem")
+  expect(slotMarksFor(problem.target).length).toBeGreaterThan(1)
+  await submitSlot(page, slotMarksFor(problem.target)[0]!)
+  const grown = await documentText(page)
+  expect(grown).not.toBe("")
 
   const stored = await page.evaluate((key) => {
     const progress = JSON.parse(window.sessionStorage.getItem(key) ?? "{}") as {
@@ -845,12 +706,12 @@ test("persists the current draft only for the browser session", async ({ page })
       runStartedAtMs: progress.runStartedAtMs,
     }
   }, progressStorageKey)
-  expect(stored.drafts).toContain("# saved draft")
+  expect(stored.drafts).toContain(grown)
 
   await page.waitForTimeout(1_100)
 
   await page.reload()
-  await expect.poll(() => sourceText(page)).toBe("# saved draft")
+  await expect.poll(() => documentText(page)).toBe(grown)
   await expect(page.getByLabel("Elapsed time")).not.toHaveText("00:00")
   const restoredStartedAt = await page.evaluate((key) => {
     const progress = JSON.parse(window.sessionStorage.getItem(key) ?? "{}") as {
@@ -912,17 +773,28 @@ test("keeps Goal and Write on the same source rows for Bus card", async ({
   expect(await currentProblemId(page)).toBe("l2-code-block-bus-reference")
   const problem = runtimeProblemById.get("l2-code-block-bus-reference")
   if (!problem) throw new Error("Bus card must exist in the runtime bank")
-  await sourceEditor(page).fill(problem.target)
+  // Complete the card, let the run advance, and step back: the revisited
+  // step shows the finished document with no card and no pending advance.
+  await completeProblemAndAdvance(page)
+  await page.getByRole("button", { name: "Previous exercise" }).click()
+  await expect
+    .poll(() => currentProblemId(page))
+    .toBe("l2-code-block-bus-reference")
 
   const assertSharedRows = async (expectedHeight: number) => {
     const [goalEditable, answerEditable] = await Promise.all([
       page
         .locator(".goal-panel .cm-content")
         .getAttribute("contenteditable"),
-      sourceEditor(page).getAttribute("contenteditable"),
+      page
+        .locator(
+          ".answer-panel [role='tabpanel']:not([hidden]) .cm-content",
+        )
+        .last()
+        .getAttribute("contenteditable"),
     ])
     expect(goalEditable).toBe("false")
-    expect(answerEditable).toBe("true")
+    expect(answerEditable).toBe("false")
 
     const rows = await page.evaluate(() => {
       const collect = (selector: string) =>
@@ -994,7 +866,11 @@ test("Preview is the same rendered word processor as Goal", async ({ page }) => 
   expect(await currentProblemId(page)).toBe("l2-code-block-bus-reference")
   const problem = runtimeProblemById.get("l2-code-block-bus-reference")
   if (!problem) throw new Error("Bus card must exist in the runtime bank")
-  await sourceEditor(page).fill(problem.target)
+  await completeProblemAndAdvance(page)
+  await page.getByRole("button", { name: "Previous exercise" }).click()
+  await expect
+    .poll(() => currentProblemId(page))
+    .toBe("l2-code-block-bus-reference")
   await page.getByRole("tab", { name: "Preview" }).click()
 
   const preview = page.getByRole("tabpanel", { name: "Preview" })
@@ -1062,13 +938,18 @@ test("Preview is the same rendered word processor as Goal", async ({ page }) => 
   await assertRenderedParity()
 
   await page.getByRole("tab", { name: "Write" }).click()
-  await sourceEditor(page).fill(
+  await injectDraft(
+    page,
     Array.from({ length: 40 }, (_, index) => `Document line ${index + 1}`).join(
       "\n",
     ),
   )
   await page.getByRole("tab", { name: "Preview" }).click()
-  await expect(preview.locator(".cm-line")).toHaveCount(40)
+  // CodeMirror virtualizes long documents, so assert the content through the
+  // document reader rather than counting rendered rows.
+  await expect
+    .poll(async () => (await documentText(page)).split("\n").length)
+    .toBe(40)
   const previewScroller = preview.locator(".cm-scroller")
   await previewScroller.evaluate((node) => {
     node.scrollTop = 120
@@ -1100,7 +981,9 @@ test("collapsed link syntax cannot add visual rows to the rendered Goal", async 
   expect(await currentProblemId(page)).toBe(problemId)
   const problem = runtimeProblemById.get(problemId)
   if (!problem) throw new Error(`${problemId} must exist in the runtime bank`)
-  await sourceEditor(page).fill(problem.target)
+  await completeProblemAndAdvance(page)
+  await page.getByRole("button", { name: "Previous exercise" }).click()
+  await expect.poll(() => currentProblemId(page)).toBe(problemId)
 
   const metrics = await page.evaluate(() => {
     const measure = (selector: string) =>
@@ -1246,11 +1129,8 @@ test("moves failed Review focus to its single reading scroller", async ({ page }
   await page.goto("/")
   await enterLevel(page, 3)
 
-  const editor = sourceEditor(page)
-  await editor.fill("")
-  await editor.press("Control+Enter")
+  await page.getByRole("button", { name: "Check answer" }).click()
   await expect(page.getByRole("status")).toContainText("Try again")
-  await expect(editor).toBeFocused()
 
   const reviewTab = page.getByRole("tab", { name: "Review" })
   await reviewTab.click()
@@ -1419,8 +1299,7 @@ test("keeps top-bar groups from overlapping in plain and repair practice", async
   expect(progress!.x + progress!.width).toBeLessThanOrEqual(end!.x)
   await expectTopBarPiecesDisjoint(page)
 
-  await sourceEditor(page).fill(await malformedSource(page))
-  await sourceEditor(page).press("Control+Enter")
+  await page.getByRole("button", { name: "Check answer" }).click()
   await expect(page.getByRole("status")).toContainText("Try again")
   await completeProblem(page)
   await expect(page.getByRole("status")).toContainText("Matched")
@@ -1456,16 +1335,17 @@ test("a long Level 5 answer scrolls inside the editor, not the page", async ({ p
     { length: 80 },
     (_, index) => `## Work item ${index + 1}\n\n- Owner\n- Deadline\n- Verification`,
   ).join("\n\n")
-  const editor = sourceEditor(page)
-  await editor.fill(longSource)
-  await editor.press("Control+End")
-  await editor.pressSequentially(" tail")
-
-  const editorScroll = await page
+  await injectDraft(page, longSource)
+  const documentScroller = page
     .locator(
       '.answer-panel [role="tabpanel"]:not([hidden]) .cm-scroller',
     )
-    .evaluate((node) => ({
+    .last()
+  await documentScroller.evaluate((node) => {
+    node.scrollTop = node.scrollHeight
+    node.dispatchEvent(new Event("scroll"))
+  })
+  const editorScroll = await documentScroller.evaluate((node) => ({
       clientHeight: node.clientHeight,
       overflowY: window.getComputedStyle(node).overflowY,
       scrollTop: node.scrollTop,
@@ -1508,7 +1388,7 @@ test("Preview uses local rendering and never fetches learner media", async ({
 
   await page.goto("/")
   await enterLevel1(page)
-  await sourceEditor(page).fill("![tracking pixel](https://example.com/pixel.png)")
+  await injectDraft(page, "![tracking pixel](https://example.com/pixel.png)")
   await page.keyboard.press("Alt+2")
   await expect(
     page
@@ -1541,7 +1421,7 @@ test("Preview renders Devpost GFM inside the shared word-processor page", async 
 
   await page.goto("/")
   await enterLevel1(page)
-  await sourceEditor(page).fill(source)
+  await injectDraft(page, source)
   await page.keyboard.press("Alt+2")
 
   const preview = page.getByRole("tabpanel", { name: "Preview" })

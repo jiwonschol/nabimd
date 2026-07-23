@@ -350,7 +350,7 @@ export function useLearningSession(
       dispatch({
         type: "next",
         nextProblem: transferProblem,
-        nextDraft: transferProblem.starterText,
+        nextDraft: "",
       })
       return
     }
@@ -361,7 +361,7 @@ export function useLearningSession(
       dispatch({
         type: "next",
         nextProblem,
-        nextDraft: nextProblem.starterText,
+        nextDraft: "",
       })
       return
     }

@@ -78,11 +78,15 @@ export function EditorialDesk({
   }, [autoAdvance, session.evaluation])
 
   // During the beat the answer is already judged; another Check chord (held
-  // or re-pressed) must not re-evaluate and restart the pending advance.
-  const guardedCheck = useCallback(() => {
-    if (advancePendingRef.current) return
-    check()
-  }, [check])
+  // or re-pressed) must not re-evaluate and restart the pending advance. The
+  // typeof guard keeps DOM event objects out of the draft-override slot.
+  const guardedCheck = useCallback(
+    (value?: unknown) => {
+      if (advancePendingRef.current) return
+      check(typeof value === "string" ? value : undefined)
+    },
+    [check],
+  )
 
   const moveStep = useEffectEvent((direction: "previous" | "next") => {
     if (direction === "previous") goToPreviousStep()
@@ -169,6 +173,9 @@ export function EditorialDesk({
               onNextHint={requestHint}
               onRequestHint={requestHint}
               problem={problem}
+              problemCompleted={session.progress.completedProblemIds.includes(
+                problem.id,
+              )}
               interactive={interactive}
             />
           </article>

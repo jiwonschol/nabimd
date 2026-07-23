@@ -352,9 +352,7 @@ describe("useLearningSession", () => {
     act(() => result.current.practiceAgain())
     expect(result.current.session.runNumber).toBe(2)
     expect(result.current.problem.id).not.toBe(original)
-    expect(result.current.session.draft).toBe(
-      result.current.problem.starterText,
-    )
+    expect(result.current.session.draft).toBe("")
   })
 
   it("advances the run when the same level is re-entered", () => {
@@ -560,9 +558,9 @@ describe("useLearningSession", () => {
 
     expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
     expect(restored.result.current.problem.id).toBe(currentProblemId)
-    expect(restored.result.current.session.draft).toBe(
-      getProblem(currentProblemId).starterText,
-    )
+    // The legacy automatic blank is dropped and the session stays blank: the
+    // center card grows the document from its first slot.
+    expect(restored.result.current.session.draft).toBe("")
     expect(
       restored.result.current.session.progress.draftByProblemId[
         currentProblemId
@@ -625,7 +623,7 @@ describe("useLearningSession", () => {
   it("starts with the first compiled problem when no run is active", () => {
     const { result } = renderLearningSession()
     expect(result.current.problem).toBe(getProblem(problemBank[0].id))
-    expect(result.current.session.draft).toBe(problemBank[0].starterText)
+    expect(result.current.session.draft).toBe("")
     expect(result.current.canNext).toBe(false)
   })
 

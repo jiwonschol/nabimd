@@ -282,13 +282,9 @@ describe("progressStore v5", () => {
     ).toBeUndefined()
 
     const restored = createLearningSession(loaded, topologyProblem)
-    expect(restored.draft).toBe(topologyProblem.starterText)
-    expect(restored.draft).not.toBe(
-      deriveLegacyPlaintextStarter(topologyProblem.target),
-    )
-    expect(restored.draft.split("\n")).toHaveLength(
-      topologyProblem.target.split("\n").length,
-    )
+    // With the removed automatic draft, the session starts blank so the
+    // center card can grow the document from its first slot.
+    expect(restored.draft).toBe("")
   })
 
   it("migrates an empty high-level draft persisted under flattened @1", () => {
@@ -308,9 +304,7 @@ describe("progressStore v5", () => {
 
     expect(loaded.bankRevision).toBe(problemBankRevision)
     expect(loaded.draftByProblemId[problem.id]).toBeUndefined()
-    expect(createLearningSession(loaded, problem).draft).toBe(
-      problem.starterText,
-    )
+    expect(createLearningSession(loaded, problem).draft).toBe("")
   })
 
   it("restores an allowed same-level replacement", () => {
