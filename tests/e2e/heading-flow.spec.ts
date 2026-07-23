@@ -382,6 +382,35 @@ test("navigates visited problems with the in-app previous and next controls", as
   await expect(nextVisited).toBeDisabled()
 })
 
+test("edits an earlier mark from the keyboard with the arrow keys", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await enterLevel(page, 2)
+  const problem = runtimeProblemById.get(await currentProblemId(page))
+  if (!problem) throw new Error("Expected the current runtime problem")
+  const marks = slotMarksFor(problem.target)
+  expect(marks.length).toBeGreaterThan(1)
+
+  await submitSlot(page, marks[0]!)
+  const card = page.getByLabel("Syntax input")
+  await expect(card).toContainText(`Mark 2 of ${marks.length}`)
+
+  // ArrowUp revisits the accepted slot with its stored answer; Enter
+  // re-accepts it and returns to the frontier.
+  await page.keyboard.press("ArrowUp")
+  await expect(card).toContainText(`Mark 1 of ${marks.length}`)
+  await expect(cardBoxInput(page)).not.toHaveValue("")
+  await page.keyboard.press("Enter")
+  await expect(card).toContainText(`Mark 2 of ${marks.length}`)
+
+  // ArrowDown from a revisited slot also walks forward.
+  await page.keyboard.press("ArrowUp")
+  await expect(card).toContainText(`Mark 1 of ${marks.length}`)
+  await page.keyboard.press("ArrowDown")
+  await expect(card).toContainText(`Mark 2 of ${marks.length}`)
+})
+
 test("accepts the second italic syntax typed into the card", async ({
   page,
 }) => {
@@ -572,15 +601,22 @@ test("drives the drill loop — verdict hold, fix, auto-advance, Alt navigation,
   await expect(verdict).toContainText("Try again")
   await page.waitForTimeout(2000)
   await expect(verdict).toContainText("Try again")
+
+  // The rejected mark was wiped and typing restarts at the first box.
   await expect(cardBoxInput(page)).toBeFocused()
+  await expect(cardBoxInput(page)).toHaveValue("")
 
-  // Retyping puts the verdict away without any extra key.
-  await page.keyboard.press("Backspace")
+  // The first keystroke of the retry puts the verdict away without any
+  // extra key.
+  const missedProblem = runtimeProblemById.get(firstProblemId)
+  if (!missedProblem) throw new Error("Expected the missed runtime problem")
+  const missedMarks = slotMarksFor(missedProblem.target)
+  await page.keyboard.type(missedMarks[0]!)
   await expect(page.getByRole("status")).toHaveCount(0)
-
-  // The accepted slots grow the document and, after the beat, the run
-  // advances — no second key.
-  await completeProblem(page)
+  await page.keyboard.press("Enter")
+  for (const marks of missedMarks.slice(1)) {
+    await submitSlot(page, marks)
+  }
   await expect.poll(() => currentProblemId(page)).not.toBe(firstProblemId)
   await completeProblemAndAdvance(page)
   const thirdProblemId = await currentProblemId(page)

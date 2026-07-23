@@ -21,9 +21,12 @@ type CenterCardOptions = {
   onGrow: (nextDraft: string) => void
   /** Fires with the finished document when the last slot is accepted. */
   onComplete: (finishedDraft: string) => void
+  /** Fires once per wrong slot submission (Summary bookkeeping). */
+  onMiss?: () => void
 }
 
 type SlotProgress = {
+  /** The frontier: how many slots have been accepted at least once. */
   count: number
   values: Record<string, string>
 }
@@ -37,8 +40,22 @@ export function inputSegments(
   )
 }
 
-function emptySegmentValues(checkpoint: SyntaxCheckpoint | null): string[] {
-  return checkpoint ? inputSegments(checkpoint).map(() => "") : []
+function segmentValuesFor(
+  checkpoint: SyntaxCheckpoint | null,
+  stored: string | undefined,
+): string[] {
+  if (!checkpoint) return []
+  const groups = inputSegments(checkpoint)
+  if (stored === undefined) return groups.map(() => "")
+  // Redistribute a stored (possibly alternate-mark) answer across the box
+  // groups; the last group absorbs any length drift (Setext underlines).
+  let offset = 0
+  return groups.map((segment, index) => {
+    if (index === groups.length - 1) return stored.slice(offset)
+    const slice = stored.slice(offset, offset + segment.value.length)
+    offset += segment.value.length
+    return slice
+  })
 }
 
 function canonicalCount(
@@ -85,6 +102,7 @@ export function useCenterCard({
   completed,
   onGrow,
   onComplete,
+  onMiss,
 }: CenterCardOptions) {
   const checkpoints = useMemo(
     () => deriveSyntaxCheckpoints(problem.target, problem.starterText),
@@ -98,23 +116,66 @@ export function useCenterCard({
     progressByProblem[problem.id] ??
     initialProgress(problem, checkpoints, draft, completed)
 
-  const checkpoint = checkpoints[progress.count] ?? null
+  const done = progress.count >= checkpoints.length
+
+  // The card can look back at already-accepted slots without touching the
+  // grown document; the frontier stays where it is.
+  const [viewIndexByProblem, setViewIndexByProblem] = useState<
+    Record<string, number>
+  >({})
+  const viewIndex = Math.min(
+    viewIndexByProblem[problem.id] ?? progress.count,
+    progress.count,
+    Math.max(checkpoints.length - 1, 0),
+  )
+  const atFrontier = viewIndex === progress.count
+
+  const checkpoint = done ? null : (checkpoints[viewIndex] ?? null)
 
   const [segmentValues, setSegmentValues] = useState<string[]>(() =>
-    emptySegmentValues(checkpoint),
+    segmentValuesFor(
+      checkpoint,
+      checkpoint && !atFrontier
+        ? progress.values[checkpoint.id]
+        : undefined,
+    ),
   )
   const [verdict, setVerdict] = useState<CenterCardSlotVerdict>("idle")
-  const slotKeyRef = useRef(`${problem.id}:${checkpoint?.id ?? "done"}`)
-  const slotKey = `${problem.id}:${checkpoint?.id ?? "done"}`
+  const slotKey = `${problem.id}:${checkpoint?.id ?? "done"}:${viewIndex}`
+  const slotKeyRef = useRef(slotKey)
   if (slotKeyRef.current !== slotKey) {
-    // A different slot (or problem) arrived: boxes empty out and any retry
-    // verdict from the previous slot is gone.
+    // A different slot (or problem) arrived: the boxes show that slot's
+    // stored answer when revisiting, or empty out at the frontier, and any
+    // retry verdict from the previous slot is gone.
     slotKeyRef.current = slotKey
-    setSegmentValues(emptySegmentValues(checkpoint))
+    setSegmentValues(
+      segmentValuesFor(
+        checkpoint,
+        checkpoint && !atFrontier
+          ? progress.values[checkpoint.id]
+          : undefined,
+      ),
+    )
     setVerdict("idle")
   }
 
-  const done = progress.count >= checkpoints.length
+  const setViewIndex = useCallback(
+    (index: number) => {
+      setViewIndexByProblem((previous) => ({
+        ...previous,
+        [problem.id]: index,
+      }))
+    },
+    [problem.id],
+  )
+
+  const goToPreviousSlot = useCallback(() => {
+    if (viewIndex > 0) setViewIndex(viewIndex - 1)
+  }, [setViewIndex, viewIndex])
+
+  const goToNextSlot = useCallback(() => {
+    if (viewIndex < progress.count) setViewIndex(viewIndex + 1)
+  }, [progress.count, setViewIndex, viewIndex])
 
   const editSegment = useCallback((index: number, value: string) => {
     setSegmentValues((previous) => {
@@ -131,34 +192,58 @@ export function useCenterCard({
     if (!checkpoint) return
     const joined = segmentValues.join("")
     if (!acceptsGuidedSyntaxInput(checkpoint, joined)) {
+      // A wrong mark clears the boxes for a fresh attempt from the first
+      // box, counts once toward the Summary, and holds the slot.
+      onMiss?.()
+      setSegmentValues(segmentValuesFor(checkpoint, undefined))
       setVerdict("retry")
       playFeedbackSound("retry")
       return
     }
 
     const values = { ...progress.values, [checkpoint.id]: joined }
-    const count = progress.count + 1
+    const count = atFrontier ? progress.count + 1 : progress.count
     const nextProgress: SlotProgress = { count, values }
     slotMemory.set(problem.id, nextProgress)
     setProgressByProblem((previous) => ({
       ...previous,
       [problem.id]: nextProgress,
     }))
+    // Either way the card returns to the frontier: a revisited edit jumps
+    // forward after regrowing the document with the corrected mark.
+    setViewIndex(count)
 
     const grown = buildGuidedDraft(problem.target, checkpoints, count, values)
     onGrow(grown)
-    if (count >= checkpoints.length) onComplete(grown)
-  }, [checkpoint, checkpoints, onComplete, onGrow, problem, progress, segmentValues])
+    if (atFrontier && count >= checkpoints.length) onComplete(grown)
+  }, [
+    atFrontier,
+    checkpoint,
+    checkpoints,
+    onComplete,
+    onGrow,
+    onMiss,
+    problem,
+    progress,
+    segmentValues,
+    setViewIndex,
+  ])
 
   return {
     checkpoints,
     checkpoint,
-    slotIndex: progress.count,
+    slotIndex: viewIndex,
     slotTotal: checkpoints.length,
+    frontierIndex: progress.count,
+    atFrontier,
+    canGoToPreviousSlot: !done && viewIndex > 0,
+    canGoToNextSlot: !done && viewIndex < progress.count,
     done,
     segmentValues,
     verdict,
     editSegment,
+    goToPreviousSlot,
+    goToNextSlot,
     submit,
   }
 }

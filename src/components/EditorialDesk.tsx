@@ -25,6 +25,7 @@ export function EditorialDesk({
   requestHint,
   closeCoach,
   next,
+  recordSlotMiss,
   goToPreviousStep,
   goToNextStep,
   practiceAgain,
@@ -172,6 +173,7 @@ export function EditorialDesk({
               onCloseHint={closeCoach}
               onNextHint={requestHint}
               onRequestHint={requestHint}
+              onSlotMiss={recordSlotMiss}
               problem={problem}
               problemCompleted={session.progress.completedProblemIds.includes(
                 problem.id,

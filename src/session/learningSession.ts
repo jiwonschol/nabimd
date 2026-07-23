@@ -72,6 +72,7 @@ export type SessionEvent =
       retryFamily: GradableProblem["retryFamily"]
     }
   | { type: "hint-requested" }
+  | { type: "slot-missed" }
   | { type: "coach-closed" }
   | { type: "problem-replaced"; problem: GradableProblem }
   | {
@@ -291,6 +292,38 @@ export function learningSessionReducer(
           pendingTransferFamily: failed
             ? event.retryFamily
             : session.progress.pendingTransferFamily,
+          failedScheduledStepIndexes,
+          failedProblemIds,
+        },
+      }
+    }
+
+    case "slot-missed": {
+      // A wrong mark in the center card counts as a miss for the Summary
+      // (score and syntax reminders) without judging the document or owing a
+      // repair — the card itself already blocks the slot until it is right.
+      const failedScheduledStepIndexes = appendUnique(
+        session.failedScheduledStepIndexes,
+        session.scheduledStepIndex,
+      )
+      const failedProblemIds = appendUnique(
+        session.failedProblemIds,
+        session.currentProblemId,
+      )
+      if (
+        failedScheduledStepIndexes.length ===
+          session.failedScheduledStepIndexes.length &&
+        failedProblemIds.length === session.failedProblemIds.length
+      ) {
+        return session
+      }
+      return {
+        ...session,
+        hadFailure: true,
+        failedScheduledStepIndexes,
+        failedProblemIds,
+        progress: {
+          ...session.progress,
           failedScheduledStepIndexes,
           failedProblemIds,
         },

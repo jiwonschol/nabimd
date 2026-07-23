@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight, Lightbulb } from "lucide-react"
 import {
   useEffect,
   useRef,
@@ -16,7 +17,12 @@ type CenterCardProps = {
   slotTotal: number
   segmentValues: readonly string[]
   verdict: CenterCardSlotVerdict
+  canGoToPreviousSlot: boolean
+  canGoToNextSlot: boolean
   onEditSegment: (index: number, value: string) => void
+  onPreviousSlot: () => void
+  onNextSlot: () => void
+  onPeekHint: () => void
   onSubmit: () => void
 }
 
@@ -55,7 +61,12 @@ export function CenterCard({
   slotTotal,
   segmentValues,
   verdict,
+  canGoToPreviousSlot,
+  canGoToNextSlot,
   onEditSegment,
+  onPreviousSlot,
+  onNextSlot,
+  onPeekHint,
   onSubmit,
 }: CenterCardProps) {
   const groups = inputSegments(checkpoint)
@@ -69,7 +80,12 @@ export function CenterCard({
     inputRefs.current[firstOpen < 0 ? 0 : firstOpen]?.focus()
     // Focus follows the slot, not every keystroke.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkpoint.id])
+  }, [checkpoint.id, slotIndex])
+
+  useEffect(() => {
+    // A rejected Enter empties the boxes; typing restarts at the first box.
+    if (verdict === "retry") inputRefs.current[0]?.focus()
+  }, [verdict])
 
   const editGroup = (index: number, raw: string) => {
     // Fast typing (or a paste) can hand one group more characters than it
@@ -102,6 +118,16 @@ export function CenterCard({
       onSubmit()
       return
     }
+    if (event.key === "ArrowUp") {
+      event.preventDefault()
+      onPreviousSlot()
+      return
+    }
+    if (event.key === "ArrowDown") {
+      event.preventDefault()
+      onNextSlot()
+      return
+    }
     if (
       event.key === "Backspace" &&
       (segmentValues[index] ?? "") === "" &&
@@ -117,12 +143,48 @@ export function CenterCard({
   return (
     <section aria-label="Syntax input" className="center-card">
       <header className="center-card__header">
-        <span className="center-card__slot">
-          Mark {Math.min(slotIndex + 1, slotTotal)} of {slotTotal}
-        </span>
-        <h3 className="center-card__instruction">
-          {describeCheckpoint(checkpoint)}
-        </h3>
+        <div className="center-card__heading">
+          <span className="center-card__slot">
+            Mark {Math.min(slotIndex + 1, slotTotal)} of {slotTotal}
+          </span>
+          <h3 className="center-card__instruction">
+            {describeCheckpoint(checkpoint)}
+          </h3>
+        </div>
+        <div className="center-card__controls">
+          <button
+            aria-keyshortcuts="ArrowUp"
+            aria-label="Previous mark"
+            className="center-card__control"
+            data-tooltip="Previous mark (↑)"
+            disabled={!canGoToPreviousSlot}
+            onClick={onPreviousSlot}
+            type="button"
+          >
+            <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.8} />
+          </button>
+          <button
+            aria-keyshortcuts="ArrowDown"
+            aria-label="Next mark"
+            className="center-card__control"
+            data-tooltip="Next mark (↓)"
+            disabled={!canGoToNextSlot}
+            onClick={onNextSlot}
+            type="button"
+          >
+            <ChevronRight aria-hidden="true" size={17} strokeWidth={1.8} />
+          </button>
+          <button
+            aria-keyshortcuts="Alt+H"
+            aria-label="Peek at the hint"
+            className="center-card__control"
+            data-tooltip="Hint (Alt+H)"
+            onClick={onPeekHint}
+            type="button"
+          >
+            <Lightbulb aria-hidden="true" size={17} strokeWidth={1.8} />
+          </button>
+        </div>
       </header>
 
       <div className="center-card__line" data-verdict={verdict}>

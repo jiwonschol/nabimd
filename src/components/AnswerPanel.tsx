@@ -32,6 +32,7 @@ type AnswerPanelProps = {
   onCloseHint: () => void
   onNextHint: () => void
   onRequestHint: () => void
+  onSlotMiss?: () => void
   interactive?: boolean
   problemCompleted?: boolean
 }
@@ -247,6 +248,7 @@ export function AnswerPanel({
   onCloseHint,
   onNextHint,
   onRequestHint,
+  onSlotMiss,
   interactive = true,
   problemCompleted = false,
 }: AnswerPanelProps) {
@@ -277,6 +279,7 @@ export function AnswerPanel({
     completed: problemCompleted,
     onGrow: onChange,
     onComplete: onCheck,
+    onMiss: onSlotMiss,
   })
 
   const selectView = useCallback(
@@ -615,8 +618,13 @@ export function AnswerPanel({
         {interactive && card.checkpoint ? (
           <CenterCard
             key={`${problem.id}-card`}
+            canGoToNextSlot={card.canGoToNextSlot}
+            canGoToPreviousSlot={card.canGoToPreviousSlot}
             checkpoint={card.checkpoint}
             onEditSegment={card.editSegment}
+            onNextSlot={card.goToNextSlot}
+            onPeekHint={() => selectViewFromPointer("hint")}
+            onPreviousSlot={card.goToPreviousSlot}
             onSubmit={card.submit}
             segmentValues={card.segmentValues}
             slotIndex={card.slotIndex}

@@ -392,6 +392,10 @@ describe("App", () => {
     expect(writePanelDocument()).toBe("")
     expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
 
+    // The rejected mark is wiped and typing restarts at the first box.
+    expect(firstBoxInput()).toHaveValue("")
+    expect(firstBoxInput()).toHaveFocus()
+
     // The first keystroke of the retry puts the slot verdict away.
     fireEvent.change(firstBoxInput(), { target: { value: "#" } })
     expect(screen.queryByRole("status")).toBeNull()
@@ -399,6 +403,64 @@ describe("App", () => {
     completeProblemViaCard()
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
+  })
+
+  it("records a slot miss in the run summary", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
+    const { user } = await openLevel(1)
+
+    submitSlot("x")
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+
+    for (let step = 0; step < 6; step += 1) {
+      completeProblemViaCard()
+      await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    }
+
+    expect(
+      await screen.findByRole("heading", { name: "Good finish." }),
+    ).toBeVisible()
+    expect(screen.getByLabelText("Score")).toHaveTextContent("5 / 6")
+    expect(screen.queryByText("Nothing to revisit this time.")).toBeNull()
+  })
+
+  it("walks previous slots with ArrowUp and ArrowDown and edits them in place", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) => problem.id === "l1-list-toolbox",
+    )
+    await openLevel(1)
+    const marks = slotMarks()
+    expect(marks.length).toBeGreaterThan(2)
+
+    submitSlot(marks[0]!)
+    submitSlot(marks[1]!)
+    const card = screen.getByLabelText("Syntax input")
+    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+
+    // ArrowUp steps back through accepted slots, showing the stored answer.
+    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
+    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+    expect(card).toHaveTextContent(`Mark 1 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue(marks[0]!)
+
+    // ArrowDown returns toward the frontier.
+    fireEvent.keyDown(firstBoxInput(), { key: "ArrowDown" })
+    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
+    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+
+    // Editing a past slot regrows the document and jumps back to the
+    // frontier. The list-style normalizer keeps the marks coherent.
+    const alternate = marks[0]!.replace("-", "*")
+    fireEvent.change(firstBoxInput(), { target: { value: alternate } })
+    fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
+    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    expect(writePanelDocument()).toContain("* ")
   })
 
   it("advances by itself after the last slot — no second confirmation key", async () => {
