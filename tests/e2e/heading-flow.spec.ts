@@ -1140,7 +1140,13 @@ for (const viewport of [
       expect(box).not.toBeNull()
     }
 
-    expect(start!.x + start!.width).toBeLessThanOrEqual(progress!.x)
+    const progressOverlapWidth =
+      Math.min(start!.x + start!.width, progress!.x + progress!.width) -
+      Math.max(start!.x, progress!.x)
+    const progressOverlapHeight =
+      Math.min(start!.y + start!.height, progress!.y + progress!.height) -
+      Math.max(start!.y, progress!.y)
+    expect(Math.min(progressOverlapWidth, progressOverlapHeight)).toBeLessThanOrEqual(0)
     expect(Math.abs(goal!.y - answer!.y)).toBeLessThanOrEqual(1)
     expect(Math.abs(goal!.width - answer!.width)).toBeLessThanOrEqual(1)
     expect(instruction!.y).toBeGreaterThanOrEqual(header!.y)
@@ -1299,7 +1305,44 @@ for (const viewport of [
   })
 }
 
-test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {
+async function expectTopBarPiecesDisjoint(page: Page) {
+  const overlaps = await page.evaluate(() => {
+    const selectors: Record<string, string> = {
+      wordmarkExit: ".exercise-topbar__start",
+      elapsed: ".elapsed-control",
+      sound: ".sound-control",
+      level: ".exercise-progress__level",
+      steps: ".turn-progress",
+      repair: ".repair-progress",
+      previous: '[aria-label="Previous exercise"]',
+      nextVisited: '[aria-label="Next visited exercise"]',
+      tryAnother: '[aria-label="Try another"]',
+      primary: ".top-action--primary",
+    }
+    const boxes = Object.entries(selectors).flatMap(([name, selector]) => {
+      const element = document.querySelector<HTMLElement>(selector)
+      return element ? [[name, element.getBoundingClientRect()] as const] : []
+    })
+    const found: string[] = []
+    for (let first = 0; first < boxes.length; first += 1) {
+      for (let second = first + 1; second < boxes.length; second += 1) {
+        const [firstName, a] = boxes[first]!
+        const [secondName, b] = boxes[second]!
+        const width = Math.min(a.right, b.right) - Math.max(a.left, b.left)
+        const height = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)
+        if (width > 0.5 && height > 0.5) {
+          found.push(`${firstName} x ${secondName}`)
+        }
+      }
+    }
+    return found
+  })
+  expect(overlaps).toEqual([])
+}
+
+test("keeps top-bar groups from overlapping in plain and repair practice", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 1280, height: 800 })
   await page.goto("/")
   await enterLevel(page, 1)
@@ -1317,6 +1360,34 @@ test("keeps top-bar groups from overlapping at 1280px", async ({ page }) => {
   expect(soundToggle).not.toBeNull()
   expect(start!.x + start!.width).toBeLessThanOrEqual(progress!.x)
   expect(progress!.x + progress!.width).toBeLessThanOrEqual(end!.x)
+  await expectTopBarPiecesDisjoint(page)
+
+  await sourceEditor(page).fill(await malformedSource(page))
+  await sourceEditor(page).press("Control+Enter")
+  await expect(page.getByRole("status")).toContainText("Try again")
+  await completeProblem(page)
+  await expect(page.getByRole("status")).toContainText("Matched")
+  await page.getByRole("button", { name: "Next exercise" }).click()
+  await expect(page.getByLabel("Practice details")).toContainText(
+    "Repair practice",
+  )
+
+  const [repairProgress, repairEnd] = await Promise.all([
+    page.getByLabel("Practice details").boundingBox(),
+    page.locator(".exercise-topbar__end").boundingBox(),
+  ])
+  expect(repairProgress).not.toBeNull()
+  expect(repairEnd).not.toBeNull()
+  expect(start!.x + start!.width).toBeLessThanOrEqual(repairProgress!.x)
+  expect(repairProgress!.x + repairProgress!.width).toBeLessThanOrEqual(
+    repairEnd!.x,
+  )
+  await expectTopBarPiecesDisjoint(page)
+
+  for (const width of [1024, 761, 375]) {
+    await page.setViewportSize({ width, height: 800 })
+    await expectTopBarPiecesDisjoint(page)
+  }
 })
 
 test("a long Level 5 answer scrolls inside the editor, not the page", async ({ page }) => {

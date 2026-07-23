@@ -129,7 +129,7 @@ export function ExerciseTopBar({
   }
 
   return (
-    <header className="exercise-topbar">
+    <header className="exercise-topbar exercise-topbar--practice">
       <span
         aria-label={`Practice progress, ${visibleScheduledPosition} of ${scheduledRunLength}`}
         aria-valuemax={scheduledRunLength}
@@ -153,37 +153,36 @@ export function ExerciseTopBar({
       </div>
 
       <div className="exercise-topbar__page exercise-topbar__page--right">
-        <div className="exercise-topbar__time">
-          <span className="elapsed-control">
-            <ElapsedTime
-              completedAtMs={runCompletedAtMs}
-              startedAtMs={runStartedAtMs}
-            />
-          </span>
-          <button
-            aria-label={soundMuted ? "Turn sound on" : "Mute sound"}
-            aria-pressed={soundMuted}
-            className="sound-control"
-            data-tooltip={soundMuted ? "Turn sound on" : "Mute sound"}
-            onClick={() => setSoundMuted(!soundMuted)}
-            type="button"
-          >
-            {soundMuted ? (
-              <VolumeX aria-hidden="true" size={17} strokeWidth={1.7} />
-            ) : (
-              <Volume2 aria-hidden="true" size={17} strokeWidth={1.7} />
-            )}
-          </button>
-        </div>
-
         <div
           aria-label="Practice details"
           className="exercise-progress"
           role="group"
         >
-          <span aria-label={levelLabel} className="exercise-progress__level">
-            {levelLabel}
-          </span>
+          <div className="exercise-progress__meta">
+            <span aria-label={levelLabel} className="exercise-progress__level">
+              {levelLabel}
+            </span>
+            <span className="elapsed-control">
+              <ElapsedTime
+                completedAtMs={runCompletedAtMs}
+                startedAtMs={runStartedAtMs}
+              />
+            </span>
+            <button
+              aria-label={soundMuted ? "Turn sound on" : "Mute sound"}
+              aria-pressed={soundMuted}
+              className="sound-control"
+              data-tooltip={soundMuted ? "Turn sound on" : "Mute sound"}
+              onClick={() => setSoundMuted(!soundMuted)}
+              type="button"
+            >
+              {soundMuted ? (
+                <VolumeX aria-hidden="true" size={17} strokeWidth={1.7} />
+              ) : (
+                <Volume2 aria-hidden="true" size={17} strokeWidth={1.7} />
+              )}
+            </button>
+          </div>
           <div className="exercise-progress__run">
             <ol aria-label="Turn steps" className="turn-progress">
               {Array.from({ length: scheduledRunLength }, (_, index) => {
