@@ -25,6 +25,10 @@ afterEach(() => {
   vi.mocked(playPageTurnSound).mockClear()
   vi.unstubAllGlobals()
   vi.useRealTimers()
+  // Each test owns its run: leftover progress (an owed repair, a mid-run
+  // step) from the previous test otherwise leaks through the shared jsdom
+  // sessionStorage into the next mount.
+  window.sessionStorage.clear()
 })
 
 async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
@@ -45,6 +49,18 @@ function replaceSource(editor: HTMLElement, source: string) {
       changes: { from: 0, to: view.state.doc.length, insert: source },
       selection: { anchor: source.length },
     })
+  })
+}
+
+// jsdom queues history traversals (back/forward/go and the popstate heals
+// they trigger) as macrotasks. A test that starts one MUST drain them before
+// ending, or the leftover traversal fires into the NEXT test's App and
+// restores a stale entry there.
+function drainHistoryTraversals() {
+  return act(async () => {
+    for (let i = 0; i < 4; i += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    }
   })
 }
 
@@ -1113,12 +1129,11 @@ describe("App", () => {
     // Back while the repair is owed: the restore is rejected, and the pointer
     // must walk forward again so it sits on the repair entry, not behind it.
     act(() => window.history.back())
-    await waitFor(() => {
-      const state = window.history.state as {
-        snapshot?: { currentProblemId?: string }
-      } | null
-      expect(state?.snapshot?.currentProblemId).toBe(repairProblemId)
-    })
+    await drainHistoryTraversals()
+    const healedState = window.history.state as {
+      snapshot?: { currentProblemId?: string }
+    } | null
+    expect(healedState?.snapshot?.currentProblemId).toBe(repairProblemId)
     expect(currentProblem().id).toBe(repairProblemId)
 
     // Complete the repair and advance; the resulting pushState must extend
@@ -1132,6 +1147,36 @@ describe("App", () => {
 
     act(() => window.history.back())
     await waitFor(() => expect(currentProblem().id).toBe(repairProblemId))
+    await drainHistoryTraversals()
+  })
+
+  it("walks the history pointer forward when Forward is rejected on an owed repair", async () => {
+    const { user, editor } = await openLevel(1)
+    const firstProblemId = currentProblem().id
+    replaceSource(editor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    const secondProblemId = currentProblem().id
+
+    // Walk back to the first step so a real entry sits ahead of the pointer.
+    act(() => window.history.back())
+    await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
+
+    // Fail it: a repair is now owed while the second step's entry lies ahead.
+    const editorNow = screen.getByRole("textbox", { name: "Your Markdown" })
+    replaceSource(editorNow, "not markdown")
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    // Forward into the ahead entry is rejected; the heal must walk the
+    // pointer BACK toward the current entry, not further forward.
+    act(() => window.history.forward())
+    await drainHistoryTraversals()
+    const healedState = window.history.state as {
+      snapshot?: { currentProblemId?: string }
+    } | null
+    expect(healedState?.snapshot?.currentProblemId).toBe(firstProblemId)
+    expect(currentProblem().id).toBe(firstProblemId)
+    expect(currentProblem().id).not.toBe(secondProblemId)
   })
 
   it("completes a run with one primary replay choice", async () => {
