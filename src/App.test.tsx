@@ -27,11 +27,36 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
+function stubReducedMotionPreference() {
+  vi.stubGlobal(
+    "matchMedia",
+    vi.fn().mockReturnValue({
+      matches: true,
+      media: "(prefers-reduced-motion: reduce)",
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }),
+  )
+}
+
 async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
   const user = userEvent.setup()
+  // jsdom has no matchMedia, so the page turn would hold the practice sheet
+  // inert on a real 720ms timer — long enough for the next interactions to be
+  // swallowed. Prefer reduced motion and wait the turn out before returning.
+  stubReducedMotionPreference()
   render(<App />)
   const entry = entryChoices.find((choice) => choice.level === level)!
   await user.click(screen.getByRole("button", { name: entry.label }))
+  await waitFor(() => {
+    expect(screen.getByTestId("page-turn-receiver")).not.toHaveAttribute(
+      "inert",
+    )
+  })
   const editor = screen.getByRole("textbox", { name: "Your Markdown" })
   return { user, editor, entry }
 }
@@ -218,19 +243,7 @@ describe("App", () => {
 
   it("shortens the handoff when reduced motion is preferred", () => {
     vi.useFakeTimers()
-    vi.stubGlobal(
-      "matchMedia",
-      vi.fn().mockReturnValue({
-        matches: true,
-        media: "(prefers-reduced-motion: reduce)",
-        onchange: null,
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
-        dispatchEvent: vi.fn(),
-      }),
-    )
+    stubReducedMotionPreference()
     render(<App />)
 
     fireEvent.click(
