@@ -160,7 +160,12 @@ export function useLearningSession(
 
   useEffect(() => {
     if (!session.entryId) return
-    if (session.runStepIndex >= session.runProblemIds.length) return
+    // The completion state (runStepIndex === length) is recorded too, matching
+    // the history entry App.tsx pushes for it. Without it, revisiting a repair
+    // spliced after the last scheduled exercise has no forward snapshot to
+    // prove completion, so owesRepair would misread it as still owed and trap
+    // the learner on the step.
+    if (session.runStepIndex > session.runProblemIds.length) return
     const snapshots = stepSnapshotsRef.current
     snapshots.set(session.runStepIndex, {
       entryId: session.entryId,
