@@ -270,6 +270,45 @@ describe("useLearningSession", () => {
     expect(result.current.session.currentIsTransfer).toBe(true)
   })
 
+  it("frees a completed final repair revisited from the summary", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+    const runLength = result.current.session.runProblemIds.length
+
+    for (let step = 0; step < runLength - 1; step += 1) {
+      matchCurrent(result)
+      act(() => result.current.next())
+    }
+    expect(result.current.session.runStepIndex).toBe(runLength - 1)
+
+    // Fail the LAST scheduled exercise so the repair lands after it; the
+    // completion state is then the only thing beyond the repair step.
+    act(() => result.current.edit("not markdown"))
+    act(() => result.current.check())
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    expect(result.current.session.runStepIndex).toBe(runLength)
+    const repairSnapshot = captureSnapshot(result)
+
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.phase).toBe("complete")
+    const completionSnapshot = captureSnapshot(result)
+
+    // Browser Back from the summary onto the completed final repair must not
+    // misread it as still owed: that would disable the step controls and
+    // ignore Forward, trapping the learner into re-checking the repair.
+    act(() => result.current.navigateToHistory(repairSnapshot))
+    expect(result.current.session.runStepIndex).toBe(runLength)
+    expect(result.current.session.currentIsTransfer).toBe(true)
+    expect(result.current.canGoToPreviousStep).toBe(true)
+    expect(result.current.canGoToNextStep).toBe(true)
+
+    act(() => result.current.navigateToHistory(completionSnapshot))
+    expect(result.current.session.phase).toBe("complete")
+  })
+
   it("drops future step snapshots when Try another changes the schedule", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
