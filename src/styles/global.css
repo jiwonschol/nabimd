@@ -2706,13 +2706,14 @@ button:focus-visible,
 
 /* Between the wide spread and the phone layout, the action cluster leaves no
    room beside it for the practice details. Reflow the practice strip into two
-   rows: identity and actions first, one full-width details line beneath. */
-@media (max-width: 1200px) and (min-width: 761px) {
+   rows — identity beside the details line, actions beneath — so the visual
+   order keeps following the DOM and tab order (start, details, actions). */
+@media (max-width: 1220px) and (min-width: 761px) {
   .exercise-topbar.exercise-topbar--practice {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: auto minmax(0, 1fr);
     grid-template-areas:
-      "start end"
-      "progress progress";
+      "start progress"
+      "end end";
     align-items: center;
     row-gap: 0.4rem;
   }
@@ -2732,6 +2733,7 @@ button:focus-visible,
   .exercise-topbar--practice .exercise-progress {
     grid-area: progress;
     flex-direction: row;
+    flex-wrap: wrap;
     column-gap: 0.75rem;
   }
 
@@ -2802,22 +2804,23 @@ button:focus-visible,
     gap: 0.35rem;
   }
 
-  /* The phone strip stacks three rows: identity beside the session meta,
-     the action cluster, then the full-width progress line. */
+  /* The phone strip stacks three full-width rows — identity, the practice
+     details, then the action cluster — so the visual order keeps following
+     the DOM and tab order, and the details group keeps its own box for
+     assistive technology. */
   .exercise-topbar.exercise-topbar--practice {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
-      "start meta"
-      "end end"
-      "run run";
+      "start"
+      "progress"
+      "end";
     align-items: center;
     gap: 0.3rem 0.5rem;
     padding: 14px 42px 10px;
   }
 
-  .exercise-topbar--practice .exercise-topbar__page,
-  .exercise-topbar--practice .exercise-progress {
+  .exercise-topbar--practice .exercise-topbar__page {
     display: contents;
   }
 
@@ -2825,18 +2828,18 @@ button:focus-visible,
     grid-area: start;
   }
 
-  .exercise-topbar--practice .exercise-progress__meta {
-    grid-area: meta;
-    justify-content: flex-end;
+  .exercise-topbar--practice .exercise-progress {
+    grid-area: progress;
+    row-gap: 0.3rem;
   }
 
   .exercise-topbar--practice .exercise-topbar__end {
     grid-area: end;
+    flex-wrap: wrap;
   }
 
   .exercise-topbar--practice .exercise-progress__run {
     min-height: 0;
-    grid-area: run;
   }
 
   .exercise-topbar--practice .repair-progress {
