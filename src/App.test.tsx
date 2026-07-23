@@ -21,10 +21,16 @@ vi.mock("./sound/pageTurnSound", () => ({
   playPageTurnSound: vi.fn(),
 }))
 
-afterEach(() => {
+afterEach(async () => {
   vi.mocked(playPageTurnSound).mockClear()
   vi.unstubAllGlobals()
   vi.useRealTimers()
+  // jsdom queues history traversals (back/forward/go and the popstate heals
+  // they trigger) as macrotasks. A traversal a test did not await — easy to
+  // miss when the restore is rejected and the session never changes — would
+  // otherwise fire into the NEXT test's App and restore a stale entry there,
+  // so every test drains the queue on the way out.
+  await drainHistoryTraversals()
   // Each test owns its run: leftover progress (an owed repair, a mid-run
   // step) from the previous test otherwise leaks through the shared jsdom
   // sessionStorage into the next mount.
@@ -77,10 +83,10 @@ function replaceSource(editor: HTMLElement, source: string) {
   })
 }
 
-// jsdom queues history traversals (back/forward/go and the popstate heals
-// they trigger) as macrotasks. A test that starts one MUST drain them before
-// ending, or the leftover traversal fires into the NEXT test's App and
-// restores a stale entry there.
+// Flushes jsdom's queued history traversals (back/forward/go and the popstate
+// heals they trigger). The afterEach above runs this for every test; call it
+// mid-test only when an assertion needs the traversal's outcome and the
+// session itself does not change (e.g. a rejected restore).
 function drainHistoryTraversals() {
   return act(async () => {
     for (let i = 0; i < 4; i += 1) {
