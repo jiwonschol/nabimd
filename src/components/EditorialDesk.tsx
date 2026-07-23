@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useEffectEvent, useRef } from "react"
 import type { useLearningSession } from "../session/useLearningSession"
 import { createRunProblemIds } from "../content/entryChoices"
 import { AnswerPanel } from "./AnswerPanel"
@@ -53,13 +53,16 @@ export function EditorialDesk({
   // revisited step (a visited step exists ahead) never auto-advances, so
   // browsing back through the run stays safe.
   const advancePendingRef = useRef(false)
-  const nextRef = useRef(next)
-  nextRef.current = next
   const autoAdvance =
     interactive &&
     session.phase === "evaluated" &&
     session.evaluation?.status === "matched" &&
     !canGoToNextStep
+
+  const advanceAfterBeat = useEffectEvent(() => {
+    advancePendingRef.current = false
+    next()
+  })
 
   useEffect(() => {
     if (!autoAdvance) {
@@ -67,10 +70,7 @@ export function EditorialDesk({
       return
     }
     advancePendingRef.current = true
-    const timer = window.setTimeout(() => {
-      advancePendingRef.current = false
-      nextRef.current()
-    }, VERDICT_BEAT_MS)
+    const timer = window.setTimeout(advanceAfterBeat, VERDICT_BEAT_MS)
     return () => {
       advancePendingRef.current = false
       window.clearTimeout(timer)
@@ -84,10 +84,10 @@ export function EditorialDesk({
     check()
   }, [check])
 
-  const goToPreviousStepRef = useRef(goToPreviousStep)
-  goToPreviousStepRef.current = goToPreviousStep
-  const goToNextStepRef = useRef(goToNextStep)
-  goToNextStepRef.current = goToNextStep
+  const moveStep = useEffectEvent((direction: "previous" | "next") => {
+    if (direction === "previous") goToPreviousStep()
+    else goToNextStep()
+  })
 
   // Alt+P / Alt+N step navigation works from anywhere, including the editor.
   // Matching on event.code keeps macOS Option-layer characters (π, ˜) from
@@ -107,12 +107,12 @@ export function EditorialDesk({
       }
       if (event.code === "KeyP") {
         event.preventDefault()
-        goToPreviousStepRef.current()
+        moveStep("previous")
         return
       }
       if (event.code === "KeyN") {
         event.preventDefault()
-        goToNextStepRef.current()
+        moveStep("next")
       }
     }
     document.addEventListener("keydown", navigateSteps, true)
