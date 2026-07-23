@@ -11,6 +11,13 @@ body,
   height: 100%;
 }
 
+#root {
+  /* Contain .app-shell's 6px outer margin: without a formatting context it
+     collapses through #root and pushes the document 6px past the viewport,
+     leaving a phantom scrollbar on every screen. */
+  display: flow-root;
+}
+
 html {
   background: var(--canvas);
 }
@@ -248,11 +255,19 @@ button:focus-visible,
 }
 
 .chapter-index {
+  display: grid;
   min-height: 0;
+  /* Five rows share the available box exactly, so the list never outgrows
+     it by a few pixels and sprouts scrollbars. The cap keeps rows from
+     growing past their previous per-entry maximum on tall windows;
+     overflow stays as a last resort for pathologically short viewports. */
+  max-height: 33.75rem;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   overflow-y: auto;
   border-top: 1px solid var(--book-line);
+  grid-auto-rows: minmax(min-content, 1fr);
   list-style: none;
 }
 
@@ -263,7 +278,8 @@ button:focus-visible,
 .chapter-entry {
   display: grid;
   width: 100%;
-  min-height: clamp(4.7rem, 11.45vh, 6.75rem);
+  height: 100%;
+  min-height: 0;
   grid-template-columns: clamp(5.6rem, 7.4vw, 6rem) minmax(0, 1fr) 1.6rem;
   align-items: center;
   gap: clamp(0.75rem, 1.4vw, 1.2rem);
@@ -323,11 +339,14 @@ button:focus-visible,
   font-size: 1.65rem;
   line-height: 1;
   transition: transform var(--motion) ease-out;
+  /* Rest inset, slide to the edge on hover: the old outward slide poked
+     past the list box and summoned a horizontal scrollbar. */
+  transform: translateX(-0.35rem);
 }
 
 .chapter-entry:hover .chapter-entry__arrow,
 .chapter-entry:focus-visible .chapter-entry__arrow {
-  transform: translateX(0.35rem);
+  transform: translateX(0);
 }
 
 .page-turn-stage {
@@ -2180,6 +2199,100 @@ button:focus-visible,
   font-size: 1.05rem;
 }
 
+/* Try again holds (issue #102): the failed verdict docks at the bottom with
+   the top pinpointed correction and stays until the learner retypes or
+   closes it. The editor above remains fully visible and focused. */
+.verdict-notice--holding {
+  top: auto;
+  bottom: 1.1rem;
+  display: grid;
+  width: min(46rem, calc(100vw - 2rem));
+  min-height: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.5rem 1.6rem;
+  padding: 1.05rem 2.9rem 1.05rem 1.4rem;
+  transform: translateX(-50%);
+  text-align: left;
+  animation: verdict-hold-in 220ms ease-out both;
+  box-shadow: 0 14px 34px rgb(63 41 33 / 16%);
+}
+
+.verdict-notice__verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.verdict-notice--holding strong {
+  font-size: clamp(1.7rem, 2.6vw, 2.15rem);
+}
+
+.verdict-notice--holding span {
+  font-size: 0.92rem;
+}
+
+.verdict-notice__correction {
+  min-width: 0;
+}
+
+.verdict-notice__correction h4 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.verdict-notice__correction h4 small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.verdict-notice__source {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.verdict-notice__source code {
+  margin-left: 0.35rem;
+  padding: 0.12rem 0.3rem;
+  background: rgb(90 82 72 / 8%);
+  overflow-wrap: anywhere;
+}
+
+.verdict-notice__correction p {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.verdict-notice__more {
+  color: var(--muted);
+}
+
+.verdict-notice__close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: grid;
+  padding: 0.35rem;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  place-items: center;
+}
+
+.verdict-notice__close:hover,
+.verdict-notice__close:focus-visible {
+  color: inherit;
+}
+
 .primary-button,
 .text-button {
   border-radius: 0;
@@ -2542,6 +2655,17 @@ button:focus-visible,
   100% {
     opacity: 0;
     transform: translate(-50%, -53%);
+  }
+}
+
+@keyframes verdict-hold-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%);
   }
 }
 
@@ -3024,6 +3148,10 @@ button:focus-visible,
     opacity: 1;
     transform: translate(-50%, -50%);
     animation: none !important;
+  }
+
+  .verdict-notice--holding {
+    transform: translateX(-50%);
   }
 
   .summary-page-turn-overlay {

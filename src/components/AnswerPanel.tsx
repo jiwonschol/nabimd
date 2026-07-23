@@ -310,21 +310,15 @@ export function AnswerPanel({
     if (!evaluation) return
     // A failed Check must never take the editor away: the learner stays on
     // Write with the verdict visible and retypes immediately. Review stays
-    // reachable as a tab.
+    // reachable as a tab. A Matched verdict also stays on Write: the run
+    // either auto-advances after the verdict beat or, on a revisited step,
+    // waits for an explicit move (issue #102).
     if (evaluation.status === "fail") {
       pendingTabFocus.current = null
       pendingReadingFocus.current = null
       pendingEditorFocus.current = true
       setView("write")
-      return
     }
-    if (evaluation.reviewItems.length > 0) {
-      pendingTabFocus.current = null
-      pendingReadingFocus.current = "second"
-      setView("review")
-      return
-    }
-    setView("preview")
   }, [entryId, evaluation])
 
   useEffect(() => {
@@ -442,10 +436,29 @@ export function AnswerPanel({
   const switchViewShortcut = useCallback((
     event: ReactKeyboardEvent<HTMLElement> | KeyboardEvent,
   ) => {
-    if (
-      !event.altKey ||
-      (event.key !== "1" && event.key !== "2" && event.key !== "3")
-    ) {
+    if (!event.altKey || event.ctrlKey || event.metaKey) return
+
+    // Alt+H peeks at the Hint and puts it away again: the same key closes
+    // the peek and returns focus to the editor with the cursor intact.
+    // Matching on event.code keeps the macOS Option layer (˙) out of the
+    // document.
+    const code = "code" in event ? event.code : undefined
+    if (code === "KeyH" && !event.shiftKey && !event.repeat) {
+      event.preventDefault()
+      pendingTabFocus.current = null
+      if (view === "hint") {
+        pendingReadingFocus.current = null
+        pendingEditorFocus.current = true
+        selectView("write")
+        return
+      }
+      pendingReadingFocus.current = "hint"
+      pendingEditorFocus.current = false
+      selectView("hint")
+      return
+    }
+
+    if (event.key !== "1" && event.key !== "2" && event.key !== "3") {
       return
     }
 
@@ -555,7 +568,7 @@ export function AnswerPanel({
           <button
             aria-label="Hint"
             aria-controls={tabIds.hintPanel}
-            aria-keyshortcuts="Alt+3 ?"
+            aria-keyshortcuts="Alt+H Alt+3 ?"
             aria-selected={view === "hint"}
             className="answer-tab"
             data-tooltip="Hint"

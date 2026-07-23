@@ -309,7 +309,7 @@ describe("App", () => {
       "Write",
     )
     expect(firstHint).toHaveAttribute("data-tooltip", "Hint")
-    expect(firstHint).toHaveAttribute("aria-keyshortcuts", "Alt+3 ?")
+    expect(firstHint).toHaveAttribute("aria-keyshortcuts", "Alt+H Alt+3 ?")
     expect(firstHint).toHaveAttribute("aria-selected", "false")
     await first.user.click(firstHint)
     const pattern = within(
@@ -416,27 +416,43 @@ describe("App", () => {
   it("checks with the universal Control + Enter shortcut", async () => {
     const { user, editor } = await openLevel(1)
     await user.click(editor)
-    replaceSource(editor, validDifferentProse())
+    replaceSource(editor, currentProblem().target)
     fireEvent.keyDown(editor, { key: "Enter", ctrlKey: true })
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
   })
 
-  it("moves focus Check → Next → editor with one unified shortcut", async () => {
+  it("advances by itself after Matched — one chord per correct problem", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
     const { user, editor } = await openLevel(1)
     replaceSource(editor, validDifferentProse())
     await user.click(editor)
     await user.keyboard("{Control>}{Enter}{/Control}")
-    expect(screen.getByRole("button", { name: "Next exercise" })).toHaveFocus()
 
-    await user.keyboard("{Control>}{Enter}{/Control}")
-    const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
-    expect(
-      screen.getByRole("textbox", { name: "Your Markdown" }),
-    ).toHaveFocus()
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-      "Practice progress, 2 of 6",
+      "Practice progress, 1 of 6",
     )
 
+    // No second confirmation key: the verdict beat elapses and the run moves
+    // to the next exercise with the editor focused for immediate typing.
+    await waitFor(
+      () =>
+        expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+          "Practice progress, 2 of 6",
+        ),
+      { timeout: 3000 },
+    )
+    await waitFor(() =>
+      expect(
+        screen.getByRole("textbox", { name: "Your Markdown" }),
+      ).toHaveFocus(),
+    )
+
+    const nextEditor = screen.getByRole("textbox", { name: "Your Markdown" })
     fireEvent.keyDown(nextEditor, {
       key: "Enter",
       ctrlKey: true,
@@ -446,9 +462,69 @@ describe("App", () => {
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 2 of 6",
     )
+  })
+
+  it("ignores extra Check chords during the verdict beat", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
+    const { user, editor } = await openLevel(1)
+    replaceSource(editor, validDifferentProse())
+    await user.click(editor)
+    await user.keyboard("{Control>}{Enter}{/Control}")
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+
+    // A fresh second press mid-beat must neither re-evaluate nor queue a
+    // second advance.
+    fireEvent.keyDown(editor, { key: "Enter", ctrlKey: true })
+    expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+      "Practice progress, 1 of 6",
+    )
+
+    await waitFor(
+      () =>
+        expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+          "Practice progress, 2 of 6",
+        ),
+      { timeout: 3000 },
+    )
+    await act(() => new Promise((resolve) => setTimeout(resolve, 1100)))
+    expect(screen.getByRole("progressbar")).toHaveAccessibleName(
+      "Practice progress, 2 of 6",
+    )
+  })
+
+  it("holds a re-checked Matched verdict on a revisited step", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
+    const { user, editor } = await openLevel(1)
+    const firstProblem = currentProblem()
+    replaceSource(editor, validDifferentProse())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(firstProblem.id)
+
+    await user.click(screen.getByRole("button", { name: "Previous exercise" }))
+    expect(currentProblem().id).toBe(firstProblem.id)
+
+    const restoredEditor = screen.getByRole("textbox", {
+      name: "Your Markdown",
+    })
+    fireEvent.keyDown(restoredEditor, { key: "Enter", ctrlKey: true })
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+
+    // A visited step exists ahead, so the drill must not sweep the learner
+    // forward while they are looking back.
+    await act(() => new Promise((resolve) => setTimeout(resolve, 1100)))
+    expect(currentProblem().id).toBe(firstProblem.id)
     expect(
-      screen.getByRole("textbox", { name: "Your Markdown" }),
-    ).toHaveFocus()
+      screen.getByRole("button", { name: "Next visited exercise" }),
+    ).toBeEnabled()
   })
 
   it("keeps Next unavailable and stays on Write after Try again", async () => {
@@ -694,6 +770,14 @@ describe("App", () => {
 
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
+
+    // Matched keeps the Write sheet active; the structure notes stay one
+    // optional tab away instead of interrupting the flow.
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+    await user.click(screen.getByRole("tab", { name: "Review" }))
     expect(screen.getByRole("tabpanel", { name: "Review" })).toHaveTextContent(
       currentProblem().editorialChecks[0]!.review,
     )
@@ -898,12 +982,130 @@ describe("App", () => {
       "true",
     )
 
-    replaceSource(editor, validDifferentProse())
+    replaceSource(editor, currentProblem().target)
     expect(EditorView.findFromDOM(editor)?.state.doc.toString()).toBe(
-      validDifferentProse(),
+      currentProblem().target,
     )
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
+  })
+
+  it("holds the Try again verdict with its top correction until retyping", async () => {
+    const { user, editor } = await openLevel(1)
+    replaceSource(editor, malformedSource())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+
+    const verdict = screen.getByRole("status")
+    expect(verdict).toHaveTextContent("Try again")
+    const evaluation = evaluateProblem(currentProblem(), malformedSource())
+    if (evaluation.status !== "fail") throw new Error("Expected a failed check")
+    const corrections = buildReviewCorrections(
+      currentProblem(),
+      evaluation,
+      malformedSource(),
+    )
+    expect(verdict).toHaveTextContent(corrections[0]!.label)
+    expect(verdict).toHaveTextContent(corrections[0]!.repairInstruction)
+
+    // No auto-dismiss timer: the verdict is still on screen well past the
+    // old 1.6-second toast life.
+    await act(() => new Promise((resolve) => setTimeout(resolve, 1800)))
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+
+    // The first keystroke of the retry puts the verdict away.
+    replaceSource(editor, `${malformedSource()} more`)
+    expect(screen.queryByRole("status")).toBeNull()
+    expect(screen.getByRole("tab", { name: "Review" })).toBeVisible()
+  })
+
+  it("closes the held Try again verdict with Escape and reopens it on a new Check", async () => {
+    const { user, editor } = await openLevel(1)
+    replaceSource(editor, malformedSource())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+
+    fireEvent.keyDown(document.body, { key: "Escape" })
+    expect(screen.queryByRole("status")).toBeNull()
+
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+
+    await user.click(screen.getByRole("button", { name: "Close verdict" }))
+    expect(screen.queryByRole("status")).toBeNull()
+  })
+
+  it("peeks the Hint with Alt+H and returns focus to the editor", async () => {
+    const { editor } = await openLevel(1)
+    const view = EditorView.findFromDOM(editor)
+    if (!view) throw new Error("Expected a mounted CodeMirror editor")
+    act(() => view.focus())
+    act(() => {
+      view.dispatch({ selection: { anchor: 2 } })
+    })
+
+    fireEvent.keyDown(editor, { code: "KeyH", key: "h", altKey: true })
+    expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+
+    fireEvent.keyDown(
+      screen.getByRole("tabpanel", { name: "Hint" }),
+      { code: "KeyH", key: "h", altKey: true },
+    )
+    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    )
+    await waitFor(() =>
+      expect(
+        screen.getByRole("textbox", { name: "Your Markdown" }),
+      ).toHaveFocus(),
+    )
+    const restoredView = EditorView.findFromDOM(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    )
+    expect(restoredView?.state.selection.main.anchor).toBe(2)
+  })
+
+  it("navigates visited steps from the keyboard with Alt+P and Alt+N", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
+    const { user, editor } = await openLevel(1)
+    const firstProblem = currentProblem()
+    replaceSource(editor, validDifferentProse())
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(firstProblem.id)
+    const secondProblemId = currentProblem().id
+
+    fireEvent.keyDown(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+      { code: "KeyP", key: "p", altKey: true },
+    )
+    expect(currentProblem().id).toBe(firstProblem.id)
+
+    fireEvent.keyDown(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+      { code: "KeyN", key: "n", altKey: true },
+    )
+    expect(currentProblem().id).toBe(secondProblemId)
+  })
+
+  it("keeps plain Enter as a newline in the editor", async () => {
+    const { user, editor } = await openLevel(1)
+    const before = EditorView.findFromDOM(editor)!.state.doc.toString()
+    await user.click(editor)
+    await user.keyboard("{Enter}")
+
+    const after = EditorView.findFromDOM(
+      screen.getByRole("textbox", { name: "Your Markdown" }),
+    )!.state.doc.toString()
+    expect(after.split("\n").length).toBe(before.split("\n").length + 1)
+    expect(screen.queryByRole("status")).toBeNull()
   })
 
   it("moves between visited problems with the in-app previous and next controls", async () => {
@@ -918,7 +1120,7 @@ describe("App", () => {
     expect(previousButton).toBeDisabled()
     expect(nextVisitedButton).toBeDisabled()
 
-    const firstAnswer = validDifferentProse()
+    const firstAnswer = currentProblem().target
     replaceSource(editor, firstAnswer)
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     await user.click(screen.getByRole("button", { name: "Next exercise" }))
@@ -945,7 +1147,7 @@ describe("App", () => {
   it("keeps browser Back walking backwards after an in-app previous move", async () => {
     const { user, editor } = await openLevel(1)
     const firstProblem = currentProblem()
-    replaceSource(editor, validDifferentProse())
+    replaceSource(editor, firstProblem.target)
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     await user.click(screen.getByRole("button", { name: "Next exercise" }))
     expect(currentProblem().id).not.toBe(firstProblem.id)
@@ -973,7 +1175,7 @@ describe("App", () => {
     const { user, editor } = await openLevel(1)
     const firstProblem = currentProblem()
 
-    replaceSource(editor, validDifferentProse())
+    replaceSource(editor, firstProblem.target)
     await user.click(screen.getByRole("button", { name: "Check answer" }))
     await user.click(screen.getByRole("button", { name: "Next exercise" }))
     const secondProblem = currentProblem()

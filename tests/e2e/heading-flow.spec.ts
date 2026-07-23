@@ -82,6 +82,14 @@ async function completeProblem(page: Page) {
   await sourceEditor(page).press("Control+Enter")
 }
 
+async function completeProblemAndAdvance(page: Page) {
+  const beforeId = await currentProblemId(page)
+  await completeProblem(page)
+  // Matched auto-advances after the verdict beat — one chord per problem,
+  // no second key and no click (issue #102).
+  await expect.poll(() => currentProblemId(page)).not.toBe(beforeId)
+}
+
 async function resetToGreeting(page: Page) {
   await page.goto("/")
   await page.evaluate((storageKey) => {
@@ -371,9 +379,8 @@ test("browser history moves between problems and the level picker", async ({
 
   await sourceEditor(page).fill(firstProblem.target)
   await sourceEditor(page).press("Control+Enter")
-  await page.getByRole("button", { name: "Next exercise" }).click()
+  await expect.poll(() => currentProblemId(page)).not.toBe(firstProblemId)
   const secondProblemId = await currentProblemId(page)
-  expect(secondProblemId).not.toBe(firstProblemId)
 
   await page.goBack()
   await expect.poll(() => currentProblemId(page)).toBe(firstProblemId)
@@ -423,8 +430,7 @@ test("navigates visited problems with the in-app previous and next controls", as
   await expect(previous).toBeDisabled()
   await expect(nextVisited).toBeDisabled()
 
-  await completeProblem(page)
-  await page.getByRole("button", { name: "Next exercise" }).click()
+  await completeProblemAndAdvance(page)
   const secondProblemId = await currentProblemId(page)
   expect(secondProblemId).not.toBe(firstProblemId)
   await expect(previous).toBeEnabled()
@@ -450,10 +456,10 @@ test("accepts the second italic syntax typed into the editor", async ({
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
 
   await sourceEditor(page).fill("_Paper boat_")
+  expect(await sourceText(page)).toBe("_Paper boat_")
   await sourceEditor(page).press("Control+Enter")
 
-  await expect(page.getByRole("button", { name: "Next exercise" })).toBeVisible()
-  expect(await sourceText(page)).toBe("_Paper boat_")
+  await expect(page.getByRole("status")).toContainText("Matched")
 })
 
 test("makes practice syntax scale, spacing, and the shared shortcut visible", async ({
@@ -501,16 +507,13 @@ test("makes practice syntax scale, spacing, and the shared shortcut visible", as
   if (!problem) throw new Error("Expected the seeded Level 2 problem")
   const check = page.getByRole("button", { name: "Check answer" })
   await expect(check).toContainText("Ctrl+↩")
+  const matchedProblemId = await currentProblemId(page)
   await sourceEditor(page).fill(problem.target)
   await sourceEditor(page).press("Control+Enter")
 
-  const next = page.getByRole("button", { name: "Next exercise" })
-  await expect(next).toContainText("Ctrl+↩")
-  const matchedProblemId = await currentProblemId(page)
-  await next.press("Space")
-  expect(await currentProblemId(page)).toBe(matchedProblemId)
-  await next.press("Control+Enter")
-  expect(await currentProblemId(page)).not.toBe(matchedProblemId)
+  // The one chord judged the answer and, after the verdict beat, moved the
+  // run forward by itself.
+  await expect.poll(() => currentProblemId(page)).not.toBe(matchedProblemId)
   expect(consoleNoise).toEqual([])
 })
 
@@ -552,12 +555,11 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
 
   for (let exercise = 0; exercise < 6; exercise += 1) {
     await expect(sourceEditor(page)).toBeFocused()
-    await completeProblem(page)
-
-    await expect(page.getByRole("status")).toContainText("Matched")
-    const next = page.getByRole("button", { name: "Next exercise" })
-    await expect(next).toBeFocused()
-    await next.press("Enter")
+    if (exercise < 5) {
+      await completeProblemAndAdvance(page)
+    } else {
+      await completeProblem(page)
+    }
   }
 
   const transition = page.getByTestId("summary-page-turn-transition")
@@ -622,6 +624,66 @@ test("completes and replays Level 1 with keyboard input only", async ({ page }) 
   )
 })
 
+test("drives the drill loop — verdict hold, fix, auto-advance, Alt navigation, hint peek — from the keyboard alone", async ({
+  page,
+}) => {
+  await page.goto("/")
+  await enterLevel1(page)
+  const editor = sourceEditor(page)
+  const firstProblemId = await currentProblemId(page)
+
+  // A wrong answer holds: the verdict stays past the old toast life and
+  // carries the pinpointed correction, while the editor stays focused.
+  await editor.fill(await malformedSource(page))
+  await editor.press("Control+Enter")
+  const verdict = page.getByRole("status")
+  await expect(verdict).toContainText("Try again")
+  await page.waitForTimeout(2000)
+  await expect(verdict).toContainText("Try again")
+  await expect(verdict).toContainText("Use")
+  await expect(editor).toBeFocused()
+
+  // Retyping puts the verdict away without any extra key.
+  await editor.fill(await validDifferentProse(page, "drill words"))
+  await expect(page.getByRole("status")).toHaveCount(0)
+
+  // One chord judges and, after the beat, advances — no second key. The
+  // repair transfer scheduled by the earlier miss arrives first.
+  await editor.press("Control+Enter")
+  await expect.poll(() => currentProblemId(page)).not.toBe(firstProblemId)
+  await expect(page.getByLabel("Practice details")).toContainText(
+    "Repair practice",
+  )
+  await completeProblemAndAdvance(page)
+  const thirdProblemId = await currentProblemId(page)
+
+  // Alt+P walks back through visited steps; Alt+N returns forward.
+  await page.keyboard.press("Alt+P")
+  await expect.poll(() => currentProblemId(page)).not.toBe(thirdProblemId)
+  await page.keyboard.press("Alt+N")
+  await expect.poll(() => currentProblemId(page)).toBe(thirdProblemId)
+
+  // Alt+H peeks at the Hint; the same key closes it and hands the editor
+  // back, ready to type.
+  await page.keyboard.press("Alt+H")
+  await expect(page.getByRole("tab", { name: "Hint" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  )
+  await page.keyboard.press("Alt+H")
+  await expect(page.getByRole("tab", { name: "Write" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  )
+  await expect(sourceEditor(page)).toBeFocused()
+
+  // Plain Enter is still just typing.
+  const linesBefore = (await sourceText(page)).split("\n").length
+  await sourceEditor(page).press("End")
+  await sourceEditor(page).press("Enter")
+  expect((await sourceText(page)).split("\n").length).toBe(linesBefore + 1)
+})
+
 test("grades Markdown structure without grading capitalization or prose", async ({
   page,
 }) => {
@@ -662,7 +724,7 @@ test("blocks malformed syntax, then accepts a repair and transfers practice", as
   await expect(sourceEditor(page)).toBeFocused()
   await completeProblem(page)
   await expect(page.getByRole("status")).toContainText("Matched")
-  await page.getByRole("button", { name: "Next exercise" }).click()
+  // The repaired answer flows straight into the transfer exercise.
   await expect(page.getByRole("progressbar")).toHaveAttribute(
     "aria-valuenow",
     "1",
@@ -1232,13 +1294,11 @@ test("opens a narrow Summary on praise without scrolling to its action", async (
   await enterLevel1(page)
 
   for (let turn = 0; turn < 6; turn += 1) {
-    const problem = runtimeProblemById.get(await currentProblemId(page))
-    if (!problem) throw new Error("Expected the current runtime problem")
-    const editor = sourceEditor(page)
-    await editor.fill(problem.target)
-    await editor.press("Control+Enter")
-    await expect(page.getByRole("button", { name: "Next exercise" })).toBeFocused()
-    await page.keyboard.press("Control+Enter")
+    if (turn < 5) {
+      await completeProblemAndAdvance(page)
+    } else {
+      await completeProblem(page)
+    }
   }
 
   const summary = page.locator(".run-summary")
@@ -1262,14 +1322,11 @@ for (const viewport of [
     await enterLevel1(page)
 
     for (let turn = 0; turn < 6; turn += 1) {
-      const problem = runtimeProblemById.get(await currentProblemId(page))
-      if (!problem) throw new Error("Expected the current runtime problem")
-      await sourceEditor(page).fill(problem.target)
-      await sourceEditor(page).press("Control+Enter")
-      await expect(
-        page.getByRole("button", { name: "Next exercise" }),
-      ).toBeFocused()
-      await page.keyboard.press("Control+Enter")
+      if (turn < 5) {
+        await completeProblemAndAdvance(page)
+      } else {
+        await completeProblem(page)
+      }
     }
 
     await expect(page.getByRole("heading", { name: "Well done." })).toBeFocused()
