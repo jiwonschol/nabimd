@@ -9,11 +9,12 @@ import {
 } from "react"
 import type { EntryId } from "../content/entryChoices"
 import { getExerciseMode } from "../content/exerciseMode"
-import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
+import { useCenterCard } from "../guided/useCenterCard"
 import type { LearningSession } from "../session/learningSession"
+import { CenterCard } from "./CenterCard"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WordProcessorPage } from "./WordProcessorPage"
 
@@ -31,7 +32,9 @@ type AnswerPanelProps = {
   onCloseHint: () => void
   onNextHint: () => void
   onRequestHint: () => void
+  onSlotMiss?: () => void
   interactive?: boolean
+  problemCompleted?: boolean
 }
 
 function sourceExamples(problem: GradableProblem): string[] {
@@ -126,12 +129,18 @@ function HintPanel({
   }
 
   const examples = sourceExamples(problem)
+  // Code fences have an equal twin: when a problem asks for ``` the hint
+  // also shows the ~~~ form the grader accepts.
+  const hasFence = problem.syntaxTokens.some((token) =>
+    token.trim().startsWith("```"),
+  )
+  const chips = hasFence ? [...examples, "~~~"] : examples
 
   return (
     <div className="answer-hint">
       <div aria-label="Markdown pattern" className="syntax-sequence">
-        {examples.map((example, index) => (
-          <code key={`${problem.syntaxTokens[index]}-${index}`}>{example}</code>
+        {chips.map((chip, index) => (
+          <code key={`${chip}-${index}`}>{chip}</code>
         ))}
       </div>
       <p>{problem.teaching.howTo}</p>
@@ -245,7 +254,9 @@ export function AnswerPanel({
   onCloseHint,
   onNextHint,
   onRequestHint,
+  onSlotMiss,
   interactive = true,
+  problemCompleted = false,
 }: AnswerPanelProps) {
   const [view, setView] = useState<AnswerView>("write")
   const writeTabRef = useRef<HTMLButtonElement>(null)
@@ -263,13 +274,19 @@ export function AnswerPanel({
   const secondView: AnswerView = reviewAvailable ? "review" : "preview"
   const secondLabel = reviewAvailable ? "Review" : "Preview"
   const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
-  const blankGuides = useMemo(
-    () => ({
-      guides: deriveMarkdownBlankGuides(problem.target),
-      starterText: problem.starterText,
-    }),
-    [problem.starterText, problem.target],
-  )
+
+  // The center card is the input mode: the document page starts blank and
+  // grows one accepted slot at a time until the finished draft triggers the
+  // regular Check. (A future "hard" mode may swap this layer for a blank
+  // editor without touching the session model underneath.)
+  const card = useCenterCard({
+    problem,
+    draft,
+    completed: problemCompleted,
+    onGrow: onChange,
+    onComplete: onCheck,
+    onMiss: onSlotMiss,
+  })
 
   const selectView = useCallback(
     (nextView: AnswerView) => {
@@ -339,9 +356,11 @@ export function AnswerPanel({
 
     if (pendingEditorFocus.current && view === "write") {
       pendingEditorFocus.current = false
-      writePanelRef.current
-        ?.querySelector<HTMLElement>('[role="textbox"]')
-        ?.focus()
+      const panel = writePanelRef.current
+      const input =
+        panel?.querySelector<HTMLElement>("input") ??
+        panel?.querySelector<HTMLElement>('[role="textbox"]')
+      input?.focus()
       return
     }
 
@@ -596,17 +615,29 @@ export function AnswerPanel({
         role="tabpanel"
       >
         <WordProcessorPage
-          active={interactive && view === "write"}
-          blankGuides={blankGuides}
-          key={problem.id}
-          label="Your Markdown"
+          key={`${problem.id}-document`}
+          label="Your document"
           leadingBlankRows={leadingBlankRows}
-          onChange={onChange}
-          onCheck={onCheck}
-          presentation="source"
-          readOnly={false}
+          presentation="rendered"
           value={draft}
         />
+        {interactive && card.checkpoint ? (
+          <CenterCard
+            key={`${problem.id}-card`}
+            canGoToNextSlot={card.canGoToNextSlot}
+            canGoToPreviousSlot={card.canGoToPreviousSlot}
+            checkpoint={card.checkpoint}
+            onEditSegment={card.editSegment}
+            onNextSlot={card.goToNextSlot}
+            onPeekHint={() => selectViewFromPointer("hint")}
+            onPreviousSlot={card.goToPreviousSlot}
+            onSubmit={card.submit}
+            segmentValues={card.segmentValues}
+            slotIndex={card.slotIndex}
+            slotTotal={card.slotTotal}
+            verdict={card.verdict}
+          />
+        ) : null}
       </div>
 
       <div

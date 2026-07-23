@@ -72,6 +72,7 @@ export type SessionEvent =
       retryFamily: GradableProblem["retryFamily"]
     }
   | { type: "hint-requested" }
+  | { type: "slot-missed" }
   | { type: "coach-closed" }
   | { type: "problem-replaced"; problem: GradableProblem }
   | {
@@ -127,7 +128,7 @@ export function createLearningSession(
     runStepIndex: progress.runStepIndex,
     scheduledStepIndex: progress.scheduledStepIndex,
     currentProblemId: problem.id,
-    draft: progress.draftByProblemId[problem.id] ?? problem.starterText,
+    draft: progress.draftByProblemId[problem.id] ?? "",
     evaluation: null,
     teachingMode,
     retryFamily: problem.retryFamily,
@@ -297,6 +298,38 @@ export function learningSessionReducer(
       }
     }
 
+    case "slot-missed": {
+      // A wrong mark in the center card counts as a miss for the Summary
+      // (score and syntax reminders) without judging the document or owing a
+      // repair — the card itself already blocks the slot until it is right.
+      const failedScheduledStepIndexes = appendUnique(
+        session.failedScheduledStepIndexes,
+        session.scheduledStepIndex,
+      )
+      const failedProblemIds = appendUnique(
+        session.failedProblemIds,
+        session.currentProblemId,
+      )
+      if (
+        failedScheduledStepIndexes.length ===
+          session.failedScheduledStepIndexes.length &&
+        failedProblemIds.length === session.failedProblemIds.length
+      ) {
+        return session
+      }
+      return {
+        ...session,
+        hadFailure: true,
+        failedScheduledStepIndexes,
+        failedProblemIds,
+        progress: {
+          ...session.progress,
+          failedScheduledStepIndexes,
+          failedProblemIds,
+        },
+      }
+    }
+
     case "hint-requested": {
       if (session.coach !== "hint") {
         return {
@@ -342,7 +375,7 @@ export function learningSessionReducer(
         ...session,
         phase: "editing",
         currentProblemId: event.problem.id,
-        draft: event.problem.starterText,
+        draft: "",
         evaluation: null,
         teachingMode: keepsIntroduction ? "introduce" : "recall",
         retryFamily: event.problem.retryFamily,
@@ -358,7 +391,7 @@ export function learningSessionReducer(
           currentProblemId: event.problem.id,
           draftByProblemId: {
             ...session.progress.draftByProblemId,
-            [event.problem.id]: event.problem.starterText,
+            [event.problem.id]: "",
           },
           recentProblemIds: appendUnique(
             session.progress.recentProblemIds,

@@ -685,6 +685,14 @@ export function findRenderedMarkdownTokens(
                 kind: "mark",
                 to: line.to,
               })
+              // The whole row reads as code: extend the base line token so
+              // the row renders as a tinted, inset panel and a code block
+              // never masquerades as body prose. (One line token per source
+              // row is an invariant; classes stack instead.)
+              const baseLine = tokens[line.number - 1]
+              if (baseLine?.kind === "line") {
+                baseLine.className += " cm-rendered-code-block-line"
+              }
             }
           }
         } else if (nodeOffsets) {
@@ -694,6 +702,14 @@ export function findRenderedMarkdownTokens(
             kind: "mark",
             to: nodeOffsets.to,
           })
+          for (const line of lines) {
+            if (line.from >= nodeOffsets.from && line.from < nodeOffsets.to) {
+              const baseLine = tokens[line.number - 1]
+              if (baseLine?.kind === "line") {
+                baseLine.className += " cm-rendered-code-block-line"
+              }
+            }
+          }
         }
         break
       }

@@ -1637,8 +1637,185 @@ button:focus-visible,
 }
 
 .answer-panel__body--sheet {
+  position: relative;
   margin: 0 42px 0 52px;
   background: transparent;
+}
+
+/* Center card (2026-07-23 direction): the syntax input is a generous panel
+   floating over the document page. The page starts blank and grows one
+   accepted slot at a time; the card holds the slot's context and a large,
+   always-visible input for the marks. */
+.center-card {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: min(30rem, calc(100% - 2.5rem));
+  padding: 1.55rem 1.75rem 1.35rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgb(17 17 17 / 78%);
+  /* A raised white sheet, clearly lifted off the cream book page. */
+  background: var(--paper);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 85%) inset,
+    0 22px 48px rgb(63 41 33 / 22%);
+}
+
+.center-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.center-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.center-card__controls {
+  display: flex;
+  gap: 0.15rem;
+  margin-top: 0.1rem;
+}
+
+.center-card__control {
+  display: grid;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0.3rem;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  place-items: center;
+}
+
+.center-card__control:hover:not(:disabled),
+.center-card__control:focus-visible {
+  color: var(--ink);
+}
+
+.center-card__control:disabled {
+  color: rgb(95 95 90 / 35%);
+  cursor: default;
+}
+
+.center-card__slot {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.center-card__instruction {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* The strip is the input surface: locked prose flows inline with one square
+   box per mark character (the shape Jiwon sketched). The real input overlays
+   its box group invisibly but stays fully clickable and focusable — the #98
+   card failed by hiding an unreachable input, not by drawing boxes. */
+.center-card__line {
+  max-height: 10rem;
+  padding: 0.75rem 0.85rem;
+  background: var(--book-paper);
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  line-height: 2.15;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.center-card__locked {
+  white-space: pre-wrap;
+}
+
+.center-card__boxgroup {
+  position: relative;
+  display: inline-flex;
+  gap: 0.22rem;
+  margin: 0 0.28rem;
+  vertical-align: middle;
+}
+
+.center-card__box {
+  display: inline-flex;
+  width: 1.65rem;
+  height: 1.95rem;
+  align-items: center;
+  justify-content: center;
+  /* Warm ink boxes on white — the mark itself lands in the accent red the
+     rest of the book already uses for Markdown marks. */
+  border: 1.5px solid rgb(17 17 17 / 55%);
+  border-radius: 5px;
+  background: var(--paper);
+  box-shadow: 0 1px 0 rgb(17 17 17 / 8%);
+  color: rgb(168 92 92);
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1;
+  white-space: pre;
+}
+
+.center-card__boxgroup:focus-within .center-card__box--active {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2.5px rgb(168 92 92 / 28%);
+}
+
+.center-card__box-space {
+  /* A typed space shows as the standard editor middle dot — present enough
+     to read as "that was the spacebar", shaded well below full ink. */
+  color: rgb(17 17 17 / 34%);
+}
+
+.center-card__line[data-verdict="retry"] .center-card__box {
+  border-color: #c2726c;
+  background: rgb(255 246 245);
+}
+
+.center-card__boxinput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  font-size: 1rem;
+  outline: none;
+}
+
+.center-card__verdict {
+  margin: 0;
+  color: #8f4038;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.center-card__verdict strong {
+  font-family: var(--serif);
+  font-size: 1rem;
+}
+
+.center-card__hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
 }
 
 .answer-panel__body--reading {
@@ -2053,6 +2230,14 @@ button:focus-visible,
 .cm-rendered-inline-code {
   padding-inline: 0.08em;
   background: rgb(90 82 72 / 7%);
+}
+
+/* A code block reads as code, not body prose: tinted panel rows, inset from
+   the left margin with a quiet rule. */
+.cm-rendered-code-block-line {
+  padding-left: 1.2rem;
+  border-left: 3px solid rgb(90 82 72 / 28%);
+  background: rgb(90 82 72 / 8%);
 }
 
 .cm-rendered-link {

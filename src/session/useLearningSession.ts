@@ -333,6 +333,10 @@ export function useLearningSession(
     dispatch({ type: "hint-requested" })
   }, [])
 
+  const recordSlotMiss = useCallback(() => {
+    dispatch({ type: "slot-missed" })
+  }, [])
+
   const closeCoach = useCallback(() => {
     dispatch({ type: "coach-closed" })
   }, [])
@@ -350,7 +354,7 @@ export function useLearningSession(
       dispatch({
         type: "next",
         nextProblem: transferProblem,
-        nextDraft: transferProblem.starterText,
+        nextDraft: "",
       })
       return
     }
@@ -361,7 +365,7 @@ export function useLearningSession(
       dispatch({
         type: "next",
         nextProblem,
-        nextDraft: nextProblem.starterText,
+        nextDraft: "",
       })
       return
     }
@@ -389,6 +393,7 @@ export function useLearningSession(
     edit,
     check,
     requestHint,
+    recordSlotMiss,
     closeCoach,
     next,
     goToPreviousStep,
