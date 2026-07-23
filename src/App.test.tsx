@@ -101,8 +101,12 @@ function validDifferentProse() {
       return "```\ncompletely different\n```"
     case "thematic-break":
       return "First part.\n\n---\n\nSecond part."
-    default:
-      return "# completely different words"
+    default: {
+      // Heading problems grade the mark depth, so echo the target's marks:
+      // l1-heading-depth-* rejects a lone "#" even with different prose.
+      const headingMarks = currentProblem().target.match(/^#+(?= )/m)?.[0] ?? "#"
+      return `${headingMarks} completely different words`
+    }
   }
 }
 
