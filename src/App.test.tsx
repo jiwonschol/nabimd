@@ -264,7 +264,13 @@ describe("App", () => {
     ).getByLabelText("Markdown pattern")
     expect(
       Array.from(pattern.querySelectorAll("code"), (node) => node.textContent),
-    ).toEqual(currentProblem().syntaxTokens)
+    ).toEqual(
+      currentProblem().syntaxTokens.some((token) =>
+        token.trim().startsWith("```"),
+      )
+        ? [...currentProblem().syntaxTokens, "~~~"]
+        : [...currentProblem().syntaxTokens],
+    )
     await first.user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
     expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
@@ -284,9 +290,11 @@ describe("App", () => {
     await user.click(screen.getByRole("tab", { name: "Hint" }))
 
     const hint = screen.getByRole("tabpanel", { name: "Hint" })
+    // Every syntax token gets a chip, plus the ~~~ twin for the code fence.
     expect(within(hint).getAllByRole("code")).toHaveLength(
-      currentProblem().syntaxTokens.length,
+      currentProblem().syntaxTokens.length + 1,
     )
+    expect(within(hint).getByText("~~~")).toBeVisible()
     expect(within(hint).getByText("# Title")).toBeVisible()
     expect(within(hint).getByText("## Section")).toBeVisible()
     expect(within(hint).getByText("1. Read AGENTS.md")).toBeVisible()
@@ -376,6 +384,20 @@ describe("App", () => {
     submitSlot(alternate)
     // Accepted alternates land in the document exactly as typed.
     expect(writePanelDocument()).toContain("* ")
+  })
+
+  it("normalizes the Korean won sign to a backtick in code slots", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "inline-code",
+    )
+    await openLevel(1)
+
+    // macOS Korean input types ₩ on the backtick key; the card absorbs it.
+    submitSlot("₩₩")
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+    expect(writePanelDocument()).toContain("`")
   })
 
   it("holds the slot with Try again on a wrong mark and clears on retype", async () => {

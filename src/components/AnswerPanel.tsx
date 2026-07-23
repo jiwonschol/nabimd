@@ -129,12 +129,18 @@ function HintPanel({
   }
 
   const examples = sourceExamples(problem)
+  // Code fences have an equal twin: when a problem asks for ``` the hint
+  // also shows the ~~~ form the grader accepts.
+  const hasFence = problem.syntaxTokens.some((token) =>
+    token.trim().startsWith("```"),
+  )
+  const chips = hasFence ? [...examples, "~~~"] : examples
 
   return (
     <div className="answer-hint">
       <div aria-label="Markdown pattern" className="syntax-sequence">
-        {examples.map((example, index) => (
-          <code key={`${problem.syntaxTokens[index]}-${index}`}>{example}</code>
+        {chips.map((chip, index) => (
+          <code key={`${chip}-${index}`}>{chip}</code>
         ))}
       </div>
       <p>{problem.teaching.howTo}</p>

@@ -94,10 +94,14 @@ export function CenterCard({
   }, [verdict])
 
   const editGroup = (index: number, raw: string) => {
+    // macOS Korean input sources type ₩ on the backtick key, which would
+    // lock Korean learners out of every code slot. The won sign is never a
+    // Markdown mark, so it safely normalizes to a backtick (and the box
+    // shows the real mark).
     // Fast typing (or a paste) can hand one group more characters than it
     // holds; the overflow spills into the following groups instead of being
     // dropped.
-    let rest = raw
+    let rest = raw.replace(/₩/g, "`")
     let cursor = index
     while (cursor < groups.length) {
       const capacity = groups[cursor]?.value.length ?? 0
@@ -120,6 +124,8 @@ export function CenterCard({
     index: number,
   ) => {
     if (event.key === "Enter") {
+      // An Enter that finishes an IME composition is not a submission.
+      if (event.nativeEvent.isComposing) return
       event.preventDefault()
       onSubmit()
       return
