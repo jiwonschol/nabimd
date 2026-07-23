@@ -92,7 +92,13 @@ export function App() {
       ) {
         return
       }
-      learningSession.navigateToHistory(event.state.snapshot)
+      if (!learningSession.navigateToHistory(event.state.snapshot)) {
+        // The pop already moved the pointer to the older entry; a later
+        // pushState from there would truncate the entries ahead, so walk the
+        // pointer forward again. A multi-entry jump self-heals one entry per
+        // resulting popstate until the pointer matches the current session.
+        window.history.go(1)
+      }
     }
 
     window.addEventListener("popstate", handlePopState)

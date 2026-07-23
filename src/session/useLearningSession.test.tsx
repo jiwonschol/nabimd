@@ -213,8 +213,13 @@ describe("useLearningSession", () => {
 
     // popstate → navigateToHistory with the step-0 entry recorded before the
     // splice: restoring it would rewind to the pre-splice schedule and the
-    // pruning effect would then silently drop the owed repair exercise.
-    act(() => result.current.navigateToHistory(preSpliceSnapshot))
+    // pruning effect would then silently drop the owed repair exercise. The
+    // rejection is reported so App.tsx can walk the history pointer back.
+    let restored: boolean | undefined
+    act(() => {
+      restored = result.current.navigateToHistory(preSpliceSnapshot)
+    })
+    expect(restored).toBe(false)
     expect(result.current.session.runStepIndex).toBe(1)
     expect(result.current.session.currentIsTransfer).toBe(true)
     expect(result.current.session.runProblemIds).toHaveLength(repairedRunLength)
@@ -265,7 +270,11 @@ describe("useLearningSession", () => {
 
     // Revisiting the now-completed repair step via browser Back is plain
     // review; the lock must not outlive the owed repair.
-    act(() => result.current.navigateToHistory(repairSnapshot))
+    let restored: boolean | undefined
+    act(() => {
+      restored = result.current.navigateToHistory(repairSnapshot)
+    })
+    expect(restored).toBe(true)
     expect(result.current.session.runStepIndex).toBe(1)
     expect(result.current.session.currentIsTransfer).toBe(true)
   })

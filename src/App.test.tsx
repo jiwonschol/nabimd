@@ -1099,6 +1099,41 @@ describe("App", () => {
     await waitFor(() => expect(currentProblem().id).toBe(secondProblemId))
   })
 
+  it("walks the history pointer back when Back is rejected on an owed repair", async () => {
+    const { user, editor } = await openLevel(1)
+    const failedProblemId = currentProblem().id
+    replaceSource(editor, "not markdown")
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    replaceSource(editor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    const repairProblemId = currentProblem().id
+    expect(repairProblemId).not.toBe(failedProblemId)
+
+    // Back while the repair is owed: the restore is rejected, and the pointer
+    // must walk forward again so it sits on the repair entry, not behind it.
+    act(() => window.history.back())
+    await waitFor(() => {
+      const state = window.history.state as {
+        snapshot?: { currentProblemId?: string }
+      } | null
+      expect(state?.snapshot?.currentProblemId).toBe(repairProblemId)
+    })
+    expect(currentProblem().id).toBe(repairProblemId)
+
+    // Complete the repair and advance; the resulting pushState must extend
+    // the walk. Had the pointer stayed behind, this push would truncate the
+    // repair entry and Back would skip straight to the failed exercise.
+    const repairEditor = screen.getByRole("textbox", { name: "Your Markdown" })
+    replaceSource(repairEditor, currentProblem().target)
+    await user.click(screen.getByRole("button", { name: "Check answer" }))
+    await user.click(screen.getByRole("button", { name: "Next exercise" }))
+    expect(currentProblem().id).not.toBe(repairProblemId)
+
+    act(() => window.history.back())
+    await waitFor(() => expect(currentProblem().id).toBe(repairProblemId))
+  })
+
   it("completes a run with one primary replay choice", async () => {
     const { user } = await openLevel(1)
     for (let index = 0; index < 6; index += 1) {

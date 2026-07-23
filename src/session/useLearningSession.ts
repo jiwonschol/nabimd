@@ -256,21 +256,24 @@ export function useLearningSession(
   // Restores a snapshot popped from browser history. Abandoning the run for
   // the landing page stays allowed (that pops a landing entry, handled by
   // returnToGreetingFromHistory); only practice-snapshot restores are locked
-  // while a repair is owed, mirroring the in-app Prev/Next lock. The rejected
-  // popstate is not re-pushed — Forward self-heals the pointer, and re-pushing
-  // would trap Back until the repair completes.
+  // while a repair is owed, mirroring the in-app Prev/Next lock. Returns
+  // whether the snapshot was restored: a rejected pop leaves the browser
+  // pointer on the older entry, and a later pushState from there would
+  // truncate the entries ahead — including the repair step's own entry — so
+  // the caller must walk the pointer forward again.
   const navigateToHistory = useCallback(
-    (snapshot: PracticeHistorySnapshot) => {
-      if (snapshot.entryId === null) return
-      if (owesRepairRef.current()) return
+    (snapshot: PracticeHistorySnapshot): boolean => {
+      if (snapshot.entryId === null) return false
+      if (owesRepairRef.current()) return false
       // History entries survive deploys; a snapshot may reference problems
       // that a newer bank no longer serves. Ignore it instead of crashing.
-      if (!validProblemIds.has(snapshot.currentProblemId)) return
+      if (!validProblemIds.has(snapshot.currentProblemId)) return false
       if (!snapshot.runProblemIds.every((id) => validProblemIds.has(id))) {
-        return
+        return false
       }
       const problem = getProblem(snapshot.currentProblemId)
       dispatch({ type: "history-navigated", snapshot, problem })
+      return true
     },
     [],
   )
