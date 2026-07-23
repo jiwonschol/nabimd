@@ -51,6 +51,9 @@ export function describeCheckpoint(checkpoint: SyntaxCheckpoint): string {
   if (mark.startsWith("```") || mark.startsWith("~~~")) {
     return "Fence the code block"
   }
+  // Emphasis pairs concatenate both delimiters: italic *x* yields "**",
+  // bold **x** yields "****" — so the exact pair means italic.
+  if (mark === "**" || mark === "__") return "Italicize the phrase"
   if (mark.startsWith("**") || mark.startsWith("__")) return "Bold the phrase"
   if (mark.startsWith("![")) return "Build the image marks"
   if (mark.startsWith("[")) return "Build the link marks"
