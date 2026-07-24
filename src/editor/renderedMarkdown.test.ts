@@ -282,6 +282,29 @@ describe("renderedMarkdown", () => {
     }
   })
 
+  it("styles every row of indented code blocks inside containers", () => {
+    const sources = [
+      [">     first", ">     second"].join("\n"),
+      ["- item", "", "      first", "      second"].join("\n"),
+    ]
+
+    for (const source of sources) {
+      const codeRows = findRenderedMarkdownTokens(source)
+        .filter((token) => token.kind === "line")
+        .filter((token) =>
+          token.className.split(" ").includes("cm-rendered-code-block-line"),
+        )
+
+      expect(
+        codeRows.map((token) => source.split("\n")[token.sourceLine - 1]),
+        source,
+      ).toEqual([
+        expect.stringContaining("first"),
+        expect.stringContaining("second"),
+      ])
+    }
+  })
+
   it("keeps the final content line visible for an unclosed fence", () => {
     const source = ["```", "hello"].join("\n")
     const tokens = findRenderedMarkdownTokens(source)
