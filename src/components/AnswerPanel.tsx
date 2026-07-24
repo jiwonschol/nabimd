@@ -37,6 +37,66 @@ type AnswerPanelProps = {
   problemCompleted?: boolean
 }
 
+export type HintPatternLine = { kind: "code" | "meta"; text: string }
+
+const metaLineTokens = new Set(["New line", "Blank line"])
+const completeExampleLine = /^\s*(?:[-+*>]|\d+[.)]|#{1,6})\s+\S/
+
+/**
+ * Levels 1–2 single-syntax problems author their tokens as one pattern split
+ * into parts (`["[", "Link text", "]", "(", "Web address", ")"]`). Shown one
+ * part per row they read as several grammars; the hint joins them back into
+ * the single line the learner will actually type. Mark-list problems
+ * (rebuild families, levels 3+) keep one mark per row.
+ */
+function isSinglePatternProblem(problem: GradableProblem): boolean {
+  if ((problem.level ?? 1) > 2) return false
+  if (problem.familyId.startsWith("rebuild")) return false
+  return problem.syntaxTokens.some((token) => /[A-Za-z]/.test(token))
+}
+
+export function hintPatternLines(
+  problem: GradableProblem,
+): HintPatternLine[] {
+  if (!isSinglePatternProblem(problem)) {
+    return sourceExamples(problem).map((text) => ({
+      kind: "code" as const,
+      text,
+    }))
+  }
+
+  const lines: HintPatternLine[] = []
+  let current = ""
+  const flush = () => {
+    if (current === "") return
+    lines.push({ kind: "code", text: current })
+    current = ""
+  }
+
+  for (const token of problem.syntaxTokens) {
+    if (metaLineTokens.has(token)) {
+      flush()
+      lines.push({ kind: "meta", text: token })
+      continue
+    }
+    if (token === "Space") {
+      // The book shows spaces as interpuncts; the grammar-required space
+      // stays visible instead of vanishing at the end of a pattern (`##·`).
+      current += "·"
+      continue
+    }
+    // Fence delimiters and complete example lines (`- Item`) are real lines.
+    if (token.startsWith("```") || completeExampleLine.test(token)) {
+      flush()
+      lines.push({ kind: "code", text: token })
+      continue
+    }
+    current += token
+  }
+  flush()
+  return lines
+}
+
 function sourceExamples(problem: GradableProblem): string[] {
   if ((problem.level ?? 1) !== 5) return [...problem.syntaxTokens]
 
@@ -128,20 +188,31 @@ function HintPanel({
     )
   }
 
-  const examples = sourceExamples(problem)
+  const lines = hintPatternLines(problem)
   // Code fences have an equal twin: when a problem asks for ``` the hint
   // also shows the ~~~ form the grader accepts.
   const hasFence = problem.syntaxTokens.some((token) =>
     token.trim().startsWith("```"),
   )
-  const chips = hasFence ? [...examples, "~~~"] : examples
+  const chips: HintPatternLine[] = hasFence
+    ? [...lines, { kind: "code", text: "~~~" }]
+    : lines
 
   return (
     <div className="answer-hint">
       <div aria-label="Markdown pattern" className="syntax-sequence">
-        {chips.map((chip, index) => (
-          <code key={`${chip}-${index}`}>{chip}</code>
-        ))}
+        {chips.map((line, index) =>
+          line.kind === "meta" ? (
+            <span
+              className="syntax-sequence__meta"
+              key={`${line.text}-${index}`}
+            >
+              {line.text}
+            </span>
+          ) : (
+            <code key={`${line.text}-${index}`}>{line.text}</code>
+          ),
+        )}
       </div>
       <p>{problem.teaching.howTo}</p>
     </div>

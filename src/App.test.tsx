@@ -9,6 +9,7 @@ import {
 import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
+import { hintPatternLines } from "./components/AnswerPanel"
 import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
 import { evaluateProblem } from "./engine/evaluateProblem"
@@ -262,14 +263,17 @@ describe("App", () => {
     const pattern = within(
       screen.getByRole("tabpanel", { name: "Hint" }),
     ).getByLabelText("Markdown pattern")
+    const expectedLines = hintPatternLines(currentProblem())
+      .filter((line) => line.kind === "code")
+      .map((line) => line.text)
     expect(
       Array.from(pattern.querySelectorAll("code"), (node) => node.textContent),
     ).toEqual(
       currentProblem().syntaxTokens.some((token) =>
         token.trim().startsWith("```"),
       )
-        ? [...currentProblem().syntaxTokens, "~~~"]
-        : [...currentProblem().syntaxTokens],
+        ? [...expectedLines, "~~~"]
+        : expectedLines,
     )
     await first.user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
