@@ -317,9 +317,10 @@ export function countQualifyingLinks(
   scope: CheckScope,
   options: LinkShapeOptions,
 ): number {
-  const definitions = options.requireNonemptyDestination
-    ? firstDefinitionsByIdentifier(context)
-    : undefined
+  const definitions =
+    options.allowReferences && options.requireNonemptyDestination
+      ? firstDefinitionsByIdentifier(context)
+      : undefined
 
   return descendants(nodesInScope(context, scope) as AstNode[])
     .filter(
