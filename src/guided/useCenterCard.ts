@@ -70,6 +70,22 @@ function canonicalCount(
   return null
 }
 
+function progressMatchesDraft(
+  problem: GradableProblem,
+  checkpoints: readonly SyntaxCheckpoint[],
+  draft: string,
+  progress: SlotProgress,
+): boolean {
+  return (
+    buildGuidedDraft(
+      problem.target,
+      checkpoints,
+      progress.count,
+      progress.values,
+    ) === draft
+  )
+}
+
 // The card owns which slot each problem is on. Values live outside React so
 // an in-session revisit (previous/next step, Try again elsewhere) resumes the
 // exact slot even when the learner typed an accepted alternate mark.
@@ -86,7 +102,12 @@ function initialProgress(
   completed: boolean,
 ): SlotProgress {
   const remembered = slotMemory.get(problem.id)
-  if (remembered) return remembered
+  if (
+    remembered &&
+    progressMatchesDraft(problem, checkpoints, draft, remembered)
+  ) {
+    return remembered
+  }
 
   const counted = canonicalCount(problem.target, checkpoints, draft)
   if (counted !== null) return { count: counted, values: {} }
@@ -112,9 +133,12 @@ export function useCenterCard({
   const [progressByProblem, setProgressByProblem] = useState<
     Record<string, SlotProgress>
   >({})
+  const cachedProgress = progressByProblem[problem.id]
   const progress =
-    progressByProblem[problem.id] ??
-    initialProgress(problem, checkpoints, draft, completed)
+    cachedProgress &&
+    progressMatchesDraft(problem, checkpoints, draft, cachedProgress)
+      ? cachedProgress
+      : initialProgress(problem, checkpoints, draft, completed)
 
   const done = progress.count >= checkpoints.length
 
