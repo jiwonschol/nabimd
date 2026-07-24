@@ -31,6 +31,8 @@ type StructuralCheck = Exclude<
   { kind: "heading-spacing" | "hash-heading-style" | "has-heading" }
 >
 
+type DefinitionIndex = ReadonlyMap<string, Definition>
+
 const nodeTypeByBlock: Readonly<Record<BlockKind, RootContent["type"]>> = {
   heading: "heading",
   paragraph: "paragraph",
@@ -315,12 +317,17 @@ export function countQualifyingLinks(
   scope: CheckScope,
   options: LinkShapeOptions,
 ): number {
+  const definitions =
+    options.allowReferences && options.requireNonemptyDestination
+      ? firstDefinitionsByIdentifier(context)
+      : undefined
+
   return descendants(nodesInScope(context, scope) as AstNode[])
     .filter(
       (node): node is Link | LinkReference =>
         node.type === "link" || node.type === "linkReference",
     )
-    .filter((node) => linkSyntaxAllowed(node, context, options))
+    .filter((node) => linkSyntaxAllowed(node, context, options, definitions))
     .filter(
       (node) =>
         !options.requireNonemptyLabel ||
@@ -332,11 +339,12 @@ function linkSyntaxAllowed(
   link: Link | LinkReference,
   context: EvaluationContext,
   options: LinkShapeOptions,
+  definitions: DefinitionIndex | undefined,
 ): boolean {
   if (link.type === "linkReference") {
     if (!options.allowReferences) return false
     if (!options.requireNonemptyDestination) return true
-    const definition = firstMatchingDefinition(context, link.identifier)
+    const definition = definitions?.get(link.identifier)
     return Boolean(
       definition &&
       hasMeaningfulDestination(
@@ -356,18 +364,23 @@ function linkSyntaxAllowed(
   return hasMeaningfulDestination(link.url, rawDestination)
 }
 
-function firstMatchingDefinition(
+function firstDefinitionsByIdentifier(
   context: EvaluationContext,
-  identifier: string,
-): Definition | undefined {
-  return descendants(context.blocks as AstNode[])
+): DefinitionIndex {
+  const definitions = new Map<string, Definition>()
+  descendants(context.blocks as AstNode[])
     .filter((node): node is Definition => node.type === "definition")
     .sort(
       (left, right) =>
         (left.position?.start.offset ?? 0) -
         (right.position?.start.offset ?? 0),
     )
-    .find((definition) => definition.identifier === identifier)
+    .forEach((definition) => {
+      if (!definitions.has(definition.identifier)) {
+        definitions.set(definition.identifier, definition)
+      }
+    })
+  return definitions
 }
 
 function directLinkDestinationSource(link: Link, source: string): string {
