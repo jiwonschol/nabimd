@@ -3,6 +3,7 @@ import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import {
   acceptedGuidedSyntaxInputs,
+  acceptsGuidedSyntaxInput,
   buildGuidedDraft,
   deriveSyntaxCheckpoints,
 } from "./guidedSyntax"
@@ -257,6 +258,66 @@ describe("buildGuidedDraft", () => {
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(
       target,
     )
+  })
+})
+
+/**
+ * Blank policy: a blank asks for a Markdown grammar token and nothing else.
+ * The token includes whitespace the grammar itself requires (`# `, `- `,
+ * `1. ` are not headings or list items without the space), and it never
+ * includes layout whitespace or Goal prose — the learner is answering
+ * "what is the Markdown syntax here", not retyping the Goal document.
+ */
+describe("published blank policy", () => {
+  const bankCheckpoints = problemBank.flatMap((problem) =>
+    deriveSyntaxCheckpoints(problem.target, problem.starterText).map(
+      (checkpoint) => ({
+        label: `${problem.id} ${checkpoint.id}`,
+        checkpoint,
+      }),
+    ),
+  )
+
+  it("asks only Markdown grammar characters, never Goal prose", () => {
+    for (const { label, checkpoint } of bankCheckpoints) {
+      expect(checkpoint.canonicalInput, label).not.toMatch(/[A-Za-z]/)
+    }
+  })
+
+  it("includes the grammar-required space in every marker blank", () => {
+    for (const { label, checkpoint } of bankCheckpoints) {
+      const canonical = checkpoint.canonicalInput
+      if (/^#{1,6}/.test(canonical)) {
+        // `#Title` is plain text — the space completes the heading grammar.
+        expect(canonical, label).toMatch(/^#{1,6} /)
+      }
+      const marker = canonical.match(/^([*+-])(?!\1)/)?.[1]
+      if (marker && !new RegExp(`^\\${marker}+$`).test(canonical)) {
+        // `-Item` is plain text — the space completes the list grammar.
+        expect(canonical, label).toMatch(/^[*+-] /)
+      }
+      if (/^\d+[.)]/.test(canonical)) {
+        expect(canonical, label).toMatch(/^\d+[.)] /)
+      }
+      if (canonical.startsWith(">")) {
+        expect(canonical, label).toMatch(/^> /)
+      }
+    }
+  })
+
+  it("rejects marker answers typed without their grammar space", () => {
+    for (const { label, checkpoint } of bankCheckpoints) {
+      const canonical = checkpoint.canonicalInput
+      const withoutSpace = canonical.replace(
+        /^(#{1,6}|\d+[.)]|[*+-]|>) /,
+        "$1",
+      )
+      if (withoutSpace === canonical) continue
+      expect(
+        acceptsGuidedSyntaxInput(checkpoint, withoutSpace),
+        label,
+      ).toBe(false)
+    }
   })
 })
 
