@@ -44,7 +44,9 @@ export type PracticeHistorySnapshot = Pick<
   | "currentProblemId"
   | "currentIsTransfer"
   | "runStartedAtMs"
->
+> & {
+  pendingTransferFamily: ProgressV5["pendingTransferFamily"]
+}
 
 export type SessionEvent =
   | {
@@ -242,7 +244,7 @@ export function learningSessionReducer(
           scheduledStepIndex: event.snapshot.scheduledStepIndex,
           currentProblemId: event.snapshot.currentProblemId,
           currentIsTransfer: event.snapshot.currentIsTransfer,
-          pendingTransferFamily: null,
+          pendingTransferFamily: event.snapshot.pendingTransferFamily,
           runStartedAtMs: event.snapshot.runStartedAtMs,
           runCompletedAtMs: null,
         },

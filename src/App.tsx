@@ -132,6 +132,8 @@ export function App() {
             scheduledStepIndex: learningSession.session.scheduledStepIndex,
             currentProblemId: learningSession.session.currentProblemId,
             currentIsTransfer: learningSession.session.currentIsTransfer,
+            pendingTransferFamily:
+              learningSession.session.progress.pendingTransferFamily,
             runStartedAtMs: learningSession.session.runStartedAtMs,
           },
         }
@@ -145,11 +147,16 @@ export function App() {
       } else {
         window.history.pushState(historyState, "")
       }
+    } else if (isAppHistoryState(window.history.state)) {
+      // Keep the current entry's snapshot fresh when transfer-debt details
+      // change without moving to a different exercise.
+      window.history.replaceState(historyState, "")
     }
   }, [
     learningSession.consumeHistoryReplaceHint,
     learningSession.session.currentIsTransfer,
     learningSession.session.currentProblemId,
+    learningSession.session.progress.pendingTransferFamily,
     learningSession.session.entryId,
     learningSession.session.runNumber,
     learningSession.session.runProblemIds,

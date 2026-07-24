@@ -35,6 +35,7 @@ function captureSnapshot(
     scheduledStepIndex: session.scheduledStepIndex,
     currentProblemId: session.currentProblemId,
     currentIsTransfer: session.currentIsTransfer,
+    pendingTransferFamily: session.progress.pendingTransferFamily,
     runStartedAtMs: session.runStartedAtMs,
   }
 }

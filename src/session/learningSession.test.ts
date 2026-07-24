@@ -183,6 +183,33 @@ describe("learningSessionReducer", () => {
     expect(transfer.progress.recentProblemIds).toContain("heading-apple")
   })
 
+  it("preserves transfer debt when restoring a history snapshot", () => {
+    const failed = editAndCheck(newSession(), apple, "#Apple")
+    const repaired = editAndCheck(failed, apple, "# Apple")
+
+    expect(repaired.progress.pendingTransferFamily).toBe(apple.retryFamily)
+
+    const restored = learningSessionReducer(repaired, {
+      type: "history-navigated",
+      snapshot: {
+        entryId: repaired.entryId,
+        runNumber: repaired.runNumber,
+        runProblemIds: [...repaired.runProblemIds],
+        runStepIndex: repaired.runStepIndex,
+        scheduledStepIndex: repaired.scheduledStepIndex,
+        currentProblemId: repaired.currentProblemId,
+        currentIsTransfer: repaired.currentIsTransfer,
+        pendingTransferFamily: repaired.progress.pendingTransferFamily,
+        runStartedAtMs: repaired.runStartedAtMs,
+      },
+      problem: apple,
+    })
+
+    expect(restored.needsTransfer).toBe(true)
+    expect(restored.hadFailure).toBe(true)
+    expect(restored.progress.pendingTransferFamily).toBe(apple.retryFamily)
+  })
+
   it("keeps failed feedback while editing until Check replaces it", () => {
     const failed = editAndCheck(newSession(), apple, "#Apple")
     const edited = learningSessionReducer(failed, {
