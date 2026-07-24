@@ -1549,6 +1549,13 @@ button:focus-visible,
   gap: clamp(0.75rem, 1.7vh, 1.25rem);
 }
 
+.syntax-sequence__meta {
+  color: var(--muted);
+  font-size: clamp(0.78rem, 1.1vw, 0.92rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
 .syntax-sequence code {
   display: block;
   min-height: 1.5rem;
