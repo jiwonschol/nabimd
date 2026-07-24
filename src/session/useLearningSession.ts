@@ -18,7 +18,11 @@ import {
 } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import { resolveBrowserStorage } from "../progress/browserStorage"
-import { loadProgress, saveProgress } from "../progress/progressStore"
+import {
+  loadProgress,
+  readPersistedRunSeed,
+  saveProgress,
+} from "../progress/progressStore"
 import {
   isEligibleTransferProblem,
   selectTransferProblem,
@@ -48,7 +52,12 @@ function getOrCreateSessionSeed(
       return stored
     }
 
-    const seed = createSeed()
+    // No session seed yet — e.g. the first load after upgrading from a build
+    // that predated session seeds. Adopt the seed the persisted progress was
+    // generated under (0 for a legacy seedless run) so it loads under that
+    // seed instead of being validated against a fresh random seed and dropped.
+    const persistedSeed = readPersistedRunSeed(storage)
+    const seed = persistedSeed ?? createSeed()
     if (!Number.isSafeInteger(seed) || seed < 0) {
       throw new Error("Session seed must be a nonnegative safe integer")
     }

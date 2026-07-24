@@ -14,7 +14,10 @@ import {
 import { getSyntaxFamily } from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
 import type { PracticeHistorySnapshot } from "./learningSession"
-import { useLearningSession } from "./useLearningSession"
+import {
+  SESSION_SEED_STORAGE_KEY,
+  useLearningSession,
+} from "./useLearningSession"
 
 function matchCurrent(result: ReturnType<typeof renderLearningSession>["result"]) {
   act(() => result.current.edit(result.current.problem.target))
@@ -396,6 +399,31 @@ describe("useLearningSession", () => {
     expect(restored.result.current.session.runProblemIds).toEqual(
       createRunProblemIds("level-1", 0, 17),
     )
+  })
+
+  it("restores legacy seedless progress by adopting seed 0 after an upgrade", () => {
+    // Simulate upgrading from a build that predated session seeds: an active
+    // run persisted as a v5 record without `runSeed`, and no session-seed key.
+    const storage = new MemoryStorage()
+    const ids = createRunProblemIds("level-4", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-4"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[ids[0]!] = "# Saved draft"
+    const { runSeed: _runSeed, ...legacyProgress } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    // A fresh random seed would reject the seed-0 run and drop the saved work.
+    const { result } = renderLearningSession(storage, () => 2_000, () => 99)
+
+    expect(result.current.session.progress.runSeed).toBe(0)
+    expect(result.current.session.entryId).toBe("level-4")
+    expect(result.current.session.runProblemIds).toEqual(ids)
+    expect(result.current.session.progress.draftByProblemId[ids[0]!]).toBe(
+      "# Saved draft",
+    )
+    expect(storage.getItem(SESSION_SEED_STORAGE_KEY)).toBe("0")
   })
 
   it("builds different opening shapes for separate browser-session seeds", () => {
