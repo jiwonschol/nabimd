@@ -104,7 +104,7 @@ describe("deriveSyntaxCheckpoints", () => {
 
   it.each([
     ["- Pens", "Pens", ["- ", "* ", "+ "]],
-    ["  - Child", "Child", ["  - ", "  * ", "  + "]],
+    ["  - Child", "Child", ["- ", "* ", "+ "]],
     ["1. First", "First", ["1. ", "1) "]],
     ["---", "", ["---", "***", "___"]],
     ["```\nhello\n```", "\nhello\n", ["``````", "~~~~~~"]],
@@ -171,16 +171,44 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("preserves indentation and the required space for nested list items", () => {
+  it("keeps nested-list indentation out of the card and asks only the marker", () => {
+    const target = ["- Parent", "  - Child"].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(
-      ["- Parent", "  - Child"].join("\n"),
+      target,
       ["Parent", "Child"].join("\n"),
     )
 
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
       "- ",
-      "  - ",
+      "- ",
     ])
+    // The indentation is not part of the checkpoint at all: the card shows
+    // only the marker boxes and the prose, and the document regains the
+    // indentation from the untouched slice before the checkpoint.
+    expect(checkpoints[1]?.segments).toEqual([
+      { kind: "input", value: "- " },
+      { kind: "locked", value: "Child" },
+    ])
+    expect(checkpoints[1]?.targetFrom).toBe("- Parent\n  ".length)
+    expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
+  })
+
+  it("never surfaces line-leading whitespace in any published problem", () => {
+    for (const problem of problemBank) {
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+      for (const checkpoint of checkpoints) {
+        expect(checkpoint.canonicalInput, `${problem.id} ${checkpoint.id}`).not.toMatch(
+          /^[\t ]/,
+        )
+        expect(
+          checkpoint.segments[0]?.value,
+          `${problem.id} ${checkpoint.id}`,
+        ).not.toMatch(/^[\t ]/)
+      }
+    }
   })
 
   it("treats both fenced-code delimiters as one semantic checkpoint", () => {

@@ -418,6 +418,26 @@ function markNodeSyntax(
   }
 }
 
+function unmaskLineLeadingWhitespace(source: string, mask: boolean[]): void {
+  // Line-leading indentation is Goal layout, never a mark the learner types:
+  // only whitespace the Markdown grammar itself requires (after `-`, `#`, …)
+  // stays inside an input segment.
+  let lineStart = 0
+  while (lineStart <= source.length) {
+    let index = lineStart
+    while (
+      index < source.length &&
+      (source[index] === " " || source[index] === "\t")
+    ) {
+      mask[index] = false
+      index += 1
+    }
+    const lineEnd = lineEndAt(source, lineStart)
+    if (lineEnd >= source.length) break
+    lineStart = lineEnd + 1
+  }
+}
+
 function mergeSegments(
   source: string,
   mask: readonly boolean[],
@@ -464,6 +484,7 @@ export function deriveSyntaxCheckpoints(
   const mask = Array.from({ length: source.length }, () => false)
   const groupedRanges: SourceRange[] = []
   markNodeSyntax(fromMarkdown(source), source, mask, groupedRanges)
+  unmaskLineLeadingWhitespace(source, mask)
 
   const checkpoints: SyntaxCheckpoint[] = []
   let lineStart = 0
@@ -476,7 +497,18 @@ export function deriveSyntaxCheckpoints(
       .some((isInput) => isInput)
 
     if (hasInput) {
-      const segments = mergeSegments(source, mask, lineStart, checkpointEnd)
+      // Line-leading indentation is not Markdown grammar, so it never appears
+      // inside the card: the checkpoint starts at the first mark or prose
+      // character and the indentation rejoins the document as the untouched
+      // slice between checkpoints.
+      let contentStart = lineStart
+      while (
+        contentStart < checkpointEnd &&
+        (source[contentStart] === " " || source[contentStart] === "\t")
+      ) {
+        contentStart += 1
+      }
+      const segments = mergeSegments(source, mask, contentStart, checkpointEnd)
       const canonicalInput = segments
         .filter(
           (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
@@ -485,15 +517,15 @@ export function deriveSyntaxCheckpoints(
         .map((segment) => segment.value)
         .join("")
       const activeOffset = mask.findIndex(
-        (isInput, index) => index >= lineStart && index < checkpointEnd && isInput,
+        (isInput, index) => index >= contentStart && index < checkpointEnd && isInput,
       )
       const line = lineNumberAt(source, lineStart)
       checkpoints.push({
         id: `syntax-${line}-${checkpoints.length + 1}`,
         line,
-        targetFrom: lineStart,
+        targetFrom: contentStart,
         targetTo: checkpointEnd,
-        activeOffset: activeOffset < 0 ? lineStart : activeOffset,
+        activeOffset: activeOffset < 0 ? contentStart : activeOffset,
         canonicalInput,
         segments,
       })
