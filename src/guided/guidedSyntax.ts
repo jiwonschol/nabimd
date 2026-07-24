@@ -108,7 +108,7 @@ export function acceptedGuidedSyntaxInputs(
     /^(?:=+|-+)$/.test(canonicalParts[0] ?? "") &&
     checkpoint.segments.some(
       (segment) =>
-        segment.kind === "locked" && /(?:^|\n)[\t ]*$/.test(segment.value),
+        segment.kind === "locked" && /\n[\t ]*$/.test(segment.value),
     )
 
   if (

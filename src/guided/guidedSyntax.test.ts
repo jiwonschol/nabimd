@@ -65,6 +65,18 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual(["---"])
   })
 
+  it("still offers thematic-break alternatives for an indented divider with no heading text", () => {
+    const target = "  ---"
+    const checkpoints = deriveSyntaxCheckpoints(target, "")
+
+    expect(checkpoints).toHaveLength(1)
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([
+      "---",
+      "***",
+      "___",
+    ])
+  })
+
   it("groups both sides of paired emphasis into one checkpoint", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "Use **final draft** today.",
