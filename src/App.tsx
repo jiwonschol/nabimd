@@ -49,6 +49,25 @@ function sameHistoryLocation(
   )
 }
 
+function sameHistoryState(left: unknown, right: AppHistoryState): boolean {
+  if (!sameHistoryLocation(left, right)) return false
+  if (!isAppHistoryState(left)) return false
+  if (left.view === "landing" || right.view === "landing") return true
+  return (
+    left.snapshot.scheduledStepIndex === right.snapshot.scheduledStepIndex &&
+    left.snapshot.currentIsTransfer === right.snapshot.currentIsTransfer &&
+    left.snapshot.runStartedAtMs === right.snapshot.runStartedAtMs &&
+    left.snapshot.pendingTransferFamily ===
+      right.snapshot.pendingTransferFamily &&
+    left.snapshot.runProblemIds.join(" ") ===
+      right.snapshot.runProblemIds.join(" ") &&
+    (left.snapshot.failedScheduledStepIndexes ?? []).join(" ") ===
+      right.snapshot.failedScheduledStepIndexes.join(" ") &&
+    (left.snapshot.failedProblemIds ?? []).join(" ") ===
+      right.snapshot.failedProblemIds.join(" ")
+  )
+}
+
 export function getPageTurnDuration() {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
     return PAGE_TURN_DURATION_MS
@@ -133,11 +152,21 @@ export function App() {
             currentProblemId: learningSession.session.currentProblemId,
             currentIsTransfer: learningSession.session.currentIsTransfer,
             runStartedAtMs: learningSession.session.runStartedAtMs,
+            pendingTransferFamily:
+              learningSession.session.progress.pendingTransferFamily,
+            failedScheduledStepIndexes: [
+              ...learningSession.session.failedScheduledStepIndexes,
+            ],
+            failedProblemIds: [...learningSession.session.failedProblemIds],
           },
         }
       : { marker: HISTORY_MARKER, view: "landing" }
 
-    if (!sameHistoryLocation(window.history.state, historyState)) {
+    if (sameHistoryLocation(window.history.state, historyState)) {
+      if (!sameHistoryState(window.history.state, historyState)) {
+        window.history.replaceState(historyState, "")
+      }
+    } else {
       // In-app previous/next moves rewrite the current entry so browser Back
       // still walks real steps instead of bouncing to the step just left.
       if (learningSession.consumeHistoryReplaceHint()) {
@@ -152,6 +181,9 @@ export function App() {
     learningSession.session.currentProblemId,
     learningSession.session.entryId,
     learningSession.session.runNumber,
+    learningSession.session.progress.pendingTransferFamily,
+    learningSession.session.failedProblemIds,
+    learningSession.session.failedScheduledStepIndexes,
     learningSession.session.runProblemIds,
     learningSession.session.runStartedAtMs,
     learningSession.session.runStepIndex,

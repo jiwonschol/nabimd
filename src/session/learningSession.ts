@@ -44,7 +44,11 @@ export type PracticeHistorySnapshot = Pick<
   | "currentProblemId"
   | "currentIsTransfer"
   | "runStartedAtMs"
->
+  | "failedScheduledStepIndexes"
+  | "failedProblemIds"
+> & {
+  pendingTransferFamily: ProgressV5["pendingTransferFamily"]
+}
 
 export type SessionEvent =
   | {
@@ -242,7 +246,15 @@ export function learningSessionReducer(
           scheduledStepIndex: event.snapshot.scheduledStepIndex,
           currentProblemId: event.snapshot.currentProblemId,
           currentIsTransfer: event.snapshot.currentIsTransfer,
-          pendingTransferFamily: null,
+          pendingTransferFamily: event.snapshot.pendingTransferFamily ?? null,
+          failedScheduledStepIndexes: [
+            ...(event.snapshot.failedScheduledStepIndexes ??
+              session.progress.failedScheduledStepIndexes),
+          ],
+          failedProblemIds: [
+            ...(event.snapshot.failedProblemIds ??
+              session.progress.failedProblemIds),
+          ],
           runStartedAtMs: event.snapshot.runStartedAtMs,
           runCompletedAtMs: null,
         },

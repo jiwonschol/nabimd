@@ -36,6 +36,9 @@ function captureSnapshot(
     currentProblemId: session.currentProblemId,
     currentIsTransfer: session.currentIsTransfer,
     runStartedAtMs: session.runStartedAtMs,
+    pendingTransferFamily: session.progress.pendingTransferFamily,
+    failedScheduledStepIndexes: [...session.failedScheduledStepIndexes],
+    failedProblemIds: [...session.failedProblemIds],
   }
 }
 
@@ -250,6 +253,33 @@ describe("useLearningSession", () => {
     act(() => result.current.navigateToHistory(stepZeroSnapshot))
     expect(result.current.session.runStepIndex).toBe(1)
     expect(result.current.session.needsTransfer).toBe(true)
+  })
+
+  it("preserves transfer debt when browser Forward restores after landing", () => {
+    const { result } = renderLearningSession()
+    act(() => result.current.start("level-1"))
+
+    act(() => result.current.edit(""))
+    act(() => result.current.check())
+    expect(result.current.session.needsTransfer).toBe(true)
+    const failedSnapshot = captureSnapshot(result)
+
+    act(() => result.current.returnToGreetingFromHistory())
+    expect(result.current.session.entryId).toBeNull()
+
+    let restored: boolean | undefined
+    act(() => {
+      restored = result.current.navigateToHistory(failedSnapshot)
+    })
+    expect(restored).toBe(true)
+    expect(result.current.session.needsTransfer).toBe(true)
+    expect(result.current.session.progress.pendingTransferFamily).toBe(
+      failedSnapshot.pendingTransferFamily,
+    )
+
+    matchCurrent(result)
+    act(() => result.current.next())
+    expect(result.current.session.currentIsTransfer).toBe(true)
   })
 
   it("allows history navigation again after the repair is completed", () => {

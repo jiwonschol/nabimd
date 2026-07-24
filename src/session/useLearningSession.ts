@@ -176,6 +176,9 @@ export function useLearningSession(
       currentProblemId: session.currentProblemId,
       currentIsTransfer: session.currentIsTransfer,
       runStartedAtMs: session.runStartedAtMs,
+      pendingTransferFamily: session.progress.pendingTransferFamily,
+      failedScheduledStepIndexes: [...session.failedScheduledStepIndexes],
+      failedProblemIds: [...session.failedProblemIds],
     })
     // A schedule change (Try another, repair splice) makes snapshots recorded
     // beyond this step describe an abandoned branch; restoring one would undo
