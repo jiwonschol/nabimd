@@ -8,6 +8,38 @@ export const entryChoices = curriculumLevels
 
 export type EntryId = (typeof entryChoices)[number]["id"]
 
+type SchedulableEntryProblem = Pick<
+  NormalizedProblem,
+  | "id"
+  | "level"
+  | "flavor"
+  | "retryFamily"
+  | "skillIds"
+  | "syntaxTokens"
+>
+
+const servedProblemsByBank = new WeakMap<
+  readonly SchedulableEntryProblem[],
+  readonly SchedulableEntryProblem[]
+>()
+
+function getServedProblemsForBank(
+  problems: readonly SchedulableEntryProblem[],
+): readonly SchedulableEntryProblem[] {
+  let served = servedProblemsByBank.get(problems)
+  if (!served) {
+    // Drop the isolated single-syntax drills the curriculum retired (numbered
+    // lists). Composite rebuild documents report no single family, so ordered
+    // lists embedded in them are kept.
+    served = problems.filter((problem) => {
+      const family = getSyntaxFamily(problem)
+      return family === null || !EXCLUDED_SYNTAX_FAMILIES.has(family)
+    })
+    servedProblemsByBank.set(problems, served)
+  }
+  return served
+}
+
 export function isEntryId(value: unknown): value is EntryId {
   return entryChoices.some((entry) => entry.id === value)
 }
@@ -29,24 +61,10 @@ export function createRunProblemIds(
 export function createRunProblemIdsForBank(
   entryId: EntryId,
   runNumber: number,
-  problems: readonly Pick<
-    NormalizedProblem,
-    | "id"
-    | "level"
-    | "flavor"
-    | "retryFamily"
-    | "skillIds"
-    | "syntaxTokens"
-  >[],
+  problems: readonly SchedulableEntryProblem[],
   seed = 0,
 ): string[] {
   const entry = getEntryChoice(entryId)
-  // Drop the isolated single-syntax drills the curriculum retired (numbered
-  // lists). Composite rebuild documents report no single family, so ordered
-  // lists embedded in them are kept.
-  const served = problems.filter((problem) => {
-    const family = getSyntaxFamily(problem)
-    return family === null || !EXCLUDED_SYNTAX_FAMILIES.has(family)
-  })
+  const served = getServedProblemsForBank(problems)
   return createTurnProblemIds(entry.level, runNumber, served, seed)
 }
