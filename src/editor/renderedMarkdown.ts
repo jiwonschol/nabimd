@@ -98,6 +98,19 @@ function lineByNumber(lines: SourceLine[], number: number): SourceLine | null {
   return lines[number - 1] ?? null
 }
 
+function addCodeBlockLineClass(
+  tokens: RenderedMarkdownToken[],
+  lineNumber: number,
+): void {
+  const baseLine = tokens[lineNumber - 1]
+  if (
+    baseLine?.kind === "line" &&
+    !baseLine.className.split(" ").includes("cm-rendered-code-block-line")
+  ) {
+    baseLine.className += " cm-rendered-code-block-line"
+  }
+}
+
 function conceal(
   tokens: RenderedMarkdownToken[],
   source: string,
@@ -689,10 +702,7 @@ export function findRenderedMarkdownTokens(
               // the row renders as a tinted, inset panel and a code block
               // never masquerades as body prose. (One line token per source
               // row is an invariant; classes stack instead.)
-              const baseLine = tokens[line.number - 1]
-              if (baseLine?.kind === "line") {
-                baseLine.className += " cm-rendered-code-block-line"
-              }
+              addCodeBlockLineClass(tokens, line.number)
             }
           }
         } else if (nodeOffsets) {
@@ -702,12 +712,15 @@ export function findRenderedMarkdownTokens(
             kind: "mark",
             to: nodeOffsets.to,
           })
-          for (const line of lines) {
-            if (line.from >= nodeOffsets.from && line.from < nodeOffsets.to) {
-              const baseLine = tokens[line.number - 1]
-              if (baseLine?.kind === "line") {
-                baseLine.className += " cm-rendered-code-block-line"
-              }
+          const startLine = node.position?.start.line
+          const endLine = node.position?.end.line
+          if (startLine !== undefined && endLine !== undefined) {
+            for (
+              let lineNumber = startLine;
+              lineNumber <= endLine;
+              lineNumber += 1
+            ) {
+              addCodeBlockLineClass(tokens, lineNumber)
             }
           }
         }
