@@ -94,6 +94,43 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
+  it("migrates old v5 progress without a run seed to seed 0", () => {
+    const ids = createRunProblemIds("level-4", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-4"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[ids[0]!] = "# Draft"
+
+    const { runSeed: _runSeed, ...legacyProgress } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it("rejects old v5 progress without a run seed in nonzero-seed sessions", () => {
+    const ids = createRunProblemIds("level-4", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-4"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+
+    const { runSeed: _runSeed, ...legacyProgress } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    expect(
+      loadProgress(
+        storage,
+        validProblemIds,
+        isEligibleTransferProblemId,
+        problemBankRevision,
+        18,
+      ),
+    ).toEqual(createDefaultProgress(problemBank[0].id, problemBankRevision, 18))
+  })
+
   it("rejects a persisted run that was generated for another session seed", () => {
     const ids = createRunProblemIds("level-4", 0, 17)
     const progress = createDefaultProgress(ids[0]!)

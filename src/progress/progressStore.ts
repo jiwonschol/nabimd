@@ -259,6 +259,20 @@ function cloneProgress(progress: ProgressV5): ProgressV5 {
   }
 }
 
+function migrateLegacyRunSeed(value: unknown): unknown {
+  if (!isRecord(value) || value.version !== 5 || "runSeed" in value) {
+    return value
+  }
+
+  // Progress records written before session-varying runs used the same
+  // deterministic order now represented by seed 0. Keep v5 storage backward
+  // compatible without accepting it for nonzero session seeds.
+  return {
+    ...value,
+    runSeed: 0,
+  }
+}
+
 function migrateStarterProjectionRevision(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
@@ -335,10 +349,12 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migrateStarterProjectionRevision(
-      JSON.parse(saved),
-      validProblemIds,
-      expectedBankRevision,
+    const parsed: unknown = migrateLegacyRunSeed(
+      migrateStarterProjectionRevision(
+        JSON.parse(saved),
+        validProblemIds,
+        expectedBankRevision,
+      ),
     )
     return isProgressV5(
       parsed,
