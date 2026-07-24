@@ -328,6 +328,26 @@ function migrateStarterProjectionRevision(
   }
 }
 
+/**
+ * The run seed the persisted progress record was generated under, or `null`
+ * when no seed-bearing v5 record is stored. Legacy records written before
+ * runs varied by seed lack `runSeed` and are equivalent to seed 0. Callers use
+ * this to adopt the stored seed instead of validating an old run against a
+ * fresh random seed (which would discard it).
+ */
+export function readPersistedRunSeed(storage: Storage): number | null {
+  try {
+    const saved = storage.getItem(PROGRESS_STORAGE_KEY)
+    if (!saved) return null
+    const parsed: unknown = JSON.parse(saved)
+    if (!isRecord(parsed) || parsed.version !== 5) return null
+    if (!("runSeed" in parsed)) return 0
+    return isNonnegativeSafeInteger(parsed.runSeed) ? parsed.runSeed : null
+  } catch {
+    return null
+  }
+}
+
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,

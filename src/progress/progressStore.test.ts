@@ -20,6 +20,7 @@ import {
   clearProgress,
   createDefaultProgress,
   loadProgress,
+  readPersistedRunSeed,
   saveProgress,
 } from "./progressStore"
 
@@ -108,6 +109,28 @@ describe("progressStore v5", () => {
     expect(
       loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
+  })
+
+  it("reads the seed a legacy seedless record should adopt as 0", () => {
+    const ids = createRunProblemIds("level-4", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-4"
+    progress.runProblemIds = ids
+    const { runSeed: _runSeed, ...legacyProgress } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    expect(readPersistedRunSeed(storage)).toBe(0)
+  })
+
+  it("reads an explicit persisted run seed and null when absent or invalid", () => {
+    expect(readPersistedRunSeed(storage)).toBeNull()
+
+    const progress = createDefaultProgress(problemBank[0].id, problemBankRevision, 42)
+    saveProgress(storage, progress)
+    expect(readPersistedRunSeed(storage)).toBe(42)
+
+    storage.setItem(PROGRESS_STORAGE_KEY, "not json")
+    expect(readPersistedRunSeed(storage)).toBeNull()
   })
 
   it("rejects old v5 progress without a run seed in nonzero-seed sessions", () => {
