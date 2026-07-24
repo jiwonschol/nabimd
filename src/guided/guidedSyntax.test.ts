@@ -3,6 +3,7 @@ import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import {
   acceptedGuidedSyntaxInputs,
+  acceptsGuidedSyntaxInput,
   buildGuidedDraft,
   deriveSyntaxCheckpoints,
 } from "./guidedSyntax"
@@ -104,7 +105,7 @@ describe("deriveSyntaxCheckpoints", () => {
 
   it.each([
     ["- Pens", "Pens", ["- ", "* ", "+ "]],
-    ["  - Child", "Child", ["  - ", "  * ", "  + "]],
+    ["  - Child", "Child", ["- ", "* ", "+ "]],
     ["1. First", "First", ["1. ", "1) "]],
     ["---", "", ["---", "***", "___"]],
     ["```\nhello\n```", "\nhello\n", ["``````", "~~~~~~"]],
@@ -171,16 +172,44 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("preserves indentation and the required space for nested list items", () => {
+  it("keeps nested-list indentation out of the card and asks only the marker", () => {
+    const target = ["- Parent", "  - Child"].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(
-      ["- Parent", "  - Child"].join("\n"),
+      target,
       ["Parent", "Child"].join("\n"),
     )
 
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
       "- ",
-      "  - ",
+      "- ",
     ])
+    // The indentation is not part of the checkpoint at all: the card shows
+    // only the marker boxes and the prose, and the document regains the
+    // indentation from the untouched slice before the checkpoint.
+    expect(checkpoints[1]?.segments).toEqual([
+      { kind: "input", value: "- " },
+      { kind: "locked", value: "Child" },
+    ])
+    expect(checkpoints[1]?.targetFrom).toBe("- Parent\n  ".length)
+    expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
+  })
+
+  it("never surfaces line-leading whitespace in any published problem", () => {
+    for (const problem of problemBank) {
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+      for (const checkpoint of checkpoints) {
+        expect(checkpoint.canonicalInput, `${problem.id} ${checkpoint.id}`).not.toMatch(
+          /^[\t ]/,
+        )
+        expect(
+          checkpoint.segments[0]?.value,
+          `${problem.id} ${checkpoint.id}`,
+        ).not.toMatch(/^[\t ]/)
+      }
+    }
   })
 
   it("treats both fenced-code delimiters as one semantic checkpoint", () => {
@@ -229,6 +258,66 @@ describe("buildGuidedDraft", () => {
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(
       target,
     )
+  })
+})
+
+/**
+ * Blank policy: a blank asks for a Markdown grammar token and nothing else.
+ * The token includes whitespace the grammar itself requires (`# `, `- `,
+ * `1. ` are not headings or list items without the space), and it never
+ * includes layout whitespace or Goal prose — the learner is answering
+ * "what is the Markdown syntax here", not retyping the Goal document.
+ */
+describe("published blank policy", () => {
+  const bankCheckpoints = problemBank.flatMap((problem) =>
+    deriveSyntaxCheckpoints(problem.target, problem.starterText).map(
+      (checkpoint) => ({
+        label: `${problem.id} ${checkpoint.id}`,
+        checkpoint,
+      }),
+    ),
+  )
+
+  it("asks only Markdown grammar characters, never Goal prose", () => {
+    for (const { label, checkpoint } of bankCheckpoints) {
+      expect(checkpoint.canonicalInput, label).not.toMatch(/[A-Za-z]/)
+    }
+  })
+
+  it("includes the grammar-required space in every marker blank", () => {
+    for (const { label, checkpoint } of bankCheckpoints) {
+      const canonical = checkpoint.canonicalInput
+      if (/^#{1,6}/.test(canonical)) {
+        // `#Title` is plain text — the space completes the heading grammar.
+        expect(canonical, label).toMatch(/^#{1,6} /)
+      }
+      const marker = canonical.match(/^([*+-])(?!\1)/)?.[1]
+      if (marker && !new RegExp(`^\\${marker}+$`).test(canonical)) {
+        // `-Item` is plain text — the space completes the list grammar.
+        expect(canonical, label).toMatch(/^[*+-] /)
+      }
+      if (/^\d+[.)]/.test(canonical)) {
+        expect(canonical, label).toMatch(/^\d+[.)] /)
+      }
+      if (canonical.startsWith(">")) {
+        expect(canonical, label).toMatch(/^> /)
+      }
+    }
+  })
+
+  it("rejects marker answers typed without their grammar space", () => {
+    for (const { label, checkpoint } of bankCheckpoints) {
+      const canonical = checkpoint.canonicalInput
+      const withoutSpace = canonical.replace(
+        /^(#{1,6}|\d+[.)]|[*+-]|>) /,
+        "$1",
+      )
+      if (withoutSpace === canonical) continue
+      expect(
+        acceptsGuidedSyntaxInput(checkpoint, withoutSpace),
+        label,
+      ).toBe(false)
+    }
   })
 })
 
