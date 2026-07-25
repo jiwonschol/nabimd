@@ -9,6 +9,7 @@ import {
 } from "./entryChoices"
 import { getSyntaxFamily } from "../selection/runComposition"
 import { getExerciseMode } from "./exerciseMode"
+import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
 
 describe("five-level entry choices", () => {
   it("exposes the task-type ladder", () => {
@@ -76,6 +77,30 @@ describe("five-level entry choices", () => {
     )
 
     expect(new Set(families).size).toBe(4)
+  })
+
+  it("keeps every Level 1 turn to six distinct single-mark syntax cards", () => {
+    for (const seed of [0, 17, 255]) {
+      for (let runNumber = 0; runNumber < 12; runNumber += 1) {
+        const problems = createRunProblemIds(
+          "level-1",
+          runNumber,
+          seed,
+        ).map((id) => problemBank.find((problem) => problem.id === id)!)
+        const families = problems.map((problem) => getSyntaxFamily(problem))
+
+        expect(problems).toHaveLength(6)
+        expect(families.every((family) => family !== null)).toBe(true)
+        expect(new Set(families).size).toBe(6)
+        expect(
+          problems.map(
+            (problem) =>
+              deriveSyntaxCheckpoints(problem.target, problem.starterText)
+                .length,
+          ),
+        ).toEqual([1, 1, 1, 1, 1, 1])
+      }
+    }
   })
 
   it("prefers composite Level 2 rebuilds without adjacent retry families", () => {

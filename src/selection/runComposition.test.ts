@@ -8,6 +8,7 @@ import {
   SYNTAX_FAMILY_WEIGHTS,
   type SyntaxFamily,
 } from "./runPolicy"
+import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
 
 describe("run composition policy", () => {
   const problem = (
@@ -47,7 +48,7 @@ describe("run composition policy", () => {
     )
   })
 
-  it("retires numbered-list drills and serves every family evenly", () => {
+  it("retires busywork drills and serves every single-card family evenly", () => {
     const counts = new Map<string, number>()
 
     for (let runNumber = 0; runNumber < 40; runNumber += 1) {
@@ -67,7 +68,11 @@ describe("run composition policy", () => {
     const eligibleFamilies = new Set<SyntaxFamily>()
     for (const problem of getProblemsForLevel(1)) {
       const family = getSyntaxFamily(problem)
-      if (family && !EXCLUDED_SYNTAX_FAMILIES.has(family)) {
+      if (
+        family &&
+        !EXCLUDED_SYNTAX_FAMILIES.has(family) &&
+        deriveSyntaxCheckpoints(problem.target, problem.starterText).length === 1
+      ) {
         eligibleFamilies.add(family)
       }
     }
@@ -161,6 +166,26 @@ describe("run composition policy", () => {
     ]
 
     expect(createTurnProblemIds(1, 0, bank)).toEqual(["h1", "b1"])
+  })
+
+  it("keeps Level 1 challenge syntax distinct from every earlier turn problem", () => {
+    const bank = [
+      problem("heading-1", 1, ["heading-h1"]),
+      problem("quote-1", 1, ["blockquote"]),
+      problem("code-1", 1, ["inline-code"]),
+      problem("bullet-1", 1, ["unordered-list"]),
+      problem("code-2", 2, ["inline-code"]),
+      problem("link-2", 2, ["inline-link"]),
+      problem("image-2", 2, ["inline-image"]),
+    ]
+
+    const selected = createTurnProblemIds(1, 0, bank)
+    const byId = new Map(bank.map((candidate) => [candidate.id, candidate]))
+    const families = selected.map((id) => getSyntaxFamily(byId.get(id)!)!)
+
+    expect(selected).toHaveLength(6)
+    expect(new Set(families).size).toBe(families.length)
+    expect(selected).not.toContain("code-2")
   })
 
   it("prefers Level 2 composite rebuilds when the bank supplies them", () => {

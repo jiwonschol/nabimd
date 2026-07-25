@@ -301,13 +301,16 @@ describe("App", () => {
 
   it("accepts an alternate unordered-list marker in a slot", async () => {
     useSessionSeedForFirstProblem(
-      1,
-      (problem) => problem.id === "l1-list-toolbox",
+      2,
+      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
     )
-    await openLevel(1)
+    await openLevel(2)
     const marks = slotMarks()
-    const alternate = marks[0]!.replace("-", "*")
-    expect(alternate).not.toBe(marks[0])
+    expect(marks.length).toBeGreaterThan(2)
+    submitSlot(marks[0]!)
+    submitSlot(marks[1]!)
+    const alternate = marks[2]!.replace("-", "*")
+    expect(alternate).not.toBe(marks[2])
 
     submitSlot(alternate)
     // Accepted alternates land in the document exactly as typed.
@@ -409,36 +412,36 @@ describe("App", () => {
 
   it("walks previous slots with ArrowUp and ArrowDown and edits them in place", async () => {
     useSessionSeedForFirstProblem(
-      1,
-      (problem) => problem.id === "l1-list-toolbox",
+      2,
+      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
     )
-    await openLevel(1)
+    await openLevel(2)
     const marks = slotMarks()
     expect(marks.length).toBeGreaterThan(2)
 
     submitSlot(marks[0]!)
     submitSlot(marks[1]!)
+    submitSlot(marks[2]!)
     const card = screen.getByLabelText("Markdown syntax practice")
-    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    expect(card).toHaveTextContent(`Mark 4 of ${marks.length}`)
 
     // ArrowUp steps back through accepted slots, showing the stored answer.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
+    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(card).toHaveTextContent(`Mark 1 of ${marks.length}`)
-    expect(firstBoxInput()).toHaveValue(marks[0]!)
+    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue(marks[1]!)
 
     // ArrowDown returns toward the frontier.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowDown" })
-    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
-    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
 
     // Editing a past slot regrows the document and jumps back to the
     // frontier. The list-style normalizer keeps the marks coherent.
-    const alternate = marks[0]!.replace("-", "*")
+    const alternate = marks[2]!.replace("-", "*")
     fireEvent.change(firstBoxInput(), { target: { value: alternate } })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
-    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    expect(card).toHaveTextContent(`Mark 4 of ${marks.length}`)
     expect(writePanelDocument()).toContain("* ")
   })
 

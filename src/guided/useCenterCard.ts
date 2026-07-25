@@ -268,7 +268,7 @@ export function useCenterCard({
 
     const grown = buildGuidedDraft(problem.target, checkpoints, count, values)
     onGrow(grown)
-    if (atFrontier && count >= checkpoints.length) onComplete(grown)
+    if (count >= checkpoints.length) onComplete(grown)
   }, [
     atFrontier,
     checkpoint,

@@ -144,4 +144,17 @@ describe("useCenterCard Hint and retry state", () => {
 
     expect(onComplete).toHaveBeenCalledWith("_Paper boat_")
   })
+
+  it("resubmits a fully grown final card so an interrupted completion can recover", () => {
+    const { result, onComplete } = renderItalicCard()
+    act(() => result.current.editSegment(0, "*"))
+    act(() => result.current.editSegment(1, "*"))
+    act(() => result.current.submit())
+    expect(onComplete).toHaveBeenCalledTimes(1)
+
+    act(() => result.current.submit())
+
+    expect(onComplete).toHaveBeenCalledTimes(2)
+    expect(onComplete).toHaveBeenLastCalledWith("*Paper boat*")
+  })
 })
