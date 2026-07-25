@@ -23,6 +23,7 @@ type CenterCardProps = {
   slotIndex: number
   slotTotal: number
   segmentValues: readonly string[]
+  mirroredSegmentIndexes: readonly number[]
   verdict: CenterCardSlotVerdict
   context: CheckpointContext
   hintOpen: boolean
@@ -121,6 +122,7 @@ export function CenterCard({
   slotIndex,
   slotTotal,
   segmentValues,
+  mirroredSegmentIndexes,
   verdict,
   context,
   hintOpen,
@@ -136,6 +138,10 @@ export function CenterCard({
   onSubmit,
 }: CenterCardProps) {
   const groups = inputSegments(checkpoint)
+  const mirroredSegments = new Set(mirroredSegmentIndexes)
+  const editableGroupIndexes = groups
+    .map((_, index) => index)
+    .filter((index) => !mirroredSegments.has(index))
   const checkpointInstruction = describeCheckpoint(checkpoint)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [focusedGroup, setFocusedGroup] = useState<number | null>(null)
@@ -296,6 +302,20 @@ export function CenterCard({
           const capacity = segment.value.length
           const caretAt = focusedGroup === index ? value.length : -1
 
+          if (mirroredSegments.has(index)) {
+            return (
+              <span
+                aria-label="Mirrored closing mark"
+                className="center-card__mirrored-mark"
+                data-empty={value === ""}
+                key={segmentIndex}
+              >
+                {value}
+              </span>
+            )
+          }
+
+          const editablePosition = editableGroupIndexes.indexOf(index)
           return (
             <span className="center-card__boxgroup" key={segmentIndex}>
               {Array.from({ length: capacity }, (_, box) => (
@@ -318,7 +338,7 @@ export function CenterCard({
                 </span>
               ))}
               <input
-                aria-label={`Marks ${index + 1} of ${groups.length}`}
+                aria-label={`Marks ${editablePosition + 1} of ${editableGroupIndexes.length}`}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"

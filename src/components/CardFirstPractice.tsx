@@ -54,6 +54,7 @@ export function CardFirstPractice({
         hintOpen={card.hintOpen}
         hintRows={card.hintRows}
         interactive={interactive}
+        mirroredSegmentIndexes={card.mirroredSegmentIndexes}
         onCloseHint={card.closeHint}
         onEditSegment={card.editSegment}
         onNextSlot={card.goToNextSlot}

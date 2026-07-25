@@ -298,7 +298,9 @@ test("empty Enter opens the exact Hint and keeps the box focused", async ({
   await expect(cardBoxInput(page)).toBeFocused()
 })
 
-test("accepts the equivalent underscore form for italic", async ({ page }) => {
+test("accepts one Level 1 underscore and mirrors its closing mark", async ({
+  page,
+}) => {
   await page.addInitScript((storageKey) => {
     window.sessionStorage.setItem(storageKey, "23")
   }, sessionSeedStorageKey)
@@ -306,7 +308,10 @@ test("accepts the equivalent underscore form for italic", async ({ page }) => {
   await enterLevel(page, 1)
 
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
-  await submitSlot(page, "__")
+  await expect(
+    page.getByRole("textbox", { name: "Marks 1 of 1" }),
+  ).toHaveCount(1)
+  await submitSlot(page, "_")
 
   await expect(page.getByRole("status")).toContainText("Matched")
   expect(await currentDraft(page)).toBe("_Paper boat_")

@@ -46,8 +46,8 @@ describe("useCenterCard Hint and retry state", () => {
     expect(result.current.verdict).toBe("retry")
     expect(result.current.hintOpen).toBe(true)
     expect(result.current.hintRows).toEqual([
-      { input: "**", source: "*Paper boat*" },
-      { input: "__", source: "_Paper boat_" },
+      { input: "*", source: "*Paper boat*" },
+      { input: "_", source: "_Paper boat_" },
     ])
   })
 
@@ -93,8 +93,8 @@ describe("useCenterCard Hint and retry state", () => {
     expect(current.segmentValues).toEqual(["", ""])
     expect(current.hintOpen).toBe(true)
     expect(current.hintRows).toEqual([
-      { input: "**", source: "*Paper boat*" },
-      { input: "__", source: "_Paper boat_" },
+      { input: "*", source: "*Paper boat*" },
+      { input: "_", source: "_Paper boat_" },
     ])
     expect(onMiss).toHaveBeenCalledTimes(1)
   })
@@ -143,6 +143,35 @@ describe("useCenterCard Hint and retry state", () => {
     act(() => result.current.submit())
 
     expect(onComplete).toHaveBeenCalledWith("_Paper boat_")
+  })
+
+  it("mirrors one Level 1 paired mark instead of asking for it twice", () => {
+    const { result } = renderItalicCard()
+
+    act(() => result.current.editSegment(0, "*"))
+
+    expect(result.current.segmentValues).toEqual(["*", "*"])
+    expect(result.current.hintRows).toEqual([
+      { input: "*", source: "*Paper boat*" },
+      { input: "_", source: "_Paper boat_" },
+    ])
+  })
+
+  it("keeps paired mark positions independent from Level 2 onward", () => {
+    const { result } = renderHook(() =>
+      useCenterCard({
+        problem: getProblem("l2-emphasis-wash-your-hands"),
+        draft: "",
+        completed: false,
+        onGrow: vi.fn(),
+        onComplete: vi.fn(),
+      }),
+    )
+
+    act(() => result.current.editSegment(0, "**"))
+
+    expect(result.current.segmentValues).toEqual(["**", ""])
+    expect(result.current.mirroredSegmentIndexes).toEqual([])
   })
 
   it("resubmits a fully grown final card so an interrupted completion can recover", () => {

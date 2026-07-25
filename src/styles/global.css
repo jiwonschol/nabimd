@@ -1820,6 +1820,16 @@ button:focus-visible,
   white-space: pre-wrap;
 }
 
+.center-card__mirrored-mark {
+  display: inline-block;
+  min-width: 0.8em;
+  margin: 0 0.12rem;
+  color: rgb(168 92 92);
+  font-weight: 650;
+  text-align: center;
+  white-space: pre;
+}
+
 .center-card__boxgroup {
   position: relative;
   display: inline-flex;
