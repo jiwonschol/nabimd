@@ -28,6 +28,86 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("splits touching marks from two syntax families into separate groups", () => {
+    // `> ` and `**` sit side by side in the source. They are two different
+    // answers the learner types, so the card must not collapse them into one
+    // opaque `> **` run.
+    const checkpoints = deriveSyntaxCheckpoints(
+      "> **Important deadline**",
+      "Important deadline",
+    )
+
+    expect(checkpoints).toHaveLength(1)
+    expect(checkpoints[0]?.segments).toEqual([
+      { kind: "input", value: "> " },
+      { kind: "input", value: "**" },
+      { kind: "locked", value: "Important deadline" },
+      { kind: "input", value: "**" },
+    ])
+    // Splitting must not change what grading accepts: the groups still join
+    // into the same answer, and the bold alternative stays available.
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([
+      "> ****",
+      "> ____",
+    ])
+  })
+
+  it("keeps punctuation inside one syntax family in a single group", () => {
+    // `]` and `(` touch, but both belong to the same link. A learner reads
+    // `](` as one piece of link punctuation, so it stays one group.
+    const checkpoints = deriveSyntaxCheckpoints(
+      "See [the doc](https://x.dev) now",
+      "See the doc now",
+    )
+
+    expect(checkpoints[0]?.segments).toEqual([
+      { kind: "locked", value: "See " },
+      { kind: "input", value: "[" },
+      { kind: "locked", value: "the doc" },
+      { kind: "input", value: "](" },
+      { kind: "locked", value: "https://x.dev" },
+      { kind: "input", value: ")" },
+      { kind: "locked", value: " now" },
+    ])
+  })
+
+  it("keeps two adjacent links in separate groups", () => {
+    // `)` of the first link touches `[` of the second. They are different
+    // link instances, so they never merge.
+    const checkpoints = deriveSyntaxCheckpoints(
+      "[a](b)[c](d)",
+      "ac",
+    )
+
+    expect(checkpoints[0]?.segments).toEqual([
+      { kind: "input", value: "[" },
+      { kind: "locked", value: "a" },
+      { kind: "input", value: "](" },
+      { kind: "locked", value: "b" },
+      { kind: "input", value: ")" },
+      { kind: "input", value: "[" },
+      { kind: "locked", value: "c" },
+      { kind: "input", value: "](" },
+      { kind: "locked", value: "d" },
+      { kind: "input", value: ")" },
+    ])
+  })
+
+  it("offers every bullet and bold alternative once the groups are split", () => {
+    // The bullet marker and the bold delimiters are independent choices, so
+    // all standard combinations are accepted equally.
+    const checkpoints = deriveSyntaxCheckpoints("- **Ship it**", "Ship it")
+
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([
+      "- ****",
+      "* ****",
+      "+ ****",
+      "- ____",
+      "* ____",
+      "+ ____",
+    ])
+  })
+
   it.each(["===", "---"])(
     "keeps a Setext %s underline with its heading text",
     (underline) => {

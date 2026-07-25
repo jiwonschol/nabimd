@@ -1820,6 +1820,15 @@ button:focus-visible,
   white-space: pre-wrap;
 }
 
+/* Instructional punctuation between two touching syntax groups. It is never
+   a character the learner types, so it stays quiet and out of the a11y tree. */
+.center-card__group-divider {
+  color: var(--ink-faint, rgb(120 110 100));
+  font-weight: 400;
+  opacity: 0.55;
+  user-select: none;
+}
+
 .center-card__mirrored-mark {
   display: inline-block;
   min-width: 0.8em;

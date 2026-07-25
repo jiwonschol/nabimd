@@ -113,6 +113,50 @@ describe("CenterCard", () => {
     expect(screen.getAllByRole("textbox")[0]).toHaveFocus()
   })
 
+  it("separates touching syntax groups with a slash the learner never types", () => {
+    const target = "> **Important deadline**"
+    const checkpoint = deriveSyntaxCheckpoints(target, "Important deadline")[0]!
+    render(
+      <CenterCard
+        {...cardProps({
+          checkpoint,
+          context: projectCheckpointContext(target, checkpoint),
+          segmentValues: ["", "", ""],
+        })}
+      />,
+    )
+
+    const line = document.querySelector(".center-card__line")!
+    // `> ` and `**` touch, so exactly one divider sits between them. The
+    // closing `**` follows locked prose and gets none.
+    const dividers = line.querySelectorAll(".center-card__group-divider")
+    expect(dividers).toHaveLength(1)
+    expect(dividers[0]).toHaveAttribute("aria-hidden", "true")
+
+    // The slash is punctuation the card draws, never an input: the three
+    // groups are still the only typing surfaces.
+    expect(screen.getAllByRole("textbox")).toHaveLength(3)
+    expect(line.textContent).toContain("/")
+  })
+
+  it("keeps one-family punctuation free of a divider", () => {
+    const target = "See [the doc](https://x.dev) now"
+    const checkpoint = deriveSyntaxCheckpoints(target, "See the doc now")[0]!
+    render(
+      <CenterCard
+        {...cardProps({
+          checkpoint,
+          context: projectCheckpointContext(target, checkpoint),
+          segmentValues: ["", "", ""],
+        })}
+      />,
+    )
+
+    expect(
+      document.querySelectorAll(".center-card__group-divider"),
+    ).toHaveLength(0)
+  })
+
   it("keeps transition snapshots readonly without stealing focus", () => {
     render(
       <>

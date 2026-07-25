@@ -288,14 +288,17 @@ describe("App", () => {
     expect(marks.length).toBeGreaterThan(1)
     expect(writePanelDocument()).toBe("")
 
+    // `Step x of 6` in the top bar is the only progress label; the marks
+    // inside a card never introduce a second counter.
     const card = screen.getByLabelText("Markdown syntax practice")
-    expect(card).toHaveTextContent(`Mark 1 of ${marks.length}`)
+    expect(card).not.toHaveTextContent(/Mark \d+ of \d+/)
+    expect(screen.getByLabelText(/Practice progress, \d+ of \d+/)).toBeVisible()
 
     submitSlot(marks[0]!)
     expect(writePanelDocument()).not.toBe("")
     expect(problem.target.startsWith(writePanelDocument())).toBe(true)
-    expect(screen.getByLabelText("Markdown syntax practice")).toHaveTextContent(
-      `Mark 2 of ${marks.length}`,
+    expect(screen.getByLabelText("Markdown syntax practice")).not.toHaveTextContent(
+      /Mark \d+ of \d+/,
     )
   })
 
@@ -422,26 +425,28 @@ describe("App", () => {
     submitSlot(marks[0]!)
     submitSlot(marks[1]!)
     submitSlot(marks[2]!)
+    // The card carries no `Mark x of y` counter, so which slot is showing is
+    // proven by the answer in the boxes: the frontier slot is empty.
     const card = screen.getByLabelText("Markdown syntax practice")
-    expect(card).toHaveTextContent(`Mark 4 of ${marks.length}`)
+    expect(card).not.toHaveTextContent(/Mark \d+ of \d+/)
+    expect(firstBoxInput()).toHaveValue("")
 
     // ArrowUp steps back through accepted slots, showing the stored answer.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue(marks[2]!)
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
     expect(firstBoxInput()).toHaveValue(marks[1]!)
 
     // ArrowDown returns toward the frontier.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowDown" })
-    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue(marks[2]!)
 
     // Editing a past slot regrows the document and jumps back to the
     // frontier. The list-style normalizer keeps the marks coherent.
     const alternate = marks[2]!.replace("-", "*")
     fireEvent.change(firstBoxInput(), { target: { value: alternate } })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
-    expect(card).toHaveTextContent(`Mark 4 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue("")
     expect(writePanelDocument()).toContain("* ")
   })
 

@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, Lightbulb, X } from "lucide-react"
 import {
+  Fragment,
   useEffect,
   useId,
   useRef,
@@ -235,9 +236,8 @@ export function CenterCard({
     <section aria-label="Markdown syntax practice" className="center-card">
       <header className="center-card__header">
         <div className="center-card__heading">
-          <span className="center-card__slot">
-            Mark {Math.min(slotIndex + 1, slotTotal)} of {slotTotal}
-          </span>
+          {/* `Step x of 6` in the top bar is the only progress label: the
+              marks inside one card never get a second counter. */}
           <h2 className="center-card__instruction">
             {checkpointInstruction.prefix}
             <strong>{checkpointInstruction.term}</strong>
@@ -301,23 +301,36 @@ export function CenterCard({
           const value = segmentValues[index] ?? ""
           const capacity = segment.value.length
           const caretAt = focusedGroup === index ? value.length : -1
+          // Two syntax groups that touch (`> ` then `**`) would read as one
+          // long mark run. A quiet slash marks the boundary; it is punctuation
+          // the card draws, never a character the learner types.
+          const separator =
+            checkpoint.segments[segmentIndex - 1]?.kind === "input" ? (
+              <span aria-hidden="true" className="center-card__group-divider">
+                /
+              </span>
+            ) : null
 
           if (mirroredSegments.has(index)) {
             return (
-              <span
-                aria-label="Mirrored closing mark"
-                className="center-card__mirrored-mark"
-                data-empty={value === ""}
-                key={segmentIndex}
-              >
-                {value}
-              </span>
+              <Fragment key={segmentIndex}>
+                {separator}
+                <span
+                  aria-label="Mirrored closing mark"
+                  className="center-card__mirrored-mark"
+                  data-empty={value === ""}
+                >
+                  {value}
+                </span>
+              </Fragment>
             )
           }
 
           const editablePosition = editableGroupIndexes.indexOf(index)
           return (
-            <span className="center-card__boxgroup" key={segmentIndex}>
+            <Fragment key={segmentIndex}>
+              {separator}
+              <span className="center-card__boxgroup">
               {Array.from({ length: capacity }, (_, box) => (
                 <span
                   aria-hidden="true"
@@ -357,7 +370,8 @@ export function CenterCard({
                 type="text"
                 value={value}
               />
-            </span>
+              </span>
+            </Fragment>
           )
         })}
       </div>
