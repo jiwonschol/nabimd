@@ -1,7 +1,15 @@
-import { useEffect, useMemo, useRef } from "react"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { getProblem, problemBank } from "../content/problemBank"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
+import { RenderedDocumentBody } from "./RenderedDocument"
+
+export type CompletedPracticePage = {
+  problemId: string
+  title: string
+  source: string
+}
 
 type RunSummaryProps = {
   score: number
@@ -10,6 +18,7 @@ type RunSummaryProps = {
   failedProblemIds: readonly string[]
   onPracticeAgain: () => void
   onChangeLevel: () => void
+  completedPages?: readonly CompletedPracticePage[]
   motionReady?: boolean
 }
 
@@ -171,14 +180,20 @@ export function RunSummary({
   failedProblemIds,
   onPracticeAgain,
   onChangeLevel,
+  completedPages = [],
   motionReady = true,
 }: RunSummaryProps) {
   const playedSummarySound = useRef(false)
   const completionTitleRef = useRef<HTMLHeadingElement>(null)
+  const completedPagesButtonRef = useRef<HTMLButtonElement>(null)
+  const completedPagesCloseRef = useRef<HTMLButtonElement>(null)
+  const [completedPagesOpen, setCompletedPagesOpen] = useState(false)
+  const [completedPageIndex, setCompletedPageIndex] = useState(0)
   const reminders = useMemo(
     () => syntaxReminders(failedProblemIds),
     [failedProblemIds],
   )
+  const completedPage = completedPages[completedPageIndex]
 
   useEffect(() => {
     if (playedSummarySound.current) return
@@ -189,6 +204,17 @@ export function RunSummary({
   useEffect(() => {
     completionTitleRef.current?.focus({ preventScroll: true })
   }, [])
+
+  useEffect(() => {
+    if (completedPagesOpen) {
+      completedPagesCloseRef.current?.focus({ preventScroll: true })
+    }
+  }, [completedPagesOpen])
+
+  const closeCompletedPages = () => {
+    setCompletedPagesOpen(false)
+    completedPagesButtonRef.current?.focus({ preventScroll: true })
+  }
 
   const singleReminder = reminders.length === 1 ? reminders[0] : null
 
@@ -321,8 +347,74 @@ export function RunSummary({
           <button className="text-button" onClick={onChangeLevel} type="button">
             Change level
           </button>
+          {completedPages.length ? (
+            <button
+              className="text-button run-summary__completed-pages-button"
+              onClick={() => {
+                setCompletedPageIndex(0)
+                setCompletedPagesOpen(true)
+              }}
+              ref={completedPagesButtonRef}
+              type="button"
+            >
+              View completed pages
+            </button>
+          ) : null}
         </div>
       </section>
+
+      {completedPagesOpen && completedPage ? (
+        <section
+          aria-label="Completed pages"
+          className="completed-pages"
+          role="region"
+        >
+          <header className="completed-pages__header">
+            <div>
+              <p>Completed pages</p>
+              <strong>{completedPage.title}</strong>
+            </div>
+            <div className="completed-pages__navigation">
+              <button
+                aria-label="Previous completed page"
+                disabled={completedPageIndex === 0}
+                onClick={() =>
+                  setCompletedPageIndex((index) => Math.max(0, index - 1))
+                }
+                type="button"
+              >
+                <ChevronLeft aria-hidden="true" />
+              </button>
+              <span>
+                Page {completedPageIndex + 1} of {completedPages.length}
+              </span>
+              <button
+                aria-label="Next completed page"
+                disabled={completedPageIndex === completedPages.length - 1}
+                onClick={() =>
+                  setCompletedPageIndex((index) =>
+                    Math.min(completedPages.length - 1, index + 1),
+                  )
+                }
+                type="button"
+              >
+                <ChevronRight aria-hidden="true" />
+              </button>
+              <button
+                aria-label="Close completed pages"
+                onClick={closeCompletedPages}
+                ref={completedPagesCloseRef}
+                type="button"
+              >
+                <X aria-hidden="true" />
+              </button>
+            </div>
+          </header>
+          <div className="completed-pages__document">
+            <RenderedDocumentBody source={completedPage.source} />
+          </div>
+        </section>
+      ) : null}
     </section>
   )
 }

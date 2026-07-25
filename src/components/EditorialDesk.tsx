@@ -1,6 +1,13 @@
-import { useCallback, useEffect, useEffectEvent, useRef } from "react"
+import {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+} from "react"
 import type { useLearningSession } from "../session/useLearningSession"
 import { createRunProblemIds } from "../content/entryChoices"
+import { getProblem } from "../content/problemBank"
 import { CardFirstPractice } from "./CardFirstPractice"
 import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
@@ -45,6 +52,29 @@ export function EditorialDesk({
     session.runCompletedAtMs,
     session.runCompletedAtMs ?? Date.now(),
   )
+  const completedPages = useMemo(() => {
+    const completedIds = new Set(session.progress.completedProblemIds)
+    const seen = new Set<string>()
+
+    return session.runProblemIds.flatMap((problemId) => {
+      if (seen.has(problemId) || !completedIds.has(problemId)) return []
+      seen.add(problemId)
+      const completedProblem = getProblem(problemId)
+      return [
+        {
+          problemId,
+          title: completedProblem.prompt,
+          source:
+            session.progress.draftByProblemId[problemId] ??
+            completedProblem.target,
+        },
+      ]
+    })
+  }, [
+    session.progress.completedProblemIds,
+    session.progress.draftByProblemId,
+    session.runProblemIds,
+  ])
 
   // Matched flows, Try again holds (issue #102): a fresh Matched verdict at
   // the frontier of the run advances by itself after the verdict beat. A
@@ -151,6 +181,7 @@ export function EditorialDesk({
 
       {session.phase === "complete" ? (
         <RunSummary
+          completedPages={completedPages}
           elapsedMs={elapsedMs}
           failedProblemIds={session.failedProblemIds}
           onChangeLevel={changeLevel}

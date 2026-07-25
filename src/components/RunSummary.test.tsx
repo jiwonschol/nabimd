@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { StrictMode } from "react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { playFeedbackSound } from "../sound/feedbackSound"
@@ -11,6 +11,18 @@ vi.mock("../sound/feedbackSound", () => ({
 function renderSummary(failedProblemIds: string[] = []) {
   render(
     <RunSummary
+      completedPages={[
+        {
+          problemId: "first",
+          title: "Morning note",
+          source: "# Morning note\n\n- Tea\n- Toast",
+        },
+        {
+          problemId: "second",
+          title: "Evening note",
+          source: "## Evening note\n\n> Lights out.",
+        },
+      ]}
       elapsedMs={65_000}
       failedProblemIds={failedProblemIds}
       onChangeLevel={vi.fn()}
@@ -47,6 +59,32 @@ describe("RunSummary", () => {
     expect(screen.queryByText(/standing|percentile|collecting data/i)).not.toBeInTheDocument()
     expect(screen.queryByRole("button", { name: "Start over" })).not.toBeInTheDocument()
     expect(playFeedbackSound).toHaveBeenCalledWith("summary")
+  })
+
+  it("keeps completed documents secondary until the learner asks for them", () => {
+    renderSummary()
+
+    expect(screen.queryByRole("region", { name: "Completed pages" })).toBeNull()
+
+    fireEvent.click(screen.getByRole("button", { name: "View completed pages" }))
+
+    expect(
+      screen.getByRole("region", { name: "Completed pages" }),
+    ).toBeVisible()
+    expect(screen.getByText("Morning note", { selector: "h1" })).toBeVisible()
+    expect(screen.getByText("Page 1 of 2")).toBeVisible()
+    expect(screen.queryByRole("textbox")).toBeNull()
+
+    fireEvent.click(screen.getByRole("button", { name: "Next completed page" }))
+
+    expect(screen.getByText("Evening note", { selector: "h2" })).toBeVisible()
+    expect(screen.getByText("Page 2 of 2")).toBeVisible()
+
+    fireEvent.click(screen.getByRole("button", { name: "Close completed pages" }))
+    expect(screen.queryByRole("region", { name: "Completed pages" })).toBeNull()
+    expect(
+      screen.getByRole("button", { name: "View completed pages" }),
+    ).toHaveFocus()
   })
 
   it("turns one failed family into one concise teacher note", () => {

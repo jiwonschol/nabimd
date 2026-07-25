@@ -693,6 +693,17 @@ describe("App", () => {
     const practiceAgain = screen.getByRole("button", { name: "Practice again" })
     expect(practiceAgain).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+    await user.click(
+      screen.getByRole("button", { name: "View completed pages" }),
+    )
+    expect(
+      screen.getByRole("region", { name: "Completed pages" }),
+    ).toBeVisible()
+    expect(screen.getByText("Page 1 of 6")).toBeVisible()
+    expect(screen.queryByRole("textbox")).toBeNull()
+    await user.click(
+      screen.getByRole("button", { name: "Close completed pages" }),
+    )
 
     await user.click(practiceAgain)
     await waitFor(() => expect(firstBoxInput()).toBeVisible())
