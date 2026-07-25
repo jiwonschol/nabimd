@@ -724,17 +724,15 @@ describe("App", () => {
     const practiceAgain = screen.getByRole("button", { name: "Practice again" })
     expect(practiceAgain).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
-    await user.click(
-      screen.getByRole("button", { name: "View completed pages" }),
-    )
-    expect(
-      screen.getByRole("dialog", { name: "Completed pages" }),
-    ).toBeVisible()
-    expect(screen.getByText("Page 1 of 6")).toBeVisible()
+    // The finished work is handed back on the page itself: no viewer to open,
+    // nothing to type into, and a clean run carries no correction marks.
+    expect(screen.getByLabelText("Your work")).toBeVisible()
+    expect(screen.queryByRole("dialog")).toBeNull()
     expect(screen.queryByRole("textbox")).toBeNull()
-    await user.click(
-      screen.getByRole("button", { name: "Close completed pages" }),
-    )
+    expect(screen.queryByLabelText(/^Correction /)).toBeNull()
+    expect(
+      screen.getByText("A clean page — nothing to correct."),
+    ).toBeVisible()
 
     await user.click(practiceAgain)
     await waitFor(() => expect(firstBoxInput()).toBeVisible())

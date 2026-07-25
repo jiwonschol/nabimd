@@ -180,11 +180,11 @@ export function EditorialDesk({
         <RunSummary
           completedPages={completedPages}
           elapsedMs={elapsedMs}
-          failedProblemIds={session.failedProblemIds}
           onChangeLevel={changeLevel}
           onPracticeAgain={practiceAgain}
           score={score}
           motionReady={summaryMotionReady}
+          syntaxMistakes={session.syntaxMistakes}
           total={scheduledRunLength}
         />
       ) : (
