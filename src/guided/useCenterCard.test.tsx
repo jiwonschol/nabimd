@@ -99,6 +99,35 @@ describe("useCenterCard Hint and retry state", () => {
     expect(onMiss).toHaveBeenCalledTimes(1)
   })
 
+  it("reports which syntax group was missed and what it accepts", () => {
+    // `l1-italic-paper-boat` is `*Paper boat*`: an opening and a closing
+    // italic group. Level 1 mirrors a paired mark, so `@` lands in both
+    // groups and both owe the teacher's note an entry.
+    const { result, onMiss } = renderItalicCard()
+    act(() => result.current.editSegment(0, "@"))
+    act(() => result.current.submit())
+
+    expect(onMiss).toHaveBeenCalledTimes(1)
+    expect(onMiss.mock.calls[0]![0]).toEqual([
+      {
+        problemId: "l1-italic-paper-boat",
+        checkpointId: expect.any(String),
+        groupIndex: 0,
+        term: "italic text",
+        submitted: "@",
+        expected: ["*", "_"],
+      },
+      {
+        problemId: "l1-italic-paper-boat",
+        checkpointId: expect.any(String),
+        groupIndex: 1,
+        term: "italic text",
+        submitted: "@",
+        expected: ["*", "_"],
+      },
+    ])
+  })
+
   it("opens Hint without recording a miss when Enter is empty", () => {
     const { result, onMiss } = renderItalicCard()
     act(() => result.current.submit())

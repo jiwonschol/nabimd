@@ -2,12 +2,16 @@ import { useCallback, useMemo, useRef, useState } from "react"
 import type { GradableProblem } from "../content/types"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import {
+  acceptedGuidedSyntaxGroupInputs,
   acceptsGuidedSyntaxInput,
   buildGuidedDraft,
   checkpointHintRows,
   deriveSyntaxCheckpoints,
+  missedGuidedSyntaxGroups,
+  syntaxGroupTerm,
   type GuidedSyntaxSegment,
   type SyntaxCheckpoint,
+  type SyntaxMistake,
 } from "./guidedSyntax"
 
 export type CenterCardSlotVerdict = "idle" | "retry"
@@ -24,8 +28,11 @@ type CenterCardOptions = {
   onGrow: (nextDraft: string) => void
   /** Fires with the finished document when the last slot is accepted. */
   onComplete: (finishedDraft: string) => void
-  /** Fires once per wrong slot submission (Summary bookkeeping). */
-  onMiss?: () => void
+  /**
+   * Fires once per wrong slot submission (Summary bookkeeping), carrying one
+   * ledger entry for every syntax group the attempt got wrong.
+   */
+  onMiss?: (mistakes: readonly SyntaxMistake[]) => void
 }
 
 type SlotProgress = {
@@ -275,7 +282,28 @@ export function useCenterCard({
     if (!acceptsGuidedSyntaxInput(checkpoint, joined)) {
       // A wrong mark clears the boxes for a fresh attempt from the first
       // box, counts once toward the Summary, and holds the slot.
-      onMiss?.()
+      const groups = inputSegments(checkpoint)
+      const missedIndexes = missedGuidedSyntaxGroups(checkpoint, segmentValues)
+      // The attempt is rejected, so it always owes at least one ledger entry:
+      // when every group is individually typable the groups came from
+      // different accepted forms, and the first group carries the miss.
+      const chargedIndexes = missedIndexes.length > 0 ? missedIndexes : [0]
+      onMiss?.(
+        chargedIndexes.map((groupIndex) => ({
+          problemId: problem.id,
+          checkpointId: checkpoint.id,
+          groupIndex,
+          term: syntaxGroupTerm(
+            groups[groupIndex]?.value ?? "",
+            checkpoint.segments.some(
+              (segment) =>
+                segment.kind === "locked" && /\n[\t ]*$/.test(segment.value),
+            ),
+          ),
+          submitted: segmentValues[groupIndex] ?? "",
+          expected: acceptedGuidedSyntaxGroupInputs(checkpoint, groupIndex),
+        })),
+      )
       setSegmentValues(segmentValuesFor(checkpoint, undefined))
       setVerdict("retry")
       setHintOpen(true)

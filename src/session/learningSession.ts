@@ -1,5 +1,6 @@
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
+import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { createDefaultProgress } from "../progress/progressStore"
 import type { ProgressV5 } from "../progress/types"
 import {
@@ -29,6 +30,12 @@ export type LearningSession = {
   coach: "closed" | "hint"
   failedScheduledStepIndexes: number[]
   failedProblemIds: string[]
+  /**
+   * Every syntax group that caused a miss in this run, in the order they were
+   * missed. The Summary numbers its correction marks from this list, so a
+   * group appears at most once however many times it was retried.
+   */
+  syntaxMistakes: SyntaxMistake[]
   runStartedAtMs: number | null
   runCompletedAtMs: number | null
   progress: ProgressV5
@@ -72,7 +79,7 @@ export type SessionEvent =
       retryFamily: GradableProblem["retryFamily"]
     }
   | { type: "hint-requested" }
-  | { type: "slot-missed" }
+  | { type: "slot-missed"; mistakes?: readonly SyntaxMistake[] }
   | { type: "coach-closed" }
   | { type: "problem-replaced"; problem: GradableProblem }
   | {
@@ -142,6 +149,9 @@ export function createLearningSession(
       ...progress.failedScheduledStepIndexes,
     ],
     failedProblemIds: [...progress.failedProblemIds],
+    // The ledger is run-scoped: a restored session keeps its score, but the
+    // teacher's note is rebuilt from misses made after the restore.
+    syntaxMistakes: [],
     runStartedAtMs: progress.runStartedAtMs,
     runCompletedAtMs: progress.runCompletedAtMs,
     progress,
@@ -317,10 +327,29 @@ export function learningSessionReducer(
         session.failedProblemIds,
         session.currentProblemId,
       )
+      // One group is listed once however often it is retried, so re-missing a
+      // known group adds nothing new.
+      const known = new Set(
+        session.syntaxMistakes.map(
+          (mistake) =>
+            `${mistake.problemId}:${mistake.checkpointId}:${mistake.groupIndex}`,
+        ),
+      )
+      const freshMistakes = (event.mistakes ?? []).filter((mistake) => {
+        const key = `${mistake.problemId}:${mistake.checkpointId}:${mistake.groupIndex}`
+        if (known.has(key)) return false
+        known.add(key)
+        return true
+      })
+      const syntaxMistakes =
+        freshMistakes.length > 0
+          ? [...session.syntaxMistakes, ...freshMistakes]
+          : session.syntaxMistakes
       if (
         failedScheduledStepIndexes.length ===
           session.failedScheduledStepIndexes.length &&
         failedProblemIds.length === session.failedProblemIds.length &&
+        syntaxMistakes === session.syntaxMistakes &&
         session.progress.pendingSlotRetryProblemId ===
           session.currentProblemId
       ) {
@@ -331,6 +360,7 @@ export function learningSessionReducer(
         hadFailure: true,
         failedScheduledStepIndexes,
         failedProblemIds,
+        syntaxMistakes,
         progress: {
           ...session.progress,
           pendingSlotRetryProblemId: session.currentProblemId,

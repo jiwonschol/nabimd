@@ -17,6 +17,7 @@ import {
   problemBankRevision,
 } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
+import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { resolveBrowserStorage } from "../progress/browserStorage"
 import {
   loadProgress,
@@ -342,9 +343,12 @@ export function useLearningSession(
     dispatch({ type: "hint-requested" })
   }, [])
 
-  const recordSlotMiss = useCallback(() => {
-    dispatch({ type: "slot-missed" })
-  }, [])
+  const recordSlotMiss = useCallback(
+    (mistakes: readonly SyntaxMistake[] = []) => {
+      dispatch({ type: "slot-missed", mistakes })
+    },
+    [],
+  )
 
   const closeCoach = useCallback(() => {
     dispatch({ type: "coach-closed" })

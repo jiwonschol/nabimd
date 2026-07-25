@@ -7,7 +7,9 @@ import {
   buildGuidedDraft,
   checkpointHintRows,
   deriveSyntaxCheckpoints,
+  missedGuidedSyntaxGroups,
   projectCheckpointContext,
+  syntaxGroupTerm,
 } from "./guidedSyntax"
 
 describe("deriveSyntaxCheckpoints", () => {
@@ -26,6 +28,33 @@ describe("deriveSyntaxCheckpoints", () => {
       { kind: "input", value: "## " },
       { kind: "locked", value: "Next steps" },
     ])
+  })
+
+  it("names a syntax group by the space its grammar requires", () => {
+    // `* ` and `*` are the same character. Only the grammar-required space
+    // tells a bullet marker apart from an italic delimiter.
+    expect(syntaxGroupTerm("* ")).toBe("bullet item")
+    expect(syntaxGroupTerm("*")).toBe("italic text")
+    expect(syntaxGroupTerm("**")).toBe("bold text")
+    expect(syntaxGroupTerm("1. ")).toBe("numbered step")
+    expect(syntaxGroupTerm("> ")).toBe("block quote")
+    expect(syntaxGroupTerm("## ")).toBe("level 2 heading")
+    expect(syntaxGroupTerm("`")).toBe("inline code")
+    expect(syntaxGroupTerm("](")).toBe("link")
+    // `---` alone is a section break; after a heading line it is a Setext
+    // underline, which the note must not confuse with one.
+    expect(syntaxGroupTerm("---")).toBe("section break")
+    expect(syntaxGroupTerm("---", true)).toBe("level 2 Setext heading")
+  })
+
+  it("finds the groups an attempt cannot explain", () => {
+    const checkpoint = deriveSyntaxCheckpoints("*Paper boat*", "Paper boat")[0]!
+
+    // `*` and `_` are each accepted openers, so neither group looks wrong on
+    // its own even though the mixed pair is rejected as a whole.
+    expect(missedGuidedSyntaxGroups(checkpoint, ["*", "_"])).toEqual([])
+    expect(missedGuidedSyntaxGroups(checkpoint, ["@", ""])).toEqual([0, 1])
+    expect(missedGuidedSyntaxGroups(checkpoint, ["*", "*"])).toEqual([])
   })
 
   it("splits touching marks from two syntax families into separate groups", () => {
