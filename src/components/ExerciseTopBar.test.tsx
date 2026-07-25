@@ -141,16 +141,14 @@ describe("ExerciseTopBar", () => {
     expect(onNext).toHaveBeenCalledTimes(2)
   })
 
-  it("shows the shortcut beside both Check and Next", () => {
+  it("leaves checking to the card and shows Next only after a match", () => {
     renderTopBar("editing")
 
-    const check = screen.getByRole("button", { name: "Check answer" })
-    expect(check).toHaveAttribute("data-tooltip", "Check answer")
+    expect(screen.queryByRole("button", { name: "Check answer" })).toBeNull()
     expect(screen.getByRole("button", { name: "Try another" })).toHaveAttribute(
       "data-tooltip",
       "Try another",
     )
-    expect(check).toHaveTextContent("Ctrl+↩")
 
     renderTopBar("editing", {
       evaluation: { status: "matched", reviewItems: [] },

@@ -1,0 +1,65 @@
+import type { GradableProblem } from "../content/types"
+import { projectCheckpointContext } from "../guided/guidedSyntax"
+import { useCenterCard } from "../guided/useCenterCard"
+import { CenterCard } from "./CenterCard"
+
+type CardFirstPracticeProps = {
+  draft: string
+  interactive?: boolean
+  problem: GradableProblem
+  problemCompleted: boolean
+  onGrow: (nextDraft: string) => void
+  onComplete: (finishedDraft: string) => void
+  onMiss?: () => void
+}
+
+export function CardFirstPractice({
+  draft,
+  interactive = true,
+  problem,
+  problemCompleted,
+  onGrow,
+  onComplete,
+  onMiss,
+}: CardFirstPracticeProps) {
+  const card = useCenterCard({
+    problem,
+    draft,
+    completed: problemCompleted,
+    onGrow,
+    onComplete,
+    onMiss,
+  })
+
+  if (!card.checkpoint) return null
+
+  return (
+    <article
+      aria-disabled={!interactive}
+      className="card-practice"
+      data-draft={draft}
+      data-problem-id={problem.id}
+    >
+      <CenterCard
+        key={problem.id}
+        canGoToNextSlot={card.canGoToNextSlot}
+        canGoToPreviousSlot={card.canGoToPreviousSlot}
+        checkpoint={card.checkpoint}
+        context={projectCheckpointContext(problem.target, card.checkpoint)}
+        focusRequest={card.focusRequest}
+        hintOpen={card.hintOpen}
+        hintRows={card.hintRows}
+        onCloseHint={card.closeHint}
+        onEditSegment={card.editSegment}
+        onNextSlot={card.goToNextSlot}
+        onPreviousSlot={card.goToPreviousSlot}
+        onSubmit={card.submit}
+        onToggleHint={card.toggleHint}
+        segmentValues={card.segmentValues}
+        slotIndex={card.slotIndex}
+        slotTotal={card.slotTotal}
+        verdict={card.verdict}
+      />
+    </article>
+  )
+}

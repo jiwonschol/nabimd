@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useEffectEvent, useRef } from "react"
 import type { useLearningSession } from "../session/useLearningSession"
 import { createRunProblemIds } from "../content/entryChoices"
-import { AnswerPanel } from "./AnswerPanel"
+import { CardFirstPractice } from "./CardFirstPractice"
 import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
-import { GoalPanel } from "./GoalPanel"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 import { VERDICT_BEAT_MS } from "./verdictBeat"
@@ -22,8 +21,6 @@ export function EditorialDesk({
   canGoToNextStep,
   edit,
   check,
-  requestHint,
-  closeCoach,
   next,
   recordSlotMiss,
   goToPreviousStep,
@@ -125,7 +122,11 @@ export function EditorialDesk({
   }, [interactive, session.phase])
 
   return (
-    <main className="app-shell app-shell--practice">
+    <main
+      className="app-shell app-shell--practice"
+      data-draft={session.draft}
+      data-problem-id={problem.id}
+    >
       <ExerciseTopBar
         canCheck={canCheck}
         canGoToPreviousStep={canGoToPreviousStep}
@@ -160,27 +161,17 @@ export function EditorialDesk({
         />
       ) : (
         <>
-          <article className="cbt-workspace open-book-shell">
-            <GoalPanel problem={problem} />
-            <AnswerPanel
-              coach={session.coach}
-              draft={session.draft}
-              entryId={session.entryId!}
-              evaluation={session.evaluation}
-              hintLevel={session.hintLevel}
-              onChange={edit}
-              onCheck={guardedCheck}
-              onCloseHint={closeCoach}
-              onNextHint={requestHint}
-              onRequestHint={requestHint}
-              onSlotMiss={recordSlotMiss}
-              problem={problem}
-              problemCompleted={session.progress.completedProblemIds.includes(
-                problem.id,
-              )}
-              interactive={interactive}
-            />
-          </article>
+          <CardFirstPractice
+            draft={session.draft}
+            interactive={interactive}
+            onComplete={guardedCheck}
+            onGrow={edit}
+            onMiss={recordSlotMiss}
+            problem={problem}
+            problemCompleted={session.progress.completedProblemIds.includes(
+              problem.id,
+            )}
+          />
           <VerdictNotice
             draft={session.draft}
             evaluation={session.evaluation}

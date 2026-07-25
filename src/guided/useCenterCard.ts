@@ -131,7 +131,10 @@ export function useCenterCard({
   )
   const atFrontier = viewIndex === progress.count
 
-  const checkpoint = done ? null : (checkpoints[viewIndex] ?? null)
+  // A completed problem keeps its last card on the page during the Matched
+  // beat and when the learner revisits it. The surface never collapses to an
+  // empty sheet merely because all marks are correct.
+  const checkpoint = checkpoints[viewIndex] ?? null
 
   const [segmentValues, setSegmentValues] = useState<string[]>(() =>
     segmentValuesFor(
@@ -178,8 +181,9 @@ export function useCenterCard({
   }, [setViewIndex, viewIndex])
 
   const goToNextSlot = useCallback(() => {
-    if (viewIndex < progress.count) setViewIndex(viewIndex + 1)
-  }, [progress.count, setViewIndex, viewIndex])
+    const lastVisited = Math.min(progress.count, checkpoints.length - 1)
+    if (viewIndex < lastVisited) setViewIndex(viewIndex + 1)
+  }, [checkpoints.length, progress.count, setViewIndex, viewIndex])
 
   const editSegment = useCallback((index: number, value: string) => {
     setSegmentValues((previous) => {
@@ -276,8 +280,9 @@ export function useCenterCard({
     slotTotal: checkpoints.length,
     frontierIndex: progress.count,
     atFrontier,
-    canGoToPreviousSlot: !done && viewIndex > 0,
-    canGoToNextSlot: !done && viewIndex < progress.count,
+    canGoToPreviousSlot: viewIndex > 0,
+    canGoToNextSlot:
+      viewIndex < Math.min(progress.count, checkpoints.length - 1),
     done,
     segmentValues,
     verdict,

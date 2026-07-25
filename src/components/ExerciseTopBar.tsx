@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Check,
   ChevronLeft,
   ChevronRight,
   House,
@@ -47,7 +46,6 @@ type ExerciseTopBarProps = {
 }
 
 export function ExerciseTopBar({
-  canCheck,
   canGoToPreviousStep,
   canGoToNextStep,
   entryId,
@@ -60,7 +58,6 @@ export function ExerciseTopBar({
   runStartedAtMs,
   scheduledRunLength,
   scheduledStepIndex,
-  onCheck,
   onExit,
   onNext,
   onPreviousStep,
@@ -239,40 +236,36 @@ export function ExerciseTopBar({
           >
             <Shuffle aria-hidden="true" size={19} strokeWidth={1.7} />
           </button>
-          <button
-            aria-label={matched ? "Next exercise" : "Check answer"}
-            aria-keyshortcuts={shortcut.ariaKeyShortcuts}
-            className="top-action top-action--primary"
-            data-tooltip={matched ? "Next exercise" : "Check answer"}
-            disabled={!matched && !canCheck}
-            onClick={matched ? onNext : onCheck}
-            onKeyDown={(event) => {
-              if (!matched) return
-              if (event.key === " ") {
-                event.preventDefault()
-                return
-              }
-              if (event.repeat) {
-                event.preventDefault()
-                return
-              }
-              if (
-                isActionShortcut(event.nativeEvent, navigatorLike) ||
-                event.key === "Enter"
-              ) {
-                event.preventDefault()
-                onNext()
-              }
-            }}
-            type="button"
-          >
-            {matched ? (
+          {matched ? (
+            <button
+              aria-label="Next exercise"
+              aria-keyshortcuts={shortcut.ariaKeyShortcuts}
+              className="top-action top-action--primary"
+              data-tooltip="Next exercise"
+              onClick={onNext}
+              onKeyDown={(event) => {
+                if (event.key === " ") {
+                  event.preventDefault()
+                  return
+                }
+                if (event.repeat) {
+                  event.preventDefault()
+                  return
+                }
+                if (
+                  isActionShortcut(event.nativeEvent, navigatorLike) ||
+                  event.key === "Enter"
+                ) {
+                  event.preventDefault()
+                  onNext()
+                }
+              }}
+              type="button"
+            >
               <ArrowRight aria-hidden="true" size={24} strokeWidth={1.8} />
-            ) : (
-              <Check aria-hidden="true" size={24} strokeWidth={1.8} />
-            )}
-            <span className="top-action__shortcut">{shortcut.label}</span>
-          </button>
+              <span className="top-action__shortcut">{shortcut.label}</span>
+            </button>
+          ) : null}
         </div>
       </div>
     </header>
