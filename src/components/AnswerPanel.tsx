@@ -12,6 +12,7 @@ import { getExerciseMode } from "../content/exerciseMode"
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
+import { projectCheckpointContext } from "../guided/guidedSyntax"
 import { useCenterCard } from "../guided/useCenterCard"
 import type { LearningSession } from "../session/learningSession"
 import { CenterCard } from "./CenterCard"
@@ -698,11 +699,16 @@ export function AnswerPanel({
             canGoToNextSlot={card.canGoToNextSlot}
             canGoToPreviousSlot={card.canGoToPreviousSlot}
             checkpoint={card.checkpoint}
+            context={projectCheckpointContext(problem.target, card.checkpoint)}
+            focusRequest={card.focusRequest}
+            hintOpen={card.hintOpen}
+            hintRows={card.hintRows}
+            onCloseHint={card.closeHint}
             onEditSegment={card.editSegment}
             onNextSlot={card.goToNextSlot}
-            onPeekHint={() => selectViewFromPointer("hint")}
             onPreviousSlot={card.goToPreviousSlot}
             onSubmit={card.submit}
+            onToggleHint={card.toggleHint}
             segmentValues={card.segmentValues}
             slotIndex={card.slotIndex}
             slotTotal={card.slotTotal}

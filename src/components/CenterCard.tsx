@@ -1,15 +1,21 @@
-import { ChevronLeft, ChevronRight, Lightbulb } from "lucide-react"
+import { ChevronLeft, ChevronRight, Lightbulb, X } from "lucide-react"
 import {
   useEffect,
+  useId,
   useRef,
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react"
-import type { SyntaxCheckpoint } from "../guided/guidedSyntax"
+import type {
+  CheckpointContext,
+  CheckpointHintRow,
+  SyntaxCheckpoint,
+} from "../guided/guidedSyntax"
 import {
   inputSegments,
   type CenterCardSlotVerdict,
 } from "../guided/useCenterCard"
+import { RenderedDocumentBody } from "./RenderedDocument"
 
 type CenterCardProps = {
   checkpoint: SyntaxCheckpoint
@@ -17,12 +23,17 @@ type CenterCardProps = {
   slotTotal: number
   segmentValues: readonly string[]
   verdict: CenterCardSlotVerdict
+  context: CheckpointContext
+  hintOpen: boolean
+  hintRows: readonly CheckpointHintRow[]
+  focusRequest: number
   canGoToPreviousSlot: boolean
   canGoToNextSlot: boolean
   onEditSegment: (index: number, value: string) => void
   onPreviousSlot: () => void
   onNextSlot: () => void
-  onPeekHint: () => void
+  onToggleHint: () => void
+  onCloseHint: () => void
   onSubmit: () => void
 }
 
@@ -109,18 +120,24 @@ export function CenterCard({
   slotTotal,
   segmentValues,
   verdict,
+  context,
+  hintOpen,
+  hintRows,
+  focusRequest,
   canGoToPreviousSlot,
   canGoToNextSlot,
   onEditSegment,
   onPreviousSlot,
   onNextSlot,
-  onPeekHint,
+  onToggleHint,
+  onCloseHint,
   onSubmit,
 }: CenterCardProps) {
   const groups = inputSegments(checkpoint)
   const checkpointInstruction = describeCheckpoint(checkpoint)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [focusedGroup, setFocusedGroup] = useState<number | null>(null)
+  const hintId = useId()
 
   useEffect(() => {
     const firstOpen = segmentValues.findIndex(
@@ -135,6 +152,10 @@ export function CenterCard({
     // A rejected Enter empties the boxes; typing restarts at the first box.
     if (verdict === "retry") inputRefs.current[0]?.focus()
   }, [verdict])
+
+  useEffect(() => {
+    if (focusRequest > 0) inputRefs.current[0]?.focus()
+  }, [focusRequest])
 
   const editGroup = (index: number, raw: string) => {
     // macOS Korean input sources type ₩ on the backtick key, which would
@@ -173,6 +194,11 @@ export function CenterCard({
       onSubmit()
       return
     }
+    if (event.key === "?" && !event.altKey && !event.ctrlKey && !event.metaKey) {
+      event.preventDefault()
+      onToggleHint()
+      return
+    }
     if (event.key === "ArrowUp") {
       event.preventDefault()
       onPreviousSlot()
@@ -196,17 +222,17 @@ export function CenterCard({
   let groupIndex = -1
 
   return (
-    <section aria-label="Syntax input" className="center-card">
+    <section aria-label="Markdown syntax practice" className="center-card">
       <header className="center-card__header">
         <div className="center-card__heading">
           <span className="center-card__slot">
             Mark {Math.min(slotIndex + 1, slotTotal)} of {slotTotal}
           </span>
-          <h3 className="center-card__instruction">
+          <h2 className="center-card__instruction">
             {checkpointInstruction.prefix}
             <strong>{checkpointInstruction.term}</strong>
             {checkpointInstruction.suffix}
-          </h3>
+          </h2>
         </div>
         <div className="center-card__controls">
           <button
@@ -231,18 +257,24 @@ export function CenterCard({
           >
             <ChevronRight aria-hidden="true" size={17} strokeWidth={1.8} />
           </button>
-          <button
-            aria-keyshortcuts="Alt+H"
-            aria-label="Peek at the hint"
-            className="center-card__control"
-            data-tooltip="Hint (Alt+H)"
-            onClick={onPeekHint}
-            type="button"
-          >
-            <Lightbulb aria-hidden="true" size={17} strokeWidth={1.8} />
-          </button>
         </div>
       </header>
+
+      <div aria-label="Rendered context" className="center-card__context">
+        {context.before ? (
+          <div className="center-card__context-row center-card__context-row--quiet">
+            <RenderedDocumentBody source={context.before} />
+          </div>
+        ) : null}
+        <div className="center-card__context-row center-card__context-row--current">
+          <RenderedDocumentBody source={context.current} />
+        </div>
+        {context.after ? (
+          <div className="center-card__context-row center-card__context-row--quiet">
+            <RenderedDocumentBody source={context.after} />
+          </div>
+        ) : null}
+      </div>
 
       <div className="center-card__line" data-verdict={verdict}>
         {checkpoint.segments.map((segment, segmentIndex) => {
@@ -305,16 +337,68 @@ export function CenterCard({
         })}
       </div>
 
-      {verdict === "retry" ? (
-        <p className="center-card__verdict" role="status">
-          <strong>Try again</strong> — that is not the mark this spot needs.
-          Compare the Goal line, or open the Hint.
-        </p>
-      ) : (
-        <p className="center-card__hint">
-          Type the Markdown marks into the boxes, then press Enter.
-        </p>
-      )}
+      <div className="center-card__actions">
+        <button
+          aria-label="Hint"
+          aria-controls={hintId}
+          aria-expanded={hintOpen}
+          className="center-card__hint-button"
+          onClick={onToggleHint}
+          type="button"
+        >
+          <Lightbulb aria-hidden="true" size={18} strokeWidth={1.7} />
+          Hint
+        </button>
+        {verdict === "retry" ? (
+          <p className="center-card__verdict" role="status">
+            Try again
+          </p>
+        ) : null}
+        <button
+          aria-keyshortcuts="Enter"
+          aria-label="Check marks"
+          className="center-card__submit"
+          onClick={onSubmit}
+          type="button"
+        >
+          Enter <span aria-hidden="true">↵</span>
+        </button>
+      </div>
+
+      {hintOpen ? (
+        <section
+          aria-label="Exact Markdown hint"
+          className="center-card__exact-hint"
+          id={hintId}
+          role="region"
+        >
+          <div className="center-card__exact-hint-heading">
+            <span>Use either accepted form</span>
+            <button
+              aria-label="Close hint"
+              className="center-card__hint-close"
+              onClick={onCloseHint}
+              type="button"
+            >
+              <X aria-hidden="true" size={17} strokeWidth={1.8} />
+            </button>
+          </div>
+          <ul className="center-card__hint-list">
+            {hintRows.map((row) => (
+              <li className="center-card__hint-row" key={`${row.input}:${row.source}`}>
+                <span aria-label={`Type ${row.input}`} className="center-card__keycaps">
+                  {Array.from(row.input).map((character, index) => (
+                    <kbd key={`${character}:${index}`}>
+                      {character === " " ? "Space" : character}
+                    </kbd>
+                  ))}
+                </span>
+                <code>{row.source}</code>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </section>
   )
 }

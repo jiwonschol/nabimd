@@ -4,6 +4,7 @@ import { playFeedbackSound } from "../sound/feedbackSound"
 import {
   acceptsGuidedSyntaxInput,
   buildGuidedDraft,
+  checkpointHintRows,
   deriveSyntaxCheckpoints,
   type GuidedSyntaxSegment,
   type SyntaxCheckpoint,
@@ -141,6 +142,8 @@ export function useCenterCard({
     ),
   )
   const [verdict, setVerdict] = useState<CenterCardSlotVerdict>("idle")
+  const [hintOpen, setHintOpen] = useState(false)
+  const [focusRequest, setFocusRequest] = useState(0)
   const slotKey = `${problem.id}:${checkpoint?.id ?? "done"}:${viewIndex}`
   const slotKeyRef = useRef(slotKey)
   if (slotKeyRef.current !== slotKey) {
@@ -157,6 +160,7 @@ export function useCenterCard({
       ),
     )
     setVerdict("idle")
+    setHintOpen(false)
   }
 
   const setViewIndex = useCallback(
@@ -188,6 +192,30 @@ export function useCenterCard({
     setVerdict("idle")
   }, [])
 
+  const requestFirstBoxFocus = useCallback(() => {
+    setFocusRequest((current) => current + 1)
+  }, [])
+
+  const openHint = useCallback(() => {
+    if (!checkpoint) return
+    setSegmentValues(segmentValuesFor(checkpoint, undefined))
+    setVerdict("idle")
+    setHintOpen(true)
+    requestFirstBoxFocus()
+  }, [checkpoint, requestFirstBoxFocus])
+
+  const closeHint = useCallback(() => {
+    setHintOpen(false)
+  }, [])
+
+  const toggleHint = useCallback(() => {
+    if (hintOpen) {
+      closeHint()
+      return
+    }
+    openHint()
+  }, [closeHint, hintOpen, openHint])
+
   const submit = useCallback(() => {
     if (!checkpoint) return
     const joined = segmentValues.join("")
@@ -195,6 +223,8 @@ export function useCenterCard({
       // An empty Enter is not an attempt: hold the slot without counting a
       // miss toward the Summary.
       setVerdict("retry")
+      setHintOpen(true)
+      requestFirstBoxFocus()
       playFeedbackSound("retry")
       return
     }
@@ -204,6 +234,8 @@ export function useCenterCard({
       onMiss?.()
       setSegmentValues(segmentValuesFor(checkpoint, undefined))
       setVerdict("retry")
+      setHintOpen(true)
+      requestFirstBoxFocus()
       playFeedbackSound("retry")
       return
     }
@@ -232,6 +264,7 @@ export function useCenterCard({
     onMiss,
     problem,
     progress,
+    requestFirstBoxFocus,
     segmentValues,
     setViewIndex,
   ])
@@ -248,7 +281,13 @@ export function useCenterCard({
     done,
     segmentValues,
     verdict,
+    hintOpen,
+    hintRows: checkpoint ? checkpointHintRows(checkpoint) : [],
+    focusRequest,
     editSegment,
+    openHint,
+    closeHint,
+    toggleHint,
     goToPreviousSlot,
     goToNextSlot,
     submit,
