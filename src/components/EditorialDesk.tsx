@@ -1,10 +1,16 @@
-import { useCallback, useEffect, useEffectEvent, useRef } from "react"
+import {
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useMemo,
+  useRef,
+} from "react"
 import type { useLearningSession } from "../session/useLearningSession"
 import { createRunProblemIds } from "../content/entryChoices"
-import { AnswerPanel } from "./AnswerPanel"
+import { getProblem } from "../content/problemBank"
+import { CardFirstPractice } from "./CardFirstPractice"
 import { getElapsedMs } from "./ElapsedTime"
 import { ExerciseTopBar } from "./ExerciseTopBar"
-import { GoalPanel } from "./GoalPanel"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 import { VERDICT_BEAT_MS } from "./verdictBeat"
@@ -17,13 +23,10 @@ type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
 export function EditorialDesk({
   session,
   problem,
-  canCheck,
   canGoToPreviousStep,
   canGoToNextStep,
   edit,
   check,
-  requestHint,
-  closeCoach,
   next,
   recordSlotMiss,
   goToPreviousStep,
@@ -48,6 +51,29 @@ export function EditorialDesk({
     session.runCompletedAtMs,
     session.runCompletedAtMs ?? Date.now(),
   )
+  const completedPages = useMemo(() => {
+    const completedIds = new Set(session.progress.completedProblemIds)
+    const seen = new Set<string>()
+
+    return session.runProblemIds.flatMap((problemId) => {
+      if (seen.has(problemId) || !completedIds.has(problemId)) return []
+      seen.add(problemId)
+      const completedProblem = getProblem(problemId)
+      return [
+        {
+          problemId,
+          title: completedProblem.prompt,
+          source:
+            session.progress.draftByProblemId[problemId] ??
+            completedProblem.target,
+        },
+      ]
+    })
+  }, [
+    session.progress.completedProblemIds,
+    session.progress.draftByProblemId,
+    session.runProblemIds,
+  ])
 
   // Matched flows, Try again holds (issue #102): a fresh Matched verdict at
   // the frontier of the run advances by itself after the verdict beat. A
@@ -125,15 +151,17 @@ export function EditorialDesk({
   }, [interactive, session.phase])
 
   return (
-    <main className="app-shell app-shell--practice">
+    <main
+      className="app-shell app-shell--practice"
+      data-draft={session.draft}
+      data-problem-id={problem.id}
+    >
       <ExerciseTopBar
-        canCheck={canCheck}
         canGoToPreviousStep={canGoToPreviousStep}
         canGoToNextStep={canGoToNextStep}
         entryId={session.entryId!}
         evaluation={session.evaluation}
         currentIsTransfer={session.currentIsTransfer}
-        onCheck={guardedCheck}
         onExit={changeLevel}
         onNext={next}
         onPreviousStep={goToPreviousStep}
@@ -150,37 +178,31 @@ export function EditorialDesk({
 
       {session.phase === "complete" ? (
         <RunSummary
+          completedPages={completedPages}
           elapsedMs={elapsedMs}
-          failedProblemIds={session.failedProblemIds}
           onChangeLevel={changeLevel}
           onPracticeAgain={practiceAgain}
           score={score}
           motionReady={summaryMotionReady}
+          syntaxMistakes={session.syntaxMistakes}
           total={scheduledRunLength}
         />
       ) : (
         <>
-          <article className="cbt-workspace open-book-shell">
-            <GoalPanel problem={problem} />
-            <AnswerPanel
-              coach={session.coach}
-              draft={session.draft}
-              entryId={session.entryId!}
-              evaluation={session.evaluation}
-              hintLevel={session.hintLevel}
-              onChange={edit}
-              onCheck={guardedCheck}
-              onCloseHint={closeCoach}
-              onNextHint={requestHint}
-              onRequestHint={requestHint}
-              onSlotMiss={recordSlotMiss}
-              problem={problem}
-              problemCompleted={session.progress.completedProblemIds.includes(
-                problem.id,
-              )}
-              interactive={interactive}
-            />
-          </article>
+          <CardFirstPractice
+            draft={session.draft}
+            interactive={interactive}
+            onComplete={guardedCheck}
+            onGrow={edit}
+            onMiss={recordSlotMiss}
+            problem={problem}
+            problemCompleted={session.progress.completedProblemIds.includes(
+              problem.id,
+            )}
+            retryPending={
+              session.progress.pendingSlotRetryProblemId === problem.id
+            }
+          />
           <VerdictNotice
             draft={session.draft}
             evaluation={session.evaluation}

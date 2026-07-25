@@ -318,6 +318,14 @@ describe("global responsive styles", () => {
     expect(styles).not.toContain("word-break: break-word")
   })
 
+  it("emphasizes the requested syntax term with weight, not an underline", () => {
+    const instructionTerm = lastCssBlock(".center-card__instruction strong")
+
+    expect(instructionTerm).toContain("font-weight: 700")
+    expect(instructionTerm).not.toContain("text-decoration")
+    expect(instructionTerm).not.toContain("text-underline-offset")
+  })
+
   it("aligns the visible Goal instruction with the document text", () => {
     expect(styles).toMatch(
       /\.goal-panel > \.cbt-panel__header\s*\{[^{}]*justify-content:\s*flex-start[^{}]*padding-left:\s*calc\(42px \+ 57px \+ 23px\)/s,

@@ -46,7 +46,14 @@ export function createRunProblemIdsForBank(
   // lists embedded in them are kept.
   const served = problems.filter((problem) => {
     const family = getSyntaxFamily(problem)
-    return family === null || !EXCLUDED_SYNTAX_FAMILIES.has(family)
+    if (family !== null && EXCLUDED_SYNTAX_FAMILIES.has(family)) return false
+    // Level 1 promises six short syntax decisions, not six documents whose
+    // repeated markers expand into an unknown number of cards. Composite
+    // practice begins at Level 2.
+    return (
+      entry.level !== 1 ||
+      (family !== null && family !== "unordered-list")
+    )
   })
   return createTurnProblemIds(entry.level, runNumber, served, seed)
 }

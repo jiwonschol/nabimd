@@ -144,6 +144,9 @@ function selectDistinctChallengeProblems(
   const targetCount = Math.min(count, candidates.length)
   const initialLength = context.selected.length
   const selectedKeys = new Set<string>()
+  const earlierTurnKeys = new Set(
+    context.selected.map((problem) => getSelectionKey(problem)),
+  )
   const orderedKeys = candidates.reduce<string[]>((keys, problem) => {
     const key = getSelectionKey(problem)
     if (!keys.includes(key)) keys.push(key)
@@ -159,6 +162,7 @@ function selectDistinctChallengeProblems(
     const key = orderedKeys.find(
       (candidateKey) =>
         candidateKey !== context.previousKey &&
+        !earlierTurnKeys.has(candidateKey) &&
         !selectedKeys.has(candidateKey),
     )
     if (!key) break
@@ -178,11 +182,13 @@ function selectDistinctChallengeProblems(
       candidates.find(
         (problem) =>
           !context.selectedIds.has(problem.id) &&
+          !earlierTurnKeys.has(getSelectionKey(problem)) &&
           getSelectionKey(problem) !== context.previousKey,
       ) ??
       candidates.find(
         (problem) =>
           !context.selectedIds.has(problem.id) &&
+          !earlierTurnKeys.has(getSelectionKey(problem)) &&
           getSyntaxFamily(problem) === null,
       )
     if (!candidate) break

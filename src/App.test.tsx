@@ -6,14 +6,10 @@ import {
   waitFor,
   within,
 } from "@testing-library/react"
-import { EditorView } from "@codemirror/view"
 import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
-import { hintPatternLines } from "./components/AnswerPanel"
 import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
-import { evaluateProblem } from "./engine/evaluateProblem"
-import { buildReviewCorrections } from "./feedback/reviewCorrections"
 import { deriveSyntaxCheckpoints } from "./guided/guidedSyntax"
 import { resetCenterCardMemoryForTests } from "./guided/useCenterCard"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
@@ -63,7 +59,7 @@ async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
   // inert on a real 720ms timer — long enough for the next interactions to be
   // swallowed. Prefer reduced motion and wait the turn out before returning.
   stubReducedMotionPreference()
-  render(<App />)
+  const view = render(<App />)
   const entry = entryChoices.find((choice) => choice.level === level)!
   await user.click(screen.getByRole("button", { name: entry.label }))
   await waitFor(() => {
@@ -71,7 +67,7 @@ async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
       "inert",
     )
   })
-  return { user, entry }
+  return { user, entry, ...view }
 }
 
 // Flushes jsdom's queued history traversals (back/forward/go and the popstate
@@ -87,12 +83,12 @@ function drainHistoryTraversals() {
 }
 
 function currentProblem() {
-  const writeTab = screen.getByRole("tab", { name: "Write" })
-  const panelId = writeTab.getAttribute("aria-controls")
-  if (!panelId?.startsWith("write-panel-")) {
-    throw new Error("The active Write tab must identify its problem")
-  }
-  return getProblem(panelId.slice("write-panel-".length))
+  const practice = document.querySelector<HTMLElement>(
+    ".app-shell--practice[data-problem-id]",
+  )
+  const problemId = practice?.dataset.problemId
+  if (!problemId) throw new Error("The active card must identify its problem")
+  return getProblem(problemId)
 }
 
 function useSessionSeedForFirstProblem(
@@ -151,20 +147,11 @@ async function completeAndAdvance(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getByRole("button", { name: "Next exercise" }))
 }
 
-// The card only accepts correct marks, so a document-level failure comes from
-// asking for judgment early: Check on a not-yet-grown document.
-async function failWithEarlyCheck(user: ReturnType<typeof userEvent.setup>) {
-  await user.click(screen.getByRole("button", { name: "Check answer" }))
-}
-
 function writePanelDocument() {
-  const writePanel = screen.getByRole("tabpanel", { name: "Write" })
-  // A replaced problem can leave the outgoing processor in the DOM for the
-  // rest of the commit; the live document is always the latest mount.
-  const contents = writePanel.querySelectorAll<HTMLElement>(".cm-content")
-  const content = contents[contents.length - 1]
-  if (!content) throw new Error("Expected the rendered document processor")
-  return EditorView.findFromDOM(content)?.state.doc.toString() ?? ""
+  return (
+    document.querySelector<HTMLElement>(".app-shell--practice")?.dataset.draft ??
+    ""
+  )
 }
 
 describe("App", () => {
@@ -189,7 +176,9 @@ describe("App", () => {
     expect(screen.getByTestId("page-turn-transition")).toBeVisible()
     const receiver = screen.getByTestId("page-turn-receiver")
     expect(receiver).toHaveAttribute("inert")
-    expect(receiver.querySelector('[aria-label="Syntax input"]')).not.toBeNull()
+    expect(
+      receiver.querySelector('[aria-label="Markdown syntax practice"]'),
+    ).not.toBeNull()
 
     act(() => {
       vi.advanceTimersByTime(720)
@@ -249,63 +238,26 @@ describe("App", () => {
     }
   })
 
-  it("keeps teaching behind the answer Hint tab at every chosen level", async () => {
+  it("keeps exact teaching inside the card at every chosen level", async () => {
     const first = await openLevel(1)
-    const firstHint = screen.getByRole("tab", { name: "Hint" })
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
-      "data-tooltip",
-      "Write",
-    )
-    expect(firstHint).toHaveAttribute("data-tooltip", "Hint")
-    expect(firstHint).toHaveAttribute("aria-keyshortcuts", "Alt+H Alt+3 ?")
-    expect(firstHint).toHaveAttribute("aria-selected", "false")
-    await first.user.click(firstHint)
-    const pattern = within(
-      screen.getByRole("tabpanel", { name: "Hint" }),
-    ).getByLabelText("Markdown pattern")
-    const expectedLines = hintPatternLines(currentProblem())
-      .filter((line) => line.kind === "code")
-      .map((line) => line.text)
+    const hintButton = screen.getByRole("button", { name: "Hint" })
+    expect(hintButton).toHaveAttribute("aria-expanded", "false")
+    await first.user.click(hintButton)
     expect(
-      Array.from(pattern.querySelectorAll("code"), (node) => node.textContent),
-    ).toEqual(
-      currentProblem().syntaxTokens.some((token) =>
-        token.trim().startsWith("```"),
-      )
-        ? [...expectedLines, "~~~"]
-        : expectedLines,
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
+    expect(firstBoxInput()).toHaveFocus()
+
+    await first.user.click(
+      screen.getByRole("button", { name: "Nabi Markdown home" }),
     )
-    await first.user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
-    await first.user.click(screen.getByRole("button", { name: entryChoices[1].label }))
-    expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
-      "aria-selected",
+    await first.user.click(
+      screen.getByRole("button", { name: entryChoices[4].label }),
+    )
+    expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
+      "aria-expanded",
       "false",
     )
-  })
-
-  it("turns Level 5 syntax marks into readable source examples", async () => {
-    useSessionSeedForFirstProblem(
-      5,
-      (problem) =>
-        problem.syntaxTokens.includes("```bash") &&
-        problem.syntaxTokens.includes("1."),
-    )
-    const { user } = await openLevel(5)
-    await user.click(screen.getByRole("tab", { name: "Hint" }))
-
-    const hint = screen.getByRole("tabpanel", { name: "Hint" })
-    // Every syntax token gets a chip, plus the ~~~ twin for the code fence.
-    expect(within(hint).getAllByRole("code")).toHaveLength(
-      currentProblem().syntaxTokens.length + 1,
-    )
-    expect(within(hint).getByText("~~~")).toBeVisible()
-    expect(within(hint).getByText("# Title")).toBeVisible()
-    expect(within(hint).getByText("## Section")).toBeVisible()
-    expect(within(hint).getByText("1. Read AGENTS.md")).toBeVisible()
-    expect(
-      Array.from(hint.querySelectorAll("code"), (node) => node.textContent),
-    ).toContain("```bash\n...\n```")
-    expect(within(hint).getByText("`npm test`")).toBeVisible()
   })
 
   it("keeps the selected task identity visible in the exercise header", async () => {
@@ -317,44 +269,16 @@ describe("App", () => {
     expect(practiceDetails).not.toHaveTextContent("Rebuild real documents")
   })
 
-  it("renders the authored target as the fixed Goal at every level", async () => {
-    const targetView = await openLevel(2)
-    const targetGoal = screen.getByRole("region", { name: "Goal" })
-    expect(
-      targetGoal.querySelector(
-        '.markdown-word-processor[data-presentation="rendered"]',
-      ),
-    ).not.toBeNull()
-
-    await targetView.user.click(
-      screen.getByRole("button", { name: "Nabi Markdown home" }),
-    )
-    await targetView.user.click(
-      screen.getByRole("button", { name: entryChoices[2].label }),
-    )
-    const highLevelProblem = currentProblem()
-    const highLevelGoal = screen.getByRole("region", { name: "Goal" })
-    expect(
-      highLevelGoal.querySelector(
-        '.markdown-word-processor[data-presentation="rendered"]',
-      ),
-    ).not.toBeNull()
-    const prompt = within(highLevelGoal).getByText(highLevelProblem.prompt)
-    expect(prompt).toBeVisible()
-    expect(prompt).toHaveClass("goal-panel__instruction")
-    expect(highLevelGoal).toHaveAttribute("aria-describedby", prompt.id)
-    const expectedHeading = highLevelProblem.target
-      .split("\n")[0]!
-      .replace(/^#+\s*/, "")
-    const goalDocument = within(highLevelGoal).getByRole("region", {
-      name: "Goal document",
+  it("shows only local rendered context and mark inputs during practice", async () => {
+    await openLevel(3)
+    const card = screen.getByRole("region", {
+      name: "Markdown syntax practice",
     })
-    expect(goalDocument).toHaveTextContent(expectedHeading)
-    expect(goalDocument.querySelector(".cm-content")).toHaveAttribute(
-      "contenteditable",
-      "false",
-    )
-    expect(highLevelGoal).not.toHaveTextContent("Build from this brief")
+    expect(within(card).getByLabelText("Rendered context")).toBeVisible()
+    expect(within(card).getAllByRole("textbox").length).toBeGreaterThan(0)
+    expect(screen.queryByRole("region", { name: "Goal" })).toBeNull()
+    expect(screen.queryByRole("tablist")).toBeNull()
+    expect(screen.queryByText("Your answer")).toBeNull()
   })
 
   it("starts the document blank and grows it as slots are accepted", async () => {
@@ -364,26 +288,32 @@ describe("App", () => {
     expect(marks.length).toBeGreaterThan(1)
     expect(writePanelDocument()).toBe("")
 
-    const card = screen.getByLabelText("Syntax input")
-    expect(card).toHaveTextContent(`Mark 1 of ${marks.length}`)
+    // `Step x of 6` in the top bar is the only progress label; the marks
+    // inside a card never introduce a second counter.
+    const card = screen.getByLabelText("Markdown syntax practice")
+    expect(card).not.toHaveTextContent(/Mark \d+ of \d+/)
+    expect(screen.getByLabelText(/Practice progress, \d+ of \d+/)).toBeVisible()
 
     submitSlot(marks[0]!)
     expect(writePanelDocument()).not.toBe("")
     expect(problem.target.startsWith(writePanelDocument())).toBe(true)
-    expect(screen.getByLabelText("Syntax input")).toHaveTextContent(
-      `Mark 2 of ${marks.length}`,
+    expect(screen.getByLabelText("Markdown syntax practice")).not.toHaveTextContent(
+      /Mark \d+ of \d+/,
     )
   })
 
   it("accepts an alternate unordered-list marker in a slot", async () => {
     useSessionSeedForFirstProblem(
-      1,
-      (problem) => problem.id === "l1-list-toolbox",
+      2,
+      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
     )
-    await openLevel(1)
+    await openLevel(2)
     const marks = slotMarks()
-    const alternate = marks[0]!.replace("-", "*")
-    expect(alternate).not.toBe(marks[0])
+    expect(marks.length).toBeGreaterThan(2)
+    submitSlot(marks[0]!)
+    submitSlot(marks[1]!)
+    const alternate = marks[2]!.replace("-", "*")
+    expect(alternate).not.toBe(marks[2])
 
     submitSlot(alternate)
     // Accepted alternates land in the document exactly as typed.
@@ -437,6 +367,29 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
   })
 
+  it("restores the exact Hint after a failed slot survives a remount", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
+    const { unmount } = await openLevel(1)
+
+    submitSlot("x")
+    expect(
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
+
+    unmount()
+    resetCenterCardMemoryForTests()
+    render(<App />)
+
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+    expect(
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
+  })
+
   it("records a slot miss in the run summary", async () => {
     useSessionSeedForFirstProblem(
       1,
@@ -462,36 +415,38 @@ describe("App", () => {
 
   it("walks previous slots with ArrowUp and ArrowDown and edits them in place", async () => {
     useSessionSeedForFirstProblem(
-      1,
-      (problem) => problem.id === "l1-list-toolbox",
+      2,
+      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
     )
-    await openLevel(1)
+    await openLevel(2)
     const marks = slotMarks()
     expect(marks.length).toBeGreaterThan(2)
 
     submitSlot(marks[0]!)
     submitSlot(marks[1]!)
-    const card = screen.getByLabelText("Syntax input")
-    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    submitSlot(marks[2]!)
+    // The card carries no `Mark x of y` counter, so which slot is showing is
+    // proven by the answer in the boxes: the frontier slot is empty.
+    const card = screen.getByLabelText("Markdown syntax practice")
+    expect(card).not.toHaveTextContent(/Mark \d+ of \d+/)
+    expect(firstBoxInput()).toHaveValue("")
 
     // ArrowUp steps back through accepted slots, showing the stored answer.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue(marks[2]!)
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(card).toHaveTextContent(`Mark 1 of ${marks.length}`)
-    expect(firstBoxInput()).toHaveValue(marks[0]!)
+    expect(firstBoxInput()).toHaveValue(marks[1]!)
 
     // ArrowDown returns toward the frontier.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowDown" })
-    expect(card).toHaveTextContent(`Mark 2 of ${marks.length}`)
-    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+    expect(firstBoxInput()).toHaveValue(marks[2]!)
 
     // Editing a past slot regrows the document and jumps back to the
     // frontier. The list-style normalizer keeps the marks coherent.
-    const alternate = marks[0]!.replace("-", "*")
+    const alternate = marks[2]!.replace("-", "*")
     fireEvent.change(firstBoxInput(), { target: { value: alternate } })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
-    expect(card).toHaveTextContent(`Mark 3 of ${marks.length}`)
+    expect(firstBoxInput()).toHaveValue("")
     expect(writePanelDocument()).toContain("* ")
   })
 
@@ -546,7 +501,7 @@ describe("App", () => {
     )
   })
 
-  it("holds a re-checked Matched verdict on a revisited step", async () => {
+  it("keeps a completed card visible on a revisited step", async () => {
     useSessionSeedForFirstProblem(
       1,
       (problem) =>
@@ -559,10 +514,10 @@ describe("App", () => {
 
     await user.click(screen.getByRole("button", { name: "Previous exercise" }))
     expect(currentProblem().id).toBe(firstProblem.id)
-
-    // The revisited document is complete, so Check re-judges it as Matched.
-    await user.click(screen.getByRole("button", { name: "Check answer" }))
-    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+    expect(
+      screen.getByRole("region", { name: "Markdown syntax practice" }),
+    ).toBeVisible()
+    expect(screen.queryByRole("button", { name: "Check answer" })).toBeNull()
 
     // A visited step exists ahead, so the drill must not sweep the learner
     // forward while they are looking back.
@@ -573,215 +528,28 @@ describe("App", () => {
     ).toBeEnabled()
   })
 
-  it("judges the incomplete document when Check is pressed early", async () => {
-    const { user } = await openLevel(2)
-    await failWithEarlyCheck(user)
-
-    const verdict = screen.getByRole("status")
-    expect(verdict).toHaveTextContent("Try again")
-    expect(screen.queryByRole("button", { name: "Next exercise" })).toBeNull()
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    )
-
-    // No auto-dismiss timer: the verdict is still on screen well past the
-    // old 1.6-second toast life.
-    await act(() => new Promise((resolve) => setTimeout(resolve, 1800)))
-    expect(screen.getByRole("status")).toHaveTextContent("Try again")
-
-    // Growing the document again puts the document-level verdict away.
-    submitSlot(slotMarks()[0]!)
-    expect(screen.queryByRole("status")).toBeNull()
-    expect(screen.getByRole("tab", { name: "Review" })).toBeVisible()
-  })
-
-  it("closes the held Try again verdict with Escape and reopens it on a new Check", async () => {
-    const { user } = await openLevel(1)
-    await failWithEarlyCheck(user)
-    expect(screen.getByRole("status")).toHaveTextContent("Try again")
-
-    fireEvent.keyDown(document.body, { key: "Escape" })
-    expect(screen.queryByRole("status")).toBeNull()
-
-    await failWithEarlyCheck(user)
-    expect(screen.getByRole("status")).toHaveTextContent("Try again")
-
-    await user.click(screen.getByRole("button", { name: "Close verdict" }))
-    expect(screen.queryByRole("status")).toBeNull()
-  })
-
-  it("lists every high-level correction without rendering either document", async () => {
-    useSessionSeedForFirstProblem(3, (problem) =>
-      problem.matchChecks.some(
-        (check) => check.kind === "inline-presence" && check.inline === "strong",
-      ),
-    )
-    const { user } = await openLevel(3)
-    const problem = currentProblem()
-
-    await failWithEarlyCheck(user)
-    await user.click(screen.getByRole("tab", { name: "Review" }))
-
-    const evaluation = evaluateProblem(problem, "")
-    if (evaluation.status !== "fail") {
-      throw new Error("Expected an empty composite document to fail")
-    }
-    const expectedCorrections = buildReviewCorrections(
-      problem,
-      evaluation,
-      "",
-    )
-    const review = screen.getByRole("tabpanel", { name: "Review" })
-    const corrections = within(review).getByRole("list", {
-      name: "Required corrections",
-    })
-    const correctionItems = within(corrections).getAllByRole("listitem")
-    expect(correctionItems).toHaveLength(expectedCorrections.length)
-    expectedCorrections.forEach((correction, index) => {
-      const item = within(correctionItems[index]!)
-      expect(item.getByText(correction.label)).toBeVisible()
-      expect(item.getByText(correction.location)).toBeVisible()
-      expect(item.getByText(correction.repairInstruction)).toBeVisible()
-      if (correction.requiredSource) {
-        expect(item.getByText(correction.requiredSource)).toBeVisible()
-      }
-      else expect(correctionItems[index]!.querySelector("code")).toBeNull()
-    })
-    expect(within(corrections).getByText("Bold text")).toBeVisible()
-    expect(review).not.toHaveTextContent(problem.target.split("\n")[0]!)
-    expect(review.querySelector(".rendered-document__body")).toBeNull()
-  })
-
-  it("uses a different same-level problem after repair", async () => {
-    const { user } = await openLevel(2)
-    const originalGoal = screen.getByRole("region", { name: "Goal" }).textContent
-
-    await failWithEarlyCheck(user)
-    expect(screen.getByRole("status")).toHaveTextContent("Try again")
-
-    await completeAndAdvance(user)
-
-    expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(
-      originalGoal,
-    )
-    expect(
-      screen.getByLabelText(`Level ${entryChoices[1].level}`),
-    ).toBeVisible()
-    expect(screen.getByLabelText("Practice details")).toHaveTextContent(
-      "Repair practice",
-    )
-    expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
-      "aria-selected",
-      "false",
-    )
-  })
-
-  it("uses one fixed bar and exactly two workspace panels", async () => {
+  it("uses one fixed bar and one card with no document workspace", async () => {
     await openLevel(5)
-    const answerPanel = screen.getByRole("region", { name: "Your answer" })
-    const answerHeader = answerPanel.querySelector(".answer-panel__header")
-    expect(answerHeader).not.toBeNull()
     expect(screen.getByRole("button", { name: "Exit" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Try another" })).toBeVisible()
-    expect(screen.getByRole("tab", { name: "Hint" })).toBeVisible()
-    expect(screen.getByRole("region", { name: "Goal" })).toHaveClass("cbt-panel")
-    expect(answerPanel).toHaveClass("cbt-panel")
     expect(
-      within(answerHeader as HTMLElement).queryByRole("button", {
-        name: "Show invisibles",
-      }),
-    ).toBeNull()
-    expect(screen.queryByText("answer.md")).toBeNull()
-    expect(screen.queryByTestId("practice-book-spine")).toBeNull()
-    expect(
-      screen
-        .getByRole("region", { name: "Goal" })
-        .querySelector(".writing-processor"),
-    ).not.toBeNull()
-    expect(
-      answerPanel.querySelector(
-        '.markdown-word-processor[data-presentation="rendered"]',
-      ),
-    ).not.toBeNull()
-    expect(answerPanel.querySelector(".center-card")).not.toBeNull()
-    expect(screen.getByRole("region", { name: "Goal" })).not.toHaveClass(
-      "writing-sheet",
-    )
-    expect(answerPanel).not.toHaveClass("writing-sheet")
-    expect(screen.queryByRole("region", { name: "Live preview" })).toBeNull()
-    expect(screen.queryByRole("contentinfo")).toBeNull()
-  })
-
-  it("renders Goal and the growing document through the same read-only processor", async () => {
-    await openLevel(5)
-
-    const goal = screen.getByRole("region", { name: "Goal document" })
-    const writePanel = screen.getByRole("tabpanel", { name: "Write" })
-    const documentProcessor = writePanel.querySelector(
-      '.markdown-word-processor[data-presentation="rendered"]',
-    )
-    const goalProcessor = goal.closest(".writing-processor")
-
-    expect(goalProcessor).not.toBeNull()
-    expect(documentProcessor).not.toBeNull()
-    expect(goalProcessor).toHaveAttribute("data-mode", "read-only")
-    expect(documentProcessor?.closest(".writing-processor")).toHaveAttribute(
-      "data-mode",
-      "read-only",
-    )
-    expect(goalProcessor).toHaveAttribute("data-engine", "codemirror")
-    expect(goal.querySelector(".cm-content")).toHaveAttribute(
-      "contenteditable",
-      "false",
-    )
-    expect(documentProcessor?.querySelector(".cm-content")).toHaveAttribute(
-      "contenteditable",
-      "false",
-    )
-    // The card's box inputs are the only editable surface.
+      screen.getByRole("region", { name: "Markdown syntax practice" }),
+    ).toBeVisible()
+    expect(screen.queryByRole("region", { name: "Goal" })).toBeNull()
+    expect(screen.queryByRole("tablist")).toBeNull()
+    expect(document.querySelector(".cbt-workspace")).toBeNull()
     expect(boxInputs().length).toBeGreaterThan(0)
   })
 
-  it("mirrors the grown document in Preview through the shared processor", async () => {
-    const { user } = await openLevel(2)
-    submitSlot(slotMarks()[0]!)
-    const grown = writePanelDocument()
-    expect(grown).not.toBe("")
-
-    await user.click(screen.getByRole("tab", { name: "Preview" }))
-
-    const preview = screen.getByRole("tabpanel", { name: "Preview" })
-    const processor = preview.querySelector(
-      '.markdown-word-processor[data-presentation="rendered"]',
-    )
-    expect(processor).not.toBeNull()
-    const content = processor?.querySelector<HTMLElement>(".cm-content")
-    expect(content).not.toBeNull()
-    if (!content) return
-    expect(EditorView.findFromDOM(content)?.state.doc.toString()).toBe(grown)
-    expect(content).toHaveAttribute("contenteditable", "false")
-  })
-
-  it("peeks the Hint with Alt+H and returns focus to the card", async () => {
+  it("opens an inline Hint with ? and keeps focus in the mark boxes", async () => {
     await openLevel(1)
     const input = firstBoxInput()
     act(() => input.focus())
 
-    fireEvent.keyDown(input, { code: "KeyH", key: "h", altKey: true })
-    expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    )
-
-    fireEvent.keyDown(
-      screen.getByRole("tabpanel", { name: "Hint" }),
-      { code: "KeyH", key: "h", altKey: true },
-    )
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    )
+    fireEvent.keyDown(input, { key: "?", code: "Slash", shiftKey: true })
+    expect(
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
     await waitFor(() => expect(firstBoxInput()).toHaveFocus())
   })
 
@@ -873,100 +641,25 @@ describe("App", () => {
     await waitFor(() => expect(currentProblem().id).toBe(secondProblem.id))
   })
 
-  it("keeps view shortcuts active across Write, Preview, and Hint", async () => {
-    const { user } = await openLevel(2)
-    submitSlot(slotMarks()[0]!)
-    const grown = writePanelDocument()
-    const writeTab = screen.getByRole("tab", { name: "Write" })
-    const previewTab = screen.getByRole("tab", { name: "Preview" })
-    act(() => firstBoxInput().focus())
-
-    await user.keyboard("{Alt>}2{/Alt}")
-    expect(previewTab).toHaveAttribute("aria-selected", "true")
-    expect(previewTab).toHaveFocus()
-    expect(screen.queryByRole("button", { name: "Show invisibles" })).toBeNull()
-    const previewPanel = screen.getByRole("tabpanel", { name: "Preview" })
-    expect(previewPanel).toHaveTextContent(grown.split("\n")[0]!.replace(/^#+\s*/, ""))
-    expect(previewPanel).toHaveClass("answer-panel__body--sheet")
-    expect(previewPanel).not.toHaveClass("answer-panel__body--reading")
-    expect(previewPanel.querySelectorAll(".writing-processor")).toHaveLength(
-      1,
-    )
-    await user.keyboard("{ArrowRight}")
-    expect(screen.getByRole("tab", { name: "Hint" })).toHaveFocus()
-    expect(screen.getByRole("tabpanel", { name: "Hint" })).toBeVisible()
-    await user.keyboard("{Alt>}1{/Alt}")
-    expect(writeTab).toHaveAttribute("aria-selected", "true")
-    await waitFor(() => expect(firstBoxInput()).toHaveFocus())
-  })
-
-  it("keeps view shortcuts active while the card owns focus", async () => {
-    const { user } = await openLevel(1)
-    const previewTab = screen.getByRole("tab", { name: "Preview" })
-
-    await waitFor(() => expect(firstBoxInput()).toHaveFocus())
-    await user.keyboard("{Alt>}2{/Alt}")
-
-    expect(previewTab).toHaveAttribute("aria-selected", "true")
-    expect(previewTab).toHaveFocus()
-  })
-
-  it("opens Hint with ? outside the card without stealing typed question marks", async () => {
+  it("confines Hint entry and keyboard focus to the mark boxes", async () => {
     await openLevel(1)
     const input = firstBoxInput()
     act(() => input.focus())
 
-    // A ? typed while the card input owns focus stays text entry.
-    fireEvent.keyDown(input, { key: "?" })
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    )
-
-    const exit = screen.getByRole("button", { name: "Exit" })
-    exit.focus()
-    expect(exit).toHaveFocus()
-    fireEvent.keyDown(exit, { key: "?" })
-
-    expect(screen.getByRole("tab", { name: "Hint" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    )
-    expect(input).not.toHaveFocus()
-  })
-
-  it("keeps ? in the card when a document-level key event observes card focus", async () => {
-    await openLevel(1)
-    const input = firstBoxInput()
-    act(() => input.focus())
-    fireEvent.keyDown(document, { key: "?" })
-
-    expect(screen.getByRole("tab", { name: "Write" })).toHaveAttribute(
-      "aria-selected",
-      "true",
-    )
-    expect(input).toHaveFocus()
-  })
-
-  it("does not leave stale focus when a shortcut selects the current tab", async () => {
-    const { user } = await openLevel(1)
-    const hintTab = screen.getByRole("tab", { name: "Hint" })
-    const previewTab = screen.getByRole("tab", { name: "Preview" })
-
-    act(() => firstBoxInput().focus())
-    await user.keyboard("{Alt>}3{/Alt}")
-    await user.keyboard("{Alt>}3{/Alt}")
-    expect(hintTab).toHaveFocus()
-
-    await user.click(previewTab)
-    expect(previewTab).toHaveFocus()
+    fireEvent.change(input, { target: { value: "x" } })
+    fireEvent.keyDown(input, { key: "?", code: "Slash", shiftKey: true })
+    expect(input).toHaveValue("")
+    expect(
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
+    expect(firstBoxInput()).toHaveFocus()
   })
 
   it("returns home and can reissue content at the same step", async () => {
     const { user } = await openLevel(3)
-    const original = screen.getByRole("region", { name: "Goal" }).textContent
+    const original = currentProblem().id
     await user.click(screen.getByRole("button", { name: "Try another" }))
-    expect(screen.getByRole("region", { name: "Goal" }).textContent).not.toBe(original)
+    expect(currentProblem().id).not.toBe(original)
     await waitFor(() => expect(firstBoxInput()).toHaveFocus())
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
       "Practice progress, 1 of 6",
@@ -1016,62 +709,6 @@ describe("App", () => {
     await waitFor(() => expect(currentProblem().id).toBe(secondProblemId))
   })
 
-  it("walks the history pointer back when Back is rejected on an owed repair", async () => {
-    const { user } = await openLevel(1)
-    const failedProblemId = currentProblem().id
-    await failWithEarlyCheck(user)
-    await completeAndAdvance(user)
-    const repairProblemId = currentProblem().id
-    expect(repairProblemId).not.toBe(failedProblemId)
-
-    // Back while the repair is owed: the restore is rejected, and the pointer
-    // must walk forward again so it sits on the repair entry, not behind it.
-    act(() => window.history.back())
-    await drainHistoryTraversals()
-    const healedState = window.history.state as {
-      snapshot?: { currentProblemId?: string }
-    } | null
-    expect(healedState?.snapshot?.currentProblemId).toBe(repairProblemId)
-    expect(currentProblem().id).toBe(repairProblemId)
-
-    // Complete the repair and advance; the resulting pushState must extend
-    // the walk. Had the pointer stayed behind, this push would truncate the
-    // repair entry and Back would skip straight to the failed exercise.
-    await completeAndAdvance(user)
-    expect(currentProblem().id).not.toBe(repairProblemId)
-
-    act(() => window.history.back())
-    await waitFor(() => expect(currentProblem().id).toBe(repairProblemId))
-    await drainHistoryTraversals()
-  })
-
-  it("walks the history pointer forward when Forward is rejected on an owed repair", async () => {
-    const { user } = await openLevel(1)
-    const firstProblemId = currentProblem().id
-    await completeAndAdvance(user)
-    const secondProblemId = currentProblem().id
-
-    // Walk back to the first step so a real entry sits ahead of the pointer.
-    act(() => window.history.back())
-    await waitFor(() => expect(currentProblem().id).toBe(firstProblemId))
-
-    // Swap in fresh content (a blank card) and fail it so a repair becomes
-    // owed, then try Forward: the restore is rejected and the pointer must
-    // walk back to the current entry.
-    await user.click(screen.getByRole("button", { name: "Try another" }))
-    const replacementProblemId = currentProblem().id
-    expect(replacementProblemId).not.toBe(firstProblemId)
-    await failWithEarlyCheck(user)
-    act(() => window.history.forward())
-    await drainHistoryTraversals()
-    const healedState = window.history.state as {
-      snapshot?: { currentProblemId?: string }
-    } | null
-    expect(healedState?.snapshot?.currentProblemId).toBe(replacementProblemId)
-    expect(currentProblem().id).toBe(replacementProblemId)
-    expect(secondProblemId).not.toBe(firstProblemId)
-  })
-
   it("completes a run with one primary replay choice", async () => {
     const { user } = await openLevel(1)
 
@@ -1087,6 +724,15 @@ describe("App", () => {
     const practiceAgain = screen.getByRole("button", { name: "Practice again" })
     expect(practiceAgain).toBeVisible()
     expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+    // The finished work is handed back on the page itself: no viewer to open,
+    // nothing to type into, and a clean run carries no correction marks.
+    expect(screen.getByLabelText("Your work")).toBeVisible()
+    expect(screen.queryByRole("dialog")).toBeNull()
+    expect(screen.queryByRole("textbox")).toBeNull()
+    expect(screen.queryByLabelText(/^Correction /)).toBeNull()
+    expect(
+      screen.getByText("A clean page — nothing to correct."),
+    ).toBeVisible()
 
     await user.click(practiceAgain)
     await waitFor(() => expect(firstBoxInput()).toBeVisible())

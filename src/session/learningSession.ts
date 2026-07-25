@@ -1,5 +1,6 @@
 import type { GradableProblem } from "../content/types"
 import type { Evaluation } from "../engine/types"
+import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { createDefaultProgress } from "../progress/progressStore"
 import type { ProgressV5 } from "../progress/types"
 import {
@@ -29,6 +30,12 @@ export type LearningSession = {
   coach: "closed" | "hint"
   failedScheduledStepIndexes: number[]
   failedProblemIds: string[]
+  /**
+   * Every syntax group that caused a miss in this run, in the order they were
+   * missed. The Summary numbers its correction marks from this list, so a
+   * group appears at most once however many times it was retried.
+   */
+  syntaxMistakes: SyntaxMistake[]
   runStartedAtMs: number | null
   runCompletedAtMs: number | null
   progress: ProgressV5
@@ -72,7 +79,7 @@ export type SessionEvent =
       retryFamily: GradableProblem["retryFamily"]
     }
   | { type: "hint-requested" }
-  | { type: "slot-missed" }
+  | { type: "slot-missed"; mistakes?: readonly SyntaxMistake[] }
   | { type: "coach-closed" }
   | { type: "problem-replaced"; problem: GradableProblem }
   | {
@@ -142,6 +149,10 @@ export function createLearningSession(
       ...progress.failedScheduledStepIndexes,
     ],
     failedProblemIds: [...progress.failedProblemIds],
+    syntaxMistakes: progress.syntaxMistakes.map((mistake) => ({
+      ...mistake,
+      expected: [...mistake.expected],
+    })),
     runStartedAtMs: progress.runStartedAtMs,
     runCompletedAtMs: progress.runCompletedAtMs,
     progress,
@@ -192,6 +203,7 @@ function completeSession(
         session.currentProblemId,
       ),
       pendingTransferFamily: null,
+      pendingSlotRetryProblemId: null,
       currentIsTransfer: false,
       runStepIndex: session.runProblemIds.length || session.runStepIndex,
       scheduledStepIndex: scheduledRunLength,
@@ -243,6 +255,7 @@ export function learningSessionReducer(
           currentProblemId: event.snapshot.currentProblemId,
           currentIsTransfer: event.snapshot.currentIsTransfer,
           pendingTransferFamily: null,
+          pendingSlotRetryProblemId: null,
           runStartedAtMs: event.snapshot.runStartedAtMs,
           runCompletedAtMs: null,
         },
@@ -259,6 +272,11 @@ export function learningSessionReducer(
         coach: session.coach,
         progress: {
           ...session.progress,
+          pendingSlotRetryProblemId:
+            session.progress.pendingSlotRetryProblemId ===
+            session.currentProblemId
+              ? null
+              : session.progress.pendingSlotRetryProblemId,
           draftByProblemId: {
             ...session.progress.draftByProblemId,
             [session.currentProblemId]: event.value,
@@ -310,10 +328,31 @@ export function learningSessionReducer(
         session.failedProblemIds,
         session.currentProblemId,
       )
+      // One group is listed once however often it is retried, so re-missing a
+      // known group adds nothing new.
+      const known = new Set(
+        session.syntaxMistakes.map(
+          (mistake) =>
+            `${mistake.problemId}:${mistake.checkpointId}:${mistake.groupIndex}`,
+        ),
+      )
+      const freshMistakes = (event.mistakes ?? []).filter((mistake) => {
+        const key = `${mistake.problemId}:${mistake.checkpointId}:${mistake.groupIndex}`
+        if (known.has(key)) return false
+        known.add(key)
+        return true
+      })
+      const syntaxMistakes =
+        freshMistakes.length > 0
+          ? [...session.syntaxMistakes, ...freshMistakes]
+          : session.syntaxMistakes
       if (
         failedScheduledStepIndexes.length ===
           session.failedScheduledStepIndexes.length &&
-        failedProblemIds.length === session.failedProblemIds.length
+        failedProblemIds.length === session.failedProblemIds.length &&
+        syntaxMistakes === session.syntaxMistakes &&
+        session.progress.pendingSlotRetryProblemId ===
+          session.currentProblemId
       ) {
         return session
       }
@@ -322,10 +361,13 @@ export function learningSessionReducer(
         hadFailure: true,
         failedScheduledStepIndexes,
         failedProblemIds,
+        syntaxMistakes,
         progress: {
           ...session.progress,
+          pendingSlotRetryProblemId: session.currentProblemId,
           failedScheduledStepIndexes,
           failedProblemIds,
+          syntaxMistakes,
         },
       }
     }
@@ -398,6 +440,7 @@ export function learningSessionReducer(
             session.currentProblemId,
           ),
           pendingTransferFamily: null,
+          pendingSlotRetryProblemId: null,
           currentIsTransfer: replacementIsTransfer,
           runProblemIds: nextRunProblemIds,
         },
@@ -465,6 +508,7 @@ export function learningSessionReducer(
           runStepIndex: nextRunStepIndex,
           scheduledStepIndex: nextScheduledStepIndex,
           pendingTransferFamily: null,
+          pendingSlotRetryProblemId: null,
         },
       }
     }

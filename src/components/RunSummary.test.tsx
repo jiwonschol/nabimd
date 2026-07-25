@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import { StrictMode } from "react"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
+import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { joinSyntaxTokens, RunSummary } from "./RunSummary"
 
@@ -8,20 +9,55 @@ vi.mock("../sound/feedbackSound", () => ({
   playFeedbackSound: vi.fn(),
 }))
 
-function renderSummary(failedProblemIds: string[] = []) {
+// Both ids are real bank problems, so the checkpoint ids the ledger carries
+// resolve to real source lines. `l2-heading-grocery-list` opens with a level 1
+// heading; `l1-italic-paper-boat` is `*Paper boat*`.
+const PAGES = [
+  {
+    problemId: "l2-heading-grocery-list",
+    title: "Grocery list",
+    source: "# Grocery list\n\nMilk and bread\n\n- Apples",
+  },
+  {
+    problemId: "l1-italic-paper-boat",
+    title: "Paper boat",
+    source: "*Paper boat*",
+  },
+]
+
+function mistake(overrides: Partial<SyntaxMistake> = {}): SyntaxMistake {
+  return {
+    problemId: "l2-heading-grocery-list",
+    checkpointId: "syntax-1-1",
+    groupIndex: 0,
+    term: "level 1 heading",
+    submitted: "@",
+    expected: ["# "],
+    ...overrides,
+  }
+}
+
+function renderSummary(syntaxMistakes: SyntaxMistake[] = []) {
   render(
     <RunSummary
+      completedPages={PAGES}
       elapsedMs={65_000}
-      failedProblemIds={failedProblemIds}
       onChangeLevel={vi.fn()}
       onPracticeAgain={vi.fn()}
-      score={failedProblemIds.length ? 6 - failedProblemIds.length : 6}
+      score={6 - syntaxMistakes.length}
+      syntaxMistakes={syntaxMistakes}
       total={6}
     />,
   )
 }
 
-describe("RunSummary", () => {
+function noteItems() {
+  return screen
+    .getAllByRole("listitem")
+    .filter((item) => item.className.includes("run-summary__note"))
+}
+
+describe("RunSummary as a teacher's return", () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
@@ -30,111 +66,138 @@ describe("RunSummary", () => {
     vi.unstubAllGlobals()
   })
 
-  it("closes a clean run with one primary next action", () => {
+  it("shows the finished work directly, with no viewer to open", () => {
     renderSummary()
 
-    expect(screen.getByRole("heading", { name: "Well done." })).toBeVisible()
+    const work = screen.getByLabelText("Your work")
+    expect(work).toHaveTextContent("Grocery list")
+    expect(work).toHaveTextContent("Paper boat")
+    // The completed pages are the page now, not a dialog behind a button.
+    expect(screen.queryByRole("dialog")).toBeNull()
     expect(
-      screen.getByText("You kept every Markdown pattern intact."),
+      screen.queryByRole("button", { name: /completed pages/i }),
+    ).toBeNull()
+    // Review only: nothing on this page takes typing.
+    expect(screen.queryAllByRole("textbox")).toHaveLength(0)
+    expect(
+      screen.getByRole("article", { name: "Grocery list" }),
     ).toBeVisible()
-    expect(screen.getByLabelText("Score")).toHaveTextContent("6 / 6")
+    expect(
+      screen.getByRole("article", { name: "Paper boat" }),
+    ).toBeVisible()
+  })
+
+  it("marks the missed line and prints the matching numbered note", () => {
+    renderSummary([mistake()])
+
+    // The mark sits on the line that was missed — the heading, not the body.
+    const heading = screen.getByRole("heading", { name: /Grocery list/ })
+    expect(heading).toHaveAttribute("data-corrected", "true")
+    expect(screen.getByText("Correction 1")).toBeVisible()
+
+    // The note names the family and spells out the grammar-required space.
+    expect(
+      screen.getByText(/Level 1 heading needs these marks\./),
+    ).toBeVisible()
+    expect(screen.getByText("Space")).toBeVisible()
+  })
+
+  it("marks only the missed line, leaving the rest of the work clean", () => {
+    renderSummary([mistake()])
+
+    expect(document.querySelectorAll("[data-corrected]")).toHaveLength(1)
+  })
+
+  it("numbers corrections down the page rather than by when they happened", () => {
+    // The italic miss was recorded first but belongs to the second page, so
+    // it must still be numbered after the heading on the first page.
+    renderSummary([
+      mistake({
+        problemId: "l1-italic-paper-boat",
+        term: "italic text",
+        expected: ["*", "_"],
+      }),
+      mistake(),
+    ])
+
+    const notes = noteItems()
+    expect(notes[0]).toHaveTextContent("Level 1 heading needs these marks.")
+    expect(notes[1]).toHaveTextContent("Italic text needs these marks.")
+    expect(screen.getByText("Correction 1")).toBeVisible()
+    expect(screen.getByText("Correction 2")).toBeVisible()
+  })
+
+  it("lists every accepted form for a missed group", () => {
+    renderSummary([
+      mistake({
+        problemId: "l1-italic-paper-boat",
+        term: "italic text",
+        expected: ["*", "_"],
+      }),
+    ])
+
+    const forms = noteItems()[0]!.querySelectorAll(".run-summary__keycaps")
+    expect([...forms].map((form) => form.textContent)).toEqual(["*", "_"])
+  })
+
+  it("leaves a clean run completely unmarked", () => {
+    renderSummary()
+
+    expect(screen.getByText("A clean page — nothing to correct.")).toBeVisible()
+    expect(screen.queryByText(/^Correction \d+$/)).toBeNull()
+    expect(document.querySelectorAll("[data-corrected]")).toHaveLength(0)
+    expect(screen.getByLabelText("Run summary")).toHaveAttribute(
+      "data-clean",
+      "true",
+    )
+  })
+
+  it("keeps score and time available but in the quiet footer rank", () => {
+    renderSummary()
+
+    expect(screen.getByLabelText("Score")).toHaveTextContent("6")
     expect(screen.getByLabelText("Total time")).toHaveTextContent("01:05")
-    expect(screen.getByText("Nothing to revisit this time.")).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
-    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
-    expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
-    expect(screen.queryByTestId("summary-book-spine")).toBeNull()
-    expect(screen.queryByText(/standing|percentile|collecting data/i)).not.toBeInTheDocument()
-    expect(screen.queryByRole("button", { name: "Start over" })).not.toBeInTheDocument()
-    expect(playFeedbackSound).toHaveBeenCalledWith("summary")
+    expect(screen.getByLabelText("Score").parentElement).toHaveClass(
+      "summary-ink--actions",
+    )
   })
 
-  it("turns one failed family into one concise teacher note", () => {
-    renderSummary(["l1-blockquote-milk-in-fridge"])
-
-    expect(screen.getByRole("heading", { name: "Good finish." })).toBeVisible()
-    expect(screen.getByText("One thing to revisit")).toBeVisible()
-    expect(screen.getByRole("heading", { name: "Try block quotes once more." })).toBeVisible()
-    expect(screen.getByText("> The window is open.")).toBeVisible()
-    expect(
-      screen.getByText("Start the line with a greater-than sign, a space, then the words."),
-    ).toBeVisible()
-    expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(1)
-  })
-
-  it("groups repeated failures and keeps a longer review concise", () => {
-    renderSummary([
-      "l1-heading-apple",
-      "l1-heading-rainy-day",
-      "l1-blockquote-milk-in-fridge",
-      "l1-list-pencil-case",
-      "l1-order-plant-seed",
-    ])
-
-    expect(screen.getByText("A few marks to revisit")).toBeVisible()
-    expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(3)
-    expect(screen.getByText("A quick second round will make these marks easier to recall."))
-      .toBeVisible()
-  })
-
-  it("names a two-family review without calling it three", () => {
-    renderSummary([
-      "l1-heading-apple",
-      "l1-blockquote-milk-in-fridge",
-    ])
-
-    expect(screen.getByRole("heading", { name: "Keep these two close." })).toBeVisible()
-    expect(screen.getAllByRole("listitem", { name: /Syntax reminder/ })).toHaveLength(2)
-  })
-
-  it("calls an unordered-list reminder a list instead of numbered steps", () => {
-    renderSummary(["l1-list-pencil-case"])
-
-    expect(screen.getByRole("heading", { name: "Try lists once more." })).toBeVisible()
-  })
-
-  it("keeps bold and italic reminders distinct", () => {
-    renderSummary([
-      "l1-emphasis-family-game",
-      "l1-italic-yellow-kite",
-    ])
-
-    expect(
-      screen.getByRole("listitem", { name: "Syntax reminder: Bold" }),
-    ).toBeVisible()
-    expect(
-      screen.getByRole("listitem", { name: "Syntax reminder: Italics" }),
-    ).toBeVisible()
-  })
-
-  it("keeps checklist families more specific than generic lists", () => {
-    renderSummary([
-      "l2-sectioned-checklist-bake-sale",
-      "l2-nested-checklist-closet-shelf",
-    ])
-
-    expect(
-      screen.getByRole("listitem", { name: "Syntax reminder: Sectioned Checklist" }),
-    ).toBeVisible()
-    expect(
-      screen.getByRole("listitem", { name: "Syntax reminder: Nested Checklist" }),
-    ).toBeVisible()
-  })
-
-  it("reveals the replay action after the teacher note without focusing past it", () => {
+  it("reveals the replay action after the note without focusing past it", () => {
     renderSummary()
 
     const replay = screen.getByRole("button", { name: "Practice again" })
     expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
     expect(replay).not.toHaveFocus()
-    expect(replay.parentElement).toHaveClass("summary-ink", "summary-ink--actions")
+    expect(replay.parentElement).toHaveClass(
+      "summary-ink",
+      "summary-ink--actions",
+    )
+  })
+
+  it("runs both quiet actions", () => {
+    const onPracticeAgain = vi.fn()
+    const onChangeLevel = vi.fn()
+    render(
+      <RunSummary
+        completedPages={PAGES}
+        elapsedMs={65_000}
+        onChangeLevel={onChangeLevel}
+        onPracticeAgain={onPracticeAgain}
+        score={6}
+        total={6}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Practice again" }))
+    fireEvent.click(screen.getByRole("button", { name: "Change level" }))
+    expect(onPracticeAgain).toHaveBeenCalledTimes(1)
+    expect(onChangeLevel).toHaveBeenCalledTimes(1)
   })
 
   it("holds the teacher reveal until the physical page turn has completed", () => {
     render(
       <RunSummary
         elapsedMs={65_000}
-        failedProblemIds={[]}
         motionReady={false}
         onChangeLevel={vi.fn()}
         onPracticeAgain={vi.fn()}
@@ -149,170 +212,26 @@ describe("RunSummary", () => {
     expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
   })
 
-  it("opens a narrow Summary on the teacher's praise instead of the lower action", () => {
-    vi.stubGlobal(
-      "matchMedia",
-      vi.fn().mockImplementation((query: string) => ({
-        matches: query === "(max-width: 760px)",
-        media: query,
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-      })),
-    )
-
-    renderSummary()
-
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
-    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
-  })
-
-  it("opens a short desktop Summary on the teacher's praise", () => {
-    vi.stubGlobal(
-      "matchMedia",
-      vi.fn().mockImplementation((query: string) => ({
-        matches: query === "(max-height: 680px)",
-        media: query,
-        addEventListener: vi.fn(),
-        removeEventListener: vi.fn(),
-      })),
-    )
-
-    renderSummary()
-
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
-    expect(screen.getByRole("button", { name: "Practice again" })).not.toHaveFocus()
-  })
-
-  it("uses the authored example for the exact failed syntax family", () => {
-    renderSummary([
-      "l1-emphasis-family-game",
-      "l1-heading-depth-bring-along",
-      "l1-code-block-book-label",
-    ])
-
-    expect(screen.getByText("**Good news**")).toBeVisible()
-    expect(screen.getByText("### After dinner")).toBeVisible()
-    expect(
-      screen
-        .getByRole("listitem", { name: "Syntax reminder: Code blocks" })
-        .querySelector("code")?.textContent,
-    ).toBe("```\nKeep dry\n```")
-    expect(screen.queryByText("*Important note*")).not.toBeInTheDocument()
-    expect(screen.queryByText("# Project notes")).not.toBeInTheDocument()
-  })
-
-  it("keeps a higher-level family compact instead of replaying its document", () => {
-    renderSummary(["l4-decision-room-booking"])
-
-    const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Decision notes",
-    })
-    expect(reminder.querySelector("code")?.textContent).toBe(
-      "# Title  > Decision  1. Step",
-    )
-    expect(
-      screen.queryByText(/shared booking sheet/),
-    ).not.toBeInTheDocument()
-  })
-
-  it("keeps a short multi-line authored example actionable", () => {
-    renderSummary(["l2-sectioned-process-bird-feeder"])
-
-    const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Sectioned Process",
-    })
-    expect(reminder.querySelector("code")?.textContent).toBe(
-      "# Make cocoa\n\nPrepare a warm drink.\n\n## Steps\n\n1. Heat milk\n2. Add cocoa\n3. Stir well",
-    )
-  })
-
-  it("keeps a short shared Level 3 example structurally complete", () => {
-    renderSummary(["l3-customer-feedback-note"])
-
-    const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Readable documents",
-    })
-    expect(reminder.querySelector("code")?.textContent).toBe(
-      "# Update\n\n## Summary\n\nThe **key point** is clear.\n\n## Next steps\n\n- Share\n- Review\n- Decide",
-    )
-  })
-
   it.each([
-    ["l2-rebuild-cat-supplies", "Quick notes"],
-    ["l2-rebuild-homework-plan", "Short processes"],
-    ["l2-rebuild-baking-reminder", "Quote cards"],
-    ["l4-handoff-front-desk", "Handoff notes"],
-    ["l4-checklist-studio-closing", "Checklists"],
-  ])("uses a learner-facing family label for %s", (problemId, label) => {
-    renderSummary([problemId])
+    ["narrow", "(max-width: 760px)"],
+    ["short desktop", "(max-height: 680px)"],
+  ])("opens a %s Summary on the teacher's line", (_label, query) => {
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn().mockImplementation((candidate: string) => ({
+        matches: candidate === query,
+        media: candidate,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      })),
+    )
 
+    renderSummary()
+
+    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
     expect(
-      screen.getByRole("heading", {
-        name: `Try ${label.toLowerCase()} once more.`,
-      }),
-    ).toBeVisible()
-  })
-
-  it("keeps a short nested-step example structurally complete", () => {
-    renderSummary(["l2-nested-steps-room-reset"])
-
-    const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Nested Steps",
-    })
-    expect(reminder.querySelector("code")?.textContent).toBe(
-      "# Fruit bowl\n\nPut together a quick afternoon snack.\n\n1. Prepare the fruit\n   1. Rinse the grapes\n   2. Slice the pear\n2. Add yogurt",
-    )
-  })
-
-  it("uses one stable cue when retry variants straddle compact limits", () => {
-    renderSummary([
-      "l2-nested-outline-pet-care",
-      "l2-nested-outline-reading-plan",
-    ])
-
-    const reminders = screen.getAllByRole("listitem", {
-      name: "Syntax reminder: Nested Outline",
-    })
-    expect(reminders).toHaveLength(1)
-    expect(reminders[0]?.querySelector("code")?.textContent).toBe(
-      "# Music practice\n\n## Evening set\n\nPlay a short session after dinner.\n\n- Warm-up\n  - Scales\n  - Chords\n- New song",
-    )
-  })
-
-  it("keeps a short authored example with repeated structural marks", () => {
-    renderSummary(["l1-thematic-break-breakfast-dessert"])
-
-    const reminder = screen.getByRole("listitem", {
-      name: "Syntax reminder: Section breaks",
-    })
-    expect(reminder.querySelector("code")?.textContent).toBe(
-      "Tea is ready.\n\n---\n\nThe cookies are warm.",
-    )
-  })
-
-  it("preserves repeated tokens when a long example needs a compact cue", () => {
-    expect(joinSyntaxTokens(["Blank line", "---", "Blank line"])).toBe(
-      "Blank line  ---  Blank line",
-    )
-  })
-
-  it("summarizes repeated variants at family level without choosing one document", () => {
-    renderSummary([
-      "l4-status-website-refresh",
-      "l4-status-newsletter-move",
-    ])
-
-    const reminders = screen.getAllByRole("listitem", {
-      name: "Syntax reminder: Status notes",
-    })
-    expect(reminders).toHaveLength(1)
-    const [reminder] = reminders
-    expect(reminder).toBeDefined()
-    expect(reminder!.querySelector("code")?.textContent).toBe(
-      "# Title  **Deadline**  - Done item  1. Next step",
-    )
-    expect(screen.queryByText(/Feedback closes Friday/)).not.toBeInTheDocument()
-    expect(screen.queryByText(/old address stops Monday/)).not.toBeInTheDocument()
+      screen.getByRole("button", { name: "Practice again" }),
+    ).not.toHaveFocus()
   })
 
   it("plays the completion cue once during StrictMode effect verification", () => {
@@ -320,7 +239,6 @@ describe("RunSummary", () => {
       <StrictMode>
         <RunSummary
           elapsedMs={12_000}
-          failedProblemIds={[]}
           onChangeLevel={vi.fn()}
           onPracticeAgain={vi.fn()}
           score={6}
@@ -331,5 +249,11 @@ describe("RunSummary", () => {
 
     expect(playFeedbackSound).toHaveBeenCalledOnce()
     expect(playFeedbackSound).toHaveBeenCalledWith("summary")
+  })
+
+  it("joins syntax tokens with a readable gap", () => {
+    expect(joinSyntaxTokens(["Blank line", "---", "Blank line"])).toBe(
+      "Blank line  ---  Blank line",
+    )
   })
 })

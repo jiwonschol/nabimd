@@ -90,6 +90,51 @@ describe("learningSessionReducer", () => {
     expect(hinted.progress.pendingTransferFamily).toBeNull()
   })
 
+  it("persists only the currently unresolved syntax-slot retry", () => {
+    const missed = learningSessionReducer(newSession(apple), {
+      type: "slot-missed",
+    })
+
+    expect(missed.progress).toMatchObject({
+      pendingSlotRetryProblemId: apple.id,
+    })
+
+    const corrected = learningSessionReducer(missed, {
+      type: "edited",
+      value: "# Apple",
+    })
+    expect(corrected.progress).toMatchObject({
+      pendingSlotRetryProblemId: null,
+    })
+
+    const missedAgain = learningSessionReducer(corrected, {
+      type: "slot-missed",
+    })
+    expect(missedAgain.progress).toMatchObject({
+      pendingSlotRetryProblemId: apple.id,
+    })
+  })
+
+  it("restores the run-scoped syntax mistake ledger", () => {
+    const mistake = {
+      problemId: apple.id,
+      checkpointId: "syntax-1-1",
+      groupIndex: 0,
+      term: "level 1 heading",
+      submitted: "@",
+      expected: ["# "],
+    }
+    const missed = learningSessionReducer(newSession(apple), {
+      type: "slot-missed",
+      mistakes: [mistake],
+    })
+
+    expect(missed.progress.syntaxMistakes).toEqual([mistake])
+    expect(createLearningSession(missed.progress, apple).syntaxMistakes).toEqual(
+      [mistake],
+    )
+  })
+
   it("advances after a first-attempt Matched pass when the run has another step", () => {
     const passed = editAndCheck(newSession(), apple, "# Apple")
 

@@ -213,10 +213,10 @@ export function App() {
     // The card's box input outranks the read-only document (whose CodeMirror
     // still carries role="textbox" earlier in the DOM).
     const focusTarget =
+      document.querySelector<HTMLElement>(".center-card__boxinput") ??
       document.querySelector<HTMLElement>(
-        ".answer-panel .center-card__boxinput",
-      ) ??
-      document.querySelector<HTMLElement>('.answer-panel [role="textbox"]')
+        '.card-practice [role="textbox"]',
+      )
     focusTarget?.focus()
   }, [learningSession.session.entryId, summarySnapshot, turningEntryId])
 

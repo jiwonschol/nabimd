@@ -43,9 +43,26 @@ function replacePairedDelimiter(
   return alternative
 }
 
-export function acceptedGuidedSyntaxInputs(
+/**
+ * Every accepted answer, kept as one entry per input group instead of one
+ * joined string. Grading still compares the joined form, but the teacher's
+ * note needs to say which group was wrong and what that group accepts.
+ */
+export function acceptedGuidedSyntaxGroupForms(
   checkpoint: SyntaxCheckpoint,
-): readonly string[] {
+): readonly (readonly string[])[] {
+  const seen = new Set<string>()
+  return buildAcceptedForms(checkpoint).filter((form) => {
+    const key = form.join("\u0000")
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function buildAcceptedForms(
+  checkpoint: SyntaxCheckpoint,
+): readonly (readonly string[])[] {
   const canonicalParts = checkpoint.segments
     .filter(
       (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
@@ -121,7 +138,80 @@ export function acceptedGuidedSyntaxInputs(
     }
   }
 
-  return [...new Set(forms.map((form) => form.join("")))]
+  return forms
+}
+
+export function acceptedGuidedSyntaxInputs(
+  checkpoint: SyntaxCheckpoint,
+): readonly string[] {
+  return [...new Set(buildAcceptedForms(checkpoint).map((form) => form.join("")))]
+}
+
+/**
+ * Which input groups in this attempt no group-wise accepted answer can
+ * explain. An empty result means every group is typable as part of some
+ * accepted form (the whole answer may still be rejected when the groups come
+ * from different forms).
+ */
+export function missedGuidedSyntaxGroups(
+  checkpoint: SyntaxCheckpoint,
+  values: readonly string[],
+): readonly number[] {
+  const forms = acceptedGuidedSyntaxGroupForms(checkpoint)
+  const groupCount = forms[0]?.length ?? 0
+  const missed: number[] = []
+  for (let index = 0; index < groupCount; index += 1) {
+    const value = values[index] ?? ""
+    if (!forms.some((form) => form[index] === value)) missed.push(index)
+  }
+  return missed
+}
+
+/** Every form this one group accepts, in the order Hint lists them. */
+export function acceptedGuidedSyntaxGroupInputs(
+  checkpoint: SyntaxCheckpoint,
+  groupIndex: number,
+): readonly string[] {
+  return [
+    ...new Set(
+      acceptedGuidedSyntaxGroupForms(checkpoint).flatMap(
+        (form) => form[groupIndex] ?? [],
+      ),
+    ),
+  ]
+}
+
+/**
+ * The syntax family one input group belongs to, named the way the teacher's
+ * note names it. `precededByLineBreak` separates a Setext underline from a
+ * thematic break, which look identical on their own.
+ */
+export function syntaxGroupTerm(
+  value: string,
+  precededByLineBreak = false,
+): string {
+  // A list marker is only a list marker because the grammar requires the
+  // space after it. Trimming first would make `* ` (bullet) and `*` (italic)
+  // indistinguishable, so the spacing is checked on the raw value.
+  if (/^ {0,3}[-+*][\t ]+$/.test(value)) return "bullet item"
+  if (/^ {0,3}\d+[.)][\t ]+$/.test(value)) return "numbered step"
+
+  const mark = value.trim()
+  if (/^(?:=+|-+)$/.test(mark) && precededByLineBreak) {
+    return `level ${mark.startsWith("=") ? "1" : "2"} Setext heading`
+  }
+  if (mark.startsWith("#")) {
+    return `level ${mark.match(/^#+/)?.[0]?.length ?? 1} heading`
+  }
+  if (["---", "***", "___"].includes(mark)) return "section break"
+  if (mark.startsWith(">")) return "block quote"
+  if (mark.startsWith("```") || mark.startsWith("~~~")) return "fenced code block"
+  if (mark === "**" || mark === "__") return "bold text"
+  if (mark === "*" || mark === "_") return "italic text"
+  if (mark.startsWith("![")) return "image"
+  if (mark.startsWith("[") || mark === "](" || mark === ")") return "link"
+  if (mark.startsWith("`")) return "inline code"
+  return "Markdown mark"
 }
 
 export function acceptsGuidedSyntaxInput(
@@ -147,6 +237,112 @@ function renderCheckpointWithInput(
       return replacement
     })
     .join("")
+}
+
+/**
+ * One recorded miss, keyed tightly enough that the Summary can mark the exact
+ * place on the page and print the matching numbered note.
+ */
+export type SyntaxMistake = {
+  problemId: string
+  checkpointId: string
+  groupIndex: number
+  /** The syntax family the note names, e.g. `block quote`. */
+  term: string
+  /** What the learner actually typed into that group. */
+  submitted: string
+  /** Every key sequence that group accepts. */
+  expected: readonly string[]
+}
+
+export type CheckpointHintRow = {
+  input: string
+  source: string
+}
+
+export function checkpointHintRows(
+  checkpoint: SyntaxCheckpoint,
+): readonly CheckpointHintRow[] {
+  return acceptedGuidedSyntaxInputs(checkpoint).map((input) => ({
+    input,
+    source: renderCheckpointWithInput(checkpoint, input),
+  }))
+}
+
+export type CheckpointContext = {
+  before: string | null
+  current: string
+  after: string | null
+}
+
+function lineIndexAt(source: string, offset: number): number {
+  let line = 0
+  const boundedOffset = Math.min(Math.max(offset, 0), source.length)
+  for (let index = 0; index < boundedOffset; index += 1) {
+    if (source[index] === "\n") line += 1
+  }
+  return line
+}
+
+function nearestMeaningfulLine(
+  lines: readonly string[],
+  from: number,
+  direction: -1 | 1,
+): string | null {
+  for (
+    let index = from;
+    index >= 0 && index < lines.length;
+    index += direction
+  ) {
+    const line = lines[index]
+    if (line?.trim()) return line
+  }
+  return null
+}
+
+export function projectCheckpointContext(
+  target: string,
+  checkpoint: SyntaxCheckpoint,
+): CheckpointContext {
+  const source = target.replace(/\r\n?/g, "\n")
+  const document = fromMarkdown(source)
+  const blocks = document.children.flatMap((node) => {
+    const range = nodeRange(node)
+    return range ? [{ range }] : []
+  })
+  const activeBlockIndex = blocks.findIndex(
+    ({ range }) =>
+      range.from <= checkpoint.targetFrom &&
+      range.to >= checkpoint.targetTo,
+  )
+
+  if (activeBlockIndex >= 0) {
+    const active = blocks[activeBlockIndex]!
+    const before = blocks[activeBlockIndex - 1]
+    const after = blocks[activeBlockIndex + 1]
+    return {
+      before: before
+        ? source.slice(before.range.from, before.range.to)
+        : null,
+      current: source.slice(active.range.from, active.range.to),
+      after: after ? source.slice(after.range.from, after.range.to) : null,
+    }
+  }
+
+  // Malformed or extension-only source can lack a positioned mdast block.
+  // Preserve the line-based projection as a defensive fallback.
+  const lines = source.split("\n")
+  const currentStartLine = lineIndexAt(source, checkpoint.targetFrom)
+  const currentEndLine = lineIndexAt(
+    source,
+    Math.max(checkpoint.targetFrom, checkpoint.targetTo - 1),
+  )
+
+  return {
+    before: nearestMeaningfulLine(lines, currentStartLine - 1, -1),
+    current: lines.slice(currentStartLine, currentEndLine + 1).join("\n"),
+    after: nearestMeaningfulLine(lines, currentEndLine + 1, 1),
+  }
 }
 
 type GuidedListStyle = {
@@ -200,14 +396,30 @@ function normalizeListStyle(value: string, style: GuidedListStyle): string {
 
 type SourceRange = { from: number; to: number }
 
+/**
+ * Which syntax family owns each masked character. Adjacent marks from
+ * different families (`> ` then `**`) are separate input groups the learner
+ * answers side by side; marks from one family (`]` then `(` inside a link)
+ * stay one group. `null` means the character is locked prose.
+ */
+type SyntaxFamilies = (string | null)[]
+
 function isParent(node: Nodes): node is Parents {
   return "children" in node
 }
 
-function markRange(mask: boolean[], range: SourceRange): void {
+function markRange(
+  mask: boolean[],
+  range: SourceRange,
+  families: SyntaxFamilies,
+  family: string,
+): void {
   const from = Math.max(0, range.from)
   const to = Math.min(mask.length, range.to)
-  for (let index = from; index < to; index += 1) mask[index] = true
+  for (let index = from; index < to; index += 1) {
+    mask[index] = true
+    families[index] = family
+  }
 }
 
 function nodeRange(node: Nodes): SourceRange | null {
@@ -230,56 +442,80 @@ function markPrefix(
   mask: boolean[],
   offset: number,
   pattern: RegExp,
+  families: SyntaxFamilies,
+  family: string,
 ): void {
   const start = lineStartAt(source, offset)
   const end = lineEndAt(source, offset)
   const match = source.slice(start, end).match(pattern)
-  if (match?.[0]) markRange(mask, { from: start, to: start + match[0].length })
+  if (match?.[0]) {
+    markRange(mask, { from: start, to: start + match[0].length }, families, family)
+  }
 }
 
 function markInlineDelimiters(
   source: string,
   mask: boolean[],
   node: Parents,
+  families: SyntaxFamilies,
+  family: string,
 ): void {
   const range = nodeRange(node)
   const first = node.children.at(0)?.position?.start.offset
   const last = node.children.at(-1)?.position?.end.offset
   if (!range || first === undefined || last === undefined) return
-  markRange(mask, { from: range.from, to: first })
-  markRange(mask, { from: last, to: range.to })
+  // The opening and closing delimiters are two answers the learner types in
+  // two places, so they never share a family instance.
+  markRange(mask, { from: range.from, to: first }, families, `${family}-open`)
+  markRange(mask, { from: last, to: range.to }, families, `${family}-close`)
 }
 
 function markLinkPunctuation(
   source: string,
   mask: boolean[],
   node: Nodes,
+  families: SyntaxFamilies,
+  family: string,
 ): void {
   const range = nodeRange(node)
   if (!range) return
   const raw = source.slice(range.from, range.to)
   const openingLength = raw.startsWith("![") ? 2 : 1
-  markRange(mask, { from: range.from, to: range.from + openingLength })
+  markRange(
+    mask,
+    { from: range.from, to: range.from + openingLength },
+    families,
+    family,
+  )
 
   const labelClose = raw.indexOf("]")
   if (labelClose < 0) return
-  markRange(mask, {
-    from: range.from + labelClose,
-    to: range.from + labelClose + 1,
-  })
+  markRange(
+    mask,
+    { from: range.from + labelClose, to: range.from + labelClose + 1 },
+    families,
+    family,
+  )
 
   const destinationOpen = raw.indexOf("(", labelClose + 1)
   if (destinationOpen >= 0) {
-    markRange(mask, {
-      from: range.from + destinationOpen,
-      to: range.from + destinationOpen + 1,
-    })
+    markRange(
+      mask,
+      { from: range.from + destinationOpen, to: range.from + destinationOpen + 1 },
+      families,
+      family,
+    )
     const destinationClose = raw.lastIndexOf(")")
     if (destinationClose > destinationOpen) {
-      markRange(mask, {
-        from: range.from + destinationClose,
-        to: range.from + destinationClose + 1,
-      })
+      markRange(
+        mask,
+        {
+          from: range.from + destinationClose,
+          to: range.from + destinationClose + 1,
+        },
+        families,
+        family,
+      )
     }
   }
 }
@@ -288,6 +524,8 @@ function markCodeFence(
   source: string,
   mask: boolean[],
   node: Nodes,
+  families: SyntaxFamilies,
+  family: string,
 ): SourceRange | null {
   const range = nodeRange(node)
   if (!range) return null
@@ -298,10 +536,15 @@ function markCodeFence(
     .match(/^(\s*)(`{3,}|~{3,})/)
   if (!opening?.[2]) return null
 
-  markRange(mask, {
-    from: openingStart,
-    to: openingStart + (opening[1]?.length ?? 0) + opening[2].length,
-  })
+  markRange(
+    mask,
+    {
+      from: openingStart,
+      to: openingStart + (opening[1]?.length ?? 0) + opening[2].length,
+    },
+    families,
+    `${family}-open`,
+  )
 
   const closingLineStart = lineStartAt(source, Math.max(range.from, range.to - 1))
   if (closingLineStart !== openingStart) {
@@ -310,10 +553,15 @@ function markCodeFence(
       .slice(closingLineStart, closingEnd)
       .match(/^(\s*)(`{3,}|~{3,})\s*$/)
     if (closing?.[2]) {
-      markRange(mask, {
-        from: closingLineStart,
-        to: closingLineStart + (closing[1]?.length ?? 0) + closing[2].length,
-      })
+      markRange(
+        mask,
+        {
+          from: closingLineStart,
+          to: closingLineStart + (closing[1]?.length ?? 0) + closing[2].length,
+        },
+        families,
+        `${family}-close`,
+      )
     }
   }
 
@@ -325,8 +573,13 @@ function markNodeSyntax(
   source: string,
   mask: boolean[],
   groupedRanges: SourceRange[],
+  families: SyntaxFamilies,
 ): void {
   const range = nodeRange(node)
+  // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
+  // Keying the family by node type *and* start offset keeps their marks in
+  // separate input groups.
+  const family = `${node.type}@${range?.from ?? 0}`
 
   switch (node.type) {
     case "heading":
@@ -337,7 +590,14 @@ function markNodeSyntax(
           lineEndAt(source, headingStart),
         )
         if (/^ {0,3}#{1,6}[\t ]+/.test(headingLine)) {
-          markPrefix(source, mask, range.from, /^ {0,3}#{1,6}[\t ]+/)
+          markPrefix(
+            source,
+            mask,
+            range.from,
+            /^ {0,3}#{1,6}[\t ]+/,
+            families,
+            family,
+          )
           break
         }
 
@@ -350,10 +610,12 @@ function markNodeSyntax(
         const marker = underline.match(/^ {0,3}(=+|-+)[\t ]*$/)
         if (marker?.[1]) {
           const markerFrom = underlineStart + underline.indexOf(marker[1])
-          markRange(mask, {
-            from: markerFrom,
-            to: markerFrom + marker[1].length,
-          })
+          markRange(
+            mask,
+            { from: markerFrom, to: markerFrom + marker[1].length },
+            families,
+            family,
+          )
           groupedRanges.push({ from: headingStart, to: underlineEnd })
         }
       }
@@ -362,7 +624,16 @@ function markNodeSyntax(
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
-          markPrefix(source, mask, lineStart, /^ {0,3}>[\t ]?/)
+          // Each quoted line carries its own `>` the learner types, so every
+          // line is its own group.
+          markPrefix(
+            source,
+            mask,
+            lineStart,
+            /^ {0,3}>[\t ]?/,
+            families,
+            `${family}-${lineStart}`,
+          )
           const lineEnd = lineEndAt(source, lineStart)
           if (lineEnd >= source.length) break
           lineStart = lineEnd + 1
@@ -376,36 +647,48 @@ function markNodeSyntax(
           mask,
           range.from,
           /^\s*(?:[-+*]|\d+[.)])[\t ]+/,
+          families,
+          family,
         )
       }
       break
     case "emphasis":
     case "strong":
-      markInlineDelimiters(source, mask, node)
+      markInlineDelimiters(source, mask, node, families, family)
       break
     case "inlineCode":
       if (range) {
         const raw = source.slice(range.from, range.to)
         const opening = raw.match(/^`+/)?.[0] ?? ""
         const closing = raw.match(/`+$/)?.[0] ?? ""
-        markRange(mask, { from: range.from, to: range.from + opening.length })
-        markRange(mask, { from: range.to - closing.length, to: range.to })
+        markRange(
+          mask,
+          { from: range.from, to: range.from + opening.length },
+          families,
+          `${family}-open`,
+        )
+        markRange(
+          mask,
+          { from: range.to - closing.length, to: range.to },
+          families,
+          `${family}-close`,
+        )
       }
       break
     case "link":
     case "linkReference":
     case "image":
     case "imageReference":
-      markLinkPunctuation(source, mask, node)
+      markLinkPunctuation(source, mask, node, families, family)
       break
     case "code": {
-      const grouped = markCodeFence(source, mask, node)
+      const grouped = markCodeFence(source, mask, node, families, family)
       if (grouped) groupedRanges.push(grouped)
       break
     }
     case "thematicBreak":
     case "break":
-      if (range) markRange(mask, range)
+      if (range) markRange(mask, range, families, family)
       break
     default:
       break
@@ -413,12 +696,16 @@ function markNodeSyntax(
 
   if (isParent(node)) {
     for (const child of node.children) {
-      markNodeSyntax(child as Nodes, source, mask, groupedRanges)
+      markNodeSyntax(child as Nodes, source, mask, groupedRanges, families)
     }
   }
 }
 
-function unmaskLineLeadingWhitespace(source: string, mask: boolean[]): void {
+function unmaskLineLeadingWhitespace(
+  source: string,
+  mask: boolean[],
+  families: SyntaxFamilies,
+): void {
   // Line-leading indentation is Goal layout, never a mark the learner types:
   // only whitespace the Markdown grammar itself requires (after `-`, `#`, …)
   // stays inside an input segment.
@@ -430,6 +717,7 @@ function unmaskLineLeadingWhitespace(source: string, mask: boolean[]): void {
       (source[index] === " " || source[index] === "\t")
     ) {
       mask[index] = false
+      families[index] = null
       index += 1
     }
     const lineEnd = lineEndAt(source, lineStart)
@@ -443,26 +731,35 @@ function mergeSegments(
   mask: readonly boolean[],
   from: number,
   to: number,
+  families: readonly (string | null)[],
 ): GuidedSyntaxSegment[] {
   const segments: GuidedSyntaxSegment[] = []
   let segmentStart = from
   let segmentIsInput = mask[from] === true
+  let segmentFamily = families[from] ?? null
 
   const append = (end: number) => {
     if (end <= segmentStart) return
     const value = source.slice(segmentStart, end)
     const previous = segments.at(-1)
     const kind = segmentIsInput ? "input" : "locked"
-    if (previous?.kind === kind) previous.value += value
+    // Locked prose still merges freely, but two input runs only merge while
+    // they belong to the same syntax family: `> ` and `**` stay apart so the
+    // learner answers the block quote and the bold marks as separate groups.
+    if (previous?.kind === kind && kind === "locked") previous.value += value
     else segments.push({ kind, value } as GuidedSyntaxSegment)
   }
 
   for (let index = from + 1; index < to; index += 1) {
     const isInput = mask[index] === true
-    if (isInput === segmentIsInput) continue
+    const family = families[index] ?? null
+    if (isInput === segmentIsInput && (!isInput || family === segmentFamily)) {
+      continue
+    }
     append(index)
     segmentStart = index
     segmentIsInput = isInput
+    segmentFamily = family
   }
   append(to)
   return segments
@@ -482,9 +779,13 @@ export function deriveSyntaxCheckpoints(
 ): SyntaxCheckpoint[] {
   const source = target.replace(/\r\n?/g, "\n")
   const mask = Array.from({ length: source.length }, () => false)
+  const families: SyntaxFamilies = Array.from(
+    { length: source.length },
+    () => null,
+  )
   const groupedRanges: SourceRange[] = []
-  markNodeSyntax(fromMarkdown(source), source, mask, groupedRanges)
-  unmaskLineLeadingWhitespace(source, mask)
+  markNodeSyntax(fromMarkdown(source), source, mask, groupedRanges, families)
+  unmaskLineLeadingWhitespace(source, mask, families)
 
   const checkpoints: SyntaxCheckpoint[] = []
   let lineStart = 0
@@ -508,7 +809,13 @@ export function deriveSyntaxCheckpoints(
       ) {
         contentStart += 1
       }
-      const segments = mergeSegments(source, mask, contentStart, checkpointEnd)
+      const segments = mergeSegments(
+        source,
+        mask,
+        contentStart,
+        checkpointEnd,
+        families,
+      )
       const canonicalInput = segments
         .filter(
           (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
