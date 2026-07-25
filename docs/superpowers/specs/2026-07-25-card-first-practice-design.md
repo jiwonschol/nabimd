@@ -1,18 +1,20 @@
 # Card-first Practice design
 
 **Date:** 2026-07-25  
-**Status:** Approved interaction direction; implementation pending  
+**Status:** Approved interaction and Summary direction; implementation pending
 **Product:** Nabi Markdown
 
 ## Decision
 
-Nabi Markdown Practice becomes a card-first syntax drill.
+Nabi Markdown Practice becomes a card-first syntax drill with exactly six
+problems per turn.
 
 The learner no longer edits a full document or compares two full word-processor
 pages while practicing. Each step presents one local Markdown transformation:
 a direct instruction, a small rendered context, locked prose, and input slots
-for Markdown marks only. The complete documents remain hidden until the
-six-problem turn is finished.
+for Markdown marks only. A problem may require several Markdown forms at once;
+those forms remain separate input groups on one card. The completed results
+remain hidden until the six-problem turn is finished.
 
 This keeps the product focused on its actual promise: make Markdown syntax
 familiar through short, accurate keystroke practice.
@@ -44,6 +46,7 @@ editor with a syntax card floating over it.
 5. **Difficulty comes from combinations, not vague instructions.**
 6. **Use the same interaction at every level and viewport.**
 7. **Show the finished document only after the practice turn.**
+8. **Every turn contains six problems, so elapsed time remains comparable.**
 
 ## Practice surface
 
@@ -55,7 +58,7 @@ The global session chrome remains available:
 
 - Nabi Markdown / Exit
 - selected level
-- six-step turn progress
+- six-problem turn progress
 - elapsed time
 - sound
 - change problem
@@ -74,6 +77,9 @@ The card contains, in this order:
 
 Labels such as `Instruction` and `Goal` are omitted. The content already
 communicates those roles.
+
+`Step 1 of 6` is the only learner-facing progress label. Internal syntax
+segments never introduce a second `Mark x of y` counter.
 
 ## Instruction contract
 
@@ -100,8 +106,8 @@ Underlining is not used for the syntax term because it can be mistaken for a
 link, an input blank, or Setext syntax.
 
 The instruction remains direct at every level. Levels 3–5 become harder by
-combining more syntax checkpoints in realistic document structures, not by
-hiding what each checkpoint asks for.
+combining more syntax groups in realistic document structures, not by hiding
+what each group asks for.
 
 ## Rendered local context
 
@@ -132,7 +138,7 @@ that row. It must never grow into a miniature full-document editor.
 ## Syntax input
 
 The prose is locked. The learner supplies only the Markdown marks and required
-spaces.
+spaces. One problem may expose several semantic input groups on the same card.
 
 - One visible box represents one expected typed character.
 - Spaces use the existing visible-space convention.
@@ -147,31 +153,49 @@ spaces.
 - No caret can enter the locked prose.
 - No document editor or hidden free-text textarea receives the keystrokes.
 
+When a problem requires more than one syntax group:
+
+- each group keeps its own boxes and accepted alternatives
+- a quiet `/` separates adjacent input groups
+- `/` is instructional punctuation and is never typed
+- focus moves through the groups in source order
+- one Enter submits the complete problem
+- a line may combine syntax families, such as block quote plus bold, without
+  collapsing their answers into one opaque string
+
+Example:
+
+```text
+[ > ][ Space ] / [ * ][ * ] Important deadline [ * ][ * ]
+```
+
+The first group is the block-quote prefix. The second and third groups are the
+opening and closing bold delimiters. All three are graded together, while Hint
+describes and demonstrates each group separately.
+
 The box group is the only keyboard owner for exercise input. Mouse users may
 focus any box, but cannot edit the prose.
 
 ## Correct-answer flow
 
-When the submitted marks match any accepted pattern:
+When every submitted group matches an accepted pattern:
 
-1. The syntax is stored in the in-progress document.
+1. The syntax groups are stored in the completed problem result.
 2. The local rendered context updates.
 3. A short Matched feedback beat plays.
-4. The next syntax checkpoint loads automatically.
+4. The next problem loads automatically.
 5. Focus moves to its first box.
 
-The complete document is not opened between checkpoints or between problems.
-After the final checkpoint of a problem, the finished document is stored and
-the session advances to the next problem using the already-approved automatic
-progression rhythm.
+The completed result is not opened between problems. After the sixth problem,
+the turn moves to Summary using the already-approved page-turn rhythm.
 
 ## Wrong-answer flow
 
 When a non-empty submission is not accepted:
 
-1. Record one miss for the current checkpoint attempt.
+1. Record one miss for every incorrect syntax group in the current attempt.
 2. Play the Try again feedback.
-3. Clear every syntax box in the checkpoint.
+3. Clear every syntax box in the problem.
 4. Expand the exact Hint automatically.
 5. Return focus to the first box.
 6. Keep the Hint open while the learner types again.
@@ -187,7 +211,7 @@ Hint is available before an error and carries no penalty.
 
 Opening it manually:
 
-1. clears all partially typed marks for the current checkpoint
+1. clears all partially typed marks for the current problem
 2. focuses the first input box
 3. expands the Hint below the input row
 4. keeps the input row visible and usable
@@ -199,7 +223,8 @@ the syntax input.
 ## Hint content
 
 Hint is deliberately close to the answer. Nabi trains accurate repetition; it
-does not reward withholding information.
+does not reward withholding information. In a compound problem, it shows every
+required group in source order with the same `/` boundaries used by the input.
 
 Each accepted syntax form is shown as:
 
@@ -240,18 +265,18 @@ require different placement and should not be collapsed into one slot shape.
 Hint keycaps are examples, not autofill buttons. The learner must still type
 the marks.
 
-## Mark history
+## Problem history
 
-The learner may revisit accepted checkpoints within the current problem.
+The learner may revisit accepted problems within the current six-problem turn.
 
-- Previous is available after at least one mark has been accepted.
+- Previous is available after at least one problem has been accepted.
 - Next is available only when the learner has moved back from the frontier.
 - Revisiting never exposes unvisited answers.
-- Editing an accepted checkpoint rebuilds the stored document deterministically.
-- Returning to the frontier restores the first empty syntax boxes.
+- Editing an accepted problem rebuilds its stored result deterministically.
+- Returning to the frontier restores the first empty problem card.
 
-Mouse/browser Back and Forward mirror this checkpoint history while an internal
-previous or next checkpoint exists. Back at the first checkpoint and Forward
+Mouse/browser Back and Forward mirror this problem history while an internal
+previous or next problem exists. Back at the first problem and Forward
 at the frontier remain disabled within Practice rather than leaving the
 session. These controls must not consume normal text-editing keys.
 
@@ -265,25 +290,27 @@ The interaction does not change by level.
 - short familiar prose
 - normally one rendered context row
 - exact direct instruction
+- one input group in most problems
 
 ### Level 2
 
 - short blocks
 - repeated or paired marks
 - limited combinations
+- one or two input groups
 
 ### Level 3
 
 - compact human-readable documents
-- several syntax checkpoints
+- two or more syntax families may share one problem
 - local context normally includes neighboring rows
 
 ### Levels 4–5
 
 - realistic workplace and developer structures
-- multiple syntax families
-- more checkpoints, not longer instructions
-- short local context at every checkpoint
+- several syntax groups may be required on one card
+- difficulty increases through composition, not through additional problems
+- short local context on every card
 
 Advanced levels must not reintroduce full-document transcription.
 
@@ -311,19 +338,46 @@ the card-first interaction.
 
 ## Turn completion and Summary
 
-The six completed documents are stored throughout the turn but remain hidden
-during Practice.
+The six completed problem results are stored throughout the turn but remain
+hidden during Practice. After the sixth problem, Summary becomes a
+**Teacher's return**: the learner receives one finished page with restrained
+handwritten correction marks rather than a transcript or dashboard.
 
-After all six problems:
+### Left page: the work
 
-- the calm Summary remains the primary surface
-- praise and syntax families worth revisiting remain concise
-- a secondary `Completed pages` viewer exposes the six rendered documents
-- the viewer shows one document at a time to protect mobile readability
-- completed pages are review-only; no editing occurs in Summary
+- renders the six completed results together on one readable page
+- preserves the real Markdown hierarchy and the existing paper typography
+- contains no explanatory cards or congratulatory paragraphs
+- marks only syntax groups the learner missed before correcting
+- uses a thin muted-red underline or short margin stroke
+- adds a small handwritten-style number beside every marked location
+- never changes heading size, indentation, or other Markdown semantics to
+  create emphasis
 
-This preserves the quiet Summary while still delivering the satisfaction of
-seeing what the learner built.
+The correction color is never the only signal. Every red mark has a visible
+number that maps to the same numbered note on the right page.
+
+### Right page: the teacher's note
+
+- begins with one short completion line such as `Well done.`
+- lists only the syntax groups that caused a miss
+- uses the same numbers as the left-page marks
+- names the syntax family directly
+- shows the exact expected key sequence, including required spaces
+- limits each explanation to one short sentence
+- ends with quiet `Change level` and `Practice again` actions
+
+Score and elapsed time remain, but move to a low-emphasis footer. Decorative
+sprigs, generic strength paragraphs, family summaries without a recorded miss,
+and a separate `Completed pages` dialog are removed.
+
+When the turn has no misses, the left page remains completely clean and the
+right page shows only a brief clean-page acknowledgement. Red decoration is
+never added merely for atmosphere.
+
+The existing ink-reveal motion is retained in a quieter sequence: the document
+is already present, then correction strokes draw in, then the matching teacher
+notes appear. Reduced-motion mode reveals everything without drawing effects.
 
 ## Architecture boundaries
 
@@ -337,17 +391,21 @@ Each problem continues to provide:
 - structural grading rules
 - teaching metadata
 
-The guided layer derives a sequence of syntax checkpoints. The presentation
-layer consumes one checkpoint at a time and owns no grading policy.
+The guided layer derives syntax checkpoints and projects them into one compound
+card per problem. The presentation layer consumes that card and owns no grading
+policy.
 
 Recommended conceptual boundaries:
 
 - **checkpoint derivation:** target and starter to local syntax tasks
+- **problem projection:** one or more syntax checkpoints to one compound card
 - **accepted-pattern policy:** every standard answer for one checkpoint
 - **instruction model:** prefix, emphasized syntax term, suffix
 - **context projection:** rendered neighboring blocks for the current task
-- **practice state machine:** typing, hint-open, retry, matched, complete
-- **document accumulator:** deterministic finished source for Summary
+- **practice state machine:** six fixed problems, hint-open, retry, matched,
+  complete
+- **mistake ledger:** problem, syntax group, submitted value, expected forms
+- **result accumulator:** deterministic six-result Summary page
 - **card presentation:** focus, slots, Hint, history, accessibility
 
 These units must be independently testable. Rendering must not decide what is
@@ -382,11 +440,14 @@ completion and regenerate the canonical review-only document.
 
 ### Unit
 
-- every published problem derives at least one lossless checkpoint
+- every published problem derives one lossless card with one or more syntax
+  groups
+- every run contains exactly six cards
 - every accepted alternative appears in Hint data
 - every Hint alternative is accepted by grading
 - structurally different forms remain separate exercises
-- completed checkpoints rebuild the exact accepted document source
+- completed syntax groups rebuild the exact accepted problem result
+- a compound card never merges unrelated syntax families into one answer
 - context projection never changes rendered Markdown semantics
 
 ### Component
@@ -396,6 +457,7 @@ completion and regenerate the canonical review-only document.
 - wrong Enter opens exact Hint automatically
 - Hint remains open during retry input
 - correct input advances and restores focus
+- compound input groups expose `/` boundaries without accepting `/` as input
 - equivalent forms are listed separately and accepted
 - locked prose cannot be edited
 
@@ -405,8 +467,9 @@ completion and regenerate the canonical review-only document.
 - pointer-only Hint, history, and submission flow
 - wrong answer to exact-Hint retry flow
 - alternative syntax flows such as both italic delimiters
-- mark history back/forward behavior
-- six-problem completion and completed-pages viewer
+- problem history back/forward behavior
+- exactly six problems at every level
+- Teacher's return Summary with numbered correction mapping
 - responsive checks at narrow mobile, tablet, 1280×800, and wide desktop
 - no page or horizontal overflow
 
@@ -417,6 +480,7 @@ completion and regenerate the canonical review-only document.
 - rendered context preserves authentic heading and list hierarchy
 - the active row receives focus without magnification
 - Hint expansion does not move input off screen
+- Summary correction strokes do not alter rendered Markdown hierarchy
 
 ## Superseded behavior
 
@@ -427,7 +491,7 @@ This design intentionally replaces:
 - editing or prefilling a full document during Practice
 - generic retry copy without the exact local correction
 - Hint navigation away from the input surface
-- hiding the completed document behind intermediate previews
+- hiding the completed work behind a secondary viewer
 
 The existing problem bank, structure-only grading, two verdicts, repair
 bookkeeping, sounds, session progress, and no-pressure policy remain.
@@ -435,7 +499,7 @@ bookkeeping, sounds, session progress, and no-pressure policy remain.
 ## Out of scope
 
 - the future free-entry “hard code” mode
-- rewriting the problem bank
+- rewriting problem prose merely to manufacture difficulty
 - AI-generated grading or hints
 - accounts, streaks, lives, XP, or social comparison
 - changing the landing-page level chooser
