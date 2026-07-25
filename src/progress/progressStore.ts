@@ -9,6 +9,7 @@ import {
   problemBankRevision,
 } from "../content/problemBank"
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
+import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
@@ -16,6 +17,8 @@ export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
 // A browser session cannot legitimately reach this many six-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
+const MAX_PERSISTED_SYNTAX_MISTAKES = 128
+const MAX_PERSISTED_MARK_LENGTH = 256
 
 export function createDefaultProgress(
   currentProblemId: string,
@@ -40,6 +43,7 @@ export function createDefaultProgress(
     currentIsTransfer: false,
     failedScheduledStepIndexes: [],
     failedProblemIds: [],
+    syntaxMistakes: [],
     runStartedAtMs: null,
     runCompletedAtMs: null,
   }
@@ -144,6 +148,49 @@ function isUniqueKnownIdList(
   )
 }
 
+function isBoundedString(value: unknown, maximumLength: number): value is string {
+  return typeof value === "string" && value.length <= maximumLength
+}
+
+function isValidSyntaxMistakes(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+): value is SyntaxMistake[] {
+  if (
+    !Array.isArray(value) ||
+    value.length > MAX_PERSISTED_SYNTAX_MISTAKES
+  ) {
+    return false
+  }
+
+  const seen = new Set<string>()
+  return value.every((candidate) => {
+    if (
+      !isRecord(candidate) ||
+      typeof candidate.problemId !== "string" ||
+      !validProblemIds.has(candidate.problemId) ||
+      !isBoundedString(candidate.checkpointId, MAX_PERSISTED_MARK_LENGTH) ||
+      candidate.checkpointId.length === 0 ||
+      !isNonnegativeSafeInteger(candidate.groupIndex) ||
+      !isBoundedString(candidate.term, MAX_PERSISTED_MARK_LENGTH) ||
+      !isBoundedString(candidate.submitted, MAX_PERSISTED_MARK_LENGTH) ||
+      !Array.isArray(candidate.expected) ||
+      candidate.expected.length === 0 ||
+      candidate.expected.length > 8 ||
+      !candidate.expected.every((form) =>
+        isBoundedString(form, MAX_PERSISTED_MARK_LENGTH),
+      )
+    ) {
+      return false
+    }
+
+    const key = `${candidate.problemId}:${candidate.checkpointId}:${candidate.groupIndex}`
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
 function isProgressV5(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
@@ -228,6 +275,7 @@ function isProgressV5(
     isValidDraftRecord(value.draftByProblemId, validProblemIds) &&
     isKnownIdList(value.completedProblemIds, validProblemIds) &&
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
+    isValidSyntaxMistakes(value.syntaxMistakes, validProblemIds) &&
     (value.pendingTransferFamily === null ||
       typeof value.pendingTransferFamily === "string") &&
     (value.pendingSlotRetryProblemId === null ||
@@ -262,6 +310,10 @@ function cloneProgress(progress: ProgressV5): ProgressV5 {
     recentProblemIds: [...progress.recentProblemIds],
     failedScheduledStepIndexes: [...progress.failedScheduledStepIndexes],
     failedProblemIds: [...progress.failedProblemIds],
+    syntaxMistakes: progress.syntaxMistakes.map((mistake) => ({
+      ...mistake,
+      expected: [...mistake.expected],
+    })),
   }
 }
 
@@ -290,6 +342,20 @@ function migratePendingSlotRetry(value: unknown): unknown {
   return {
     ...value,
     pendingSlotRetryProblemId: null,
+  }
+}
+
+function migrateSyntaxMistakes(value: unknown): unknown {
+  if (
+    !isRecord(value) ||
+    value.version !== 5 ||
+    "syntaxMistakes" in value
+  ) {
+    return value
+  }
+  return {
+    ...value,
+    syntaxMistakes: [],
   }
 }
 
@@ -389,12 +455,14 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migratePendingSlotRetry(
-      migrateLegacyRunSeed(
-        migrateStarterProjectionRevision(
-          JSON.parse(saved),
-          validProblemIds,
-          expectedBankRevision,
+    const parsed: unknown = migrateSyntaxMistakes(
+      migratePendingSlotRetry(
+        migrateLegacyRunSeed(
+          migrateStarterProjectionRevision(
+            JSON.parse(saved),
+            validProblemIds,
+            expectedBankRevision,
+          ),
         ),
       ),
     )

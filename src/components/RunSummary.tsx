@@ -30,6 +30,10 @@ function keySequence(form: string): readonly string[] {
   return [...form].map((character) => (character === " " ? "Space" : character))
 }
 
+function sentenceCase(value: string): string {
+  return value ? `${value[0]!.toUpperCase()}${value.slice(1)}` : value
+}
+
 export function RunSummary({
   score,
   total,
@@ -69,7 +73,11 @@ export function RunSummary({
       >
         <div className="run-summary__work">
           {pages.map((page) => (
-            <article className="run-summary__work-page" key={page.problemId}>
+            <article
+              aria-label={page.title}
+              className="run-summary__work-page"
+              key={page.problemId}
+            >
               <RenderedDocumentBody
                 corrections={page.corrections}
                 source={page.source}
@@ -114,7 +122,7 @@ export function RunSummary({
                       <span className="visually-hidden">
                         Correction {note.number}:{" "}
                       </span>
-                      A {note.term} needs these marks.
+                      {sentenceCase(note.term)} needs these marks.
                     </p>
                     <ul className="run-summary__note-forms">
                       {note.expected.map((form) => (

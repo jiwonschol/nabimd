@@ -1,5 +1,8 @@
 import type { GradableProblem } from "../content/types"
-import { projectCheckpointContext } from "../guided/guidedSyntax"
+import {
+  projectCheckpointContext,
+  type SyntaxMistake,
+} from "../guided/guidedSyntax"
 import { useCenterCard } from "../guided/useCenterCard"
 import { CenterCard } from "./CenterCard"
 
@@ -11,7 +14,7 @@ type CardFirstPracticeProps = {
   retryPending?: boolean
   onGrow: (nextDraft: string) => void
   onComplete: (finishedDraft: string) => void
-  onMiss?: () => void
+  onMiss?: (mistakes: readonly SyntaxMistake[]) => void
 }
 
 export function CardFirstPractice({

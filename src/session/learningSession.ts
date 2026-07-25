@@ -149,9 +149,10 @@ export function createLearningSession(
       ...progress.failedScheduledStepIndexes,
     ],
     failedProblemIds: [...progress.failedProblemIds],
-    // The ledger is run-scoped: a restored session keeps its score, but the
-    // teacher's note is rebuilt from misses made after the restore.
-    syntaxMistakes: [],
+    syntaxMistakes: progress.syntaxMistakes.map((mistake) => ({
+      ...mistake,
+      expected: [...mistake.expected],
+    })),
     runStartedAtMs: progress.runStartedAtMs,
     runCompletedAtMs: progress.runCompletedAtMs,
     progress,
@@ -366,6 +367,7 @@ export function learningSessionReducer(
           pendingSlotRetryProblemId: session.currentProblemId,
           failedScheduledStepIndexes,
           failedProblemIds,
+          syntaxMistakes,
         },
       }
     }

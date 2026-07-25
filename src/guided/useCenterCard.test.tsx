@@ -101,8 +101,8 @@ describe("useCenterCard Hint and retry state", () => {
 
   it("reports which syntax group was missed and what it accepts", () => {
     // `l1-italic-paper-boat` is `*Paper boat*`: an opening and a closing
-    // italic group. Level 1 mirrors a paired mark, so `@` lands in both
-    // groups and both owe the teacher's note an entry.
+    // italic group. Level 1 mirrors one learner action into both positions,
+    // so the teacher's note must charge that action only once.
     const { result, onMiss } = renderItalicCard()
     act(() => result.current.editSegment(0, "@"))
     act(() => result.current.submit())
@@ -113,14 +113,6 @@ describe("useCenterCard Hint and retry state", () => {
         problemId: "l1-italic-paper-boat",
         checkpointId: expect.any(String),
         groupIndex: 0,
-        term: "italic text",
-        submitted: "@",
-        expected: ["*", "_"],
-      },
-      {
-        problemId: "l1-italic-paper-boat",
-        checkpointId: expect.any(String),
-        groupIndex: 1,
         term: "italic text",
         submitted: "@",
         expected: ["*", "_"],

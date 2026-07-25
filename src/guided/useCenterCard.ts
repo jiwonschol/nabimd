@@ -287,7 +287,11 @@ export function useCenterCard({
       // The attempt is rejected, so it always owes at least one ledger entry:
       // when every group is individually typable the groups came from
       // different accepted forms, and the first group carries the miss.
-      const chargedIndexes = missedIndexes.length > 0 ? missedIndexes : [0]
+      const chargedIndexes = mirroredPair
+        ? [missedIndexes[0] ?? 0]
+        : missedIndexes.length > 0
+          ? missedIndexes
+          : [0]
       onMiss?.(
         chargedIndexes.map((groupIndex) => ({
           problemId: problem.id,
@@ -338,6 +342,7 @@ export function useCenterCard({
     progress,
     requestFirstBoxFocus,
     segmentValues,
+    mirroredPair,
     setViewIndex,
   ])
 

@@ -79,6 +79,12 @@ describe("RunSummary as a teacher's return", () => {
     ).toBeNull()
     // Review only: nothing on this page takes typing.
     expect(screen.queryAllByRole("textbox")).toHaveLength(0)
+    expect(
+      screen.getByRole("article", { name: "Grocery list" }),
+    ).toBeVisible()
+    expect(
+      screen.getByRole("article", { name: "Paper boat" }),
+    ).toBeVisible()
   })
 
   it("marks the missed line and prints the matching numbered note", () => {
@@ -87,11 +93,11 @@ describe("RunSummary as a teacher's return", () => {
     // The mark sits on the line that was missed — the heading, not the body.
     const heading = screen.getByRole("heading", { name: /Grocery list/ })
     expect(heading).toHaveAttribute("data-corrected", "true")
-    expect(screen.getByLabelText("Correction 1")).toHaveTextContent("1")
+    expect(screen.getByText("Correction 1")).toBeVisible()
 
     // The note names the family and spells out the grammar-required space.
     expect(
-      screen.getByText(/A level 1 heading needs these marks\./),
+      screen.getByText(/Level 1 heading needs these marks\./),
     ).toBeVisible()
     expect(screen.getByText("Space")).toBeVisible()
   })
@@ -115,10 +121,10 @@ describe("RunSummary as a teacher's return", () => {
     ])
 
     const notes = noteItems()
-    expect(notes[0]).toHaveTextContent("A level 1 heading needs these marks.")
-    expect(notes[1]).toHaveTextContent("A italic text needs these marks.")
-    expect(screen.getByLabelText("Correction 1")).toBeVisible()
-    expect(screen.getByLabelText("Correction 2")).toBeVisible()
+    expect(notes[0]).toHaveTextContent("Level 1 heading needs these marks.")
+    expect(notes[1]).toHaveTextContent("Italic text needs these marks.")
+    expect(screen.getByText("Correction 1")).toBeVisible()
+    expect(screen.getByText("Correction 2")).toBeVisible()
   })
 
   it("lists every accepted form for a missed group", () => {
@@ -138,7 +144,7 @@ describe("RunSummary as a teacher's return", () => {
     renderSummary()
 
     expect(screen.getByText("A clean page — nothing to correct.")).toBeVisible()
-    expect(screen.queryByLabelText(/^Correction /)).toBeNull()
+    expect(screen.queryByText(/^Correction \d+$/)).toBeNull()
     expect(document.querySelectorAll("[data-corrected]")).toHaveLength(0)
     expect(screen.getByLabelText("Run summary")).toHaveAttribute(
       "data-clean",

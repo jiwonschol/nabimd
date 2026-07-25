@@ -115,6 +115,26 @@ describe("learningSessionReducer", () => {
     })
   })
 
+  it("restores the run-scoped syntax mistake ledger", () => {
+    const mistake = {
+      problemId: apple.id,
+      checkpointId: "syntax-1-1",
+      groupIndex: 0,
+      term: "level 1 heading",
+      submitted: "@",
+      expected: ["# "],
+    }
+    const missed = learningSessionReducer(newSession(apple), {
+      type: "slot-missed",
+      mistakes: [mistake],
+    })
+
+    expect(missed.progress.syntaxMistakes).toEqual([mistake])
+    expect(createLearningSession(missed.progress, apple).syntaxMistakes).toEqual(
+      [mistake],
+    )
+  })
+
   it("advances after a first-attempt Matched pass when the run has another step", () => {
     const passed = editAndCheck(newSession(), apple, "# Apple")
 

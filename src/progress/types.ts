@@ -1,4 +1,5 @@
 import type { EntryId } from "../content/entryChoices"
+import type { SyntaxMistake } from "../guided/guidedSyntax"
 
 export type ProgressV5 = {
   version: 5
@@ -18,6 +19,7 @@ export type ProgressV5 = {
   currentIsTransfer: boolean
   failedScheduledStepIndexes: number[]
   failedProblemIds: string[]
+  syntaxMistakes: SyntaxMistake[]
   runStartedAtMs: number | null
   runCompletedAtMs: number | null
 }

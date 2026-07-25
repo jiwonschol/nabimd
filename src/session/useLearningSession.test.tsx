@@ -559,6 +559,32 @@ describe("useLearningSession", () => {
     expect(restored.result.current.session.draft).toBe("# Saved draft")
   })
 
+  it("restores syntax corrections for the teacher's return after reload", async () => {
+    const storage = new MemoryStorage()
+    const first = renderLearningSession(storage)
+    act(() => first.result.current.start("level-1"))
+    const problemId = first.result.current.problem.id
+    const mistake = {
+      problemId,
+      checkpointId: "syntax-1-1",
+      groupIndex: 0,
+      term: "Markdown mark",
+      submitted: "@",
+      expected: ["# "],
+    }
+
+    act(() => first.result.current.recordSlotMiss([mistake]))
+    await waitFor(() => {
+      expect(storage.getItem(PROGRESS_STORAGE_KEY)).toContain(
+        '"syntaxMistakes"',
+      )
+    })
+    first.unmount()
+
+    const restored = renderLearningSession(storage)
+    expect(restored.result.current.session.syntaxMistakes).toEqual([mistake])
+  })
+
   it("restores a Goal-derived starter after migrating a legacy empty high-level draft", () => {
     const storage = new MemoryStorage()
     const ids = createRunProblemIds("level-5", 0)

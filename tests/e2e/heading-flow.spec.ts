@@ -329,15 +329,19 @@ test("supports Previous and Next across accepted marks", async ({ page }) => {
   expect(marks.length).toBeGreaterThan(1)
 
   await submitSlot(page, marks[0]!)
-  const card = page.getByRole("region", { name: "Markdown syntax practice" })
-  await expect(card).toContainText(`Mark 2 of ${marks.length}`)
+  const previous = page.getByRole("button", { name: "Previous mark" })
+  const next = page.getByRole("button", { name: "Next mark" })
+  await expect(previous).toBeEnabled()
+  await expect(next).toBeDisabled()
 
-  await page.getByRole("button", { name: "Previous mark" }).click()
-  await expect(card).toContainText(`Mark 1 of ${marks.length}`)
+  await previous.click()
+  await expect(previous).toBeDisabled()
+  await expect(next).toBeEnabled()
   await expect(cardBoxInput(page)).not.toHaveValue("")
 
-  await page.getByRole("button", { name: "Next mark" }).click()
-  await expect(card).toContainText(`Mark 2 of ${marks.length}`)
+  await next.click()
+  await expect(previous).toBeEnabled()
+  await expect(next).toBeDisabled()
 })
 
 test("the visible Enter control submits marks with a pointer", async ({
@@ -436,18 +440,18 @@ test("completes a run and reveals full documents only from Summary", async ({
   ).toBeFocused()
   await expect(page.getByLabel("Score")).toContainText("6 / 6")
   await expect(page.getByRole("textbox")).toHaveCount(0)
-
-  await page.getByRole("button", { name: "View completed pages" }).click()
-  const viewer = page.getByRole("dialog", { name: "Completed pages" })
-  await expect(viewer).toBeVisible()
-  await expect(viewer).toContainText("Page 1 of 6")
-  await expect(page.getByRole("textbox")).toHaveCount(0)
-
-  await page.getByRole("button", { name: "Next completed page" }).click()
-  await expect(viewer).toContainText("Page 2 of 6")
-  await page.getByRole("button", { name: "Close completed pages" }).click()
-  await expect(viewer).toHaveCount(0)
+  const work = page.getByRole("region", { name: "Your work" })
+  await expect(work.getByRole("article")).toHaveCount(6)
   await expect(
     page.getByRole("button", { name: "View completed pages" }),
-  ).toBeFocused()
+  ).toHaveCount(0)
+  await expect(page.getByRole("dialog")).toHaveCount(0)
+
+  await page.setViewportSize({ width: 390, height: 844 })
+  const teacherNote = page.getByRole("region", { name: "Well done." })
+  await teacherNote.scrollIntoViewIfNeeded()
+  await expect(teacherNote).toBeVisible()
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth),
+  ).toBeLessThanOrEqual(390)
 })

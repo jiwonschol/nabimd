@@ -48,11 +48,9 @@ export function RenderedDocumentBody({
           <sup
             className="rendered-document__correction-number"
             key={number}
-            // The number is the signal that survives without colour, so it
-            // says what it means instead of reading as a footnote marker.
-            aria-label={`Correction ${number}`}
           >
-            {number}
+            <span className="visually-hidden">Correction {number}</span>
+            <span aria-hidden="true">{number}</span>
           </sup>
         ))}
       </span>,
@@ -120,6 +118,20 @@ export function RenderedDocumentBody({
                   {marks}
                 </h4>
               )),
+            h5: ({ children, node }) =>
+              withCorrection(node, (marked, marks) => (
+                <h5 data-corrected={marked || undefined}>
+                  {children}
+                  {marks}
+                </h5>
+              )),
+            h6: ({ children, node }) =>
+              withCorrection(node, (marked, marks) => (
+                <h6 data-corrected={marked || undefined}>
+                  {children}
+                  {marks}
+                </h6>
+              )),
             pre: ({ children, node }) =>
               withCorrection(node, (marked, marks) => (
                 <pre data-corrected={marked || undefined}>
@@ -129,10 +141,13 @@ export function RenderedDocumentBody({
               )),
             hr: ({ node }) =>
               withCorrection(node, (marked, marks) => (
-                <p className="rendered-document__break" data-corrected={marked || undefined}>
+                <div
+                  className="rendered-document__break"
+                  data-corrected={marked || undefined}
+                >
                   <hr />
                   {marks}
-                </p>
+                </div>
               )),
           }}
         >

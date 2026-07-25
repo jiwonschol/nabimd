@@ -129,6 +129,69 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
+  it("migrates old v5 progress without a syntax mistake ledger", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+
+    const { syntaxMistakes: _syntaxMistakes, ...legacyProgress } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it("round-trips a bounded syntax mistake ledger", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.syntaxMistakes = [
+      {
+        problemId: ids[0]!,
+        checkpointId: "syntax-1-1",
+        groupIndex: 0,
+        term: "level 1 heading",
+        submitted: "@",
+        expected: ["# "],
+      },
+    ]
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it("rejects malformed persisted syntax mistake metadata", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    saveProgress(storage, {
+      ...progress,
+      syntaxMistakes: [
+        {
+          problemId: "not-in-the-bank",
+          checkpointId: "syntax-1-1",
+          groupIndex: 0,
+          term: "heading",
+          submitted: "@",
+          expected: ["# "],
+        },
+      ],
+    })
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
   it("reads the seed a legacy seedless record should adopt as 0", () => {
     const ids = createRunProblemIds("level-4", 0)
     const progress = createDefaultProgress(ids[0]!)
