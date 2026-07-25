@@ -149,6 +149,70 @@ function renderCheckpointWithInput(
     .join("")
 }
 
+export type CheckpointHintRow = {
+  input: string
+  source: string
+}
+
+export function checkpointHintRows(
+  checkpoint: SyntaxCheckpoint,
+): readonly CheckpointHintRow[] {
+  return acceptedGuidedSyntaxInputs(checkpoint).map((input) => ({
+    input,
+    source: renderCheckpointWithInput(checkpoint, input),
+  }))
+}
+
+export type CheckpointContext = {
+  before: string | null
+  current: string
+  after: string | null
+}
+
+function lineIndexAt(source: string, offset: number): number {
+  let line = 0
+  const boundedOffset = Math.min(Math.max(offset, 0), source.length)
+  for (let index = 0; index < boundedOffset; index += 1) {
+    if (source[index] === "\n") line += 1
+  }
+  return line
+}
+
+function nearestMeaningfulLine(
+  lines: readonly string[],
+  from: number,
+  direction: -1 | 1,
+): string | null {
+  for (
+    let index = from;
+    index >= 0 && index < lines.length;
+    index += direction
+  ) {
+    const line = lines[index]
+    if (line?.trim()) return line
+  }
+  return null
+}
+
+export function projectCheckpointContext(
+  target: string,
+  checkpoint: SyntaxCheckpoint,
+): CheckpointContext {
+  const source = target.replace(/\r\n?/g, "\n")
+  const lines = source.split("\n")
+  const currentStartLine = lineIndexAt(source, checkpoint.targetFrom)
+  const currentEndLine = lineIndexAt(
+    source,
+    Math.max(checkpoint.targetFrom, checkpoint.targetTo - 1),
+  )
+
+  return {
+    before: nearestMeaningfulLine(lines, currentStartLine - 1, -1),
+    current: lines.slice(currentStartLine, currentEndLine + 1).join("\n"),
+    after: nearestMeaningfulLine(lines, currentEndLine + 1, 1),
+  }
+}
+
 type GuidedListStyle = {
   orderedDelimiter?: "." | ")"
   unorderedMarker?: "-" | "*" | "+"

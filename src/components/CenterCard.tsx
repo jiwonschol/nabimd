@@ -26,42 +26,81 @@ type CenterCardProps = {
   onSubmit: () => void
 }
 
-export function describeCheckpoint(checkpoint: SyntaxCheckpoint): string {
+export type CheckpointInstruction = {
+  prefix: string
+  term: string
+  suffix: string
+}
+
+function instruction(
+  prefix: string,
+  term: string,
+  suffix = ".",
+): CheckpointInstruction {
+  return { prefix, term, suffix }
+}
+
+export function describeCheckpoint(
+  checkpoint: SyntaxCheckpoint,
+): CheckpointInstruction {
   const mark = checkpoint.canonicalInput.trim()
   const lockedBreak = checkpoint.segments.some(
     (segment) => segment.kind === "locked" && segment.value.includes("\n"),
   )
 
   if (/^(?:=+|-+)$/.test(mark) && lockedBreak) {
-    // Setext: equals signs make an H1, dashes an H2.
-    return `Underline the ${mark.startsWith("=") ? "H1" : "H2"} heading`
+    return instruction(
+      "Type the Markdown underline for a ",
+      `level ${mark.startsWith("=") ? "1" : "2"} Setext heading`,
+    )
   }
   if (mark.startsWith("#")) {
-    // The rendered Goal cannot teach depth by eye alone, so the exercise
-    // names it outright: writing the right Hn is the skill being asked for.
     const depth = mark.match(/^#+/)?.[0]?.length ?? 1
-    return `Give this line its H${depth} heading marks`
+    return instruction(
+      "Type the Markdown marks and space for a ",
+      `level ${depth} heading`,
+    )
   }
-  if (["---", "***", "___"].includes(mark)) return "Add the section divider"
+  if (["---", "***", "___"].includes(mark)) {
+    return instruction("Type the Markdown marks for a ", "section break")
+  }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
-    return "Mark this line as a bullet item"
+    return instruction("Type the Markdown mark and space for a ", "bullet item")
   }
-  if (/^\d+[.)]/.test(mark)) return "Number this step"
-  if (mark.startsWith(">")) return "Quote this line"
+  if (/^\d+[.)]/.test(mark)) {
+    return instruction(
+      "Type the Markdown number, delimiter, and space for a ",
+      "numbered step",
+    )
+  }
+  if (mark.startsWith(">")) {
+    return instruction("Type the Markdown mark and space for a ", "block quote")
+  }
   if (mark.startsWith("```") || mark.startsWith("~~~")) {
-    return "Fence the code block"
+    return instruction(
+      "Type the opening and closing Markdown marks for a ",
+      "fenced code block",
+    )
   }
-  // Emphasis pairs concatenate both delimiters: italic *x* yields "**",
-  // bold **x** yields "****" — so the exact pair means italic.
-  if (mark === "**" || mark === "__") return "Italicize the phrase"
-  if (mark.startsWith("**") || mark.startsWith("__")) return "Bold the phrase"
-  if (mark.startsWith("![")) return "Build the image marks"
-  if (mark.startsWith("[")) return "Build the link marks"
-  if (mark.startsWith("`")) return "Wrap the code in backticks"
+  if (mark === "**" || mark === "__") {
+    return instruction("Wrap the phrase in Markdown marks for ", "italic text")
+  }
+  if (mark.startsWith("**") || mark.startsWith("__")) {
+    return instruction("Wrap the phrase in Markdown marks for ", "bold text")
+  }
+  if (mark.startsWith("![")) {
+    return instruction("Add the Markdown punctuation for an ", "image")
+  }
+  if (mark.startsWith("[")) {
+    return instruction("Add the Markdown punctuation for a ", "link")
+  }
+  if (mark.startsWith("`")) {
+    return instruction("Wrap the phrase in Markdown marks for ", "inline code")
+  }
   if (mark.startsWith("*") || mark.startsWith("_")) {
-    return "Italicize the phrase"
+    return instruction("Wrap the phrase in Markdown marks for ", "italic text")
   }
-  return "Add the Markdown marks"
+  return instruction("Type the Markdown marks for this ", "structure")
 }
 
 export function CenterCard({
@@ -79,6 +118,7 @@ export function CenterCard({
   onSubmit,
 }: CenterCardProps) {
   const groups = inputSegments(checkpoint)
+  const checkpointInstruction = describeCheckpoint(checkpoint)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [focusedGroup, setFocusedGroup] = useState<number | null>(null)
 
@@ -163,7 +203,9 @@ export function CenterCard({
             Mark {Math.min(slotIndex + 1, slotTotal)} of {slotTotal}
           </span>
           <h3 className="center-card__instruction">
-            {describeCheckpoint(checkpoint)}
+            {checkpointInstruction.prefix}
+            <strong>{checkpointInstruction.term}</strong>
+            {checkpointInstruction.suffix}
           </h3>
         </div>
         <div className="center-card__controls">

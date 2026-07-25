@@ -5,7 +5,9 @@ import {
   acceptedGuidedSyntaxInputs,
   acceptsGuidedSyntaxInput,
   buildGuidedDraft,
+  checkpointHintRows,
   deriveSyntaxCheckpoints,
+  projectCheckpointContext,
 } from "./guidedSyntax"
 
 describe("deriveSyntaxCheckpoints", () => {
@@ -224,6 +226,86 @@ describe("deriveSyntaxCheckpoints", () => {
       { kind: "locked", value: "bash\nnpm test\n" },
       { kind: "input", value: "```" },
     ])
+  })
+})
+
+describe("card teaching projections", () => {
+  it("projects only the active source row and its nearest meaningful neighbors", () => {
+    const target = [
+      "## Before",
+      "",
+      "> Keep rollback steps visible.",
+      "",
+      "- Verify the deploy",
+    ].join("\n")
+    const checkpoint = deriveSyntaxCheckpoints(target, "")[1]!
+
+    expect(projectCheckpointContext(target, checkpoint)).toEqual({
+      before: "## Before",
+      current: "> Keep rollback steps visible.",
+      after: "- Verify the deploy",
+    })
+  })
+
+  it("shows every italic answer as a complete source example", () => {
+    const checkpoint = deriveSyntaxCheckpoints(
+      "*Quiet music*",
+      "Quiet music",
+    )[0]!
+
+    expect(checkpointHintRows(checkpoint)).toEqual([
+      { input: "**", source: "*Quiet music*" },
+      { input: "__", source: "_Quiet music_" },
+    ])
+  })
+
+  it.each([
+    [
+      "- Pens",
+      [
+        { input: "- ", source: "- Pens" },
+        { input: "* ", source: "* Pens" },
+        { input: "+ ", source: "+ Pens" },
+      ],
+    ],
+    [
+      "1. First",
+      [
+        { input: "1. ", source: "1. First" },
+        { input: "1) ", source: "1) First" },
+      ],
+    ],
+    [
+      "Use `npm test`.",
+      [{ input: "``", source: "Use `npm test`." }],
+    ],
+    [
+      "Read [docs](/guide).",
+      [{ input: "[]()", source: "Read [docs](/guide)." }],
+    ],
+    [
+      "See ![Map](/map.png).",
+      [{ input: "![]()", source: "See ![Map](/map.png)." }],
+    ],
+    [
+      "---",
+      [
+        { input: "---", source: "---" },
+        { input: "***", source: "***" },
+        { input: "___", source: "___" },
+      ],
+    ],
+    [
+      "```\nhello\n```",
+      [
+        { input: "``````", source: "```\nhello\n```" },
+        { input: "~~~~~~", source: "~~~\nhello\n~~~" },
+      ],
+    ],
+  ] as const)("renders complete Hint rows for %s", (target, expected) => {
+    const checkpoint = deriveSyntaxCheckpoints(target, "")[0]!
+
+    expect(checkpointHintRows(checkpoint)).toEqual(expected)
   })
 })
 
