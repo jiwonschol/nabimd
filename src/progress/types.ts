@@ -14,6 +14,7 @@ export type ProgressV5 = {
   completedProblemIds: string[]
   recentProblemIds: string[]
   pendingTransferFamily: string | null
+  pendingSlotRetryProblemId: string | null
   currentIsTransfer: boolean
   failedScheduledStepIndexes: number[]
   failedProblemIds: string[]

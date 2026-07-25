@@ -19,6 +19,7 @@ import { RenderedDocumentBody } from "./RenderedDocument"
 
 type CenterCardProps = {
   checkpoint: SyntaxCheckpoint
+  interactive?: boolean
   slotIndex: number
   slotTotal: number
   segmentValues: readonly string[]
@@ -116,6 +117,7 @@ export function describeCheckpoint(
 
 export function CenterCard({
   checkpoint,
+  interactive = true,
   slotIndex,
   slotTotal,
   segmentValues,
@@ -140,22 +142,23 @@ export function CenterCard({
   const hintId = useId()
 
   useEffect(() => {
+    if (!interactive) return
     const firstOpen = segmentValues.findIndex(
       (value, index) => value.length < (groups[index]?.value.length ?? 0),
     )
     inputRefs.current[firstOpen < 0 ? 0 : firstOpen]?.focus()
     // Focus follows the slot, not every keystroke.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkpoint.id, slotIndex])
+  }, [checkpoint.id, interactive, slotIndex])
 
   useEffect(() => {
     // A rejected Enter empties the boxes; typing restarts at the first box.
-    if (verdict === "retry") inputRefs.current[0]?.focus()
-  }, [verdict])
+    if (interactive && verdict === "retry") inputRefs.current[0]?.focus()
+  }, [interactive, verdict])
 
   useEffect(() => {
-    if (focusRequest > 0) inputRefs.current[0]?.focus()
-  }, [focusRequest])
+    if (interactive && focusRequest > 0) inputRefs.current[0]?.focus()
+  }, [focusRequest, interactive])
 
   const editGroup = (index: number, raw: string) => {
     // macOS Korean input sources type ₩ on the backtick key, which would
@@ -187,6 +190,7 @@ export function CenterCard({
     event: ReactKeyboardEvent<HTMLInputElement>,
     index: number,
   ) => {
+    if (!interactive) return
     if (event.key === "Enter") {
       // An Enter that finishes an IME composition is not a submission.
       if (event.nativeEvent.isComposing) return
@@ -240,7 +244,7 @@ export function CenterCard({
             aria-label="Previous mark"
             className="center-card__control"
             data-tooltip="Previous mark (↑)"
-            disabled={!canGoToPreviousSlot}
+            disabled={!interactive || !canGoToPreviousSlot}
             onClick={onPreviousSlot}
             type="button"
           >
@@ -251,7 +255,7 @@ export function CenterCard({
             aria-label="Next mark"
             className="center-card__control"
             data-tooltip="Next mark (↓)"
-            disabled={!canGoToNextSlot}
+            disabled={!interactive || !canGoToNextSlot}
             onClick={onNextSlot}
             type="button"
           >
@@ -328,6 +332,7 @@ export function CenterCard({
                 ref={(element) => {
                   inputRefs.current[index] = element
                 }}
+                readOnly={!interactive}
                 spellCheck={false}
                 type="text"
                 value={value}
@@ -343,6 +348,7 @@ export function CenterCard({
           aria-controls={hintId}
           aria-expanded={hintOpen}
           className="center-card__hint-button"
+          disabled={!interactive}
           onClick={onToggleHint}
           type="button"
         >
@@ -358,6 +364,7 @@ export function CenterCard({
           aria-keyshortcuts="Enter"
           aria-label="Check marks"
           className="center-card__submit"
+          disabled={!interactive}
           onClick={onSubmit}
           type="button"
         >
@@ -377,6 +384,7 @@ export function CenterCard({
             <button
               aria-label="Close hint"
               className="center-card__hint-close"
+              disabled={!interactive}
               onClick={onCloseHint}
               type="button"
             >

@@ -24,7 +24,6 @@ import { ElapsedTime } from "./ElapsedTime"
 import { Wordmark } from "./Wordmark"
 
 type ExerciseTopBarProps = {
-  canCheck: boolean
   canGoToPreviousStep: boolean
   canGoToNextStep: boolean
   entryId: EntryId
@@ -37,7 +36,6 @@ type ExerciseTopBarProps = {
   runStartedAtMs: number | null
   scheduledRunLength: number
   scheduledStepIndex: number
-  onCheck: () => void
   onExit: () => void
   onNext: () => void
   onPreviousStep: () => void

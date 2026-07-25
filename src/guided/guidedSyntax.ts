@@ -199,6 +199,32 @@ export function projectCheckpointContext(
   checkpoint: SyntaxCheckpoint,
 ): CheckpointContext {
   const source = target.replace(/\r\n?/g, "\n")
+  const document = fromMarkdown(source)
+  const blocks = document.children.flatMap((node) => {
+    const range = nodeRange(node)
+    return range ? [{ range }] : []
+  })
+  const activeBlockIndex = blocks.findIndex(
+    ({ range }) =>
+      range.from <= checkpoint.targetFrom &&
+      range.to >= checkpoint.targetTo,
+  )
+
+  if (activeBlockIndex >= 0) {
+    const active = blocks[activeBlockIndex]!
+    const before = blocks[activeBlockIndex - 1]
+    const after = blocks[activeBlockIndex + 1]
+    return {
+      before: before
+        ? source.slice(before.range.from, before.range.to)
+        : null,
+      current: source.slice(active.range.from, active.range.to),
+      after: after ? source.slice(after.range.from, after.range.to) : null,
+    }
+  }
+
+  // Malformed or extension-only source can lack a positioned mdast block.
+  // Preserve the line-based projection as a defensive fallback.
   const lines = source.split("\n")
   const currentStartLine = lineIndexAt(source, checkpoint.targetFrom)
   const currentEndLine = lineIndexAt(

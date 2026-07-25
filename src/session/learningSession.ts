@@ -192,6 +192,7 @@ function completeSession(
         session.currentProblemId,
       ),
       pendingTransferFamily: null,
+      pendingSlotRetryProblemId: null,
       currentIsTransfer: false,
       runStepIndex: session.runProblemIds.length || session.runStepIndex,
       scheduledStepIndex: scheduledRunLength,
@@ -243,6 +244,7 @@ export function learningSessionReducer(
           currentProblemId: event.snapshot.currentProblemId,
           currentIsTransfer: event.snapshot.currentIsTransfer,
           pendingTransferFamily: null,
+          pendingSlotRetryProblemId: null,
           runStartedAtMs: event.snapshot.runStartedAtMs,
           runCompletedAtMs: null,
         },
@@ -259,6 +261,11 @@ export function learningSessionReducer(
         coach: session.coach,
         progress: {
           ...session.progress,
+          pendingSlotRetryProblemId:
+            session.progress.pendingSlotRetryProblemId ===
+            session.currentProblemId
+              ? null
+              : session.progress.pendingSlotRetryProblemId,
           draftByProblemId: {
             ...session.progress.draftByProblemId,
             [session.currentProblemId]: event.value,
@@ -313,7 +320,9 @@ export function learningSessionReducer(
       if (
         failedScheduledStepIndexes.length ===
           session.failedScheduledStepIndexes.length &&
-        failedProblemIds.length === session.failedProblemIds.length
+        failedProblemIds.length === session.failedProblemIds.length &&
+        session.progress.pendingSlotRetryProblemId ===
+          session.currentProblemId
       ) {
         return session
       }
@@ -324,6 +333,7 @@ export function learningSessionReducer(
         failedProblemIds,
         progress: {
           ...session.progress,
+          pendingSlotRetryProblemId: session.currentProblemId,
           failedScheduledStepIndexes,
           failedProblemIds,
         },
@@ -398,6 +408,7 @@ export function learningSessionReducer(
             session.currentProblemId,
           ),
           pendingTransferFamily: null,
+          pendingSlotRetryProblemId: null,
           currentIsTransfer: replacementIsTransfer,
           runProblemIds: nextRunProblemIds,
         },
@@ -465,6 +476,7 @@ export function learningSessionReducer(
           runStepIndex: nextRunStepIndex,
           scheduledStepIndex: nextScheduledStepIndex,
           pendingTransferFamily: null,
+          pendingSlotRetryProblemId: null,
         },
       }
     }

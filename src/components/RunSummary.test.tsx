@@ -64,12 +64,12 @@ describe("RunSummary", () => {
   it("keeps completed documents secondary until the learner asks for them", () => {
     renderSummary()
 
-    expect(screen.queryByRole("region", { name: "Completed pages" })).toBeNull()
+    expect(screen.queryByRole("dialog", { name: "Completed pages" })).toBeNull()
 
     fireEvent.click(screen.getByRole("button", { name: "View completed pages" }))
 
     expect(
-      screen.getByRole("region", { name: "Completed pages" }),
+      screen.getByRole("dialog", { name: "Completed pages" }),
     ).toBeVisible()
     expect(screen.getByText("Morning note", { selector: "h1" })).toBeVisible()
     expect(screen.getByText("Page 1 of 2")).toBeVisible()
@@ -81,7 +81,29 @@ describe("RunSummary", () => {
     expect(screen.getByText("Page 2 of 2")).toBeVisible()
 
     fireEvent.click(screen.getByRole("button", { name: "Close completed pages" }))
-    expect(screen.queryByRole("region", { name: "Completed pages" })).toBeNull()
+    expect(screen.queryByRole("dialog", { name: "Completed pages" })).toBeNull()
+    expect(
+      screen.getByRole("button", { name: "View completed pages" }),
+    ).toHaveFocus()
+  })
+
+  it("contains keyboard focus in completed pages and closes them with Escape", () => {
+    renderSummary()
+
+    fireEvent.click(screen.getByRole("button", { name: "View completed pages" }))
+
+    const dialog = screen.getByRole("dialog", { name: "Completed pages" })
+    const close = screen.getByRole("button", { name: "Close completed pages" })
+    expect(dialog).toBeVisible()
+    expect(close).toHaveFocus()
+
+    fireEvent.keyDown(document, { key: "Tab" })
+    expect(
+      screen.getByRole("button", { name: "Next completed page" }),
+    ).toHaveFocus()
+
+    fireEvent.keyDown(document, { key: "Escape" })
+    expect(screen.queryByRole("dialog", { name: "Completed pages" })).toBeNull()
     expect(
       screen.getByRole("button", { name: "View completed pages" }),
     ).toHaveFocus()

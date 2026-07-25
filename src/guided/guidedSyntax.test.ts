@@ -247,6 +247,20 @@ describe("card teaching projections", () => {
     })
   })
 
+  it("keeps a nested list in one rendered context block", () => {
+    const target = "- Lunch tray\n  - Sandwich\n  - Apple"
+    const checkpoint = deriveSyntaxCheckpoints(
+      target,
+      "Lunch tray\nSandwich\nApple",
+    )[1]!
+
+    expect(projectCheckpointContext(target, checkpoint)).toEqual({
+      before: null,
+      current: target,
+      after: null,
+    })
+  })
+
   it("shows every italic answer as a complete source example", () => {
     const checkpoint = deriveSyntaxCheckpoints(
       "*Quiet music*",

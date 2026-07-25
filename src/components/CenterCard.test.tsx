@@ -23,7 +23,6 @@ function cardProps(
     onEditSegment: vi.fn(),
     onPreviousSlot: vi.fn(),
     onNextSlot: vi.fn(),
-    onPeekHint: vi.fn(),
     onSubmit: vi.fn(),
     context: projectCheckpointContext(target, checkpoint),
     hintOpen: true,
@@ -97,5 +96,21 @@ describe("CenterCard", () => {
 
     rerender(<CenterCard {...cardProps({ hintOpen: true, focusRequest: 1 })} />)
     expect(screen.getAllByRole("textbox")[0]).toHaveFocus()
+  })
+
+  it("keeps transition snapshots readonly without stealing focus", () => {
+    render(
+      <>
+        <button autoFocus type="button">
+          Before card
+        </button>
+        <CenterCard {...cardProps({ interactive: false })} />
+      </>,
+    )
+
+    expect(screen.getByRole("button", { name: "Before card" })).toHaveFocus()
+    for (const box of screen.getAllByRole("textbox")) {
+      expect(box).toHaveAttribute("readonly")
+    }
   })
 })

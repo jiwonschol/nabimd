@@ -8,6 +8,7 @@ type CardFirstPracticeProps = {
   interactive?: boolean
   problem: GradableProblem
   problemCompleted: boolean
+  retryPending?: boolean
   onGrow: (nextDraft: string) => void
   onComplete: (finishedDraft: string) => void
   onMiss?: () => void
@@ -18,6 +19,7 @@ export function CardFirstPractice({
   interactive = true,
   problem,
   problemCompleted,
+  retryPending = false,
   onGrow,
   onComplete,
   onMiss,
@@ -26,6 +28,7 @@ export function CardFirstPractice({
     problem,
     draft,
     completed: problemCompleted,
+    retryPending,
     onGrow,
     onComplete,
     onMiss,
@@ -39,6 +42,7 @@ export function CardFirstPractice({
       className="card-practice"
       data-draft={draft}
       data-problem-id={problem.id}
+      inert={!interactive}
     >
       <CenterCard
         key={problem.id}
@@ -49,6 +53,7 @@ export function CardFirstPractice({
         focusRequest={card.focusRequest}
         hintOpen={card.hintOpen}
         hintRows={card.hintRows}
+        interactive={interactive}
         onCloseHint={card.closeHint}
         onEditSegment={card.editSegment}
         onNextSlot={card.goToNextSlot}

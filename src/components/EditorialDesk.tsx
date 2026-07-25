@@ -23,7 +23,6 @@ type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
 export function EditorialDesk({
   session,
   problem,
-  canCheck,
   canGoToPreviousStep,
   canGoToNextStep,
   edit,
@@ -158,13 +157,11 @@ export function EditorialDesk({
       data-problem-id={problem.id}
     >
       <ExerciseTopBar
-        canCheck={canCheck}
         canGoToPreviousStep={canGoToPreviousStep}
         canGoToNextStep={canGoToNextStep}
         entryId={session.entryId!}
         evaluation={session.evaluation}
         currentIsTransfer={session.currentIsTransfer}
-        onCheck={guardedCheck}
         onExit={changeLevel}
         onNext={next}
         onPreviousStep={goToPreviousStep}
@@ -202,6 +199,9 @@ export function EditorialDesk({
             problemCompleted={session.progress.completedProblemIds.includes(
               problem.id,
             )}
+            retryPending={
+              session.progress.pendingSlotRetryProblemId === problem.id
+            }
           />
           <VerdictNotice
             draft={session.draft}

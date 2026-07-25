@@ -59,7 +59,7 @@ async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
   // inert on a real 720ms timer — long enough for the next interactions to be
   // swallowed. Prefer reduced motion and wait the turn out before returning.
   stubReducedMotionPreference()
-  render(<App />)
+  const view = render(<App />)
   const entry = entryChoices.find((choice) => choice.level === level)!
   await user.click(screen.getByRole("button", { name: entry.label }))
   await waitFor(() => {
@@ -67,7 +67,7 @@ async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
       "inert",
     )
   })
-  return { user, entry }
+  return { user, entry, ...view }
 }
 
 // Flushes jsdom's queued history traversals (back/forward/go and the popstate
@@ -359,6 +359,29 @@ describe("App", () => {
     completeProblemViaCard()
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("button", { name: "Next exercise" })).toBeVisible()
+  })
+
+  it("restores the exact Hint after a failed slot survives a remount", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 && problem.skillIds[0] === "heading-h1",
+    )
+    const { unmount } = await openLevel(1)
+
+    submitSlot("x")
+    expect(
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
+
+    unmount()
+    resetCenterCardMemoryForTests()
+    render(<App />)
+
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+    expect(
+      screen.getByRole("region", { name: "Exact Markdown hint" }),
+    ).toBeVisible()
   })
 
   it("records a slot miss in the run summary", async () => {
@@ -697,7 +720,7 @@ describe("App", () => {
       screen.getByRole("button", { name: "View completed pages" }),
     )
     expect(
-      screen.getByRole("region", { name: "Completed pages" }),
+      screen.getByRole("dialog", { name: "Completed pages" }),
     ).toBeVisible()
     expect(screen.getByText("Page 1 of 6")).toBeVisible()
     expect(screen.queryByRole("textbox")).toBeNull()

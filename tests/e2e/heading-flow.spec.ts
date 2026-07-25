@@ -433,7 +433,7 @@ test("completes a run and reveals full documents only from Summary", async ({
   await expect(page.getByRole("textbox")).toHaveCount(0)
 
   await page.getByRole("button", { name: "View completed pages" }).click()
-  const viewer = page.getByRole("region", { name: "Completed pages" })
+  const viewer = page.getByRole("dialog", { name: "Completed pages" })
   await expect(viewer).toBeVisible()
   await expect(viewer).toContainText("Page 1 of 6")
   await expect(page.getByRole("textbox")).toHaveCount(0)

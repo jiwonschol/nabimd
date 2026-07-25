@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { getProblem, problemBank } from "../content/problemBank"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
@@ -187,6 +187,8 @@ export function RunSummary({
   const completionTitleRef = useRef<HTMLHeadingElement>(null)
   const completedPagesButtonRef = useRef<HTMLButtonElement>(null)
   const completedPagesCloseRef = useRef<HTMLButtonElement>(null)
+  const completedPagesRef = useRef<HTMLElement>(null)
+  const restoreCompletedPagesFocusRef = useRef(false)
   const [completedPagesOpen, setCompletedPagesOpen] = useState(false)
   const [completedPageIndex, setCompletedPageIndex] = useState(0)
   const reminders = useMemo(
@@ -208,13 +210,55 @@ export function RunSummary({
   useEffect(() => {
     if (completedPagesOpen) {
       completedPagesCloseRef.current?.focus({ preventScroll: true })
+      return
+    }
+    if (restoreCompletedPagesFocusRef.current) {
+      restoreCompletedPagesFocusRef.current = false
+      completedPagesButtonRef.current?.focus({ preventScroll: true })
     }
   }, [completedPagesOpen])
 
-  const closeCompletedPages = () => {
+  const closeCompletedPages = useCallback(() => {
+    restoreCompletedPagesFocusRef.current = true
     setCompletedPagesOpen(false)
-    completedPagesButtonRef.current?.focus({ preventScroll: true })
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!completedPagesOpen) return
+
+    const containCompletedPagesFocus = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault()
+        closeCompletedPages()
+        return
+      }
+      if (event.key !== "Tab") return
+
+      const focusable = [
+        ...(completedPagesRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ) ?? []),
+      ]
+      if (!focusable.length) return
+
+      const currentIndex = focusable.indexOf(
+        document.activeElement as HTMLElement,
+      )
+      const nextIndex = event.shiftKey
+        ? currentIndex <= 0
+          ? focusable.length - 1
+          : currentIndex - 1
+        : currentIndex < 0 || currentIndex === focusable.length - 1
+          ? 0
+          : currentIndex + 1
+      event.preventDefault()
+      focusable[nextIndex]?.focus()
+    }
+
+    document.addEventListener("keydown", containCompletedPagesFocus)
+    return () =>
+      document.removeEventListener("keydown", containCompletedPagesFocus)
+  }, [closeCompletedPages, completedPagesOpen])
 
   const singleReminder = reminders.length === 1 ? reminders[0] : null
 
@@ -223,7 +267,10 @@ export function RunSummary({
       aria-label="Run summary"
       className={`run-summary open-book-shell${motionReady ? "" : " run-summary--waiting"}`}
     >
-      <section className="run-summary__page run-summary__page--closure open-book-page">
+      <section
+        className="run-summary__page run-summary__page--closure open-book-page"
+        inert={completedPagesOpen}
+      >
         <img
           alt=""
           aria-hidden="true"
@@ -261,6 +308,7 @@ export function RunSummary({
       <section
         className="run-summary__page run-summary__page--note open-book-page"
         aria-labelledby="syntax-review-title"
+        inert={completedPagesOpen}
       >
         <img
           alt=""
@@ -365,9 +413,11 @@ export function RunSummary({
 
       {completedPagesOpen && completedPage ? (
         <section
+          aria-modal="true"
           aria-label="Completed pages"
           className="completed-pages"
-          role="region"
+          ref={completedPagesRef}
+          role="dialog"
         >
           <header className="completed-pages__header">
             <div>

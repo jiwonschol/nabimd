@@ -18,6 +18,8 @@ type CenterCardOptions = {
   draft: string
   /** True when the session already counts this problem as completed. */
   completed: boolean
+  /** True when persisted session history says this problem needs a retry. */
+  retryPending?: boolean
   /** Writes the grown document into the session (persistence, history). */
   onGrow: (nextDraft: string) => void
   /** Fires with the finished document when the last slot is accepted. */
@@ -101,6 +103,7 @@ export function useCenterCard({
   problem,
   draft,
   completed,
+  retryPending = false,
   onGrow,
   onComplete,
   onMiss,
@@ -144,16 +147,22 @@ export function useCenterCard({
         : undefined,
     ),
   )
-  const [verdict, setVerdict] = useState<CenterCardSlotVerdict>("idle")
-  const [hintOpen, setHintOpen] = useState(false)
+  const resumesRetry = retryPending && !completed
+  const [verdict, setVerdict] = useState<CenterCardSlotVerdict>(
+    resumesRetry ? "retry" : "idle",
+  )
+  const [hintOpen, setHintOpen] = useState(resumesRetry)
   const [focusRequest, setFocusRequest] = useState(0)
   const slotKey = `${problem.id}:${checkpoint?.id ?? "done"}:${viewIndex}`
   const slotKeyRef = useRef(slotKey)
+  const problemIdRef = useRef(problem.id)
   if (slotKeyRef.current !== slotKey) {
     // A different slot (or problem) arrived: the boxes show that slot's
     // stored answer when revisiting, or empty out at the frontier, and any
     // retry verdict from the previous slot is gone.
+    const problemChanged = problemIdRef.current !== problem.id
     slotKeyRef.current = slotKey
+    problemIdRef.current = problem.id
     setSegmentValues(
       segmentValuesFor(
         checkpoint,
@@ -162,8 +171,8 @@ export function useCenterCard({
           : undefined,
       ),
     )
-    setVerdict("idle")
-    setHintOpen(false)
+    setVerdict(problemChanged && resumesRetry ? "retry" : "idle")
+    setHintOpen(problemChanged && resumesRetry)
   }
 
   const setViewIndex = useCallback(
@@ -210,7 +219,8 @@ export function useCenterCard({
 
   const closeHint = useCallback(() => {
     setHintOpen(false)
-  }, [])
+    requestFirstBoxFocus()
+  }, [requestFirstBoxFocus])
 
   const toggleHint = useCallback(() => {
     if (hintOpen) {

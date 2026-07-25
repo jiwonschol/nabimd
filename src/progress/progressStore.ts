@@ -36,6 +36,7 @@ export function createDefaultProgress(
     completedProblemIds: [],
     recentProblemIds: [],
     pendingTransferFamily: null,
+    pendingSlotRetryProblemId: null,
     currentIsTransfer: false,
     failedScheduledStepIndexes: [],
     failedProblemIds: [],
@@ -229,12 +230,17 @@ function isProgressV5(
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
     (value.pendingTransferFamily === null ||
       typeof value.pendingTransferFamily === "string") &&
+    (value.pendingSlotRetryProblemId === null ||
+      (typeof value.pendingSlotRetryProblemId === "string" &&
+        validProblemIds.has(value.pendingSlotRetryProblemId) &&
+        value.pendingSlotRetryProblemId === value.currentProblemId)) &&
     (entryId === null
       ? value.runProblemIds.length === 0 &&
         value.runStepIndex === 0 &&
         value.scheduledStepIndex === 0 &&
         value.failedScheduledStepIndexes.length === 0 &&
-        value.failedProblemIds.length === 0
+        value.failedProblemIds.length === 0 &&
+        value.pendingSlotRetryProblemId === null
       : value.runProblemIds.length > 0 &&
         value.runProblemIds[
           Math.min(value.runStepIndex, value.runProblemIds.length - 1)
@@ -270,6 +276,20 @@ function migrateLegacyRunSeed(value: unknown): unknown {
   return {
     ...value,
     runSeed: 0,
+  }
+}
+
+function migratePendingSlotRetry(value: unknown): unknown {
+  if (
+    !isRecord(value) ||
+    value.version !== 5 ||
+    "pendingSlotRetryProblemId" in value
+  ) {
+    return value
+  }
+  return {
+    ...value,
+    pendingSlotRetryProblemId: null,
   }
 }
 
@@ -369,11 +389,13 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migrateLegacyRunSeed(
-      migrateStarterProjectionRevision(
-        JSON.parse(saved),
-        validProblemIds,
-        expectedBankRevision,
+    const parsed: unknown = migratePendingSlotRetry(
+      migrateLegacyRunSeed(
+        migrateStarterProjectionRevision(
+          JSON.parse(saved),
+          validProblemIds,
+          expectedBankRevision,
+        ),
       ),
     )
     return isProgressV5(

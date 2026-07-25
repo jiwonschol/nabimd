@@ -1741,9 +1741,6 @@ button:focus-visible,
 
 .center-card__instruction strong {
   font-weight: 700;
-  text-decoration: underline;
-  text-decoration-thickness: 0.07em;
-  text-underline-offset: 0.12em;
 }
 
 .center-card__context {

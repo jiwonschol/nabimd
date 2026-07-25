@@ -111,6 +111,24 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
+  it("migrates old v5 progress without pending slot-retry metadata", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+
+    const {
+      pendingSlotRetryProblemId: _pendingSlotRetryProblemId,
+      ...legacyProgress
+    } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
   it("reads the seed a legacy seedless record should adopt as 0", () => {
     const ids = createRunProblemIds("level-4", 0)
     const progress = createDefaultProgress(ids[0]!)

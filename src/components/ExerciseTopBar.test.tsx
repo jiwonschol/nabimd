@@ -13,13 +13,11 @@ function renderTopBar(
 ) {
   render(
     <ExerciseTopBar
-      canCheck
       canGoToPreviousStep={false}
       canGoToNextStep={false}
       entryId="level-1"
       evaluation={null}
       currentIsTransfer={false}
-      onCheck={vi.fn()}
       onExit={vi.fn()}
       onNext={vi.fn()}
       onPreviousStep={vi.fn()}
