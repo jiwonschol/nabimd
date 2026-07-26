@@ -1,0 +1,153 @@
+name: Production health
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Avoid the top-of-hour congestion window for scheduled Actions.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: production-health
+  cancel-in-progress: true
+
+jobs:
+  exercise-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Exercise the deployed app
+        id: smoke
+        continue-on-error: true
+        env:
+          E2E_BASE_URL: https://nabimd.vercel.app
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            echo "Waiting for the Vercel production deployment."
+            sleep 45
+          fi
+
+          for attempt in 1 2 3; do
+            echo "Production health attempt ${attempt} of 3"
+            if npm run test:e2e:production; then
+              exit 0
+            fi
+            if [[ "${attempt}" -lt 3 ]]; then
+              sleep 30
+            fi
+          done
+          exit 1
+
+      - name: Preserve failure evidence
+        if: steps.smoke.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-health-${{ github.run_id }}
+          path: test-results/
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Open or update the production alert
+        if: steps.smoke.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "Production health check is failing";
+            const marker = "<!-- nabimd-production-health -->";
+            const runUrl =
+              `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
+              `/actions/runs/${context.runId}`;
+            const body = [
+              marker,
+              "The automated browser could not complete Nabi Markdown's production learning flow.",
+              "",
+              `- Event: \`${context.eventName}\``,
+              `- Commit: \`${context.sha}\``,
+              `- Evidence: ${runUrl}`,
+              "",
+              "The check uses authored problem-bank text only. It does not inspect or collect learner input.",
+            ].join("\n");
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              { ...context.repo, state: "open", per_page: 100 },
+            );
+            const existing = issues.find(
+              (issue) => !issue.pull_request && issue.title === title,
+            );
+            if (existing) {
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                ...context.repo,
+                title,
+                body,
+                assignees: [context.repo.owner],
+              });
+            }
+
+      - name: Close a recovered production alert
+        if: steps.smoke.outcome == 'success'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = "Production health check is failing";
+            const marker = "<!-- nabimd-production-health -->";
+            const issues = await github.paginate(
+              github.rest.issues.listForRepo,
+              { ...context.repo, state: "open", per_page: 100 },
+            );
+            const existing = issues.find(
+              (issue) => !issue.pull_request && issue.title === title,
+            );
+            if (existing) {
+              const runUrl =
+                `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
+                `/actions/runs/${context.runId}`;
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: existing.number,
+                body: [
+                  marker,
+                  `Production completed the full browser check again: ${runUrl}`,
+                ].join("\n"),
+              });
+              await github.rest.issues.update({
+                ...context.repo,
+                issue_number: existing.number,
+                state: "closed",
+                state_reason: "completed",
+              });
+            }
+
+      - name: Mark the workflow failed
+        if: steps.smoke.outcome == 'failure'
+        run: exit 1
