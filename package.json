@@ -13,6 +13,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:e2e:production": "playwright test tests/e2e/production-health.spec.ts --project=chromium",
     "third-party-notices:generate": "node scripts/generate-third-party-notices.mjs",
     "third-party-notices:check": "node scripts/generate-third-party-notices.mjs --check",
     "prebuild": "npm run third-party-notices:generate",
