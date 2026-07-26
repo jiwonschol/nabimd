@@ -17,7 +17,6 @@ function cardProps(
     slotIndex: 0,
     slotTotal: 2,
     segmentValues: ["", ""],
-    mirroredSegmentIndexes: [],
     verdict: "idle",
     canGoToPreviousSlot: false,
     canGoToNextSlot: false,
@@ -57,18 +56,11 @@ describe("CenterCard", () => {
     expect(screen.getByText("Paper boat", { selector: "span" })).toBeVisible()
   })
 
-  it("shows one editable box and one mirrored mark for a Level 1 pair", () => {
-    render(
-      <CenterCard
-        {...cardProps({
-          mirroredSegmentIndexes: [1],
-          segmentValues: ["*", "*"],
-        })}
-      />,
-    )
+  it("keeps both sides of a paired mark editable", () => {
+    render(<CenterCard {...cardProps({ segmentValues: ["*", ""] })} />)
 
-    expect(screen.getAllByRole("textbox")).toHaveLength(1)
-    expect(screen.getByLabelText("Mirrored closing mark")).toHaveTextContent("*")
+    expect(screen.getAllByRole("textbox")).toHaveLength(2)
+    expect(screen.queryByLabelText("Mirrored closing mark")).not.toBeInTheDocument()
   })
 
   it("shows all accepted alternatives as separate exact Hint rows", () => {

@@ -298,7 +298,7 @@ test("empty Enter opens the exact Hint and keeps the box focused", async ({
   await expect(cardBoxInput(page)).toBeFocused()
 })
 
-test("accepts one Level 1 underscore and mirrors its closing mark", async ({
+test("requires both Level 1 italic marks and never autocompletes the closer", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
@@ -309,9 +309,15 @@ test("accepts one Level 1 underscore and mirrors its closing mark", async ({
 
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
   await expect(
-    page.getByRole("textbox", { name: "Marks 1 of 1" }),
-  ).toHaveCount(1)
-  await submitSlot(page, "_")
+    page.getByRole("textbox", { name: /Marks \d of 2/ }),
+  ).toHaveCount(2)
+
+  await page.keyboard.type("_")
+  await page.keyboard.press("Enter")
+  await expect(page.getByRole("status")).toContainText("Try again")
+  expect(await currentDraft(page)).toBe("")
+
+  await submitSlot(page, "__")
 
   await expect(page.getByRole("status")).toContainText("Matched")
   expect(await currentDraft(page)).toBe("_Paper boat_")

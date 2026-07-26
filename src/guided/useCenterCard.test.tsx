@@ -47,8 +47,8 @@ describe("useCenterCard Hint and retry state", () => {
     expect(result.current.verdict).toBe("retry")
     expect(result.current.hintOpen).toBe(true)
     expect(result.current.hintRows).toEqual([
-      { input: "*", source: "*Paper boat*" },
-      { input: "_", source: "_Paper boat_" },
+      { input: "**", source: "*Paper boat*" },
+      { input: "__", source: "_Paper boat_" },
     ])
   })
 
@@ -97,16 +97,16 @@ describe("useCenterCard Hint and retry state", () => {
     expect(current.segmentValues).toEqual(["", ""])
     expect(current.hintOpen).toBe(true)
     expect(current.hintRows).toEqual([
-      { input: "*", source: "*Paper boat*" },
-      { input: "_", source: "_Paper boat_" },
+      { input: "**", source: "*Paper boat*" },
+      { input: "__", source: "_Paper boat_" },
     ])
     expect(onMiss).toHaveBeenCalledTimes(1)
   })
 
   it("reports which syntax group was missed and what it accepts", () => {
     // `l1-italic-paper-boat` is `*Paper boat*`: an opening and a closing
-    // italic group. Level 1 mirrors one learner action into both positions,
-    // so the teacher's note must charge that action only once.
+    // italic group. Both positions are learner input, so the teacher's note
+    // reports each missing side instead of silently completing one of them.
     const { result, onMiss } = renderItalicCard()
     act(() => result.current.editSegment(0, "@"))
     act(() => result.current.submit())
@@ -119,6 +119,14 @@ describe("useCenterCard Hint and retry state", () => {
         groupIndex: 0,
         term: "italic text",
         submitted: "@",
+        expected: ["*", "_"],
+      },
+      {
+        problemId: "l1-italic-paper-boat",
+        checkpointId: expect.any(String),
+        groupIndex: 1,
+        term: "italic text",
+        submitted: "",
         expected: ["*", "_"],
       },
     ])
@@ -170,15 +178,15 @@ describe("useCenterCard Hint and retry state", () => {
     expect(onComplete).toHaveBeenCalledWith("_Paper boat_")
   })
 
-  it("mirrors one Level 1 paired mark instead of asking for it twice", () => {
+  it("requires both Level 1 paired marks instead of autocompleting the closer", () => {
     const { result } = renderItalicCard()
 
     act(() => result.current.editSegment(0, "*"))
 
-    expect(result.current.segmentValues).toEqual(["*", "*"])
+    expect(result.current.segmentValues).toEqual(["*", ""])
     expect(result.current.hintRows).toEqual([
-      { input: "*", source: "*Paper boat*" },
-      { input: "_", source: "_Paper boat_" },
+      { input: "**", source: "*Paper boat*" },
+      { input: "__", source: "_Paper boat_" },
     ])
   })
 
@@ -196,7 +204,6 @@ describe("useCenterCard Hint and retry state", () => {
     act(() => result.current.editSegment(0, "**"))
 
     expect(result.current.segmentValues).toEqual(["**", ""])
-    expect(result.current.mirroredSegmentIndexes).toEqual([])
   })
 
   it("resubmits a fully grown final card so an interrupted completion can recover", () => {
