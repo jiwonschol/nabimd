@@ -120,16 +120,23 @@ test("production serves the expected six-problem run for every level", async ({
           problemId,
           `problem ${exercise + 1} for Level ${entry.level}`,
         ).toBeTruthy()
-        const problem = runtimeProblemById.get(problemId!)
-        expect(problem, `runtime source for ${problemId}`).toBeDefined()
-        if (exercise === 0) {
-          expect(problem!.level).toBe(entry.level)
-        } else {
-          expect([entry.level, Math.min(entry.level + 1, 5)]).toContain(
-            problem!.level,
+        if (!problemId) {
+          throw new Error(
+            `Missing problem ${exercise + 1} for Level ${entry.level}`,
           )
         }
-        const marks = deriveSyntaxCheckpoints(problem!.target, "").map(
+        const problem = runtimeProblemById.get(problemId)
+        if (!problem) {
+          throw new Error(`Missing runtime source for ${problemId}`)
+        }
+        if (exercise === 0) {
+          expect(problem.level).toBe(entry.level)
+        } else {
+          expect([entry.level, Math.min(entry.level + 1, 5)]).toContain(
+            problem.level,
+          )
+        }
+        const marks = deriveSyntaxCheckpoints(problem.target, "").map(
           (checkpoint) => checkpoint.canonicalInput,
         )
         expect(
@@ -143,7 +150,7 @@ test("production serves the expected six-problem run for every level", async ({
         if (exercise < 5) {
           await expect(practiceShell(page)).not.toHaveAttribute(
             "data-problem-id",
-            problemId!,
+            problemId,
           )
         }
       }

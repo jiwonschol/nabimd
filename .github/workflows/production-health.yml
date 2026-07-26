@@ -24,12 +24,12 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
       - name: Use Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
@@ -65,7 +65,7 @@ jobs:
 
       - name: Preserve failure evidence
         if: steps.smoke.outcome == 'failure'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: production-health-${{ github.run_id }}
           path: test-results/
@@ -74,7 +74,7 @@ jobs:
 
       - name: Open or update the production alert
         if: steps.smoke.outcome == 'failure'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const title = "Production health check is failing";
@@ -116,7 +116,7 @@ jobs:
 
       - name: Close a recovered production alert
         if: steps.smoke.outcome == 'success'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const title = "Production health check is failing";
