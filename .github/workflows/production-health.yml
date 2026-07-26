@@ -97,7 +97,10 @@ jobs:
               { ...context.repo, state: "open", per_page: 100 },
             );
             const existing = issues.find(
-              (issue) => !issue.pull_request && issue.title === title,
+              (issue) =>
+                !issue.pull_request &&
+                issue.title === title &&
+                issue.body?.includes(marker),
             );
             if (existing) {
               await github.rest.issues.createComment({
@@ -126,7 +129,10 @@ jobs:
               { ...context.repo, state: "open", per_page: 100 },
             );
             const existing = issues.find(
-              (issue) => !issue.pull_request && issue.title === title,
+              (issue) =>
+                !issue.pull_request &&
+                issue.title === title &&
+                issue.body?.includes(marker),
             );
             if (existing) {
               const runUrl =

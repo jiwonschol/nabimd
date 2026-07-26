@@ -14,6 +14,7 @@ export default defineConfig({
   retries: 0,
   use: {
     baseURL: deploymentUrl ?? localUrl,
+    screenshot: "only-on-failure",
     trace: "retain-on-failure",
   },
   webServer: deploymentUrl
