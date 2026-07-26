@@ -156,6 +156,31 @@ describe("five-level entry choices", () => {
     )
   })
 
+  it("memoizes each level's served view of the same problem bank", () => {
+    let sourceProblemReads = 0
+    const trackedBank = new Proxy(problemBank, {
+      get(target, property, receiver) {
+        if (typeof property === "string" && /^\d+$/.test(property)) {
+          sourceProblemReads += 1
+        }
+        return Reflect.get(target, property, receiver)
+      },
+    })
+
+    createRunProblemIdsForBank("level-1", 0, trackedBank, 41)
+    const afterFirstLevelOneRun = sourceProblemReads
+
+    createRunProblemIdsForBank("level-1", 0, trackedBank, 41)
+    expect(sourceProblemReads).toBe(afterFirstLevelOneRun)
+
+    createRunProblemIdsForBank("level-2", 0, trackedBank, 41)
+    const afterFirstLevelTwoRun = sourceProblemReads
+    expect(afterFirstLevelTwoRun).toBeGreaterThan(afterFirstLevelOneRun)
+
+    createRunProblemIdsForBank("level-2", 0, trackedBank, 41)
+    expect(sourceProblemReads).toBe(afterFirstLevelTwoRun)
+  })
+
   it("rejects an empty level without crossing into another level", () => {
     const withoutLevelFive = problemBank.filter((problem) => problem.level !== 5)
     expect(() =>
