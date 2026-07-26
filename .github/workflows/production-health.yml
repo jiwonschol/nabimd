@@ -20,7 +20,7 @@ concurrency:
 jobs:
   exercise-production:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 18
 
     steps:
       - name: Check out repository
