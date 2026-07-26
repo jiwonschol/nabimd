@@ -24,7 +24,6 @@ type CenterCardProps = {
   slotIndex: number
   slotTotal: number
   segmentValues: readonly string[]
-  mirroredSegmentIndexes: readonly number[]
   verdict: CenterCardSlotVerdict
   context: CheckpointContext
   hintOpen: boolean
@@ -123,7 +122,6 @@ export function CenterCard({
   slotIndex,
   slotTotal,
   segmentValues,
-  mirroredSegmentIndexes,
   verdict,
   context,
   hintOpen,
@@ -139,10 +137,6 @@ export function CenterCard({
   onSubmit,
 }: CenterCardProps) {
   const groups = inputSegments(checkpoint)
-  const mirroredSegments = new Set(mirroredSegmentIndexes)
-  const editableGroupIndexes = groups
-    .map((_, index) => index)
-    .filter((index) => !mirroredSegments.has(index))
   const checkpointInstruction = describeCheckpoint(checkpoint)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [focusedGroup, setFocusedGroup] = useState<number | null>(null)
@@ -311,22 +305,6 @@ export function CenterCard({
               </span>
             ) : null
 
-          if (mirroredSegments.has(index)) {
-            return (
-              <Fragment key={segmentIndex}>
-                {separator}
-                <span
-                  aria-label="Mirrored closing mark"
-                  className="center-card__mirrored-mark"
-                  data-empty={value === ""}
-                >
-                  {value}
-                </span>
-              </Fragment>
-            )
-          }
-
-          const editablePosition = editableGroupIndexes.indexOf(index)
           return (
             <Fragment key={segmentIndex}>
               {separator}
@@ -351,7 +329,7 @@ export function CenterCard({
                 </span>
               ))}
               <input
-                aria-label={`Marks ${editablePosition + 1} of ${editableGroupIndexes.length}`}
+                aria-label={`Marks ${index + 1} of ${groups.length}`}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"

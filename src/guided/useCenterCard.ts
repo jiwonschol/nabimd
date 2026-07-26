@@ -68,27 +68,6 @@ function segmentValuesFor(
   })
 }
 
-function mirrorsLevelOnePair(
-  problem: GradableProblem,
-  checkpoint: SyntaxCheckpoint | null,
-): boolean {
-  if (problem.level !== 1 || !checkpoint) return false
-  const groups = inputSegments(checkpoint)
-  return groups.length === 2 && groups[0]!.value === groups[1]!.value
-}
-
-function levelOneHintRows(
-  checkpoint: SyntaxCheckpoint,
-  mirroredPair: boolean,
-) {
-  const rows = checkpointHintRows(checkpoint)
-  if (!mirroredPair) return rows
-  return rows.map((row) => ({
-    ...row,
-    input: row.input.slice(0, row.input.length / 2),
-  }))
-}
-
 function canonicalCount(
   target: string,
   checkpoints: readonly SyntaxCheckpoint[],
@@ -190,7 +169,6 @@ export function useCenterCard({
   // beat and when the learner revisits it. The surface never collapses to an
   // empty sheet merely because all marks are correct.
   const checkpoint = checkpoints[viewIndex] ?? null
-  const mirroredPair = mirrorsLevelOnePair(problem, checkpoint)
 
   const [segmentValues, setSegmentValues] = useState<string[]>(() =>
     segmentValuesFor(
@@ -251,19 +229,14 @@ export function useCenterCard({
     (index: number, value: string) => {
       setSegmentValues((previous) => {
         const next = [...previous]
-        if (mirroredPair) {
-          next[0] = value
-          next[1] = value
-        } else {
-          next[index] = value
-        }
+        next[index] = value
         return next
       })
       // The first keystroke of a retry puts the slot verdict away (the same
       // rhythm as the document-level Try again hold).
       setVerdict("idle")
     },
-    [mirroredPair],
+    [],
   )
 
   const requestFirstBoxFocus = useCallback(() => {
@@ -311,11 +284,8 @@ export function useCenterCard({
       // The attempt is rejected, so it always owes at least one ledger entry:
       // when every group is individually typable the groups came from
       // different accepted forms, and the first group carries the miss.
-      const chargedIndexes = mirroredPair
-        ? [missedIndexes[0] ?? 0]
-        : missedIndexes.length > 0
-          ? missedIndexes
-          : [0]
+      const chargedIndexes =
+        missedIndexes.length > 0 ? missedIndexes : [0]
       onMiss?.(
         chargedIndexes.map((groupIndex) => ({
           problemId: problem.id,
@@ -366,7 +336,6 @@ export function useCenterCard({
     progress,
     requestFirstBoxFocus,
     segmentValues,
-    mirroredPair,
     setViewIndex,
   ])
 
@@ -382,10 +351,9 @@ export function useCenterCard({
       viewIndex < Math.min(progress.count, checkpoints.length - 1),
     done,
     segmentValues,
-    mirroredSegmentIndexes: mirroredPair ? [1] : [],
     verdict,
     hintOpen,
-    hintRows: checkpoint ? levelOneHintRows(checkpoint, mirroredPair) : [],
+    hintRows: checkpoint ? checkpointHintRows(checkpoint) : [],
     focusRequest,
     editSegment,
     openHint,

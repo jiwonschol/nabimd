@@ -703,7 +703,6 @@ export function AnswerPanel({
             focusRequest={card.focusRequest}
             hintOpen={card.hintOpen}
             hintRows={card.hintRows}
-            mirroredSegmentIndexes={card.mirroredSegmentIndexes}
             onCloseHint={card.closeHint}
             onEditSegment={card.editSegment}
             onNextSlot={card.goToNextSlot}
