@@ -37,6 +37,24 @@ function lastCssBlock(selector: string): string {
   throw new Error(`Unclosed CSS block: ${selector}`)
 }
 
+/**
+ * The declarations for one selector inside the phone media query, and nothing
+ * else. Asserting against the whole media query would let an unrelated later
+ * rule satisfy a check the target rule no longer meets.
+ */
+function phoneRule(selector: string): string {
+  const phoneStack = lastCssBlock("@media (max-width: 760px) {")
+  const start = phoneStack.indexOf(`${selector} {`)
+  const openingBrace = phoneStack.indexOf("{", start)
+
+  expect(start).toBeGreaterThanOrEqual(0)
+
+  const closingBrace = phoneStack.indexOf("}", openingBrace)
+  expect(closingBrace).toBeGreaterThan(openingBrace)
+
+  return phoneStack.slice(start, closingBrace + 1)
+}
+
 describe("global responsive styles", () => {
   it("uses one motionless open-book image for both sheets and the center fold", () => {
     expect(
@@ -318,12 +336,59 @@ describe("global responsive styles", () => {
     expect(styles).not.toContain("word-break: break-word")
   })
 
-  it("emphasizes the requested syntax term with weight, not an underline", () => {
+  it("emphasizes the requested syntax term with weight and an underline", () => {
     const instructionTerm = lastCssBlock(".center-card__instruction strong")
 
     expect(instructionTerm).toContain("font-weight: 700")
-    expect(instructionTerm).not.toContain("text-decoration")
-    expect(instructionTerm).not.toContain("text-underline-offset")
+    expect(instructionTerm).toContain("text-decoration: underline")
+    expect(instructionTerm).toContain("text-underline-offset")
+    expect(instructionTerm).toContain("white-space: nowrap")
+  })
+
+  it("keeps the rendered Goal centered without a left-edge marker", () => {
+    // The trailing brace pins this to the base row rule. Without it lastIndexOf
+    // lands on a later descendant selector, and the assertion passes even when
+    // the marker is still there.
+    const currentGoal = lastCssBlock(".center-card__context-row--current {")
+
+    expect(currentGoal).not.toContain("border-inline-start")
+  })
+
+  it("lifts every rendered Goal above the locked source phrase", () => {
+    const currentGoal = lastCssBlock(
+      ".center-card__context-row--current .rendered-document__body h1,",
+    )
+
+    for (const tag of [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "p",
+      "li",
+      "pre",
+      "pre code",
+    ]) {
+      expect(currentGoal).toContain(
+        `.center-card__context-row--current .rendered-document__body ${tag}`,
+      )
+    }
+    expect(currentGoal).toContain("font-size: clamp(1.35rem, 2.25vw, 1.7rem)")
+  })
+
+  it("keeps the phone mark boxes at the documented 40 x 44px floor", () => {
+    const phoneBox = phoneRule(".center-card__box")
+
+    expect(phoneBox).toContain("width: 2.5rem")
+    expect(phoneBox).toContain("height: 2.75rem")
+  })
+
+  it("anchors the phone card to the top so Hint expands downward", () => {
+    expect(phoneRule(".card-practice")).toContain("place-items: start stretch")
+    expect(phoneRule(".center-card")).toContain("align-self: start")
+    expect(phoneRule(".center-card")).not.toContain("align-self: center")
   })
 
   it("aligns the visible Goal instruction with the document text", () => {
