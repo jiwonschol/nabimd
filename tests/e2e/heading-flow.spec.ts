@@ -364,6 +364,107 @@ test("the visible Enter control submits marks with a pointer", async ({
   await expect(page.getByRole("status")).toContainText("Matched")
 })
 
+test("keeps the mark entry stage at the visual center", async ({ page }) => {
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const [card, line, firstBox] = await Promise.all([
+    page.locator(".center-card").boundingBox(),
+    page.locator(".center-card__line").boundingBox(),
+    page.locator(".center-card__box").first().boundingBox(),
+  ])
+
+  expect(card).not.toBeNull()
+  expect(line).not.toBeNull()
+  expect(firstBox).not.toBeNull()
+  expect(card!.x).toBeGreaterThanOrEqual(48)
+  expect(card!.x + card!.width).toBeLessThanOrEqual(1024 - 48)
+  expect(card!.width).toBeLessThanOrEqual(720)
+  expect(line!.width).toBeLessThanOrEqual(560)
+  expect(
+    Math.abs(
+      line!.x + line!.width / 2 - (card!.x + card!.width / 2),
+    ),
+  ).toBeLessThanOrEqual(2)
+  expect(firstBox!.width).toBeGreaterThanOrEqual(40)
+  expect(firstBox!.height).toBeGreaterThanOrEqual(44)
+  expect(
+    Math.abs(firstBox!.y + firstBox!.height / 2 - 768 / 2),
+  ).toBeLessThanOrEqual(80)
+})
+
+test("makes the rendered Goal more prominent than the locked source phrase", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const goal = page.locator(
+    ".center-card__context-row--current .rendered-document__body > :first-child",
+  )
+  const locked = page.locator(".center-card__locked").first()
+  const [goalSize, lockedSize] = await Promise.all([
+    goal.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize),
+    ),
+    locked.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize),
+    ),
+  ])
+
+  expect(goalSize).toBeGreaterThan(lockedSize)
+})
+
+test("expands the exact hint below the anchored practice card", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const card = page.locator(".center-card")
+  const before = await card.boundingBox()
+  await page.getByRole("button", { name: "Hint" }).click()
+  await expect(page.getByRole("region", { name: "Exact Markdown hint" })).toBeVisible()
+  const after = await card.boundingBox()
+
+  expect(before).not.toBeNull()
+  expect(after).not.toBeNull()
+  expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(2)
+  expect(after!.height).toBeGreaterThan(before!.height)
+})
+
+test("keeps the visible Enter key compact before a verdict", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const enter = await page
+    .getByRole("button", { name: "Check marks" })
+    .boundingBox()
+
+  expect(enter).not.toBeNull()
+  expect(enter!.width).toBeGreaterThanOrEqual(96)
+  expect(enter!.width).toBeLessThanOrEqual(140)
+  expect(enter!.height).toBeGreaterThanOrEqual(44)
+})
+
+test("underlines only the requested syntax term", async ({ page }) => {
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const instruction = page.locator(".center-card__instruction")
+  const syntaxTerm = instruction.locator("strong")
+
+  await expect(syntaxTerm).toHaveCSS("font-weight", "700")
+  await expect(syntaxTerm).toHaveCSS("text-decoration-line", "underline")
+  await expect(instruction).not.toHaveCSS("text-decoration-line", "underline")
+})
+
 test("Try another stays in the level and serves different content", async ({
   page,
 }) => {

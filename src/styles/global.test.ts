@@ -318,12 +318,19 @@ describe("global responsive styles", () => {
     expect(styles).not.toContain("word-break: break-word")
   })
 
-  it("emphasizes the requested syntax term with weight, not an underline", () => {
+  it("emphasizes the requested syntax term with weight and an underline", () => {
     const instructionTerm = lastCssBlock(".center-card__instruction strong")
 
     expect(instructionTerm).toContain("font-weight: 700")
-    expect(instructionTerm).not.toContain("text-decoration")
-    expect(instructionTerm).not.toContain("text-underline-offset")
+    expect(instructionTerm).toContain("text-decoration")
+    expect(instructionTerm).toContain("text-underline-offset")
+    expect(instructionTerm).toContain("white-space: nowrap")
+  })
+
+  it("keeps the rendered Goal centered without a left-edge marker", () => {
+    const currentGoal = lastCssBlock(".center-card__context-row--current")
+
+    expect(currentGoal).not.toContain("border-inline-start")
   })
 
   it("aligns the visible Goal instruction with the document text", () => {
