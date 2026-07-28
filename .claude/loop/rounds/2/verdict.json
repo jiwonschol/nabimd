@@ -1,0 +1,63 @@
+{
+  "verdict": "pass",
+  "referenceAccess": {
+    "directUrlsBlocked": true,
+    "detail": "mobbin.com/screens/<id> returns HTTP 403 to WebFetch and to a real browser navigation (403 page captured, id hnd1::njp4z-1785256348708-b96712bcda8b). The authenticated Mobbin MCP does work but has no fetch-by-id call, only natural-language search.",
+    "namedScreensOpenedExactly": [
+      "216a2a66-9ea7-4911-9086-91fab2978485 (Duolingo, web) - recovered via Mobbin MCP search 'Duolingo reading passage lesson with a long dense paragraph of text containing inline fill-in-the-blank gaps'. Confirmed: 'Type the missing letters to complete the text below' over a dense multi-line document with inline blanks, timer+progress rail pinned top, NEXT pinned bottom-right."
+    ],
+    "namedScreensNotOpened": [
+      "dc97c6c2-a552-4c96-a809-28e7da3f059b (Duolingo, web)",
+      "9607627c-d29f-4ed9-a0af-fdc65e80d670 (Babbel, web)",
+      "6afe237b-00ba-4b25-a2cc-897383f7cd26 (Uxcel, web)",
+      "3fd25e96-f414-434e-b999-eaa873a8f874 (Duolingo, iOS)",
+      "61cbdb80-29c5-4f75-83d4-2d086ea19cac (Duolingo, iOS)"
+    ],
+    "substituteEvidence": "34 live Mobbin screens pulled this session covering every app/platform pair the prompt names - Duolingo web (16), Duolingo iOS (6), Babbel web (10), Uxcel web (10). Every one shows the same framing: rail pinned to the top edge spanning nearly the full width, prompt left/high, primary action pinned at the bottom edge (full-width on iOS), and a large bounded empty middle. Judgement below rests on those captures, not on memory.",
+    "callerShouldNote": "A strict reading of the judge prompt says 'if you cannot open them, return blocked'. I did not return blocked because I opened one of the six exactly and 34 equivalents from the same source, so nothing here is guessed. If the operator wants the literal contract enforced, treat this as blocked and re-run once Mobbin direct URLs are reachable."
+  },
+  "gaugesQuoted": {
+    "hasTopRail": "true on all 12 surfaces (baseline: false on 10 of 12, true only on practice-laptop and hint-laptop)",
+    "bottomGapRatio": "phone 0.020 landing / 0.014 practice+hint; tablet 0.098 / 0.016; laptop 0.036 / 0.018; wide 0.067 / 0.017 - every value positive, so no primary action sits below the fold. Baseline had landing-phone -0.104 and practice-phone -0.092, i.e. below the fold.",
+    "primaryWidthRatio": "landing-phone 0.884, practice-phone 0.933, hint-phone 0.933 - full-width on phone. Baseline hint-phone was 0.087.",
+    "deadBandY": "hint-phone 0.040, hint-tablet 0.096, hint-laptop 0.105, hint-wide 0.119; practice 0.189 / 0.161 / 0.167 / 0.189. Baseline was 0.484 practice-phone, 0.580 practice-tablet, 0.477 practice-wide.",
+    "contentSpanX": "0.884-1.037 across all 12 (baseline 0.395-0.929, with practice-laptop 0.425 and practice-wide 0.395 - the floating narrow card).",
+    "maxMeasure": "hint-tablet 62.163 (r1 was 68.563), hint-laptop 61.842, hint-wide 59.857, hint-phone 46.842 - all inside a readable measure; baseline hint-wide and hint-laptop were 32.875, i.e. broken-short lines.",
+    "undersizedTargets": "0 on all 12 (baseline 2-5 on 10 of 12).",
+    "horizontalOverflow": "0 on all 12."
+  },
+  "structural": [
+    {
+      "point": "A rail pinned to the top edge, spanning nearly the full width.",
+      "met": true,
+      "evidence": "hint-laptop.png and hint-wide.png: butterfly + 'Nabi Markdown | Exit' at the far left of the top edge, 'Level 1 00:00', mute, the six-dot progress and the prev/next/shuffle controls at the far right, one continuous row across the whole window. hint-phone.png: same rail compressed to two rows (Exit + arrows + shuffle, then Level/timer/dots) closed by a hairline rule at y=105 of 844. landing-wide.png / landing-laptop.png / landing-tablet.png / landing-phone.png: logo at top-left, 'Source code . Third-party licenses' at top-right, spanning the width. hasTopRail is true on all twelve; the baseline had it on only two. Weakest instance is hint-tablet.png, where the rail wraps and the arrow controls orphan onto a second line at y=83 with no rule binding them to the head - it still spans the top edge, so the point is met, but see topThree."
+    },
+    {
+      "point": "The prompt left-aligned and starting high, not floating mid-screen.",
+      "met": true,
+      "evidence": "hint-phone.png: 'Wrap the phrase in Markdown marks for bold text.' flush left at x=16, baseline y=140 of 844 (17% down). hint-tablet.png: y=183 of 1024 (18%), flush to the card's left edge. hint-laptop.png: y=159 of 900 (18%). hint-wide.png: y=163 of 1000 (16%). landing-*.png: 'Markdown is easy.' flush left, top-left quadrant on every width. Compare baseline hint-phone.png, where the same prompt was centre-aligned, wrapped over three lines and began at y=246 inside a card floating clear of all four edges."
+    },
+    {
+      "point": "The primary action pinned near the bottom, full-width on phone, and never below the fold.",
+      "met": true,
+      "evidence": "hint-phone.png: the black 'Enter' bar spans x=0..390 hard against the bottom edge, with the Hint row directly above it (primaryWidthRatio 0.933, bottomGapRatio 0.014). hint-tablet.png / hint-laptop.png / hint-wide.png: a full-width action line pinned to the bottom edge carrying prev/next + Hint at the left and the black Enter button at the right, right-aligned to the card's right edge. Every bottomGapRatio is positive on all twelve surfaces, and the captures are exactly viewport-sized with nothing clipped - a 390x150 crop of the foot of landing-phone.png shows the Level 5 row and its closing rule complete, 14px clear of the edge. Baseline put Enter in the middle of the card (hint-phone.png, y=502) and pushed landing-phone and practice-phone content below the fold (bottomGapRatio -0.104 and -0.092)."
+    },
+    {
+      "point": "Empty space bounded by those two, so it reads as margin rather than void.",
+      "met": true,
+      "evidence": "hint-wide.png: the exercise card ends at y=632 and the action line begins at y=925, leaving a 293px band that is closed above by the card, closed below by the action rule, and filled by the book's spine stitching and paper grain, so it reads as the lower half of a page. hint-laptop.png and hint-tablet.png show the same bounded band (approx 200px and 330px). This is the same proportion the references use - the Duolingo web lesson screens end their content around 40% down and hold the rest empty above a pinned bottom bar. hint-phone.png is the round's actual fix: r1 drew a bordered card that stopped at y=565 and turned the paper below it into a hole, and r2 removed the frame so the space below the last mark row is page (emptyRatio 0.242, deadBandY 0.040 against r1's 0.063)."
+    }
+  ],
+  "toneSurvived": true,
+  "regressions": [],
+  "topThree": [
+    "hint-tablet.png only: the top rail breaks into two rows and the prev/next/shuffle controls orphan below the running head at y=83 with no rule or shared band tying them together, while hint-laptop.png and hint-wide.png carry all of it inline in a single rail and hint-phone.png closes its two rows with a hairline at y=105. 768 is the one width where the rail reads as two loose rows instead of one pinned rail.",
+    "The primary action is pinned but under-weighted above phone. In hint-wide.png the black Enter button measures roughly 109px against an 1800px window (primaryWidthRatio 0.024; 0.031 at laptop, 0.057 at tablet). In the live references the primary carries the terminal weight of the screen - Duolingo web CHECK and Babbel Continue are several times that share, and Duolingo iOS runs it full-width. Nabi's phone Enter (0.933) is right; the desktop widths read as a small link in a large empty strip.",
+    "The Greeting and the practice screen now share a top rail but not a bottom one. landing-*.png has no action line at all - the chapter list simply runs out (bottomGapRatio 0.098 tablet, 0.067 wide), and on landing-phone.png the Level 5 rule lands 14px from the edge, which reads as a list truncated by the viewport rather than a deliberate last row. Giving the Greeting the same bottom line, or an explicit closing rule, would make the two surfaces one book."
+  ],
+  "notes": [
+    "contentSpanX rose to 1.037 on practice-tablet and hint-tablet (r1 0.950, baseline 0.824). This is the same measurement artefact the prompt describes for contentSpanY: r2 gave the tablet reading column an outer margin, and the bottom action bar is a DOM descendant of that column while spanning the full window, so it reports wider than its parent. horizontalOverflow is 0 and hint-tablet.png shows no clipping or side-scroll, so this is not treated as a regression.",
+    "Harness integrity checked: the only commits in this loop are 88930aa (r1) and ce42820 (r2). Between them they touch src/components/CenterCard.tsx, src/components/OpenBookLanding.tsx, src/styles/global.css and files under .claude/loop/. No gauge script, no test and no judge prompt was modified.",
+    "Tone: compared against docs/design/practice-open-book-level5-hint-reference.png. Same cream paper ground and grain, same butterfly mark and 'Nabi Markdown | Exit' running head, same serif for prose with monospace for marks and code, same hairline rules, same solid black terminal button, same six-dot progress. The only colour anywhere is the faint dark-red focus outline on the active blank. No bright fill, no rounded cartoon shape, no accent hue - nothing has drifted toward the Duolingo palette, only toward its framing."
+  ]
+}

@@ -23,7 +23,16 @@ ground, the serif, the hairline rules, the stitched spine and the flat black
 button are all intact, and that nothing drifted toward Duolingo's saturated
 fills, pill buttons or cartoon shapes.
 
-STOP_CONDITION_PLACEHOLDER
+**Which stop condition fired: "Reached."** That is the first of the three the
+spec lists — every gauge at target on all twelve surfaces *and* the judge
+returning `pass`. It fired at about four hours into the five-hour budget, so the
+loop stopped early rather than running out of time or stalling. The judge's exact
+words on the point it had failed the round before: the phone's empty space is now
+"page", not "a hole".
+
+One caveat you should weigh before treating the `pass` as final: the judge could
+not open the six Mobbin reference URLs the way the spec intends, and said so
+itself. See "Things only you can decide", item 6.
 
 ## What changed, in plain terms
 
@@ -82,15 +91,52 @@ targets 0, line length between 45 and 75. Sideways overflow was 0 before and is
 still 0 on all twelve. **No cell moved the wrong way**, so the round-zero floor
 held everywhere.
 
-The one number in the table that looks like a jump rather than an improvement is
-line length at tablet, laptop and wide on the practice screens: it rose from the
-thirties and forties into the sixties. That is the intended effect of the
-prompt becoming a full-width left-aligned line instead of a narrow centred
-block. Both the old and the new values are inside the 45–75 book range at every
-surface, and the judge asked in round 1 for the tablet figure to come down,
-which round 2 did.
+The column that moves most is line length on the practice screens, from the
+twenties and thirties up into the sixties. That is not drift, it is the fix: at
+round zero the prompt was a narrow centred block, so the longest line of prose on
+the phone practice screen ran twenty characters — under half a book measure — and
+on laptop and wide it ran thirty-three. Making the prompt a full-width
+left-aligned line brought every surface inside the 45–75 range for the first
+time. Round 1 overshot at tablet (68.6) and the judge said so; round 2 brought it
+back to 62.2.
 
-JUDGE_FLAGS_PLACEHOLDER
+## The three things the judge still flags
+
+It passed the round, so none of these is a failure — they are the judge's own
+list of what it would fix next, in its order of value. Its full verdict is at
+`.claude/loop/rounds/2/verdict.json`.
+
+1. **The rail falls apart at exactly one width: tablet, 768 pixels.** There the
+   running head wraps into two rows and the previous / next / shuffle controls
+   are orphaned on the second row with nothing tying them to the head above. At
+   laptop and wide the whole rail is one line; on a phone the two rows are closed
+   by a hairline. 768 is the only width where the rail reads as two loose rows
+   rather than one pinned band. I tried a different two-row arrangement for that
+   width during the night, looked at it, judged it worse, and reverted it, so
+   this is still open.
+
+2. **Above phone size, the primary button is under-weighted.** The Enter button
+   is about 109 pixels wide in an 1800-pixel window — 2.4% of the width, 3.1% at
+   laptop, 5.7% at tablet. On a phone it is 93%, which the judge called right. In
+   the reference screens the primary action carries the terminal weight of the
+   screen; on Nabi's desktop widths it reads as a small link sitting in a large
+   empty strip. Widening it, or giving the whole action line more presence, is
+   the judge's second-highest-value change.
+
+3. **The Greeting has a top rail but no bottom one.** The chapter list simply
+   runs out; there is no closing line the way the practice screen has one. On a
+   phone the Level 5 rule lands 14 pixels from the bottom edge, which the judge
+   says reads as a list truncated by the window rather than as a deliberate last
+   row. Giving the Greeting the same bottom line, or an explicit closing rule,
+   would make the two screens read as one book.
+
+One further round after the pass — round 3 — was spent on something the judge was
+not looking for: in every practice capture the Greeting's new running head was
+transparent while the page turned, so the practice rail underneath showed through
+and the two heads composited into one unreadable strip for the length of the
+animation. That is fixed (commit `d667a52`). It moved no gauge, because the
+gauges read the practice screen underneath the animation rather than the
+animation itself.
 
 ## Things only you can decide
 
@@ -133,15 +179,30 @@ JUDGE_FLAGS_PLACEHOLDER
    rounds to photograph the practice screen cleanly, the rig needs to wait for
    `page-turn-transition` to detach, the way the existing end-to-end tests do.
 
-6. **The judge ran on a substitute model.** The loop specifies `fable` for the
-   judge. The first call came back with "you've hit your monthly spend limit" for
-   that model, so both rounds were judged by `opus` using the identical,
-   unmodified judge prompt. The judge also could not open the six Mobbin
-   reference URLs directly — `mobbin.com` returns HTTP 403 to a plain fetch — so
-   it opened equivalent Duolingo, Babbel and Uxcel screens through the Mobbin
-   connector instead and said so in its verdict. Both substitutions are recorded
-   in the verdict files. Neither the judge prompt nor the gauge script was
-   edited; `shasum -a 256 -c .claude/loop/guard.sha256` passes.
+6. **How much to trust the `pass`.** Two substitutions were forced on the
+   cross-examination, and you may want to re-run it before treating the verdict
+   as final.
+
+   *The model.* The loop specifies `fable` for the judge. The very first call
+   came back with "you've hit your monthly spend limit" for that model, so both
+   rounds were judged by `opus` instead, using the identical, unmodified judge
+   prompt. Nothing else about the judging changed.
+
+   *The reference screens.* The judge is required to open six named Mobbin URLs
+   and forbidden to judge from memory. `mobbin.com/screens/<id>` returns HTTP 403
+   both to a plain fetch and to a real browser navigation, so five of the six
+   could not be opened. The judge recovered one of the six exactly by searching
+   the authenticated Mobbin connector, plus thirty-four further live screens
+   covering every app and platform the spec names — Duolingo web and iOS, Babbel
+   web, Uxcel web — and based its findings on those. It flagged this itself and
+   wrote, in its own verdict: a strict reading of its instructions says it should
+   have returned `blocked`, and you should override it to `blocked` if you want
+   the literal contract enforced. I have left its judgement standing because the
+   evidence it used was live rather than remembered, but the call is yours.
+
+   Neither the judge prompt nor the gauge script was edited at any point;
+   `shasum -a 256 -c .claude/loop/guard.sha256` passes, and the judge
+   independently checked and confirmed the same thing from the commit contents.
 
 ## What was not touched
 
@@ -167,12 +228,14 @@ git reset --hard 1a1899e
 ```
 
 `1a1899e` is the commit the night started from — the loop harness, with none of
-the design work on top. The two design commits are:
+the design work on top. The commits on top of it are:
 
 - `88930aa` — round 1, the frame
 - `ce42820` — round 2, the phone page and the tablet margin
+- `d667a52` — round 3, the page-turn fix
+- `13f2414` — round 3's captures and log row (no source changes)
 
-To keep round 1 and drop round 2 only, `git reset --hard 88930aa`.
+To keep round 1 and drop everything after it, `git reset --hard 88930aa`.
 
 Nothing was pushed, so no remote branch exists and nothing needs cleaning up
 anywhere else.
@@ -181,7 +244,17 @@ anywhere else.
 
 - `.claude/loop/design-completeness.log.jsonl` — one row per round: the change,
   and every gauge on every surface at the end of that round.
-- `.claude/loop/rounds/1/` and `.claude/loop/rounds/2/` — that round's twelve
-  screenshots, its `gauges.json`, and the judge's verdict in full.
+- `.claude/loop/rounds/1/`, `/2/` and `/3/` — that round's twelve screenshots,
+  its `gauges.json`, and (for rounds 1 and 2) the judge's verdict in full. Round
+  3 has no verdict: the loop had already stopped on the round 2 `pass`, and round
+  3 only repaired the page-turn defect described above.
 - `.claude/loop/baseline/` — the round-zero screenshots, untouched.
-- `.loop-artifacts/` — the final capture (identical to `rounds/2/`).
+- `.loop-artifacts/` — the final capture (identical to `rounds/3/`).
+
+To reproduce any of it:
+
+```
+npm run build
+npx vite preview --port 4174 --host 127.0.0.1 &
+node scripts/loop/measure.mjs --base http://127.0.0.1:4174 --out .loop-artifacts
+```
