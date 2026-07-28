@@ -3,11 +3,11 @@
 ## Target
 
 - Selected direction: B2 compact editorial practice card
-- Reference: `/Users/jiwon/.codex/generated_images/019f7290-4f9c-7c01-beaa-bc106cbdd874/call_rP8SiOsePh7lXAGhPJuJvbCI.png`
+- Reference: `docs/design/qa/center-card-b2-reference-1448x1086.png`
 - Viewport: 1024 × 768
-- Comparison: `/Users/jiwon/Documents/Codex/2026-07-18/new-chat/nabimd-center-card-redesign-qa/comparison-final.png`
-- Final implementation capture: `/Users/jiwon/Documents/Codex/2026-07-18/new-chat/nabimd-center-card-redesign-qa/implementation-1024x768-bold-final2.png`
-- Expanded Hint capture: `/Users/jiwon/Documents/Codex/2026-07-18/new-chat/nabimd-center-card-redesign-qa/implementation-1024x768-hint.png`
+- Comparison: `docs/design/qa/center-card-b2-comparison-2048x768.png`
+- Final implementation capture: `docs/design/qa/center-card-b2-implementation-1024x768.png`
+- Expanded Hint capture: `docs/design/qa/center-card-b2-implementation-hint-1024x768.png`
 
 ## Visual checks
 
