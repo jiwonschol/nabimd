@@ -26,7 +26,8 @@ and iOS — frames its content the same way, and Nabi Markdown does none of it:
 | Primary action | Pinned to the bottom; full-width on phone | inside the card, and **below the fold on phone** |
 | Empty space | Trapped between rail and action bar, so it reads as margin | unbounded, so it reads as a void |
 
-References (open them, do not recall them):
+References — retrieve through the Mobbin connector, not by URL (the direct links
+403; they are recorded here only to name the screens):
 - [Duolingo — type the missing letters, web](https://mobbin.com/screens/216a2a66-9ea7-4911-9086-91fab2978485) — closest analogue: a bordered card holding a *dense document* with inline blanks
 - [Duolingo — character choice, web](https://mobbin.com/screens/dc97c6c2-a552-4c96-a809-28e7da3f059b)
 - [Babbel — listen and choose, web](https://mobbin.com/screens/9607627c-d29f-4ed9-a0af-fdc65e80d670)
@@ -63,21 +64,23 @@ happened to load.
 
 ## 3. Gauges
 
-All gauges are measured **inside the reading area** (`.card-practice`, else
-`main`), not the whole window. A viewport-wide grid is blind here: the top bar
-spreads controls across the full width, so every column contains ink and the
-gauges do not move when the card shrinks. The calibration gate caught this —
-see the note at the end of this section.
+All gauges are measured inside the **reading band**: the full-width strip
+between the bottom of the top rail and the top of the bottom action bar. Both
+bars are excluded — each spans the full width, so leaving either inside puts ink
+in every column and blinds the horizontal gauge. The band is derived from
+geometry, never from a class name, because an instrument the subject can move is
+not an instrument.
 
-Round zero, measured 2026-07-29 (`.claude/loop/baseline/gauges.json`):
+Round zero, re-measured 2026-07-29 with the corrected instrument against the
+pre-loop commit `1a1899e` (`.claude/loop/baseline/gauges.json`):
 
 | Gauge | Round zero | Target |
 | --- | --- | --- |
-| `emptyRatio` | 0.430 – **0.875** | **≤ 0.70 on every surface** |
-| `deadBandY` | 0.094 – **0.580** | **≤ 0.25 on every surface** |
-| `deadBandX` | 0.053 – **0.299** | **≤ 0.15 on every surface** |
+| `emptyRatio` | 0.433 – **0.892** | **≤ 0.70 on every surface** |
+| `deadBandY` | 0.107 – **0.580** | **≤ 0.25 on every surface** |
+| `deadBandX` | 0.051 – **0.285** | **≤ 0.15 on every surface** |
 | `hasTopRail` | false on 10 of 12 | **true on all 12** |
-| `bottomGapRatio` | **−0.104** on phone (action below the fold) | **0 ≤ gap ≤ 0.12 on all 12** |
+| `bottomGapRatio` | −0.104 on phone (action below the fold) | **0 ≤ gap ≤ 0.12 on all 12** |
 | `undersizedTargets` | 0 – 5 | **0 on all 12** |
 | `maxMeasure` | 20.1 – 73.9 | **45 – 75 wherever prose exists** |
 | `horizontalOverflow` | 0 | **stays 0** |
@@ -87,26 +90,55 @@ the viewport. On a phone that is not a polish problem, it is a broken screen.
 `deadBandY` is the tallest run of completely empty rows — at 0.58 on the tablet
 practice screen, well over half the reading area is a single blank band.
 
-**Calibration, 2026-07-29.** Shrinking `.center-card` from 44rem to 14rem — a
-gross regression — moved the first two versions of these gauges by less than
-0.002. Both were rewritten before the loop was allowed to start. The surviving
-instrument moves `deadBandX` 0.287 → 0.455 and `emptyRatio` 0.850 → 0.944 on
-the same injection. Any future edit to the gauges must be re-calibrated the
-same way; a gauge that cannot see a deliberate regression cannot see a real one.
+**Calibration, 2026-07-29 (before run 1).** Shrinking `.center-card` from 44rem
+to 14rem — a gross regression — moved the first two versions of these gauges by
+less than 0.002. Both were rewritten before the loop was allowed to start.
+
+**Calibration, 2026-07-29 (after run 1, and why the run's "pass" was void).**
+Run 1 reported every gauge at target. It was not. Two defects, both in the
+harness rather than the work:
+
+1. *The rig captured the wrong screen.* It waited for `.center-card` to attach,
+   but the page-turn animation keeps the chapter chooser painted over the
+   practice surface for a moment longer. Eight of the twelve captures the judge
+   examined were the chooser. The rig now waits for the turn to finish and for
+   the chooser heading to detach, and fails the surface if the chooser is still
+   present.
+2. *The gauge moved with its subject.* It anchored the reading area to
+   `.card-practice`. A round changed the layout, that element shrank to hug the
+   card, and the gauge went on measuring a 370px box near the top of a 1000px
+   window — reporting 19% dead space while 517px, 52% of the screen, sat empty
+   below it. The reading area is now defined geometrically as the band between
+   the top rail and the bottom action bar, and both bars are excluded.
+
+Re-measured honestly, run 1 misses `deadBandY` and `emptyRatio` on six of the
+twelve surfaces.
+
+Calibrations the instrument must keep passing, checked after every gauge edit:
+
+| Injection | Expected | Observed |
+| --- | --- | --- |
+| `.center-card` 44rem → 14rem | gauges worsen | `deadBandX` 0.287 → 0.455 |
+| phone `.center-card__box` → 1.2rem | `undersizedTargets` rises | 0 → 2 |
+| `.card-practice` forced to 200px | gauges worsen, do **not** go blind | `deadBandY` 0.624 → 0.812 |
+| base URL pointed at a dead port | rig exits non-zero | exit 2, 12 unreached |
+
+A gauge that cannot see a deliberate regression cannot see a real one.
 
 ## 4. Cross-examination
 
 A judge that reads the diff is a code review, not cross-examination. The judge
-**looks at the rendered screenshots** and opens the Mobbin references, and never
-sees the CSS.
+**looks at the rendered screenshots** and never sees the CSS.
 
 Judge prompt: `.claude/loop/judge-prompt.md` (hash-pinned, see §5).
-Model: `fable`, effort `high` — deliberately not weaker than the builder.
 
-The judge must, per round: open the reference links; compare each captured
-surface against them; cite the gauge number behind every verdict; and state
-plainly whether the result still reads as the same book-like product. It returns
-`pass` only when the structural target is met *and* the tone target survives.
+The judge must, per round: retrieve the reference screens **through the Mobbin
+connector** — `mobbin.com/screens/<id>` returns HTTP 403 to both fetch and
+browser navigation, and run 1 produced a verdict without them; compare each
+captured surface against those references; cite the gauge number behind every
+verdict; and state plainly whether the result still reads as the same book-like
+product. It returns `pass` only when the structural target is met *and* the tone
+target survives, and `blocked` when it could not obtain the references.
 
 ## 5. Blocks
 
@@ -141,9 +173,17 @@ Stops on the first of these.
 
 | Role | Model | Effort |
 | --- | --- | --- |
-| Builder | `opus` | `xhigh` |
-| Judge | `fable` | `high` |
+| Builder | `sonnet` | `xhigh` |
+| Judge | `opus` | `high` |
 | Measurement | deterministic script, no model | — |
+
+The judge must never be the same model as the builder — a judge that shares the
+builder's blind spots is a second opinion in name only. The first run asked for
+`fable`, which returned a spend-limit error, and the round silently fell back to
+`opus` — the builder's own model. Dropping the builder to `sonnet` keeps the
+judge strictly stronger without depending on `fable` being available. **If the
+judge model is unavailable, stop the loop and report it. Do not fall back to the
+builder's model.**
 
 ## Artefacts
 

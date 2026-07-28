@@ -16,17 +16,24 @@ improving; a loop that is failed for the wrong reason wastes a night. Be exact.
 
 ## What you must do first
 
-**Open the reference screens.** Do not judge from memory of what these apps look
-like — memory of a design is not evidence about it.
+**Retrieve the reference screens and look at them.** Judging a design from
+memory of what an app looks like is not evidence about that app.
 
-- https://mobbin.com/screens/216a2a66-9ea7-4911-9086-91fab2978485 (Duolingo, web, dense document with inline blanks)
-- https://mobbin.com/screens/dc97c6c2-a552-4c96-a809-28e7da3f059b (Duolingo, web)
-- https://mobbin.com/screens/9607627c-d29f-4ed9-a0af-fdc65e80d670 (Babbel, web)
-- https://mobbin.com/screens/6afe237b-00ba-4b25-a2cc-897383f7cd26 (Uxcel, web)
-- https://mobbin.com/screens/3fd25e96-f414-434e-b999-eaa873a8f874 (Duolingo, iOS)
-- https://mobbin.com/screens/61cbdb80-29c5-4f75-83d4-2d086ea19cac (Duolingo, iOS)
+Fetch them through the **Mobbin connector**, not by URL. `mobbin.com/screens/<id>`
+returns HTTP 403 to both `fetch` and browser navigation, and a previous run
+burned a whole night on a verdict written without the references. Load the
+connector's tools with ToolSearch, then run these two searches on the
+`search_screens` tool and study the returned images:
 
-If you cannot open them, say so and return `blocked`. Do not guess.
+- `platform: "web"` — "flashcard practice screen with a single centered question card and an answer input"
+- `platform: "ios"` — "language learning exercise screen with progress bar at top and a fixed check button at the bottom"
+
+You need at least **four** reference screens actually rendered in front of you,
+from at least two different apps. If you cannot get them — the connector is
+unavailable, the searches return nothing, or you only received metadata without
+images — return `blocked` and say exactly what failed. Do not substitute
+recollection, a web search, or a generated mock-up. `blocked` is a useful
+answer; a verdict written blind is not.
 
 ## The two targets
 

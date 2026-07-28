@@ -44,7 +44,18 @@ const SURFACES = [
 async function openPracticeLevelOne(page) {
   const button = page.getByRole("button", { name: /^Level 1/ })
   await button.click({ timeout: 15_000 })
+  // The page turn keeps the chooser painted over the practice surface while
+  // `.center-card` is already attached. Waiting only for the card captured the
+  // chooser and reported it as practice — a false success that survived a whole
+  // loop run. Wait for the turn to finish, as the e2e suite does.
+  await page.waitForFunction(
+    () => document.querySelectorAll("[data-testid='page-turn-transition']").length === 0,
+    { timeout: 15_000 },
+  )
   await page.locator(".center-card").waitFor({ state: "visible", timeout: 15_000 })
+  await page
+    .getByRole("heading", { name: "Choose a chapter to begin." })
+    .waitFor({ state: "detached", timeout: 15_000 })
 }
 
 async function openPracticeWithHint(page) {
@@ -76,19 +87,43 @@ async function gauges(page) {
     // --- inked area: share of the viewport covered by visible content boxes.
     // The complement is the "empty" the design reads as. Boxes are unioned on a
     // coarse grid so overlapping children are not double counted.
-    // Measure inside the reading area, not the whole window. The top bar spreads
-    // controls across the full width, so a viewport-wide grid always finds ink
-    // in every column and every gauge built on it goes blind to the thing the
-    // owner reported — a small card adrift in a large empty region.
-    const frameEl =
-      document.querySelector(".card-practice") ??
-      document.querySelector("main") ??
-      document.body
-    const frame = frameEl.getBoundingClientRect()
-    const fx = Math.max(0, frame.x)
-    const fy = Math.max(0, frame.y)
-    const fw = Math.max(1, Math.min(frame.width, vw - fx))
-    const fh = Math.max(1, Math.min(frame.height, vh - fy))
+    // The reading area, defined geometrically: everything between the bottom of
+    // the top rail and the top of the bottom action bar, full width.
+    //
+    // This used to anchor to `.card-practice`. That was wrong in a way that only
+    // showed up after a round changed the layout: the element shrank to hug the
+    // card, so the gauge measured a 370px box near the top of a 1000px window
+    // and reported 19% dead space while 517px — 52% of the screen — sat empty
+    // below it. An instrument the subject can move is not an instrument. Both
+    // bars are excluded because each spans the full width; leaving either inside
+    // puts ink in every column and blinds the horizontal gauge.
+    const fullWidthBars = Array.from(document.querySelectorAll("*"))
+      .filter((el) => {
+        const s = getComputedStyle(el)
+        if (s.display === "none" || s.visibility === "hidden") return false
+        const r = el.getBoundingClientRect()
+        return r.width >= vw * 0.9 && r.height > 0 && r.height <= vh * 0.25
+      })
+      .map((el) => el.getBoundingClientRect())
+
+    let railBottom = 0
+    let barTop = vh
+    for (const r of fullWidthBars) {
+      if (r.y <= 8 && r.y + r.height > railBottom) railBottom = r.y + r.height
+      if (r.y + r.height >= vh - 8 && r.y < barTop) barTop = r.y
+    }
+    // A bar that swallows the window is not a bar; fall back to the raw viewport
+    // rather than measuring a sliver and calling it full.
+    if (barTop - railBottom < vh * 0.3) {
+      railBottom = 0
+      barTop = vh
+    }
+
+    const fx = 0
+    const fy = railBottom
+    const fw = vw
+    const fh = Math.max(1, barTop - railBottom)
+    const frameEl = document.body
 
     const CELL = 10
     const cols = Math.ceil(fw / CELL)
@@ -100,6 +135,7 @@ async function gauges(page) {
     for (const el of frameEl.querySelectorAll(contentSelector)) {
       if (!visible(el)) continue
       const r = el.getBoundingClientRect()
+      if (r.y + r.height <= fy || r.y >= fy + fh) continue
       const x0 = Math.max(0, Math.floor((r.x - fx) / CELL))
       const x1 = Math.min(cols - 1, Math.floor((r.x + r.width - fx) / CELL))
       const y0 = Math.max(0, Math.floor((r.y - fy) / CELL))
@@ -123,6 +159,7 @@ async function gauges(page) {
     for (const el of frameEl.querySelectorAll(contentSelector)) {
       if (!visible(el)) continue
       const r = el.getBoundingClientRect()
+      if (r.y + r.height <= fy || r.y >= fy + fh) continue
       left = Math.min(left, r.x)
       right = Math.max(right, r.x + r.width)
       top = Math.min(top, r.y)
@@ -209,6 +246,7 @@ async function gauges(page) {
 
     return {
       viewport: `${vw}x${vh}`,
+      readingBand: `${Math.round(fy)}..${Math.round(fy + fh)}`,
       inkedRatio,
       emptyRatio: round(1 - inkedRatio),
       contentSpanX,
@@ -257,7 +295,14 @@ async function main() {
         // Confirm the app really is on the requested surface before believing
         // any number taken from it.
         const onPractice = (await page.locator(".center-card").count()) > 0
+        const chooserVisible =
+          (await page
+            .getByRole("heading", { name: "Choose a chapter to begin." })
+            .count()) > 0
         const expectPractice = surface.name !== "landing"
+        if (expectPractice && chooserVisible) {
+          throw new Error("chooser still painted — captured mid page-turn")
+        }
         if (onPractice !== expectPractice) {
           throw new Error(
             `expected ${expectPractice ? "practice" : "landing"}, found the other`,
