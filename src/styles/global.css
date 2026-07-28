@@ -121,10 +121,7 @@ button:focus-visible,
   width: min(calc(100% - 12px), 96rem);
   align-items: start;
   gap: 0;
-  /* The action line lives in this reserved strip. Reserving it on the shell
-     rather than inside the reading area keeps the strip out of the page the
-     reader is looking at, where it would read as one more blank band. */
-  padding: 0 0 var(--action-line-height);
+  padding: 0;
   border: 1px solid rgb(17 17 17 / 72%);
   filter: brightness(1.025) saturate(0.96);
 }
@@ -1776,10 +1773,16 @@ button:focus-visible,
    that region is mostly nothing. The column is the region. */
 .card-practice {
   display: grid;
-  width: min(100%, var(--reading-column, 62rem));
-  max-height: 100%;
+  /* The outer margin is the page edge. Without it the card runs to the window
+     border at tablet width and the spread stops reading as a book. */
+  width: min(calc(100% - 4rem), var(--reading-column, 62rem));
+  /* The strip the action line occupies is reserved by the reading area, not by
+     the shell: Summary shares the shell and has no action line, and an empty
+     strip under Summary would be one more blank band with nothing in it. */
+  max-height: calc(100% - var(--action-line-height, 76px));
   min-width: 0;
   min-height: 0;
+  margin-block: 0 var(--action-line-height, 76px);
   margin-inline: auto;
   padding: clamp(1rem, 3.5vh, 2.5rem) var(--reading-gutter, 1.5rem)
     clamp(0.75rem, 2vh, 1.25rem);
@@ -3879,17 +3882,34 @@ button:focus-visible,
      the top. Centring it here would undo the desktop anchoring: a centred card
      grows in both directions, so opening Hint would drag its top edge upward. */
   .card-practice {
+    width: 100%;
     padding-block: 0.5rem;
     padding-inline: 0;
     place-items: start stretch;
   }
 
+  /* On a phone the page has no card. A bordered box that stops two thirds of
+     the way down the screen turns the paper beneath it into a hole; the same
+     paper with no edge drawn across it is simply the rest of the page. The
+     exercise sits on the book directly, the way it does on the reference
+     phone screens. */
   .center-card {
     align-self: start;
+    min-height: 22rem;
     gap: 0.8rem;
     width: 100%;
-    padding: 0.85rem;
-    box-shadow: 0 12px 32px rgb(63 41 33 / 11%);
+    padding: 0.85rem 1rem;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    /* Slack opens the spacing between the three parts rather than pooling into
+       one band under the last of them. The hint still expands the page
+       downward past this floor, so it never opens upward. */
+    justify-content: space-between;
+  }
+
+  .center-card__context {
+    flex: 0 1 auto;
   }
 
   .center-card__header {
@@ -3903,8 +3923,17 @@ button:focus-visible,
     font-size: 0.95rem;
   }
 
+  /* The specimen is the thing being read. On a phone it was a 49px strip; the
+     room the page has spare belongs to it and to the mark row, not to padding
+     at the bottom of the screen. */
   .center-card__context-row {
-    padding: 0.55rem 0.7rem;
+    padding: 1.15rem 0.7rem;
+  }
+
+  .center-card__context-row--current
+    .rendered-document__body
+    :is(p, li, h1, h2, h3, h4, h5, h6) {
+    font-size: 1.55rem;
   }
 
   .center-card__line {

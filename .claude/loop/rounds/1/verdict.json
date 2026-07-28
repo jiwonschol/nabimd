@@ -1,0 +1,51 @@
+{
+  "verdict": "fail",
+  "referenceAccessNote": "The six named mobbin.com/screens/<uuid> URLs could NOT be opened: WebFetch returns HTTP 403 on mobbin.com and no fetch-by-id tool exists. I did not judge from memory. I opened equivalent reference screens through the Mobbin MCP server and looked at the returned images: Duolingo web lesson screens (a243d20f-68bc-4f51-8dd7-f58c657b9e8d, 15b2ea44-b131-41dc-ae01-549a35b4c58d, 6fc1df95-9611-4312-820b-849ca73891be), Babbel web lesson screens (1b43172c-4e03-4d6e-8ae1-7b4bf5615003, abb3a30d-277e-45a9-bb2a-41d6e02ec692), and Uxcel web (87ecc859-0a6a-4c06-a98b-9df498f00e75). All show the same frame: full-width progress rail on the top edge, prompt high and left, primary action pinned bottom in its own bounded bar. The two Duolingo iOS references were not retrieved. Verdict is 'fail' on substance, not 'blocked'; flagging the substitution so the operator can overrule.",
+  "gaugesQuoted": {
+    "hint-phone": "largest ink-free band 156px = 18.5% of the 844px viewport (y=570..726), against baseline 43px = 5.1% — measured at full horizontal resolution inside the card interior, row minima, ink threshold 210/255",
+    "hint-phone contentSpanY": "0.856 baseline -> 1.491 now (document is 1.49 viewports tall, so the practice content overflows the fold)",
+    "hint-phone inkedRatio": "0.57 baseline -> 0.711 now; emptyRatio 0.43 -> 0.289",
+    "hint-phone primaryWidthRatio": "0.087 baseline -> 0.933 now; bottomGapRatio 0.302 -> 0.014",
+    "hasTopRail": "false -> true on 11 of 12 captures (practice-laptop was already true)",
+    "hint-tablet maxMeasure": "42.81 baseline -> 68.563 chars now; hint-laptop 32.875 -> 61.842; hint-wide 32.875 -> 59.857",
+    "hint-tablet/laptop/wide largest ink-free band": "7.0% / 6.9% / 7.0% of viewport, against baseline 7.0% / 6.7% / 6.6% — desktop empty space did NOT get worse",
+    "undersizedTargets": "4-5 per practice/hint capture at baseline -> 0 everywhere now",
+    "horizontalOverflow": "0 on all 12 captures"
+  },
+  "structural": [
+    {
+      "point": "A rail pinned to the top edge, spanning nearly the full width.",
+      "met": true,
+      "evidence": "hint-laptop.png: logo + Exit at x=45..330 and Level 1 00:00 / progress dots / prev / next / shuffle out to x=1380, sitting on the top edge with a bounded lower border. Same rail in hint-wide.png (out to x=1740), hint-tablet.png (two rows, y=0..130), hint-phone.png (two rows, y=0..110), and landing-laptop.png / landing-wide.png (logo left, Source code / Third-party licenses right). gauges hasTopRail true on all 12 rows, up from false on 11 at baseline."
+    },
+    {
+      "point": "The prompt left-aligned and starting high, not floating mid-screen.",
+      "met": true,
+      "evidence": "hint-laptop.png: 'Wrap the phrase in Markdown marks for bold text.' is left-aligned at x=297, baseline y=159 — top 18% of the 900px viewport. hint-wide.png y=162 (16%), hint-tablet.png y=183 (18%), hint-phone.png y=140 (17%). landing-phone.png / landing-laptop.png: 'Markdown is easy.' left-aligned at the top of the verso page. Baseline hint-laptop.png had this same prompt centred and wrapped over two lines at y=228..267 — left-alignment and the high start are both new this round."
+    },
+    {
+      "point": "The primary action pinned near the bottom, full-width on phone, and never below the fold.",
+      "met": true,
+      "evidence": "hint-phone.png: black 'Enter ↵' spans x=8..382 of the 390px viewport at y=787..835, inside a bounded bottom bar — primaryWidthRatio 0.933, bottomGapRatio 0.014. It is visible in a viewport-sized capture (all PNGs are exactly viewport-sized, confirmed via identify) taken at scroll top even though contentSpanY is 1.491, so the bar is pinned, not merely last in flow. hint-laptop.png / hint-wide.png / hint-tablet.png put 'Enter ↵' bottom-right in the same bar. Baseline hint-laptop.png had the Enter button floating mid-card at y=541 with primaryWidthRatio 0.024."
+    },
+    {
+      "point": "Empty space bounded by those two, so it reads as margin rather than void.",
+      "met": false,
+      "evidence": "Holds at desktop but fails at phone. hint-phone.png has one unbroken ink-free strip of 156px at y=570..726 — 18.5% of the viewport — between the bottom of the hint card and the pinned Enter bar, against a baseline largest band of 43px (5.1%). It is not margin: the same capture is the densest surface in the set (inkedRatio 0.711, up from 0.57) and its document overflows the fold (contentSpanY 1.491), so the layout is simultaneously too cramped to fit and leaving a fifth of the screen blank. That reads as a gap where content ran out, not as page margin. Desktop is clean by the same measurement: largest interior ink-free band 7.0% (hint-tablet), 6.9% (hint-laptop), 7.0% (hint-wide), essentially unchanged from baseline 7.0% / 6.7% / 6.6%."
+    }
+  ],
+  "toneSurvived": true,
+  "toneEvidence": "Compared against docs/design/practice-open-book-level5-hint-reference.png. Round 1 keeps the same cream paper ground, the same serif for prompt and specimen, the same monospace for Markdown marks, hairline rules, the stitched book spine running down the centre of landing-laptop.png / landing-wide.png / hint-laptop.png, and a flat black rectangular primary button. The only chromatic accent is a muted wine focus ring on the active blank in hint-phone.png / hint-laptop.png. Nothing has drifted toward the references' style: no saturated green or orange fills, no pill buttons, no rounded cartoon shapes, no illustration. Structure was borrowed; style was not.",
+  "regressions": [
+    "hint-phone largest ink-free band 43px (5.1% of viewport) -> 156px (18.5%), at y=570..726 between the hint card and the pinned Enter bar. Largest single regression.",
+    "hint-phone contentSpanY 0.856 -> 1.491: the practice surface used to fit the phone viewport and now overflows it by ~49%, requiring a scroll to reach the specimen and hint rows.",
+    "hint-phone inkedRatio 0.57 -> 0.711 (emptyRatio 0.43 -> 0.289): density rose on the one surface that also gained the biggest dead strip — the vertical rhythm is now crowded at the top and empty at the bottom.",
+    "Reading measure grew on the practice surface: hint-tablet maxMeasure 42.81 -> 68.563 chars, hint-laptop 32.875 -> 61.842, hint-wide 32.875 -> 59.857. A consequence of the intended full-width restructure and still inside book range, but 68.563 at tablet is at the top of comfortable measure and is worse than baseline.",
+    "hint-tablet deadBandX 0.092 -> 0.052 and contentSpanX 0.824 -> 0.95: the card now runs almost edge to edge at 768, leaving barely any outer page margin — the one width where the book framing is thinnest."
+  ],
+  "topThree": [
+    "Close the 156px (18.5%) dead strip at y=570..726 in hint-phone.png. Either let the hint panel and specimen expand into it so the document stops overflowing the fold (contentSpanY 1.491 -> <=1.0), or pull the pinned Enter bar up to meet the card. Right now the phone layout is the only surface that fails structural point 4, and it fails it while also being the densest capture in the set.",
+    "Rebalance phone vertical rhythm rather than adding chrome. inkedRatio 0.711 with content past the fold means the prompt / specimen / input stack is compressed at the top while a fifth of the screen is unused. The space freed in item 1 should go to the specimen and input row, which are the two things the learner actually reads.",
+    "Restore book margin and measure at tablet. hint-tablet contentSpanX 0.95 with deadBandX 0.052 and maxMeasure 68.563 (baseline 42.81) makes 768 the widest, tightest-margined surface in the set — the one viewport where the result stops reading as a page. Narrow the card so the outer margin returns and the measure drops back under ~62 chars."
+  ]
+}
