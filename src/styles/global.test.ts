@@ -322,15 +322,46 @@ describe("global responsive styles", () => {
     const instructionTerm = lastCssBlock(".center-card__instruction strong")
 
     expect(instructionTerm).toContain("font-weight: 700")
-    expect(instructionTerm).toContain("text-decoration")
+    expect(instructionTerm).toContain("text-decoration: underline")
     expect(instructionTerm).toContain("text-underline-offset")
     expect(instructionTerm).toContain("white-space: nowrap")
   })
 
   it("keeps the rendered Goal centered without a left-edge marker", () => {
-    const currentGoal = lastCssBlock(".center-card__context-row--current")
+    // The trailing brace pins this to the base row rule. Without it lastIndexOf
+    // lands on a later descendant selector, and the assertion passes even when
+    // the marker is still there.
+    const currentGoal = lastCssBlock(".center-card__context-row--current {")
 
     expect(currentGoal).not.toContain("border-inline-start")
+  })
+
+  it("lifts every rendered Goal above the locked source phrase", () => {
+    const currentGoal = lastCssBlock(
+      ".center-card__context-row--current .rendered-document__body h1,",
+    )
+
+    for (const tag of ["h1", "h2", "h3", "h4", "h5", "h6", "p", "li"]) {
+      expect(currentGoal).toContain(
+        `.center-card__context-row--current .rendered-document__body ${tag}`,
+      )
+    }
+    expect(currentGoal).toContain("font-size: clamp(1.35rem, 2.25vw, 1.7rem)")
+  })
+
+  it("keeps the phone mark boxes at the documented 40 x 44px floor", () => {
+    const phoneStack = lastCssBlock("@media (max-width: 760px) {")
+    const phoneBox = phoneStack.slice(phoneStack.indexOf(".center-card__box {"))
+
+    expect(phoneBox).toContain("width: 2.5rem")
+    expect(phoneBox).toContain("height: 2.75rem")
+  })
+
+  it("anchors the phone card to the top so Hint expands downward", () => {
+    const phoneStack = lastCssBlock("@media (max-width: 760px) {")
+
+    expect(phoneStack).toContain("place-items: start stretch")
+    expect(phoneStack).not.toContain("align-self: center")
   })
 
   it("aligns the visible Goal instruction with the document text", () => {

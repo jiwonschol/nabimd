@@ -417,6 +417,75 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
+// Seed 10 serves `###### Dog leash`, the deepest heading in Level 1. Headings
+// keep the small context size unless the current-row rule names them, so this
+// pins the case a paragraph Goal cannot catch.
+test("makes a heading Goal more prominent than the locked source phrase", async ({
+  page,
+}) => {
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "10")
+  }, sessionSeedStorageKey)
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  expect(await currentProblemId(page)).toBe("l1-heading-depth-dog-leash")
+
+  const goal = page.locator(
+    ".center-card__context-row--current .rendered-document__body > :first-child",
+  )
+  const locked = page.locator(".center-card__locked").first()
+
+  await expect(goal).toHaveJSProperty("tagName", "H6")
+
+  const [goalSize, lockedSize] = await Promise.all([
+    goal.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize),
+    ),
+    locked.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize),
+    ),
+  ])
+
+  expect(goalSize).toBeGreaterThan(lockedSize)
+})
+
+test("keeps phone mark boxes at the documented touch size", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const box = await page.locator(".center-card__box").first().boundingBox()
+
+  expect(box).not.toBeNull()
+  expect(box!.width).toBeGreaterThanOrEqual(40)
+  expect(box!.height).toBeGreaterThanOrEqual(44)
+})
+
+test("anchors the phone card so the exact hint expands downward", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const card = page.locator(".center-card")
+  const before = await card.boundingBox()
+  await page.getByRole("button", { name: "Hint" }).click()
+  await expect(
+    page.getByRole("region", { name: "Exact Markdown hint" }),
+  ).toBeVisible()
+  const after = await card.boundingBox()
+
+  expect(before).not.toBeNull()
+  expect(after).not.toBeNull()
+  expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(2)
+  expect(after!.height).toBeGreaterThan(before!.height)
+})
+
 test("expands the exact hint below the anchored practice card", async ({
   page,
 }) => {

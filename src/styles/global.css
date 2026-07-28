@@ -1828,6 +1828,15 @@ button:focus-visible,
   line-height: 1.48;
 }
 
+/* Headings are listed here too. Without them a heading Goal keeps the 1.08rem
+   context size and ends up smaller than the locked source phrase beside it,
+   which inverts the hierarchy on every heading-depth exercise. */
+.center-card__context-row--current .rendered-document__body h1,
+.center-card__context-row--current .rendered-document__body h2,
+.center-card__context-row--current .rendered-document__body h3,
+.center-card__context-row--current .rendered-document__body h4,
+.center-card__context-row--current .rendered-document__body h5,
+.center-card__context-row--current .rendered-document__body h6,
 .center-card__context-row--current .rendered-document__body p,
 .center-card__context-row--current .rendered-document__body li,
 .center-card__context-row--current .rendered-document__body blockquote {
@@ -3703,13 +3712,16 @@ button:focus-visible,
     padding: 1.5rem 1.25rem 3rem;
   }
 
+  /* The card still stretches to the full phone width, but it stays pinned to
+     the top. Centring it here would undo the desktop anchoring: a centred card
+     grows in both directions, so opening Hint would drag its top edge upward. */
   .card-practice {
     padding: 0.75rem;
-    place-items: stretch;
+    place-items: start stretch;
   }
 
   .center-card {
-    align-self: center;
+    align-self: start;
     gap: 0.9rem;
     width: 100%;
     padding: 1.1rem;
@@ -3733,9 +3745,12 @@ button:focus-visible,
     font-size: 1.1rem;
   }
 
+  /* Stay at the 40 x 44px floor design-qa.md records. Phones are where the
+     boxes double as touch targets, so this is the one viewport that must not
+     shrink below it. */
   .center-card__box {
-    width: 2rem;
-    height: 2.3rem;
+    width: 2.5rem;
+    height: 2.75rem;
   }
 
   .center-card__actions {
