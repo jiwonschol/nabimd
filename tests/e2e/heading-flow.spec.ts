@@ -451,6 +451,41 @@ test("makes a heading Goal more prominent than the locked source phrase", async 
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
+// Seed 7 serves a fenced code block. A `pre` Goal sits outside the paragraph
+// and heading rules, so it is the third shape the prominence claim has to hold
+// for.
+test("makes a fenced code Goal more prominent than the locked source phrase", async ({
+  page,
+}) => {
+  await page.addInitScript((storageKey) => {
+    window.sessionStorage.setItem(storageKey, "7")
+  }, sessionSeedStorageKey)
+  await page.setViewportSize({ width: 1024, height: 768 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  expect(await currentProblemId(page)).toBe("l1-code-block-door-sign")
+
+  const goal = page.locator(
+    ".center-card__context-row--current .rendered-document__body > :first-child",
+  )
+  const locked = page.locator(".center-card__locked").first()
+
+  await expect(goal).toHaveJSProperty("tagName", "PRE")
+  await expect(goal).toHaveCSS("text-align", "center")
+
+  const [goalSize, lockedSize] = await Promise.all([
+    goal.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize),
+    ),
+    locked.evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize),
+    ),
+  ])
+
+  expect(goalSize).toBeGreaterThan(lockedSize)
+})
+
 test("keeps phone mark boxes at the documented touch size", async ({
   page,
 }) => {

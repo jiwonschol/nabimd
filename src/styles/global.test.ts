@@ -37,6 +37,24 @@ function lastCssBlock(selector: string): string {
   throw new Error(`Unclosed CSS block: ${selector}`)
 }
 
+/**
+ * The declarations for one selector inside the phone media query, and nothing
+ * else. Asserting against the whole media query would let an unrelated later
+ * rule satisfy a check the target rule no longer meets.
+ */
+function phoneRule(selector: string): string {
+  const phoneStack = lastCssBlock("@media (max-width: 760px) {")
+  const start = phoneStack.indexOf(`${selector} {`)
+  const openingBrace = phoneStack.indexOf("{", start)
+
+  expect(start).toBeGreaterThanOrEqual(0)
+
+  const closingBrace = phoneStack.indexOf("}", openingBrace)
+  expect(closingBrace).toBeGreaterThan(openingBrace)
+
+  return phoneStack.slice(start, closingBrace + 1)
+}
+
 describe("global responsive styles", () => {
   it("uses one motionless open-book image for both sheets and the center fold", () => {
     expect(
@@ -341,7 +359,18 @@ describe("global responsive styles", () => {
       ".center-card__context-row--current .rendered-document__body h1,",
     )
 
-    for (const tag of ["h1", "h2", "h3", "h4", "h5", "h6", "p", "li"]) {
+    for (const tag of [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "p",
+      "li",
+      "pre",
+      "pre code",
+    ]) {
       expect(currentGoal).toContain(
         `.center-card__context-row--current .rendered-document__body ${tag}`,
       )
@@ -350,18 +379,16 @@ describe("global responsive styles", () => {
   })
 
   it("keeps the phone mark boxes at the documented 40 x 44px floor", () => {
-    const phoneStack = lastCssBlock("@media (max-width: 760px) {")
-    const phoneBox = phoneStack.slice(phoneStack.indexOf(".center-card__box {"))
+    const phoneBox = phoneRule(".center-card__box")
 
     expect(phoneBox).toContain("width: 2.5rem")
     expect(phoneBox).toContain("height: 2.75rem")
   })
 
   it("anchors the phone card to the top so Hint expands downward", () => {
-    const phoneStack = lastCssBlock("@media (max-width: 760px) {")
-
-    expect(phoneStack).toContain("place-items: start stretch")
-    expect(phoneStack).not.toContain("align-self: center")
+    expect(phoneRule(".card-practice")).toContain("place-items: start stretch")
+    expect(phoneRule(".center-card")).toContain("align-self: start")
+    expect(phoneRule(".center-card")).not.toContain("align-self: center")
   })
 
   it("aligns the visible Goal instruction with the document text", () => {

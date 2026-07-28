@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
+import { fileURLToPath } from "node:url"
 
 // Regenerates the design QA evidence in docs/design/qa/ from the current
 // styles. It writes files, so it stays out of the ordinary e2e run and is
@@ -8,7 +9,9 @@ const shouldCapture = process.env.NABI_WRITE_CARD_QA === "1"
 
 const progressStorageKey = "nabimd.progress.v5"
 const sessionSeedStorageKey = "nabimd.session-seed.v1"
-const qaDirectory = new URL("../../docs/design/qa/", import.meta.url).pathname
+const qaDirectory = fileURLToPath(
+  new URL("../../docs/design/qa/", import.meta.url),
+)
 
 // Seed 1 serves `**New arrival**`, so the capture matches the bold-text
 // exercise the selected reference mock shows.

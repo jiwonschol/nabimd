@@ -31,7 +31,7 @@ on seed 1, so the evidence cannot drift behind the styles it documents.
 
 ## Regenerating the captures
 
-```
+```sh
 npm run design:card-qa:capture
 ```
 
@@ -42,7 +42,12 @@ CSS edit.
 
 ## Verification
 
-- `npm run typecheck`
-- `npm test`
-- `npm run test:e2e`
-- `npm run build`
+Results for the branch as captured above.
+
+| Command | Result |
+| --- | --- |
+| `npm run typecheck` | passed |
+| `npm test` | passed — 71 files, 10,218 tests |
+| `npm run test:e2e` | passed — 30 tests, 3 capture specs skipped |
+| `npm run build` | passed |
+| `npm run check` | **not run** — the diff is CSS, tests, docs and QA assets |
