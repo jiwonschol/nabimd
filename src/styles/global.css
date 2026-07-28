@@ -556,6 +556,15 @@ button:focus-visible,
   opacity: 1;
 }
 
+/* The running head is part of the leaf being turned. Left transparent it lets
+   the Practice rail underneath show through the top of the page mid-turn, and
+   the two rails composite into one unreadable strip. */
+.open-book-shell--turning .open-book-rail {
+  background-color: var(--book-paper);
+  background-image: url("/images/nabi-book-paper.png");
+  opacity: 1;
+}
+
 .open-book-shell--turning .open-book-page--chapters {
   position: relative;
   z-index: 2;
