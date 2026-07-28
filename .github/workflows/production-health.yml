@@ -45,6 +45,9 @@ jobs:
         continue-on-error: true
         env:
           E2E_BASE_URL: https://nabimd.vercel.app
+          # The commit that should be live. On a schedule run this is the tip
+          # of the default branch, so a mismatch means deployments stopped.
+          EXPECTED_SHA: ${{ github.sha }}
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "push" ]]; then
