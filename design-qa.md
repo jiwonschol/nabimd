@@ -50,4 +50,4 @@ Results for the branch as captured above.
 | `npm test` | passed — 71 files, 10,218 tests |
 | `npm run test:e2e` | passed — 30 tests, 3 capture specs skipped |
 | `npm run build` | passed |
-| `npm run check` | **not run** — the diff is CSS, tests, docs and QA assets |
+| `npm run check` | passed in CI on every commit of this branch |
