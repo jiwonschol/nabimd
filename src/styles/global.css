@@ -1664,13 +1664,19 @@ button:focus-visible,
 /* Card-first practice: one calm teaching surface at every level. The full
    document stays out of the way until Summary; during practice the learner
    sees only the local rendered context and the Markdown marks they control. */
+/* The practice surface is the open book itself, not a card resting on it. The
+   shell already paints a two-page spread with a centre fold; the exercise fills
+   both leaves so the fold falls between reading and writing, exactly as the
+   Greeting already does. A single narrow card left the right-hand leaf empty,
+   which is what read as a void on a wide screen — not too much margin, but a
+   whole page of the book going unused. */
 .card-practice {
   display: grid;
   min-width: 0;
   min-height: 0;
-  padding: clamp(2.4rem, 5vh, 3rem) clamp(1rem, 5vw, 5rem);
+  padding: 0;
   overflow: auto;
-  place-items: start center;
+  place-items: stretch;
 }
 
 .card-practice[aria-disabled="true"] {
@@ -1678,18 +1684,38 @@ button:focus-visible,
 }
 
 .center-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  max-height: 100%;
+  padding: 0;
+  overflow: auto;
+  background: transparent;
+}
+
+/* One leaf of the spread. The padding mirrors `.open-book-page` so a learner
+   moving from the Greeting to an exercise sees the same margins on the same
+   paper. */
+.center-card__leaf {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   gap: clamp(1rem, 2.5vh, 1.55rem);
-  width: min(44rem, 100%);
-  max-height: 100%;
-  padding: clamp(1.5rem, 3.5vw, 3rem);
+  padding: clamp(2rem, 3.4vw, 3.5rem) clamp(2.25rem, 3.4vw, 4.25rem);
   overflow: auto;
-  border: 1px solid rgb(17 17 17 / 35%);
-  background: rgb(250 247 240 / 94%);
-  box-shadow:
-    0 1px 0 rgb(255 255 255 / 76%) inset,
-    0 20px 55px rgb(63 41 33 / 13%);
+}
+
+/* Reading leaf: the instruction and the Goal. It ends at the fold. */
+.center-card__leaf--read {
+  justify-content: start;
+}
+
+/* Writing leaf: the entry line and everything that acts on it. Both leaves
+   start at the same line so the spread reads as one opening rather than two
+   panels that happen to sit side by side. */
+.center-card__leaf--write {
+  justify-content: start;
+  gap: clamp(0.9rem, 2vh, 1.35rem);
 }
 
 .center-card__header {
@@ -1839,6 +1865,38 @@ button:focus-visible,
 .center-card__context .rendered-document__body li {
   font-size: 1.08rem;
   line-height: 1.48;
+}
+
+/* The instruction is prose on a book page, so it sets flush left like every
+   other line of type in this product. Centring it was a hold-over from the
+   single floating card; on a leaf it fights the Goal text directly beneath it. */
+.center-card__leaf--read .center-card__header {
+  justify-content: flex-start;
+}
+
+.center-card__leaf--read .center-card__heading {
+  align-items: flex-start;
+}
+
+.center-card__leaf--read .center-card__instruction {
+  max-width: 100%;
+  text-align: left;
+}
+
+.center-card__leaf--read .center-card__context .rendered-document__body h1,
+.center-card__leaf--read .center-card__context .rendered-document__body h2,
+.center-card__leaf--read .center-card__context .rendered-document__body h3,
+.center-card__leaf--read .center-card__context .rendered-document__body h4,
+.center-card__leaf--read .center-card__context .rendered-document__body h5,
+.center-card__leaf--read .center-card__context .rendered-document__body h6,
+.center-card__leaf--read .center-card__context .rendered-document__body p,
+.center-card__leaf--read .center-card__context .rendered-document__body pre {
+  text-align: left;
+}
+
+.center-card__leaf--read .center-card__context .rendered-document__body {
+  width: 100%;
+  margin-inline: 0;
 }
 
 /* Headings are listed here too. Without them a heading Goal keeps the 1.08rem
@@ -3735,12 +3793,25 @@ button:focus-visible,
     place-items: start stretch;
   }
 
+  /* A phone shows one leaf at a time, the way a held book does. The two stack
+     in reading order and run as one continuous page — no fold, no card frame,
+     and the writing leaf keeps its controls directly under the entry line. */
   .center-card {
+    grid-template-columns: minmax(0, 1fr);
     align-self: start;
-    gap: 0.9rem;
     width: 100%;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .center-card__leaf {
+    gap: 0.9rem;
     padding: 1.1rem;
-    box-shadow: 0 12px 32px rgb(63 41 33 / 11%);
+    overflow: visible;
+  }
+
+  .center-card__leaf--write {
+    padding-top: 0;
   }
 
   .center-card__header {
