@@ -238,30 +238,6 @@ export function CenterCard({
             {checkpointInstruction.suffix}
           </h2>
         </div>
-        <div className="center-card__controls">
-          <button
-            aria-keyshortcuts="ArrowUp"
-            aria-label="Previous mark"
-            className="center-card__control"
-            data-tooltip="Previous mark (↑)"
-            disabled={!interactive || !canGoToPreviousSlot}
-            onClick={onPreviousSlot}
-            type="button"
-          >
-            <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.8} />
-          </button>
-          <button
-            aria-keyshortcuts="ArrowDown"
-            aria-label="Next mark"
-            className="center-card__control"
-            data-tooltip="Next mark (↓)"
-            disabled={!interactive || !canGoToNextSlot}
-            onClick={onNextSlot}
-            type="button"
-          >
-            <ChevronRight aria-hidden="true" size={17} strokeWidth={1.8} />
-          </button>
-        </div>
       </header>
 
       <div aria-label="Rendered context" className="center-card__context">
@@ -355,6 +331,33 @@ export function CenterCard({
       </div>
 
       <div className="center-card__actions">
+        {/* Mark-to-mark navigation belongs on the action line with the other
+            controls: the prompt then owns the full column width, which is what
+            keeps its reading measure in the book range on a phone. */}
+        <div className="center-card__controls">
+          <button
+            aria-keyshortcuts="ArrowUp"
+            aria-label="Previous mark"
+            className="center-card__control"
+            data-tooltip="Previous mark (↑)"
+            disabled={!interactive || !canGoToPreviousSlot}
+            onClick={onPreviousSlot}
+            type="button"
+          >
+            <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.8} />
+          </button>
+          <button
+            aria-keyshortcuts="ArrowDown"
+            aria-label="Next mark"
+            className="center-card__control"
+            data-tooltip="Next mark (↓)"
+            disabled={!interactive || !canGoToNextSlot}
+            onClick={onNextSlot}
+            type="button"
+          >
+            <ChevronRight aria-hidden="true" size={17} strokeWidth={1.8} />
+          </button>
+        </div>
         <button
           aria-label="Hint"
           aria-controls={hintId}

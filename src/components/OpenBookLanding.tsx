@@ -47,7 +47,7 @@ export function OpenBookLanding({
 
       <section
         aria-labelledby="chapter-index-title"
-        className="open-book-page open-book-page--chapters open-book-page--chapters-with-legal"
+        className="open-book-page open-book-page--chapters"
       >
         <header className="chapter-index-header">
           <h2 id="chapter-index-title">Choose a chapter to begin.</h2>
@@ -79,31 +79,37 @@ export function OpenBookLanding({
             )
           })}
         </ol>
-
-        <nav aria-label="Project links" className="open-book-legal-links">
-          <a
-            aria-label="Source code (AGPL-3.0) on GitHub (opens in a new tab)"
-            className="open-book-legal-links__link"
-            href="https://github.com/jiwonschol/nabimd"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Source code
-          </a>
-          <span aria-hidden="true" className="open-book-legal-links__separator">
-            ·
-          </span>
-          <a
-            aria-label="Third-party licenses (opens in a new tab)"
-            className="open-book-legal-links__link"
-            href="/third-party-licenses.html"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Third-party licenses
-          </a>
-        </nav>
       </section>
+
+      {/* The running head: the same band the Practice spread carries, pinned to
+          the top edge and spanning the whole width. It is placed into the first
+          grid row rather than written first, so choosing a chapter — the only
+          thing this screen asks for — stays the first tab stop. The wordmark
+          keeps its own absolute coordinates inside the intro page, so Greeting,
+          Practice and Summary still line up mark for mark. */}
+      <nav aria-label="Project links" className="open-book-rail">
+        <a
+          aria-label="Source code (AGPL-3.0) on GitHub (opens in a new tab)"
+          className="open-book-legal-links__link"
+          href="https://github.com/jiwonschol/nabimd"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Source code
+        </a>
+        <span aria-hidden="true" className="open-book-legal-links__separator">
+          ·
+        </span>
+        <a
+          aria-label="Third-party licenses (opens in a new tab)"
+          className="open-book-legal-links__link"
+          href="/third-party-licenses.html"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Third-party licenses
+        </a>
+      </nav>
     </main>
   )
 }
