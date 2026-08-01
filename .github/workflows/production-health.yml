@@ -107,10 +107,14 @@ jobs:
                 issue.body?.includes(marker),
             );
             if (existing) {
+              const assignees = new Set(
+                existing.assignees?.map(({ login }) => login) ?? [],
+              );
+              assignees.add(context.repo.owner);
               await github.rest.issues.update({
                 ...context.repo,
                 issue_number: existing.number,
-                assignees: [context.repo.owner],
+                assignees: [...assignees],
               });
               await github.rest.issues.createComment({
                 ...context.repo,
