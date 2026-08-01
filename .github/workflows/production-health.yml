@@ -102,10 +102,16 @@ jobs:
             const existing = issues.find(
               (issue) =>
                 !issue.pull_request &&
+                issue.user?.login === "github-actions[bot]" &&
                 issue.title === title &&
                 issue.body?.includes(marker),
             );
             if (existing) {
+              await github.rest.issues.update({
+                ...context.repo,
+                issue_number: existing.number,
+                assignees: [context.repo.owner],
+              });
               await github.rest.issues.createComment({
                 ...context.repo,
                 issue_number: existing.number,
@@ -134,6 +140,7 @@ jobs:
             const existing = issues.find(
               (issue) =>
                 !issue.pull_request &&
+                issue.user?.login === "github-actions[bot]" &&
                 issue.title === title &&
                 issue.body?.includes(marker),
             );
