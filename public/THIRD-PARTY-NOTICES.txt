@@ -125,7 +125,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ================================================================================
 Package: @codemirror/view
-Version: 6.43.6
+Version: 6.43.7
 SPDX license: MIT
 Copyright / author: Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 License file(s): LICENSE
@@ -2745,7 +2745,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ================================================================================
 Package: react
-Version: 19.2.7
+Version: 19.2.8
 SPDX license: MIT
 Copyright / author: Copyright (c) Meta Platforms, Inc. and affiliates.
 License file(s): LICENSE
@@ -2774,7 +2774,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ================================================================================
 Package: react-dom
-Version: 19.2.7
+Version: 19.2.8
 SPDX license: MIT
 Copyright / author: Copyright (c) Meta Platforms, Inc. and affiliates.
 License file(s): LICENSE
