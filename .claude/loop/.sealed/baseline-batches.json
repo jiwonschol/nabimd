@@ -1,0 +1,27 @@
+{
+  "batches": [
+    "2026-07-19-l1-l2-blockquotes-006",
+    "2026-07-19-l1-l2-emphasis-003",
+    "2026-07-19-l1-l2-headings-002",
+    "2026-07-19-l1-l2-inline-code-007",
+    "2026-07-19-l1-l2-links-008",
+    "2026-07-19-l1-l2-lists-004",
+    "2026-07-19-l1-l2-ordered-lists-005",
+    "2026-07-19-l1-l2-thematic-breaks-009",
+    "2026-07-19-l3-composite-documents-011",
+    "2026-07-19-l3-readable-documents-010",
+    "2026-07-19-l4-development-specs-012",
+    "2026-07-19-milestone-1-foundation-001",
+    "2026-07-20-l1-code-block-l2-rebuilds-014",
+    "2026-07-20-l1-heading-depth-l2-sectioned-documents-015",
+    "2026-07-20-l1-italic-l2-rebuilds-013",
+    "2026-07-20-l2-nested-list-documents-016",
+    "2026-07-20-l3-l5-advanced-documents-017",
+    "2026-07-22-advanced-document-replacements-018",
+    "2026-07-22-l1-nested-bullet-lists-019",
+    "2026-07-22-l4-workplace-notes-021",
+    "2026-07-22-l5-developer-forms-020"
+  ],
+  "problemCount": 372,
+  "digest": "4f7c148c1f3e29a0aa9c1ef1dc8800c5bd733d34597729fdf1a129b71584c098"
+}
