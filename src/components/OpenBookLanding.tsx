@@ -1,9 +1,16 @@
 import { entryChoices, type EntryId } from "../content/entryChoices"
+import { changelogEntries } from "../content/changelog"
+import {
+  appRelease,
+  formatRelease,
+  type AppRelease,
+} from "../release"
 import { Wordmark } from "./Wordmark"
 import { WhyMarkdown } from "./WhyMarkdown"
 
 type OpenBookLandingProps = {
   onChoose: (entryId: EntryId) => void
+  release?: AppRelease
   turningEntryId: EntryId | null
 }
 
@@ -14,6 +21,7 @@ function splitEntryLabel(label: string) {
 
 export function OpenBookLanding({
   onChoose,
+  release = appRelease,
   turningEntryId,
 }: OpenBookLandingProps) {
   const turning = turningEntryId !== null
@@ -80,29 +88,56 @@ export function OpenBookLanding({
           })}
         </ol>
 
-        <nav aria-label="Project links" className="open-book-legal-links">
-          <a
-            aria-label="Source code (AGPL-3.0) on GitHub (opens in a new tab)"
-            className="open-book-legal-links__link"
-            href="https://github.com/jiwonschol/nabimd"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Source code
-          </a>
-          <span aria-hidden="true" className="open-book-legal-links__separator">
-            ·
-          </span>
-          <a
-            aria-label="Third-party licenses (opens in a new tab)"
-            className="open-book-legal-links__link"
-            href="/third-party-licenses.html"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Third-party licenses
-          </a>
-        </nav>
+        <footer className="open-book-footer">
+          <nav aria-label="Project links" className="open-book-legal-links">
+            <a
+              aria-label="Source code (AGPL-3.0) on GitHub (opens in a new tab)"
+              className="open-book-legal-links__link"
+              href="https://github.com/jiwonschol/nabimd"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Source code
+            </a>
+            <span aria-hidden="true" className="open-book-legal-links__separator">
+              ·
+            </span>
+            <a
+              aria-label="Third-party licenses (opens in a new tab)"
+              className="open-book-legal-links__link"
+              href="/third-party-licenses.html"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Third-party licenses
+            </a>
+          </nav>
+
+          <details className="open-book-release">
+            <summary className="open-book-release__summary">
+              <span>{formatRelease(release)}</span>
+              <span aria-hidden="true">·</span>
+              <span>Changelog</span>
+            </summary>
+            <section
+              aria-labelledby="open-book-changelog-title"
+              className="open-book-release__panel"
+            >
+              <h3 id="open-book-changelog-title">What's changed</h3>
+              {changelogEntries.map((entry) => (
+                <article key={`${entry.date}-${entry.title}`}>
+                  <p>{entry.date}</p>
+                  <h4>{entry.title}</h4>
+                  <ul>
+                    {entry.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </section>
+          </details>
+        </footer>
       </section>
     </main>
   )

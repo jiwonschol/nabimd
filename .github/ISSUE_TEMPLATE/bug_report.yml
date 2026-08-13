@@ -1,0 +1,43 @@
+name: Bug report
+description: Something broke, or a correct answer was marked wrong
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where in the app
+      description: >
+        Quote the instruction sentence shown on screen, plus the level —
+        e.g. `Level 2 — "Link the library hours page…"`. That sentence is how
+        we find the exact exercise.
+    validations:
+      required: true
+  - type: textarea
+    id: your-markdown
+    attributes:
+      label: The exact Markdown you typed (for grading issues)
+      description: >
+        Paste your answer exactly as written, unedited. If Check marked a
+        correct answer wrong, this is the single most important field.
+      render: text
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, OS, and input method
+      description: >
+        e.g. "Safari on macOS 15, Korean IME". If you type with a non-English
+        input method, please say so — some grading bugs only happen with IME input.
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: When you were using it (rough date/time + timezone)
+      description: This helps match your visit to a deployment.
