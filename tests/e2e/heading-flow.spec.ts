@@ -165,6 +165,43 @@ test("keeps the landing inside a tablet viewport", async ({ page }) => {
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth)
 })
 
+test("keeps release details inside the desktop and mobile chapter page", async ({
+  page,
+}) => {
+  for (const viewport of [
+    { width: 1280, height: 800 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport)
+    await resetToLanding(page)
+
+    const chapterPage = await page
+      .locator(".open-book-page--chapters")
+      .boundingBox()
+    const releaseDetails = await page
+      .locator(".open-book-release")
+      .boundingBox()
+
+    expect(chapterPage).not.toBeNull()
+    expect(releaseDetails).not.toBeNull()
+    expect(releaseDetails!.x).toBeGreaterThanOrEqual(chapterPage!.x)
+    expect(releaseDetails!.x + releaseDetails!.width).toBeLessThanOrEqual(
+      chapterPage!.x + chapterPage!.width + 1,
+    )
+    expect(releaseDetails!.y + releaseDetails!.height).toBeLessThanOrEqual(
+      chapterPage!.y + chapterPage!.height + 1,
+    )
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth),
+    ).toBeLessThanOrEqual(viewport.width)
+
+    await page.getByText("Changelog").click()
+    await expect(
+      page.getByRole("heading", { name: "What's changed" }),
+    ).toBeVisible()
+  }
+})
+
 test("keeps the landing wordmark clear of the motto in a short book", async ({
   page,
 }) => {

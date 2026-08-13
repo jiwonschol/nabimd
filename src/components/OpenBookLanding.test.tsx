@@ -5,6 +5,31 @@ import { entryChoices } from "../content/entryChoices"
 import { OpenBookLanding } from "./OpenBookLanding"
 
 describe("OpenBookLanding", () => {
+  it("shows the release identifier and opens the user-facing changelog", async () => {
+    const user = userEvent.setup()
+    render(
+      <OpenBookLanding
+        onChoose={vi.fn()}
+        release={{ version: "0.1.0", buildSha: "abc123456789" }}
+        turningEntryId={null}
+      />,
+    )
+
+    expect(screen.getByText("v0.1.0 · abc1234")).toBeVisible()
+    const changelogToggle = screen.getByText("Changelog")
+    const changelog = changelogToggle.closest("details")
+    expect(changelog).not.toHaveAttribute("open")
+
+    await user.click(changelogToggle)
+
+    expect(changelog).toHaveAttribute("open")
+    expect(
+      screen.getByRole("heading", { name: "What's changed" }),
+    ).toBeVisible()
+    expect(screen.getByText("Release details and reporting")).toBeVisible()
+    expect(screen.getByText("A calmer practice workspace")).toBeVisible()
+  })
+
   it("uses every level row as the direct start action", async () => {
     const user = userEvent.setup()
     const onChoose = vi.fn()
