@@ -228,6 +228,15 @@ export function CenterCard({
 
   return (
     <section aria-label="Markdown syntax practice" className="center-card">
+      {/* The practice surface is an open book, the same spread the Greeting
+          uses. The left leaf is what you read — the instruction and the Goal
+          document. The right leaf is what you write — the entry line and the
+          controls that act on it. Keeping the primary action on the leaf its
+          input lives on is the point: a Check stranded at the far edge of the
+          sheet makes the eye cross the whole spread between typing and
+          confirming. On a phone only one leaf is visible at a time, so the two
+          stack in the same order and read as one continuous page. */}
+      <div className="center-card__leaf center-card__leaf--read">
       <header className="center-card__header">
         <div className="center-card__heading">
           {/* `Step x of 6` in the top bar is the only progress label: the
@@ -279,7 +288,9 @@ export function CenterCard({
           </div>
         ) : null}
       </div>
+      </div>
 
+      <div className="center-card__leaf center-card__leaf--write">
       <div className="center-card__line" data-verdict={verdict}>
         {checkpoint.segments.map((segment, segmentIndex) => {
           if (segment.kind === "locked") {
@@ -419,6 +430,7 @@ export function CenterCard({
           </ul>
         </section>
       ) : null}
+      </div>
     </section>
   )
 }

@@ -401,34 +401,79 @@ test("the visible Enter control submits marks with a pointer", async ({
   await expect(page.getByRole("status")).toContainText("Matched")
 })
 
-test("keeps the mark entry stage at the visual center", async ({ page }) => {
+// The exercise is an open book: you read the left leaf and write on the right
+// one, with the fold between them. This replaces the single centred card, whose
+// narrow column left the right-hand leaf empty and read as a void on a wide
+// screen. What must hold now is that each half stays on its own leaf and that
+// the entry line keeps its controls beside it.
+test("lays the exercise across both leaves of the spread", async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
   await enterLevel(page, 1)
 
-  const [card, line, firstBox] = await Promise.all([
-    page.locator(".center-card").boundingBox(),
+  const [readLeaf, writeLeaf, line, firstBox, submit] = await Promise.all([
+    page.locator(".center-card__leaf--read").boundingBox(),
+    page.locator(".center-card__leaf--write").boundingBox(),
     page.locator(".center-card__line").boundingBox(),
     page.locator(".center-card__box").first().boundingBox(),
+    page.getByRole("button", { name: "Check marks" }).boundingBox(),
   ])
 
-  expect(card).not.toBeNull()
-  expect(line).not.toBeNull()
-  expect(firstBox).not.toBeNull()
-  expect(card!.x).toBeGreaterThanOrEqual(48)
-  expect(card!.x + card!.width).toBeLessThanOrEqual(1024 - 48)
-  expect(card!.width).toBeLessThanOrEqual(720)
-  expect(line!.width).toBeLessThanOrEqual(560)
-  expect(
-    Math.abs(
-      line!.x + line!.width / 2 - (card!.x + card!.width / 2),
-    ),
-  ).toBeLessThanOrEqual(2)
+  for (const box of [readLeaf, writeLeaf, line, firstBox, submit]) {
+    expect(box).not.toBeNull()
+  }
+
+  // Two leaves of comparable width, side by side.
+  expect(Math.abs(readLeaf!.width - writeLeaf!.width)).toBeLessThanOrEqual(4)
+  expect(writeLeaf!.x).toBeGreaterThanOrEqual(readLeaf!.x + readLeaf!.width - 4)
+
+  // The entry line belongs to the writing leaf and stays inside it.
+  expect(line!.x).toBeGreaterThanOrEqual(writeLeaf!.x - 1)
+  expect(line!.x + line!.width).toBeLessThanOrEqual(
+    writeLeaf!.x + writeLeaf!.width + 1,
+  )
+
+  // The action stays with its input rather than being stranded at the far edge
+  // of the sheet: that gap is what made the eye cross the whole spread.
+  expect(submit!.y - (line!.y + line!.height)).toBeLessThanOrEqual(768 * 0.15)
+
   expect(firstBox!.width).toBeGreaterThanOrEqual(40)
   expect(firstBox!.height).toBeGreaterThanOrEqual(44)
-  expect(
-    Math.abs(firstBox!.y + firstBox!.height / 2 - 768 / 2),
-  ).toBeLessThanOrEqual(80)
+})
+
+// The mark controls are absolutely positioned at the header's top-right, so they
+// take no layout space and the instruction has to reserve room for them. Widening
+// the line to the full leaf once let the prose run underneath the buttons at the
+// narrow end of the desktop range. Measure the rendered glyphs, not the box: the
+// container spans the leaf whether or not any text reaches the controls.
+test("keeps the instruction clear of the mark controls on a narrow spread", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 800, height: 900 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const collision = await page.evaluate(() => {
+    const leaf = document.querySelector(".center-card__leaf--read")
+    const instruction = leaf?.querySelector(".center-card__instruction")
+    const controls = leaf?.querySelector(".center-card__controls")
+    if (!instruction || !controls) return null
+
+    const buttons = controls.getBoundingClientRect()
+    const range = document.createRange()
+    range.selectNodeContents(instruction)
+
+    let worst = 0
+    for (const line of range.getClientRects()) {
+      const x = Math.min(line.right, buttons.right) - Math.max(line.left, buttons.left)
+      const y = Math.min(line.bottom, buttons.bottom) - Math.max(line.top, buttons.top)
+      if (x > 0 && y > 0) worst = Math.max(worst, Math.min(x, y))
+    }
+    return worst
+  })
+
+  expect(collision).not.toBeNull()
+  expect(collision).toBe(0)
 })
 
 test("makes the rendered Goal more prominent than the locked source phrase", async ({
@@ -509,7 +554,9 @@ test("makes a fenced code Goal more prominent than the locked source phrase", as
   const locked = page.locator(".center-card__locked").first()
 
   await expect(goal).toHaveJSProperty("tagName", "PRE")
-  await expect(goal).toHaveCSS("text-align", "center")
+  // Prose on a book leaf sets flush left. What matters is the size relationship
+  // below, not the alignment the single centred card used to need.
+  await expect(goal).toHaveCSS("text-align", "left")
 
   const [goalSize, lockedSize] = await Promise.all([
     goal.evaluate((element) =>
@@ -565,16 +612,27 @@ test("expands the exact hint below the anchored practice card", async ({
   await resetToLanding(page)
   await enterLevel(page, 1)
 
-  const card = page.locator(".center-card")
-  const before = await card.boundingBox()
+  const line = page.locator(".center-card__line")
+  const before = await line.boundingBox()
   await page.getByRole("button", { name: "Hint" }).click()
-  await expect(page.getByRole("region", { name: "Exact Markdown hint" })).toBeVisible()
-  const after = await card.boundingBox()
+  const hint = page.getByRole("region", { name: "Exact Markdown hint" })
+  await expect(hint).toBeVisible()
+  const [after, hintBox, writeLeaf] = await Promise.all([
+    line.boundingBox(),
+    hint.boundingBox(),
+    page.locator(".center-card__leaf--write").boundingBox(),
+  ])
 
   expect(before).not.toBeNull()
   expect(after).not.toBeNull()
+  // The spread is a fixed opening, so the card can no longer grow taller. The
+  // invariant that still matters is that opening Hint does not shove the entry
+  // line: the hint unfolds beneath it, inside the writing leaf.
   expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(2)
-  expect(after!.height).toBeGreaterThan(before!.height)
+  expect(hintBox!.y).toBeGreaterThanOrEqual(after!.y + after!.height - 1)
+  expect(hintBox!.y + hintBox!.height).toBeLessThanOrEqual(
+    writeLeaf!.y + writeLeaf!.height + 1,
+  )
 })
 
 test("keeps the visible Enter key compact before a verdict", async ({
