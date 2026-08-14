@@ -441,6 +441,41 @@ test("lays the exercise across both leaves of the spread", async ({ page }) => {
   expect(firstBox!.height).toBeGreaterThanOrEqual(44)
 })
 
+// The mark controls are absolutely positioned at the header's top-right, so they
+// take no layout space and the instruction has to reserve room for them. Widening
+// the line to the full leaf once let the prose run underneath the buttons at the
+// narrow end of the desktop range. Measure the rendered glyphs, not the box: the
+// container spans the leaf whether or not any text reaches the controls.
+test("keeps the instruction clear of the mark controls on a narrow spread", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 800, height: 900 })
+  await resetToLanding(page)
+  await enterLevel(page, 1)
+
+  const collision = await page.evaluate(() => {
+    const leaf = document.querySelector(".center-card__leaf--read")
+    const instruction = leaf?.querySelector(".center-card__instruction")
+    const controls = leaf?.querySelector(".center-card__controls")
+    if (!instruction || !controls) return null
+
+    const buttons = controls.getBoundingClientRect()
+    const range = document.createRange()
+    range.selectNodeContents(instruction)
+
+    let worst = 0
+    for (const line of range.getClientRects()) {
+      const x = Math.min(line.right, buttons.right) - Math.max(line.left, buttons.left)
+      const y = Math.min(line.bottom, buttons.bottom) - Math.max(line.top, buttons.top)
+      if (x > 0 && y > 0) worst = Math.max(worst, Math.min(x, y))
+    }
+    return worst
+  })
+
+  expect(collision).not.toBeNull()
+  expect(collision).toBe(0)
+})
+
 test("makes the rendered Goal more prominent than the locked source phrase", async ({
   page,
 }) => {

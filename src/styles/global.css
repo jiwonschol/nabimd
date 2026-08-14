@@ -1878,8 +1878,12 @@ button:focus-visible,
   align-items: flex-start;
 }
 
+/* The leaf is narrower than the old floating card, so the instruction takes the
+   full width of it rather than the card's 38rem measure. The controls sit
+   absolutely at the header's top-right and so occupy no layout space: the line
+   has to keep reserving room for them itself, or it runs underneath them. */
 .center-card__leaf--read .center-card__instruction {
-  max-width: 100%;
+  max-width: calc(100% - 5rem);
   text-align: left;
 }
 
