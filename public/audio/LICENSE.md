@@ -23,3 +23,9 @@ or similar or competing service.
 These audio files are not licensed under this repository's AGPL-3.0-or-later
 code license or CC BY-SA 4.0 content license, and they are not CC0. The Mixkit
 license and terms above govern them.
+
+## Source originals
+
+The repository also stores the unconverted `.wav` originals of the Mixkit
+sounds above — `src/sound/matched.wav`, `src/sound/summary.wav`, and
+`src/sound/tryagain.wav`. The same Mixkit license and terms govern them.
