@@ -48,25 +48,24 @@ describe("VerdictNotice", () => {
     vi.clearAllMocks()
   })
 
-  it("plays the retry and matched cues for their verdict transitions", () => {
+  it("plays the retry cue for a failed verdict", () => {
     const { rerender } = render(renderNotice(null))
 
     rerender(renderNotice(failedEvaluation()))
-    rerender(renderNotice(null))
-    rerender(renderNotice(matchedEvaluation))
 
-    expect(playFeedbackSound).toHaveBeenNthCalledWith(1, "retry")
-    expect(playFeedbackSound).toHaveBeenNthCalledWith(2, "matched")
+    expect(playFeedbackSound).toHaveBeenCalledTimes(1)
+    expect(playFeedbackSound).toHaveBeenCalledWith("retry")
   })
 
-  it("does not replay when a matched evaluation is replaced by another match", () => {
+  it("leaves the matched cue to the submit gesture handler", () => {
+    // Safari rejects unmuted playback started outside a user gesture, so the
+    // card's submit handler owns the matched cue; the notice stays silent.
     const { rerender } = render(renderNotice(null))
 
     rerender(renderNotice(matchedEvaluation))
     rerender(renderNotice({ status: "matched", reviewItems: [] }))
 
-    expect(playFeedbackSound).toHaveBeenCalledTimes(1)
-    expect(playFeedbackSound).toHaveBeenCalledWith("matched")
+    expect(playFeedbackSound).not.toHaveBeenCalled()
   })
 
   it("plays Try again for every failed Check, even when status stays failed", () => {

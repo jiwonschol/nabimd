@@ -23,25 +23,24 @@ export function VerdictNotice({
 }: VerdictNoticeProps) {
   const [matchedVisible, setMatchedVisible] = useState(false)
   const [dismissed, setDismissed] = useState(false)
-  const previousStatus = useRef<Evaluation["status"] | null>(null)
   const soundedEvaluation = useRef<Evaluation | null>(null)
 
+  // The matched cue is played by the card's submit handler, inside the user
+  // gesture (Safari rejects unmuted playback started outside one); this
+  // effect only voices the fail verdict, which cannot start in that handler.
   useEffect(() => {
     if (!evaluation) {
-      previousStatus.current = null
       soundedEvaluation.current = null
       setMatchedVisible(false)
       return
     }
     if (
       soundedEvaluation.current !== evaluation &&
-      (evaluation.status === "fail" ||
-        previousStatus.current !== "matched")
+      evaluation.status === "fail"
     ) {
-      playFeedbackSound(evaluation.status === "matched" ? "matched" : "retry")
+      playFeedbackSound("retry")
     }
     soundedEvaluation.current = evaluation
-    previousStatus.current = evaluation.status
     if (evaluation.status !== "matched") return
     setMatchedVisible(true)
     const timer = window.setTimeout(
