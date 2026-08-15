@@ -120,6 +120,16 @@ button:focus-visible,
   filter: brightness(1.025) saturate(0.96);
 }
 
+/* While practicing, the book closes down to its content: the spread's height
+   follows the problem's copy instead of the viewport (issue #139). The cap
+   keeps a long problem scrolling inside the shell exactly as before, and no
+   fixed pixel height is introduced, so the writing leaf can still grow when
+   the hint side tab from the adopted spread design arrives. */
+.app-shell--practice-fit {
+  height: auto;
+  max-height: calc(100svh - 12px);
+}
+
 .wordmark {
   display: flex;
   align-items: center;
@@ -1691,6 +1701,12 @@ button:focus-visible,
   padding: 0;
   overflow: auto;
   background: transparent;
+
+  /* Each leaf ends where its content ends instead of stretching to its
+     sibling's height (issue #139). The leaves are transparent, so the spread's
+     rectangle — one straight bottom edge for both pages — still comes from the
+     shell, which is as tall as the taller leaf. */
+  align-items: start;
 }
 
 /* One leaf of the spread. The padding mirrors `.open-book-page` so a learner

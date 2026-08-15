@@ -152,7 +152,12 @@ export function EditorialDesk({
 
   return (
     <main
-      className="app-shell app-shell--practice"
+      className={`app-shell app-shell--practice${
+        // While practicing, the book is only as tall as the exercise
+        // (issue #139). Summary keeps the full-height spread: the teacher's
+        // return is a finished page, not a problem-sized card.
+        session.phase === "complete" ? "" : " app-shell--practice-fit"
+      }`}
       data-draft={session.draft}
       data-problem-id={problem.id}
     >
