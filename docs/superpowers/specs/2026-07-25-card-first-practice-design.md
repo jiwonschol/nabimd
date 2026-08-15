@@ -1,7 +1,11 @@
 # Card-first Practice design
 
 **Date:** 2026-07-25  
-**Status:** Approved interaction and Summary direction; implementation pending
+**Status:** Approved interaction and Summary direction; implemented.
+Amended 2026-08-01: the practice surface is the open book's two-leaf spread
+(adopted Codex comp 1, merged as #138), not the single centered card this
+document originally specified. Amended 2026-08-15: the spread's height follows
+the problem's content (#139).
 **Product:** Nabi Markdown
 
 ## Decision
@@ -50,9 +54,24 @@ editor with a syntax card floating over it.
 
 ## Practice surface
 
-Practice uses one centered card on Nabi's warm paper surface. The two-page
-Goal/Write workspace, Write/Preview/Hint tabs, full document scrollers, and
-full-page line-number gutters are not part of the default practice surface.
+Practice fills the two leaves of Nabi's open book, with the fold between
+reading and writing. The left leaf is what you read — the instruction and the
+rendered local context. The right leaf is what you write — the entry line, the
+Hint and Enter actions, and the inline Hint disclosure. On a phone the two
+leaves stack in the same order and read as one continuous page.
+
+The spread is only as tall as the problem it carries: its height follows the
+content instead of the viewport. Zero unused paper below either leaf is the
+visual goal; the measurable bound the e2e guard enforces is that unused height
+stays at or below 25% of each leaf.
+The height is never a fixed pixel value — the writing leaf can still grow when
+the hint side tab from the adopted spread comp (accepted 2026-08-01, not yet
+implemented) arrives, and a long problem scrolls inside the shell.
+
+The old two-page Goal/Write document workspace, Write/Preview/Hint tabs, full
+document scrollers, and full-page line-number gutters remain out of the
+practice surface. The two leaves are not that workspace: each carries card
+content, never a full editable document.
 
 The global session chrome remains available:
 
@@ -63,17 +82,20 @@ The global session chrome remains available:
 - sound
 - change problem
 
-The card is the only primary content region.
+The spread is the only primary content region.
 
 ### Card order
 
-The card contains, in this order:
+The exercise keeps one reading order across the spread:
 
-1. direct instruction
-2. rendered local context
-3. locked prose with Markdown input slots
-4. inline Hint disclosure
-5. previous/current/next mark controls where applicable
+1. direct instruction (reading leaf)
+2. rendered local context (reading leaf)
+3. locked prose with Markdown input slots (writing leaf)
+4. inline Hint disclosure (writing leaf)
+
+The previous/next mark controls are header chrome beside the instruction on
+the reading leaf — rendered before the local context in the DOM — and sit
+outside this exercise reading order.
 
 Labels such as `Instruction` and `Goal` are omitted. The content already
 communicates those roles.
@@ -320,9 +342,12 @@ Mobile and desktop use the same card and state machine.
 
 ### Desktop
 
-- centered card with a bounded reading width
-- generous paper margin
-- no split Goal/Write columns
+- the exercise spans both leaves of the open book: reading left, writing right
+- each leaf keeps a bounded reading width and generous paper margin
+- the spread's height follows the problem's content, top-anchored like the
+  landing book, so opening Hint grows the book downward without moving the
+  entry line
+- no split Goal/Write document columns — the leaves carry card content only
 - no full-document scroll region during practice
 
 ### Mobile

@@ -705,6 +705,55 @@ test("keeps the card and browser chrome inside 1280 by 800", async ({
   expect(pageMetrics.width).toBeLessThanOrEqual(1280)
 })
 
+// The spread's height must follow the problem's content (issue #139). The leaf
+// container stretches to whatever height it is given, so measuring its own box
+// always passes; the honest measure is the bottom of its lowest direct child.
+// Bottom padding is part of the page margin and counts as empty here, which is
+// what keeps this a real ceiling rather than a formality.
+test("keeps both leaves close to their content height", async ({ page }) => {
+  const conditions = [
+    { width: 1440, height: 900, level: 1 },
+    { width: 1280, height: 800, level: 1 },
+    { width: 1280, height: 800, level: 5 },
+  ] as const
+
+  for (const condition of conditions) {
+    await page.setViewportSize({
+      width: condition.width,
+      height: condition.height,
+    })
+    await resetToLanding(page)
+    await enterLevel(page, condition.level)
+
+    for (const leaf of ["read", "write"] as const) {
+      const emptyRatio = await page.evaluate((leafName) => {
+        const element = document.querySelector(
+          `.center-card__leaf--${leafName}`,
+        )
+        if (!element) return null
+        const rect = element.getBoundingClientRect()
+        let lowestBottom = rect.top
+        for (const child of element.children) {
+          const childRect = child.getBoundingClientRect()
+          if (childRect.height === 0 && childRect.width === 0) continue
+          lowestBottom = Math.max(lowestBottom, childRect.bottom)
+        }
+        return (rect.bottom - lowestBottom) / rect.height
+      }, leaf)
+
+      expect(emptyRatio, `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`).not.toBeNull()
+      expect(
+        emptyRatio!,
+        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
+      ).toBeGreaterThanOrEqual(0)
+      expect(
+        emptyRatio!,
+        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
+      ).toBeLessThanOrEqual(0.25)
+    }
+  }
+})
+
 test("uses the same card without horizontal overflow at phone width", async ({
   page,
 }) => {
