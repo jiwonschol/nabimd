@@ -323,6 +323,11 @@ export function useCenterCard({
     // forward after regrowing the document with the corrected mark.
     setViewIndex(count)
 
+    // Every accepted mark answers with the matched cue, mirroring the retry
+    // cue on rejected marks. It must start inside this keystroke's event
+    // handler: Safari silently rejects unmuted playback started outside a
+    // user gesture, so playing from a later effect never makes a sound there.
+    playFeedbackSound("matched")
     onGrow(grown)
     if (count >= checkpoints.length) onComplete(grown)
   }, [
