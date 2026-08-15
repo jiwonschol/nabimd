@@ -745,6 +745,10 @@ test("keeps both leaves close to their content height", async ({ page }) => {
       expect(
         emptyRatio!,
         `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
+      ).toBeGreaterThanOrEqual(0)
+      expect(
+        emptyRatio!,
+        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
       ).toBeLessThanOrEqual(0.25)
     }
   }

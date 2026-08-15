@@ -61,7 +61,9 @@ Hint and Enter actions, and the inline Hint disclosure. On a phone the two
 leaves stack in the same order and read as one continuous page.
 
 The spread is only as tall as the problem it carries: its height follows the
-content instead of the viewport, so no unused paper is left below either leaf.
+content instead of the viewport. Zero unused paper below either leaf is the
+visual goal; the measurable bound the e2e guard enforces is that unused height
+stays at or below 25% of each leaf.
 The height is never a fixed pixel value — the writing leaf can still grow when
 the hint side tab from the adopted spread comp (accepted 2026-08-01, not yet
 implemented) arrives, and a long problem scrolls inside the shell.
@@ -90,7 +92,10 @@ The exercise keeps one reading order across the spread:
 2. rendered local context (reading leaf)
 3. locked prose with Markdown input slots (writing leaf)
 4. inline Hint disclosure (writing leaf)
-5. previous/current/next mark controls where applicable
+
+The previous/next mark controls are header chrome beside the instruction on
+the reading leaf — rendered before the local context in the DOM — and sit
+outside this exercise reading order.
 
 Labels such as `Instruction` and `Goal` are omitted. The content already
 communicates those roles.
