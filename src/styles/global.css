@@ -1750,13 +1750,17 @@ button:focus-visible,
   gap: 0.45rem;
 }
 
+/* The slot controls sit at the top of the writing leaf, right-aligned over
+   the entry line's own column (issue #140). They are ordinary flow content —
+   no absolute positioning — so nothing on either leaf can ever run underneath
+   them and no line has to reserve width for them. */
 .center-card__controls {
-  position: absolute;
-  top: 0;
-  right: 0;
   display: flex;
+  align-self: center;
+  width: min(34rem, 100%);
+  justify-content: flex-end;
   gap: 0.15rem;
-  margin-top: 0.1rem;
+  margin-bottom: calc(-1 * clamp(0.55rem, 1.4vh, 0.9rem));
 }
 
 .center-card__control {
@@ -1790,7 +1794,7 @@ button:focus-visible,
 }
 
 .center-card__instruction {
-  max-width: min(38rem, calc(100% - 5rem));
+  max-width: min(38rem, 100%);
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(1.35rem, 2.6vw, 2rem);
@@ -1895,11 +1899,12 @@ button:focus-visible,
 }
 
 /* The leaf is narrower than the old floating card, so the instruction takes the
-   full width of it rather than the card's 38rem measure. The controls sit
-   absolutely at the header's top-right and so occupy no layout space: the line
-   has to keep reserving room for them itself, or it runs underneath them. */
+   full width of it rather than the card's 38rem measure. It once reserved 5rem
+   against the slot controls floated over its header; those moved to the writing
+   leaf as flow content (issue #140), so nothing overlays this line any more.
+   The clear-of-every-control e2e guard pins that. */
 .center-card__leaf--read .center-card__instruction {
-  max-width: calc(100% - 5rem);
+  max-width: 100%;
   text-align: left;
 }
 

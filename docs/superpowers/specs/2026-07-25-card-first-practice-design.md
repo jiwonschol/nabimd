@@ -57,8 +57,10 @@ editor with a syntax card floating over it.
 Practice fills the two leaves of Nabi's open book, with the fold between
 reading and writing. The left leaf is what you read — the instruction and the
 rendered local context. The right leaf is what you write — the entry line, the
-Hint and Enter actions, and the inline Hint disclosure. On a phone the two
-leaves stack in the same order and read as one continuous page.
+previous/next mark controls, the Hint and Enter actions, and the inline Hint
+disclosure. Every control that acts on the input lives on the leaf the input
+lives on. On a phone the two leaves stack in the same order and read as one
+continuous page.
 
 The spread is only as tall as the problem it carries: its height follows the
 content instead of the viewport. Zero unused paper below either leaf is the
@@ -93,9 +95,10 @@ The exercise keeps one reading order across the spread:
 3. locked prose with Markdown input slots (writing leaf)
 4. inline Hint disclosure (writing leaf)
 
-The previous/next mark controls are header chrome beside the instruction on
-the reading leaf — rendered before the local context in the DOM — and sit
-outside this exercise reading order.
+The previous/next mark controls are chrome at the head of the writing leaf,
+right-aligned over the entry line's column — rendered before the entry line in
+the DOM, so the keyboard reaches "which mark" before the marks themselves —
+and sit outside this exercise reading order.
 
 Labels such as `Instruction` and `Goal` are omitted. The content already
 communicates those roles.

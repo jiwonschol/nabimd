@@ -441,39 +441,83 @@ test("lays the exercise across both leaves of the spread", async ({ page }) => {
   expect(firstBox!.height).toBeGreaterThanOrEqual(44)
 })
 
-// The mark controls are absolutely positioned at the header's top-right, so they
-// take no layout space and the instruction has to reserve room for them. Widening
-// the line to the full leaf once let the prose run underneath the buttons at the
-// narrow end of the desktop range. Measure the rendered glyphs, not the box: the
-// container spans the leaf whether or not any text reaches the controls.
-test("keeps the instruction clear of the mark controls on a narrow spread", async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 800, height: 900 })
-  await resetToLanding(page)
-  await enterLevel(page, 1)
+// The slot controls act on the entry line, so they live on the leaf the line
+// lives on (issue #140). Containment of their boxes in the writing leaf's box
+// is what "on the leaf" means; the read leaf carries no slot controls at all.
+test("keeps the mark controls on the writing leaf", async ({ page }) => {
+  const viewports = [
+    { width: 1440, height: 900 },
+    { width: 1280, height: 800 },
+    { width: 1024, height: 768 },
+  ] as const
 
-  const collision = await page.evaluate(() => {
-    const leaf = document.querySelector(".center-card__leaf--read")
-    const instruction = leaf?.querySelector(".center-card__instruction")
-    const controls = leaf?.querySelector(".center-card__controls")
-    if (!instruction || !controls) return null
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport)
+    await resetToLanding(page)
+    await enterLevel(page, 1)
 
-    const buttons = controls.getBoundingClientRect()
-    const range = document.createRange()
-    range.selectNodeContents(instruction)
+    const [writeLeaf, previous, next] = await Promise.all([
+      page.locator(".center-card__leaf--write").boundingBox(),
+      page.getByRole("button", { name: "Previous mark" }).boundingBox(),
+      page.getByRole("button", { name: "Next mark" }).boundingBox(),
+    ])
 
-    let worst = 0
-    for (const line of range.getClientRects()) {
-      const x = Math.min(line.right, buttons.right) - Math.max(line.left, buttons.left)
-      const y = Math.min(line.bottom, buttons.bottom) - Math.max(line.top, buttons.top)
-      if (x > 0 && y > 0) worst = Math.max(worst, Math.min(x, y))
+    const label = `at ${viewport.width}x${viewport.height}`
+    expect(writeLeaf, label).not.toBeNull()
+    for (const control of [previous, next]) {
+      expect(control, label).not.toBeNull()
+      expect(control!.x, label).toBeGreaterThanOrEqual(writeLeaf!.x - 1)
+      expect(control!.x + control!.width, label).toBeLessThanOrEqual(
+        writeLeaf!.x + writeLeaf!.width + 1,
+      )
+      expect(control!.y, label).toBeGreaterThanOrEqual(writeLeaf!.y - 1)
+      expect(control!.y + control!.height, label).toBeLessThanOrEqual(
+        writeLeaf!.y + writeLeaf!.height + 1,
+      )
     }
-    return worst
-  })
+  }
+})
 
-  expect(collision).not.toBeNull()
-  expect(collision).toBe(0)
+// The instruction once had to reserve width against controls floated over its
+// own header; those controls are gone from the reading leaf (issue #140), but
+// the prose must stay clear of whatever chrome the product renders. Measuring
+// the glyphs against every button on the page keeps this guard meaningful
+// after the move instead of pinning one hard-coded pair.
+test("keeps the instruction clear of every control", async ({ page }) => {
+  const viewports = [
+    { width: 800, height: 900 },
+    { width: 390, height: 844 },
+  ] as const
+
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport)
+    await resetToLanding(page)
+    await enterLevel(page, 1)
+
+    const collision = await page.evaluate(() => {
+      const instruction = document.querySelector(".center-card__instruction")
+      if (!instruction) return null
+      const range = document.createRange()
+      range.selectNodeContents(instruction)
+      const lines = Array.from(range.getClientRects())
+
+      let worst = 0
+      for (const button of document.querySelectorAll("button")) {
+        const box = button.getBoundingClientRect()
+        if (box.width === 0 && box.height === 0) continue
+        for (const line of lines) {
+          const x = Math.min(line.right, box.right) - Math.max(line.left, box.left)
+          const y = Math.min(line.bottom, box.bottom) - Math.max(line.top, box.top)
+          if (x > 0 && y > 0) worst = Math.max(worst, Math.min(x, y))
+        }
+      }
+      return worst
+    })
+
+    const label = `at ${viewport.width}x${viewport.height}`
+    expect(collision, label).not.toBeNull()
+    expect(collision, label).toBe(0)
+  }
 })
 
 test("makes the rendered Goal more prominent than the locked source phrase", async ({
