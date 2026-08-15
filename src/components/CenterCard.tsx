@@ -247,30 +247,6 @@ export function CenterCard({
             {checkpointInstruction.suffix}
           </h2>
         </div>
-        <div className="center-card__controls">
-          <button
-            aria-keyshortcuts="ArrowUp"
-            aria-label="Previous mark"
-            className="center-card__control"
-            data-tooltip="Previous mark (↑)"
-            disabled={!interactive || !canGoToPreviousSlot}
-            onClick={onPreviousSlot}
-            type="button"
-          >
-            <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.8} />
-          </button>
-          <button
-            aria-keyshortcuts="ArrowDown"
-            aria-label="Next mark"
-            className="center-card__control"
-            data-tooltip="Next mark (↓)"
-            disabled={!interactive || !canGoToNextSlot}
-            onClick={onNextSlot}
-            type="button"
-          >
-            <ChevronRight aria-hidden="true" size={17} strokeWidth={1.8} />
-          </button>
-        </div>
       </header>
 
       <div aria-label="Rendered context" className="center-card__context">
@@ -291,6 +267,34 @@ export function CenterCard({
       </div>
 
       <div className="center-card__leaf center-card__leaf--write">
+      {/* The slot controls change which mark the entry line shows, so they sit
+          on the writing leaf with that line (issue #140) — the same reasoning
+          that keeps Check beside its input. They come before the line in the
+          DOM: tabbing reaches "which mark" before the marks themselves. */}
+      <div className="center-card__controls">
+        <button
+          aria-keyshortcuts="ArrowUp"
+          aria-label="Previous mark"
+          className="center-card__control"
+          data-tooltip="Previous mark (↑)"
+          disabled={!interactive || !canGoToPreviousSlot}
+          onClick={onPreviousSlot}
+          type="button"
+        >
+          <ChevronLeft aria-hidden="true" size={17} strokeWidth={1.8} />
+        </button>
+        <button
+          aria-keyshortcuts="ArrowDown"
+          aria-label="Next mark"
+          className="center-card__control"
+          data-tooltip="Next mark (↓)"
+          disabled={!interactive || !canGoToNextSlot}
+          onClick={onNextSlot}
+          type="button"
+        >
+          <ChevronRight aria-hidden="true" size={17} strokeWidth={1.8} />
+        </button>
+      </div>
       <div className="center-card__line" data-verdict={verdict}>
         {checkpoint.segments.map((segment, segmentIndex) => {
           if (segment.kind === "locked") {
