@@ -216,6 +216,34 @@ describe("useCenterCard Hint and retry state", () => {
     expect(playFeedbackSound).toHaveBeenCalledWith("retry")
   })
 
+  it("stays silent when a completed card resubmits its unchanged answer", () => {
+    // Enter held or re-pressed through the Matched beat resubmits the stored
+    // final answer; the duplicate completion is discarded upstream, so the
+    // cue must not restart either.
+    const onGrow = vi.fn()
+    const { result, rerender } = renderHook(
+      ({ draft }) =>
+        useCenterCard({
+          problem: getProblem("l1-italic-paper-boat"),
+          draft,
+          completed: false,
+          onGrow,
+          onComplete: vi.fn(),
+        }),
+      { initialProps: { draft: "" } },
+    )
+    act(() => result.current.editSegment(0, "_"))
+    act(() => result.current.editSegment(1, "_"))
+    act(() => result.current.submit())
+    // The session hands the grown document back, as the app does after an
+    // accepted mark; the card now shows the completed final slot.
+    rerender({ draft: onGrow.mock.lastCall?.[0] ?? "" })
+    act(() => result.current.submit())
+
+    expect(playFeedbackSound).toHaveBeenCalledTimes(1)
+    expect(playFeedbackSound).toHaveBeenCalledWith("matched")
+  })
+
   it("requires both Level 1 paired marks instead of autocompleting the closer", () => {
     const { result } = renderItalicCard()
 

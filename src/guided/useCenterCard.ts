@@ -310,6 +310,11 @@ export function useCenterCard({
       return
     }
 
+    // Holding or re-pressing Enter on a completed card resubmits the stored
+    // answer during the Matched beat; only a newly accepted or corrected mark
+    // deserves the cue, so an unchanged resubmission stays silent.
+    const changesSlot = atFrontier || progress.values[checkpoint.id] !== joined
+
     const values = { ...progress.values, [checkpoint.id]: joined }
     const count = atFrontier ? progress.count + 1 : progress.count
     const nextProgress: SlotProgress = { count, values }
@@ -327,7 +332,7 @@ export function useCenterCard({
     // cue on rejected marks. It must start inside this keystroke's event
     // handler: Safari silently rejects unmuted playback started outside a
     // user gesture, so playing from a later effect never makes a sound there.
-    playFeedbackSound("matched")
+    if (changesSlot) playFeedbackSound("matched")
     onGrow(grown)
     if (count >= checkpoints.length) onComplete(grown)
   }, [
