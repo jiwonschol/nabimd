@@ -76,4 +76,16 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 1
+    # 1 이 아니라 2 인 이유: 1 은 이 레포에서 이미 병목이었다. #135 가 그 기록이다 —
+    # "Dependabot 이 계산은 했지만 open-pull-requests-limit: 1 에 막혀 못 열었던
+    # 3 건을 한 PR 에 담았다. 그대로 두면 월 1 건씩 3 개월이 걸린다." 결국 사람이
+    # 배치로 처리했다.
+    #
+    # 감시 대상이 checkout·setup-node·upload-artifact·github-script 4 종이고,
+    # 메이저가 같은 달에 겹쳐 나온 실적이 있다(2025-10: setup-node v6 + upload-artifact v5).
+    # 최근 12 개월 이 4 종의 메이저 출시는 합계 9 건이다.
+    #
+    # ⚠️ 이 한도는 "열려 있는" PR 을 센다. 머지하지 않고 둔 PR 이 다음 달 슬롯을
+    # 그대로 차지하므로, 2 여도 한 건을 방치하면 실질 슬롯은 1 이 된다. 액션마다
+    # 슬롯을 보장하려면 4 로 올리면 된다 — 숫자 한 줄이다.
+    open-pull-requests-limit: 2
