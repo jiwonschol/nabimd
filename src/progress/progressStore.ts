@@ -495,3 +495,25 @@ export function clearProgress(storage: Storage): void {
     // The in-memory session is still reset even if persisted data remains.
   }
 }
+
+/**
+ * Drop every saved draft while keeping the run itself.
+ *
+ * A draft that makes the app throw is reloaded on the next visit, so without
+ * this the learner is stuck in a loop they cannot escape by refreshing. Levels
+ * and completed problems survive — only the typed text goes.
+ */
+export function clearPersistedDrafts(storage: Storage): void {
+  try {
+    const saved = storage.getItem(PROGRESS_STORAGE_KEY)
+    if (!saved) return
+    const parsed: unknown = JSON.parse(saved)
+    if (!isRecord(parsed)) return
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({ ...parsed, draftByProblemId: {} }),
+    )
+  } catch {
+    // Nothing more to do: the drafts are unreachable either way.
+  }
+}
