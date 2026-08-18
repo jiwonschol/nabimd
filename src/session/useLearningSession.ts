@@ -16,8 +16,11 @@ import {
   problemBank,
   problemBankRevision,
 } from "../content/problemBank"
+import type { GradableProblem } from "../content/types"
 import { evaluateProblem } from "../engine/evaluateProblem"
+import type { Evaluation } from "../engine/types"
 import type { SyntaxMistake } from "../guided/guidedSyntax"
+import { describeDraft, reportError } from "../monitoring/errorMonitoring"
 import { resolveBrowserStorage } from "../progress/browserStorage"
 import {
   loadProgress,
@@ -73,6 +76,34 @@ function isSafeReplacement(leftId: string, rightId: string): boolean {
   const left = getProblem(leftId)
   const right = getProblem(rightId)
   return isEligibleTransferProblem(left, right, left.retryFamily)
+}
+
+/**
+ * Grade an answer, turning a crash into a visible verdict.
+ *
+ * Grading parses the learner's own Markdown, and `check` runs from an event
+ * handler — where a thrown error reaches neither an error boundary nor the
+ * screen. Left alone, a grading bug makes the Check button do nothing at all,
+ * which reads as "the app ignored me" and gives the learner nothing to report.
+ */
+function gradeSafely(problem: GradableProblem, candidate: string): Evaluation {
+  try {
+    return evaluateProblem(problem, candidate)
+  } catch (error) {
+    reportError(error, {
+      problemId: problem.id,
+      ...describeDraft(candidate),
+    })
+    return {
+      status: "fail",
+      feedbackId: "grading-error",
+      message:
+        "Something went wrong while checking this answer, so it could not be " +
+        "graded. Your writing is safe — try Check again, or move on and come " +
+        "back to it.",
+      failures: [],
+    }
+  }
 }
 
 function initializeSession({ storage, seed }: { storage: Storage; seed: number }) {
@@ -334,7 +365,7 @@ export function useLearningSession(
     }
     dispatch({
       type: "checked",
-      evaluation: evaluateProblem(problem, candidate),
+      evaluation: gradeSafely(problem, candidate),
       retryFamily: problem.retryFamily,
     })
   }, [problem, session.draft])
