@@ -76,4 +76,24 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 1
+    # 4 = 감시 대상 액션 1 종당 슬롯 1 개. checkout·setup-node·upload-artifact·
+    # github-script 네 가지를 보고 있으므로, 어느 액션의 PR 이 열린 채 오래 있어도
+    # 다른 액션의 PR 을 막지 못한다.
+    #
+    # 처음엔 1 이었고 그게 이 레포에서 실제로 병목이었다. #135 가 그 기록이다 —
+    # "Dependabot 이 계산은 했지만 open-pull-requests-limit: 1 에 막혀 못 열었던
+    # 3 건을 한 PR 에 담았다. 그대로 두면 월 1 건씩 3 개월이 걸린다." 결국 자동화가
+    # 아니라 사람이 배치로 처리했다.
+    #
+    # ⚠️ 이 한도는 "열려 있는" PR 을 센다 — 머지한 수가 아니라. 그래서 2 로는
+    # 부족하다고 봤다: 한 건을 며칠 열어두면 실질 슬롯이 1 이 되어 위 병목으로
+    # 그대로 되돌아간다. 자리를 비우는 동안 PR 이 열린 채 있는 건 예외가 아니라
+    # 기본값에 가까우므로, 한도를 "동시에 처리할 수 있는 수"가 아니라 "감시 대상
+    # 수"에 맞춘다.
+    #
+    # 실측 근거: 최근 12 개월 이 4 종의 메이저 출시는 합계 9 건이고, 같은 달에
+    # 겹쳐 나온 실적이 있다(2025-10 에 setup-node v6 과 upload-artifact v5).
+    #
+    # 액션을 더 늘리면 이 수도 같이 올린다. npm 항목의 limit 3 과는 무관하다 —
+    # 한도는 updates 항목별로 따로 센다.
+    open-pull-requests-limit: 4
