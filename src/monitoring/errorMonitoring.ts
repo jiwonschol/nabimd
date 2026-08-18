@@ -30,10 +30,6 @@ let status: "idle" | "loading" | "ready" | "disabled" = "idle"
 let capture: CaptureFn | null = null
 const pending: PendingReport[] = []
 
-export function isErrorMonitoringEnabled(): boolean {
-  return Boolean(dsn)
-}
-
 /**
  * Load and configure the SDK. Safe to call when no DSN is configured — local
  * dev and preview deployments simply run without it.
