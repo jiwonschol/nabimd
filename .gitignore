@@ -11,6 +11,7 @@ test-results/
 !.env.example
 
 .superpowers/
+.loop-artifacts/
 
 .DS_Store
 *.local
