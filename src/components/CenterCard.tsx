@@ -116,6 +116,82 @@ export function describeCheckpoint(
   return instruction("Type the Markdown marks for this ", "structure")
 }
 
+export type SyntaxReference = {
+  name: string
+  notation: string
+  example: string
+}
+
+function visibleMark(value: string): string {
+  return value.replace(/ /g, "␠")
+}
+
+function titleCase(value: string): string {
+  return `${value.charAt(0).toUpperCase()}${value.slice(1)}`
+}
+
+export function buildSyntaxReference(
+  checkpoint: SyntaxCheckpoint,
+): SyntaxReference {
+  const groups = inputSegments(checkpoint).map((segment) => segment.value)
+  const instruction = describeCheckpoint(checkpoint)
+  const term = instruction.term
+  const hasInlineCode = groups.some((value) => value.startsWith("`"))
+  const hasLink = groups.some((value) => value.startsWith("["))
+  const isBullet = term === "bullet item"
+  const isNumbered = term === "numbered step"
+  const isBold = term === "bold text"
+  const name =
+    isBullet && hasInlineCode
+      ? "Bullet item with inline code"
+      : isNumbered && hasInlineCode
+        ? "Numbered step with inline code"
+        : isBold && hasLink
+          ? "Bold link"
+          : term === "structure"
+            ? "Markdown structure"
+            : titleCase(term)
+  const headingDepth = /^level (\d) heading$/.exec(term)?.[1]
+  const setextDepth = /^level (\d) Setext heading$/.exec(term)?.[1]
+  const example = setextDepth
+    ? `Example\n${setextDepth === "1" ? "=======" : "-------"}`
+    : headingDepth
+      ? `${"#".repeat(Number(headingDepth))} Example`
+      : name === "Section break"
+        ? "Before\n\n---\n\nAfter"
+        : name.startsWith("Bullet item")
+          ? hasInlineCode
+            ? "- `Example`"
+            : "- Example"
+          : name.startsWith("Numbered step")
+            ? hasInlineCode
+              ? "1. `Example`"
+              : "1. Example"
+            : name === "Block quote"
+              ? "> Example"
+              : name === "Fenced code block"
+                ? "```\nExample\n```"
+                : name === "Italic text"
+                  ? "*Example*"
+                  : name === "Bold text"
+                    ? "**Example**"
+                    : name === "Bold link"
+                      ? "**[Example](https://example.com)**"
+                      : name === "Image"
+                        ? "![Example](image.png)"
+                        : name === "Link"
+                          ? "[Example](https://example.com)"
+                          : name === "Inline code"
+                            ? "`Example`"
+                            : "Example"
+
+  return {
+    name,
+    notation: groups.map(visibleMark).join(" … "),
+    example,
+  }
+}
+
 export function CenterCard({
   checkpoint,
   interactive = true,
@@ -138,6 +214,7 @@ export function CenterCard({
 }: CenterCardProps) {
   const groups = inputSegments(checkpoint)
   const checkpointInstruction = describeCheckpoint(checkpoint)
+  const syntaxReference = buildSyntaxReference(checkpoint)
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
   const [focusedGroup, setFocusedGroup] = useState<number | null>(null)
   const hintId = useId()
@@ -228,16 +305,29 @@ export function CenterCard({
 
   return (
     <section aria-label="Markdown syntax practice" className="center-card">
-      {/* The practice surface is an open book, the same spread the Greeting
-          uses. The left leaf is what you read — the instruction and the Goal
-          document. The right leaf is what you write — the entry line and the
-          controls that act on it. Keeping the primary action on the leaf its
-          input lives on is the point: a Check stranded at the far edge of the
-          sheet makes the eye cross the whole spread between typing and
-          confirming. On a phone only one leaf is visible at a time, so the two
-          stack in the same order and read as one continuous page. */}
+      {/* The left leaf teaches the current Markdown form. The right leaf keeps
+          the complete practice flow together: instruction, Goal context,
+          marks, and confirmation. */}
       <div className="center-card__leaf center-card__leaf--read">
-      <header className="center-card__header">
+        <section
+          aria-label="Current Markdown syntax"
+          className="syntax-reference"
+          role="region"
+        >
+          <p className="syntax-reference__eyebrow">Now learning</p>
+          <p className="syntax-reference__name">{syntaxReference.name}</p>
+          <code className="syntax-reference__notation">
+            {syntaxReference.notation}
+          </code>
+          <div className="syntax-reference__example">
+            <span>Rendered example</span>
+            <RenderedDocumentBody source={syntaxReference.example} />
+          </div>
+        </section>
+      </div>
+
+      <div className="center-card__leaf center-card__leaf--write">
+        <header className="center-card__header">
         <div className="center-card__heading">
           {/* `Step x of 6` in the top bar is the only progress label: the
               marks inside one card never get a second counter. */}
@@ -263,11 +353,8 @@ export function CenterCard({
             <RenderedDocumentBody source={context.after} />
           </div>
         ) : null}
-      </div>
-      </div>
-
-      <div className="center-card__leaf center-card__leaf--write">
-      {/* The slot controls change which mark the entry line shows, so they sit
+        </div>
+        {/* The slot controls change which mark the entry line shows, so they sit
           on the writing leaf with that line (issue #140) — the same reasoning
           that keeps Check beside its input. They come before the line in the
           DOM: tabbing reaches "which mark" before the marks themselves. */}

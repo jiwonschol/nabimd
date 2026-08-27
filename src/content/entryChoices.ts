@@ -1,8 +1,8 @@
 import { problemBank } from "./problemBank"
 import type { CurriculumLevel, NormalizedProblem } from "./types"
-import { createTurnProblemIds, getSyntaxFamily } from "../selection/runComposition"
-import { EXCLUDED_SYNTAX_FAMILIES } from "../selection/runPolicy"
+import { createTurnProblemIds, getChapterFamily } from "../selection/runComposition"
 import { curriculumLevels } from "./curriculumLevels"
+import type { ChapterFamily } from "../selection/runPolicy"
 
 export const entryChoices = curriculumLevels
 
@@ -35,19 +35,12 @@ function getServedProblemsForBank(
 
   let served = servedByLevel.get(level)
   if (!served) {
-    // Drop the isolated single-syntax drills the curriculum retired (numbered
-    // lists). Composite rebuild documents report no single family, so ordered
-    // lists embedded in them are kept.
-    served = problems.filter((problem) => {
-      const family = getSyntaxFamily(problem)
-      if (family !== null && EXCLUDED_SYNTAX_FAMILIES.has(family)) return false
-      // Level 1 promises six short syntax decisions, not six documents whose
-      // repeated markers expand into an unknown number of cards. Composite
-      // practice begins at Level 2.
-      return (
-        level !== 1 || (family !== null && family !== "unordered-list")
-      )
-    })
+    const entry = curriculumLevels.find((candidate) => candidate.level === level)
+    if (!entry) throw new Error(`Unknown chapter: ${level}`)
+    const families: readonly ChapterFamily[] = entry.families
+    served = problems.filter((problem) =>
+      families.includes(getChapterFamily(problem)),
+    )
     servedByLevel.set(level, served)
   }
   return served

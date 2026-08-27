@@ -370,20 +370,12 @@ export function useLearningSession(
     })
   }, [problem, session.draft])
 
-  const requestHint = useCallback(() => {
-    dispatch({ type: "hint-requested" })
-  }, [])
-
   const recordSlotMiss = useCallback(
     (mistakes: readonly SyntaxMistake[] = []) => {
       dispatch({ type: "slot-missed", mistakes })
     },
     [],
   )
-
-  const closeCoach = useCallback(() => {
-    dispatch({ type: "coach-closed" })
-  }, [])
 
   const next = useCallback(() => {
     if (!canAdvance(session)) return
@@ -436,9 +428,7 @@ export function useLearningSession(
     tryAnother,
     edit,
     check,
-    requestHint,
     recordSlotMiss,
-    closeCoach,
     next,
     goToPreviousStep,
     goToNextStep,

@@ -328,11 +328,11 @@ describe("progressStore v5", () => {
   })
 
   it("migrates only legacy auto-generated drafts to Goal-derived starters", () => {
-    const ids = createRunProblemIds("level-3", 0)
+    const ids = createRunProblemIds("level-5", 0)
     const currentProblemId = ids[1]!
     const genuineDraftProblemId = ids[2]!
     const lowLevelProblemId = problemBank.find(
-      (problem) => problem.level === 1,
+      (problem) => problem.level === 1 && !ids.includes(problem.id),
     )!.id
     const legacyProjectedProblemId =
       "l1-thematic-break-breakfast-dessert"
@@ -340,7 +340,7 @@ describe("progressStore v5", () => {
       currentProblemId,
       legacyStarterlessBankRevision,
     )
-    progress.entryId = "level-3"
+    progress.entryId = "level-5"
     progress.runProblemIds = ids
     progress.runStepIndex = 1
     progress.scheduledStepIndex = 1
@@ -363,7 +363,7 @@ describe("progressStore v5", () => {
 
     expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
     expect(loaded.bankRevision).toBe(problemBankRevision)
-    expect(loaded.entryId).toBe("level-3")
+    expect(loaded.entryId).toBe("level-5")
     expect(loaded.runProblemIds).toEqual(ids)
     expect(loaded.runStepIndex).toBe(1)
     expect(loaded.draftByProblemId[currentProblemId]).toBeUndefined()

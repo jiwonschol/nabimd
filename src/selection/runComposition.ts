@@ -1,8 +1,7 @@
 import type { CurriculumLevel, NormalizedProblem } from "../content/types"
 import {
-  getChallengeLevel,
   RUN_POLICY,
-  SYNTAX_FAMILY_WEIGHTS,
+  type ChapterFamily,
   type SyntaxFamily,
 } from "./runPolicy"
 
@@ -54,34 +53,10 @@ export function getSyntaxFamily(
   return null
 }
 
-function getSelectionKey(problem: SchedulableProblem): string {
-  return getSyntaxFamily(problem) ?? problem.retryFamily
-}
-
-type TurnContext = {
-  previousKey: string | null
-  selected: SchedulableProblem[]
-  selectedIds: Set<string>
-}
-
-function appendProblem(
-  context: TurnContext,
-  problem: SchedulableProblem,
-): void {
-  context.selected.push(problem)
-  context.selectedIds.add(problem.id)
-  context.previousKey = getSelectionKey(problem)
-}
-
-function rotatedProblems(
-  problems: readonly SchedulableProblem[],
-  offset: number,
-): SchedulableProblem[] {
-  if (problems.length === 0) return []
-  return Array.from(
-    { length: problems.length },
-    (_, index) => problems[(offset + index) % problems.length]!,
-  )
+export function getChapterFamily(
+  problem: Pick<NormalizedProblem, "skillIds" | "syntaxTokens">,
+): ChapterFamily {
+  return getSyntaxFamily(problem) ?? "composite"
 }
 
 function mixSeed(seed: number, salt: number): number {
@@ -99,342 +74,57 @@ function hashString(value: string): number {
   return hash >>> 0
 }
 
-function seededOffset(length: number, seed: number, salt: number): number {
-  if (length < 2 || seed === 0) return 0
-  return mixSeed(seed, salt) % length
-}
-
-function selectRotatedUniqueProblems(
-  problems: readonly SchedulableProblem[],
-  count: number,
-  offset: number,
-  context: TurnContext,
-): void {
-  const candidates = rotatedProblems(problems, offset)
-  const targetCount = Math.min(count, candidates.length)
-  const initialLength = context.selected.length
-
-  while (
-    context.selected.length < initialLength + targetCount &&
-    context.selectedIds.size < candidates.length
-  ) {
-    const candidate =
-      candidates.find(
-        (problem) =>
-          !context.selectedIds.has(problem.id) &&
-          getSelectionKey(problem) !== context.previousKey,
-      ) ??
-      candidates.find(
-        (problem) =>
-          !context.selectedIds.has(problem.id) &&
-          getSyntaxFamily(problem) === null,
-      )
-    if (!candidate) break
-    appendProblem(context, candidate)
-  }
-}
-
-function selectDistinctChallengeProblems(
-  problems: readonly SchedulableProblem[],
-  count: number,
-  offset: number,
-  context: TurnContext,
-): void {
-  const candidates = rotatedProblems(problems, offset)
-  const targetCount = Math.min(count, candidates.length)
-  const initialLength = context.selected.length
-  const selectedKeys = new Set<string>()
-  const earlierTurnKeys = new Set(
-    context.selected.map((problem) => getSelectionKey(problem)),
+function rotate<T>(values: readonly T[], offset: number): T[] {
+  if (values.length === 0) return []
+  return Array.from(
+    { length: values.length },
+    (_, index) => values[(offset + index) % values.length]!,
   )
-  const orderedKeys = candidates.reduce<string[]>((keys, problem) => {
-    const key = getSelectionKey(problem)
-    if (!keys.includes(key)) keys.push(key)
-    return keys
-  }, [])
-  const turnNumber = Math.floor(offset / Math.max(1, count))
-  const variantsPerKeyPerTurn = Math.ceil(
-    count / Math.max(1, orderedKeys.length),
-  )
-  const variantOffset = turnNumber * variantsPerKeyPerTurn
-
-  while (selectedKeys.size < targetCount) {
-    const key = orderedKeys.find(
-      (candidateKey) =>
-        candidateKey !== context.previousKey &&
-        !earlierTurnKeys.has(candidateKey) &&
-        !selectedKeys.has(candidateKey),
-    )
-    if (!key) break
-    const variants = problems.filter(
-      (problem) => getSelectionKey(problem) === key,
-    )
-    const candidate = rotatedProblems(variants, variantOffset).find(
-      (problem) => !context.selectedIds.has(problem.id),
-    )
-    if (!candidate) break
-    appendProblem(context, candidate)
-    selectedKeys.add(key)
-  }
-
-  while (context.selected.length < initialLength + targetCount) {
-    const candidate =
-      candidates.find(
-        (problem) =>
-          !context.selectedIds.has(problem.id) &&
-          !earlierTurnKeys.has(getSelectionKey(problem)) &&
-          getSelectionKey(problem) !== context.previousKey,
-      ) ??
-      candidates.find(
-        (problem) =>
-          !context.selectedIds.has(problem.id) &&
-          !earlierTurnKeys.has(getSelectionKey(problem)) &&
-          getSyntaxFamily(problem) === null,
-      )
-    if (!candidate) break
-    appendProblem(context, candidate)
-  }
 }
 
-type WeightedSelectionState = {
-  familySelectionCounts: Map<SyntaxFamily, number>
-  scores: Map<SyntaxFamily, number>
+function selectionKey(problem: SchedulableProblem): string {
+  return getSyntaxFamily(problem) ?? problem.retryFamily
 }
 
-type TurnSelectionHistory = {
-  nextTurn: number
-  previousKey: string | null
-  selectedIdsByTurn: string[][]
-  weightedState: WeightedSelectionState
-  compositeSelectionCounts: Map<string, number>
-}
-
-const selectionHistoryByBank = new WeakMap<
-  readonly SchedulableProblem[],
-  Map<string, TurnSelectionHistory>
->()
-
-function getTurnSelectionHistory(
+/**
+ * Interleave syntax/retry families once, then take consecutive six-card
+ * windows. A chapter with at least 30 cards yields five non-repeating turns
+ * before it wraps, while a fixed seed keeps reloads deterministic.
+ */
+function chapterOrder(
   problems: readonly SchedulableProblem[],
-  level: CurriculumLevel,
   seed: number,
-): TurnSelectionHistory {
-  let byLevel = selectionHistoryByBank.get(problems)
-  if (!byLevel) {
-    byLevel = new Map()
-    selectionHistoryByBank.set(problems, byLevel)
-  }
-
-  const historyKey = `${level}:${seed}`
-  let history = byLevel.get(historyKey)
-  if (!history) {
-    history = {
-      nextTurn: 0,
-      previousKey: null,
-      selectedIdsByTurn: [],
-      weightedState: createWeightedSelectionState(),
-      compositeSelectionCounts: new Map(),
-    }
-    byLevel.set(historyKey, history)
-  }
-  return history
-}
-
-function createWeightedSelectionState(): WeightedSelectionState {
-  return {
-    familySelectionCounts: new Map(),
-    scores: new Map(),
-  }
-}
-
-function selectWeightedAtLevelProblems(
-  problems: readonly SchedulableProblem[],
-  count: number,
-  context: TurnContext,
-  state: WeightedSelectionState,
-  seed: number,
-): void {
-  const groups = new Map<SyntaxFamily, SchedulableProblem[]>()
+): SchedulableProblem[] {
+  const groups = new Map<string, SchedulableProblem[]>()
   for (const problem of problems) {
-    const family = getSyntaxFamily(problem)
-    if (!family) continue
-    const group = groups.get(family) ?? []
+    const key = selectionKey(problem)
+    const group = groups.get(key) ?? []
     group.push(problem)
-    groups.set(family, group)
+    groups.set(key, group)
   }
 
-  const availableFamilies = [...groups.keys()]
-  if (availableFamilies.length === 0) return
+  const keys = [...groups.keys()].sort((left, right) => {
+    const difference =
+      mixSeed(seed, hashString(left)) - mixSeed(seed, hashString(right))
+    return difference === 0 ? left.localeCompare(right) : difference
+  })
+  const orderedGroups = keys.map((key) => {
+    const group = groups.get(key)!
+    return rotate(group, mixSeed(seed, hashString(key)) % group.length)
+  })
+  const ordered: SchedulableProblem[] = []
 
-  const familyOrder =
-    seed === 0
-      ? [...availableFamilies]
-      : [...availableFamilies].sort((left, right) => {
-          const difference =
-            mixSeed(seed, hashString(left)) - mixSeed(seed, hashString(right))
-          return difference === 0 ? left.localeCompare(right) : difference
-        })
-  const familyRank = new Map(
-    familyOrder.map((family, index) => [family, index]),
-  )
-
-  for (const family of availableFamilies) {
-    if (!state.scores.has(family)) state.scores.set(family, 0)
-    if (!state.familySelectionCounts.has(family)) {
-      state.familySelectionCounts.set(family, 0)
+  for (let index = 0; ordered.length < problems.length; index += 1) {
+    for (const group of orderedGroups) {
+      const problem = group[index]
+      if (problem) ordered.push(problem)
     }
   }
-  const totalWeight = availableFamilies.reduce(
-    (sum, family) => sum + SYNTAX_FAMILY_WEIGHTS[family],
-    0,
-  )
-  const usedThisTurn = new Map<SyntaxFamily, number>()
-
-  for (let slot = 0; slot < count; slot += 1) {
-    for (const family of availableFamilies) {
-      state.scores.set(
-        family,
-        state.scores.get(family)! + SYNTAX_FAMILY_WEIGHTS[family],
-      )
-    }
-
-    const eligible = availableFamilies.filter((family) => {
-      if (family === context.previousKey) return false
-      if ((usedThisTurn.get(family) ?? 0) >= 2) return false
-      return groups
-        .get(family)!
-        .some((problem) => !context.selectedIds.has(problem.id))
-    })
-    const unused = eligible.filter(
-      (family) => (usedThisTurn.get(family) ?? 0) === 0,
-    )
-    const candidates = unused.length > 0 ? unused : eligible
-    if (candidates.length === 0) break
-
-    const selectedFamily = candidates.reduce((best, family) => {
-      const scoreDifference =
-        state.scores.get(family)! - state.scores.get(best)!
-      if (scoreDifference > 0) return family
-      if (scoreDifference < 0) return best
-      return familyRank.get(family)! < familyRank.get(best)! ? family : best
-    }, candidates[0]!)
-    const group = groups.get(selectedFamily)!
-    const selectionCount = state.familySelectionCounts.get(selectedFamily)!
-    const variantOffset = seededOffset(
-      group.length,
-      seed,
-      hashString(selectedFamily),
-    )
-    const problem = Array.from(
-      { length: group.length },
-      (_, index) =>
-        group[(variantOffset + selectionCount + index) % group.length]!,
-    ).find((candidate) => !context.selectedIds.has(candidate.id))
-    if (!problem) break
-
-    appendProblem(context, problem)
-    state.familySelectionCounts.set(selectedFamily, selectionCount + 1)
-    state.scores.set(
-      selectedFamily,
-      state.scores.get(selectedFamily)! - totalWeight,
-    )
-    usedThisTurn.set(
-      selectedFamily,
-      (usedThisTurn.get(selectedFamily) ?? 0) + 1,
-    )
-  }
-}
-
-function selectLevelTwoProblems(
-  problems: readonly SchedulableProblem[],
-  runNumber: number,
-  context: TurnContext,
-  state: WeightedSelectionState,
-  compositeSelectionCounts: Map<string, number>,
-  seed: number,
-): void {
-  const compositeProblems = problems.filter(
-    (problem) => getSyntaxFamily(problem) === null,
-  )
-  const compositeGroups = new Map<string, SchedulableProblem[]>()
-  for (const problem of compositeProblems) {
-    const group = compositeGroups.get(problem.retryFamily) ?? []
-    group.push(problem)
-    compositeGroups.set(problem.retryFamily, group)
-  }
-  const familyKeys = [...compositeGroups.keys()]
-  const familyOffset =
-    runNumber * RUN_POLICY.atLevelCount +
-    seededOffset(familyKeys.length, seed, 2_001)
-  const orderedFamilyKeys =
-    familyKeys.length === 0
-      ? []
-      : Array.from(
-          { length: familyKeys.length },
-          (_, index) => familyKeys[(familyOffset + index) % familyKeys.length]!,
-        )
-  const usedFamilies = new Set<string>()
-  const targetCompositeCount = Math.min(
-    RUN_POLICY.atLevelCount,
-    compositeProblems.length,
-  )
-
-  while (context.selected.length < targetCompositeCount) {
-    const familiesWithCandidate = orderedFamilyKeys.filter((family) =>
-      compositeGroups
-        .get(family)!
-        .some((problem) => !context.selectedIds.has(problem.id)),
-    )
-    const eligibleFamilies = familiesWithCandidate.filter(
-      (family) => family !== context.previousKey,
-    )
-    const unusedFamilies = eligibleFamilies.filter(
-      (family) => !usedFamilies.has(family),
-    )
-    const candidates =
-      unusedFamilies.length > 0
-        ? unusedFamilies
-        : eligibleFamilies.length > 0
-          ? eligibleFamilies
-          : familiesWithCandidate
-    const selectedFamily = candidates[0]
-    if (!selectedFamily) break
-
-    const group = compositeGroups.get(selectedFamily)!
-    const selectionCount = compositeSelectionCounts.get(selectedFamily) ?? 0
-    const variantOffset = seededOffset(
-      group.length,
-      seed,
-      hashString(selectedFamily),
-    )
-    const candidate = rotatedProblems(
-      group,
-      variantOffset + selectionCount,
-    ).find((problem) => !context.selectedIds.has(problem.id))
-    if (!candidate) break
-
-    appendProblem(context, candidate)
-    compositeSelectionCounts.set(selectedFamily, selectionCount + 1)
-    usedFamilies.add(selectedFamily)
-  }
-  if (context.selected.length === RUN_POLICY.atLevelCount) return
-
-  // The accepted bank still contains legacy single-syntax Level 2 lessons.
-  // Prefer real rebuilds as they arrive, then fill only the remaining slots.
-  const singleSyntaxProblems = problems.filter(
-    (problem) => getSyntaxFamily(problem) !== null,
-  )
-  selectWeightedAtLevelProblems(
-    singleSyntaxProblems,
-    RUN_POLICY.atLevelCount - context.selected.length,
-    context,
-    state,
-    seed,
-  )
+  return ordered
 }
 
 export function createTurnProblemIds(
-  level: CurriculumLevel,
+  chapter: CurriculumLevel,
   runNumber: number,
   problems: readonly SchedulableProblem[],
   seed = 0,
@@ -449,73 +139,15 @@ export function createTurnProblemIds(
   const standardProblems = problems.filter(
     (problem) => problem.flavor === "standard",
   )
-  const atLevelProblems = standardProblems.filter(
-    (problem) => problem.level === level,
+  if (standardProblems.length === 0) {
+    throw new Error(`No standard problems available for chapter-${chapter}`)
+  }
+
+  const ordered = chapterOrder(standardProblems, seed)
+  const count = Math.min(RUN_POLICY.turnSize, ordered.length)
+  const offset = (runNumber * RUN_POLICY.turnSize) % ordered.length
+  return Array.from(
+    { length: count },
+    (_, index) => ordered[(offset + index) % ordered.length]!.id,
   )
-  if (atLevelProblems.length === 0) {
-    throw new Error(`No standard problems available for level-${level}`)
-  }
-
-  const challengeLevel = getChallengeLevel(level)
-  const challengeProblems =
-    challengeLevel === null
-      ? []
-      : standardProblems.filter((problem) => problem.level === challengeLevel)
-  const history = getTurnSelectionHistory(problems, level, seed)
-
-  // Compute only turns not already cached for this immutable problem bank.
-  // This preserves deterministic cross-turn weighting and family boundaries
-  // without replaying the complete history on every request.
-  while (history.nextTurn <= runNumber) {
-    const turn = history.nextTurn
-    const context: TurnContext = {
-      previousKey: history.previousKey,
-      selected: [],
-      selectedIds: new Set(),
-    }
-
-    if (level === 1) {
-      selectWeightedAtLevelProblems(
-        atLevelProblems,
-        RUN_POLICY.atLevelCount,
-        context,
-        history.weightedState,
-        seed,
-      )
-    } else if (level === 2) {
-      selectLevelTwoProblems(
-        atLevelProblems,
-        turn,
-        context,
-        history.weightedState,
-        history.compositeSelectionCounts,
-        seed,
-      )
-    } else {
-      selectRotatedUniqueProblems(
-        atLevelProblems,
-        level === 5 ? RUN_POLICY.turnSize : RUN_POLICY.atLevelCount,
-        turn *
-          (level === 5 ? RUN_POLICY.turnSize : RUN_POLICY.atLevelCount) +
-          seededOffset(atLevelProblems.length, seed, level * 1_001),
-        context,
-      )
-    }
-
-    if (challengeProblems.length > 0) {
-      selectDistinctChallengeProblems(
-        challengeProblems,
-        RUN_POLICY.challengeCount,
-        turn * RUN_POLICY.challengeCount +
-          seededOffset(challengeProblems.length, seed, 5_001),
-        context,
-      )
-    }
-
-    history.previousKey = context.previousKey
-    history.selectedIdsByTurn.push(context.selected.map(({ id }) => id))
-    history.nextTurn += 1
-  }
-
-  return [...history.selectedIdsByTurn[runNumber]!]
 }

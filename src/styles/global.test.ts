@@ -320,13 +320,14 @@ describe("global responsive styles", () => {
     )
   })
 
-  it("keeps the Landing and Practice pages in the same book geometry", () => {
+  it("narrows Practice without changing the Landing book geometry", () => {
     expect(styles).toMatch(
       /\.app-shell\.open-book-shell\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 96rem\)/s,
     )
     expect(styles).toMatch(
-      /\.app-shell--practice\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 96rem\)/s,
+      /\.app-shell\.app-shell--practice\s*\{[^{}]*width:\s*min\(calc\(100% - 12px\), 84rem\)/s,
     )
+    expect(styles).not.toMatch(/(?:^|\n)\.open-book-shell\s*\{[^{}]*104rem/s)
     expect(styles).not.toMatch(
       /\.app-shell--practice\s*\{[^{}]*max-width:\s*none/s,
     )

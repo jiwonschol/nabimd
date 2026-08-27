@@ -46,7 +46,7 @@ function authoredWordCount(source: string) {
 }
 
 describe("compiled five-level problem bank", () => {
-  it("publishes the accepted batches and serves only budget-compliant problems", () => {
+  it("serves every accepted problem inside the reviewed short-document budget", () => {
     expect(tracker.acceptedTotal).toBe(372)
     expect(tracker.counts.byLevel).toEqual({
       1: 140,
@@ -55,11 +55,10 @@ describe("compiled five-level problem bank", () => {
       4: 32,
       5: 22,
     })
-    // Published evidence stays immutable; runtime retires the over-length
-    // document-era problems (2026-07-22 redesign), so the served bank is the
-    // budget-compliant subset of the tracker.
+    // The chapter curriculum restores the 30 reviewed upper-chapter records
+    // that the old level-specific runtime ceiling discarded.
     expect(problemBank.every(withinRuntimeBudget)).toBe(true)
-    const servedByLevel = { 1: 140, 2: 148, 3: 30, 4: 12, 5: 12 } as const
+    const servedByLevel = { 1: 140, 2: 148, 3: 30, 4: 32, 5: 22 } as const
     expect(problemBank).toHaveLength(
       Object.values(servedByLevel).reduce((sum, count) => sum + count, 0),
     )
@@ -113,18 +112,16 @@ describe("compiled five-level problem bank", () => {
         (problem) => problem.familyId === "readable-human-document",
       ),
     ).toHaveLength(trackedFamilies["readable-human-document"] ?? 0)
-    // Document-length specs and work orders remain tracked evidence but are
-    // retired from runtime by the budget filter.
     expect(
       getProblemsForLevel(4).filter(
         (problem) => problem.familyId === "executable-development-spec",
       ),
-    ).toHaveLength(0)
+    ).toHaveLength(trackedFamilies["executable-development-spec"] ?? 0)
     expect(
       getProblemsForLevel(5).filter(
         (problem) => problem.familyId === "agent-ready-work-order",
       ),
-    ).toHaveLength(0)
+    ).toHaveLength(trackedFamilies["agent-ready-work-order"] ?? 0)
     expect(
       getProblemsForLevel(4).filter(
         (problem) => problem.familyId === "workplace-notes",
@@ -242,8 +239,8 @@ describe("compiled five-level problem bank", () => {
   it("keeps every served advanced Goal inside the current practice ceiling", () => {
     const ceilings = {
       3: { lines: 28, words: 150 },
-      4: { lines: 20, words: 120 },
-      5: { lines: 20, words: 120 },
+      4: { lines: 40, words: 165 },
+      5: { lines: 40, words: 165 },
     } as const
 
     for (const problem of problemBank.filter(

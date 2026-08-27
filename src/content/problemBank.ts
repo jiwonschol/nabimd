@@ -27,8 +27,8 @@ export const RUNTIME_TARGET_BUDGETS: Readonly<
   1: { maxLines: 5 },
   2: { maxLines: 14 },
   3: { maxLines: 28 },
-  4: { maxLines: 20, maxWords: 120 },
-  5: { maxLines: 20, maxWords: 120 },
+  4: { maxLines: 40, maxWords: 165 },
+  5: { maxLines: 40, maxWords: 165 },
 }
 
 export function withinRuntimeBudget(
