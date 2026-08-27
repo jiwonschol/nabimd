@@ -70,6 +70,26 @@ describe("chapter run composition", () => {
     expect(second.every((id) => !first.includes(id))).toBe(true)
   })
 
+  it("keeps imbalanced chapter families mixed after smaller groups exhaust", () => {
+    const bank = [
+      ...Array.from({ length: 44 }, (_, index) =>
+        problem(`heading-${index}`, 1, ["heading-h1"]),
+      ),
+      ...Array.from({ length: 24 }, (_, index) =>
+        problem(`bold-${index}`, 1, ["bold-emphasis"]),
+      ),
+      ...Array.from({ length: 12 }, (_, index) =>
+        problem(`italic-${index}`, 1, ["italic-emphasis"]),
+      ),
+    ]
+    const family = (id: string) => id.split("-")[0]
+
+    for (const runNumber of [10, 11, 12]) {
+      const families = createTurnProblemIds(1, runNumber, bank, 0).map(family)
+      expect(new Set(families).size, `run ${runNumber}`).toBeGreaterThan(1)
+    }
+  })
+
   it("rejects an empty chapter pool", () => {
     expect(() => createTurnProblemIds(3, 0, [], 0)).toThrow(
       "No standard problems available for chapter-3",

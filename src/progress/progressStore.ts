@@ -5,6 +5,7 @@ import {
 import {
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
+  preChapterProblemBankRevision,
   preStarterProjectionProblemBankRevision,
   problemBankRevision,
 } from "../content/problemBank"
@@ -414,6 +415,69 @@ function migrateStarterProjectionRevision(
   }
 }
 
+function migratePreChapterRevision(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+  expectedBankRevision: string,
+  expectedRunSeed: number,
+): unknown {
+  if (
+    expectedBankRevision !== problemBankRevision ||
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.bankRevision !== preChapterProblemBankRevision ||
+    !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const firstProblemId = validProblemIds.values().next().value
+  const fallback = createDefaultProgress(
+    firstProblemId ?? "l1-heading-apple",
+    expectedBankRevision,
+    expectedRunSeed,
+  )
+  const draftByProblemId = Object.fromEntries(
+    Object.entries(value.draftByProblemId).filter(
+      (entry): entry is [string, string] =>
+        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
+    ),
+  )
+
+  if (
+    typeof value.entryId !== "string" ||
+    !isEntryId(value.entryId) ||
+    !isNonnegativeSafeInteger(value.runStartedAtMs)
+  ) {
+    return { ...fallback, draftByProblemId }
+  }
+
+  const runNumber =
+    isNonnegativeSafeInteger(value.runNumber) &&
+    value.runNumber <= MAX_PERSISTED_RUN_NUMBER
+      ? value.runNumber
+      : 0
+  const runProblemIds = createRunProblemIds(
+    value.entryId,
+    runNumber,
+    expectedRunSeed,
+  )
+  const currentProblemId = runProblemIds[0] ?? fallback.currentProblemId
+
+  return {
+    ...createDefaultProgress(
+      currentProblemId,
+      expectedBankRevision,
+      expectedRunSeed,
+    ),
+    entryId: value.entryId,
+    runNumber,
+    runProblemIds,
+    runStartedAtMs: value.runStartedAtMs,
+    draftByProblemId,
+  }
+}
+
 /**
  * The run seed the persisted progress record was generated under, or `null`
  * when no seed-bearing v5 record is stored. Legacy records written before
@@ -459,7 +523,12 @@ export function loadProgress(
       migratePendingSlotRetry(
         migrateLegacyRunSeed(
           migrateStarterProjectionRevision(
-            JSON.parse(saved),
+            migratePreChapterRevision(
+              JSON.parse(saved),
+              validProblemIds,
+              expectedBankRevision,
+              expectedRunSeed,
+            ),
             validProblemIds,
             expectedBankRevision,
           ),

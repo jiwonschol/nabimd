@@ -76,6 +76,23 @@ export const problemBankRevision = [
   `starter-projection@${STARTER_PROJECTION_REVISION}`,
 ].join("|")
 
+// The last runtime before levels became syntax chapters filtered Level 4–5
+// at 20 lines / 120 words. Keep its exact revision derivable from immutable
+// published problems so the one-way progress migration does not depend on a
+// hand-copied hash or accept unrelated stale records.
+export const preChapterProblemBankRevision = [
+  problemBank
+    .filter((problem) => {
+      if (problem.level < 4) return true
+      const lines = problem.target.split("\n").length
+      const words = problem.target.split(/\s+/).filter(Boolean).length
+      return lines <= 20 && words <= 120
+    })
+    .map((problem) => `${problem.id}@${problem.revision}`)
+    .join("|"),
+  `starter-projection@${STARTER_PROJECTION_REVISION}`,
+].join("|")
+
 export function getProblem(id: string): NormalizedProblem {
   const problem = problemBank.find((candidate) => candidate.id === id)
   if (!problem) throw new Error(`Unknown problem: ${id}`)

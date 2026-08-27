@@ -327,10 +327,64 @@ describe("progressStore v5", () => {
     ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
+  it("keeps learner drafts while resetting a pre-chapter active schedule", () => {
+    const preChapterRevision = [
+      problemBank
+        .filter((problem) => {
+          if (problem.level < 4) return true
+          const lines = problem.target.split("\n").length
+          const words = problem.target.split(/\s+/).filter(Boolean).length
+          return lines <= 20 && words <= 120
+        })
+        .map((problem) => `${problem.id}@${problem.revision}`)
+        .join("|"),
+      "starter-projection@2",
+    ].join("|")
+    const oldRun = createRunProblemIds("level-5", 0, 0)
+    const savedDraftProblemId = oldRun[1]!
+    const progress = createDefaultProgress(
+      oldRun[0]!,
+      preChapterRevision,
+      0,
+    )
+    progress.entryId = "level-5"
+    progress.runProblemIds = oldRun
+    progress.runStepIndex = 1
+    progress.scheduledStepIndex = 1
+    progress.currentProblemId = oldRun[1]!
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[savedDraftProblemId] =
+      "## Learner-authored draft"
+    saveProgress(storage, progress)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+      problemBankRevision,
+      0,
+    )
+
+    expect(preChapterRevision).not.toBe(problemBankRevision)
+    expect(loaded.bankRevision).toBe(problemBankRevision)
+    expect(loaded.entryId).toBe("level-5")
+    expect(loaded.runProblemIds).toEqual(createRunProblemIds("level-5", 0, 0))
+    expect(loaded.runStepIndex).toBe(0)
+    expect(loaded.scheduledStepIndex).toBe(0)
+    expect(loaded.draftByProblemId[savedDraftProblemId]).toBe(
+      "## Learner-authored draft",
+    )
+  })
+
   it("migrates only legacy auto-generated drafts to Goal-derived starters", () => {
-    const ids = createRunProblemIds("level-5", 0)
-    const currentProblemId = ids[1]!
-    const genuineDraftProblemId = ids[2]!
+    const seededRun = Array.from({ length: 1_000 }, (_, seed) => ({
+      ids: createRunProblemIds("level-5", 0, seed),
+      seed,
+    })).find(({ ids }) => ids.some((id) => getProblem(id).level >= 3))!
+    const { ids, seed } = seededRun
+    const currentProblemId = ids.find((id) => getProblem(id).level >= 3)!
+    const currentIndex = ids.indexOf(currentProblemId)
+    const genuineDraftProblemId = ids.find((id) => id !== currentProblemId)!
     const lowLevelProblemId = problemBank.find(
       (problem) => problem.level === 1 && !ids.includes(problem.id),
     )!.id
@@ -339,11 +393,12 @@ describe("progressStore v5", () => {
     const progress = createDefaultProgress(
       currentProblemId,
       legacyStarterlessBankRevision,
+      seed,
     )
     progress.entryId = "level-5"
     progress.runProblemIds = ids
-    progress.runStepIndex = 1
-    progress.scheduledStepIndex = 1
+    progress.runStepIndex = currentIndex
+    progress.scheduledStepIndex = currentIndex
     progress.runStartedAtMs = 1_000
     progress.draftByProblemId = {
       [currentProblemId]: "",
@@ -359,13 +414,14 @@ describe("progressStore v5", () => {
       validProblemIds,
       isEligibleTransferProblemId,
       problemBankRevision,
+      seed,
     )
 
     expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
     expect(loaded.bankRevision).toBe(problemBankRevision)
     expect(loaded.entryId).toBe("level-5")
     expect(loaded.runProblemIds).toEqual(ids)
-    expect(loaded.runStepIndex).toBe(1)
+    expect(loaded.runStepIndex).toBe(currentIndex)
     expect(loaded.draftByProblemId[currentProblemId]).toBeUndefined()
     expect(loaded.draftByProblemId[genuineDraftProblemId]).toBe(
       "## Genuine learner draft",

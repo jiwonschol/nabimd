@@ -52,6 +52,19 @@ describe("CenterCard", () => {
     expect(reference.querySelector("em")).toHaveTextContent("Example")
   })
 
+  it("shows every required mark in a mixed checkpoint example", () => {
+    const target = "- **Changed:** adapter boundary"
+    const checkpoint = deriveSyntaxCheckpoints(
+      target,
+      "Changed: adapter boundary",
+    )[0]!
+    const reference = centerCardModule.buildSyntaxReference(checkpoint)
+
+    expect(reference.name).toBe("Bullet item + Bold text")
+    expect(reference.notation).toBe("-␠ … ** … **")
+    expect(reference.example).toBe(target)
+  })
+
   it("maps every served problem checkpoint to a concrete syntax reference", () => {
     const buildSyntaxReference = (
       centerCardModule as typeof centerCardModule & {

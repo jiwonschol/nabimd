@@ -15,7 +15,7 @@ import { playPageTurnSound } from "./sound/pageTurnSound"
 export const PAGE_TURN_DURATION_MS = 720
 export const REDUCED_PAGE_TURN_DURATION_MS = 120
 
-const HISTORY_MARKER = "nabimd-practice-v1"
+const HISTORY_MARKER = "nabimd-practice-v2"
 
 type LearningSessionController = ReturnType<typeof useLearningSession>
 

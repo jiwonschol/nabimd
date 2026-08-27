@@ -87,9 +87,10 @@ function selectionKey(problem: SchedulableProblem): string {
 }
 
 /**
- * Interleave syntax/retry families once, then take consecutive six-card
- * windows. A chapter with at least 30 cards yields five non-repeating turns
- * before it wraps, while a fixed seed keeps reloads deterministic.
+ * Distribute syntax/retry families across the whole chapter in proportion to
+ * their pool sizes, then take consecutive six-card windows. This avoids a
+ * homogeneous tail when a large family outlives smaller ones. A chapter with
+ * at least 30 cards still yields five non-repeating turns before it wraps.
  */
 function chapterOrder(
   problems: readonly SchedulableProblem[],
@@ -110,17 +111,33 @@ function chapterOrder(
   })
   const orderedGroups = keys.map((key) => {
     const group = groups.get(key)!
-    return rotate(group, mixSeed(seed, hashString(key)) % group.length)
+    return {
+      key,
+      problems: rotate(group, mixSeed(seed, hashString(key)) % group.length),
+      selected: 0,
+      weight: group.length,
+    }
   })
   const ordered: SchedulableProblem[] = []
+  const totalWeight = problems.length
 
-  for (let index = 0; ordered.length < problems.length; index += 1) {
-    for (const group of orderedGroups) {
-      const problem = group[index]
-      if (problem) ordered.push(problem)
-    }
+  while (ordered.length < problems.length) {
+    const position = ordered.length + 1
+    const available = orderedGroups.filter(
+      (group) => group.selected < group.problems.length,
+    )
+    const selectedGroup = available.reduce((best, group) => {
+      const score = position * group.weight - group.selected * totalWeight
+      const bestScore =
+        position * best.weight - best.selected * totalWeight
+      if (score !== bestScore) return score > bestScore ? group : best
+      return group.key < best.key ? group : best
+    }, available[0]!)
+    ordered.push(selectedGroup.problems[selectedGroup.selected]!)
+    selectedGroup.selected += 1
   }
-  return ordered
+  const offset = seed === 0 ? 0 : mixSeed(seed, 7_919) % ordered.length
+  return rotate(ordered, offset)
 }
 
 export function createTurnProblemIds(

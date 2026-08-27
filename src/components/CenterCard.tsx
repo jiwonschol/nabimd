@@ -7,10 +7,11 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react"
-import type {
-  CheckpointContext,
-  CheckpointHintRow,
-  SyntaxCheckpoint,
+import {
+  syntaxGroupTerm,
+  type CheckpointContext,
+  type CheckpointHintRow,
+  type SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
 import {
   inputSegments,
@@ -134,6 +135,19 @@ export function buildSyntaxReference(
   checkpoint: SyntaxCheckpoint,
 ): SyntaxReference {
   const groups = inputSegments(checkpoint).map((segment) => segment.value)
+  const terms = checkpoint.segments.reduce<string[]>(
+    (collected, segment, index) => {
+      if (segment.kind !== "input") return collected
+      const previous = checkpoint.segments[index - 1]
+      const term = syntaxGroupTerm(
+        segment.value,
+        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+      )
+      if (!collected.includes(term)) collected.push(term)
+      return collected
+    },
+    [],
+  )
   const instruction = describeCheckpoint(checkpoint)
   const term = instruction.term
   const hasInlineCode = groups.some((value) => value.startsWith("`"))
@@ -142,48 +156,53 @@ export function buildSyntaxReference(
   const isNumbered = term === "numbered step"
   const isBold = term === "bold text"
   const name =
-    isBullet && hasInlineCode
-      ? "Bullet item with inline code"
-      : isNumbered && hasInlineCode
-        ? "Numbered step with inline code"
-        : isBold && hasLink
-          ? "Bold link"
-          : term === "structure"
-            ? "Markdown structure"
-            : titleCase(term)
+    terms.length > 1
+      ? terms.map(titleCase).join(" + ")
+      : isBullet && hasInlineCode
+        ? "Bullet item with inline code"
+        : isNumbered && hasInlineCode
+          ? "Numbered step with inline code"
+          : isBold && hasLink
+            ? "Bold link"
+            : term === "structure"
+              ? "Markdown structure"
+              : titleCase(term)
   const headingDepth = /^level (\d) heading$/.exec(term)?.[1]
   const setextDepth = /^level (\d) Setext heading$/.exec(term)?.[1]
-  const example = setextDepth
-    ? `Example\n${setextDepth === "1" ? "=======" : "-------"}`
-    : headingDepth
-      ? `${"#".repeat(Number(headingDepth))} Example`
-      : name === "Section break"
-        ? "Before\n\n---\n\nAfter"
-        : name.startsWith("Bullet item")
-          ? hasInlineCode
-            ? "- `Example`"
-            : "- Example"
-          : name.startsWith("Numbered step")
-            ? hasInlineCode
-              ? "1. `Example`"
-              : "1. Example"
-            : name === "Block quote"
-              ? "> Example"
-              : name === "Fenced code block"
-                ? "```\nExample\n```"
-                : name === "Italic text"
-                  ? "*Example*"
-                  : name === "Bold text"
-                    ? "**Example**"
-                    : name === "Bold link"
-                      ? "**[Example](https://example.com)**"
-                      : name === "Image"
-                        ? "![Example](image.png)"
-                        : name === "Link"
-                          ? "[Example](https://example.com)"
-                          : name === "Inline code"
-                            ? "`Example`"
-                            : "Example"
+  const example =
+    terms.length > 1
+      ? checkpoint.segments.map((segment) => segment.value).join("")
+      : setextDepth
+        ? `Example\n${setextDepth === "1" ? "=======" : "-------"}`
+        : headingDepth
+          ? `${"#".repeat(Number(headingDepth))} Example`
+          : name === "Section break"
+            ? "Before\n\n---\n\nAfter"
+            : name.startsWith("Bullet item")
+              ? hasInlineCode
+                ? "- `Example`"
+                : "- Example"
+              : name.startsWith("Numbered step")
+                ? hasInlineCode
+                  ? "1. `Example`"
+                  : "1. Example"
+                : name === "Block quote"
+                  ? "> Example"
+                  : name === "Fenced code block"
+                    ? "```\nExample\n```"
+                    : name === "Italic text"
+                      ? "*Example*"
+                      : name === "Bold text"
+                        ? "**Example**"
+                        : name === "Bold link"
+                          ? "**[Example](https://example.com)**"
+                          : name === "Image"
+                            ? "![Example](image.png)"
+                            : name === "Link"
+                              ? "[Example](https://example.com)"
+                              : name === "Inline code"
+                                ? "`Example`"
+                                : "Example"
 
   return {
     name,

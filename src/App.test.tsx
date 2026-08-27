@@ -155,7 +155,7 @@ function writePanelDocument() {
 }
 
 describe("App", () => {
-  it("greets a fresh session with the definitive five-level ladder", () => {
+  it("greets a fresh session with the definitive five-chapter shelf", () => {
     render(<App />)
     expect(screen.getByRole("heading", { name: "Nabi Markdown" })).toBeVisible()
     for (const entry of entryChoices) {
@@ -220,7 +220,7 @@ describe("App", () => {
     expect(screen.queryByTestId("page-turn-transition")).toBeNull()
   })
 
-  it("enters any selected level directly and starts its six-problem turn", async () => {
+  it("enters any selected chapter directly and starts its six-problem turn", async () => {
     for (const entry of entryChoices) {
       window.sessionStorage.clear()
       resetCenterCardMemoryForTests()
@@ -232,7 +232,7 @@ describe("App", () => {
         `Practice progress, 1 of ${expectedLength}`,
       )
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
-      expect(screen.getByLabelText(`Level ${entry.level}`)).toBeVisible()
+      expect(screen.getByLabelText(`Chapter ${entry.level}`)).toBeVisible()
       await waitFor(() => expect(firstBoxInput()).toHaveFocus())
       view.unmount()
     }
@@ -265,8 +265,8 @@ describe("App", () => {
     const practiceDetails = screen.getByRole("group", {
       name: "Practice details",
     })
-    expect(practiceDetails).toHaveTextContent("Level 2")
-    expect(practiceDetails).not.toHaveTextContent("Rebuild real documents")
+    expect(practiceDetails).toHaveTextContent("Chapter 2")
+    expect(practiceDetails).not.toHaveTextContent("Lists")
   })
 
   it("shows only local rendered context and mark inputs during practice", async () => {
@@ -688,6 +688,35 @@ describe("App", () => {
     )
   })
 
+  it("ignores pre-chapter browser history snapshots", async () => {
+    await openLevel(1)
+    const currentProblemId = currentProblem().id
+    const oldProblemIds = createRunProblemIds("level-4", 0, 0)
+
+    act(() => {
+      window.dispatchEvent(
+        new PopStateEvent("popstate", {
+          state: {
+            marker: "nabimd-practice-v1",
+            view: "practice",
+            snapshot: {
+              entryId: "level-1",
+              runNumber: 0,
+              runProblemIds: oldProblemIds,
+              runStepIndex: 0,
+              scheduledStepIndex: 0,
+              currentProblemId: oldProblemIds[0],
+              currentIsTransfer: false,
+              runStartedAtMs: 1_000,
+            },
+          },
+        }),
+      )
+    })
+
+    expect(currentProblem().id).toBe(currentProblemId)
+  })
+
   it("keeps browser Forward symmetric after returning to the landing", async () => {
     const { user } = await openLevel(1)
     const firstProblemId = currentProblem().id
@@ -723,7 +752,7 @@ describe("App", () => {
     expect(screen.getByLabelText("Score")).toHaveTextContent("6 / 6")
     const practiceAgain = screen.getByRole("button", { name: "Practice again" })
     expect(practiceAgain).toBeVisible()
-    expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
+    expect(screen.getByRole("button", { name: "Change chapter" })).toBeVisible()
     // The finished work is handed back on the page itself: no viewer to open,
     // nothing to type into, and a clean run carries no correction marks.
     expect(screen.getByLabelText("Your work")).toBeVisible()

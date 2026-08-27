@@ -578,20 +578,26 @@ describe("useLearningSession", () => {
 
   it("restores a Goal-derived starter after migrating a legacy empty high-level draft", () => {
     const storage = new MemoryStorage()
-    const ids = createRunProblemIds("level-5", 0)
-    const currentProblemId = ids[1]!
-    const genuineDraftProblemId = ids[2]!
+    const seededRun = Array.from({ length: 1_000 }, (_, seed) => ({
+      ids: createRunProblemIds("level-5", 0, seed),
+      seed,
+    })).find(({ ids }) => ids.some((id) => getProblem(id).level >= 3))!
+    const { ids, seed } = seededRun
+    const currentProblemId = ids.find((id) => getProblem(id).level >= 3)!
+    const currentIndex = ids.indexOf(currentProblemId)
+    const genuineDraftProblemId = ids.find((id) => id !== currentProblemId)!
     const legacyStarterlessBankRevision = problemBank
       .map((problem) => `${problem.id}@${problem.revision}`)
       .join("|")
     const progress = createDefaultProgress(
       currentProblemId,
       legacyStarterlessBankRevision,
+      seed,
     )
     progress.entryId = "level-5"
     progress.runProblemIds = ids
-    progress.runStepIndex = 1
-    progress.scheduledStepIndex = 1
+    progress.runStepIndex = currentIndex
+    progress.scheduledStepIndex = currentIndex
     progress.runStartedAtMs = 1_000
     progress.draftByProblemId = {
       [currentProblemId]: "",
