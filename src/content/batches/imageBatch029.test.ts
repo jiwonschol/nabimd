@@ -70,15 +70,19 @@ describe("Level 1 image batch 029", () => {
     }
   })
 
-  it("keeps accepted 028 live until the reviewed replacement is published", () => {
+  it("serves the accepted revision-three replacement after publication", () => {
     const currentById = new Map(
       problemBank.map((problem) => [problem.id, problem]),
     )
     for (const replacement of imageBatch029Problems) {
       expect(currentById.get(replacement.id), replacement.id).toMatchObject({
-        revision: 2,
-        sourceBatchId: "2026-08-28-l1-images-028",
+        revision: 3,
+        sourceBatchId: imageBatch029Id,
       })
+      expect(
+        problemBank.filter((problem) => problem.id === replacement.id),
+        replacement.id,
+      ).toHaveLength(1)
     }
   })
 

@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "index": {
     "schemaVersion": 2,
-    "bankDigest": "4c774f5564456a384b195f725a23e6e350e388cb2078853614c233be50d75683",
+    "bankDigest": "d0ca8b85908b55fab9e576a033842b4abe5ac0148f8ad57438c6d6f5f7f60b97",
     "counts": {
       "1": 152,
       "2": 148,
@@ -5320,10 +5320,10 @@
             "beach"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "beach-sunrise-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-birthday-cake",
@@ -5400,10 +5400,10 @@
             "candles"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "birthday-cake-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-city-bus",
@@ -5480,10 +5480,10 @@
             "station"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "city-bus-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-garden-path",
@@ -5560,10 +5560,10 @@
             "flowers"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "garden-path-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-hiking-trail",
@@ -5640,10 +5640,10 @@
             "stream"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "hiking-trail-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-library-corner",
@@ -5720,10 +5720,10 @@
             "corner"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "library-corner-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-paper-lanterns",
@@ -5800,10 +5800,10 @@
             "street"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "paper-lanterns-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-picnic-basket",
@@ -5880,10 +5880,10 @@
             "basket"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "picnic-basket-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-rainy-window",
@@ -5960,10 +5960,10 @@
             "window"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "rainy-window-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-red-bicycle",
@@ -6040,10 +6040,10 @@
             "fence"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "red-bicycle-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-sleepy-cat",
@@ -6120,10 +6120,10 @@
             "chair"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "sleepy-cat-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-image-soup-bowl",
@@ -6200,10 +6200,10 @@
             "soup"
           ]
         },
-        "revision": 2,
+        "revision": 3,
         "curriculumVersion": "2026-07-19",
         "contentVariant": "soup-bowl-photo",
-        "sourceBatchId": "2026-08-28-l1-images-028"
+        "sourceBatchId": "2026-08-28-l1-images-029"
       },
       {
         "id": "l1-inline-code-blue-value",
@@ -43680,5 +43680,5 @@
       }
     ]
   },
-  "projectionDigest": "1092266ec0b1883ea9a33e4adf9a605858dfd454ef6e13343ffdff789147dcf1"
+  "projectionDigest": "950001da78d0c36829a77c718ef57876062e1f77094753a8639e2a807ce2930d"
 }

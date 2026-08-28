@@ -87,12 +87,9 @@ describe("Level 1 image batch 028", () => {
     }
   })
 
-  it("replaces the accepted image exercises at revision two", () => {
+  it("records the accepted revision-two replacement without changing content", () => {
     const priorById = new Map(
       imageBatch027Problems.map((problem) => [problem.id, problem]),
-    )
-    const currentById = new Map(
-      problemBank.map((problem) => [problem.id, problem]),
     )
     expect(imageBatch027Problems.map((problem) => problem.id)).toEqual(
       imageBatch028Problems.map((problem) => problem.id),
@@ -113,10 +110,6 @@ describe("Level 1 image batch 028", () => {
         prompt: prior!.prompt,
         vocabulary: prior!.vocabulary,
         contentVariant: prior!.contentVariant,
-      })
-      expect(currentById.get(replacement.id), replacement.id).toMatchObject({
-        revision: 2,
-        sourceBatchId: imageBatch028Id,
       })
     }
   })
