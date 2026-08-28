@@ -16,9 +16,46 @@ import {
   countRuntimeTargetContentLines,
   problemBank,
 } from "./problemBank"
+import {
+  deriveSyntaxCheckpoints,
+  syntaxGroupTerm,
+  type SyntaxCheckpoint,
+} from "../guided/guidedSyntax"
+
+function checkpointTerms(checkpoint: SyntaxCheckpoint): string[] {
+  return [
+    ...new Set(
+      checkpoint.segments.flatMap((segment, index) => {
+        if (segment.kind !== "input") return []
+        const previous = checkpoint.segments[index - 1]
+        return [
+          syntaxGroupTerm(
+            segment.value,
+            previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+          ),
+        ]
+      }),
+    ),
+  ]
+}
+
+function hasSeparatedRepeatedTerm(
+  checkpoints: readonly SyntaxCheckpoint[],
+): boolean {
+  const termsByCheckpoint = checkpoints.map(checkpointTerms)
+  const allTerms = new Set(termsByCheckpoint.flat())
+  return [...allTerms].some((term) => {
+    const indexes = termsByCheckpoint.flatMap((terms, index) =>
+      terms.includes(term) ? [index] : [],
+    )
+    return indexes.some(
+      (value, index) => index > 0 && value - indexes[index - 1]! > 1,
+    )
+  })
+}
 
 describe("three-level entry choices", () => {
-  it("serves the measured runtime pools for the frequency-based levels", () => {
+  it("owns the measured runtime pools before mixed eligibility", () => {
     expect(
       entryChoices.map((entry) => {
         const elements = new Set(entry.elements)
@@ -105,10 +142,22 @@ describe("three-level entry choices", () => {
       problemBank
         .filter((problem) => {
           const elements = getCurriculumElements(problem)
-          return (
+          if (
+            !(
             problem.flavor === "standard" &&
             elements.length > 1 &&
             elements.every((element) => entryElements.has(element))
+            )
+          ) {
+            return false
+          }
+          const checkpoints = deriveSyntaxCheckpoints(
+            problem.target,
+            problem.starterText,
+          )
+          return (
+            checkpoints.length <= 5 &&
+            !hasSeparatedRepeatedTerm(checkpoints)
           )
         })
         .map((problem) => problem.id),
@@ -140,7 +189,7 @@ describe("three-level entry choices", () => {
       }
     }
 
-    expect(expectedMixedIds).toHaveLength(80)
+    expect(expectedMixedIds).toHaveLength(39)
     expect(servedMixedIds).toEqual(expectedMixedIds)
 
     const allServedIds = new Set(
@@ -148,7 +197,39 @@ describe("three-level entry choices", () => {
         createRunProblemIds("level-1", runNumber, 0),
       ).flat(),
     )
-    expect(allServedIds).toHaveLength(292)
+    expect(allServedIds).toHaveLength(251)
+  })
+
+  it("keeps every served mixed exercise short and free of separated syntax repeats", () => {
+    const servedMixedIds = new Set<string>()
+    for (const seed of [0, 1, 17, 999]) {
+      const mixedIds: string[] = []
+      for (let runNumber = 0; runNumber < 39; runNumber += 1) {
+        for (const id of createRunProblemIds("level-1", runNumber, seed)) {
+          const problem = problemBank.find((candidate) => candidate.id === id)!
+          if (getCurriculumElements(problem).length > 1) {
+            servedMixedIds.add(id)
+            mixedIds.push(id)
+          }
+        }
+      }
+      expect(new Set(mixedIds), `seed ${seed}`).toHaveLength(39)
+      expect(
+        mixedIds.some((id, index) => index > 0 && id === mixedIds[index - 1]),
+        `seed ${seed}`,
+      ).toBe(false)
+    }
+
+    expect(servedMixedIds).toHaveLength(39)
+    for (const id of servedMixedIds) {
+      const problem = problemBank.find((candidate) => candidate.id === id)!
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+      expect(checkpoints.length, id).toBeLessThanOrEqual(5)
+      expect(hasSeparatedRepeatedTerm(checkpoints), id).toBe(false)
+    }
   })
 
   it("keeps every served Level 1 exercise inside its owner-level line budget", () => {
@@ -195,18 +276,103 @@ describe("three-level entry choices", () => {
         (problem) => getCurriculumElement(problem) === element,
       )!,
     )
-    const mixed = problemBank.find((problem) => {
-      const elements = getCurriculumElements(problem)
-      return (
-        elements.length > 1 &&
-        elements.every((element) => fiveElements.includes(element))
-      )
-    })
+    const mixed = problemBank.find(
+      (problem) => problem.id === "l2-code-block-door-copy",
+    )
     if (!mixed) throw new Error("Missing Level 1 mixed fixture")
+    const separatedRepeat = {
+      ...mixed,
+      id: "synthetic-separated-heading-repeat",
+      target: [
+        "# Daily note",
+        "",
+        "## Morning",
+        "",
+        "**Remember this**",
+        "",
+        "## Evening",
+      ].join("\n"),
+      starterText: [
+        "Daily note",
+        "",
+        "Morning",
+        "",
+        "Remember this",
+        "",
+        "Evening",
+      ].join("\n"),
+      skillIds: ["heading-h1", "bold-emphasis"],
+      syntaxTokens: ["# ", "## ", "**", "## "],
+    }
+    const consecutiveRepeat = {
+      ...mixed,
+      id: "synthetic-consecutive-list-repeat",
+      target: ["# Groceries", "", "- Apples", "- Milk"].join("\n"),
+      starterText: ["Groceries", "", "Apples", "Milk"].join("\n"),
+      skillIds: ["heading-h1", "unordered-list"],
+      syntaxTokens: ["# ", "- ", "- "],
+    }
+    const sixUniqueCheckpoints = {
+      ...mixed,
+      id: "synthetic-six-unique-checkpoints",
+      target: [
+        "# Plan",
+        "",
+        "**Important**",
+        "",
+        "*Quietly*",
+        "",
+        "- Pack",
+        "",
+        "1. Leave",
+        "",
+        "> Be safe",
+      ].join("\n"),
+      starterText: [
+        "Plan",
+        "",
+        "Important",
+        "",
+        "Quietly",
+        "",
+        "Pack",
+        "",
+        "Leave",
+        "",
+        "Be safe",
+      ].join("\n"),
+      skillIds: [
+        "heading-h1",
+        "bold-emphasis",
+        "italic-emphasis",
+        "unordered-list",
+        "ordered-list",
+        "blockquote",
+      ],
+      syntaxTokens: ["# ", "**", "*", "- ", "1. ", "> "],
+    }
 
     expect(() =>
       createRunProblemIdsForBank("level-1", 0, representatives),
     ).toThrow("Level 1 is not available yet")
+    expect(() =>
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives,
+        separatedRepeat,
+      ]),
+    ).toThrow("Level 1 is not available yet")
+    expect(() =>
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives,
+        sixUniqueCheckpoints,
+      ]),
+    ).toThrow("Level 1 is not available yet")
+    expect(
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives,
+        consecutiveRepeat,
+      ]),
+    ).toHaveLength(5)
     expect(
       createRunProblemIdsForBank("level-1", 0, [
         ...representatives,

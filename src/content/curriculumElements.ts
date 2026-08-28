@@ -1,5 +1,6 @@
 import type { NormalizedProblem } from "./types"
 import { curriculumLevels } from "./curriculumLevels"
+import { isEligibleMixedExercise } from "./mixedExercisePolicy"
 
 export const curriculumElementIds = [
   "heading",
@@ -36,7 +37,7 @@ export type EntryId = (typeof curriculumLevels)[number]["id"]
 
 export type CurriculumElementProblem = Pick<
   NormalizedProblem,
-  "id" | "skillIds" | "syntaxTokens"
+  "id" | "skillIds" | "syntaxTokens" | "target" | "starterText"
 > & {
   flavor: "standard" | "transfer"
 }
@@ -145,7 +146,8 @@ export function isEntryAvailableForBank(
     (problem) =>
       problem.flavor === "standard" &&
       getCurriculumElements(problem).length > 1 &&
-      getProblemEntryId(problem) === entry.id,
+      getProblemEntryId(problem) === entry.id &&
+      isEligibleMixedExercise(problem),
   )
   return hasEnoughDedicatedElements && hasOwnedMixedExercise
 }
