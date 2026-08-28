@@ -1,8 +1,8 @@
 import type { FixtureRole, ProblemFixture } from "../types"
 import {
-  imageBatch022Inputs,
-  imageBatch022Problems,
-} from "./imageBatch022Problems"
+  imageBatch023Inputs,
+  imageBatch023Problems,
+} from "./imageBatch023Problems"
 
 function fixtureKind(role: FixtureRole): ProblemFixture["kind"] {
   switch (role) {
@@ -47,10 +47,10 @@ function fixture(
 }
 
 function createImageFixtures(
-  problem: (typeof imageBatch022Problems)[number],
+  problem: (typeof imageBatch023Problems)[number],
   index: number,
 ): readonly ProblemFixture[] {
-  const input = imageBatch022Inputs[index]!
+  const input = imageBatch023Inputs[index]!
   const imageUrl = `https://example.com/images/alternate-${index + 1}.jpg`
   const fail = {
     expectedFeedbackId: "use-image",
@@ -149,5 +149,5 @@ function createImageFixtures(
   ]
 }
 
-export const imageBatch022Fixtures: readonly ProblemFixture[] =
-  imageBatch022Problems.flatMap(createImageFixtures)
+export const imageBatch023Fixtures: readonly ProblemFixture[] =
+  imageBatch023Problems.flatMap(createImageFixtures)

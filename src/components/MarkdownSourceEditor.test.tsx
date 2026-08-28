@@ -604,4 +604,29 @@ describe("MarkdownSourceEditor", () => {
 
     expect(screen.queryByRole("textbox", { name: "Goal document" })).toBeNull()
   })
+
+  it("keeps the visual image placeholder out of the read-only document narration", () => {
+    const { container } = render(
+      <MarkdownWordProcessor
+        label="Goal document"
+        presentation="rendered"
+        readOnly
+        value="![Raindrops on the window](https://example.com/rain.jpg)"
+      />,
+    )
+
+    const semanticDocument = screen.getByRole("document", {
+      name: "Goal document rendered structure",
+    })
+    expect(semanticDocument).toHaveTextContent(
+      "[Image: Raindrops on the window]",
+    )
+    const visualPlaceholder = container.querySelector(
+      ".cm-rendered-widget--image",
+    )
+    expect(visualPlaceholder).toHaveTextContent(
+      "[Image: Raindrops on the window]",
+    )
+    expect(visualPlaceholder).toHaveAttribute("aria-hidden", "true")
+  })
 })

@@ -1,4 +1,4 @@
-# Batch 022: everyday Level 1 images
+# Batch 023: everyday Level 1 images
 
 Generate exactly 12 append-only schema-v2 Level 1 image problems in one retry
 family. Each problem teaches one inline Markdown image in a short everyday

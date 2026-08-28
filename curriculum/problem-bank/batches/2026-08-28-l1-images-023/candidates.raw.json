@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-022",
-  "sequence": 22,
+  "batchId": "2026-08-28-l1-images-023",
+  "sequence": 23,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-08-28",
@@ -33,9 +33,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Remember the weather: ![Raindrops on the window](https://example.com/images/rainy-window.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Remember the weather: Raindrops on the window."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -112,9 +110,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Add the photo: ![A red bicycle by the fence](https://example.com/images/red-bicycle.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Add the photo: A red bicycle by the fence."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -191,9 +187,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Share this memory: ![A picnic basket on the grass](https://example.com/images/picnic-basket.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Share this memory: A picnic basket on the grass."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -270,9 +264,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Save this spot: ![A sunny reading corner](https://example.com/images/library-corner.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Save this spot: A sunny reading corner."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -349,9 +341,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Keep the view: ![A stone path through flowers](https://example.com/images/garden-path.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Keep the view: A stone path through flowers."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -428,9 +418,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Add the celebration: ![A birthday cake with candles](https://example.com/images/birthday-cake.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Add the celebration: A birthday cake with candles."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -507,9 +495,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Share the morning: ![Sunrise above a quiet beach](https://example.com/images/beach-sunrise.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Share the morning: Sunrise above a quiet beach."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -586,9 +572,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Post this: ![A sleepy cat on a blue chair](https://example.com/images/sleepy-cat.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Post this: A sleepy cat on a blue chair."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -665,9 +649,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Add the meal: ![A warm bowl of tomato soup](https://example.com/images/tomato-soup.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Add the meal: A warm bowl of tomato soup."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -744,9 +726,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Travel note: ![A green bus at the station](https://example.com/images/city-bus.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Travel note: A green bus at the station."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -823,9 +803,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Save the route: ![A forest trail beside a stream](https://example.com/images/hiking-trail.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Save the route: A forest trail beside a stream."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -902,9 +880,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Share the evening: ![Paper lanterns above the street](https://example.com/images/paper-lanterns.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Share the evening: Paper lanterns above the street."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",

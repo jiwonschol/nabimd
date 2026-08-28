@@ -37,6 +37,12 @@ require that source form. Do not author task-list or image lessons until their
 dedicated validators, fixtures, preview behavior, and accessibility contract
 exist.
 
+For image lessons, Preview exposes meaningful alt text as a local text
+placeholder and never creates a remote `img`. The read-only word processor
+keeps its visual placeholder `aria-hidden` while a separate semantic document
+exposes the same alt text once, so decoration never competes with the Markdown
+source or duplicates its narration.
+
 Every level has one fixed authored Goal. Derive the learner's starter at the
 runtime projection boundary by removing Markdown marks from that Goal while
 preserving its learner-visible words, blank lines, and line breaks. The learner

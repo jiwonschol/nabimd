@@ -1,6 +1,6 @@
 import type { NormalizedProblem } from "../types"
 
-export const imageBatch022Id = "2026-08-28-l1-images-022"
+export const imageBatch023Id = "2026-08-28-l1-images-023"
 
 const curriculumVersion = "2026-07-19"
 const documentScope = { kind: "document" } as const
@@ -20,7 +20,7 @@ const hints = [
   "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`",
 ] as const
 
-export type ImageBatch022Input = {
+export type ImageBatch023Input = {
   id: string
   contentVariant: string
   target: string
@@ -29,7 +29,7 @@ export type ImageBatch022Input = {
   terms: readonly [string, string]
 }
 
-export const imageBatch022Inputs: readonly ImageBatch022Input[] = [
+export const imageBatch023Inputs: readonly ImageBatch023Input[] = [
   {
     id: "l1-image-rainy-window",
     contentVariant: "rainy-window-photo",
@@ -140,7 +140,7 @@ export const imageBatch022Inputs: readonly ImageBatch022Input[] = [
   },
 ] as const
 
-function createImageProblem(input: ImageBatch022Input): NormalizedProblem {
+function createImageProblem(input: ImageBatch023Input): NormalizedProblem {
   return {
     id: input.id,
     schemaVersion: 2,
@@ -156,7 +156,7 @@ function createImageProblem(input: ImageBatch022Input): NormalizedProblem {
     prompt: "Write the short note with one Markdown image.",
     target: input.target,
     starterText: "",
-    protectedContent: [input.plainText],
+    protectedContent: [],
     matchChecks: [
       {
         id: "use-image",
@@ -187,12 +187,12 @@ function createImageProblem(input: ImageBatch022Input): NormalizedProblem {
       domains: [input.vocabularyDomain],
       terms: input.terms,
     },
-    sourceBatchId: imageBatch022Id,
+    sourceBatchId: imageBatch023Id,
     revision: 1,
     curriculumVersion,
     contentVariant: input.contentVariant,
   }
 }
 
-export const imageBatch022Problems: readonly NormalizedProblem[] =
-  imageBatch022Inputs.map(createImageProblem)
+export const imageBatch023Problems: readonly NormalizedProblem[] =
+  imageBatch023Inputs.map(createImageProblem)

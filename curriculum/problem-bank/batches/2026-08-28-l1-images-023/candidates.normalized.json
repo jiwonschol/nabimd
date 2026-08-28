@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-022",
-  "sequence": 22,
+  "batchId": "2026-08-28-l1-images-023",
+  "sequence": 23,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-08-28",
-  "promptSha256": "3897c8107448b85ee664c543a5f5b05f0c2533b8e057d6d71c6c759d42631987",
-  "rawArtifactDigest": "8344f6d24dafaf49bfdcbc2d8d79328c1c818a236788686d300c85d4002b8fc5",
+  "promptSha256": "71239eaf67bc2e646b262fe035e0853a99860a4e02cb2589bdd00a2d8a04c834",
+  "rawArtifactDigest": "188405a93e63812cd8b77f4b3a1bc53bf65e54a3116b1d9a164af46adab6904e",
   "candidateCount": 12,
   "candidates": [
     {
@@ -36,9 +36,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Share the morning: ![Sunrise above a quiet beach](https://example.com/images/beach-sunrise.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Share the morning: Sunrise above a quiet beach."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -87,8 +85,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "beach-sunrise-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "fc828ad1cae45ae6d68f0761494530af1589e2202aab0f9766bb3762bf37753a"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "c43342dfd13bb0354bb9680bd5e224c16d0f14e71c17c97f73bf701e95f58a09"
     },
     {
       "id": "l1-image-birthday-cake",
@@ -117,9 +115,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Add the celebration: ![A birthday cake with candles](https://example.com/images/birthday-cake.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Add the celebration: A birthday cake with candles."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -168,8 +164,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "birthday-cake-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "bbb80e3e94e93785733640f75d7823ca150dc75b168c69ae493d69bee51f6950"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "433b18bb2a182f87c006c5fca15fb453599cdc607ca2d564314737fed9cc72f6"
     },
     {
       "id": "l1-image-city-bus",
@@ -198,9 +194,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Travel note: ![A green bus at the station](https://example.com/images/city-bus.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Travel note: A green bus at the station."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -249,8 +243,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "city-bus-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "60596837d95714436b12b4c2bb52883274ac7a1217c0770212ea8c76a46bf7fb"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "57afd6be0c31e807eb91165499bdf1f7455ef84c714295c5f494daccc6a27321"
     },
     {
       "id": "l1-image-garden-path",
@@ -279,9 +273,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Keep the view: ![A stone path through flowers](https://example.com/images/garden-path.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Keep the view: A stone path through flowers."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -330,8 +322,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "garden-path-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "02baf532d8611b510c73ab4bb6380f18c66adf4a5ff4d54e06fb5d7d4fc468fa"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "ca10596c7a9b2604d979e8b56b17b0d827623c4c5d8cc952a9ea5f4e0caa1e2a"
     },
     {
       "id": "l1-image-hiking-trail",
@@ -360,9 +352,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Save the route: ![A forest trail beside a stream](https://example.com/images/hiking-trail.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Save the route: A forest trail beside a stream."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -411,8 +401,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "hiking-trail-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "4645675823b269674db7532877c6407eb403d849dae287c3d50c39cc9784e539"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "b577ad4044298c7e7fc8dda306bfdfb0ced8e6835d18decb0558cc0f5dd1e9b9"
     },
     {
       "id": "l1-image-library-corner",
@@ -441,9 +431,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Save this spot: ![A sunny reading corner](https://example.com/images/library-corner.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Save this spot: A sunny reading corner."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -492,8 +480,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "library-corner-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "f60d847ccbde753aaa845b7fc67358722778b15dc5c51e24397f73a0f6fd8b07"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "9fd2b3b177b934cfb46bc255ed3446812d21a05a939a5d560a152b93be0c5db4"
     },
     {
       "id": "l1-image-paper-lanterns",
@@ -522,9 +510,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Share the evening: ![Paper lanterns above the street](https://example.com/images/paper-lanterns.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Share the evening: Paper lanterns above the street."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -573,8 +559,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "paper-lanterns-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "4ba1a7b3bdd86365b357580d114b8d1018f2123b25d327b488c5e32e8dfc4fc3"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "e5f70f746c71eaf6c65b29d95eb5e99ede7b9d0210c4ce434eeb324de5b2d07e"
     },
     {
       "id": "l1-image-picnic-basket",
@@ -603,9 +589,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Share this memory: ![A picnic basket on the grass](https://example.com/images/picnic-basket.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Share this memory: A picnic basket on the grass."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -654,8 +638,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "picnic-basket-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "ab04321206afcf7d90b0343cb60db27bac29c6202697e2c3cf307b6761496cb3"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "e1453966cbc74ccc2311051624b4f61b535ffc14ff02ffbd503fc06728750702"
     },
     {
       "id": "l1-image-rainy-window",
@@ -684,9 +668,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Remember the weather: ![Raindrops on the window](https://example.com/images/rainy-window.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Remember the weather: Raindrops on the window."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -735,8 +717,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "rainy-window-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "413a93a5dcef1a3c80f4693573b026cd805099b402939fbc16cb0f1e9492b4fc"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "40c35b23455ed0a2015b45e6b0413feb787c5b4912fab61ac08615ced59dda2d"
     },
     {
       "id": "l1-image-red-bicycle",
@@ -765,9 +747,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Add the photo: ![A red bicycle by the fence](https://example.com/images/red-bicycle.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Add the photo: A red bicycle by the fence."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -816,8 +796,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "red-bicycle-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "df3a9e7cb629a13670c361741700b7ac8e95d61ee1be25994c91d7f9e1d88f16"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "c20fef2c746ee623ff208379870cb2507db6aa303d8d81ee662ced96ba3fe3bf"
     },
     {
       "id": "l1-image-sleepy-cat",
@@ -846,9 +826,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Post this: ![A sleepy cat on a blue chair](https://example.com/images/sleepy-cat.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Post this: A sleepy cat on a blue chair."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -897,8 +875,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "sleepy-cat-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "645afc9dce5bb5c5f788b7ae4a02a2d3febb98273d176ccd1233abeb4278aa10"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "e69b3e13144b83b5f26c70e54bd9a1d388714e064e5576f82a183358da7512af"
     },
     {
       "id": "l1-image-soup-bowl",
@@ -927,9 +905,7 @@
       "prompt": "Write the short note with one Markdown image.",
       "target": "Add the meal: ![A warm bowl of tomato soup](https://example.com/images/tomato-soup.jpg).",
       "starterText": "",
-      "protectedContent": [
-        "Add the meal: A warm bowl of tomato soup."
-      ],
+      "protectedContent": [],
       "matchChecks": [
         {
           "id": "use-image",
@@ -978,9 +954,9 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "soup-bowl-photo",
-      "sourceBatch": "2026-08-28-l1-images-022",
-      "candidateDigest": "0ce25c6d28e6a11090b974c9cb8979056819835d9ab1881d945698bb2b865cf6"
+      "sourceBatch": "2026-08-28-l1-images-023",
+      "candidateDigest": "14b955efe0836244210452eebadaafc22458a0fe65f3c5a503e5cd1ea30b8183"
     }
   ],
-  "artifactDigest": "52cce26f7a08fdb59344b48c72b6d2b42deee4853674182ebfdbea5d9eb6709a"
+  "artifactDigest": "046d5a4b9be96c8242da664982f80d40c8b209a36c05f8cb35d7ac8b5850783b"
 }
