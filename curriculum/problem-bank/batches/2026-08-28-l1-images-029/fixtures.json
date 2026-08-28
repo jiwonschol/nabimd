@@ -1,0 +1,3102 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-029",
+  "fixtures": [
+    {
+      "id": "l1-image-beach-sunrise-angle-empty-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-canonical",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Share the morning: ![Sunrise above a quiet beach](https://example.com/images/beach-sunrise.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-case-spelling",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-7.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-code-lookalike",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-different-prose",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-7.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-empty-decorative-image",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-empty-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-encoded-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-escaped-image-mark",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-image-title",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-link-not-image",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-7.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-literal-replacement-character-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-missing",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Share the morning: Sunrise above a quiet beach.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-nul-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-nul-only-image-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-relative-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-single-visible-character-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-space-only-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-title-close-bracket",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-title-delimiter-sequence",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-title-ending-delimiter-sequence",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-title-open-parenthesis",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-two-images",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-7.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-beach-sunrise-zwsp-only-image-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-angle-empty-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-canonical",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Add the celebration: ![A birthday cake with candles](https://example.com/images/birthday-cake.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-case-spelling",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-6.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-code-lookalike",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-different-prose",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-6.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-empty-decorative-image",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-empty-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-encoded-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-escaped-image-mark",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-image-title",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-link-not-image",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-6.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-literal-replacement-character-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-missing",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Add the celebration: A birthday cake with candles.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-nul-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-nul-only-image-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-relative-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-single-visible-character-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-space-only-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-title-close-bracket",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-title-delimiter-sequence",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-title-ending-delimiter-sequence",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-title-open-parenthesis",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-birthday-cake-two-images",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-6.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-birthday-cake-zwsp-only-image-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-angle-empty-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-canonical",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Travel note: ![A green bus at the station](https://example.com/images/city-bus.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-case-spelling",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-10.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-code-lookalike",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-different-prose",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-10.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-empty-decorative-image",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-empty-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-encoded-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-escaped-image-mark",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-image-title",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-link-not-image",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-10.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-literal-replacement-character-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-missing",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Travel note: A green bus at the station.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-nul-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-nul-only-image-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-relative-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-single-visible-character-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-space-only-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-title-close-bracket",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-title-delimiter-sequence",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-title-ending-delimiter-sequence",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-title-open-parenthesis",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-two-images",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-10.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-city-bus-zwsp-only-image-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-angle-empty-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-canonical",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Keep the view: ![A stone path through flowers](https://example.com/images/garden-path.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-case-spelling",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-5.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-code-lookalike",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-different-prose",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-5.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-empty-decorative-image",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-empty-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-encoded-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-escaped-image-mark",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-image-title",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-link-not-image",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-5.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-literal-replacement-character-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-missing",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Keep the view: A stone path through flowers.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-nul-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-nul-only-image-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-relative-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-single-visible-character-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-space-only-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-title-close-bracket",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-title-delimiter-sequence",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-title-ending-delimiter-sequence",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-title-open-parenthesis",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-garden-path-two-images",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-5.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-garden-path-zwsp-only-image-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-angle-empty-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-canonical",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Save the route: ![A forest trail beside a stream](https://example.com/images/hiking-trail.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-case-spelling",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-11.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-code-lookalike",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-different-prose",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-11.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-empty-decorative-image",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-empty-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-encoded-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-escaped-image-mark",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-image-title",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-link-not-image",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-11.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-literal-replacement-character-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-missing",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Save the route: A forest trail beside a stream.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-nul-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-nul-only-image-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-relative-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-single-visible-character-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-space-only-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-title-close-bracket",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-title-delimiter-sequence",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-title-ending-delimiter-sequence",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-title-open-parenthesis",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-two-images",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-11.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-hiking-trail-zwsp-only-image-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-angle-empty-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-canonical",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Save this spot: ![A sunny reading corner](https://example.com/images/library-corner.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-case-spelling",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-4.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-code-lookalike",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-different-prose",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-4.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-empty-decorative-image",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-empty-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-encoded-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-escaped-image-mark",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-image-title",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-link-not-image",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-4.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-literal-replacement-character-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-missing",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Save this spot: A sunny reading corner.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-nul-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-nul-only-image-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-relative-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-single-visible-character-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-space-only-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-title-close-bracket",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-title-delimiter-sequence",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-title-ending-delimiter-sequence",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-title-open-parenthesis",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-library-corner-two-images",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-4.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-library-corner-zwsp-only-image-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-angle-empty-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-canonical",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Share the evening: ![Paper lanterns above the street](https://example.com/images/paper-lanterns.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-case-spelling",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-12.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-code-lookalike",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-different-prose",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-12.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-empty-decorative-image",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-empty-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-encoded-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-escaped-image-mark",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-image-title",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-link-not-image",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-12.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-literal-replacement-character-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-missing",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Share the evening: Paper lanterns above the street.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-nul-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-nul-only-image-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-relative-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-single-visible-character-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-space-only-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-title-close-bracket",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-title-delimiter-sequence",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-title-ending-delimiter-sequence",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-title-open-parenthesis",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-two-images",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-12.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-paper-lanterns-zwsp-only-image-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-angle-empty-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-canonical",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Share this memory: ![A picnic basket on the grass](https://example.com/images/picnic-basket.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-case-spelling",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-3.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-code-lookalike",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-different-prose",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-3.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-empty-decorative-image",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-empty-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-encoded-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-escaped-image-mark",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-image-title",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-link-not-image",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-3.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-literal-replacement-character-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-missing",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Share this memory: A picnic basket on the grass.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-nul-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-nul-only-image-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-relative-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-single-visible-character-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-space-only-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-title-close-bracket",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-title-delimiter-sequence",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-title-ending-delimiter-sequence",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-title-open-parenthesis",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-picnic-basket-two-images",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-3.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-picnic-basket-zwsp-only-image-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-angle-empty-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-canonical",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Remember the weather: ![Raindrops on the window](https://example.com/images/rainy-window.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-case-spelling",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-1.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-code-lookalike",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-different-prose",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-1.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-empty-decorative-image",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-empty-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-encoded-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-escaped-image-mark",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-image-title",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-link-not-image",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-1.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-literal-replacement-character-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-missing",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Remember the weather: Raindrops on the window.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-nul-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-nul-only-image-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-relative-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-single-visible-character-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-space-only-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-title-close-bracket",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-title-delimiter-sequence",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-title-ending-delimiter-sequence",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-title-open-parenthesis",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-two-images",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-1.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-rainy-window-zwsp-only-image-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-angle-empty-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-canonical",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Add the photo: ![A red bicycle by the fence](https://example.com/images/red-bicycle.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-case-spelling",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-2.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-code-lookalike",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-different-prose",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-2.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-empty-decorative-image",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-empty-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-encoded-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-escaped-image-mark",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-image-title",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-link-not-image",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-2.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-literal-replacement-character-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-missing",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Add the photo: A red bicycle by the fence.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-nul-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-nul-only-image-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-relative-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-single-visible-character-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-space-only-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-title-close-bracket",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-title-delimiter-sequence",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-title-ending-delimiter-sequence",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-title-open-parenthesis",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-red-bicycle-two-images",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-2.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-red-bicycle-zwsp-only-image-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-angle-empty-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-canonical",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Post this: ![A sleepy cat on a blue chair](https://example.com/images/sleepy-cat.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-case-spelling",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-8.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-code-lookalike",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-different-prose",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-8.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-empty-decorative-image",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-empty-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-encoded-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-escaped-image-mark",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-image-title",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-link-not-image",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-8.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-literal-replacement-character-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-missing",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Post this: A sleepy cat on a blue chair.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-nul-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-nul-only-image-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-relative-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-single-visible-character-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-space-only-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-title-close-bracket",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-title-delimiter-sequence",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-title-ending-delimiter-sequence",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-title-open-parenthesis",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-sleepy-cat-two-images",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-8.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-sleepy-cat-zwsp-only-image-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-angle-empty-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-canonical",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "canonical",
+      "source": "Add the meal: ![A warm bowl of tomato soup](https://example.com/images/tomato-soup.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-case-spelling",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "case-or-spelling",
+      "source": "SAVE ![A BRITE YELLOW KITE](HTTPS://EXAMPLE.COM/IMAGES/ALTERNATE-9.JPG).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-code-lookalike",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "`![A blue umbrella](https://example.com/images/umbrella.jpg)`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-different-prose",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "alternate-prose",
+      "source": "Remember this: ![A blue umbrella by the door](https://example.com/images/alternate-9.jpg).",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-empty-decorative-image",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-empty-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-encoded-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]() b](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-escaped-image-mark",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a \\]()](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-image-title",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-link-not-image",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "[A blue umbrella](https://example.com/images/alternate-9.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-literal-replacement-character-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![�](/photos/divider.png)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-missing",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "missing-required",
+      "exercisesCheckId": "use-image",
+      "source": "Add the meal: A warm bowl of tomato soup.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-nul-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](<\u0000>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-nul-only-image-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![\u0000](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-relative-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A bicycle beside a tree](../photos/bicycle.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-single-visible-character-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![a](/photos/lantern.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-space-only-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![A lantern at dusk](   )",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-title-close-bracket",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ] walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-title-delimiter-sequence",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ]( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-title-ending-delimiter-sequence",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"title ]()\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-title-open-parenthesis",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "source": "![A lantern at dusk](/photos/lantern.jpg \"Evening ( walk\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-two-images",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "matched-with-review",
+      "source": "![First view](https://example.com/images/alternate-9.jpg) and ![Second view](https://example.com/images/second.jpg)",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-image"
+      ]
+    },
+    {
+      "id": "l1-image-soup-bowl-zwsp-only-image-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "role": "edge-case",
+      "exercisesCheckId": "use-image",
+      "source": "![​](/photos/divider.png)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    }
+  ]
+}

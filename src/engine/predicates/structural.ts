@@ -140,12 +140,10 @@ function nodeHasMeaningfulInlineDestination(
 ): boolean {
   if (node.type !== "link" && node.type !== "image") return false
   const destination = (node as Link | Image).url
-  const raw = sourceForNode(node, source)
-  const separator = raw.lastIndexOf("](")
   const rawDestination =
-    separator < 0
-      ? ""
-      : destinationFromParenthesizedSource(raw.slice(separator + 2))
+    node.type === "link"
+      ? directLinkDestinationSource(node as Link, source)
+      : directImageDestinationSource(node, source)
   return hasMeaningfulDestination(destination, rawDestination)
 }
 
@@ -265,7 +263,12 @@ function nodeHasVisibleNonListContent(node: AstNode, source: string): boolean {
 
 function rawImageAlt(node: AstNode, source: string): string {
   const raw = sourceForNode(node, source)
-  if (!raw.startsWith("![")) return ""
+  const altEnd = findImageAltEnd(raw)
+  return altEnd < 0 ? "" : raw.slice(2, altEnd)
+}
+
+function findImageAltEnd(raw: string): number {
+  if (!raw.startsWith("![")) return -1
   let depth = 1
   for (let index = 2; index < raw.length; index += 1) {
     if (raw[index] === "\\" && index + 1 < raw.length) {
@@ -275,9 +278,16 @@ function rawImageAlt(node: AstNode, source: string): string {
     if (raw[index] === "[") depth += 1
     if (raw[index] !== "]") continue
     depth -= 1
-    if (depth === 0) return raw.slice(2, index)
+    if (depth === 0) return index
   }
-  return ""
+  return -1
+}
+
+function directImageDestinationSource(node: AstNode, source: string): string {
+  const raw = sourceForNode(node, source)
+  const altEnd = findImageAltEnd(raw)
+  if (altEnd < 0 || !raw.slice(altEnd).startsWith("](")) return ""
+  return destinationFromParenthesizedSource(raw.slice(altEnd + 2))
 }
 
 function blockquoteShapePasses(

@@ -1005,9 +1005,43 @@ describe("structural match predicates", () => {
         requireNonemptyDestination: true,
       },
     ])
+    const link = problem([
+      {
+        ...common("link-address"),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "link",
+        min: 1,
+        requireNonemptyDestination: true,
+      },
+    ])
 
     expect(
       evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        '![A [blue] umbrella](/photos/umbrella.jpg "title ]()")',
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        '![An escaped \\] bracket](/photos/umbrella.jpg "title ]()")',
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        '![A blue umbrella](/photos/umbrella.jpg "a ]( b")',
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![a \\]() b](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![a \\]()](/photos/umbrella.jpg)"),
     ).toEqual({ status: "matched", reviewItems: [] })
     expect(evaluateProblem(image, "![A blue umbrella]()")).toMatchObject({
       status: "fail",
@@ -1023,6 +1057,9 @@ describe("structural match predicates", () => {
       status: "fail",
       feedbackId: "image-address",
     })
+    expect(
+      evaluateProblem(link, '[Guide](/guide "title ]()")'),
+    ).toEqual({ status: "matched", reviewItems: [] })
   })
 
   it("can require meaningful image alt text", () => {
