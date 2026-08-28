@@ -1,0 +1,986 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-029",
+  "sequence": 25,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-08-28",
+  "promptSha256": "8ce0458b25fb0f58dd703b8338885e66f006bcc0a96b8d118d50ad2612259df2",
+  "rawArtifactDigest": "3186a9021881b9dcb6da91cd7c76bceaabce7a5cd8cc8830b72d056ddce557a1",
+  "candidateCount": 12,
+  "candidates": [
+    {
+      "id": "l1-image-beach-sunrise",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Share the morning: ![Sunrise above a quiet beach](https://example.com/images/beach-sunrise.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "coastal-travel"
+        ],
+        "terms": [
+          "sunrise",
+          "beach"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "beach-sunrise-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "822fb155584083c2648447ce204c93741cefb0dcfff9328700980c043244a8d3"
+    },
+    {
+      "id": "l1-image-birthday-cake",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Add the celebration: ![A birthday cake with candles](https://example.com/images/birthday-cake.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "family-celebrations"
+        ],
+        "terms": [
+          "birthday",
+          "candles"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "birthday-cake-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "305896da7c5680a07ea3edc88394fa17c2cb012231ccb4c1fcec082a5f0f7d70"
+    },
+    {
+      "id": "l1-image-city-bus",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Travel note: ![A green bus at the station](https://example.com/images/city-bus.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "local-travel"
+        ],
+        "terms": [
+          "bus",
+          "station"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "city-bus-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "c51ee80bfa2db7bf4076200c1ba8db84f576d3dc8034867153e9310ed3f1f54d"
+    },
+    {
+      "id": "l1-image-garden-path",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Keep the view: ![A stone path through flowers](https://example.com/images/garden-path.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home-garden"
+        ],
+        "terms": [
+          "path",
+          "flowers"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "garden-path-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "e362532415399b2395866a73301cc61228d1ca474054868b6984e95d8e747047"
+    },
+    {
+      "id": "l1-image-hiking-trail",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Save the route: ![A forest trail beside a stream](https://example.com/images/hiking-trail.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "outdoor-walks"
+        ],
+        "terms": [
+          "trail",
+          "stream"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "hiking-trail-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "7013c2d887077533d5b6cf305a0274b5d54c860c4cbe1a04bc757e45ed18e024"
+    },
+    {
+      "id": "l1-image-library-corner",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Save this spot: ![A sunny reading corner](https://example.com/images/library-corner.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "public-library"
+        ],
+        "terms": [
+          "reading",
+          "corner"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "library-corner-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "e9c69e7d379e075c36e1e635e821c4208e16ba4ba045bd7010c3c59613f0fd60"
+    },
+    {
+      "id": "l1-image-paper-lanterns",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Share the evening: ![Paper lanterns above the street](https://example.com/images/paper-lanterns.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "community-events"
+        ],
+        "terms": [
+          "lanterns",
+          "street"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "paper-lanterns-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "f4d8380c9efb6e7ad08d9cfd4b94356921bef1b38033717df210183104ccc787"
+    },
+    {
+      "id": "l1-image-picnic-basket",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Share this memory: ![A picnic basket on the grass](https://example.com/images/picnic-basket.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "outdoor-meals"
+        ],
+        "terms": [
+          "picnic",
+          "basket"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "picnic-basket-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "1f6cbe6bcdddbf3e59b228117bc43610d67f9fa9b26c59318a400b82587c27e0"
+    },
+    {
+      "id": "l1-image-rainy-window",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Remember the weather: ![Raindrops on the window](https://example.com/images/rainy-window.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "everyday-weather"
+        ],
+        "terms": [
+          "raindrops",
+          "window"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "rainy-window-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "808d1ba63edb9a223879fda23b2f9c7e9ebaba5c122803717426ca90098f630a"
+    },
+    {
+      "id": "l1-image-red-bicycle",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Add the photo: ![A red bicycle by the fence](https://example.com/images/red-bicycle.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "neighborhood-travel"
+        ],
+        "terms": [
+          "bicycle",
+          "fence"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "red-bicycle-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "5b8fa086ee266853764a93c162bb9cfe555dbac5edc09be6e332efd46ac2738c"
+    },
+    {
+      "id": "l1-image-sleepy-cat",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Post this: ![A sleepy cat on a blue chair](https://example.com/images/sleepy-cat.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "home-pets"
+        ],
+        "terms": [
+          "cat",
+          "chair"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "sleepy-cat-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "af2b7b919b4fea9700a756d9e342b6b9a16bacd6215470a47993867946e144e0"
+    },
+    {
+      "id": "l1-image-soup-bowl",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "images",
+      "skillIds": [
+        "inline-image"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown image adds a picture and describes it with useful alternative text.",
+        "howTo": "Type an exclamation mark, put the image description in square brackets, and put the image address in parentheses.",
+        "example": "Remember the view: ![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)."
+      },
+      "syntaxTokens": [
+        "![",
+        "Alt text",
+        "](",
+        "Image address",
+        ")"
+      ],
+      "title": "Markdown image",
+      "prompt": "Write the short note with one Markdown image.",
+      "target": "Add the meal: ![A warm bowl of tomato soup](https://example.com/images/tomato-soup.jpg).",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-image",
+          "kind": "inline-presence",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "min": 1,
+          "requireNonemptyContent": true,
+          "requireNonemptyDestination": true,
+          "priority": 10,
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-image",
+          "kind": "max-inline-count",
+          "scope": {
+            "kind": "document"
+          },
+          "inline": "image",
+          "max": 1,
+          "review": "Keep this short note focused on one image."
+        }
+      ],
+      "hints": [
+        "Start the image with an exclamation mark followed by an opening square bracket.",
+        "Put a useful description inside the brackets and the image address inside parentheses.",
+        "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`"
+      ],
+      "retryFamily": "level-1-image",
+      "reviewTags": [
+        "one-focused-image",
+        "meaningful-alt-text"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "everyday-meals"
+        ],
+        "terms": [
+          "tomato",
+          "soup"
+        ]
+      },
+      "revision": 3,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "soup-bowl-photo",
+      "sourceBatch": "2026-08-28-l1-images-029",
+      "candidateDigest": "8e4a44aff00ed4f4d40430ca7d6cc5349e3ff4c14ebee9ddd7d98ae942a614eb"
+    }
+  ],
+  "artifactDigest": "5a4a23b904683f00b209cb76e281872fa88feaf60bd0e40476eaa79ac2493cc3"
+}

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "23583961008e3b6fdb987ed8ef79b301b7fd3a6a30bc197f7f8f80cf546749be",
-  "acceptedTotal": 372,
+  "bankDigest": "d0ca8b85908b55fab9e576a033842b4abe5ac0148f8ad57438c6d6f5f7f60b97",
+  "acceptedTotal": 384,
   "counts": {
     "byLevel": {
-      "1": 140,
+      "1": 152,
       "2": 148,
       "3": 30,
       "4": 32,
@@ -22,6 +22,7 @@
       "fenced-code-blocks": 12,
       "headings": 44,
       "horizontal-rules": 24,
+      "images": 12,
       "inline-code": 24,
       "italic-emphasis": 12,
       "links": 24,
@@ -42,6 +43,7 @@
       "1/fenced-code-blocks": 12,
       "1/headings": 28,
       "1/horizontal-rules": 12,
+      "1/images": 12,
       "1/inline-code": 12,
       "1/italic-emphasis": 12,
       "1/links": 12,
@@ -69,7 +71,7 @@
       "5/developer-readme": 4
     },
     "byFlavor": {
-      "standard": 372
+      "standard": 384
     },
     "rejected": 0,
     "blocked": 0
@@ -263,7 +265,34 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-08-28-l1-images-027",
+      "sequence": 23,
+      "batchDigest": "4b419d925b639b3db248c6aab42f29a5d58e905c688d2742b822d4bb00330d16",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
+    },
+    {
+      "batchId": "2026-08-28-l1-images-028",
+      "sequence": 24,
+      "batchDigest": "a06571d26cc1b1cf02812bc71331796780b72bdf98f467eb234ebbd8fa241f25",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
+    },
+    {
+      "batchId": "2026-08-28-l1-images-029",
+      "sequence": 25,
+      "batchDigest": "32b6baed6bb81de8141a68b9cf2350a34ab715720e37e24a6de9bb4ee9871935",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "b9b2f79b2d863bd94fa19dea89ba8c63abc8121d6a9450ff135072713f405198"
+  "trackerDigest": "94e218f7194936c8dd7e098ac50266f47f9ff495decb5e76688b4b6187c8cd24"
 }

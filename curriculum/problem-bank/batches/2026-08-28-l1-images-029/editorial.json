@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-029",
+  "editorialActor": "jinseo-editorial-batch029-independent",
+  "editorialRunId": "editorial-batch029-3989fc53-20260828-kst-001",
+  "reviewedOn": "2026-08-28",
+  "reviewTimezone": "Asia/Seoul",
+  "reviewedHead": "2f06a731d265d59b2241c66f785f68fc3ae5eefd",
+  "sourceBuzzEventId": "1da399ab36585ca0d9cda53bd9892deecb456796d696eefbb8818b93f9beb9f3",
+  "manifestDigest": "3989fc535919b8dbe6b4c5b50c61ecfde80d2db1e20fa2aca88224d68cbe5c70",
+  "reviewDigests": [
+    "9c629cb74d24ac959df83d88226e3ebf9598f497aa0f7887aba52bf1fddccba5",
+    "f98fe8f7ae38b4d9a11a225bea9f682d1bce33650a8c5d5960479215fcc74307"
+  ],
+  "decisions": [
+    {
+      "candidateId": "l1-image-beach-sunrise",
+      "revision": 3,
+      "candidateDigest": "822fb155584083c2648447ce204c93741cefb0dcfff9328700980c043244a8d3",
+      "fixtureResultsDigest": "d6b709f10f527a5dbd29fa0f63374ab822cb8b5689c3eb942eb044da04ba9a5f",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-birthday-cake",
+      "revision": 3,
+      "candidateDigest": "305896da7c5680a07ea3edc88394fa17c2cb012231ccb4c1fcec082a5f0f7d70",
+      "fixtureResultsDigest": "8d9f6f2738eba2a9c68d4576872e4d18f053545651bffe7372bc6df4f6256ba8",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-city-bus",
+      "revision": 3,
+      "candidateDigest": "c51ee80bfa2db7bf4076200c1ba8db84f576d3dc8034867153e9310ed3f1f54d",
+      "fixtureResultsDigest": "cdb5e8608728a45ff3b961d68ecbfeaff55378bfac02e7eec79fe45070d20b18",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-garden-path",
+      "revision": 3,
+      "candidateDigest": "e362532415399b2395866a73301cc61228d1ca474054868b6984e95d8e747047",
+      "fixtureResultsDigest": "b1173d27856747dfc6e853fbec2eb6b393fff0ec346c1dadd5c1416596881b5e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-hiking-trail",
+      "revision": 3,
+      "candidateDigest": "7013c2d887077533d5b6cf305a0274b5d54c860c4cbe1a04bc757e45ed18e024",
+      "fixtureResultsDigest": "39d0940ec1a0e21a1eee58dde393039fbcd27117342a7222a7200d84fae6d692",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-library-corner",
+      "revision": 3,
+      "candidateDigest": "e9c69e7d379e075c36e1e635e821c4208e16ba4ba045bd7010c3c59613f0fd60",
+      "fixtureResultsDigest": "b1a702119412a0f0c74737b85902ba03d23bbb3e3ac92c404e60cd3f918d8e8a",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence. Carried from 028 as cosmetic only: the public-library domain in the address is still a stand-in, and content is unchanged here."
+    },
+    {
+      "candidateId": "l1-image-paper-lanterns",
+      "revision": 3,
+      "candidateDigest": "f4d8380c9efb6e7ad08d9cfd4b94356921bef1b38033717df210183104ccc787",
+      "fixtureResultsDigest": "99f0052117a24377f4640c5292c2083bc976c3c268ed0fea47eedb6606770e7f",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-picnic-basket",
+      "revision": 3,
+      "candidateDigest": "1f6cbe6bcdddbf3e59b228117bc43610d67f9fa9b26c59318a400b82587c27e0",
+      "fixtureResultsDigest": "e385750796c20e9adf3e6611e83929478092aaddb94615d0992878023b0d2cb4",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-rainy-window",
+      "revision": 3,
+      "candidateDigest": "808d1ba63edb9a223879fda23b2f9c7e9ebaba5c122803717426ca90098f630a",
+      "fixtureResultsDigest": "b08a8a984c5642e3a86690ad43677295c75d6022ebf11d75659b448b5f49f344",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-red-bicycle",
+      "revision": 3,
+      "candidateDigest": "5b8fa086ee266853764a93c162bb9cfe555dbac5edc09be6e332efd46ac2738c",
+      "fixtureResultsDigest": "49f9397d175063a1a94d9e87392a259e03e6bcf53d6aaee4018fcfa015f11e2c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-sleepy-cat",
+      "revision": 3,
+      "candidateDigest": "af2b7b919b4fea9700a756d9e342b6b9a16bacd6215470a47993867946e144e0",
+      "fixtureResultsDigest": "1b44a24064906b46516934a4f4af921bd89360e329e7b68148be8e072e9a99b1",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence."
+    },
+    {
+      "candidateId": "l1-image-soup-bowl",
+      "revision": 3,
+      "candidateDigest": "8e4a44aff00ed4f4d40430ca7d6cc5349e3ff4c14ebee9ddd7d98ae942a614eb",
+      "fixtureResultsDigest": "6de7ba5eaffd6fdc2f55b1a5c798eab736e572f35f84d7809781e0bf2390e5a8",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Teaching content and the visible-text feedback are byte-identical to revision 2; only the destination delimiter engine and its fixtures changed. A title containing `](` now matches instead of being rejected, so the learner is no longer told the address is missing while it is plainly there. Empty, NUL and ZWSP destinations and alts still fail, and every failing case still returns the one reviewed visible-text sentence. Carried from 028 as cosmetic only: the address slug still reads tomato-soup against a soup-bowl id, and content is unchanged here."
+    }
+  ],
+  "editorialDigest": "4b3423a9493135f79ea089399595df808b424d35378874887c1f9510cd9fb247"
+}

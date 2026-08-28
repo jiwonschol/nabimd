@@ -994,6 +994,110 @@ describe("structural match predicates", () => {
     })
   })
 
+  it("can require a link or image destination without grading its prose", () => {
+    const image = problem([
+      {
+        ...common("image-address"),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "image",
+        min: 1,
+        requireNonemptyDestination: true,
+      },
+    ])
+    const link = problem([
+      {
+        ...common("link-address"),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "link",
+        min: 1,
+        requireNonemptyDestination: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        '![A [blue] umbrella](/photos/umbrella.jpg "title ]()")',
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        '![An escaped \\] bracket](/photos/umbrella.jpg "title ]()")',
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(
+        image,
+        '![A blue umbrella](/photos/umbrella.jpg "a ]( b")',
+      ),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![a \\]() b](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(
+      evaluateProblem(image, "![a \\]()](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(evaluateProblem(image, "![A blue umbrella]()")).toMatchObject({
+      status: "fail",
+      feedbackId: "image-address",
+    })
+    expect(evaluateProblem(image, "![A blue umbrella](<\u200b>)")).toMatchObject({
+      status: "fail",
+      feedbackId: "image-address",
+    })
+    expect(
+      evaluateProblem(image, "![A blue umbrella](<%E2%80%8B>)"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-address",
+    })
+    expect(
+      evaluateProblem(link, '[Guide](/guide "title ]()")'),
+    ).toEqual({ status: "matched", reviewItems: [] })
+  })
+
+  it("can require meaningful image alt text", () => {
+    const image = problem([
+      {
+        ...common("image-alt"),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "image",
+        min: 1,
+        requireNonemptyContent: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(evaluateProblem(image, "![](/photos/umbrella.jpg)")).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(image, "![\u200b](/photos/umbrella.jpg)"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(image, "![\u0000](/photos/umbrella.jpg)"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(image, "![\uFFFD](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+  })
+
   it("matches an ordered block subsequence and can require an exact shape", () => {
     const sequence = [
       { block: "heading", depth: 1 },

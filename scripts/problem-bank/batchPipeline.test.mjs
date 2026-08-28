@@ -851,6 +851,64 @@ test("filesystem loader discovers lexically ordered schema-v2 batch directories"
   assert.deepEqual(loaded.flatMap((batch) => batch.loaderErrors), [])
 })
 
+test("filesystem loader reads a prepared batch without editorial but publication stays fail-closed", async () => {
+  const root = await mkdtemp(join(tmpdir(), "nabimd-prepared-batch-"))
+  const batchId = "batch-prepared"
+  const batchDir = join(root, "batches", batchId)
+  await mkdir(join(batchDir, "reviews"), { recursive: true })
+  const evidence = await acceptedBatch({
+    raw: rawBatch({ batchId, sequence: 3 }),
+    prompt: "prompt\n",
+  })
+  const engineContractBase = {
+    schemaVersion: 2,
+    policyId: "test-engine-contract",
+    policyDigest: "test-policy",
+    files: [],
+    dependencies: [],
+  }
+  const engineContract = {
+    ...engineContractBase,
+    engineContractDigest: sha256(engineContractBase),
+  }
+  await Promise.all([
+    writeFile(join(batchDir, "generation-prompt.md"), "prompt\n"),
+    writeFile(
+      join(batchDir, "candidates.raw.json"),
+      JSON.stringify(rawBatch({ batchId, sequence: 3 })),
+    ),
+    writeFile(
+      join(batchDir, "candidates.normalized.json"),
+      JSON.stringify(evidence.normalized),
+    ),
+    writeFile(
+      join(batchDir, "fixtures.json"),
+      JSON.stringify(evidence.fixtureArtifact),
+    ),
+    writeFile(join(batchDir, "engine-contract.json"), JSON.stringify(engineContract)),
+    writeFile(
+      join(batchDir, "verification.json"),
+      JSON.stringify({
+        ...evidence.verification,
+        engineContractDigest: engineContract.engineContractDigest,
+      }),
+    ),
+    writeFile(
+      join(batchDir, "review-manifest.json"),
+      JSON.stringify(evidence.manifest),
+    ),
+  ])
+
+  const [loaded] = await loadBatchDirectories(root)
+  assert.deepEqual(loaded.loaderErrors, [])
+  assert.equal(loaded.editorial, null)
+  assert.ok(
+    evaluateBatchEvidence(loaded).errors.some((error) =>
+      error.includes("Editorial artifact is invalid"),
+    ),
+  )
+})
+
 test("filesystem loader preserves a readable sequence when later evidence is incomplete", async () => {
   const root = await mkdtemp(join(tmpdir(), "nabimd-partial-batch-"))
   const batchId = "batch-later"

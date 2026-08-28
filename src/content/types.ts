@@ -88,6 +88,7 @@ export type MatchCheck =
       min?: number
       max?: number
       requireNonemptyContent?: boolean
+      requireNonemptyDestination?: boolean
     })
   | (MatchCheckBase & {
       kind: "heading-depth-order"

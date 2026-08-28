@@ -1,0 +1,2531 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-027",
+  "engineContractDigest": "e2d440530f5ae6ac7f7aeb9af4f5b6e8c85259918d22cd8b4f0bba6a8e8d1889",
+  "candidates": [
+    {
+      "candidateId": "l1-image-beach-sunrise",
+      "revision": 1,
+      "candidateDigest": "5d213ece1644b49ad81067c4bfca38582eb027b6b5b8c365bdab877d1503ee07",
+      "problemDigest": "67f59301c8b269786c69acd4a646be95baf006200402f321cd9047ca00ace229",
+      "fixtureDefinitionDigest": "34e7084ecf599515cf6ef47b6cde36cb72ef88409d4238534d22e2cdec054280",
+      "fixtureResultsDigest": "0b85c029ac45227ddad89a0eee0d298121935fe3b05e7bc74c90f31a561f3674",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-birthday-cake",
+      "revision": 1,
+      "candidateDigest": "446b8a44439d365312b4859a411dafd3e66770fd6f545906dc4eca81a88861a7",
+      "problemDigest": "b542e87cea74763393cbebfe495e403152e1c08c07365357586de1f0fa35c376",
+      "fixtureDefinitionDigest": "768171f1d55bea683565d33e3fb7c0c545c3711ad7dbed6f024824e2e3de49c2",
+      "fixtureResultsDigest": "1041b22f918d98ca9f02b9a43ce15bc8d3ff92cc777f373586bf928b013abb3d",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-city-bus",
+      "revision": 1,
+      "candidateDigest": "883e875eaff95d150f6d56af59122df10c2272fc5702b4cb9e69e9ce00de752c",
+      "problemDigest": "9eb8ac9ab862346745754f522a3ca37388c6ca15d1a73a8187e9987504d941cf",
+      "fixtureDefinitionDigest": "0a228ed627d860405e9a8074a7d10af97910bdd8649af2a4c2a7a9d2252184eb",
+      "fixtureResultsDigest": "01ca9a23560dce972c9f08aa31df98e510f62df789bec1d2da3c5e08d8d0d94d",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-garden-path",
+      "revision": 1,
+      "candidateDigest": "4814441b8776396a34fcaf2897de912139a0359d3ea3cfd90e37541b49788e20",
+      "problemDigest": "deab84e8466611129860eb84d9d7c5689c7595cdc2324f1dc569f87f9135dd8b",
+      "fixtureDefinitionDigest": "46e746f70c2bc054f088e4adb3d1e9acfa7a5702dd83580a0dbe61c3bf3506ca",
+      "fixtureResultsDigest": "1590aaf50741bdf2462b409be2ff66e63b08cc0a86ed5ae2987bbb44cbccdd9f",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-hiking-trail",
+      "revision": 1,
+      "candidateDigest": "b528e94a65fffb9a8a16f3da21169fc5b66ebf263d8c39d8d780788676cf5261",
+      "problemDigest": "110c658ea3fa3aece43743b8c357a4ed4424dff367e1a6d625e821c291a5c6bf",
+      "fixtureDefinitionDigest": "dfbe152079a8f84f073c6b17ba227ab6660e655ac088118cc8ad20503a326a18",
+      "fixtureResultsDigest": "34419713afd846fc4ab9fc9e03306d324ee72aa55f5bafa7a0716134f288898b",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-library-corner",
+      "revision": 1,
+      "candidateDigest": "ba46ecae07b2924db42542daff7c59a2afc9e3372bf42d2af4ba60217f906e06",
+      "problemDigest": "18b8ea98b8ac4c87f7fd12cf80bd635bb27645a912a8bab41ac02b7aeccd91c4",
+      "fixtureDefinitionDigest": "37299fea7ca6dd130053a5c505dead71644211bc26694fdf7fdd1bef2d0dad2c",
+      "fixtureResultsDigest": "70ef3d7025619482851155b84fdee7d87413b1ab86fdcc45f3bf7c86525cd19e",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-paper-lanterns",
+      "revision": 1,
+      "candidateDigest": "6e732ccbadcdf8fa2bb939ea5d8651650c3f32ca47072cd818569142518aedb6",
+      "problemDigest": "8f5ea6d4ee86cb9967f38b3d90ab509f7ea5ae10299879f24bf7041a41ea43d0",
+      "fixtureDefinitionDigest": "8613cb3c4ab5c108d172296672d76c0e1a92af53b7dbbe813678cd8db121383d",
+      "fixtureResultsDigest": "3e45b1a2c4683c1dcf67c78e182d47e0c9f39ec85c6d83d1932121a8a3387c58",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-picnic-basket",
+      "revision": 1,
+      "candidateDigest": "716896c3053e05292e08611bbb58160bf4e932adeb66c831ae2894855a13ada0",
+      "problemDigest": "6d91bcb856b9be3201f7b6c890e120605d743086d3e474db055c0dafaa46f16b",
+      "fixtureDefinitionDigest": "46a11b88236c0270c1a307973413dbe0927907e13dcb00c0538d2bc166d6d6f1",
+      "fixtureResultsDigest": "6f88a18979a455cb9ef21c849eb61cc4c9ea34008a5c7b7d6f1aa9c7792292c5",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-rainy-window",
+      "revision": 1,
+      "candidateDigest": "c3297af8ceca54985500eb3747d88ac0850b06d6ad101693d966960d104cf08d",
+      "problemDigest": "0bb0d8c32257f963562b2a073f2dbc59790ccbec37baadd5a9d3f12e50c64548",
+      "fixtureDefinitionDigest": "1cdc2b2ebcd9d57d1627759e41572cdc9d94e1d3b7704ba0c5265a918eec2d05",
+      "fixtureResultsDigest": "f157e1f40d09c480d79601b54bf244b1a8197ef9de2da8a6b6684037823c9197",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-red-bicycle",
+      "revision": 1,
+      "candidateDigest": "ef8a47a703038822584ab8853bd53eb38ba2a44c5f96b1bde060d00854cc6124",
+      "problemDigest": "7ae75f9ba72d9625d5ee34be014d6e16c1b2f7afae8a8c4c8e7156f4aeca7a62",
+      "fixtureDefinitionDigest": "64a7386e105a55f4d8bb2133fbbc1c739ea57385a54c88cd7d3cd8026a3fa93e",
+      "fixtureResultsDigest": "164a90f48cdf0b953e646447af278b57af299e4bf9a538e97fdf6126110317e4",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-sleepy-cat",
+      "revision": 1,
+      "candidateDigest": "d288ce99eeac181b2ad0f0237d94fdb0e72be49b723122ae180bbd7d84efcc23",
+      "problemDigest": "0a14f3bfaf507105e8eb78e55f595bc87fe60c545b4e99fb931080266221a5fb",
+      "fixtureDefinitionDigest": "423dbd1f9b2a3fe30a4898d3bdfbc2bd8784dd8624193ddeb52b54f8aaf1fd88",
+      "fixtureResultsDigest": "2b9cf9a17791b7d408942805448fa7d3ddf27e319301075d63d631cfe7882cfb",
+      "fixtureCount": 14,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-soup-bowl",
+      "revision": 1,
+      "candidateDigest": "35b961605d6de5cc211bada67184f89357c2d319e62ad54c6230e12a1e306231",
+      "problemDigest": "ba3d907ffb8003b6f906a03f40c2e9f1e21ee1a32c54e945d24c50bd232f8a64",
+      "fixtureDefinitionDigest": "106044569552c8df9115e91a27f044834b28b4e432885f51ac737e4662d0bd79",
+      "fixtureResultsDigest": "824c960fddbb9323bef7f896a588fd7805a2eedeb3d0288ca2972d96b3db7ac5",
+      "fixtureCount": 14,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l1-image-beach-sunrise-canonical",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-case-spelling",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-code-lookalike",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-different-prose",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-empty-decorative-image",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-empty-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-encoded-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-escaped-image-mark",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-image-title",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-link-not-image",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-missing",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-relative-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-two-images",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-canonical",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-case-spelling",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-code-lookalike",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-different-prose",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-empty-decorative-image",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-empty-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-encoded-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-escaped-image-mark",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-image-title",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-link-not-image",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-missing",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-relative-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-two-images",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-canonical",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-case-spelling",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-code-lookalike",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-different-prose",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-empty-decorative-image",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-empty-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-encoded-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-escaped-image-mark",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-image-title",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-link-not-image",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-missing",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-relative-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-two-images",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-canonical",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-case-spelling",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-code-lookalike",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-different-prose",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-empty-decorative-image",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-empty-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-encoded-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-escaped-image-mark",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-image-title",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-link-not-image",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-missing",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-relative-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-two-images",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-canonical",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-case-spelling",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-code-lookalike",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-different-prose",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-empty-decorative-image",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-empty-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-encoded-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-escaped-image-mark",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-image-title",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-link-not-image",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-missing",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-relative-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-two-images",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-canonical",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-case-spelling",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-code-lookalike",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-different-prose",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-empty-decorative-image",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-empty-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-encoded-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-escaped-image-mark",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-image-title",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-link-not-image",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-missing",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-relative-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-two-images",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-canonical",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-case-spelling",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-code-lookalike",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-different-prose",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-empty-decorative-image",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-empty-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-encoded-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-escaped-image-mark",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-image-title",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-link-not-image",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-missing",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-relative-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-two-images",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-canonical",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-case-spelling",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-code-lookalike",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-different-prose",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-empty-decorative-image",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-empty-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-encoded-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-escaped-image-mark",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-image-title",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-link-not-image",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-missing",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-relative-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-two-images",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-canonical",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-case-spelling",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-code-lookalike",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-different-prose",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-empty-decorative-image",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-empty-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-encoded-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-escaped-image-mark",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-image-title",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-link-not-image",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-missing",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-relative-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-two-images",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-canonical",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-case-spelling",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-code-lookalike",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-different-prose",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-empty-decorative-image",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-empty-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-encoded-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-escaped-image-mark",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-image-title",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-link-not-image",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-missing",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-relative-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-two-images",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-canonical",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-case-spelling",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-code-lookalike",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-different-prose",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-empty-decorative-image",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-empty-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-encoded-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-escaped-image-mark",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-image-title",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-link-not-image",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-missing",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-relative-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-two-images",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-canonical",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-case-spelling",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-code-lookalike",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-different-prose",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-empty-decorative-image",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-empty-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-encoded-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-escaped-image-mark",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-image-title",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-link-not-image",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-missing",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-relative-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-two-images",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "96460ca7532f3b430d996fcb5983887430b5061bbe847d96a7084a53d3c47be1"
+}

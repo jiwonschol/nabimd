@@ -39,7 +39,7 @@ describe("RenderedDocument", () => {
     ).not.toContainHTML("<p>Your preview will appear here.</p>")
   })
 
-  it("never loads media from Markdown source", () => {
+  it("exposes image alt text without loading remote media", () => {
     render(
       <RenderedDocument
         label="Live preview"
@@ -48,7 +48,12 @@ describe("RenderedDocument", () => {
     )
 
     expect(screen.queryByRole("img")).not.toBeInTheDocument()
-    expect(screen.getByText("[Image: tracking pixel]")).toBeVisible()
+    const placeholder = screen.getByText("[Image: tracking pixel]")
+    expect(placeholder).toBeVisible()
+    expect(placeholder).not.toHaveAttribute("aria-hidden")
+    expect(
+      screen.getByRole("region", { name: "Live preview" }),
+    ).toHaveTextContent("[Image: tracking pixel]")
   })
 
   it.each([

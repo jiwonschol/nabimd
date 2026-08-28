@@ -24,7 +24,7 @@ describe("three-level curriculum", () => {
           "task-list",
           "image",
         ],
-        unimplementedElements: ["table", "task-list", "image"],
+        unimplementedElements: ["table", "task-list"],
         exerciseMode: "target",
       },
       {

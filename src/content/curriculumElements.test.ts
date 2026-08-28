@@ -29,6 +29,7 @@ describe("curriculum element classification", () => {
         "inline-code",
         "code-block",
         "blockquote",
+        "image",
         "thematic-break",
         "nested-list",
       ]),
@@ -89,34 +90,35 @@ describe("curriculum element classification", () => {
     )
 
     expect(compatibleMixedProblems).toHaveLength(80)
-    expect(strictOverlapFallbacks).toHaveLength(4)
+    expect(strictOverlapFallbacks).toHaveLength(0)
   })
 
   it("keeps the unimplemented list honest in both directions", () => {
     expect(validateCurriculumCoverage(curriculumLevels, problemBank)).toEqual([])
 
-    const levelOneWithoutImageGap = {
-      ...curriculumLevels[0],
-      unimplementedElements: ["table", "task-list"] as CurriculumElement[],
-    }
+    const bankWithoutImages = problemBank.filter(
+      (problem) => getCurriculumElement(problem) !== "image",
+    )
     expect(
       validateCurriculumCoverage(
-        [levelOneWithoutImageGap, ...curriculumLevels.slice(1)],
-        problemBank,
+        curriculumLevels,
+        bankWithoutImages,
       ),
     ).toContain("level-1 declares image but has no runtime problem")
 
-    const imageProblem = {
-      ...problemBank[0]!,
-      id: "synthetic-image",
-      skillIds: ["image"],
-      syntaxTokens: ["![", "](", ")"],
+    const levelOneWithStaleImageGap = {
+      ...curriculumLevels[0],
+      unimplementedElements: [
+        "table",
+        "task-list",
+        "image",
+      ] as CurriculumElement[],
     }
     expect(
-      validateCurriculumCoverage(curriculumLevels, [
-        ...problemBank,
-        imageProblem,
-      ]),
+      validateCurriculumCoverage(
+        [levelOneWithStaleImageGap, ...curriculumLevels.slice(1)],
+        problemBank,
+      ),
     ).toContain("level-1 still lists implemented image as unimplemented")
 
     expect(
@@ -125,5 +127,14 @@ describe("curriculum element classification", () => {
         problemBank,
       ),
     ).toContain("curriculum omits footnote")
+  })
+
+  it("serves image syntax as an implemented Level 1 element", () => {
+    const levelOne = curriculumLevels[0]
+
+    expect(getImplementedElementsForEntry(levelOne, problemBank)).toContain(
+      "image",
+    )
+    expect(levelOne.unimplementedElements).not.toContain("image")
   })
 })

@@ -1,0 +1,4715 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-029",
+  "engineContractDigest": "1e036da830200e5b31e9cb67de11eff4ed87e9d6346748af50e8e935a7f238f6",
+  "candidates": [
+    {
+      "candidateId": "l1-image-beach-sunrise",
+      "revision": 3,
+      "candidateDigest": "822fb155584083c2648447ce204c93741cefb0dcfff9328700980c043244a8d3",
+      "problemDigest": "46e8735b639cf762b63cdc848fe75e32c59f427a7e5a1d3db417d97d5a59bdd4",
+      "fixtureDefinitionDigest": "5e2ae2ddd6e53d8ab32de2585d6e62da45f850c15f28dc2fb5734c5da1ce635a",
+      "fixtureResultsDigest": "d6b709f10f527a5dbd29fa0f63374ab822cb8b5689c3eb942eb044da04ba9a5f",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-birthday-cake",
+      "revision": 3,
+      "candidateDigest": "305896da7c5680a07ea3edc88394fa17c2cb012231ccb4c1fcec082a5f0f7d70",
+      "problemDigest": "90ec0a2644a562c620f6885776e144724806db9e412bf5e44518f98337021509",
+      "fixtureDefinitionDigest": "7adabed046a6b875121de3db8e0371d1902c1f7c978416d4e80f4646f49399e3",
+      "fixtureResultsDigest": "8d9f6f2738eba2a9c68d4576872e4d18f053545651bffe7372bc6df4f6256ba8",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-city-bus",
+      "revision": 3,
+      "candidateDigest": "c51ee80bfa2db7bf4076200c1ba8db84f576d3dc8034867153e9310ed3f1f54d",
+      "problemDigest": "719211c54d3e6a434b889ad561f606ce26b4d99e21a9df1de13fe1a8b269c245",
+      "fixtureDefinitionDigest": "c97573b1a62da5572909a3926889403e800dd67c1d8b9d409bef004535a67f57",
+      "fixtureResultsDigest": "cdb5e8608728a45ff3b961d68ecbfeaff55378bfac02e7eec79fe45070d20b18",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-garden-path",
+      "revision": 3,
+      "candidateDigest": "e362532415399b2395866a73301cc61228d1ca474054868b6984e95d8e747047",
+      "problemDigest": "fad08cc8ac3342ef715dc9acc00f2afa7e0b688f511f5ca37e9e8d82858596cc",
+      "fixtureDefinitionDigest": "e83c7cdf4438c7f82dba7fe8fe4762558993e107b26a940762cfd984d9b7a672",
+      "fixtureResultsDigest": "b1173d27856747dfc6e853fbec2eb6b393fff0ec346c1dadd5c1416596881b5e",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-hiking-trail",
+      "revision": 3,
+      "candidateDigest": "7013c2d887077533d5b6cf305a0274b5d54c860c4cbe1a04bc757e45ed18e024",
+      "problemDigest": "28e71317d415251c54bbf4d532a60945ed619a214784c66cc78a148bed66e56b",
+      "fixtureDefinitionDigest": "3d6dbfbc342586d5b9b7dcb0308664cc66b4c69b85190bd553dd9940f09944df",
+      "fixtureResultsDigest": "39d0940ec1a0e21a1eee58dde393039fbcd27117342a7222a7200d84fae6d692",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-library-corner",
+      "revision": 3,
+      "candidateDigest": "e9c69e7d379e075c36e1e635e821c4208e16ba4ba045bd7010c3c59613f0fd60",
+      "problemDigest": "baf7245a03371ff437966fb8f5a38fac059cbaaa5c3e3985e3702a5fd709450b",
+      "fixtureDefinitionDigest": "69edd20b81fb840c97309115c31e2f8510c7eb7cbcb72d15bdcbcb476f88bc1f",
+      "fixtureResultsDigest": "b1a702119412a0f0c74737b85902ba03d23bbb3e3ac92c404e60cd3f918d8e8a",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-paper-lanterns",
+      "revision": 3,
+      "candidateDigest": "f4d8380c9efb6e7ad08d9cfd4b94356921bef1b38033717df210183104ccc787",
+      "problemDigest": "4d284dafe6b1a9a29c5aab657d9a118858eaa8cc076b41621fdffe48ca620dfa",
+      "fixtureDefinitionDigest": "5d4b5f5b2254ac700dcf89e260c66e57645a2a11bac97f3323df6fe9bf913ded",
+      "fixtureResultsDigest": "99f0052117a24377f4640c5292c2083bc976c3c268ed0fea47eedb6606770e7f",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-picnic-basket",
+      "revision": 3,
+      "candidateDigest": "1f6cbe6bcdddbf3e59b228117bc43610d67f9fa9b26c59318a400b82587c27e0",
+      "problemDigest": "fc8d1ef419e5053bec17f2de51d148da57f985013069ffd1b4285ea55bb514f0",
+      "fixtureDefinitionDigest": "b3aa63632f307f1f7467d086045c95dde0244e54e69ba7ab631aea386e028faa",
+      "fixtureResultsDigest": "e385750796c20e9adf3e6611e83929478092aaddb94615d0992878023b0d2cb4",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-rainy-window",
+      "revision": 3,
+      "candidateDigest": "808d1ba63edb9a223879fda23b2f9c7e9ebaba5c122803717426ca90098f630a",
+      "problemDigest": "3fe74182edbf5fe259b53e14d7c0fac62ec6acdc2d243c156ea2d2b67eb9f603",
+      "fixtureDefinitionDigest": "142e47c0dd5b5ed88ceac89606d4729020707504a6b1e07a5a3a10285fdaba3b",
+      "fixtureResultsDigest": "b08a8a984c5642e3a86690ad43677295c75d6022ebf11d75659b448b5f49f344",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-red-bicycle",
+      "revision": 3,
+      "candidateDigest": "5b8fa086ee266853764a93c162bb9cfe555dbac5edc09be6e332efd46ac2738c",
+      "problemDigest": "d110ae7e0a9a99c1404496e94ecef088fbe334ba4b3c77d6db863b44b11a8025",
+      "fixtureDefinitionDigest": "8b42e426b210a4ed61a9e8b448634f6f911da16fa52dcdc29f7f234541447ab9",
+      "fixtureResultsDigest": "49f9397d175063a1a94d9e87392a259e03e6bcf53d6aaee4018fcfa015f11e2c",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-sleepy-cat",
+      "revision": 3,
+      "candidateDigest": "af2b7b919b4fea9700a756d9e342b6b9a16bacd6215470a47993867946e144e0",
+      "problemDigest": "06da31ba37ca9e0f8079fbaa860b0a8c02e6053bdc0641858407719a73a52d31",
+      "fixtureDefinitionDigest": "ea23138a8d25b00cdbf9cb4b049a0f60d7701f51a0f2925ddbf8b16a53863a49",
+      "fixtureResultsDigest": "1b44a24064906b46516934a4f4af921bd89360e329e7b68148be8e072e9a99b1",
+      "fixtureCount": 27,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-image-soup-bowl",
+      "revision": 3,
+      "candidateDigest": "8e4a44aff00ed4f4d40430ca7d6cc5349e3ff4c14ebee9ddd7d98ae942a614eb",
+      "problemDigest": "1533f308e5c9a114fb601ac5d16b0fd691b3c43570c0614251b74061e7a4c35b",
+      "fixtureDefinitionDigest": "a07ae1e5de682d0524c5da4cfc772cad9b1c382654565539944391fa44dea13a",
+      "fixtureResultsDigest": "6de7ba5eaffd6fdc2f55b1a5c798eab736e572f35f84d7809781e0bf2390e5a8",
+      "fixtureCount": 27,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l1-image-beach-sunrise-angle-empty-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-canonical",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-case-spelling",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-code-lookalike",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-different-prose",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-empty-decorative-image",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-empty-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-encoded-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-escaped-image-mark",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-image-title",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-link-not-image",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-literal-replacement-character-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-missing",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-nul-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-nul-only-image-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-relative-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-single-visible-character-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-space-only-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-title-close-bracket",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-title-delimiter-sequence",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-title-ending-delimiter-sequence",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-title-open-parenthesis",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-two-images",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-zwsp-only-image-alt",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-angle-empty-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-canonical",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-case-spelling",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-code-lookalike",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-different-prose",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-empty-decorative-image",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-empty-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-encoded-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-escaped-image-mark",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-image-title",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-link-not-image",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-literal-replacement-character-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-missing",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-nul-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-nul-only-image-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-relative-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-single-visible-character-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-space-only-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-title-close-bracket",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-title-delimiter-sequence",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-title-ending-delimiter-sequence",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-title-open-parenthesis",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-two-images",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-zwsp-only-image-alt",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-angle-empty-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-canonical",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-case-spelling",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-code-lookalike",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-different-prose",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-empty-decorative-image",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-empty-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-encoded-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-escaped-image-mark",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-image-title",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-link-not-image",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-literal-replacement-character-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-missing",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-nul-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-nul-only-image-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-relative-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-single-visible-character-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-space-only-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-title-close-bracket",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-title-delimiter-sequence",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-title-ending-delimiter-sequence",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-title-open-parenthesis",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-two-images",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-zwsp-only-image-alt",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-angle-empty-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-canonical",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-case-spelling",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-code-lookalike",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-different-prose",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-empty-decorative-image",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-empty-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-encoded-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-escaped-image-mark",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-image-title",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-link-not-image",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-literal-replacement-character-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-missing",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-nul-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-nul-only-image-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-relative-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-single-visible-character-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-space-only-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-title-close-bracket",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-title-delimiter-sequence",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-title-ending-delimiter-sequence",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-title-open-parenthesis",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-two-images",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-zwsp-only-image-alt",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-angle-empty-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-canonical",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-case-spelling",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-code-lookalike",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-different-prose",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-empty-decorative-image",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-empty-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-encoded-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-escaped-image-mark",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-image-title",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-link-not-image",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-literal-replacement-character-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-missing",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-nul-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-nul-only-image-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-relative-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-single-visible-character-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-space-only-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-title-close-bracket",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-title-delimiter-sequence",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-title-ending-delimiter-sequence",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-title-open-parenthesis",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-two-images",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-zwsp-only-image-alt",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-angle-empty-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-canonical",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-case-spelling",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-code-lookalike",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-different-prose",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-empty-decorative-image",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-empty-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-encoded-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-escaped-image-mark",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-image-title",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-link-not-image",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-literal-replacement-character-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-missing",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-nul-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-nul-only-image-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-relative-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-single-visible-character-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-space-only-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-title-close-bracket",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-title-delimiter-sequence",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-title-ending-delimiter-sequence",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-title-open-parenthesis",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-two-images",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-zwsp-only-image-alt",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-angle-empty-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-canonical",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-case-spelling",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-code-lookalike",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-different-prose",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-empty-decorative-image",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-empty-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-encoded-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-escaped-image-mark",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-image-title",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-link-not-image",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-literal-replacement-character-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-missing",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-nul-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-nul-only-image-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-relative-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-single-visible-character-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-space-only-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-title-close-bracket",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-title-delimiter-sequence",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-title-ending-delimiter-sequence",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-title-open-parenthesis",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-two-images",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-zwsp-only-image-alt",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-angle-empty-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-canonical",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-case-spelling",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-code-lookalike",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-different-prose",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-empty-decorative-image",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-empty-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-encoded-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-escaped-image-mark",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-image-title",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-link-not-image",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-literal-replacement-character-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-missing",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-nul-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-nul-only-image-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-relative-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-single-visible-character-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-space-only-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-title-close-bracket",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-title-delimiter-sequence",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-title-ending-delimiter-sequence",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-title-open-parenthesis",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-two-images",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-zwsp-only-image-alt",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-angle-empty-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-canonical",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-case-spelling",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-code-lookalike",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-different-prose",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-empty-decorative-image",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-empty-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-encoded-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-escaped-image-mark",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-image-title",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-link-not-image",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-literal-replacement-character-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-missing",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-nul-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-nul-only-image-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-relative-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-single-visible-character-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-space-only-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-title-close-bracket",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-title-delimiter-sequence",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-title-ending-delimiter-sequence",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-title-open-parenthesis",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-two-images",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-zwsp-only-image-alt",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-angle-empty-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-canonical",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-case-spelling",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-code-lookalike",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-different-prose",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-empty-decorative-image",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-empty-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-encoded-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-escaped-image-mark",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-image-title",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-link-not-image",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-literal-replacement-character-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-missing",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-nul-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-nul-only-image-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-relative-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-single-visible-character-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-space-only-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-title-close-bracket",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-title-delimiter-sequence",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-title-ending-delimiter-sequence",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-title-open-parenthesis",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-two-images",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-zwsp-only-image-alt",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-angle-empty-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-canonical",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-case-spelling",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-code-lookalike",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-different-prose",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-empty-decorative-image",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-empty-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-encoded-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-escaped-image-mark",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-image-title",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-link-not-image",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-literal-replacement-character-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-missing",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-nul-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-nul-only-image-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-relative-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-single-visible-character-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-space-only-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-title-close-bracket",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-title-delimiter-sequence",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-title-ending-delimiter-sequence",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-title-open-parenthesis",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-two-images",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-zwsp-only-image-alt",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-angle-empty-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-canonical",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-case-spelling",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-code-lookalike",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-different-prose",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-empty-decorative-image",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-empty-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-encoded-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-escaped-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-escaped-image-mark",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-escaped-tight-delimiter-sequence-inside-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-image-title",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-link-not-image",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-literal-replacement-character-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-missing",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-nul-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-nul-only-image-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-relative-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-single-visible-character-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-space-only-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-title-close-bracket",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-title-delimiter-sequence",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-title-ending-delimiter-sequence",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-title-open-parenthesis",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-two-images",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-image"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-zwsp-only-image-alt",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 3,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "e99cd83f70cf60465905f34505c747e18aab96482f1f038a01ecee743dc6ad53"
+}

@@ -1034,6 +1034,15 @@ async function readJson(path) {
   return JSON.parse(await readFile(path, "utf8"))
 }
 
+async function optionalJson(path) {
+  try {
+    return await readJson(path)
+  } catch (error) {
+    if (error?.code === "ENOENT") return null
+    throw error
+  }
+}
+
 async function loadBatchDirectory(batchDir, directoryName) {
   const loaderErrors = []
   let prompt = ""
@@ -1059,7 +1068,7 @@ async function loadBatchDirectory(batchDir, directoryName) {
       readJson(resolve(batchDir, "engine-contract.json")),
       readJson(resolve(batchDir, "verification.json")),
       readJson(resolve(batchDir, "review-manifest.json")),
-      readJson(resolve(batchDir, "editorial.json")),
+      optionalJson(resolve(batchDir, "editorial.json")),
     ])
   } catch (error) {
     loaderErrors.push(`Cannot load ${directoryName}: ${error instanceof Error ? error.message : String(error)}`)
