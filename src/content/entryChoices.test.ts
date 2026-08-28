@@ -9,6 +9,7 @@ import {
   createRunProblemIdsForBank,
   entryChoices,
   getEntryChoice,
+  getProblemEntryId,
   isEntryId,
 } from "./entryChoices"
 import { problemBank } from "./problemBank"
@@ -19,17 +20,19 @@ describe("three-level entry choices", () => {
       entryChoices.map((entry) => {
         const elements = new Set(entry.elements)
         const pool = problemBank.filter((problem) => {
-          const problemElements = getCurriculumElements(problem)
           return (
             problem.flavor === "standard" &&
-            problemElements.length > 0 &&
-            problemElements.every((element) => elements.has(element))
+            getProblemEntryId(problem) === entry.id
           )
         })
         return {
           id: entry.id,
           problems: pool.length,
-          elements: new Set(pool.flatMap(getCurriculumElements)),
+          elements: new Set(
+            pool
+              .map(getCurriculumElement)
+              .filter((element) => element !== null && elements.has(element)),
+          ),
         }
       }),
     ).toEqual([
@@ -50,7 +53,7 @@ describe("three-level entry choices", () => {
       },
       {
         id: "level-2",
-        problems: 28,
+        problems: 56,
         elements: new Set([
           "thematic-break",
           "nested-list",
@@ -58,6 +61,20 @@ describe("three-level entry choices", () => {
       },
       { id: "level-3", problems: 0, elements: new Set() },
     ])
+  })
+
+  it("routes a mixed exercise to its highest owning curriculum level", () => {
+    const nested = problemBank.find(
+      (problem) => problem.id === "l2-nested-checklist-closet-shelf",
+    )
+    if (!nested) throw new Error("Missing cross-level nested-list fixture")
+
+    expect(getCurriculumElements(nested)).toEqual([
+      "heading",
+      "unordered-list",
+      "nested-list",
+    ])
+    expect(getProblemEntryId(nested)).toBe("level-2")
   })
 
   it("builds five distinct exercise slots for every open level", () => {
