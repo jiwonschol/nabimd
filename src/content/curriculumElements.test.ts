@@ -126,4 +126,13 @@ describe("curriculum element classification", () => {
       ),
     ).toContain("curriculum omits footnote")
   })
+
+  it("serves image syntax as an implemented Level 1 element", () => {
+    const levelOne = curriculumLevels[0]
+
+    expect(getImplementedElementsForEntry(levelOne, problemBank)).toContain(
+      "image",
+    )
+    expect(levelOne.unimplementedElements).not.toContain("image")
+  })
 })
