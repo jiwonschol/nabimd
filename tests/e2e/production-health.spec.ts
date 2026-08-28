@@ -3,13 +3,15 @@ import { readFileSync } from "node:fs"
 import { curriculumLevels } from "../../src/content/curriculumLevels"
 import {
   getCurriculumElements,
-  getImplementedElementsForEntry,
+  isEntryAvailableForBank,
 } from "../../src/content/curriculumElements"
+import { withinRuntimeBudget } from "../../src/content/runtimeBudget"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
 import { RUN_POLICY } from "../../src/selection/runPolicy"
 
 type RuntimeProblemSource = {
   id: string
+  flavor: "standard" | "transfer"
   skillIds: string[]
   syntaxTokens: string[]
   target: string
@@ -25,16 +27,19 @@ const runtimeProjection = JSON.parse(
   ),
 ) as { levels: Record<string, RuntimeProblemSource[]> }
 
+const runtimeProblems = Object.values(runtimeProjection.levels)
+  .flat()
+  .filter(withinRuntimeBudget)
 const runtimeProblemById = new Map<string, RuntimeProblemSource>(
-  Object.values(runtimeProjection.levels)
-    .flat()
-    .map((problem) => [problem.id, problem]),
+  runtimeProblems.map((problem) => [problem.id, problem]),
 )
 const entries = curriculumLevels.map((entry) => ({
   ...entry,
-  available:
-    getImplementedElementsForEntry(entry, [...runtimeProblemById.values()])
-      .length >= RUN_POLICY.turnSize,
+  available: isEntryAvailableForBank(
+    entry,
+    runtimeProblems,
+    RUN_POLICY.turnSize,
+  ),
 }))
 
 const progressStorageKey = "nabimd.progress.v5"

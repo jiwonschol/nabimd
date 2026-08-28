@@ -134,6 +134,22 @@ export function getProblemEntryId(
   return owner?.id ?? null
 }
 
+export function isEntryAvailableForBank(
+  entry: Pick<CurriculumElementEntry, "id" | "elements">,
+  problems: readonly CurriculumElementProblem[],
+  turnSize: number,
+): boolean {
+  const hasEnoughDedicatedElements =
+    getImplementedElementsForEntry(entry, problems).length >= turnSize
+  const hasOwnedMixedExercise = problems.some(
+    (problem) =>
+      problem.flavor === "standard" &&
+      getCurriculumElements(problem).length > 1 &&
+      getProblemEntryId(problem) === entry.id,
+  )
+  return hasEnoughDedicatedElements && hasOwnedMixedExercise
+}
+
 export function getImplementedElementsForEntry(
   entry: Pick<CurriculumElementEntry, "elements">,
   problems: readonly CurriculumElementProblem[],

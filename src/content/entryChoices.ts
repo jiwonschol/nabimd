@@ -5,8 +5,8 @@ import { curriculumLevels } from "./curriculumLevels"
 import {
   type EntryId,
   getCurriculumElements,
-  getImplementedElementsForEntry,
   getProblemEntryId,
+  isEntryAvailableForBank,
 } from "./curriculumElements"
 import {
   RUN_POLICY,
@@ -26,25 +26,9 @@ type SchedulableEntryProblem = Pick<
   | "syntaxTokens"
 >
 
-function isEntryAvailableForBank(
-  entry: (typeof curriculumLevels)[number],
-  problems: readonly SchedulableEntryProblem[],
-): boolean {
-  const hasEnoughDedicatedElements =
-    getImplementedElementsForEntry(entry, problems).length >=
-    RUN_POLICY.turnSize
-  const hasOwnedMixedExercise = problems.some(
-    (problem) =>
-      problem.flavor === "standard" &&
-      getCurriculumElements(problem).length > 1 &&
-      getProblemEntryId(problem) === entry.id,
-  )
-  return hasEnoughDedicatedElements && hasOwnedMixedExercise
-}
-
 export const entryChoices = curriculumLevels.map((entry) => ({
   ...entry,
-  available: isEntryAvailableForBank(entry, problemBank),
+  available: isEntryAvailableForBank(entry, problemBank, RUN_POLICY.turnSize),
 }))
 
 // Any input that can invalidate a persisted deterministic run belongs here.
@@ -114,7 +98,7 @@ export function createRunProblemIdsForBank(
   seed = 0,
 ): string[] {
   const entry = getEntryChoice(entryId)
-  if (!isEntryAvailableForBank(entry, problems)) {
+  if (!isEntryAvailableForBank(entry, problems, RUN_POLICY.turnSize)) {
     throw new Error(`Level ${entry.level} is not available yet`)
   }
   const served = getServedProblemsForBank(problems, entry.level)
