@@ -37,6 +37,32 @@ function lastCssBlock(selector: string): string {
   throw new Error(`Unclosed CSS block: ${selector}`)
 }
 
+function cssBlocks(selector: string): string[] {
+  const blocks: string[] = []
+  let searchFrom = 0
+
+  while (searchFrom < styles.length) {
+    const start = styles.indexOf(selector, searchFrom)
+    if (start < 0) break
+
+    const openingBrace = styles.indexOf("{", start)
+    let depth = 0
+
+    for (let index = openingBrace; index < styles.length; index += 1) {
+      if (styles[index] === "{") depth += 1
+      if (styles[index] !== "}") continue
+      depth -= 1
+      if (depth !== 0) continue
+
+      blocks.push(styles.slice(start, index + 1))
+      searchFrom = index + 1
+      break
+    }
+  }
+
+  return blocks
+}
+
 /**
  * The declarations for one selector inside the phone media query, and nothing
  * else. Asserting against the whole media query would let an unrelated later
@@ -457,36 +483,65 @@ describe("global responsive styles", () => {
     )
   })
 
-  it("removes animation delays for reduced-motion users", () => {
-    const reducedMotion = lastCssBlock("@media (prefers-reduced-motion: reduce)")
-
-    expect(reducedMotion).toMatch(
-      /\*\s*,\s*\*::before,\s*\*::after\s*\{[^{}]*animation-delay:\s*0ms !important[^{}]*animation-duration:\s*120ms !important[^{}]*transition-duration:\s*120ms !important/,
+  it("removes spatial transitions and keyframes for reduced-motion users", () => {
+    const reducedMotionBlocks = cssBlocks(
+      "@media (prefers-reduced-motion: reduce)",
     )
-    expect(reducedMotion).toMatch(
+    const [landingReducedMotion, practiceReducedMotion] = reducedMotionBlocks
+
+    expect(reducedMotionBlocks).toHaveLength(2)
+
+    expect(landingReducedMotion).toMatch(
+      /\.open-book-shell--turning \.open-book-page--chapters\s*\{[^{}]*animation:\s*summary-overlay-fade 120ms/s,
+    )
+    expect(landingReducedMotion).not.toContain("release-left-page")
+    expect(landingReducedMotion).toMatch(
+      /\.page-turn-stage--active \.page-turn-receiver::after\s*\{[^{}]*display:\s*none/s,
+    )
+
+    expect(practiceReducedMotion).toMatch(
+      /\*\s*,\s*\*::before,\s*\*::after\s*\{[^{}]*animation-delay:\s*0ms !important[^{}]*animation-duration:\s*120ms !important[^{}]*transition-duration:\s*0ms !important/,
+    )
+    expect(practiceReducedMotion).toMatch(
+      /\.card-practice\s*\{[^{}]*transition:\s*none !important/s,
+    )
+    expect(practiceReducedMotion).toMatch(
       /\.summary-page-turn-overlay\s*\{[^{}]*animation:\s*summary-overlay-fade 120ms/s,
     )
-    expect(reducedMotion).toMatch(
+    expect(practiceReducedMotion).toMatch(
       /\.summary-page-turn-overlay \.center-card__leaf\s*\{[^{}]*animation:\s*none !important/s,
     )
-    expect(reducedMotion).toMatch(
+    expect(practiceReducedMotion).toMatch(
       /\.verdict-notice:not\(\.verdict-notice--holding\)\s*\{[^{}]*animation:\s*problem-card-fade-in 120ms[^{}]*!important/s,
     )
-    expect(reducedMotion).toMatch(
+    expect(practiceReducedMotion).toMatch(
       /\.verdict-notice--holding\s*\{[^{}]*opacity:\s*1/s,
     )
-    expect(reducedMotion).toMatch(
+    expect(practiceReducedMotion).toMatch(
       /\.verdict-notice--holding\s*\{[^{}]*animation:\s*none !important/s,
     )
-    expect(reducedMotion).toMatch(
+    expect(practiceReducedMotion).toMatch(
       /\.card-practice\[data-transition="problem"\] \.center-card\s*\{[^{}]*animation:\s*problem-card-fade-in 120ms[^{}]*!important/s,
     )
-    const reducedProblemMotion = styles.slice(
-      styles.indexOf("@keyframes problem-card-fade-in"),
-      styles.indexOf("@keyframes verdict-hold-in"),
+    expect(practiceReducedMotion).toMatch(
+      /\.summary-ink\s*\{[^{}]*transform:\s*none[^{}]*animation:\s*problem-card-fade-in 120ms/s,
     )
-    expect(reducedProblemMotion).toContain("opacity: 0")
-    expect(reducedProblemMotion).not.toContain("translate")
+    expect(practiceReducedMotion).toMatch(
+      /\.run-summary__title::after\s*\{[^{}]*transform:\s*none[^{}]*animation:\s*none !important/s,
+    )
+
+    const reducedAnimations = reducedMotionBlocks.flatMap((block) =>
+      [...block.matchAll(/animation(?:-name)?:\s*([a-z][\w-]*)/g)]
+        .map((match) => match[1])
+        .filter((name) => name !== "none"),
+    )
+
+    for (const animationName of new Set(reducedAnimations)) {
+      const keyframes = lastCssBlock(`@keyframes ${animationName}`)
+      expect(keyframes, animationName).not.toMatch(
+        /\b(?:transform|translate|clip-path)\s*:/,
+      )
+    }
   })
 
   it("keeps the narrow Summary overrides after its desktop rules", () => {

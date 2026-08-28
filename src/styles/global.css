@@ -784,13 +784,8 @@ button:focus-visible,
     --page-turn-duration: 120ms;
   }
 
-  .open-book-shell--turning .open-book-page--intro,
   .open-book-shell--turning .open-book-page--chapters {
-    animation-duration: 120ms;
-  }
-
-  .open-book-shell--turning .open-book-page--chapters {
-    animation-name: release-left-page;
+    animation: summary-overlay-fade 120ms ease-out both;
   }
 
   .page-turn-stage--active .page-turn-receiver {
@@ -3941,7 +3936,11 @@ button:focus-visible,
     animation-delay: 0ms !important;
     animation-duration: 120ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 120ms !important;
+    transition-duration: 0ms !important;
+  }
+
+  .card-practice {
+    transition: none !important;
   }
 
   .verdict-notice:not(.verdict-notice--holding) {
@@ -3968,12 +3967,14 @@ button:focus-visible,
   }
 
   .summary-ink {
-    animation: summary-ink-reveal 120ms ease-out both !important;
+    transform: none;
+    animation: problem-card-fade-in 120ms ease-out both !important;
     animation-play-state: running !important;
   }
 
   .run-summary__title::after {
-    animation: summary-line-draw 120ms ease-out both !important;
+    transform: none;
+    animation: none !important;
     animation-play-state: running !important;
   }
 
