@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process"
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { normalizeProblem } from "../../src/content/normalizeProblem"
@@ -22,6 +23,18 @@ import { canonicalJson, sha256 } from "./pipeline.mjs"
 
 const DEFAULT_BANK_ROOT = "curriculum/problem-bank"
 const DEFAULT_POLICY_FILE = `${DEFAULT_BANK_ROOT}/engine-contract-policy.json`
+
+// Nostr event ids are 64-character lowercase hex; git commit SHAs are 40. Reviews and
+// editorial evidence carry both, so they must be checked with different patterns —
+// checking reviewedHead against the 64-char pattern lets every reviewedHead through.
+const SOURCE_BUZZ_EVENT_ID_PATTERN = /^[0-9a-f]{64}$/
+const REVIEWED_HEAD_PATTERN = /^[0-9a-f]{40}$/
+
+// Batch 027 (2026-08-28-l1-images-027, sequence 23; sequence 22 was never authored) is
+// the first authored batch whose review/editorial evidence carries sourceBuzzEventId and
+// reviewedHead. Earlier batches predate the fields and are not required to backfill them
+// — see issue #170.
+const PROVENANCE_MIN_SEQUENCE = 23
 
 const fixtureRoleMap = {
   canonical: "canonical",
@@ -132,6 +145,62 @@ function prettyJson(value: unknown) {
 
 function withoutDigest(value: JsonRecord, field: string) {
   return Object.fromEntries(Object.entries(value).filter(([key]) => key !== field))
+}
+
+function requiresProvenance(sequence: unknown) {
+  return typeof sequence === "number" && sequence >= PROVENANCE_MIN_SEQUENCE
+}
+
+// Format-only: confirms reviewedHead is 40 lowercase hex chars and an ancestor of the
+// current HEAD, so a rebase/force-push that drops the reviewed commit from history is
+// caught. Identity of sourceBuzzEventId (does this event id really belong to the named
+// reviewer?) is NOT checked here — the gate has no network access to query the relay,
+// and must not gain one, so that stays a human cross-check against the signed event.
+function isAncestorOfHead(repositoryRoot: string, reviewedHead: string) {
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", reviewedHead, "HEAD"], {
+      cwd: repositoryRoot,
+      stdio: "ignore",
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+function provenanceErrors({
+  record,
+  label,
+  repositoryRoot,
+  checkAncestor,
+}: {
+  record: JsonRecord
+  label: string
+  repositoryRoot: string
+  // This repo squash-merges every PR (single-parent commits only; verified against
+  // jiwonschol/nabimd's merged history). A squash rewrites main so the reviewer's
+  // original branch commit is never an ancestor of main again — that is normal history
+  // compaction, not the rebase/force-push-during-review this check exists to catch. So
+  // ancestry is only enforced while the batch is still unpublished (no
+  // summary.generated.json yet); once published, the digest chain (reviewDigest /
+  // editorialDigest) already makes the reviewedHead value itself tamper-evident.
+  checkAncestor: boolean
+}) {
+  const errors: string[] = []
+  const sourceBuzzEventId = record.sourceBuzzEventId
+  if (
+    typeof sourceBuzzEventId !== "string" ||
+    !SOURCE_BUZZ_EVENT_ID_PATTERN.test(sourceBuzzEventId)
+  ) {
+    errors.push(`${label} sourceBuzzEventId must be a 64-character lowercase hex string`)
+  }
+  const reviewedHead = record.reviewedHead
+  if (typeof reviewedHead !== "string" || !REVIEWED_HEAD_PATTERN.test(reviewedHead)) {
+    errors.push(`${label} reviewedHead must be a 40-character lowercase hex string`)
+  } else if (checkAncestor && !isAncestorOfHead(repositoryRoot, reviewedHead)) {
+    errors.push(`${label} reviewedHead ${reviewedHead} is not an ancestor of HEAD`)
+  }
+  return errors
 }
 
 function toBatchFixture(fixture: ProblemFixture) {
@@ -377,6 +446,7 @@ export async function buildAuthoredBatchArtifacts({
   }
 
   return {
+    repositoryRoot,
     config: { ...config, requiredIndependentReviews },
     raw,
     normalized,
@@ -502,9 +572,11 @@ function mechanicalDriftErrors({
 function validateCommittedReviews({
   computed,
   reviews,
+  checkAncestor,
 }: {
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   reviews: JsonRecord[]
+  checkAncestor: boolean
 }) {
   const errors: string[] = []
   const reviewerIds = new Set<string>()
@@ -549,6 +621,16 @@ function validateCommittedReviews({
       review.reviewDigest !== sha256(withoutDigest(review, "reviewDigest"))
     ) {
       errors.push(`Stale review digest: ${String(reviewerId ?? "<unknown>")}`)
+    }
+    if (requiresProvenance(computed.normalized.sequence)) {
+      errors.push(
+        ...provenanceErrors({
+          record: review,
+          label: `Review ${String(reviewerId ?? "<unknown>")}`,
+          repositoryRoot: computed.repositoryRoot,
+          checkAncestor,
+        }),
+      )
     }
 
     const verdicts = Array.isArray(review.verdicts)
@@ -617,7 +699,11 @@ export function buildAuthoredBatchPublication({
 }) {
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
-    ...validateCommittedReviews({ computed, reviews: committed.reviews }),
+    ...validateCommittedReviews({
+      computed,
+      reviews: committed.reviews,
+      checkAncestor: committed.summary === null,
+    }),
   ]
   const requiredReviews = computed.config.requiredIndependentReviews ?? 2
   if (committed.reviews.length < requiredReviews) {
@@ -627,12 +713,24 @@ export function buildAuthoredBatchPublication({
   }
   if (committed.editorial === null) {
     errors.push(`Batch ${computed.config.batchId} requires separate editorial evidence`)
-  } else if (
-    committed.reviews.some(
-      (review) => review.reviewerId === committed.editorial?.editorialActor,
-    )
-  ) {
-    errors.push("Editorial actor must differ from every reviewer")
+  } else {
+    if (
+      committed.reviews.some(
+        (review) => review.reviewerId === committed.editorial?.editorialActor,
+      )
+    ) {
+      errors.push("Editorial actor must differ from every reviewer")
+    }
+    if (requiresProvenance(computed.normalized.sequence)) {
+      errors.push(
+        ...provenanceErrors({
+          record: committed.editorial,
+          label: "Editorial",
+          repositoryRoot: computed.repositoryRoot,
+          checkAncestor: committed.summary === null,
+        }),
+      )
+    }
   }
 
   for (const review of committed.reviews) {
@@ -723,7 +821,11 @@ export function checkAuthoredBatchState({
 }) {
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
-    ...validateCommittedReviews({ computed, reviews: committed.reviews }),
+    ...validateCommittedReviews({
+      computed,
+      reviews: committed.reviews,
+      checkAncestor: committed.summary === null,
+    }),
   ]
   const committedIndependentReviews = committed.reviews.length
   if (errors.length > 0) {
