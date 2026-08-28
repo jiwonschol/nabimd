@@ -61,13 +61,26 @@ describe("pageTurnSound", () => {
     expect(audio.play).not.toHaveBeenCalled()
   })
 
-  it("shares the existing feedback-sound mute preference", async () => {
+  it("silently unlocks while muted and plays Summary after sound is enabled", async () => {
     window.localStorage.setItem("nabimd.sound-muted", "true")
-    const { unlockAndPlayPageTurnSound } = await import("./pageTurnSound")
+    const { playPageTurnSound, unlockAndPlayPageTurnSound } = await import(
+      "./pageTurnSound"
+    )
+    const { setSoundMuted } = await import("./feedbackSound")
 
     unlockAndPlayPageTurnSound()
+    await Promise.resolve()
+    await Promise.resolve()
 
-    expect(audio.play).not.toHaveBeenCalled()
+    expect(audio.muted).toBe(true)
+    expect(audio.play).toHaveBeenCalledOnce()
+    expect(audio.pause).toHaveBeenCalledOnce()
+
+    setSoundMuted(false)
+    playPageTurnSound()
+
+    expect(audio.muted).toBe(false)
+    expect(audio.play).toHaveBeenCalledTimes(2)
   })
 
   it("swallows browser playback rejection", async () => {

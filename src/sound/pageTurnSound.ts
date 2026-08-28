@@ -17,11 +17,13 @@ function getPageTurnAudio(): HTMLAudioElement | null {
 }
 
 function playPageTurnAudio(unlockOnSuccess: boolean) {
-  if (readSoundMuted()) return
+  const muted = readSoundMuted()
+  if (muted && !unlockOnSuccess) return
 
   const audio = getPageTurnAudio()
   if (!audio) return
 
+  audio.muted = muted
   audio.currentTime = 0
   try {
     const playback = Promise.resolve(audio.play())
@@ -29,6 +31,11 @@ function playPageTurnAudio(unlockOnSuccess: boolean) {
       void playback.then(
         () => {
           pageTurnUnlocked = true
+          if (muted) {
+            audio.pause()
+            audio.currentTime = 0
+            audio.muted = readSoundMuted()
+          }
         },
         () => {},
       )
