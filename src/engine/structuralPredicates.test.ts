@@ -1050,6 +1050,15 @@ describe("structural match predicates", () => {
       status: "fail",
       feedbackId: "image-alt",
     })
+    expect(
+      evaluateProblem(image, "![\u0000](/photos/umbrella.jpg)"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(image, "![\uFFFD](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
   })
 
   it("matches an ordered block subsequence and can require an exact shape", () => {
