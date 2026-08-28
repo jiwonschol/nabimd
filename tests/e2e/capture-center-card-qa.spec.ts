@@ -17,7 +17,7 @@ const qaDirectory = fileURLToPath(
 // exercise the selected reference mock shows.
 const captureSeed = "1"
 
-async function openSeededLevelOne(page: Page) {
+async function openSeededChapterOne(page: Page) {
   await page.addInitScript(
     ([key, value]) => {
       window.sessionStorage.setItem(key as string, value as string)
@@ -29,7 +29,9 @@ async function openSeededLevelOne(page: Page) {
     window.sessionStorage.removeItem(storageKey)
   }, progressStorageKey)
   await page.reload()
-  await page.getByRole("button", { name: "Level 1 — Learn the syntax" }).click()
+  await page
+    .getByRole("button", { name: "Chapter 1 — Headings & emphasis" })
+    .click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
   await expect(page.locator(".center-card__boxinput").first()).toBeFocused()
 }
@@ -49,7 +51,7 @@ test.describe("center card design QA captures", () => {
 
   test("captures the desktop card", async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 768 })
-    await openSeededLevelOne(page)
+    await openSeededChapterOne(page)
     await page.screenshot({
       path: `${qaDirectory}center-card-b2-implementation-1024x768.png`,
     })
@@ -62,7 +64,7 @@ test.describe("center card design QA captures", () => {
 
   test("captures the phone card", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
-    await openSeededLevelOne(page)
+    await openSeededChapterOne(page)
     await page.screenshot({
       path: `${qaDirectory}center-card-b2-implementation-390x844.png`,
     })

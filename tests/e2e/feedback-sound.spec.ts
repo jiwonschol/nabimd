@@ -100,10 +100,10 @@ test("voices every accepted mark with matched and every rejected mark with try-a
   page,
 }) => {
   await page.goto("/")
-  // Level 2 problems carry several slots each, so the per-slot matched cue
+  // Chapter 2 problems carry several slots each, so the per-slot matched cue
   // is distinguishable from a once-per-problem completion cue.
   await page
-    .getByRole("button", { name: "Level 2 — Rebuild real documents" })
+    .getByRole("button", { name: "Chapter 2 — Lists" })
     .click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
   await expect(cardBoxInput(page)).toBeFocused()
