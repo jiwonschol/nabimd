@@ -13,7 +13,7 @@ Playwright browser:
 2. shows all `3` levels, with levels that have fewer than `5` implemented
    syntax elements marked Coming soon and disabled;
 3. selects each available level and confirms that every problem belongs to
-   that level with no syntax element repeated in the turn;
+   that level, with four distinct single-syntax exercises plus one mixed exercise;
 4. enters the required Markdown marks for all `5` problems;
 5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.

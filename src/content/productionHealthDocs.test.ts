@@ -24,5 +24,8 @@ describe("production health monitoring guide", () => {
     expect(monitoringGuide).toContain(
       `and \`${RUN_POLICY.turnSize}\` completed pages`,
     )
+    expect(monitoringGuide).toContain(
+      "four distinct single-syntax exercises plus one mixed exercise",
+    )
   })
 })
