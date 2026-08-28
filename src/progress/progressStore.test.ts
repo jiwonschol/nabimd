@@ -4,7 +4,15 @@ import {
   entryChoices,
   runScheduleRevision,
 } from "../content/entryChoices"
-import { getCurriculumElement } from "../content/curriculumElements"
+import {
+  getCurriculumElement,
+  getCurriculumElements,
+  getProblemEntryId,
+} from "../content/curriculumElements"
+import {
+  isEligibleMixedExercise,
+  MIXED_EXERCISE_POLICY,
+} from "../content/mixedExercisePolicy"
 import {
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
@@ -99,6 +107,7 @@ describe("progressStore v5", () => {
           .sort(([left], [right]) => left.localeCompare(right))
           .map(([family, weight]) => `${family}:${weight}`)
           .join(",")}`,
+        `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
         ...entryChoices.map(
           (entry) =>
             `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
@@ -261,6 +270,76 @@ describe("progressStore v5", () => {
     expect(loaded.runStartedAtMs).toBe(9_000)
     expect(loaded.draftByProblemId).toEqual({
       [draftProblemId]: "# Keep this draft",
+    })
+  })
+
+  it("keeps a draft for a mixed exercise retired from serving while regenerating its schedule", () => {
+    const retiredMixed = problemBank.find(
+      (problem) =>
+        problem.flavor === "standard" &&
+        getProblemEntryId(problem) === "level-1" &&
+        getCurriculumElements(problem).length > 1 &&
+        !isEligibleMixedExercise(problem),
+    )
+    if (!retiredMixed) {
+      throw new Error("Missing a Level 1 mixed exercise retired by policy")
+    }
+    const runNumber = 7
+    const previousRunScheduleRevision = runScheduleRevision
+      .split("|")
+      .filter((segment) => !segment.startsWith("mixed-exercise@"))
+      .join("|")
+    const previousRunProblemIds = createRunProblemIds(
+      "level-1",
+      runNumber,
+      0,
+    ).map((id) =>
+      getCurriculumElements(getProblem(id)).length > 1
+        ? retiredMixed.id
+        : id,
+    )
+    expect(previousRunProblemIds).toHaveLength(5)
+    expect(previousRunProblemIds).toContain(retiredMixed.id)
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...createDefaultProgress(retiredMixed.id),
+        runScheduleRevision: previousRunScheduleRevision,
+        entryId: "level-1",
+        runNumber,
+        runProblemIds: previousRunProblemIds,
+        runStartedAtMs: 1_000,
+        draftByProblemId: {
+          [retiredMixed.id]: "# Keep the retired mixed draft",
+        },
+      }),
+    )
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+      problemBankRevision,
+      0,
+      validDraftProblemIds,
+    )
+
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runNumber).toBe(runNumber)
+    expect(loaded.runProblemIds).toEqual(
+      createRunProblemIds("level-1", runNumber, 0),
+    )
+    expect(loaded.runStartedAtMs).toBe(9_000)
+    expect(loaded.runProblemIds).not.toContain(retiredMixed.id)
+    for (const id of loaded.runProblemIds) {
+      const problem = getProblem(id)
+      if (getCurriculumElements(problem).length > 1) {
+        expect(isEligibleMixedExercise(problem), id).toBe(true)
+      }
+    }
+    expect(loaded.draftByProblemId).toEqual({
+      [retiredMixed.id]: "# Keep the retired mixed draft",
     })
   })
 
