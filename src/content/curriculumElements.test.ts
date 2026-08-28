@@ -66,7 +66,7 @@ describe("curriculum element classification", () => {
     ).toHaveLength(4)
   })
 
-  it("identifies the 104 mixed exercises composed only of Level 1 syntax", () => {
+  it("identifies the 80 runtime mixed exercises composed only of Level 1 syntax", () => {
     const levelOneElements = new Set<CurriculumElement>(
       curriculumLevels[0].elements,
     )
@@ -88,8 +88,8 @@ describe("curriculum element classification", () => {
         4,
     )
 
-    expect(compatibleMixedProblems).toHaveLength(104)
-    expect(strictOverlapFallbacks).toHaveLength(20)
+    expect(compatibleMixedProblems).toHaveLength(80)
+    expect(strictOverlapFallbacks).toHaveLength(4)
   })
 
   it("keeps the unimplemented list honest in both directions", () => {

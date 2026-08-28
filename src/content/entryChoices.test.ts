@@ -12,7 +12,10 @@ import {
   getProblemEntryId,
   isEntryId,
 } from "./entryChoices"
-import { problemBank } from "./problemBank"
+import {
+  countRuntimeTargetContentLines,
+  problemBank,
+} from "./problemBank"
 
 describe("three-level entry choices", () => {
   it("serves the measured runtime pools for the frequency-based levels", () => {
@@ -38,7 +41,7 @@ describe("three-level entry choices", () => {
     ).toEqual([
       {
         id: "level-1",
-        problems: 316,
+        problems: 292,
         elements: new Set([
           "heading",
           "bold",
@@ -53,7 +56,7 @@ describe("three-level entry choices", () => {
       },
       {
         id: "level-2",
-        problems: 56,
+        problems: 48,
         elements: new Set([
           "thematic-break",
           "nested-list",
@@ -137,7 +140,7 @@ describe("three-level entry choices", () => {
       }
     }
 
-    expect(expectedMixedIds).toHaveLength(104)
+    expect(expectedMixedIds).toHaveLength(80)
     expect(servedMixedIds).toEqual(expectedMixedIds)
 
     const allServedIds = new Set(
@@ -145,7 +148,29 @@ describe("three-level entry choices", () => {
         createRunProblemIds("level-1", runNumber, 0),
       ).flat(),
     )
-    expect(allServedIds).toHaveLength(316)
+    expect(allServedIds).toHaveLength(292)
+  })
+
+  it("keeps every served Level 1 exercise inside its owner-level line budget", () => {
+    const served = problemBank.filter(
+      (problem) => getProblemEntryId(problem) === "level-1",
+    )
+
+    expect(served).not.toHaveLength(0)
+    for (const problem of served) {
+      const isMixed = getCurriculumElements(problem).length > 1
+      if (isMixed) {
+        expect(
+          countRuntimeTargetContentLines(problem.target),
+          problem.id,
+        ).toBeLessThanOrEqual(12)
+      } else {
+        expect(
+          problem.target.split("\n").length,
+          problem.id,
+        ).toBeLessThanOrEqual(5)
+      }
+    }
   })
 
   it("rotates deterministically within an available level", () => {

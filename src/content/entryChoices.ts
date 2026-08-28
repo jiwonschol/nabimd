@@ -3,16 +3,18 @@ import type { CurriculumLevel, NormalizedProblem } from "./types"
 import { createTurnProblemIds } from "../selection/runComposition"
 import { curriculumLevels } from "./curriculumLevels"
 import {
-  type CurriculumElement,
+  type EntryId,
   getCurriculumElements,
   getImplementedElementsForEntry,
+  getProblemEntryId,
 } from "./curriculumElements"
 import {
   RUN_POLICY,
   SYNTAX_FAMILY_WEIGHTS,
 } from "../selection/runPolicy"
 
-export type EntryId = (typeof curriculumLevels)[number]["id"]
+export { getProblemEntryId }
+export type { EntryId }
 
 type SchedulableEntryProblem = Pick<
   NormalizedProblem,
@@ -23,23 +25,6 @@ type SchedulableEntryProblem = Pick<
   | "skillIds"
   | "syntaxTokens"
 >
-
-export function getProblemEntryId(
-  problem: SchedulableEntryProblem,
-): EntryId | null {
-  const elements = getCurriculumElements(problem)
-  if (elements.length === 0) return null
-
-  let owner: (typeof curriculumLevels)[number] | null = null
-  for (const element of elements) {
-    const candidate = curriculumLevels.find((entry) =>
-      (entry.elements as readonly CurriculumElement[]).includes(element),
-    )
-    if (!candidate) return null
-    if (owner === null || candidate.level > owner.level) owner = candidate
-  }
-  return owner?.id ?? null
-}
 
 function isEntryAvailableForBank(
   entry: (typeof curriculumLevels)[number],
