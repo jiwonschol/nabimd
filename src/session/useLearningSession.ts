@@ -15,6 +15,7 @@ import {
   getProblem,
   problemBank,
   problemBankRevision,
+  publishedProblemIds,
 } from "../content/problemBank"
 import type { GradableProblem } from "../content/types"
 import { evaluateProblem } from "../engine/evaluateProblem"
@@ -39,6 +40,7 @@ import {
 } from "./learningSession"
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
+const validDraftProblemIds = new Set(publishedProblemIds)
 export const SESSION_SEED_STORAGE_KEY = "nabimd.session-seed.v1"
 
 function createRandomSessionSeed(): number {
@@ -113,6 +115,7 @@ function initializeSession({ storage, seed }: { storage: Storage; seed: number }
     isSafeReplacement,
     problemBankRevision,
     seed,
+    validDraftProblemIds,
   )
   return createLearningSession(progress, getProblem(progress.currentProblemId))
 }

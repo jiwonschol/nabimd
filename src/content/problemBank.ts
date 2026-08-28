@@ -28,6 +28,9 @@ export {
 const publishedProblems = CURRICULUM_LEVELS.flatMap(
   (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
 )
+export const publishedProblemIds = publishedProblems.map(
+  (problem) => problem.id,
+)
 
 const compiledProblems = publishedProblems
   .filter(withinRuntimeBudget)

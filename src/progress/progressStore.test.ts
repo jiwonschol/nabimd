@@ -11,6 +11,7 @@ import {
   preStarterProjectionProblemBankRevision,
   problemBank,
   problemBankRevision,
+  publishedProblemIds,
 } from "../content/problemBank"
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import {
@@ -52,6 +53,7 @@ class ThrowingStorage extends MemoryStorage {
 }
 
 const validProblemIds = new Set(problemBank.map((problem) => problem.id))
+const validDraftProblemIds = new Set(publishedProblemIds)
 const legacyStarterlessBankRevision =
   preStarterProjectionProblemBankRevision
 function isEligibleTransferProblemId(
@@ -554,6 +556,39 @@ describe("progressStore v5", () => {
         problemBankRevision,
       ),
     ).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
+  it("preserves drafts for published exercises retired from scheduling", () => {
+    const retiredProblemId = "l4-accessible-dialog-spec"
+    expect(validProblemIds.has(retiredProblemId)).toBe(false)
+    expect(validDraftProblemIds.has(retiredProblemId)).toBe(true)
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...createDefaultProgress(problemBank[0].id, "parent-runtime"),
+        draftByProblemId: {
+          [retiredProblemId]: "## Learner-authored dialog notes",
+          "removed-from-bank": "This draft no longer has a problem",
+        },
+      }),
+    )
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+      problemBankRevision,
+      0,
+      validDraftProblemIds,
+    )
+    saveProgress(storage, loaded)
+
+    expect(loaded.draftByProblemId).toEqual({
+      [retiredProblemId]: "## Learner-authored dialog notes",
+    })
+    expect(
+      JSON.parse(storage.getItem(PROGRESS_STORAGE_KEY)!).draftByProblemId,
+    ).toEqual(loaded.draftByProblemId)
   })
 
   it("keeps learner drafts while retiring a pre-chapter level-five schedule", () => {
