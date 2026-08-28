@@ -151,11 +151,10 @@ function requiresProvenance(sequence: unknown) {
   return typeof sequence === "number" && sequence >= PROVENANCE_MIN_SEQUENCE
 }
 
-// Format-only: confirms reviewedHead is 40 lowercase hex chars and an ancestor of the
-// current HEAD, so a rebase/force-push that drops the reviewed commit from history is
-// caught. Identity of sourceBuzzEventId (does this event id really belong to the named
-// reviewer?) is NOT checked here — the gate has no network access to query the relay,
-// and must not gain one, so that stays a human cross-check against the signed event.
+// True when reviewedHead is reachable from HEAD — the normal state whether a batch is
+// still under review or has been published but not yet squash-merged (both live on the
+// reviewed branch until merge). See provenanceErrors below for what happens when it is
+// not reachable.
 function isAncestorOfHead(repositoryRoot: string, reviewedHead: string) {
   try {
     execFileSync("git", ["merge-base", "--is-ancestor", reviewedHead, "HEAD"], {
@@ -168,23 +167,55 @@ function isAncestorOfHead(repositoryRoot: string, reviewedHead: string) {
   }
 }
 
+// True when this batch's own summary.generated.json already exists on origin/main,
+// i.e. it has been squash-merged. Used as the sole exemption from the ancestor check
+// below. If origin/main itself is not resolvable in this checkout (e.g. a shallow
+// fetch that never registered the remote-tracking ref — CI checks out with
+// fetch-depth: 0 per ci.yml, so this is not expected there), this fails OPEN and
+// treats the batch as merged: we cannot prove it, but blocking would permanently lock
+// every already-merged batch the moment its ancestry naturally breaks post-squash.
+function isBatchPublishedOnMain(repositoryRoot: string, summaryPath: string) {
+  try {
+    execFileSync("git", ["rev-parse", "--verify", "origin/main"], {
+      cwd: repositoryRoot,
+      stdio: "ignore",
+    })
+  } catch {
+    return true
+  }
+  try {
+    execFileSync("git", ["cat-file", "-e", `origin/main:${summaryPath}`], {
+      cwd: repositoryRoot,
+      stdio: "ignore",
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+// Checks sourceBuzzEventId format (64-char hex) and reviewedHead format (40-char hex)
+// plus reachability: reviewedHead must be an ancestor of HEAD, UNLESS this repo has
+// already squash-merged the batch into origin/main (single-parent commits only,
+// verified against jiwonschol/nabimd's merged history) — a squash rewrites main so the
+// reviewer's original branch commit stops being an ancestor, which is normal history
+// compaction, not the rebase/force-push-during-review this check exists to catch. That
+// exemption is checked directly (does this batch's summary exist on origin/main?), not
+// inferred from local publish state, so the check still runs during the window between
+// a batch's own publish and its own merge — exactly when cherry-pick/rebase happens.
+// Identity of sourceBuzzEventId (does this event id really belong to the named
+// reviewer?) is NOT checked here — the gate has no network access to query the relay,
+// and must not gain one, so that stays a human cross-check against the signed event.
 function provenanceErrors({
   record,
   label,
   repositoryRoot,
-  checkAncestor,
+  batchSummaryPath,
 }: {
   record: JsonRecord
   label: string
   repositoryRoot: string
-  // This repo squash-merges every PR (single-parent commits only; verified against
-  // jiwonschol/nabimd's merged history). A squash rewrites main so the reviewer's
-  // original branch commit is never an ancestor of main again — that is normal history
-  // compaction, not the rebase/force-push-during-review this check exists to catch. So
-  // ancestry is only enforced while the batch is still unpublished (no
-  // summary.generated.json yet); once published, the digest chain (reviewDigest /
-  // editorialDigest) already makes the reviewedHead value itself tamper-evident.
-  checkAncestor: boolean
+  batchSummaryPath: string
 }) {
   const errors: string[] = []
   const sourceBuzzEventId = record.sourceBuzzEventId
@@ -197,7 +228,10 @@ function provenanceErrors({
   const reviewedHead = record.reviewedHead
   if (typeof reviewedHead !== "string" || !REVIEWED_HEAD_PATTERN.test(reviewedHead)) {
     errors.push(`${label} reviewedHead must be a 40-character lowercase hex string`)
-  } else if (checkAncestor && !isAncestorOfHead(repositoryRoot, reviewedHead)) {
+  } else if (
+    !isAncestorOfHead(repositoryRoot, reviewedHead) &&
+    !isBatchPublishedOnMain(repositoryRoot, batchSummaryPath)
+  ) {
     errors.push(`${label} reviewedHead ${reviewedHead} is not an ancestor of HEAD`)
   }
   return errors
@@ -274,6 +308,10 @@ function batchDirectory(config: AuthoredBatchConfig) {
 
 function bankDirectory(config: AuthoredBatchConfig) {
   return config.bankRoot ?? DEFAULT_BANK_ROOT
+}
+
+function batchSummaryPath(config: AuthoredBatchConfig) {
+  return `${batchDirectory(config)}/summary.generated.json`
 }
 
 async function loadPreviousBatches({
@@ -572,11 +610,11 @@ function mechanicalDriftErrors({
 function validateCommittedReviews({
   computed,
   reviews,
-  checkAncestor,
+  batchSummaryPath: summaryPath,
 }: {
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   reviews: JsonRecord[]
-  checkAncestor: boolean
+  batchSummaryPath: string
 }) {
   const errors: string[] = []
   const reviewerIds = new Set<string>()
@@ -628,7 +666,7 @@ function validateCommittedReviews({
           record: review,
           label: `Review ${String(reviewerId ?? "<unknown>")}`,
           repositoryRoot: computed.repositoryRoot,
-          checkAncestor,
+          batchSummaryPath: summaryPath,
         }),
       )
     }
@@ -697,12 +735,13 @@ export function buildAuthoredBatchPublication({
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
+  const summaryPath = batchSummaryPath(computed.config)
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
     ...validateCommittedReviews({
       computed,
       reviews: committed.reviews,
-      checkAncestor: committed.summary === null,
+      batchSummaryPath: summaryPath,
     }),
   ]
   const requiredReviews = computed.config.requiredIndependentReviews ?? 2
@@ -727,7 +766,7 @@ export function buildAuthoredBatchPublication({
           record: committed.editorial,
           label: "Editorial",
           repositoryRoot: computed.repositoryRoot,
-          checkAncestor: committed.summary === null,
+          batchSummaryPath: summaryPath,
         }),
       )
     }
@@ -824,7 +863,7 @@ export function checkAuthoredBatchState({
     ...validateCommittedReviews({
       computed,
       reviews: committed.reviews,
-      checkAncestor: committed.summary === null,
+      batchSummaryPath: batchSummaryPath(computed.config),
     }),
   ]
   const committedIndependentReviews = committed.reviews.length

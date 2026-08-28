@@ -22,8 +22,24 @@ function isProvenanceError(error: string) {
   )
 }
 
+// Real batch 029 is, by now, actually squash-merged into origin/main (PR #163), so its
+// real batchId's summary.generated.json genuinely exists there — that's what makes it a
+// valid merged-batch pass pair (see the positive-control test), but it also means we
+// can't use batch 029's real batchId to simulate "not yet on origin/main" for the
+// destructive tests below: the origin/main lookup would find the real file regardless
+// of any local committed.summary tweak. Pointing the lookup at a batchId nothing was
+// ever published under keeps those tests honest without needing a second live fixture.
+function withUnmergedBatchId(
+  computed: Awaited<ReturnType<typeof buildImageBatch029Artifacts>>,
+) {
+  return {
+    ...computed,
+    config: { ...computed.config, batchId: "issue-170-not-yet-merged-probe" },
+  }
+}
+
 describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
-  it("passes with zero provenance errors on real batch-029 evidence (positive control)", async () => {
+  it("passes with zero provenance errors on real batch-029 evidence (positive control, and the merged-batch pass pair: batch 029's real reviewedHead is no longer an ancestor of HEAD post-squash, so this only stays green because its summary.generated.json is present on origin/main)", async () => {
     const computed = await buildImageBatch029Artifacts({ repositoryRoot })
     const committed = await readCommittedImageBatch029({ repositoryRoot })
     const state = checkImageBatch029State({ computed, committed })
@@ -42,13 +58,10 @@ describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
   })
 
   it("catches a reviewedHead that is not an ancestor of HEAD while the batch is still unpublished (the core destructive case)", async () => {
-    // Ancestry is only enforced pre-publish (see the checkAncestor comment in
-    // batchArtifactSupport.ts): this repo squash-merges every PR, so a real,
-    // already-merged reviewedHead like batch 029's own is *expected* to stop being an
-    // ancestor of HEAD the moment its PR lands. Simulating "not yet published" here
-    // (summary: null) is what puts the check into the state where it actually runs —
-    // i.e. during a batch's live review window, before its own merge rewrites history.
-    const computed = await buildImageBatch029Artifacts({ repositoryRoot })
+    // Ancestry is always attempted (see provenanceErrors in batchArtifactSupport.ts); it
+    // only passes without being an ancestor when the batch's own summary.generated.json
+    // is already on origin/main — withUnmergedBatchId forces that lookup to miss.
+    const computed = withUnmergedBatchId(await buildImageBatch029Artifacts({ repositoryRoot }))
     const committed = structuredClone(await readCommittedImageBatch029({ repositoryRoot }))
     committed.summary = null
     committed.reviews[0].reviewedHead = NONEXISTENT_SHA
@@ -60,19 +73,24 @@ describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
     ).toBe(true)
   })
 
-  it("does NOT re-check ancestry once the batch is published (squash-merge would otherwise fail it forever)", async () => {
-    const computed = await buildImageBatch029Artifacts({ repositoryRoot })
+  it("still catches a tampered reviewedHead once the batch is published but not yet merged to origin/main (the cherry-pick/rebase window issue #170 was actually about)", async () => {
+    // Same setup as the prior test, except committed.summary stays non-null (genuinely
+    // published) — proving the check is keyed on origin/main state, not local publish
+    // state. issue #170's real risk window is exactly this: published, not yet merged.
+    const computed = withUnmergedBatchId(await buildImageBatch029Artifacts({ repositoryRoot }))
     const committed = structuredClone(await readCommittedImageBatch029({ repositoryRoot }))
     expect(committed.summary).not.toBeNull()
     committed.reviews[0].reviewedHead = NONEXISTENT_SHA
     const state = checkImageBatch029State({ computed, committed })
     expect(
-      state.errors.some((error) => error.includes("is not an ancestor of HEAD")),
-    ).toBe(false)
+      state.errors.some((error) =>
+        error.includes(`reviewedHead ${NONEXISTENT_SHA} is not an ancestor of HEAD`),
+      ),
+    ).toBe(true)
     // Format is still enforced forever: a well-formed-but-bogus SHA is still a 40-char
-    // lowercase hex string, so it passes format and is silently tolerated post-publish —
-    // that's fine, because the review's own reviewDigest (sha256 of everything except
-    // itself) already makes tampering with this field detectable without git ancestry.
+    // lowercase hex string, so it passes format regardless of merge state — that part
+    // relies on the review's own reviewDigest (sha256 of everything except itself) to
+    // make tampering with this field detectable without git ancestry.
   })
 
   it("rejects an empty reviewedHead", async () => {
@@ -138,7 +156,7 @@ describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
   })
 
   it("catches a non-ancestor reviewedHead on editorial evidence, not just reviews", async () => {
-    const computed = await buildImageBatch029Artifacts({ repositoryRoot })
+    const computed = withUnmergedBatchId(await buildImageBatch029Artifacts({ repositoryRoot }))
     const committed = structuredClone(await readCommittedImageBatch029({ repositoryRoot }))
     if (committed.editorial === null) {
       throw new Error("Fixture assumption broken: batch 029 must have editorial evidence")
