@@ -4,6 +4,7 @@ import { createTurnProblemIds, getChapterFamily } from "../selection/runComposit
 import { curriculumLevels } from "./curriculumLevels"
 import {
   RUN_POLICY,
+  SYNTAX_FAMILY_WEIGHTS,
   type ChapterFamily,
 } from "../selection/runPolicy"
 
@@ -13,6 +14,10 @@ export const entryChoices = curriculumLevels
 // Deriving the value prevents a curriculum edit from relying on a manual bump.
 export const runScheduleRevision = [
   `turn-size@${RUN_POLICY.turnSize}`,
+  `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([family, weight]) => `${family}:${weight}`)
+    .join(",")}`,
   ...entryChoices.map(
     (entry) =>
       `${entry.id}@${entry.level}:${entry.families.join(",")}`,

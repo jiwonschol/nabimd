@@ -16,6 +16,7 @@ import {
   isEligibleTransferProblem,
   selectTransferProblem,
 } from "../selection/selectTransferProblem"
+import { SYNTAX_FAMILY_WEIGHTS } from "../selection/runPolicy"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { createLearningSession } from "../session/learningSession"
 import {
@@ -91,6 +92,10 @@ describe("progressStore v5", () => {
     expect(runScheduleRevision).toBe(
       [
         "turn-size@5",
+        `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+          .sort(([left], [right]) => left.localeCompare(right))
+          .map(([family, weight]) => `${family}:${weight}`)
+          .join(",")}`,
         ...entryChoices.map(
           (entry) =>
             `${entry.id}@${entry.level}:${entry.families.join(",")}`,
@@ -173,18 +178,20 @@ describe("progressStore v5", () => {
     })
   })
 
-  it("keeps learner drafts when a revision-mismatched entry no longer exists", () => {
+  it("regenerates a revision-mismatched run while preserving its entry and drafts", () => {
     const draftProblemId = "l1-heading-apple"
     const legacyProgress = {
       ...createDefaultProgress(draftProblemId),
       runScheduleRevision:
         "turn-size@5|level-removed@4:heading,bold,italic",
-      entryId: "level-removed",
+      entryId: "level-1",
+      runNumber: 7,
       runProblemIds: [draftProblemId],
       runStartedAtMs: 1_000,
       draftByProblemId: { [draftProblemId]: "# Keep this draft" },
     }
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
 
     const loaded = loadProgress(
       storage,
@@ -192,7 +199,12 @@ describe("progressStore v5", () => {
       isEligibleTransferProblemId,
     )
 
-    expect(loaded.entryId).toBeNull()
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runNumber).toBe(7)
+    expect(loaded.runProblemIds).toEqual(
+      createRunProblemIds("level-1", 7, 0),
+    )
+    expect(loaded.runStartedAtMs).toBe(9_000)
     expect(loaded.draftByProblemId).toEqual({
       [draftProblemId]: "# Keep this draft",
     })
