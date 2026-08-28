@@ -189,7 +189,7 @@ describe("RunSummary as a teacher's return", () => {
     )
 
     fireEvent.click(screen.getByRole("button", { name: "Practice again" }))
-    fireEvent.click(screen.getByRole("button", { name: "Change chapter" }))
+    fireEvent.click(screen.getByRole("button", { name: "Change level" }))
     expect(onPracticeAgain).toHaveBeenCalledTimes(1)
     expect(onChangeLevel).toHaveBeenCalledTimes(1)
   })

@@ -1,5 +1,6 @@
 import {
   createRunProblemIds,
+  getEntryChoice,
   isEntryId,
   runScheduleRevision,
 } from "../content/entryChoices"
@@ -223,7 +224,8 @@ function isProgressV5(
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
     value.runScheduleRevision !== runScheduleRevision ||
-    (value.entryId !== null && !isEntryId(value.entryId)) ||
+    (value.entryId !== null &&
+      (!isEntryId(value.entryId) || !getEntryChoice(value.entryId).available)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
     value.runSeed !== expectedRunSeed ||
@@ -458,6 +460,7 @@ function migratePreChapterRevision(
   if (
     typeof value.entryId !== "string" ||
     !isEntryId(value.entryId) ||
+    !getEntryChoice(value.entryId).available ||
     !isNonnegativeSafeInteger(value.runStartedAtMs)
   ) {
     return { ...fallback, draftByProblemId }
@@ -537,6 +540,7 @@ function migrateRunScheduleRevision(
   if (
     typeof value.entryId !== "string" ||
     !isEntryId(value.entryId) ||
+    !getEntryChoice(value.entryId).available ||
     !isNonnegativeSafeInteger(value.runStartedAtMs) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
     value.runSeed !== expectedRunSeed

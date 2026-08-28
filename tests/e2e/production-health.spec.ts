@@ -1,8 +1,12 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
 import { curriculumLevels } from "../../src/content/curriculumLevels"
+import {
+  getCurriculumElement,
+  getImplementedElementsForEntry,
+} from "../../src/content/curriculumElements"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
-import { getChapterFamily } from "../../src/selection/runComposition"
+import { RUN_POLICY } from "../../src/selection/runPolicy"
 
 type RuntimeProblemSource = {
   id: string
@@ -26,6 +30,12 @@ const runtimeProblemById = new Map<string, RuntimeProblemSource>(
     .flat()
     .map((problem) => [problem.id, problem]),
 )
+const entries = curriculumLevels.map((entry) => ({
+  ...entry,
+  available:
+    getImplementedElementsForEntry(entry, [...runtimeProblemById.values()])
+      .length >= RUN_POLICY.turnSize,
+}))
 
 const progressStorageKey = "nabimd.progress.v5"
 const sessionSeedStorageKey = "nabimd.session-seed.v1"
@@ -52,7 +62,7 @@ async function resetFreshSession(page: Page) {
   )
   await page.reload()
   await expect(
-    page.getByRole("heading", { name: "Choose a chapter to begin." }),
+    page.getByRole("heading", { name: "Choose a level to begin." }),
   ).toBeVisible()
 }
 
@@ -96,7 +106,7 @@ test("production serves the commit this workflow expects", async ({ page }) => {
   ).toBe(expected)
 })
 
-test("production serves the expected five-problem run for every chapter", async ({
+test("production serves five distinct syntax elements for every available level", async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -116,33 +126,45 @@ test("production serves the expected five-problem run for every chapter", async 
     }
   })
 
-  for (const entry of curriculumLevels) {
+  for (const entry of entries) {
     await test.step(entry.label, async () => {
       await resetFreshSession(page)
+
+      if (!entry.available) {
+        await expect(
+          page.getByRole("button", { name: entry.label }),
+        ).toBeDisabled()
+        return
+      }
 
       await page.getByRole("button", { name: entry.label }).click()
       await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
       await expect(page.getByLabel("Practice details")).toContainText(
-        `Chapter ${entry.level}`,
+        `Level ${entry.level}`,
       )
+      const servedElements = new Set<string>()
 
       for (let exercise = 0; exercise < 5; exercise += 1) {
         const problemId =
           await practiceShell(page).getAttribute("data-problem-id")
         expect(
           problemId,
-          `problem ${exercise + 1} for Chapter ${entry.level}`,
+          `problem ${exercise + 1} for Level ${entry.level}`,
         ).toBeTruthy()
         if (!problemId) {
           throw new Error(
-            `Missing problem ${exercise + 1} for Chapter ${entry.level}`,
+            `Missing problem ${exercise + 1} for Level ${entry.level}`,
           )
         }
         const problem = runtimeProblemById.get(problemId)
         if (!problem) {
           throw new Error(`Missing runtime source for ${problemId}`)
         }
-        expect(entry.families).toContain(getChapterFamily(problem))
+        const element = getCurriculumElement(problem)
+        expect(element).not.toBeNull()
+        expect(entry.elements).toContain(element)
+        expect(servedElements.has(element!)).toBe(false)
+        servedElements.add(element!)
         const marks = deriveSyntaxCheckpoints(problem.target, "").map(
           (checkpoint) => checkpoint.canonicalInput,
         )
@@ -169,6 +191,7 @@ test("production serves the expected five-problem run for every chapter", async 
       await expect(
         page.getByRole("region", { name: "Your work" }).getByRole("article"),
       ).toHaveCount(5)
+      expect(servedElements.size).toBe(5)
     })
   }
 

@@ -1,4 +1,5 @@
 import type { CurriculumLevel, NormalizedProblem } from "../content/types"
+import { getCurriculumElement } from "../content/curriculumElements"
 import {
   RUN_POLICY,
   SYNTAX_FAMILY_WEIGHTS,
@@ -84,7 +85,7 @@ function rotate<T>(values: readonly T[], offset: number): T[] {
 }
 
 function selectionKey(problem: SchedulableProblem): string {
-  return getSyntaxFamily(problem) ?? problem.retryFamily
+  return getCurriculumElement(problem) ?? problem.retryFamily
 }
 
 /**

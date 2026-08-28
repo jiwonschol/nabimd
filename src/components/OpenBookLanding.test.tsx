@@ -134,7 +134,7 @@ describe("OpenBookLanding", () => {
     render(
       <OpenBookLanding
         onChoose={vi.fn()}
-        turningEntryId={entryChoices[0].id}
+        turningEntryId={entryChoices[0]!.id}
       />,
     )
 
@@ -150,7 +150,7 @@ describe("OpenBookLanding", () => {
     render(
       <OpenBookLanding
         onChoose={vi.fn()}
-        turningEntryId={entryChoices[0].id}
+        turningEntryId={entryChoices[0]!.id}
       />,
     )
 

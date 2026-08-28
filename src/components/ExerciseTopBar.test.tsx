@@ -101,13 +101,13 @@ describe("ExerciseTopBar", () => {
     const tryAnother = screen.getByRole("button", { name: "Try another" })
     const rightPage = sound.closest(".exercise-topbar__page--right")
 
-    expect(progress).toHaveTextContent("Chapter 1")
+    expect(progress).toHaveTextContent("Level 1")
     expect(progress).not.toHaveTextContent("Headings & emphasis")
     expect(rightPage).toContainElement(progress)
     const meta = sound.closest(".exercise-progress__meta")
     expect(meta).not.toBeNull()
     expect(progress).toContainElement(meta as HTMLElement)
-    expect(meta).toContainElement(screen.getByLabelText("Chapter 1"))
+    expect(meta).toContainElement(screen.getByLabelText("Level 1"))
     expect(
       meta?.nextElementSibling?.querySelector(".turn-progress"),
     ).not.toBeNull()

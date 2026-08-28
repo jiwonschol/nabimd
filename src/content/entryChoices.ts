@@ -1,14 +1,23 @@
 import { problemBank } from "./problemBank"
 import type { CurriculumLevel, NormalizedProblem } from "./types"
-import { createTurnProblemIds, getChapterFamily } from "../selection/runComposition"
+import { createTurnProblemIds } from "../selection/runComposition"
 import { curriculumLevels } from "./curriculumLevels"
+import {
+  type CurriculumElement,
+  getCurriculumElement,
+  getImplementedElementsForEntry,
+} from "./curriculumElements"
 import {
   RUN_POLICY,
   SYNTAX_FAMILY_WEIGHTS,
-  type ChapterFamily,
 } from "../selection/runPolicy"
 
-export const entryChoices = curriculumLevels
+export const entryChoices = curriculumLevels.map((entry) => ({
+  ...entry,
+  available:
+    getImplementedElementsForEntry(entry, problemBank).length >=
+    RUN_POLICY.turnSize,
+}))
 
 // Any input that can invalidate a persisted deterministic run belongs here.
 // Deriving the value prevents a curriculum edit from relying on a manual bump.
@@ -20,11 +29,11 @@ export const runScheduleRevision = [
     .join(",")}`,
   ...entryChoices.map(
     (entry) =>
-      `${entry.id}@${entry.level}:${entry.families.join(",")}`,
+      `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
   ),
 ].join("|")
 
-export type EntryId = (typeof entryChoices)[number]["id"]
+export type EntryId = (typeof curriculumLevels)[number]["id"]
 
 type SchedulableEntryProblem = Pick<
   NormalizedProblem,
@@ -55,10 +64,11 @@ function getServedProblemsForBank(
   if (!served) {
     const entry = curriculumLevels.find((candidate) => candidate.level === level)
     if (!entry) throw new Error(`Unknown chapter: ${level}`)
-    const families: readonly ChapterFamily[] = entry.families
-    served = problems.filter((problem) =>
-      families.includes(getChapterFamily(problem)),
-    )
+    const elements: readonly CurriculumElement[] = entry.elements
+    served = problems.filter((problem) => {
+      const element = getCurriculumElement(problem)
+      return element !== null && elements.includes(element)
+    })
     servedByLevel.set(level, served)
   }
   return served
@@ -89,6 +99,10 @@ export function createRunProblemIdsForBank(
   seed = 0,
 ): string[] {
   const entry = getEntryChoice(entryId)
+  const implementedElements = getImplementedElementsForEntry(entry, problems)
+  if (implementedElements.length < RUN_POLICY.turnSize) {
+    throw new Error(`Level ${entry.level} is not available yet`)
+  }
   const served = getServedProblemsForBank(problems, entry.level)
   return createTurnProblemIds(entry.level, runNumber, served, seed)
 }

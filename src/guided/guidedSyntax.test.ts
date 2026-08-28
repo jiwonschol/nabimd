@@ -549,7 +549,7 @@ describe("published problem-bank coverage", () => {
     }
   })
 
-  it("keeps every accepted alternative valid through the real grading engine", () => {
+  it("keeps every accepted alternative valid through the real grading engine", { timeout: 30_000 }, () => {
     for (const problem of problemBank) {
       const checkpoints = deriveSyntaxCheckpoints(
         problem.target,

@@ -4,6 +4,7 @@ import {
   entryChoices,
   runScheduleRevision,
 } from "../content/entryChoices"
+import { getCurriculumElement } from "../content/curriculumElements"
 import {
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
@@ -98,16 +99,16 @@ describe("progressStore v5", () => {
           .join(",")}`,
         ...entryChoices.map(
           (entry) =>
-            `${entry.id}@${entry.level}:${entry.families.join(",")}`,
+            `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
         ),
       ].join("|"),
     )
   })
 
   it("round-trips a valid deterministic run", () => {
-    const ids = createRunProblemIds("level-4", 0)
+    const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
-    progress.entryId = "level-4"
+    progress.entryId = "level-1"
     progress.runProblemIds = ids
     progress.runStartedAtMs = 1_000
     progress.draftByProblemId[ids[0]!] = "# Draft"
@@ -265,12 +266,12 @@ describe("progressStore v5", () => {
     ["has no schedule revision", false],
     ["claims the current schedule revision", true],
   ])(
-    "keeps learner drafts when invalid progress %s",
+    "keeps learner drafts when an old level-five progress record %s",
     (_label, currentRevision) => {
       const draftProblemId = "l1-heading-apple"
       const progress = {
         ...createDefaultProgress(draftProblemId),
-        entryId: "level-removed",
+        entryId: "level-5",
         runProblemIds: [draftProblemId],
         runStartedAtMs: 1_000,
         draftByProblemId: { [draftProblemId]: "# Still mine" },
@@ -324,9 +325,9 @@ describe("progressStore v5", () => {
   })
 
   it("migrates old v5 progress without a run seed to seed 0", () => {
-    const ids = createRunProblemIds("level-4", 0)
+    const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
-    progress.entryId = "level-4"
+    progress.entryId = "level-1"
     progress.runProblemIds = ids
     progress.runStartedAtMs = 1_000
     progress.draftByProblemId[ids[0]!] = "# Draft"
@@ -421,9 +422,9 @@ describe("progressStore v5", () => {
   })
 
   it("reads the seed a legacy seedless record should adopt as 0", () => {
-    const ids = createRunProblemIds("level-4", 0)
+    const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
-    progress.entryId = "level-4"
+    progress.entryId = "level-1"
     progress.runProblemIds = ids
     const { runSeed: _runSeed, ...legacyProgress } = progress
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
@@ -443,9 +444,9 @@ describe("progressStore v5", () => {
   })
 
   it("rejects old v5 progress without a run seed in nonzero-seed sessions", () => {
-    const ids = createRunProblemIds("level-4", 0)
+    const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
-    progress.entryId = "level-4"
+    progress.entryId = "level-1"
     progress.runProblemIds = ids
     progress.runStartedAtMs = 1_000
 
@@ -464,9 +465,9 @@ describe("progressStore v5", () => {
   })
 
   it("rejects a persisted run that was generated for another session seed", () => {
-    const ids = createRunProblemIds("level-4", 0, 17)
+    const ids = createRunProblemIds("level-1", 0, 17)
     const progress = createDefaultProgress(ids[0]!)
-    progress.entryId = "level-4"
+    progress.entryId = "level-1"
     progress.runSeed = 17
     progress.runProblemIds = ids
     progress.runStartedAtMs = 1_000
@@ -555,7 +556,7 @@ describe("progressStore v5", () => {
     ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
-  it("keeps learner drafts while resetting a pre-chapter active schedule", () => {
+  it("keeps learner drafts while retiring a pre-chapter level-five schedule", () => {
     const preChapterRevision = [
       problemBank
         .filter((problem) => {
@@ -568,22 +569,27 @@ describe("progressStore v5", () => {
         .join("|"),
       "starter-projection@2",
     ].join("|")
-    const oldRun = createRunProblemIds("level-5", 0, 0)
+    const oldRun = problemBank
+      .filter((problem) => problem.level === 5)
+      .slice(0, 5)
+      .map((problem) => problem.id)
     const savedDraftProblemId = oldRun[1]!
-    const progress = createDefaultProgress(
-      oldRun[0]!,
-      preChapterRevision,
-      0,
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...createDefaultProgress(oldRun[0]!, preChapterRevision, 0),
+        runScheduleRevision: "five-chapter-schedule",
+        entryId: "level-5",
+        runProblemIds: oldRun,
+        runStepIndex: 1,
+        scheduledStepIndex: 1,
+        currentProblemId: oldRun[1]!,
+        runStartedAtMs: 1_000,
+        draftByProblemId: {
+          [savedDraftProblemId]: "## Learner-authored draft",
+        },
+      }),
     )
-    progress.entryId = "level-5"
-    progress.runProblemIds = oldRun
-    progress.runStepIndex = 1
-    progress.scheduledStepIndex = 1
-    progress.currentProblemId = oldRun[1]!
-    progress.runStartedAtMs = 1_000
-    progress.draftByProblemId[savedDraftProblemId] =
-      "## Learner-authored draft"
-    saveProgress(storage, progress)
     vi.spyOn(Date, "now").mockReturnValue(9_000)
 
     const loaded = loadProgress(
@@ -596,23 +602,23 @@ describe("progressStore v5", () => {
 
     expect(preChapterRevision).not.toBe(problemBankRevision)
     expect(loaded.bankRevision).toBe(problemBankRevision)
-    expect(loaded.entryId).toBe("level-5")
-    expect(loaded.runProblemIds).toEqual(createRunProblemIds("level-5", 0, 0))
+    expect(loaded.entryId).toBeNull()
+    expect(loaded.runProblemIds).toEqual([])
     expect(loaded.runStepIndex).toBe(0)
     expect(loaded.scheduledStepIndex).toBe(0)
-    expect(loaded.runStartedAtMs).toBe(9_000)
+    expect(loaded.runStartedAtMs).toBeNull()
     expect(loaded.draftByProblemId[savedDraftProblemId]).toBe(
       "## Learner-authored draft",
     )
   })
 
   it("migrates only legacy auto-generated drafts to Goal-derived starters", () => {
-    const seededRun = Array.from({ length: 1_000 }, (_, seed) => ({
-      ids: createRunProblemIds("level-5", 0, seed),
-      seed,
-    })).find(({ ids }) => ids.some((id) => getProblem(id).level >= 3))!
-    const { ids, seed } = seededRun
-    const currentProblemId = ids.find((id) => getProblem(id).level >= 3)!
+    const ids = problemBank
+      .filter((problem) => problem.level === 5)
+      .slice(0, 5)
+      .map((problem) => problem.id)
+    const seed = 0
+    const currentProblemId = ids[0]!
     const currentIndex = ids.indexOf(currentProblemId)
     const genuineDraftProblemId = ids.find((id) => id !== currentProblemId)!
     const lowLevelProblemId = problemBank.find(
@@ -625,19 +631,25 @@ describe("progressStore v5", () => {
       legacyStarterlessBankRevision,
       seed,
     )
-    progress.entryId = "level-5"
-    progress.runProblemIds = ids
-    progress.runStepIndex = currentIndex
-    progress.scheduledStepIndex = currentIndex
-    progress.runStartedAtMs = 1_000
-    progress.draftByProblemId = {
-      [currentProblemId]: "",
-      [genuineDraftProblemId]: "## Genuine learner draft",
-      [lowLevelProblemId]: "",
-      [legacyProjectedProblemId]:
-        "Breakfast is ready.\n\nSave dessert for later.",
-    }
-    saveProgress(storage, progress)
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...progress,
+        runScheduleRevision: "five-chapter-schedule",
+        entryId: "level-5",
+        runProblemIds: ids,
+        runStepIndex: currentIndex,
+        scheduledStepIndex: currentIndex,
+        runStartedAtMs: 1_000,
+        draftByProblemId: {
+          [currentProblemId]: "",
+          [genuineDraftProblemId]: "## Genuine learner draft",
+          [lowLevelProblemId]: "",
+          [legacyProjectedProblemId]:
+            "Breakfast is ready.\n\nSave dessert for later.",
+        },
+      }),
+    )
 
     const loaded = loadProgress(
       storage,
@@ -649,9 +661,9 @@ describe("progressStore v5", () => {
 
     expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
     expect(loaded.bankRevision).toBe(problemBankRevision)
-    expect(loaded.entryId).toBe("level-5")
-    expect(loaded.runProblemIds).toEqual(ids)
-    expect(loaded.runStepIndex).toBe(currentIndex)
+    expect(loaded.entryId).toBeNull()
+    expect(loaded.runProblemIds).toEqual([])
+    expect(loaded.runStepIndex).toBe(0)
     expect(loaded.draftByProblemId[currentProblemId]).toBeUndefined()
     expect(loaded.draftByProblemId[genuineDraftProblemId]).toBe(
       "## Genuine learner draft",
@@ -736,10 +748,11 @@ describe("progressStore v5", () => {
 
   it("restores an allowed same-level replacement", () => {
     const baseline = createRunProblemIds("level-1", 0)
+    const baselineProblem = getProblem(baseline[0]!)
     const replacement = problemBank.find(
       (candidate) =>
-        candidate.level === 1 &&
-        candidate.retryFamily === getProblem(baseline[0]!).retryFamily &&
+        candidate.level === baselineProblem.level &&
+        candidate.retryFamily === baselineProblem.retryFamily &&
         !baseline.includes(candidate.id),
     )!
     const progress = createDefaultProgress(replacement.id)
@@ -755,10 +768,11 @@ describe("progressStore v5", () => {
 
   it("restores a failed prompt replaced by a same-step transfer retry", () => {
     const baseline = createRunProblemIds("level-1", 0)
+    const baselineProblem = getProblem(baseline[0]!)
     const replacement = problemBank.find(
       (candidate) =>
-        candidate.level === 1 &&
-        candidate.retryFamily === getProblem(baseline[0]!).retryFamily &&
+        candidate.level === baselineProblem.level &&
+        candidate.retryFamily === baselineProblem.retryFamily &&
         !baseline.includes(candidate.id),
     )!
     const progress = createDefaultProgress(replacement.id)
@@ -774,10 +788,12 @@ describe("progressStore v5", () => {
   })
 
   it("rejects a known cross-level substitution", () => {
-    const baseline = createRunProblemIds("level-3", 0)
-    const wrongLevel = createRunProblemIds("level-4", 0)[0]!
+    const baseline = createRunProblemIds("level-1", 0)
+    const wrongLevel = problemBank.find(
+      (problem) => getCurriculumElement(problem) === "thematic-break",
+    )!.id
     const progress = createDefaultProgress(wrongLevel)
-    progress.entryId = "level-3"
+    progress.entryId = "level-1"
     progress.runProblemIds = [wrongLevel, ...baseline.slice(1)]
     progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
@@ -788,7 +804,7 @@ describe("progressStore v5", () => {
   })
 
   it("restores a live-eligible same-level transfer insertion", () => {
-    const baseline = createRunProblemIds("level-2", 0)
+    const baseline = createRunProblemIds("level-1", 0)
     const currentProblem = getProblem(baseline[0]!)
     const transfer = selectTransferProblem({
       problems: problemBank,
@@ -797,7 +813,7 @@ describe("progressStore v5", () => {
       recentProblemIds: baseline,
     })
     const progress = createDefaultProgress(transfer.id)
-    progress.entryId = "level-2"
+    progress.entryId = "level-1"
     progress.runProblemIds = [baseline[0]!, transfer.id, ...baseline.slice(1)]
     progress.runStepIndex = 1
     progress.currentIsTransfer = true
@@ -810,10 +826,12 @@ describe("progressStore v5", () => {
   })
 
   it("rejects a forged cross-level transfer insertion", () => {
-    const baseline = createRunProblemIds("level-3", 0)
-    const wrongLevel = createRunProblemIds("level-4", 0)[0]!
+    const baseline = createRunProblemIds("level-1", 0)
+    const wrongLevel = problemBank.find(
+      (problem) => getCurriculumElement(problem) === "thematic-break",
+    )!.id
     const progress = createDefaultProgress(wrongLevel)
-    progress.entryId = "level-3"
+    progress.entryId = "level-1"
     progress.runProblemIds = [
       baseline[0]!,
       wrongLevel,

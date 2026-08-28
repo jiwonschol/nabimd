@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { problemBank } from "./problemBank"
+import { getCurriculumElement } from "./curriculumElements"
 import {
   createRunProblemIds,
   createRunProblemIdsForBank,
@@ -7,71 +7,72 @@ import {
   getEntryChoice,
   isEntryId,
 } from "./entryChoices"
-import { getSyntaxFamily } from "../selection/runComposition"
+import { problemBank } from "./problemBank"
 
-function scheduleFamily(problem: (typeof problemBank)[number]) {
-  return getSyntaxFamily(problem) ?? "composite"
-}
-
-function familiesFor(entry: (typeof entryChoices)[number]): readonly string[] {
-  return (
-    entry as typeof entry & { families?: readonly string[] }
-  ).families ?? []
-}
-
-describe("five-chapter entry choices", () => {
-  it("exposes disjoint syntax chapters instead of a difficulty ladder", () => {
-    expect(entryChoices.map((entry) => entry.id)).toEqual([
-      "level-1",
-      "level-2",
-      "level-3",
-      "level-4",
-      "level-5",
+describe("three-level entry choices", () => {
+  it("serves the measured runtime pools for the frequency-based levels", () => {
+    expect(
+      entryChoices.map((entry) => {
+        const elements = new Set(entry.elements)
+        const pool = problemBank.filter((problem) => {
+          const element = getCurriculumElement(problem)
+          return element !== null && elements.has(element)
+        })
+        return {
+          id: entry.id,
+          problems: pool.length,
+          elements: new Set(pool.map(getCurriculumElement)),
+        }
+      }),
+    ).toEqual([
+      {
+        id: "level-1",
+        problems: 212,
+        elements: new Set([
+          "heading",
+          "bold",
+          "italic",
+          "unordered-list",
+          "ordered-list",
+          "link",
+          "inline-code",
+          "code-block",
+          "blockquote",
+        ]),
+      },
+      {
+        id: "level-2",
+        problems: 78,
+        elements: new Set([
+          "thematic-break",
+          "nested-list",
+          "code-block-language",
+        ]),
+      },
+      { id: "level-3", problems: 0, elements: new Set() },
     ])
-    expect(entryChoices.map((entry) => entry.label)).toEqual([
-      "Chapter 1 — Headings & emphasis",
-      "Chapter 2 — Lists",
-      "Chapter 3 — Links & dividers",
-      "Chapter 4 — Code & quotes",
-      "Chapter 5 — Mixed practice",
-    ])
-    expect(entryChoices.map(familiesFor)).toEqual([
-      ["heading", "bold", "italic"],
-      ["ordered-list", "unordered-list"],
-      ["link", "image", "thematic-break"],
-      ["inline-code", "code-block", "blockquote"],
-      ["composite"],
-    ])
-
-    const everyFamily = entryChoices.flatMap(familiesFor)
-    expect(new Set(everyFamily).size).toBe(everyFamily.length)
   })
 
-  it.each(entryChoices)("keeps the complete $id pool inside its syntax families", (entry) => {
-    const families = familiesFor(entry)
-    const pool = problemBank.filter((problem) =>
-      families.includes(scheduleFamily(problem)),
-    )
-
-    expect(pool.length).toBeGreaterThanOrEqual(30)
-    expect(pool.every((problem) => families.includes(scheduleFamily(problem)))).toBe(
-      true,
-    )
+  it("builds five unique syntax elements for every open level", () => {
+    for (const entry of entryChoices.filter((candidate) => candidate.available)) {
+      for (const seed of [0, 1, 17, 999]) {
+        for (let runNumber = 0; runNumber < 40; runNumber += 1) {
+          const ids = createRunProblemIds(entry.id, runNumber, seed)
+          const elements = ids.map((id) =>
+            getCurriculumElement(
+              problemBank.find((problem) => problem.id === id)!,
+            ),
+          )
+          const label = `${entry.id} seed ${seed} run ${runNumber}`
+          expect(ids, label).toHaveLength(5)
+          expect(new Set(ids).size, label).toBe(5)
+          expect(new Set(elements).size, label).toBe(5)
+        }
+      }
+    }
   })
 
-  it.each(entryChoices)("builds a five-problem $id turn without cross-chapter injection", (entry) => {
-    const ids = createRunProblemIds(entry.id, 0)
-    const families = familiesFor(entry)
-    const problems = ids.map((id) => problemBank.find((problem) => problem.id === id)!)
-
-    expect(ids).toHaveLength(5)
-    expect(new Set(ids).size).toBe(5)
-    expect(problems.every((problem) => families.includes(scheduleFamily(problem)))).toBe(
-      true,
-    )
-  })
-
-  it("rotates deterministically within a chapter", () => {
+  it("rotates deterministically within an available level", () => {
     expect(createRunProblemIds("level-1", 0)).toEqual(
       createRunProblemIds("level-1", 0),
     )
@@ -80,43 +81,41 @@ describe("five-chapter entry choices", () => {
     )
   })
 
-  it("memoizes each chapter's served view of the same problem bank", () => {
-    let sourceProblemReads = 0
-    const trackedBank = new Proxy(problemBank, {
-      get(target, property, receiver) {
-        if (typeof property === "string" && /^\d+$/.test(property)) {
-          sourceProblemReads += 1
-        }
-        return Reflect.get(target, property, receiver)
-      },
-    })
-
-    createRunProblemIdsForBank("level-1", 0, trackedBank, 41)
-    const afterFirstLevelOneRun = sourceProblemReads
-
-    createRunProblemIdsForBank("level-1", 0, trackedBank, 41)
-    expect(sourceProblemReads).toBe(afterFirstLevelOneRun)
-
-    createRunProblemIdsForBank("level-2", 0, trackedBank, 41)
-    const afterFirstLevelTwoRun = sourceProblemReads
-    expect(afterFirstLevelTwoRun).toBeGreaterThan(afterFirstLevelOneRun)
-
-    createRunProblemIdsForBank("level-2", 0, trackedBank, 41)
-    expect(sourceProblemReads).toBe(afterFirstLevelTwoRun)
-  })
-
-  it("rejects an empty chapter without crossing into another chapter", () => {
-    const withoutChapterFive = problemBank.filter(
-      (problem) => scheduleFamily(problem) !== "composite",
+  it("derives custom-bank availability instead of trusting the production flag", () => {
+    const fiveElements = [
+      "heading",
+      "bold",
+      "italic",
+      "unordered-list",
+      "ordered-list",
+    ]
+    const representatives = fiveElements.map((element) =>
+      problemBank.find(
+        (problem) => getCurriculumElement(problem) === element,
+      )!,
     )
+
+    expect(
+      createRunProblemIdsForBank("level-1", 0, representatives),
+    ).toHaveLength(5)
     expect(() =>
-      createRunProblemIdsForBank("level-5", 0, withoutChapterFive),
-    ).toThrow("No standard problems available for chapter-5")
+      createRunProblemIdsForBank("level-1", 0, representatives.slice(0, 4)),
+    ).toThrow("Level 1 is not available yet")
   })
 
-  it("validates and resolves entry IDs", () => {
-    expect(isEntryId("level-5")).toBe(true)
+  it("keeps incomplete levels non-enterable", () => {
+    expect(() => createRunProblemIds("level-2", 0)).toThrow(
+      "Level 2 is not available yet",
+    )
+    expect(() => createRunProblemIds("level-3", 0)).toThrow(
+      "Level 3 is not available yet",
+    )
+  })
+
+  it("validates and resolves the new entry IDs", () => {
+    expect(isEntryId("level-3")).toBe(true)
+    expect(isEntryId("level-4")).toBe(false)
     expect(isEntryId("challenge")).toBe(false)
-    expect(getEntryChoice("level-3").level).toBe(3)
+    expect(getEntryChoice("level-2").level).toBe(2)
   })
 })

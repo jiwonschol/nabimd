@@ -158,7 +158,7 @@ export function RunSummary({
             Practice again
           </button>
           <button className="text-button" onClick={onChangeLevel} type="button">
-            Change chapter
+            Change level
           </button>
         </div>
 

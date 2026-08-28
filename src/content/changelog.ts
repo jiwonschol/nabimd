@@ -18,7 +18,7 @@ export const changelogEntries: readonly ChangelogEntry[] = [
     title: "A calmer practice workspace",
     items: [
       "Practice now focuses on one Markdown pattern at a time.",
-      "Five chapters build from basic syntax to developer documents.",
+      "Three frequency-based levels focus practice on useful Markdown syntax.",
     ],
   },
 ]
