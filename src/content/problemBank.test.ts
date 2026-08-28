@@ -12,6 +12,7 @@ import { headingBatch002Fixtures } from "./batches/headingBatch002Fixtures"
 import { headingDepthBatch015Fixtures } from "./batches/headingDepthBatch015Fixtures"
 import { inlineCodeBatch007Fixtures } from "./batches/inlineCodeBatch007Fixtures"
 import { imageBatch027Fixtures } from "./batches/imageBatch027Fixtures"
+import { imageBatch028Fixtures } from "./batches/imageBatch028Fixtures"
 import { italicRebuildBatch013Fixtures } from "./batches/italicRebuildBatch013Fixtures"
 import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
@@ -332,6 +333,7 @@ describe("compiled problem bank", () => {
       ...developerFormsBatch020Fixtures,
       ...workplaceNotesBatch021Fixtures,
       ...imageBatch027Fixtures,
+      ...imageBatch028Fixtures,
     ].filter(({ problemId, problemRevision }) =>
       publishedProblemRevisions.has(`${problemId}@${problemRevision ?? 1}`),
     )

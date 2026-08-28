@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "3644db439d9efc003bd8db45dc6e8ad27c4d6b8f198c2f11a61e8975b8dd19aa",
+  "bankDigest": "4c774f5564456a384b195f725a23e6e350e388cb2078853614c233be50d75683",
   "acceptedTotal": 384,
   "counts": {
     "byLevel": {
@@ -274,7 +274,16 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-08-28-l1-images-028",
+      "sequence": 24,
+      "batchDigest": "a06571d26cc1b1cf02812bc71331796780b72bdf98f467eb234ebbd8fa241f25",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "9c20f008c72208ce430c3a3daef90232db0ec2c1ab16ea11fb43c7ec31671116"
+  "trackerDigest": "79e94a911eab7c80e1608784200dfa5f52f4fa0ebf48284e102cd1b3ae86571a"
 }

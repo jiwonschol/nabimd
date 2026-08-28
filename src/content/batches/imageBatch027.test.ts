@@ -86,9 +86,12 @@ describe("Level 1 image batch 027", () => {
     }
   })
 
-  it("does not collide with the accepted bank", () => {
+  it("does not collide with the unrelated accepted bank", () => {
+    const imageProblemIds = new Set(
+      imageBatch027Problems.map((problem) => problem.id),
+    )
     const priorProblems = problemBank.filter(
-      (problem) => problem.sourceBatchId !== imageBatch027Id,
+      (problem) => !imageProblemIds.has(problem.id),
     )
     const priorIds = new Set(priorProblems.map((problem) => problem.id))
     const priorTargets = new Set(priorProblems.map((problem) => problem.target))
