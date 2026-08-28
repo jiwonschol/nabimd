@@ -77,6 +77,7 @@ describe("progressStore v5", () => {
     expect(progress).toMatchObject({
       version: 5,
       bankRevision: problemBankRevision,
+      runScheduleRevision: "curriculum@1|turn-size@5",
       scheduledStepIndex: 0,
       failedScheduledStepIndexes: [],
       failedProblemIds: [],
@@ -97,6 +98,92 @@ describe("progressStore v5", () => {
     expect(
       loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
+  })
+
+  it("keeps learner drafts while replacing a persisted six-card run", () => {
+    const legacySixCardProgress = {
+      version: 5,
+      bankRevision: problemBankRevision,
+      entryId: "level-1",
+      runNumber: 0,
+      runSeed: 0,
+      runProblemIds: [
+        "l1-blockquote-book-by-lamp",
+        "l1-blockquote-bring-keys",
+        "l1-blockquote-bus-arrival",
+        "l1-blockquote-call-when-home",
+        "l1-blockquote-close-back-door",
+        "l1-blockquote-dinner-table",
+      ],
+      runStepIndex: 2,
+      scheduledStepIndex: 2,
+      currentProblemId: "l1-blockquote-bus-arrival",
+      draftByProblemId: {
+        "l1-blockquote-bus-arrival": "# my in-progress draft",
+      },
+      completedProblemIds: [
+        "l1-blockquote-book-by-lamp",
+        "l1-blockquote-bring-keys",
+      ],
+      recentProblemIds: [
+        "l1-blockquote-book-by-lamp",
+        "l1-blockquote-bring-keys",
+      ],
+      pendingTransferFamily: null,
+      pendingSlotRetryProblemId: null,
+      currentIsTransfer: false,
+      failedScheduledStepIndexes: [],
+      failedProblemIds: [],
+      syntaxMistakes: [],
+      runStartedAtMs: 1000,
+      runCompletedAtMs: null,
+    }
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify(legacySixCardProgress),
+    )
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runProblemIds).toEqual(createRunProblemIds("level-1", 0, 0))
+    expect(loaded.runStepIndex).toBe(0)
+    expect(loaded.scheduledStepIndex).toBe(0)
+    expect(loaded.runStartedAtMs).toBe(9_000)
+    expect(loaded.draftByProblemId).toEqual({
+      "l1-blockquote-bus-arrival": "# my in-progress draft",
+    })
+  })
+
+  it("keeps learner drafts when an old schedule entry no longer exists", () => {
+    const draftProblemId = "l1-heading-apple"
+    const {
+      runScheduleRevision: _runScheduleRevision,
+      ...legacyProgress
+    } = {
+      ...createDefaultProgress(draftProblemId),
+      entryId: "level-removed",
+      runProblemIds: [draftProblemId],
+      runStartedAtMs: 1_000,
+      draftByProblemId: { [draftProblemId]: "# Keep this draft" },
+    }
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.entryId).toBeNull()
+    expect(loaded.draftByProblemId).toEqual({
+      [draftProblemId]: "# Keep this draft",
+    })
   })
 
   it("migrates old v5 progress without a run seed to seed 0", () => {

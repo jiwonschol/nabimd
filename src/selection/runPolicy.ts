@@ -3,6 +3,12 @@ export const RUN_POLICY = {
   turnSize: 5,
 } as const
 
+// Bump the curriculum segment whenever entry IDs or their served families
+// change. Keeping turnSize in the value makes a schedule-size change
+// impossible to ship without changing the persisted contract.
+export const RUN_SCHEDULE_REVISION =
+  `curriculum@1|turn-size@${RUN_POLICY.turnSize}` as const
+
 /**
  * Single-syntax chapters rotate their families evenly. The values stay
  * explicit so adding a family cannot silently change the scheduler contract.

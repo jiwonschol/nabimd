@@ -12,6 +12,7 @@ import {
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { isReachableRunSchedule } from "../session/runSchedule"
+import { RUN_SCHEDULE_REVISION } from "../selection/runPolicy"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
@@ -29,6 +30,7 @@ export function createDefaultProgress(
   return {
     version: 5,
     bankRevision,
+    runScheduleRevision: RUN_SCHEDULE_REVISION,
     entryId: null,
     runNumber: 0,
     runSeed,
@@ -207,6 +209,7 @@ function isProgressV5(
   if (
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
+    value.runScheduleRevision !== RUN_SCHEDULE_REVISION ||
     (value.entryId !== null && !isEntryId(value.entryId)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
@@ -478,6 +481,80 @@ function migratePreChapterRevision(
   }
 }
 
+function migrateRunScheduleRevision(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+  expectedBankRevision: string,
+  expectedRunSeed: number,
+): unknown {
+  if (
+    expectedBankRevision !== problemBankRevision ||
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.bankRevision !== expectedBankRevision ||
+    value.runScheduleRevision === RUN_SCHEDULE_REVISION ||
+    !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const firstProblemId = validProblemIds.values().next().value
+  const fallback = createDefaultProgress(
+    firstProblemId ?? "l1-heading-apple",
+    expectedBankRevision,
+    expectedRunSeed,
+  )
+  const draftByProblemId = Object.fromEntries(
+    Object.entries(value.draftByProblemId).filter(
+      (entry): entry is [string, string] =>
+        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
+    ),
+  )
+
+  if (value.entryId === null) {
+    return {
+      ...value,
+      runScheduleRevision: RUN_SCHEDULE_REVISION,
+      draftByProblemId,
+    }
+  }
+
+  if (
+    typeof value.entryId !== "string" ||
+    !isEntryId(value.entryId) ||
+    !isNonnegativeSafeInteger(value.runStartedAtMs) ||
+    !isNonnegativeSafeInteger(value.runSeed) ||
+    value.runSeed !== expectedRunSeed
+  ) {
+    return { ...fallback, draftByProblemId }
+  }
+
+  const runNumber =
+    isNonnegativeSafeInteger(value.runNumber) &&
+    value.runNumber <= MAX_PERSISTED_RUN_NUMBER
+      ? value.runNumber
+      : 0
+  const runProblemIds = createRunProblemIds(
+    value.entryId,
+    runNumber,
+    expectedRunSeed,
+  )
+  const currentProblemId = runProblemIds[0] ?? fallback.currentProblemId
+
+  return {
+    ...createDefaultProgress(
+      currentProblemId,
+      expectedBankRevision,
+      expectedRunSeed,
+    ),
+    entryId: value.entryId,
+    runNumber,
+    runProblemIds,
+    runStartedAtMs: Date.now(),
+    draftByProblemId,
+  }
+}
+
 /**
  * The run seed the persisted progress record was generated under, or `null`
  * when no seed-bearing v5 record is stored. Legacy records written before
@@ -521,17 +598,22 @@ export function loadProgress(
 
     const parsed: unknown = migrateSyntaxMistakes(
       migratePendingSlotRetry(
-        migrateLegacyRunSeed(
-          migrateStarterProjectionRevision(
-            migratePreChapterRevision(
-              JSON.parse(saved),
+        migrateRunScheduleRevision(
+          migrateLegacyRunSeed(
+            migrateStarterProjectionRevision(
+              migratePreChapterRevision(
+                JSON.parse(saved),
+                validProblemIds,
+                expectedBankRevision,
+                expectedRunSeed,
+              ),
               validProblemIds,
               expectedBankRevision,
-              expectedRunSeed,
             ),
-            validProblemIds,
-            expectedBankRevision,
           ),
+          validProblemIds,
+          expectedBankRevision,
+          expectedRunSeed,
         ),
       ),
     )
