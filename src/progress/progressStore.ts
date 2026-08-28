@@ -518,7 +518,12 @@ function migrateRunScheduleRevision(
     value.runCompletedAtMs !== null &&
     value.runCompletedAtMs !== undefined
   ) {
-    return { ...fallback, draftByProblemId }
+    const nextRunNumber =
+      isNonnegativeSafeInteger(value.runNumber) &&
+      value.runNumber < MAX_PERSISTED_RUN_NUMBER
+        ? value.runNumber + 1
+        : 0
+    return { ...fallback, runNumber: nextRunNumber, draftByProblemId }
   }
 
   if (value.entryId === null) {

@@ -178,18 +178,17 @@ describe("progressStore v5", () => {
     })
   })
 
-  it("does not restart a completed run during schedule migration", () => {
+  it("lands a completed migrated run without repeating its rotation", () => {
+    const firstRunProblemIds = createRunProblemIds("level-1", 0, 0)
+    const justCompletedProblemIds = createRunProblemIds("level-1", 7, 0)
     const completedProblemIds = [
+      ...justCompletedProblemIds,
       "l1-blockquote-book-by-lamp",
-      "l1-blockquote-bring-keys",
-      "l1-blockquote-bus-arrival",
-      "l1-blockquote-call-when-home",
-      "l1-blockquote-close-back-door",
-      "l1-blockquote-dinner-table",
     ]
     const completedSixCardProgress = {
       ...createDefaultProgress(completedProblemIds.at(-1)!),
       entryId: "level-1",
+      runNumber: 7,
       runProblemIds: completedProblemIds,
       runStepIndex: completedProblemIds.length,
       scheduledStepIndex: completedProblemIds.length,
@@ -212,12 +211,22 @@ describe("progressStore v5", () => {
       isEligibleTransferProblemId,
     )
 
-    expect(loaded).toEqual({
-      ...createDefaultProgress(problemBank[0].id),
+    expect(loaded).toMatchObject({
+      entryId: null,
+      runProblemIds: [],
+      runStartedAtMs: null,
+      runCompletedAtMs: null,
       draftByProblemId: {
         "l1-blockquote-bus-arrival": "# keep the completed draft",
       },
     })
+    const nextRunProblemIds = createRunProblemIds(
+      "level-1",
+      loaded.runNumber,
+      loaded.runSeed,
+    )
+    expect(nextRunProblemIds).not.toEqual(justCompletedProblemIds)
+    expect(nextRunProblemIds).not.toEqual(firstRunProblemIds)
   })
 
   it("regenerates a revision-mismatched run while preserving its entry and drafts", () => {
