@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { createRunProblemIds } from "../content/entryChoices"
+import {
+  createRunProblemIds,
+  entryChoices,
+  runScheduleRevision,
+} from "../content/entryChoices"
 import {
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
@@ -77,13 +81,22 @@ describe("progressStore v5", () => {
     expect(progress).toMatchObject({
       version: 5,
       bankRevision: problemBankRevision,
-      runScheduleRevision: "curriculum@1|turn-size@5",
+      runScheduleRevision,
       scheduledStepIndex: 0,
       failedScheduledStepIndexes: [],
       failedProblemIds: [],
       runStartedAtMs: null,
       runCompletedAtMs: null,
     })
+    expect(runScheduleRevision).toBe(
+      [
+        "turn-size@5",
+        ...entryChoices.map(
+          (entry) =>
+            `${entry.id}@${entry.level}:${entry.families.join(",")}`,
+        ),
+      ].join("|"),
+    )
   })
 
   it("round-trips a valid deterministic run", () => {
@@ -160,13 +173,12 @@ describe("progressStore v5", () => {
     })
   })
 
-  it("keeps learner drafts when an old schedule entry no longer exists", () => {
+  it("keeps learner drafts when a revision-mismatched entry no longer exists", () => {
     const draftProblemId = "l1-heading-apple"
-    const {
-      runScheduleRevision: _runScheduleRevision,
-      ...legacyProgress
-    } = {
+    const legacyProgress = {
       ...createDefaultProgress(draftProblemId),
+      runScheduleRevision:
+        "turn-size@5|level-removed@4:heading,bold,italic",
       entryId: "level-removed",
       runProblemIds: [draftProblemId],
       runStartedAtMs: 1_000,
@@ -183,6 +195,68 @@ describe("progressStore v5", () => {
     expect(loaded.entryId).toBeNull()
     expect(loaded.draftByProblemId).toEqual({
       [draftProblemId]: "# Keep this draft",
+    })
+  })
+
+  it.each([
+    ["has no schedule revision", false],
+    ["claims the current schedule revision", true],
+  ])(
+    "keeps learner drafts when invalid progress %s",
+    (_label, currentRevision) => {
+      const draftProblemId = "l1-heading-apple"
+      const progress = {
+        ...createDefaultProgress(draftProblemId),
+        entryId: "level-removed",
+        runProblemIds: [draftProblemId],
+        runStartedAtMs: 1_000,
+        draftByProblemId: { [draftProblemId]: "# Still mine" },
+      }
+      const { runScheduleRevision: _revision, ...withoutRevision } = progress
+      storage.setItem(
+        PROGRESS_STORAGE_KEY,
+        JSON.stringify(currentRevision ? progress : withoutRevision),
+      )
+
+      const loaded = loadProgress(
+        storage,
+        validProblemIds,
+        isEligibleTransferProblemId,
+      )
+
+      expect(loaded.entryId).toBeNull()
+      expect(loaded.draftByProblemId).toEqual({
+        [draftProblemId]: "# Still mine",
+      })
+    },
+  )
+
+  it("salvages valid learner drafts from otherwise corrupt progress", () => {
+    const draftProblemId = "l1-heading-apple"
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        version: 5,
+        bankRevision: problemBankRevision,
+        runScheduleRevision,
+        entryId: 42,
+        runSeed: "not-a-seed",
+        currentProblemId: null,
+        draftByProblemId: {
+          [draftProblemId]: "# Survives the last fallback",
+          "not-in-the-bank": "# Discard this",
+          "l1-heading-pear": 42,
+        },
+      }),
+    )
+
+    const loaded = loadProgress(storage, validProblemIds)
+
+    expect(loaded).toEqual({
+      ...createDefaultProgress(problemBank[0].id),
+      draftByProblemId: {
+        [draftProblemId]: "# Survives the last fallback",
+      },
     })
   })
 

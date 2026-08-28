@@ -1,6 +1,7 @@
 import {
   createRunProblemIds,
   isEntryId,
+  runScheduleRevision,
 } from "../content/entryChoices"
 import {
   flattenedStarterProjectionProblemBankRevision,
@@ -12,7 +13,6 @@ import {
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { isReachableRunSchedule } from "../session/runSchedule"
-import { RUN_SCHEDULE_REVISION } from "../selection/runPolicy"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
@@ -30,7 +30,7 @@ export function createDefaultProgress(
   return {
     version: 5,
     bankRevision,
-    runScheduleRevision: RUN_SCHEDULE_REVISION,
+    runScheduleRevision,
     entryId: null,
     runNumber: 0,
     runSeed,
@@ -80,6 +80,19 @@ function isValidDraftRecord(
       ([problemId, draft]) =>
         validProblemIds.has(problemId) && typeof draft === "string",
     )
+  )
+}
+
+function recoverValidDrafts(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+): Record<string, string> {
+  if (!isRecord(value) || !isRecord(value.draftByProblemId)) return {}
+  return Object.fromEntries(
+    Object.entries(value.draftByProblemId).filter(
+      (entry): entry is [string, string] =>
+        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
+    ),
   )
 }
 
@@ -209,7 +222,7 @@ function isProgressV5(
   if (
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
-    value.runScheduleRevision !== RUN_SCHEDULE_REVISION ||
+    value.runScheduleRevision !== runScheduleRevision ||
     (value.entryId !== null && !isEntryId(value.entryId)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
@@ -440,12 +453,7 @@ function migratePreChapterRevision(
     expectedBankRevision,
     expectedRunSeed,
   )
-  const draftByProblemId = Object.fromEntries(
-    Object.entries(value.draftByProblemId).filter(
-      (entry): entry is [string, string] =>
-        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
-    ),
-  )
+  const draftByProblemId = recoverValidDrafts(value, validProblemIds)
 
   if (
     typeof value.entryId !== "string" ||
@@ -492,7 +500,7 @@ function migrateRunScheduleRevision(
     !isRecord(value) ||
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
-    value.runScheduleRevision === RUN_SCHEDULE_REVISION ||
+    value.runScheduleRevision === runScheduleRevision ||
     !isRecord(value.draftByProblemId)
   ) {
     return value
@@ -504,17 +512,12 @@ function migrateRunScheduleRevision(
     expectedBankRevision,
     expectedRunSeed,
   )
-  const draftByProblemId = Object.fromEntries(
-    Object.entries(value.draftByProblemId).filter(
-      (entry): entry is [string, string] =>
-        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
-    ),
-  )
+  const draftByProblemId = recoverValidDrafts(value, validProblemIds)
 
   if (value.entryId === null) {
     return {
       ...value,
-      runScheduleRevision: RUN_SCHEDULE_REVISION,
+      runScheduleRevision,
       draftByProblemId,
     }
   }
@@ -625,7 +628,10 @@ export function loadProgress(
       expectedRunSeed,
     )
       ? cloneProgress(parsed)
-      : fallback
+      : {
+          ...fallback,
+          draftByProblemId: recoverValidDrafts(parsed, validProblemIds),
+        }
   } catch {
     return fallback
   }
