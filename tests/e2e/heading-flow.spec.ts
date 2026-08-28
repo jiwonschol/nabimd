@@ -1,7 +1,7 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
 import { curriculumLevels } from "../../src/content/curriculumLevels"
-import { getCurriculumElement } from "../../src/content/curriculumElements"
+import { getCurriculumElements } from "../../src/content/curriculumElements"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
 import { createTurnProblemIds } from "../../src/selection/runComposition"
 
@@ -32,8 +32,12 @@ const runtimeProblemById = new Map(
 
 const levelOne = curriculumLevels[0]
 const levelOneProblems = runtimeProblems.filter((problem) => {
-  const element = getCurriculumElement(problem)
-  return element !== null && levelOne.elements.includes(element)
+  const elements = getCurriculumElements(problem)
+  return (
+    problem.flavor === "standard" &&
+    elements.length > 0 &&
+    elements.every((element) => levelOne.elements.includes(element))
+  )
 })
 const levelLabels = curriculumLevels.map((entry) => entry.label)
 
@@ -75,8 +79,8 @@ async function enterLevel(page: Page, level: 1) {
 function findLevelOneRotation(
   predicate: (problem: RuntimeProblemSource) => boolean,
 ) {
-  for (let runNumber = 0; runNumber < 80; runNumber += 1) {
-    for (let seed = 0; seed < 1_000; seed += 1) {
+  for (let seed = 0; seed < 1_000; seed += 1) {
+    for (let runNumber = 0; runNumber < 80; runNumber += 1) {
       const firstProblemId = createTurnProblemIds(
         1,
         runNumber,

@@ -2,7 +2,7 @@ import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
 import { curriculumLevels } from "../../src/content/curriculumLevels"
 import {
-  getCurriculumElement,
+  getCurriculumElements,
   getImplementedElementsForEntry,
 } from "../../src/content/curriculumElements"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
@@ -142,7 +142,8 @@ test("production serves five distinct syntax elements for every available level"
       await expect(page.getByLabel("Practice details")).toContainText(
         `Level ${entry.level}`,
       )
-      const servedElements = new Set<string>()
+      const servedSingleElements = new Set<string>()
+      let mixedExerciseCount = 0
 
       for (let exercise = 0; exercise < 5; exercise += 1) {
         const problemId =
@@ -160,11 +161,15 @@ test("production serves five distinct syntax elements for every available level"
         if (!problem) {
           throw new Error(`Missing runtime source for ${problemId}`)
         }
-        const element = getCurriculumElement(problem)
-        expect(element).not.toBeNull()
-        expect(entry.elements).toContain(element)
-        expect(servedElements.has(element!)).toBe(false)
-        servedElements.add(element!)
+        const elements = getCurriculumElements(problem)
+        expect(elements.length).toBeGreaterThan(0)
+        for (const element of elements) expect(entry.elements).toContain(element)
+        if (elements.length === 1) {
+          expect(servedSingleElements.has(elements[0]!)).toBe(false)
+          servedSingleElements.add(elements[0]!)
+        } else {
+          mixedExerciseCount += 1
+        }
         const marks = deriveSyntaxCheckpoints(problem.target, "").map(
           (checkpoint) => checkpoint.canonicalInput,
         )
@@ -191,7 +196,8 @@ test("production serves five distinct syntax elements for every available level"
       await expect(
         page.getByRole("region", { name: "Your work" }).getByRole("article"),
       ).toHaveCount(5)
-      expect(servedElements.size).toBe(5)
+      expect(servedSingleElements.size).toBe(4)
+      expect(mixedExerciseCount).toBe(1)
     })
   }
 

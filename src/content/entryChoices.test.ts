@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { getCurriculumElement } from "./curriculumElements"
+import {
+  type CurriculumElement,
+  getCurriculumElement,
+  getCurriculumElements,
+} from "./curriculumElements"
 import {
   createRunProblemIds,
   createRunProblemIdsForBank,
@@ -15,19 +19,23 @@ describe("three-level entry choices", () => {
       entryChoices.map((entry) => {
         const elements = new Set(entry.elements)
         const pool = problemBank.filter((problem) => {
-          const element = getCurriculumElement(problem)
-          return element !== null && elements.has(element)
+          const problemElements = getCurriculumElements(problem)
+          return (
+            problem.flavor === "standard" &&
+            problemElements.length > 0 &&
+            problemElements.every((element) => elements.has(element))
+          )
         })
         return {
           id: entry.id,
           problems: pool.length,
-          elements: new Set(pool.map(getCurriculumElement)),
+          elements: new Set(pool.flatMap(getCurriculumElements)),
         }
       }),
     ).toEqual([
       {
         id: "level-1",
-        problems: 212,
+        problems: 316,
         elements: new Set([
           "heading",
           "bold",
@@ -42,34 +50,85 @@ describe("three-level entry choices", () => {
       },
       {
         id: "level-2",
-        problems: 78,
+        problems: 28,
         elements: new Set([
           "thematic-break",
           "nested-list",
-          "code-block-language",
         ]),
       },
       { id: "level-3", problems: 0, elements: new Set() },
     ])
   })
 
-  it("builds five unique syntax elements for every open level", () => {
+  it("builds five distinct exercise slots for every open level", () => {
     for (const entry of entryChoices.filter((candidate) => candidate.available)) {
       for (const seed of [0, 1, 17, 999]) {
         for (let runNumber = 0; runNumber < 40; runNumber += 1) {
           const ids = createRunProblemIds(entry.id, runNumber, seed)
-          const elements = ids.map((id) =>
-            getCurriculumElement(
-              problemBank.find((problem) => problem.id === id)!,
-            ),
-          )
+          const selectionKeys = ids.map((id) => {
+            const problem = problemBank.find((candidate) => candidate.id === id)!
+            return getCurriculumElement(problem) ?? "mixed"
+          })
           const label = `${entry.id} seed ${seed} run ${runNumber}`
           expect(ids, label).toHaveLength(5)
           expect(new Set(ids).size, label).toBe(5)
-          expect(new Set(elements).size, label).toBe(5)
+          expect(new Set(selectionKeys).size, label).toBe(5)
         }
       }
     }
+  })
+
+  it("serves one Level 1 mixed exercise beside four distinct single elements", () => {
+    const entry = getEntryChoice("level-1")
+    const entryElements = new Set<CurriculumElement>(entry.elements)
+    const expectedMixedIds = new Set(
+      problemBank
+        .filter((problem) => {
+          const elements = getCurriculumElements(problem)
+          return (
+            problem.flavor === "standard" &&
+            elements.length > 1 &&
+            elements.every((element) => entryElements.has(element))
+          )
+        })
+        .map((problem) => problem.id),
+    )
+    const servedMixedIds = new Set<string>()
+
+    for (const seed of [0, 1, 17, 999]) {
+      for (let runNumber = 0; runNumber < 104; runNumber += 1) {
+        const problems = createRunProblemIds("level-1", runNumber, seed).map(
+          (id) => problemBank.find((problem) => problem.id === id)!,
+        )
+        const mixed = problems.filter(
+          (problem) => getCurriculumElements(problem).length > 1,
+        )
+        const singles = problems.filter(
+          (problem) => getCurriculumElements(problem).length === 1,
+        )
+
+        expect(mixed, `seed ${seed} run ${runNumber}`).toHaveLength(1)
+        expect(singles, `seed ${seed} run ${runNumber}`).toHaveLength(4)
+        expect(
+          new Set(singles.map((problem) => getCurriculumElement(problem))).size,
+          `seed ${seed} run ${runNumber}`,
+        ).toBe(4)
+        for (const element of getCurriculumElements(mixed[0]!)) {
+          expect(entryElements.has(element)).toBe(true)
+        }
+        if (seed === 0) servedMixedIds.add(mixed[0]!.id)
+      }
+    }
+
+    expect(expectedMixedIds).toHaveLength(104)
+    expect(servedMixedIds).toEqual(expectedMixedIds)
+
+    const allServedIds = new Set(
+      Array.from({ length: 300 }, (_, runNumber) =>
+        createRunProblemIds("level-1", runNumber, 0),
+      ).flat(),
+    )
+    expect(allServedIds).toHaveLength(316)
   })
 
   it("rotates deterministically within an available level", () => {

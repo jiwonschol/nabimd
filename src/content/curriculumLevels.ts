@@ -43,6 +43,7 @@ export const curriculumLevels = [
       "bold-italic",
       "strikethrough",
       "nested-blockquote",
+      "code-block-language",
       "hard-line-break",
       "automatic-url",
     ],

@@ -46,6 +46,7 @@ describe("three-level curriculum", () => {
           "bold-italic",
           "strikethrough",
           "nested-blockquote",
+          "code-block-language",
           "hard-line-break",
           "automatic-url",
         ],

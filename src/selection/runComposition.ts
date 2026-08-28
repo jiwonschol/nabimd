@@ -1,5 +1,8 @@
 import type { CurriculumLevel, NormalizedProblem } from "../content/types"
-import { getCurriculumElement } from "../content/curriculumElements"
+import {
+  getCurriculumElement,
+  getCurriculumElements,
+} from "../content/curriculumElements"
 import {
   RUN_POLICY,
   SYNTAX_FAMILY_WEIGHTS,
@@ -82,6 +85,17 @@ function rotate<T>(values: readonly T[], offset: number): T[] {
     { length: values.length },
     (_, index) => values[(offset + index) % values.length]!,
   )
+}
+
+function seededProblemOrder(
+  problems: readonly SchedulableProblem[],
+  seed: number,
+): SchedulableProblem[] {
+  return [...problems].sort((left, right) => {
+    const difference =
+      mixSeed(seed, hashString(left.id)) - mixSeed(seed, hashString(right.id))
+    return difference === 0 ? left.id.localeCompare(right.id) : difference
+  })
 }
 
 function selectionKey(problem: SchedulableProblem): string {
@@ -176,6 +190,35 @@ export function createTurnProblemIds(
   )
   if (standardProblems.length === 0) {
     throw new Error(`No standard problems available for chapter-${chapter}`)
+  }
+
+  const mixedProblems = standardProblems.filter(
+    (problem) => getCurriculumElements(problem).length > 1,
+  )
+  const singleProblems = standardProblems.filter(
+    (problem) => getCurriculumElements(problem).length === 1,
+  )
+  const singleElementCount = new Set(singleProblems.map(selectionKey)).size
+  if (
+    mixedProblems.length > 0 &&
+    singleElementCount >= RUN_POLICY.turnSize - 1
+  ) {
+    const orderedSingles = chapterOrder(singleProblems, seed)
+    const singleCount = RUN_POLICY.turnSize - 1
+    const singleOffset = (runNumber * singleCount) % orderedSingles.length
+    const singles = Array.from(
+      { length: singleCount },
+      (_, index) =>
+        orderedSingles[(singleOffset + index) % orderedSingles.length]!,
+    )
+    const orderedMixed = seededProblemOrder(mixedProblems, seed)
+    const mixed = orderedMixed[runNumber % orderedMixed.length]!
+    const selected = [...singles, mixed]
+    const presentationOffset =
+      seed === 0
+        ? 0
+        : mixSeed(seed, 104_729 + runNumber) % RUN_POLICY.turnSize
+    return rotate(selected, presentationOffset).map((problem) => problem.id)
   }
 
   const ordered = chapterOrder(standardProblems, seed)

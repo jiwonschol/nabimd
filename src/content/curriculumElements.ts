@@ -69,13 +69,50 @@ function isNestedListToken(token: string): boolean {
   return token === "Indent" || /^ {2,}(?:[-+*]|\d+[.)])/.test(token)
 }
 
+function getMixedTokenElement(token: string): CurriculumElement | null {
+  if (isNestedListToken(token)) return "nested-list"
+  // A language tag inside a mixed document is still part of applying a code
+  // block. Dedicated one-syntax exercises own code-block-language in Level 2.
+  if (token.startsWith("```")) return "code-block"
+  if (token === "---") return "thematic-break"
+  if (/^#{1,6}(?:\s|$)/.test(token)) return "heading"
+  if (token.startsWith("**") || token.startsWith("__")) return "bold"
+  if (token === "*" || token === "_") return "italic"
+  if (/^[-+*](?:\s|$)/.test(token)) return "unordered-list"
+  if (/^\d+[.)](?:\s|$)/.test(token)) return "ordered-list"
+  if (token.startsWith(">")) return "blockquote"
+  if (token.startsWith("`")) return "inline-code"
+  if (token.startsWith("![")) return "image"
+  if (token.startsWith("[")) return "link"
+  return null
+}
+
+export function getCurriculumElements(
+  problem: Pick<NormalizedProblem, "skillIds" | "syntaxTokens">,
+): CurriculumElement[] {
+  if (problem.skillIds.length === 1) {
+    if (problem.syntaxTokens.some(isNestedListToken)) return ["nested-list"]
+    if (problem.syntaxTokens.some(isLanguageFence)) {
+      return ["code-block-language"]
+    }
+    const element = singleSkillElements[problem.skillIds[0]!]
+    return element ? [element] : []
+  }
+
+  return Array.from(
+    new Set(
+      problem.syntaxTokens
+        .map(getMixedTokenElement)
+        .filter((element) => element !== null),
+    ),
+  )
+}
+
 export function getCurriculumElement(
   problem: Pick<NormalizedProblem, "skillIds" | "syntaxTokens">,
 ): CurriculumElement | null {
-  if (problem.syntaxTokens.some(isNestedListToken)) return "nested-list"
-  if (problem.syntaxTokens.some(isLanguageFence)) return "code-block-language"
-  if (problem.skillIds.length !== 1) return null
-  return singleSkillElements[problem.skillIds[0]!] ?? null
+  const elements = getCurriculumElements(problem)
+  return elements.length === 1 ? elements[0]! : null
 }
 
 export function getImplementedElementsForEntry(
@@ -128,9 +165,10 @@ export function validateCurriculumCoverage(
   }
 
   for (const problem of problems) {
-    const element = getCurriculumElement(problem)
-    if (element && !declaredByElement.has(element)) {
-      errors.push(`${problem.id} serves undeclared ${element}`)
+    for (const element of getCurriculumElements(problem)) {
+      if (!declaredByElement.has(element)) {
+        errors.push(`${problem.id} serves undeclared ${element}`)
+      }
     }
   }
 

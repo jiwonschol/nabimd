@@ -106,8 +106,8 @@ function useSessionSeedForFirstProblem(
 ) {
   const entry = entryChoices.find((choice) => choice.level === chapter)!
 
-  for (let runNumber = 0; runNumber < 40; runNumber += 1) {
-    for (let seed = 0; seed < 1_000; seed += 1) {
+  for (let seed = 0; seed < 1_000; seed += 1) {
+    for (let runNumber = 0; runNumber < 40; runNumber += 1) {
       const firstProblemId = createRunProblemIds(entry.id, runNumber, seed)[0]!
       if (predicate(getProblem(firstProblemId))) {
         window.sessionStorage.setItem(SESSION_SEED_STORAGE_KEY, String(seed))
@@ -378,6 +378,22 @@ describe("App", () => {
     expect(screen.getByLabelText("Markdown syntax practice")).not.toHaveTextContent(
       /Mark \d+ of \d+/,
     )
+  })
+
+  it("updates Now learning to the active syntax inside a mixed exercise", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) => problem.id === "l2-code-block-alarm-routine",
+    )
+    await openLevel(1)
+    const marks = slotMarks()
+    const reference = screen.getByRole("region", {
+      name: "Current Markdown syntax",
+    })
+
+    expect(reference).toHaveTextContent("Level 1 heading")
+    submitSlot(marks[0]!)
+    expect(reference).toHaveTextContent("Fenced code block")
   })
 
   it("accepts an alternate unordered-list marker in a slot", async () => {

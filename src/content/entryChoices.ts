@@ -4,7 +4,7 @@ import { createTurnProblemIds } from "../selection/runComposition"
 import { curriculumLevels } from "./curriculumLevels"
 import {
   type CurriculumElement,
-  getCurriculumElement,
+  getCurriculumElements,
   getImplementedElementsForEntry,
 } from "./curriculumElements"
 import {
@@ -66,8 +66,11 @@ function getServedProblemsForBank(
     if (!entry) throw new Error(`Unknown chapter: ${level}`)
     const elements: readonly CurriculumElement[] = entry.elements
     served = problems.filter((problem) => {
-      const element = getCurriculumElement(problem)
-      return element !== null && elements.includes(element)
+      const problemElements = getCurriculumElements(problem)
+      return (
+        problemElements.length > 0 &&
+        problemElements.every((element) => elements.includes(element))
+      )
     })
     servedByLevel.set(level, served)
   }

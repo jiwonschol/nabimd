@@ -4,6 +4,7 @@ import {
   type CurriculumElement,
   type CurriculumElementProblem,
   getCurriculumElement,
+  getCurriculumElements,
   getImplementedElementsForEntry,
   validateCurriculumCoverage,
 } from "./curriculumElements"
@@ -30,7 +31,6 @@ describe("curriculum element classification", () => {
         "blockquote",
         "thematic-break",
         "nested-list",
-        "code-block-language",
       ]),
     )
   })
@@ -64,6 +64,32 @@ describe("curriculum element classification", () => {
         ],
       ),
     ).toHaveLength(4)
+  })
+
+  it("identifies the 104 mixed exercises composed only of Level 1 syntax", () => {
+    const levelOneElements = new Set<CurriculumElement>(
+      curriculumLevels[0].elements,
+    )
+    const implementedLevelOneElements = new Set(
+      getImplementedElementsForEntry(curriculumLevels[0], problemBank),
+    )
+    const compatibleMixedProblems = problemBank.filter((problem) => {
+      const elements = getCurriculumElements(problem)
+      return (
+        problem.flavor === "standard" &&
+        elements.length > 1 &&
+        elements.every((element) => levelOneElements.has(element))
+      )
+    })
+    const strictOverlapFallbacks = compatibleMixedProblems.filter(
+      (problem) =>
+        implementedLevelOneElements.size -
+          getCurriculumElements(problem).length <
+        4,
+    )
+
+    expect(compatibleMixedProblems).toHaveLength(104)
+    expect(strictOverlapFallbacks).toHaveLength(20)
   })
 
   it("keeps the unimplemented list honest in both directions", () => {

@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { curriculumLevels } from "../../src/content/curriculumLevels"
-import { getCurriculumElement } from "../../src/content/curriculumElements"
+import { getCurriculumElements } from "../../src/content/curriculumElements"
 import { createTurnProblemIds } from "../../src/selection/runComposition"
 
 // Regenerates the design QA evidence in docs/design/qa/ from the current
@@ -40,13 +40,17 @@ const levelOne = curriculumLevels[0]
 const levelOneProblems = Object.values(runtimeProjection.levels)
   .flat()
   .filter((problem) => {
-    const element = getCurriculumElement(problem)
-    return element !== null && levelOne.elements.includes(element)
+    const elements = getCurriculumElements(problem)
+    return (
+      problem.flavor === "standard" &&
+      elements.length > 0 &&
+      elements.every((element) => levelOne.elements.includes(element))
+    )
   })
 
 function findCaptureRotation() {
-  for (let runNumber = 0; runNumber < 80; runNumber += 1) {
-    for (let seed = 0; seed < 1_000; seed += 1) {
+  for (let seed = 0; seed < 1_000; seed += 1) {
+    for (let runNumber = 0; runNumber < 80; runNumber += 1) {
       if (
         createTurnProblemIds(1, runNumber, levelOneProblems, seed)[0] ===
         captureProblemId
