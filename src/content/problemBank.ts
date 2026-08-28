@@ -1,6 +1,10 @@
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
 import { derivePlaintextStarter } from "./plaintextStarter"
 import {
+  RUNTIME_BUDGET_REVISION,
+  withinRuntimeBudget,
+} from "./runtimeBudget"
+import {
   CURRICULUM_LEVELS,
   type CurriculumLevel,
   type NormalizedProblem,
@@ -15,35 +19,20 @@ const publishedLevels = runtimeProjections.levels as unknown as Record<
   readonly NormalizedProblem[]
 >
 
-/**
- * Per-level ceilings for what practice may serve. Published batches stay
- * immutable evidence; problems over these budgets are retired from runtime
- * only (2026-07-22 direction: every level practices Markdown syntax in
- * one-to-three minutes — never document-length typing).
- */
-export const RUNTIME_TARGET_BUDGETS: Readonly<
-  Record<CurriculumLevel, { maxLines: number; maxWords?: number }>
-> = {
-  1: { maxLines: 5 },
-  2: { maxLines: 14 },
-  3: { maxLines: 28 },
-  4: { maxLines: 40, maxWords: 165 },
-  5: { maxLines: 40, maxWords: 165 },
-}
+export {
+  countRuntimeTargetContentLines,
+  RUNTIME_TARGET_BUDGETS,
+  withinRuntimeBudget,
+} from "./runtimeBudget"
 
-export function withinRuntimeBudget(
-  problem: Pick<NormalizedProblem, "level" | "target">,
-): boolean {
-  const budget = RUNTIME_TARGET_BUDGETS[problem.level]
-  if (problem.target.split("\n").length > budget.maxLines) return false
-  if (budget.maxWords === undefined) return true
-  const words = problem.target.split(/\s+/).filter(Boolean).length
-  return words <= budget.maxWords
-}
-
-const compiledProblems = CURRICULUM_LEVELS.flatMap(
+const publishedProblems = CURRICULUM_LEVELS.flatMap(
   (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
 )
+export const publishedProblemIds = publishedProblems.map(
+  (problem) => problem.id,
+)
+
+const compiledProblems = publishedProblems
   .filter(withinRuntimeBudget)
   .map(
     (problem): NormalizedProblem => ({
@@ -73,6 +62,7 @@ export const flattenedStarterProjectionProblemBankRevision = [
 export const STARTER_PROJECTION_REVISION = 2
 export const problemBankRevision = [
   preStarterProjectionProblemBankRevision,
+  `runtime-budget@curriculum-owner-${RUNTIME_BUDGET_REVISION}`,
   `starter-projection@${STARTER_PROJECTION_REVISION}`,
 ].join("|")
 
@@ -81,7 +71,7 @@ export const problemBankRevision = [
 // published problems so the one-way progress migration does not depend on a
 // hand-copied hash or accept unrelated stale records.
 export const preChapterProblemBankRevision = [
-  problemBank
+  publishedProblems
     .filter((problem) => {
       if (problem.level < 4) return true
       const lines = problem.target.split("\n").length

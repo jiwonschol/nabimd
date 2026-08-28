@@ -58,30 +58,46 @@ export function OpenBookLanding({
         className="open-book-page open-book-page--chapters open-book-page--chapters-with-legal"
       >
         <header className="chapter-index-header">
-          <h2 id="chapter-index-title">Choose a chapter to begin.</h2>
+          <h2 id="chapter-index-title">Choose a level to begin.</h2>
         </header>
 
         <ol className="chapter-index">
           {entryChoices.map((entry) => {
             const { levelLabel, title } = splitEntryLabel(entry.label)
             const selected = turningEntryId === entry.id
+            const descriptionId = `chapter-entry-${entry.id}-description`
+            const statusId = `chapter-entry-${entry.id}-status`
             return (
               <li key={entry.id}>
                 <button
                   aria-current={selected ? "true" : undefined}
+                  aria-describedby={
+                    entry.available
+                      ? descriptionId
+                      : `${descriptionId} ${statusId}`
+                  }
                   aria-label={turning ? undefined : entry.label}
                   className="chapter-entry"
-                  disabled={turning}
-                  onClick={() => onChoose(entry.id)}
+                  disabled={turning || !entry.available}
+                  onClick={() => {
+                    if (entry.available) onChoose(entry.id)
+                  }}
                   type="button"
                 >
                   <span className="chapter-entry__level">{levelLabel}</span>
                   <span className="chapter-entry__copy">
                     <strong>{title}</strong>
+                    <small id={descriptionId}>{entry.description}</small>
                   </span>
-                  <span aria-hidden="true" className="chapter-entry__arrow">
-                    →
-                  </span>
+                  {entry.available ? (
+                    <span aria-hidden="true" className="chapter-entry__arrow">
+                      →
+                    </span>
+                  ) : (
+                    <span className="chapter-entry__status" id={statusId}>
+                      Coming soon
+                    </span>
+                  )}
                 </button>
               </li>
             )

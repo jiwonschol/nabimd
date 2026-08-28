@@ -24,6 +24,7 @@ import { level12SeedFixtures } from "./level12SeedFixtures"
 import { level35SeedFixtures } from "./level35SeedFixtures"
 import { workplaceNotesBatch021Fixtures } from "./batches/workplaceNotesBatch021Fixtures"
 import {
+  countRuntimeTargetContentLines,
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
   getProblemsForLevel,
@@ -32,6 +33,10 @@ import {
   withinRuntimeBudget,
 } from "./problemBank"
 import { derivePlaintextStarter } from "./plaintextStarter"
+import {
+  getCurriculumElements,
+  getProblemEntryId,
+} from "./curriculumElements"
 import type { NormalizedProblem } from "./types"
 import { validateProblemBank } from "./validateProblemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
@@ -45,8 +50,8 @@ function authoredWordCount(source: string) {
   return source.match(/[A-Za-z0-9][A-Za-z0-9'`.:/-]*/g)?.length ?? 0
 }
 
-describe("compiled five-level problem bank", () => {
-  it("serves every accepted problem inside the reviewed short-document budget", () => {
+describe("compiled problem bank", () => {
+  it("keeps the 372 reviewed records while serving the 340 owner-budget exercises", () => {
     expect(tracker.acceptedTotal).toBe(372)
     expect(tracker.counts.byLevel).toEqual({
       1: 140,
@@ -55,16 +60,42 @@ describe("compiled five-level problem bank", () => {
       4: 32,
       5: 22,
     })
-    // The chapter curriculum restores the 30 reviewed upper-chapter records
-    // that the old level-specific runtime ceiling discarded.
+    // The immutable tracker remains the evidence ledger. Runtime retires 32
+    // legacy work documents that exceed their new curriculum owner's budget.
     expect(problemBank.every(withinRuntimeBudget)).toBe(true)
-    const servedByLevel = { 1: 140, 2: 148, 3: 30, 4: 32, 5: 22 } as const
+    const servedByLevel = { 1: 140, 2: 148, 3: 28, 4: 12, 5: 12 } as const
     expect(problemBank).toHaveLength(
       Object.values(servedByLevel).reduce((sum, count) => sum + count, 0),
     )
     for (const level of [1, 2, 3, 4, 5] as const) {
       expect(getProblemsForLevel(level)).toHaveLength(servedByLevel[level])
     }
+  })
+
+  it("rejects a long legacy document by its new curriculum owner budget", () => {
+    const mixed = problemBank.find(
+      (problem) => getCurriculumElements(problem).length > 1,
+    )
+    if (!mixed) throw new Error("Missing mixed Level 1-owned fixture")
+    const legacyWorkDocument = {
+      ...mixed,
+      level: 4 as const,
+      target: Array.from({ length: 26 }, () => "# Daily note").join("\n"),
+    }
+
+    expect(getProblemEntryId(legacyWorkDocument)).toBe("level-1")
+    expect(legacyWorkDocument.target.split("\n")).toHaveLength(26)
+    expect(countRuntimeTargetContentLines(legacyWorkDocument.target)).toBe(26)
+    expect(withinRuntimeBudget(legacyWorkDocument)).toBe(false)
+  })
+
+  it("counts mixed-document content lines without Markdown separator lines", () => {
+    const target = ["# Daily note", "", "First item", "", "Last item"].join(
+      "\n",
+    )
+
+    expect(target.split("\n")).toHaveLength(5)
+    expect(countRuntimeTargetContentLines(target)).toBe(3)
   })
 
   it("publishes reviewed syntax and composite rebuild families", () => {
@@ -111,17 +142,17 @@ describe("compiled five-level problem bank", () => {
       getProblemsForLevel(3).filter(
         (problem) => problem.familyId === "readable-human-document",
       ),
-    ).toHaveLength(trackedFamilies["readable-human-document"] ?? 0)
+    ).toHaveLength(28)
     expect(
       getProblemsForLevel(4).filter(
         (problem) => problem.familyId === "executable-development-spec",
       ),
-    ).toHaveLength(trackedFamilies["executable-development-spec"] ?? 0)
+    ).toHaveLength(0)
     expect(
       getProblemsForLevel(5).filter(
         (problem) => problem.familyId === "agent-ready-work-order",
       ),
-    ).toHaveLength(trackedFamilies["agent-ready-work-order"] ?? 0)
+    ).toHaveLength(0)
     expect(
       getProblemsForLevel(4).filter(
         (problem) => problem.familyId === "workplace-notes",
@@ -264,6 +295,9 @@ describe("compiled five-level problem bank", () => {
         "|starter-projection@1",
       ),
     ).toBe(true)
+    expect(problemBankRevision).toContain(
+      "|runtime-budget@curriculum-owner-1|",
+    )
     expect(problemBankRevision.endsWith("|starter-projection@2")).toBe(true)
     expect(getProblem(problemBank[0].id)).toBe(problemBank[0])
     expect(() => getProblem("missing-problem")).toThrow("Unknown problem")

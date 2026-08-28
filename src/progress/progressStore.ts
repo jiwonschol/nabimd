@@ -1,5 +1,6 @@
 import {
   createRunProblemIds,
+  getEntryChoice,
   isEntryId,
   runScheduleRevision,
 } from "../content/entryChoices"
@@ -210,6 +211,7 @@ function isValidSyntaxMistakes(
 function isProgressV5(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
+  validDraftProblemIds: ReadonlySet<string>,
   isEligibleTransferProblem: (
     currentProblemId: string,
     candidateProblemId: string,
@@ -223,7 +225,8 @@ function isProgressV5(
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
     value.runScheduleRevision !== runScheduleRevision ||
-    (value.entryId !== null && !isEntryId(value.entryId)) ||
+    (value.entryId !== null &&
+      (!isEntryId(value.entryId) || !getEntryChoice(value.entryId).available)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
     value.runSeed !== expectedRunSeed ||
@@ -289,7 +292,7 @@ function isProgressV5(
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
     validProblemIds.has(value.currentProblemId) &&
-    isValidDraftRecord(value.draftByProblemId, validProblemIds) &&
+    isValidDraftRecord(value.draftByProblemId, validDraftProblemIds) &&
     isKnownIdList(value.completedProblemIds, validProblemIds) &&
     isKnownIdList(value.recentProblemIds, validProblemIds) &&
     isValidSyntaxMistakes(value.syntaxMistakes, validProblemIds) &&
@@ -434,6 +437,7 @@ function migrateStarterProjectionRevision(
 function migratePreChapterRevision(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
+  validDraftProblemIds: ReadonlySet<string>,
   expectedBankRevision: string,
   expectedRunSeed: number,
 ): unknown {
@@ -453,11 +457,12 @@ function migratePreChapterRevision(
     expectedBankRevision,
     expectedRunSeed,
   )
-  const draftByProblemId = recoverValidDrafts(value, validProblemIds)
+  const draftByProblemId = recoverValidDrafts(value, validDraftProblemIds)
 
   if (
     typeof value.entryId !== "string" ||
     !isEntryId(value.entryId) ||
+    !getEntryChoice(value.entryId).available ||
     !isNonnegativeSafeInteger(value.runStartedAtMs)
   ) {
     return { ...fallback, draftByProblemId }
@@ -492,6 +497,7 @@ function migratePreChapterRevision(
 function migrateRunScheduleRevision(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
+  validDraftProblemIds: ReadonlySet<string>,
   expectedBankRevision: string,
   expectedRunSeed: number,
 ): unknown {
@@ -512,7 +518,7 @@ function migrateRunScheduleRevision(
     expectedBankRevision,
     expectedRunSeed,
   )
-  const draftByProblemId = recoverValidDrafts(value, validProblemIds)
+  const draftByProblemId = recoverValidDrafts(value, validDraftProblemIds)
 
   if (
     value.runCompletedAtMs !== null &&
@@ -537,6 +543,7 @@ function migrateRunScheduleRevision(
   if (
     typeof value.entryId !== "string" ||
     !isEntryId(value.entryId) ||
+    !getEntryChoice(value.entryId).available ||
     !isNonnegativeSafeInteger(value.runStartedAtMs) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
     value.runSeed !== expectedRunSeed
@@ -599,6 +606,7 @@ export function loadProgress(
   ) => boolean = () => false,
   expectedBankRevision = problemBankRevision,
   expectedRunSeed = 0,
+  validDraftProblemIds: ReadonlySet<string> = validProblemIds,
 ): ProgressV5 {
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
@@ -619,6 +627,7 @@ export function loadProgress(
               migratePreChapterRevision(
                 JSON.parse(saved),
                 validProblemIds,
+                validDraftProblemIds,
                 expectedBankRevision,
                 expectedRunSeed,
               ),
@@ -627,6 +636,7 @@ export function loadProgress(
             ),
           ),
           validProblemIds,
+          validDraftProblemIds,
           expectedBankRevision,
           expectedRunSeed,
         ),
@@ -635,6 +645,7 @@ export function loadProgress(
     return isProgressV5(
       parsed,
       validProblemIds,
+      validDraftProblemIds,
       isEligibleTransferProblem,
       expectedBankRevision,
       expectedRunSeed,
@@ -642,7 +653,7 @@ export function loadProgress(
       ? cloneProgress(parsed)
       : {
           ...fallback,
-          draftByProblemId: recoverValidDrafts(parsed, validProblemIds),
+          draftByProblemId: recoverValidDrafts(parsed, validDraftProblemIds),
         }
   } catch {
     return fallback

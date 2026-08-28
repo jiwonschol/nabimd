@@ -1,77 +1,179 @@
 import { describe, expect, it } from "vitest"
-import { problemBank } from "./problemBank"
+import {
+  type CurriculumElement,
+  getCurriculumElement,
+  getCurriculumElements,
+} from "./curriculumElements"
 import {
   createRunProblemIds,
   createRunProblemIdsForBank,
   entryChoices,
   getEntryChoice,
+  getProblemEntryId,
   isEntryId,
 } from "./entryChoices"
-import { getSyntaxFamily } from "../selection/runComposition"
+import {
+  countRuntimeTargetContentLines,
+  problemBank,
+} from "./problemBank"
 
-function scheduleFamily(problem: (typeof problemBank)[number]) {
-  return getSyntaxFamily(problem) ?? "composite"
-}
-
-function familiesFor(entry: (typeof entryChoices)[number]): readonly string[] {
-  return (
-    entry as typeof entry & { families?: readonly string[] }
-  ).families ?? []
-}
-
-describe("five-chapter entry choices", () => {
-  it("exposes disjoint syntax chapters instead of a difficulty ladder", () => {
-    expect(entryChoices.map((entry) => entry.id)).toEqual([
-      "level-1",
-      "level-2",
-      "level-3",
-      "level-4",
-      "level-5",
+describe("three-level entry choices", () => {
+  it("serves the measured runtime pools for the frequency-based levels", () => {
+    expect(
+      entryChoices.map((entry) => {
+        const elements = new Set(entry.elements)
+        const pool = problemBank.filter((problem) => {
+          return (
+            problem.flavor === "standard" &&
+            getProblemEntryId(problem) === entry.id
+          )
+        })
+        return {
+          id: entry.id,
+          problems: pool.length,
+          elements: new Set(
+            pool
+              .map(getCurriculumElement)
+              .filter((element) => element !== null && elements.has(element)),
+          ),
+        }
+      }),
+    ).toEqual([
+      {
+        id: "level-1",
+        problems: 292,
+        elements: new Set([
+          "heading",
+          "bold",
+          "italic",
+          "unordered-list",
+          "ordered-list",
+          "link",
+          "inline-code",
+          "code-block",
+          "blockquote",
+        ]),
+      },
+      {
+        id: "level-2",
+        problems: 48,
+        elements: new Set([
+          "thematic-break",
+          "nested-list",
+        ]),
+      },
+      { id: "level-3", problems: 0, elements: new Set() },
     ])
-    expect(entryChoices.map((entry) => entry.label)).toEqual([
-      "Chapter 1 — Headings & emphasis",
-      "Chapter 2 — Lists",
-      "Chapter 3 — Links & dividers",
-      "Chapter 4 — Code & quotes",
-      "Chapter 5 — Mixed practice",
-    ])
-    expect(entryChoices.map(familiesFor)).toEqual([
-      ["heading", "bold", "italic"],
-      ["ordered-list", "unordered-list"],
-      ["link", "image", "thematic-break"],
-      ["inline-code", "code-block", "blockquote"],
-      ["composite"],
-    ])
-
-    const everyFamily = entryChoices.flatMap(familiesFor)
-    expect(new Set(everyFamily).size).toBe(everyFamily.length)
   })
 
-  it.each(entryChoices)("keeps the complete $id pool inside its syntax families", (entry) => {
-    const families = familiesFor(entry)
-    const pool = problemBank.filter((problem) =>
-      families.includes(scheduleFamily(problem)),
+  it("routes a mixed exercise to its highest owning curriculum level", () => {
+    const nested = problemBank.find(
+      (problem) => problem.id === "l2-nested-checklist-closet-shelf",
     )
+    if (!nested) throw new Error("Missing cross-level nested-list fixture")
 
-    expect(pool.length).toBeGreaterThanOrEqual(30)
-    expect(pool.every((problem) => families.includes(scheduleFamily(problem)))).toBe(
-      true,
-    )
+    expect(getCurriculumElements(nested)).toEqual([
+      "heading",
+      "unordered-list",
+      "nested-list",
+    ])
+    expect(getProblemEntryId(nested)).toBe("level-2")
   })
 
-  it.each(entryChoices)("builds a five-problem $id turn without cross-chapter injection", (entry) => {
-    const ids = createRunProblemIds(entry.id, 0)
-    const families = familiesFor(entry)
-    const problems = ids.map((id) => problemBank.find((problem) => problem.id === id)!)
-
-    expect(ids).toHaveLength(5)
-    expect(new Set(ids).size).toBe(5)
-    expect(problems.every((problem) => families.includes(scheduleFamily(problem)))).toBe(
-      true,
-    )
+  it("builds five distinct exercise slots for every open level", () => {
+    for (const entry of entryChoices.filter((candidate) => candidate.available)) {
+      for (const seed of [0, 1, 17, 999]) {
+        for (let runNumber = 0; runNumber < 40; runNumber += 1) {
+          const ids = createRunProblemIds(entry.id, runNumber, seed)
+          const selectionKeys = ids.map((id) => {
+            const problem = problemBank.find((candidate) => candidate.id === id)!
+            return getCurriculumElement(problem) ?? "mixed"
+          })
+          const label = `${entry.id} seed ${seed} run ${runNumber}`
+          expect(ids, label).toHaveLength(5)
+          expect(new Set(ids).size, label).toBe(5)
+          expect(new Set(selectionKeys).size, label).toBe(5)
+        }
+      }
+    }
   })
 
-  it("rotates deterministically within a chapter", () => {
+  it("serves one Level 1 mixed exercise beside four distinct single elements", () => {
+    const entry = getEntryChoice("level-1")
+    const entryElements = new Set<CurriculumElement>(entry.elements)
+    const expectedMixedIds = new Set(
+      problemBank
+        .filter((problem) => {
+          const elements = getCurriculumElements(problem)
+          return (
+            problem.flavor === "standard" &&
+            elements.length > 1 &&
+            elements.every((element) => entryElements.has(element))
+          )
+        })
+        .map((problem) => problem.id),
+    )
+    const servedMixedIds = new Set<string>()
+
+    for (const seed of [0, 1, 17, 999]) {
+      for (let runNumber = 0; runNumber < 104; runNumber += 1) {
+        const problems = createRunProblemIds("level-1", runNumber, seed).map(
+          (id) => problemBank.find((problem) => problem.id === id)!,
+        )
+        const mixed = problems.filter(
+          (problem) => getCurriculumElements(problem).length > 1,
+        )
+        const singles = problems.filter(
+          (problem) => getCurriculumElements(problem).length === 1,
+        )
+
+        expect(mixed, `seed ${seed} run ${runNumber}`).toHaveLength(1)
+        expect(singles, `seed ${seed} run ${runNumber}`).toHaveLength(4)
+        expect(
+          new Set(singles.map((problem) => getCurriculumElement(problem))).size,
+          `seed ${seed} run ${runNumber}`,
+        ).toBe(4)
+        for (const element of getCurriculumElements(mixed[0]!)) {
+          expect(entryElements.has(element)).toBe(true)
+        }
+        if (seed === 0) servedMixedIds.add(mixed[0]!.id)
+      }
+    }
+
+    expect(expectedMixedIds).toHaveLength(80)
+    expect(servedMixedIds).toEqual(expectedMixedIds)
+
+    const allServedIds = new Set(
+      Array.from({ length: 300 }, (_, runNumber) =>
+        createRunProblemIds("level-1", runNumber, 0),
+      ).flat(),
+    )
+    expect(allServedIds).toHaveLength(292)
+  })
+
+  it("keeps every served Level 1 exercise inside its owner-level line budget", () => {
+    const served = problemBank.filter(
+      (problem) => getProblemEntryId(problem) === "level-1",
+    )
+
+    expect(served).not.toHaveLength(0)
+    for (const problem of served) {
+      const isMixed = getCurriculumElements(problem).length > 1
+      if (isMixed) {
+        expect(
+          countRuntimeTargetContentLines(problem.target),
+          problem.id,
+        ).toBeLessThanOrEqual(12)
+      } else {
+        expect(
+          problem.target.split("\n").length,
+          problem.id,
+        ).toBeLessThanOrEqual(5)
+      }
+    }
+  })
+
+  it("rotates deterministically within an available level", () => {
     expect(createRunProblemIds("level-1", 0)).toEqual(
       createRunProblemIds("level-1", 0),
     )
@@ -80,43 +182,58 @@ describe("five-chapter entry choices", () => {
     )
   })
 
-  it("memoizes each chapter's served view of the same problem bank", () => {
-    let sourceProblemReads = 0
-    const trackedBank = new Proxy(problemBank, {
-      get(target, property, receiver) {
-        if (typeof property === "string" && /^\d+$/.test(property)) {
-          sourceProblemReads += 1
-        }
-        return Reflect.get(target, property, receiver)
-      },
-    })
-
-    createRunProblemIdsForBank("level-1", 0, trackedBank, 41)
-    const afterFirstLevelOneRun = sourceProblemReads
-
-    createRunProblemIdsForBank("level-1", 0, trackedBank, 41)
-    expect(sourceProblemReads).toBe(afterFirstLevelOneRun)
-
-    createRunProblemIdsForBank("level-2", 0, trackedBank, 41)
-    const afterFirstLevelTwoRun = sourceProblemReads
-    expect(afterFirstLevelTwoRun).toBeGreaterThan(afterFirstLevelOneRun)
-
-    createRunProblemIdsForBank("level-2", 0, trackedBank, 41)
-    expect(sourceProblemReads).toBe(afterFirstLevelTwoRun)
-  })
-
-  it("rejects an empty chapter without crossing into another chapter", () => {
-    const withoutChapterFive = problemBank.filter(
-      (problem) => scheduleFamily(problem) !== "composite",
+  it("requires the dedicated and mixed exercises promised by an available level", () => {
+    const fiveElements = [
+      "heading",
+      "bold",
+      "italic",
+      "unordered-list",
+      "ordered-list",
+    ]
+    const representatives = fiveElements.map((element) =>
+      problemBank.find(
+        (problem) => getCurriculumElement(problem) === element,
+      )!,
     )
+    const mixed = problemBank.find((problem) => {
+      const elements = getCurriculumElements(problem)
+      return (
+        elements.length > 1 &&
+        elements.every((element) => fiveElements.includes(element))
+      )
+    })
+    if (!mixed) throw new Error("Missing Level 1 mixed fixture")
+
     expect(() =>
-      createRunProblemIdsForBank("level-5", 0, withoutChapterFive),
-    ).toThrow("No standard problems available for chapter-5")
+      createRunProblemIdsForBank("level-1", 0, representatives),
+    ).toThrow("Level 1 is not available yet")
+    expect(
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives,
+        mixed,
+      ]),
+    ).toHaveLength(5)
+    expect(() =>
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives.slice(0, 4),
+        mixed,
+      ]),
+    ).toThrow("Level 1 is not available yet")
   })
 
-  it("validates and resolves entry IDs", () => {
-    expect(isEntryId("level-5")).toBe(true)
+  it("keeps incomplete levels non-enterable", () => {
+    expect(() => createRunProblemIds("level-2", 0)).toThrow(
+      "Level 2 is not available yet",
+    )
+    expect(() => createRunProblemIds("level-3", 0)).toThrow(
+      "Level 3 is not available yet",
+    )
+  })
+
+  it("validates and resolves the new entry IDs", () => {
+    expect(isEntryId("level-3")).toBe(true)
+    expect(isEntryId("level-4")).toBe(false)
     expect(isEntryId("challenge")).toBe(false)
-    expect(getEntryChoice("level-3").level).toBe(3)
+    expect(getEntryChoice("level-2").level).toBe(2)
   })
 })

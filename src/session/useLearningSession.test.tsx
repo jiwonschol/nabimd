@@ -1,6 +1,7 @@
 import { act, renderHook, waitFor } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { createRunProblemIds, entryChoices } from "../content/entryChoices"
+import { getCurriculumElement } from "../content/curriculumElements"
 import {
   getProblem,
   problemBank,
@@ -11,10 +12,6 @@ import {
   createDefaultProgress,
   saveProgress,
 } from "../progress/progressStore"
-import {
-  getChapterFamily,
-  getSyntaxFamily,
-} from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
 import type { PracticeHistorySnapshot } from "./learningSession"
 import {
@@ -67,16 +64,19 @@ describe("useLearningSession", () => {
     expect(result.current.session.phase).toBe("complete")
   })
 
-  it.each(entryChoices)("starts $id inside its chosen syntax chapter", (entry) => {
+  it.each(entryChoices.filter((entry) => entry.available))(
+    "starts $id inside its chosen syntax level",
+    (entry) => {
     const { result } = renderLearningSession()
     act(() => result.current.start(entry.id))
 
     expect(result.current.session.entryId).toBe(entry.id)
-    expect(entry.families).toContain(getChapterFamily(result.current.problem))
+    expect(entry.elements).toContain(getCurriculumElement(result.current.problem))
     expect(result.current.session.runProblemIds).toEqual(
       createRunProblemIds(entry.id, 0),
     )
-  })
+    },
+  )
 
   it("locks step navigation while a failed Check awaits its repair", () => {
     const { result } = renderLearningSession()
@@ -348,7 +348,7 @@ describe("useLearningSession", () => {
 
   it("advances Practice again to fresh turns", () => {
     const { result } = renderLearningSession()
-    act(() => result.current.start("level-3"))
+    act(() => result.current.start("level-1"))
     const original = result.current.problem.id
 
     act(() => result.current.practiceAgain())
@@ -408,9 +408,9 @@ describe("useLearningSession", () => {
     // Simulate upgrading from a build that predated session seeds: an active
     // run persisted as a v5 record without `runSeed`, and no session-seed key.
     const storage = new MemoryStorage()
-    const ids = createRunProblemIds("level-4", 0)
+    const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
-    progress.entryId = "level-4"
+    progress.entryId = "level-1"
     progress.runProblemIds = ids
     progress.runStartedAtMs = 1_000
     progress.draftByProblemId[ids[0]!] = "# Saved draft"
@@ -421,7 +421,7 @@ describe("useLearningSession", () => {
     const { result } = renderLearningSession(storage, () => 2_000, () => 99)
 
     expect(result.current.session.progress.runSeed).toBe(0)
-    expect(result.current.session.entryId).toBe("level-4")
+    expect(result.current.session.entryId).toBe("level-1")
     expect(result.current.session.runProblemIds).toEqual(ids)
     expect(result.current.session.progress.draftByProblemId[ids[0]!]).toBe(
       "# Saved draft",
@@ -451,7 +451,7 @@ describe("useLearningSession", () => {
 
   it("clears the run and returns to level selection", () => {
     const { result } = renderLearningSession()
-    act(() => result.current.start("level-5"))
+    act(() => result.current.start("level-1"))
     act(() => result.current.edit("draft"))
     act(() => result.current.changeLevel())
 
@@ -471,23 +471,25 @@ describe("useLearningSession", () => {
     expect(result.current.session.needsTransfer).toBe(false)
   })
 
-  it("keeps every mixed-practice problem inside the composite chapter", () => {
+  it("keeps every turn on five different curriculum elements", () => {
     const { result } = renderLearningSession()
-    act(() => result.current.start("level-5"))
+    act(() => result.current.start("level-1"))
 
     const runLength = result.current.session.runProblemIds.length
+    const elements = []
     for (let index = 0; index < runLength; index += 1) {
-      expect(getSyntaxFamily(result.current.problem)).toBeNull()
+      elements.push(getCurriculumElement(result.current.problem))
       matchCurrent(result)
       act(() => result.current.next())
     }
 
+    expect(new Set(elements).size).toBe(5)
     expect(result.current.session.phase).toBe("complete")
   })
 
   it("repairs a failure, then inserts different same-level content", () => {
     const { result } = renderLearningSession()
-    act(() => result.current.start("level-2"))
+    act(() => result.current.start("level-1"))
     const failedProblem = result.current.problem
     const scheduledProblemIds = [...result.current.session.runProblemIds]
 
@@ -535,7 +537,7 @@ describe("useLearningSession", () => {
   it("persists a selected level, problem, and draft", async () => {
     const storage = new MemoryStorage()
     const first = renderLearningSession(storage)
-    act(() => first.result.current.start("level-4"))
+    act(() => first.result.current.start("level-1"))
     const expectedProblem = first.result.current.problem.id
     act(() => first.result.current.edit("# Saved draft"))
 
@@ -545,7 +547,7 @@ describe("useLearningSession", () => {
     first.unmount()
 
     const restored = renderLearningSession(storage)
-    expect(restored.result.current.session.entryId).toBe("level-4")
+    expect(restored.result.current.session.entryId).toBe("level-1")
     expect(restored.result.current.problem.id).toBe(expectedProblem)
     expect(restored.result.current.session.draft).toBe("# Saved draft")
   })
@@ -578,12 +580,9 @@ describe("useLearningSession", () => {
 
   it("restores a Goal-derived starter after migrating a legacy empty high-level draft", () => {
     const storage = new MemoryStorage()
-    const seededRun = Array.from({ length: 1_000 }, (_, seed) => ({
-      ids: createRunProblemIds("level-5", 0, seed),
-      seed,
-    })).find(({ ids }) => ids.some((id) => getProblem(id).level >= 3))!
-    const { ids, seed } = seededRun
-    const currentProblemId = ids.find((id) => getProblem(id).level >= 3)!
+    const ids = problemBank.filter((problem) => problem.level === 5).slice(0, 5).map((problem) => problem.id)
+    const seed = 0
+    const currentProblemId = ids[0]!
     const currentIndex = ids.indexOf(currentProblemId)
     const genuineDraftProblemId = ids.find((id) => id !== currentProblemId)!
     const legacyStarterlessBankRevision = problemBank
@@ -594,24 +593,27 @@ describe("useLearningSession", () => {
       legacyStarterlessBankRevision,
       seed,
     )
-    progress.entryId = "level-5"
-    progress.runProblemIds = ids
-    progress.runStepIndex = currentIndex
-    progress.scheduledStepIndex = currentIndex
-    progress.runStartedAtMs = 1_000
-    progress.draftByProblemId = {
-      [currentProblemId]: "",
-      [genuineDraftProblemId]: "## Preserve this learner draft",
-    }
-    saveProgress(storage, progress)
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...progress,
+        runScheduleRevision: "five-chapter-schedule",
+        entryId: "level-5",
+        runProblemIds: ids,
+        runStepIndex: currentIndex,
+        scheduledStepIndex: currentIndex,
+        runStartedAtMs: 1_000,
+        draftByProblemId: {
+          [currentProblemId]: "",
+          [genuineDraftProblemId]: "## Preserve this learner draft",
+        },
+      }),
+    )
 
     const restored = renderLearningSession(storage)
 
     expect(problemBankRevision).not.toBe(legacyStarterlessBankRevision)
-    expect(restored.result.current.problem.id).toBe(currentProblemId)
-    // The legacy automatic blank is dropped and the session stays blank: the
-    // center card grows the document from its first slot.
-    expect(restored.result.current.session.draft).toBe("")
+    expect(restored.result.current.session.entryId).toBeNull()
     expect(
       restored.result.current.session.progress.draftByProblemId[
         currentProblemId

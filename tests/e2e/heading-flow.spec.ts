@@ -1,9 +1,17 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
+import { curriculumLevels } from "../../src/content/curriculumLevels"
+import { getCurriculumElements } from "../../src/content/curriculumElements"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
+import { createTurnProblemIds } from "../../src/selection/runComposition"
 
 type RuntimeProblemSource = {
+  flavor: "standard" | "transfer"
   id: string
+  level: 1 | 2 | 3 | 4 | 5
+  retryFamily: string
+  skillIds: string[]
+  syntaxTokens: string[]
   target: string
 }
 
@@ -17,19 +25,21 @@ const runtimeProjection = JSON.parse(
   ),
 ) as { levels: Record<string, RuntimeProblemSource[]> }
 
+const runtimeProblems = Object.values(runtimeProjection.levels).flat()
 const runtimeProblemById = new Map(
-  Object.values(runtimeProjection.levels)
-    .flat()
-    .map((problem) => [problem.id, problem]),
+  runtimeProblems.map((problem) => [problem.id, problem]),
 )
 
-const chapterLabels = [
-  "Chapter 1 — Headings & emphasis",
-  "Chapter 2 — Lists",
-  "Chapter 3 — Links & dividers",
-  "Chapter 4 — Code & quotes",
-  "Chapter 5 — Mixed practice",
-] as const
+const levelOne = curriculumLevels[0]
+const levelOneProblems = runtimeProblems.filter((problem) => {
+  const elements = getCurriculumElements(problem)
+  return (
+    problem.flavor === "standard" &&
+    elements.length > 0 &&
+    elements.every((element) => levelOne.elements.includes(element))
+  )
+})
+const levelLabels = curriculumLevels.map((entry) => entry.label)
 
 const sessionSeedStorageKey = "nabimd.session-seed.v1"
 const progressStorageKey = "nabimd.progress.v5"
@@ -60,10 +70,60 @@ async function currentDraft(page: Page): Promise<string> {
   return (await practiceShell(page).getAttribute("data-draft")) ?? ""
 }
 
-async function enterChapter(page: Page, chapter: 1 | 2 | 3 | 4 | 5) {
-  await page.getByRole("button", { name: chapterLabels[chapter - 1] }).click()
+async function enterLevel(page: Page, level: 1) {
+  await page.getByRole("button", { name: levelLabels[level - 1] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
   await expect(cardBoxInput(page)).toBeFocused()
+}
+
+function findLevelOneRotation(
+  predicate: (problem: RuntimeProblemSource) => boolean,
+) {
+  for (let seed = 0; seed < 1_000; seed += 1) {
+    for (let runNumber = 0; runNumber < 80; runNumber += 1) {
+      const firstProblemId = createTurnProblemIds(
+        1,
+        runNumber,
+        levelOneProblems,
+        seed,
+      )[0]!
+      if (predicate(runtimeProblemById.get(firstProblemId)!)) {
+        return { firstProblemId, runNumber, seed }
+      }
+    }
+  }
+  throw new Error("Expected a selectable Level 1 problem")
+}
+
+async function openLevelOneProblem(
+  page: Page,
+  predicate: (problem: RuntimeProblemSource) => boolean,
+) {
+  const { runNumber, seed } = findLevelOneRotation(predicate)
+
+  await resetToLanding(page)
+  await page.evaluate(
+    ({ progressKey, seedKey, seedValue, nextRunNumber }) => {
+      const persisted = window.sessionStorage.getItem(progressKey)
+      if (!persisted) throw new Error("Expected persisted landing progress")
+      const savedProgress = JSON.parse(persisted) as {
+        runNumber: number
+        runSeed: number
+      }
+      savedProgress.runNumber = nextRunNumber
+      savedProgress.runSeed = seedValue
+      window.sessionStorage.setItem(seedKey, String(seedValue))
+      window.sessionStorage.setItem(progressKey, JSON.stringify(savedProgress))
+    },
+    {
+      progressKey: progressStorageKey,
+      seedKey: sessionSeedStorageKey,
+      seedValue: seed,
+      nextRunNumber: runNumber,
+    },
+  )
+  await page.reload()
+  await enterLevel(page, 1)
 }
 
 function slotMarksFor(target: string): string[] {
@@ -104,19 +164,24 @@ async function resetToLanding(page: Page) {
   }, progressStorageKey)
   await page.reload()
   await expect(
-    page.getByRole("heading", { name: "Choose a chapter to begin." }),
+    page.getByRole("heading", { name: "Choose a level to begin." }),
   ).toBeVisible()
 }
 
-test("greets a fresh session with the definitive five-chapter curriculum", async ({
+test("greets a fresh session with three frequency-based levels", async ({
   page,
 }) => {
   await resetToLanding(page)
 
   await expect(page.getByRole("heading", { name: "Nabi Markdown" })).toBeVisible()
-  for (const label of chapterLabels) {
+  for (const label of levelLabels) {
     await expect(page.getByRole("button", { name: label })).toBeVisible()
   }
+  await expect(page.getByRole("button", { name: levelLabels[0] })).toBeEnabled()
+  for (const label of levelLabels.slice(1)) {
+    await expect(page.getByRole("button", { name: label })).toBeDisabled()
+  }
+  await expect(page.getByText("Coming soon")).toHaveCount(2)
   await expect(cardBoxInput(page)).toHaveCount(0)
 })
 
@@ -138,13 +203,13 @@ test("opens third-party licenses in a new tab and keeps the landing open", async
   await licensesPage.close()
 })
 
-test("keeps every chapter reachable in a short landscape viewport", async ({
+test("keeps every level visible in a short landscape viewport", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 812, height: 375 })
   await resetToLanding(page)
 
-  for (const label of chapterLabels) {
+  for (const label of levelLabels) {
     await expect(page.getByRole("button", { name: label })).toBeVisible()
   }
   expect(
@@ -165,7 +230,7 @@ test("keeps the landing inside a tablet viewport", async ({ page }) => {
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth)
 })
 
-test("keeps release details inside the desktop and mobile chapter page", async ({
+test("keeps release details inside the desktop and mobile level page", async ({
   page,
 }) => {
   for (const viewport of [
@@ -224,7 +289,7 @@ test("narrows the practice spread while keeping it centered across the page turn
   await resetToLanding(page)
   const landing = await page.locator(".app-shell.open-book-shell").boundingBox()
 
-  await enterChapter(page, 5)
+  await enterLevel(page, 1)
   const practice = await practiceShell(page).boundingBox()
 
   expect(landing).not.toBeNull()
@@ -236,40 +301,36 @@ test("narrows the practice spread while keeping it centered across the page turn
   expect(practice!.width).toBeLessThan(landing!.width)
 })
 
-test("every chapter opens the same card-first practice surface", async ({
+test("the available level opens the card-first practice surface", async ({
   page,
 }) => {
-  for (const index of chapterLabels.keys()) {
-    await resetToLanding(page)
-    await enterChapter(page, (index + 1) as 1 | 2 | 3 | 4 | 5)
+  await resetToLanding(page)
+  await enterLevel(page, 1)
 
-    await expect(page.getByLabel("Practice details")).toContainText(
-      `Chapter ${index + 1}`,
-    )
-    await expect(
-      page.getByRole("region", { name: "Markdown syntax practice" }),
-    ).toBeVisible()
-    await expect(page.getByRole("region", { name: "Goal" })).toHaveCount(0)
-    await expect(page.getByRole("tab")).toHaveCount(0)
-  }
+  await expect(page.getByLabel("Practice details")).toContainText("Level 1")
+  await expect(
+    page.getByRole("region", { name: "Markdown syntax practice" }),
+  ).toBeVisible()
+  await expect(page.getByRole("region", { name: "Goal" })).toHaveCount(0)
+  await expect(page.getByRole("tab")).toHaveCount(0)
 })
 
-test("re-entering a chapter starts a different run", async ({ page }) => {
+test("re-entering a level starts a different run", async ({ page }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
   const firstProblemId = await currentProblemId(page)
 
   await page.getByRole("button", { name: "Nabi Markdown home" }).click()
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   expect(await currentProblemId(page)).not.toBe(firstProblemId)
 })
 
-test("browser history moves between problems and the chapter picker", async ({
+test("browser history moves between problems and the level picker", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
   const firstProblemId = await currentProblemId(page)
 
   await completeProblemAndAdvance(page)
@@ -279,7 +340,7 @@ test("browser history moves between problems and the chapter picker", async ({
   await expect.poll(() => currentProblemId(page)).toBe(firstProblemId)
   await page.goBack()
   await expect(
-    page.getByRole("heading", { name: "Choose a chapter to begin." }),
+    page.getByRole("heading", { name: "Choose a level to begin." }),
   ).toBeVisible()
   await page.goForward()
   await expect.poll(() => currentProblemId(page)).toBe(firstProblemId)
@@ -291,7 +352,7 @@ test("a wrong mark opens the exact Hint, clears the boxes, and refocuses", async
   page,
 }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   await submitSlot(page, "@")
 
@@ -307,7 +368,7 @@ test("manual Hint clears partial input and stays open while typing", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   await page.keyboard.type("@")
   await page.getByRole("button", { name: "Hint" }).click()
@@ -328,7 +389,7 @@ test("empty Enter opens the exact Hint and keeps the box focused", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   await page.keyboard.press("Enter")
 
@@ -338,14 +399,13 @@ test("empty Enter opens the exact Hint and keeps the box focused", async ({
   await expect(cardBoxInput(page)).toBeFocused()
 })
 
-test("requires both Chapter 1 italic marks and never autocompletes the closer", async ({
+test("requires both Level 1 italic marks and never autocompletes the closer", async ({
   page,
 }) => {
-  await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "28")
-  }, sessionSeedStorageKey)
-  await resetToLanding(page)
-  await enterChapter(page, 1)
+  await openLevelOneProblem(
+    page,
+    (problem) => problem.id === "l1-italic-paper-boat",
+  )
 
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
   await expect(
@@ -367,8 +427,11 @@ test("requires both Chapter 1 italic marks and never autocompletes the closer", 
 })
 
 test("supports Previous and Next across accepted marks", async ({ page }) => {
-  await resetToLanding(page)
-  await enterChapter(page, 2)
+  await openLevelOneProblem(
+    page,
+    (problem) =>
+      problem.skillIds.length === 1 && problem.skillIds[0] === "unordered-list",
+  )
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
   const marks = slotMarksFor(problem.target)
@@ -394,7 +457,7 @@ test("the visible Enter control submits marks with a pointer", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
 
@@ -412,7 +475,7 @@ test("the visible Enter control submits marks with a pointer", async ({
 test("lays the exercise across both leaves of the spread", async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const [readLeaf, writeLeaf, line, firstBox, submit] = await Promise.all([
     page.locator(".center-card__leaf--read").boundingBox(),
@@ -457,7 +520,7 @@ test("keeps the mark controls on the writing leaf", async ({ page }) => {
   for (const viewport of viewports) {
     await page.setViewportSize(viewport)
     await resetToLanding(page)
-    await enterChapter(page, 1)
+    await enterLevel(page, 1)
 
     const [writeLeaf, previous, next] = await Promise.all([
       page.locator(".center-card__leaf--write").boundingBox(),
@@ -495,7 +558,7 @@ test("keeps the instruction clear of every control", async ({ page }) => {
   for (const viewport of viewports) {
     await page.setViewportSize(viewport)
     await resetToLanding(page)
-    await enterChapter(page, 1)
+    await enterLevel(page, 1)
 
     const collision = await page.evaluate(() => {
       const instruction = document.querySelector(".center-card__instruction")
@@ -528,7 +591,7 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const goal = page.locator(
     ".center-card__context-row--current .rendered-document__body > :first-child",
@@ -546,18 +609,17 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 376 serves `###### Dog leash`, the deepest heading in Chapter 1. Headings
+// `###### Dog leash` is the deepest heading currently served in Level 1. Headings
 // keep the small context size unless the current-row rule names them, so this
 // pins the case a paragraph Goal cannot catch.
 test("makes a heading Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
-  await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "376")
-  }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
-  await resetToLanding(page)
-  await enterChapter(page, 1)
+  await openLevelOneProblem(
+    page,
+    (problem) => problem.id === "l1-heading-depth-dog-leash",
+  )
 
   expect(await currentProblemId(page)).toBe("l1-heading-depth-dog-leash")
 
@@ -580,18 +642,17 @@ test("makes a heading Goal more prominent than the locked source phrase", async 
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 1 serves a fenced code block in Chapter 4. A `pre` Goal sits outside the paragraph
+// A fenced code block in Level 1 renders a `pre` Goal outside the paragraph
 // and heading rules, so it is the third shape the prominence claim has to hold
 // for.
 test("makes a fenced code Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
-  await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "1")
-  }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
-  await resetToLanding(page)
-  await enterChapter(page, 4)
+  await openLevelOneProblem(
+    page,
+    (problem) => problem.id === "l1-code-block-door-sign",
+  )
 
   expect(await currentProblemId(page)).toBe("l1-code-block-door-sign")
 
@@ -619,7 +680,7 @@ test("keeps phone mark boxes at the documented touch size", async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const box = await page.locator(".center-card__box").first().boundingBox()
 
@@ -633,7 +694,7 @@ test("keeps the phone card anchored while the exact hint opens below the entry l
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const card = page.locator(".center-card")
   const line = page.locator(".center-card__line")
@@ -679,7 +740,7 @@ test("expands the exact hint below the anchored practice card", async ({
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const line = page.locator(".center-card__line")
   const before = await line.boundingBox()
@@ -709,7 +770,7 @@ test("keeps the visible Enter key compact before a verdict", async ({
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const enter = await page
     .getByRole("button", { name: "Check marks" })
@@ -723,7 +784,7 @@ test("keeps the visible Enter key compact before a verdict", async ({
 
 test("underlines only the requested syntax term", async ({ page }) => {
   await resetToLanding(page)
-  await enterChapter(page, 1)
+  await enterLevel(page, 1)
 
   const instruction = page.locator(".center-card__instruction")
   const syntaxTerm = instruction.locator("strong")
@@ -733,17 +794,17 @@ test("underlines only the requested syntax term", async ({ page }) => {
   await expect(instruction).not.toHaveCSS("text-decoration-line", "underline")
 })
 
-test("Try another stays in the chapter and serves different content", async ({
+test("Try another stays in the level and serves different content", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterChapter(page, 3)
+  await enterLevel(page, 1)
   const before = await currentProblemId(page)
 
   await page.getByRole("button", { name: "Try another" }).click()
 
   await expect.poll(() => currentProblemId(page)).not.toBe(before)
-  await expect(page.getByLabel("Practice details")).toContainText("Chapter 3")
+  await expect(page.getByLabel("Practice details")).toContainText("Level 1")
   await expect(cardBoxInput(page)).toBeFocused()
 })
 
@@ -752,7 +813,7 @@ test("keeps the card and browser chrome inside 1280 by 800", async ({
 }) => {
   await page.setViewportSize({ width: 1280, height: 800 })
   await resetToLanding(page)
-  await enterChapter(page, 5)
+  await enterLevel(page, 1)
 
   const [topbar, card] = await Promise.all([
     page.locator(".exercise-topbar").boundingBox(),
@@ -781,9 +842,8 @@ test("keeps the card and browser chrome inside 1280 by 800", async ({
 // what keeps this a real ceiling rather than a formality.
 test("keeps both leaves close to their content height", async ({ page }) => {
   const conditions = [
-    { width: 1440, height: 900, chapter: 1 },
-    { width: 1280, height: 800, chapter: 1 },
-    { width: 1280, height: 800, chapter: 5 },
+    { width: 1440, height: 900, level: 1 },
+    { width: 1280, height: 800, level: 1 },
   ] as const
 
   for (const condition of conditions) {
@@ -792,7 +852,7 @@ test("keeps both leaves close to their content height", async ({ page }) => {
       height: condition.height,
     })
     await resetToLanding(page)
-    await enterChapter(page, condition.chapter)
+    await enterLevel(page, condition.level)
 
     for (const leaf of ["read", "write"] as const) {
       const emptyRatio = await page.evaluate((leafName) => {
@@ -810,14 +870,14 @@ test("keeps both leaves close to their content height", async ({ page }) => {
         return (rect.bottom - lowestBottom) / rect.height
       }, leaf)
 
-      expect(emptyRatio, `${leaf} leaf at ${condition.width}x${condition.height} Chapter ${condition.chapter}`).not.toBeNull()
+      expect(emptyRatio, `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`).not.toBeNull()
       expect(
         emptyRatio!,
-        `${leaf} leaf at ${condition.width}x${condition.height} Chapter ${condition.chapter}`,
+        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
       ).toBeGreaterThanOrEqual(0)
       expect(
         emptyRatio!,
-        `${leaf} leaf at ${condition.width}x${condition.height} Chapter ${condition.chapter}`,
+        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
       ).toBeLessThanOrEqual(0.25)
     }
   }
@@ -828,7 +888,7 @@ test("uses the same card without horizontal overflow at phone width", async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await resetToLanding(page)
-  await enterChapter(page, 5)
+  await enterLevel(page, 1)
 
   await expect(
     page.getByRole("region", { name: "Markdown syntax practice" }),
@@ -848,7 +908,7 @@ test("completes a run and reveals full documents only from Summary", async ({
   await page.setViewportSize({ width: 1280, height: 800 })
   await resetToLanding(page)
   await page.keyboard.press("Tab")
-  await expect(page.getByRole("button", { name: chapterLabels[0] })).toBeFocused()
+  await expect(page.getByRole("button", { name: levelLabels[0] })).toBeFocused()
   await page.keyboard.press("Enter")
 
   for (let exercise = 0; exercise < 5; exercise += 1) {

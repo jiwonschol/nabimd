@@ -12,6 +12,10 @@ import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
 import { deriveSyntaxCheckpoints } from "./guided/guidedSyntax"
 import { resetCenterCardMemoryForTests } from "./guided/useCenterCard"
+import {
+  createDefaultProgress,
+  saveProgress,
+} from "./progress/progressStore"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
 import {
   playPageTurnSound,
@@ -58,7 +62,7 @@ function stubReducedMotionPreference() {
   )
 }
 
-async function openLevel(level: 1 | 2 | 3 | 4 | 5 = 1) {
+async function openLevel(level: 1 = 1) {
   const user = userEvent.setup()
   // jsdom has no matchMedia, so the page turn would hold the practice sheet
   // inert on a real 720ms timer — long enough for the next interactions to be
@@ -97,20 +101,25 @@ function currentProblem() {
 }
 
 function useSessionSeedForFirstProblem(
-  chapter: 1 | 2 | 3 | 4 | 5,
+  chapter: 1,
   predicate: (problem: ReturnType<typeof getProblem>) => boolean,
 ) {
   const entry = entryChoices.find((choice) => choice.level === chapter)!
 
   for (let seed = 0; seed < 1_000; seed += 1) {
-    const firstProblemId = createRunProblemIds(entry.id, 0, seed)[0]!
-    if (predicate(getProblem(firstProblemId))) {
-      window.sessionStorage.setItem(SESSION_SEED_STORAGE_KEY, String(seed))
-      return
+    for (let runNumber = 0; runNumber < 40; runNumber += 1) {
+      const firstProblemId = createRunProblemIds(entry.id, runNumber, seed)[0]!
+      if (predicate(getProblem(firstProblemId))) {
+        window.sessionStorage.setItem(SESSION_SEED_STORAGE_KEY, String(seed))
+        const progress = createDefaultProgress(firstProblemId, undefined, seed)
+        progress.runNumber = runNumber
+        saveProgress(window.sessionStorage, progress)
+        return
+      }
     }
   }
 
-  throw new Error(`Expected a selectable Chapter ${chapter} problem`)
+  throw new Error(`Expected a selectable Level ${chapter} problem`)
 }
 
 // ---- Center-card interaction helpers -------------------------------------
@@ -160,7 +169,7 @@ function writePanelDocument() {
 }
 
 describe("App", () => {
-  it("greets a fresh session with the definitive five-chapter shelf", () => {
+  it("greets a fresh session with the three frequency-based levels", () => {
     render(<App />)
     expect(screen.getByRole("heading", { name: "Nabi Markdown" })).toBeVisible()
     for (const entry of entryChoices) {
@@ -174,7 +183,7 @@ describe("App", () => {
     render(<App />)
 
     fireEvent.click(
-      screen.getByRole("button", { name: entryChoices[0].label }),
+      screen.getByRole("button", { name: entryChoices[0]!.label }),
     )
 
     expect(unlockAndPlayPageTurnSound).toHaveBeenCalledOnce()
@@ -199,7 +208,7 @@ describe("App", () => {
     vi.useFakeTimers()
     render(<App />)
 
-    const level = screen.getByRole("button", { name: entryChoices[0].label })
+    const level = screen.getByRole("button", { name: entryChoices[0]!.label })
     fireEvent.click(level)
     fireEvent.click(level)
 
@@ -214,7 +223,7 @@ describe("App", () => {
     render(<App />)
 
     fireEvent.click(
-      screen.getByRole("button", { name: entryChoices[0].label }),
+      screen.getByRole("button", { name: entryChoices[0]!.label }),
     )
     act(() => {
       vi.advanceTimersByTime(119)
@@ -232,7 +241,7 @@ describe("App", () => {
     render(<App />)
 
     fireEvent.click(
-      screen.getByRole("button", { name: entryChoices[0].label }),
+      screen.getByRole("button", { name: entryChoices[0]!.label }),
     )
     act(() => vi.advanceTimersByTime(720))
     const firstProblemId = currentProblem().id
@@ -269,7 +278,7 @@ describe("App", () => {
     render(<App />)
 
     fireEvent.click(
-      screen.getByRole("button", { name: entryChoices[0].label }),
+      screen.getByRole("button", { name: entryChoices[0]!.label }),
     )
     act(() => vi.advanceTimersByTime(120))
     const firstProblemId = currentProblem().id
@@ -283,8 +292,8 @@ describe("App", () => {
     expect(currentProblem().id).not.toBe(firstProblemId)
   })
 
-  it("enters any selected chapter directly and starts its five-problem turn", async () => {
-    for (const entry of entryChoices) {
+  it("enters every available level directly and starts its five-problem turn", async () => {
+    for (const entry of entryChoices.filter((candidate) => candidate.available)) {
       window.sessionStorage.clear()
       resetCenterCardMemoryForTests()
       const view = render(<App />)
@@ -295,13 +304,13 @@ describe("App", () => {
         `Practice progress, 1 of ${expectedLength}`,
       )
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
-      expect(screen.getByLabelText(`Chapter ${entry.level}`)).toBeVisible()
+      expect(screen.getByLabelText(`Level ${entry.level}`)).toBeVisible()
       await waitFor(() => expect(firstBoxInput()).toHaveFocus())
       view.unmount()
     }
   })
 
-  it("keeps exact teaching inside the card at every chosen level", async () => {
+  it("keeps exact teaching inside the card after re-entering an available level", async () => {
     const first = await openLevel(1)
     const hintButton = screen.getByRole("button", { name: "Hint" })
     expect(hintButton).toHaveAttribute("aria-expanded", "false")
@@ -315,7 +324,7 @@ describe("App", () => {
       screen.getByRole("button", { name: "Nabi Markdown home" }),
     )
     await first.user.click(
-      screen.getByRole("button", { name: entryChoices[4].label }),
+      screen.getByRole("button", { name: entryChoices[0]!.label }),
     )
     expect(screen.getByRole("button", { name: "Hint" })).toHaveAttribute(
       "aria-expanded",
@@ -324,16 +333,16 @@ describe("App", () => {
   })
 
   it("keeps the selected task identity visible in the exercise header", async () => {
-    await openLevel(2)
+    await openLevel(1)
     const practiceDetails = screen.getByRole("group", {
       name: "Practice details",
     })
-    expect(practiceDetails).toHaveTextContent("Chapter 2")
-    expect(practiceDetails).not.toHaveTextContent("Lists")
+    expect(practiceDetails).toHaveTextContent("Level 1")
+    expect(practiceDetails).not.toHaveTextContent("Everyday Markdown")
   })
 
   it("shows only local rendered context and mark inputs during practice", async () => {
-    await openLevel(3)
+    await openLevel(1)
     const card = screen.getByRole("region", {
       name: "Markdown syntax practice",
     })
@@ -345,7 +354,13 @@ describe("App", () => {
   })
 
   it("starts the document blank and grows it as slots are accepted", async () => {
-    await openLevel(2)
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 &&
+        problem.skillIds[0] === "unordered-list",
+    )
+    await openLevel(1)
     const problem = currentProblem()
     const marks = slotMarks(problem)
     expect(marks.length).toBeGreaterThan(1)
@@ -365,18 +380,34 @@ describe("App", () => {
     )
   })
 
+  it("updates Now learning to the active syntax inside a mixed exercise", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) => problem.id === "l2-code-block-alarm-routine",
+    )
+    await openLevel(1)
+    const marks = slotMarks()
+    const reference = screen.getByRole("region", {
+      name: "Current Markdown syntax",
+    })
+
+    expect(reference).toHaveTextContent("Level 1 heading")
+    submitSlot(marks[0]!)
+    expect(reference).toHaveTextContent("Fenced code block")
+  })
+
   it("accepts an alternate unordered-list marker in a slot", async () => {
     useSessionSeedForFirstProblem(
-      5,
-      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 &&
+        problem.skillIds[0] === "unordered-list",
     )
-    await openLevel(5)
+    await openLevel(1)
     const marks = slotMarks()
     expect(marks.length).toBeGreaterThan(2)
-    submitSlot(marks[0]!)
-    submitSlot(marks[1]!)
-    const alternate = marks[2]!.replace("-", "*")
-    expect(alternate).not.toBe(marks[2])
+    const alternate = marks[0]!.replace("-", "*")
+    expect(alternate).not.toBe(marks[0])
 
     submitSlot(alternate)
     // Accepted alternates land in the document exactly as typed.
@@ -385,11 +416,11 @@ describe("App", () => {
 
   it("normalizes the Korean won sign to a backtick in code slots", async () => {
     useSessionSeedForFirstProblem(
-      4,
+      1,
       (problem) =>
         problem.skillIds.length === 1 && problem.skillIds[0] === "inline-code",
     )
-    await openLevel(4)
+    await openLevel(1)
 
     // macOS Korean input types ₩ on the backtick key; the card absorbs it.
     submitSlot("₩₩")
@@ -466,7 +497,16 @@ describe("App", () => {
 
     for (let step = 0; step < 5; step += 1) {
       completeProblemViaCard()
-      await user.click(screen.getByRole("button", { name: "Next exercise" }))
+      const nextExercise = screen.getByRole("button", { name: "Next exercise" })
+      if (step < 4) {
+        await user.click(nextExercise)
+        continue
+      }
+
+      fireEvent.click(nextExercise)
+      const summaryTurn = screen.getByTestId("summary-page-turn-transition")
+      expect(summaryTurn.querySelector(".center-card__leaf--read")).not.toBeNull()
+      expect(summaryTurn.querySelector(".center-card__leaf--write")).not.toBeNull()
     }
 
     expect(
@@ -478,16 +518,17 @@ describe("App", () => {
 
   it("walks previous slots with ArrowUp and ArrowDown and edits them in place", async () => {
     useSessionSeedForFirstProblem(
-      5,
-      (problem) => problem.id === "l2-sectioned-checklist-bake-sale",
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 &&
+        problem.skillIds[0] === "unordered-list",
     )
-    await openLevel(5)
+    await openLevel(1)
     const marks = slotMarks()
     expect(marks.length).toBeGreaterThan(2)
 
     submitSlot(marks[0]!)
     submitSlot(marks[1]!)
-    submitSlot(marks[2]!)
     // The card carries no `Mark x of y` counter, so which slot is showing is
     // proven by the answer in the boxes: the frontier slot is empty.
     const card = screen.getByLabelText("Markdown syntax practice")
@@ -496,17 +537,19 @@ describe("App", () => {
 
     // ArrowUp steps back through accepted slots, showing the stored answer.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(firstBoxInput()).toHaveValue(marks[2]!)
-    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
     expect(firstBoxInput()).toHaveValue(marks[1]!)
+    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+    expect(firstBoxInput()).toHaveValue(marks[0]!)
 
     // ArrowDown returns toward the frontier.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowDown" })
-    expect(firstBoxInput()).toHaveValue(marks[2]!)
+    expect(firstBoxInput()).toHaveValue(marks[1]!)
 
     // Editing a past slot regrows the document and jumps back to the
     // frontier. The list-style normalizer keeps the marks coherent.
-    const alternate = marks[2]!.replace("-", "*")
+    fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
+    expect(firstBoxInput()).toHaveValue(marks[0]!)
+    const alternate = marks[0]!.replace("-", "*")
     fireEvent.change(firstBoxInput(), { target: { value: alternate } })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
     expect(firstBoxInput()).toHaveValue("")
@@ -592,7 +635,7 @@ describe("App", () => {
   })
 
   it("uses one fixed bar and one card with no document workspace", async () => {
-    await openLevel(5)
+    await openLevel(1)
     expect(screen.getByRole("button", { name: "Exit" })).toBeVisible()
     expect(screen.getByRole("button", { name: "Try another" })).toBeVisible()
     expect(
@@ -684,7 +727,7 @@ describe("App", () => {
     act(() => window.history.back())
     await waitFor(() =>
       expect(
-        screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+        screen.getByRole("heading", { name: "Choose a level to begin." }),
       ).toBeVisible(),
     )
   })
@@ -719,7 +762,7 @@ describe("App", () => {
   })
 
   it("returns home and can reissue content at the same step", async () => {
-    const { user } = await openLevel(3)
+    const { user } = await openLevel(1)
     const original = currentProblem().id
     await user.click(screen.getByRole("button", { name: "Try another" }))
     expect(currentProblem().id).not.toBe(original)
@@ -730,7 +773,7 @@ describe("App", () => {
 
     await user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
     expect(
-      screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+      screen.getByRole("heading", { name: "Choose a level to begin." }),
     ).toBeVisible()
   })
 
@@ -746,7 +789,7 @@ describe("App", () => {
     act(() => window.history.back())
     await waitFor(() =>
       expect(
-        screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+        screen.getByRole("heading", { name: "Choose a level to begin." }),
       ).toBeVisible(),
     )
   })
@@ -754,7 +797,7 @@ describe("App", () => {
   it("ignores pre-chapter browser history snapshots", async () => {
     await openLevel(1)
     const currentProblemId = currentProblem().id
-    const oldProblemIds = createRunProblemIds("level-4", 0, 0)
+    const oldProblemIds = createRunProblemIds("level-1", 1, 0)
 
     act(() => {
       window.dispatchEvent(
@@ -780,6 +823,70 @@ describe("App", () => {
     expect(currentProblem().id).toBe(currentProblemId)
   })
 
+  it("ignores browser history snapshots from the retired five-level shelf", async () => {
+    await openLevel(1)
+    const currentProblemId = currentProblem().id
+    const retiredProblemIds = createRunProblemIds("level-1", 1, 0)
+
+    act(() => {
+      window.dispatchEvent(
+        new PopStateEvent("popstate", {
+          state: {
+            marker: "nabimd-practice-v2",
+            view: "practice",
+            snapshot: {
+              entryId: "level-1",
+              runNumber: 0,
+              runProblemIds: retiredProblemIds,
+              runStepIndex: 0,
+              scheduledStepIndex: 0,
+              currentProblemId: retiredProblemIds[0],
+              currentIsTransfer: false,
+              runStartedAtMs: 1_000,
+            },
+          },
+        }),
+      )
+    })
+
+    expect(currentProblem().id).toBe(currentProblemId)
+  })
+
+  it.each([
+    ["unavailable", "level-2"],
+    ["retired", "level-4"],
+  ])(
+    "rejects %s entries even when browser history claims the current marker",
+    async (_kind, invalidEntryId) => {
+      await openLevel(1)
+      const currentProblemId = currentProblem().id
+      const retiredProblemIds = createRunProblemIds("level-1", 1, 0)
+
+      act(() => {
+        window.dispatchEvent(
+          new PopStateEvent("popstate", {
+            state: {
+              marker: "nabimd-practice-v3",
+              view: "practice",
+              snapshot: {
+                entryId: invalidEntryId,
+                runNumber: 0,
+                runProblemIds: retiredProblemIds,
+                runStepIndex: 0,
+                scheduledStepIndex: 0,
+                currentProblemId: retiredProblemIds[0],
+                currentIsTransfer: false,
+                runStartedAtMs: 1_000,
+              },
+            },
+          }),
+        )
+      })
+
+      expect(currentProblem().id).toBe(currentProblemId)
+    },
+  )
+
   it("keeps browser Forward symmetric after returning to the landing", async () => {
     const { user } = await openLevel(1)
     const firstProblemId = currentProblem().id
@@ -791,7 +898,7 @@ describe("App", () => {
     act(() => window.history.back())
     await waitFor(() =>
       expect(
-        screen.getByRole("heading", { name: "Choose a chapter to begin." }),
+        screen.getByRole("heading", { name: "Choose a level to begin." }),
       ).toBeVisible(),
     )
 
@@ -815,7 +922,7 @@ describe("App", () => {
     expect(screen.getByLabelText("Score")).toHaveTextContent("5 / 5")
     const practiceAgain = screen.getByRole("button", { name: "Practice again" })
     expect(practiceAgain).toBeVisible()
-    expect(screen.getByRole("button", { name: "Change chapter" })).toBeVisible()
+    expect(screen.getByRole("button", { name: "Change level" })).toBeVisible()
     // The finished work is handed back on the page itself: no viewer to open,
     // nothing to type into, and a clean run carries no correction marks.
     expect(screen.getByLabelText("Your work")).toBeVisible()
@@ -825,9 +932,6 @@ describe("App", () => {
     expect(
       screen.getByText("A clean page — nothing to correct."),
     ).toBeVisible()
-    const summaryTurn = screen.getByTestId("summary-page-turn-transition")
-    expect(summaryTurn.querySelector(".center-card__leaf--read")).not.toBeNull()
-    expect(summaryTurn.querySelector(".center-card__leaf--write")).not.toBeNull()
     expect(unlockAndPlayPageTurnSound).toHaveBeenCalledOnce()
     expect(playPageTurnSound).toHaveBeenCalledOnce()
 

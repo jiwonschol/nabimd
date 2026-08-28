@@ -223,10 +223,12 @@ function HintPanel({
 
 function ReviewPanel({
   draft,
+  entryId,
   evaluation,
   problem,
 }: {
   draft: string
+  entryId: EntryId
   evaluation: Evaluation
   problem: GradableProblem
 }) {
@@ -235,7 +237,7 @@ function ReviewPanel({
   const corrections = failed
     ? buildReviewCorrections(problem, evaluation, draft)
     : []
-  const showsReferenceAnswer = getExerciseMode(problem.level ?? 1) === "target"
+  const showsReferenceAnswer = getExerciseMode(entryId) === "target"
 
   return (
     <div
@@ -730,7 +732,12 @@ export function AnswerPanel({
         tabIndex={view === secondView && secondView === "review" ? 0 : -1}
       >
         {secondView === "review" && evaluation ? (
-          <ReviewPanel draft={draft} evaluation={evaluation} problem={problem} />
+          <ReviewPanel
+            draft={draft}
+            entryId={entryId}
+            evaluation={evaluation}
+            problem={problem}
+          />
         ) : (
           <WordProcessorPage
             key={`${problem.id}-preview`}

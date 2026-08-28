@@ -1,9 +1,17 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
+import { curriculumLevels } from "../../src/content/curriculumLevels"
+import { getCurriculumElements } from "../../src/content/curriculumElements"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
+import { createTurnProblemIds } from "../../src/selection/runComposition"
 
 type RuntimeProblemSource = {
+  flavor: "standard" | "transfer"
   id: string
+  level: 1 | 2 | 3 | 4 | 5
+  retryFamily: string
+  skillIds: string[]
+  syntaxTokens: string[]
   target: string
 }
 
@@ -17,13 +25,22 @@ const runtimeProjection = JSON.parse(
   ),
 ) as { levels: Record<string, RuntimeProblemSource[]> }
 
+const runtimeProblems = Object.values(runtimeProjection.levels).flat()
 const runtimeProblemById = new Map(
-  Object.values(runtimeProjection.levels)
-    .flat()
-    .map((problem) => [problem.id, problem]),
+  runtimeProblems.map((problem) => [problem.id, problem]),
 )
+const levelOne = curriculumLevels[0]
+const levelOneProblems = runtimeProblems.filter((problem) => {
+  const elements = getCurriculumElements(problem)
+  return (
+    problem.flavor === "standard" &&
+    elements.length > 0 &&
+    elements.every((element) => levelOne.elements.includes(element))
+  )
+})
 
 const sessionSeedStorageKey = "nabimd.session-seed.v1"
+const progressStorageKey = "nabimd.progress.v5"
 
 type RecordedPlay = {
   src: string
@@ -96,17 +113,60 @@ function unmutedPlays(plays: RecordedPlay[], asset: string): RecordedPlay[] {
   return plays.filter((play) => play.src.includes(asset) && !play.muted)
 }
 
+async function openMultiSlotLevelOne(page: Page) {
+  for (let seed = 0; seed < 1_000; seed += 1) {
+    for (let runNumber = 0; runNumber < 80; runNumber += 1) {
+      const firstProblemId = createTurnProblemIds(
+        1,
+        runNumber,
+        levelOneProblems,
+        seed,
+      )[0]!
+      const problem = runtimeProblemById.get(firstProblemId)!
+      if (problem.skillIds[0] !== "unordered-list") continue
+
+      await page.goto("/")
+      await page.evaluate(
+        ({ progressKey, seedKey, seedValue, nextRunNumber }) => {
+          const persisted = window.sessionStorage.getItem(progressKey)
+          if (!persisted) throw new Error("Expected persisted landing progress")
+          const savedProgress = JSON.parse(persisted) as {
+            runNumber: number
+            runSeed: number
+          }
+          savedProgress.runNumber = nextRunNumber
+          savedProgress.runSeed = seedValue
+          window.sessionStorage.setItem(seedKey, String(seedValue))
+          window.sessionStorage.setItem(
+            progressKey,
+            JSON.stringify(savedProgress),
+          )
+        },
+        {
+          progressKey: progressStorageKey,
+          seedKey: sessionSeedStorageKey,
+          seedValue: seed,
+          nextRunNumber: runNumber,
+        },
+      )
+      await page.reload()
+      await page
+        .getByRole("button", { name: levelOne.label })
+        .click()
+      await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
+      await expect(cardBoxInput(page)).toBeFocused()
+      return
+    }
+  }
+  throw new Error("Expected a multi-slot Level 1 problem")
+}
+
 test("voices every accepted mark with matched and every rejected mark with try-again", async ({
   page,
 }) => {
-  await page.goto("/")
-  // Chapter 2 problems carry several slots each, so the per-slot matched cue
+  // The selected Level 1 list problem carries several slots, so the per-slot matched cue
   // is distinguishable from a once-per-problem completion cue.
-  await page
-    .getByRole("button", { name: "Chapter 2 — Lists" })
-    .click()
-  await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
-  await expect(cardBoxInput(page)).toBeFocused()
+  await openMultiSlotLevelOne(page)
 
   // A rejected mark chirps try-again.
   await submitSlot(page, "@@@")

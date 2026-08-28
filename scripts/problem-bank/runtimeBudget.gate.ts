@@ -1,10 +1,16 @@
 import { describe, expect, it } from "vitest"
 import {
+  countRuntimeTargetContentLines,
   problemBank,
   getProblemsForLevel,
   RUNTIME_TARGET_BUDGETS,
   withinRuntimeBudget,
 } from "../../src/content/problemBank"
+import { curriculumLevels } from "../../src/content/curriculumLevels"
+import {
+  getCurriculumElements,
+  getProblemEntryId,
+} from "../../src/content/curriculumElements"
 import { CURRICULUM_LEVELS } from "../../src/content/types"
 import { RUN_POLICY } from "../../src/selection/runPolicy"
 
@@ -22,13 +28,23 @@ describe("runtime problem budgets", () => {
     expect(violations).toEqual([])
   })
 
-  it("keeps upper chapters within the reviewed restoration ceiling", () => {
+  it("keeps every served exercise within its curriculum-owner line ceiling", () => {
     for (const problem of problemBank) {
-      if (problem.level < 4) continue
-      const lines = problem.target.split("\n").length
-      const words = problem.target.split(/\s+/).filter(Boolean).length
-      expect(lines, problem.id).toBeLessThanOrEqual(40)
-      expect(words, problem.id).toBeLessThanOrEqual(165)
+      const entryId = getProblemEntryId(problem)
+      const entry = curriculumLevels.find(
+        (candidate) => candidate.id === entryId,
+      )
+      if (!entry) throw new Error(`Missing curriculum owner for ${problem.id}`)
+      const budget = RUNTIME_TARGET_BUDGETS[entry.level]
+      const isMixed = getCurriculumElements(problem).length > 1
+      const lines = isMixed
+        ? countRuntimeTargetContentLines(problem.target)
+        : problem.target.split("\n").length
+      const ceiling = isMixed ? budget.maxContentLines : budget.maxLines
+      if (ceiling === undefined) {
+        throw new Error(`Missing mixed-document budget for ${problem.id}`)
+      }
+      expect(lines, problem.id).toBeLessThanOrEqual(ceiling)
     }
   })
 
@@ -43,11 +59,9 @@ describe("runtime problem budgets", () => {
 
   it("documents the budget table this gate enforces", () => {
     expect(RUNTIME_TARGET_BUDGETS).toEqual({
-      1: { maxLines: 5 },
-      2: { maxLines: 14 },
-      3: { maxLines: 28 },
-      4: { maxLines: 40, maxWords: 165 },
-      5: { maxLines: 40, maxWords: 165 },
+      1: { maxLines: 5, maxContentLines: 12 },
+      2: { maxLines: 14, maxContentLines: 14 },
+      3: { maxLines: 28, maxContentLines: 28 },
     })
   })
 })

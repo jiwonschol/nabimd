@@ -65,6 +65,24 @@ describe("CenterCard", () => {
     expect(reference.example).toBe(target)
   })
 
+  it("keeps Now learning scoped to the current step of a mixed document", () => {
+    const problem = problemBank.find(
+      (candidate) => candidate.id === "l2-code-block-alarm-routine",
+    )!
+    const references = deriveSyntaxCheckpoints(
+      problem.target,
+      problem.starterText,
+    ).map(centerCardModule.buildSyntaxReference)
+
+    expect(references.map((reference) => reference.name)).toEqual([
+      "Level 1 heading",
+      "Fenced code block",
+      "Numbered step",
+      "Numbered step",
+      "Numbered step",
+    ])
+  })
+
   it("maps every served problem checkpoint to a concrete syntax reference", () => {
     const buildSyntaxReference = (
       centerCardModule as typeof centerCardModule & {

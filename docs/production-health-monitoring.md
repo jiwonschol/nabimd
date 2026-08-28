@@ -10,11 +10,12 @@ On every push to `main`, once an hour at minute 17, and on manual dispatch, a
 Playwright browser:
 
 1. opens `https://nabimd.vercel.app`;
-2. selects each of the five levels;
-3. confirms that the first problem belongs to the chosen level and that later
-   challenge problems remain within that level or the next level;
-4. enters the required Markdown marks for all six problems;
-5. reaches Summary with a `6 / 6` result and six completed pages; and
+2. shows all `3` levels, with levels that have fewer than `5` implemented
+   syntax elements marked Coming soon and disabled;
+3. selects each available level and confirms that every problem belongs to
+   that level, with four distinct single-syntax exercises plus one mixed exercise;
+4. enters the required Markdown marks for all `5` problems;
+5. reaches Summary with a `5 / 5` result and `5` completed pages; and
 6. fails on uncaught page errors, console errors, or HTTP 5xx responses.
 
 The push check waits for Vercel and retries three times so that normal
