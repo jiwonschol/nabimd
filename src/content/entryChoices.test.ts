@@ -41,7 +41,7 @@ describe("three-level entry choices", () => {
     ).toEqual([
       {
         id: "level-1",
-        problems: 292,
+        problems: 304,
         elements: new Set([
           "heading",
           "bold",
@@ -52,6 +52,7 @@ describe("three-level entry choices", () => {
           "inline-code",
           "code-block",
           "blockquote",
+          "image",
         ]),
       },
       {
@@ -148,7 +149,7 @@ describe("three-level entry choices", () => {
         createRunProblemIds("level-1", runNumber, 0),
       ).flat(),
     )
-    expect(allServedIds).toHaveLength(292)
+    expect(allServedIds).toHaveLength(304)
   })
 
   it("keeps every served Level 1 exercise inside its owner-level line budget", () => {
