@@ -23,7 +23,7 @@ import {
 export { PAGE_TURN_DURATION_MS }
 export const REDUCED_PAGE_TURN_DURATION_MS = REDUCED_MOTION_DURATION_MS
 
-const HISTORY_MARKER = "nabimd-practice-v2"
+const HISTORY_MARKER = "nabimd-practice-v3"
 
 type LearningSessionController = ReturnType<typeof useLearningSession>
 

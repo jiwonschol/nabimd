@@ -823,6 +823,35 @@ describe("App", () => {
     expect(currentProblem().id).toBe(currentProblemId)
   })
 
+  it("ignores browser history snapshots from the retired five-level shelf", async () => {
+    await openLevel(1)
+    const currentProblemId = currentProblem().id
+    const retiredProblemIds = createRunProblemIds("level-1", 1, 0)
+
+    act(() => {
+      window.dispatchEvent(
+        new PopStateEvent("popstate", {
+          state: {
+            marker: "nabimd-practice-v2",
+            view: "practice",
+            snapshot: {
+              entryId: "level-4",
+              runNumber: 0,
+              runProblemIds: retiredProblemIds,
+              runStepIndex: 0,
+              scheduledStepIndex: 0,
+              currentProblemId: retiredProblemIds[0],
+              currentIsTransfer: false,
+              runStartedAtMs: 1_000,
+            },
+          },
+        }),
+      )
+    })
+
+    expect(currentProblem().id).toBe(currentProblemId)
+  })
+
   it("keeps browser Forward symmetric after returning to the landing", async () => {
     const { user } = await openLevel(1)
     const firstProblemId = currentProblem().id

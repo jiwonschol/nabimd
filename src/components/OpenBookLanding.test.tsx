@@ -23,6 +23,13 @@ describe("OpenBookLanding", () => {
     expect(everyday).toBeEnabled()
     expect(useful).toBeDisabled()
     expect(goodToKnow).toBeDisabled()
+    expect(everyday).toHaveAccessibleDescription("The marks you use most.")
+    expect(useful).toHaveAccessibleDescription(
+      "Useful combinations and shortcuts. Coming soon",
+    )
+    expect(goodToKnow).toHaveAccessibleDescription(
+      "Less common syntax worth recognizing. Coming soon",
+    )
     expect(screen.getByText("The marks you use most.")).toBeVisible()
     expect(screen.getByText("Useful combinations and shortcuts.")).toBeVisible()
     expect(

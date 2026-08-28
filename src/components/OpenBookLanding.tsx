@@ -65,10 +65,17 @@ export function OpenBookLanding({
           {entryChoices.map((entry) => {
             const { levelLabel, title } = splitEntryLabel(entry.label)
             const selected = turningEntryId === entry.id
+            const descriptionId = `chapter-entry-${entry.id}-description`
+            const statusId = `chapter-entry-${entry.id}-status`
             return (
               <li key={entry.id}>
                 <button
                   aria-current={selected ? "true" : undefined}
+                  aria-describedby={
+                    entry.available
+                      ? descriptionId
+                      : `${descriptionId} ${statusId}`
+                  }
                   aria-label={turning ? undefined : entry.label}
                   className="chapter-entry"
                   disabled={turning || !entry.available}
@@ -80,14 +87,16 @@ export function OpenBookLanding({
                   <span className="chapter-entry__level">{levelLabel}</span>
                   <span className="chapter-entry__copy">
                     <strong>{title}</strong>
-                    <small>{entry.description}</small>
+                    <small id={descriptionId}>{entry.description}</small>
                   </span>
                   {entry.available ? (
                     <span aria-hidden="true" className="chapter-entry__arrow">
                       →
                     </span>
                   ) : (
-                    <span className="chapter-entry__status">Coming soon</span>
+                    <span className="chapter-entry__status" id={statusId}>
+                      Coming soon
+                    </span>
                   )}
                 </button>
               </li>
