@@ -3408,6 +3408,15 @@ button:focus-visible,
   }
 }
 
+@keyframes problem-card-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes verdict-hold-in {
   0% {
     opacity: 0;
@@ -3935,12 +3944,18 @@ button:focus-visible,
     transition-duration: 120ms !important;
   }
 
-  .verdict-notice {
-    animation: verdict-in-out 120ms ease both !important;
+  .verdict-notice:not(.verdict-notice--holding) {
+    animation: problem-card-fade-in 120ms ease-out both !important;
   }
 
   .verdict-notice--holding {
+    opacity: 1;
     transform: translateX(-50%);
+    animation: none !important;
+  }
+
+  .card-practice[data-transition="problem"] .center-card {
+    animation: problem-card-fade-in 120ms ease-out both !important;
   }
 
   .summary-page-turn-overlay {

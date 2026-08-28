@@ -15,7 +15,10 @@ import {
   PAGE_TURN_DURATION_MS,
   REDUCED_MOTION_DURATION_MS,
 } from "./motionTiming"
-import { playPageTurnSound } from "./sound/pageTurnSound"
+import {
+  playPageTurnSound,
+  unlockAndPlayPageTurnSound,
+} from "./sound/pageTurnSound"
 
 export { PAGE_TURN_DURATION_MS }
 export const REDUCED_PAGE_TURN_DURATION_MS = REDUCED_MOTION_DURATION_MS
@@ -164,7 +167,7 @@ export function App() {
 
       turningEntryRef.current = entryId
       setTurningEntryId(entryId)
-      playPageTurnSound()
+      unlockAndPlayPageTurnSound()
       learningSession.start(entryId)
     },
     [learningSession.start],

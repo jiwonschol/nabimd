@@ -13,15 +13,20 @@ import { getProblem } from "./content/problemBank"
 import { deriveSyntaxCheckpoints } from "./guided/guidedSyntax"
 import { resetCenterCardMemoryForTests } from "./guided/useCenterCard"
 import { SESSION_SEED_STORAGE_KEY } from "./session/useLearningSession"
-import { playPageTurnSound } from "./sound/pageTurnSound"
+import {
+  playPageTurnSound,
+  unlockAndPlayPageTurnSound,
+} from "./sound/pageTurnSound"
 import { App } from "./App"
 
 vi.mock("./sound/pageTurnSound", () => ({
   playPageTurnSound: vi.fn(),
+  unlockAndPlayPageTurnSound: vi.fn(),
 }))
 
 afterEach(async () => {
   vi.mocked(playPageTurnSound).mockClear()
+  vi.mocked(unlockAndPlayPageTurnSound).mockClear()
   vi.unstubAllGlobals()
   vi.useRealTimers()
   // jsdom queues history traversals (back/forward/go and the popstate heals
@@ -172,7 +177,8 @@ describe("App", () => {
       screen.getByRole("button", { name: entryChoices[0].label }),
     )
 
-    expect(playPageTurnSound).toHaveBeenCalledOnce()
+    expect(unlockAndPlayPageTurnSound).toHaveBeenCalledOnce()
+    expect(playPageTurnSound).not.toHaveBeenCalled()
     expect(screen.getByTestId("page-turn-transition")).toBeVisible()
     const receiver = screen.getByTestId("page-turn-receiver")
     expect(receiver).toHaveAttribute("inert")
@@ -197,7 +203,8 @@ describe("App", () => {
     fireEvent.click(level)
     fireEvent.click(level)
 
-    expect(playPageTurnSound).toHaveBeenCalledOnce()
+    expect(unlockAndPlayPageTurnSound).toHaveBeenCalledOnce()
+    expect(playPageTurnSound).not.toHaveBeenCalled()
     expect(screen.getAllByTestId("page-turn-transition")).toHaveLength(1)
   })
 
@@ -243,7 +250,8 @@ describe("App", () => {
     expect(
       screen.getByLabelText("Markdown syntax practice").parentElement,
     ).toHaveAttribute("data-transition", "problem")
-    expect(playPageTurnSound).toHaveBeenCalledOnce()
+    expect(unlockAndPlayPageTurnSound).toHaveBeenCalledOnce()
+    expect(playPageTurnSound).not.toHaveBeenCalled()
 
     act(() => vi.advanceTimersByTime(249))
     expect(
@@ -253,6 +261,26 @@ describe("App", () => {
     expect(
       screen.getByLabelText("Markdown syntax practice").parentElement,
     ).not.toHaveAttribute("data-transition")
+  })
+
+  it("keeps the 900ms verdict beat when reduced motion is preferred", () => {
+    vi.useFakeTimers()
+    stubReducedMotionPreference()
+    render(<App />)
+
+    fireEvent.click(
+      screen.getByRole("button", { name: entryChoices[0].label }),
+    )
+    act(() => vi.advanceTimersByTime(120))
+    const firstProblemId = currentProblem().id
+
+    completeProblemViaCard()
+    act(() => vi.advanceTimersByTime(899))
+    expect(currentProblem().id).toBe(firstProblemId)
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+
+    act(() => vi.advanceTimersByTime(1))
+    expect(currentProblem().id).not.toBe(firstProblemId)
   })
 
   it("enters any selected chapter directly and starts its six-problem turn", async () => {
@@ -800,7 +828,8 @@ describe("App", () => {
     const summaryTurn = screen.getByTestId("summary-page-turn-transition")
     expect(summaryTurn.querySelector(".center-card__leaf--read")).not.toBeNull()
     expect(summaryTurn.querySelector(".center-card__leaf--write")).not.toBeNull()
-    expect(playPageTurnSound).toHaveBeenCalledTimes(2)
+    expect(unlockAndPlayPageTurnSound).toHaveBeenCalledOnce()
+    expect(playPageTurnSound).toHaveBeenCalledOnce()
 
     await user.click(practiceAgain)
     await waitFor(() => expect(firstBoxInput()).toBeVisible())

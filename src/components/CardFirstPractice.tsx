@@ -53,8 +53,17 @@ export function CardFirstPractice({
 
     const problemChanged = previousProblemIdRef.current !== problem.id
     const hintChanged = previousHintOpenRef.current !== card.hintOpen
+    const transitionInterrupted = transitionTimerRef.current !== null
+    const previousHeight = transitionInterrupted
+      ? practice.getBoundingClientRect().height
+      : previousHeightRef.current
+
+    // An in-flight transition leaves the previous destination as an inline
+    // height. Remove that constraint before measuring the newly rendered
+    // content, otherwise a fast Hint close reads the old expanded height and
+    // snaps only when the timer finally clears it.
+    practice.style.removeProperty("height")
     const nextHeight = practice.scrollHeight
-    const previousHeight = previousHeightRef.current
 
     previousProblemIdRef.current = problem.id
     previousHintOpenRef.current = card.hintOpen
@@ -62,7 +71,7 @@ export function CardFirstPractice({
 
     if (!problemChanged && !hintChanged) return
 
-    if (transitionTimerRef.current !== null) {
+    if (transitionInterrupted && transitionTimerRef.current !== null) {
       window.clearTimeout(transitionTimerRef.current)
     }
     practice.dataset.transition = problemChanged ? "problem" : "height"

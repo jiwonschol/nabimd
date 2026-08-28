@@ -469,6 +469,24 @@ describe("global responsive styles", () => {
     expect(reducedMotion).toMatch(
       /\.summary-page-turn-overlay \.center-card__leaf\s*\{[^{}]*animation:\s*none !important/s,
     )
+    expect(reducedMotion).toMatch(
+      /\.verdict-notice:not\(\.verdict-notice--holding\)\s*\{[^{}]*animation:\s*problem-card-fade-in 120ms[^{}]*!important/s,
+    )
+    expect(reducedMotion).toMatch(
+      /\.verdict-notice--holding\s*\{[^{}]*opacity:\s*1/s,
+    )
+    expect(reducedMotion).toMatch(
+      /\.verdict-notice--holding\s*\{[^{}]*animation:\s*none !important/s,
+    )
+    expect(reducedMotion).toMatch(
+      /\.card-practice\[data-transition="problem"\] \.center-card\s*\{[^{}]*animation:\s*problem-card-fade-in 120ms[^{}]*!important/s,
+    )
+    const reducedProblemMotion = styles.slice(
+      styles.indexOf("@keyframes problem-card-fade-in"),
+      styles.indexOf("@keyframes verdict-hold-in"),
+    )
+    expect(reducedProblemMotion).toContain("opacity: 0")
+    expect(reducedProblemMotion).not.toContain("translate")
   })
 
   it("keeps the narrow Summary overrides after its desktop rules", () => {
