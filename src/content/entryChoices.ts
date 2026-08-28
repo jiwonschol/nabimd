@@ -12,27 +12,6 @@ import {
   SYNTAX_FAMILY_WEIGHTS,
 } from "../selection/runPolicy"
 
-export const entryChoices = curriculumLevels.map((entry) => ({
-  ...entry,
-  available:
-    getImplementedElementsForEntry(entry, problemBank).length >=
-    RUN_POLICY.turnSize,
-}))
-
-// Any input that can invalidate a persisted deterministic run belongs here.
-// Deriving the value prevents a curriculum edit from relying on a manual bump.
-export const runScheduleRevision = [
-  `turn-size@${RUN_POLICY.turnSize}`,
-  `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
-    .sort(([left], [right]) => left.localeCompare(right))
-    .map(([family, weight]) => `${family}:${weight}`)
-    .join(",")}`,
-  ...entryChoices.map(
-    (entry) =>
-      `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
-  ),
-].join("|")
-
 export type EntryId = (typeof curriculumLevels)[number]["id"]
 
 type SchedulableEntryProblem = Pick<
@@ -61,6 +40,41 @@ export function getProblemEntryId(
   }
   return owner?.id ?? null
 }
+
+function isEntryAvailableForBank(
+  entry: (typeof curriculumLevels)[number],
+  problems: readonly SchedulableEntryProblem[],
+): boolean {
+  const hasEnoughDedicatedElements =
+    getImplementedElementsForEntry(entry, problems).length >=
+    RUN_POLICY.turnSize
+  const hasOwnedMixedExercise = problems.some(
+    (problem) =>
+      problem.flavor === "standard" &&
+      getCurriculumElements(problem).length > 1 &&
+      getProblemEntryId(problem) === entry.id,
+  )
+  return hasEnoughDedicatedElements && hasOwnedMixedExercise
+}
+
+export const entryChoices = curriculumLevels.map((entry) => ({
+  ...entry,
+  available: isEntryAvailableForBank(entry, problemBank),
+}))
+
+// Any input that can invalidate a persisted deterministic run belongs here.
+// Deriving the value prevents a curriculum edit from relying on a manual bump.
+export const runScheduleRevision = [
+  `turn-size@${RUN_POLICY.turnSize}`,
+  `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([family, weight]) => `${family}:${weight}`)
+    .join(",")}`,
+  ...entryChoices.map(
+    (entry) =>
+      `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
+  ),
+].join("|")
 
 const servedProblemsByBank = new WeakMap<
   readonly SchedulableEntryProblem[],
@@ -115,8 +129,7 @@ export function createRunProblemIdsForBank(
   seed = 0,
 ): string[] {
   const entry = getEntryChoice(entryId)
-  const implementedElements = getImplementedElementsForEntry(entry, problems)
-  if (implementedElements.length < RUN_POLICY.turnSize) {
+  if (!isEntryAvailableForBank(entry, problems)) {
     throw new Error(`Level ${entry.level} is not available yet`)
   }
   const served = getServedProblemsForBank(problems, entry.level)

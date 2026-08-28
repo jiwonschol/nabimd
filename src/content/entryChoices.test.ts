@@ -157,7 +157,7 @@ describe("three-level entry choices", () => {
     )
   })
 
-  it("derives custom-bank availability instead of trusting the production flag", () => {
+  it("requires the dedicated and mixed exercises promised by an available level", () => {
     const fiveElements = [
       "heading",
       "bold",
@@ -170,12 +170,29 @@ describe("three-level entry choices", () => {
         (problem) => getCurriculumElement(problem) === element,
       )!,
     )
+    const mixed = problemBank.find((problem) => {
+      const elements = getCurriculumElements(problem)
+      return (
+        elements.length > 1 &&
+        elements.every((element) => fiveElements.includes(element))
+      )
+    })
+    if (!mixed) throw new Error("Missing Level 1 mixed fixture")
 
-    expect(
+    expect(() =>
       createRunProblemIdsForBank("level-1", 0, representatives),
+    ).toThrow("Level 1 is not available yet")
+    expect(
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives,
+        mixed,
+      ]),
     ).toHaveLength(5)
     expect(() =>
-      createRunProblemIdsForBank("level-1", 0, representatives.slice(0, 4)),
+      createRunProblemIdsForBank("level-1", 0, [
+        ...representatives.slice(0, 4),
+        mixed,
+      ]),
     ).toThrow("Level 1 is not available yet")
   })
 
