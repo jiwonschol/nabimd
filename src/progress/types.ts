@@ -4,6 +4,7 @@ import type { SyntaxMistake } from "../guided/guidedSyntax"
 export type ProgressV5 = {
   version: 5
   bankRevision: string
+  runScheduleRevision: string
   entryId: EntryId | null
   runNumber: number
   runSeed: number

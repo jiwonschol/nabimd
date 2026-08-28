@@ -1,6 +1,7 @@
 import {
   createRunProblemIds,
   isEntryId,
+  runScheduleRevision,
 } from "../content/entryChoices"
 import {
   flattenedStarterProjectionProblemBankRevision,
@@ -15,7 +16,7 @@ import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
-// A browser session cannot legitimately reach this many six-problem turns.
+// A browser session cannot legitimately reach this many five-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
 const MAX_PERSISTED_SYNTAX_MISTAKES = 128
@@ -29,6 +30,7 @@ export function createDefaultProgress(
   return {
     version: 5,
     bankRevision,
+    runScheduleRevision,
     entryId: null,
     runNumber: 0,
     runSeed,
@@ -78,6 +80,19 @@ function isValidDraftRecord(
       ([problemId, draft]) =>
         validProblemIds.has(problemId) && typeof draft === "string",
     )
+  )
+}
+
+function recoverValidDrafts(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+): Record<string, string> {
+  if (!isRecord(value) || !isRecord(value.draftByProblemId)) return {}
+  return Object.fromEntries(
+    Object.entries(value.draftByProblemId).filter(
+      (entry): entry is [string, string] =>
+        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
+    ),
   )
 }
 
@@ -207,6 +222,7 @@ function isProgressV5(
   if (
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
+    value.runScheduleRevision !== runScheduleRevision ||
     (value.entryId !== null && !isEntryId(value.entryId)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
     !isNonnegativeSafeInteger(value.runSeed) ||
@@ -437,17 +453,93 @@ function migratePreChapterRevision(
     expectedBankRevision,
     expectedRunSeed,
   )
-  const draftByProblemId = Object.fromEntries(
-    Object.entries(value.draftByProblemId).filter(
-      (entry): entry is [string, string] =>
-        validProblemIds.has(entry[0]) && typeof entry[1] === "string",
-    ),
-  )
+  const draftByProblemId = recoverValidDrafts(value, validProblemIds)
 
   if (
     typeof value.entryId !== "string" ||
     !isEntryId(value.entryId) ||
     !isNonnegativeSafeInteger(value.runStartedAtMs)
+  ) {
+    return { ...fallback, draftByProblemId }
+  }
+
+  const runNumber =
+    isNonnegativeSafeInteger(value.runNumber) &&
+    value.runNumber <= MAX_PERSISTED_RUN_NUMBER
+      ? value.runNumber
+      : 0
+  const runProblemIds = createRunProblemIds(
+    value.entryId,
+    runNumber,
+    expectedRunSeed,
+  )
+  const currentProblemId = runProblemIds[0] ?? fallback.currentProblemId
+
+  return {
+    ...createDefaultProgress(
+      currentProblemId,
+      expectedBankRevision,
+      expectedRunSeed,
+    ),
+    entryId: value.entryId,
+    runNumber,
+    runProblemIds,
+    runStartedAtMs: Date.now(),
+    draftByProblemId,
+  }
+}
+
+function migrateRunScheduleRevision(
+  value: unknown,
+  validProblemIds: ReadonlySet<string>,
+  expectedBankRevision: string,
+  expectedRunSeed: number,
+): unknown {
+  if (
+    expectedBankRevision !== problemBankRevision ||
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.bankRevision !== expectedBankRevision ||
+    value.runScheduleRevision === runScheduleRevision ||
+    !isRecord(value.draftByProblemId)
+  ) {
+    return value
+  }
+
+  const firstProblemId = validProblemIds.values().next().value
+  const fallback = createDefaultProgress(
+    firstProblemId ?? "l1-heading-apple",
+    expectedBankRevision,
+    expectedRunSeed,
+  )
+  const draftByProblemId = recoverValidDrafts(value, validProblemIds)
+
+  if (
+    value.runCompletedAtMs !== null &&
+    value.runCompletedAtMs !== undefined
+  ) {
+    const nextRunNumber =
+      isNonnegativeSafeInteger(value.runNumber) &&
+      value.runNumber < MAX_PERSISTED_RUN_NUMBER
+        ? value.runNumber + 1
+        : 0
+    return { ...fallback, runNumber: nextRunNumber, draftByProblemId }
+  }
+
+  if (value.entryId === null) {
+    return {
+      ...value,
+      runScheduleRevision,
+      draftByProblemId,
+    }
+  }
+
+  if (
+    typeof value.entryId !== "string" ||
+    !isEntryId(value.entryId) ||
+    !isNonnegativeSafeInteger(value.runStartedAtMs) ||
+    !isNonnegativeSafeInteger(value.runSeed) ||
+    value.runSeed !== expectedRunSeed
   ) {
     return { ...fallback, draftByProblemId }
   }
@@ -521,17 +613,22 @@ export function loadProgress(
 
     const parsed: unknown = migrateSyntaxMistakes(
       migratePendingSlotRetry(
-        migrateLegacyRunSeed(
-          migrateStarterProjectionRevision(
-            migratePreChapterRevision(
-              JSON.parse(saved),
+        migrateRunScheduleRevision(
+          migrateLegacyRunSeed(
+            migrateStarterProjectionRevision(
+              migratePreChapterRevision(
+                JSON.parse(saved),
+                validProblemIds,
+                expectedBankRevision,
+                expectedRunSeed,
+              ),
               validProblemIds,
               expectedBankRevision,
-              expectedRunSeed,
             ),
-            validProblemIds,
-            expectedBankRevision,
           ),
+          validProblemIds,
+          expectedBankRevision,
+          expectedRunSeed,
         ),
       ),
     )
@@ -543,7 +640,10 @@ export function loadProgress(
       expectedRunSeed,
     )
       ? cloneProgress(parsed)
-      : fallback
+      : {
+          ...fallback,
+          draftByProblemId: recoverValidDrafts(parsed, validProblemIds),
+        }
   } catch {
     return fallback
   }

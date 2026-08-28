@@ -283,14 +283,14 @@ describe("App", () => {
     expect(currentProblem().id).not.toBe(firstProblemId)
   })
 
-  it("enters any selected chapter directly and starts its six-problem turn", async () => {
+  it("enters any selected chapter directly and starts its five-problem turn", async () => {
     for (const entry of entryChoices) {
       window.sessionStorage.clear()
       resetCenterCardMemoryForTests()
       const view = render(<App />)
       const user = userEvent.setup()
       await user.click(screen.getByRole("button", { name: entry.label }))
-      const expectedLength = 6
+      const expectedLength = 5
       expect(screen.getByRole("progressbar")).toHaveAccessibleName(
         `Practice progress, 1 of ${expectedLength}`,
       )
@@ -351,7 +351,7 @@ describe("App", () => {
     expect(marks.length).toBeGreaterThan(1)
     expect(writePanelDocument()).toBe("")
 
-    // `Step x of 6` in the top bar is the only progress label; the marks
+    // `Step x of 5` in the top bar is the only progress label; the marks
     // inside a card never introduce a second counter.
     const card = screen.getByLabelText("Markdown syntax practice")
     expect(card).not.toHaveTextContent(/Mark \d+ of \d+/)
@@ -464,7 +464,7 @@ describe("App", () => {
     submitSlot("x")
     expect(screen.getByRole("status")).toHaveTextContent("Try again")
 
-    for (let step = 0; step < 6; step += 1) {
+    for (let step = 0; step < 5; step += 1) {
       completeProblemViaCard()
       await user.click(screen.getByRole("button", { name: "Next exercise" }))
     }
@@ -472,7 +472,7 @@ describe("App", () => {
     expect(
       await screen.findByRole("heading", { name: "Good finish." }),
     ).toBeVisible()
-    expect(screen.getByLabelText("Score")).toHaveTextContent("5 / 6")
+    expect(screen.getByLabelText("Score")).toHaveTextContent("4 / 5")
     expect(screen.queryByText("Nothing to revisit this time.")).toBeNull()
   })
 
@@ -524,13 +524,13 @@ describe("App", () => {
     completeProblemViaCard()
     expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-      "Practice progress, 1 of 6",
+      "Practice progress, 1 of 5",
     )
 
     await waitFor(
       () =>
         expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-          "Practice progress, 2 of 6",
+          "Practice progress, 2 of 5",
         ),
       { timeout: 3000 },
     )
@@ -548,19 +548,19 @@ describe("App", () => {
     completeProblemViaCard()
     fireEvent.keyDown(document.body, { key: "Enter" })
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-      "Practice progress, 1 of 6",
+      "Practice progress, 1 of 5",
     )
 
     await waitFor(
       () =>
         expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-          "Practice progress, 2 of 6",
+          "Practice progress, 2 of 5",
         ),
       { timeout: 3000 },
     )
     await act(() => new Promise((resolve) => setTimeout(resolve, 1100)))
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-      "Practice progress, 2 of 6",
+      "Practice progress, 2 of 5",
     )
   })
 
@@ -725,7 +725,7 @@ describe("App", () => {
     expect(currentProblem().id).not.toBe(original)
     await waitFor(() => expect(firstBoxInput()).toHaveFocus())
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-      "Practice progress, 1 of 6",
+      "Practice progress, 1 of 5",
     )
 
     await user.click(screen.getByRole("button", { name: "Nabi Markdown home" }))
@@ -804,7 +804,7 @@ describe("App", () => {
   it("completes a run with one primary replay choice", async () => {
     const { user } = await openLevel(1)
 
-    for (let step = 0; step < 6; step += 1) {
+    for (let step = 0; step < 5; step += 1) {
       completeProblemViaCard()
       await user.click(screen.getByRole("button", { name: "Next exercise" }))
     }
@@ -812,7 +812,7 @@ describe("App", () => {
     expect(
       await screen.findByRole("heading", { name: "Well done." }),
     ).toBeVisible()
-    expect(screen.getByLabelText("Score")).toHaveTextContent("6 / 6")
+    expect(screen.getByLabelText("Score")).toHaveTextContent("5 / 5")
     const practiceAgain = screen.getByRole("button", { name: "Practice again" })
     expect(practiceAgain).toBeVisible()
     expect(screen.getByRole("button", { name: "Change chapter" })).toBeVisible()
@@ -834,7 +834,7 @@ describe("App", () => {
     await user.click(practiceAgain)
     await waitFor(() => expect(firstBoxInput()).toBeVisible())
     expect(screen.getByRole("progressbar")).toHaveAccessibleName(
-      "Practice progress, 1 of 6",
+      "Practice progress, 1 of 5",
     )
   })
 })

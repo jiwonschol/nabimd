@@ -6,6 +6,7 @@ import {
   withinRuntimeBudget,
 } from "../../src/content/problemBank"
 import { CURRICULUM_LEVELS } from "../../src/content/types"
+import { RUN_POLICY } from "../../src/selection/runPolicy"
 
 /**
  * Deterministic guard for the 2026-07-22 practice redesign: whatever the
@@ -31,12 +32,12 @@ describe("runtime problem budgets", () => {
     }
   })
 
-  it("keeps every level deep enough for rotated six-problem turns", () => {
+  it("keeps every level deep enough for two rotated turns", () => {
     for (const level of CURRICULUM_LEVELS) {
       expect(
         getProblemsForLevel(level).length,
         `level ${level}`,
-      ).toBeGreaterThanOrEqual(12)
+      ).toBeGreaterThanOrEqual(RUN_POLICY.turnSize * 2)
     }
   })
 

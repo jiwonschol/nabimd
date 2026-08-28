@@ -89,10 +89,14 @@ function selectionKey(problem: SchedulableProblem): string {
 
 /**
  * Distribute syntax/retry families across the whole chapter by their policy
- * weights, then take consecutive six-card windows. Smaller pools rotate their
- * variants when exhausted instead of quietly reducing that family's teaching
- * weight. The current chapter pools keep every family deep enough for five
- * non-repeating turns before a variant wraps.
+ * weights, then take consecutive fixed-size windows. Stable syntax-family
+ * ordering decides which equal-weight family receives an extra card, so a
+ * learner's seed changes variants and presentation order without changing
+ * syntax coverage. Composite retry families retain seed-based ordering so the
+ * mixed chapter can reach its wider set of exercise shapes. Smaller pools
+ * rotate their variants when exhausted instead of quietly reducing that
+ * family's teaching weight. The current chapter pools keep every family deep
+ * enough for five non-repeating turns before a variant wraps.
  */
 function chapterOrder(
   problems: readonly SchedulableProblem[],
@@ -107,6 +111,15 @@ function chapterOrder(
   }
 
   const keys = [...groups.keys()].sort((left, right) => {
+    const leftIsSyntaxFamily = getSyntaxFamily(groups.get(left)![0]!) !== null
+    const rightIsSyntaxFamily = getSyntaxFamily(groups.get(right)![0]!) !== null
+    if (leftIsSyntaxFamily && rightIsSyntaxFamily) {
+      return left.localeCompare(right)
+    }
+    if (leftIsSyntaxFamily !== rightIsSyntaxFamily) {
+      return leftIsSyntaxFamily ? -1 : 1
+    }
+
     const difference =
       mixSeed(seed, hashString(left)) - mixSeed(seed, hashString(right))
     return difference === 0 ? left.localeCompare(right) : difference
@@ -167,8 +180,11 @@ export function createTurnProblemIds(
   const ordered = chapterOrder(standardProblems, seed)
   const count = Math.min(RUN_POLICY.turnSize, ordered.length)
   const offset = (runNumber * RUN_POLICY.turnSize) % ordered.length
-  return Array.from(
+  const selected = Array.from(
     { length: count },
     (_, index) => ordered[(offset + index) % ordered.length]!.id,
   )
+  const presentationOffset =
+    seed === 0 ? 0 : mixSeed(seed, 104_729 + runNumber) % count
+  return rotate(selected, presentationOffset)
 }

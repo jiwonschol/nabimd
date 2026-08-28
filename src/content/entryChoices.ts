@@ -2,9 +2,27 @@ import { problemBank } from "./problemBank"
 import type { CurriculumLevel, NormalizedProblem } from "./types"
 import { createTurnProblemIds, getChapterFamily } from "../selection/runComposition"
 import { curriculumLevels } from "./curriculumLevels"
-import type { ChapterFamily } from "../selection/runPolicy"
+import {
+  RUN_POLICY,
+  SYNTAX_FAMILY_WEIGHTS,
+  type ChapterFamily,
+} from "../selection/runPolicy"
 
 export const entryChoices = curriculumLevels
+
+// Any input that can invalidate a persisted deterministic run belongs here.
+// Deriving the value prevents a curriculum edit from relying on a manual bump.
+export const runScheduleRevision = [
+  `turn-size@${RUN_POLICY.turnSize}`,
+  `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([family, weight]) => `${family}:${weight}`)
+    .join(",")}`,
+  ...entryChoices.map(
+    (entry) =>
+      `${entry.id}@${entry.level}:${entry.families.join(",")}`,
+  ),
+].join("|")
 
 export type EntryId = (typeof entryChoices)[number]["id"]
 

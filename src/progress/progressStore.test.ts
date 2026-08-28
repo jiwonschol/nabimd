@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
-import { createRunProblemIds } from "../content/entryChoices"
+import {
+  createRunProblemIds,
+  entryChoices,
+  runScheduleRevision,
+} from "../content/entryChoices"
 import {
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
@@ -12,6 +16,7 @@ import {
   isEligibleTransferProblem,
   selectTransferProblem,
 } from "../selection/selectTransferProblem"
+import { SYNTAX_FAMILY_WEIGHTS } from "../selection/runPolicy"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { createLearningSession } from "../session/learningSession"
 import {
@@ -77,12 +82,26 @@ describe("progressStore v5", () => {
     expect(progress).toMatchObject({
       version: 5,
       bankRevision: problemBankRevision,
+      runScheduleRevision,
       scheduledStepIndex: 0,
       failedScheduledStepIndexes: [],
       failedProblemIds: [],
       runStartedAtMs: null,
       runCompletedAtMs: null,
     })
+    expect(runScheduleRevision).toBe(
+      [
+        "turn-size@5",
+        `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+          .sort(([left], [right]) => left.localeCompare(right))
+          .map(([family, weight]) => `${family}:${weight}`)
+          .join(",")}`,
+        ...entryChoices.map(
+          (entry) =>
+            `${entry.id}@${entry.level}:${entry.families.join(",")}`,
+        ),
+      ].join("|"),
+    )
   })
 
   it("round-trips a valid deterministic run", () => {
@@ -97,6 +116,211 @@ describe("progressStore v5", () => {
     expect(
       loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
     ).toEqual(progress)
+  })
+
+  it("keeps learner drafts while replacing a persisted six-card run", () => {
+    const legacySixCardProgress = {
+      version: 5,
+      bankRevision: problemBankRevision,
+      entryId: "level-1",
+      runNumber: 0,
+      runSeed: 0,
+      runProblemIds: [
+        "l1-blockquote-book-by-lamp",
+        "l1-blockquote-bring-keys",
+        "l1-blockquote-bus-arrival",
+        "l1-blockquote-call-when-home",
+        "l1-blockquote-close-back-door",
+        "l1-blockquote-dinner-table",
+      ],
+      runStepIndex: 2,
+      scheduledStepIndex: 2,
+      currentProblemId: "l1-blockquote-bus-arrival",
+      draftByProblemId: {
+        "l1-blockquote-bus-arrival": "# my in-progress draft",
+      },
+      completedProblemIds: [
+        "l1-blockquote-book-by-lamp",
+        "l1-blockquote-bring-keys",
+      ],
+      recentProblemIds: [
+        "l1-blockquote-book-by-lamp",
+        "l1-blockquote-bring-keys",
+      ],
+      pendingTransferFamily: null,
+      pendingSlotRetryProblemId: null,
+      currentIsTransfer: false,
+      failedScheduledStepIndexes: [],
+      failedProblemIds: [],
+      syntaxMistakes: [],
+      runStartedAtMs: 1000,
+      runCompletedAtMs: null,
+    }
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify(legacySixCardProgress),
+    )
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runProblemIds).toEqual(createRunProblemIds("level-1", 0, 0))
+    expect(loaded.runStepIndex).toBe(0)
+    expect(loaded.scheduledStepIndex).toBe(0)
+    expect(loaded.runStartedAtMs).toBe(9_000)
+    expect(loaded.draftByProblemId).toEqual({
+      "l1-blockquote-bus-arrival": "# my in-progress draft",
+    })
+  })
+
+  it("lands a completed migrated run without repeating its rotation", () => {
+    const firstRunProblemIds = createRunProblemIds("level-1", 0, 0)
+    const justCompletedProblemIds = createRunProblemIds("level-1", 7, 0)
+    const completedProblemIds = [
+      ...justCompletedProblemIds,
+      "l1-blockquote-book-by-lamp",
+    ]
+    const completedSixCardProgress = {
+      ...createDefaultProgress(completedProblemIds.at(-1)!),
+      entryId: "level-1",
+      runNumber: 7,
+      runProblemIds: completedProblemIds,
+      runStepIndex: completedProblemIds.length,
+      scheduledStepIndex: completedProblemIds.length,
+      currentProblemId: completedProblemIds.at(-1),
+      draftByProblemId: {
+        "l1-blockquote-bus-arrival": "# keep the completed draft",
+      },
+      completedProblemIds,
+      recentProblemIds: completedProblemIds,
+      runStartedAtMs: 1_000,
+      runCompletedAtMs: 9_000,
+    }
+    const { runScheduleRevision: _revision, ...legacyProgress } =
+      completedSixCardProgress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded).toMatchObject({
+      entryId: null,
+      runProblemIds: [],
+      runStartedAtMs: null,
+      runCompletedAtMs: null,
+      draftByProblemId: {
+        "l1-blockquote-bus-arrival": "# keep the completed draft",
+      },
+    })
+    const nextRunProblemIds = createRunProblemIds(
+      "level-1",
+      loaded.runNumber,
+      loaded.runSeed,
+    )
+    expect(nextRunProblemIds).not.toEqual(justCompletedProblemIds)
+    expect(nextRunProblemIds).not.toEqual(firstRunProblemIds)
+  })
+
+  it("regenerates a revision-mismatched run while preserving its entry and drafts", () => {
+    const draftProblemId = "l1-heading-apple"
+    const legacyProgress = {
+      ...createDefaultProgress(draftProblemId),
+      runScheduleRevision:
+        "turn-size@5|level-removed@4:heading,bold,italic",
+      entryId: "level-1",
+      runNumber: 7,
+      runProblemIds: [draftProblemId],
+      runStartedAtMs: 1_000,
+      draftByProblemId: { [draftProblemId]: "# Keep this draft" },
+    }
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runNumber).toBe(7)
+    expect(loaded.runProblemIds).toEqual(
+      createRunProblemIds("level-1", 7, 0),
+    )
+    expect(loaded.runStartedAtMs).toBe(9_000)
+    expect(loaded.draftByProblemId).toEqual({
+      [draftProblemId]: "# Keep this draft",
+    })
+  })
+
+  it.each([
+    ["has no schedule revision", false],
+    ["claims the current schedule revision", true],
+  ])(
+    "keeps learner drafts when invalid progress %s",
+    (_label, currentRevision) => {
+      const draftProblemId = "l1-heading-apple"
+      const progress = {
+        ...createDefaultProgress(draftProblemId),
+        entryId: "level-removed",
+        runProblemIds: [draftProblemId],
+        runStartedAtMs: 1_000,
+        draftByProblemId: { [draftProblemId]: "# Still mine" },
+      }
+      const { runScheduleRevision: _revision, ...withoutRevision } = progress
+      storage.setItem(
+        PROGRESS_STORAGE_KEY,
+        JSON.stringify(currentRevision ? progress : withoutRevision),
+      )
+
+      const loaded = loadProgress(
+        storage,
+        validProblemIds,
+        isEligibleTransferProblemId,
+      )
+
+      expect(loaded.entryId).toBeNull()
+      expect(loaded.draftByProblemId).toEqual({
+        [draftProblemId]: "# Still mine",
+      })
+    },
+  )
+
+  it("salvages valid learner drafts from otherwise corrupt progress", () => {
+    const draftProblemId = "l1-heading-apple"
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        version: 5,
+        bankRevision: problemBankRevision,
+        runScheduleRevision,
+        entryId: 42,
+        runSeed: "not-a-seed",
+        currentProblemId: null,
+        draftByProblemId: {
+          [draftProblemId]: "# Survives the last fallback",
+          "not-in-the-bank": "# Discard this",
+          "l1-heading-pear": 42,
+        },
+      }),
+    )
+
+    const loaded = loadProgress(storage, validProblemIds)
+
+    expect(loaded).toEqual({
+      ...createDefaultProgress(problemBank[0].id),
+      draftByProblemId: {
+        [draftProblemId]: "# Survives the last fallback",
+      },
+    })
   })
 
   it("migrates old v5 progress without a run seed to seed 0", () => {

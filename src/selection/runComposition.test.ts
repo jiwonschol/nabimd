@@ -24,8 +24,8 @@ function problem(
 }
 
 describe("chapter run composition", () => {
-  it("keeps only the six-card turn size in policy", () => {
-    expect(RUN_POLICY).toEqual({ turnSize: 6 })
+  it("keeps only the five-card turn size in policy", () => {
+    expect(RUN_POLICY).toEqual({ turnSize: 5 })
     expect(new Set(Object.values(SYNTAX_FAMILY_WEIGHTS))).toEqual(new Set([1]))
   })
 
@@ -52,8 +52,8 @@ describe("chapter run composition", () => {
 
     const selected = createTurnProblemIds(1, 0, bank, 17)
 
-    expect(selected).toHaveLength(6)
-    expect(new Set(selected).size).toBe(6)
+    expect(selected).toHaveLength(5)
+    expect(new Set(selected).size).toBe(5)
     expect(selected.every((id) => id.startsWith("chapter-"))).toBe(true)
   })
 
@@ -90,7 +90,7 @@ describe("chapter run composition", () => {
     }
   })
 
-  it("honors equal family weights in each fresh six-card turn", () => {
+  it("distributes five cards deterministically across any family count", () => {
     const bank = [
       ...Array.from({ length: 44 }, (_, index) =>
         problem(`heading-${index}`, 1, ["heading-h1"]),
@@ -103,22 +103,57 @@ describe("chapter run composition", () => {
       ),
     ]
 
-    for (const runNumber of [0, 1, 2, 3, 4]) {
-      const counts = createTurnProblemIds(1, runNumber, bank, 0).reduce(
+    const threeFamilyExpectedByRun = [
+      { heading: 2, bold: 2, italic: 1 },
+      { heading: 1, bold: 2, italic: 2 },
+      { heading: 2, bold: 1, italic: 2 },
+    ]
+
+    for (const seed of [0, 1, 17, 41, 999]) {
+      for (const [runNumber, expected] of threeFamilyExpectedByRun.entries()) {
+        const counts = createTurnProblemIds(1, runNumber, bank, seed).reduce(
+          (result, id) => {
+            const family = id.split("-")[0] as "heading" | "bold" | "italic"
+            result[family] += 1
+            return result
+          },
+          { heading: 0, bold: 0, italic: 0 },
+        )
+
+        expect(counts, `seed ${seed}, run ${runNumber}`).toEqual(expected)
+      }
+    }
+
+    const twoFamilyBank = bank.filter((entry) => !entry.id.startsWith("italic"))
+    for (const seed of [0, 41, 999]) {
+      const counts = createTurnProblemIds(1, 0, twoFamilyBank, seed).reduce(
         (result, id) => {
-          const family = id.split("-")[0] as "heading" | "bold" | "italic"
+          const family = id.split("-")[0] as "heading" | "bold"
           result[family] += 1
           return result
         },
-        { heading: 0, bold: 0, italic: 0 },
+        { heading: 0, bold: 0 },
       )
 
-      expect(counts, `run ${runNumber}`).toEqual({
+      expect(counts, `two families, seed ${seed}`).toEqual({
         heading: 2,
-        bold: 2,
-        italic: 2,
+        bold: 3,
       })
     }
+  })
+
+  it("keeps composite retry-family coverage seed-variable", () => {
+    const bank = Array.from({ length: 12 }, (_, index) => ({
+      ...problem(`composite-${index}`, 5, ["heading-h1", "inline-code"]),
+      retryFamily: `retry-${index}`,
+    }))
+    const reached = new Set(
+      Array.from({ length: 20 }, (_, seed) =>
+        createTurnProblemIds(5, 0, bank, seed),
+      ).flat(),
+    )
+
+    expect(reached.size).toBeGreaterThan(RUN_POLICY.turnSize)
   })
 
   it("rejects an empty chapter pool", () => {

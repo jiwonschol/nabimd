@@ -546,14 +546,14 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 95 serves `###### Dog leash`, the deepest heading in Chapter 1. Headings
+// Seed 376 serves `###### Dog leash`, the deepest heading in Chapter 1. Headings
 // keep the small context size unless the current-row rule names them, so this
 // pins the case a paragraph Goal cannot catch.
 test("makes a heading Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "95")
+    window.sessionStorage.setItem(storageKey, "376")
   }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
@@ -851,8 +851,8 @@ test("completes a run and reveals full documents only from Summary", async ({
   await expect(page.getByRole("button", { name: chapterLabels[0] })).toBeFocused()
   await page.keyboard.press("Enter")
 
-  for (let exercise = 0; exercise < 6; exercise += 1) {
-    if (exercise < 5) {
+  for (let exercise = 0; exercise < 5; exercise += 1) {
+    if (exercise < 4) {
       await completeProblemAndAdvance(page)
     } else {
       await completeProblem(page)
@@ -862,10 +862,10 @@ test("completes a run and reveals full documents only from Summary", async ({
   await expect(
     page.getByRole("heading", { name: "Well done." }),
   ).toBeFocused()
-  await expect(page.getByLabel("Score")).toContainText("6 / 6")
+  await expect(page.getByLabel("Score")).toContainText("5 / 5")
   await expect(page.getByRole("textbox")).toHaveCount(0)
   const work = page.getByRole("region", { name: "Your work" })
-  await expect(work.getByRole("article")).toHaveCount(6)
+  await expect(work.getByRole("article")).toHaveCount(5)
   await expect(
     page.getByRole("button", { name: "View completed pages" }),
   ).toHaveCount(0)

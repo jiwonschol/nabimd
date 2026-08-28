@@ -1,6 +1,6 @@
 /** One calm practice turn, regardless of the chosen syntax chapter. */
 export const RUN_POLICY = {
-  turnSize: 6,
+  turnSize: 5,
 } as const
 
 /**

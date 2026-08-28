@@ -59,13 +59,13 @@ describe("five-chapter entry choices", () => {
     )
   })
 
-  it.each(entryChoices)("builds a six-problem $id turn without cross-chapter injection", (entry) => {
+  it.each(entryChoices)("builds a five-problem $id turn without cross-chapter injection", (entry) => {
     const ids = createRunProblemIds(entry.id, 0)
     const families = familiesFor(entry)
     const problems = ids.map((id) => problemBank.find((problem) => problem.id === id)!)
 
-    expect(ids).toHaveLength(6)
-    expect(new Set(ids).size).toBe(6)
+    expect(ids).toHaveLength(5)
+    expect(new Set(ids).size).toBe(5)
     expect(problems.every((problem) => families.includes(scheduleFamily(problem)))).toBe(
       true,
     )
