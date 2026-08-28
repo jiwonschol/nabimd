@@ -473,7 +473,7 @@ function migratePreChapterRevision(
     entryId: value.entryId,
     runNumber,
     runProblemIds,
-    runStartedAtMs: value.runStartedAtMs,
+    runStartedAtMs: Date.now(),
     draftByProblemId,
   }
 }

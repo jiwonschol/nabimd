@@ -13,9 +13,9 @@ const qaDirectory = fileURLToPath(
   new URL("../../docs/design/qa/", import.meta.url),
 )
 
-// Seed 1 serves `**New arrival**`, so the capture matches the bold-text
+// Seed 127 serves `**New arrival**`, so the capture matches the bold-text
 // exercise the selected reference mock shows.
-const captureSeed = "1"
+const captureSeed = "127"
 
 async function openSeededChapterOne(page: Page) {
   await page.addInitScript(

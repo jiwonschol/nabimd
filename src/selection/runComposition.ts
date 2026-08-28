@@ -1,6 +1,7 @@
 import type { CurriculumLevel, NormalizedProblem } from "../content/types"
 import {
   RUN_POLICY,
+  SYNTAX_FAMILY_WEIGHTS,
   type ChapterFamily,
   type SyntaxFamily,
 } from "./runPolicy"
@@ -87,10 +88,11 @@ function selectionKey(problem: SchedulableProblem): string {
 }
 
 /**
- * Distribute syntax/retry families across the whole chapter in proportion to
- * their pool sizes, then take consecutive six-card windows. This avoids a
- * homogeneous tail when a large family outlives smaller ones. A chapter with
- * at least 30 cards still yields five non-repeating turns before it wraps.
+ * Distribute syntax/retry families across the whole chapter by their policy
+ * weights, then take consecutive six-card windows. Smaller pools rotate their
+ * variants when exhausted instead of quietly reducing that family's teaching
+ * weight. The current chapter pools keep every family deep enough for five
+ * non-repeating turns before a variant wraps.
  */
 function chapterOrder(
   problems: readonly SchedulableProblem[],
@@ -111,33 +113,35 @@ function chapterOrder(
   })
   const orderedGroups = keys.map((key) => {
     const group = groups.get(key)!
+    const syntaxFamily = getSyntaxFamily(group[0]!)
     return {
       key,
       problems: rotate(group, mixSeed(seed, hashString(key)) % group.length),
-      selected: 0,
-      weight: group.length,
+      weight: syntaxFamily ? SYNTAX_FAMILY_WEIGHTS[syntaxFamily] : 1,
     }
   })
-  const ordered: SchedulableProblem[] = []
-  const totalWeight = problems.length
-
-  while (ordered.length < problems.length) {
-    const position = ordered.length + 1
-    const available = orderedGroups.filter(
-      (group) => group.selected < group.problems.length,
-    )
-    const selectedGroup = available.reduce((best, group) => {
-      const score = position * group.weight - group.selected * totalWeight
-      const bestScore =
-        position * best.weight - best.selected * totalWeight
-      if (score !== bestScore) return score > bestScore ? group : best
-      return group.key < best.key ? group : best
-    }, available[0]!)
-    ordered.push(selectedGroup.problems[selectedGroup.selected]!)
-    selectedGroup.selected += 1
-  }
-  const offset = seed === 0 ? 0 : mixSeed(seed, 7_919) % ordered.length
-  return rotate(ordered, offset)
+  const totalWeight = orderedGroups.reduce(
+    (total, group) => total + group.weight,
+    0,
+  )
+  const rounds = Math.max(
+    ...orderedGroups.map((group) =>
+      Math.ceil(group.problems.length / group.weight),
+    ),
+  )
+  const ordered = Array.from({ length: rounds }, (_, round) =>
+    orderedGroups.flatMap((group) =>
+      Array.from(
+        { length: group.weight },
+        (_, index) =>
+          group.problems[
+            (round * group.weight + index) % group.problems.length
+          ]!,
+      ),
+    ),
+  ).flat()
+  const roundOffset = seed === 0 ? 0 : mixSeed(seed, 7_919) % rounds
+  return rotate(ordered, roundOffset * totalWeight)
 }
 
 export function createTurnProblemIds(

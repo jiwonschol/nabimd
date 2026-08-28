@@ -342,7 +342,7 @@ test("requires both Chapter 1 italic marks and never autocompletes the closer", 
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "11")
+    window.sessionStorage.setItem(storageKey, "28")
   }, sessionSeedStorageKey)
   await resetToLanding(page)
   await enterChapter(page, 1)
@@ -546,14 +546,14 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 5 serves `###### Dog leash`, the deepest heading in Chapter 1. Headings
+// Seed 95 serves `###### Dog leash`, the deepest heading in Chapter 1. Headings
 // keep the small context size unless the current-row rule names them, so this
 // pins the case a paragraph Goal cannot catch.
 test("makes a heading Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "5")
+    window.sessionStorage.setItem(storageKey, "95")
   }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
@@ -580,14 +580,14 @@ test("makes a heading Goal more prominent than the locked source phrase", async 
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 104 serves a fenced code block in Chapter 4. A `pre` Goal sits outside the paragraph
+// Seed 1 serves a fenced code block in Chapter 4. A `pre` Goal sits outside the paragraph
 // and heading rules, so it is the third shape the prominence claim has to hold
 // for.
 test("makes a fenced code Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "104")
+    window.sessionStorage.setItem(storageKey, "1")
   }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)

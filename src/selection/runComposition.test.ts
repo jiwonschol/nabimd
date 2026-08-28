@@ -90,6 +90,37 @@ describe("chapter run composition", () => {
     }
   })
 
+  it("honors equal family weights in each fresh six-card turn", () => {
+    const bank = [
+      ...Array.from({ length: 44 }, (_, index) =>
+        problem(`heading-${index}`, 1, ["heading-h1"]),
+      ),
+      ...Array.from({ length: 24 }, (_, index) =>
+        problem(`bold-${index}`, 1, ["bold-emphasis"]),
+      ),
+      ...Array.from({ length: 12 }, (_, index) =>
+        problem(`italic-${index}`, 1, ["italic-emphasis"]),
+      ),
+    ]
+
+    for (const runNumber of [0, 1, 2, 3, 4]) {
+      const counts = createTurnProblemIds(1, runNumber, bank, 0).reduce(
+        (result, id) => {
+          const family = id.split("-")[0] as "heading" | "bold" | "italic"
+          result[family] += 1
+          return result
+        },
+        { heading: 0, bold: 0, italic: 0 },
+      )
+
+      expect(counts, `run ${runNumber}`).toEqual({
+        heading: 2,
+        bold: 2,
+        italic: 2,
+      })
+    }
+  })
+
   it("rejects an empty chapter pool", () => {
     expect(() => createTurnProblemIds(3, 0, [], 0)).toThrow(
       "No standard problems available for chapter-3",

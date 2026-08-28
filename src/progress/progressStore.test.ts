@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { createRunProblemIds } from "../content/entryChoices"
 import {
   flattenedStarterProjectionProblemBankRevision,
@@ -65,6 +65,10 @@ describe("progressStore v5", () => {
 
   beforeEach(() => {
     storage = new MemoryStorage()
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
   })
 
   it("binds persisted progress to the compiled bank revision", () => {
@@ -356,6 +360,7 @@ describe("progressStore v5", () => {
     progress.draftByProblemId[savedDraftProblemId] =
       "## Learner-authored draft"
     saveProgress(storage, progress)
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
 
     const loaded = loadProgress(
       storage,
@@ -371,6 +376,7 @@ describe("progressStore v5", () => {
     expect(loaded.runProblemIds).toEqual(createRunProblemIds("level-5", 0, 0))
     expect(loaded.runStepIndex).toBe(0)
     expect(loaded.scheduledStepIndex).toBe(0)
+    expect(loaded.runStartedAtMs).toBe(9_000)
     expect(loaded.draftByProblemId[savedDraftProblemId]).toBe(
       "## Learner-authored draft",
     )
