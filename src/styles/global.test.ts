@@ -44,7 +44,8 @@ function lastCssBlock(selector: string): string {
  */
 function phoneRule(selector: string): string {
   const phoneStack = lastCssBlock("@media (max-width: 760px) {")
-  const start = phoneStack.indexOf(`${selector} {`)
+  const indentedSelector = `\n  ${selector} {`
+  const start = phoneStack.indexOf(indentedSelector)
   const openingBrace = phoneStack.indexOf("{", start)
 
   expect(start).toBeGreaterThanOrEqual(0)
@@ -52,7 +53,7 @@ function phoneRule(selector: string): string {
   const closingBrace = phoneStack.indexOf("}", openingBrace)
   expect(closingBrace).toBeGreaterThan(openingBrace)
 
-  return phoneStack.slice(start, closingBrace + 1)
+  return phoneStack.slice(start + 3, closingBrace + 1)
 }
 
 describe("global responsive styles", () => {
@@ -89,14 +90,8 @@ describe("global responsive styles", () => {
     )
   })
 
-  it("shares one panel-header height across the embedded word processors", () => {
+  it("keeps the remaining word-processor helpers internally sized", () => {
     expect(tokens).toContain("--panel-header-height: 64px")
-    expect(styles).toMatch(
-      /\.cbt-workspace\s*\{[^{}]*--panel-header-height:\s*104px[^{}]*--panel-controls-height:\s*64px/s,
-    )
-    expect(styles).toMatch(
-      /\.cbt-panel__header\s*\{[^{}]*min-height:\s*var\(--panel-header-height\)[^{}]*flex:\s*0 0 var\(--panel-header-height\)/s,
-    )
     expect(styles).toMatch(
       /\.writing-processor__scroll\s*\{[^{}]*overflow-x:\s*hidden[^{}]*overflow-y:\s*auto/s,
     )
@@ -105,36 +100,6 @@ describe("global responsive styles", () => {
     )
     expect(styles).toMatch(
       /\.writing-processor__scroll:focus-visible\s*\{[^{}]*outline:\s*2px solid/s,
-    )
-  })
-
-  it("aligns both writing sheets to one row and gutter contract", () => {
-    expect(styles).toMatch(
-      /\.cbt-workspace\s*\{[^{}]*--sheet-row-height:\s*40px[^{}]*--sheet-gutter-offset:[^;]+;[^{}]*--sheet-gutter-width:\s*3\.25rem[^{}]*--sheet-text-gap:/s,
-    )
-    expect(styles).toMatch(
-      /\.writing-processor__row\s*\{[^{}]*height:\s*var\(--sheet-row-height\)[^{}]*grid-template-columns:\s*57px minmax\(0, 1fr\)[^{}]*border-bottom:/s,
-    )
-    expect(styles).toMatch(
-      /\.goal-panel > \.writing-processor\s*\{[^{}]*margin:\s*0 52px 0 42px/s,
-    )
-    expect(styles).toMatch(
-      /\.markdown-source-editor__mount \.cm-scroller\s*\{[^{}]*padding-left:\s*0[^{}]*overflow-x:\s*hidden[^{}]*overflow-y:\s*auto[^{}]*line-height:\s*var\(--sheet-row-height\)/s,
-    )
-    expect(styles).toMatch(
-      /\.writing-processor\[data-engine="codemirror"\] > \.writing-processor__scroll\s*\{[^{}]*overflow:\s*hidden/s,
-    )
-    expect(styles).toMatch(
-      /\.writing-processor__content\s*\{[^{}]*margin-left:\s*57px[^{}]*padding:\s*0 25px 0 23px/s,
-    )
-    expect(styles).toMatch(
-      /\.markdown-source-editor__mount \.cm-content\s*\{[^{}]*padding:\s*0/s,
-    )
-    expect(styles).toMatch(
-      /\.markdown-source-editor__mount \.cm-line\s*\{[^{}]*min-height:\s*var\(--sheet-row-height\)[^{}]*padding:\s*0/s,
-    )
-    expect(styles).toMatch(
-      /\.writing-processor\[data-leading-blank-rows="2"\][\s\S]*?padding-top:\s*calc\(var\(--sheet-row-height\) \+ var\(--sheet-row-height\)\)/s,
     )
   })
 
@@ -274,15 +239,26 @@ describe("global responsive styles", () => {
     expect(styles).toContain("ellipse(0% 0% at 50% 0%)")
   })
 
-  it("turns the completed Practice spread without moving the Summary book", () => {
+  it("turns the actual completed Practice leaves without moving the Summary book", () => {
     expect(styles).toMatch(
       /\.summary-page-turn-overlay\s*\{[^{}]*position:\s*absolute[^{}]*pointer-events:\s*none[^{}]*perspective:/s,
     )
     expect(styles).toMatch(
-      /\.summary-page-turn-overlay \.cbt-panel:nth-of-type\(2\)\s*\{[^{}]*animation:\s*turn-summary-page-forward var\(--page-turn-duration\)/s,
+      /\.summary-page-turn-overlay \.center-card__leaf--write\s*\{[^{}]*animation:\s*turn-summary-page-forward var\(--page-turn-duration\)/s,
     )
     expect(styles).toMatch(
-      /\.summary-page-turn-overlay \.cbt-panel:nth-of-type\(1\)\s*\{[^{}]*animation:\s*release-summary-left-page var\(--page-turn-duration\)/s,
+      /\.summary-page-turn-overlay \.center-card__leaf--read\s*\{[^{}]*animation:\s*release-summary-left-page var\(--page-turn-duration\)/s,
+    )
+    expect(styles).not.toContain(".cbt-")
+  })
+
+  it("uses a 250ms card transition and animates Hint height", () => {
+    expect(tokens).toContain("--problem-transition-duration: 250ms")
+    expect(styles).toMatch(
+      /\.card-practice\s*\{[^{}]*transition:\s*height var\(--problem-transition-duration\)/s,
+    )
+    expect(styles).toMatch(
+      /\.card-practice\[data-transition="problem"\] \.center-card\s*\{[^{}]*animation:\s*problem-card-in var\(--problem-transition-duration\)/s,
     )
   })
 
@@ -392,12 +368,6 @@ describe("global responsive styles", () => {
     expect(phoneRule(".center-card")).not.toContain("align-self: center")
   })
 
-  it("aligns the visible Goal instruction with the document text", () => {
-    expect(styles).toMatch(
-      /\.goal-panel > \.cbt-panel__header\s*\{[^{}]*justify-content:\s*flex-start[^{}]*padding-left:\s*calc\(42px \+ 57px \+ 23px\)/s,
-    )
-  })
-
   it("distributes the three answer modes across the answer page", () => {
     expect(styles).toMatch(
       /\.answer-tabs\s*\{[^{}]*width:\s*100%[^{}]*height:\s*var\(--panel-controls-height\)[^{}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[^{}]*align-self:\s*flex-start[^{}]*padding-inline:\s*3%\s*7%[^{}]*transform:\s*translate\(4px,\s*0\)/s,
@@ -455,12 +425,6 @@ describe("global responsive styles", () => {
       /\.exercise-topbar\s*\{[^{}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/s,
     )
     expect(narrowDesktop).toMatch(
-      /\.cbt-workspace\.open-book-shell\s*\{[^{}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)[^{}]*grid-template-rows:\s*minmax\(0, 1fr\)/s,
-    )
-    expect(narrowDesktop).toMatch(
-      /\.cbt-workspace\s*\{[^{}]*--panel-header-height:\s*104px/s,
-    )
-    expect(narrowDesktop).toMatch(
       /\.run-summary__metrics > div\s*\{[^{}]*min-width:\s*0[^{}]*flex:\s*1 1 0/s,
     )
   })
@@ -497,13 +461,13 @@ describe("global responsive styles", () => {
     const reducedMotion = lastCssBlock("@media (prefers-reduced-motion: reduce)")
 
     expect(reducedMotion).toMatch(
-      /\*\s*,\s*\*::before,\s*\*::after\s*\{[^{}]*animation-delay:\s*0ms !important/,
+      /\*\s*,\s*\*::before,\s*\*::after\s*\{[^{}]*animation-delay:\s*0ms !important[^{}]*animation-duration:\s*120ms !important[^{}]*transition-duration:\s*120ms !important/,
     )
     expect(reducedMotion).toMatch(
       /\.summary-page-turn-overlay\s*\{[^{}]*animation:\s*summary-overlay-fade 120ms/s,
     )
     expect(reducedMotion).toMatch(
-      /\.summary-page-turn-overlay \.cbt-panel\s*\{[^{}]*animation:\s*none !important/s,
+      /\.summary-page-turn-overlay \.center-card__leaf\s*\{[^{}]*animation:\s*none !important/s,
     )
   })
 

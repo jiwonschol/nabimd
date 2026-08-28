@@ -14,6 +14,7 @@ import { ExerciseTopBar } from "./ExerciseTopBar"
 import { RunSummary } from "./RunSummary"
 import { VerdictNotice } from "./VerdictNotice"
 import { VERDICT_BEAT_MS } from "./verdictBeat"
+import { getMotionDuration } from "../motionTiming"
 
 type EditorialDeskProps = ReturnType<typeof useLearningSession> & {
   summaryMotionReady?: boolean
@@ -97,7 +98,10 @@ export function EditorialDesk({
       return
     }
     advancePendingRef.current = true
-    const timer = window.setTimeout(advanceAfterBeat, VERDICT_BEAT_MS)
+    const timer = window.setTimeout(
+      advanceAfterBeat,
+      getMotionDuration(VERDICT_BEAT_MS),
+    )
     return () => {
       advancePendingRef.current = false
       window.clearTimeout(timer)

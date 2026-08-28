@@ -5,6 +5,10 @@ import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import type { LearningSession } from "../session/learningSession"
 import { playFeedbackSound } from "../sound/feedbackSound"
+import {
+  getMotionDuration,
+  VERDICT_BEAT_DURATION_MS,
+} from "../motionTiming"
 
 type VerdictNoticeProps = {
   evaluation: Evaluation | null
@@ -12,8 +16,6 @@ type VerdictNoticeProps = {
   phase: LearningSession["phase"]
   problem: GradableProblem
 }
-
-const MATCHED_FLASH_MS = 1600
 
 export function VerdictNotice({
   evaluation,
@@ -45,7 +47,7 @@ export function VerdictNotice({
     setMatchedVisible(true)
     const timer = window.setTimeout(
       () => setMatchedVisible(false),
-      MATCHED_FLASH_MS,
+      getMotionDuration(VERDICT_BEAT_DURATION_MS),
     )
     return () => window.clearTimeout(timer)
   }, [evaluation])

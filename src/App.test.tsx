@@ -220,6 +220,41 @@ describe("App", () => {
     expect(screen.queryByTestId("page-turn-transition")).toBeNull()
   })
 
+  it("finishes Matched before the next problem fades and slides into place", () => {
+    vi.useFakeTimers()
+    render(<App />)
+
+    fireEvent.click(
+      screen.getByRole("button", { name: entryChoices[0].label }),
+    )
+    act(() => vi.advanceTimersByTime(720))
+    const firstProblemId = currentProblem().id
+
+    completeProblemViaCard()
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+
+    act(() => vi.advanceTimersByTime(899))
+    expect(currentProblem().id).toBe(firstProblemId)
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
+
+    act(() => vi.advanceTimersByTime(1))
+    expect(currentProblem().id).not.toBe(firstProblemId)
+    expect(screen.queryByRole("status")).toBeNull()
+    expect(
+      screen.getByLabelText("Markdown syntax practice").parentElement,
+    ).toHaveAttribute("data-transition", "problem")
+    expect(playPageTurnSound).toHaveBeenCalledOnce()
+
+    act(() => vi.advanceTimersByTime(249))
+    expect(
+      screen.getByLabelText("Markdown syntax practice").parentElement,
+    ).toHaveAttribute("data-transition", "problem")
+    act(() => vi.advanceTimersByTime(1))
+    expect(
+      screen.getByLabelText("Markdown syntax practice").parentElement,
+    ).not.toHaveAttribute("data-transition")
+  })
+
   it("enters any selected chapter directly and starts its six-problem turn", async () => {
     for (const entry of entryChoices) {
       window.sessionStorage.clear()
@@ -762,6 +797,10 @@ describe("App", () => {
     expect(
       screen.getByText("A clean page — nothing to correct."),
     ).toBeVisible()
+    const summaryTurn = screen.getByTestId("summary-page-turn-transition")
+    expect(summaryTurn.querySelector(".center-card__leaf--read")).not.toBeNull()
+    expect(summaryTurn.querySelector(".center-card__leaf--write")).not.toBeNull()
+    expect(playPageTurnSound).toHaveBeenCalledTimes(2)
 
     await user.click(practiceAgain)
     await waitFor(() => expect(firstBoxInput()).toBeVisible())

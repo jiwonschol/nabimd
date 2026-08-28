@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react"
-import { beforeEach, describe, expect, it, vi } from "vitest"
+import { act, fireEvent, render, screen } from "@testing-library/react"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { getProblem } from "../content/problemBank"
 import { resetCenterCardMemoryForTests } from "../guided/useCenterCard"
 import { CardFirstPractice } from "./CardFirstPractice"
@@ -9,6 +9,10 @@ const problem = getProblem("l1-italic-paper-boat")
 describe("CardFirstPractice", () => {
   beforeEach(() => {
     resetCenterCardMemoryForTests()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
   })
 
   it("uses one centered card instead of Goal and answer pages", () => {
@@ -51,5 +55,29 @@ describe("CardFirstPractice", () => {
     fireEvent.keyDown(document.activeElement ?? firstBox, { key: "Enter" })
 
     expect(onGrow).toHaveBeenCalledWith("*Paper boat*")
+  })
+
+  it("animates the card height while the exact Hint opens", () => {
+    vi.useFakeTimers()
+    render(
+      <CardFirstPractice
+        draft=""
+        interactive
+        onComplete={vi.fn()}
+        onGrow={vi.fn()}
+        onMiss={vi.fn()}
+        problem={problem}
+        problemCompleted={false}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Hint" }))
+    const practice = screen.getByLabelText("Markdown syntax practice").parentElement
+    expect(practice).toHaveAttribute("data-transition", "height")
+
+    act(() => vi.advanceTimersByTime(249))
+    expect(practice).toHaveAttribute("data-transition", "height")
+    act(() => vi.advanceTimersByTime(1))
+    expect(practice).not.toHaveAttribute("data-transition")
   })
 })

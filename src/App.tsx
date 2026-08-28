@@ -10,10 +10,15 @@ import { OpenBookLanding } from "./components/OpenBookLanding"
 import type { EntryId } from "./content/entryChoices"
 import { useLearningSession } from "./session/useLearningSession"
 import type { PracticeHistorySnapshot } from "./session/learningSession"
+import {
+  getMotionDuration,
+  PAGE_TURN_DURATION_MS,
+  REDUCED_MOTION_DURATION_MS,
+} from "./motionTiming"
 import { playPageTurnSound } from "./sound/pageTurnSound"
 
-export const PAGE_TURN_DURATION_MS = 720
-export const REDUCED_PAGE_TURN_DURATION_MS = 120
+export { PAGE_TURN_DURATION_MS }
+export const REDUCED_PAGE_TURN_DURATION_MS = REDUCED_MOTION_DURATION_MS
 
 const HISTORY_MARKER = "nabimd-practice-v2"
 
@@ -50,12 +55,7 @@ function sameHistoryLocation(
 }
 
 export function getPageTurnDuration() {
-  if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
-    return PAGE_TURN_DURATION_MS
-  }
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ? REDUCED_PAGE_TURN_DURATION_MS
-    : PAGE_TURN_DURATION_MS
+  return getMotionDuration(PAGE_TURN_DURATION_MS)
 }
 
 export function App() {
@@ -231,6 +231,7 @@ export function App() {
       turningEntryRef.current = null
       setTurningEntryId(null)
       setSummarySnapshot(learningSession)
+      playPageTurnSound()
     }
     learningSession.next()
   }, [learningSession])
