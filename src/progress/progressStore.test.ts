@@ -285,20 +285,36 @@ describe("progressStore v5", () => {
       throw new Error("Missing a Level 1 mixed exercise retired by policy")
     }
     const runNumber = 7
+    const previousRunScheduleRevision = runScheduleRevision
+      .split("|")
+      .filter((segment) => !segment.startsWith("mixed-exercise@"))
+      .join("|")
+    const previousRunProblemIds = createRunProblemIds(
+      "level-1",
+      runNumber,
+      0,
+    ).map((id) =>
+      getCurriculumElements(getProblem(id)).length > 1
+        ? retiredMixed.id
+        : id,
+    )
+    expect(previousRunProblemIds).toHaveLength(5)
+    expect(previousRunProblemIds).toContain(retiredMixed.id)
     storage.setItem(
       PROGRESS_STORAGE_KEY,
       JSON.stringify({
         ...createDefaultProgress(retiredMixed.id),
-        runScheduleRevision: "before-mixed-exercise-policy",
+        runScheduleRevision: previousRunScheduleRevision,
         entryId: "level-1",
         runNumber,
-        runProblemIds: [retiredMixed.id],
+        runProblemIds: previousRunProblemIds,
         runStartedAtMs: 1_000,
         draftByProblemId: {
           [retiredMixed.id]: "# Keep the retired mixed draft",
         },
       }),
     )
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
 
     const loaded = loadProgress(
       storage,
@@ -309,9 +325,12 @@ describe("progressStore v5", () => {
       validDraftProblemIds,
     )
 
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runNumber).toBe(runNumber)
     expect(loaded.runProblemIds).toEqual(
       createRunProblemIds("level-1", runNumber, 0),
     )
+    expect(loaded.runStartedAtMs).toBe(9_000)
     expect(loaded.runProblemIds).not.toContain(retiredMixed.id)
     for (const id of loaded.runProblemIds) {
       const problem = getProblem(id)
