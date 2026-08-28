@@ -7,7 +7,11 @@ import {
 } from "react"
 import { EditorialDesk } from "./components/EditorialDesk"
 import { OpenBookLanding } from "./components/OpenBookLanding"
-import type { EntryId } from "./content/entryChoices"
+import {
+  getEntryChoice,
+  isEntryId,
+  type EntryId,
+} from "./content/entryChoices"
 import { useLearningSession } from "./session/useLearningSession"
 import type { PracticeHistorySnapshot } from "./session/learningSession"
 import {
@@ -40,7 +44,16 @@ function isAppHistoryState(value: unknown): value is AppHistoryState {
   const candidate = value as Partial<AppHistoryState>
   if (candidate.marker !== HISTORY_MARKER) return false
   if (candidate.view === "landing") return true
-  return candidate.view === "practice" && candidate.snapshot !== undefined
+  if (
+    candidate.view !== "practice" ||
+    typeof candidate.snapshot !== "object" ||
+    candidate.snapshot === null
+  ) {
+    return false
+  }
+  const entryId = (candidate.snapshot as Partial<PracticeHistorySnapshot>)
+    .entryId
+  return isEntryId(entryId) && getEntryChoice(entryId).available
 }
 
 function sameHistoryLocation(

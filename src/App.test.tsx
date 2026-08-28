@@ -835,7 +835,7 @@ describe("App", () => {
             marker: "nabimd-practice-v2",
             view: "practice",
             snapshot: {
-              entryId: "level-4",
+              entryId: "level-1",
               runNumber: 0,
               runProblemIds: retiredProblemIds,
               runStepIndex: 0,
@@ -851,6 +851,41 @@ describe("App", () => {
 
     expect(currentProblem().id).toBe(currentProblemId)
   })
+
+  it.each([
+    ["unavailable", "level-2"],
+    ["retired", "level-4"],
+  ])(
+    "rejects %s entries even when browser history claims the current marker",
+    async (_kind, invalidEntryId) => {
+      await openLevel(1)
+      const currentProblemId = currentProblem().id
+      const retiredProblemIds = createRunProblemIds("level-1", 1, 0)
+
+      act(() => {
+        window.dispatchEvent(
+          new PopStateEvent("popstate", {
+            state: {
+              marker: "nabimd-practice-v3",
+              view: "practice",
+              snapshot: {
+                entryId: invalidEntryId,
+                runNumber: 0,
+                runProblemIds: retiredProblemIds,
+                runStepIndex: 0,
+                scheduledStepIndex: 0,
+                currentProblemId: retiredProblemIds[0],
+                currentIsTransfer: false,
+                runStartedAtMs: 1_000,
+              },
+            },
+          }),
+        )
+      })
+
+      expect(currentProblem().id).toBe(currentProblemId)
+    },
+  )
 
   it("keeps browser Forward symmetric after returning to the landing", async () => {
     const { user } = await openLevel(1)
