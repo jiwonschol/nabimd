@@ -60,34 +60,14 @@ describe("learningSessionReducer", () => {
     )
   })
 
-  it("opens the introduced rule without creating transfer debt", () => {
+  it("keeps hint UI state out of the session model", () => {
     const session = newSession()
 
     expect(session.teachingMode).toBe("introduce")
-    expect(session.coach).toBe("hint")
-    expect(session.hintLevel).toBe(1)
+    expect(session).not.toHaveProperty("hintStartsOpen")
+    expect(session).not.toHaveProperty("hintLevel")
+    expect(session).not.toHaveProperty("coach")
     expect(session.needsTransfer).toBe(false)
-  })
-
-  it("starts a recall problem with every hint closed", () => {
-    const session = newSession(rainyDay)
-
-    expect(session.teachingMode).toBe("recall")
-    expect(session.coach).toBe("closed")
-    expect(session.hintLevel).toBe(0)
-    expect(session.needsTransfer).toBe(false)
-  })
-
-  it("opens Help during recall without creating transfer debt", () => {
-    const session = newSession(rainyDay)
-    const hinted = learningSessionReducer(session, {
-      type: "hint-requested",
-    })
-
-    expect(hinted.coach).toBe("hint")
-    expect(hinted.hintLevel).toBe(1)
-    expect(hinted.needsTransfer).toBe(false)
-    expect(hinted.progress.pendingTransferFamily).toBeNull()
   })
 
   it("persists only the currently unresolved syntax-slot retry", () => {
@@ -192,7 +172,6 @@ describe("learningSessionReducer", () => {
     )
 
     expect(passed.evaluation?.status).toBe("matched")
-    expect(passed.coach).toBe("closed")
     expect(canAdvance(passed)).toBe(true)
     expect(
       learningSessionReducer(passed, { type: "completed", atMs: 9_000 })
@@ -222,7 +201,6 @@ describe("learningSessionReducer", () => {
     expect(transfer.draft).toBe("")
     expect(transfer.currentIsTransfer).toBe(true)
     expect(transfer.teachingMode).toBe("recall")
-    expect(transfer.coach).toBe("closed")
     expect(transfer.needsTransfer).toBe(false)
     expect(transfer.progress.pendingTransferFamily).toBeNull()
     expect(transfer.progress.recentProblemIds).toContain("heading-apple")
@@ -280,24 +258,7 @@ describe("learningSessionReducer", () => {
 
     expect(restored.currentIsTransfer).toBe(true)
     expect(restored.teachingMode).toBe("recall")
-    expect(restored.coach).toBe("closed")
-    expect(restored.hintLevel).toBe(0)
     expect(restored.needsTransfer).toBe(false)
-  })
-
-  it("does not route a recall pass to transfer merely because Help was used", () => {
-    const hinted = learningSessionReducer(newSession(rainyDay), {
-      type: "hint-requested",
-    })
-    const passed = editAndCheck(hinted, rainyDay, "# Rainy day")
-    const advanced = learningSessionReducer(passed, {
-      type: "next",
-      nextProblem: getHeadingProblem("heading-study-tools"),
-      nextDraft: "",
-    })
-
-    expect(advanced.currentProblemId).toBe("heading-study-tools")
-    expect(advanced.currentIsTransfer).toBe(false)
   })
 
   it("completes after repairing a failed transfer without another transfer", () => {
@@ -337,32 +298,6 @@ describe("learningSessionReducer", () => {
     expect(editedAgain.evaluation).toBeNull()
     expect(editedAgain.needsTransfer).toBe(true)
     expect(editedAgain.progress.pendingTransferFamily).toBe("heading-h1")
-  })
-
-  it("advances progressive hints only after Fail", () => {
-    const initial = newSession()
-    expect(
-      learningSessionReducer(initial, { type: "hint-requested" }),
-    ).toBe(initial)
-
-    const failed = editAndCheck(initial, apple, "#Apple")
-    const reopened = learningSessionReducer(failed, {
-      type: "hint-requested",
-    })
-    const second = learningSessionReducer(reopened, {
-      type: "hint-requested",
-    })
-    const third = learningSessionReducer(second, {
-      type: "hint-requested",
-    })
-    const capped = learningSessionReducer(third, {
-      type: "hint-requested",
-    })
-
-    expect(reopened.hintLevel).toBe(1)
-    expect(second.hintLevel).toBe(2)
-    expect(third.hintLevel).toBe(3)
-    expect(capped.hintLevel).toBe(3)
   })
 
   it("keeps structural review notes in the Matched evaluation", () => {
@@ -430,28 +365,6 @@ describe("learningSessionReducer", () => {
     expect(replaced.needsTransfer).toBe(false)
     expect(replaced.progress.pendingTransferFamily).toBeNull()
     expect(replaced.progress.currentIsTransfer).toBe(true)
-  })
-
-  it("recomputes Hint visibility when a replacement changes the problem role", () => {
-    const levelOneProblem = getProblem(createRunProblemIds("level-1", 0)[0]!)
-    const started = learningSessionReducer(newSession(levelOneProblem), {
-      type: "started",
-      atMs: 1_000,
-      entryId: "level-1",
-      runNumber: 0,
-      runProblemIds: [levelOneProblem.id],
-      problem: levelOneProblem,
-    })
-    const levelTwoProblem = getProblem(createRunProblemIds("level-2", 0)[0]!)
-
-    const replaced = learningSessionReducer(started, {
-      type: "problem-replaced",
-      problem: levelTwoProblem,
-    })
-
-    expect(started.hintStartsOpen).toBe(true)
-    expect(replaced.hintStartsOpen).toBe(false)
-    expect(replaced.coach).toBe("closed")
   })
 
   it("tracks one score penalty per scheduled step across remediation", () => {

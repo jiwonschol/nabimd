@@ -1,14 +1,14 @@
 import { expect, test, type Locator, type Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
+import { curriculumLevels } from "../../src/content/curriculumLevels"
 import { deriveSyntaxCheckpoints } from "../../src/guided/guidedSyntax"
+import { getChapterFamily } from "../../src/selection/runComposition"
 
 type RuntimeProblemSource = {
   id: string
+  skillIds: string[]
+  syntaxTokens: string[]
   target: string
-}
-
-type RuntimeProblem = RuntimeProblemSource & {
-  level: number
 }
 
 const runtimeProjection = JSON.parse(
@@ -21,31 +21,11 @@ const runtimeProjection = JSON.parse(
   ),
 ) as { levels: Record<string, RuntimeProblemSource[]> }
 
-const runtimeProblemById = new Map<string, RuntimeProblem>(
-  Object.entries(runtimeProjection.levels).flatMap(([level, problems]) =>
-    problems.map((problem) => [
-      problem.id,
-      { ...problem, level: Number(level) },
-    ] as const),
-  ),
+const runtimeProblemById = new Map<string, RuntimeProblemSource>(
+  Object.values(runtimeProjection.levels)
+    .flat()
+    .map((problem) => [problem.id, problem]),
 )
-
-const levels = [
-  { label: "Level 1 — Learn the syntax", level: 1 },
-  {
-    label: "Level 2 — Rebuild real documents",
-    level: 2,
-  },
-  { label: "Level 3 — Write for people", level: 3 },
-  { label: "Level 4 — Write for work", level: 4 },
-  {
-    label: "Level 5 — Write for developers",
-    level: 5,
-  },
-] as const satisfies readonly {
-  label: string
-  level: number
-}[]
 
 const progressStorageKey = "nabimd.progress.v5"
 const sessionSeedStorageKey = "nabimd.session-seed.v1"
@@ -116,7 +96,7 @@ test("production serves the commit this workflow expects", async ({ page }) => {
   ).toBe(expected)
 })
 
-test("production serves the expected six-problem run for every level", async ({
+test("production serves the expected six-problem run for every chapter", async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -136,14 +116,14 @@ test("production serves the expected six-problem run for every level", async ({
     }
   })
 
-  for (const entry of levels) {
+  for (const entry of curriculumLevels) {
     await test.step(entry.label, async () => {
       await resetFreshSession(page)
 
       await page.getByRole("button", { name: entry.label }).click()
       await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
       await expect(page.getByLabel("Practice details")).toContainText(
-        `Level ${entry.level}`,
+        `Chapter ${entry.level}`,
       )
 
       for (let exercise = 0; exercise < 6; exercise += 1) {
@@ -151,24 +131,18 @@ test("production serves the expected six-problem run for every level", async ({
           await practiceShell(page).getAttribute("data-problem-id")
         expect(
           problemId,
-          `problem ${exercise + 1} for Level ${entry.level}`,
+          `problem ${exercise + 1} for Chapter ${entry.level}`,
         ).toBeTruthy()
         if (!problemId) {
           throw new Error(
-            `Missing problem ${exercise + 1} for Level ${entry.level}`,
+            `Missing problem ${exercise + 1} for Chapter ${entry.level}`,
           )
         }
         const problem = runtimeProblemById.get(problemId)
         if (!problem) {
           throw new Error(`Missing runtime source for ${problemId}`)
         }
-        if (exercise === 0) {
-          expect(problem.level).toBe(entry.level)
-        } else {
-          expect([entry.level, Math.min(entry.level + 1, 5)]).toContain(
-            problem.level,
-          )
-        }
+        expect(entry.families).toContain(getChapterFamily(problem))
         const marks = deriveSyntaxCheckpoints(problem.target, "").map(
           (checkpoint) => checkpoint.canonicalInput,
         )

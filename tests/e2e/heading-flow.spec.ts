@@ -23,12 +23,12 @@ const runtimeProblemById = new Map(
     .map((problem) => [problem.id, problem]),
 )
 
-const levelLabels = [
-  "Level 1 — Learn the syntax",
-  "Level 2 — Rebuild real documents",
-  "Level 3 — Write for people",
-  "Level 4 — Write for work",
-  "Level 5 — Write for developers",
+const chapterLabels = [
+  "Chapter 1 — Headings & emphasis",
+  "Chapter 2 — Lists",
+  "Chapter 3 — Links & dividers",
+  "Chapter 4 — Code & quotes",
+  "Chapter 5 — Mixed practice",
 ] as const
 
 const sessionSeedStorageKey = "nabimd.session-seed.v1"
@@ -60,8 +60,8 @@ async function currentDraft(page: Page): Promise<string> {
   return (await practiceShell(page).getAttribute("data-draft")) ?? ""
 }
 
-async function enterLevel(page: Page, level: 1 | 2 | 3 | 4 | 5) {
-  await page.getByRole("button", { name: levelLabels[level - 1] }).click()
+async function enterChapter(page: Page, chapter: 1 | 2 | 3 | 4 | 5) {
+  await page.getByRole("button", { name: chapterLabels[chapter - 1] }).click()
   await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
   await expect(cardBoxInput(page)).toBeFocused()
 }
@@ -108,13 +108,13 @@ async function resetToLanding(page: Page) {
   ).toBeVisible()
 }
 
-test("greets a fresh session with the definitive five-level ladder", async ({
+test("greets a fresh session with the definitive five-chapter curriculum", async ({
   page,
 }) => {
   await resetToLanding(page)
 
   await expect(page.getByRole("heading", { name: "Nabi Markdown" })).toBeVisible()
-  for (const label of levelLabels) {
+  for (const label of chapterLabels) {
     await expect(page.getByRole("button", { name: label })).toBeVisible()
   }
   await expect(cardBoxInput(page)).toHaveCount(0)
@@ -144,7 +144,7 @@ test("keeps every chapter reachable in a short landscape viewport", async ({
   await page.setViewportSize({ width: 812, height: 375 })
   await resetToLanding(page)
 
-  for (const label of levelLabels) {
+  for (const label of chapterLabels) {
     await expect(page.getByRole("button", { name: label })).toBeVisible()
   }
   expect(
@@ -217,31 +217,34 @@ test("keeps the landing wordmark clear of the motto in a short book", async ({
   expect(wordmark!.y + wordmark!.height + 8).toBeLessThanOrEqual(motto!.y)
 })
 
-test("keeps the same book spread geometry across the page turn", async ({
+test("narrows the practice spread while keeping it centered across the page turn", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1800, height: 1000 })
   await resetToLanding(page)
   const landing = await page.locator(".app-shell.open-book-shell").boundingBox()
 
-  await enterLevel(page, 5)
+  await enterChapter(page, 5)
   const practice = await practiceShell(page).boundingBox()
 
   expect(landing).not.toBeNull()
   expect(practice).not.toBeNull()
-  expect(Math.abs(practice!.x - landing!.x)).toBeLessThanOrEqual(1)
-  expect(Math.abs(practice!.width - landing!.width)).toBeLessThanOrEqual(1)
+  const landingCenter = landing!.x + landing!.width / 2
+  const practiceCenter = practice!.x + practice!.width / 2
+  expect(Math.abs(practiceCenter - landingCenter)).toBeLessThanOrEqual(1)
+  expect(practice!.width).toBe(1_344)
+  expect(practice!.width).toBeLessThan(landing!.width)
 })
 
-test("every level opens the same card-first practice surface", async ({
+test("every chapter opens the same card-first practice surface", async ({
   page,
 }) => {
-  for (const index of levelLabels.keys()) {
+  for (const index of chapterLabels.keys()) {
     await resetToLanding(page)
-    await enterLevel(page, (index + 1) as 1 | 2 | 3 | 4 | 5)
+    await enterChapter(page, (index + 1) as 1 | 2 | 3 | 4 | 5)
 
     await expect(page.getByLabel("Practice details")).toContainText(
-      `Level ${index + 1}`,
+      `Chapter ${index + 1}`,
     )
     await expect(
       page.getByRole("region", { name: "Markdown syntax practice" }),
@@ -251,22 +254,22 @@ test("every level opens the same card-first practice surface", async ({
   }
 })
 
-test("re-entering a level starts a different run", async ({ page }) => {
+test("re-entering a chapter starts a different run", async ({ page }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
   const firstProblemId = await currentProblemId(page)
 
   await page.getByRole("button", { name: "Nabi Markdown home" }).click()
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   expect(await currentProblemId(page)).not.toBe(firstProblemId)
 })
 
-test("browser history moves between problems and the level picker", async ({
+test("browser history moves between problems and the chapter picker", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
   const firstProblemId = await currentProblemId(page)
 
   await completeProblemAndAdvance(page)
@@ -288,7 +291,7 @@ test("a wrong mark opens the exact Hint, clears the boxes, and refocuses", async
   page,
 }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   await submitSlot(page, "@")
 
@@ -304,7 +307,7 @@ test("manual Hint clears partial input and stays open while typing", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   await page.keyboard.type("@")
   await page.getByRole("button", { name: "Hint" }).click()
@@ -325,7 +328,7 @@ test("empty Enter opens the exact Hint and keeps the box focused", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   await page.keyboard.press("Enter")
 
@@ -335,14 +338,14 @@ test("empty Enter opens the exact Hint and keeps the box focused", async ({
   await expect(cardBoxInput(page)).toBeFocused()
 })
 
-test("requires both Level 1 italic marks and never autocompletes the closer", async ({
+test("requires both Chapter 1 italic marks and never autocompletes the closer", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "23")
+    window.sessionStorage.setItem(storageKey, "28")
   }, sessionSeedStorageKey)
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
   await expect(
@@ -365,7 +368,7 @@ test("requires both Level 1 italic marks and never autocompletes the closer", as
 
 test("supports Previous and Next across accepted marks", async ({ page }) => {
   await resetToLanding(page)
-  await enterLevel(page, 2)
+  await enterChapter(page, 2)
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
   const marks = slotMarksFor(problem.target)
@@ -391,7 +394,7 @@ test("the visible Enter control submits marks with a pointer", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
 
@@ -409,7 +412,7 @@ test("the visible Enter control submits marks with a pointer", async ({
 test("lays the exercise across both leaves of the spread", async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const [readLeaf, writeLeaf, line, firstBox, submit] = await Promise.all([
     page.locator(".center-card__leaf--read").boundingBox(),
@@ -454,7 +457,7 @@ test("keeps the mark controls on the writing leaf", async ({ page }) => {
   for (const viewport of viewports) {
     await page.setViewportSize(viewport)
     await resetToLanding(page)
-    await enterLevel(page, 1)
+    await enterChapter(page, 1)
 
     const [writeLeaf, previous, next] = await Promise.all([
       page.locator(".center-card__leaf--write").boundingBox(),
@@ -492,7 +495,7 @@ test("keeps the instruction clear of every control", async ({ page }) => {
   for (const viewport of viewports) {
     await page.setViewportSize(viewport)
     await resetToLanding(page)
-    await enterLevel(page, 1)
+    await enterChapter(page, 1)
 
     const collision = await page.evaluate(() => {
       const instruction = document.querySelector(".center-card__instruction")
@@ -525,7 +528,7 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const goal = page.locator(
     ".center-card__context-row--current .rendered-document__body > :first-child",
@@ -543,18 +546,18 @@ test("makes the rendered Goal more prominent than the locked source phrase", asy
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 10 serves `###### Dog leash`, the deepest heading in Level 1. Headings
+// Seed 95 serves `###### Dog leash`, the deepest heading in Chapter 1. Headings
 // keep the small context size unless the current-row rule names them, so this
 // pins the case a paragraph Goal cannot catch.
 test("makes a heading Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "10")
+    window.sessionStorage.setItem(storageKey, "95")
   }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   expect(await currentProblemId(page)).toBe("l1-heading-depth-dog-leash")
 
@@ -577,18 +580,18 @@ test("makes a heading Goal more prominent than the locked source phrase", async 
   expect(goalSize).toBeGreaterThan(lockedSize)
 })
 
-// Seed 7 serves a fenced code block. A `pre` Goal sits outside the paragraph
+// Seed 1 serves a fenced code block in Chapter 4. A `pre` Goal sits outside the paragraph
 // and heading rules, so it is the third shape the prominence claim has to hold
 // for.
 test("makes a fenced code Goal more prominent than the locked source phrase", async ({
   page,
 }) => {
   await page.addInitScript((storageKey) => {
-    window.sessionStorage.setItem(storageKey, "7")
+    window.sessionStorage.setItem(storageKey, "1")
   }, sessionSeedStorageKey)
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 4)
 
   expect(await currentProblemId(page)).toBe("l1-code-block-door-sign")
 
@@ -598,9 +601,6 @@ test("makes a fenced code Goal more prominent than the locked source phrase", as
   const locked = page.locator(".center-card__locked").first()
 
   await expect(goal).toHaveJSProperty("tagName", "PRE")
-  // Prose on a book leaf sets flush left. What matters is the size relationship
-  // below, not the alignment the single centred card used to need.
-  await expect(goal).toHaveCSS("text-align", "left")
 
   const [goalSize, lockedSize] = await Promise.all([
     goal.evaluate((element) =>
@@ -619,7 +619,7 @@ test("keeps phone mark boxes at the documented touch size", async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const box = await page.locator(".center-card__box").first().boundingBox()
 
@@ -628,25 +628,50 @@ test("keeps phone mark boxes at the documented touch size", async ({
   expect(box!.height).toBeGreaterThanOrEqual(44)
 })
 
-test("anchors the phone card so the exact hint expands downward", async ({
+test("keeps the phone card anchored while the exact hint opens below the entry line", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const card = page.locator(".center-card")
+  const line = page.locator(".center-card__line")
+  const hint = page.getByRole("region", { name: "Exact Markdown hint" })
   const before = await card.boundingBox()
   await page.getByRole("button", { name: "Hint" }).click()
-  await expect(
-    page.getByRole("region", { name: "Exact Markdown hint" }),
-  ).toBeVisible()
-  const after = await card.boundingBox()
+  await expect(hint).toBeVisible()
+  const [after, lineBox, hintBox, scrollMetrics] = await Promise.all([
+    card.boundingBox(),
+    line.boundingBox(),
+    hint.boundingBox(),
+    card.evaluate((element) => ({
+      clientHeight: element.clientHeight,
+      documentWidth: document.documentElement.scrollWidth,
+      scrollHeight: element.scrollHeight,
+    })),
+  ])
 
   expect(before).not.toBeNull()
   expect(after).not.toBeNull()
+  expect(lineBox).not.toBeNull()
+  expect(hintBox).not.toBeNull()
   expect(Math.abs(after!.y - before!.y)).toBeLessThanOrEqual(2)
-  expect(after!.height).toBeGreaterThan(before!.height)
+  expect(hintBox!.y).toBeGreaterThanOrEqual(lineBox!.y + lineBox!.height)
+  expect(scrollMetrics.scrollHeight).toBeGreaterThan(scrollMetrics.clientHeight)
+  expect(scrollMetrics.documentWidth).toBeLessThanOrEqual(390)
+
+  await hint.scrollIntoViewIfNeeded()
+  const [visibleHint, scrollTop] = await Promise.all([
+    hint.boundingBox(),
+    card.evaluate((element) => element.scrollTop),
+  ])
+  expect(visibleHint).not.toBeNull()
+  expect(scrollTop).toBeGreaterThan(0)
+  expect(visibleHint!.y).toBeGreaterThanOrEqual(after!.y)
+  expect(visibleHint!.y + visibleHint!.height).toBeLessThanOrEqual(
+    after!.y + after!.height + 1,
+  )
 })
 
 test("expands the exact hint below the anchored practice card", async ({
@@ -654,7 +679,7 @@ test("expands the exact hint below the anchored practice card", async ({
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const line = page.locator(".center-card__line")
   const before = await line.boundingBox()
@@ -684,7 +709,7 @@ test("keeps the visible Enter key compact before a verdict", async ({
 }) => {
   await page.setViewportSize({ width: 1024, height: 768 })
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const enter = await page
     .getByRole("button", { name: "Check marks" })
@@ -698,7 +723,7 @@ test("keeps the visible Enter key compact before a verdict", async ({
 
 test("underlines only the requested syntax term", async ({ page }) => {
   await resetToLanding(page)
-  await enterLevel(page, 1)
+  await enterChapter(page, 1)
 
   const instruction = page.locator(".center-card__instruction")
   const syntaxTerm = instruction.locator("strong")
@@ -708,17 +733,17 @@ test("underlines only the requested syntax term", async ({ page }) => {
   await expect(instruction).not.toHaveCSS("text-decoration-line", "underline")
 })
 
-test("Try another stays in the level and serves different content", async ({
+test("Try another stays in the chapter and serves different content", async ({
   page,
 }) => {
   await resetToLanding(page)
-  await enterLevel(page, 3)
+  await enterChapter(page, 3)
   const before = await currentProblemId(page)
 
   await page.getByRole("button", { name: "Try another" }).click()
 
   await expect.poll(() => currentProblemId(page)).not.toBe(before)
-  await expect(page.getByLabel("Practice details")).toContainText("Level 3")
+  await expect(page.getByLabel("Practice details")).toContainText("Chapter 3")
   await expect(cardBoxInput(page)).toBeFocused()
 })
 
@@ -727,7 +752,7 @@ test("keeps the card and browser chrome inside 1280 by 800", async ({
 }) => {
   await page.setViewportSize({ width: 1280, height: 800 })
   await resetToLanding(page)
-  await enterLevel(page, 5)
+  await enterChapter(page, 5)
 
   const [topbar, card] = await Promise.all([
     page.locator(".exercise-topbar").boundingBox(),
@@ -756,9 +781,9 @@ test("keeps the card and browser chrome inside 1280 by 800", async ({
 // what keeps this a real ceiling rather than a formality.
 test("keeps both leaves close to their content height", async ({ page }) => {
   const conditions = [
-    { width: 1440, height: 900, level: 1 },
-    { width: 1280, height: 800, level: 1 },
-    { width: 1280, height: 800, level: 5 },
+    { width: 1440, height: 900, chapter: 1 },
+    { width: 1280, height: 800, chapter: 1 },
+    { width: 1280, height: 800, chapter: 5 },
   ] as const
 
   for (const condition of conditions) {
@@ -767,7 +792,7 @@ test("keeps both leaves close to their content height", async ({ page }) => {
       height: condition.height,
     })
     await resetToLanding(page)
-    await enterLevel(page, condition.level)
+    await enterChapter(page, condition.chapter)
 
     for (const leaf of ["read", "write"] as const) {
       const emptyRatio = await page.evaluate((leafName) => {
@@ -785,14 +810,14 @@ test("keeps both leaves close to their content height", async ({ page }) => {
         return (rect.bottom - lowestBottom) / rect.height
       }, leaf)
 
-      expect(emptyRatio, `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`).not.toBeNull()
+      expect(emptyRatio, `${leaf} leaf at ${condition.width}x${condition.height} Chapter ${condition.chapter}`).not.toBeNull()
       expect(
         emptyRatio!,
-        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
+        `${leaf} leaf at ${condition.width}x${condition.height} Chapter ${condition.chapter}`,
       ).toBeGreaterThanOrEqual(0)
       expect(
         emptyRatio!,
-        `${leaf} leaf at ${condition.width}x${condition.height} Level ${condition.level}`,
+        `${leaf} leaf at ${condition.width}x${condition.height} Chapter ${condition.chapter}`,
       ).toBeLessThanOrEqual(0.25)
     }
   }
@@ -803,7 +828,7 @@ test("uses the same card without horizontal overflow at phone width", async ({
 }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await resetToLanding(page)
-  await enterLevel(page, 5)
+  await enterChapter(page, 5)
 
   await expect(
     page.getByRole("region", { name: "Markdown syntax practice" }),
@@ -823,7 +848,7 @@ test("completes a run and reveals full documents only from Summary", async ({
   await page.setViewportSize({ width: 1280, height: 800 })
   await resetToLanding(page)
   await page.keyboard.press("Tab")
-  await expect(page.getByRole("button", { name: levelLabels[0] })).toBeFocused()
+  await expect(page.getByRole("button", { name: chapterLabels[0] })).toBeFocused()
   await page.keyboard.press("Enter")
 
   for (let exercise = 0; exercise < 6; exercise += 1) {

@@ -5,7 +5,6 @@ import { createDefaultProgress } from "../progress/progressStore"
 import type { ProgressV5 } from "../progress/types"
 import {
   createRunProblemIds,
-  getEntryChoice,
   type EntryId,
 } from "../content/entryChoices"
 import { placeTransferAtNextStep } from "./runSchedule"
@@ -25,9 +24,6 @@ export type LearningSession = {
   hadFailure: boolean
   needsTransfer: boolean
   currentIsTransfer: boolean
-  hintStartsOpen: boolean
-  hintLevel: 0 | 1 | 2 | 3
-  coach: "closed" | "hint"
   failedScheduledStepIndexes: number[]
   failedProblemIds: string[]
   /**
@@ -78,9 +74,7 @@ export type SessionEvent =
       evaluation: Evaluation
       retryFamily: GradableProblem["retryFamily"]
     }
-  | { type: "hint-requested" }
   | { type: "slot-missed"; mistakes?: readonly SyntaxMistake[] }
-  | { type: "coach-closed" }
   | { type: "problem-replaced"; problem: GradableProblem }
   | {
       type: "next"
@@ -88,24 +82,6 @@ export type SessionEvent =
       nextDraft: string
     }
   | { type: "completed"; atMs: number }
-
-function shouldStartHintOpen({
-  entryId,
-  currentIsTransfer,
-  problem,
-}: {
-  entryId: EntryId | null
-  currentIsTransfer: boolean
-  problem: GradableProblem
-}): boolean {
-  if (currentIsTransfer) return false
-  if (entryId === null) return problem.teachingMode === "introduce"
-
-  const entryLevel = getEntryChoice(entryId).level
-  // The run policy places chosen-level work before next-level challenges.
-  // Comparing levels preserves that role if a remedial item shifts indices.
-  return problem.level === entryLevel
-}
 
 export function createLearningSession(
   progress: ProgressV5,
@@ -116,13 +92,6 @@ export function createLearningSession(
     : progress.completedProblemIds.includes(problem.id) &&
       progress.pendingTransferFamily === null &&
       !progress.currentIsTransfer
-  const hintStartsOpen =
-    !isComplete &&
-    shouldStartHintOpen({
-      entryId: progress.entryId,
-      currentIsTransfer: progress.currentIsTransfer,
-      problem,
-    })
   const teachingMode = progress.currentIsTransfer
     ? "recall"
     : problem.teachingMode
@@ -142,9 +111,6 @@ export function createLearningSession(
     hadFailure: progress.pendingTransferFamily !== null,
     needsTransfer: progress.pendingTransferFamily !== null,
     currentIsTransfer: progress.currentIsTransfer,
-    hintStartsOpen,
-    hintLevel: hintStartsOpen ? 1 : 0,
-    coach: hintStartsOpen ? "hint" : "closed",
     failedScheduledStepIndexes: [
       ...progress.failedScheduledStepIndexes,
     ],
@@ -189,7 +155,6 @@ function completeSession(
     runStepIndex: session.runProblemIds.length || session.runStepIndex,
     scheduledStepIndex: scheduledRunLength,
     runCompletedAtMs: completedAtMs,
-    coach: "closed",
     needsTransfer: false,
     currentIsTransfer: false,
     progress: {
@@ -269,7 +234,6 @@ export function learningSessionReducer(
         draft: event.value,
         evaluation:
           session.evaluation?.status === "fail" ? session.evaluation : null,
-        coach: session.coach,
         progress: {
           ...session.progress,
           pendingSlotRetryProblemId:
@@ -301,8 +265,6 @@ export function learningSessionReducer(
         evaluation: event.evaluation,
         hadFailure: session.hadFailure || failed,
         needsTransfer: session.needsTransfer || failed,
-        hintLevel: failed ? session.hintLevel : 0,
-        coach: "closed",
         failedScheduledStepIndexes,
         failedProblemIds,
         progress: {
@@ -372,32 +334,6 @@ export function learningSessionReducer(
       }
     }
 
-    case "hint-requested": {
-      if (session.coach !== "hint") {
-        return {
-          ...session,
-          coach: "hint",
-          hintLevel: Math.max(1, session.hintLevel) as 1 | 2 | 3,
-        }
-      }
-
-      if (session.evaluation?.status !== "fail") return session
-      const nextHintLevel = Math.min(3, session.hintLevel + 1) as
-        | 1
-        | 2
-        | 3
-      return {
-        ...session,
-        coach: "hint",
-        hintLevel: nextHintLevel,
-      }
-    }
-
-    case "coach-closed":
-      return session.coach === "closed"
-        ? session
-        : { ...session, coach: "closed" }
-
     case "problem-replaced": {
       const replacementIsTransfer =
         session.currentIsTransfer || session.needsTransfer
@@ -407,12 +343,6 @@ export function learningSessionReducer(
       )
       const keepsIntroduction =
         session.teachingMode === "introduce" && !replacementIsTransfer
-      const hintStartsOpen = shouldStartHintOpen({
-        entryId: session.entryId,
-        currentIsTransfer: replacementIsTransfer,
-        problem: event.problem,
-      })
-
       return {
         ...session,
         phase: "editing",
@@ -425,9 +355,6 @@ export function learningSessionReducer(
         needsTransfer: false,
         currentIsTransfer: replacementIsTransfer,
         runProblemIds: nextRunProblemIds,
-        hintStartsOpen,
-        hintLevel: hintStartsOpen ? 1 : 0,
-        coach: hintStartsOpen ? "hint" : "closed",
         progress: {
           ...session.progress,
           currentProblemId: event.problem.id,
@@ -463,12 +390,6 @@ export function learningSessionReducer(
       const nextScheduledStepIndex = nextIsTransfer
         ? session.scheduledStepIndex
         : session.scheduledStepIndex + 1
-      const hintStartsOpen = shouldStartHintOpen({
-        entryId: session.entryId,
-        currentIsTransfer: nextIsTransfer,
-        problem: event.nextProblem,
-      })
-
       return {
         ...session,
         phase: "editing",
@@ -485,9 +406,6 @@ export function learningSessionReducer(
         runProblemIds: nextRunProblemIds,
         runStepIndex: nextRunStepIndex,
         scheduledStepIndex: nextScheduledStepIndex,
-        hintStartsOpen,
-        hintLevel: hintStartsOpen ? 1 : 0,
-        coach: hintStartsOpen ? "hint" : "closed",
         progress: {
           ...session.progress,
           currentProblemId: nextProblemId,

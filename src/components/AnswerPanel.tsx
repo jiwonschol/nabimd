@@ -14,19 +14,20 @@ import type { Evaluation } from "../engine/types"
 import { buildReviewCorrections } from "../feedback/reviewCorrections"
 import { projectCheckpointContext } from "../guided/guidedSyntax"
 import { useCenterCard } from "../guided/useCenterCard"
-import type { LearningSession } from "../session/learningSession"
 import { CenterCard } from "./CenterCard"
 import { RenderedDocumentBody } from "./RenderedDocument"
 import { WordProcessorPage } from "./WordProcessorPage"
 
 type AnswerView = "write" | "preview" | "review" | "hint"
+type LegacyCoachState = "closed" | "hint"
+type LegacyHintLevel = 0 | 1 | 2 | 3
 
 type AnswerPanelProps = {
   draft: string
   entryId: EntryId
   evaluation: Evaluation | null
-  coach: LearningSession["coach"]
-  hintLevel: LearningSession["hintLevel"]
+  coach: LegacyCoachState
+  hintLevel: LegacyHintLevel
   problem: GradableProblem
   onChange: (value: string) => void
   onCheck: (value?: string) => void
@@ -136,7 +137,7 @@ function HintPanel({
 }: {
   draft: string
   evaluation: Evaluation | null
-  hintLevel: LearningSession["hintLevel"]
+  hintLevel: LegacyHintLevel
   onNextHint: () => void
   problem: GradableProblem
 }) {

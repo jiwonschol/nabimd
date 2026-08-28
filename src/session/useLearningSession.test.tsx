@@ -11,7 +11,10 @@ import {
   createDefaultProgress,
   saveProgress,
 } from "../progress/progressStore"
-import { getSyntaxFamily } from "../selection/runComposition"
+import {
+  getChapterFamily,
+  getSyntaxFamily,
+} from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
 import type { PracticeHistorySnapshot } from "./learningSession"
 import {
@@ -64,12 +67,12 @@ describe("useLearningSession", () => {
     expect(result.current.session.phase).toBe("complete")
   })
 
-  it.each(entryChoices)("starts $id at its chosen level", (entry) => {
+  it.each(entryChoices)("starts $id inside its chosen syntax chapter", (entry) => {
     const { result } = renderLearningSession()
     act(() => result.current.start(entry.id))
 
     expect(result.current.session.entryId).toBe(entry.id)
-    expect(result.current.problem.level).toBe(entry.level)
+    expect(entry.families).toContain(getChapterFamily(result.current.problem))
     expect(result.current.session.runProblemIds).toEqual(
       createRunProblemIds(entry.id, 0),
     )
@@ -444,9 +447,6 @@ describe("useLearningSession", () => {
     expect(first.result.current.session.runProblemIds).not.toEqual(
       second.result.current.session.runProblemIds,
     )
-    expect(getSyntaxFamily(first.result.current.problem)).not.toBe(
-      getSyntaxFamily(second.result.current.problem),
-    )
   })
 
   it("clears the run and returns to level selection", () => {
@@ -460,33 +460,24 @@ describe("useLearningSession", () => {
     expect(result.current.session.progress.draftByProblemId).toEqual({})
   })
 
-  it("shows Hint for four at-level problems and hides it for challenges", () => {
+  it("does not expose the retired session-level hint controller", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
 
-    for (let index = 0; index < 4; index += 1) {
-      expect(result.current.problem.level).toBe(1)
-      expect(result.current.session.coach).toBe("hint")
-      expect(result.current.session.needsTransfer).toBe(false)
-      matchCurrent(result)
-      act(() => result.current.next())
-    }
-
-    expect(result.current.problem.level).toBe(2)
-    expect(result.current.session.coach).toBe("closed")
-    act(() => result.current.requestHint())
-    expect(result.current.session.coach).toBe("hint")
+    expect(result.current).not.toHaveProperty("requestHint")
+    expect(result.current).not.toHaveProperty("closeCoach")
+    expect(result.current.session).not.toHaveProperty("coach")
+    expect(result.current.session).not.toHaveProperty("hintLevel")
     expect(result.current.session.needsTransfer).toBe(false)
   })
 
-  it("keeps every currently available Level 5 problem at-level and guided", () => {
+  it("keeps every mixed-practice problem inside the composite chapter", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-5"))
 
     const runLength = result.current.session.runProblemIds.length
     for (let index = 0; index < runLength; index += 1) {
-      expect(result.current.problem.level).toBe(5)
-      expect(result.current.session.coach).toBe("hint")
+      expect(getSyntaxFamily(result.current.problem)).toBeNull()
       matchCurrent(result)
       act(() => result.current.next())
     }
@@ -587,20 +578,26 @@ describe("useLearningSession", () => {
 
   it("restores a Goal-derived starter after migrating a legacy empty high-level draft", () => {
     const storage = new MemoryStorage()
-    const ids = createRunProblemIds("level-5", 0)
-    const currentProblemId = ids[1]!
-    const genuineDraftProblemId = ids[2]!
+    const seededRun = Array.from({ length: 1_000 }, (_, seed) => ({
+      ids: createRunProblemIds("level-5", 0, seed),
+      seed,
+    })).find(({ ids }) => ids.some((id) => getProblem(id).level >= 3))!
+    const { ids, seed } = seededRun
+    const currentProblemId = ids.find((id) => getProblem(id).level >= 3)!
+    const currentIndex = ids.indexOf(currentProblemId)
+    const genuineDraftProblemId = ids.find((id) => id !== currentProblemId)!
     const legacyStarterlessBankRevision = problemBank
       .map((problem) => `${problem.id}@${problem.revision}`)
       .join("|")
     const progress = createDefaultProgress(
       currentProblemId,
       legacyStarterlessBankRevision,
+      seed,
     )
     progress.entryId = "level-5"
     progress.runProblemIds = ids
-    progress.runStepIndex = 1
-    progress.scheduledStepIndex = 1
+    progress.runStepIndex = currentIndex
+    progress.scheduledStepIndex = currentIndex
     progress.runStartedAtMs = 1_000
     progress.draftByProblemId = {
       [currentProblemId]: "",

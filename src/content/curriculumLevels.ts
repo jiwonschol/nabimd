@@ -1,45 +1,46 @@
 import type { CurriculumLevel } from "./types"
+import type { ChapterFamily } from "../selection/runPolicy"
 
 export const curriculumLevels = [
   {
     id: "level-1",
     level: 1,
-    label: "Level 1 — Learn the syntax",
-    taskType: "learn-syntax",
+    label: "Chapter 1 — Headings & emphasis",
+    families: ["heading", "bold", "italic"],
     exerciseMode: "target",
   },
   {
     id: "level-2",
     level: 2,
-    label: "Level 2 — Rebuild real documents",
-    taskType: "rebuild-document",
+    label: "Chapter 2 — Lists",
+    families: ["ordered-list", "unordered-list"],
     exerciseMode: "target",
   },
   {
     id: "level-3",
     level: 3,
-    label: "Level 3 — Write for people",
-    taskType: "write-for-people",
+    label: "Chapter 3 — Links & dividers",
+    families: ["link", "image", "thematic-break"],
     exerciseMode: "target",
   },
   {
     id: "level-4",
     level: 4,
-    label: "Level 4 — Write for work",
-    taskType: "development-spec",
+    label: "Chapter 4 — Code & quotes",
+    families: ["inline-code", "code-block", "blockquote"],
     exerciseMode: "target",
   },
   {
     id: "level-5",
     level: 5,
-    label: "Level 5 — Write for developers",
-    taskType: "agent-work-order",
+    label: "Chapter 5 — Mixed practice",
+    families: ["composite"],
     exerciseMode: "target",
   },
 ] as const satisfies readonly {
   id: string
   level: CurriculumLevel
   label: string
-  taskType: string
+  families: readonly ChapterFamily[]
   exerciseMode: "target"
 }[]

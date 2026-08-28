@@ -5,7 +5,10 @@ import {
   deriveSyntaxCheckpoints,
   projectCheckpointContext,
 } from "../guided/guidedSyntax"
-import { CenterCard } from "./CenterCard"
+import { problemBank } from "../content/problemBank"
+import * as centerCardModule from "./CenterCard"
+
+const { CenterCard } = centerCardModule
 
 function cardProps(
   overrides: Record<string, unknown> = {},
@@ -38,6 +41,57 @@ function cardProps(
 }
 
 describe("CenterCard", () => {
+  it("keeps a syntax name, notation, and rendered example on the learning leaf", () => {
+    render(<CenterCard {...cardProps()} />)
+
+    const reference = screen.getByRole("region", {
+      name: "Current Markdown syntax",
+    })
+    expect(reference).toHaveTextContent("Italic text")
+    expect(reference).toHaveTextContent("* … *")
+    expect(reference.querySelector("em")).toHaveTextContent("Example")
+  })
+
+  it("shows every required mark in a mixed checkpoint example", () => {
+    const target = "- **Changed:** adapter boundary"
+    const checkpoint = deriveSyntaxCheckpoints(
+      target,
+      "Changed: adapter boundary",
+    )[0]!
+    const reference = centerCardModule.buildSyntaxReference(checkpoint)
+
+    expect(reference.name).toBe("Bullet item + Bold text")
+    expect(reference.notation).toBe("-␠ … ** … **")
+    expect(reference.example).toBe(target)
+  })
+
+  it("maps every served problem checkpoint to a concrete syntax reference", () => {
+    const buildSyntaxReference = (
+      centerCardModule as typeof centerCardModule & {
+        buildSyntaxReference?: (
+          checkpoint: ReturnType<typeof deriveSyntaxCheckpoints>[number],
+        ) => { name: string; notation: string; example: string }
+      }
+    ).buildSyntaxReference
+
+    expect(buildSyntaxReference).toBeTypeOf("function")
+    if (!buildSyntaxReference) return
+
+    for (const problem of problemBank) {
+      for (const checkpoint of deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )) {
+        const reference = buildSyntaxReference(checkpoint)
+        expect(reference.name, `${problem.id}:${checkpoint.id}`).not.toBe(
+          "Markdown structure",
+        )
+        expect(reference.notation, `${problem.id}:${checkpoint.id}`).not.toBe("")
+        expect(reference.example, `${problem.id}:${checkpoint.id}`).not.toBe("")
+      }
+    }
+  })
+
   it("renders a direct instruction with only the syntax term emphasized", () => {
     render(<CenterCard {...cardProps()} />)
 

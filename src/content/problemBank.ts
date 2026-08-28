@@ -27,8 +27,8 @@ export const RUNTIME_TARGET_BUDGETS: Readonly<
   1: { maxLines: 5 },
   2: { maxLines: 14 },
   3: { maxLines: 28 },
-  4: { maxLines: 20, maxWords: 120 },
-  5: { maxLines: 20, maxWords: 120 },
+  4: { maxLines: 40, maxWords: 165 },
+  5: { maxLines: 40, maxWords: 165 },
 }
 
 export function withinRuntimeBudget(
@@ -73,6 +73,23 @@ export const flattenedStarterProjectionProblemBankRevision = [
 export const STARTER_PROJECTION_REVISION = 2
 export const problemBankRevision = [
   preStarterProjectionProblemBankRevision,
+  `starter-projection@${STARTER_PROJECTION_REVISION}`,
+].join("|")
+
+// The last runtime before levels became syntax chapters filtered Level 4–5
+// at 20 lines / 120 words. Keep its exact revision derivable from immutable
+// published problems so the one-way progress migration does not depend on a
+// hand-copied hash or accept unrelated stale records.
+export const preChapterProblemBankRevision = [
+  problemBank
+    .filter((problem) => {
+      if (problem.level < 4) return true
+      const lines = problem.target.split("\n").length
+      const words = problem.target.split(/\s+/).filter(Boolean).length
+      return lines <= 20 && words <= 120
+    })
+    .map((problem) => `${problem.id}@${problem.revision}`)
+    .join("|"),
   `starter-projection@${STARTER_PROJECTION_REVISION}`,
 ].join("|")
 

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest"
 import { evaluateProblem } from "../../engine/evaluateProblem"
 import {
   createTurnProblemIds,
+  getChapterFamily,
   getSyntaxFamily,
 } from "../../selection/runComposition"
 import { problemBank } from "../problemBank"
@@ -63,8 +64,10 @@ describe("fenced code-block and rebuild batch 014", () => {
     }
   })
 
-  it("makes every Level 2 variant reachable within one stable session seed", () => {
-    const candidateBank = [...problemBank, ...codeBlockBatch014Problems]
+  it("makes every composite rebuild variant reachable within one stable session seed", () => {
+    const candidateBank = [...problemBank, ...codeBlockBatch014Problems].filter(
+      (problem) => getChapterFamily(problem) === "composite",
+    )
     const batchLevelTwo = codeBlockBatch014Problems.filter(
       (problem) => problem.level === 2,
     )
@@ -74,17 +77,17 @@ describe("fenced code-block and rebuild batch 014", () => {
     for (const seed of Array.from({ length: 256 }, (_, seed) => seed)) {
       const seen = new Set<string>()
       for (let turn = 0; turn < 48; turn += 1) {
-        const selected = createTurnProblemIds(2, turn, candidateBank, seed)
+        const selected = createTurnProblemIds(5, turn, candidateBank, seed)
         for (const id of selected) {
           if (batchIds.has(id)) seen.add(id)
         }
-        const atLevelFamilies = selected
-          .slice(0, 4)
-          .map((id) => byId.get(id)!.retryFamily)
+        const chapterFamilies = selected.map(
+          (id) => byId.get(id)!.retryFamily,
+        )
         expect(
-          atLevelFamilies.every(
+          chapterFamilies.every(
             (family, index) =>
-              index === 0 || family !== atLevelFamilies[index - 1],
+              index === 0 || family !== chapterFamilies[index - 1],
           ),
         ).toBe(true)
       }
