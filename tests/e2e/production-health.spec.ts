@@ -96,7 +96,7 @@ test("production serves the commit this workflow expects", async ({ page }) => {
   ).toBe(expected)
 })
 
-test("production serves the expected six-problem run for every chapter", async ({
+test("production serves the expected five-problem run for every chapter", async ({
   page,
 }) => {
   test.setTimeout(120_000)
@@ -126,7 +126,7 @@ test("production serves the expected six-problem run for every chapter", async (
         `Chapter ${entry.level}`,
       )
 
-      for (let exercise = 0; exercise < 6; exercise += 1) {
+      for (let exercise = 0; exercise < 5; exercise += 1) {
         const problemId =
           await practiceShell(page).getAttribute("data-problem-id")
         expect(
@@ -154,7 +154,7 @@ test("production serves the expected six-problem run for every chapter", async (
         for (const mark of marks) {
           await submitMarks(page, mark)
         }
-        if (exercise < 5) {
+        if (exercise < 4) {
           await expect(practiceShell(page)).not.toHaveAttribute(
             "data-problem-id",
             problemId,
@@ -165,10 +165,10 @@ test("production serves the expected six-problem run for every chapter", async (
       await expect(
         page.getByRole("heading", { name: "Well done." }),
       ).toBeVisible()
-      await expect(page.getByLabel("Score")).toContainText("6 / 6")
+      await expect(page.getByLabel("Score")).toContainText("5 / 5")
       await expect(
         page.getByRole("region", { name: "Your work" }).getByRole("article"),
-      ).toHaveCount(6)
+      ).toHaveCount(5)
     })
   }
 

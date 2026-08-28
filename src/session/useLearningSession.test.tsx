@@ -54,11 +54,11 @@ function renderLearningSession(
 }
 
 describe("useLearningSession", () => {
-  it("finishes a six-problem turn instead of ending after the first Match", () => {
+  it("finishes a five-problem turn instead of ending after the first Match", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))
 
-    for (let index = 0; index < 6; index += 1) {
+    for (let index = 0; index < 5; index += 1) {
       expect(result.current.session.runStepIndex).toBe(index)
       matchCurrent(result)
       act(() => result.current.next())
@@ -644,9 +644,9 @@ describe("useLearningSession", () => {
     expect(restored.result.current.session.runStartedAtMs).toBe(1_000)
     expect(restored.result.current.session.runCompletedAtMs).toBeNull()
 
-    for (let index = 0; index < 6; index += 1) {
+    for (let index = 0; index < 5; index += 1) {
       matchCurrent(restored.result)
-      if (index === 5) nowMs = 16_000
+      if (index === 4) nowMs = 16_000
       act(() => restored.result.current.next())
     }
 

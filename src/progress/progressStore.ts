@@ -15,7 +15,7 @@ import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
-// A browser session cannot legitimately reach this many six-problem turns.
+// A browser session cannot legitimately reach this many five-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
 const MAX_PERSISTED_SYNTAX_MISTAKES = 128

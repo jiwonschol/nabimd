@@ -348,7 +348,7 @@ export function CenterCard({
       <div className="center-card__leaf center-card__leaf--write">
         <header className="center-card__header">
         <div className="center-card__heading">
-          {/* `Step x of 6` in the top bar is the only progress label: the
+          {/* `Step x of 5` in the top bar is the only progress label: the
               marks inside one card never get a second counter. */}
           <h2 className="center-card__instruction">
             {checkpointInstruction.prefix}

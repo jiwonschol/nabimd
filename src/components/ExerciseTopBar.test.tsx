@@ -26,9 +26,9 @@ function renderTopBar(
       phase={phase}
       problemPosition={1}
       runCompletedAtMs={null}
-      runLength={6}
+      runLength={5}
       runStartedAtMs={1_000}
-      scheduledRunLength={6}
+      scheduledRunLength={5}
       scheduledStepIndex={0}
       {...overrides}
     />,
@@ -72,25 +72,25 @@ describe("ExerciseTopBar", () => {
     renderTopBar("editing", {
       currentIsTransfer: true,
       problemPosition: 2,
-      runLength: 7,
+      runLength: 6,
       scheduledStepIndex: 0,
     })
 
-    expect(screen.getAllByRole("listitem", { name: /Step/ })).toHaveLength(6)
+    expect(screen.getAllByRole("listitem", { name: /Step/ })).toHaveLength(5)
     expect(screen.getByRole("listitem", { name: "Step 1, current" })).toHaveAttribute(
       "aria-current",
       "step",
     )
-    expect(screen.queryByText("1 of 6")).toBeNull()
+    expect(screen.queryByText("1 of 5")).toBeNull()
     const progress = screen.getByRole("progressbar")
-    expect(progress).toHaveAccessibleName("Practice progress, 1 of 6")
+    expect(progress).toHaveAccessibleName("Practice progress, 1 of 5")
     expect(progress).toHaveAttribute("aria-valuenow", "1")
-    expect(progress).toHaveAttribute("aria-valuemax", "6")
+    expect(progress).toHaveAttribute("aria-valuemax", "5")
     expect(progress).not.toContainElement(
       screen.getByRole("button", { name: "Mute sound" }),
     )
     expect(screen.getByText("Repair practice")).toBeVisible()
-    expect(screen.getByText("Exercise 2 of 7")).toBeVisible()
+    expect(screen.getByText("Exercise 2 of 6")).toBeVisible()
   })
 
   it("stacks chapter, time, and sound above the rail, ahead of Try another", () => {
