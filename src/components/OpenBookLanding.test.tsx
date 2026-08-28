@@ -5,6 +5,37 @@ import { entryChoices } from "../content/entryChoices"
 import { OpenBookLanding } from "./OpenBookLanding"
 
 describe("OpenBookLanding", () => {
+  it("shows all three levels while keeping incomplete levels unavailable", async () => {
+    const user = userEvent.setup()
+    const onChoose = vi.fn()
+    render(<OpenBookLanding onChoose={onChoose} turningEntryId={null} />)
+
+    const everyday = screen.getByRole("button", {
+      name: "Level 1 — Everyday Markdown",
+    })
+    const useful = screen.getByRole("button", {
+      name: "Level 2 — Useful patterns",
+    })
+    const goodToKnow = screen.getByRole("button", {
+      name: "Level 3 — Good to know",
+    })
+
+    expect(everyday).toBeEnabled()
+    expect(useful).toBeDisabled()
+    expect(goodToKnow).toBeDisabled()
+    expect(screen.getByText("The marks you use most.")).toBeVisible()
+    expect(screen.getByText("Useful combinations and shortcuts.")).toBeVisible()
+    expect(
+      screen.getByText("Less common syntax worth recognizing."),
+    ).toBeVisible()
+
+    await user.click(useful)
+    expect(onChoose).not.toHaveBeenCalled()
+    await user.click(everyday)
+    expect(onChoose).toHaveBeenCalledOnce()
+    expect(onChoose).toHaveBeenCalledWith("level-1")
+  })
+
   it("shows the release identifier and opens the user-facing changelog", async () => {
     const user = userEvent.setup()
     render(
@@ -91,18 +122,19 @@ describe("OpenBookLanding", () => {
     }
     expect(screen.queryByRole("button", { name: /begin|start|continue/i })).toBeNull()
 
+    const availableEntry = entryChoices.find((entry) => entry.available)!
     await user.click(
-      screen.getByRole("button", { name: entryChoices[2].label }),
+      screen.getByRole("button", { name: availableEntry.label }),
     )
     expect(onChoose).toHaveBeenCalledOnce()
-    expect(onChoose).toHaveBeenCalledWith(entryChoices[2].id)
+    expect(onChoose).toHaveBeenCalledWith(availableEntry.id)
   })
 
   it("locks every level while the chosen page is turning", () => {
     render(
       <OpenBookLanding
         onChoose={vi.fn()}
-        turningEntryId={entryChoices[1].id}
+        turningEntryId={entryChoices[0].id}
       />,
     )
 
@@ -111,14 +143,14 @@ describe("OpenBookLanding", () => {
     const buttons = transition.querySelectorAll("button.chapter-entry")
     expect(buttons).toHaveLength(entryChoices.length)
     buttons.forEach((button) => expect(button).toBeDisabled())
-    expect(buttons[1]).toHaveAttribute("aria-current", "true")
+    expect(buttons[0]).toHaveAttribute("aria-current", "true")
   })
 
   it("makes all hidden landing content inert while the page is turning", () => {
     render(
       <OpenBookLanding
         onChoose={vi.fn()}
-        turningEntryId={entryChoices[1].id}
+        turningEntryId={entryChoices[0].id}
       />,
     )
 
