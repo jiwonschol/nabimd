@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-025",
+  "status": "awaiting-independent-review",
+  "candidateCount": 12,
+  "fixtureCount": 144,
+  "passingCandidateCount": 12,
+  "normalizedArtifactDigest": "30d7da74c57e1036b3426706b4ad682aca113c3e87fccc1e5156e0bb5634b98c",
+  "verificationDigest": "29d964154b5b1614a60439fb1c1a49ac43d63f8ce1ba64d5dc2612128f4213b6",
+  "manifestDigest": "324deb9caf747f017b1240c959c31eafdda2883a624c06dbdd83fc64942f8645",
+  "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 372,
+  "preparedSummaryDigest": "bd48746ac63a4a9993382cba2b1f4a1b6a014af730bf08bb236cee03c443c9a7"
+}

@@ -994,6 +994,27 @@ describe("structural match predicates", () => {
     })
   })
 
+  it("can require a link or image destination without grading its prose", () => {
+    const image = problem([
+      {
+        ...common("image-address"),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "image",
+        min: 1,
+        requireNonemptyDestination: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(evaluateProblem(image, "![A blue umbrella]()")).toMatchObject({
+      status: "fail",
+      feedbackId: "image-address",
+    })
+  })
+
   it("matches an ordered block subsequence and can require an exact shape", () => {
     const sequence = [
       { block: "heading", depth: 1 },

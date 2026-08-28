@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-025",
+  "normalizedArtifactDigest": "30d7da74c57e1036b3426706b4ad682aca113c3e87fccc1e5156e0bb5634b98c",
+  "fixtureArtifactDigest": "5f104b2e2e3c05f2ab7098362a121ab9cc4f6b12e41c6823ff4d10a1c0e0cc30",
+  "verificationDigest": "29d964154b5b1614a60439fb1c1a49ac43d63f8ce1ba64d5dc2612128f4213b6",
+  "entries": [
+    {
+      "candidateId": "l1-image-beach-sunrise",
+      "revision": 1,
+      "candidateDigest": "ead90c810d259dd5d8f04c168215abd3b98402b1aee586e4cc32a59d6cd939e6",
+      "problemDigest": "3acf84a309c75b54ba356bc9eae3ffdd987843687733b5de92321011339d6e09",
+      "fixtureDefinitionDigest": "5c7c794c31bd032bcc605f75e68a6914936d485cc650623a2cd1661e9b499c72",
+      "fixtureResultsDigest": "4f82b783cded19ec2b27b78a68e7d3085f20a7cb381624ccc230acfaebf8bb31",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-birthday-cake",
+      "revision": 1,
+      "candidateDigest": "8668e55349edd93e3e3c054281e4f4d00cfc1e61f3162b0897fad1e0e6141d53",
+      "problemDigest": "62c93ba99702873a94cb319ac42e14d08d1c29b0a2ef116075893bbdfe67fd69",
+      "fixtureDefinitionDigest": "935d69365031c6ad9db1a3a80ebfe6a628721f4cd1cbc161d73a3f5f3fd269db",
+      "fixtureResultsDigest": "32b7b9d189d26281d7ce73bf43a529e72794dc539e1533d4bd818971ef907f15",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-city-bus",
+      "revision": 1,
+      "candidateDigest": "cbaeb56c3f95192fa8f9406d2c6e9ed25f069391288a9df4b4d2dd000b5bb7de",
+      "problemDigest": "1ec3d69d7ba933fb8dda5da470d309b134d9267eba6ebb62ac76d077926956ac",
+      "fixtureDefinitionDigest": "21740099b96d4250077d26a8c412285539bda71de75fe5a84ee9bb66d58a265b",
+      "fixtureResultsDigest": "2749057ad803147e83b31e688c83b80fc73c19b7ccd732677899265bd1c62a8f",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-garden-path",
+      "revision": 1,
+      "candidateDigest": "a2856ed662747d557e545752e8a84b8c51013c4f303f4be8b51e81b39cd0e777",
+      "problemDigest": "8fe9f7b1a05541808ac96b9e5943819a5e40a1e7a140a976150a541ef7ee6be8",
+      "fixtureDefinitionDigest": "92f4d418885c5a98bdf3ccdb04756ed86e526cd61969687e785c1b4021ba6f13",
+      "fixtureResultsDigest": "013f2d9db9fd73db18b5ec6485c7057e7f48d889f7e5529e1edd4f03afad4bea",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-hiking-trail",
+      "revision": 1,
+      "candidateDigest": "66b8b58de9ac2f76d22fd75655b62668ae9fd8fc612c66435b5d24d8d7f29ce7",
+      "problemDigest": "f2feb2401e6d78e68a294ee46cfb865d8c513176c3f9416e64beb01b6660c344",
+      "fixtureDefinitionDigest": "9ae401cd6bad3e39cac1b24b0d92496d55c5d45fefdd95ecef8582b2ff52c027",
+      "fixtureResultsDigest": "27e128525e796eb2b2d0a8f729fffeda074639ebac6d0b0a16be94951a426d9d",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-library-corner",
+      "revision": 1,
+      "candidateDigest": "31368846be03938abec07e96a84345551ea6e2b0cee096becb6190c9461a2c46",
+      "problemDigest": "73c9a962d0af7dcf0117819b08183fe7bb429d04603d97228f7d19004790ff8a",
+      "fixtureDefinitionDigest": "44f5ba185267b658a8468f1ee06511e13013d2f6cd205f234f932baa7d3b1385",
+      "fixtureResultsDigest": "c2773a5354a889be99f2270d5f810238e1e54ccfd652407e5d30ca45bb13b603",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-paper-lanterns",
+      "revision": 1,
+      "candidateDigest": "5654355439e5eb315c6fc5c0338aa213cb9a0fb3d23963f2c5754707d603a6b1",
+      "problemDigest": "8e1335deeaea57714a04a43e8a0d73a0b9141363943500278d2b8ad5acc8e3ee",
+      "fixtureDefinitionDigest": "89d7566688778c325ac8f00570e30ceaf08856cd3877793874fe2a5ecbff5c14",
+      "fixtureResultsDigest": "7931b7fa8664917aa106f1783d753a2e89b36a875754345a34dc3a0a03cd9e99",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-picnic-basket",
+      "revision": 1,
+      "candidateDigest": "2757352c43ca86b0ae9249e0434af1a580879f810c574eae81864590d0a4951e",
+      "problemDigest": "cf206e7448f6c0309c545b6078b678fdaacf4f3b78a341743840f52d16715802",
+      "fixtureDefinitionDigest": "c52e998b8cfcd6d03900e9ab7706f4d858ea724578906a53d7028dc0ca7d101e",
+      "fixtureResultsDigest": "919c0331961b26a7e2768a45fdcac74cf5504cfadd2a6fb49090de9c4e9a78be",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-rainy-window",
+      "revision": 1,
+      "candidateDigest": "aa9fcd153d190faada659a549097d4f0889c807d7c25382634787c433df06340",
+      "problemDigest": "829a0ba087204cc643fcfe8588619610ed485bc6f03775226866214a966952e4",
+      "fixtureDefinitionDigest": "9757a784bec317eaa7d79956240bebd71f3a875231f69db320d81378ecac96c2",
+      "fixtureResultsDigest": "8d9a0bd6a46c3454656e9d7bf99dc74ff836c75cf59fe320d65cb1c5e481e5aa",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-red-bicycle",
+      "revision": 1,
+      "candidateDigest": "e42a2dd1037ded0917f5066b8f1efa6ec24b1a314a26a70ee349c3abb8438d4e",
+      "problemDigest": "a7e807f0c498afb7e19120d541dd0e924972b22ff93400dcb5b7d9573ccf7afb",
+      "fixtureDefinitionDigest": "4202ef3646697bf9199ebca48888cf1db1989cb3c9a14ef66080d1d8e6d31ed7",
+      "fixtureResultsDigest": "b4ef349c2e8292f67fcd5b7ed6673e9e7a086d224331c1deba51a5e6e0de1f03",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-sleepy-cat",
+      "revision": 1,
+      "candidateDigest": "7dc7121a3eb2a7ccf2ff87d4bf662bce2926a1319168d63f5323d0f532d44721",
+      "problemDigest": "8d3eb0150dd72da57a4745c47bf09bc2a03af9f7da930cf9dd23375a1616edcf",
+      "fixtureDefinitionDigest": "27dcb3a1160e507020c56fb8f50de1032d7ab0e9a18cd08accb9f7961168ba9a",
+      "fixtureResultsDigest": "407425c887e7183885a616c4cf5d6e9e5701429754ebdbf6f6a5af245bac451f",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    },
+    {
+      "candidateId": "l1-image-soup-bowl",
+      "revision": 1,
+      "candidateDigest": "b050795bacbe1360b7bff268791b3b1cebf1a40ba9c6d96763e2a8f0cb831be1",
+      "problemDigest": "1b04d74eb3ffd9a71883335fc48f808eea7ada93efeb0578c0265a9db54ecf42",
+      "fixtureDefinitionDigest": "06a82fea79e7d8821494dc2721f7cfeaa0754349a9300b68ec3bd0532113023d",
+      "fixtureResultsDigest": "e498879ca4906443b8a148363c69eb4b65c5bb7bb18e94438082feffd4f1f05d",
+      "fixtureCount": 12,
+      "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b"
+    }
+  ],
+  "manifestDigest": "324deb9caf747f017b1240c959c31eafdda2883a624c06dbdd83fc64942f8645"
+}

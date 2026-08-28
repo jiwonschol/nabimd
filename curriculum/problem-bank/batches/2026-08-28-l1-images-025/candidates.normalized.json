@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-023",
+  "batchId": "2026-08-28-l1-images-025",
   "sequence": 23,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-08-28",
-  "promptSha256": "71239eaf67bc2e646b262fe035e0853a99860a4e02cb2589bdd00a2d8a04c834",
-  "rawArtifactDigest": "188405a93e63812cd8b77f4b3a1bc53bf65e54a3116b1d9a164af46adab6904e",
+  "promptSha256": "6d6d1df230670483bd652f31490bc2cef8ef492e55814defcfe35a609048cbaa",
+  "rawArtifactDigest": "8294d79122c642c85e3ad6f711f67806bb5e87d1f3e1a3726adf55dcd215cb16",
   "candidateCount": 12,
   "candidates": [
     {
@@ -46,6 +46,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -85,8 +86,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "beach-sunrise-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "c43342dfd13bb0354bb9680bd5e224c16d0f14e71c17c97f73bf701e95f58a09"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "ead90c810d259dd5d8f04c168215abd3b98402b1aee586e4cc32a59d6cd939e6"
     },
     {
       "id": "l1-image-birthday-cake",
@@ -125,6 +126,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -164,8 +166,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "birthday-cake-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "433b18bb2a182f87c006c5fca15fb453599cdc607ca2d564314737fed9cc72f6"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "8668e55349edd93e3e3c054281e4f4d00cfc1e61f3162b0897fad1e0e6141d53"
     },
     {
       "id": "l1-image-city-bus",
@@ -204,6 +206,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -243,8 +246,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "city-bus-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "57afd6be0c31e807eb91165499bdf1f7455ef84c714295c5f494daccc6a27321"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "cbaeb56c3f95192fa8f9406d2c6e9ed25f069391288a9df4b4d2dd000b5bb7de"
     },
     {
       "id": "l1-image-garden-path",
@@ -283,6 +286,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -322,8 +326,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "garden-path-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "ca10596c7a9b2604d979e8b56b17b0d827623c4c5d8cc952a9ea5f4e0caa1e2a"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "a2856ed662747d557e545752e8a84b8c51013c4f303f4be8b51e81b39cd0e777"
     },
     {
       "id": "l1-image-hiking-trail",
@@ -362,6 +366,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -401,8 +406,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "hiking-trail-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "b577ad4044298c7e7fc8dda306bfdfb0ced8e6835d18decb0558cc0f5dd1e9b9"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "66b8b58de9ac2f76d22fd75655b62668ae9fd8fc612c66435b5d24d8d7f29ce7"
     },
     {
       "id": "l1-image-library-corner",
@@ -441,6 +446,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -480,8 +486,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "library-corner-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "9fd2b3b177b934cfb46bc255ed3446812d21a05a939a5d560a152b93be0c5db4"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "31368846be03938abec07e96a84345551ea6e2b0cee096becb6190c9461a2c46"
     },
     {
       "id": "l1-image-paper-lanterns",
@@ -520,6 +526,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -559,8 +566,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "paper-lanterns-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "e5f70f746c71eaf6c65b29d95eb5e99ede7b9d0210c4ce434eeb324de5b2d07e"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "5654355439e5eb315c6fc5c0338aa213cb9a0fb3d23963f2c5754707d603a6b1"
     },
     {
       "id": "l1-image-picnic-basket",
@@ -599,6 +606,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -638,8 +646,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "picnic-basket-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "e1453966cbc74ccc2311051624b4f61b535ffc14ff02ffbd503fc06728750702"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "2757352c43ca86b0ae9249e0434af1a580879f810c574eae81864590d0a4951e"
     },
     {
       "id": "l1-image-rainy-window",
@@ -678,6 +686,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -717,8 +726,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "rainy-window-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "40c35b23455ed0a2015b45e6b0413feb787c5b4912fab61ac08615ced59dda2d"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "aa9fcd153d190faada659a549097d4f0889c807d7c25382634787c433df06340"
     },
     {
       "id": "l1-image-red-bicycle",
@@ -757,6 +766,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -796,8 +806,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "red-bicycle-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "c20fef2c746ee623ff208379870cb2507db6aa303d8d81ee662ced96ba3fe3bf"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "e42a2dd1037ded0917f5066b8f1efa6ec24b1a314a26a70ee349c3abb8438d4e"
     },
     {
       "id": "l1-image-sleepy-cat",
@@ -836,6 +846,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -875,8 +886,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "sleepy-cat-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "e69b3e13144b83b5f26c70e54bd9a1d388714e064e5576f82a183358da7512af"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "7dc7121a3eb2a7ccf2ff87d4bf662bce2926a1319168d63f5323d0f532d44721"
     },
     {
       "id": "l1-image-soup-bowl",
@@ -915,6 +926,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
         }
@@ -954,9 +966,9 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "soup-bowl-photo",
-      "sourceBatch": "2026-08-28-l1-images-023",
-      "candidateDigest": "14b955efe0836244210452eebadaafc22458a0fe65f3c5a503e5cd1ea30b8183"
+      "sourceBatch": "2026-08-28-l1-images-025",
+      "candidateDigest": "b050795bacbe1360b7bff268791b3b1cebf1a40ba9c6d96763e2a8f0cb831be1"
     }
   ],
-  "artifactDigest": "046d5a4b9be96c8242da664982f80d40c8b209a36c05f8cb35d7ac8b5850783b"
+  "artifactDigest": "30d7da74c57e1036b3426706b4ad682aca113c3e87fccc1e5156e0bb5634b98c"
 }

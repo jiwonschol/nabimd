@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-023",
+  "batchId": "2026-08-28-l1-images-025",
   "fixtures": [
     {
       "id": "l1-image-beach-sunrise-canonical",
@@ -47,6 +47,16 @@
       "source": "![](/photos/divider.png)",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-beach-sunrise-empty-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-beach-sunrise-escaped-image-mark",
@@ -154,6 +164,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-image-birthday-cake-empty-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-birthday-cake-escaped-image-mark",
       "problemId": "l1-image-birthday-cake",
       "problemRevision": 1,
@@ -257,6 +277,16 @@
       "source": "![](/photos/divider.png)",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-city-bus-empty-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-city-bus-escaped-image-mark",
@@ -364,6 +394,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-image-garden-path-empty-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-garden-path-escaped-image-mark",
       "problemId": "l1-image-garden-path",
       "problemRevision": 1,
@@ -467,6 +507,16 @@
       "source": "![](/photos/divider.png)",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-hiking-trail-empty-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-hiking-trail-escaped-image-mark",
@@ -574,6 +624,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-image-library-corner-empty-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-library-corner-escaped-image-mark",
       "problemId": "l1-image-library-corner",
       "problemRevision": 1,
@@ -677,6 +737,16 @@
       "source": "![](/photos/divider.png)",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-paper-lanterns-empty-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-paper-lanterns-escaped-image-mark",
@@ -784,6 +854,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-image-picnic-basket-empty-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-picnic-basket-escaped-image-mark",
       "problemId": "l1-image-picnic-basket",
       "problemRevision": 1,
@@ -887,6 +967,16 @@
       "source": "![](/photos/divider.png)",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-rainy-window-empty-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-rainy-window-escaped-image-mark",
@@ -994,6 +1084,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-image-red-bicycle-empty-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-red-bicycle-escaped-image-mark",
       "problemId": "l1-image-red-bicycle",
       "problemRevision": 1,
@@ -1099,6 +1199,16 @@
       "expectedReviewIds": []
     },
     {
+      "id": "l1-image-sleepy-cat-empty-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-sleepy-cat-escaped-image-mark",
       "problemId": "l1-image-sleepy-cat",
       "problemRevision": 1,
@@ -1202,6 +1312,16 @@
       "source": "![](/photos/divider.png)",
       "expectedStatus": "matched",
       "expectedReviewIds": []
+    },
+    {
+      "id": "l1-image-soup-bowl-empty-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door]()",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-soup-bowl-escaped-image-mark",

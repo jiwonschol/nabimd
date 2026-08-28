@@ -285,6 +285,23 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
               `Problem ${problem.id} check ${check.id} has invalid nonempty-content flag`,
             )
           }
+          if (
+            runtimeCheck.requireNonemptyDestination !== undefined &&
+            typeof runtimeCheck.requireNonemptyDestination !== "boolean"
+          ) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} has invalid nonempty-destination flag`,
+            )
+          }
+          if (
+            runtimeCheck.requireNonemptyDestination === true &&
+            runtimeCheck.inline !== "link" &&
+            runtimeCheck.inline !== "image"
+          ) {
+            errors.push(
+              `Problem ${problem.id} check ${check.id} can only require a destination for links or images`,
+            )
+          }
         }
         break
       case "list-shape": {

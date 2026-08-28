@@ -3,6 +3,7 @@ import type {
   Code,
   Definition,
   Heading,
+  Image,
   InlineCode,
   Link,
   LinkReference,
@@ -101,6 +102,7 @@ function inlinePresencePasses(
     check.scope,
     check.inline,
     check.requireNonemptyContent,
+    check.requireNonemptyDestination,
   )
   return inRange(count, check.min, check.max)
 }
@@ -110,12 +112,19 @@ export function countInlineNodes(
   scope: CheckScope,
   inline: InlineKind,
   requireNonemptyContent = false,
+  requireNonemptyDestination = false,
 ) {
   return descendants(nodesInScope(context, scope) as AstNode[]).filter(
     (node) =>
       node.type === nodeTypeByInline[inline] &&
-      (!requireNonemptyContent || nodeHasVisibleLinkLabel(node, context.source)),
+      (!requireNonemptyContent || nodeHasVisibleLinkLabel(node, context.source)) &&
+      (!requireNonemptyDestination || nodeHasNonemptyDestination(node)),
   ).length
+}
+
+function nodeHasNonemptyDestination(node: AstNode): boolean {
+  if (node.type !== "link" && node.type !== "image") return false
+  return (node as Link | Image).url.trim().length > 0
 }
 
 function headingDepthOrderPasses(context: EvaluationContext) {
