@@ -28,7 +28,7 @@ export default defineConfig({
       "scripts/problem-bank/nestedBulletBatch019Artifacts.gate.ts",
       "scripts/problem-bank/developerFormsBatch020Artifacts.gate.ts",
       "scripts/problem-bank/workplaceNotesBatch021Artifacts.gate.ts",
-      "scripts/problem-bank/imageBatch026Artifacts.gate.ts",
+      "scripts/problem-bank/imageBatch027Artifacts.gate.ts",
       "scripts/problem-bank/runtimeBudget.gate.ts",
     ],
   },

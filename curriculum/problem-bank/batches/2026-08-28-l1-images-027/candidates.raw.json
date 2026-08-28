@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-026",
+  "batchId": "2026-08-28-l1-images-027",
   "sequence": 23,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
@@ -46,7 +46,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -125,7 +125,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -204,7 +204,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -283,7 +283,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -362,7 +362,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -441,7 +441,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -520,7 +520,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -599,7 +599,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -678,7 +678,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -757,7 +757,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -836,7 +836,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -915,7 +915,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [

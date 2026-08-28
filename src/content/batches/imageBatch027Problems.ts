@@ -1,6 +1,6 @@
 import type { NormalizedProblem } from "../types"
 
-export const imageBatch026Id = "2026-08-28-l1-images-026"
+export const imageBatch027Id = "2026-08-28-l1-images-027"
 
 const curriculumVersion = "2026-07-19"
 const documentScope = { kind: "document" } as const
@@ -20,7 +20,7 @@ const hints = [
   "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`",
 ] as const
 
-export type ImageBatch026Input = {
+export type ImageBatch027Input = {
   id: string
   contentVariant: string
   target: string
@@ -29,7 +29,7 @@ export type ImageBatch026Input = {
   terms: readonly [string, string]
 }
 
-export const imageBatch026Inputs: readonly ImageBatch026Input[] = [
+export const imageBatch027Inputs: readonly ImageBatch027Input[] = [
   {
     id: "l1-image-rainy-window",
     contentVariant: "rainy-window-photo",
@@ -140,7 +140,7 @@ export const imageBatch026Inputs: readonly ImageBatch026Input[] = [
   },
 ] as const
 
-function createImageProblem(input: ImageBatch026Input): NormalizedProblem {
+function createImageProblem(input: ImageBatch027Input): NormalizedProblem {
   return {
     id: input.id,
     schemaVersion: 2,
@@ -168,7 +168,7 @@ function createImageProblem(input: ImageBatch026Input): NormalizedProblem {
         requireNonemptyDestination: true,
         priority: 10,
         feedback:
-          "Add a Markdown image with an exclamation mark, description, and image address.",
+          "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty.",
       },
     ],
     editorialChecks: [
@@ -189,12 +189,12 @@ function createImageProblem(input: ImageBatch026Input): NormalizedProblem {
       domains: [input.vocabularyDomain],
       terms: input.terms,
     },
-    sourceBatchId: imageBatch026Id,
+    sourceBatchId: imageBatch027Id,
     revision: 1,
     curriculumVersion,
     contentVariant: input.contentVariant,
   }
 }
 
-export const imageBatch026Problems: readonly NormalizedProblem[] =
-  imageBatch026Inputs.map(createImageProblem)
+export const imageBatch027Problems: readonly NormalizedProblem[] =
+  imageBatch027Inputs.map(createImageProblem)

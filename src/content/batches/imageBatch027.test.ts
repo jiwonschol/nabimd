@@ -1,16 +1,17 @@
 import { describe, expect, it } from "vitest"
 import { evaluateProblem } from "../../engine/evaluateProblem"
+import { buildReviewCorrections } from "../../feedback/reviewCorrections"
 import { deriveSyntaxCheckpoints } from "../../guided/guidedSyntax"
 import { derivePlaintextStarter } from "../plaintextStarter"
 import { problemBank, withinRuntimeBudget } from "../problemBank"
 import type { FixtureRole } from "../types"
 import { validateProblemBank } from "../validateProblemBank"
-import { imageBatch026Fixtures } from "./imageBatch026Fixtures"
+import { imageBatch027Fixtures } from "./imageBatch027Fixtures"
 import {
-  imageBatch026Id,
-  imageBatch026Inputs,
-  imageBatch026Problems,
-} from "./imageBatch026Problems"
+  imageBatch027Id,
+  imageBatch027Inputs,
+  imageBatch027Problems,
+} from "./imageBatch027Problems"
 
 const requiredRoles: readonly FixtureRole[] = [
   "canonical",
@@ -22,21 +23,21 @@ const requiredRoles: readonly FixtureRole[] = [
   "edge-case",
 ]
 
-describe("Level 1 image batch 026", () => {
+describe("Level 1 image batch 027", () => {
   it("adds twelve distinct everyday image exercises", () => {
-    expect(imageBatch026Problems).toHaveLength(12)
-    expect(new Set(imageBatch026Problems.map((problem) => problem.id)).size).toBe(
+    expect(imageBatch027Problems).toHaveLength(12)
+    expect(new Set(imageBatch027Problems.map((problem) => problem.id)).size).toBe(
       12,
     )
     expect(
-      new Set(imageBatch026Problems.map((problem) => problem.contentVariant))
+      new Set(imageBatch027Problems.map((problem) => problem.contentVariant))
         .size,
     ).toBe(12)
     expect(
-      new Set(imageBatch026Problems.map((problem) => problem.target)).size,
+      new Set(imageBatch027Problems.map((problem) => problem.target)).size,
     ).toBe(12)
 
-    for (const problem of imageBatch026Problems) {
+    for (const problem of imageBatch027Problems) {
       expect(problem).toMatchObject({
         schemaVersion: 2,
         level: 1,
@@ -44,7 +45,7 @@ describe("Level 1 image batch 026", () => {
         familyId: "images",
         skillIds: ["inline-image"],
         retryFamily: "level-1-image",
-        sourceBatchId: imageBatch026Id,
+        sourceBatchId: imageBatch027Id,
         revision: 1,
       })
       expect(withinRuntimeBudget(problem), problem.id).toBe(true)
@@ -54,7 +55,7 @@ describe("Level 1 image batch 026", () => {
   it("keeps every alt description meaningful and visible in the starter", () => {
     const bannedGenericAlt = /^(?:img|image|photo|picture)$/i
 
-    for (const [index, problem] of imageBatch026Problems.entries()) {
+    for (const [index, problem] of imageBatch027Problems.entries()) {
       const alt = problem.target.match(/!\[([^\]]*)]\(/)?.[1]
       expect(alt, problem.id).toBeDefined()
       expect(alt!.trim().split(/\s+/).length, problem.id).toBeGreaterThanOrEqual(
@@ -63,13 +64,13 @@ describe("Level 1 image batch 026", () => {
       expect(alt, problem.id).not.toMatch(bannedGenericAlt)
       expect(problem.protectedContent, problem.id).toEqual([])
       expect(derivePlaintextStarter(problem.target), problem.id).toBe(
-        imageBatch026Inputs[index]!.plainText,
+        imageBatch027Inputs[index]!.plainText,
       )
     }
   })
 
   it("creates the existing three image-marker inputs without parser changes", () => {
-    for (const problem of imageBatch026Problems) {
+    for (const problem of imageBatch027Problems) {
       const checkpoints = deriveSyntaxCheckpoints(
         problem.target,
         derivePlaintextStarter(problem.target),
@@ -92,7 +93,7 @@ describe("Level 1 image batch 026", () => {
       problemBank.map((problem) => problem.contentVariant),
     )
 
-    for (const problem of imageBatch026Problems) {
+    for (const problem of imageBatch027Problems) {
       expect(priorIds.has(problem.id), problem.id).toBe(false)
       expect(priorTargets.has(problem.target), problem.id).toBe(false)
       expect(priorVariants.has(problem.contentVariant), problem.id).toBe(false)
@@ -101,11 +102,11 @@ describe("Level 1 image batch 026", () => {
 
   it("binds all required fixture roles and direct match-check evidence", () => {
     expect(
-      validateProblemBank(imageBatch026Problems, imageBatch026Fixtures),
+      validateProblemBank(imageBatch027Problems, imageBatch027Fixtures),
     ).toEqual([])
 
-    for (const problem of imageBatch026Problems) {
-      const fixtures = imageBatch026Fixtures.filter(
+    for (const problem of imageBatch027Problems) {
+      const fixtures = imageBatch027Fixtures.filter(
         (fixture) => fixture.problemId === problem.id,
       )
       for (const role of requiredRoles) {
@@ -125,10 +126,10 @@ describe("Level 1 image batch 026", () => {
 
   it("runs every frozen fixture through the real learner engine", () => {
     const problems = new Map(
-      imageBatch026Problems.map((problem) => [problem.id, problem]),
+      imageBatch027Problems.map((problem) => [problem.id, problem]),
     )
 
-    for (const fixture of imageBatch026Fixtures) {
+    for (const fixture of imageBatch027Fixtures) {
       const result = evaluateProblem(problems.get(fixture.problemId)!, fixture.source)
       expect(result.status, fixture.id).toBe(fixture.expectedStatus)
       if (result.status === "fail") {
@@ -138,6 +139,27 @@ describe("Level 1 image batch 026", () => {
           fixture.expectedReviewIds ?? [],
         )
       }
+    }
+  })
+
+  it("explains that image descriptions and addresses cannot be empty", () => {
+    const problem = imageBatch027Problems[0]!
+
+    for (const source of [
+      "![](https://example.com/images/rainy-window.jpg)",
+      "![Raindrops on the window]()",
+    ]) {
+      const evaluation = evaluateProblem(problem, source)
+      expect(evaluation.status, source).toBe("fail")
+      if (evaluation.status !== "fail") continue
+
+      expect(
+        buildReviewCorrections(problem, evaluation, source)[0]
+          ?.repairInstruction,
+        source,
+      ).toContain(
+        "Neither the description nor the address can be empty.",
+      )
     }
   })
 })

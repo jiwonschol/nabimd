@@ -1,23 +1,23 @@
 import { describe, expect, it } from "vitest"
-import { imageBatch026Fixtures } from "../../src/content/batches/imageBatch026Fixtures"
-import { imageBatch026Problems } from "../../src/content/batches/imageBatch026Problems"
+import { imageBatch027Fixtures } from "../../src/content/batches/imageBatch027Fixtures"
+import { imageBatch027Problems } from "../../src/content/batches/imageBatch027Problems"
 import {
-  buildImageBatch026Artifacts,
-  buildImageBatch026Publication,
-  checkImageBatch026State,
-  publishImageBatch026Artifacts,
-  readCommittedImageBatch026,
-  writeImageBatch026Artifacts,
-} from "./imageBatch026Support"
+  buildImageBatch027Artifacts,
+  buildImageBatch027Publication,
+  checkImageBatch027State,
+  publishImageBatch027Artifacts,
+  readCommittedImageBatch027,
+  writeImageBatch027Artifacts,
+} from "./imageBatch027Support"
 
 const repositoryRoot = process.cwd()
-const computed = await buildImageBatch026Artifacts({ repositoryRoot })
+const computed = await buildImageBatch027Artifacts({ repositoryRoot })
 
-describe("schema-v2 Level 1 image batch 026", () => {
+describe("schema-v2 Level 1 image batch 027", () => {
   it("runs every candidate fixture through the real learner engine", () => {
     expect(computed.normalized.candidateCount).toBe(12)
     expect(computed.fixtureArtifact.fixtures).toHaveLength(
-      imageBatch026Fixtures.length,
+      imageBatch027Fixtures.length,
     )
     expect(computed.regressionVerification.errors).toEqual([])
     expect(computed.regressionVerification.candidates).toHaveLength(12)
@@ -39,7 +39,7 @@ describe("schema-v2 Level 1 image batch 026", () => {
         revision,
       })),
     ).toEqual(
-      imageBatch026Problems
+      imageBatch027Problems
         .map(({ id, revision }) => ({ id, revision }))
         .sort((left, right) => left.id.localeCompare(right.id)),
     )
@@ -57,8 +57,8 @@ describe("schema-v2 Level 1 image batch 026", () => {
   })
 
   it("keeps committed mechanical evidence deterministic", async () => {
-    const committed = await readCommittedImageBatch026({ repositoryRoot })
-    const state = checkImageBatch026State({ computed, committed })
+    const committed = await readCommittedImageBatch027({ repositoryRoot })
+    const state = checkImageBatch027State({ computed, committed })
     expect(
       state.errors.filter((error) => error.includes("deterministic drift")),
     ).toEqual([])
@@ -66,9 +66,9 @@ describe("schema-v2 Level 1 image batch 026", () => {
   })
 
   it("refuses to rewrite evidence after review begins", async () => {
-    const committed = await readCommittedImageBatch026({ repositoryRoot })
+    const committed = await readCommittedImageBatch027({ repositoryRoot })
     if (committed.reviews.length === 0 && committed.editorial === null) {
-      expect(checkImageBatch026State({ computed, committed })).toEqual({
+      expect(checkImageBatch027State({ computed, committed })).toEqual({
         status: "awaiting-independent-review",
         errors: [],
         committedIndependentReviews: 0,
@@ -76,13 +76,13 @@ describe("schema-v2 Level 1 image batch 026", () => {
       return
     }
     await expect(
-      writeImageBatch026Artifacts({ repositoryRoot, computed }),
+      writeImageBatch027Artifacts({ repositoryRoot, computed }),
     ).rejects.toThrow("immutable after review or editorial evidence exists")
   })
 
   it("publishes all twelve only after two reviews and editorial acceptance", async () => {
-    const committed = await readCommittedImageBatch026({ repositoryRoot })
-    const state = checkImageBatch026State({ computed, committed })
+    const committed = await readCommittedImageBatch027({ repositoryRoot })
+    const state = checkImageBatch027State({ computed, committed })
     if (committed.editorial === null) {
       expect([
         "awaiting-independent-review",
@@ -95,7 +95,7 @@ describe("schema-v2 Level 1 image batch 026", () => {
       return
     }
 
-    const publication = buildImageBatch026Publication({ computed, committed })
+    const publication = buildImageBatch027Publication({ computed, committed })
     expect(publication.errors).toEqual([])
     expect(publication.tracker.acceptedTotal).toBe(384)
     expect(publication.tracker.counts.byLevel).toEqual({
@@ -110,10 +110,10 @@ describe("schema-v2 Level 1 image batch 026", () => {
   })
 
   it("keeps publication fail-closed while editorial evidence is absent", async () => {
-    const committed = await readCommittedImageBatch026({ repositoryRoot })
+    const committed = await readCommittedImageBatch027({ repositoryRoot })
     if (committed.editorial !== null) return
     await expect(
-      publishImageBatch026Artifacts({ repositoryRoot, computed }),
+      publishImageBatch027Artifacts({ repositoryRoot, computed }),
     ).rejects.toThrow("requires separate editorial evidence")
   })
 })

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-026",
+  "batchId": "2026-08-28-l1-images-027",
   "sequence": 23,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
   "generatedOn": "2026-08-28",
-  "promptSha256": "9e68ea7a4c7b9479569d530181f8ee74fc75ab75047a7483167ecbe065f50809",
-  "rawArtifactDigest": "80bb30bd417f4dfbb0201d9ba1b89c51b6e3919125d291dbc271492159b8a2d0",
+  "promptSha256": "8a4289c13496c2d0599b8b89d1d63901b2e67ec903999821018c6f5502499522",
+  "rawArtifactDigest": "bc8a1e8d3c5b9d39a6f632267a7aeb7c1fd4ab022e9987446be84bba02cf5a89",
   "candidateCount": 12,
   "candidates": [
     {
@@ -49,7 +49,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -87,8 +87,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "beach-sunrise-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "2c798339130cc0daba191e80be539dd383256b4590b187cebce656423a2d7f0b"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "5d213ece1644b49ad81067c4bfca38582eb027b6b5b8c365bdab877d1503ee07"
     },
     {
       "id": "l1-image-birthday-cake",
@@ -130,7 +130,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -168,8 +168,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "birthday-cake-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "712113961e9329eec31252899950e4e139ac8ab318fa0c190b5406f764a83cb8"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "446b8a44439d365312b4859a411dafd3e66770fd6f545906dc4eca81a88861a7"
     },
     {
       "id": "l1-image-city-bus",
@@ -211,7 +211,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -249,8 +249,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "city-bus-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "e9837cb0d9a1f162bab806d91b117b087b5fd9072469a3b25f196af9fe19b592"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "883e875eaff95d150f6d56af59122df10c2272fc5702b4cb9e69e9ce00de752c"
     },
     {
       "id": "l1-image-garden-path",
@@ -292,7 +292,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -330,8 +330,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "garden-path-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "f33f8e01258c3ccda874a3ca0a910c02ed2a861061b5842a80b8fdc11858a2d2"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "4814441b8776396a34fcaf2897de912139a0359d3ea3cfd90e37541b49788e20"
     },
     {
       "id": "l1-image-hiking-trail",
@@ -373,7 +373,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -411,8 +411,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "hiking-trail-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "16fd13bc4d0ed4216f425058fab04bccadbef1fa79a58866885ae3da6aeb2146"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "b528e94a65fffb9a8a16f3da21169fc5b66ebf263d8c39d8d780788676cf5261"
     },
     {
       "id": "l1-image-library-corner",
@@ -454,7 +454,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -492,8 +492,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "library-corner-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "231c3ffc1266efe7bcef6b897cbb9cd430e3a364ea1548e12f2c8974c4cbd6ff"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "ba46ecae07b2924db42542daff7c59a2afc9e3372bf42d2af4ba60217f906e06"
     },
     {
       "id": "l1-image-paper-lanterns",
@@ -535,7 +535,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -573,8 +573,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "paper-lanterns-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "5e97a467d167747355e95692eba7bc59da288d539ca2a8067311222dc5cb1999"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "6e732ccbadcdf8fa2bb939ea5d8651650c3f32ca47072cd818569142518aedb6"
     },
     {
       "id": "l1-image-picnic-basket",
@@ -616,7 +616,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -654,8 +654,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "picnic-basket-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "3cce6cdad9e6e14fbd9a5d6de5f965d128b3dae097c0629b2c1dac6f30501dc4"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "716896c3053e05292e08611bbb58160bf4e932adeb66c831ae2894855a13ada0"
     },
     {
       "id": "l1-image-rainy-window",
@@ -697,7 +697,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -735,8 +735,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "rainy-window-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "6483316d8481cdf806c52fa1a09085f8644dc4cbecb769560f07254c4d04845b"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "c3297af8ceca54985500eb3747d88ac0850b06d6ad101693d966960d104cf08d"
     },
     {
       "id": "l1-image-red-bicycle",
@@ -778,7 +778,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -816,8 +816,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "red-bicycle-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "d6b40719bb531f276233a50ea104c4be140f237925f596710128add96ab61b5c"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "ef8a47a703038822584ab8853bd53eb38ba2a44c5f96b1bde060d00854cc6124"
     },
     {
       "id": "l1-image-sleepy-cat",
@@ -859,7 +859,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -897,8 +897,8 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "sleepy-cat-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "e8522b498e21217fdb9a79ed7c0fcbc78443d0163b8d5bbb76b6db3c79c135aa"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "d288ce99eeac181b2ad0f0237d94fdb0e72be49b723122ae180bbd7d84efcc23"
     },
     {
       "id": "l1-image-soup-bowl",
@@ -940,7 +940,7 @@
           "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
-          "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
+          "feedback": "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Neither the description nor the address can be empty."
         }
       ],
       "editorialChecks": [
@@ -978,9 +978,9 @@
       "revision": 1,
       "curriculumVersion": "2026-07-19",
       "contentVariant": "soup-bowl-photo",
-      "sourceBatch": "2026-08-28-l1-images-026",
-      "candidateDigest": "22507868ee09363d6ab95a55fd0d4f18d8c6266e4384aa4ae02ee7bf503c25a5"
+      "sourceBatch": "2026-08-28-l1-images-027",
+      "candidateDigest": "35b961605d6de5cc211bada67184f89357c2d319e62ad54c6230e12a1e306231"
     }
   ],
-  "artifactDigest": "64a83b8b332a6699e113eae71ed85b590bbb394e377edc120202f73d78613b49"
+  "artifactDigest": "03a2bafb58b4f94f8d6af006985c282982cfcca443ddc8371928ca198df8397b"
 }
