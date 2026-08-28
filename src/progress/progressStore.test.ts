@@ -178,6 +178,48 @@ describe("progressStore v5", () => {
     })
   })
 
+  it("does not restart a completed run during schedule migration", () => {
+    const completedProblemIds = [
+      "l1-blockquote-book-by-lamp",
+      "l1-blockquote-bring-keys",
+      "l1-blockquote-bus-arrival",
+      "l1-blockquote-call-when-home",
+      "l1-blockquote-close-back-door",
+      "l1-blockquote-dinner-table",
+    ]
+    const completedSixCardProgress = {
+      ...createDefaultProgress(completedProblemIds.at(-1)!),
+      entryId: "level-1",
+      runProblemIds: completedProblemIds,
+      runStepIndex: completedProblemIds.length,
+      scheduledStepIndex: completedProblemIds.length,
+      currentProblemId: completedProblemIds.at(-1),
+      draftByProblemId: {
+        "l1-blockquote-bus-arrival": "# keep the completed draft",
+      },
+      completedProblemIds,
+      recentProblemIds: completedProblemIds,
+      runStartedAtMs: 1_000,
+      runCompletedAtMs: 9_000,
+    }
+    const { runScheduleRevision: _revision, ...legacyProgress } =
+      completedSixCardProgress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded).toEqual({
+      ...createDefaultProgress(problemBank[0].id),
+      draftByProblemId: {
+        "l1-blockquote-bus-arrival": "# keep the completed draft",
+      },
+    })
+  })
+
   it("regenerates a revision-mismatched run while preserving its entry and drafts", () => {
     const draftProblemId = "l1-heading-apple"
     const legacyProgress = {

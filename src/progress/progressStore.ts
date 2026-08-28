@@ -514,6 +514,13 @@ function migrateRunScheduleRevision(
   )
   const draftByProblemId = recoverValidDrafts(value, validProblemIds)
 
+  if (
+    value.runCompletedAtMs !== null &&
+    value.runCompletedAtMs !== undefined
+  ) {
+    return { ...fallback, draftByProblemId }
+  }
+
   if (value.entryId === null) {
     return {
       ...value,
