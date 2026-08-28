@@ -67,5 +67,7 @@
   --panel-header-height: 64px;
   --practice-topbar-height: 108px;
   --motion: 180ms;
+  --problem-transition-duration: 250ms;
+  --verdict-beat-duration: 900ms;
   --page-turn-duration: 720ms;
 }

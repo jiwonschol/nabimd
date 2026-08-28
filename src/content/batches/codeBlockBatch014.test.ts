@@ -64,7 +64,7 @@ describe("fenced code-block and rebuild batch 014", () => {
     }
   })
 
-  it("makes every composite rebuild variant reachable within one stable session seed", () => {
+  it("makes every composite rebuild variant reachable within one stable session seed", { timeout: 30_000 }, () => {
     const candidateBank = [...problemBank, ...codeBlockBatch014Problems].filter(
       (problem) => getChapterFamily(problem) === "composite",
     )

@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react"
-import { beforeEach, describe, expect, it, vi } from "vitest"
+import { act, fireEvent, render, screen } from "@testing-library/react"
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import { getProblem } from "../content/problemBank"
 import { resetCenterCardMemoryForTests } from "../guided/useCenterCard"
 import { CardFirstPractice } from "./CardFirstPractice"
@@ -9,6 +9,11 @@ const problem = getProblem("l1-italic-paper-boat")
 describe("CardFirstPractice", () => {
   beforeEach(() => {
     resetCenterCardMemoryForTests()
+  })
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+    vi.useRealTimers()
   })
 
   it("uses one centered card instead of Goal and answer pages", () => {
@@ -51,5 +56,82 @@ describe("CardFirstPractice", () => {
     fireEvent.keyDown(document.activeElement ?? firstBox, { key: "Enter" })
 
     expect(onGrow).toHaveBeenCalledWith("*Paper boat*")
+  })
+
+  it("animates the card height while the exact Hint opens", () => {
+    vi.useFakeTimers()
+    render(
+      <CardFirstPractice
+        draft=""
+        interactive
+        onComplete={vi.fn()}
+        onGrow={vi.fn()}
+        onMiss={vi.fn()}
+        problem={problem}
+        problemCompleted={false}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Hint" }))
+    const practice = screen.getByLabelText("Markdown syntax practice").parentElement
+    expect(practice).toHaveAttribute("data-transition", "height")
+
+    act(() => vi.advanceTimersByTime(249))
+    expect(practice).toHaveAttribute("data-transition", "height")
+    act(() => vi.advanceTimersByTime(1))
+    expect(practice).not.toHaveAttribute("data-transition")
+  })
+
+  it("reverses an interrupted Hint transition from its rendered height", () => {
+    vi.useFakeTimers()
+    vi.spyOn(HTMLElement.prototype, "scrollHeight", "get").mockImplementation(
+      function (this: HTMLElement) {
+        if (!this.classList.contains("card-practice")) return 0
+        const naturalHeight = this.querySelector(".center-card__exact-hint")
+          ? 300
+          : 200
+        return Math.max(naturalHeight, Number.parseFloat(this.style.height) || 0)
+      },
+    )
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        const height =
+          this.classList.contains("card-practice") &&
+          this.dataset.transition === "height"
+            ? 250
+            : Number.parseFloat(this.style.height) || this.scrollHeight
+        return {
+          bottom: height,
+          height,
+          left: 0,
+          right: 0,
+          top: 0,
+          width: 0,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }
+      },
+    )
+
+    render(
+      <CardFirstPractice
+        draft=""
+        interactive
+        onComplete={vi.fn()}
+        onGrow={vi.fn()}
+        onMiss={vi.fn()}
+        problem={problem}
+        problemCompleted={false}
+      />,
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Hint" }))
+    const practice = screen.getByLabelText("Markdown syntax practice").parentElement!
+    expect(practice.style.height).toBe("300px")
+
+    fireEvent.click(screen.getByRole("button", { name: "Close hint" }))
+    expect(practice.style.height).toBe("200px")
+    expect(practice).toHaveAttribute("data-transition", "height")
   })
 })

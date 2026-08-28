@@ -430,11 +430,7 @@ button:focus-visible,
   animation: release-summary-running-head 240ms ease-out both;
 }
 
-.summary-page-turn-overlay .cbt-workspace {
-  background: transparent;
-}
-
-.summary-page-turn-overlay .cbt-panel {
+.summary-page-turn-overlay .center-card__leaf {
   background-color: var(--book-paper);
   background-image: url("/images/nabi-book-paper.png");
   background-repeat: repeat;
@@ -442,13 +438,13 @@ button:focus-visible,
   will-change: opacity, transform;
 }
 
-.summary-page-turn-overlay .cbt-panel:nth-of-type(1) {
+.summary-page-turn-overlay .center-card__leaf--read {
   animation: release-summary-left-page var(--page-turn-duration)
     cubic-bezier(0.32, 0, 0.67, 0) both;
   transform-origin: right center;
 }
 
-.summary-page-turn-overlay .cbt-panel:nth-of-type(2) {
+.summary-page-turn-overlay .center-card__leaf--write {
   position: relative;
   z-index: 2;
   animation: turn-summary-page-forward var(--page-turn-duration)
@@ -788,13 +784,8 @@ button:focus-visible,
     --page-turn-duration: 120ms;
   }
 
-  .open-book-shell--turning .open-book-page--intro,
   .open-book-shell--turning .open-book-page--chapters {
-    animation-duration: 120ms;
-  }
-
-  .open-book-shell--turning .open-book-page--chapters {
-    animation-name: release-left-page;
+    animation: summary-overlay-fade 120ms ease-out both;
   }
 
   .page-turn-stage--active .page-turn-receiver {
@@ -1097,40 +1088,6 @@ button:focus-visible,
   color: var(--ink);
 }
 
-.cbt-workspace {
-  --panel-header-height: 104px;
-  --panel-controls-height: 64px;
-  --sheet-row-height: 40px;
-  --sheet-gutter-offset: clamp(2rem, 4vw, 3rem);
-  --sheet-gutter-width: 3.25rem;
-  --sheet-text-gap: 0.75rem;
-
-  align-self: stretch;
-  width: min(100%, 104rem);
-  height: 100%;
-  gap: 0;
-  min-width: 0;
-  min-height: 0;
-  margin: 0 auto;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  border-radius: 1px 1px 9px 9px;
-  background: transparent;
-}
-
-.cbt-workspace.open-book-shell {
-  font-family: var(--sans);
-}
-
-.cbt-panel {
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-  border: 0;
-  background: transparent;
-}
-
 .goal-panel {
   position: relative;
   display: flex;
@@ -1143,29 +1100,6 @@ button:focus-visible,
   display: grid;
   grid-template-rows: var(--panel-header-height) minmax(0, 1fr);
   box-shadow: none;
-}
-
-.cbt-panel__header {
-  display: flex;
-  min-height: var(--panel-header-height);
-  flex: 0 0 var(--panel-header-height);
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  padding: 0 clamp(2.1rem, 5vw, 5.2rem);
-  border-bottom: 0;
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 680;
-  letter-spacing: 0.14em;
-  line-height: 1.35;
-  text-transform: uppercase;
-}
-
-.goal-panel > .cbt-panel__header {
-  justify-content: flex-start;
-  padding-right: 52px;
-  padding-left: calc(42px + 57px + 23px);
 }
 
 .goal-panel__instruction {
@@ -1688,10 +1622,17 @@ button:focus-visible,
   padding: 0;
   overflow: auto;
   place-items: stretch;
+  transition: height var(--problem-transition-duration)
+    cubic-bezier(0.22, 0.72, 0.2, 1);
 }
 
 .card-practice[aria-disabled="true"] {
   pointer-events: none;
+}
+
+.card-practice[data-transition="problem"] .center-card {
+  animation: problem-card-in var(--problem-transition-duration)
+    cubic-bezier(0.22, 0.72, 0.2, 1) both;
 }
 
 .center-card {
@@ -2759,7 +2700,7 @@ button:focus-visible,
   border: 1px solid;
   background: rgba(255, 255, 255, 0.96);
   text-align: center;
-  animation: verdict-in-out 1600ms ease both;
+  animation: verdict-in-out var(--verdict-beat-duration) ease both;
 }
 
 .verdict-notice--matched {
@@ -3451,6 +3392,26 @@ button:focus-visible,
   }
 }
 
+@keyframes problem-card-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes problem-card-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes verdict-hold-in {
   0% {
     opacity: 0;
@@ -3532,21 +3493,6 @@ button:focus-visible,
 
   .top-action--primary {
     width: clamp(7.5rem, 13vw, 8rem);
-  }
-
-  .cbt-workspace {
-    --panel-header-height: 104px;
-    --sheet-row-height: 36px;
-  }
-
-  .cbt-workspace.open-book-shell {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: minmax(0, 1fr);
-  }
-
-  .goal-panel > .cbt-panel__header {
-    padding-right: 28px;
-    padding-left: calc(24px + 48px + 16px);
   }
 
   .goal-panel__instruction {
@@ -3775,41 +3721,14 @@ button:focus-visible,
     min-height: 52px;
   }
 
-  .cbt-workspace.open-book-shell {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    padding: 0;
-  }
-
-  .summary-page-turn-overlay .cbt-workspace {
+  .summary-page-turn-overlay .card-practice {
     animation: summary-overlay-fade var(--page-turn-duration) ease-out both;
   }
 
-  .summary-page-turn-overlay .cbt-panel:nth-of-type(1),
-  .summary-page-turn-overlay .cbt-panel:nth-of-type(2) {
+  .summary-page-turn-overlay .center-card__leaf--read,
+  .summary-page-turn-overlay .center-card__leaf--write {
     animation: none;
     transform: none;
-  }
-
-  .cbt-workspace {
-    --panel-header-height: 88px;
-    --panel-controls-height: 48px;
-  }
-
-  .cbt-workspace.open-book-shell::after {
-    display: none;
-  }
-
-  .cbt-workspace .goal-panel {
-    border-bottom: 1px solid var(--book-line);
-    box-shadow: none;
-  }
-
-  .cbt-workspace .answer-panel {
-    border-left: 0;
-    box-shadow: none;
   }
 
   .rendered-document__body {
@@ -3941,14 +3860,6 @@ button:focus-visible,
     background-size: 100% 100%;
   }
 
-  .cbt-workspace.open-book-shell {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: minmax(0, 1fr);
-  }
-
-  .cbt-workspace .goal-panel {
-    border-bottom: 0;
-  }
 }
 
 @media (max-width: 620px) {
@@ -3990,11 +3901,6 @@ button:focus-visible,
     font-size: 0.92rem;
   }
 
-  .goal-panel > .cbt-panel__header {
-    padding-right: 1.5rem;
-    padding-left: calc(3.25rem + 1.5rem);
-  }
-
   .answer-hint__coaching {
     grid-template-columns: 1fr auto;
   }
@@ -4028,37 +3934,47 @@ button:focus-visible,
   *::after {
     scroll-behavior: auto !important;
     animation-delay: 0ms !important;
-    animation-duration: 1ms !important;
+    animation-duration: 120ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important;
+    transition-duration: 0ms !important;
   }
 
-  .verdict-notice {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    animation: none !important;
+  .card-practice {
+    transition: none !important;
+  }
+
+  .verdict-notice:not(.verdict-notice--holding) {
+    animation: problem-card-fade-in 120ms ease-out both !important;
   }
 
   .verdict-notice--holding {
+    opacity: 1;
     transform: translateX(-50%);
+    animation: none !important;
+  }
+
+  .card-practice[data-transition="problem"] .center-card {
+    animation: problem-card-fade-in 120ms ease-out both !important;
   }
 
   .summary-page-turn-overlay {
     animation: summary-overlay-fade 120ms ease-out both !important;
   }
 
-  .summary-page-turn-overlay .cbt-panel {
+  .summary-page-turn-overlay .center-card__leaf {
     animation: none !important;
     transform: none;
   }
 
   .summary-ink {
-    animation: summary-ink-reveal 120ms ease-out both !important;
+    transform: none;
+    animation: problem-card-fade-in 120ms ease-out both !important;
     animation-play-state: running !important;
   }
 
   .run-summary__title::after {
-    animation: summary-line-draw 120ms ease-out both !important;
+    transform: none;
+    animation: none !important;
     animation-play-state: running !important;
   }
 
