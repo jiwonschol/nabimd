@@ -1,126 +1,126 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-025",
-  "engineContractDigest": "f1820f0f2c424821365f820cbfcfb617972424581451db8b2a72263ade3f9a8b",
+  "batchId": "2026-08-28-l1-images-026",
+  "engineContractDigest": "e2d440530f5ae6ac7f7aeb9af4f5b6e8c85259918d22cd8b4f0bba6a8e8d1889",
   "candidates": [
     {
       "candidateId": "l1-image-beach-sunrise",
       "revision": 1,
-      "candidateDigest": "ead90c810d259dd5d8f04c168215abd3b98402b1aee586e4cc32a59d6cd939e6",
-      "problemDigest": "3acf84a309c75b54ba356bc9eae3ffdd987843687733b5de92321011339d6e09",
-      "fixtureDefinitionDigest": "5c7c794c31bd032bcc605f75e68a6914936d485cc650623a2cd1661e9b499c72",
-      "fixtureResultsDigest": "4f82b783cded19ec2b27b78a68e7d3085f20a7cb381624ccc230acfaebf8bb31",
-      "fixtureCount": 12,
+      "candidateDigest": "2c798339130cc0daba191e80be539dd383256b4590b187cebce656423a2d7f0b",
+      "problemDigest": "00a5220b1d6fd512fcd59942c2d51ec0acc13148a4f6c5e645363b66527aded1",
+      "fixtureDefinitionDigest": "34e7084ecf599515cf6ef47b6cde36cb72ef88409d4238534d22e2cdec054280",
+      "fixtureResultsDigest": "e74a1f55cc31792b07972bdfdabc7b6b51133fab1279465882566f9e0421e80d",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-birthday-cake",
       "revision": 1,
-      "candidateDigest": "8668e55349edd93e3e3c054281e4f4d00cfc1e61f3162b0897fad1e0e6141d53",
-      "problemDigest": "62c93ba99702873a94cb319ac42e14d08d1c29b0a2ef116075893bbdfe67fd69",
-      "fixtureDefinitionDigest": "935d69365031c6ad9db1a3a80ebfe6a628721f4cd1cbc161d73a3f5f3fd269db",
-      "fixtureResultsDigest": "32b7b9d189d26281d7ce73bf43a529e72794dc539e1533d4bd818971ef907f15",
-      "fixtureCount": 12,
+      "candidateDigest": "712113961e9329eec31252899950e4e139ac8ab318fa0c190b5406f764a83cb8",
+      "problemDigest": "61746233ca2809b999ccc01244879ac3a76cc2d719dd614c986b9961d9baf009",
+      "fixtureDefinitionDigest": "768171f1d55bea683565d33e3fb7c0c545c3711ad7dbed6f024824e2e3de49c2",
+      "fixtureResultsDigest": "a75d664a86f7a293b120eb525876d51464ea2870a26663c911ca6027c8d05426",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-city-bus",
       "revision": 1,
-      "candidateDigest": "cbaeb56c3f95192fa8f9406d2c6e9ed25f069391288a9df4b4d2dd000b5bb7de",
-      "problemDigest": "1ec3d69d7ba933fb8dda5da470d309b134d9267eba6ebb62ac76d077926956ac",
-      "fixtureDefinitionDigest": "21740099b96d4250077d26a8c412285539bda71de75fe5a84ee9bb66d58a265b",
-      "fixtureResultsDigest": "2749057ad803147e83b31e688c83b80fc73c19b7ccd732677899265bd1c62a8f",
-      "fixtureCount": 12,
+      "candidateDigest": "e9837cb0d9a1f162bab806d91b117b087b5fd9072469a3b25f196af9fe19b592",
+      "problemDigest": "8db98b0594cca6fe8d2b211feba1815c5f398a22153c2920750baa5f1b7cc791",
+      "fixtureDefinitionDigest": "0a228ed627d860405e9a8074a7d10af97910bdd8649af2a4c2a7a9d2252184eb",
+      "fixtureResultsDigest": "f123194dc50260b45855a53563315831924cd652b28ec02039427ce39ec00e29",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-garden-path",
       "revision": 1,
-      "candidateDigest": "a2856ed662747d557e545752e8a84b8c51013c4f303f4be8b51e81b39cd0e777",
-      "problemDigest": "8fe9f7b1a05541808ac96b9e5943819a5e40a1e7a140a976150a541ef7ee6be8",
-      "fixtureDefinitionDigest": "92f4d418885c5a98bdf3ccdb04756ed86e526cd61969687e785c1b4021ba6f13",
-      "fixtureResultsDigest": "013f2d9db9fd73db18b5ec6485c7057e7f48d889f7e5529e1edd4f03afad4bea",
-      "fixtureCount": 12,
+      "candidateDigest": "f33f8e01258c3ccda874a3ca0a910c02ed2a861061b5842a80b8fdc11858a2d2",
+      "problemDigest": "c7bc480ef1f6f4a26f4c2bcb8d05f9d6fe86c9067fc762509d66bce00f5d9c7d",
+      "fixtureDefinitionDigest": "46e746f70c2bc054f088e4adb3d1e9acfa7a5702dd83580a0dbe61c3bf3506ca",
+      "fixtureResultsDigest": "0ffc3095838fa02ea6594a507d697501d063f4a8d87b47d9e1165380d5a58f0b",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-hiking-trail",
       "revision": 1,
-      "candidateDigest": "66b8b58de9ac2f76d22fd75655b62668ae9fd8fc612c66435b5d24d8d7f29ce7",
-      "problemDigest": "f2feb2401e6d78e68a294ee46cfb865d8c513176c3f9416e64beb01b6660c344",
-      "fixtureDefinitionDigest": "9ae401cd6bad3e39cac1b24b0d92496d55c5d45fefdd95ecef8582b2ff52c027",
-      "fixtureResultsDigest": "27e128525e796eb2b2d0a8f729fffeda074639ebac6d0b0a16be94951a426d9d",
-      "fixtureCount": 12,
+      "candidateDigest": "16fd13bc4d0ed4216f425058fab04bccadbef1fa79a58866885ae3da6aeb2146",
+      "problemDigest": "ad0b31781fcc7b5c09ad1a186436f91233889ede40866e2aa033e19dc4688105",
+      "fixtureDefinitionDigest": "dfbe152079a8f84f073c6b17ba227ab6660e655ac088118cc8ad20503a326a18",
+      "fixtureResultsDigest": "2079ff853976ce3f3b758a15d5757ede0663eceaad7541a353670c73dcacc71f",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-library-corner",
       "revision": 1,
-      "candidateDigest": "31368846be03938abec07e96a84345551ea6e2b0cee096becb6190c9461a2c46",
-      "problemDigest": "73c9a962d0af7dcf0117819b08183fe7bb429d04603d97228f7d19004790ff8a",
-      "fixtureDefinitionDigest": "44f5ba185267b658a8468f1ee06511e13013d2f6cd205f234f932baa7d3b1385",
-      "fixtureResultsDigest": "c2773a5354a889be99f2270d5f810238e1e54ccfd652407e5d30ca45bb13b603",
-      "fixtureCount": 12,
+      "candidateDigest": "231c3ffc1266efe7bcef6b897cbb9cd430e3a364ea1548e12f2c8974c4cbd6ff",
+      "problemDigest": "aab656303eb9ec25dc94d06767a182e554bd9fc97b6ac7dd7a8c0f56932d99fa",
+      "fixtureDefinitionDigest": "37299fea7ca6dd130053a5c505dead71644211bc26694fdf7fdd1bef2d0dad2c",
+      "fixtureResultsDigest": "0400865df211e471f1d6d6e8ae9b1841fee08e5c5c8af67e02b63a9e8e199389",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-paper-lanterns",
       "revision": 1,
-      "candidateDigest": "5654355439e5eb315c6fc5c0338aa213cb9a0fb3d23963f2c5754707d603a6b1",
-      "problemDigest": "8e1335deeaea57714a04a43e8a0d73a0b9141363943500278d2b8ad5acc8e3ee",
-      "fixtureDefinitionDigest": "89d7566688778c325ac8f00570e30ceaf08856cd3877793874fe2a5ecbff5c14",
-      "fixtureResultsDigest": "7931b7fa8664917aa106f1783d753a2e89b36a875754345a34dc3a0a03cd9e99",
-      "fixtureCount": 12,
+      "candidateDigest": "5e97a467d167747355e95692eba7bc59da288d539ca2a8067311222dc5cb1999",
+      "problemDigest": "4f7fa0b88be1294ee2459cf348701dbbb7b1099c072e77f9228301e9a19414c9",
+      "fixtureDefinitionDigest": "8613cb3c4ab5c108d172296672d76c0e1a92af53b7dbbe813678cd8db121383d",
+      "fixtureResultsDigest": "324f3dd688839a98b591d497d60a3017aa58f9bfc886994e9fd594da04697f75",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-picnic-basket",
       "revision": 1,
-      "candidateDigest": "2757352c43ca86b0ae9249e0434af1a580879f810c574eae81864590d0a4951e",
-      "problemDigest": "cf206e7448f6c0309c545b6078b678fdaacf4f3b78a341743840f52d16715802",
-      "fixtureDefinitionDigest": "c52e998b8cfcd6d03900e9ab7706f4d858ea724578906a53d7028dc0ca7d101e",
-      "fixtureResultsDigest": "919c0331961b26a7e2768a45fdcac74cf5504cfadd2a6fb49090de9c4e9a78be",
-      "fixtureCount": 12,
+      "candidateDigest": "3cce6cdad9e6e14fbd9a5d6de5f965d128b3dae097c0629b2c1dac6f30501dc4",
+      "problemDigest": "5df0ee502aa5cd3cd833aa737c742c3853bec6de42ea0aab7dc3b78a725ea1aa",
+      "fixtureDefinitionDigest": "46a11b88236c0270c1a307973413dbe0927907e13dcb00c0538d2bc166d6d6f1",
+      "fixtureResultsDigest": "34e8e977005e51692d50bb078605d1d44014721933635d0fc1f508aaf9ae9667",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-rainy-window",
       "revision": 1,
-      "candidateDigest": "aa9fcd153d190faada659a549097d4f0889c807d7c25382634787c433df06340",
-      "problemDigest": "829a0ba087204cc643fcfe8588619610ed485bc6f03775226866214a966952e4",
-      "fixtureDefinitionDigest": "9757a784bec317eaa7d79956240bebd71f3a875231f69db320d81378ecac96c2",
-      "fixtureResultsDigest": "8d9a0bd6a46c3454656e9d7bf99dc74ff836c75cf59fe320d65cb1c5e481e5aa",
-      "fixtureCount": 12,
+      "candidateDigest": "6483316d8481cdf806c52fa1a09085f8644dc4cbecb769560f07254c4d04845b",
+      "problemDigest": "f413a527b441711d6312530e31dd417eab973a49f256ee9f85839f2e93099df7",
+      "fixtureDefinitionDigest": "1cdc2b2ebcd9d57d1627759e41572cdc9d94e1d3b7704ba0c5265a918eec2d05",
+      "fixtureResultsDigest": "cd4d207c12e01f1daf51bcd777d2253399d43a4fc8c1b8adee85a9f638791baf",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-red-bicycle",
       "revision": 1,
-      "candidateDigest": "e42a2dd1037ded0917f5066b8f1efa6ec24b1a314a26a70ee349c3abb8438d4e",
-      "problemDigest": "a7e807f0c498afb7e19120d541dd0e924972b22ff93400dcb5b7d9573ccf7afb",
-      "fixtureDefinitionDigest": "4202ef3646697bf9199ebca48888cf1db1989cb3c9a14ef66080d1d8e6d31ed7",
-      "fixtureResultsDigest": "b4ef349c2e8292f67fcd5b7ed6673e9e7a086d224331c1deba51a5e6e0de1f03",
-      "fixtureCount": 12,
+      "candidateDigest": "d6b40719bb531f276233a50ea104c4be140f237925f596710128add96ab61b5c",
+      "problemDigest": "5dfe452fc9832c4ec8e470416449d7312d3b27f2879fa1894759f72410c4e758",
+      "fixtureDefinitionDigest": "64a7386e105a55f4d8bb2133fbbc1c739ea57385a54c88cd7d3cd8026a3fa93e",
+      "fixtureResultsDigest": "28fa4848a76f4933f84b4bc6418e1c546b3a9fb6a0d1f2577dd571c8da737184",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-sleepy-cat",
       "revision": 1,
-      "candidateDigest": "7dc7121a3eb2a7ccf2ff87d4bf662bce2926a1319168d63f5323d0f532d44721",
-      "problemDigest": "8d3eb0150dd72da57a4745c47bf09bc2a03af9f7da930cf9dd23375a1616edcf",
-      "fixtureDefinitionDigest": "27dcb3a1160e507020c56fb8f50de1032d7ab0e9a18cd08accb9f7961168ba9a",
-      "fixtureResultsDigest": "407425c887e7183885a616c4cf5d6e9e5701429754ebdbf6f6a5af245bac451f",
-      "fixtureCount": 12,
+      "candidateDigest": "e8522b498e21217fdb9a79ed7c0fcbc78443d0163b8d5bbb76b6db3c79c135aa",
+      "problemDigest": "ec2069a2949766d6a5f132253d3ef409b5a6cf54411f33942b90d4f7c8da5b67",
+      "fixtureDefinitionDigest": "423dbd1f9b2a3fe30a4898d3bdfbc2bd8784dd8624193ddeb52b54f8aaf1fd88",
+      "fixtureResultsDigest": "17e756a283d4380027da59b2682f31f26453725ecbe6fc1621d592640552a910",
+      "fixtureCount": 14,
       "passed": true
     },
     {
       "candidateId": "l1-image-soup-bowl",
       "revision": 1,
-      "candidateDigest": "b050795bacbe1360b7bff268791b3b1cebf1a40ba9c6d96763e2a8f0cb831be1",
-      "problemDigest": "1b04d74eb3ffd9a71883335fc48f808eea7ada93efeb0578c0265a9db54ecf42",
-      "fixtureDefinitionDigest": "06a82fea79e7d8821494dc2721f7cfeaa0754349a9300b68ec3bd0532113023d",
-      "fixtureResultsDigest": "e498879ca4906443b8a148363c69eb4b65c5bb7bb18e94438082feffd4f1f05d",
-      "fixtureCount": 12,
+      "candidateDigest": "22507868ee09363d6ab95a55fd0d4f18d8c6266e4384aa4ae02ee7bf503c25a5",
+      "problemDigest": "94b00c378977b81841df301935577514e1a211e1d5514339bed8f8caa546d266",
+      "fixtureDefinitionDigest": "106044569552c8df9115e91a27f044834b28b4e432885f51ac737e4662d0bd79",
+      "fixtureResultsDigest": "00dee66cd9127632dbc0658466b0b7532c81ee529bdd651c8310aeef865f2495",
+      "fixtureCount": 14,
       "passed": true
     }
   ],
@@ -186,12 +186,12 @@
       "problemId": "l1-image-beach-sunrise",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -210,7 +210,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-beach-sunrise-encoded-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-beach-sunrise-escaped-image-mark",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-beach-sunrise-hidden-image-address",
       "problemId": "l1-image-beach-sunrise",
       "problemRevision": 1,
       "expected": {
@@ -358,12 +386,12 @@
       "problemId": "l1-image-birthday-cake",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -382,7 +410,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-birthday-cake-encoded-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-birthday-cake-escaped-image-mark",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-birthday-cake-hidden-image-address",
       "problemId": "l1-image-birthday-cake",
       "problemRevision": 1,
       "expected": {
@@ -530,12 +586,12 @@
       "problemId": "l1-image-city-bus",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -554,7 +610,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-city-bus-encoded-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-city-bus-escaped-image-mark",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-city-bus-hidden-image-address",
       "problemId": "l1-image-city-bus",
       "problemRevision": 1,
       "expected": {
@@ -702,12 +786,12 @@
       "problemId": "l1-image-garden-path",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -726,7 +810,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-garden-path-encoded-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-garden-path-escaped-image-mark",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-garden-path-hidden-image-address",
       "problemId": "l1-image-garden-path",
       "problemRevision": 1,
       "expected": {
@@ -874,12 +986,12 @@
       "problemId": "l1-image-hiking-trail",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -898,7 +1010,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-hiking-trail-encoded-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-hiking-trail-escaped-image-mark",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-hiking-trail-hidden-image-address",
       "problemId": "l1-image-hiking-trail",
       "problemRevision": 1,
       "expected": {
@@ -1046,12 +1186,12 @@
       "problemId": "l1-image-library-corner",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -1070,7 +1210,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-library-corner-encoded-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-library-corner-escaped-image-mark",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-library-corner-hidden-image-address",
       "problemId": "l1-image-library-corner",
       "problemRevision": 1,
       "expected": {
@@ -1218,12 +1386,12 @@
       "problemId": "l1-image-paper-lanterns",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -1242,7 +1410,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-paper-lanterns-encoded-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-paper-lanterns-escaped-image-mark",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-paper-lanterns-hidden-image-address",
       "problemId": "l1-image-paper-lanterns",
       "problemRevision": 1,
       "expected": {
@@ -1390,12 +1586,12 @@
       "problemId": "l1-image-picnic-basket",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -1414,7 +1610,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-picnic-basket-encoded-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-picnic-basket-escaped-image-mark",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-picnic-basket-hidden-image-address",
       "problemId": "l1-image-picnic-basket",
       "problemRevision": 1,
       "expected": {
@@ -1562,12 +1786,12 @@
       "problemId": "l1-image-rainy-window",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -1586,7 +1810,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-rainy-window-encoded-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-rainy-window-escaped-image-mark",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-rainy-window-hidden-image-address",
       "problemId": "l1-image-rainy-window",
       "problemRevision": 1,
       "expected": {
@@ -1734,12 +1986,12 @@
       "problemId": "l1-image-red-bicycle",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -1758,7 +2010,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-red-bicycle-encoded-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-red-bicycle-escaped-image-mark",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-red-bicycle-hidden-image-address",
       "problemId": "l1-image-red-bicycle",
       "problemRevision": 1,
       "expected": {
@@ -1906,12 +2186,12 @@
       "problemId": "l1-image-sleepy-cat",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -1930,7 +2210,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-sleepy-cat-encoded-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-sleepy-cat-escaped-image-mark",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-sleepy-cat-hidden-image-address",
       "problemId": "l1-image-sleepy-cat",
       "problemRevision": 1,
       "expected": {
@@ -2078,12 +2386,12 @@
       "problemId": "l1-image-soup-bowl",
       "problemRevision": 1,
       "expected": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "actual": {
-        "status": "matched",
-        "reviewIds": []
+        "status": "fail",
+        "feedbackId": "use-image"
       },
       "passed": true
     },
@@ -2102,7 +2410,35 @@
       "passed": true
     },
     {
+      "fixtureId": "l1-image-soup-bowl-encoded-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
       "fixtureId": "l1-image-soup-bowl-escaped-image-mark",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-image"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-image-soup-bowl-hidden-image-address",
       "problemId": "l1-image-soup-bowl",
       "problemRevision": 1,
       "expected": {
@@ -2191,5 +2527,5 @@
     }
   ],
   "errors": [],
-  "verificationDigest": "29d964154b5b1614a60439fb1c1a49ac43d63f8ce1ba64d5dc2612128f4213b6"
+  "verificationDigest": "dae151993edc8aa58f0c44261e71e0668708c0bb46598e598cba41ab007a8737"
 }

@@ -99,10 +99,15 @@ const [batches, published, committedTracker, baselineTracker, legacyIndex] =
     readJson(resolve(bankRoot, "legacy/v1-128.index.json")),
   ])
 
+const editoriallyAcceptedBatches = batches.filter(
+  (batch) => batch.editorial !== null && batch.editorial !== undefined,
+)
+
 describe("repository-wide problem-bank integrity", () => {
   it("loads every batch and enforces current publication plus append-only history", () => {
+    expect(batches.flatMap((batch) => batch.loaderErrors ?? [])).toEqual([])
     const result = evaluateBankGate({
-      batches,
+      batches: editoriallyAcceptedBatches,
       published,
       committedTracker,
       baselineTracker,

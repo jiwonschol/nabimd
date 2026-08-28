@@ -1,6 +1,6 @@
 import type { NormalizedProblem } from "../types"
 
-export const imageBatch025Id = "2026-08-28-l1-images-025"
+export const imageBatch026Id = "2026-08-28-l1-images-026"
 
 const curriculumVersion = "2026-07-19"
 const documentScope = { kind: "document" } as const
@@ -20,7 +20,7 @@ const hints = [
   "Example: `![Sunrise over the lake](https://example.com/images/lake-sunrise.jpg)`",
 ] as const
 
-export type ImageBatch025Input = {
+export type ImageBatch026Input = {
   id: string
   contentVariant: string
   target: string
@@ -29,7 +29,7 @@ export type ImageBatch025Input = {
   terms: readonly [string, string]
 }
 
-export const imageBatch025Inputs: readonly ImageBatch025Input[] = [
+export const imageBatch026Inputs: readonly ImageBatch026Input[] = [
   {
     id: "l1-image-rainy-window",
     contentVariant: "rainy-window-photo",
@@ -140,7 +140,7 @@ export const imageBatch025Inputs: readonly ImageBatch025Input[] = [
   },
 ] as const
 
-function createImageProblem(input: ImageBatch025Input): NormalizedProblem {
+function createImageProblem(input: ImageBatch026Input): NormalizedProblem {
   return {
     id: input.id,
     schemaVersion: 2,
@@ -164,6 +164,7 @@ function createImageProblem(input: ImageBatch025Input): NormalizedProblem {
         scope: documentScope,
         inline: "image",
         min: 1,
+        requireNonemptyContent: true,
         requireNonemptyDestination: true,
         priority: 10,
         feedback:
@@ -188,12 +189,12 @@ function createImageProblem(input: ImageBatch025Input): NormalizedProblem {
       domains: [input.vocabularyDomain],
       terms: input.terms,
     },
-    sourceBatchId: imageBatch025Id,
+    sourceBatchId: imageBatch026Id,
     revision: 1,
     curriculumVersion,
     contentVariant: input.contentVariant,
   }
 }
 
-export const imageBatch025Problems: readonly NormalizedProblem[] =
-  imageBatch025Inputs.map(createImageProblem)
+export const imageBatch026Problems: readonly NormalizedProblem[] =
+  imageBatch026Inputs.map(createImageProblem)

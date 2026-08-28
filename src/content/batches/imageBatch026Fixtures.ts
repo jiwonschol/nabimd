@@ -1,8 +1,8 @@
 import type { FixtureRole, ProblemFixture } from "../types"
 import {
-  imageBatch025Inputs,
-  imageBatch025Problems,
-} from "./imageBatch025Problems"
+  imageBatch026Inputs,
+  imageBatch026Problems,
+} from "./imageBatch026Problems"
 
 function fixtureKind(role: FixtureRole): ProblemFixture["kind"] {
   switch (role) {
@@ -47,10 +47,10 @@ function fixture(
 }
 
 function createImageFixtures(
-  problem: (typeof imageBatch025Problems)[number],
+  problem: (typeof imageBatch026Problems)[number],
   index: number,
 ): readonly ProblemFixture[] {
-  const input = imageBatch025Inputs[index]!
+  const input = imageBatch026Inputs[index]!
   const imageUrl = `https://example.com/images/alternate-${index + 1}.jpg`
   const fail = {
     expectedFeedbackId: "use-image",
@@ -108,6 +108,22 @@ function createImageFixtures(
     ),
     fixture(
       problem.id,
+      "hidden-image-address",
+      "malformed",
+      "![A blue umbrella by the door](<\u200b>)",
+      "fail",
+      fail,
+    ),
+    fixture(
+      problem.id,
+      "encoded-hidden-image-address",
+      "malformed",
+      "![A blue umbrella by the door](<%E2%80%8B>)",
+      "fail",
+      fail,
+    ),
+    fixture(
+      problem.id,
       "two-images",
       "matched-with-review",
       `![First view](${imageUrl}) and ![Second view](https://example.com/images/second.jpg)`,
@@ -135,8 +151,8 @@ function createImageFixtures(
       "empty-decorative-image",
       "edge-case",
       "![](/photos/divider.png)",
-      "matched",
-      { expectedReviewIds: [] },
+      "fail",
+      fail,
     ),
     fixture(
       problem.id,
@@ -157,5 +173,5 @@ function createImageFixtures(
   ]
 }
 
-export const imageBatch025Fixtures: readonly ProblemFixture[] =
-  imageBatch025Problems.flatMap(createImageFixtures)
+export const imageBatch026Fixtures: readonly ProblemFixture[] =
+  imageBatch026Problems.flatMap(createImageFixtures)

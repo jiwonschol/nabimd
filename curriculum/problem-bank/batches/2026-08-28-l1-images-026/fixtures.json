@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-025",
+  "batchId": "2026-08-28-l1-images-026",
   "fixtures": [
     {
       "id": "l1-image-beach-sunrise-canonical",
@@ -44,9 +44,10 @@
       "problemId": "l1-image-beach-sunrise",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-beach-sunrise-empty-image-address",
@@ -59,12 +60,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-beach-sunrise-encoded-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-beach-sunrise-escaped-image-mark",
       "problemId": "l1-image-beach-sunrise",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-beach-sunrise-hidden-image-address",
+      "problemId": "l1-image-beach-sunrise",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -159,9 +180,10 @@
       "problemId": "l1-image-birthday-cake",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-birthday-cake-empty-image-address",
@@ -174,12 +196,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-birthday-cake-encoded-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-birthday-cake-escaped-image-mark",
       "problemId": "l1-image-birthday-cake",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-birthday-cake-hidden-image-address",
+      "problemId": "l1-image-birthday-cake",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -274,9 +316,10 @@
       "problemId": "l1-image-city-bus",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-city-bus-empty-image-address",
@@ -289,12 +332,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-city-bus-encoded-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-city-bus-escaped-image-mark",
       "problemId": "l1-image-city-bus",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-city-bus-hidden-image-address",
+      "problemId": "l1-image-city-bus",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -389,9 +452,10 @@
       "problemId": "l1-image-garden-path",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-garden-path-empty-image-address",
@@ -404,12 +468,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-garden-path-encoded-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-garden-path-escaped-image-mark",
       "problemId": "l1-image-garden-path",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-garden-path-hidden-image-address",
+      "problemId": "l1-image-garden-path",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -504,9 +588,10 @@
       "problemId": "l1-image-hiking-trail",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-hiking-trail-empty-image-address",
@@ -519,12 +604,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-hiking-trail-encoded-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-hiking-trail-escaped-image-mark",
       "problemId": "l1-image-hiking-trail",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-hiking-trail-hidden-image-address",
+      "problemId": "l1-image-hiking-trail",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -619,9 +724,10 @@
       "problemId": "l1-image-library-corner",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-library-corner-empty-image-address",
@@ -634,12 +740,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-library-corner-encoded-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-library-corner-escaped-image-mark",
       "problemId": "l1-image-library-corner",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-library-corner-hidden-image-address",
+      "problemId": "l1-image-library-corner",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -734,9 +860,10 @@
       "problemId": "l1-image-paper-lanterns",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-paper-lanterns-empty-image-address",
@@ -749,12 +876,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-paper-lanterns-encoded-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-paper-lanterns-escaped-image-mark",
       "problemId": "l1-image-paper-lanterns",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-paper-lanterns-hidden-image-address",
+      "problemId": "l1-image-paper-lanterns",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -849,9 +996,10 @@
       "problemId": "l1-image-picnic-basket",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-picnic-basket-empty-image-address",
@@ -864,12 +1012,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-picnic-basket-encoded-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-picnic-basket-escaped-image-mark",
       "problemId": "l1-image-picnic-basket",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-picnic-basket-hidden-image-address",
+      "problemId": "l1-image-picnic-basket",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -964,9 +1132,10 @@
       "problemId": "l1-image-rainy-window",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-rainy-window-empty-image-address",
@@ -979,12 +1148,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-rainy-window-encoded-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-rainy-window-escaped-image-mark",
       "problemId": "l1-image-rainy-window",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-rainy-window-hidden-image-address",
+      "problemId": "l1-image-rainy-window",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -1079,9 +1268,10 @@
       "problemId": "l1-image-red-bicycle",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-red-bicycle-empty-image-address",
@@ -1094,12 +1284,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-red-bicycle-encoded-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-red-bicycle-escaped-image-mark",
       "problemId": "l1-image-red-bicycle",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-red-bicycle-hidden-image-address",
+      "problemId": "l1-image-red-bicycle",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -1194,9 +1404,10 @@
       "problemId": "l1-image-sleepy-cat",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-sleepy-cat-empty-image-address",
@@ -1209,12 +1420,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-sleepy-cat-encoded-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-sleepy-cat-escaped-image-mark",
       "problemId": "l1-image-sleepy-cat",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-sleepy-cat-hidden-image-address",
+      "problemId": "l1-image-sleepy-cat",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },
@@ -1309,9 +1540,10 @@
       "problemId": "l1-image-soup-bowl",
       "problemRevision": 1,
       "role": "edge-case",
+      "exercisesCheckId": "use-image",
       "source": "![](/photos/divider.png)",
-      "expectedStatus": "matched",
-      "expectedReviewIds": []
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
     },
     {
       "id": "l1-image-soup-bowl-empty-image-address",
@@ -1324,12 +1556,32 @@
       "expectedFeedbackId": "use-image"
     },
     {
+      "id": "l1-image-soup-bowl-encoded-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<%E2%80%8B>)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
       "id": "l1-image-soup-bowl-escaped-image-mark",
       "problemId": "l1-image-soup-bowl",
       "problemRevision": 1,
       "role": "edge-case",
       "exercisesCheckId": "use-image",
       "source": "\\![A blue umbrella](https://example.com/images/umbrella.jpg)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-image"
+    },
+    {
+      "id": "l1-image-soup-bowl-hidden-image-address",
+      "problemId": "l1-image-soup-bowl",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-image",
+      "source": "![A blue umbrella by the door](<​>)",
       "expectedStatus": "fail",
       "expectedFeedbackId": "use-image"
     },

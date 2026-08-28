@@ -5,12 +5,12 @@ import { derivePlaintextStarter } from "../plaintextStarter"
 import { problemBank, withinRuntimeBudget } from "../problemBank"
 import type { FixtureRole } from "../types"
 import { validateProblemBank } from "../validateProblemBank"
-import { imageBatch025Fixtures } from "./imageBatch025Fixtures"
+import { imageBatch026Fixtures } from "./imageBatch026Fixtures"
 import {
-  imageBatch025Id,
-  imageBatch025Inputs,
-  imageBatch025Problems,
-} from "./imageBatch025Problems"
+  imageBatch026Id,
+  imageBatch026Inputs,
+  imageBatch026Problems,
+} from "./imageBatch026Problems"
 
 const requiredRoles: readonly FixtureRole[] = [
   "canonical",
@@ -22,21 +22,21 @@ const requiredRoles: readonly FixtureRole[] = [
   "edge-case",
 ]
 
-describe("Level 1 image batch 025", () => {
+describe("Level 1 image batch 026", () => {
   it("adds twelve distinct everyday image exercises", () => {
-    expect(imageBatch025Problems).toHaveLength(12)
-    expect(new Set(imageBatch025Problems.map((problem) => problem.id)).size).toBe(
+    expect(imageBatch026Problems).toHaveLength(12)
+    expect(new Set(imageBatch026Problems.map((problem) => problem.id)).size).toBe(
       12,
     )
     expect(
-      new Set(imageBatch025Problems.map((problem) => problem.contentVariant))
+      new Set(imageBatch026Problems.map((problem) => problem.contentVariant))
         .size,
     ).toBe(12)
     expect(
-      new Set(imageBatch025Problems.map((problem) => problem.target)).size,
+      new Set(imageBatch026Problems.map((problem) => problem.target)).size,
     ).toBe(12)
 
-    for (const problem of imageBatch025Problems) {
+    for (const problem of imageBatch026Problems) {
       expect(problem).toMatchObject({
         schemaVersion: 2,
         level: 1,
@@ -44,7 +44,7 @@ describe("Level 1 image batch 025", () => {
         familyId: "images",
         skillIds: ["inline-image"],
         retryFamily: "level-1-image",
-        sourceBatchId: imageBatch025Id,
+        sourceBatchId: imageBatch026Id,
         revision: 1,
       })
       expect(withinRuntimeBudget(problem), problem.id).toBe(true)
@@ -54,7 +54,7 @@ describe("Level 1 image batch 025", () => {
   it("keeps every alt description meaningful and visible in the starter", () => {
     const bannedGenericAlt = /^(?:img|image|photo|picture)$/i
 
-    for (const [index, problem] of imageBatch025Problems.entries()) {
+    for (const [index, problem] of imageBatch026Problems.entries()) {
       const alt = problem.target.match(/!\[([^\]]*)]\(/)?.[1]
       expect(alt, problem.id).toBeDefined()
       expect(alt!.trim().split(/\s+/).length, problem.id).toBeGreaterThanOrEqual(
@@ -63,13 +63,13 @@ describe("Level 1 image batch 025", () => {
       expect(alt, problem.id).not.toMatch(bannedGenericAlt)
       expect(problem.protectedContent, problem.id).toEqual([])
       expect(derivePlaintextStarter(problem.target), problem.id).toBe(
-        imageBatch025Inputs[index]!.plainText,
+        imageBatch026Inputs[index]!.plainText,
       )
     }
   })
 
   it("creates the existing three image-marker inputs without parser changes", () => {
-    for (const problem of imageBatch025Problems) {
+    for (const problem of imageBatch026Problems) {
       const checkpoints = deriveSyntaxCheckpoints(
         problem.target,
         derivePlaintextStarter(problem.target),
@@ -92,7 +92,7 @@ describe("Level 1 image batch 025", () => {
       problemBank.map((problem) => problem.contentVariant),
     )
 
-    for (const problem of imageBatch025Problems) {
+    for (const problem of imageBatch026Problems) {
       expect(priorIds.has(problem.id), problem.id).toBe(false)
       expect(priorTargets.has(problem.target), problem.id).toBe(false)
       expect(priorVariants.has(problem.contentVariant), problem.id).toBe(false)
@@ -101,11 +101,11 @@ describe("Level 1 image batch 025", () => {
 
   it("binds all required fixture roles and direct match-check evidence", () => {
     expect(
-      validateProblemBank(imageBatch025Problems, imageBatch025Fixtures),
+      validateProblemBank(imageBatch026Problems, imageBatch026Fixtures),
     ).toEqual([])
 
-    for (const problem of imageBatch025Problems) {
-      const fixtures = imageBatch025Fixtures.filter(
+    for (const problem of imageBatch026Problems) {
+      const fixtures = imageBatch026Fixtures.filter(
         (fixture) => fixture.problemId === problem.id,
       )
       for (const role of requiredRoles) {
@@ -125,10 +125,10 @@ describe("Level 1 image batch 025", () => {
 
   it("runs every frozen fixture through the real learner engine", () => {
     const problems = new Map(
-      imageBatch025Problems.map((problem) => [problem.id, problem]),
+      imageBatch026Problems.map((problem) => [problem.id, problem]),
     )
 
-    for (const fixture of imageBatch025Fixtures) {
+    for (const fixture of imageBatch026Fixtures) {
       const result = evaluateProblem(problems.get(fixture.problemId)!, fixture.source)
       expect(result.status, fixture.id).toBe(fixture.expectedStatus)
       if (result.status === "fail") {

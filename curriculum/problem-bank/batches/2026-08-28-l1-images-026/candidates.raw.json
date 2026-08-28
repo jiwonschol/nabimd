@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-28-l1-images-025",
+  "batchId": "2026-08-28-l1-images-026",
   "sequence": 23,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-codex-build-time-authoring",
@@ -43,6 +43,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -121,6 +122,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -199,6 +201,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -277,6 +280,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -355,6 +359,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -433,6 +438,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -511,6 +517,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -589,6 +596,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -667,6 +675,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -745,6 +754,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -823,6 +833,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."
@@ -901,6 +912,7 @@
           },
           "inline": "image",
           "min": 1,
+          "requireNonemptyContent": true,
           "requireNonemptyDestination": true,
           "priority": 10,
           "feedback": "Add a Markdown image with an exclamation mark, description, and image address."

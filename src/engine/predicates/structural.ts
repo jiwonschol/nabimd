@@ -117,14 +117,34 @@ export function countInlineNodes(
   return descendants(nodesInScope(context, scope) as AstNode[]).filter(
     (node) =>
       node.type === nodeTypeByInline[inline] &&
-      (!requireNonemptyContent || nodeHasVisibleLinkLabel(node, context.source)) &&
-      (!requireNonemptyDestination || nodeHasNonemptyDestination(node)),
+      (!requireNonemptyContent ||
+        nodeHasMeaningfulInlineContent(node, context.source)) &&
+      (!requireNonemptyDestination ||
+        nodeHasMeaningfulInlineDestination(node, context.source)),
   ).length
 }
 
-function nodeHasNonemptyDestination(node: AstNode): boolean {
+function nodeHasMeaningfulInlineContent(
+  node: AstNode,
+  source: string,
+): boolean {
+  if (node.type === "image") return hasMeaningfulCharacters(node.alt)
+  return nodeHasVisibleLinkLabel(node, source)
+}
+
+function nodeHasMeaningfulInlineDestination(
+  node: AstNode,
+  source: string,
+): boolean {
   if (node.type !== "link" && node.type !== "image") return false
-  return (node as Link | Image).url.trim().length > 0
+  const destination = (node as Link | Image).url
+  const raw = sourceForNode(node, source)
+  const separator = raw.lastIndexOf("](")
+  const rawDestination =
+    separator < 0
+      ? ""
+      : destinationFromParenthesizedSource(raw.slice(separator + 2))
+  return hasMeaningfulDestination(destination, rawDestination)
 }
 
 function headingDepthOrderPasses(context: EvaluationContext) {

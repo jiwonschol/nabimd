@@ -1013,6 +1013,43 @@ describe("structural match predicates", () => {
       status: "fail",
       feedbackId: "image-address",
     })
+    expect(evaluateProblem(image, "![A blue umbrella](<\u200b>)")).toMatchObject({
+      status: "fail",
+      feedbackId: "image-address",
+    })
+    expect(
+      evaluateProblem(image, "![A blue umbrella](<%E2%80%8B>)"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-address",
+    })
+  })
+
+  it("can require meaningful image alt text", () => {
+    const image = problem([
+      {
+        ...common("image-alt"),
+        kind: "inline-presence",
+        scope: { kind: "document" },
+        inline: "image",
+        min: 1,
+        requireNonemptyContent: true,
+      },
+    ])
+
+    expect(
+      evaluateProblem(image, "![A blue umbrella](/photos/umbrella.jpg)"),
+    ).toEqual({ status: "matched", reviewItems: [] })
+    expect(evaluateProblem(image, "![](/photos/umbrella.jpg)")).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
+    expect(
+      evaluateProblem(image, "![\u200b](/photos/umbrella.jpg)"),
+    ).toMatchObject({
+      status: "fail",
+      feedbackId: "image-alt",
+    })
   })
 
   it("matches an ordered block subsequence and can require an exact shape", () => {
