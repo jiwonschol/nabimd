@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-28-l1-images-027",
+  "reviewerId": "donghwan-engine",
+  "reviewRunId": "donghwan-engine-batch027-531252c-run-001",
+  "declaredIndependent": true,
+  "manifestDigest": "1008e60bddcd23343b202cdd3737eb387391db12a673c0715448c7d43325d982",
+  "reviewedHead": "531252c39e4630292139f6536d736e3c2c6cb671",
+  "sourceBuzzEventId": "bc0268a15f2cd467896bbf6e92f92231c7873bca5c1db4a2bc3f5874433f5a59",
+  "scope": "Engine behavior, digest chain, real evaluateProblem/buildReviewCorrections correction path, and the pre-editorial read/publish reject pair (repositoryBankGate editoriallyAcceptedBatches filter, batchPipeline optionalJson editorial read).",
+  "verdicts": [
+    {
+      "candidateId": "l1-image-beach-sunrise",
+      "revision": 1,
+      "candidateDigest": "5d213ece1644b49ad81067c4bfca38582eb027b6b5b8c365bdab877d1503ee07",
+      "fixtureResultsDigest": "0b85c029ac45227ddad89a0eee0d298121935fe3b05e7bc74c90f31a561f3674",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-birthday-cake",
+      "revision": 1,
+      "candidateDigest": "446b8a44439d365312b4859a411dafd3e66770fd6f545906dc4eca81a88861a7",
+      "fixtureResultsDigest": "1041b22f918d98ca9f02b9a43ce15bc8d3ff92cc777f373586bf928b013abb3d",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-city-bus",
+      "revision": 1,
+      "candidateDigest": "883e875eaff95d150f6d56af59122df10c2272fc5702b4cb9e69e9ce00de752c",
+      "fixtureResultsDigest": "01ca9a23560dce972c9f08aa31df98e510f62df789bec1d2da3c5e08d8d0d94d",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-garden-path",
+      "revision": 1,
+      "candidateDigest": "4814441b8776396a34fcaf2897de912139a0359d3ea3cfd90e37541b49788e20",
+      "fixtureResultsDigest": "1590aaf50741bdf2462b409be2ff66e63b08cc0a86ed5ae2987bbb44cbccdd9f",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-hiking-trail",
+      "revision": 1,
+      "candidateDigest": "b528e94a65fffb9a8a16f3da21169fc5b66ebf263d8c39d8d780788676cf5261",
+      "fixtureResultsDigest": "34419713afd846fc4ab9fc9e03306d324ee72aa55f5bafa7a0716134f288898b",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-library-corner",
+      "revision": 1,
+      "candidateDigest": "ba46ecae07b2924db42542daff7c59a2afc9e3372bf42d2af4ba60217f906e06",
+      "fixtureResultsDigest": "70ef3d7025619482851155b84fdee7d87413b1ab86fdcc45f3bf7c86525cd19e",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-paper-lanterns",
+      "revision": 1,
+      "candidateDigest": "6e732ccbadcdf8fa2bb939ea5d8651650c3f32ca47072cd818569142518aedb6",
+      "fixtureResultsDigest": "3e45b1a2c4683c1dcf67c78e182d47e0c9f39ec85c6d83d1932121a8a3387c58",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-picnic-basket",
+      "revision": 1,
+      "candidateDigest": "716896c3053e05292e08611bbb58160bf4e932adeb66c831ae2894855a13ada0",
+      "fixtureResultsDigest": "6f88a18979a455cb9ef21c849eb61cc4c9ea34008a5c7b7d6f1aa9c7792292c5",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-rainy-window",
+      "revision": 1,
+      "candidateDigest": "c3297af8ceca54985500eb3747d88ac0850b06d6ad101693d966960d104cf08d",
+      "fixtureResultsDigest": "f157e1f40d09c480d79601b54bf244b1a8197ef9de2da8a6b6684037823c9197",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-red-bicycle",
+      "revision": 1,
+      "candidateDigest": "ef8a47a703038822584ab8853bd53eb38ba2a44c5f96b1bde060d00854cc6124",
+      "fixtureResultsDigest": "164a90f48cdf0b953e646447af278b57af299e4bf9a538e97fdf6126110317e4",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-sleepy-cat",
+      "revision": 1,
+      "candidateDigest": "d288ce99eeac181b2ad0f0237d94fdb0e72be49b723122ae180bbd7d84efcc23",
+      "fixtureResultsDigest": "2b9cf9a17791b7d408942805448fa7d3ddf27e319301075d63d631cfe7882cfb",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    },
+    {
+      "candidateId": "l1-image-soup-bowl",
+      "revision": 1,
+      "candidateDigest": "35b961605d6de5cc211bada67184f89357c2d319e62ad54c6230e12a1e306231",
+      "fixtureResultsDigest": "824c960fddbb9323bef7f896a588fd7805a2eedeb3d0288ca2972d96b3db7ac5",
+      "verdict": "pass",
+      "notes": "evaluateProblem/buildReviewCorrections real-engine replay: empty alt and empty destination both fail with the new feedback line present in repairInstruction; feedback reverted to the pre-fix wording reproduces RED on the same fixture, confirming the check is load-bearing."
+    }
+  ],
+  "reviewDigest": "943e6b8b1554ab68614d7989fc6941322fce0f6e98df03aa141a627b6a54cb8e"
+}
