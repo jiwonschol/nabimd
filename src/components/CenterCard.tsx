@@ -8,7 +8,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react"
 import {
-  syntaxGroupTerm,
+  syntaxCheckpointTerms,
   type CheckpointContext,
   type CheckpointHintRow,
   type SyntaxCheckpoint,
@@ -135,19 +135,7 @@ export function buildSyntaxReference(
   checkpoint: SyntaxCheckpoint,
 ): SyntaxReference {
   const groups = inputSegments(checkpoint).map((segment) => segment.value)
-  const terms = checkpoint.segments.reduce<string[]>(
-    (collected, segment, index) => {
-      if (segment.kind !== "input") return collected
-      const previous = checkpoint.segments[index - 1]
-      const term = syntaxGroupTerm(
-        segment.value,
-        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-      )
-      if (!collected.includes(term)) collected.push(term)
-      return collected
-    },
-    [],
-  )
+  const terms = syntaxCheckpointTerms(checkpoint)
   const instruction = describeCheckpoint(checkpoint)
   const term = instruction.term
   const hasInlineCode = groups.some((value) => value.startsWith("`"))

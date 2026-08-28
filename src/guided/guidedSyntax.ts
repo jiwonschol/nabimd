@@ -214,6 +214,27 @@ export function syntaxGroupTerm(
   return "Markdown mark"
 }
 
+/** Semantic syntax names represented by one checkpoint, matching the labels
+ * shown in the Now learning panel. */
+export function syntaxCheckpointTerms(
+  checkpoint: SyntaxCheckpoint,
+): readonly string[] {
+  return [
+    ...new Set(
+      checkpoint.segments.flatMap((segment, index) => {
+        if (segment.kind !== "input") return []
+        const previous = checkpoint.segments[index - 1]
+        return [
+          syntaxGroupTerm(
+            segment.value,
+            previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+          ),
+        ]
+      }),
+    ),
+  ]
+}
+
 export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
