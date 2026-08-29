@@ -17,6 +17,9 @@ concurrency:
   group: production-health
   cancel-in-progress: true
 
+env:
+  DEPLOYED_SHA_RECEIPT: ${{ github.workspace }}/test-results/deployed-sha.txt
+
 jobs:
   exercise-production:
     runs-on: ubuntu-latest
@@ -40,14 +43,14 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      # Two questions, two checks, two reports. Collapsing them is what let a
+      # rate-limited deployment read as "production is broken" ten times on
+      # 2026-08-29 while the learning flow passed every single attempt.
       - name: Exercise the deployed app
         id: smoke
         continue-on-error: true
         env:
           E2E_BASE_URL: https://nabimd.vercel.app
-          # The commit that should be live. On a schedule run this is the tip
-          # of the default branch, so a mismatch means deployments stopped.
-          EXPECTED_SHA: ${{ github.sha }}
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "push" ]]; then
@@ -66,8 +69,29 @@ jobs:
           done
           exit 1
 
+      - name: Check production serves this commit
+        id: freshness
+        continue-on-error: true
+        env:
+          E2E_BASE_URL: https://nabimd.vercel.app
+          # The commit that should be live. On a schedule run this is the tip
+          # of the default branch, so a mismatch means deployments stopped.
+          EXPECTED_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            echo "Deployment freshness attempt ${attempt} of 3"
+            if npm run test:e2e:deployment; then
+              exit 0
+            fi
+            if [[ "${attempt}" -lt 3 ]]; then
+              sleep 30
+            fi
+          done
+          exit 1
+
       - name: Preserve failure evidence
-        if: steps.smoke.outcome == 'failure'
+        if: steps.smoke.outcome == 'failure' || steps.freshness.outcome == 'failure'
         uses: actions/upload-artifact@v7
         with:
           name: production-health-${{ github.run_id }}
@@ -75,99 +99,41 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
-      - name: Open or update the production alert
-        if: steps.smoke.outcome == 'failure'
+      - name: Report on production
+        id: report
         uses: actions/github-script@v9
+        env:
+          SMOKE_OUTCOME: ${{ steps.smoke.outcome }}
+          FRESHNESS_OUTCOME: ${{ steps.freshness.outcome }}
         with:
           script: |
-            const title = "Production health check is failing";
-            const marker = "<!-- nabimd-production-health -->";
-            const runUrl =
-              `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
-              `/actions/runs/${context.runId}`;
-            const body = [
-              marker,
-              "The automated browser could not complete Nabi Markdown's production learning flow.",
-              "",
-              `- Event: \`${context.eventName}\``,
-              `- Commit: \`${context.sha}\``,
-              `- Evidence: ${runUrl}`,
-              "",
-              "The check uses authored problem-bank text only. It does not inspect or collect learner input.",
-            ].join("\n");
-            const issues = await github.paginate(
-              github.rest.issues.listForRepo,
-              { ...context.repo, state: "open", per_page: 100 },
-            );
-            const existing = issues.find(
-              (issue) =>
-                !issue.pull_request &&
-                issue.user?.login === "github-actions[bot]" &&
-                issue.title === title &&
-                issue.body?.includes(marker),
-            );
-            if (existing) {
-              const assignees = new Set(
-                existing.assignees?.map(({ login }) => login) ?? [],
-              );
-              assignees.add(context.repo.owner);
-              await github.rest.issues.update({
-                ...context.repo,
-                issue_number: existing.number,
-                assignees: [...assignees],
-              });
-              await github.rest.issues.createComment({
-                ...context.repo,
-                issue_number: existing.number,
-                body,
-              });
-            } else {
-              await github.rest.issues.create({
-                ...context.repo,
-                title,
-                body,
-                assignees: [context.repo.owner],
-              });
-            }
+            const { readFileSync } = require("node:fs")
+            const { reportProductionHealth } = await import(
+              `${process.env.GITHUB_WORKSPACE}/scripts/reportProductionHealth.mjs`
+            )
 
-      - name: Close a recovered production alert
-        if: steps.smoke.outcome == 'success'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const title = "Production health check is failing";
-            const marker = "<!-- nabimd-production-health -->";
-            const issues = await github.paginate(
-              github.rest.issues.listForRepo,
-              { ...context.repo, state: "open", per_page: 100 },
-            );
-            const existing = issues.find(
-              (issue) =>
-                !issue.pull_request &&
-                issue.user?.login === "github-actions[bot]" &&
-                issue.title === title &&
-                issue.body?.includes(marker),
-            );
-            if (existing) {
-              const runUrl =
-                `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
-                `/actions/runs/${context.runId}`;
-              await github.rest.issues.createComment({
-                ...context.repo,
-                issue_number: existing.number,
-                body: [
-                  marker,
-                  `Production completed the full browser check again: ${runUrl}`,
-                ].join("\n"),
-              });
-              await github.rest.issues.update({
-                ...context.repo,
-                issue_number: existing.number,
-                state: "closed",
-                state_reason: "completed",
-              });
-            }
+            const { failWorkflow, summary } = await reportProductionHealth({
+              github,
+              context,
+              smokeOutcome: process.env.SMOKE_OUTCOME,
+              freshnessOutcome: process.env.FRESHNESS_OUTCOME,
+              readDeployedSha: () => {
+                try {
+                  return readFileSync(
+                    process.env.DEPLOYED_SHA_RECEIPT,
+                    "utf8",
+                  ).trim()
+                } catch {
+                  // The page never answered. The classifier reads that as an
+                  // unknown commit rather than guessing one.
+                  return null
+                }
+              },
+            })
+
+            await core.summary.addRaw(summary).write()
+            core.setOutput("fail-workflow", failWorkflow ? "true" : "false")
 
       - name: Mark the workflow failed
-        if: steps.smoke.outcome == 'failure'
+        if: steps.report.outputs.fail-workflow == 'true'
         run: exit 1

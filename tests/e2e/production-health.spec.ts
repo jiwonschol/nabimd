@@ -78,39 +78,6 @@ async function submitMarks(page: Page, marks: string) {
   await input.press("Enter")
 }
 
-// Every other check here passes just as happily against a build from last
-// week, so on its own the suite cannot tell "production is healthy" from
-// "production stopped receiving deployments". In July 2026 the Vercel project
-// lost its Git connection and this workflow reported success for two days
-// while production served a commit that was two merges behind.
-test("production serves the commit this workflow expects", async ({ page }) => {
-  const expected = process.env.EXPECTED_SHA?.trim()
-
-  test.skip(
-    !expected,
-    "Set EXPECTED_SHA to the commit that should be live (CI supplies it)",
-  )
-
-  await page.goto("/")
-
-  const deployed = await page
-    .locator("html")
-    .getAttribute("data-build-sha")
-
-  expect(
-    deployed,
-    "The deployed bundle does not publish data-build-sha. Either the build " +
-      "predates that attribute, or the deployment is stale.",
-  ).toBeTruthy()
-
-  expect(
-    deployed,
-    `Production serves ${deployed}, but ${expected} should be live. The most ` +
-      "likely cause is that deployments are no longer being triggered — check " +
-      "the Vercel project's Git connection.",
-  ).toBe(expected)
-})
-
 test("production serves five distinct syntax elements for every available level", async ({
   page,
 }) => {
