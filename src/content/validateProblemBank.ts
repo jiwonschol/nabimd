@@ -639,20 +639,24 @@ function validConvention(problem: GradableProblem): boolean {
 export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
   let found = false
   const tree = parseMarkdownSource(target)
-  const codeRanges: { from: number; to: number }[] = []
-  const collectCodeRanges = (node: Nodes) => {
+  const literalPayloadRanges: { from: number; to: number }[] = []
+  const collectLiteralPayloadRanges = (node: Nodes) => {
     const from = node.position?.start.offset
     const to = node.position?.end.offset
-    if (node.type === "code" && from !== undefined && to !== undefined) {
-      codeRanges.push({ from, to })
+    if (
+      (node.type === "code" || node.type === "html") &&
+      from !== undefined &&
+      to !== undefined
+    ) {
+      literalPayloadRanges.push({ from, to })
     }
     if ("children" in node) {
-      ;(node as Parents).children.forEach(collectCodeRanges)
+      ;(node as Parents).children.forEach(collectLiteralPayloadRanges)
     }
   }
-  collectCodeRanges(tree)
-  const overlapsCode = (from: number, to: number) =>
-    codeRanges.some((range) => from < range.to && to > range.from)
+  collectLiteralPayloadRanges(tree)
+  const overlapsLiteralPayload = (from: number, to: number) =>
+    literalPayloadRanges.some((range) => from < range.to && to > range.from)
   const visit = (node: Nodes) => {
     const offset = node.position?.start.offset
     if (offset !== undefined) {
@@ -663,7 +667,7 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
           const lineTo = lineFrom + line.length
           if (
             /^ {0,3}>\t/.test(line) ||
-            (!overlapsCode(lineFrom, lineTo) &&
+            (!overlapsLiteralPayload(lineFrom, lineTo) &&
               /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line))
           ) {
             found = true

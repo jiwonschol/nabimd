@@ -164,6 +164,13 @@ describe("schema-v2 problem-bank validation", () => {
     expect(targetUsesTabAsMarkerWhitespace("> ~~~\n>\tcode\n> ~~~")).toBe(true)
   })
 
+  it("checks outer quote markers but ignores marker-like text inside raw HTML", () => {
+    expect(
+      targetUsesTabAsMarkerWhitespace("> <div>\n> >\tfoo\n> </div>"),
+    ).toBe(false)
+    expect(targetUsesTabAsMarkerWhitespace("> <div>\n>\tfoo\n> </div>")).toBe(true)
+  })
+
   it("checks every parser-recognized line of a multiline quote", () => {
     expect(targetUsesTabAsMarkerWhitespace("> first\n>\tsecond")).toBe(true)
     expect(targetUsesTabAsMarkerWhitespace("> first\n  >\tsecond")).toBe(true)
