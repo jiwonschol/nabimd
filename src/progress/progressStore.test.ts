@@ -659,6 +659,7 @@ describe("progressStore v5", () => {
     progress.runProblemIds = ids
     progress.runStartedAtMs = 1_000
     progress.checkpointProjectionRevision = "future-projection@2"
+    progress.draftByProblemId[ids[0]!] = "# Future draft semantics"
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 
     expect(
@@ -672,6 +673,37 @@ describe("progressStore v5", () => {
     progress.entryId = "level-1"
     progress.runProblemIds = Array(10_000).fill(ids[0]!)
     progress.runStartedAtMs = 1_000
+    const {
+      checkpointProjectionRevision: _checkpointProjectionRevision,
+      ...legacyProgress
+    } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const startedAt = performance.now()
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(performance.now() - startedAt).toBeLessThan(250)
+    expect(loaded).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
+  it("rejects oversized legacy mistake ledgers before parsing checkpoint titles", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.syntaxMistakes = Array(10_000).fill({
+      problemId: ids[0]!,
+      checkpointId: "syntax-1-1",
+      groupIndex: 0,
+      term: "level 1 heading",
+      submitted: "@",
+      expected: ["# "],
+    })
     const {
       checkpointProjectionRevision: _checkpointProjectionRevision,
       ...legacyProgress

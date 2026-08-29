@@ -408,7 +408,9 @@ function migrateCheckpointProjection(value: unknown): unknown {
   if (
     !Array.isArray(value.runProblemIds) ||
     value.runProblemIds.length > MAX_PERSISTED_RUN_PROBLEM_IDS ||
-    new Set(value.runProblemIds).size !== value.runProblemIds.length
+    new Set(value.runProblemIds).size !== value.runProblemIds.length ||
+    !Array.isArray(value.syntaxMistakes) ||
+    value.syntaxMistakes.length > MAX_PERSISTED_SYNTAX_MISTAKES
   ) {
     return value
   }
@@ -702,6 +704,18 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
+    const stored: unknown = JSON.parse(saved)
+    if (
+      isRecord(stored) &&
+      "checkpointProjectionRevision" in stored &&
+      stored.checkpointProjectionRevision !== CHECKPOINT_PROJECTION_REVISION
+    ) {
+      // A newer client owns both the checkpoint ids and the drafts stored
+      // beside them. Do not reinterpret or overwrite either with this older
+      // projection, even through the generic corrupt-record draft recovery.
+      return fallback
+    }
+
     const parsed: unknown = migrateCheckpointProjection(
       migrateSyntaxMistakes(
         migratePendingSlotRetry(
@@ -709,7 +723,7 @@ export function loadProgress(
             migrateLegacyRunSeed(
               migrateStarterProjectionRevision(
                 migratePreChapterRevision(
-                  JSON.parse(saved),
+                  stored,
                   validProblemIds,
                   validDraftProblemIds,
                   expectedBankRevision,
