@@ -19,9 +19,9 @@ const cli = resolve(import.meta.dirname, "sealBatchEvidence.mjs")
 // Calling the exported function proves the rule; it does not prove the command
 // a person types passes `--check` through to it. Mutating `write: !check` to
 // `write: true` left every direct-call test green.
-async function runCli(args, cwd = process.cwd()) {
+async function runCli(args, cwd = process.cwd(), env = process.env) {
   try {
-    const { stdout, stderr } = await run(process.execPath, [cli, ...args], { cwd })
+    const { stdout, stderr } = await run(process.execPath, [cli, ...args], { cwd, env })
     return { code: 0, stdout, stderr }
   } catch (error) {
     return {
@@ -506,7 +506,7 @@ test("the no-argument write command reports drift in immutable batches", async (
   review.verdicts[0].note = "immutable drift"
   await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
 
-  const result = await runCli([], repository)
+  const result = await runCli([], repository, { ...process.env, NABI_BASE_SHA: "" })
   assert.equal(result.code, 1)
   assert.match(result.stderr, /Immutable baseline evidence has drifted/)
   assert.match(result.stderr, /publish a new replacement batch instead/)
