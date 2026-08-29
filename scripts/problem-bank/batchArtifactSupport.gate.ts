@@ -3,6 +3,7 @@ import { tmpdir } from "node:os"
 import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 import { provenanceErrors } from "./batchArtifactSupport"
+import { sealReview } from "./batchPipeline.mjs"
 import {
   buildImageBatch029Artifacts,
   buildImageBatch029Publication,
@@ -93,6 +94,22 @@ describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
     // lowercase hex string, so it passes format regardless of merge state — that part
     // relies on the review's own reviewDigest (sha256 of everything except itself) to
     // make tampering with this field detectable without git ancestry.
+  })
+
+  it("does not let a local published summary exempt evidence that differs from origin/main", async () => {
+    const computed = await buildImageBatch029Artifacts({ repositoryRoot })
+    const committed = structuredClone(await readCommittedImageBatch029({ repositoryRoot }))
+    expect(committed.summary).not.toBeNull()
+    committed.reviews[0] = sealReview({
+      ...committed.reviews[0],
+      reviewedHead: NONEXISTENT_SHA,
+    })
+    const state = checkImageBatch029State({ computed, committed })
+    expect(
+      state.errors.some((error) =>
+        error.includes(`reviewedHead ${NONEXISTENT_SHA} is not an ancestor of HEAD`),
+      ),
+    ).toBe(true)
   })
 
   it("fails closed when origin/main cannot be resolved", async () => {
