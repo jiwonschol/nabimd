@@ -5,6 +5,7 @@ import { basename, dirname, relative, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
 import {
   buildPublishedBatchArtifacts,
+  evaluateBatchEvidence,
   loadBatchDirectories,
   publishedBatchHistory,
   sealEditorial,
@@ -31,6 +32,25 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
     const replacement = projectedBatches.get(batch.normalized?.batchId)
     return replacement ? { ...batch, ...replacement } : batch
   })
+  const missingPublishedEditorial = projected.filter(
+    (batch) => batch.summary?.status === "published" && batch.editorial == null,
+  )
+  if (missingPublishedEditorial.length > 0) {
+    throw new Error(
+      `Cannot rebuild published evidence with missing editorial artifacts:\n${missingPublishedEditorial
+        .map((batch) => `- ${batch.normalized?.batchId ?? "<unknown>"}`)
+        .join("\n")}`,
+    )
+  }
+  const targetEvidenceErrors = projected
+    .filter((batch) => targetBatchIds.has(batch.normalized?.batchId))
+    .filter((batch) => (batch.reviews?.length ?? 0) > 0 || batch.editorial != null)
+    .flatMap((batch) => evaluateBatchEvidence(batch).errors)
+  if (targetEvidenceErrors.length > 0) {
+    throw new Error(
+      `Cannot reseal invalid target evidence:\n${targetEvidenceErrors.join("\n")}`,
+    )
+  }
   const published = publishedBatchHistory(
     projected.filter((batch) => batch.editorial !== null && batch.editorial !== undefined),
   ).sort(
@@ -180,8 +200,7 @@ export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
     sealed.push({ batchDir, ...(await resealOneBatch({ batchDir, write: false })) })
   }
 
-  const changedBatches = sealed.filter(({ report }) => report.changed.length > 0)
-  if (changedBatches.length > 0) {
+  if (sealed.length > 0) {
     const projectedBatches = new Map(
       sealed.map(({ batchDir, projectedBatch }) => [
         basename(batchDir),
@@ -189,18 +208,18 @@ export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
       ]),
     )
     const generated = await updatePublishedChain({
-      batchDirs: changedBatches.map(({ batchDir }) => batchDir),
+      batchDirs: sealed.map(({ batchDir }) => batchDir),
       projectedBatches,
       write: false,
     })
-    changedBatches[0].report.changed.push(...generated)
+    sealed[0].report.changed.push(...generated)
 
     if (write) {
       for (const { batchDir } of sealed) {
         await resealOneBatch({ batchDir, write: true })
       }
       await updatePublishedChain({
-        batchDirs: changedBatches.map(({ batchDir }) => batchDir),
+        batchDirs: sealed.map(({ batchDir }) => batchDir),
         projectedBatches,
         write: true,
       })
@@ -232,16 +251,32 @@ export async function resolveBaselineSha(
   const explicit = explicitBaseSha?.trim()
   if (explicit && !/^0+$/.test(explicit)) return explicit
 
+  const candidates = []
+  const head = (await run("git", ["rev-parse", "HEAD"], { cwd })).stdout.trim()
   for (const mainRef of ["origin/main", "main"]) {
     try {
       const baseline = (
         await run("git", ["merge-base", mainRef, "HEAD"], { cwd })
       ).stdout.trim()
-      const head = (await run("git", ["rev-parse", "HEAD"], { cwd })).stdout.trim()
-      if (baseline && baseline !== head) return baseline
+      if (baseline && baseline !== head && !candidates.includes(baseline)) {
+        candidates.push(baseline)
+      }
     } catch {
       // Try the next stable main ref before falling back to the parent commit.
     }
+  }
+  if (candidates.length > 0) {
+    const distances = await Promise.all(
+      candidates.map(async (candidate) => ({
+        candidate,
+        distance: Number(
+          (await run("git", ["rev-list", "--count", `${candidate}..HEAD`], { cwd }))
+            .stdout.trim(),
+        ),
+      })),
+    )
+    distances.sort((left, right) => left.distance - right.distance)
+    return distances[0].candidate
   }
 
   try {

@@ -35,23 +35,29 @@ export function importsNodeTest(source) {
     }
     return null
   }
-  let found = false
+  let importsNodeRunner = false
+  let importsVitest = false
   const visit = (node) => {
     if (
       (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
       moduleName(node.source) === "node:test"
     ) {
-      found = true
-      return
+      importsNodeRunner = true
+    }
+    if (
+      (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
+      moduleName(node.source) === "vitest"
+    ) {
+      importsVitest = true
     }
     for (const value of Object.values(node)) {
-      if (found || value === null || typeof value !== "object") continue
+      if (value === null || typeof value !== "object") continue
       if (Array.isArray(value)) value.forEach((child) => child && visit(child))
       else if (typeof value.type === "string") visit(value)
     }
   }
   visit(parseAst(source))
-  return found
+  return importsNodeRunner && !importsVitest
 }
 
 describe("test runner configuration", () => {
@@ -106,5 +112,10 @@ describe("test runner configuration", () => {
     expect(importsNodeTest('const matcher = /import("node:test")/\n')).toBe(false)
     expect(importsNodeTest('const matcher = () => /import("node:test")/\n')).toBe(false)
     expect(importsNodeTest('function matcher() { return /import("node:test")/ }\n')).toBe(false)
+    expect(
+      importsNodeTest(
+        'import { mock } from "node:test"\nimport { describe, it } from "vitest"\n',
+      ),
+    ).toBe(false)
   })
 })

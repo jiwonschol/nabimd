@@ -1,5 +1,5 @@
 import assert from "node:assert/strict"
-import { cp, mkdtemp, mkdir, readFile, writeFile, readdir } from "node:fs/promises"
+import { cp, mkdtemp, mkdir, readFile, writeFile, readdir, unlink } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { resolve } from "node:path"
 import test from "node:test"
@@ -317,6 +317,26 @@ test("origin/main itself uses its parent instead of HEAD as the baseline", async
   assert.equal(await resolveBaselineSha(repository, ""), parent)
 })
 
+test("a newer local main wins over a stale origin/main baseline", async () => {
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-newest-main-baseline-"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "first\n")
+  await run("git", ["add", "evidence.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "first"], { cwd: repository })
+  await run("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "second\n")
+  await run("git", ["commit", "-am", "second"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  const localMain = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "third\n")
+  await run("git", ["commit", "-am", "third"], { cwd: repository })
+
+  assert.equal(await resolveBaselineSha(repository, ""), localMain)
+})
+
 test("resealing rejects targets from different problem-bank roots", async () => {
   const firstRoot = resolve(tmpdir(), "first-bank", "batches", "batch-a")
   const secondRoot = resolve(tmpdir(), "second-bank", "batches", "batch-b")
@@ -411,6 +431,7 @@ test("semantic chain validation fails before any seal is written", async () => {
     .sort()[0]
   const reviewPath = resolve(targetDir, "reviews", reviewName)
   const editorialPath = resolve(targetDir, "editorial.json")
+  await unlink(resolve(targetDir, "summary.generated.json"))
   const review = JSON.parse(await readFile(reviewPath, "utf8"))
   review.manifestDigest = "invalid-manifest-digest"
   await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
@@ -423,6 +444,66 @@ test("semantic chain validation fails before any seal is written", async () => {
   )
   assert.equal(await readFile(reviewPath, "utf8"), beforeReview)
   assert.equal(await readFile(editorialPath, "utf8"), beforeEditorial)
+})
+
+test("a published batch missing editorial blocks a later reseal", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-missing-editorial-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  await mkdir(batchesRoot, { recursive: true })
+  const batchIds = [
+    "2026-07-19-milestone-1-foundation-001",
+    "2026-07-19-l1-l2-headings-002",
+  ]
+  for (const batchId of batchIds) {
+    await cp(resolve(sourceBank, "batches", batchId), resolve(batchesRoot, batchId), {
+      recursive: true,
+    })
+  }
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await unlink(resolve(batchesRoot, batchIds[0], "editorial.json"))
+  const targetDir = resolve(batchesRoot, batchIds[1])
+  const reviewName = (await readdir(resolve(targetDir, "reviews"))).find((name) => name.endsWith(".json"))
+  const reviewPath = resolve(targetDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].note = "would rewrite the later chain"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  const before = await readFile(reviewPath, "utf8")
+
+  await assert.rejects(
+    resealBatchEvidenceSet({ batchDirs: [targetDir], write: true }),
+    /missing editorial artifacts/,
+  )
+  assert.equal(await readFile(reviewPath, "utf8"), before)
+})
+
+test("rerunning repairs a stale generated chain after seals already match", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-repair-chain-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const targetDir = resolve(batchesRoot, batchId)
+  await mkdir(batchesRoot, { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), targetDir, { recursive: true })
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  const summaryPath = resolve(targetDir, "summary.generated.json")
+  const staleSummary = await readFile(summaryPath, "utf8")
+  const reviewName = (await readdir(resolve(targetDir, "reviews"))).find((name) => name.endsWith(".json"))
+  const reviewPath = resolve(targetDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].note = "resealed before an interrupted chain write"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  await resealBatchEvidence({ batchDir: targetDir, write: true })
+  await writeFile(summaryPath, staleSummary)
+
+  const drift = await resealBatchEvidence({ batchDir: targetDir, write: false })
+  assert.ok(drift.changed.includes(`${batchId}/summary.generated.json`))
+  await resealBatchEvidence({ batchDir: targetDir, write: true })
+  assert.deepEqual((await resealBatchEvidence({ batchDir: targetDir, write: false })).changed, [])
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {
@@ -461,8 +542,9 @@ test("every committed batch reproduces its own seals", async () => {
   assert.ok(batches.length >= 26, `expected the committed bank, saw ${batches.length}`)
 
   let sealedReviews = 0
-  for (const batchDir of batches) {
-    const report = await resealBatchEvidence({ batchDir, write: false })
+  const reports = await resealBatchEvidenceSet({ batchDirs: batches, write: false })
+  for (const report of reports) {
+    const batchDir = report.batchDir
     assert.deepEqual(report.changed, [], batchDir)
     assert.equal(report.hasEditorial, true, batchDir)
     sealedReviews += report.reviewCount
