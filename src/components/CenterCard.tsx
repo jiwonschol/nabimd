@@ -94,14 +94,27 @@ export function describeCheckpoint(
   // into a table row. A bar counts when the learner types it, or when it is in
   // a locked run that holds nothing but table punctuation, which is what keeps
   // a divider whose dashes are the blank from reading as a Setext underline.
-  const barIsSyntax = checkpoint.segments.some(
+  const barIsTyped = checkpoint.segments.some(
+    (segment) => segment.kind === "input" && segment.value.includes("|"),
+  )
+  // A divider can hide its bars in locked text and blank only the dashes, so
+  // locked bars have to count — but only when the learner is typing dash runs.
+  // A bullet whose entire text is punctuation ("- |", "- :|:") also has a
+  // locked bar and a mark made of table characters; what it does not have is a
+  // learner typing table syntax.
+  const dashRunsAreTyped = checkpoint.segments.every(
     (segment) =>
+      segment.kind === "locked" || /^:?-{3,}:?$/.test(segment.value.trim()),
+  )
+  const barIsLockedPunctuation = checkpoint.segments.some(
+    (segment) =>
+      segment.kind === "locked" &&
       segment.value.includes("|") &&
-      (segment.kind === "input" || /^[|\s:-]+$/.test(segment.value)),
+      /^[|\s:-]+$/.test(segment.value),
   )
   const inTableRow =
     /^[|\s:-]+$/.test(mark) &&
-    barIsSyntax &&
+    (barIsTyped || (barIsLockedPunctuation && dashRunsAreTyped)) &&
     // A Setext underline under a heading that happens to contain a bar is a
     // dash run with a locked newline; that shape stays a heading.
     !(lockedBreak && /^(?:=+|-+)$/.test(mark))
@@ -221,7 +234,21 @@ export function describeCheckpoint(
   if (mark === "**" || mark === "__") {
     return instruction("Wrap the phrase in Markdown marks for ", "italic text")
   }
-  if (mark === "******" || mark === "______") {
+  // Bold italic is a strong wrapper nested inside an emphasis one. Deciding it
+  // from the joined six delimiters instead claimed `**bold** *italic*` and
+  // `*one* *two* *three*` were bold italic: separate spans on one line
+  // concatenate to the same value. The nesting has to be read from the order
+  // of the groups — the contract shape blanks the three marks together, and
+  // today's engine splits them into an emphasis mark wrapping a strong pair.
+  const boldItalicNesting =
+    (inputValues.length === 2 &&
+      inputValues.every((value) => value === "***" || value === "___")) ||
+    (inputValues.length === 4 &&
+      (inputValues[0] === "*" || inputValues[0] === "_") &&
+      inputValues[0] === inputValues[3] &&
+      (inputValues[1] === "**" || inputValues[1] === "__") &&
+      inputValues[1] === inputValues[2])
+  if (boldItalicNesting) {
     return instruction(
       "Wrap the phrase in Markdown marks for ",
       "bold italic text",

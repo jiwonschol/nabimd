@@ -147,6 +147,45 @@ describe("describeCheckpoint", () => {
       term: "bullet item",
       suffix: ".",
     })
+    // Nor is one whose text is nothing but table punctuation: the locked bar
+    // looks like syntax, but the learner is typing a bullet marker.
+    expect(describeCheckpoint(checkpointFor("- |")).term).toBe("bullet item")
+    expect(describeCheckpoint(checkpointFor("- :|:")).term).toBe("bullet item")
+  })
+
+  it("does not call separate spans on one line bold italic", () => {
+    // Four delimiter groups concatenate to the same six marks whether they
+    // nest or sit side by side; only the order tells them apart.
+    // Both keep the label they had before this branch existed. That label is
+    // itself imprecise for a line carrying several spans — the card names one
+    // family and stays silent about the rest — which is #177, not this axis.
+    expect(describeCheckpoint(checkpointFor("**bold** *italic*")).term).toBe(
+      "bold text",
+    )
+    expect(describeCheckpoint(checkpointFor("*one* *two* *three*")).term).toBe(
+      "bold text",
+    )
+    // The contract shape — the three marks blanked as one group — still reads
+    // as bold italic, alongside today's split shape asserted above.
+    expect(
+      describeCheckpoint(
+        checkpointOf(["***", "input"], ["Very", "locked"], ["***", "input"]),
+      ).term,
+    ).toBe("bold italic text")
+
+    // Nesting is symmetric. An outer pair that does not match itself is not a
+    // wrapper, so it falls out of the branch rather than being named.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["*", "input"],
+          ["**", "input"],
+          ["Very", "locked"],
+          ["**", "input"],
+          ["_", "input"],
+        ),
+      ).term,
+    ).not.toBe("bold italic text")
   })
 
   it("does not call a four-tilde code fence strikethrough", () => {
