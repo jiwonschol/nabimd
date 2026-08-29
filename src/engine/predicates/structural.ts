@@ -163,6 +163,24 @@ function listShapePasses(
   check: Extract<StructuralCheck, { kind: "list-shape" }>,
   context: EvaluationContext,
 ) {
+  return listCandidatesForCheck(check, context).some(({ list }) => {
+    return (
+      inRange(list.children.length, check.minItems, check.maxItems) &&
+      (!check.requireNonemptyItems ||
+        list.children.every(listItemHasContent)) &&
+      (!check.requireVisibleItems ||
+        list.children.every((item) =>
+          listItemHasVisibleContent(item, context.source),
+        )) &&
+      (!check.requireTaskItems || list.children.every(isTaskItem))
+    )
+  })
+}
+
+export function listCandidatesForCheck(
+  check: Extract<StructuralCheck, { kind: "list-shape" }>,
+  context: EvaluationContext,
+) {
   const scopedNodes = nodesInScope(context, check.scope)
   const candidates = check.recursive
     ? collectListCandidates(scopedNodes as AstNode[])
@@ -174,22 +192,14 @@ function listShapePasses(
       ({ ancestorListOrders }) =>
         !check.descendantsOnly || ancestorListOrders.length > 0,
     )
-    .some(({ list, ancestorListOrders }) => {
+    .filter(({ list, ancestorListOrders }) => {
       const ordered = Boolean(list.ordered)
       return (
         (check.ordered === "either" || check.ordered === ordered) &&
         (check.ordered === "either" ||
           ancestorListOrders.every(
             (ancestorOrder) => ancestorOrder === ordered,
-          )) &&
-        inRange(list.children.length, check.minItems, check.maxItems) &&
-        (!check.requireNonemptyItems ||
-          list.children.every(listItemHasContent)) &&
-        (!check.requireVisibleItems ||
-          list.children.every((item) =>
-            listItemHasVisibleContent(item, context.source),
-          )) &&
-        (!check.requireTaskItems || list.children.every(isTaskItem))
+          ))
       )
     })
 }

@@ -211,6 +211,11 @@ describe("task list checkboxes", () => {
     expect(JSON.stringify(result)).toContain(
       "Put a checkbox after each bullet marker",
     )
+    expect(
+      JSON.stringify(
+        evaluateProblem(taskListProblem(true), "- [ ] Buy milk\n- Post the letter"),
+      ),
+    ).toContain("Put a checkbox after each bullet marker")
   })
 
   it("names missing boxes on an ordered task list", () => {
@@ -231,6 +236,46 @@ describe("task list checkboxes", () => {
     expect(JSON.stringify(result)).toContain(
       "Put a checkbox after each numbered marker",
     )
+  })
+
+  it("uses the near-miss list's actual marker when either order is accepted", () => {
+    const taskCheck = taskListProblem(true)
+      .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
+    const eitherProblem: GradableProblem = {
+      ...taskListProblem(true),
+      matchChecks: [{ ...taskCheck, ordered: "either" }],
+    }
+
+    expect(
+      JSON.stringify(evaluateProblem(eitherProblem, "1. Buy milk\n2. Post it")),
+    ).toContain("Put a checkbox after each numbered marker")
+  })
+
+  it("uses the predicate's recursive selection for checkbox diagnosis", () => {
+    const taskCheck = taskListProblem(true)
+      .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
+    const rootOnly: GradableProblem = {
+      ...taskListProblem(true),
+      matchChecks: [{ ...taskCheck, recursive: false }],
+    }
+    const descendantsOnly: GradableProblem = {
+      ...taskListProblem(true),
+      matchChecks: [
+        { ...taskCheck, recursive: true, descendantsOnly: true },
+      ],
+    }
+
+    expect(evaluateProblem(rootOnly, "> - One\n> - Two")).toMatchObject({
+      status: "fail",
+      message: taskCheck.feedback,
+    })
+    expect(evaluateProblem(descendantsOnly, "- One\n- Two")).toMatchObject({
+      status: "fail",
+      message: taskCheck.feedback,
+    })
+    expect(
+      JSON.stringify(evaluateProblem(descendantsOnly, "- Parent\n  - One\n  - Two")),
+    ).toContain("Put a checkbox after each bullet marker")
   })
 
   it("does not diagnose bullets outside the checked section", () => {

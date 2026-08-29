@@ -119,6 +119,11 @@ describe("correctionCue", () => {
       "- Parent\n  - Child",
     ],
     [
+      failure({ ...checkBase("task-list"), kind: "list-shape", scope: { kind: "document" }, ordered: false, minItems: 1, requireTaskItems: true }),
+      "Task list",
+      "- [ ] Item",
+    ],
+    [
       failure({ ...checkBase("blockquote"), kind: "blockquote-shape", scope: { kind: "document" } }),
       "Blockquote",
       "> Note",

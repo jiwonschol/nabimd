@@ -73,7 +73,14 @@ function inlinePresentation(inline: InlineKind): {
 function listPresentation(
   ordered: boolean | "either",
   descendantsOnly: boolean | undefined,
+  requireTaskItems: boolean | undefined,
 ): { label: string; example: string } {
+  if (requireTaskItems) {
+    return {
+      label: descendantsOnly ? "Nested task list" : "Task list",
+      example: ordered === true ? "1. [ ] Step" : "- [ ] Item",
+    }
+  }
   const label =
     ordered === true ? "Ordered list" : ordered === false ? "Bullet list" : "List"
   const example = ordered === true ? "1. Step" : "- Item"
@@ -138,7 +145,11 @@ export function correctionCue(failure: MatchFailureItem): CorrectionCue {
     case "heading-depth-order":
       return cue(failure, "Heading order", null)
     case "list-shape": {
-      const presentation = listPresentation(check.ordered, check.descendantsOnly)
+      const presentation = listPresentation(
+        check.ordered,
+        check.descendantsOnly,
+        check.requireTaskItems,
+      )
       return cue(failure, presentation.label, presentation.example)
     }
     case "blockquote-shape":

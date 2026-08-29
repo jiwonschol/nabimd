@@ -1,13 +1,11 @@
 import type { GradableProblem, MatchCheck } from "../content/types"
-import {
-  descendants,
-  nodesInScope,
-  type AstNode,
-  type EvaluationContext,
-} from "./evaluationContext"
-import type { List } from "mdast"
+import type { EvaluationContext } from "./evaluationContext"
 import { headingCheckPasses } from "./predicates/heading"
-import { structuralCheckPasses } from "./predicates/structural"
+import {
+  isTaskItem,
+  listCandidatesForCheck,
+  structuralCheckPasses,
+} from "./predicates/structural"
 import type { MatchFailure } from "./types"
 import { diagnoseMatchFailure } from "./matchDiagnostics"
 
@@ -31,21 +29,16 @@ function missingNumberedSpaceCount(source: string): number {
   ).length
 }
 
-function hasCheckboxNearMiss(
+function checkboxNearMiss(
   check: ListShapeCheck,
   context: EvaluationContext,
-): boolean {
-  return descendants(nodesInScope(context, check.scope) as AstNode[])
-    .filter((node): node is List => node.type === "list")
-    .filter(
-      (list) =>
-        check.ordered === "either" || Boolean(list.ordered) === check.ordered,
-    )
-    .some(
-      (list) =>
-        list.children.filter((item) => item.checked === null).length >=
-        check.minItems,
-    )
+ ) {
+  return listCandidatesForCheck(check, context).find(
+    ({ list }) =>
+      list.children.length >= check.minItems &&
+      (check.maxItems === undefined || list.children.length <= check.maxItems) &&
+      list.children.some((item) => !isTaskItem(item)),
+  )?.list
 }
 
 function listFailureMessage(
@@ -54,11 +47,11 @@ function listFailureMessage(
 ): string {
   // A list that is missing its boxes is the near miss this check exists for,
   // so it gets its own sentence rather than the generic feedback.
-  if (
-    check.requireTaskItems &&
-    hasCheckboxNearMiss(check, context)
-  ) {
-    return check.ordered === true
+  const nearMiss = check.requireTaskItems
+    ? checkboxNearMiss(check, context)
+    : undefined
+  if (nearMiss) {
+    return nearMiss.ordered
       ? "Put a checkbox after each numbered marker, for example `1. [ ] Item`."
       : "Put a checkbox after each bullet marker, for example `- [ ] Item`."
   }
