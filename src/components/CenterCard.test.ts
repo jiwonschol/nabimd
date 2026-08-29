@@ -299,6 +299,22 @@ describe("describeCheckpoint", () => {
       ).prefix,
     ).toBe("Type the Markdown bar and dashes that make the row above the ")
 
+    // The other side of the same split: a three-column divider exposes two
+    // inner bars, so the same branch has to say "bars".
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["| ", "locked"],
+          ["---", "input"],
+          ["|", "input"],
+          ["---", "input"],
+          ["|", "input"],
+          ["---", "input"],
+          [" |", "locked"],
+        ),
+      ).prefix,
+    ).toBe("Type the Markdown bars and dashes that make the row above the ")
+
     // And when the dashes are the blank instead of the bars.
     const dividerTypedDashes = checkpointOf(
       ["| ", "locked"],
