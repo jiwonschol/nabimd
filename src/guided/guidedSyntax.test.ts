@@ -188,8 +188,14 @@ describe("deriveSyntaxCheckpoints", () => {
         }
       }
     }
-    // The sweep has to reach the shape it guards: 21 of the 49 spellings are
-    // read as a nesting. A guard that walks past its own case is not a guard.
+    // The sweep has to reach the shape it guards — a guard that walks past its
+    // own case is not a guard. The number is not arbitrary: a tab in the
+    // *outer* separator stops the nesting from being recognised at all, while
+    // a tab in the inner one does not. Three of the seven separators hold no
+    // tab, so 3 x 7 = 21 spellings nest and the other 28 stay plain (#204).
+    // Read that way, this asserts "every spelling whose outer marker has no
+    // tab", not "21 of 49" — if you are here to change the number, check which
+    // of those two moved.
     expect(nested).toBe(21)
   })
 
