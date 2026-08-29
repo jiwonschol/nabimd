@@ -554,6 +554,46 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
+  it("invalidates checkpoint-scoped evidence when the card projection changes", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const currentProblemId = ids[1]!
+    const progress = createDefaultProgress(currentProblemId)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStepIndex = 1
+    progress.scheduledStepIndex = 1
+    progress.runStartedAtMs = 1_000
+    progress.pendingSlotRetryProblemId = currentProblemId
+    progress.syntaxMistakes = [
+      {
+        problemId: currentProblemId,
+        checkpointId: "syntax-1-1",
+        groupIndex: 0,
+        term: "level 1 heading",
+        submitted: "@",
+        expected: ["# "],
+      },
+    ]
+    progress.draftByProblemId[currentProblemId] = "# Learner draft"
+    const {
+      checkpointProjectionRevision: _checkpointProjectionRevision,
+      ...legacyProgress
+    } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.currentProblemId).toBe(currentProblemId)
+    expect(loaded.runStepIndex).toBe(1)
+    expect(loaded.draftByProblemId[currentProblemId]).toBe("# Learner draft")
+    expect(loaded.pendingSlotRetryProblemId).toBeNull()
+    expect(loaded.syntaxMistakes).toEqual([])
+  })
+
   it("round-trips a bounded syntax mistake ledger", () => {
     const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)

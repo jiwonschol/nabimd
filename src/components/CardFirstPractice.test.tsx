@@ -58,6 +58,28 @@ describe("CardFirstPractice", () => {
     expect(onGrow).toHaveBeenCalledWith("*Paper boat*")
   })
 
+  it("shows the complete given prefix before the first answer", () => {
+    render(
+      <CardFirstPractice
+        draft=""
+        interactive
+        onComplete={vi.fn()}
+        onGrow={vi.fn()}
+        onMiss={vi.fn()}
+        problem={getProblem("l2-nested-checklist-closet-shelf")}
+        problemCompleted={false}
+      />,
+    )
+
+    expect(
+      screen.getByRole("heading", { name: "Closet shelf" }),
+    ).toBeVisible()
+    expect(
+      screen.getByText("Sort the clean clothes by where they belong."),
+    ).toBeVisible()
+    expect(screen.getAllByText("Top shelf")).not.toHaveLength(0)
+  })
+
   it("animates the card height while the exact Hint opens", () => {
     vi.useFakeTimers()
     render(
