@@ -167,16 +167,30 @@ function buildAcceptedForms(
   // list markers above. A marker that changes partway down a list starts a
   // second list, so those must agree; two checked boxes constrain nothing, so
   // flipping them together rejected the valid mixed answer `[x]…[X]`.
+  //
+  // The tab spelling belongs here too, and leaving it out was the wrong half
+  // of the question. A Goal written `- [\t]` produces a card whose only
+  // accepted answer is a tab, and its Hint prints that tab as a row visually
+  // identical to `- [ ]` — the card cannot be solved from the screen. What the
+  // Hint shows is a display problem; what the card accepts is whether it can
+  // be answered at all.
+  const taskBoxAlternatives: Readonly<Record<string, string>> = {
+    "[x]": "[X]",
+    "[X]": "[x]",
+    "[ ]": "[\t]",
+    "[\t]": "[ ]",
+  }
   const taskBoxGroups = canonicalParts.flatMap((part, index) =>
-    /^\[[xX]\]$/.test(part) ? [index] : [],
+    part in taskBoxAlternatives ? [index] : [],
   )
   for (const index of taskBoxGroups) {
     expandInputForms(forms, (form) => {
       const value = form[index]
-      if (value !== "[x]" && value !== "[X]") return null
-      const alternative = [...form]
-      alternative[index] = value === "[x]" ? "[X]" : "[x]"
-      return alternative
+      const alternative = value === undefined ? undefined : taskBoxAlternatives[value]
+      if (alternative === undefined) return null
+      const next = [...form]
+      next[index] = alternative
+      return next
     })
   }
 

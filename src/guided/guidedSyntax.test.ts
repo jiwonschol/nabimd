@@ -76,12 +76,20 @@ describe("deriveSyntaxCheckpoints", () => {
 
     expect(accepted("- [x] Buy milk")).toContain("- [X]")
     expect(accepted("- [X] Buy milk")).toContain("- [x]")
-    // The unchecked box gains no alternative. A tab between the brackets is
-    // valid Markdown and is recognised (see the tab test below), but it is
-    // invisible in the Hint list, where it would print as a second row
-    // identical to `[ ]`. Recognising the shape and offering it as an answer
-    // are different questions.
-    expect(accepted("- [ ] Buy milk")).toEqual(["- [ ]", "* [ ]", "+ [ ]"])
+    // A tab between the brackets is the same unchecked item to the parser, and
+    // it goes both ways. The direction that matters is the second one: a Goal
+    // written with a tab produces a card whose Hint prints a row visually
+    // identical to `- [ ]`, so refusing the space would leave a card that
+    // cannot be solved from the screen.
+    expect(accepted("- [ ] Buy milk")).toEqual([
+      "- [ ]",
+      "* [ ]",
+      "+ [ ]",
+      "- [\t]",
+      "* [\t]",
+      "+ [\t]",
+    ])
+    expect(accepted("- [\t] Buy milk")).toContain("- [ ]")
 
     // Two boxes on one card choose independently — `[x]` beside `[X]` is
     // valid GFM. Flipping them together, the way the list markers must be
