@@ -1,0 +1,131 @@
+{
+  "batchId": "2026-08-29-l1-tables-030",
+  "reviewerId": "jinseo-editorial",
+  "role": "editorial",
+  "prNumber": 186,
+  "boundHeadSha": "0cbfcf08ddc317002b3e6ef3a827b3c12e504210",
+  "boundBaseSha": "aac35ff860effb87d955154364495e8fc0b02e2a",
+  "boundManifestDigest": "43256539c49217ce7fb71b72193681580f9e9eab8b7bdca38fb6d7c0492ac854",
+  "reviewedAt": "2026-08-29T08:42:00Z",
+  "scope": {
+    "assignedBy": "동준",
+    "brief": "사용자가 읽을 문구. 12개 candidate 의 문구·vocabulary·Level 1 적합성·중복·한 문법 원칙. teaching/hints 가 화면과 실제 입력 바 셋을 정확히 말하는지.",
+    "notInScope": "계약·재현(메이), 표 문법 경계 반례(동환). 봉인 규칙에 따라 candidate·fixture 를 수정하지 않았다."
+  },
+  "method": {
+    "description": "문구를 읽는 것만으로는 '화면과 맞는가'를 답할 수 없어, 12개 target 을 실제 카드 경로로 돌려 무엇이 빈칸인지 먼저 재고 문구와 대조했다.",
+    "steps": [
+      "1) derivePlaintextStarter(target) → deriveSyntaxCheckpoints(target, starter) → describeCheckpoint 로 각 문제의 카드와 빈칸을 뽑았다",
+      "2) 빈칸 집합과 teaching.howTo · hints · matchChecks[].feedback · prompt 가 지시하는 행동을 대조했다",
+      "3) teaching.example 과 hints 의 예시가 배치 안 12개 target 중 어느 것과도 겹치지 않는지 확인했다",
+      "4) 그 겹침이 저장소 관례인지 보려고 런타임 은행 352개에서 teaching.example === target 인 문제 수를 셌다"
+    ],
+    "measured": {
+      "blanksPerProblem": "3 (각 행의 바 하나씩). 셀 글자와 구분선 대시는 모두 locked",
+      "cardShapes": [
+        "{Fruit }[|]{ Count}",
+        "{--- }[|]{ ---}",
+        "{Apples }[|]{ 3}"
+      ],
+      "bankProblemsWhereExampleEqualsTarget": 0,
+      "bankProblemsScanned": 352
+    }
+  },
+  "overallVerdict": "hold",
+  "findings": [
+    {
+      "id": "example-is-the-answer",
+      "severity": "P1",
+      "candidateIds": [
+        "l1-table-fruit-count"
+      ],
+      "field": [
+        "teaching.example",
+        "hints[2]"
+      ],
+      "summary": "첫 문제의 정답이 그 문제의 가르침 예시이자 힌트다.",
+      "evidence": {
+        "target": "Fruit | Count\n--- | ---\nApples | 3",
+        "teachingExample": "Fruit | Count\n--- | ---\nApples | 3",
+        "identical": true,
+        "hint": "Example: `Fruit | Count`",
+        "hintEqualsFirstCardAnswer": true,
+        "precedentInBank": "런타임 은행 352개 중 teaching.example === target 인 문제 0개"
+      },
+      "cause": "12개가 teaching 과 hints 를 하나로 공유하는데, 그 예시가 12개 중 하나의 답이다. 공유 문구의 예시는 배치 안 어느 target 과도 달라야 한다.",
+      "proposal": "예시를 배치에 없는 짝으로 바꾼다. 예: `Name | Age`."
+    },
+    {
+      "id": "copy-asks-for-work-the-learner-does-not-do",
+      "severity": "P2",
+      "candidateIds": [
+        "all-12"
+      ],
+      "field": [
+        "teaching.howTo",
+        "matchChecks[0].feedback",
+        "hints[0]"
+      ],
+      "summary": "문구가 행을 만들라고 하는데, 학습자가 채우는 것은 각 행의 바 하나씩 셋뿐이다.",
+      "evidence": {
+        "learnerFills": "3 bars",
+        "lockedFromLearner": [
+          "cell text",
+          "divider dashes"
+        ],
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "feedback": "Add a Markdown table with a header row, a divider row, and a body row.",
+        "hint0": "Read each row from left to right."
+      },
+      "cause": "feedback 은 바를 안 쳐서 틀렸을 때 나오는 문장인데 '세 행을 추가하라'고 해서 무엇을 고칠지 가리키지 않는다. hints[0] 은 읽는 법이라 과제를 가리키지 않는다.",
+      "proposal": {
+        "teaching.howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "matchChecks[0].feedback": "Type a vertical bar between the two cells in each of the three rows.",
+        "hints[0]": "Every row takes a bar, including the one made of dashes."
+      }
+    },
+    {
+      "id": "bus-named-by-colour-alone",
+      "severity": "P3",
+      "candidateIds": [
+        "l1-table-bus-time"
+      ],
+      "field": [
+        "target"
+      ],
+      "summary": "`Bus | Time` 아래 `Green | Noon` 은 값이 색 이름 하나라 나머지 열하나보다 한 겹 추상적이다.",
+      "evidence": {
+        "thisRow": "Green | Noon",
+        "peers": [
+          "Apples | 3",
+          "Monday | Sunny",
+          "Tea | $2",
+          "Cat | Luna"
+        ],
+        "note": "Green Line 버스는 실재하므로 틀린 내용은 아니다. Level 1 어휘 원칙에서 약할 뿐이다."
+      },
+      "proposal": [
+        "헤더를 `Route | Time` 으로 바꾼다",
+        "또는 값을 `Airport | Noon` 으로 바꾼다"
+      ]
+    }
+  ],
+  "passed": {
+    "prompt": "\"Write the three-row Markdown table.\" 이 문서 전체 목표를 말하는 것은 다른 배치와 같은 관례다(l3-how-to-* 등). 카드 단위 지시와 다른 층이라 통과.",
+    "teaching.concept": "통과",
+    "hints[1]": "\"Type one vertical bar between the two cells.\" — 실제 빈칸과 일치. 통과",
+    "oneSyntaxPerProblem": "표 하나로 고정(editorialChecks.max-block-count). 통과",
+    "vocabularyDomains": "12개 도메인 중복 없음. 통과",
+    "remainingEleven": "문구·어휘·Level 1 적합성 통과"
+  },
+  "publishBlocking": true,
+  "recommendation": "030 은 봉인 유지하고 P1·P2·P3 를 반영한 031 replacement 로 간다. P2 는 12개 전부에 걸리므로 공유 문구를 고치는 것이 곧 배치 전체 교체다.",
+  "kind": "editorial-notes",
+  "sealedArtifact": "editorial.json",
+  "reviewDigests": [
+    "7e96ce9578a75541df7f21f4d95639959ce9064dd8ffdb3432f1697e2d9b5203",
+    "c3546cad4c0b70868af00be5dc3811948f785a469fad1d4bd26c26f2f024b6c9"
+  ],
+  "editorialDigest": "bb54293c1118849535be25c1ca28665b6e20c9576f6e12bb914bc20b1a84365f",
+  "note": "Not a sealed review record. The evidence and the proposed sentences live here; the decisions the pipeline reads live in the batch root editorial.json."
+}
