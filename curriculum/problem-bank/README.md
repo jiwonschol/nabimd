@@ -103,6 +103,31 @@ currently reports 360. New families publish in small batches only after their
 real predicate, counterexamples, fixtures, independent agreement, and editorial
 acceptance all exist.
 
+## Reissuing a sealed judgment
+
+`reviews/*.json` carries a `reviewDigest` over its own content, and
+`editorial.json` carries an `editorialDigest` over content that includes the
+review digests it cites. A reviewer who corrects one field in their own record
+therefore moves two seals, and `summary.generated.json` cites the second.
+
+Do not adjust digests by hand. Edit the record, then re-derive the seals:
+
+```
+npm run bank:evidence:reseal                       # every batch
+npm run bank:evidence:reseal <batch-directory>     # one batch
+```
+
+Reviews are resealed before the editorial record that cites them. A file is
+written only when its content actually changed, so this never rewrites a batch
+that was already consistent.
+
+`npm run bank:evidence:check` asserts the same thing without writing and is
+part of `npm run check`: if a seal stops matching the content it covers, the
+gate names the file rather than letting the digest drift through review.
+
+The editorial record holds human decisions, so it is authored, not generated —
+the tool re-derives only the two digest fields and the cited review digests.
+
 ## Schema-v2 batch foundation
 
 Issue #9 adds an append-only batch ledger beside the frozen schema-v1 evidence.
