@@ -132,7 +132,15 @@ describe("schema-v2 problem-bank validation", () => {
     )
   })
 
-  it.each([">\tdeep", "-\titem", "#\tTitle", "1.\tstep"])(
+  it.each([
+    ">\tdeep",
+    "-\titem",
+    "- \titem",
+    "#\tTitle",
+    "# \tTitle",
+    "1.\tstep",
+    "1. \tstep",
+  ])(
     "rejects an invisible tab in target marker whitespace: %s",
     (target) => {
       const invalid = problem("tab-marker", { target })

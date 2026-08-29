@@ -648,7 +648,10 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
       remainder = remainder.slice(quote[0].length)
     }
 
-    return /^ {0,3}(?:#{1,6}|[-+*]|\d+[.)])\t/.test(remainder)
+    const markerWhitespace = remainder.match(
+      /^ {0,3}(?:#{1,6}|[-+*]|\d+[.)])([ \t]+)/,
+    )?.[1]
+    return markerWhitespace?.includes("\t") ?? false
   })
 }
 

@@ -43,9 +43,11 @@ export function buildMarkdownNotationMatrix(): MarkdownNotationMatrixRow[] {
           !checkpoint.canonicalInput.includes("\t") &&
           acceptsGuidedSyntaxInput(checkpoint, checkpoint.canonicalInput),
       )
-      const reason = parserOpened
-        ? "—"
-        : "CommonMark expands the two outer tabs to indented code, so the AST has no inner blockquote."
+      const reason = !parserOpened
+        ? "CommonMark expands the two outer tabs to indented code, so the AST has no inner blockquote."
+        : !blankAppears
+          ? "The parser opens the quote, but the outer marker whitespace contains a tab; the product leaves it locked because a visually identical space answer would not grade."
+          : "—"
       return {
         outer,
         inner,

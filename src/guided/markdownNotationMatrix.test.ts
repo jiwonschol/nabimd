@@ -11,14 +11,16 @@ describe("nested blockquote notation matrix", () => {
     const rows = buildMarkdownNotationMatrix()
     expect(rows).toHaveLength(49)
     expect(rows.filter((row) => row.parserOpensNestedQuote)).toHaveLength(42)
-    expect(rows.filter((row) => row.blankAppears)).toHaveLength(42)
-    expect(rows.filter((row) => row.gradesCanonicalInput)).toHaveLength(42)
+    expect(rows.filter((row) => row.blankAppears)).toHaveLength(35)
+    expect(rows.filter((row) => row.gradesCanonicalInput)).toHaveLength(35)
     expect(
       rows.filter((row) => !row.gradesCanonicalInput).map((row) => row.outer),
-    ).toEqual(Array(7).fill("\t\t"))
-    expect(
-      rows.filter((row) => row.parserOpensNestedQuote && !row.gradesCanonicalInput),
-    ).toEqual([])
+    ).toEqual([...Array(7).fill("\t "), ...Array(7).fill("\t\t")])
+    const deliberatelyLocked = rows.filter(
+      (row) => row.parserOpensNestedQuote && !row.gradesCanonicalInput,
+    )
+    expect(deliberatelyLocked).toHaveLength(7)
+    expect(deliberatelyLocked.every((row) => row.reason !== "—")).toBe(true)
   })
 
   it("keeps the committed report generated from executable results", () => {

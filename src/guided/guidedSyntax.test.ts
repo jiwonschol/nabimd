@@ -250,11 +250,10 @@ describe("deriveSyntaxCheckpoints", () => {
         }
       }
     }
-    // The count is the parser's reachable surface, not a magic coverage
-    // number: 42 spellings produce two blockquote nodes. The seven whose
-    // outer separator is two tabs produce indented code after the outer quote
-    // under CommonMark tab expansion, so no nested node exists to teach.
-    expect(nested).toBe(42)
+    // Forty-two spellings produce two blockquote nodes. Seven of those put a
+    // tab in the outer marker's whitespace, which the product deliberately
+    // leaves locked because the visible answer would be ambiguous.
+    expect(nested).toBe(35)
   })
 
   it("teaches parser-recognized tab-separated nested quotes without blanking the tab", () => {
@@ -265,6 +264,16 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
     expect(checkpoint.canonicalInput).toBe("> > ")
     expect(checkpoint.canonicalInput).not.toMatch(/\t/)
+  })
+
+  it("leaves an indented lazy-continuation greater-than sign as prose", () => {
+    const checkpoints = deriveSyntaxCheckpoints("> first\n    > literal", "")
+
+    expect(checkpoints).toHaveLength(1)
+    expect(checkpoints[0]!.canonicalInput).toBe("> ")
+    expect(buildGuidedDraft("> first\n    > literal", checkpoints, 1)).toBe(
+      "> first\n    > literal",
+    )
   })
 
   it("opens list and task markers behind every parser-recognized quote prefix", () => {
