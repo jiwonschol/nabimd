@@ -31,6 +31,7 @@ import { curriculumLevels } from "../content/curriculumLevels"
 import { SYNTAX_FAMILY_WEIGHTS } from "../selection/runPolicy"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { createLearningSession } from "../session/learningSession"
+import { hasGivenDocumentTitle } from "../guided/guidedSyntax"
 import {
   MAX_PERSISTED_RUN_NUMBER,
   PROGRESS_STORAGE_KEY,
@@ -556,12 +557,15 @@ describe("progressStore v5", () => {
 
   it("invalidates checkpoint-scoped evidence when the card projection changes", () => {
     const ids = createRunProblemIds("level-1", 0)
-    const currentProblemId = ids[1]!
+    const currentProblemId = ids.find((id) =>
+      hasGivenDocumentTitle(getProblem(id).target),
+    )!
+    expect(currentProblemId).toBeDefined()
     const progress = createDefaultProgress(currentProblemId)
     progress.entryId = "level-1"
     progress.runProblemIds = ids
-    progress.runStepIndex = 1
-    progress.scheduledStepIndex = 1
+    progress.runStepIndex = ids.indexOf(currentProblemId)
+    progress.scheduledStepIndex = progress.runStepIndex
     progress.runStartedAtMs = 1_000
     progress.pendingSlotRetryProblemId = currentProblemId
     progress.syntaxMistakes = [
@@ -588,10 +592,78 @@ describe("progressStore v5", () => {
     )
 
     expect(loaded.currentProblemId).toBe(currentProblemId)
-    expect(loaded.runStepIndex).toBe(1)
+    expect(loaded.runStepIndex).toBe(ids.indexOf(currentProblemId))
     expect(loaded.draftByProblemId[currentProblemId]).toBe("# Learner draft")
     expect(loaded.pendingSlotRetryProblemId).toBeNull()
     expect(loaded.syntaxMistakes).toEqual([])
+  })
+
+  it("preserves retry and mistake evidence for unchanged checkpoint projections", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const unchangedProblemId = ids.find(
+      (id) => !hasGivenDocumentTitle(getProblem(id).target),
+    )!
+    const changedProblemId = ids.find((id) =>
+      hasGivenDocumentTitle(getProblem(id).target),
+    )!
+    expect(unchangedProblemId).toBeDefined()
+    expect(changedProblemId).toBeDefined()
+
+    const progress = createDefaultProgress(unchangedProblemId)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStepIndex = ids.indexOf(unchangedProblemId)
+    progress.scheduledStepIndex = progress.runStepIndex
+    progress.runStartedAtMs = 1_000
+    progress.pendingSlotRetryProblemId = unchangedProblemId
+    progress.syntaxMistakes = [
+      {
+        problemId: unchangedProblemId,
+        checkpointId: "syntax-1-1",
+        groupIndex: 0,
+        term: "unchanged syntax",
+        submitted: "@",
+        expected: ["# "],
+      },
+      {
+        problemId: changedProblemId,
+        checkpointId: "syntax-1-1",
+        groupIndex: 0,
+        term: "removed title checkpoint",
+        submitted: "@",
+        expected: ["# "],
+      },
+    ]
+    const {
+      checkpointProjectionRevision: _checkpointProjectionRevision,
+      ...legacyProgress
+    } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(loaded.pendingSlotRetryProblemId).toBe(unchangedProblemId)
+    expect(loaded.syntaxMistakes.map((mistake) => mistake.problemId)).toEqual([
+      unchangedProblemId,
+    ])
+  })
+
+  it("rejects an unknown checkpoint projection revision", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.checkpointProjectionRevision = "future-projection@2"
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
   it("round-trips a bounded syntax mistake ledger", () => {

@@ -12,7 +12,10 @@ import {
   problemBankRevision,
 } from "../content/problemBank"
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
-import type { SyntaxMistake } from "../guided/guidedSyntax"
+import {
+  hasGivenDocumentTitle,
+  type SyntaxMistake,
+} from "../guided/guidedSyntax"
 import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
@@ -391,6 +394,47 @@ function migrateCheckpointProjection(value: unknown): unknown {
     return value
   }
 
+  // Only the absent field names the one known legacy projection. A nonempty
+  // unknown revision may have been written by a newer client and must fail the
+  // regular validator instead of being silently downgraded.
+  if ("checkpointProjectionRevision" in value) return value
+
+  const changedProblemIds = new Set<string>()
+  const rememberIfChanged = (problemId: unknown) => {
+    if (typeof problemId !== "string") return
+    try {
+      if (hasGivenDocumentTitle(getProblem(problemId).target)) {
+        changedProblemIds.add(problemId)
+      }
+    } catch {
+      // Unknown ids remain untouched here so the structural validator below
+      // can reject the whole record rather than turning it into valid state.
+    }
+  }
+  if (Array.isArray(value.runProblemIds)) {
+    value.runProblemIds.forEach(rememberIfChanged)
+  }
+  rememberIfChanged(value.pendingSlotRetryProblemId)
+  if (Array.isArray(value.syntaxMistakes)) {
+    value.syntaxMistakes.forEach((mistake) => {
+      if (isRecord(mistake)) rememberIfChanged(mistake.problemId)
+    })
+  }
+
+  const pendingSlotRetryProblemId = changedProblemIds.has(
+    String(value.pendingSlotRetryProblemId),
+  )
+    ? null
+    : value.pendingSlotRetryProblemId
+  const syntaxMistakes = Array.isArray(value.syntaxMistakes)
+    ? value.syntaxMistakes.filter(
+        (mistake) =>
+          !isRecord(mistake) ||
+          typeof mistake.problemId !== "string" ||
+          !changedProblemIds.has(mistake.problemId),
+      )
+    : value.syntaxMistakes
+
   // Checkpoint ids are positions in the derived card sequence. Giving the
   // opening document title removes its card and shifts every later id, so a
   // persisted retry or mistake would otherwise be attached to syntax the
@@ -399,8 +443,8 @@ function migrateCheckpointProjection(value: unknown): unknown {
   return {
     ...value,
     checkpointProjectionRevision: CHECKPOINT_PROJECTION_REVISION,
-    pendingSlotRetryProblemId: null,
-    syntaxMistakes: [],
+    pendingSlotRetryProblemId,
+    syntaxMistakes,
   }
 }
 
