@@ -714,6 +714,31 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toBe("> + [ ] task\n> + plain")
   })
 
+  it("groups quoted list markers by semantic depth, not optional spacing", () => {
+    const target = "> - [ ] task\n>  - plain"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "> + [ ]",
+        [cards[1]!.id]: ">  * ",
+      }),
+    ).toBe("> + [ ] task\n>  + plain")
+  })
+
+  it("normalizes an outer marker while preserving a distinct nested marker", () => {
+    const target = "- [ ] task\n- * nested"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "* [ ]",
+        [cards[1]!.id]: "- * ",
+      }),
+    ).toBe("* [ ] task\n* * nested")
+  })
+
   it("lets every emphasis pair on a joined card choose its own delimiter", () => {
     // Two emphasis spans were two cards before they were joined, and each
     // accepted its own delimiter. Swapping only the first pair offered a mixed

@@ -160,6 +160,10 @@ describe("schema-v2 problem-bank validation", () => {
     ).toBe(false)
   })
 
+  it("checks every parser-recognized line of a multiline quote", () => {
+    expect(targetUsesTabAsMarkerWhitespace("> first\n>\tsecond")).toBe(true)
+  })
+
   it("does not mistake prose or layout tabs for marker whitespace", () => {
     for (const target of ["Word\tword", "    code\tword", "> text\tword"]) {
       expect(targetUsesTabAsMarkerWhitespace(target), target).toBe(false)

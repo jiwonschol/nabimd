@@ -11,7 +11,7 @@ describe("nested blockquote notation matrix", () => {
     const rows = buildMarkdownNotationMatrix()
     expect(rows).toHaveLength(49)
     expect(rows.filter((row) => row.parserOpensNestedQuote)).toHaveLength(42)
-    expect(rows.filter((row) => row.blankAppears)).toHaveLength(35)
+    expect(rows.filter((row) => row.nestedQuoteBlankAppears)).toHaveLength(35)
     expect(rows.filter((row) => row.gradesCanonicalInput)).toHaveLength(35)
     expect(
       rows.filter((row) => !row.gradesCanonicalInput).map((row) => row.outer),

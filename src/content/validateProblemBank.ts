@@ -641,6 +641,17 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
   const visit = (node: Nodes) => {
     const offset = node.position?.start.offset
     if (offset !== undefined) {
+      if (node.type === "blockquote") {
+        const end = node.position?.end.offset ?? target.length
+        const spannedLines = target.slice(offset, end).split("\n")
+        if (
+          spannedLines.some((line) =>
+            /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line),
+          )
+        ) {
+          found = true
+        }
+      }
       const lineEnd = target.indexOf("\n", offset)
       const source = target.slice(offset, lineEnd < 0 ? target.length : lineEnd)
       const whitespace =

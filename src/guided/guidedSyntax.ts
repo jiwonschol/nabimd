@@ -573,7 +573,7 @@ function coherentListStyles(
 ): Map<string, GuidedListStyle> {
   const styles = new Map<string, GuidedListStyle>()
   for (const checkpoint of checkpoints) {
-    const indentation = indentationOf(source, checkpoint)
+    const indentation = listStyleScopeKey(source, checkpoint)
     const style = styles.get(indentation) ?? {}
     if (style.unorderedMarker && style.orderedDelimiter) continue
     const value = completedValues[checkpoint.id] ?? checkpoint.canonicalInput
@@ -583,6 +583,36 @@ function coherentListStyles(
     styles.set(indentation, style)
   }
   return styles
+}
+
+function listStyleScopeKey(source: string, checkpoint: SyntaxCheckpoint): string {
+  let markerOffset = checkpoint.targetFrom
+  for (const segment of checkpoint.segments) {
+    if (
+      segment.kind === "input" &&
+      Object.keys(listStyleFromInput(segment.value)).length > 0
+    ) {
+      break
+    }
+    markerOffset += segment.value.length
+  }
+
+  let semanticDepth = "quote:0;list:0"
+  const visit = (node: Nodes, quoteDepth: number, listDepth: number): void => {
+    const from = node.position?.start.offset
+    const to = node.position?.end.offset
+    if (from === undefined || to === undefined || markerOffset < from || markerOffset >= to) {
+      return
+    }
+    const nextQuoteDepth = quoteDepth + (node.type === "blockquote" ? 1 : 0)
+    const nextListDepth = listDepth + (node.type === "list" ? 1 : 0)
+    semanticDepth = `quote:${nextQuoteDepth};list:${nextListDepth}`
+    if (isParent(node)) {
+      node.children.forEach((child) => visit(child, nextQuoteDepth, nextListDepth))
+    }
+  }
+  visit(parseMarkdownSource(source), 0, 0)
+  return semanticDepth
 }
 
 function normalizeGroupListStyle(
@@ -631,10 +661,10 @@ function normalizeListStyle(
       )
       .filter(Boolean),
   )
-  if (markerSignatures.size > 1) return value
   if (widths.length <= 1) return normalizeGroupListStyle(value, style)
 
   let offset = 0
+  let normalizedOuterMarker = false
   return widths
     .map((width, index) => {
       const group =
@@ -642,7 +672,15 @@ function normalizeListStyle(
           ? value.slice(offset)
           : value.slice(offset, offset + width)
       offset += width
-      return normalizeGroupListStyle(group, style)
+      if (markerSignatures.size <= 1) return normalizeGroupListStyle(group, style)
+      if (
+        !normalizedOuterMarker &&
+        Object.keys(markerStyles[index] ?? {}).length > 0
+      ) {
+        normalizedOuterMarker = true
+        return normalizeGroupListStyle(group, style)
+      }
+      return group
     })
     .join("")
 }
@@ -1455,7 +1493,7 @@ export function buildGuidedDraft(
         normalizeListStyle(
           checkpoint,
           acceptedValue,
-          listStyles.get(indentationOf(target, checkpoint)) ?? {},
+          listStyles.get(listStyleScopeKey(target, checkpoint)) ?? {},
         ),
       ),
     )
