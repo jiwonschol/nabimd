@@ -32,9 +32,15 @@ export function vercelStatuses(statuses) {
  *   statuses?: Array<{ context?: string, state?: string, description?: string, target_url?: string }>,
  *   expectedSha: string,
  *   deployedSha?: string | null,
+ *   eventName?: string,
  * }} input
  */
-export function classifyDeploymentGap({ statuses, expectedSha, deployedSha }) {
+export function classifyDeploymentGap({
+  statuses,
+  expectedSha,
+  deployedSha,
+  eventName,
+}) {
   const relevant = vercelStatuses(statuses)
   const short = (sha) => (sha ? String(sha).slice(0, 8) : "an unknown commit")
   const gap =
@@ -65,16 +71,29 @@ export function classifyDeploymentGap({ statuses, expectedSha, deployedSha }) {
       RATE_LIMIT.test(String(status.description ?? "")),
     )
     if (rateLimited.length === blocking.length) {
+      // Vercel does not re-attempt a refused deployment when the quota
+      // resets. Something has to ask for a new one. On a push there is a
+      // plausible asker — the next merge carries this code forward — but on a
+      // schedule run this commit has already sat un-deployed, so the gap
+      // closes only when a person acts. Reporting "it catches up on its own"
+      // in that state is how production would quietly stay old forever.
+      const somethingWillRetry = eventName === "push"
       return {
         kind: "rate-limited",
-        failWorkflow: false,
+        failWorkflow: !somethingWillRetry,
         openIssue: true,
         title: "Production is behind main — Vercel is rate limiting deployments",
         summary:
           `${gap} Vercel refused the deployment: ` +
-          `"${rateLimited[0].description}". The limit is a rolling daily one, ` +
-          "so production catches up on its own once the account stops " +
-          "spending deployments. Preview builds are what spend them.",
+          `"${rateLimited[0].description}". Preview builds are what spend the ` +
+          "daily quota. " +
+          (somethingWillRetry
+            ? "This ran on the merge itself, so the next merge to land will " +
+              "carry this code into a fresh deployment attempt."
+            : "Vercel does not retry a refused deployment when the quota " +
+              "resets, and no push has followed this one. Production stays on " +
+              "the older commit until someone merges again or redeploys this " +
+              "commit by hand."),
       }
     }
     const unexplained = blocking.find(

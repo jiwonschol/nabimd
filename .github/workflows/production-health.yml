@@ -26,7 +26,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DEPLOYED_SHA_RECEIPT: ${{ github.workspace }}/test-results/deployed-sha.txt
+  # Not under test-results/: Playwright empties its output directory at the
+  # start of every run, so a receipt written there would be deleted by the
+  # next invocation before the report step could read it.
+  DEPLOYED_SHA_RECEIPT: ${{ runner.temp }}/deployed-sha.txt
 
 jobs:
   exercise-production:

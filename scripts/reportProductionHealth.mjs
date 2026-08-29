@@ -131,6 +131,7 @@ export async function reportProductionHealth({
       statuses: status.statuses,
       expectedSha: context.sha,
       deployedSha,
+      eventName: context.eventName,
     })
 
     failWorkflow = failWorkflow || verdict.failWorkflow

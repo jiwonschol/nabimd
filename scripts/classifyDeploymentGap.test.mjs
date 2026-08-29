@@ -8,15 +8,16 @@ import {
 // day carried exactly this status while preview builds kept succeeding.
 const OBSERVED_RATE_LIMIT = "Deployment rate limited — retry in 24 hours."
 
-const gap = (statuses) =>
+const gap = (statuses, eventName = "push") =>
   classifyDeploymentGap({
     statuses,
     expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
     deployedSha: "25e9b5e7601ff48de733274300758db5e5d5e91f",
+    eventName,
   })
 
 describe("classifyDeploymentGap", () => {
-  it("treats the observed Vercel rate limit as self-clearing", () => {
+  it("holds a rate limit on the merge itself, where a later merge can carry it", () => {
     const result = gap([
       {
         context: "Vercel",
@@ -32,6 +33,39 @@ describe("classifyDeploymentGap", () => {
     // as long as the account keeps spending its daily deployments.
     expect(result.openIssue).toBe(true)
     expect(result.summary).toContain(OBSERVED_RATE_LIMIT)
+    expect(result.summary).toContain("the next merge to land")
+  })
+
+  it("pages a human once the same commit is still un-deployed on a schedule run", () => {
+    // Codex caught the original of this: Vercel does not re-attempt a refused
+    // deployment when the quota resets. Calling it self-clearing on a schedule
+    // run — where no push is coming — is how production would stay old
+    // indefinitely behind a green check.
+    for (const eventName of ["schedule", "workflow_dispatch"]) {
+      const result = gap(
+        [{ context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT }],
+        eventName,
+      )
+
+      expect(result.kind).toBe("rate-limited")
+      expect(result.failWorkflow, `${eventName} should page a human`).toBe(true)
+      expect(result.openIssue).toBe(true)
+      // And it must say what actually closes the gap.
+      expect(result.summary).toContain("does not retry")
+      expect(result.summary).toMatch(/merges again or redeploys/)
+    }
+  })
+
+  it("never tells anyone the deployment catches up on its own", () => {
+    // The exact claim that was wrong. Kept as a negative assertion so a
+    // reworded summary cannot quietly restore it.
+    for (const eventName of ["push", "schedule", "workflow_dispatch"]) {
+      const result = gap(
+        [{ context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT }],
+        eventName,
+      )
+      expect(result.summary).not.toMatch(/catches up on its own/)
+    }
   })
 
   it("pages a human when Vercel published no status for the commit", () => {

@@ -94,6 +94,29 @@ describe("reportProductionHealth", () => {
     expect(github.calls.created[0].body).toContain(SERVED_SHA)
   })
 
+  it("passes the triggering event through, so a schedule run is not called self-clearing", async () => {
+    // Without this the classifier always sees `undefined` and every rate limit
+    // reads as the merge-time case. The wiring is one property; nothing else
+    // would notice if it were dropped.
+    const github = fakeGithub({
+      statuses: [
+        { context: "Vercel", state: "failure", description: RATE_LIMIT },
+      ],
+    })
+
+    const result = await reportProductionHealth({
+      github,
+      context: { ...context, eventName: "schedule" },
+      smokeOutcome: "success",
+      freshnessOutcome: "failure",
+      readDeployedSha: () => SERVED_SHA,
+    })
+
+    expect(result.verdict.kind).toBe("rate-limited")
+    expect(result.failWorkflow).toBe(true)
+    expect(github.calls.created[0].body).toContain("does not retry")
+  })
+
   it("closes the health report even while the freshness one is open", async () => {
     // A stale deployment is not a broken one. Leaving the health issue open
     // here is what made "production is failing" mean nothing.
