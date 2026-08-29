@@ -654,6 +654,14 @@ export function evaluateBatchEvidence({
     )) {
       errors.push(`Duplicate review verdict: ${duplicate}/${review.reviewerId ?? "<unknown>"}`)
     }
+    const verdictKeys = new Set(
+      verdicts.map((verdict) => candidateKey(verdict.candidateId, verdict.revision)),
+    )
+    for (const candidate of normalized.candidates) {
+      if (!verdictKeys.has(candidateKey(candidate.id, candidate.revision))) {
+        errors.push(`Missing review verdict: ${candidate.id}/${review.reviewerId ?? "<unknown>"}`)
+      }
+    }
     for (const verdict of verdicts) {
       const key = candidateKey(verdict.candidateId, verdict.revision)
       const candidate = candidatesByKey.get(key)

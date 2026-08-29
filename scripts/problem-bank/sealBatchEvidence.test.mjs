@@ -578,6 +578,13 @@ test("invalid review evidence cannot be sealed before editorial exists", async (
     /Stale review evidence/,
   )
   assert.equal(await readFile(reviewPath, "utf8"), before)
+
+  review.verdicts = []
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  await assert.rejects(
+    resealBatchEvidence({ batchDir, write: true }),
+    /Missing review verdict/,
+  )
 })
 
 test("rerunning repairs a stale generated chain after seals already match", async () => {
@@ -629,6 +636,56 @@ test("resealing recreates a missing published summary", async () => {
   assert.ok(drift.changed.includes(`${batchId}/summary.generated.json`))
   await resealBatchEvidence({ batchDir, write: true })
   assert.deepEqual((await resealBatchEvidence({ batchDir, write: false })).changed, [])
+})
+
+test("resealing recreates the terminal published summary from the tracker", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-terminal-summary-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const firstBatchId = "2026-07-19-milestone-1-foundation-001"
+  const terminalBatchId = "2026-07-19-l1-l2-headings-002"
+  const terminalBatchDir = resolve(bankRoot, "batches", terminalBatchId)
+  await mkdir(resolve(bankRoot, "batches"), { recursive: true })
+  for (const batchId of [firstBatchId, terminalBatchId]) {
+    await cp(resolve(sourceBank, "batches", batchId), resolve(bankRoot, "batches", batchId), { recursive: true })
+  }
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await unlink(resolve(terminalBatchDir, "summary.generated.json"))
+
+  const drift = await resealBatchEvidence({ batchDir: terminalBatchDir, write: false })
+  assert.ok(drift.changed.includes(`${terminalBatchId}/summary.generated.json`))
+  await resealBatchEvidence({ batchDir: terminalBatchDir, write: true })
+  assert.deepEqual((await resealBatchEvidence({ batchDir: terminalBatchDir, write: false })).changed, [])
+})
+
+test("the default write repairs mutable chain drift without blaming immutable seals", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-mutable-chain-"))
+  const bankRoot = resolve(repository, "curriculum/problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  const firstBatchId = "2026-07-19-milestone-1-foundation-001"
+  const mutableBatchId = "2026-07-19-l1-l2-headings-002"
+  await mkdir(batchesRoot, { recursive: true })
+  await cp(resolve(sourceBank, "batches", firstBatchId), resolve(batchesRoot, firstBatchId), { recursive: true })
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await resealBatchEvidence({ batchDir: resolve(batchesRoot, firstBatchId), write: true })
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "published baseline"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
+  await cp(resolve(sourceBank, "batches", mutableBatchId), resolve(batchesRoot, mutableBatchId), { recursive: true })
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "mutable batch"], { cwd: repository })
+
+  const result = await runCli([], repository, { ...process.env, NABI_BASE_SHA: "" })
+  assert.equal(result.code, 0, result.stderr)
+  const tracker = JSON.parse(await readFile(resolve(bankRoot, "tracker.generated.json"), "utf8"))
+  assert.ok(tracker.batches.some((batch) => batch.batchId === mutableBatchId))
 })
 
 test("repository-relative paths use Git tree separators", () => {

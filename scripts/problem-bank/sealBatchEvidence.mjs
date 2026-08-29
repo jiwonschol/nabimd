@@ -36,6 +36,8 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
     const replacement = projectedBatches.get(batch.normalized?.batchId)
     return replacement ? { ...batch, ...replacement } : batch
   })
+  const trackerPath = resolve(bankRoot, "tracker.generated.json")
+  const committedTracker = JSON.parse(await readFile(trackerPath, "utf8"))
   const missingPublishedEditorial = projected.filter(
     (batch) => batch.summary?.status === "published" && batch.editorial == null,
   )
@@ -67,8 +69,24 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
       `Cannot reseal invalid target evidence:\n${targetEvidenceErrors.join("\n")}`,
     )
   }
-  const published = publishedBatchHistory(
+  const publishedFromSummaries = publishedBatchHistory(
     projected.filter((batch) => batch.editorial !== null && batch.editorial !== undefined),
+  )
+  const trackedBatchIds = new Set(
+    (committedTracker.batches ?? []).map((batch) => batch.batchId),
+  )
+  const lastPublishedSequence = Math.max(
+    0,
+    ...publishedFromSummaries.map((batch) => batch.normalized.sequence),
+    ...projected
+      .filter((batch) => trackedBatchIds.has(batch.normalized?.batchId))
+      .map((batch) => batch.normalized?.sequence ?? 0),
+  )
+  const published = projected.filter(
+    (batch) =>
+      batch.editorial !== null &&
+      batch.editorial !== undefined &&
+      (batch.normalized?.sequence ?? Number.MAX_SAFE_INTEGER) <= lastPublishedSequence,
   ).sort(
     (left, right) =>
       left.normalized.sequence - right.normalized.sequence ||
@@ -108,13 +126,13 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
   }
 
   if (finalArtifacts === null) return changed
-  for (const [name, expected] of [
-    ["runtime-projections.generated.json", finalArtifacts.runtimeProjections],
-    ["tracker.generated.json", finalArtifacts.tracker],
+  for (const [name, expected, committed] of [
+    ["runtime-projections.generated.json", finalArtifacts.runtimeProjections, null],
+    ["tracker.generated.json", finalArtifacts.tracker, committedTracker],
   ]) {
     const path = resolve(bankRoot, name)
-    const committed = JSON.parse(await readFile(path, "utf8"))
-    if (canonicalJson(expected) === canonicalJson(committed)) continue
+    const current = committed ?? JSON.parse(await readFile(path, "utf8"))
+    if (canonicalJson(expected) === canonicalJson(current)) continue
     changed.push(name)
     if (write) await writeFile(path, prettyJson(expected))
   }
@@ -389,8 +407,10 @@ async function main(argv) {
         batchDirs: protectedDirs,
         write: false,
       })
-      const driftedProtected = protectedReports.filter(
-        (report) => report.changed.length > 0,
+      const driftedProtected = protectedReports.filter((report) =>
+        report.changed.some(
+          (name) => name === "editorial.json" || name.startsWith("reviews/"),
+        ),
       )
       if (driftedProtected.length > 0) {
         throw new Error(
