@@ -31,7 +31,7 @@ import {
   countRuntimeTargetContentLines,
   flattenedStarterProjectionProblemBankRevision,
   getProblem,
-  getProblemsForLevel,
+  getProblemsForAuthoringLevel,
   problemBank,
   problemBankRevision,
   withinRuntimeBudget,
@@ -72,7 +72,7 @@ describe("compiled problem bank", () => {
       Object.values(servedByLevel).reduce((sum, count) => sum + count, 0),
     )
     for (const level of [1, 2, 3, 4, 5] as const) {
-      expect(getProblemsForLevel(level)).toHaveLength(servedByLevel[level])
+      expect(getProblemsForAuthoringLevel(level)).toHaveLength(servedByLevel[level])
     }
   })
 
@@ -105,22 +105,22 @@ describe("compiled problem bank", () => {
   it("publishes reviewed syntax and composite rebuild families", () => {
     const trackedFamilies = tracker.counts.byFamily as Record<string, number>
     expect(
-      getProblemsForLevel(1).filter(
+      getProblemsForAuthoringLevel(1).filter(
         (problem) => problem.familyId === "italic-emphasis",
       ),
     ).toHaveLength(trackedFamilies["italic-emphasis"] ?? 0)
     expect(
-      getProblemsForLevel(2).filter(
+      getProblemsForAuthoringLevel(2).filter(
         (problem) => problem.familyId === "rebuild-real-documents",
       ),
     ).toHaveLength(trackedFamilies["rebuild-real-documents"] ?? 0)
     expect(
-      getProblemsForLevel(1).filter(
+      getProblemsForAuthoringLevel(1).filter(
         (problem) => problem.familyId === "fenced-code-blocks",
       ),
     ).toHaveLength(trackedFamilies["fenced-code-blocks"] ?? 0)
     expect(
-      getProblemsForLevel(2).filter(
+      getProblemsForAuthoringLevel(2).filter(
         (problem) => problem.familyId === "rebuild-code-block-documents",
       ),
     ).toHaveLength(trackedFamilies["rebuild-code-block-documents"] ?? 0)
@@ -128,37 +128,37 @@ describe("compiled problem bank", () => {
       problemBank.filter((problem) => problem.familyId === "headings"),
     ).toHaveLength(44)
     expect(
-      getProblemsForLevel(2).filter(
+      getProblemsForAuthoringLevel(2).filter(
         (problem) => problem.familyId === "rebuild-sectioned-documents",
       ),
     ).toHaveLength(12)
     expect(
-      getProblemsForLevel(2).filter(
+      getProblemsForAuthoringLevel(2).filter(
         (problem) => problem.familyId === "rebuild-nested-list-documents",
       ),
     ).toHaveLength(12)
     expect(
-      getProblemsForLevel(1).filter(
+      getProblemsForAuthoringLevel(1).filter(
         (problem) => problem.familyId === "nested-lists",
       ),
     ).toHaveLength(trackedFamilies["nested-lists"] ?? 0)
     expect(
-      getProblemsForLevel(3).filter(
+      getProblemsForAuthoringLevel(3).filter(
         (problem) => problem.familyId === "readable-human-document",
       ),
     ).toHaveLength(28)
     expect(
-      getProblemsForLevel(4).filter(
+      getProblemsForAuthoringLevel(4).filter(
         (problem) => problem.familyId === "executable-development-spec",
       ),
     ).toHaveLength(0)
     expect(
-      getProblemsForLevel(5).filter(
+      getProblemsForAuthoringLevel(5).filter(
         (problem) => problem.familyId === "agent-ready-work-order",
       ),
     ).toHaveLength(0)
     expect(
-      getProblemsForLevel(4).filter(
+      getProblemsForAuthoringLevel(4).filter(
         (problem) => problem.familyId === "workplace-notes",
       ),
     ).toHaveLength(trackedFamilies["workplace-notes"] ?? 0)
@@ -168,7 +168,7 @@ describe("compiled problem bank", () => {
       "developer-pr-description",
     ]) {
       expect(
-        getProblemsForLevel(5).filter(
+        getProblemsForAuthoringLevel(5).filter(
           (problem) => problem.familyId === family,
         ),
       ).toHaveLength(trackedFamilies[family] ?? 0)

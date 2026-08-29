@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event"
 import { describe, expect, it, vi } from "vitest"
 import { resolveReadlineNavigationKeymap } from "./editorKeyboard"
 import { deriveMarkdownBlankGuides } from "../content/plaintextStarter"
-import { getProblemsForLevel } from "../content/problemBank"
+import { getProblemsForAuthoringLevel } from "../content/problemBank"
 import {
   MarkdownSourceEditor,
   MarkdownWordProcessor,
@@ -483,7 +483,7 @@ describe("MarkdownSourceEditor", () => {
   })
 
   it("recognizes every mark already present in a restored composite draft", () => {
-    const problem = getProblemsForLevel(3)[0]
+    const problem = getProblemsForAuthoringLevel(3)[0]
     expect(problem).toBeDefined()
     if (!problem) return
     const { container } = render(

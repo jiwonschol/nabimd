@@ -394,7 +394,7 @@ describe("three-level entry choices", () => {
     expect(isEntryId("level-3")).toBe(true)
     expect(isEntryId("level-4")).toBe(false)
     expect(isEntryId("challenge")).toBe(false)
-    expect(getEntryChoice("level-2").level).toBe(2)
+    expect(getEntryChoice("level-2").curriculumLevel).toBe(2)
   })
 })
 

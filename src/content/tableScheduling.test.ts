@@ -40,7 +40,9 @@ describe("a table problem is owned and scheduled by Level 1", () => {
     // The scheduler rotates families by weight; an element with no weight is
     // an element the turn can never plan for. Level 1 is the open level, so
     // its declared elements have to be schedulable once they have problems.
-    const levelOne = curriculumLevels.find((entry) => entry.level === 1)!
+    const levelOne = curriculumLevels.find(
+      (entry) => entry.curriculumLevel === 1,
+    )!
     for (const element of levelOne.elements) {
       expect(SYNTAX_FAMILY_WEIGHTS, element).toHaveProperty(element)
     }

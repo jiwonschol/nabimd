@@ -155,7 +155,7 @@ describe("chapter run composition", () => {
     }))
     const reached = new Set(
       Array.from({ length: 20 }, (_, seed) =>
-        createTurnProblemIds(5, 0, bank, seed),
+        createTurnProblemIds(3, 0, bank, seed),
       ).flat(),
     )
 

@@ -5,8 +5,8 @@ import {
   withinRuntimeBudget,
 } from "./runtimeBudget"
 import {
-  CURRICULUM_LEVELS,
-  type CurriculumLevel,
+  AUTHORING_LEVELS,
+  type AuthoringLevel,
   type NormalizedProblem,
 } from "./types"
 
@@ -15,7 +15,7 @@ if (runtimeProjections.schemaVersion !== 2) {
 }
 
 const publishedLevels = runtimeProjections.levels as unknown as Record<
-  `${CurriculumLevel}`,
+  `${AuthoringLevel}`,
   readonly NormalizedProblem[]
 >
 
@@ -25,8 +25,9 @@ export {
   withinRuntimeBudget,
 } from "./runtimeBudget"
 
-const publishedProblems = CURRICULUM_LEVELS.flatMap(
-  (level) => publishedLevels[String(level) as `${CurriculumLevel}`] ?? [],
+const publishedProblems = AUTHORING_LEVELS.flatMap(
+  (authoringLevel) =>
+    publishedLevels[String(authoringLevel) as `${AuthoringLevel}`] ?? [],
 )
 export const publishedProblemIds = publishedProblems.map(
   (problem) => problem.id,
@@ -73,7 +74,8 @@ export const problemBankRevision = [
 export const preChapterProblemBankRevision = [
   publishedProblems
     .filter((problem) => {
-      if (problem.level < 4) return true
+      const authoringLevel = problem.level
+      if (authoringLevel < 4) return true
       const lines = problem.target.split("\n").length
       const words = problem.target.split(/\s+/).filter(Boolean).length
       return lines <= 20 && words <= 120
@@ -89,10 +91,13 @@ export function getProblem(id: string): NormalizedProblem {
   return problem
 }
 
-export function getProblemsForLevel(
-  level: CurriculumLevel,
+export function getProblemsForAuthoringLevel(
+  authoringLevel: AuthoringLevel,
 ): readonly NormalizedProblem[] {
-  return problemBank.filter(
-    (problem) => problem.level === level && problem.flavor === "standard",
-  )
+  return problemBank.filter((problem) => {
+    const problemAuthoringLevel = problem.level
+    return (
+      problemAuthoringLevel === authoringLevel && problem.flavor === "standard"
+    )
+  })
 }

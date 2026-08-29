@@ -584,20 +584,21 @@ function validateEditorialChecks(
 
 function validateVocabulary(problem: GradableProblem, errors: string[]) {
   const normalized = normalizeProblem(problem)
-  const expectedProfile = profileByLevel[normalized.level]
+  const authoringLevel = normalized.level
+  const expectedProfile = profileByLevel[authoringLevel]
   if (!expectedProfile) {
-    errors.push(`Problem ${problem.id} has invalid level: ${normalized.level}`)
+    errors.push(`Problem ${problem.id} has invalid level: ${authoringLevel}`)
     return
   }
   if (normalized.vocabulary.profile !== expectedProfile) {
     errors.push(
-      `Problem ${problem.id} level ${normalized.level} requires vocabulary profile ${expectedProfile}`,
+      `Problem ${problem.id} level ${authoringLevel} requires vocabulary profile ${expectedProfile}`,
     )
   }
-  const expectedTeachingMode = normalized.level === 1 ? "introduce" : "recall"
+  const expectedTeachingMode = authoringLevel === 1 ? "introduce" : "recall"
   if (normalized.teachingMode !== expectedTeachingMode) {
     errors.push(
-      `Problem ${problem.id} level ${normalized.level} requires teaching mode ${expectedTeachingMode}`,
+      `Problem ${problem.id} level ${authoringLevel} requires teaching mode ${expectedTeachingMode}`,
     )
   }
 
@@ -646,6 +647,7 @@ export function validateProblemBank(
   for (const problem of problems) {
     const isSchemaV2 = problem.schemaVersion === 2
     const normalized = normalizeProblem(problem)
+    const authoringLevel = normalized.level
 
     if (problemIds.has(problem.id)) {
       errors.push(`Duplicate problem id: ${problem.id}`)
@@ -669,12 +671,12 @@ export function validateProblemBank(
       if (!normalized.contentVariant.trim()) {
         errors.push(`Problem ${problem.id} has blank content variant`)
       }
-      if (normalized.level === 5 && !validConvention(problem)) {
+      if (authoringLevel === 5 && !validConvention(problem)) {
         errors.push(`Problem ${problem.id} requires Level 5 convention metadata`)
       } else if (problem.convention && !validConvention(problem)) {
         errors.push(`Problem ${problem.id} has invalid convention metadata`)
       }
-      const retryKey = `${normalized.level}/${normalized.flavor}/${normalized.retryFamily}`
+      const retryKey = `${authoringLevel}/${normalized.flavor}/${normalized.retryFamily}`
       const variants = retryVariants.get(retryKey) ?? new Set<string>()
       variants.add(normalized.contentVariant)
       retryVariants.set(retryKey, variants)

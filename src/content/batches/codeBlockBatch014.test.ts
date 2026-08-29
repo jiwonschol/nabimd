@@ -77,7 +77,7 @@ describe("fenced code-block and rebuild batch 014", () => {
     for (const seed of Array.from({ length: 256 }, (_, seed) => seed)) {
       const seen = new Set<string>()
       for (let turn = 0; turn < 48; turn += 1) {
-        const selected = createTurnProblemIds(5, turn, candidateBank, seed)
+        const selected = createTurnProblemIds(3, turn, candidateBank, seed)
         for (const id of selected) {
           if (batchIds.has(id)) seen.add(id)
         }

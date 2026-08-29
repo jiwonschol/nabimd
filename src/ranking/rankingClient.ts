@@ -1,7 +1,7 @@
-import type { CurriculumLevel } from "../content/types"
+import type { CurriculumLevel } from "../content/curriculumLevels"
 
 export type RankingQuery = {
-  level: CurriculumLevel
+  curriculumLevel: CurriculumLevel
   score: number
   total: number
   elapsedMs: number

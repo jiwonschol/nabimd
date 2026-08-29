@@ -25,8 +25,9 @@ function createEmphasisFixtures(
   index: number,
 ): ProblemFixture[] {
   const phrase = problem.protectedContent[0]!
+  const authoringLevel = problem.level
   const differentProse =
-    problem.level === 1
+    authoringLevel === 1
       ? `Blue balloon ${index + 1}`
       : `Check a new task ${index + 1}`
   const caseSpellingVariation = `MISPELED words ${index + 1}`

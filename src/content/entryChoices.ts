@@ -1,7 +1,7 @@
 import { problemBank } from "./problemBank"
-import type { CurriculumLevel, NormalizedProblem } from "./types"
+import type { NormalizedProblem } from "./types"
 import { createTurnProblemIds } from "../selection/runComposition"
-import { curriculumLevels } from "./curriculumLevels"
+import { curriculumLevels, type CurriculumLevel } from "./curriculumLevels"
 import {
   type EntryId,
   getCurriculumElements,
@@ -44,7 +44,7 @@ const servedProblemsByBank = new WeakMap<
 
 function getServedProblemsForBank(
   problems: readonly SchedulableEntryProblem[],
-  level: CurriculumLevel,
+  curriculumLevel: CurriculumLevel,
 ): readonly SchedulableEntryProblem[] {
   let servedByLevel = servedProblemsByBank.get(problems)
   if (!servedByLevel) {
@@ -52,10 +52,12 @@ function getServedProblemsForBank(
     servedProblemsByBank.set(problems, servedByLevel)
   }
 
-  let served = servedByLevel.get(level)
+  let served = servedByLevel.get(curriculumLevel)
   if (!served) {
-    const entry = curriculumLevels.find((candidate) => candidate.level === level)
-    if (!entry) throw new Error(`Unknown chapter: ${level}`)
+    const entry = curriculumLevels.find(
+      (candidate) => candidate.curriculumLevel === curriculumLevel,
+    )
+    if (!entry) throw new Error(`Unknown chapter: ${curriculumLevel}`)
     served = problems.filter(
       (problem) => {
         if (
@@ -68,7 +70,7 @@ function getServedProblemsForBank(
         return elements.length === 1 || isEligibleMixedExercise(problem)
       },
     )
-    servedByLevel.set(level, served)
+    servedByLevel.set(curriculumLevel, served)
   }
   return served
 }
@@ -106,7 +108,7 @@ export const runScheduleRevision = [
   `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
   ...entryChoices.map(
     (entry) =>
-      `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
+      `${entry.id}@${entry.curriculumLevel}:${entry.elements.join(",")}`,
   ),
   // Everything else here is derived, and nothing derived can see the shape of
   // the code that reads it. A persisted run is validated by recomputing the
@@ -118,7 +120,7 @@ export const runScheduleRevision = [
   // unchanged (chapter, runNumber, seed).
   COMPOSITION_REVISION,
   ...curriculumLevels.map((entry) => {
-    const ids = getServedProblemsForBank(problemBank, entry.level).map(
+    const ids = getServedProblemsForBank(problemBank, entry.curriculumLevel).map(
       (problem) => problem.id,
     )
     return `served@${entry.id}:${ids.length}:${fingerprint(ids.join(","))}`
@@ -155,8 +157,8 @@ export function createRunProblemIdsForBank(
       ? entry.available
       : isEntryAvailableForBank(entry, problems, RUN_POLICY.turnSize)
   if (!available) {
-    throw new Error(`Level ${entry.level} is not available yet`)
+    throw new Error(`Level ${entry.curriculumLevel} is not available yet`)
   }
-  const served = getServedProblemsForBank(problems, entry.level)
-  return createTurnProblemIds(entry.level, runNumber, served, seed)
+  const served = getServedProblemsForBank(problems, entry.curriculumLevel)
+  return createTurnProblemIds(entry.curriculumLevel, runNumber, served, seed)
 }

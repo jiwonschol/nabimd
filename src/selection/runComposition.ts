@@ -1,4 +1,5 @@
-import type { CurriculumLevel, NormalizedProblem } from "../content/types"
+import type { NormalizedProblem } from "../content/types"
+import type { CurriculumLevel } from "../content/curriculumLevels"
 import {
   getCurriculumElement,
   getCurriculumElements,
@@ -282,7 +283,7 @@ export function chooseMixedForRun(
 }
 
 export function createTurnProblemIds(
-  chapter: CurriculumLevel,
+  curriculumLevel: CurriculumLevel,
   runNumber: number,
   problems: readonly SchedulableProblem[],
   seed = 0,
@@ -298,7 +299,9 @@ export function createTurnProblemIds(
     (problem) => problem.flavor === "standard",
   )
   if (standardProblems.length === 0) {
-    throw new Error(`No standard problems available for chapter-${chapter}`)
+    throw new Error(
+      `No standard problems available for chapter-${curriculumLevel}`,
+    )
   }
 
   const mixedProblems = standardProblems.filter(

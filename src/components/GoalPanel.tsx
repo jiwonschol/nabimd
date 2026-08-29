@@ -7,7 +7,8 @@ type GoalPanelProps = {
 
 export function GoalPanel({ problem }: GoalPanelProps) {
   const promptId = `${problem.id}-goal-prompt`
-  const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
+  const authoringLevel = problem.level ?? 1
+  const leadingBlankRows = authoringLevel <= 2 ? 2 : 0
 
   return (
     <section

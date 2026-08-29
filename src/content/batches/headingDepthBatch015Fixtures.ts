@@ -381,10 +381,10 @@ function level2Fixtures(
 }
 
 const levelOneProblems = headingDepthBatch015Problems.filter(
-  (problem) => problem.level === 1,
+  ({ level: authoringLevel }) => authoringLevel === 1,
 )
 const levelTwoProblems = headingDepthBatch015Problems.filter(
-  (problem) => problem.level === 2,
+  ({ level: authoringLevel }) => authoringLevel === 2,
 )
 
 export const headingDepthBatch015Fixtures: readonly ProblemFixture[] = [

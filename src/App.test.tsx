@@ -65,14 +65,16 @@ function stubReducedMotionPreference() {
   )
 }
 
-async function openLevel(level: 1 = 1) {
+async function openLevel(curriculumLevel: 1 = 1) {
   const user = userEvent.setup()
   // jsdom has no matchMedia, so the page turn would hold the practice sheet
   // inert on a real 720ms timer — long enough for the next interactions to be
   // swallowed. Prefer reduced motion and wait the turn out before returning.
   stubReducedMotionPreference()
   const view = render(<App />)
-  const entry = entryChoices.find((choice) => choice.level === level)!
+  const entry = entryChoices.find(
+    (choice) => choice.curriculumLevel === curriculumLevel,
+  )!
   await user.click(screen.getByRole("button", { name: entry.label }))
   await waitFor(() => {
     expect(screen.getByTestId("page-turn-receiver")).not.toHaveAttribute(
@@ -104,10 +106,12 @@ function currentProblem() {
 }
 
 function useSessionSeedForFirstProblem(
-  chapter: 1,
+  curriculumLevel: 1,
   predicate: (problem: ReturnType<typeof getProblem>) => boolean,
 ) {
-  const entry = entryChoices.find((choice) => choice.level === chapter)!
+  const entry = entryChoices.find(
+    (choice) => choice.curriculumLevel === curriculumLevel,
+  )!
 
   for (let seed = 0; seed < 1_000; seed += 1) {
     for (let runNumber = 0; runNumber < 40; runNumber += 1) {
@@ -122,7 +126,7 @@ function useSessionSeedForFirstProblem(
     }
   }
 
-  throw new Error(`Expected a selectable Level ${chapter} problem`)
+  throw new Error(`Expected a selectable Level ${curriculumLevel} problem`)
 }
 
 // ---- Center-card interaction helpers -------------------------------------
@@ -327,7 +331,9 @@ describe("App", () => {
         }),
       ).toBeVisible()
       expect(screen.queryByText(`1 of ${expectedLength}`)).toBeNull()
-      expect(screen.getByLabelText(`Level ${entry.level}`)).toBeVisible()
+      expect(
+        screen.getByLabelText(`Level ${entry.curriculumLevel}`),
+      ).toBeVisible()
       await waitFor(() => expect(firstBoxInput()).toHaveFocus())
       view.unmount()
     }

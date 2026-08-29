@@ -110,7 +110,8 @@ describe("progressStore v5", () => {
         .join(",")}`,
       `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
       ...entryChoices.map(
-        (entry) => `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
+        (entry) =>
+          `${entry.id}@${entry.curriculumLevel}:${entry.elements.join(",")}`,
       ),
     ].join("|")
     expect(runScheduleRevision.startsWith(`${policy}|`)).toBe(true)

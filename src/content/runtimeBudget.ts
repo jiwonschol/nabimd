@@ -13,7 +13,7 @@ import type { NormalizedProblem } from "./types"
  */
 export const RUNTIME_TARGET_BUDGETS: Readonly<
   Record<
-    (typeof curriculumLevels)[number]["level"],
+    (typeof curriculumLevels)[number]["curriculumLevel"],
     {
       /** Physical source lines, including Markdown separator lines. */
       maxLines: number
@@ -45,7 +45,7 @@ export function withinRuntimeBudget(
   const entryId = getProblemEntryId(problem)
   const entry = curriculumLevels.find((candidate) => candidate.id === entryId)
   if (!entry) return false
-  const budget = RUNTIME_TARGET_BUDGETS[entry.level]
+  const budget = RUNTIME_TARGET_BUDGETS[entry.curriculumLevel]
   const isMixed = getCurriculumElements(problem).length > 1
   const lineCount =
     isMixed && budget.maxContentLines !== undefined

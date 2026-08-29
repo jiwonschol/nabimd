@@ -1,10 +1,12 @@
-import type { CurriculumLevel } from "./types"
 import type { CurriculumElement } from "./curriculumElements"
+
+export const CURRICULUM_LEVELS = [1, 2, 3] as const
+export type CurriculumLevel = (typeof CURRICULUM_LEVELS)[number]
 
 export const curriculumLevels = [
   {
     id: "level-1",
-    level: 1,
+    curriculumLevel: 1,
     label: "Level 1 — Everyday Markdown",
     description: "The marks you use most.",
     elements: [
@@ -26,7 +28,7 @@ export const curriculumLevels = [
   },
   {
     id: "level-2",
-    level: 2,
+    curriculumLevel: 2,
     label: "Level 2 — Useful patterns",
     description: "Useful combinations and shortcuts.",
     elements: [
@@ -51,7 +53,7 @@ export const curriculumLevels = [
   },
   {
     id: "level-3",
-    level: 3,
+    curriculumLevel: 3,
     label: "Level 3 — Good to know",
     description: "Less common syntax worth recognizing.",
     elements: [
@@ -76,7 +78,7 @@ export const curriculumLevels = [
   },
 ] as const satisfies readonly {
   id: string
-  level: CurriculumLevel
+  curriculumLevel: CurriculumLevel
   label: string
   description: string
   elements: readonly CurriculumElement[]

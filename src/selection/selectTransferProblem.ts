@@ -17,8 +17,10 @@ export function isEligibleTransferProblem(
   candidate: TransferProblem,
   retryFamily: NormalizedProblem["retryFamily"],
 ): boolean {
+  const authoringLevel = currentProblem.level
+  const candidateAuthoringLevel = candidate.level
   return (
-    candidate.level === currentProblem.level &&
+    candidateAuthoringLevel === authoringLevel &&
     candidate.flavor === currentProblem.flavor &&
     candidate.retryFamily === retryFamily &&
     candidate.id !== currentProblem.id &&

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 import {
   countRuntimeTargetContentLines,
   problemBank,
-  getProblemsForLevel,
+  getProblemsForAuthoringLevel,
   RUNTIME_TARGET_BUDGETS,
   withinRuntimeBudget,
 } from "../../src/content/problemBank"
@@ -11,7 +11,7 @@ import {
   getCurriculumElements,
   getProblemEntryId,
 } from "../../src/content/curriculumElements"
-import { CURRICULUM_LEVELS } from "../../src/content/types"
+import { AUTHORING_LEVELS } from "../../src/content/types"
 import { RUN_POLICY } from "../../src/selection/runPolicy"
 
 /**
@@ -35,7 +35,7 @@ describe("runtime problem budgets", () => {
         (candidate) => candidate.id === entryId,
       )
       if (!entry) throw new Error(`Missing curriculum owner for ${problem.id}`)
-      const budget = RUNTIME_TARGET_BUDGETS[entry.level]
+      const budget = RUNTIME_TARGET_BUDGETS[entry.curriculumLevel]
       const isMixed = getCurriculumElements(problem).length > 1
       const lines = isMixed
         ? countRuntimeTargetContentLines(problem.target)
@@ -49,10 +49,10 @@ describe("runtime problem budgets", () => {
   })
 
   it("keeps every level deep enough for two rotated turns", () => {
-    for (const level of CURRICULUM_LEVELS) {
+    for (const authoringLevel of AUTHORING_LEVELS) {
       expect(
-        getProblemsForLevel(level).length,
-        `level ${level}`,
+        getProblemsForAuthoringLevel(authoringLevel).length,
+        `authoring level ${authoringLevel}`,
       ).toBeGreaterThanOrEqual(RUN_POLICY.turnSize * 2)
     }
   })

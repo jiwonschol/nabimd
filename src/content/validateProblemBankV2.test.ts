@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 import { headingProblems } from "./headingProblems"
 import { normalizeProblem } from "./normalizeProblem"
 import type {
-  CurriculumLevel,
+  AuthoringLevel,
   FixtureRole,
   GradableProblem,
   NormalizedProblem,
@@ -212,7 +212,7 @@ describe("schema-v2 problem-bank validation", () => {
 
   it("rejects an unknown level and predicate kind safely", () => {
     const invalid = problem("unknown-contract", {
-      level: 6 as CurriculumLevel,
+      level: 6 as AuthoringLevel,
       matchChecks: [
         {
           ...commonCheck("unknown"),

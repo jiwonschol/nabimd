@@ -6,7 +6,7 @@ describe("localRankingClient", () => {
     await expect(
       localRankingClient.getStanding({
         elapsedMs: 42_000,
-        level: 1,
+        curriculumLevel: 1,
         score: 6,
         total: 6,
       }),

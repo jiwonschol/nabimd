@@ -66,7 +66,7 @@ export function ExerciseTopBar({
   const [summaryTooltipReady, setSummaryTooltipReady] = useState(false)
   const matched = evaluation?.status === "matched"
   const entry = getEntryChoice(entryId)
-  const levelLabel = `Level ${entry.level}`
+  const levelLabel = `Level ${entry.curriculumLevel}`
   const visibleScheduledPosition =
     phase === "complete"
       ? scheduledRunLength

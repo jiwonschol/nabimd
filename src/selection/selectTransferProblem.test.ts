@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest"
-import { getProblemsForLevel, problemBank } from "../content/problemBank"
+import { getProblemsForAuthoringLevel, problemBank } from "../content/problemBank"
 import { selectTransferProblem } from "./selectTransferProblem"
 
 describe("selectTransferProblem", () => {
   it("chooses different content from the same level, flavor, and retry family", () => {
-    const current = getProblemsForLevel(1)[0]!
+    const current = getProblemsForAuthoringLevel(1)[0]!
     const selected = selectTransferProblem({
       problems: problemBank,
       currentProblemId: current.id,
@@ -20,7 +20,7 @@ describe("selectTransferProblem", () => {
   })
 
   it("prefers a nonrecent eligible problem", () => {
-    const problems = getProblemsForLevel(2)
+    const problems = getProblemsForAuthoringLevel(2)
     const selected = selectTransferProblem({
       problems: problemBank,
       currentProblemId: problems[0]!.id,
@@ -32,12 +32,12 @@ describe("selectTransferProblem", () => {
   })
 
   it("never crosses levels even when another level shares Markdown skills", () => {
-    const current = getProblemsForLevel(1)[0]!
+    const current = getProblemsForAuthoringLevel(1)[0]!
     const selected = selectTransferProblem({
       problems: problemBank,
       currentProblemId: current.id,
       retryFamily: current.retryFamily,
-      recentProblemIds: getProblemsForLevel(1).map((problem) => problem.id),
+      recentProblemIds: getProblemsForAuthoringLevel(1).map((problem) => problem.id),
     })
     expect(selected.level).toBe(1)
   })
@@ -53,7 +53,7 @@ describe("selectTransferProblem", () => {
     ] as const
 
     for (const retryFamily of retryFamilies) {
-      const family = getProblemsForLevel(3).filter(
+      const family = getProblemsForAuthoringLevel(3).filter(
         (problem) => problem.retryFamily === retryFamily,
       )
       expect(family).toHaveLength(4)
@@ -83,7 +83,7 @@ describe("selectTransferProblem", () => {
     ] as const
 
     for (const retryFamily of retryFamilies) {
-      const family = getProblemsForLevel(4).filter(
+      const family = getProblemsForAuthoringLevel(4).filter(
         (problem) => problem.retryFamily === retryFamily,
       )
       expect(family).toHaveLength(3)
@@ -105,7 +105,7 @@ describe("selectTransferProblem", () => {
   })
 
   it("rejects a bank with no safe transfer candidate", () => {
-    const current = getProblemsForLevel(5)[0]!
+    const current = getProblemsForAuthoringLevel(5)[0]!
     expect(() =>
       selectTransferProblem({
         problems: [current],

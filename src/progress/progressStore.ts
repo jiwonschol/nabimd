@@ -406,17 +406,18 @@ function migrateStarterProjectionRevision(
     if (!validProblemIds.has(problemId) || typeof draft !== "string") continue
 
     const problem = getProblem(problemId)
-    if (problem.level <= 2 && draft === "") continue
+    const authoringLevel = problem.level
+    if (authoringLevel <= 2 && draft === "") continue
 
     const legacyPlaintextStarter = deriveLegacyPlaintextStarter(problem.target)
     const legacyAutomaticStarter =
       sourceBankRevision === preStarterProjectionProblemBankRevision &&
-      problem.level >= 3
+      authoringLevel >= 3
         ? ""
         : legacyPlaintextStarter
     const isFlattenedHighLevelBlank =
       sourceBankRevision === flattenedStarterProjectionProblemBankRevision &&
-      problem.level >= 3 &&
+      authoringLevel >= 3 &&
       draft === ""
     if (draft === legacyAutomaticStarter || isFlattenedHighLevelBlank) {
       // Previous runtimes persisted automatic starters when navigating to a

@@ -2,12 +2,12 @@ import { render, screen, within } from "@testing-library/react"
 import { EditorState } from "@codemirror/state"
 import { EditorView } from "@codemirror/view"
 import { describe, expect, it } from "vitest"
-import { getProblem, getProblemsForLevel } from "../content/problemBank"
+import { getProblem, getProblemsForAuthoringLevel } from "../content/problemBank"
 import { GoalPanel } from "./GoalPanel"
 
 describe("GoalPanel", () => {
   it("shows the learner instruction instead of an unexplained Goal icon", () => {
-    const problem = getProblemsForLevel(1)[0]
+    const problem = getProblemsForAuthoringLevel(1)[0]
 
     if (!problem) throw new Error("Level 1 must contain a problem")
 
@@ -24,7 +24,7 @@ describe("GoalPanel", () => {
   })
 
   it("starts higher-level Goal documents on the first row", () => {
-    const problem = getProblemsForLevel(3)[0]
+    const problem = getProblemsForAuthoringLevel(3)[0]
 
     if (!problem) throw new Error("Level 3 must contain a problem")
 
@@ -36,7 +36,7 @@ describe("GoalPanel", () => {
   })
 
   it("also reserves the first two Goal rows throughout Level 2", () => {
-    const problem = getProblemsForLevel(2)[0]
+    const problem = getProblemsForAuthoringLevel(2)[0]
 
     if (!problem) throw new Error("Level 2 must contain a problem")
 

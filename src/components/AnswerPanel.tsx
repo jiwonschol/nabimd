@@ -52,7 +52,8 @@ const completeExampleLine = /^\s*(?:[-+*>]|\d+[.)]|#{1,6})\s+\S/
  * (rebuild families, levels 3+) keep one mark per row.
  */
 function isSinglePatternProblem(problem: GradableProblem): boolean {
-  if ((problem.level ?? 1) > 2) return false
+  const authoringLevel = problem.level ?? 1
+  if (authoringLevel > 2) return false
   if (problem.familyId.startsWith("rebuild")) return false
   return problem.syntaxTokens.some((token) => /[A-Za-z]/.test(token))
 }
@@ -100,7 +101,8 @@ export function hintPatternLines(
 }
 
 function sourceExamples(problem: GradableProblem): string[] {
-  if ((problem.level ?? 1) !== 5) return [...problem.syntaxTokens]
+  const authoringLevel = problem.level ?? 1
+  if (authoringLevel !== 5) return [...problem.syntaxTokens]
 
   let listIndex = 0
 
@@ -348,7 +350,8 @@ export function AnswerPanel({
     (evaluation?.status === "matched" && evaluation.reviewItems.length > 0)
   const secondView: AnswerView = reviewAvailable ? "review" : "preview"
   const secondLabel = reviewAvailable ? "Review" : "Preview"
-  const leadingBlankRows = (problem.level ?? 1) <= 2 ? 2 : 0
+  const authoringLevel = problem.level ?? 1
+  const leadingBlankRows = authoringLevel <= 2 ? 2 : 0
 
   // The center card is the input mode: the document page starts blank and
   // grows one accepted slot at a time until the finished draft triggers the

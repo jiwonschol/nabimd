@@ -1,6 +1,6 @@
 import { normalizeProblem } from "./normalizeProblem"
 import type {
-  CurriculumLevel,
+  AuthoringLevel,
   MatchCheck,
   NormalizedProblem,
   VocabularyProfile,
@@ -18,7 +18,7 @@ function commonCheck(id: string, priority: number, feedback: string) {
 
 type SeedProblemInput = {
   id: string
-  level: CurriculumLevel
+  level: AuthoringLevel
   familyId: string
   skillIds: readonly string[]
   retryFamily: string

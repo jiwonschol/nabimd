@@ -1,6 +1,6 @@
-export const CURRICULUM_LEVELS = [1, 2, 3, 4, 5] as const
+export const AUTHORING_LEVELS = [1, 2, 3, 4, 5] as const
 
-export type CurriculumLevel = (typeof CURRICULUM_LEVELS)[number]
+export type AuthoringLevel = (typeof AUTHORING_LEVELS)[number]
 export type MarkdownFlavor = "standard"
 
 export type VocabularyProfile =
@@ -242,7 +242,7 @@ export type ProblemInput = ProblemBase & {
   difficulty: "warmup" | "mixed" | "makeover"
   retryFamily: string
   schemaVersion: 2
-  level: CurriculumLevel
+  level: AuthoringLevel
   flavor?: MarkdownFlavor
   vocabulary: VocabularyMetadata
   sourceBatchId: string

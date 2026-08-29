@@ -132,7 +132,12 @@ export function getProblemEntryId(
       (entry.elements as readonly CurriculumElement[]).includes(element),
     )
     if (!candidate) return null
-    if (owner === null || candidate.level > owner.level) owner = candidate
+    if (
+      owner === null ||
+      candidate.curriculumLevel > owner.curriculumLevel
+    ) {
+      owner = candidate
+    }
   }
   return owner?.id ?? null
 }
