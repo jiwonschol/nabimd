@@ -423,6 +423,9 @@ describe("describeCheckpoint", () => {
       suffix: ".",
     })
 
+    // The divider sits below the header row, so the sentence has to say the
+    // row above becomes the headers. `makes the row above the column headers`
+    // reads first as a row positioned above them — the opposite of the screen.
     // Same bars, different row: the locked dash runs are what name it.
     const dividerLockedDashes = checkpointOf(
       ["|", "input"],
@@ -432,7 +435,7 @@ describe("describeCheckpoint", () => {
       ["|", "input"],
     )
     expect(describeCheckpoint(dividerLockedDashes)).toEqual({
-      prefix: "Type the Markdown bars that make the row above the ",
+      prefix: "Type the Markdown bars that turn the row above into ",
       term: "column headers",
       suffix: ".",
     })
@@ -449,7 +452,7 @@ describe("describeCheckpoint", () => {
           [" |", "locked"],
         ),
       ).prefix,
-    ).toBe("Type the Markdown bar and dashes that make the row above the ")
+    ).toBe("Type the Markdown bar and dashes that turn the row above into ")
 
     // The other side of the same split: a three-column divider exposes two
     // inner bars, so the same branch has to say "bars".
@@ -465,7 +468,7 @@ describe("describeCheckpoint", () => {
           [" |", "locked"],
         ),
       ).prefix,
-    ).toBe("Type the Markdown bars and dashes that make the row above the ")
+    ).toBe("Type the Markdown bars and dashes that turn the row above into ")
 
     // And when the dashes are the blank instead of the bars.
     const dividerTypedDashes = checkpointOf(
@@ -476,7 +479,7 @@ describe("describeCheckpoint", () => {
       [" |", "locked"],
     )
     expect(describeCheckpoint(dividerTypedDashes)).toEqual({
-      prefix: "Type the Markdown dashes that make the row above the ",
+      prefix: "Type the Markdown dashes that turn the row above into ",
       term: "column headers",
       suffix: ".",
     })
@@ -499,7 +502,7 @@ describe("describeCheckpoint", () => {
         checkpointOf(["--- ", "locked"], ["|", "input"], [" ---", "locked"]),
       ),
     ).toEqual({
-      prefix: "Type the Markdown bar that makes the row above the ",
+      prefix: "Type the Markdown bar that turns the row above into ",
       term: "column headers",
       suffix: ".",
     })
