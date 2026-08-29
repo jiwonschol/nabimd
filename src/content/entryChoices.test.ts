@@ -505,14 +505,13 @@ describe("how often a run repeats a syntax the learner just practised", () => {
       return returning / compared
     }
 
-    const neighbours = [
-      rateAt(boundary - 2),
-      rateAt(boundary - 1),
-      rateAt(boundary + 1),
-      rateAt(boundary + 2),
-    ]
-    const worstNeighbour = Math.max(...neighbours)
-    expect(rateAt(boundary)).toBeLessThanOrEqual(worstNeighbour)
+    // Against the worst of a wider neighbourhood this passes either way — one
+    // ordinary run is always worse than the boundary. The two runs either side
+    // are the comparison that moves: leaving the boundary unseeded pushes it
+    // above their mean, and seeding it puts it below.
+    const before = rateAt(boundary - 1)
+    const after = rateAt(boundary + 1)
+    expect(rateAt(boundary)).toBeLessThanOrEqual((before + after) / 2)
   })
 
   it("never serves the same problem twice across the grid it covers", () => {
