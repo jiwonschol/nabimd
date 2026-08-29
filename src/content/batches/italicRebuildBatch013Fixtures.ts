@@ -185,9 +185,8 @@ function rebuildFixtures(
 }
 
 export const italicRebuildBatch013Fixtures: readonly ProblemFixture[] =
-  italicRebuildBatch013Problems.flatMap((problem, index) => {
-    const authoringLevel = problem.level
-    return authoringLevel === 1
+  italicRebuildBatch013Problems.flatMap((problem, index) =>
+    problem.level === 1
       ? l1Fixtures(problem, index)
-      : rebuildFixtures(problem, index - 12)
-  })
+      : rebuildFixtures(problem, index - 12),
+  )

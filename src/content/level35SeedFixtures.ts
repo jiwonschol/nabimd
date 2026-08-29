@@ -1,15 +1,9 @@
 import { level35SeedProblems } from "./level35SeedProblems"
 import type { NormalizedProblem, ProblemFixture } from "./types"
 
-const level3Problems = level35SeedProblems.filter(
-  ({ level: authoringLevel }) => authoringLevel === 3,
-)
-const level4Problems = level35SeedProblems.filter(
-  ({ level: authoringLevel }) => authoringLevel === 4,
-)
-const level5Problems = level35SeedProblems.filter(
-  ({ level: authoringLevel }) => authoringLevel === 5,
-)
+const level3Problems = level35SeedProblems.filter((problem) => problem.level === 3)
+const level4Problems = level35SeedProblems.filter((problem) => problem.level === 4)
+const level5Problems = level35SeedProblems.filter((problem) => problem.level === 5)
 
 function transformH2Section(
   source: string,

@@ -145,7 +145,7 @@ test("production serves five distinct syntax elements for every available level"
       await page.getByRole("button", { name: entry.label }).click()
       await expect(page.getByTestId("page-turn-transition")).toHaveCount(0)
       await expect(page.getByLabel("Practice details")).toContainText(
-        `Level ${entry.level}`,
+        `Level ${entry.curriculumLevel}`,
       )
       const servedSingleElements = new Set<string>()
       let mixedExerciseCount = 0
@@ -155,11 +155,11 @@ test("production serves five distinct syntax elements for every available level"
           await practiceShell(page).getAttribute("data-problem-id")
         expect(
           problemId,
-          `problem ${exercise + 1} for Level ${entry.level}`,
+          `problem ${exercise + 1} for Level ${entry.curriculumLevel}`,
         ).toBeTruthy()
         if (!problemId) {
           throw new Error(
-            `Missing problem ${exercise + 1} for Level ${entry.level}`,
+            `Missing problem ${exercise + 1} for Level ${entry.curriculumLevel}`,
           )
         }
         const problem = runtimeProblemById.get(problemId)

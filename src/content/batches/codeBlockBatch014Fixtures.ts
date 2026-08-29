@@ -247,9 +247,8 @@ function rebuildFixtures(
 }
 
 export const codeBlockBatch014Fixtures: readonly ProblemFixture[] =
-  codeBlockBatch014Problems.flatMap((problem, index) => {
-    const authoringLevel = problem.level
-    return authoringLevel === 1
+  codeBlockBatch014Problems.flatMap((problem, index) =>
+    problem.level === 1
       ? l1Fixtures(problem, index)
-      : rebuildFixtures(problem, index - 12)
-  })
+      : rebuildFixtures(problem, index - 12),
+  )
