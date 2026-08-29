@@ -605,6 +605,17 @@ function normalizeListStyle(
   const widths = checkpoint.segments.flatMap((segment) =>
     segment.kind === "input" ? [segment.value.length] : [],
   )
+  const markerStyles = checkpoint.segments.flatMap((segment) =>
+    segment.kind === "input" ? [listStyleFromInput(segment.value)] : [],
+  )
+  const markerSignatures = new Set(
+    markerStyles
+      .map((candidate) =>
+        candidate.unorderedMarker ?? candidate.orderedDelimiter ?? "",
+      )
+      .filter(Boolean),
+  )
+  if (markerSignatures.size > 1) return value
   if (widths.length <= 1) return normalizeGroupListStyle(value, style)
 
   let offset = 0
