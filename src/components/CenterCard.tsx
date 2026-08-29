@@ -256,17 +256,24 @@ export function describeCheckpoint(
     // An ordered marker is a number, a delimiter and a space; the delimiter is
     // a blank of its own and `)` is as valid as `.`, so the sentence names it
     // rather than assuming the dot the content happens to use today.
+    // "number" needs no qualifier: an ordered marker is the only blank on this
+    // card that is one. A bullet's mark is `-`, `*` or `+`, so "mark" alone
+    // does not say which, and it keeps its name. The ordered sentence for a
+    // card with no code says "number" too.
     const lead =
       stepMarkers > 0
         ? markers > 1
-          ? "Type each step number, delimiter, and space"
-          : "Type the step number, delimiter, and space"
+          ? "Type each number, delimiter, and space"
+          : "Type the number, delimiter, and space"
         : markers > 1
           ? "Type each bullet mark and space"
           : "Type the bullet mark and space"
-    const wrap =
-      codeSpans > 1 ? "then wrap each phrase in " : "then wrap the phrase in "
-    return instruction(`${lead}, ${wrap}`, "inline code", " marks.")
+    // The ordered sentences carry three more blanks than the bullet one, so
+    // they join the two halves with a semicolon to stay inside the card. The
+    // order still reads off the order of the clauses.
+    const join = stepMarkers > 0 ? "; " : ", then "
+    const wrap = codeSpans > 1 ? "wrap each phrase in " : "wrap the phrase in "
+    return instruction(`${lead}${join}${wrap}`, "inline code", " marks.")
   }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     const bullets = markerCount(/^ {0,3}[-+*][\t ]+$/)

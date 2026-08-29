@@ -571,7 +571,7 @@ describe("describeCheckpoint", () => {
       describeCheckpoint(checkpointFor("1. Create a folder named `Current`")),
     ).toEqual({
       prefix:
-        "Type the step number, delimiter, and space, then wrap the phrase in ",
+        "Type the number, delimiter, and space; wrap the phrase in ",
       term: "inline code",
       suffix: " marks.",
     })
@@ -581,7 +581,7 @@ describe("describeCheckpoint", () => {
       ),
     ).toEqual({
       prefix:
-        "Type each step number, delimiter, and space, then wrap each phrase in ",
+        "Type each number, delimiter, and space; wrap each phrase in ",
       term: "inline code",
       suffix: " marks.",
     })
@@ -650,7 +650,7 @@ describe("describeCheckpoint", () => {
         ),
       ).prefix,
       "one step, two code spans",
-    ).toBe("Type the step number, delimiter, and space, then wrap each phrase in ")
+    ).toBe("Type the number, delimiter, and space; wrap each phrase in ")
     expect(
       describeCheckpoint(
         checkpointOf(
@@ -666,7 +666,7 @@ describe("describeCheckpoint", () => {
       ).prefix,
       "two steps, one code span",
     ).toBe(
-      "Type each step number, delimiter, and space, then wrap the phrase in ",
+      "Type each number, delimiter, and space; wrap the phrase in ",
     )
   })
 
@@ -738,7 +738,7 @@ describe("describeCheckpoint", () => {
           // Two counts, not one: the card can gather two markers and two code
           // spans, and each number has to come from its own blanks.
           expect(
-            /\beach step\b|\beach bullet\b/.test(prefix),
+            /\beach number\b|\beach bullet\b/.test(prefix),
             `${where} pluralises the marker: "${prefix}${term}${suffix}"`,
           ).toBe(markers > 1)
           expect(
