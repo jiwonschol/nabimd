@@ -2958,6 +2958,10 @@ button:focus-visible,
   font-weight: 500;
 }
 
+.run-summary__work-header h3[data-quiet-focus]:focus {
+  outline: none;
+}
+
 .run-summary__work-navigation {
   display: flex;
   flex: 0 0 auto;

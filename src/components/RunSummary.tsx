@@ -87,7 +87,14 @@ export function RunSummary({
               <header className="run-summary__work-header">
                 <div>
                   <p>Completed exercise</p>
-                  <h3 ref={workTitleRef} tabIndex={-1}>{activePage.title}</h3>
+                  <h3
+                    data-quiet-focus={quietInitialFocus || undefined}
+                    onBlur={() => setQuietInitialFocus(false)}
+                    ref={workTitleRef}
+                    tabIndex={-1}
+                  >
+                    {activePage.title}
+                  </h3>
                 </div>
                 <nav aria-label="Completed exercise navigation" className="run-summary__work-navigation">
                   <button

@@ -935,10 +935,11 @@ test("completes a run and reveals full documents only from Summary", async ({
     }
   }
 
-  const completionTitle = page.getByRole("heading", { name: "Well done." })
-  await expect(completionTitle).toBeFocused()
+  const work = page.getByRole("region", { name: "Your work" })
+  const workTitle = work.getByRole("heading", { level: 3 })
+  await expect(workTitle).toBeFocused()
   expect(
-    await completionTitle.evaluate((element) => {
+    await workTitle.evaluate((element) => {
       const style = getComputedStyle(element)
       return {
         backgroundColor: style.backgroundColor,
@@ -948,7 +949,6 @@ test("completes a run and reveals full documents only from Summary", async ({
   ).toEqual({ backgroundColor: "rgba(0, 0, 0, 0)", outlineStyle: "none" })
   await expect(page.getByLabel("Score")).toContainText("5 / 5")
   await expect(page.getByRole("textbox")).toHaveCount(0)
-  const work = page.getByRole("region", { name: "Your work" })
   await expect(work.getByRole("article")).toHaveCount(1)
   await expect(work.getByRole("article")).toHaveAccessibleName(
     /^Completed exercise 1 of 5: /,

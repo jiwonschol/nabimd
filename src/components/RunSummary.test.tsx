@@ -238,6 +238,7 @@ describe("RunSummary as a teacher's return", () => {
     const workTitle = screen.getByRole("heading", { level: 3, name: "Grocery list" })
     const next = screen.getByRole("button", { name: "Next completed exercise" })
     expect(workTitle).toHaveFocus()
+    expect(workTitle).toHaveAttribute("data-quiet-focus", "true")
     expect(workTitle.compareDocumentPosition(next)).toBe(
       Node.DOCUMENT_POSITION_FOLLOWING,
     )
@@ -247,9 +248,9 @@ describe("RunSummary as a teacher's return", () => {
       "summary-ink--actions",
     )
 
-    fireEvent.blur(completion)
-    fireEvent.focus(completion)
-    expect(completion).not.toHaveAttribute("data-quiet-focus")
+    fireEvent.blur(workTitle)
+    fireEvent.focus(workTitle)
+    expect(workTitle).not.toHaveAttribute("data-quiet-focus")
   })
 
   it("runs both quiet actions", () => {
