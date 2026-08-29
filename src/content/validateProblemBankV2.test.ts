@@ -332,7 +332,10 @@ describe("schema-v2 problem-bank validation", () => {
         {
           id: "unsupported-block",
           kind: "inline-presence",
-          scope: { kind: "block", block: "table", occurrence: 0 },
+          // `table` became a supported block kind when the engine learned to
+          // grade one, so the unsupported example has to be something the
+          // product genuinely has no check for.
+          scope: { kind: "block", block: "footnote", occurrence: 0 },
           inline: "emphasis",
           min: 1,
           priority: 10,
@@ -352,7 +355,7 @@ describe("schema-v2 problem-bank validation", () => {
 
     expect(validate([invalid, problem("invalid-block-scopes-peer")])).toEqual(
       expect.arrayContaining([
-        "Problem invalid-block-scopes check unsupported-block has unsupported scope block: table",
+        "Problem invalid-block-scopes check unsupported-block has unsupported scope block: footnote",
         "Problem invalid-block-scopes check negative-occurrence has invalid block occurrence",
       ]),
     )
@@ -400,7 +403,7 @@ describe("schema-v2 problem-bank validation", () => {
           id: "invalid-block",
           kind: "block-count",
           scope: { kind: "document" },
-          block: "table",
+          block: "footnote",
           depth: 7,
           recursive: "yes",
           min: 1,
@@ -465,7 +468,7 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-list-shape check missing-scope requires a scope",
         "Problem invalid-list-shape check missing-scope has invalid nonempty-content flag",
         "Problem invalid-list-shape check missing-scope has invalid nonempty-destination flag",
-        "Problem invalid-list-shape check invalid-block has unsupported block kind: table",
+        "Problem invalid-list-shape check invalid-block has unsupported block kind: footnote",
         "Problem invalid-list-shape check invalid-block has invalid heading depth",
         "Problem invalid-list-shape check invalid-block has invalid recursive flag",
         "Problem invalid-list-shape check invalid-blockquote-shape requires a scope",
@@ -554,7 +557,7 @@ describe("schema-v2 problem-bank validation", () => {
           id: "invalid-block-review",
           kind: "max-block-count",
           scope: { kind: "section", headingDepth: 8, occurrence: -2 },
-          block: "table",
+          block: "footnote",
           depth: 7,
           recursive: "yes",
           max: -1,
@@ -597,7 +600,7 @@ describe("schema-v2 problem-bank validation", () => {
         "Problem invalid-editorial editorial check invalid-heading-depth has invalid section heading depth",
         "Problem invalid-editorial editorial check invalid-block-review has invalid section heading depth",
         "Problem invalid-editorial editorial check invalid-block-review has invalid section occurrence",
-        "Problem invalid-editorial editorial check invalid-block-review has unsupported block kind: table",
+        "Problem invalid-editorial editorial check invalid-block-review has unsupported block kind: footnote",
         "Problem invalid-editorial editorial check invalid-block-review has invalid heading depth",
         "Problem invalid-editorial editorial check invalid-block-review has invalid recursive flag",
         "Problem invalid-editorial editorial check invalid-block-review has invalid max",

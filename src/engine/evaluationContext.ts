@@ -28,6 +28,7 @@ const nodeTypeByBlock: Readonly<Record<BlockKind, RootContent["type"]>> = {
   code: "code",
   blockquote: "blockquote",
   "thematic-break": "thematicBreak",
+  table: "table",
 }
 
 export function createEvaluationContext(source: string): EvaluationContext {

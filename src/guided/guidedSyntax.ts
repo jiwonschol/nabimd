@@ -822,6 +822,39 @@ function markNodeSyntax(
       if (grouped) groupedRanges.push(grouped)
       break
     }
+    case "table":
+      if (range) {
+        // Every bar in a table is grammar the learner types; the cell text
+        // between them is prose. The delimiter row is not a child of the table
+        // node — GFM consumes it — so the rows are walked by line rather than
+        // by child, which also picks up its bars while leaving its dashes
+        // locked. One family covers them all: what keeps a header, the rule
+        // under it, and a body row on separate cards is the never-join rule in
+        // `mergeAdjacentSameSyntax`, not the family. Giving each line its own
+        // family read like the thing that did it and changed nothing.
+        let lineStart = lineStartAt(source, range.from)
+        while (lineStart < range.to) {
+          const lineEnd = lineEndAt(source, lineStart)
+          for (let index = lineStart; index < lineEnd; index += 1) {
+            // `\|` is a literal bar inside a cell, not a separator — GFM
+            // reads it as text. Counting backslashes matters because `\\|`
+            // is an escaped backslash followed by a real separator.
+            let backslashes = 0
+            while (source[index - 1 - backslashes] === "\\") backslashes += 1
+            if (source[index] === "|" && backslashes % 2 === 0) {
+              markRange(
+                mask,
+                { from: index, to: index + 1 },
+                families,
+                TABLE_ROW_FAMILY,
+              )
+            }
+          }
+          if (lineEnd >= source.length) break
+          lineStart = lineEnd + 1
+        }
+      }
+      break
     case "thematicBreak":
     case "break":
       if (range) markRange(mask, range, families, family)
@@ -947,13 +980,22 @@ function sameSyntax(
   )
 }
 
+/** A table's rows are never joined: see the `table` case in `markNodeSyntax`. */
+const TABLE_ROW_FAMILY = "table-row"
+
 function mergeAdjacentSameSyntax(
   source: string,
   checkpoints: readonly SyntaxCheckpoint[],
+  familyOf: readonly (string | null)[],
 ): SyntaxCheckpoint[] {
   const merged: SyntaxCheckpoint[] = []
-  for (const checkpoint of checkpoints) {
-    const previous = merged.at(-1)
+  const mergedFamilies: (string | null)[] = []
+  for (const [position, checkpoint] of checkpoints.entries()) {
+    const family = familyOf[position] ?? null
+    const previousFamily = mergedFamilies.at(-1) ?? null
+    const tableRow =
+      family === TABLE_ROW_FAMILY || previousFamily === TABLE_ROW_FAMILY
+    const previous = tableRow ? undefined : merged.at(-1)
     const between = previous
       ? source.slice(previous.targetTo, checkpoint.targetFrom)
       : null
@@ -965,6 +1007,7 @@ function mergeAdjacentSameSyntax(
       !sameSyntax(previous, checkpoint)
     ) {
       merged.push(checkpoint)
+      mergedFamilies.push(family)
       continue
     }
 
@@ -1015,6 +1058,9 @@ export function deriveSyntaxCheckpoints(
   unmaskLineLeadingWhitespace(source, mask, families)
 
   const checkpoints: SyntaxCheckpoint[] = []
+  // The family each checkpoint's first blank belongs to. Only the merge step
+  // reads it, to keep a table's rows apart.
+  const checkpointFamilies: (string | null)[] = []
   let lineStart = 0
   while (lineStart <= source.length) {
     const lineEnd = lineEndAt(source, lineStart)
@@ -1063,13 +1109,25 @@ export function deriveSyntaxCheckpoints(
         canonicalInput,
         segments,
       })
+      // A row is a table row whenever *any* of its blanks is a bar. Reading
+      // only the first blank's family lost the rows whose first mark is
+      // something else — a bold cell, or the `> ` of a quoted table — and the
+      // never-join rule then collapsed them onto one card.
+      const holdsTableBar = families
+        .slice(contentStart, checkpointEnd)
+        .some((candidate, offset) =>
+          candidate === TABLE_ROW_FAMILY && mask[contentStart + offset] === true,
+        )
+      checkpointFamilies.push(
+        holdsTableBar ? TABLE_ROW_FAMILY : (families[activeOffset] ?? null),
+      )
     }
 
     if (checkpointEnd >= source.length) break
     lineStart = checkpointEnd + 1
   }
 
-  return mergeAdjacentSameSyntax(source, checkpoints)
+  return mergeAdjacentSameSyntax(source, checkpoints, checkpointFamilies)
 }
 
 export function buildGuidedDraft(

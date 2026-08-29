@@ -770,10 +770,10 @@ describe("describeCheckpoint", () => {
   it("records which families the engine still cannot reach", () => {
     // These fail when the parser work in #157 lands. That is the handoff: the
     // sentences above stop being a contract and become derivable from source.
+    // Tables left this list when the engine learned to blank their bars; their
+    // reachability and the sentences that follow from it live in
+    // `src/guided/tableCards.test.ts`.
     expect(deriveSyntaxCheckpoints("~~old price~~ new price", "")).toHaveLength(0)
-    expect(deriveSyntaxCheckpoints("| a | b |\n| --- | --- |\n| 1 | 2 |", "")).toHaveLength(
-      0,
-    )
     expect(describeCheckpoint(checkpointFor("- [ ] Buy milk")).term).toBe(
       "bullet item",
     )
