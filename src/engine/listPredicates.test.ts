@@ -160,3 +160,63 @@ describe("unordered-list predicates", () => {
     })
   })
 })
+
+describe("task list checkboxes", () => {
+  const taskListProblem = (requireTaskItems: boolean): GradableProblem => ({
+    ...bulletListProblem,
+    id: "task-list-predicate-test",
+    familyId: "task-lists",
+    skillIds: ["task-list"],
+    matchChecks: [
+      {
+        id: "use-task-list",
+        kind: "list-shape",
+        scope: { kind: "document" },
+        ordered: false,
+        minItems: 2,
+        requireTaskItems,
+        priority: 10,
+        feedback: "Add a task list with at least two checkbox items.",
+      },
+    ] as unknown as GradableProblem["matchChecks"],
+    editorialChecks: [] as unknown as GradableProblem["editorialChecks"],
+  })
+
+  const status = (source: string, requireTaskItems = true) =>
+    evaluateProblem(taskListProblem(requireTaskItems), source).status
+
+  it("accepts either tick and rejects a list with no boxes", () => {
+    // Nothing in the engine could see a checkbox before this: `BLOCK_KINDS`
+    // has `list` and no task kind, `InlineKind` has no bracket mark, and no
+    // predicate read `checked`. A task-list exercise therefore graded
+    // `- Buy milk` as correct — the answer passed without the syntax the
+    // exercise is named after.
+    expect(status("- [ ] Buy milk\n- [ ] Post the letter")).toBe("matched")
+    expect(status("- [x] Buy milk\n- [ ] Post the letter")).toBe("matched")
+    // Presence, not state: `[x]` and `[X]` are the same box to the parser and
+    // which one the learner ticks is not what the exercise teaches.
+    expect(status("- [X] Buy milk\n- [x] Post the letter")).toBe("matched")
+
+    expect(status("- Buy milk\n- Post the letter")).toBe("fail")
+    // Every item, not some: half a task list is not one.
+    expect(status("- [ ] Buy milk\n- Post the letter")).toBe("fail")
+  })
+
+  it("says what is missing rather than repeating the generic feedback", () => {
+    const result = evaluateProblem(
+      taskListProblem(true),
+      "- Buy milk\n- Post the letter",
+    )
+    expect(result.status).toBe("fail")
+    expect(JSON.stringify(result)).toContain(
+      "Put a checkbox after each bullet marker",
+    )
+  })
+
+  it("leaves lists without the option exactly as they were", () => {
+    // The option is opt-in. Without it a plain bullet list still passes, so
+    // adding the axis cannot have narrowed any problem already in the bank.
+    expect(status("- Buy milk\n- Post the letter", false)).toBe("matched")
+    expect(status("- [ ] Buy milk\n- Post the letter", false)).toBe("matched")
+  })
+})

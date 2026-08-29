@@ -188,9 +188,21 @@ function listShapePasses(
         (!check.requireVisibleItems ||
           list.children.every((item) =>
             listItemHasVisibleContent(item, context.source),
-          ))
+          )) &&
+        (!check.requireTaskItems || list.children.every(isTaskItem))
       )
     })
+}
+
+/**
+ * Whether a list item carries a checkbox.
+ *
+ * The parser sets `checked` to a boolean for `- [ ]` and `- [x]` alike and
+ * leaves it null otherwise, so presence is the whole test — a task-list
+ * exercise teaches the box, not which way it is ticked.
+ */
+function isTaskItem(item: ListItem): boolean {
+  return item.checked === true || item.checked === false
 }
 
 function collectListCandidates(nodes: readonly AstNode[]) {

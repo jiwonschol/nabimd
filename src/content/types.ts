@@ -116,6 +116,19 @@ export type MatchCheck =
       requireNonemptyItems?: boolean
       descendantsOnly?: boolean
       requireVisibleItems?: boolean
+      /**
+       * Every item must carry a task checkbox.
+       *
+       * A task list is a list whose items are checkboxes, and nothing else in
+       * the engine could see one: `BLOCK_KINDS` has `list` and no task kind,
+       * `InlineKind` has no bracket mark, and no predicate read `checked`. So
+       * a task-list problem graded `- Buy milk` as correct — the answer passed
+       * without the syntax the exercise is named after.
+       *
+       * Presence only. `[x]` and `[X]` and `[ ]` are all checkboxes, and which
+       * one the learner ticks is not what a task-list exercise teaches.
+       */
+      requireTaskItems?: boolean
     })
   | (MatchCheckBase & {
       kind: "blockquote-shape"

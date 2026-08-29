@@ -25,10 +25,29 @@ function missingNumberedSpaceCount(source: string): number {
   ).length
 }
 
+function listWithoutCheckboxCount(source: string): number {
+  return source.split("\n").filter((line) => {
+    if (isThematicBreak(line)) return false
+    return (
+      /^[ \t]{0,3}[-+*][ \t]+/.test(line) &&
+      !/^[ \t]{0,3}[-+*][ \t]+\[[ xX]\][ \t]/.test(line)
+    )
+  }).length
+}
+
 function listFailureMessage(
   check: ListShapeCheck,
   source: string,
 ): string {
+  // A list that is missing its boxes is the near miss this check exists for,
+  // so it gets its own sentence rather than the generic feedback.
+  if (
+    check.requireTaskItems &&
+    listWithoutCheckboxCount(source) >= check.minItems
+  ) {
+    return "Put a checkbox after each bullet marker, for example `- [ ] Item`."
+  }
+
   if (
     check.ordered !== true &&
     missingBulletSpaceCount(source) >= check.minItems
