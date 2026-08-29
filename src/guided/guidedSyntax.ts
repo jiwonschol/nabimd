@@ -268,6 +268,11 @@ export function syntaxGroupTerm(
   if (mark.startsWith("```") || mark.startsWith("~~~")) return "fenced code block"
   if (mark === "**" || mark === "__") return "bold text"
   if (mark === "*" || mark === "_") return "italic text"
+  if (mark === "~~") return "strikethrough text"
+  // A task box is bracket punctuation and would otherwise read as a link.
+  if (/^\[[ xX]?\]$/.test(mark)) {
+    return /[xX]/.test(mark) ? "checked-off item" : "checkbox item"
+  }
   if (mark.startsWith("![")) return "image"
   if (mark.startsWith("[") || mark === "](" || mark === ")") return "link"
   if (mark.startsWith("`")) return "inline code"
@@ -572,13 +577,14 @@ function markPrefix(
   pattern: RegExp,
   families: SyntaxFamilies,
   family: string,
-): void {
+): number | null {
   const start = lineStartAt(source, offset)
   const end = lineEndAt(source, offset)
   const match = source.slice(start, end).match(pattern)
-  if (match?.[0]) {
-    markRange(mask, { from: start, to: start + match[0].length }, families, family)
-  }
+  if (!match?.[0]) return null
+  const markEnd = start + match[0].length
+  markRange(mask, { from: start, to: markEnd }, families, family)
+  return markEnd
 }
 
 function markInlineDelimiters(
@@ -672,15 +678,21 @@ function markCodeFence(
     .match(/^(\s*)(`{3,}|~{3,})/)
   if (!opening?.[2]) return null
 
+  const openingMarkEnd =
+    openingStart + (opening[1]?.length ?? 0) + opening[2].length
   markRange(
     mask,
-    {
-      from: openingStart,
-      to: openingStart + (opening[1]?.length ?? 0) + opening[2].length,
-    },
+    { from: openingStart, to: openingMarkEnd },
     families,
     `${family}-open`,
   )
+
+  // The info string is *not* blanked. `instructionFor` has a sentence for a
+  // syntax-highlighted block and it reads a blank holding the language name,
+  // but a blank holding a name is Goal prose, which the published blank
+  // policy forbids outright ("asks only Markdown grammar characters"). The
+  // sentence is unreachable by contract rather than by omission, so the gap
+  // is a product question and not a parser one.
 
   const closingLineStart = lineStartAt(source, Math.max(range.from, range.to - 1))
   if (closingLineStart !== openingStart) {
@@ -760,17 +772,24 @@ function markNodeSyntax(
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
-          // Each quoted line carries its own `>` the learner types, so every
-          // line is its own group.
-          markPrefix(
-            source,
-            mask,
-            lineStart,
-            /^ {0,3}>[\t ]?/,
-            families,
-            `${family}-${lineStart}`,
-          )
           const lineEnd = lineEndAt(source, lineStart)
+          // Each quoted line carries its own `>` the learner types, so every
+          // line is its own group. A quote inside a quote puts a second `>`
+          // on the same line, and the marker this node owns is the first one
+          // its parent has not masked yet: matching from the line start again
+          // re-claimed the outer `>`, so the nested marker never became a
+          // blank and a two-level quote read as a plain one.
+          let markStart = lineStart
+          while (markStart < lineEnd && mask[markStart]) markStart += 1
+          const marker = source.slice(markStart, lineEnd).match(/^ {0,3}>[\t ]?/)
+          if (marker?.[0]) {
+            markRange(
+              mask,
+              { from: markStart, to: markStart + marker[0].length },
+              families,
+              `${family}-${markStart}`,
+            )
+          }
           if (lineEnd >= source.length) break
           lineStart = lineEnd + 1
         }
@@ -778,7 +797,7 @@ function markNodeSyntax(
       break
     case "listItem":
       if (range) {
-        markPrefix(
+        const markerEnd = markPrefix(
           source,
           mask,
           range.from,
@@ -786,10 +805,31 @@ function markNodeSyntax(
           families,
           family,
         )
+        // A GFM task item carries a checkbox behind its marker, and the box is
+        // a second mark the learner types. It needs its own family: the
+        // sentence that names a checkbox looks for a box blank sitting behind
+        // a marker blank, so folding the two into one group left the card
+        // calling a task item a bullet item.
+        const checkbox =
+          markerEnd === null || node.checked === null || node.checked === undefined
+            ? null
+            : source.slice(markerEnd, lineEndAt(source, markerEnd)).match(/^\[[ xX]\]/)
+        if (markerEnd !== null && checkbox?.[0]) {
+          markRange(
+            mask,
+            { from: markerEnd, to: markerEnd + checkbox[0].length },
+            families,
+            `${family}-task`,
+          )
+        }
       }
       break
     case "emphasis":
     case "strong":
+    // GFM strikethrough wraps its phrase the same way emphasis does, and it
+    // had no case at all: `~~gone~~` produced no checkpoint, so the sentence
+    // written for it could never be shown.
+    case "delete":
       markInlineDelimiters(source, mask, node, families, family)
       break
     case "inlineCode":
