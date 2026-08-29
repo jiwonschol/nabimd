@@ -17,6 +17,7 @@ import {
   type SyntaxMistake,
 } from "../guided/guidedSyntax"
 import { isReachableRunSchedule } from "../session/runSchedule"
+import { RUN_POLICY } from "../selection/runPolicy"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
@@ -26,6 +27,7 @@ export const CHECKPOINT_PROJECTION_REVISION = "given-document-title@1"
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
 const MAX_PERSISTED_SYNTAX_MISTAKES = 128
 const MAX_PERSISTED_MARK_LENGTH = 256
+export const MAX_PERSISTED_RUN_PROBLEM_IDS = RUN_POLICY.turnSize * 2
 
 export function createDefaultProgress(
   currentProblemId: string,
@@ -398,6 +400,18 @@ function migrateCheckpointProjection(value: unknown): unknown {
   // unknown revision may have been written by a newer client and must fail the
   // regular validator instead of being silently downgraded.
   if ("checkpointProjectionRevision" in value) return value
+
+  // Do not parse untrusted problem ids until the same cheap bounds enforced by
+  // the v5 validator have passed. A legitimate run has five scheduled slots
+  // and at most one transfer after each slot; oversized or duplicate-filled
+  // arrays are invalid and must fall through to normal recovery untouched.
+  if (
+    !Array.isArray(value.runProblemIds) ||
+    value.runProblemIds.length > MAX_PERSISTED_RUN_PROBLEM_IDS ||
+    new Set(value.runProblemIds).size !== value.runProblemIds.length
+  ) {
+    return value
+  }
 
   const changedProblemIds = new Set<string>()
   const rememberIfChanged = (problemId: unknown) => {
