@@ -6,6 +6,7 @@ import {
   projectCheckpointContext,
 } from "../guided/guidedSyntax"
 import { problemBank } from "../content/problemBank"
+import { RenderedDocumentBody } from "./RenderedDocument"
 import * as centerCardModule from "./CenterCard"
 
 const { CenterCard } = centerCardModule
@@ -39,6 +40,98 @@ function cardProps(
     ...overrides,
   } as ComponentProps<typeof CenterCard>
 }
+
+describe("Level 2 syntax reference examples", () => {
+  // The single list of Level 2 checkpoint shapes. The panel renders `example`
+  // as Markdown, so a string that parses to plain prose teaches nothing even
+  // though it is not the "Example" placeholder — the DOM selector is what
+  // rejects it. Name, notation and example are all asserted from what
+  // `buildSyntaxReference` returns, not from a copy, and this list is the one
+  // place the shapes are written down: when the engine opens these blanks for
+  // real, there is a single table to move to `deriveSyntaxCheckpoints`.
+  type Segment = { kind: "input" | "locked"; value: string }
+  const checkpointOf = (...segments: ReadonlyArray<Segment>) => ({
+    id: "reference",
+    line: 0,
+    targetFrom: 0,
+    targetTo: 0,
+    activeOffset: 0,
+    canonicalInput: segments
+      .filter((segment) => segment.kind === "input")
+      .map((segment) => segment.value)
+      .join(""),
+    segments,
+  })
+  const input = (value: string): Segment => ({ kind: "input", value })
+  const locked = (value: string): Segment => ({ kind: "locked", value })
+
+  const FAMILIES: ReadonlyArray<
+    [string, ReturnType<typeof checkpointOf>, string]
+  > = [
+    [
+      "Strikethrough text",
+      checkpointOf(input("~~"), locked("old"), input("~~")),
+      "del",
+    ],
+    [
+      "Bold italic text",
+      checkpointOf(input("***"), locked("Very"), input("***")),
+      "em > strong",
+    ],
+    [
+      "Quote inside a quote",
+      checkpointOf(input("> "), input("> "), locked("Deep")),
+      "blockquote blockquote",
+    ],
+    [
+      "Syntax-highlighted code block",
+      checkpointOf(input("```"), input("js"), locked("\ncode\n"), input("```")),
+      "pre > code.language-js",
+    ],
+    [
+      "Line break",
+      deriveSyntaxCheckpoints("first line  \nsecond line", "")[0]!,
+      "p > br",
+    ],
+    [
+      "Table row",
+      checkpointOf(locked("Apples "), input("|"), locked(" 3")),
+      "table > tbody > tr > td",
+    ],
+    [
+      "Column headers",
+      checkpointOf(locked("--- "), input("|"), locked(" ---")),
+      "table > thead > tr > th",
+    ],
+    [
+      "Checkbox item",
+      checkpointOf(input("- "), input("[ ]"), locked(" Buy milk")),
+      "li > input[type=checkbox]:not(:checked)",
+    ],
+    [
+      "Checked-off item",
+      checkpointOf(input("- "), input("[x]"), locked(" Buy milk")),
+      "li > input[type=checkbox]:checked",
+    ],
+  ]
+
+  for (const [name, checkpoint, selector] of FAMILIES) {
+    it(`renders ${name} as its own family`, () => {
+      const reference = centerCardModule.buildSyntaxReference(
+        checkpoint as Parameters<
+          typeof centerCardModule.buildSyntaxReference
+        >[0],
+      )
+      expect(reference.name, name).toBe(name)
+      expect(reference.notation, name).not.toBe("")
+      const { container, unmount } = render(
+        <RenderedDocumentBody source={reference.example} />,
+      )
+      expect(container.querySelector(selector), name).not.toBeNull()
+      unmount()
+    })
+  }
+})
 
 describe("CenterCard", () => {
   it("keeps a syntax name, notation, and rendered example on the learning leaf", () => {
