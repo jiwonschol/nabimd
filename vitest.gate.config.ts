@@ -31,6 +31,7 @@ export default defineConfig({
       "scripts/problem-bank/imageBatch027Artifacts.gate.ts",
       "scripts/problem-bank/imageBatch028Artifacts.gate.ts",
       "scripts/problem-bank/imageBatch029Artifacts.gate.ts",
+      "scripts/problem-bank/tableBatch030Artifacts.gate.ts",
       "scripts/problem-bank/runtimeBudget.gate.ts",
     ],
   },
