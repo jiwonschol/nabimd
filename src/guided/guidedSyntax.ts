@@ -828,9 +828,10 @@ function markNodeSyntax(
         // between them is prose. The delimiter row is not a child of the table
         // node — GFM consumes it — so the rows are walked by line rather than
         // by child, which also picks up its bars while leaving its dashes
-        // locked. Each line carries its own family: a header row, the rule
-        // under it, and a body row teach different things even though the mark
-        // is the same character, so they must stay separate cards.
+        // locked. One family covers them all: what keeps a header, the rule
+        // under it, and a body row on separate cards is the never-join rule in
+        // `mergeAdjacentSameSyntax`, not the family. Giving each line its own
+        // family read like the thing that did it and changed nothing.
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
           const lineEnd = lineEndAt(source, lineStart)
@@ -840,7 +841,7 @@ function markNodeSyntax(
                 mask,
                 { from: index, to: index + 1 },
                 families,
-                `table-row@${lineStart}`,
+                TABLE_ROW_FAMILY,
               )
             }
           }
@@ -975,7 +976,7 @@ function sameSyntax(
 }
 
 /** A table's rows are never joined: see the `table` case in `markNodeSyntax`. */
-const TABLE_ROW_FAMILY = "table-row@"
+const TABLE_ROW_FAMILY = "table-row"
 
 function mergeAdjacentSameSyntax(
   source: string,
@@ -988,8 +989,7 @@ function mergeAdjacentSameSyntax(
     const family = familyOf[position] ?? null
     const previousFamily = mergedFamilies.at(-1) ?? null
     const tableRow =
-      family?.startsWith(TABLE_ROW_FAMILY) === true ||
-      previousFamily?.startsWith(TABLE_ROW_FAMILY) === true
+      family === TABLE_ROW_FAMILY || previousFamily === TABLE_ROW_FAMILY
     const previous = tableRow ? undefined : merged.at(-1)
     const between = previous
       ? source.slice(previous.targetTo, checkpoint.targetFrom)
