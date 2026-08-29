@@ -43,6 +43,58 @@ function replacePairedDelimiter(
   return alternative
 }
 
+const swappedDelimiters: Readonly<Record<string, string>> = {
+  "**": "__",
+  __: "**",
+  "*": "_",
+  _: "*",
+}
+
+type DelimiterPair = { openingIndex: number; closingIndex: number; mark: string }
+
+/**
+ * Every opening/closing delimiter pair among a checkpoint's input groups, in
+ * source order and without overlap. One card can now hold several of them.
+ */
+function pairedDelimiterRuns(
+  parts: readonly string[],
+): readonly DelimiterPair[] {
+  const pairs: DelimiterPair[] = []
+  const used = new Set<number>()
+  for (let index = 0; index < parts.length; index += 1) {
+    if (used.has(index)) continue
+    const part = parts[index]!
+    const mark = Object.keys(swappedDelimiters).find((candidate) =>
+      part.endsWith(candidate),
+    )
+    if (!mark) continue
+    const closingIndex = parts.findIndex(
+      (candidate, candidateIndex) =>
+        candidateIndex > index && !used.has(candidateIndex) && candidate === mark,
+    )
+    if (closingIndex < 0) continue
+    used.add(index)
+    used.add(closingIndex)
+    pairs.push({ openingIndex: index, closingIndex, mark })
+  }
+  return pairs
+}
+
+function swapDelimiterPair(
+  form: readonly string[],
+  { openingIndex, closingIndex, mark }: DelimiterPair,
+): string[] | null {
+  const opening = form[openingIndex]
+  const closing = form[closingIndex]
+  if (opening === undefined || closing === undefined) return null
+  if (!opening.endsWith(mark) || closing !== mark) return null
+  const replacement = swappedDelimiters[mark]!
+  const alternative = [...form]
+  alternative[openingIndex] = `${opening.slice(0, -mark.length)}${replacement}`
+  alternative[closingIndex] = replacement
+  return alternative
+}
+
 /**
  * Every accepted answer, kept as one entry per input group instead of one
  * joined string. Grading still compares the joined form, but the teacher's
@@ -106,21 +158,13 @@ function buildAcceptedForms(
     forms.push(alternative)
   }
 
-  const pairedDelimiter = (
-    [
-      ["**", "__"],
-      ["__", "**"],
-      ["*", "_"],
-      ["_", "*"],
-    ] as const
-  ).find(([from, to]) =>
-    replacePairedDelimiter(canonicalParts, from, to) !== null,
-  )
-  if (pairedDelimiter) {
-    const [from, to] = pairedDelimiter
-    expandInputForms(forms, (form) =>
-      replacePairedDelimiter(form, from, to),
-    )
+  // Emphasis pairs do not constrain each other. `*one*` and `*two*` were two
+  // cards before they were joined, and each accepted its own delimiter;
+  // swapping only the first pair offered a mixed answer (`__**`) while
+  // dropping the uniform one (`____`) — the opposite of both. Every pair
+  // varies on its own, so the accepted set is the product of their choices.
+  for (const pair of pairedDelimiterRuns(canonicalParts)) {
+    expandInputForms(forms, (form) => swapDelimiterPair(form, pair))
   }
 
   if (
@@ -399,19 +443,32 @@ function listStyleFromInput(value: string): GuidedListStyle {
   return {}
 }
 
-function coherentListStyle(
+/**
+ * One coherent marker per indentation level, not one for the document.
+ *
+ * A marker that changes partway down a list starts a second list, so the
+ * items of one list are normalised to agree. A *nested* list is already a
+ * separate list, and Markdown lets its marker differ from its parent's —
+ * folding both levels into one style rewrote `  * Child` under `- Parent`
+ * into `  - Child`, producing a document that is not the target.
+ */
+function coherentListStyles(
+  source: string,
   checkpoints: readonly SyntaxCheckpoint[],
   completedValues: Readonly<Record<string, string>>,
-): GuidedListStyle {
-  const style: GuidedListStyle = {}
+): Map<string, GuidedListStyle> {
+  const styles = new Map<string, GuidedListStyle>()
   for (const checkpoint of checkpoints) {
+    const indentation = indentationOf(source, checkpoint)
+    const style = styles.get(indentation) ?? {}
+    if (style.unorderedMarker && style.orderedDelimiter) continue
     const value = completedValues[checkpoint.id] ?? checkpoint.canonicalInput
     const candidate = listStyleFromInput(value)
     style.unorderedMarker ??= candidate.unorderedMarker
     style.orderedDelimiter ??= candidate.orderedDelimiter
-    if (style.unorderedMarker && style.orderedDelimiter) break
+    styles.set(indentation, style)
   }
-  return style
+  return styles
 }
 
 function normalizeGroupListStyle(
@@ -866,6 +923,18 @@ function lineNumberAt(source: string, offset: number): number {
  * came in between and swallowing it into a locked segment would put an
  * unrelated paragraph inside the card.
  */
+/**
+ * The layout indentation in front of a checkpoint. It is not part of the card
+ * — `unmaskLineLeadingWhitespace` keeps it out — but it says which level of a
+ * document the checkpoint sits at, and a nested list is a *different list*:
+ * Markdown lets its marker differ from its parent's. Joining the two levels
+ * onto one card would make the parent's marker constrain the child's, which
+ * refuses answers the learner could give before.
+ */
+function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
+  return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
+}
+
 function sameSyntax(
   left: SyntaxCheckpoint,
   right: SyntaxCheckpoint,
@@ -892,6 +961,7 @@ function mergeAdjacentSameSyntax(
       !previous ||
       between === null ||
       !/^[\t ]*\n[\n\t ]*$/.test(between) ||
+      indentationOf(source, previous) !== indentationOf(source, checkpoint) ||
       !sameSyntax(previous, checkpoint)
     ) {
       merged.push(checkpoint)
@@ -1015,7 +1085,11 @@ export function buildGuidedDraft(
   const parts: string[] = []
   let cursor = 0
   const completedCheckpoints = checkpoints.slice(0, boundedCount)
-  const listStyle = coherentListStyle(completedCheckpoints, completedValues)
+  const listStyles = coherentListStyles(
+    target,
+    completedCheckpoints,
+    completedValues,
+  )
 
   for (const checkpoint of completedCheckpoints) {
     parts.push(target.slice(cursor, checkpoint.targetFrom))
@@ -1028,7 +1102,11 @@ export function buildGuidedDraft(
     parts.push(
       renderCheckpointWithInput(
         checkpoint,
-        normalizeListStyle(checkpoint, acceptedValue, listStyle),
+        normalizeListStyle(
+          checkpoint,
+          acceptedValue,
+          listStyles.get(indentationOf(target, checkpoint)) ?? {},
+        ),
       ),
     )
     cursor = checkpoint.targetTo

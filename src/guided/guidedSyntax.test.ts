@@ -286,29 +286,68 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("asks for both nested markers on one card and never for the indentation", () => {
-    const target = ["- Parent", "  - Child"].join("\n")
+  it("keeps a nested list on its own card and never asks for the indentation", () => {
+    const target = ["- Parent", "  * Child"].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(
       target,
       ["Parent", "Child"].join("\n"),
     )
 
-    // Both items teach the bullet marker, so they are one card with one blank
-    // each rather than two cards asking the same thing in a row.
+    // A nested list is a different list: Markdown lets its marker differ from
+    // its parent's. Joining the two levels onto one card would make the
+    // parent's marker constrain the child's and refuse `- Parent` above
+    // `+ Child`, which the learner could type before.
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
-      "- - ",
+      "- ",
+      "* ",
     ])
-    // The indentation is never a blank: it sits in the locked run between the
-    // two markers, so the card shows the real shape of the document without
-    // asking the learner to type layout.
-    expect(checkpoints[0]?.segments).toEqual([
-      { kind: "input", value: "- " },
-      { kind: "locked", value: "Parent\n  " },
-      { kind: "input", value: "- " },
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([
+      "- ",
+      "* ",
+      "+ ",
+    ])
+    expect(acceptedGuidedSyntaxInputs(checkpoints[1]!)).toEqual([
+      "* ",
+      "- ",
+      "+ ",
+    ])
+    // The indentation is never a blank: the checkpoint starts at the marker
+    // and the document regains the layout from the untouched slice before it.
+    expect(checkpoints[1]?.segments).toEqual([
+      { kind: "input", value: "* " },
       { kind: "locked", value: "Child" },
     ])
-    expect(checkpoints[0]?.targetFrom).toBe(0)
+    expect(checkpoints[1]?.targetFrom).toBe("- Parent\n  ".length)
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
+  })
+
+  it("lets every emphasis pair on a joined card choose its own delimiter", () => {
+    // Two emphasis spans were two cards before they were joined, and each
+    // accepted its own delimiter. Swapping only the first pair offered a mixed
+    // answer while dropping the uniform one — the opposite of both.
+    const joined = deriveSyntaxCheckpoints("*one*\n*two*", "one\ntwo")
+    expect(joined).toHaveLength(1)
+    expect(acceptedGuidedSyntaxInputs(joined[0]!)).toEqual([
+      "****",
+      "__**",
+      "**__",
+      "____",
+    ])
+    // The pass case: one pair still offers exactly its two forms, so the
+    // product does not leak into cards that hold a single span.
+    expect(
+      acceptedGuidedSyntaxInputs(
+        deriveSyntaxCheckpoints("*Quiet music*", "Quiet music")[0]!,
+      ),
+    ).toEqual(["**", "__"])
+  })
+
+  it("still joins the items of one list at one level", () => {
+    expect(
+      deriveSyntaxCheckpoints("- Apples\n- Pears\n- Milk", "").map(
+        (checkpoint) => checkpoint.canonicalInput,
+      ),
+    ).toEqual(["- - - "])
   })
 
   it("never surfaces line-leading whitespace in any published problem", () => {
@@ -597,22 +636,36 @@ describe("one card teaches one syntax", () => {
     expect(served.length).toBeGreaterThan(200)
 
     let compared = 0
+    let nestedExceptions = 0
     for (const problem of served) {
+      const source = problem.target.replace(/\r\n?/g, "\n")
       const checkpoints = deriveSyntaxCheckpoints(
         problem.target,
         problem.starterText,
       )
+      const indentOf = (checkpoint: (typeof checkpoints)[number]) =>
+        source.slice(
+          source.lastIndexOf("\n", Math.max(0, checkpoint.targetFrom - 1)) + 1,
+          checkpoint.targetFrom,
+        )
       const terms = checkpoints.map((checkpoint) =>
         syntaxCheckpointTerms(checkpoint).join("+"),
       )
       for (let index = 1; index < terms.length; index += 1) {
         compared += 1
+        if (terms[index] !== terms[index - 1]) continue
+        // The one allowed repeat: a nested list is a different list, so its
+        // card stays separate and names the same syntax as its parent's.
+        // Anything at the same level repeating is the defect this guards.
         expect(
-          terms[index],
-          `${problem.id} card ${index + 1} repeats card ${index}`,
-        ).not.toBe(terms[index - 1])
+          indentOf(checkpoints[index]!),
+          `${problem.id} card ${index + 1} repeats card ${index} at the same level`,
+        ).not.toBe(indentOf(checkpoints[index - 1]!))
+        nestedExceptions += 1
       }
     }
+    // Named so the exception cannot quietly become the rule.
+    expect(nestedExceptions).toBeLessThan(compared / 4)
     // Guards the loop against passing by never comparing anything. Most served
     // problems are a single card now, so the floor is the number of card
     // boundaries that still exist rather than a share of the bank.
