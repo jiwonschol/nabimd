@@ -28,7 +28,12 @@ async function resolveBaselineSha(): Promise<string | null> {
         cwd: repositoryRoot,
       })
       const mergeBase = stdout.trim()
-      if (mergeBase) return mergeBase
+      const head = (
+        await run("git", ["rev-parse", "HEAD"], { cwd: repositoryRoot })
+      ).stdout.trim()
+      if (mergeBase && !(mainRef === "main" && mergeBase === head)) {
+        return mergeBase
+      }
     } catch {
       // Try the next stable main ref before falling back to the parent commit.
     }

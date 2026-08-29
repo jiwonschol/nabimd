@@ -55,6 +55,33 @@ async function makeBatch({ reviews = {}, editorial = undefined } = {}) {
   return batchDir
 }
 
+async function makeCliBatch() {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-cli-batch-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(batchesRoot, batchId)
+  await mkdir(batchesRoot, { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
+  await cp(
+    resolve(sourceBank, "runtime-projections.generated.json"),
+    resolve(bankRoot, "runtime-projections.generated.json"),
+  )
+  await cp(
+    resolve(sourceBank, "tracker.generated.json"),
+    resolve(bankRoot, "tracker.generated.json"),
+  )
+  const reviewName = (await readdir(resolve(batchDir, "reviews")))
+    .filter((name) => name.endsWith(".json"))
+    .sort()[0]
+  const reviewPath = resolve(batchDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].notes = `${review.verdicts[0].notes} Clarified.`
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  return { batchDir, reviewPath }
+}
+
 const reviewBody = (reviewerId, note) => ({
   schemaVersion: 2,
   batchId: "test-batch",
@@ -156,31 +183,21 @@ test("check mode reports drift without writing", async () => {
 })
 
 test("the command's check mode refuses to write and fails", async () => {
-  const before = sealReview(reviewBody("a", "ok"))
-  const edited = { ...before, verdicts: [{ candidateId: "c1", verdict: "pass", note: "corrected" }] }
-  const batchDir = await makeBatch({
-    reviews: { "a.json": edited },
-    editorial: sealEditorial(editorialBody(), [before]),
-  })
-  const original = await readFile(resolve(batchDir, "reviews", "a.json"), "utf8")
+  const { batchDir, reviewPath } = await makeCliBatch()
+  const original = await readFile(reviewPath, "utf8")
 
   const result = await runCli([batchDir, "--check"])
   assert.equal(result.code, 1)
   assert.match(result.stdout, /DRIFT/)
-  assert.equal(await readFile(resolve(batchDir, "reviews", "a.json"), "utf8"), original)
+  assert.equal(await readFile(reviewPath, "utf8"), original)
 })
 
 test("the command without --check reseals and succeeds", async () => {
-  const before = sealReview(reviewBody("a", "ok"))
-  const edited = { ...before, verdicts: [{ candidateId: "c1", verdict: "pass", note: "corrected" }] }
-  const batchDir = await makeBatch({
-    reviews: { "a.json": edited },
-    editorial: sealEditorial(editorialBody(), [before]),
-  })
+  const { batchDir, reviewPath } = await makeCliBatch()
 
   const result = await runCli([batchDir])
   assert.equal(result.code, 0)
-  const review = JSON.parse(await readFile(resolve(batchDir, "reviews", "a.json"), "utf8"))
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
   assert.equal(canonicalJson(review), canonicalJson(sealReview(review)))
   assert.equal((await runCli([batchDir, "--check"])).code, 0)
 })
@@ -266,6 +283,32 @@ test("a checkout without origin/main uses local main before the parent commit", 
   await run("git", ["commit", "-am", "third"], { cwd: repository })
 
   assert.equal(await resolveBaselineSha(repository, ""), parent)
+})
+
+test("local main itself uses its parent instead of HEAD as the baseline", async () => {
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-main-baseline-"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "first\n")
+  await run("git", ["add", "evidence.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "first"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  const parent = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+  await writeFile(resolve(repository, "evidence.txt"), "second\n")
+  await run("git", ["commit", "-am", "second"], { cwd: repository })
+
+  assert.equal(await resolveBaselineSha(repository, ""), parent)
+})
+
+test("the command rejects a nonexistent explicit batch target", async () => {
+  const result = await runCli([
+    "--check",
+    resolve(import.meta.dirname, "../../curriculum/problem-bank/batches/misspelled-batch"),
+  ])
+
+  assert.equal(result.code, 1)
+  assert.match(result.stderr, /not a loaded problem-bank batch/)
 })
 
 test("the write command rejects an explicit baseline that is not available locally", async () => {

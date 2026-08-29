@@ -230,7 +230,8 @@ export async function resolveBaselineSha(
       const baseline = (
         await run("git", ["merge-base", mainRef, "HEAD"], { cwd })
       ).stdout.trim()
-      if (baseline) return baseline
+      const head = (await run("git", ["rev-parse", "HEAD"], { cwd })).stdout.trim()
+      if (baseline && !(mainRef === "main" && baseline === head)) return baseline
     } catch {
       // Try the next stable main ref before falling back to the parent commit.
     }
@@ -281,6 +282,26 @@ async function main(argv) {
   let targets = args.length > 0
     ? args.map((value) => resolve(process.cwd(), value))
     : await listBatchDirectories(resolve(process.cwd(), DEFAULT_BANK_ROOT))
+
+  if (args.length > 0) {
+    const missing = []
+    for (const target of targets) {
+      const bankRoot = dirname(dirname(target))
+      const loaded = await loadBatchDirectories(bankRoot)
+      const matched = loaded.some(
+        (batch) =>
+          batch.normalized?.batchId === basename(target) &&
+          resolve(bankRoot, "batches", batch.normalized.batchId) === target,
+      )
+      if (!matched) missing.push(target)
+    }
+    if (missing.length > 0) {
+      throw new Error(
+        "Explicit evidence target is not a loaded problem-bank batch:\n" +
+          missing.map((target) => `- ${target}`).join("\n"),
+      )
+    }
+  }
 
   if (!check) {
     const protectedTargets = await immutableBaselineTargets(targets)
