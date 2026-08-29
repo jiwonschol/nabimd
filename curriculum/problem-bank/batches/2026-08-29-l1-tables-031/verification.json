@@ -1,0 +1,2867 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-031",
+  "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a",
+  "candidates": [
+    {
+      "candidateId": "l1-table-bus-time",
+      "revision": 2,
+      "candidateDigest": "2d5b5ba45478bba06a078d557342929106c9a1a4aeb5a5b2d608a69d77b971ef",
+      "problemDigest": "6065eef13ed8bc7145e81a7464f16f7402836b08aebc233814da88046dd60f4e",
+      "fixtureDefinitionDigest": "5b9549ff7c442bc3f8c0455e78209e39b72f10e0783594adfa15ca04145191e4",
+      "fixtureResultsDigest": "7d240b1950897018f83894fb08f4f5be202737c84d0d159db0d3322466f9636a",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-day-weather",
+      "revision": 2,
+      "candidateDigest": "4a153594db9716bceacd4f6be15fe3d192ec0703fdaabba6e86e0458c791a139",
+      "problemDigest": "2f1cb4fc77e14b961854853606ec85c4bed03a40032784f99654a2b35f417840",
+      "fixtureDefinitionDigest": "45ddb226e46498381f8b773efa26eab373a00fc77bdf08485a2915b8de0ac295",
+      "fixtureResultsDigest": "0bd7434fd6d3b8eecc68fc2b6b5e81bb37b580d04b527866c1af2278fe8bf893",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-event-place",
+      "revision": 2,
+      "candidateDigest": "cbc8f988642fd6487da315b51be483e1eb64016a526ae9421cbcb0496af7dd4b",
+      "problemDigest": "11c64291a02f6bf76201a57c3b85edc40a97331b9b50763106225c1a996b93d5",
+      "fixtureDefinitionDigest": "f38428d51240eaf1f9b51c0e6751f82f7ed14a98c4a73c2318c21fc1fdd06034",
+      "fixtureResultsDigest": "56a9cf0c3c97239bb5669b638efe648941bf496b968b7c217496530fd5cfee8f",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-flower-color",
+      "revision": 2,
+      "candidateDigest": "781b9d78aa5a6241e7a3c755fbea83c6d34daab95f91f5d0e5e6317e0c5e5ce3",
+      "problemDigest": "fbadaf90b775fbc9f266453ff94d878d1ec74b7d6e95dfc109342d30ea922a69",
+      "fixtureDefinitionDigest": "dcab13c8e2627e3fb9b62e7222443a6a642ebe62d35526660d64056868097f8f",
+      "fixtureResultsDigest": "f2be5088c7c62bed152548846fbe62b81222750d80c81e6d6c1e87fc4652783e",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-fruit-count",
+      "revision": 2,
+      "candidateDigest": "59a591920ddbaade21b48ad5b025a69e19c23adf02075ba89945db2c8e140817",
+      "problemDigest": "685a7b50f366425b45b943538a819011c0b79161337c3206466491148edeea13",
+      "fixtureDefinitionDigest": "8913e13890e316ea93be24343dcce4a43f316c694cc71834be6cc23358b0aec2",
+      "fixtureResultsDigest": "c8244fe42c0bae82c6ad3d726133e58385388b4cb35e8f8c267e2eb85e619729",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-item-price",
+      "revision": 2,
+      "candidateDigest": "5e89bc25aedec9a37521f0185bf5565bafda07ef53ef6465ed4c4aaf3eec75a3",
+      "problemDigest": "0ef9dc870773d9c24d7794171505b74974f82fc04cbcfa75973301a590c2352a",
+      "fixtureDefinitionDigest": "f2985bc6f2ba71c86da58a54082f6c611931277954be6307c070626b5715dbd2",
+      "fixtureResultsDigest": "158ec1b250fdd48212889ccda10de8e72eb2633c7b6c0a7a0213a1babef8feeb",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-meal-drink",
+      "revision": 2,
+      "candidateDigest": "6483b8ea703290632a74e5fb48be0cdc92b86341571cfa53e542b2307861afc9",
+      "problemDigest": "f218afe9c5970f516b94d143bb94fc0e5abb88a1f213cd501f8e9da2bad48b38",
+      "fixtureDefinitionDigest": "9e244a0526f20b5c01b3f05968b4d69051f712067912234a5d4defca36461aa1",
+      "fixtureResultsDigest": "78ffb270c568d3672340c1b168bf0cd464ee54a2af205e40e56d352b11f69e6c",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-pet-name",
+      "revision": 2,
+      "candidateDigest": "143a5934e7edaf617500ff2df156d8ebf09810c282567b50034fe1932665d42b",
+      "problemDigest": "5623aa88e751de4dfac5eaccc43dc331779915a1237c007b80107ed651e239f7",
+      "fixtureDefinitionDigest": "66b8b519b92b0f2f0263223c30b175e13a0fc1e6deeebb9f952edecf918ad6ec",
+      "fixtureResultsDigest": "fa8d0282a6438d9e91d86d12889caf629090db27755e5b9568eafd433183eb50",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-room-floor",
+      "revision": 2,
+      "candidateDigest": "8a321697cc7fb52ed85e9dd8a32038a959368cf51e3f807dc3a81b57d00a5167",
+      "problemDigest": "2392489b8ed28bc0462f207d57f97456fbbcbc0838711c73765d5f1141400350",
+      "fixtureDefinitionDigest": "be1a18f53fcb2ea56474339611065eb18ca97bbbb9906abeca8892630e25f511",
+      "fixtureResultsDigest": "db17a045f30ce816a16cc27507859ab205fffb8594e442fb61ed30fcadf01c3f",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-shop-opens",
+      "revision": 2,
+      "candidateDigest": "8973b256ba070e7896ae75551849cf8a62d5a5b8e39f1ecc4667825894810c38",
+      "problemDigest": "abdc3733670446bd71d30a80fb36c9ba70aaeb1a80d5a6702fe5389a86b6ee00",
+      "fixtureDefinitionDigest": "5c77d22e010e266f1058ee8926b4be1d2b7301971e87269d0138fd2d75b73f88",
+      "fixtureResultsDigest": "b8c6a02ae64c26915859bbd661cdd3549dac13b9da76229c3ff992e3e649d524",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-team-practice",
+      "revision": 2,
+      "candidateDigest": "779951d64ad8dd6536f47c53a520b0ccd01f471608c05e7ae42873f3a316b137",
+      "problemDigest": "45c1b736928a2ee156cb348cffa3d3f854bc446087a324e57f326354ae612ecb",
+      "fixtureDefinitionDigest": "db4cfcd56f8c5f9ce2ec7b32a2a95ae8569a356d2463c4c96d6f7ea3964622e8",
+      "fixtureResultsDigest": "449677f0dcc4832dcc7a98f12ceca932e8d751659dd6c662edbae0078df354ea",
+      "fixtureCount": 16,
+      "passed": true
+    },
+    {
+      "candidateId": "l1-table-trail-length",
+      "revision": 2,
+      "candidateDigest": "abccdef8c4e0415ea9c933755993dec771627f80549d971980fbac1295bc2f4c",
+      "problemDigest": "26c5d9bb70b333c05ad7554aaaf020610ca6aeffc2ed12c4aff82a2ec85fdbc3",
+      "fixtureDefinitionDigest": "a997e80751c9ab43d1c456af9507b9e2451aaa1306baf38b278261a409c38589",
+      "fixtureResultsDigest": "57244f78fae5795f19d7b1ecbafa85b5be0a1449944ac6669c063b2637f74d5c",
+      "fixtureCount": 16,
+      "passed": true
+    }
+  ],
+  "results": [
+    {
+      "fixtureId": "l1-table-bus-time-aligned-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-canonical",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-case-spelling",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-dash-cell-with-text",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-different-prose",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-escaped-cell-bar",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-fenced-lookalike",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-mismatched-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-missing",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-no-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-one-dash-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-outer-bars",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-pipe-list",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-pipe-paragraph",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-two-dash-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-bus-time-two-tables",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-aligned-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-canonical",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-case-spelling",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-dash-cell-with-text",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-different-prose",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-escaped-cell-bar",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-fenced-lookalike",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-mismatched-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-missing",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-no-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-one-dash-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-outer-bars",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-pipe-list",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-pipe-paragraph",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-two-dash-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-day-weather-two-tables",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-aligned-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-canonical",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-case-spelling",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-dash-cell-with-text",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-different-prose",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-escaped-cell-bar",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-fenced-lookalike",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-mismatched-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-missing",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-no-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-one-dash-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-outer-bars",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-pipe-list",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-pipe-paragraph",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-two-dash-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-event-place-two-tables",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-aligned-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-canonical",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-case-spelling",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-dash-cell-with-text",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-different-prose",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-escaped-cell-bar",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-fenced-lookalike",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-mismatched-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-missing",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-no-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-one-dash-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-outer-bars",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-pipe-list",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-pipe-paragraph",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-two-dash-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-flower-color-two-tables",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-aligned-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-canonical",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-case-spelling",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-dash-cell-with-text",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-different-prose",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-escaped-cell-bar",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-fenced-lookalike",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-mismatched-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-missing",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-no-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-one-dash-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-outer-bars",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-pipe-list",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-pipe-paragraph",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-two-dash-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-fruit-count-two-tables",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-aligned-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-canonical",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-case-spelling",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-dash-cell-with-text",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-different-prose",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-escaped-cell-bar",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-fenced-lookalike",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-mismatched-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-missing",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-no-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-one-dash-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-outer-bars",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-pipe-list",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-pipe-paragraph",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-two-dash-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-item-price-two-tables",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-aligned-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-canonical",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-case-spelling",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-dash-cell-with-text",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-different-prose",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-escaped-cell-bar",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-fenced-lookalike",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-mismatched-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-missing",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-no-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-one-dash-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-outer-bars",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-pipe-list",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-pipe-paragraph",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-two-dash-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-meal-drink-two-tables",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-aligned-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-canonical",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-case-spelling",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-dash-cell-with-text",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-different-prose",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-escaped-cell-bar",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-fenced-lookalike",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-mismatched-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-missing",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-no-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-one-dash-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-outer-bars",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-pipe-list",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-pipe-paragraph",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-two-dash-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-pet-name-two-tables",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-aligned-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-canonical",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-case-spelling",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-dash-cell-with-text",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-different-prose",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-escaped-cell-bar",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-fenced-lookalike",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-mismatched-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-missing",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-no-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-one-dash-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-outer-bars",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-pipe-list",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-pipe-paragraph",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-two-dash-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-room-floor-two-tables",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-aligned-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-canonical",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-case-spelling",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-dash-cell-with-text",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-different-prose",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-escaped-cell-bar",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-fenced-lookalike",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-mismatched-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-missing",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-no-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-one-dash-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-outer-bars",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-pipe-list",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-pipe-paragraph",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-two-dash-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-shop-opens-two-tables",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-aligned-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-canonical",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-case-spelling",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-dash-cell-with-text",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-different-prose",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-escaped-cell-bar",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-fenced-lookalike",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-mismatched-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-missing",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-no-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-one-dash-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-outer-bars",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-pipe-list",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-pipe-paragraph",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-two-dash-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-team-practice-two-tables",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-aligned-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-canonical",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-case-spelling",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-dash-cell-with-text",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-different-prose",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-escaped-cell-bar",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-fenced-lookalike",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-mismatched-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-missing",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-no-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-one-dash-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-outer-bars",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-pipe-list",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-pipe-paragraph",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "actual": {
+        "status": "fail",
+        "feedbackId": "use-table"
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-two-dash-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": []
+      },
+      "passed": true
+    },
+    {
+      "fixtureId": "l1-table-trail-length-two-tables",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "expected": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "actual": {
+        "status": "matched",
+        "reviewIds": [
+          "keep-one-table"
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "verificationDigest": "a71dba74d05e611705e60e3a7695e168e5dc12b95c6d2ba8195ec0a5dc362add"
+}

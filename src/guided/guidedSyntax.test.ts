@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest"
-import { getCurriculumElements } from "../content/curriculumElements"
+import {
+  getCurriculumElement,
+  getCurriculumElements,
+} from "../content/curriculumElements"
 import { isEligibleMixedExercise } from "../content/mixedExercisePolicy"
 import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
@@ -680,6 +683,7 @@ describe("one card teaches one syntax", () => {
 
     let compared = 0
     let nestedExceptions = 0
+    let tableRowBoundaries = 0
     for (const problem of served) {
       const source = problem.target.replace(/\r\n?/g, "\n")
       const checkpoints = deriveSyntaxCheckpoints(
@@ -694,6 +698,19 @@ describe("one card teaches one syntax", () => {
       const terms = checkpoints.map((checkpoint) =>
         syntaxCheckpointTerms(checkpoint).join("+"),
       )
+      if (getCurriculumElement(problem) === "table") {
+        expect(checkpoints, problem.id).toHaveLength(3)
+        expect(
+          checkpoints.map((checkpoint) =>
+            checkpoint.segments
+              .filter((segment) => segment.kind === "input")
+              .map((segment) => segment.value),
+          ),
+          problem.id,
+        ).toEqual([["|"], ["|"], ["|"]])
+        tableRowBoundaries += checkpoints.length - 1
+        continue
+      }
       for (let index = 1; index < terms.length; index += 1) {
         compared += 1
         if (terms[index] !== terms[index - 1]) continue
@@ -709,6 +726,7 @@ describe("one card teaches one syntax", () => {
     }
     // Named so the exception cannot quietly become the rule.
     expect(nestedExceptions).toBeLessThan(compared / 4)
+    expect(tableRowBoundaries).toBe(24)
     // Guards the loop against passing by never comparing anything. Most served
     // problems are a single card now, so the floor is the number of card
     // boundaries that still exist rather than a share of the bank.

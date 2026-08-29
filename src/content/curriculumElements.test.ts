@@ -30,6 +30,7 @@ describe("curriculum element classification", () => {
         "code-block",
         "blockquote",
         "image",
+        "table",
         "thematic-break",
         "nested-list",
       ]),
@@ -108,11 +109,7 @@ describe("curriculum element classification", () => {
 
     const levelOneWithStaleImageGap = {
       ...curriculumLevels[0],
-      unimplementedElements: [
-        "table",
-        "task-list",
-        "image",
-      ] as CurriculumElement[],
+      unimplementedElements: ["task-list", "image"] as CurriculumElement[],
     }
     expect(
       validateCurriculumCoverage(

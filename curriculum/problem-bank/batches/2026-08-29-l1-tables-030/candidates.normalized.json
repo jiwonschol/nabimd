@@ -1,0 +1,933 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-030",
+  "sequence": 26,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-08-29",
+  "promptSha256": "e0eb8d0eba5f01cb98a5f0e127795e595d6f41a8290eda7c59e1314efde4b6b8",
+  "rawArtifactDigest": "941943a92ea03791c843cbfe041977a129e87640c893c2ea7f95e41676b0e13d",
+  "candidateCount": 12,
+  "candidates": [
+    {
+      "id": "l1-table-bus-time",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Bus | Time\n--- | ---\nGreen | Noon",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "local-travel"
+        ],
+        "terms": [
+          "bus",
+          "time",
+          "green",
+          "noon"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "bus-time",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "5c56fbd0a23a24f7a30033928169cdb697bc1c2ce8dbb263c0f70ec0cd1c13c9"
+    },
+    {
+      "id": "l1-table-day-weather",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Day | Weather\n--- | ---\nMonday | Sunny",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "weather"
+        ],
+        "terms": [
+          "day",
+          "weather",
+          "Monday",
+          "sunny"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "day-weather",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "d16d111a6d4e00b4656e269fd79ab25dcbd15888f346c9a21a8eca14371b2db2"
+    },
+    {
+      "id": "l1-table-event-place",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Event | Place\n--- | ---\nPicnic | Park",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "community-events"
+        ],
+        "terms": [
+          "event",
+          "place",
+          "picnic",
+          "park"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "event-place",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "8412182ddcdd6e0cea465837517f1ccddb6c20ceff844567c4bc85eab59598ce"
+    },
+    {
+      "id": "l1-table-flower-color",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Flower | Color\n--- | ---\nTulip | Red",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "gardens"
+        ],
+        "terms": [
+          "flower",
+          "color",
+          "tulip",
+          "red"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "flower-color",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "febde37bf9a65274572b203c7023d5b686630cc2fdb66f833cdc27ea75693bb6"
+    },
+    {
+      "id": "l1-table-fruit-count",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Fruit | Count\n--- | ---\nApples | 3",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "fruit",
+          "count",
+          "apples"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "fruit-count",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "42417e431d5241c5e57db588f58770e723ebe6b6e5ee9f47f3100723304c85d9"
+    },
+    {
+      "id": "l1-table-item-price",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Item | Price\n--- | ---\nTea | $2",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "shopping"
+        ],
+        "terms": [
+          "item",
+          "price",
+          "tea"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "item-price",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "6637d46455de61b97125bd8c0321b33377c59a71b8682bdd889f4e8d7c3cf1c0"
+    },
+    {
+      "id": "l1-table-meal-drink",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Meal | Drink\n--- | ---\nSoup | Water",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "meals"
+        ],
+        "terms": [
+          "meal",
+          "drink",
+          "soup",
+          "water"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "meal-drink",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "9b2a55ef79b57d19c578db17ce15cac2b8183d00bd448508352b2b07ff02bb74"
+    },
+    {
+      "id": "l1-table-pet-name",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Pet | Name\n--- | ---\nCat | Luna",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "pets"
+        ],
+        "terms": [
+          "pet",
+          "name",
+          "cat",
+          "Luna"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pet-name",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "ba9721a2507e826f22eb87916f14c07a6649dd98f84be0e5739ce907070c0e29"
+    },
+    {
+      "id": "l1-table-room-floor",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Room | Floor\n--- | ---\nLibrary | 2",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "public-places"
+        ],
+        "terms": [
+          "room",
+          "floor",
+          "library"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "room-floor",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "d817dc7fa6f76379347338180579047746901c337e943b68d68daa7246c5a21e"
+    },
+    {
+      "id": "l1-table-shop-opens",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Shop | Opens\n--- | ---\nBakery | 8 am",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "neighborhood-errands"
+        ],
+        "terms": [
+          "shop",
+          "opens",
+          "bakery"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "shop-opens",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "7f38d36d6fe1b8adb8b5da68dacc7a334e4c16799124f4f307a76a5b34d9050a"
+    },
+    {
+      "id": "l1-table-team-practice",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Team | Practice\n--- | ---\nBears | Friday",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "community-sports"
+        ],
+        "terms": [
+          "team",
+          "practice",
+          "Bears",
+          "Friday"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "team-practice",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "abba250719795b033a3fa72d680f912a8f8f84fbf46cc68fdeb99cc0b31ea418"
+    },
+    {
+      "id": "l1-table-trail-length",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells and a divider row beneath the column headers.",
+        "example": "Fruit | Count\n--- | ---\nApples | 3"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Trail | Length\n--- | ---\nPine | 4 km",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Add a Markdown table with a header row, a divider row, and a body row."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Read each row from left to right.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Fruit | Count`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "outdoor-walks"
+        ],
+        "terms": [
+          "trail",
+          "length",
+          "pine"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "trail-length",
+      "sourceBatch": "2026-08-29-l1-tables-030",
+      "candidateDigest": "f3d2dadade41eb0ff2c01ecd347362bf6de0e99ecdb05d19a319336f1a88cb3d"
+    }
+  ],
+  "artifactDigest": "b43df6db090321fd8c2a04d2ccad6461b104fa259bc80207ba5b5f0603cdd162"
+}

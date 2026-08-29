@@ -1,11 +1,11 @@
 {
   "schemaVersion": 2,
   "targetAccepted": 512,
-  "bankDigest": "d0ca8b85908b55fab9e576a033842b4abe5ac0148f8ad57438c6d6f5f7f60b97",
-  "acceptedTotal": 384,
+  "bankDigest": "166851f4f8ce592cf3dbc283199d55a508a226b03a78666f9a8e548b396f9f5f",
+  "acceptedTotal": 396,
   "counts": {
     "byLevel": {
-      "1": 152,
+      "1": 164,
       "2": 148,
       "3": 30,
       "4": 32,
@@ -33,6 +33,7 @@
       "rebuild-nested-list-documents": 12,
       "rebuild-real-documents": 12,
       "rebuild-sectioned-documents": 12,
+      "tables": 12,
       "workplace-issue-note": 4,
       "workplace-notes": 12,
       "workplace-process-change": 4
@@ -49,6 +50,7 @@
       "1/links": 12,
       "1/lists": 24,
       "1/nested-lists": 4,
+      "1/tables": 12,
       "2/blockquotes": 12,
       "2/emphasis": 12,
       "2/headings": 16,
@@ -71,9 +73,9 @@
       "5/developer-readme": 4
     },
     "byFlavor": {
-      "standard": 384
+      "standard": 396
     },
-    "rejected": 0,
+    "rejected": 12,
     "blocked": 0
   },
   "batches": [
@@ -292,7 +294,25 @@
       "accepted": 12,
       "rejected": 0,
       "blocked": 0
+    },
+    {
+      "batchId": "2026-08-29-l1-tables-030",
+      "sequence": 26,
+      "batchDigest": "e4cd3b5487ab8c8050d15aef5cc2ed0d71f5f1f84acb7eefdf211da3cefc18d0",
+      "generated": 12,
+      "accepted": 0,
+      "rejected": 12,
+      "blocked": 0
+    },
+    {
+      "batchId": "2026-08-29-l1-tables-031",
+      "sequence": 27,
+      "batchDigest": "d38bae5a134fe02b1c9ee3933aaebdc808c22712df9588a52464b11b2075432a",
+      "generated": 12,
+      "accepted": 12,
+      "rejected": 0,
+      "blocked": 0
     }
   ],
-  "trackerDigest": "94e218f7194936c8dd7e098ac50266f47f9ff495decb5e76688b4b6187c8cd24"
+  "trackerDigest": "892759d6061e597fc2320cccbf48522f98318751b18785e216b0dc82f7d8604e"
 }

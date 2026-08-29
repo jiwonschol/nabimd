@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-031",
+  "normalizedArtifactDigest": "29c713d136d24f8bf09eaf23eee95c8952f22f28a1b7828e60a2d90e073af50f",
+  "fixtureArtifactDigest": "a32b31a3bcc90c739441f74c7358c42ae417312df3fc0ae3babf96ee584fb500",
+  "verificationDigest": "a71dba74d05e611705e60e3a7695e168e5dc12b95c6d2ba8195ec0a5dc362add",
+  "entries": [
+    {
+      "candidateId": "l1-table-bus-time",
+      "revision": 2,
+      "candidateDigest": "2d5b5ba45478bba06a078d557342929106c9a1a4aeb5a5b2d608a69d77b971ef",
+      "problemDigest": "6065eef13ed8bc7145e81a7464f16f7402836b08aebc233814da88046dd60f4e",
+      "fixtureDefinitionDigest": "5b9549ff7c442bc3f8c0455e78209e39b72f10e0783594adfa15ca04145191e4",
+      "fixtureResultsDigest": "7d240b1950897018f83894fb08f4f5be202737c84d0d159db0d3322466f9636a",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-day-weather",
+      "revision": 2,
+      "candidateDigest": "4a153594db9716bceacd4f6be15fe3d192ec0703fdaabba6e86e0458c791a139",
+      "problemDigest": "2f1cb4fc77e14b961854853606ec85c4bed03a40032784f99654a2b35f417840",
+      "fixtureDefinitionDigest": "45ddb226e46498381f8b773efa26eab373a00fc77bdf08485a2915b8de0ac295",
+      "fixtureResultsDigest": "0bd7434fd6d3b8eecc68fc2b6b5e81bb37b580d04b527866c1af2278fe8bf893",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-event-place",
+      "revision": 2,
+      "candidateDigest": "cbc8f988642fd6487da315b51be483e1eb64016a526ae9421cbcb0496af7dd4b",
+      "problemDigest": "11c64291a02f6bf76201a57c3b85edc40a97331b9b50763106225c1a996b93d5",
+      "fixtureDefinitionDigest": "f38428d51240eaf1f9b51c0e6751f82f7ed14a98c4a73c2318c21fc1fdd06034",
+      "fixtureResultsDigest": "56a9cf0c3c97239bb5669b638efe648941bf496b968b7c217496530fd5cfee8f",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-flower-color",
+      "revision": 2,
+      "candidateDigest": "781b9d78aa5a6241e7a3c755fbea83c6d34daab95f91f5d0e5e6317e0c5e5ce3",
+      "problemDigest": "fbadaf90b775fbc9f266453ff94d878d1ec74b7d6e95dfc109342d30ea922a69",
+      "fixtureDefinitionDigest": "dcab13c8e2627e3fb9b62e7222443a6a642ebe62d35526660d64056868097f8f",
+      "fixtureResultsDigest": "f2be5088c7c62bed152548846fbe62b81222750d80c81e6d6c1e87fc4652783e",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-fruit-count",
+      "revision": 2,
+      "candidateDigest": "59a591920ddbaade21b48ad5b025a69e19c23adf02075ba89945db2c8e140817",
+      "problemDigest": "685a7b50f366425b45b943538a819011c0b79161337c3206466491148edeea13",
+      "fixtureDefinitionDigest": "8913e13890e316ea93be24343dcce4a43f316c694cc71834be6cc23358b0aec2",
+      "fixtureResultsDigest": "c8244fe42c0bae82c6ad3d726133e58385388b4cb35e8f8c267e2eb85e619729",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-item-price",
+      "revision": 2,
+      "candidateDigest": "5e89bc25aedec9a37521f0185bf5565bafda07ef53ef6465ed4c4aaf3eec75a3",
+      "problemDigest": "0ef9dc870773d9c24d7794171505b74974f82fc04cbcfa75973301a590c2352a",
+      "fixtureDefinitionDigest": "f2985bc6f2ba71c86da58a54082f6c611931277954be6307c070626b5715dbd2",
+      "fixtureResultsDigest": "158ec1b250fdd48212889ccda10de8e72eb2633c7b6c0a7a0213a1babef8feeb",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-meal-drink",
+      "revision": 2,
+      "candidateDigest": "6483b8ea703290632a74e5fb48be0cdc92b86341571cfa53e542b2307861afc9",
+      "problemDigest": "f218afe9c5970f516b94d143bb94fc0e5abb88a1f213cd501f8e9da2bad48b38",
+      "fixtureDefinitionDigest": "9e244a0526f20b5c01b3f05968b4d69051f712067912234a5d4defca36461aa1",
+      "fixtureResultsDigest": "78ffb270c568d3672340c1b168bf0cd464ee54a2af205e40e56d352b11f69e6c",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-pet-name",
+      "revision": 2,
+      "candidateDigest": "143a5934e7edaf617500ff2df156d8ebf09810c282567b50034fe1932665d42b",
+      "problemDigest": "5623aa88e751de4dfac5eaccc43dc331779915a1237c007b80107ed651e239f7",
+      "fixtureDefinitionDigest": "66b8b519b92b0f2f0263223c30b175e13a0fc1e6deeebb9f952edecf918ad6ec",
+      "fixtureResultsDigest": "fa8d0282a6438d9e91d86d12889caf629090db27755e5b9568eafd433183eb50",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-room-floor",
+      "revision": 2,
+      "candidateDigest": "8a321697cc7fb52ed85e9dd8a32038a959368cf51e3f807dc3a81b57d00a5167",
+      "problemDigest": "2392489b8ed28bc0462f207d57f97456fbbcbc0838711c73765d5f1141400350",
+      "fixtureDefinitionDigest": "be1a18f53fcb2ea56474339611065eb18ca97bbbb9906abeca8892630e25f511",
+      "fixtureResultsDigest": "db17a045f30ce816a16cc27507859ab205fffb8594e442fb61ed30fcadf01c3f",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-shop-opens",
+      "revision": 2,
+      "candidateDigest": "8973b256ba070e7896ae75551849cf8a62d5a5b8e39f1ecc4667825894810c38",
+      "problemDigest": "abdc3733670446bd71d30a80fb36c9ba70aaeb1a80d5a6702fe5389a86b6ee00",
+      "fixtureDefinitionDigest": "5c77d22e010e266f1058ee8926b4be1d2b7301971e87269d0138fd2d75b73f88",
+      "fixtureResultsDigest": "b8c6a02ae64c26915859bbd661cdd3549dac13b9da76229c3ff992e3e649d524",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-team-practice",
+      "revision": 2,
+      "candidateDigest": "779951d64ad8dd6536f47c53a520b0ccd01f471608c05e7ae42873f3a316b137",
+      "problemDigest": "45c1b736928a2ee156cb348cffa3d3f854bc446087a324e57f326354ae612ecb",
+      "fixtureDefinitionDigest": "db4cfcd56f8c5f9ce2ec7b32a2a95ae8569a356d2463c4c96d6f7ea3964622e8",
+      "fixtureResultsDigest": "449677f0dcc4832dcc7a98f12ceca932e8d751659dd6c662edbae0078df354ea",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    },
+    {
+      "candidateId": "l1-table-trail-length",
+      "revision": 2,
+      "candidateDigest": "abccdef8c4e0415ea9c933755993dec771627f80549d971980fbac1295bc2f4c",
+      "problemDigest": "26c5d9bb70b333c05ad7554aaaf020610ca6aeffc2ed12c4aff82a2ec85fdbc3",
+      "fixtureDefinitionDigest": "a997e80751c9ab43d1c456af9507b9e2451aaa1306baf38b278261a409c38589",
+      "fixtureResultsDigest": "57244f78fae5795f19d7b1ecbafa85b5be0a1449944ac6669c063b2637f74d5c",
+      "fixtureCount": 16,
+      "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a"
+    }
+  ],
+  "manifestDigest": "50b8683ab052ae5e0bc5dbf559ee758cb55e9df8cdadb763bdc27893bf1f421f"
+}

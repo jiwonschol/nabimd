@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-031",
+  "status": "awaiting-independent-review",
+  "candidateCount": 12,
+  "fixtureCount": 192,
+  "passingCandidateCount": 12,
+  "normalizedArtifactDigest": "29c713d136d24f8bf09eaf23eee95c8952f22f28a1b7828e60a2d90e073af50f",
+  "verificationDigest": "a71dba74d05e611705e60e3a7695e168e5dc12b95c6d2ba8195ec0a5dc362add",
+  "manifestDigest": "50b8683ab052ae5e0bc5dbf559ee758cb55e9df8cdadb763bdc27893bf1f421f",
+  "engineContractDigest": "15f142242e2a706f2be5054e699032a4d6f55235252cca348939c25394256b5a",
+  "requiredIndependentReviews": 2,
+  "committedIndependentReviews": 0,
+  "editorialPresent": false,
+  "publishedAcceptedTotal": 384,
+  "preparedSummaryDigest": "1eb93e7c01a954bc7793056321aadadc3f858e04e7213f2e9af0ea6912d6e5f5"
+}

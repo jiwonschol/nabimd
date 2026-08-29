@@ -16,6 +16,7 @@ import {
   evaluateBatchEvidence,
   loadBatchDirectories,
   normalizeBatch,
+  publishedBatchHistory,
   verifyBatchFixtures,
 } from "./batchPipeline.mjs"
 import { canonicalJson, sha256 } from "./pipeline.mjs"
@@ -244,12 +245,35 @@ async function loadPreviousBatches({
       `Cannot prepare ${config.batchId} while prior batch evidence is invalid:\n${compiled.errors.join("\n")}`,
     )
   }
+  const publishedPreviousBatches = publishedBatchHistory(previousBatches)
+  const publishedPreviousBatchIds = new Set(
+    publishedPreviousBatches.map((batch) => batch.normalized?.batchId),
+  )
+  const unpublishedAcceptedBatches: string[] = []
+  for (const batch of previousBatches) {
+    const previousBatchId = String(batch.normalized?.batchId ?? "<unknown>")
+    if (publishedPreviousBatchIds.has(batch.normalized?.batchId)) continue
+    if (evaluateBatchEvidence(batch).summary.accepted > 0) {
+      unpublishedAcceptedBatches.push(previousBatchId)
+    }
+  }
+  if (unpublishedAcceptedBatches.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} after accepted but unpublished batches:\n${unpublishedAcceptedBatches.join("\n")}`,
+    )
+  }
+  const published = compileAcceptedBank(publishedPreviousBatches)
+  if (published.errors.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} while published batch evidence is invalid:\n${published.errors.join("\n")}`,
+    )
+  }
   return {
     previousBatches,
     laterBatches,
     compiled,
-    runtimeProjections: createRuntimeProjections(compiled),
-    tracker: buildTracker(compiled),
+    runtimeProjections: createRuntimeProjections(published),
+    tracker: buildTracker(published),
   }
 }
 
