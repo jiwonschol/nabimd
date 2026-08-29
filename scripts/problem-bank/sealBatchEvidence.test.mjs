@@ -19,9 +19,9 @@ const cli = resolve(import.meta.dirname, "sealBatchEvidence.mjs")
 // Calling the exported function proves the rule; it does not prove the command
 // a person types passes `--check` through to it. Mutating `write: !check` to
 // `write: true` left every direct-call test green.
-async function runCli(args) {
+async function runCli(args, cwd = process.cwd()) {
   try {
-    const { stdout, stderr } = await run(process.execPath, [cli, ...args])
+    const { stdout, stderr } = await run(process.execPath, [cli, ...args], { cwd })
     return { code: 0, stdout, stderr }
   } catch (error) {
     return {
@@ -477,6 +477,61 @@ test("a published batch missing editorial blocks a later reseal", async () => {
     /missing editorial artifacts/,
   )
   assert.equal(await readFile(reviewPath, "utf8"), before)
+})
+
+test("the no-argument write command reports drift in immutable batches", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-immutable-drift-"))
+  const bankRoot = resolve(repository, "curriculum/problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(batchesRoot, batchId)
+  await mkdir(batchesRoot, { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "published bank"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
+  await writeFile(resolve(repository, "feature.txt"), "feature\n")
+  await run("git", ["add", "feature.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "feature"], { cwd: repository })
+  const reviewName = (await readdir(resolve(batchDir, "reviews"))).find((name) => name.endsWith(".json"))
+  const reviewPath = resolve(batchDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].note = "immutable drift"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+
+  const result = await runCli([], repository)
+  assert.equal(result.code, 1)
+  assert.match(result.stderr, /Immutable baseline evidence has drifted/)
+  assert.match(result.stderr, /publish a new replacement batch instead/)
+})
+
+test("a review can be resealed before editorial evidence exists", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-pre-editorial-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(bankRoot, "batches", batchId)
+  await mkdir(resolve(bankRoot, "batches"), { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await unlink(resolve(batchDir, "editorial.json"))
+  await unlink(resolve(batchDir, "summary.generated.json"))
+  const reviewName = (await readdir(resolve(batchDir, "reviews"))).find((name) => name.endsWith(".json"))
+  const reviewPath = resolve(batchDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].note = "corrected before editorial"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+
+  const report = await resealBatchEvidence({ batchDir, write: true })
+  assert.ok(report.changed.includes(`reviews/${reviewName}`))
 })
 
 test("rerunning repairs a stale generated chain after seals already match", async () => {

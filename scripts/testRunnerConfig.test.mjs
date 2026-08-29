@@ -35,20 +35,32 @@ export function importsNodeTest(source) {
     }
     return null
   }
+  const runnerApis = new Set(["test", "it", "describe", "suite"])
+  const importsRunnerApi = (node) => {
+    if (node.type === "ImportExpression") return true
+    return node.specifiers.some((specifier) => {
+      if (specifier.type === "ImportDefaultSpecifier" || specifier.type === "ImportNamespaceSpecifier") {
+        return true
+      }
+      return runnerApis.has(specifier.imported?.name ?? specifier.imported?.value)
+    })
+  }
   let importsNodeRunner = false
-  let importsVitest = false
+  let importsVitestRunner = false
   const visit = (node) => {
     if (
       (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
-      moduleName(node.source) === "node:test"
+      moduleName(node.source) === "node:test" &&
+      importsRunnerApi(node)
     ) {
       importsNodeRunner = true
     }
     if (
       (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
-      moduleName(node.source) === "vitest"
+      moduleName(node.source) === "vitest" &&
+      importsRunnerApi(node)
     ) {
-      importsVitest = true
+      importsVitestRunner = true
     }
     for (const value of Object.values(node)) {
       if (value === null || typeof value !== "object") continue
@@ -57,7 +69,7 @@ export function importsNodeTest(source) {
     }
   }
   visit(parseAst(source))
-  return importsNodeRunner && !importsVitest
+  return importsNodeRunner && !importsVitestRunner
 }
 
 describe("test runner configuration", () => {
@@ -117,5 +129,10 @@ describe("test runner configuration", () => {
         'import { mock } from "node:test"\nimport { describe, it } from "vitest"\n',
       ),
     ).toBe(false)
+    expect(
+      importsNodeTest(
+        'import test from "node:test"\nimport { expect } from "vitest"\n',
+      ),
+    ).toBe(true)
   })
 })

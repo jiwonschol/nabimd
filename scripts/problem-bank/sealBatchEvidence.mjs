@@ -45,7 +45,19 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
   const targetEvidenceErrors = projected
     .filter((batch) => targetBatchIds.has(batch.normalized?.batchId))
     .filter((batch) => (batch.reviews?.length ?? 0) > 0 || batch.editorial != null)
-    .flatMap((batch) => evaluateBatchEvidence(batch).errors)
+    .flatMap((batch) => {
+      const errors = evaluateBatchEvidence(batch).errors
+      if (batch.editorial != null) return errors
+      return errors.filter(
+        (error) =>
+          !error.startsWith("Editorial artifact is invalid:") &&
+          !error.startsWith("Invalid editorial schema:") &&
+          !error.startsWith("Stale editorial scope:") &&
+          !error.startsWith("Stale editorial digest:") &&
+          !error.startsWith("Editorial actor") &&
+          !error.startsWith("Missing editorial decision:"),
+      )
+    })
   if (targetEvidenceErrors.length > 0) {
     throw new Error(
       `Cannot reseal invalid target evidence:\n${targetEvidenceErrors.join("\n")}`,
@@ -352,6 +364,24 @@ async function main(argv) {
         "Refusing to reseal immutable baseline batches; publish a new replacement batch instead:\n" +
           [...protectedTargets].map((target) => `- ${target}`).join("\n"),
       )
+    }
+    if (args.length === 0 && protectedTargets.size > 0) {
+      const protectedDirs = targets.filter((batchDir) =>
+        protectedTargets.has(relative(process.cwd(), batchDir)),
+      )
+      const protectedReports = await resealBatchEvidenceSet({
+        batchDirs: protectedDirs,
+        write: false,
+      })
+      const driftedProtected = protectedReports.filter(
+        (report) => report.changed.length > 0,
+      )
+      if (driftedProtected.length > 0) {
+        throw new Error(
+          "Immutable baseline evidence has drifted; publish a new replacement batch instead:\n" +
+            driftedProtected.map((report) => `- ${report.batchDir}`).join("\n"),
+        )
+      }
     }
     targets = targets.filter(
       (batchDir) => !protectedTargets.has(relative(process.cwd(), batchDir)),
