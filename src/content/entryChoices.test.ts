@@ -18,27 +18,17 @@ import {
 } from "./problemBank"
 import {
   deriveSyntaxCheckpoints,
-  syntaxGroupTerm,
+  syntaxCheckpointTerms,
   type SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
 import { instructionFor } from "../guided/checkpointInstruction"
 import { checkpointShape } from "../guided/checkpointShape"
 
 function checkpointTerms(checkpoint: SyntaxCheckpoint): string[] {
-  return [
-    ...new Set(
-      checkpoint.segments.flatMap((segment, index) => {
-        if (segment.kind !== "input") return []
-        const previous = checkpoint.segments[index - 1]
-        return [
-          syntaxGroupTerm(
-            segment.value,
-            previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-          ),
-        ]
-      }),
-    ),
-  ]
+  // Was a copy of `syntaxCheckpointTerms`, and it fell behind twice — once
+  // when the line-break axis arrived and once when the quote-marker axis did.
+  // A copy of a naming rule is a second rule.
+  return [...syntaxCheckpointTerms(checkpoint)]
 }
 
 function hasSeparatedRepeatedTerm(

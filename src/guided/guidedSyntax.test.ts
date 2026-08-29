@@ -1,12 +1,15 @@
+import { readFileSync, readdirSync } from "node:fs"
 import { describe, expect, it } from "vitest"
 import {
   getCurriculumElement,
   getCurriculumElements,
 } from "../content/curriculumElements"
 import { isEligibleMixedExercise } from "../content/mixedExercisePolicy"
+import { parseMarkdownSource } from "../markdown/parser"
 import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import {
+  acceptedGuidedSyntaxGroupInputs,
   acceptedGuidedSyntaxInputs,
   acceptsGuidedSyntaxInput,
   buildGuidedDraft,
@@ -15,7 +18,9 @@ import {
   missedGuidedSyntaxGroups,
   projectCheckpointContext,
   syntaxGroupTerm,
+  syntaxGroupTermAt,
   syntaxCheckpointTerms,
+  type SyntaxCheckpoint,
 } from "./guidedSyntax"
 
 describe("deriveSyntaxCheckpoints", () => {
@@ -51,6 +56,303 @@ describe("deriveSyntaxCheckpoints", () => {
     // underline, which the note must not confuse with one.
     expect(syntaxGroupTerm("---")).toBe("section break")
     expect(syntaxGroupTerm("---", true)).toBe("level 2 Setext heading")
+  })
+
+  it("names the blanks the deriver learned to make in #189", () => {
+    // Through `syntaxCheckpointTerms` and from source, because that is the
+    // path the Now learning panel takes. Calling `syntaxGroupTerm` with a
+    // literal would pass even when no card ever carries the blank, which is
+    // exactly the state #189 found these families in.
+    const terms = (source: string) =>
+      syntaxCheckpointTerms(deriveSyntaxCheckpoints(source, "")[0]!)
+
+    // A task box is bracket punctuation and used to be named a link.
+    expect(terms("- [ ] Buy milk")).toEqual(["bullet item", "checkbox item"])
+    expect(terms("- [x] Buy milk")).toEqual(["bullet item", "checked-off item"])
+    expect(terms("~~gone~~ here")).toEqual(["strikethrough text"])
+  })
+
+  it("accepts either spelling of a checked task box", () => {
+    const checkpointFor = (source: string) =>
+      deriveSyntaxCheckpoints(source, "")[0]!
+
+    // GFM parses `[x]` and `[X]` as the same checked item, so a learner who
+    // types the other one is not wrong. The case is folded where answers are
+    // compared rather than doubling the accepted forms — a checked list merges
+    // onto one card, and one alternative per box is a Cartesian product.
+    const one = checkpointFor("- [x] Buy milk")
+    expect(acceptsGuidedSyntaxInput(one, "- [X]")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(one, "* [X]")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(one, "- [ ]")).toBe(false)
+
+    // Two boxes choose independently — `[x]` beside `[X]` is valid GFM.
+    const two = checkpointFor("- [x] one\n- [x] two")
+    expect(acceptsGuidedSyntaxInput(two, "- [X]- [x]")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(two, "- [x]- [X]")).toBe(true)
+
+    // …and the form count does not move. Fourteen items on one card used to
+    // build 49,152 complete forms and about 12 MB of hint rows, which
+    // `checkpointHintRows` materialises on every render.
+    const long = checkpointFor(
+      Array.from({ length: 14 }, (_, index) => `- [x] item ${index}`).join("\n"),
+    )
+    expect(acceptedGuidedSyntaxInputs(long)).toHaveLength(3)
+    expect(checkpointHintRows(long)).toHaveLength(3)
+
+    // The note still shows the learner both spellings, one row per group.
+    expect(acceptedGuidedSyntaxGroupInputs(two, 1)).toEqual(["[x]", "[X]"])
+
+    // And the note is not raised at all for a box typed in the other case.
+    // `missedGuidedSyntaxGroups` compares group by group, so it needs the same
+    // fold the whole-answer check does — without it a correct `[X]` is marked
+    // as the group that could not be explained.
+    expect(missedGuidedSyntaxGroups(two, ["- ", "[X]", "- ", "[x]"])).toEqual([])
+    expect(missedGuidedSyntaxGroups(two, ["- ", "[ ]", "- ", "[x]"])).toEqual([1])
+
+    // Only the case varies. A tab between the brackets is a task marker in
+    // some columns and not others, and the accepted set is built from a
+    // checkpoint that cannot see the line's indentation — see the tab test
+    // below for what that costs.
+    expect(acceptedGuidedSyntaxInputs(checkpointFor("- [ ] Buy milk"))).toEqual([
+      "- [ ]",
+      "* [ ]",
+      "+ [ ]",
+    ])
+  })
+
+  it("leaves a task box written with a tab as locked prose", () => {
+    // The parser does read `- [\t] Buy` as a task item, so blanking the box
+    // looks correct. The card it makes cannot be answered: its Hint prints
+    // the tab as a row indistinguishable from `- [ ]`, so a learner reading
+    // the screen types a space and is refused. Accepting the space instead
+    // opens something worse — the tab is a task marker only in some columns:
+    const parsed = (source: string) => {
+      const [item] = (
+        parseMarkdownSource(source).children[0] as { children: unknown[] }
+      ).children as { checked?: boolean | null }[]
+      return item?.checked ?? null
+    }
+    expect(parsed("- [\t] Buy")).toBe(false)
+    expect(parsed("-  [\t] Buy")).toBe(null)
+    // …and `buildAcceptedForms` works from a checkpoint, which cannot see the
+    // line's indentation, so it cannot tell those two apart. The box stays
+    // locked and the item teaches its marker.
+    const checkpoint = deriveSyntaxCheckpoints("- [\t] Buy", "")[0]!
+    expect(
+      checkpoint.segments.flatMap((segment) =>
+        segment.kind === "input" ? [segment.value] : [],
+      ),
+    ).toEqual(["- "])
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["bullet item"])
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).not.toContain("- [\t]")
+  })
+
+  it("keeps a deletion that wraps a line break on one card", () => {
+    // The merger compares line indentation, because a nested list is a
+    // different list. A deletion is inline and crosses the break anyway, so
+    // an indented second line split the pair into two cards that each held
+    // one `~~` and each said it wraps a phrase.
+    for (const source of ["~~old\nprice~~", "~~old\n price~~"]) {
+      const [card, ...rest] = deriveSyntaxCheckpoints(source, "")
+      expect(rest, source).toEqual([])
+      expect(
+        card!.segments.flatMap((segment) =>
+          segment.kind === "input" ? [segment.value] : [],
+        ),
+        source,
+      ).toEqual(["~~", "~~"])
+    }
+  })
+
+  it("takes the tab out of nesting markers only, line by line", () => {
+    // One quote can hold a plain line and a nested one. Applying the rule to
+    // the whole node took the tab out of a marker that is part of no nesting,
+    // leaving a card that asks for "a mark and space" and then refuses `> `.
+    const blanks = (checkpoint: SyntaxCheckpoint) =>
+      checkpoint.segments.flatMap((segment) =>
+        segment.kind === "input" ? [segment.value] : [],
+      )
+    const cards = deriveSyntaxCheckpoints(">\tplain\n> > nested", "")
+    expect(cards).toHaveLength(2)
+    // The plain line keeps the tab it always had — that is #204's axis.
+    expect(blanks(cards[0]!)).toEqual([">\t"])
+    // The nested line does not.
+    expect(blanks(cards[1]!)).toEqual(["> ", "> "])
+  })
+
+  it("never leaves an odd run of strikethrough delimiters on a card", () => {
+    // The damage of a split pair was not the wording. Three `~~` on one card
+    // makes the answer six tildes, and `instructionFor` reads an odd run as a
+    // fence — so the card told the learner to type `~~~~~~` where the source
+    // has two separate deletions. Delimiters come in pairs; a card holding a
+    // pair and a half is asking for something no source produced.
+    //
+    // Swept rather than listed, because this arrived twice as two spellings:
+    // one deletion across a soft break, then two whose lines overlap.
+    const gaps = [" ", "\n", "\n ", "\n\n"]
+    let carrying = 0
+    for (const first of gaps) {
+      for (const between of gaps) {
+        for (const second of gaps) {
+          const source = `~~a${first}b~~${between}~~c${second}d~~`
+          for (const checkpoint of deriveSyntaxCheckpoints(source, "")) {
+            const delimiters = checkpoint.segments.filter(
+              (segment) => segment.kind === "input" && segment.value === "~~",
+            ).length
+            if (delimiters === 0) continue
+            carrying += 1
+            expect(delimiters % 2, JSON.stringify(source)).toBe(0)
+          }
+        }
+      }
+    }
+    // The sweep has to reach cards that actually hold delimiters.
+    expect(carrying).toBeGreaterThanOrEqual(64)
+  })
+
+  it("keeps two deletions that share a line on one card", () => {
+    // Grouped ranges are looked up by the line they start on, and the loop
+    // skips past a whole group once it takes one. Two multiline deletions can
+    // share a line, so the second range's start was consumed by the first
+    // group and never visited — splitting a delimiter pair across two cards
+    // and leaving an odd run of three, which reads as a fence.
+    const cards = deriveSyntaxCheckpoints("~~a\nb~~ ~~c\n d~~", "")
+    expect(cards).toHaveLength(1)
+    expect(
+      cards[0]!.segments.flatMap((segment) =>
+        segment.kind === "input" ? [segment.value] : [],
+      ),
+    ).toEqual(["~~", "~~", "~~", "~~"])
+  })
+
+  it("never puts a tab in a nested quote's blanks", () => {
+    // Three review rounds arrived as three spellings of one trade: `- [\t]
+    // Buy`, `> \t> deep`, `>>\tdeep`. On screen a tab and a space are the same
+    // picture, so a blank whose answer needs a tab cannot be solved from what
+    // the learner sees — and no wording fixes it, because "spaces" would be
+    // false. Asserting the shape instead of the sentence catches the next
+    // spelling too; the sentence test above only knows the ones we have seen.
+    const separators = ["", " ", "\t", "  ", " \t", "\t ", "\t\t"]
+    let nested = 0
+    for (const outer of separators) {
+      for (const inner of separators) {
+        const source = `>${outer}>${inner}deep`
+        const checkpoint = deriveSyntaxCheckpoints(source, "")[0]
+        if (!checkpoint) continue
+        if (
+          !syntaxCheckpointTerms(checkpoint).includes("quote inside a quote")
+        ) {
+          continue
+        }
+        nested += 1
+        for (const accepted of acceptedGuidedSyntaxInputs(checkpoint)) {
+          expect(accepted, JSON.stringify(source)).not.toMatch(/\t/)
+        }
+      }
+    }
+    // The sweep has to reach the shape it guards — a guard that walks past its
+    // own case is not a guard. The number is not arbitrary: a tab in the
+    // *outer* separator stops the nesting from being recognised at all, while
+    // a tab in the inner one does not. Three of the seven separators hold no
+    // tab, so 3 x 7 = 21 spellings nest and the other 28 stay plain (#204).
+    // Read that way, this asserts "every spelling whose outer marker has no
+    // tab", not "21 of 49" — if you are here to change the number, check which
+    // of those two moved.
+    expect(nested).toBe(21)
+  })
+
+  it("leaves a tab-indented nested quote as a plain quote", () => {
+    // `> \t> deep` is a nested quote to the parser. Opening the inner marker
+    // would put the tab between the two blanks as locked prose that looks
+    // like a space, so they would no longer touch and the nesting could only
+    // be recovered by loosening what "adjacent" means for every family. The
+    // same reason keeps a tab task box locked.
+    const checkpoint = deriveSyntaxCheckpoints("> \t> deep", "")[0]!
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["block quote"])
+  })
+
+  it("lets only one place assemble the naming context", () => {
+    // The context arguments leaked twice — #188's line break, then this PR's
+    // quote marker — because three sites each rebuilt them and the defaults
+    // kept the compiler quiet. `syntaxGroupTermsInOrder` is the one caller;
+    // everything else asks for a group by index. Two files are exempt: the
+    // module that owns the function, and this file, which tests it directly.
+    const roots = ["src"]
+    const files: string[] = []
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = `${dir}/${entry.name}`
+        if (entry.isDirectory()) walk(full)
+        else if (/\.tsx?$/.test(entry.name)) files.push(full)
+      }
+    }
+    for (const root of roots) walk(root)
+
+    const exempt = new Set([
+      "src/guided/guidedSyntax.ts",
+      "src/guided/guidedSyntax.test.ts",
+    ])
+    const callers = files.filter((file) => {
+      if (exempt.has(file)) return false
+      return /\bsyntaxGroupTerm\s*\(/.test(readFileSync(file, "utf8"))
+    })
+
+    expect(callers).toEqual([])
+    // And the exemption is not vacuous: the owner really does call it, once,
+    // beyond the definition itself.
+    expect(
+      readFileSync("src/guided/guidedSyntax.ts", "utf8").match(
+        /(?<!function )\bsyntaxGroupTerm\s*\(/g,
+      ),
+    ).toHaveLength(1)
+  })
+
+  it("names one group with the context the checkpoint carries", () => {
+    // Every caller used to assemble `syntaxGroupTerm`'s context arguments
+    // itself, and when a third one was added the Missed-summary caller kept
+    // passing two — recording a nested quote as a plain one. The context is
+    // read from the checkpoint now, so a caller cannot leave one out.
+    const nested = deriveSyntaxCheckpoints("> > deep", "")[0]!
+    expect(syntaxGroupTermAt(nested, 0)).toBe("block quote")
+    expect(syntaxGroupTermAt(nested, 1)).toBe("quote inside a quote")
+
+    const setext = deriveSyntaxCheckpoints("Title\n---", "")[0]!
+    expect(syntaxGroupTermAt(setext, 0)).toBe("level 2 Setext heading")
+  })
+
+  it("keeps every line of one quote on a single card", () => {
+    // The merge key compares one line's markers, not the accumulated run.
+    // Comparing the whole sequence kept differently spelled blocks apart —
+    // which is right — but also broke a three-line quote in two, because the
+    // card holding two lines no longer matched the third.
+    expect(deriveSyntaxCheckpoints("> one\n> two\n> three", "")).toHaveLength(1)
+    expect(
+      deriveSyntaxCheckpoints("> > one\n> > two\n> > three", ""),
+    ).toHaveLength(1)
+  })
+
+  it("keeps nested quotes of different spacing on separate cards", () => {
+    // `>>` and `> > ` carry the same name but are not the same answer. Merged,
+    // the card counted the spaces of its first pair and said nothing about the
+    // second.
+    const cards = deriveSyntaxCheckpoints(">> one\n\n> > two", "")
+    expect(cards).toHaveLength(2)
+    expect(acceptedGuidedSyntaxInputs(cards[0]!)).toEqual([">> "])
+    expect(acceptedGuidedSyntaxInputs(cards[1]!)).toEqual(["> > "])
+  })
+
+  it("keeps a plain quote and a nested quote on separate cards", () => {
+    // `mergeAdjacentSameSyntax` joins neighbours whose names match, and both
+    // levels used to be called `block quote`. The joined card then claimed to
+    // be a quote inside a quote while also asking for the unrelated plain
+    // marker, so the depth has to live in the name the merger reads.
+    const cards = deriveSyntaxCheckpoints("> plain\n\n> > deep", "")
+    expect(cards).toHaveLength(2)
+    expect(syntaxCheckpointTerms(cards[0]!)).toEqual(["block quote"])
+    expect(syntaxCheckpointTerms(cards[1]!)).toEqual([
+      "block quote",
+      "quote inside a quote",
+    ])
   })
 
   it("finds the groups an attempt cannot explain", () => {

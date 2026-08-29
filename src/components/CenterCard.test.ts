@@ -795,19 +795,112 @@ describe("describeCheckpoint", () => {
     expect(generic, `on the generic sentence: ${examples.join(", ")}`).toBe(0)
   })
 
-  it("records which families the engine still cannot reach", () => {
-    // These fail when the parser work in #157 lands. That is the handoff: the
-    // sentences above stop being a contract and become derivable from source.
-    // Tables left this list when the engine learned to blank their bars; their
-    // reachability and the sentences that follow from it live in
-    // `src/guided/tableCards.test.ts`.
-    expect(deriveSyntaxCheckpoints("~~old price~~ new price", "")).toHaveLength(0)
+  it("derives the families #189 opened, from source", () => {
+    // These four were pinned as unreachable until the deriver made their
+    // shapes. Reading them from source rather than from a checkpoint literal
+    // is the point: a sentence nothing can produce is a sentence nobody has
+    // read.
+    expect(describeCheckpoint(checkpointFor("~~old price~~ new price")).term).toBe(
+      "strikethrough text",
+    )
     expect(describeCheckpoint(checkpointFor("- [ ] Buy milk")).term).toBe(
+      "checkbox item",
+    )
+    expect(describeCheckpoint(checkpointFor("- [x] Buy milk")).term).toBe(
+      "checked-off item",
+    )
+    expect(describeCheckpoint(checkpointFor("> > Deep")).term).toBe(
+      "quote inside a quote",
+    )
+    // A tab box stays locked prose — see `guidedSyntax.test.ts` for why — so
+    // the item teaches its marker and nothing claims to be a checkbox.
+    expect(describeCheckpoint(checkpointFor("- [\t] Buy")).term).toBe(
       "bullet item",
     )
-    expect(describeCheckpoint(checkpointFor("> > Deep")).term).toBe("block quote")
-    // The fence itself is reachable; the sentence that names the language is
-    // not, because the engine locks `js` instead of blanking it.
+  })
+
+  it("never leaves a blank the sentence does not mention", () => {
+    // An ordered task item. `instructionFor` names a task box only behind a
+    // bullet marker and calls the ordered one "a shape to open when content
+    // asks for it, not a case to guess at now" — so blanking the box here
+    // would have asked for a group the numbered-step sentence never mentions.
+    const ordered = checkpointFor("1. [ ] Buy")
+    expect(ordered.segments.filter((s) => s.kind === "input")).toHaveLength(1)
+    expect(describeCheckpoint(ordered).term).toBe("numbered step")
+  })
+
+  it("counts quoted lines, not quote markers, in the nested sentence", () => {
+    // Two lines at depth two is one card with four blanks. Saying "a quote
+    // inside a quote" there asks for four and claims to teach one. The plain
+    // block quote already says "each line of this", and the nested sentence
+    // now reads the same way — several lines of one quote, not several quotes.
+    const sentence = (target: string) => {
+      const { prefix, term, suffix } = describeCheckpoint(checkpointFor(target))
+      return prefix + term + suffix
+    }
+    expect(sentence("> > one\n> > two")).toBe(
+      "Type the Markdown marks and spaces for each line of this quote inside a quote.",
+    )
+    // Depth is not line count: three markers on one line is still one line.
+    expect(sentence("> > > Deep")).toBe(
+      "Type the Markdown marks and spaces for a quote inside a quote.",
+    )
+    expect(sentence("> > Deep")).toBe(
+      "Type the Markdown marks and spaces for a quote inside a quote.",
+    )
+  })
+
+  it("counts the spaces of a whole quoted line, not its first pair", () => {
+    const sentence = (target: string) => {
+      const { prefix, term, suffix } = describeCheckpoint(checkpointFor(target))
+      return prefix + term + suffix
+    }
+    // `>>> deep` is three markers carrying one trailing space. Reading only
+    // the first touching pair found none, so the card said "marks" while its
+    // one accepted answer was `>>> `.
+    expect(sentence(">>> deep")).toBe(
+      "Type the Markdown marks and space for a quote inside a quote.",
+    )
+    expect(sentence(">> > deep")).toBe(
+      "Type the Markdown marks and spaces for a quote inside a quote.",
+    )
+  })
+
+  it("keeps the nesting when a nested quote carries another family", () => {
+    // `> > **Deep**` is one line at depth two. Counting quote markers alone
+    // read its two touching levels as two quoted lines and said "each line of
+    // this block quote", so the nesting is decided before the count.
+    expect(describeCheckpoint(checkpointFor("> > **Deep**")).term).toBe(
+      "quote inside a quote",
+    )
+    // Two quoted lines really are two lines, and keep their own sentence.
+    expect(describeCheckpoint(checkpointFor("> one\n> two")).term).toBe(
+      "block quote",
+    )
+  })
+
+  it("names strikethrough when it leads a card carrying two families", () => {
+    // One line, two families: the card names the first and stays silent about
+    // the rest, which is #177's imprecision and the same thing `**bold**` with
+    // `` `code` `` does today. What was wrong is that the fallback chain had
+    // no `~~` case at all, so this line got the generic sentence instead.
+    expect(describeCheckpoint(checkpointFor("~~old~~ **new**")).term).toBe(
+      "strikethrough text",
+    )
+    expect(describeCheckpoint(checkpointFor("**bold** and `code`")).term).toBe(
+      "bold text",
+    )
+  })
+
+  it("records which families the engine still cannot reach", () => {
+    // One is left, and it is not a parser gap. `instructionFor` names a
+    // syntax-highlighted block by reading a blank that holds the language
+    // name — and a blank holding a name is Goal prose, which the published
+    // blank policy forbids ("asks only Markdown grammar characters", in
+    // `guidedSyntax.test.ts`). Blanking `js` turns that suite red on bank
+    // problems that already ship a `text` fence. So the fence is reachable
+    // and the language sentence is not, by contract; whether the product
+    // wants a blank that asks for prose is Jiwon's call, not the deriver's.
     expect(
       describeCheckpoint(checkpointFor("```js\nlet a = 1\n```")).term,
     ).toBe("fenced code block")
