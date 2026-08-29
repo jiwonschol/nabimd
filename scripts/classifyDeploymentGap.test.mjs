@@ -363,30 +363,46 @@ describe("classifyDeploymentGap", () => {
     // one status, `newestStatus(...)` and `relevant[last]` are the same value,
     // so reading the wrong end of the array broke nothing. Any assertion about
     // a chosen element needs at least two to choose between.
-    const result = classifyDeploymentGap({
-      statuses: [
-        {
-          context: "Vercel",
-          state: "failure",
-          description: "Build failed",
-          updated_at: "2026-08-29T11:00:00Z",
-        },
-        {
-          context: "Vercel",
-          state: "pending",
-          description: "Deploying",
-          updated_at: "2026-08-29T14:00:00Z",
-        },
-      ],
+    // Newest first, the order the GitHub API returns — so reading either end
+    // of the array by position gives a different answer than reading the
+    // newest timestamp. Two elements are not enough on their own; they have to
+    // be arranged so the right rule and the wrong one disagree.
+    const newestFirst = [
+      {
+        context: "Vercel",
+        state: "pending",
+        description: "Deploying",
+        updated_at: "2026-08-29T14:00:00Z",
+      },
+      {
+        context: "Vercel",
+        state: "failure",
+        description: "Build failed",
+        updated_at: "2026-08-29T11:00:00Z",
+      },
+    ]
+    const base = {
       expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
       deployedSha: null,
       eventName: "push",
       now: NOW,
-    })
+    }
+
+    const result = classifyDeploymentGap({ ...base, statuses: newestFirst })
 
     expect(result.kind).toBe("unobserved")
     expect(result.summary).toContain("`pending`")
     expect(result.summary).not.toContain("`failure`")
+
+    // And the same two in the other order still resolve to the newest, so the
+    // rule is the timestamp rather than a position that happens to work.
+    const reversed = classifyDeploymentGap({
+      ...base,
+      statuses: [...newestFirst].reverse(),
+    })
+
+    expect(reversed.summary).toContain("`pending`")
+    expect(reversed.summary).not.toContain("`failure`")
   })
 
   it("still reads the page when there is a commit to read", () => {
