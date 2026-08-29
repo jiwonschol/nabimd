@@ -638,18 +638,37 @@ function validConvention(problem: GradableProblem): boolean {
 /** Whether a target asks Markdown marker whitespace to be a literal tab. */
 export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
   let found = false
+  const tree = parseMarkdownSource(target)
+  const codeRanges: { from: number; to: number }[] = []
+  const collectCodeRanges = (node: Nodes) => {
+    const from = node.position?.start.offset
+    const to = node.position?.end.offset
+    if (node.type === "code" && from !== undefined && to !== undefined) {
+      codeRanges.push({ from, to })
+    }
+    if ("children" in node) {
+      ;(node as Parents).children.forEach(collectCodeRanges)
+    }
+  }
+  collectCodeRanges(tree)
+  const overlapsCode = (from: number, to: number) =>
+    codeRanges.some((range) => from < range.to && to > range.from)
   const visit = (node: Nodes) => {
     const offset = node.position?.start.offset
     if (offset !== undefined) {
       if (node.type === "blockquote") {
         const end = node.position?.end.offset ?? target.length
-        const spannedLines = target.slice(offset, end).split("\n")
-        if (
-          spannedLines.some((line) =>
-            /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line),
-          )
-        ) {
-          found = true
+        let lineFrom = offset
+        for (const line of target.slice(offset, end).split("\n")) {
+          const lineTo = lineFrom + line.length
+          if (
+            !overlapsCode(lineFrom, lineTo) &&
+            /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line)
+          ) {
+            found = true
+            break
+          }
+          lineFrom = lineTo + 1
         }
       }
       const lineEnd = target.indexOf("\n", offset)
@@ -670,7 +689,7 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
       ;(node as Parents).children.forEach(visit)
     }
   }
-  visit(parseMarkdownSource(target))
+  visit(tree)
   return found
 }
 

@@ -158,6 +158,9 @@ describe("schema-v2 problem-bank validation", () => {
     expect(
       targetUsesTabAsMarkerWhitespace("```text\n-\titem\n#\tTitle\n```"),
     ).toBe(false)
+    expect(
+      targetUsesTabAsMarkerWhitespace("> ~~~text\n> >\tcode\n> ~~~"),
+    ).toBe(false)
   })
 
   it("checks every parser-recognized line of a multiline quote", () => {

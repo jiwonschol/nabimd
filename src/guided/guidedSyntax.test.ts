@@ -726,10 +726,17 @@ describe("deriveSyntaxCheckpoints", () => {
   })
 
   it("preserves separate quoted lists at the same semantic depth", () => {
-    const target = "> - a\n>  * b"
+    const target = "> - a\n> * b"
     const cards = deriveSyntaxCheckpoints(target, "")
 
+    expect(cards).toHaveLength(2)
     expect(buildGuidedDraft(target, cards, cards.length)).toBe(target)
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "> + ",
+        [cards[1]!.id]: "> - ",
+      }),
+    ).toBe("> + a\n> - b")
   })
 
   it("normalizes an outer marker while preserving a distinct nested marker", () => {
