@@ -849,9 +849,16 @@ describe("buildGuidedDraft", () => {
     ].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(target, starter)
 
-    expect(buildGuidedDraft(target, checkpoints, 0)).toBe("")
-    expect(buildGuidedDraft(target, checkpoints, 1)).toBe(
+    // The title and the prose under it are given, not asked for, so they are
+    // on the page before the first answer (#198). They used to appear only
+    // after the first card was answered, which stopped being survivable once
+    // the title itself became given — a given title nobody can see is a
+    // deleted one.
+    expect(buildGuidedDraft(target, checkpoints, 0)).toBe(
       "# Packing note\n\nBring only what you need.\n\n",
+    )
+    expect(buildGuidedDraft(target, checkpoints, 1)).toBe(
+      "# Packing note\n\nBring only what you need.\n\n## Checklist\n\n",
     )
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(
       target,
@@ -944,13 +951,17 @@ describe("one card teaches one syntax", () => {
   it("keeps different syntaxes on their own cards", () => {
     // The pass case: grouping must not collapse a problem into one card. A
     // heading above a list is two lessons and stays two.
+    //
+    // The heading is `##`. An opening `#` is the document's title and is given
+    // rather than asked for (#198), which would have left one card here and
+    // quietly turned this pass case into a fixture that proves nothing.
     const checkpoints = deriveSyntaxCheckpoints(
-      "# Packing\n\n- Socks\n- Towel",
+      "## Packing\n\n- Socks\n- Towel",
       "Packing\nSocks\nTowel",
     )
 
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
-      "# ",
+      "## ",
       "- - ",
     ])
   })
@@ -985,6 +996,7 @@ describe("one card teaches one syntax", () => {
 
     let compared = 0
     let nestedExceptions = 0
+    const nestedExceptionProblems = new Set<string>()
     let tableRowBoundaries = 0
     for (const problem of served) {
       const source = problem.target.replace(/\r\n?/g, "\n")
@@ -1024,10 +1036,17 @@ describe("one card teaches one syntax", () => {
           `${problem.id} card ${index + 1} repeats card ${index} at the same level`,
         ).not.toBe(indentOf(checkpoints[index - 1]!))
         nestedExceptions += 1
+        nestedExceptionProblems.add(problem.id)
       }
     }
     // Named so the exception cannot quietly become the rule.
-    expect(nestedExceptions).toBeLessThan(compared / 4)
+    //
+    // Counted over problems rather than card boundaries. The boundary count
+    // is not a property of the exception: giving the opening title removed one
+    // card from every mixed exercise (#198), which took boundaries from 132 to
+    // 81 without a single new nested list. A ratio against that denominator
+    // reports a change in card structure as a spread of the exception.
+    expect(nestedExceptionProblems.size).toBeLessThan(served.length / 10)
     expect(tableRowBoundaries).toBe(24)
     // Guards the loop against passing by never comparing anything. Most served
     // problems are a single card now, so the floor is the number of card
@@ -1038,6 +1057,7 @@ describe("one card teaches one syntax", () => {
     ).length
     expect(multiCard).toBeGreaterThan(20)
     expect(compared).toBeGreaterThanOrEqual(multiCard)
+    expect(nestedExceptions).toBeGreaterThan(0)
   })
 })
 
@@ -1102,5 +1122,49 @@ describe("published problem-bank coverage", () => {
         }
       }
     }
+  })
+})
+
+describe("a document that opens on a title", () => {
+  // Every mixed exercise in the bank begins with an ATX h1, and every run
+  // serves one, so `# ` was the first card of 400 measured runs out of 400.
+  // No scheduling choice can reach a card that every candidate carries, which
+  // is why #197 could not move run-to-run repeat and this can.
+  const inputsOf = (source: string) =>
+    deriveSyntaxCheckpoints(source, "").map((checkpoint) =>
+      checkpoint.segments
+        .filter((segment) => segment.kind === "input")
+        .map((segment) => segment.value),
+    )
+
+  it("gives the title when the document continues below it", () => {
+    expect(inputsOf("# Title\n\n- one")).toEqual([["- "]])
+  })
+
+  it("still asks for a heading that is the whole exercise", () => {
+    expect(inputsOf("# Title")).toEqual([["# "]])
+  })
+
+  it("keeps the cards for marks inside the title", () => {
+    // The title is given, not deleted: what it teaches beyond being a title
+    // is still asked for.
+    expect(inputsOf("# The **big** day\n\n- one")).toEqual([
+      ["**", "**"],
+      ["- "],
+    ])
+  })
+
+  it("only gives a level 1 title", () => {
+    // A document opening on `##` is not opening on its title.
+    expect(inputsOf("## Sub\n\n- one")).toEqual([["## "], ["- "]])
+  })
+
+  it("leaves a Setext title alone", () => {
+    // Its mark is an underline on the following line, so "the prefix of the
+    // first line" is not the same shape. No exercise in the bank opens with
+    // one, and this says what happens if one ever does.
+    const inputs = inputsOf("Title\n=====\n\n- one")
+    expect(inputs).toContainEqual(["- "])
+    expect(inputs.length).toBeGreaterThan(1)
   })
 })

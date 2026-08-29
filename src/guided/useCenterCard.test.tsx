@@ -115,7 +115,10 @@ describe("useCenterCard Hint and retry state", () => {
       }),
     )
 
-    act(() => result.current.editSegment(0, "# "))
+    // The opening title is given rather than asked for (#198), so the first
+    // card is the fence and it has two blanks.
+    act(() => result.current.editSegment(0, "```"))
+    act(() => result.current.editSegment(1, "```"))
     act(() => result.current.submit())
 
     expect(result.current.slotIndex).toBe(1)

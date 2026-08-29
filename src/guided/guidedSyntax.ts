@@ -1284,6 +1284,56 @@ function mergeAdjacentSameSyntax(
   return merged
 }
 
+/**
+ * A document that opens on a title and keeps going gives that title rather
+ * than asking for it.
+ *
+ * Every mixed exercise in the bank begins with an ATX h1, and every run serves
+ * one mixed exercise, so `# ` was the first card of 400 runs out of 400. That
+ * one card is most of what "the same grammar keeps coming" was: it repeats in
+ * this sitting and the one before it no matter which exercise is chosen, so no
+ * scheduling choice can reach it (#197, #198).
+ *
+ * Only the heading's own prefix is given. Marks inside the title text carry
+ * their own families and keep their own cards.
+ *
+ * A single-syntax heading exercise is one block on its own, so the sibling
+ * requirement leaves it alone — a bank test holds that no problem teaching
+ * `heading` by itself spans more than one block, because one that did would
+ * quietly stop teaching anything at all.
+ *
+ * Setext titles are excluded. Their mark is an underline on the next line, so
+ * "the prefix of the first line" is not the same shape, and no exercise in the
+ * bank opens with one.
+ */
+function unmaskGivenDocumentTitle(
+  root: Nodes,
+  source: string,
+  mask: boolean[],
+  families: SyntaxFamilies,
+): void {
+  if (!isParent(root) || root.children.length < 2) return
+
+  const title = root.children[0]
+  if (!title || title.type !== "heading" || title.depth !== 1) return
+
+  const from = title.position?.start.offset
+  const to = title.position?.end.offset
+  if (from === undefined || to === undefined) return
+  if (!/^ {0,3}#{1,6}[\t ]+/.test(source.slice(from, lineEndAt(source, from)))) {
+    return
+  }
+
+  // `markNodeSyntax` keys a node's family by type and start offset, so this
+  // clears the title's own prefix and cannot reach a mark that shares the line.
+  const family = `heading@${from}`
+  for (let index = from; index < Math.min(to, mask.length); index += 1) {
+    if (families[index] !== family) continue
+    mask[index] = false
+    families[index] = null
+  }
+}
+
 export function deriveSyntaxCheckpoints(
   target: string,
   _starterText: string,
@@ -1295,8 +1345,10 @@ export function deriveSyntaxCheckpoints(
     () => null,
   )
   const groupedRanges: SourceRange[] = []
-  markNodeSyntax(parseMarkdownSource(source), source, mask, groupedRanges, families)
+  const root = parseMarkdownSource(source)
+  markNodeSyntax(root, source, mask, groupedRanges, families)
   unmaskLineLeadingWhitespace(source, mask, families)
+  unmaskGivenDocumentTitle(root, source, mask, families)
 
   // Grouped ranges are looked up by the line they start on, and the loop skips
   // past a whole group once it takes one. Two multiline deletions can share a
@@ -1389,7 +1441,14 @@ export function buildGuidedDraft(
   completedCount: number,
   completedValues: Readonly<Record<string, string>> = {},
 ): string {
-  if (completedCount <= 0 || checkpoints.length === 0) return ""
+  if (checkpoints.length === 0) return ""
+  // Everything before the first card is Goal text the exercise never asks
+  // for, so it belongs on the page from the start. It used to appear only
+  // after the first card was answered, which was survivable while the first
+  // card sat at the top of the document — and stopped being survivable when
+  // the opening title became given rather than asked for (#198), because a
+  // given title nobody can see is a deleted one.
+  if (completedCount <= 0) return target.slice(0, checkpoints[0]!.targetFrom)
   const boundedCount = Math.min(completedCount, checkpoints.length)
   const nextCheckpoint = checkpoints[boundedCount]
   const draftEnd = nextCheckpoint?.targetFrom ?? target.length

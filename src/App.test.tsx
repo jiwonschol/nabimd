@@ -413,9 +413,11 @@ describe("App", () => {
       name: "Current Markdown syntax",
     })
 
-    expect(reference).toHaveTextContent("Level 1 heading")
-    submitSlot(marks[0]!)
+    // The opening title is given rather than asked for (#198), so the first
+    // card of a mixed document is the first syntax under it.
     expect(reference).toHaveTextContent("Fenced code block")
+    submitSlot(marks[0]!)
+    expect(reference).toHaveTextContent("Numbered step")
   })
 
   it("asks for every bullet of a list on one card and takes an alternate marker", async () => {
