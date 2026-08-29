@@ -8,6 +8,7 @@ import { promisify } from "node:util"
 import {
   resealBatchEvidence,
   resealBatchEvidenceSet,
+  repositoryRelativePath,
   resolveBaselineSha,
 } from "./sealBatchEvidence.mjs"
 import { sealEditorial, sealReview } from "./batchPipeline.mjs"
@@ -553,6 +554,32 @@ test("a review can be resealed before editorial evidence exists", async () => {
   assert.ok(report.changed.includes(`reviews/${reviewName}`))
 })
 
+test("invalid review evidence cannot be sealed before editorial exists", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-invalid-pre-editorial-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(bankRoot, "batches", batchId)
+  await mkdir(resolve(bankRoot, "batches"), { recursive: true })
+  await cp(resolve(sourceBank, "batches", batchId), batchDir, { recursive: true })
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await unlink(resolve(batchDir, "editorial.json"))
+  await unlink(resolve(batchDir, "summary.generated.json"))
+  const reviewName = (await readdir(resolve(batchDir, "reviews"))).find((name) => name.endsWith(".json"))
+  const reviewPath = resolve(batchDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].candidateDigest = "invalid"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  const before = await readFile(reviewPath, "utf8")
+
+  await assert.rejects(
+    resealBatchEvidence({ batchDir, write: true }),
+    /Stale review evidence/,
+  )
+  assert.equal(await readFile(reviewPath, "utf8"), before)
+})
+
 test("rerunning repairs a stale generated chain after seals already match", async () => {
   const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
   const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-repair-chain-"))
@@ -578,6 +605,39 @@ test("rerunning repairs a stale generated chain after seals already match", asyn
   assert.ok(drift.changed.includes(`${batchId}/summary.generated.json`))
   await resealBatchEvidence({ batchDir: targetDir, write: true })
   assert.deepEqual((await resealBatchEvidence({ batchDir: targetDir, write: false })).changed, [])
+})
+
+test("resealing recreates a missing published summary", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-missing-summary-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const batchDir = resolve(bankRoot, "batches", batchId)
+  await mkdir(resolve(bankRoot, "batches"), { recursive: true })
+  for (const publishedBatchId of [batchId, "2026-07-19-l1-l2-headings-002"]) {
+    await cp(
+      resolve(sourceBank, "batches", publishedBatchId),
+      resolve(bankRoot, "batches", publishedBatchId),
+      { recursive: true },
+    )
+  }
+  await cp(resolve(sourceBank, "runtime-projections.generated.json"), resolve(bankRoot, "runtime-projections.generated.json"))
+  await cp(resolve(sourceBank, "tracker.generated.json"), resolve(bankRoot, "tracker.generated.json"))
+  await unlink(resolve(batchDir, "summary.generated.json"))
+
+  const drift = await resealBatchEvidence({ batchDir, write: false })
+  assert.ok(drift.changed.includes(`${batchId}/summary.generated.json`))
+  await resealBatchEvidence({ batchDir, write: true })
+  assert.deepEqual((await resealBatchEvidence({ batchDir, write: false })).changed, [])
+})
+
+test("repository-relative paths use Git tree separators", () => {
+  assert.equal(
+    repositoryRelativePath("target", "repository", () =>
+      String.raw`curriculum\problem-bank\batches\batch-a`,
+    ),
+    "curriculum/problem-bank/batches/batch-a",
+  )
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {

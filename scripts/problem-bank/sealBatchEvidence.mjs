@@ -15,6 +15,10 @@ import { canonicalJson } from "./pipeline.mjs"
 
 const run = promisify(execFile)
 
+export function repositoryRelativePath(path, cwd = process.cwd(), relativePath = relative) {
+  return relativePath(cwd, path).replaceAll("\\", "/")
+}
+
 function prettyJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`
 }
@@ -88,9 +92,11 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
       )
     }
     finalArtifacts = artifacts
-    if (currentBatch.normalized.sequence < targetSequence) continue
-    if (currentBatch.summary === null || currentBatch.summary === undefined) continue
-    if (canonicalJson(artifacts.summary) === canonicalJson(currentBatch.summary)) continue
+    const summaryMissing = currentBatch.summary === null || currentBatch.summary === undefined
+    const missingPublishedSummary = summaryMissing && artifacts.summary.accepted > 0
+    if (currentBatch.normalized.sequence < targetSequence && !missingPublishedSummary) continue
+    if (summaryMissing && !missingPublishedSummary) continue
+    if (!summaryMissing && canonicalJson(artifacts.summary) === canonicalJson(currentBatch.summary)) continue
     const relative = `${currentBatch.normalized.batchId}/summary.generated.json`
     changed.push(relative)
     if (write) {
@@ -327,7 +333,7 @@ async function immutableBaselineTargets(targets) {
 
   const protectedTargets = []
   for (const batchDir of targets) {
-    const repositoryPath = relative(process.cwd(), batchDir)
+    const repositoryPath = repositoryRelativePath(batchDir)
     try {
       await run("git", ["cat-file", "-e", `${baseline}:${repositoryPath}`], {
         cwd: process.cwd(),
@@ -377,7 +383,7 @@ async function main(argv) {
     }
     if (args.length === 0 && protectedTargets.size > 0) {
       const protectedDirs = targets.filter((batchDir) =>
-        protectedTargets.has(relative(process.cwd(), batchDir)),
+        protectedTargets.has(repositoryRelativePath(batchDir)),
       )
       const protectedReports = await resealBatchEvidenceSet({
         batchDirs: protectedDirs,
@@ -394,7 +400,7 @@ async function main(argv) {
       }
     }
     targets = targets.filter(
-      (batchDir) => !protectedTargets.has(relative(process.cwd(), batchDir)),
+      (batchDir) => !protectedTargets.has(repositoryRelativePath(batchDir)),
     )
   }
 

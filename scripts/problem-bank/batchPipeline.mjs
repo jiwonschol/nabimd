@@ -621,6 +621,18 @@ export function evaluateBatchEvidence({
     errors.push(`Stale review manifest: ${normalized.batchId}`)
   }
   const reviewArray = Array.isArray(reviews) ? reviews : []
+  const candidatesByKey = new Map(
+    normalized.candidates.map((candidate) => [
+      candidateKey(candidate.id, candidate.revision),
+      candidate,
+    ]),
+  )
+  const verificationByKey = new Map(
+    (verification.candidates ?? []).map((candidate) => [
+      candidateKey(candidate.candidateId, candidate.revision),
+      candidate,
+    ]),
+  )
   for (const review of reviewArray) {
     if (review.schemaVersion !== BATCH_SCHEMA_VERSION) {
       errors.push(`Invalid review schema: ${review.reviewerId ?? "<unknown>"}`)
@@ -636,6 +648,30 @@ export function evaluateBatchEvidence({
     }
     requireString(review.reviewerId, "Review reviewerId", errors)
     requireString(review.reviewRunId, "Review reviewRunId", errors)
+    const verdicts = Array.isArray(review.verdicts) ? review.verdicts : []
+    for (const duplicate of countDuplicates(
+      verdicts.map((verdict) => candidateKey(verdict.candidateId, verdict.revision)),
+    )) {
+      errors.push(`Duplicate review verdict: ${duplicate}/${review.reviewerId ?? "<unknown>"}`)
+    }
+    for (const verdict of verdicts) {
+      const key = candidateKey(verdict.candidateId, verdict.revision)
+      const candidate = candidatesByKey.get(key)
+      const verified = verificationByKey.get(key)
+      if (!candidate) {
+        errors.push(`Unknown review verdict: ${key}/${review.reviewerId ?? "<unknown>"}`)
+        continue
+      }
+      if (
+        verdict.candidateDigest !== candidate.candidateDigest ||
+        verdict.fixtureResultsDigest !== verified?.fixtureResultsDigest
+      ) {
+        errors.push(`Stale review evidence: ${candidate.id}/${review.reviewerId ?? "<unknown>"}`)
+      }
+      if (!["pass", "fail"].includes(verdict.verdict)) {
+        errors.push(`Invalid review verdict: ${candidate.id}/${review.reviewerId ?? "<unknown>"}`)
+      }
+    }
   }
   const reviewerIds = reviewArray.map((review) => review.reviewerId)
   const runIds = reviewArray.map((review) => review.reviewRunId)
