@@ -1190,6 +1190,16 @@ function lineNumberAt(source: string, offset: number): number {
  * refuses answers the learner could give before.
  */
 function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
+  let offset = checkpoint.targetFrom
+  for (const segment of checkpoint.segments) {
+    if (
+      segment.kind === "input" &&
+      Object.keys(listStyleFromInput(segment.value)).length > 0
+    ) {
+      return source.slice(lineStartAt(source, offset), offset)
+    }
+    offset += segment.value.length
+  }
   return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
 }
 
