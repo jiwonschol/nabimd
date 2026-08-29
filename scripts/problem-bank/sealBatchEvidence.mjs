@@ -38,8 +38,14 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
   })
   const trackerPath = resolve(bankRoot, "tracker.generated.json")
   const committedTracker = JSON.parse(await readFile(trackerPath, "utf8"))
+  const trackedBatchIds = new Set(
+    (committedTracker.batches ?? []).map((batch) => batch.batchId),
+  )
   const missingPublishedEditorial = projected.filter(
-    (batch) => batch.summary?.status === "published" && batch.editorial == null,
+    (batch) =>
+      (batch.summary?.status === "published" ||
+        trackedBatchIds.has(batch.normalized?.batchId)) &&
+      batch.editorial == null,
   )
   if (missingPublishedEditorial.length > 0) {
     throw new Error(
@@ -71,9 +77,6 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
   }
   const publishedFromSummaries = publishedBatchHistory(
     projected.filter((batch) => batch.editorial !== null && batch.editorial !== undefined),
-  )
-  const trackedBatchIds = new Set(
-    (committedTracker.batches ?? []).map((batch) => batch.batchId),
   )
   const lastPublishedSequence = Math.max(
     0,
@@ -131,8 +134,15 @@ async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
     ["tracker.generated.json", finalArtifacts.tracker, committedTracker],
   ]) {
     const path = resolve(bankRoot, name)
-    const current = committed ?? JSON.parse(await readFile(path, "utf8"))
-    if (canonicalJson(expected) === canonicalJson(current)) continue
+    let current = committed
+    if (current === null) {
+      try {
+        current = JSON.parse(await readFile(path, "utf8"))
+      } catch (error) {
+        if (error.code !== "ENOENT") throw error
+      }
+    }
+    if (current !== null && canonicalJson(expected) === canonicalJson(current)) continue
     changed.push(name)
     if (write) await writeFile(path, prettyJson(expected))
   }
