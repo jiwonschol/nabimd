@@ -28,6 +28,7 @@ const blockType = {
   code: "code",
   blockquote: "blockquote",
   "thematic-break": "thematicBreak",
+  table: "table",
 } as const
 
 const inlineType = {

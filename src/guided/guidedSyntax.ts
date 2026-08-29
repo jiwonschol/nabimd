@@ -822,6 +822,33 @@ function markNodeSyntax(
       if (grouped) groupedRanges.push(grouped)
       break
     }
+    case "table":
+      if (range) {
+        // Every bar in a table is grammar the learner types; the cell text
+        // between them is prose. The delimiter row is not a child of the table
+        // node — GFM consumes it — so the rows are walked by line rather than
+        // by child, which also picks up its bars while leaving its dashes
+        // locked. Each line carries its own family: a header row, the rule
+        // under it, and a body row teach different things even though the mark
+        // is the same character, so they must stay separate cards.
+        let lineStart = lineStartAt(source, range.from)
+        while (lineStart < range.to) {
+          const lineEnd = lineEndAt(source, lineStart)
+          for (let index = lineStart; index < lineEnd; index += 1) {
+            if (source[index] === "|") {
+              markRange(
+                mask,
+                { from: index, to: index + 1 },
+                families,
+                `table-row@${lineStart}`,
+              )
+            }
+          }
+          if (lineEnd >= source.length) break
+          lineStart = lineEnd + 1
+        }
+      }
+      break
     case "thematicBreak":
     case "break":
       if (range) markRange(mask, range, families, family)
@@ -947,13 +974,23 @@ function sameSyntax(
   )
 }
 
+/** A table's rows are never joined: see the `table` case in `markNodeSyntax`. */
+const TABLE_ROW_FAMILY = "table-row@"
+
 function mergeAdjacentSameSyntax(
   source: string,
   checkpoints: readonly SyntaxCheckpoint[],
+  familyOf: readonly (string | null)[],
 ): SyntaxCheckpoint[] {
   const merged: SyntaxCheckpoint[] = []
-  for (const checkpoint of checkpoints) {
-    const previous = merged.at(-1)
+  const mergedFamilies: (string | null)[] = []
+  for (const [position, checkpoint] of checkpoints.entries()) {
+    const family = familyOf[position] ?? null
+    const previousFamily = mergedFamilies.at(-1) ?? null
+    const tableRow =
+      family?.startsWith(TABLE_ROW_FAMILY) === true ||
+      previousFamily?.startsWith(TABLE_ROW_FAMILY) === true
+    const previous = tableRow ? undefined : merged.at(-1)
     const between = previous
       ? source.slice(previous.targetTo, checkpoint.targetFrom)
       : null
@@ -965,6 +1002,7 @@ function mergeAdjacentSameSyntax(
       !sameSyntax(previous, checkpoint)
     ) {
       merged.push(checkpoint)
+      mergedFamilies.push(family)
       continue
     }
 
@@ -1015,6 +1053,9 @@ export function deriveSyntaxCheckpoints(
   unmaskLineLeadingWhitespace(source, mask, families)
 
   const checkpoints: SyntaxCheckpoint[] = []
+  // The family each checkpoint's first blank belongs to. Only the merge step
+  // reads it, to keep a table's rows apart.
+  const checkpointFamilies: (string | null)[] = []
   let lineStart = 0
   while (lineStart <= source.length) {
     const lineEnd = lineEndAt(source, lineStart)
@@ -1063,13 +1104,14 @@ export function deriveSyntaxCheckpoints(
         canonicalInput,
         segments,
       })
+      checkpointFamilies.push(families[activeOffset] ?? null)
     }
 
     if (checkpointEnd >= source.length) break
     lineStart = checkpointEnd + 1
   }
 
-  return mergeAdjacentSameSyntax(source, checkpoints)
+  return mergeAdjacentSameSyntax(source, checkpoints, checkpointFamilies)
 }
 
 export function buildGuidedDraft(

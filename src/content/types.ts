@@ -36,6 +36,7 @@ export type BlockKind =
   | "code"
   | "blockquote"
   | "thematic-break"
+  | "table"
 
 export type InlineKind =
   | "emphasis"
