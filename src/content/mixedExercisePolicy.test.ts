@@ -31,5 +31,11 @@ describe("mixed exercise card policy", () => {
         starterText: "One\nBold\nTwo",
       }),
     ).toBe(true)
+    expect(
+      hasSeparatedSyntaxRepeat({
+        target: "- One\n\nParagraph with `code`.\n\n- Two",
+        starterText: "One\n\nParagraph with code.\n\nTwo",
+      }),
+    ).toBe(true)
   })
 })

@@ -182,6 +182,7 @@ function buildAcceptedForms(
   }
 
   if (
+    checkpoint.syntaxFamily !== "inlineCode" &&
     canonicalParts.length === 2 &&
     canonicalParts[0] === canonicalParts[1] &&
     (canonicalParts[0] === "```" || canonicalParts[0] === "~~~")
@@ -1213,7 +1214,11 @@ function oneConstruction(left: SyntaxRun, right: SyntaxRun): boolean {
     return true
   }
   if (LIST_MARK.test(left.value) && TASK_BOX_MARK.test(right.value)) return true
-  return EMPHASIS_MARK.test(left.value) && EMPHASIS_MARK.test(right.value)
+  return (
+    left.to === right.from &&
+    EMPHASIS_MARK.test(left.value) &&
+    EMPHASIS_MARK.test(right.value)
+  )
 }
 
 /**
@@ -1240,6 +1245,14 @@ function checkpointRangesByFamily(
   if (tableRow) return [{ from, to }]
   const runs = syntaxRuns(source, mask, families, from, to)
   if (runs.length < 2) return [{ from, to }]
+  const familySpans = new Map<string, { from: number; to: number }>()
+  for (const run of runs) {
+    if (run.family === null) continue
+    const construction = run.family.replace(/-(?:open|close)$/, "")
+    const span = familySpans.get(construction)
+    if (span) span.to = run.to
+    else familySpans.set(construction, { from: run.from, to: run.to })
+  }
 
   const boundaries: number[] = []
   let previous = runs[0]!
@@ -1247,7 +1260,12 @@ function checkpointRangesByFamily(
     // The prose between two families travels with the later lesson. The first
     // card then reveals only what it just taught (`- `), while the next can
     // still see context it needs (`b\n---` is a Setext heading, not a break).
-    if (!oneConstruction(previous, run)) boundaries.push(previous.to)
+    const crossesBoundary = [...familySpans.values()].some(
+      (span) => span.from < previous.to && span.to > previous.to,
+    )
+    if (!oneConstruction(previous, run) && !crossesBoundary) {
+      boundaries.push(previous.to)
+    }
     previous = run
   }
   if (boundaries.length === 0) return [{ from, to }]

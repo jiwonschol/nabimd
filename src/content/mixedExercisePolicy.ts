@@ -3,6 +3,7 @@ import {
   deriveSyntaxCheckpoints,
   syntaxCheckpointTerms,
 } from "../guided/guidedSyntax"
+import { parseMarkdownSource } from "../markdown/parser"
 
 export const MIXED_EXERCISE_POLICY = {
   maxCheckpoints: 5,
@@ -17,10 +18,41 @@ type MixedExerciseSource = Pick<
 export function hasSeparatedSyntaxRepeat(
   problem: MixedExerciseSource,
 ): boolean {
-  const termsByCheckpoint = deriveSyntaxCheckpoints(
+  const checkpoints = deriveSyntaxCheckpoints(
     problem.target,
     problem.starterText,
-  ).map(syntaxCheckpointTerms)
+  )
+  const termsByCheckpoint = checkpoints.map(syntaxCheckpointTerms)
+  const listRanges: { from: number; to: number; identity: number }[] = []
+  let nextListIdentity = 0
+  const visit = (node: {
+    type?: string
+    children?: readonly unknown[]
+    position?: { start?: { offset?: number }; end?: { offset?: number } }
+  }) => {
+    if (node.type === "list") {
+      const from = node.position?.start?.offset
+      const to = node.position?.end?.offset
+      if (from !== undefined && to !== undefined) {
+        listRanges.push({ from, to, identity: nextListIdentity })
+        nextListIdentity += 1
+      }
+    }
+    for (const child of node.children ?? []) {
+      visit(child as Parameters<typeof visit>[0])
+    }
+  }
+  visit(parseMarkdownSource(problem.target))
+  const listIdentityByCheckpoint = checkpoints.map((checkpoint) =>
+    listRanges
+      .filter(
+        (range) =>
+          range.from <= checkpoint.activeOffset &&
+          checkpoint.activeOffset < range.to,
+      )
+      .sort((left, right) => left.to - left.from - (right.to - right.from))[0]
+      ?.identity ?? null,
+  )
   const indexesByTerm = new Map<string, number[]>()
 
   for (const [index, terms] of termsByCheckpoint.entries()) {
@@ -44,6 +76,8 @@ export function hasSeparatedSyntaxRepeat(
       // code may bridge the two marker cards. Every other gap stays forbidden.
       const splitListBridge =
         (term === "bullet item" || term === "numbered step") &&
+        listIdentityByCheckpoint[previous] !== null &&
+        listIdentityByCheckpoint[previous] === listIdentityByCheckpoint[value] &&
         termsByCheckpoint
           .slice(previous + 1, value)
           .every(

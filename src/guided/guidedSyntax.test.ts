@@ -225,6 +225,29 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toEqual(["~~", "~~", "~~", "~~"])
   })
 
+  it("keeps independent emphasis spans on independent cards", () => {
+    const cards = deriveSyntaxCheckpoints("*one* **two**", "one two")
+
+    expect(cards).toHaveLength(2)
+    expect(cards.map((card) => card.canonicalInput)).toEqual(["**", "****"])
+  })
+
+  it.each(["**[bold link](url)**", "~~**deleted**~~"])(
+    "keeps an outer delimiter pair together for nested syntax: %s",
+    (source) => {
+      const cards = deriveSyntaxCheckpoints(source, "")
+      const outer = source.startsWith("**") ? "**" : "~~"
+      const card = cards.find(
+        (candidate) =>
+          candidate.segments.filter(
+            (segment) => segment.kind === "input" && segment.value === outer,
+          ).length === 2,
+      )
+
+      expect(card).toBeDefined()
+    },
+  )
+
   it("never puts a tab in a nested quote's blanks", () => {
     // Three review rounds arrived as three spellings of one trade: `- [\t]
     // Buy`, `> \t> deep`, `>>\tdeep`. On screen a tab and a space are the same
@@ -720,6 +743,14 @@ describe("deriveSyntaxCheckpoints", () => {
       { kind: "locked", value: "bash\nnpm test\n" },
       { kind: "input", value: "```" },
     ])
+  })
+
+  it("does not offer fence aliases for a six-backtick inline-code answer", () => {
+    const checkpoint = deriveSyntaxCheckpoints("- ```x```", "")[1]!
+
+    expect(checkpoint.syntaxFamily).toBe("inlineCode")
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(["``````"])
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).not.toContain("~~~~~~")
   })
 })
 
