@@ -850,6 +850,22 @@ describe("describeCheckpoint", () => {
     )
   })
 
+  it("counts the spaces of a whole quoted line, not its first pair", () => {
+    const sentence = (target: string) => {
+      const { prefix, term, suffix } = describeCheckpoint(checkpointFor(target))
+      return prefix + term + suffix
+    }
+    // `>>> deep` is three markers carrying one trailing space. Reading only
+    // the first touching pair found none, so the card said "marks" while its
+    // one accepted answer was `>>> `.
+    expect(sentence(">>> deep")).toBe(
+      "Type the Markdown marks and space for a quote inside a quote.",
+    )
+    expect(sentence(">> > deep")).toBe(
+      "Type the Markdown marks and spaces for a quote inside a quote.",
+    )
+  })
+
   it("keeps the nesting when a nested quote carries another family", () => {
     // `> > **Deep**` is one line at depth two. Counting quote markers alone
     // read its two touching levels as two quoted lines and said "each line of

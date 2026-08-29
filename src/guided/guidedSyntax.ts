@@ -167,30 +167,6 @@ function buildAcceptedForms(
   // list markers above. A marker that changes partway down a list starts a
   // second list, so those must agree; two checked boxes constrain nothing, so
   // flipping them together rejected the valid mixed answer `[x]…[X]`.
-  //
-  // Only the case varies. A tab between the brackets is a task marker in some
-  // columns and not others — `- [\t]` parses as an item while `-  [\t]` and
-  // `  - [\t]` do not — and a checkpoint cannot see the line's indentation,
-  // so offering the tab here accepted answers that are no longer task items.
-  // The deriver keeps tab boxes locked for the same reason.
-  const taskBoxAlternatives: Readonly<Record<string, string>> = {
-    "[x]": "[X]",
-    "[X]": "[x]",
-  }
-  const taskBoxGroups = canonicalParts.flatMap((part, index) =>
-    part in taskBoxAlternatives ? [index] : [],
-  )
-  for (const index of taskBoxGroups) {
-    expandInputForms(forms, (form) => {
-      const value = form[index]
-      const alternative = value === undefined ? undefined : taskBoxAlternatives[value]
-      if (alternative === undefined) return null
-      const next = [...form]
-      next[index] = alternative
-      return next
-    })
-  }
-
   // Emphasis pairs do not constrain each other. `*one*` and `*two*` were two
   // cards before they were joined, and each accepted its own delimiter;
   // swapping only the first pair offered a mixed answer (`__**`) while
@@ -241,6 +217,25 @@ export function acceptedGuidedSyntaxInputs(
 }
 
 /**
+ * `[X]` folded to `[x]`.
+ *
+ * GFM reads both as the same checked item, so a learner who types either one
+ * is right. Offering the pair as two *accepted forms* doubled the form array
+ * once per box, and a checked list merges onto a single card: fourteen items
+ * produced 49,152 complete forms and about 12 MB of hint rows, which
+ * `checkpointHintRows` builds on every render whether the Hint is open or
+ * not. Folding the case where answers are compared keeps both spellings right
+ * and leaves the form count exactly where it was.
+ *
+ * A blank holding `[X]` is a task box and nothing else — every other bracket
+ * mark is split into its own group (`[`, `](`, `)`), so this cannot touch a
+ * link.
+ */
+function foldTaskBoxCase(value: string): string {
+  return value.replace(/\[X\]/g, "[x]")
+}
+
+/**
  * Which input groups in this attempt no group-wise accepted answer can
  * explain. An empty result means every group is typable as part of some
  * accepted form (the whole answer may still be rejected when the groups come
@@ -254,8 +249,12 @@ export function missedGuidedSyntaxGroups(
   const groupCount = forms[0]?.length ?? 0
   const missed: number[] = []
   for (let index = 0; index < groupCount; index += 1) {
-    const value = values[index] ?? ""
-    if (!forms.some((form) => form[index] === value)) missed.push(index)
+    const value = foldTaskBoxCase(values[index] ?? "")
+    const explained = forms.some((form) => {
+      const accepted = form[index]
+      return accepted !== undefined && foldTaskBoxCase(accepted) === value
+    })
+    if (!explained) missed.push(index)
   }
   return missed
 }
@@ -265,10 +264,24 @@ export function acceptedGuidedSyntaxGroupInputs(
   checkpoint: SyntaxCheckpoint,
   groupIndex: number,
 ): readonly string[] {
-  return [
+  const values = [
     ...new Set(
       acceptedGuidedSyntaxGroupForms(checkpoint).flatMap(
         (form) => form[groupIndex] ?? [],
+      ),
+    ),
+  ]
+  // The other spelling of a checked box is listed here rather than doubling
+  // the accepted forms it would come from — see `foldTaskBoxCase`. One group
+  // gains one row; the complete forms gain none.
+  return [
+    ...new Set(
+      values.flatMap((value) =>
+        value === "[x]"
+          ? [value, "[X]"]
+          : value === "[X]"
+            ? [value, "[x]"]
+            : [value],
       ),
     ),
   ]
@@ -347,7 +360,10 @@ export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): boolean {
-  return acceptedGuidedSyntaxInputs(checkpoint).includes(value)
+  const folded = foldTaskBoxCase(value)
+  return acceptedGuidedSyntaxInputs(checkpoint).some(
+    (accepted) => foldTaskBoxCase(accepted) === folded,
+  )
 }
 
 function renderCheckpointWithInput(
@@ -1077,22 +1093,34 @@ function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
   return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
 }
 
+const QUOTE_MARKER_BLANK = /^ {0,3}>[\t ]*$/
+
 /**
- * The exact quote markers a card asks for, in order.
+ * The quote markers a card asks for, one line at a time.
  *
  * `>>` and `> > ` are both a quote inside a quote and carry the same name, but
- * they are not the same answer. Joining two blocks that spell it differently
- * produced one card whose sentence counts the spaces of its first pair and
- * says nothing about the second.
+ * they are not the same answer, so two blocks spelling it differently must not
+ * join. Comparing the *accumulated* sequence closed that and opened the
+ * opposite: once two lines had merged, a card holding `> |> ` stopped matching
+ * the third line's `> `, and a three-line quote came apart into two cards.
+ *
+ * Every quoted line opens with a marker nothing precedes, so the sequence is
+ * cut there and the lines are compared as a set — which is the same for one
+ * line as for ten of the same spelling.
  */
 function quoteMarkerShape(checkpoint: SyntaxCheckpoint): string {
-  return checkpoint.segments
-    .flatMap((segment) =>
-      segment.kind === "input" && /^ {0,3}>[\t ]*$/.test(segment.value)
-        ? [segment.value]
-        : [],
-    )
-    .join("|")
+  const lines: string[][] = []
+  checkpoint.segments.forEach((segment, index) => {
+    if (segment.kind !== "input" || !QUOTE_MARKER_BLANK.test(segment.value)) {
+      return
+    }
+    const previous = checkpoint.segments[index - 1]
+    const continuesLine =
+      previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value)
+    if (continuesLine && lines.length > 0) lines[lines.length - 1]!.push(segment.value)
+    else lines.push([segment.value])
+  })
+  return [...new Set(lines.map((line) => line.join("|")))].sort().join(" ")
 }
 
 function sameSyntax(

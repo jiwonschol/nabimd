@@ -8,6 +8,7 @@ import { parseMarkdownSource } from "../markdown/parser"
 import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import {
+  acceptedGuidedSyntaxGroupInputs,
   acceptedGuidedSyntaxInputs,
   acceptsGuidedSyntaxInput,
   buildGuidedDraft,
@@ -69,25 +70,44 @@ describe("deriveSyntaxCheckpoints", () => {
   })
 
   it("accepts either spelling of a checked task box", () => {
-    // GFM parses `[x]` and `[X]` as the same checked item, so a learner who
-    // types the other one is not wrong. Recording only the spelling the Goal
-    // happens to use rejected valid Markdown.
-    const accepted = (source: string) =>
-      acceptedGuidedSyntaxInputs(deriveSyntaxCheckpoints(source, "")[0]!)
+    const checkpointFor = (source: string) =>
+      deriveSyntaxCheckpoints(source, "")[0]!
 
-    expect(accepted("- [x] Buy milk")).toContain("- [X]")
-    expect(accepted("- [X] Buy milk")).toContain("- [x]")
+    // GFM parses `[x]` and `[X]` as the same checked item, so a learner who
+    // types the other one is not wrong. The case is folded where answers are
+    // compared rather than doubling the accepted forms — a checked list merges
+    // onto one card, and one alternative per box is a Cartesian product.
+    const one = checkpointFor("- [x] Buy milk")
+    expect(acceptsGuidedSyntaxInput(one, "- [X]")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(one, "* [X]")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(one, "- [ ]")).toBe(false)
+
+    // Two boxes choose independently — `[x]` beside `[X]` is valid GFM.
+    const two = checkpointFor("- [x] one\n- [x] two")
+    expect(acceptsGuidedSyntaxInput(two, "- [X]- [x]")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(two, "- [x]- [X]")).toBe(true)
+
+    // …and the form count does not move. Fourteen items on one card used to
+    // build 49,152 complete forms and about 12 MB of hint rows, which
+    // `checkpointHintRows` materialises on every render.
+    const long = checkpointFor(
+      Array.from({ length: 14 }, (_, index) => `- [x] item ${index}`).join("\n"),
+    )
+    expect(acceptedGuidedSyntaxInputs(long)).toHaveLength(3)
+    expect(checkpointHintRows(long)).toHaveLength(3)
+
+    // The note still shows the learner both spellings, one row per group.
+    expect(acceptedGuidedSyntaxGroupInputs(two, 1)).toEqual(["[x]", "[X]"])
+
     // Only the case varies. A tab between the brackets is a task marker in
     // some columns and not others, and the accepted set is built from a
     // checkpoint that cannot see the line's indentation — see the tab test
     // below for what that costs.
-    expect(accepted("- [ ] Buy milk")).toEqual(["- [ ]", "* [ ]", "+ [ ]"])
-
-    // Two boxes on one card choose independently — `[x]` beside `[X]` is
-    // valid GFM. Flipping them together, the way the list markers must be
-    // (a marker that changes starts a second list), rejected the mixed answer.
-    expect(accepted("- [x] one\n- [x] two")).toContain("- [X]- [x]")
-    expect(accepted("- [x] one\n- [x] two")).toContain("- [x]- [X]")
+    expect(acceptedGuidedSyntaxInputs(checkpointFor("- [ ] Buy milk"))).toEqual([
+      "- [ ]",
+      "* [ ]",
+      "+ [ ]",
+    ])
   })
 
   it("leaves a task box written with a tab as locked prose", () => {
@@ -115,6 +135,17 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toEqual(["- "])
     expect(syntaxCheckpointTerms(checkpoint)).toEqual(["bullet item"])
     expect(acceptedGuidedSyntaxInputs(checkpoint)).not.toContain("- [\t]")
+  })
+
+  it("keeps every line of one quote on a single card", () => {
+    // The merge key compares one line's markers, not the accumulated run.
+    // Comparing the whole sequence kept differently spelled blocks apart —
+    // which is right — but also broke a three-line quote in two, because the
+    // card holding two lines no longer matched the third.
+    expect(deriveSyntaxCheckpoints("> one\n> two\n> three", "")).toHaveLength(1)
+    expect(
+      deriveSyntaxCheckpoints("> > one\n> > two\n> > three", ""),
+    ).toHaveLength(1)
   })
 
   it("keeps nested quotes of different spacing on separate cards", () => {

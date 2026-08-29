@@ -57,8 +57,17 @@ function nestedQuoteInstruction(
 ): CheckpointInstruction | null {
   const nestedAt = firstTouchingMatch(shape, QUOTE_MARKER)
   if (nestedAt < 0) return null
-  const pair = touchingPairAt(shape, nestedAt)!
-  const spaces = (pair.join("").match(/ /g) ?? []).length
+  // The spaces come from one whole line, not from the first pair on it.
+  // `>>> deep` is three markers carrying a single trailing space: reading the
+  // first two found none, and the card said "marks" while its only accepted
+  // answer was `>>> `. `>> > deep` undercounted the same way.
+  const firstLine: string[] = []
+  for (const [index, value] of shape.inputs.entries()) {
+    if (!QUOTE_MARKER.test(value)) continue
+    if (firstLine.length > 0 && shape.precededByInput[index] !== true) break
+    firstLine.push(value)
+  }
+  const spaces = (firstLine.join("").match(/ /g) ?? []).length
   // How many quoted *lines* the card holds, not how many markers. Every line
   // opens with a marker nothing precedes; the ones behind it are its deeper
   // levels. Counting markers instead would read `> > > one` as three lines,
