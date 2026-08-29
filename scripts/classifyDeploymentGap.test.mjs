@@ -358,6 +358,37 @@ describe("classifyDeploymentGap", () => {
     }
   })
 
+  it("names Vercel's newest attempt in the unread-page report", () => {
+    // Third time today a single-element fixture hid a selection function: with
+    // one status, `newestStatus(...)` and `relevant[last]` are the same value,
+    // so reading the wrong end of the array broke nothing. Any assertion about
+    // a chosen element needs at least two to choose between.
+    const result = classifyDeploymentGap({
+      statuses: [
+        {
+          context: "Vercel",
+          state: "failure",
+          description: "Build failed",
+          updated_at: "2026-08-29T11:00:00Z",
+        },
+        {
+          context: "Vercel",
+          state: "pending",
+          description: "Deploying",
+          updated_at: "2026-08-29T14:00:00Z",
+        },
+      ],
+      expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
+      deployedSha: null,
+      eventName: "push",
+      now: NOW,
+    })
+
+    expect(result.kind).toBe("unobserved")
+    expect(result.summary).toContain("`pending`")
+    expect(result.summary).not.toContain("`failure`")
+  })
+
   it("still reads the page when there is a commit to read", () => {
     // The passing side: moving the guard to the front must not swallow the
     // cases that do have an observation.
