@@ -39,6 +39,24 @@ export function importsNodeTest(source) {
       index = stop
       continue
     }
+    if (current === "/" && /(?:^|[=(:,!&|?;{}\[\]])\s*$/.test(executable)) {
+      let stop = index + 1
+      let inCharacterClass = false
+      while (stop < source.length) {
+        if (source[stop] === "\\") stop += 2
+        else if (source[stop] === "[") { inCharacterClass = true; stop += 1 }
+        else if (source[stop] === "]") { inCharacterClass = false; stop += 1 }
+        else if (source[stop] === "/" && !inCharacterClass) {
+          stop += 1
+          while (/[a-z]/i.test(source[stop] ?? "")) stop += 1
+          break
+        } else if (source[stop] === "\n") break
+        else stop += 1
+      }
+      executable += source.slice(index, stop).replace(/[^\n]/g, " ")
+      index = stop
+      continue
+    }
     if (current === "`") {
       let stop = index + 1
       while (stop < source.length) {
@@ -129,5 +147,6 @@ describe("test runner configuration", () => {
     expect(importsNodeTest('const runner = "node:test"\n')).toBe(false)
     expect(importsNodeTest('/* await import("node:test") */\n')).toBe(false)
     expect(importsNodeTest('const fixture = `await import("node:test")`\n')).toBe(false)
+    expect(importsNodeTest('const matcher = /import("node:test")/\n')).toBe(false)
   })
 })

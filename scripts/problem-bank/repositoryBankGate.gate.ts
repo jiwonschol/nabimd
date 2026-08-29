@@ -9,6 +9,7 @@ import {
   publishedBatchHistory,
   verifyLegacyEvidence,
 } from "./batchPipeline.mjs"
+import { resolveBaselineSha } from "./sealBatchEvidence.mjs"
 
 const run = promisify(execFile)
 const repositoryRoot = process.cwd()
@@ -18,36 +19,8 @@ async function readJson(path: string) {
   return JSON.parse(await readFile(path, "utf8"))
 }
 
-async function resolveBaselineSha(): Promise<string | null> {
-  const explicit = process.env.NABI_BASE_SHA?.trim()
-  if (explicit && !/^0+$/.test(explicit)) return explicit
-
-  for (const mainRef of ["origin/main", "main"]) {
-    try {
-      const { stdout } = await run("git", ["merge-base", mainRef, "HEAD"], {
-        cwd: repositoryRoot,
-      })
-      const mergeBase = stdout.trim()
-      const head = (
-        await run("git", ["rev-parse", "HEAD"], { cwd: repositoryRoot })
-      ).stdout.trim()
-      if (mergeBase && !(mainRef === "main" && mergeBase === head)) {
-        return mergeBase
-      }
-    } catch {
-      // Try the next stable main ref before falling back to the parent commit.
-    }
-  }
-
-  try {
-    return (await run("git", ["rev-parse", "HEAD^"], { cwd: repositoryRoot })).stdout.trim()
-  } catch {
-    return null
-  }
-}
-
 async function readBaselineTracker() {
-  const sha = await resolveBaselineSha()
+  const sha = await resolveBaselineSha(repositoryRoot)
   if (!sha) return null
 
   const trackerPath = "curriculum/problem-bank/tracker.generated.json"
@@ -66,7 +39,7 @@ async function readBaselineTracker() {
 }
 
 async function immutableBaselineBatchErrors(): Promise<string[]> {
-  const sha = await resolveBaselineSha()
+  const sha = await resolveBaselineSha(repositoryRoot)
   if (!sha) return []
 
   const batchesPath = "curriculum/problem-bank/batches"

@@ -301,6 +301,32 @@ test("local main itself uses its parent instead of HEAD as the baseline", async 
   assert.equal(await resolveBaselineSha(repository, ""), parent)
 })
 
+test("origin/main itself uses its parent instead of HEAD as the baseline", async () => {
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-origin-main-baseline-"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "first\n")
+  await run("git", ["add", "evidence.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "first"], { cwd: repository })
+  const parent = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+  await writeFile(resolve(repository, "evidence.txt"), "second\n")
+  await run("git", ["commit", "-am", "second"], { cwd: repository })
+  await run("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: repository })
+
+  assert.equal(await resolveBaselineSha(repository, ""), parent)
+})
+
+test("resealing rejects targets from different problem-bank roots", async () => {
+  const firstRoot = resolve(tmpdir(), "first-bank", "batches", "batch-a")
+  const secondRoot = resolve(tmpdir(), "second-bank", "batches", "batch-b")
+
+  await assert.rejects(
+    resealBatchEvidenceSet({ batchDirs: [firstRoot, secondRoot], write: false }),
+    /different problem-bank roots/,
+  )
+})
+
 test("the command rejects a nonexistent explicit batch target", async () => {
   const result = await runCli([
     "--check",

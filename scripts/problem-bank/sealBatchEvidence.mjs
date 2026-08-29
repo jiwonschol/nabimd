@@ -157,6 +157,13 @@ async function resealOneBatch({ batchDir, write }) {
 }
 
 export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
+  const bankRoots = new Set(
+    batchDirs.map((batchDir) => resolve(dirname(dirname(batchDir)))),
+  )
+  if (bankRoots.size > 1) {
+    throw new Error("Cannot reseal batches from different problem-bank roots together.")
+  }
+
   if (write && batchDirs.length > 0) {
     const bankRoot = dirname(dirname(batchDirs[0]))
     const loaded = await loadBatchDirectories(bankRoot)
@@ -231,7 +238,7 @@ export async function resolveBaselineSha(
         await run("git", ["merge-base", mainRef, "HEAD"], { cwd })
       ).stdout.trim()
       const head = (await run("git", ["rev-parse", "HEAD"], { cwd })).stdout.trim()
-      if (baseline && !(mainRef === "main" && baseline === head)) return baseline
+      if (baseline && baseline !== head) return baseline
     } catch {
       // Try the next stable main ref before falling back to the parent commit.
     }
