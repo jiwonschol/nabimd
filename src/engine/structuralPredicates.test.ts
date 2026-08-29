@@ -632,6 +632,50 @@ describe("structural match predicates", () => {
     ).toEqual({ status: "matched", reviewItems: [] })
   })
 
+  it.each([
+    [
+      "image",
+      "![Direct](/one.png) and ![Reference][two]\n\n[two]: /two.png",
+      "![Reference][one]\n\n[one]: /one.png",
+    ],
+    [
+      "link",
+      "[Direct](/one) and [Reference][two]\n\n[two]: /two",
+      "[Reference][one]\n\n[one]: /one",
+    ],
+  ] as const)(
+    "counts direct and reference %s spellings for max-inline-count",
+    (inline, overLimit, oneReference) => {
+      const withInlineReview: GradableProblem = {
+        ...problem([]),
+        editorialChecks: [
+          {
+            id: `keep-one-${inline}`,
+            kind: "max-inline-count",
+            scope: { kind: "document" },
+            inline,
+            max: 1,
+            review: `Keep one ${inline} as the focus.`,
+          },
+        ],
+      }
+
+      expect(evaluateProblem(withInlineReview, overLimit)).toEqual({
+        status: "matched",
+        reviewItems: [
+          {
+            id: `keep-one-${inline}`,
+            message: `Keep one ${inline} as the focus.`,
+          },
+        ],
+      })
+      expect(evaluateProblem(withInlineReview, oneReference)).toEqual({
+        status: "matched",
+        reviewItems: [],
+      })
+    },
+  )
+
   it("targets a section by heading depth and occurrence, never heading prose", () => {
     const sectionList = problem([
       {

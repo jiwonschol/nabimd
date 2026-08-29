@@ -174,8 +174,8 @@ describe("deriveSyntaxCheckpoints", () => {
       )
     const cards = deriveSyntaxCheckpoints(">\tplain\n> > nested", "")
     expect(cards).toHaveLength(2)
-    // The plain line keeps the tab it always had — that is #204's axis.
-    expect(blanks(cards[0]!)).toEqual([">\t"])
+    // The tab stays locked instead of becoming an invisible answer.
+    expect(blanks(cards[0]!)).toEqual([">"])
     // The nested line does not.
     expect(blanks(cards[1]!)).toEqual(["> ", "> "])
   })
@@ -250,25 +250,40 @@ describe("deriveSyntaxCheckpoints", () => {
         }
       }
     }
-    // The sweep has to reach the shape it guards — a guard that walks past its
-    // own case is not a guard. The number is not arbitrary: a tab in the
-    // *outer* separator stops the nesting from being recognised at all, while
-    // a tab in the inner one does not. Three of the seven separators hold no
-    // tab, so 3 x 7 = 21 spellings nest and the other 28 stay plain (#204).
-    // Read that way, this asserts "every spelling whose outer marker has no
-    // tab", not "21 of 49" — if you are here to change the number, check which
-    // of those two moved.
-    expect(nested).toBe(21)
+    // The count is the parser's reachable surface, not a magic coverage
+    // number: 42 spellings produce two blockquote nodes. The seven whose
+    // outer separator is two tabs produce indented code after the outer quote
+    // under CommonMark tab expansion, so no nested node exists to teach.
+    expect(nested).toBe(42)
   })
 
-  it("leaves a tab-indented nested quote as a plain quote", () => {
-    // `> \t> deep` is a nested quote to the parser. Opening the inner marker
-    // would put the tab between the two blanks as locked prose that looks
-    // like a space, so they would no longer touch and the nesting could only
-    // be recovered by loosening what "adjacent" means for every family. The
-    // same reason keeps a tab task box locked.
+  it("teaches parser-recognized tab-separated nested quotes without blanking the tab", () => {
     const checkpoint = deriveSyntaxCheckpoints("> \t> deep", "")[0]!
-    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["block quote"])
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual([
+      "block quote",
+      "quote inside a quote",
+    ])
+    expect(checkpoint.canonicalInput).toBe("> > ")
+    expect(checkpoint.canonicalInput).not.toMatch(/\t/)
+  })
+
+  it("opens list and task markers behind every parser-recognized quote prefix", () => {
+    const cases = [
+      ["> - plain", ["block quote", "bullet item"]],
+      ["> 1. step", ["block quote", "numbered step"]],
+      ["> - [ ] Buy", ["block quote", "bullet item", "checkbox item"]],
+      ["> > - [ ] Buy", ["block quote", "quote inside a quote", "bullet item", "checkbox item"]],
+      [">\t- [ ] Buy", ["block quote", "bullet item", "checkbox item"]],
+    ] as const
+    for (const [source, terms] of cases) {
+      const checkpoint = deriveSyntaxCheckpoints(source, "")[0]!
+      expect(syntaxCheckpointTerms(checkpoint), source).toEqual(terms)
+      expect(checkpoint.canonicalInput, source).not.toMatch(/\t/)
+      expect(
+        acceptsGuidedSyntaxInput(checkpoint, checkpoint.canonicalInput),
+        source,
+      ).toBe(true)
+    }
   })
 
   it("lets only one place assemble the naming context", () => {

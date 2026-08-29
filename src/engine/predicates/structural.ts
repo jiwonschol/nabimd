@@ -48,13 +48,16 @@ const nodeTypeByBlock: Readonly<Record<BlockKind, RootContent["type"]>> = {
   table: "table",
 }
 
-const nodeTypeByInline = {
-  emphasis: "emphasis",
-  strong: "strong",
-  "inline-code": "inlineCode",
-  link: "link",
-  image: "image",
-} as const
+const nodeTypesByInline = {
+  emphasis: ["emphasis"],
+  strong: ["strong"],
+  "inline-code": ["inlineCode"],
+  // A reference spelling is the same learner-visible link or image after the
+  // parser resolves its definition. Counting only direct nodes let a learner
+  // bypass max-inline-count by changing `[label](url)` to `[label][id]`.
+  link: ["link", "linkReference"],
+  image: ["image", "imageReference"],
+} as const satisfies Readonly<Record<InlineKind, readonly AstNode["type"][]>>
 
 function inRange(value: number, min?: number, max?: number): boolean {
   return (min === undefined || value >= min) && (max === undefined || value <= max)
@@ -121,7 +124,7 @@ export function countInlineNodes(
 ) {
   return descendants(nodesInScope(context, scope) as AstNode[]).filter(
     (node) =>
-      node.type === nodeTypeByInline[inline] &&
+      (nodeTypesByInline[inline] as readonly AstNode["type"][]).includes(node.type) &&
       (!requireNonemptyContent ||
         nodeHasMeaningfulInlineContent(node, context.source)) &&
       (!requireNonemptyDestination ||

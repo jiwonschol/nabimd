@@ -633,6 +633,25 @@ function validConvention(problem: GradableProblem): boolean {
   )
 }
 
+/** Whether a target asks Markdown marker whitespace to be a literal tab. */
+export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
+  return target.split("\n").some((line) => {
+    let remainder = line
+
+    // Walk real quote prefixes first. A tab immediately after `>` is itself
+    // one of the four invisible marker-whitespace forms; a literal space can
+    // lead to another marker on the same line.
+    while (true) {
+      const quote = remainder.match(/^ {0,3}>([ \t]?)/)
+      if (!quote) break
+      if (quote[1] === "\t") return true
+      remainder = remainder.slice(quote[0].length)
+    }
+
+    return /^ {0,3}(?:#{1,6}|[-+*]|\d+[.)])\t/.test(remainder)
+  })
+}
+
 export function validateProblemBank(
   problems: readonly GradableProblem[],
   fixtures: readonly ProblemFixture[],
@@ -707,6 +726,11 @@ export function validateProblemBank(
         )
       }
     })
+    if (targetUsesTabAsMarkerWhitespace(problem.target)) {
+      errors.push(
+        `Problem ${problem.id} target uses a tab as Markdown marker whitespace`,
+      )
+    }
     for (const field of ["concept", "howTo", "example"] as const) {
       if (!problem.teaching[field].trim()) {
         errors.push(`Problem ${problem.id} has blank teaching ${field}`)

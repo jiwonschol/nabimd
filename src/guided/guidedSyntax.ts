@@ -348,17 +348,30 @@ export function syntaxGroupTerm(
 function syntaxGroupTermsInOrder(
   checkpoint: SyntaxCheckpoint,
 ): readonly string[] {
-  return checkpoint.segments.flatMap((segment, index) => {
-    if (segment.kind !== "input") return []
+  const terms: string[] = []
+  let previousQuoteMarker = false
+  checkpoint.segments.forEach((segment, index) => {
+    if (segment.kind !== "input") {
+      // Whitespace can sit between two markers on the same source line
+      // (`> \t> deep`) and still make the second marker a nested quote. A
+      // line break or prose ends that relationship: carrying it across
+      // `> one\n> two` called the second line a quote-inside-a-quote and kept
+      // otherwise identical lines from sharing one card.
+      if (!/^[\t ]*$/.test(segment.value)) previousQuoteMarker = false
+      return
+    }
     const previous = checkpoint.segments[index - 1]
-    return [
+    const quoteMarker = QUOTE_MARKER_BLANK.test(segment.value)
+    terms.push(
       syntaxGroupTerm(
         segment.value,
         previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-        previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
+        quoteMarker && previousQuoteMarker,
       ),
-    ]
+    )
+    previousQuoteMarker = quoteMarker
   })
+  return terms
 }
 
 /** The name of one input group, as the card and the Missed summary say it. */
@@ -658,7 +671,7 @@ function markPrefix(
   families: SyntaxFamilies,
   family: string,
 ): number | null {
-  const start = lineStartAt(source, offset)
+  const start = Math.max(lineStartAt(source, offset), offset)
   const end = lineEndAt(source, offset)
   const match = source.slice(start, end).match(pattern)
   if (!match?.[0]) return null
@@ -802,7 +815,6 @@ function markNodeSyntax(
   mask: boolean[],
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
-  insideQuote = false,
 ): void {
   const range = nodeRange(node)
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
@@ -850,34 +862,16 @@ function markNodeSyntax(
       }
       break
     case "blockquote": {
-      // A marker that is part of a nesting never swallows a tab. The two
-      // levels of `>>\tdeep` are `>` and `>\t`, and the sentence that names
-      // them can only say "marks" or "marks and space(s)" — a tab is neither,
-      // and on screen it is the same picture as a space, so the card cannot
-      // be solved from what the learner sees. This is the third time the same
-      // trade came up (`- [\t] Buy`, `> \t> deep`) and it is settled the same
-      // way: the tab stays locked prose. A tab after a *lone* marker is a
-      // different question and belongs to #203.
+      // Tabs are valid parser whitespace but never a visible answer. Keep a
+      // tab locked between quote-marker blanks and teach only the `>` (plus a
+      // literal following space, when present). The AST decides whether a
+      // second marker is nesting; source spacing no longer decides whether
+      // the deriver notices the child node.
       // Per line, not per node. One quote can hold a plain line and a nested
       // one — `>\tplain` above `> > nested` — and applying the rule to the
       // whole node took the tab out of a marker that is not part of any
       // nesting, leaving a card that asks for a mark and a space and then
       // refuses `> `.
-      const nestedChildLines = new Set<number>()
-      if (isParent(node)) {
-        for (const child of node.children) {
-          if (child.type !== "blockquote") continue
-          const childRange = nodeRange(child as Nodes)
-          if (!childRange) continue
-          let childLine = lineStartAt(source, childRange.from)
-          while (childLine < childRange.to) {
-            nestedChildLines.add(childLine)
-            const childLineEnd = lineEndAt(source, childLine)
-            if (childLineEnd >= source.length) break
-            childLine = childLineEnd + 1
-          }
-        }
-      }
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
@@ -888,24 +882,21 @@ function markNodeSyntax(
           // its parent has not masked yet: matching from the line start again
           // re-claimed the outer `>`, so the nested marker never became a
           // blank and a two-level quote read as a plain one.
-          // Past the markers this node's parent already took — and no
-          // further. `> \t> deep` is a nested quote to the parser, but the tab
-          // between the markers would sit in the card as locked prose that
-          // looks like a space, so the two blanks would no longer touch and
-          // the nesting could only be recovered by loosening what "adjacent"
-          // means for every family. The same reason keeps a tab task box
-          // locked; a tab-indented nested quote is a shape to open with the
-          // content that needs it.
+          // Past the markers this node's parent already took and any locked
+          // parser whitespace between them. Do not scan into prose: after
+          // whitespace, the next character still has to be this node's `>`.
           let markStart = lineStart
-          while (markStart < lineEnd && mask[markStart]) markStart += 1
-          const nesting = insideQuote || nestedChildLines.has(lineStart)
-          const marker = source
-            .slice(markStart, lineEnd)
-            .match(nesting ? /^ {0,3}>[ ]?/ : /^ {0,3}>[\t ]?/)
-          if (marker?.[0]) {
+          while (
+            markStart < lineEnd &&
+            (mask[markStart] || source[markStart] === " " || source[markStart] === "\t")
+          ) {
+            markStart += 1
+          }
+          if (source[markStart] === ">") {
+            const markEnd = markStart + 1 + (source[markStart + 1] === " " ? 1 : 0)
             markRange(
               mask,
-              { from: markStart, to: markStart + marker[0].length },
+              { from: markStart, to: markEnd },
               families,
               `${family}-${markStart}`,
             )
@@ -939,7 +930,7 @@ function markNodeSyntax(
         const marker =
           markerEnd === null
             ? ""
-            : source.slice(lineStartAt(source, range.from), markerEnd)
+            : source.slice(range.from, markerEnd)
         const checkbox =
           markerEnd === null ||
           node.checked === null ||
@@ -1076,7 +1067,6 @@ function markNodeSyntax(
         mask,
         groupedRanges,
         families,
-        insideQuote || node.type === "blockquote",
       )
     }
   }
