@@ -598,6 +598,7 @@ function listStyleScopeKey(source: string, checkpoint: SyntaxCheckpoint): string
   }
 
   let semanticDepth = "quote:0;list:0"
+  let containingList = "none"
   const visit = (node: Nodes, quoteDepth: number, listDepth: number): void => {
     const from = node.position?.start.offset
     const to = node.position?.end.offset
@@ -606,13 +607,14 @@ function listStyleScopeKey(source: string, checkpoint: SyntaxCheckpoint): string
     }
     const nextQuoteDepth = quoteDepth + (node.type === "blockquote" ? 1 : 0)
     const nextListDepth = listDepth + (node.type === "list" ? 1 : 0)
+    if (node.type === "list") containingList = `${from}:${to}`
     semanticDepth = `quote:${nextQuoteDepth};list:${nextListDepth}`
     if (isParent(node)) {
       node.children.forEach((child) => visit(child, nextQuoteDepth, nextListDepth))
     }
   }
   visit(parseMarkdownSource(source), 0, 0)
-  return semanticDepth
+  return `${semanticDepth};node:${containingList}`
 }
 
 function normalizeGroupListStyle(
