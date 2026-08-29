@@ -42,10 +42,13 @@ function cardProps(
 }
 
 describe("Level 2 syntax reference examples", () => {
-  // The panel renders `example` as Markdown, so a string that parses to plain
-  // prose teaches nothing even though it is not the "Example" placeholder.
-  // The example is taken from `buildSyntaxReference`, not copied here, so the
-  // test renders exactly what ships.
+  // The single list of Level 2 checkpoint shapes. The panel renders `example`
+  // as Markdown, so a string that parses to plain prose teaches nothing even
+  // though it is not the "Example" placeholder — the DOM selector is what
+  // rejects it. Name, notation and example are all asserted from what
+  // `buildSyntaxReference` returns, not from a copy, and this list is the one
+  // place the shapes are written down: when the engine opens these blanks for
+  // real, there is a single table to move to `deriveSyntaxCheckpoints`.
   type Segment = { kind: "input" | "locked"; value: string }
   const checkpointOf = (...segments: ReadonlyArray<Segment>) => ({
     id: "reference",
@@ -120,6 +123,7 @@ describe("Level 2 syntax reference examples", () => {
         >[0],
       )
       expect(reference.name, name).toBe(name)
+      expect(reference.notation, name).not.toBe("")
       const { container, unmount } = render(
         <RenderedDocumentBody source={reference.example} />,
       )

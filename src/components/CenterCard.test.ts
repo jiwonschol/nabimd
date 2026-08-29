@@ -4,7 +4,7 @@ import type {
   SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
 import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
-import { buildSyntaxReference, describeCheckpoint } from "./CenterCard"
+import { describeCheckpoint } from "./CenterCard"
 
 function checkpointFor(target: string) {
   const [checkpoint] = deriveSyntaxCheckpoints(target, "")
@@ -398,41 +398,6 @@ describe("describeCheckpoint", () => {
       term: "level 2 Setext heading",
       suffix: ".",
     })
-  })
-
-  it("gives every new family a rendered example, not the placeholder", () => {
-    // The learning leaf renders `example` as Markdown. A family with no entry
-    // falls back to the literal string "Example", which is a non-empty string
-    // — so the served-problem guard passes it — and teaches nothing. Naming a
-    // family on the card and leaving its panel blank is half a change.
-    const shapes: ReadonlyArray<[string, ReturnType<typeof checkpointOf>]> = [
-      ["strikethrough text", checkpointOf(["~~", "input"], ["old", "locked"], ["~~", "input"])],
-      ["bold italic text", checkpointOf(["***", "input"], ["Very", "locked"], ["***", "input"])],
-      ["quote inside a quote", checkpointOf(["> ", "input"], ["> ", "input"], ["Deep", "locked"])],
-      [
-        "syntax-highlighted code block",
-        checkpointOf(["```", "input"], ["js", "input"], ["\ncode\n", "locked"], ["```", "input"]),
-      ],
-      ["line break", checkpointFor("first line  \nsecond line")],
-      [
-        "table row",
-        checkpointOf(["Apples ", "locked"], ["|", "input"], [" 3", "locked"]),
-      ],
-      [
-        "column headers",
-        checkpointOf(["--- ", "locked"], ["|", "input"], [" ---", "locked"]),
-      ],
-      ["checkbox item", checkpointOf(["- ", "input"], ["[ ]", "input"], [" Buy milk", "locked"])],
-      ["checked-off item", checkpointOf(["- ", "input"], ["[x]", "input"], [" Buy milk", "locked"])],
-    ]
-
-    for (const [term, checkpoint] of shapes) {
-      expect(describeCheckpoint(checkpoint).term, term).toBe(term)
-      const reference = buildSyntaxReference(checkpoint)
-      expect(reference.name, term).not.toBe("Markdown structure")
-      expect(reference.example, term).not.toBe("Example")
-      expect(reference.notation, term).not.toBe("")
-    }
   })
 
   it("records which families the engine still cannot reach", () => {
