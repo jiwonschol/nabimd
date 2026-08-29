@@ -64,10 +64,13 @@ reading the whole history would let a stale rate limit outrank a redeploy that
 is actively running. Production being behind is already established by the time
 this classification happens; what it answers is why *now*.
 
-**A failed check is not the same as a stale deployment.** If the page never
-answered, the check has no commit to compare and says so rather than reading
-the Vercel status alone and announcing an alias problem it never observed — the
-one moment that matters is when the site is simply unreachable.
+**A failed check is not the same as a stale deployment,** and that is decided
+first. If the page never answered — or the build predates the attribute that
+publishes its commit — there is no commit to compare, so the report says so and
+carries what Vercel said alongside, instead of telling anyone to merge or
+redeploy. Every other classification states where production *is*; running one
+of them on an unread page turns a site that would not open into a deployment
+incident and points the reader away from what is actually broken.
 
 **A pending status does not expire.** If Vercel abandons one, nothing ever
 changes it, so "still building" would stay true and green forever while

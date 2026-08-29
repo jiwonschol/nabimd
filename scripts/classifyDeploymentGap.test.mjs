@@ -314,23 +314,57 @@ describe("classifyDeploymentGap", () => {
     expect(result.summary).toContain("out of memory")
   })
 
-  it("does not call production stale when it never read what production serves", () => {
-    // Three failed page loads leave no receipt. Reading a successful Vercel
-    // status in that state and announcing an alias problem states something
-    // never observed, at the one moment the site may simply have been down.
-    const result = classifyDeploymentGap({
-      statuses: [{ context: "Vercel", state: "success", description: "Ready" }],
-      expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
-      deployedSha: null,
-      eventName: "push",
-      now: NOW,
-    })
+  it("reports an unread page as unread whatever Vercel says about the commit", () => {
+    // Failed page loads leave no receipt, and so does a build old enough to
+    // predate the attribute that publishes its commit. Every other branch says
+    // where production *is* and tells someone to merge or redeploy; running
+    // one of them on an unread page turns a site that would not open into a
+    // deployment incident and points the reader away from what is broken.
+    //
+    // The first version of this guard sat at the end of the function, where
+    // only the success branch could reach it — the other four diagnosed a
+    // deployment gap the page had never established. This case walks all five.
+    const everyStatusShape = {
+      "no status at all": [],
+      "rate limited": [
+        { context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT },
+      ],
+      "build failed": [
+        { context: "Vercel", state: "failure", description: "Build failed" },
+      ],
+      "still pending": pendingFor(5_000),
+      stalled: pendingFor(PENDING_GRACE_MS + 60_000),
+      succeeded: [{ context: "Vercel", state: "success", description: "Ready" }],
+    }
 
-    expect(result.kind).toBe("unobserved")
-    expect(result.failWorkflow).toBe(true)
-    expect(result.openIssue).toBe(true)
-    expect(result.summary).not.toContain("not the one being served")
-    expect(result.summary).toMatch(/never read a commit/)
+    for (const [shape, statuses] of Object.entries(everyStatusShape)) {
+      const result = classifyDeploymentGap({
+        statuses,
+        expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
+        deployedSha: null,
+        eventName: "push",
+        now: NOW,
+      })
+
+      expect(result.kind, shape).toBe("unobserved")
+      expect(result.failWorkflow, shape).toBe(true)
+      expect(result.openIssue, shape).toBe(true)
+      expect(result.summary, shape).toMatch(/never read a commit/)
+      // It must not tell anyone to act on the deployment.
+      expect(result.summary, shape).not.toMatch(/merges again|redeploy the commit/)
+      expect(result.summary, shape).not.toContain("not the one being served")
+      // But it still carries what Vercel said, so the reader is not blind.
+      expect(result.summary, shape).toMatch(/Vercel (reports|published)/)
+    }
+  })
+
+  it("still reads the page when there is a commit to read", () => {
+    // The passing side: moving the guard to the front must not swallow the
+    // cases that do have an observation.
+    expect(gap([]).kind).toBe("not-triggered")
+    expect(
+      gap([{ context: "Vercel", state: "success", description: "Ready" }]).kind,
+    ).toBe("deployed-elsewhere")
   })
 
   it("names both commits in every outcome that claims to know both", () => {

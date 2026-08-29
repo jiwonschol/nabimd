@@ -90,6 +90,34 @@ export function classifyDeploymentGap({
     `Production serves ${short(deployedSha)} while ${short(expectedSha)} ` +
     "is the commit this run expected."
 
+  // Decided before anything that diagnoses a deployment. The check can fail
+  // without ever learning what production serves — failed page loads, or a
+  // build old enough to predate the attribute that publishes its commit, both
+  // leave no receipt. Every branch below reports where production *is*, and
+  // tells someone to merge or redeploy; running them on an unread page turns a
+  // site that would not open into a deployment incident, and points the reader
+  // away from the thing that is actually broken. An earlier version of this
+  // guard sat at the end of the function, where only the success branch could
+  // ever reach it.
+  if (!deployedSha) {
+    const observed =
+      relevant.length === 0
+        ? "Vercel published no commit status for it either"
+        : `Vercel reports \`${newestStatus(relevant).state}\` for it`
+    return {
+      kind: "unobserved",
+      failWorkflow: true,
+      openIssue: true,
+      title: "The freshness check could not read what production serves",
+      summary:
+        `The check never read a commit from the deployed page, so whether ` +
+        `production is behind ${short(expectedSha)} is unknown. ${observed}. ` +
+        "The page may have been unreachable, or the build may predate the " +
+        "attribute that publishes its commit. Open the site before treating " +
+        "this as a deployment problem.",
+    }
+  }
+
   if (relevant.length === 0) {
     return {
       kind: "not-triggered",
@@ -178,27 +206,6 @@ export function classifyDeploymentGap({
         "seconds and a commit status never expires on its own, so this one " +
         "stopped rather than still running. Check the deployment in Vercel " +
         "and redeploy the commit.",
-    }
-  }
-
-  // The check can fail without ever learning what production serves — three
-  // failed page loads leave no receipt. Reading a successful Vercel status in
-  // that state and reporting "a build exists but is not the one being served"
-  // states something about the alias that was never observed, and it does it
-  // at the one moment the site might simply have been unreachable.
-  if (!deployedSha) {
-    return {
-      kind: "unobserved",
-      failWorkflow: true,
-      openIssue: true,
-      title: "The freshness check could not read what production serves",
-      summary:
-        `Vercel reports \`${current.state}\` for ` +
-        `${short(expectedSha)}, but the check never read a commit from the ` +
-        "deployed page, so whether production is behind is unknown. The page " +
-        "may have been unreachable, or the build may predate the attribute " +
-        "that publishes its commit. Open the site and check before treating " +
-        "this as a deployment problem.",
     }
   }
 
