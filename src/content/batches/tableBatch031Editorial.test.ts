@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 import { describeCheckpoint } from "../../components/CenterCard"
 import { deriveSyntaxCheckpoints } from "../../guided/guidedSyntax"
 import { derivePlaintextStarter } from "../plaintextStarter"
+import { tableBatch030Problems } from "./tableBatch030Problems"
 import {
   tableBatch031Id,
   tableBatch031Problems,
@@ -17,6 +18,54 @@ describe("Level 1 table batch 031 editorial replacement", () => {
           problem.sourceBatchId === tableBatch031Id && problem.revision === 2,
       ),
     ).toBe(true)
+  })
+
+  it("changes only the reviewed copy and the one travel label", () => {
+    expect(tableBatch031Problems.map((problem) => problem.id)).toEqual(
+      tableBatch030Problems.map((problem) => problem.id),
+    )
+
+    for (const [index, replacement] of tableBatch031Problems.entries()) {
+      const prior = tableBatch030Problems[index]!
+      const expected = {
+        ...prior,
+        teaching: {
+          concept: "A Markdown table lines up related values in rows and columns.",
+          howTo:
+            "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+          example: "Name | Age\n--- | ---\nAda | 31",
+        },
+        hints: [
+          "Every row takes a bar, including the one made of dashes.",
+          "Type one vertical bar between the two cells.",
+          "Example: `Name | Age`",
+        ],
+        matchChecks: prior.matchChecks.map((check) =>
+          check.id === "use-table"
+            ? {
+                ...check,
+                feedback:
+                  "Type a vertical bar between the two cells in each of the three rows.",
+              }
+            : check,
+        ),
+        sourceBatchId: tableBatch031Id,
+        revision: 2,
+        ...(prior.id === "l1-table-bus-time"
+          ? {
+              target: "Route | Time\n--- | ---\nGreen | Noon",
+              contentVariant: "route-time",
+              vocabulary: {
+                profile: "everyday" as const,
+                domains: ["local-travel"],
+                terms: ["route", "time", "green", "noon"],
+              },
+            }
+          : {}),
+      }
+
+      expect(replacement, replacement.id).toEqual(expected)
+    }
   })
 
   it("keeps the shared example outside every candidate answer", () => {
