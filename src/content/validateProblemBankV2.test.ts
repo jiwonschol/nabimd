@@ -140,6 +140,8 @@ describe("schema-v2 problem-bank validation", () => {
     "# \tTitle",
     "1.\tstep",
     "1. \tstep",
+    "-\t-\t-",
+    "---\t ",
   ])(
     "rejects an invisible tab in target marker whitespace: %s",
     (target) => {

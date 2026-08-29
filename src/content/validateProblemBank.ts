@@ -650,6 +650,8 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
             ? source.match(/^(?:[-+*]|\d+[.)])([ \t]+)/)?.[1]
             : node.type === "heading"
               ? source.match(/^#{1,6}([ \t]+)/)?.[1]
+              : node.type === "thematicBreak" && source.includes("\t")
+                ? "\t"
               : undefined
       if (whitespace?.includes("\t")) found = true
     }

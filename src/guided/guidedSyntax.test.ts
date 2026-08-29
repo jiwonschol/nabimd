@@ -693,6 +693,14 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toBe("+ Parent\n  * Child")
   })
 
+  it("does not normalize a quoted list against a top-level list", () => {
+    const target = "> - quoted\n\n* top"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(buildGuidedDraft(target, cards, cards.length)).toBe(target)
+  })
+
   it("lets every emphasis pair on a joined card choose its own delimiter", () => {
     // Two emphasis spans were two cards before they were joined, and each
     // accepted its own delimiter. Swapping only the first pair offered a mixed
