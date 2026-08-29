@@ -123,7 +123,10 @@ async function openMultiSlotLevelOne(page: Page) {
         seed,
       )[0]!
       const problem = runtimeProblemById.get(firstProblemId)!
-      if (problem.skillIds[0] !== "unordered-list") continue
+      // A card holds one syntax, so a list of any length is a single slot.
+      // The per-slot cue is only distinguishable from a once-per-problem cue
+      // on a problem that teaches more than one syntax.
+      if (deriveSyntaxCheckpoints(problem.target, "").length < 2) continue
 
       await page.goto("/")
       await page.evaluate(
@@ -164,8 +167,8 @@ async function openMultiSlotLevelOne(page: Page) {
 test("voices every accepted mark with matched and every rejected mark with try-again", async ({
   page,
 }) => {
-  // The selected Level 1 list problem carries several slots, so the per-slot matched cue
-  // is distinguishable from a once-per-problem completion cue.
+  // The selected Level 1 problem carries several cards, so the per-slot matched
+  // cue is distinguishable from a once-per-problem completion cue.
   await openMultiSlotLevelOne(page)
 
   // A rejected mark chirps try-again.

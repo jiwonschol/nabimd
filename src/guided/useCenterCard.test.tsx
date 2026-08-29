@@ -62,7 +62,10 @@ describe("useCenterCard Hint and retry state", () => {
     let draft = ""
     const { result } = renderHook(() =>
       useCenterCard({
-        problem: getProblem("l1-nested-bullets-lunch-tray"),
+        // A problem whose cards teach different syntaxes: same-syntax lines
+        // now share one card, so a list no longer has a "next slot" to carry
+        // the Hint into.
+        problem: getProblem("l2-code-block-alarm-routine"),
         draft,
         completed: false,
         onGrow: (nextDraft) => {
@@ -73,7 +76,7 @@ describe("useCenterCard Hint and retry state", () => {
       }),
     )
 
-    act(() => result.current.editSegment(0, "- "))
+    act(() => result.current.editSegment(0, "# "))
     act(() => result.current.submit())
 
     expect(result.current.slotIndex).toBe(1)
@@ -369,8 +372,14 @@ describe("useCenterCard draft validation", () => {
       }),
     )
 
+    // Every bullet of the list is a blank on one card, and Markdown starts a
+    // new list when the marker changes partway down, so the alternate has to
+    // be typed into all of them.
+    const alternate = "* * * "
     act(() => {
       result.current.editSegment(0, "* ")
+      result.current.editSegment(1, "* ")
+      result.current.editSegment(2, "* ")
     })
     act(() => {
       result.current.submit()
@@ -380,7 +389,7 @@ describe("useCenterCard draft validation", () => {
     expect(result.current.frontierIndex).toBe(1)
     expect(callbacks.onGrow).toHaveBeenLastCalledWith(
       buildGuidedDraft(problem.target, checkpoints, 1, {
-        [checkpoints[0]!.id]: "* ",
+        [checkpoints[0]!.id]: alternate,
       }),
     )
 
@@ -403,13 +412,19 @@ describe("useCenterCard draft validation", () => {
       }),
     )
 
+    // The answer has to be accepted for this to mean anything: a rejected
+    // submission also leaves the frontier at zero, which would pass without
+    // ever reaching the behaviour under test.
     act(() => {
       result.current.editSegment(0, "* ")
+      result.current.editSegment(1, "* ")
+      result.current.editSegment(2, "* ")
     })
     act(() => {
       result.current.submit()
     })
 
+    expect(result.current.verdict).toBe("idle")
     expect(result.current.frontierIndex).toBe(0)
     expect(result.current.checkpoint?.id).toBe(
       deriveSyntaxCheckpoints(problem.target, problem.starterText)[0]?.id,

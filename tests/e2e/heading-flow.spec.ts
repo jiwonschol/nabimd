@@ -427,10 +427,12 @@ test("requires both Level 1 italic marks and never autocompletes the closer", as
 })
 
 test("supports Previous and Next across accepted marks", async ({ page }) => {
+  // Cards are one per syntax, so a list is one card however many items it has.
+  // Walking between cards needs a problem that teaches more than one syntax,
+  // which is a property of its checkpoints rather than of a syntax name.
   await openLevelOneProblem(
     page,
-    (problem) =>
-      problem.skillIds.length === 1 && problem.skillIds[0] === "unordered-list",
+    (problem) => slotMarksFor(problem.target).length > 1,
   )
   const problem = runtimeProblemById.get(await currentProblemId(page))
   if (!problem) throw new Error("Expected the current runtime problem")
