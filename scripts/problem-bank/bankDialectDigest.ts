@@ -43,10 +43,16 @@ const checkpoints = digest(
   published
     .map((problem) => {
       const derived = deriveSyntaxCheckpoints(problem.target, "")
+      // The offsets belong in the digest as much as the segments do:
+      // `buildGuidedDraft` slices the target by `targetFrom`/`targetTo` and the
+      // card focuses at `activeOffset`, so a change that moves a boundary
+      // while leaving the segment text alone still changes what the learner
+      // sees. Leaving them out would let this instrument report that as
+      // identical.
       const shape = derived
         .map(
           (checkpoint) =>
-            `${checkpoint.line}:${checkpoint.canonicalInput}:${checkpoint.segments
+            `${checkpoint.line}@${checkpoint.targetFrom}-${checkpoint.targetTo}+${checkpoint.activeOffset}:${checkpoint.canonicalInput}:${checkpoint.segments
               .map((segment) => `${segment.kind}=${segment.value}`)
               .join(",")}`,
         )

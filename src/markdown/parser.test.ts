@@ -8,6 +8,7 @@ import { publishedProblemIds } from "../content/problemBank"
 import { GFM_OPTIONS, parseMarkdownSource } from "./parser"
 import { parseMarkdown } from "../engine/markdownAst"
 import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
+import { derivePlaintextStarter } from "../content/plaintextStarter"
 
 function nodeTypes(node: Nodes): string[] {
   const children = "children" in node ? (node as Parents).children : []
@@ -58,6 +59,19 @@ describe("the product reads one Markdown dialect", () => {
         (type) => type === "listItem",
       ),
     ).toHaveLength(2)
+  })
+
+  test("a table starter keeps its cells apart and its lines in place", () => {
+    // Enabling GFM makes a table a tree of cells on one source line. Without
+    // the row case in the starter projection they concatenate — `| Item | Qty |`
+    // becomes `ItemQty` — and the blank guides, which zip the starter to the
+    // target line by line, would be reading merged words.
+    expect(
+      derivePlaintextStarter("| Item | Qty |\n| --- | --- |\n| Apple | 2 |"),
+    ).toBe("Item Qty\n\nApple 2")
+    // The pass case: a paragraph that merely contains a bar is not a table and
+    // must not gain a space.
+    expect(derivePlaintextStarter("Compare A | B")).toBe("Compare A | B")
   })
 
   test("a bare address is not turned into a blank", () => {

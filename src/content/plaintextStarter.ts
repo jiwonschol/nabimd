@@ -148,6 +148,23 @@ function projectNode(
       )
       return
     }
+    case "tableRow": {
+      // Every cell of a row sits on one source line, so projecting them one
+      // after another would run their words together — `| Item | Qty |` became
+      // `ItemQty`. The bar is the mark the learner adds back, and the space
+      // beside it is the word boundary they read, so the projection keeps one
+      // space where each bar was. The delimiter row is not in the tree at all,
+      // which leaves its line blank and keeps the starter line-for-line with
+      // the target.
+      if (startLine === undefined) return
+      for (const [index, cell] of node.children.entries()) {
+        if (index > 0) {
+          projectVisibleText(outputLines, " ", startLine, literalLineIndexes)
+        }
+        projectNode(cell as Nodes, source, outputLines, literalLineIndexes)
+      }
+      return
+    }
     case "definition":
     case "html":
     case "thematicBreak":
