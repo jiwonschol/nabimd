@@ -148,7 +148,7 @@ describe("sentences the table cards already get right", () => {
     const rule = describeCheckpoint(
       deriveSyntaxCheckpoints("Fruit | Count\n--- | ---", "")[1]!,
     )
-    expect(rule.prefix).toContain("bar that makes")
+    expect(rule.prefix).toContain("bar that turns")
     expect(rule.prefix).not.toContain("bars")
   })
 })
