@@ -163,6 +163,36 @@ describe("deriveSyntaxCheckpoints", () => {
     }
   })
 
+  it("never puts a tab in a nested quote's blanks", () => {
+    // Three review rounds arrived as three spellings of one trade: `- [\t]
+    // Buy`, `> \t> deep`, `>>\tdeep`. On screen a tab and a space are the same
+    // picture, so a blank whose answer needs a tab cannot be solved from what
+    // the learner sees — and no wording fixes it, because "spaces" would be
+    // false. Asserting the shape instead of the sentence catches the next
+    // spelling too; the sentence test above only knows the ones we have seen.
+    const separators = ["", " ", "\t", "  ", " \t", "\t ", "\t\t"]
+    let nested = 0
+    for (const outer of separators) {
+      for (const inner of separators) {
+        const source = `>${outer}>${inner}deep`
+        const checkpoint = deriveSyntaxCheckpoints(source, "")[0]
+        if (!checkpoint) continue
+        if (
+          !syntaxCheckpointTerms(checkpoint).includes("quote inside a quote")
+        ) {
+          continue
+        }
+        nested += 1
+        for (const accepted of acceptedGuidedSyntaxInputs(checkpoint)) {
+          expect(accepted, JSON.stringify(source)).not.toMatch(/\t/)
+        }
+      }
+    }
+    // The sweep has to reach the shape it guards: 21 of the 49 spellings are
+    // read as a nesting. A guard that walks past its own case is not a guard.
+    expect(nested).toBe(21)
+  })
+
   it("leaves a tab-indented nested quote as a plain quote", () => {
     // `> \t> deep` is a nested quote to the parser. Opening the inner marker
     // would put the tab between the two blanks as locked prose that looks

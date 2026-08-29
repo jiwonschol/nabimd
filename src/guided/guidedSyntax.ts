@@ -802,6 +802,7 @@ function markNodeSyntax(
   mask: boolean[],
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
+  insideQuote = false,
 ): void {
   const range = nodeRange(node)
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
@@ -848,7 +849,20 @@ function markNodeSyntax(
         }
       }
       break
-    case "blockquote":
+    case "blockquote": {
+      // A marker that is part of a nesting never swallows a tab. The two
+      // levels of `>>\tdeep` are `>` and `>\t`, and the sentence that names
+      // them can only say "marks" or "marks and space(s)" — a tab is neither,
+      // and on screen it is the same picture as a space, so the card cannot
+      // be solved from what the learner sees. This is the third time the same
+      // trade came up (`- [\t] Buy`, `> \t> deep`) and it is settled the same
+      // way: the tab stays locked prose. A tab after a *lone* marker is a
+      // different question and belongs to #203.
+      const nesting =
+        insideQuote ||
+        (isParent(node) &&
+          node.children.some((child) => child.type === "blockquote"))
+      const markerPattern = nesting ? /^ {0,3}>[ ]?/ : /^ {0,3}>[\t ]?/
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
@@ -869,7 +883,7 @@ function markNodeSyntax(
           // content that needs it.
           let markStart = lineStart
           while (markStart < lineEnd && mask[markStart]) markStart += 1
-          const marker = source.slice(markStart, lineEnd).match(/^ {0,3}>[\t ]?/)
+          const marker = source.slice(markStart, lineEnd).match(markerPattern)
           if (marker?.[0]) {
             markRange(
               mask,
@@ -883,6 +897,7 @@ function markNodeSyntax(
         }
       }
       break
+    }
     case "listItem":
       if (range) {
         const markerEnd = markPrefix(
@@ -1037,7 +1052,14 @@ function markNodeSyntax(
 
   if (isParent(node)) {
     for (const child of node.children) {
-      markNodeSyntax(child as Nodes, source, mask, groupedRanges, families)
+      markNodeSyntax(
+        child as Nodes,
+        source,
+        mask,
+        groupedRanges,
+        families,
+        insideQuote || node.type === "blockquote",
+      )
     }
   }
 }
