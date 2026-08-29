@@ -53,6 +53,20 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(syntaxGroupTerm("---", true)).toBe("level 2 Setext heading")
   })
 
+  it("names the blanks the deriver learned to make in #189", () => {
+    // Through `syntaxCheckpointTerms` and from source, because that is the
+    // path the Now learning panel takes. Calling `syntaxGroupTerm` with a
+    // literal would pass even when no card ever carries the blank, which is
+    // exactly the state #189 found these families in.
+    const terms = (source: string) =>
+      syntaxCheckpointTerms(deriveSyntaxCheckpoints(source, "")[0]!)
+
+    // A task box is bracket punctuation and used to be named a link.
+    expect(terms("- [ ] Buy milk")).toEqual(["bullet item", "checkbox item"])
+    expect(terms("- [x] Buy milk")).toEqual(["bullet item", "checked-off item"])
+    expect(terms("~~gone~~ here")).toEqual(["strikethrough text"])
+  })
+
   it("finds the groups an attempt cannot explain", () => {
     const checkpoint = deriveSyntaxCheckpoints("*Paper boat*", "Paper boat")[0]!
 
