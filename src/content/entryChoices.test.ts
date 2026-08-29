@@ -426,13 +426,24 @@ describe("how often a run repeats a syntax the learner just practised", () => {
   const MAX_RUN_TO_RUN_REPEAT_RATE = 0.38
   const MAX_CARDS_PER_RUN = 8.1
 
+  // The grid walks 1,680 runs, and a problem's cards do not depend on the run
+  // that served them. Deriving per appearance parses the same 364 targets
+  // 8,400 times and put the first cold run over vitest's default timeout —
+  // a gate that is only green on a warm machine is not a gate.
+  const cardTermsByProblemId = new Map<string, string[]>()
+  function cardTerms(problemId: string): string[] {
+    const cached = cardTermsByProblemId.get(problemId)
+    if (cached) return cached
+    const problem = problemBank.find((candidate) => candidate.id === problemId)!
+    const terms = deriveSyntaxCheckpoints(problem.target, problem.starterText).map(
+      (checkpoint) => instructionFor(checkpointShape(checkpoint)).term,
+    )
+    cardTermsByProblemId.set(problemId, terms)
+    return terms
+  }
+
   function runCardTerms(runNumber: number, seed: number): string[] {
-    return createRunProblemIds("level-1", runNumber, seed).flatMap((id) => {
-      const problem = problemBank.find((candidate) => candidate.id === id)!
-      return deriveSyntaxCheckpoints(problem.target, problem.starterText).map(
-        (checkpoint) => instructionFor(checkpointShape(checkpoint)).term,
-      )
-    })
+    return createRunProblemIds("level-1", runNumber, seed).flatMap(cardTerms)
   }
 
   it("keeps a sitting off the syntax it just taught", () => {
@@ -474,7 +485,11 @@ describe("how often a run repeats a syntax the learner just practised", () => {
       MAX_RUN_TO_RUN_REPEAT_RATE,
     )
     expect(cards / runs).toBeLessThanOrEqual(MAX_CARDS_PER_RUN)
-  })
+    // Declared rather than inherited. Memoised the grid runs about a second
+    // warm, but the default five is close enough to a cold parse that this
+    // gate went red once on a first run and green on the second — and a gate
+    // whose colour depends on the machine tells you nothing either way.
+  }, 20_000)
 
   it("never serves the same problem twice across the grid it covers", () => {
     for (let seed = 0; seed < SEEDS; seed += 1) {

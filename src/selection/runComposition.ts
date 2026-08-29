@@ -199,11 +199,13 @@ export function defaultBoundaryPreviousElements(
  * served exactly once per cycle — this reorders that permutation, it does not
  * shorten it.
  *
- * This cannot lower how often a syntax returns from one run to the next.
- * Every mixed exercise in the bank opens on a level 1 heading, so no candidate
- * avoids that element; measured over 400 runs, choosing the best candidate
- * every time moves run-to-run repeats 35.1% -> 31.7% while same-run repeats
- * fall 1.29 -> 0.80 cards. The run-to-run number belongs to the heading card.
+ * What it moves and what it cannot. Over a full cycle this takes same-run
+ * repeats from 1.357 cards to 1.166 and run-to-run repeats from 38.13% to
+ * 37.58%. The second number barely moves for a reason that no choice here can
+ * reach: every mixed exercise in the bank opens on a level 1 heading, so that
+ * one card repeats whichever candidate is picked. Removing it is #198, which
+ * takes run-to-run to 25.87% on its own. The rest of the run-to-run rate is
+ * ordinary overlap between eleven syntaxes and a seven-card sitting.
  */
 export function chooseMixedForRun(
   orderedMixed: readonly SchedulableProblem[],
@@ -237,11 +239,12 @@ export function chooseMixedForRun(
     }
 
     // Two ways a mixed exercise can feel stale, ordered by what the learner
-    // actually complained about: a syntax that returns next sitting beats a
-    // syntax repeated inside this one. Comparing them in order rather than
-    // summing them keeps the rule readable and needs no tuned constants;
-    // measured over 400 runs, ordering them this way and summing with the
-    // other weight both reach the same schedule.
+    // actually complained about. The order is not a preference: over a full
+    // cycle the two cannot both be pushed down. Putting same-run first reaches
+    // 0.854 same-run cards but takes run-to-run to 42.22% — worse than doing
+    // nothing at all (38.13%). This order holds run-to-run at 37.58% and
+    // leaves same-run at 1.166. Behind #198 the same choice reads 25.65%
+    // against 31.36%. #198 is where the same-run number is answered.
     let bestIndex = -1
     let bestPreviousOverlap = Number.POSITIVE_INFINITY
     let bestSameRunOverlap = Number.POSITIVE_INFINITY
