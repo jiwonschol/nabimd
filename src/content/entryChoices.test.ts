@@ -476,34 +476,6 @@ describe("how often a run repeats a syntax the learner just practised", () => {
     expect(cards / runs).toBeLessThanOrEqual(MAX_CARDS_PER_RUN)
   })
 
-  it("applies the adjacency rule across a cycle boundary too", () => {
-    // The walk that picks the mixed exercise starts at the cycle boundary, so
-    // the run before that boundary is one the loop never visits. Left empty,
-    // the first run of every cycle picked as if nothing came before it, and
-    // that run stood out from its neighbours. It should not.
-    const boundary = 39
-    const rateAt = (runNumber: number): number => {
-      let returning = 0
-      let compared = 0
-      for (let seed = 0; seed < SEEDS; seed += 1) {
-        const previous = new Set(runCardTerms(runNumber - 1, seed))
-        for (const term of new Set(runCardTerms(runNumber, seed))) {
-          compared += 1
-          if (previous.has(term)) returning += 1
-        }
-      }
-      return returning / compared
-    }
-
-    // Against the worst of a wider neighbourhood this passes either way — one
-    // ordinary run is always worse than the boundary. The two runs either side
-    // are the comparison that moves: leaving the boundary unseeded pushes it
-    // above their mean, and seeding it puts it below.
-    const before = rateAt(boundary - 1)
-    const after = rateAt(boundary + 1)
-    expect(rateAt(boundary)).toBeLessThanOrEqual((before + after) / 2)
-  })
-
   it("never serves the same problem twice across the grid it covers", () => {
     for (let seed = 0; seed < SEEDS; seed += 1) {
       const served: string[] = []

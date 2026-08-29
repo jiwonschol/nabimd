@@ -175,6 +175,21 @@ function chapterOrder(
 }
 
 /**
+ * At every cycle boundary but the first there is a run before it that the walk
+ * never visits. Its four singles are one offset away and cost nothing to
+ * recover; the mixed exercise it was given would cost a second walk through
+ * the previous cycle, and that walk would itself open on an unknown run.
+ */
+export function defaultBoundaryPreviousElements(
+  singlesForRun: (runNumber: number) => readonly SchedulableProblem[],
+) {
+  return (cycleStart: number): readonly string[] =>
+    cycleStart === 0
+      ? []
+      : singlesForRun(cycleStart - 1).flatMap(getCurriculumElements)
+}
+
+/**
  * The mixed exercise is the only slot a run fills from outside its syntax
  * window, so it is also the only slot that can collide with what the learner
  * just did: the four singles come from consecutive `chapterOrder` windows and
@@ -190,10 +205,15 @@ function chapterOrder(
  * every time moves run-to-run repeats 35.1% -> 31.7% while same-run repeats
  * fall 1.29 -> 0.80 cards. The run-to-run number belongs to the heading card.
  */
-function chooseMixedForRun(
+export function chooseMixedForRun(
   orderedMixed: readonly SchedulableProblem[],
   singlesForRun: (runNumber: number) => readonly SchedulableProblem[],
   runNumber: number,
+  // Seeded by the caller so a test can ask what the boundary would have chosen
+  // without it. Computed inside, the one line that consumes it could be
+  // deleted and every case still passed.
+  seedPreviousElements: (cycleStart: number) => readonly string[] =
+    defaultBoundaryPreviousElements(singlesForRun),
 ): SchedulableProblem {
   const cycleLength = orderedMixed.length
   const cycleStart = runNumber - (runNumber % cycleLength)
@@ -207,9 +227,7 @@ function chooseMixedForRun(
   // in force across the boundary against four of the five problems the learner
   // just saw, rather than none.
   let previousRunElements: ReadonlySet<string> = new Set(
-    cycleStart === 0
-      ? []
-      : singlesForRun(cycleStart - 1).flatMap(getCurriculumElements),
+    seedPreviousElements(cycleStart),
   )
 
   for (let run = cycleStart; run <= runNumber; run += 1) {
@@ -249,11 +267,12 @@ function chooseMixedForRun(
     taken.add(bestIndex)
     chosenIndex = bestIndex
 
-    const served = new Set(thisRun)
-    for (const element of getCurriculumElements(orderedMixed[bestIndex]!)) {
-      served.add(element)
-    }
-    previousRunElements = served
+    // Only the previous run's singles, not the mixed exercise it was given.
+    // Carrying the previous mixed forward buys 0.06 same-run cards and costs
+    // 0.2 points of run-to-run repeat, and run-to-run is the axis the learner
+    // named. It is also policy #197 did not ask for, and a scheduler whose
+    // contract is wider than its statement is one nobody can check.
+    previousRunElements = new Set(thisRun)
   }
 
   return orderedMixed[chosenIndex]!
