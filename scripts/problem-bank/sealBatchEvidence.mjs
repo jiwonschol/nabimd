@@ -1,5 +1,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises"
-import { basename, dirname, resolve } from "node:path"
+import { execFile } from "node:child_process"
+import { promisify } from "node:util"
+import { basename, dirname, relative, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
 import {
   buildPublishedBatchArtifacts,
@@ -10,22 +12,25 @@ import {
 } from "./batchPipeline.mjs"
 import { canonicalJson } from "./pipeline.mjs"
 
+const run = promisify(execFile)
+
 function prettyJson(value) {
   return `${JSON.stringify(value, null, 2)}\n`
 }
 
-async function updatePublishedChain({ batchDir, projectedBatch, write }) {
-  const bankRoot = dirname(dirname(batchDir))
-  const targetBatchId = basename(batchDir)
+async function updatePublishedChain({ batchDirs, projectedBatches, write }) {
+  const bankRoot = dirname(dirname(batchDirs[0]))
+  const targetBatchIds = new Set(batchDirs.map((batchDir) => basename(batchDir)))
   const loaded = await loadBatchDirectories(bankRoot)
-  const target = loaded.find((batch) => batch.normalized?.batchId === targetBatchId)
-  if (!target) return []
-
-  const projected = loaded.map((batch) =>
-    batch.normalized?.batchId === targetBatchId
-      ? { ...batch, ...projectedBatch }
-      : batch,
+  const targets = loaded.filter((batch) =>
+    targetBatchIds.has(batch.normalized?.batchId),
   )
+  if (targets.length === 0) return []
+
+  const projected = loaded.map((batch) => {
+    const replacement = projectedBatches.get(batch.normalized?.batchId)
+    return replacement ? { ...batch, ...replacement } : batch
+  })
   const published = publishedBatchHistory(
     projected.filter((batch) => batch.editorial !== null && batch.editorial !== undefined),
   ).sort(
@@ -33,8 +38,10 @@ async function updatePublishedChain({ batchDir, projectedBatch, write }) {
       left.normalized.sequence - right.normalized.sequence ||
       left.normalized.batchId.localeCompare(right.normalized.batchId),
   )
-  if (!published.some((batch) => batch.normalized.batchId === targetBatchId)) return []
-  const targetSequence = target.normalized.sequence
+  if (!published.some((batch) => targetBatchIds.has(batch.normalized.batchId))) {
+    return []
+  }
+  const targetSequence = Math.min(...targets.map((batch) => batch.normalized.sequence))
   const changed = []
   let finalArtifacts = null
   for (let index = 0; index < published.length; index += 1) {
@@ -45,7 +52,7 @@ async function updatePublishedChain({ batchDir, projectedBatch, write }) {
     })
     if (artifacts.errors.length > 0) {
       throw new Error(
-        `Cannot rebuild published evidence after resealing ${targetBatchId}:\n${artifacts.errors.join("\n")}`,
+        `Cannot rebuild published evidence after resealing ${[...targetBatchIds].join(", ")}:\n${artifacts.errors.join("\n")}`,
       )
     }
     finalArtifacts = artifacts
@@ -96,7 +103,7 @@ async function updatePublishedChain({ batchDir, projectedBatch, write }) {
  * committed batches for no reason. Touching sealed files nobody asked to
  * change is the cost this tool exists to remove.
  */
-export async function resealBatchEvidence({ batchDir, write = false }) {
+async function resealOneBatch({ batchDir, write }) {
   const reviewsDir = resolve(batchDir, "reviews")
   let reviewNames = []
   try {
@@ -139,17 +146,44 @@ export async function resealBatchEvidence({ batchDir, write = false }) {
     editorial = sealedEditorial
   }
 
-  if (changed.length > 0) {
-    changed.push(
-      ...(await updatePublishedChain({
-        batchDir,
-        projectedBatch: { reviews: sealedReviews, editorial },
-        write,
-      })),
-    )
+  return {
+    report: {
+      reviewCount: reviewNames.length,
+      hasEditorial: editorial !== null,
+      changed,
+    },
+    projectedBatch: { reviews: sealedReviews, editorial },
+  }
+}
+
+export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
+  const sealed = []
+  for (const batchDir of batchDirs) {
+    sealed.push({ batchDir, ...(await resealOneBatch({ batchDir, write })) })
   }
 
-  return { reviewCount: reviewNames.length, hasEditorial: editorial !== null, changed }
+  const changedBatches = sealed.filter(({ report }) => report.changed.length > 0)
+  if (changedBatches.length > 0) {
+    const projectedBatches = new Map(
+      sealed.map(({ batchDir, projectedBatch }) => [
+        basename(batchDir),
+        projectedBatch,
+      ]),
+    )
+    const generated = await updatePublishedChain({
+      batchDirs: changedBatches.map(({ batchDir }) => batchDir),
+      projectedBatches,
+      write,
+    })
+    changedBatches[0].report.changed.push(...generated)
+  }
+
+  return sealed.map(({ batchDir, report }) => ({ batchDir, ...report }))
+}
+
+export async function resealBatchEvidence({ batchDir, write = false }) {
+  const [report] = await resealBatchEvidenceSet({ batchDirs: [batchDir], write })
+  return report
 }
 
 export async function listBatchDirectories(bankRoot) {
@@ -162,16 +196,58 @@ export async function listBatchDirectories(bankRoot) {
 
 export const DEFAULT_BANK_ROOT = "curriculum/problem-bank/batches"
 
+async function immutableBaselineTargets(targets) {
+  let baseline
+  try {
+    baseline = (
+      await run("git", ["merge-base", "origin/main", "HEAD"], {
+        cwd: process.cwd(),
+      })
+    ).stdout.trim()
+  } catch {
+    throw new Error(
+      "Cannot identify origin/main; refusing to write sealed evidence without an immutable baseline.",
+    )
+  }
+
+  const protectedTargets = []
+  for (const batchDir of targets) {
+    const repositoryPath = relative(process.cwd(), batchDir)
+    try {
+      await run("git", ["cat-file", "-e", `${baseline}:${repositoryPath}`], {
+        cwd: process.cwd(),
+      })
+      protectedTargets.push(repositoryPath)
+    } catch (error) {
+      if (error.code !== 128) throw error
+    }
+  }
+  return new Set(protectedTargets)
+}
+
 async function main(argv) {
   const args = argv.filter((value) => value !== "--check")
   const check = argv.includes("--check")
-  const targets = args.length > 0
+  let targets = args.length > 0
     ? args.map((value) => resolve(process.cwd(), value))
     : await listBatchDirectories(resolve(process.cwd(), DEFAULT_BANK_ROOT))
 
+  if (!check) {
+    const protectedTargets = await immutableBaselineTargets(targets)
+    if (args.length > 0 && protectedTargets.size > 0) {
+      throw new Error(
+        "Refusing to reseal immutable baseline batches; publish a new replacement batch instead:\n" +
+          [...protectedTargets].map((target) => `- ${target}`).join("\n"),
+      )
+    }
+    targets = targets.filter(
+      (batchDir) => !protectedTargets.has(relative(process.cwd(), batchDir)),
+    )
+  }
+
   const drifted = []
-  for (const batchDir of targets) {
-    const report = await resealBatchEvidence({ batchDir, write: !check })
+  const reports = await resealBatchEvidenceSet({ batchDirs: targets, write: !check })
+  for (const { batchDir, ...report } of reports) {
     if (report.changed.length === 0) continue
     drifted.push({ batchDir, changed: report.changed })
   }

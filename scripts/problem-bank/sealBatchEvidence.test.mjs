@@ -5,7 +5,10 @@ import { resolve } from "node:path"
 import test from "node:test"
 import { execFile } from "node:child_process"
 import { promisify } from "node:util"
-import { resealBatchEvidence } from "./sealBatchEvidence.mjs"
+import {
+  resealBatchEvidence,
+  resealBatchEvidenceSet,
+} from "./sealBatchEvidence.mjs"
 import { sealEditorial, sealReview } from "./batchPipeline.mjs"
 import { canonicalJson } from "./pipeline.mjs"
 
@@ -17,10 +20,14 @@ const cli = resolve(import.meta.dirname, "sealBatchEvidence.mjs")
 // `write: true` left every direct-call test green.
 async function runCli(args) {
   try {
-    const { stdout } = await run(process.execPath, [cli, ...args])
-    return { code: 0, stdout }
+    const { stdout, stderr } = await run(process.execPath, [cli, ...args])
+    return { code: 0, stdout, stderr }
   } catch (error) {
-    return { code: error.code ?? 1, stdout: error.stdout ?? "" }
+    return {
+      code: error.code ?? 1,
+      stdout: error.stdout ?? "",
+      stderr: error.stderr ?? "",
+    }
   }
 }
 
@@ -177,7 +184,7 @@ test("the command without --check reseals and succeeds", async () => {
   assert.equal((await runCli([batchDir, "--check"])).code, 0)
 })
 
-test("resealing published evidence rebuilds every affected generated artifact", async () => {
+test("resealing multiple published edits rebuilds the chain only after every seal is current", async () => {
   const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
   const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-published-chain-"))
   const bankRoot = resolve(tempRoot, "problem-bank")
@@ -204,24 +211,41 @@ test("resealing published evidence rebuilds every affected generated artifact", 
     resolve(bankRoot, "tracker.generated.json"),
   )
 
-  const firstBatch = resolve(batchesRoot, batchIds[0])
-  const reviewName = (await readdir(resolve(firstBatch, "reviews")))
-    .filter((name) => name.endsWith(".json"))
-    .sort()[0]
-  const reviewPath = resolve(firstBatch, "reviews", reviewName)
-  const review = JSON.parse(await readFile(reviewPath, "utf8"))
-  review.verdicts[0].note = "clarified without changing the verdict"
-  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  const batchDirs = batchIds.map((batchId) => resolve(batchesRoot, batchId))
+  for (const [index, batchDir] of batchDirs.entries()) {
+    const reviewName = (await readdir(resolve(batchDir, "reviews")))
+      .filter((name) => name.endsWith(".json"))
+      .sort()[0]
+    const reviewPath = resolve(batchDir, "reviews", reviewName)
+    const review = JSON.parse(await readFile(reviewPath, "utf8"))
+    review.verdicts[0].note = `clarified review ${index + 1}`
+    await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  }
 
-  const report = await resealBatchEvidence({ batchDir: firstBatch, write: true })
-  assert.ok(report.changed.includes(`${batchIds[0]}/summary.generated.json`))
-  assert.ok(report.changed.includes(`${batchIds[1]}/summary.generated.json`))
-  assert.ok(report.changed.includes("runtime-projections.generated.json"))
-  assert.ok(report.changed.includes("tracker.generated.json"))
+  const reports = await resealBatchEvidenceSet({ batchDirs, write: true })
+  const changed = reports.flatMap((report) => report.changed)
+  assert.ok(changed.includes(`${batchIds[0]}/summary.generated.json`))
+  assert.ok(changed.includes(`${batchIds[1]}/summary.generated.json`))
+  assert.ok(changed.includes("runtime-projections.generated.json"))
+  assert.ok(changed.includes("tracker.generated.json"))
   assert.deepEqual(
-    (await resealBatchEvidence({ batchDir: firstBatch, write: false })).changed,
+    (await resealBatchEvidenceSet({ batchDirs, write: false })).flatMap(
+      (report) => report.changed,
+    ),
     [],
   )
+})
+
+test("the write command refuses batches protected by the immutable baseline", async () => {
+  const baselineBatch = resolve(
+    import.meta.dirname,
+    "../../curriculum/problem-bank/batches/2026-07-19-milestone-1-foundation-001",
+  )
+  const result = await runCli([baselineBatch])
+
+  assert.equal(result.code, 1)
+  assert.match(result.stderr, /Refusing to reseal immutable baseline batches/)
+  assert.match(result.stderr, /publish a new replacement batch instead/)
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {
