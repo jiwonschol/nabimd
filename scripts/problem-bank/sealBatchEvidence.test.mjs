@@ -139,6 +139,23 @@ test("a batch with no reviews and no editorial is not an error", async () => {
   assert.deepEqual(await readdir(batchDir), [])
 })
 
+test("the check is wired into the command that runs before merge", async () => {
+  // A gate nobody runs is a file. `npm run check` is what CI and the release
+  // steps invoke, so the drift check has to be reachable from there.
+  const manifest = JSON.parse(
+    await readFile(resolve(import.meta.dirname, "../../package.json"), "utf8"),
+  )
+  assert.match(manifest.scripts["bank:evidence:check"], /--check/)
+  assert.ok(
+    manifest.scripts.check.includes("bank:evidence:check"),
+    "npm run check must run bank:evidence:check",
+  )
+  assert.ok(
+    manifest.scripts.check.includes("bank:evidence:test"),
+    "npm run check must run bank:evidence:test",
+  )
+})
+
 test("every committed batch reproduces its own seals", async () => {
   // The point of the tool is that this stays true. If it ever fails, a seal
   // was closed by hand and the digest no longer covers the content.
