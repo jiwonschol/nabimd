@@ -6,11 +6,17 @@
  *
  * A pass/fail test with the digests pinned as literals would go stale on every
  * content batch, and updating a pinned digest without re-deriving it is how a
- * regression becomes a ritual. Comparing two runs cannot go stale.
+ * regression becomes a ritual.
  *
- *   git stash-free usage:
- *     npm run bank:dialect-digest            # in this worktree
- *     git -C <other worktree> ... && npm run bank:dialect-digest
+ * This is not the proof that a parser change left the bank alone — that lives
+ * in `src/markdown/parser.test.ts`, which compares both dialects inside one
+ * checkout and so needs no second commit. This script is the coarser
+ * instrument for the case where the trees *do* move and the question becomes
+ * which downstream product moved with them.
+ *
+ * It cannot be run at a commit that predates it. To measure an older commit,
+ * copy this file and its package.json entry into that checkout first — the
+ * modules it imports have been there since long before it.
  */
 import { createHash } from "node:crypto"
 import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"

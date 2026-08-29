@@ -2,6 +2,9 @@ import { readFileSync, readdirSync } from "node:fs"
 import { resolve } from "node:path"
 import { describe, expect, test } from "vitest"
 import type { Nodes, Parents } from "mdast"
+import { fromMarkdown } from "mdast-util-from-markdown"
+import runtimeProjections from "../../curriculum/problem-bank/runtime-projections.generated.json"
+import { publishedProblemIds } from "../content/problemBank"
 import { GFM_OPTIONS, parseMarkdownSource } from "./parser"
 import { parseMarkdown } from "../engine/markdownAst"
 import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
@@ -84,6 +87,42 @@ describe("the product reads one Markdown dialect", () => {
       "delete",
     )
     expect(nodeTypes(parseMarkdown("A ~single~ tilde."))).not.toContain("delete")
+  })
+})
+
+describe("turning GFM on did not move the published bank", () => {
+  // Every surface reads the parse tree and nothing else, so identical trees
+  // are a sufficient proof that no published problem is graded, taught, or
+  // rendered differently than before this module existed. Comparing the two
+  // dialects here — rather than comparing digests across two commits — keeps
+  // the proof inside one checkout, where anyone can re-run it.
+  const published = Object.values(runtimeProjections.levels).flat() as {
+    id: string
+    target: string
+  }[]
+
+  test("the published set is the size the bank reports", () => {
+    // Guards the assertion below against silently iterating nothing.
+    expect(published.length).toBe(publishedProblemIds.length)
+    expect(published.length).toBeGreaterThan(300)
+  })
+
+  test("every published target parses the same either way", () => {
+    const differing = published
+      .filter(
+        (problem) =>
+          JSON.stringify(parseMarkdownSource(problem.target)) !==
+          JSON.stringify(fromMarkdown(problem.target)),
+      )
+      .map((problem) => problem.id)
+
+    // When this fails, the question is not "which digest do I update" but
+    // "does this problem deliberately teach a GFM syntax?" A batch that adds
+    // tables, task lists, or strikethrough is expected to land here and the
+    // ids belong in an explicit allowance with the batch that introduced
+    // them. Anything else is a problem whose grading just changed under it —
+    // take it to the curriculum owner (동준) before allowing it.
+    expect(differing, "targets that parse differently under GFM").toEqual([])
   })
 })
 
