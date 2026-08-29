@@ -1300,6 +1300,27 @@ function sameSyntax(
   )
 }
 
+function sameParsedList(
+  source: string,
+  left: SyntaxCheckpoint,
+  right: SyntaxCheckpoint,
+): boolean {
+  const hasListMarker = (checkpoint: SyntaxCheckpoint) =>
+    checkpoint.segments.some(
+      (segment) =>
+        segment.kind === "input" &&
+        Object.keys(listStyleFromInput(segment.value)).length > 0,
+    )
+  const leftHasListMarker = hasListMarker(left)
+  const rightHasListMarker = hasListMarker(right)
+  if (!leftHasListMarker && !rightHasListMarker) return true
+  return (
+    leftHasListMarker &&
+    rightHasListMarker &&
+    listStyleScopeKey(source, left) === listStyleScopeKey(source, right)
+  )
+}
+
 /** A table's rows are never joined: see the `table` case in `markNodeSyntax`. */
 const TABLE_ROW_FAMILY = "table-row"
 
@@ -1324,6 +1345,7 @@ function mergeAdjacentSameSyntax(
       between === null ||
       !/^[\t ]*\n[\n\t ]*$/.test(between) ||
       indentationOf(source, previous) !== indentationOf(source, checkpoint) ||
+      !sameParsedList(source, previous, checkpoint) ||
       !sameSyntax(previous, checkpoint)
     ) {
       merged.push(checkpoint)
