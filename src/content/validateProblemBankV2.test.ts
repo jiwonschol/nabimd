@@ -9,7 +9,10 @@ import type {
   ProblemFixture,
   VocabularyProfile,
 } from "./types"
-import { validateProblemBank } from "./validateProblemBank"
+import {
+  targetUsesTabAsMarkerWhitespace,
+  validateProblemBank,
+} from "./validateProblemBank"
 
 const requiredRoles: readonly FixtureRole[] = [
   "canonical",
@@ -127,6 +130,23 @@ describe("schema-v2 problem-bank validation", () => {
     expect(validate([invalid])).toContain(
       "Problem literal-newline-escape teaching howTo contains a literal \\n escape",
     )
+  })
+
+  it.each([">\tdeep", "-\titem", "#\tTitle", "1.\tstep"])(
+    "rejects an invisible tab in target marker whitespace: %s",
+    (target) => {
+      const invalid = problem("tab-marker", { target })
+      expect(targetUsesTabAsMarkerWhitespace(target)).toBe(true)
+      expect(validate([invalid])).toContain(
+        "Problem tab-marker target uses a tab as Markdown marker whitespace",
+      )
+    },
+  )
+
+  it("does not mistake prose or layout tabs for marker whitespace", () => {
+    for (const target of ["Word\tword", "    code\tword", "> text\tword"]) {
+      expect(targetUsesTabAsMarkerWhitespace(target), target).toBe(false)
+    }
   })
 
   it.each([
