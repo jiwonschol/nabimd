@@ -8,7 +8,7 @@ import {
   checkpointHintRows,
   deriveSyntaxCheckpoints,
   missedGuidedSyntaxGroups,
-  syntaxGroupTerm,
+  syntaxGroupTermAt,
   type GuidedSyntaxSegment,
   type SyntaxCheckpoint,
   type SyntaxMistake,
@@ -291,13 +291,7 @@ export function useCenterCard({
           problemId: problem.id,
           checkpointId: checkpoint.id,
           groupIndex,
-          term: syntaxGroupTerm(
-            groups[groupIndex]?.value ?? "",
-            checkpoint.segments.some(
-              (segment) =>
-                segment.kind === "locked" && /\n[\t ]*$/.test(segment.value),
-            ),
-          ),
+          term: syntaxGroupTermAt(checkpoint, groupIndex),
           submitted: segmentValues[groupIndex] ?? "",
           expected: acceptedGuidedSyntaxGroupInputs(checkpoint, groupIndex),
         })),
