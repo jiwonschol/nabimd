@@ -767,6 +767,31 @@ describe("describeCheckpoint", () => {
     expect(codeOnly).toBeGreaterThan(20)
   })
 
+  it("leaves no served card on the generic sentence", () => {
+    // "Type the Markdown marks for this structure." is the fallback for a
+    // checkpoint no branch recognised. No served card reaches it today, and
+    // that is a contract rather than a coincidence: a card that lands there
+    // tells the learner nothing about what to type.
+    //
+    // Worth its own assertion because nothing else states it. A card slipping
+    // into the fallback changes only that card's sentence, so a suite that
+    // pins families one at a time stays green — every family it was supposed
+    // to reach is still reachable by some other card.
+    let generic = 0
+    const examples: string[] = []
+    for (const problem of problemBank) {
+      for (const checkpoint of deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )) {
+        if (describeCheckpoint(checkpoint).term !== "structure") continue
+        generic += 1
+        if (examples.length < 3) examples.push(`${problem.id}:${checkpoint.id}`)
+      }
+    }
+    expect(generic, `on the generic sentence: ${examples.join(", ")}`).toBe(0)
+  })
+
   it("records which families the engine still cannot reach", () => {
     // These fail when the parser work in #157 lands. That is the handoff: the
     // sentences above stop being a contract and become derivable from source.

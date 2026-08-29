@@ -19,6 +19,8 @@ export const SYNTAX_FAMILY_WEIGHTS = {
   "thematic-break": 1,
   link: 1,
   image: 1,
+  table: 1,
+  "task-list": 1,
 } as const
 
 export type SyntaxFamily = keyof typeof SYNTAX_FAMILY_WEIGHTS

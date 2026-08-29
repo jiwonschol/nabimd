@@ -32,6 +32,8 @@ const skillFamilyById: Readonly<Record<string, SyntaxFamily>> = {
   italic: "italic",
   "italic-emphasis": "italic",
   "ordered-list": "ordered-list",
+  table: "table",
+  "task-list": "task-list",
   "thematic-break": "thematic-break",
   "unordered-list": "unordered-list",
 }
