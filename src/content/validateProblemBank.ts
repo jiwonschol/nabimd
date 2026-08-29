@@ -662,8 +662,9 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
         for (const line of target.slice(offset, end).split("\n")) {
           const lineTo = lineFrom + line.length
           if (
-            !overlapsCode(lineFrom, lineTo) &&
-            /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line)
+            /^ {0,3}>\t/.test(line) ||
+            (!overlapsCode(lineFrom, lineTo) &&
+              /^(?: {0,3}>[ \t]?)* {0,3}>\t/.test(line))
           ) {
             found = true
             break
@@ -673,6 +674,14 @@ export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
       }
       const lineEnd = target.indexOf("\n", offset)
       const source = target.slice(offset, lineEnd < 0 ? target.length : lineEnd)
+      const nodeEnd = node.position?.end.offset
+      if (node.type === "heading" && nodeEnd !== undefined) {
+        const underlineStart = target.lastIndexOf("\n", Math.max(offset, nodeEnd - 1)) + 1
+        const underline = target.slice(underlineStart, nodeEnd)
+        if (/^ {0,3}(?:=+|-+)[ \t]*$/.test(underline) && underline.includes("\t")) {
+          found = true
+        }
+      }
       const whitespace =
         node.type === "blockquote"
           ? source.match(/^>([ \t]?)/)?.[1]
