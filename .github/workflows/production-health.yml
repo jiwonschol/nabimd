@@ -25,12 +25,6 @@ concurrency:
   group: production-health
   cancel-in-progress: true
 
-env:
-  # Not under test-results/: Playwright empties its output directory at the
-  # start of every run, so a receipt written there would be deleted by the
-  # next invocation before the report step could read it.
-  DEPLOYED_SHA_RECEIPT: ${{ runner.temp }}/deployed-sha.txt
-
 jobs:
   exercise-production:
     runs-on: ubuntu-latest
@@ -53,6 +47,20 @@ jobs:
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+
+      # One definition, carried forward by $GITHUB_ENV. The `runner` context is
+      # not available in workflow- or job-level `env` — putting it there fails
+      # workflow validation outright and takes both checks down. RUNNER_TEMP is
+      # a plain environment variable, so it works from a step without any
+      # expression at all. Assembling this path separately in each consumer
+      # would be the other way to get it wrong.
+      - name: Choose where the served-commit receipt goes
+        shell: bash
+        run: |
+          # Not under test-results/: Playwright empties its output directory at
+          # the start of every run, so a receipt written there would be deleted
+          # by the next invocation before the report step could read it.
+          echo "DEPLOYED_SHA_RECEIPT=${RUNNER_TEMP}/deployed-sha.txt" >> "$GITHUB_ENV"
 
       # Two questions, two checks, two reports. Collapsing them is what let a
       # rate-limited deployment read as "production is broken" ten times on

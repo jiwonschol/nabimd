@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import {
   classifyDeploymentGap,
+  PENDING_GRACE_MS,
   vercelStatuses,
 } from "./classifyDeploymentGap.mjs"
 
@@ -8,13 +9,25 @@ import {
 // day carried exactly this status while preview builds kept succeeding.
 const OBSERVED_RATE_LIMIT = "Deployment rate limited — retry in 24 hours."
 
-const gap = (statuses, eventName = "push") =>
+const NOW = Date.parse("2026-08-29T15:00:00Z")
+
+const gap = (statuses, eventName = "push", now = NOW) =>
   classifyDeploymentGap({
     statuses,
     expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
     deployedSha: "25e9b5e7601ff48de733274300758db5e5d5e91f",
     eventName,
+    now,
   })
+
+const pendingFor = (ms) => [
+  {
+    context: "Vercel",
+    state: "pending",
+    description: "Deploying",
+    updated_at: new Date(NOW - ms).toISOString(),
+  },
+]
 
 describe("classifyDeploymentGap", () => {
   it("holds a rate limit on the merge itself, where a later merge can carry it", () => {
@@ -130,13 +143,71 @@ describe("classifyDeploymentGap", () => {
   })
 
   it("waits rather than alerting while a deployment is still building", () => {
-    const result = gap([
-      { context: "Vercel", state: "pending", description: "Deploying" },
-    ])
+    const result = gap(pendingFor(5_000))
 
     expect(result.kind).toBe("in-flight")
     expect(result.failWorkflow).toBe(false)
     expect(result.openIssue).toBe(false)
+  })
+
+  it("stops waiting on a pending status that outlived any real deployment", () => {
+    // Codex caught the original: a commit status never expires, so one Vercel
+    // abandons keeps every run green and silent while production stays behind
+    // indefinitely. Bounded by the deployment, not by the trigger — measured
+    // over this project's 28 most recent production deployments, the slowest
+    // took 16.0s, and the grace is nineteen times that.
+    for (const eventName of ["push", "schedule", "workflow_dispatch"]) {
+      const result = gap(pendingFor(PENDING_GRACE_MS + 60_000), eventName)
+
+      expect(result.kind, eventName).toBe("pending-stalled")
+      expect(result.failWorkflow, eventName).toBe(true)
+      expect(result.openIssue, eventName).toBe(true)
+      expect(result.summary).toMatch(/stopped rather than still running/)
+      expect(result.summary).toMatch(/pending for \d+ minutes/)
+    }
+  })
+
+  it("leaves a deployment that is genuinely still running alone", () => {
+    // The passing side. A guard measured only by what it blocks hides the case
+    // where it blocks everything.
+    for (const age of [1_000, PENDING_GRACE_MS - 1_000]) {
+      const result = gap(pendingFor(age), "schedule")
+
+      expect(result.kind, `${age}ms`).toBe("in-flight")
+      expect(result.failWorkflow).toBe(false)
+      expect(result.openIssue).toBe(false)
+    }
+  })
+
+  it("does not call a pending status stalled when it carries no timestamp", () => {
+    // No timestamp is no evidence of age. Paging a human over a missing field
+    // would make the report about our parsing rather than about production.
+    const result = gap(
+      [{ context: "Vercel", state: "pending", description: "Deploying" }],
+      "schedule",
+    )
+
+    expect(result.kind).toBe("in-flight")
+    expect(result.failWorkflow).toBe(false)
+  })
+
+  it("leaves no outcome permanently green once the deployment has stopped", () => {
+    // If some state stayed green forever, it is the one a stuck deployment
+    // settles into.
+    const terminal = [
+      [],
+      [{ context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT }],
+      [{ context: "Vercel", state: "failure", description: "Build failed" }],
+      pendingFor(PENDING_GRACE_MS + 60_000),
+      [{ context: "Vercel", state: "success", description: "Ready" }],
+    ]
+    for (const statuses of terminal) {
+      const scheduled = gap(statuses, "schedule")
+      expect(
+        scheduled.failWorkflow,
+        `${scheduled.kind} stays green on a schedule run`,
+      ).toBe(true)
+    }
   })
 
   it("pages a human when the expected commit deployed but is not being served", () => {
@@ -168,7 +239,7 @@ describe("classifyDeploymentGap", () => {
       gap([]),
       gap([{ context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT }]),
       gap([{ context: "Vercel", state: "failure", description: "Build failed" }]),
-      gap([{ context: "Vercel", state: "pending", description: "Deploying" }]),
+      gap(pendingFor(5_000)),
       gap([{ context: "Vercel", state: "success", description: "Ready" }]),
     ]
 
@@ -187,7 +258,7 @@ describe("classifyDeploymentGap", () => {
     for (const result of [
       gap([{ context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT }]),
       gap([{ context: "Vercel", state: "failure", description: "Build failed" }]),
-      gap([{ context: "Vercel", state: "pending", description: "Deploying" }]),
+      gap(pendingFor(5_000)),
       gap([{ context: "Vercel", state: "success", description: "Ready" }]),
     ]) {
       expect(result.summary).not.toContain("Git connection")

@@ -16,6 +16,23 @@ export const FRESHNESS_MARKER = "<!-- nabimd-deployment-freshness -->"
 // vendor prefix rather than one exact string.
 const VERCEL_CONTEXT = /^vercel\b/i
 
+// Nineteen times the slowest production deployment this project has recorded
+// (28 samples: min 6.6s, median 9.0s, max 16.0s). Wide enough that a genuinely
+// running deployment is never called stalled, narrow enough that an abandoned
+// status does not sit green for a day.
+export const PENDING_GRACE_MS = 5 * 60 * 1000
+
+function pendingAgeMs(pending, now) {
+  const stamps = pending
+    .map((status) => Date.parse(status.updated_at ?? status.created_at ?? ""))
+    .filter((value) => Number.isFinite(value))
+  // No timestamp means no evidence of age. Treating that as stalled would page
+  // a human over a missing field, so it stays in-flight and the next run,
+  // which will have one, decides.
+  if (stamps.length === 0 || !Number.isFinite(now)) return null
+  return now - Math.max(...stamps)
+}
+
 // Only this phrasing is treated as the known, self-clearing limit. Everything
 // else falls through to build-failed, which pages a human. Widening this
 // pattern trades a real alert for silence, so it must stay narrow.
@@ -33,6 +50,7 @@ export function vercelStatuses(statuses) {
  *   expectedSha: string,
  *   deployedSha?: string | null,
  *   eventName?: string,
+ *   now?: number,
  * }} input
  */
 export function classifyDeploymentGap({
@@ -40,6 +58,7 @@ export function classifyDeploymentGap({
   expectedSha,
   deployedSha,
   eventName,
+  now = Date.now(),
 }) {
   const relevant = vercelStatuses(statuses)
   const short = (sha) => (sha ? String(sha).slice(0, 8) : "an unknown commit")
@@ -111,15 +130,40 @@ export function classifyDeploymentGap({
     }
   }
 
-  if (relevant.some((status) => status.state === "pending")) {
+  const pending = relevant.filter((status) => status.state === "pending")
+  if (pending.length > 0) {
+    // A commit status does not expire. If Vercel abandons a pending one,
+    // "the next scheduled run decides" is a promise nothing keeps: every
+    // hourly run reports in-flight while production stays behind forever.
+    //
+    // The bound is the deployment itself rather than the trigger. Measured
+    // over the 28 most recent production deployments of this project:
+    // min 6.6s, median 9.0s, max 16.0s. PENDING_GRACE_MS is nineteen times
+    // that maximum, so a status still pending past it stopped — including on
+    // a push run, where the trigger axis would have called it healthy.
+    const age = pendingAgeMs(pending, now)
+    if (age === null || age < PENDING_GRACE_MS) {
+      return {
+        kind: "in-flight",
+        failWorkflow: false,
+        openIssue: false,
+        title: "Production is behind main while a deployment is still building",
+        summary:
+          `${gap} A Vercel deployment for it is still pending, so this run is ` +
+          "too early rather than wrong. The next run decides.",
+      }
+    }
     return {
-      kind: "in-flight",
-      failWorkflow: false,
-      openIssue: false,
-      title: "Production is behind main while a deployment is still building",
+      kind: "pending-stalled",
+      failWorkflow: true,
+      openIssue: true,
+      title: "Production is behind main and its deployment never finished",
       summary:
-        `${gap} A Vercel deployment for it is still pending, so this run is ` +
-        "too early rather than wrong. The next scheduled run decides.",
+        `${gap} Vercel's status for it has been pending for ` +
+        `${Math.round(age / 60_000)} minutes. Deployments here finish in ` +
+        "seconds and a commit status never expires on its own, so this one " +
+        "stopped rather than still running. Check the deployment in Vercel " +
+        "and redeploy the commit.",
     }
   }
 

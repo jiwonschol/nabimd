@@ -47,14 +47,24 @@ status rather than guessing:
 
 | Classification | What was observed | Workflow | Files a report |
 |---|---|---|---|
-| `rate-limited` | Vercel refused it for the daily quota | red only on a schedule or dispatch run | yes |
+| `rate-limited` | Vercel refused it for the daily quota | red except on the merge run | yes |
 | `not-triggered` | Vercel published no status at all | red | yes |
 | `build-failed` | any other Vercel failure | red | yes |
 | `deployed-elsewhere` | Vercel succeeded but is not being served | red | yes |
-| `in-flight` | a deployment is still building | green | no |
+| `pending-stalled` | pending for longer than any real deployment takes | red | yes |
+| `in-flight` | pending, recently | green | no |
 
 Anything the classifier cannot positively identify as the quota limit calls a
 person; widening that recognition trades a real alert for silence.
+
+**A pending status does not expire.** If Vercel abandons one, nothing ever
+changes it, so "still building" would stay true and green forever while
+production sat behind. The line between the two pending classifications is the
+deployment itself, not the clock on the wall: over this project's 28 most
+recent production deployments the slowest took 16 seconds, and a status is
+called stalled only after five minutes — nineteen times that. A pending status
+with no timestamp is left as in-flight, because a missing field is not evidence
+that anything is wrong.
 
 **A refused deployment is not retried.** When the daily quota resets, Vercel
 does not re-attempt what it turned away — a new deployment has to be asked for.

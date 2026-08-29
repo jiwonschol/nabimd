@@ -40,6 +40,22 @@ describe("production health artifacts survive both checks", () => {
     )
   })
 
+  it("never reaches for the runner context outside a step", () => {
+    // `runner` is not available in workflow-level or job-level `env`.
+    // Referencing it there does not degrade anything gracefully — GitHub
+    // rejects the whole workflow at validation time and both checks stop
+    // running. Nothing in CI catches that, because this workflow only runs on
+    // pushes to main; it would have failed first after merge.
+    const beforeSteps = workflow.slice(0, workflow.indexOf("    steps:"))
+
+    expect(
+      beforeSteps,
+      "runner.* used above the steps: block, where the context does not exist",
+    ).not.toMatch(/\brunner\./)
+    // And the value still has to come from somewhere the runner defines.
+    expect(workflow).toContain("RUNNER_TEMP")
+  })
+
   it("uploads a path that contains both output directories", () => {
     const uploaded = workflow.match(/name: production-health-.*\n\s+path: (\S+)/)
     expect(uploaded, "artifact upload path not found").toBeTruthy()
@@ -49,12 +65,14 @@ describe("production health artifacts survive both checks", () => {
   })
 
   it("keeps the served-commit receipt out of any Playwright output directory", () => {
-    // `\S+` stops at the space inside `${{ runner.temp }}`, so it captured
-    // `${{` and every containment check below passed against three characters.
-    // A mutation that put the receipt straight back under test-results/
-    // survived this test until the pattern read to the end of the line.
-    const receipt = workflow.match(/DEPLOYED_SHA_RECEIPT: (.+)/)?.[1]?.trim()
-    expect(receipt, "DEPLOYED_SHA_RECEIPT not set").toBeTruthy()
+    // Read to the end of the line, not `\S+`: an earlier version stopped at
+    // the space inside an expression and captured three characters, so every
+    // containment check below passed against nothing. A mutation putting the
+    // receipt straight back under test-results/ survived it.
+    const receipt = workflow
+      .match(/DEPLOYED_SHA_RECEIPT=(.+?)["' ]*>>/)?.[1]
+      ?.trim()
+    expect(receipt, "DEPLOYED_SHA_RECEIPT is never assigned").toBeTruthy()
     // The value has to be a path, not the head of an unparsed expression.
     expect(receipt).toMatch(/deployed-sha\.txt$/)
 
