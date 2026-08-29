@@ -140,6 +140,25 @@ describe("RunSummary as a teacher's return", () => {
     expect(previous).toHaveFocus()
   })
 
+  it("starts both review panes at the top when changing exercises", () => {
+    renderSummary()
+    const rendered = screen.getByRole("region", { name: "Rendered document" })
+    const source = screen.getByRole("region", { name: "Markdown source" })
+    rendered.scrollTop = 180
+    source.scrollTop = 240
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Next completed exercise" }),
+    )
+
+    const nextRendered = screen.getByRole("region", { name: "Rendered document" })
+    const nextSource = screen.getByRole("region", { name: "Markdown source" })
+    expect(nextRendered).not.toBe(rendered)
+    expect(nextSource).not.toBe(source)
+    expect(nextRendered.scrollTop).toBe(0)
+    expect(nextSource.scrollTop).toBe(0)
+  })
+
   it("marks only the missed line, leaving the rest of the work clean", () => {
     renderSummary([mistake()])
 

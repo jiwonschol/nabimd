@@ -107,14 +107,22 @@ export function RunSummary({
                 </nav>
               </header>
               <div className="run-summary__work-compare">
-                <section aria-label="Rendered document" className="run-summary__work-pane">
+                <section
+                  aria-label="Rendered document"
+                  className="run-summary__work-pane"
+                  key={`rendered-${activePage.problemId}`}
+                >
                   <p className="run-summary__work-label">Rendered</p>
                   <RenderedDocumentBody
                     corrections={activePage.corrections}
                     source={activePage.source}
                   />
                 </section>
-                <section aria-label="Markdown source" className="run-summary__work-pane">
+                <section
+                  aria-label="Markdown source"
+                  className="run-summary__work-pane"
+                  key={`source-${activePage.problemId}`}
+                >
                   <p className="run-summary__work-label">Markdown</p>
                   <pre><code>{activePage.source}</code></pre>
                 </section>
