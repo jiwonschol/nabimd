@@ -286,6 +286,23 @@ function titleCase(value: string): string {
   return `${value.charAt(0).toUpperCase()}${value.slice(1)}`
 }
 
+// The Level 2 families this card can now name. The chain below grew one nested
+// ternary per family and is left as it stands; new families are looked up here
+// first. Each string is Markdown source — the panel renders it — so the hard
+// break carries two real trailing spaces, and both table terms share a whole
+// table, since one row on its own renders as a paragraph.
+const LEVEL_TWO_EXAMPLES: Record<string, string> = {
+  "Strikethrough text": "~~Example~~",
+  "Bold italic text": "***Example***",
+  "Quote inside a quote": "> Example\n> > Example",
+  "Syntax-highlighted code block": "```js\nlet example = 1\n```",
+  "Line break": "First line  \nSecond line",
+  "Table row": "Fruit | Count\n--- | ---\nApples | 3",
+  "Column headers": "Fruit | Count\n--- | ---\nApples | 3",
+  "Checkbox item": "- [ ] Example",
+  "Checked-off item": "- [x] Example",
+}
+
 export function buildSyntaxReference(
   checkpoint: SyntaxCheckpoint,
 ): SyntaxReference {
@@ -298,8 +315,17 @@ export function buildSyntaxReference(
   const isBullet = term === "bullet item"
   const isNumbered = term === "numbered step"
   const isBold = term === "bold text"
+  // `syntaxCheckpointTerms` names each blank on its own, so it splits families
+  // whose marks arrive in more than one group: a checkbox reads as "bullet
+  // item + link" because `[ ]` starts with a bracket, and a fence that asks
+  // for its language reads as "fenced code block + Markdown mark".
+  // `describeCheckpoint` sees the whole checkpoint and knows the family, so
+  // where it names one of these it wins over the per-group join.
+  const ownFamily = LEVEL_TWO_EXAMPLES[titleCase(term)]
   const name =
-    terms.length > 1
+    ownFamily !== undefined
+      ? titleCase(term)
+      : terms.length > 1
       ? terms.map(titleCase).join(" + ")
       : isBullet && hasInlineCode
         ? "Bullet item with inline code"
@@ -313,7 +339,9 @@ export function buildSyntaxReference(
   const headingDepth = /^level (\d) heading$/.exec(term)?.[1]
   const setextDepth = /^level (\d) Setext heading$/.exec(term)?.[1]
   const example =
-    terms.length > 1
+    ownFamily !== undefined
+      ? ownFamily
+      : terms.length > 1
       ? checkpoint.segments.map((segment) => segment.value).join("")
       : setextDepth
         ? `Example\n${setextDepth === "1" ? "=======" : "-------"}`
