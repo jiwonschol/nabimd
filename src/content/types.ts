@@ -29,14 +29,25 @@ export type CheckScope =
       occurrence: number
     }
 
-export type BlockKind =
-  | "heading"
-  | "paragraph"
-  | "list"
-  | "code"
-  | "blockquote"
-  | "thematic-break"
-  | "table"
+/**
+ * The block kinds a check may name, as values rather than only a type.
+ *
+ * `validateProblemBank` needs the same list at runtime and kept its own copy,
+ * which the compiler could not keep in step: adding `table` to the type left
+ * the validator rejecting `block: "table"` while the engine graded it. The
+ * type is derived from this array so there is one place to add the next one.
+ */
+export const BLOCK_KINDS = [
+  "heading",
+  "paragraph",
+  "list",
+  "code",
+  "blockquote",
+  "thematic-break",
+  "table",
+] as const
+
+export type BlockKind = (typeof BLOCK_KINDS)[number]
 
 export type InlineKind =
   | "emphasis"

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 import { describeCheckpoint } from "../components/CenterCard"
 import { createEvaluationContext } from "../engine/evaluationContext"
 import { countBlockNodes } from "../engine/predicates/structural"
+import { BLOCK_KINDS } from "../content/types"
 import { deriveSyntaxCheckpoints } from "./guidedSyntax"
 
 const OUTER_BARS = "| Fruit | Count |\n| --- | --- |\n| Apples | 3 |"
@@ -85,6 +86,20 @@ describe("a table row is a card", () => {
         false,
       )
     }
+  })
+})
+
+describe("the bank gate lets a table check through", () => {
+  it("accepts a table block kind and a table scope", () => {
+    // The engine knowing `table` is not enough: `validateProblemBank` keeps
+    // its own runtime list, and a table problem is rejected at the bank gate
+    // before any of the grading above runs. The list is now derived from
+    // `BLOCK_KINDS`, so the compiler keeps the two in step.
+    expect(BLOCK_KINDS).toContain("table")
+    expect(new Set<string>(BLOCK_KINDS).has("table")).toBe(true)
+    // The pass case's counterpart: a kind the product has no check for is
+    // still rejected, so this is not a whitelist that lets anything through.
+    expect(BLOCK_KINDS).not.toContain("footnote")
   })
 })
 
