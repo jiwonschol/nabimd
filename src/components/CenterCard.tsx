@@ -159,9 +159,19 @@ export function describeCheckpoint(
   if (inTableRow) {
     const barsTyped = (mark.match(/\|/g) ?? []).length
     const dashesTyped = /-{3,}/.test(mark)
+    // A divider row is dashes in *every* cell. Reading it from any one locked
+    // cell called `| --- | value |` a divider and told the learner the row
+    // above defines the headers, when it is an ordinary body row whose first
+    // cell happens to be dashes. And a three-dash minimum missed `| - | - |`,
+    // which GFM accepts as a divider, so the real divider read as a body row.
+    // One cell of dashes says nothing about the row; all of them, and none
+    // that is not, is what the shape actually is.
     const dividerRow =
       dashesTyped ||
-      lockedValues.some((value) => /^\s*:?-{3,}:?\s*$/.test(value))
+      // `length > 0` is the definition, not a guard: a row with no cells is
+      // not a rule, and `every` on an empty list would say it is.
+      (lockedValues.length > 0 &&
+        lockedValues.every((value) => /^\s*:?-+:?\s*$/.test(value)))
     if (dividerRow) {
       // #157 designs Level 2 tables with no outer bars, so a two-column row
       // asks for a single bar. Noun and verb both have to follow that count.
