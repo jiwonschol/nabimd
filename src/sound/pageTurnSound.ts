@@ -9,10 +9,11 @@ export const PAGE_TURN_SOUND_ASSET = pageTurnSoundAsset
 
 let pageTurnAudio: HTMLAudioElement | null = null
 let pageTurnUnlocked = false
+let pageTurnPriming: Promise<void> | null = null
 
 subscribeSoundMuted((muted) => {
   if (!pageTurnAudio) return
-  pageTurnAudio.muted = muted
+  pageTurnAudio.muted = muted || pageTurnPriming !== null
   if (muted) {
     pageTurnAudio.pause()
     pageTurnAudio.currentTime = 0
@@ -41,16 +42,23 @@ function playPageTurnAudio(unlockOnSuccess: boolean) {
   try {
     const playback = Promise.resolve(audio.play())
     if (unlockOnSuccess) {
+      pageTurnPriming = playback
       void playback.then(
         () => {
+          if (pageTurnPriming !== playback) return
+          pageTurnPriming = null
           pageTurnUnlocked = true
           if (muted) {
             audio.pause()
             audio.currentTime = 0
-            audio.muted = readSoundMuted()
           }
+          audio.muted = readSoundMuted()
         },
-        () => {},
+        () => {
+          if (pageTurnPriming !== playback) return
+          pageTurnPriming = null
+          audio.muted = readSoundMuted()
+        },
       )
     } else {
       void playback.catch(() => {})
@@ -78,4 +86,5 @@ export function playPageTurnSound() {
 export function __resetPageTurnSoundForTesting() {
   pageTurnAudio = null
   pageTurnUnlocked = false
+  pageTurnPriming = null
 }

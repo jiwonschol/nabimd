@@ -105,7 +105,11 @@ export function CardFirstPractice({
 
     const observer = new ResizeObserver((entries) => {
       if (transitionTimerRef.current !== null) return
-      const height = entries[0]?.contentRect.height
+      const entry = entries[0]
+      const borderBox = Array.isArray(entry?.borderBoxSize)
+        ? entry.borderBoxSize[0]
+        : entry?.borderBoxSize
+      const height = borderBox?.blockSize ?? practice.getBoundingClientRect().height
       if (height) previousHeightRef.current = height
     })
     observer.observe(practice)

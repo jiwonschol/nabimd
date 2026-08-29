@@ -184,6 +184,7 @@ describe("CardFirstPractice", () => {
       resizeCallback?.(
         [
           {
+            borderBoxSize: [{ blockSize: 264, inlineSize: 400 }],
             contentRect: { height: 240 } as DOMRectReadOnly,
           } as ResizeObserverEntry,
         ],
@@ -192,6 +193,6 @@ describe("CardFirstPractice", () => {
     })
     fireEvent.click(screen.getByRole("button", { name: "Hint" }))
 
-    expect(forcedStartHeights).toContain("240px")
+    expect(forcedStartHeights).toContain("264px")
   })
 })
