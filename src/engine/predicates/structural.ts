@@ -163,18 +163,26 @@ function listShapePasses(
   check: Extract<StructuralCheck, { kind: "list-shape" }>,
   context: EvaluationContext,
 ) {
-  return listCandidatesForCheck(check, context).some(({ list }) => {
-    return (
-      inRange(list.children.length, check.minItems, check.maxItems) &&
-      (!check.requireNonemptyItems ||
-        list.children.every(listItemHasContent)) &&
-      (!check.requireVisibleItems ||
-        list.children.every((item) =>
-          listItemHasVisibleContent(item, context.source),
-        )) &&
-      (!check.requireTaskItems || list.children.every(isTaskItem))
-    )
-  })
+  return listCandidatesForCheck(check, context).some(({ list }) =>
+    listCandidatePasses(check, context, list),
+  )
+}
+
+export function listCandidatePasses(
+  check: Extract<StructuralCheck, { kind: "list-shape" }>,
+  context: EvaluationContext,
+  list: List,
+  requireTaskItems = check.requireTaskItems,
+): boolean {
+  return (
+    inRange(list.children.length, check.minItems, check.maxItems) &&
+    (!check.requireNonemptyItems || list.children.every(listItemHasContent)) &&
+    (!check.requireVisibleItems ||
+      list.children.every((item) =>
+        listItemHasVisibleContent(item, context.source),
+      )) &&
+    (!requireTaskItems || list.children.every(isTaskItem))
+  )
 }
 
 export function listCandidatesForCheck(

@@ -191,6 +191,24 @@ describe("correctionCue", () => {
     expect(correctionCue(item).message).toBe("Write a level 2 heading.")
     expect(correctionCue(item).example).toBe("## Section")
   })
+
+  it("shows the nesting required by a descendant task-list cue", () => {
+    const item = failure({
+      ...checkBase("nested-task-list"),
+      kind: "list-shape",
+      scope: { kind: "document" },
+      ordered: false,
+      minItems: 1,
+      recursive: true,
+      descendantsOnly: true,
+      requireTaskItems: true,
+    })
+
+    expect(correctionCue(item)).toMatchObject({
+      label: "Nested task list",
+      example: "- [ ] Parent\n  - [ ] Child",
+    })
+  })
 })
 
 describe("correctionCues", () => {

@@ -1,4 +1,4 @@
-import type { List, RootContent } from "mdast"
+import type { RootContent } from "mdast"
 import type { GradableProblem, MatchCheck } from "../content/types"
 import {
   createEvaluationContext,
@@ -10,7 +10,8 @@ import {
 import type { MatchDiagnostic, SourceRange } from "./types"
 import {
   countBlockNodes,
-  isTaskItem,
+  listCandidatePasses,
+  listCandidatesForCheck,
   structuralCheckPasses,
 } from "./predicates/structural"
 
@@ -77,14 +78,9 @@ function targetNodeForCheck(
         (node) => node.type === inlineType[check.inline],
       ) as PositionedNode | undefined
     case "list-shape":
-      return descendants(nodesInScope(context, check.scope) as AstNode[]).find(
-        (node) =>
-          node.type === "list" &&
-          (check.ordered === "either" ||
-            Boolean((node as PositionedNode).ordered) === check.ordered) &&
-          (!check.requireTaskItems ||
-            (node as List).children.every(isTaskItem)),
-      ) as PositionedNode | undefined
+      return listCandidatesForCheck(check, context).find(({ list }) =>
+        listCandidatePasses(check, context, list),
+      )?.list as PositionedNode | undefined
     case "blockquote-shape":
       return descendants(nodesInScope(context, check.scope) as AstNode[]).find(
         (node) => node.type === "blockquote",

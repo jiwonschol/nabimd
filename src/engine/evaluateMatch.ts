@@ -3,6 +3,7 @@ import type { EvaluationContext } from "./evaluationContext"
 import { headingCheckPasses } from "./predicates/heading"
 import {
   isTaskItem,
+  listCandidatePasses,
   listCandidatesForCheck,
   structuralCheckPasses,
 } from "./predicates/structural"
@@ -35,8 +36,7 @@ function checkboxNearMiss(
  ) {
   return listCandidatesForCheck(check, context).find(
     ({ list }) =>
-      list.children.length >= check.minItems &&
-      (check.maxItems === undefined || list.children.length <= check.maxItems) &&
+      listCandidatePasses(check, context, list, false) &&
       list.children.some((item) => !isTaskItem(item)),
   )?.list
 }

@@ -76,9 +76,14 @@ function listPresentation(
   requireTaskItems: boolean | undefined,
 ): { label: string; example: string } {
   if (requireTaskItems) {
+    const marker = ordered === true ? "1." : "-"
     return {
       label: descendantsOnly ? "Nested task list" : "Task list",
-      example: ordered === true ? "1. [ ] Step" : "- [ ] Item",
+      example: descendantsOnly
+        ? ordered === true
+          ? "1. [ ] Parent\n   1. [ ] Child"
+          : "- [ ] Parent\n  - [ ] Child"
+        : `${marker} [ ] ${ordered === true ? "Step" : "Item"}`,
     }
   }
   const label =

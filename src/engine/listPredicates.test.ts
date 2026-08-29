@@ -278,6 +278,46 @@ describe("task list checkboxes", () => {
     ).toContain("Put a checkbox after each bullet marker")
   })
 
+  it("targets the task list that satisfies the configured item range", () => {
+    const taskCheck = taskListProblem(true)
+      .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
+    const rangedTarget: GradableProblem = {
+      ...taskListProblem(true),
+      target: "- [ ] Solo\n\nBetween\n\n- [ ] One\n- [ ] Two",
+      matchChecks: [taskCheck],
+    }
+
+    const result = evaluateProblem(rangedTarget, "No task list yet")
+
+    expect(result).toMatchObject({
+      status: "fail",
+      failures: [
+        { diagnostic: { expectedSource: "- [ ] One" } },
+      ],
+    })
+  })
+
+  it("does not prescribe checkboxes for otherwise invalid list items", () => {
+    const taskCheck = taskListProblem(true)
+      .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
+    const visibleTaskProblem: GradableProblem = {
+      ...taskListProblem(true),
+      matchChecks: [
+        { ...taskCheck, requireVisibleItems: true },
+      ],
+    }
+
+    expect(
+      evaluateProblem(
+        visibleTaskProblem,
+        "- <!-- hidden -->\n- <!-- still hidden -->",
+      ),
+    ).toMatchObject({
+      status: "fail",
+      message: taskCheck.feedback,
+    })
+  })
+
   it("does not diagnose bullets outside the checked section", () => {
     const taskCheck = taskListProblem(true)
       .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
