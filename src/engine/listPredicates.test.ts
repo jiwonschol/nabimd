@@ -233,6 +233,29 @@ describe("task list checkboxes", () => {
     )
   })
 
+  it("does not diagnose bullets outside the checked section", () => {
+    const taskCheck = taskListProblem(true)
+      .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
+    const scopedProblem: GradableProblem = {
+      ...taskListProblem(true),
+      matchChecks: [
+        {
+          ...taskCheck,
+          scope: { kind: "section", headingDepth: 2, occurrence: 1 },
+        },
+      ],
+    }
+    const result = evaluateProblem(
+      scopedProblem,
+      "## Notes\n\n- One\n- Two\n\n## Tasks\n\nNothing here yet.",
+    )
+
+    expect(result).toMatchObject({
+      status: "fail",
+      message: "Add a task list with at least two checkbox items.",
+    })
+  })
+
   it("leaves lists without the option exactly as they were", () => {
     // The option is opt-in. Without it a plain bullet list still passes, so
     // adding the axis cannot have narrowed any problem already in the bank.

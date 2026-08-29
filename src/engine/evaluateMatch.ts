@@ -1,5 +1,11 @@
 import type { GradableProblem, MatchCheck } from "../content/types"
-import type { EvaluationContext } from "./evaluationContext"
+import {
+  descendants,
+  nodesInScope,
+  type AstNode,
+  type EvaluationContext,
+} from "./evaluationContext"
+import type { List } from "mdast"
 import { headingCheckPasses } from "./predicates/heading"
 import { structuralCheckPasses } from "./predicates/structural"
 import type { MatchFailure } from "./types"
@@ -25,34 +31,32 @@ function missingNumberedSpaceCount(source: string): number {
   ).length
 }
 
-function listWithoutCheckboxCount(
-  source: string,
-  ordered: ListShapeCheck["ordered"],
-): number {
-  return source.split("\n").filter((line) => {
-    if (isThematicBreak(line)) return false
-    const marker =
-      ordered === true
-        ? /^[ \t]{0,3}\d{1,9}[.)][ \t]+/
-        : ordered === false
-          ? /^[ \t]{0,3}[-+*][ \t]+/
-          : /^[ \t]{0,3}(?:[-+*]|\d{1,9}[.)])[ \t]+/
-    if (!marker.test(line)) return false
-    return !/^[ \t]{0,3}(?:[-+*]|\d{1,9}[.)])[ \t]+\[[ xX]\][ \t]/.test(
-      line,
+function hasCheckboxNearMiss(
+  check: ListShapeCheck,
+  context: EvaluationContext,
+): boolean {
+  return descendants(nodesInScope(context, check.scope) as AstNode[])
+    .filter((node): node is List => node.type === "list")
+    .filter(
+      (list) =>
+        check.ordered === "either" || Boolean(list.ordered) === check.ordered,
     )
-  }).length
+    .some(
+      (list) =>
+        list.children.filter((item) => item.checked === null).length >=
+        check.minItems,
+    )
 }
 
 function listFailureMessage(
   check: ListShapeCheck,
-  source: string,
+  context: EvaluationContext,
 ): string {
   // A list that is missing its boxes is the near miss this check exists for,
   // so it gets its own sentence rather than the generic feedback.
   if (
     check.requireTaskItems &&
-    listWithoutCheckboxCount(source, check.ordered) >= check.minItems
+    hasCheckboxNearMiss(check, context)
   ) {
     return check.ordered === true
       ? "Put a checkbox after each numbered marker, for example `1. [ ] Item`."
@@ -61,14 +65,14 @@ function listFailureMessage(
 
   if (
     check.ordered !== true &&
-    missingBulletSpaceCount(source) >= check.minItems
+    missingBulletSpaceCount(context.source) >= check.minItems
   ) {
     return "Put one space after each bullet marker, for example `- Item`."
   }
 
   if (
     check.ordered !== false &&
-    missingNumberedSpaceCount(source) >= check.minItems
+    missingNumberedSpaceCount(context.source) >= check.minItems
   ) {
     return "Put one space after each numbered marker, for example `1. Step`."
   }
@@ -76,9 +80,9 @@ function listFailureMessage(
   return check.feedback
 }
 
-function failureMessage(check: MatchCheck, source: string): string {
+function failureMessage(check: MatchCheck, context: EvaluationContext): string {
   return check.kind === "list-shape"
-    ? listFailureMessage(check, source)
+    ? listFailureMessage(check, context)
     : check.feedback
 }
 
@@ -121,7 +125,7 @@ export function evaluateMatch(
     .filter(({ check }) => !checkPasses(check, context))
     .map(({ check, declarationIndex }) => ({
       feedbackId: check.id,
-      message: failureMessage(check, context.source),
+      message: failureMessage(check, context),
       check,
       diagnostic: diagnoseMatchFailure(
         problem,
