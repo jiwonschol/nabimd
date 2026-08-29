@@ -147,18 +147,23 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     if (dividerRow) {
       // #157 designs Level 2 tables with no outer bars, so a two-column row
       // asks for a single bar. Noun and verb both have to follow that count.
+      // The verb is `turns ... into` and not `makes ... the`, which reads
+      // first as one noun phrase — "the row above the column headers", a row
+      // sitting above them. The divider sits *below* the header row, so a
+      // learner who reads it that way is told the opposite of what the screen
+      // shows. `turns A into B` has no second reading.
       const typed =
         dashesTyped && barsTyped > 1
-          ? "bars and dashes that make"
+          ? "bars and dashes that turn"
           : dashesTyped && barsTyped === 1
-            ? "bar and dashes that make"
+            ? "bar and dashes that turn"
             : dashesTyped
-              ? "dashes that make"
+              ? "dashes that turn"
               : barsTyped > 1
-                ? "bars that make"
-                : "bar that makes"
+                ? "bars that turn"
+                : "bar that turns"
       return instruction(
-        `Type the Markdown ${typed} the row above the `,
+        `Type the Markdown ${typed} the row above into `,
         "column headers",
       )
     }

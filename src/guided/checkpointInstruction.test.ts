@@ -342,20 +342,20 @@ describe("the sentence, derived from real Markdown", () => {
       return prefix + term
     })
 
-  it("calls a one-dash divider the row above the column headers", () => {
+  it("calls a one-dash divider the row that turns the one above into column headers", () => {
     // GFM accepts one dash per cell. The deriver locks those dashes and blanks
     // the bars, so the divider has to be recognised from the locked cells —
     // and a three-dash minimum leaves it reading as an ordinary body row.
     expect(sentencesFor("| Name | Age |\n| - | - |\n| Ann | 9 |")).toEqual([
       "Type the Markdown bars that separate the cells of this table row",
-      "Type the Markdown bars that make the row above the column headers",
+      "Type the Markdown bars that turn the row above into column headers",
       "Type the Markdown bars that separate the cells of this table row",
     ])
   })
 
   it("still calls a three-dash divider the same thing", () => {
     expect(sentencesFor("| Name | Age |\n| --- | --- |\n| Ann | 9 |")[1]).toBe(
-      "Type the Markdown bars that make the row above the column headers",
+      "Type the Markdown bars that turn the row above into column headers",
     )
   })
 
