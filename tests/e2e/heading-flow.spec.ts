@@ -409,6 +409,9 @@ test("requires both Level 1 italic marks and never autocompletes the closer", as
 
   expect(await currentProblemId(page)).toBe("l1-italic-paper-boat")
   await expect(
+    page.getByRole("progressbar", { name: /Current problem progress/ }),
+  ).toHaveCount(0)
+  await expect(
     page.getByRole("textbox", { name: /Marks \d of 2/ }),
   ).toHaveCount(2)
 
@@ -438,10 +441,21 @@ test("supports Previous and Next across accepted marks", async ({ page }) => {
   if (!problem) throw new Error("Expected the current runtime problem")
   const marks = slotMarksFor(problem.target)
   expect(marks.length).toBeGreaterThan(1)
-
+  const partProgress = page.locator(".center-card__slot")
+  await expect(partProgress).toBeVisible()
+  await expect(partProgress).toHaveAccessibleName(
+    `Current problem progress, part 1 of ${marks.length}`,
+  )
+  await expect(
+    page.getByRole("progressbar", { name: "Practice progress, 1 of 5" }),
+  ).toBeAttached()
   await submitSlot(page, marks[0]!)
-  const previous = page.getByRole("button", { name: "Previous mark" })
-  const next = page.getByRole("button", { name: "Next mark" })
+  await expect(partProgress).toHaveAccessibleName(
+    `Current problem progress, part 2 of ${marks.length}`,
+  )
+  await expect(partProgress).toHaveText(`Part 2 of ${marks.length}`)
+  const previous = page.getByRole("button", { name: "Previous part" })
+  const next = page.getByRole("button", { name: "Next part" })
   await expect(previous).toBeEnabled()
   await expect(next).toBeDisabled()
 
@@ -526,8 +540,8 @@ test("keeps the mark controls on the writing leaf", async ({ page }) => {
 
     const [writeLeaf, previous, next] = await Promise.all([
       page.locator(".center-card__leaf--write").boundingBox(),
-      page.getByRole("button", { name: "Previous mark" }).boundingBox(),
-      page.getByRole("button", { name: "Next mark" }).boundingBox(),
+      page.getByRole("button", { name: "Previous part" }).boundingBox(),
+      page.getByRole("button", { name: "Next part" }).boundingBox(),
     ])
 
     const label = `at ${viewport.width}x${viewport.height}`

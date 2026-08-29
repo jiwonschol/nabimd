@@ -215,6 +215,51 @@ describe("CenterCard", () => {
     expect(instruction.querySelector("strong")).toHaveTextContent("italic text")
   })
 
+  it("shows the current part when a problem has multiple syntax cards", () => {
+    render(<CenterCard {...cardProps({ slotIndex: 1, slotTotal: 3 })} />)
+
+    const progress = screen.getByRole("progressbar", {
+      name: "Current problem progress, part 2 of 3",
+    })
+    expect(progress).toBeVisible()
+    expect(progress).toHaveTextContent("Part 2 of 3")
+    expect(progress).toHaveAttribute("aria-valuenow", "2")
+    expect(progress).toHaveAttribute("aria-valuemax", "3")
+    expect(screen.getByRole("button", { name: "Previous part" })).toBeVisible()
+    expect(screen.getByRole("button", { name: "Next part" })).toBeVisible()
+  })
+
+  it("counts each row of a three-row table as one part", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "Fruit | Count\n--- | ---\nApples | 3",
+      "",
+    )
+    expect(checkpoints).toHaveLength(3)
+
+    render(
+      <CenterCard
+        {...cardProps({
+          checkpoint: checkpoints[0],
+          slotIndex: 0,
+          slotTotal: checkpoints.length,
+        })}
+      />,
+    )
+
+    expect(
+      screen.getByRole("progressbar", {
+        name: "Current problem progress, part 1 of 3",
+      }),
+    ).toHaveTextContent("Part 1 of 3")
+  })
+
+  it("does not add local progress to a one-card problem", () => {
+    render(<CenterCard {...cardProps({ slotIndex: 0, slotTotal: 1 })} />)
+
+    expect(screen.queryByRole("progressbar")).toBeNull()
+    expect(screen.queryByText(/Part \d+ of \d+/)).toBeNull()
+  })
+
   it("keeps locked prose outside the two syntax textboxes", () => {
     render(<CenterCard {...cardProps()} />)
 
