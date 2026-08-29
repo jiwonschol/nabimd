@@ -5,9 +5,7 @@ import {
   EditorView,
   WidgetType,
 } from "@codemirror/view"
-import { fromMarkdown } from "mdast-util-from-markdown"
-import { gfmFromMarkdown } from "mdast-util-gfm"
-import { gfm } from "micromark-extension-gfm"
+import { parseMarkdownSource } from "../markdown/parser"
 
 type MdNode = {
   alt?: string | null
@@ -283,10 +281,7 @@ export function findRenderedMarkdownTokens(
     sourceLine: line.number,
     to: line.from,
   }))
-  const root = fromMarkdown(source, {
-    extensions: [gfm({ singleTilde: false })],
-    mdastExtensions: [gfmFromMarkdown()],
-  }) as unknown as MdNode
+  const root = parseMarkdownSource(source) as unknown as MdNode
 
   const visit = (node: MdNode, parent?: MdNode, ancestors: MdNode[] = []) => {
     const nodeOffsets = offsets(node)

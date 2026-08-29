@@ -22,6 +22,7 @@
     "bank:generate:check": "node scripts/problem-bank/normalize.mjs --check",
     "bank:review-manifest": "vitest run scripts/problem-bank/reviewManifest.report.ts --config vitest.gate.config.ts --reporter=verbose",
     "bank:gate": "vitest run scripts/problem-bank/problemBankGate.gate.ts --config vitest.gate.config.ts",
+    "bank:dialect-digest": "tsx scripts/problem-bank/bankDialectDigest.ts",
     "bank:batch:test": "node --test scripts/problem-bank/batchPipeline.test.mjs",
     "bank:batch:foundation:generate": "NABI_WRITE_SEED_BATCH=1 vitest run scripts/problem-bank/seedBatchArtifacts.gate.ts --config vitest.gate.config.ts --reporter=verbose",
     "bank:batch:foundation:publish": "NABI_PUBLISH_SEED_BATCH=1 vitest run scripts/problem-bank/seedBatchArtifacts.gate.ts --config vitest.gate.config.ts --reporter=verbose",

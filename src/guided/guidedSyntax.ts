@@ -1,5 +1,5 @@
 import type { Nodes, Parents } from "mdast"
-import { fromMarkdown } from "mdast-util-from-markdown"
+import { parseMarkdownSource } from "../markdown/parser"
 
 export type GuidedSyntaxSegment =
   | { kind: "input"; value: string }
@@ -326,7 +326,7 @@ export function projectCheckpointContext(
   checkpoint: SyntaxCheckpoint,
 ): CheckpointContext {
   const source = target.replace(/\r\n?/g, "\n")
-  const document = fromMarkdown(source)
+  const document = parseMarkdownSource(source)
   const blocks = document.children.flatMap((node) => {
     const range = nodeRange(node)
     return range ? [{ range }] : []
@@ -501,6 +501,14 @@ function markLinkPunctuation(
   const range = nodeRange(node)
   if (!range) return
   const raw = source.slice(range.from, range.to)
+  // A GFM autolink literal (`https://example.com` written bare) is a link
+  // node with no punctuation in it. Masking its first character would ask the
+  // learner to type `h` — a blank that teaches nothing and cannot be right or
+  // wrong. Enabling GFM is what makes these nodes appear, so the guard ships
+  // with it. `<https://example.com>` is skipped for the same reason: its
+  // angle brackets are a different curriculum element and are not taught by
+  // pretending they are link punctuation.
+  if (!raw.startsWith("[") && !raw.startsWith("![")) return
   const openingLength = raw.startsWith("![") ? 2 : 1
   markRange(
     mask,
@@ -805,7 +813,7 @@ export function deriveSyntaxCheckpoints(
     () => null,
   )
   const groupedRanges: SourceRange[] = []
-  markNodeSyntax(fromMarkdown(source), source, mask, groupedRanges, families)
+  markNodeSyntax(parseMarkdownSource(source), source, mask, groupedRanges, families)
   unmaskLineLeadingWhitespace(source, mask, families)
 
   const checkpoints: SyntaxCheckpoint[] = []
