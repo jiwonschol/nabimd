@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
+import { parseAst } from "vite"
 
 const repositoryRoot = resolve(import.meta.dirname, "..")
 
@@ -21,81 +22,36 @@ async function scriptTestFiles() {
 }
 
 export function importsNodeTest(source) {
-  let executable = ""
-  let index = 0
-  while (index < source.length) {
-    const current = source[index]
-    const next = source[index + 1]
-    if (current === "/" && next === "/") {
-      const end = source.indexOf("\n", index + 2)
-      executable += " ".repeat((end < 0 ? source.length : end) - index)
-      index = end < 0 ? source.length : end
-      continue
+  const moduleName = (node) => {
+    if (node?.type === "Literal" && typeof node.value === "string") {
+      return node.value
     }
-    if (current === "/" && next === "*") {
-      const end = source.indexOf("*/", index + 2)
-      const stop = end < 0 ? source.length : end + 2
-      executable += source.slice(index, stop).replace(/[^\n]/g, " ")
-      index = stop
-      continue
+    if (
+      node?.type === "TemplateLiteral" &&
+      node.expressions.length === 0 &&
+      node.quasis.length === 1
+    ) {
+      return node.quasis[0].value.cooked
     }
-    if (current === "/" && /(?:^|[=(:,!&|?;{}\[\]])\s*$/.test(executable)) {
-      let stop = index + 1
-      let inCharacterClass = false
-      while (stop < source.length) {
-        if (source[stop] === "\\") stop += 2
-        else if (source[stop] === "[") { inCharacterClass = true; stop += 1 }
-        else if (source[stop] === "]") { inCharacterClass = false; stop += 1 }
-        else if (source[stop] === "/" && !inCharacterClass) {
-          stop += 1
-          while (/[a-z]/i.test(source[stop] ?? "")) stop += 1
-          break
-        } else if (source[stop] === "\n") break
-        else stop += 1
-      }
-      executable += source.slice(index, stop).replace(/[^\n]/g, " ")
-      index = stop
-      continue
-    }
-    if (current === "`") {
-      let stop = index + 1
-      while (stop < source.length) {
-        if (source[stop] === "\\") stop += 2
-        else if (source[stop] === "`") { stop += 1; break }
-        else stop += 1
-      }
-      const isModuleSpecifier = /\bimport\s*\(\s*$/.test(executable.trimEnd())
-      const literal = source.slice(index, stop)
-      executable += isModuleSpecifier && !literal.includes("${")
-        ? literal
-        : literal.replace(/[^\n]/g, " ")
-      index = stop
-      continue
-    }
-    if (current === '"' || current === "'") {
-      const quote = current
-      let stop = index + 1
-      while (stop < source.length) {
-        if (source[stop] === "\\") stop += 2
-        else if (source[stop] === quote) { stop += 1; break }
-        else stop += 1
-      }
-      const isModuleSpecifier = /(?:\bfrom|\bimport\s*\()\s*$/.test(
-        executable.trimEnd(),
-      )
-      executable += isModuleSpecifier
-        ? source.slice(index, stop)
-        : source.slice(index, stop).replace(/[^\n]/g, " ")
-      index = stop
-      continue
-    }
-    executable += current
-    index += 1
+    return null
   }
-  return (
-    /^\s*import\s+(?:[\w$]+\s*,\s*)?(?:\*\s+as\s+[\w$]+|\{[^}]*\}|[\w$]+)\s+from\s+(["'])node:test\1\s*;?/m.test(executable) ||
-    /(?:^|[^\w$])import\s*\(\s*(["'`])node:test\1\s*\)/m.test(executable)
-  )
+  let found = false
+  const visit = (node) => {
+    if (
+      (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
+      moduleName(node.source) === "node:test"
+    ) {
+      found = true
+      return
+    }
+    for (const value of Object.values(node)) {
+      if (found || value === null || typeof value !== "object") continue
+      if (Array.isArray(value)) value.forEach((child) => child && visit(child))
+      else if (typeof value.type === "string") visit(value)
+    }
+  }
+  visit(parseAst(source))
+  return found
 }
 
 describe("test runner configuration", () => {
@@ -148,5 +104,7 @@ describe("test runner configuration", () => {
     expect(importsNodeTest('/* await import("node:test") */\n')).toBe(false)
     expect(importsNodeTest('const fixture = `await import("node:test")`\n')).toBe(false)
     expect(importsNodeTest('const matcher = /import("node:test")/\n')).toBe(false)
+    expect(importsNodeTest('const matcher = () => /import("node:test")/\n')).toBe(false)
+    expect(importsNodeTest('function matcher() { return /import("node:test")/ }\n')).toBe(false)
   })
 })
