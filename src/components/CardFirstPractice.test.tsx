@@ -186,7 +186,7 @@ describe("CardFirstPractice", () => {
           {
             borderBoxSize: [{ blockSize: 264, inlineSize: 400 }],
             contentRect: { height: 240 } as DOMRectReadOnly,
-          } as ResizeObserverEntry,
+          } as unknown as ResizeObserverEntry,
         ],
         {} as ResizeObserver,
       )
