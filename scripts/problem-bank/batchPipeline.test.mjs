@@ -12,6 +12,7 @@ import {
   evaluateBankGate,
   loadBatchDirectories,
   normalizeBatch,
+  publishedBatchHistory,
   sealEditorial,
   sealReview,
   validateAppendOnly,
@@ -670,6 +671,26 @@ test("a rejected later revision never replaces the last accepted runtime revisio
   assert.deepEqual(compiled.errors, [])
   assert.equal(compiled.problems.length, 1)
   assert.equal(compiled.problems[0].revision, 1)
+})
+
+test("published history keeps rejected gaps only after a later replacement publishes", () => {
+  const first = {
+    normalized: { batchId: "first", sequence: 1 },
+    summary: { status: "published" },
+  }
+  const rejected = { normalized: { batchId: "rejected", sequence: 2 } }
+  const replacement = { normalized: { batchId: "replacement", sequence: 3 } }
+
+  assert.deepEqual(publishedBatchHistory([first, rejected, replacement]), [first])
+
+  const publishedReplacement = {
+    ...replacement,
+    summary: { status: "published" },
+  }
+  assert.deepEqual(
+    publishedBatchHistory([first, rejected, publishedReplacement]),
+    [first, rejected, publishedReplacement],
+  )
 })
 
 test("bank gate checks exact publish projections and committed tracker", async () => {

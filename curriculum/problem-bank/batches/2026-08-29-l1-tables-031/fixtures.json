@@ -1,0 +1,1830 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-031",
+  "fixtures": [
+    {
+      "id": "l1-table-bus-time-aligned-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-canonical",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Route | Time\n--- | ---\nGreen | Noon",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-case-spelling",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-dash-cell-with-text",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-different-prose",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-escaped-cell-bar",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-fenced-lookalike",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-bus-time-mismatched-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-bus-time-missing",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-bus-time-no-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-bus-time-one-dash-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-outer-bars",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-pipe-list",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-bus-time-pipe-paragraph",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-bus-time-two-dash-divider",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-bus-time-two-tables",
+      "problemId": "l1-table-bus-time",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-day-weather-aligned-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-canonical",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Day | Weather\n--- | ---\nMonday | Sunny",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-case-spelling",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-dash-cell-with-text",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-different-prose",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-escaped-cell-bar",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-fenced-lookalike",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-day-weather-mismatched-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-day-weather-missing",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-day-weather-no-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-day-weather-one-dash-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-outer-bars",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-pipe-list",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-day-weather-pipe-paragraph",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-day-weather-two-dash-divider",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-day-weather-two-tables",
+      "problemId": "l1-table-day-weather",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-event-place-aligned-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-canonical",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Event | Place\n--- | ---\nPicnic | Park",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-case-spelling",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-dash-cell-with-text",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-different-prose",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-escaped-cell-bar",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-fenced-lookalike",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-event-place-mismatched-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-event-place-missing",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-event-place-no-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-event-place-one-dash-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-outer-bars",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-pipe-list",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-event-place-pipe-paragraph",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-event-place-two-dash-divider",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-event-place-two-tables",
+      "problemId": "l1-table-event-place",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-flower-color-aligned-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-canonical",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Flower | Color\n--- | ---\nTulip | Red",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-case-spelling",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-dash-cell-with-text",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-different-prose",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-escaped-cell-bar",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-fenced-lookalike",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-flower-color-mismatched-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-flower-color-missing",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-flower-color-no-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-flower-color-one-dash-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-outer-bars",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-pipe-list",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-flower-color-pipe-paragraph",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-flower-color-two-dash-divider",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-flower-color-two-tables",
+      "problemId": "l1-table-flower-color",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-fruit-count-aligned-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-canonical",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Fruit | Count\n--- | ---\nApples | 3",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-case-spelling",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-dash-cell-with-text",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-different-prose",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-escaped-cell-bar",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-fenced-lookalike",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-fruit-count-mismatched-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-fruit-count-missing",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-fruit-count-no-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-fruit-count-one-dash-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-outer-bars",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-pipe-list",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-fruit-count-pipe-paragraph",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-fruit-count-two-dash-divider",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-fruit-count-two-tables",
+      "problemId": "l1-table-fruit-count",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-item-price-aligned-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-canonical",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Item | Price\n--- | ---\nTea | $2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-case-spelling",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-dash-cell-with-text",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-different-prose",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-escaped-cell-bar",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-fenced-lookalike",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-item-price-mismatched-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-item-price-missing",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-item-price-no-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-item-price-one-dash-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-outer-bars",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-pipe-list",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-item-price-pipe-paragraph",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-item-price-two-dash-divider",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-item-price-two-tables",
+      "problemId": "l1-table-item-price",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-meal-drink-aligned-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-canonical",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Meal | Drink\n--- | ---\nSoup | Water",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-case-spelling",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-dash-cell-with-text",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-different-prose",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-escaped-cell-bar",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-fenced-lookalike",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-meal-drink-mismatched-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-meal-drink-missing",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-meal-drink-no-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-meal-drink-one-dash-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-outer-bars",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-pipe-list",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-meal-drink-pipe-paragraph",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-meal-drink-two-dash-divider",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-meal-drink-two-tables",
+      "problemId": "l1-table-meal-drink",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-pet-name-aligned-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-canonical",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Pet | Name\n--- | ---\nCat | Luna",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-case-spelling",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-dash-cell-with-text",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-different-prose",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-escaped-cell-bar",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-fenced-lookalike",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-pet-name-mismatched-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-pet-name-missing",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-pet-name-no-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-pet-name-one-dash-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-outer-bars",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-pipe-list",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-pet-name-pipe-paragraph",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-pet-name-two-dash-divider",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-pet-name-two-tables",
+      "problemId": "l1-table-pet-name",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-room-floor-aligned-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-canonical",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Room | Floor\n--- | ---\nLibrary | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-case-spelling",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-dash-cell-with-text",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-different-prose",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-escaped-cell-bar",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-fenced-lookalike",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-room-floor-mismatched-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-room-floor-missing",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-room-floor-no-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-room-floor-one-dash-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-outer-bars",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-pipe-list",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-room-floor-pipe-paragraph",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-room-floor-two-dash-divider",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-room-floor-two-tables",
+      "problemId": "l1-table-room-floor",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-shop-opens-aligned-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-canonical",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Shop | Opens\n--- | ---\nBakery | 8 am",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-case-spelling",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-dash-cell-with-text",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-different-prose",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-escaped-cell-bar",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-fenced-lookalike",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-shop-opens-mismatched-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-shop-opens-missing",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-shop-opens-no-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-shop-opens-one-dash-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-outer-bars",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-pipe-list",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-shop-opens-pipe-paragraph",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-shop-opens-two-dash-divider",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-shop-opens-two-tables",
+      "problemId": "l1-table-shop-opens",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-team-practice-aligned-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-canonical",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Team | Practice\n--- | ---\nBears | Friday",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-case-spelling",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-dash-cell-with-text",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-different-prose",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-escaped-cell-bar",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-fenced-lookalike",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-team-practice-mismatched-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-team-practice-missing",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-team-practice-no-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-team-practice-one-dash-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-outer-bars",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-pipe-list",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-team-practice-pipe-paragraph",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-team-practice-two-dash-divider",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-team-practice-two-tables",
+      "problemId": "l1-table-team-practice",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    },
+    {
+      "id": "l1-table-trail-length-aligned-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Name | Color\n:--- | ---:\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-canonical",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "canonical",
+      "source": "Trail | Length\n--- | ---\nPine | 4 km",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-case-spelling",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "case-or-spelling",
+      "source": "NAME | COLOUR\n--- | ---\nKITE | BLU",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-dash-cell-with-text",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Item | Note\n--- | ---\n--- | Ready",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-different-prose",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "alternate-prose",
+      "source": "Name | Color\n--- | ---\nKite | Blue",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-escaped-cell-bar",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "Choice | Note\n--- | ---\nA \\| B | Saved",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-fenced-lookalike",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "```md\nName | Color\n--- | ---\nKite | Blue\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-trail-length-mismatched-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-trail-length-missing",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "missing-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name and color\nKite and blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-trail-length-no-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-table",
+      "source": "Name | Color\nKite | Blue",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-trail-length-one-dash-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| - | - |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-outer-bars",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| --- | --- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-pipe-list",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "- Compare A | B",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-trail-length-pipe-paragraph",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "exercisesCheckId": "use-table",
+      "source": "Compare A | B when the sizes differ.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-table"
+    },
+    {
+      "id": "l1-table-trail-length-two-dash-divider",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "edge-case",
+      "source": "| Name | Color |\n| -- | -- |\n| Kite | Blue |",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l1-table-trail-length-two-tables",
+      "problemId": "l1-table-trail-length",
+      "problemRevision": 2,
+      "role": "matched-with-review",
+      "source": "Name | Color\n--- | ---\nKite | Blue\n\nItem | Count\n--- | ---\nPens | 2",
+      "expectedStatus": "matched",
+      "expectedReviewIds": [
+        "keep-one-table"
+      ]
+    }
+  ]
+}

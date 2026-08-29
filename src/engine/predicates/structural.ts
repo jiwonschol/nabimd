@@ -41,6 +41,11 @@ const nodeTypeByBlock: Readonly<Record<BlockKind, RootContent["type"]>> = {
   code: "code",
   blockquote: "blockquote",
   "thematic-break": "thematicBreak",
+  // GFM only reads a table when the delimiter row matches the header, so a
+  // paragraph that merely carries bars never becomes one. That is what lets a
+  // table exercise be graded at all: without this the engine could not tell a
+  // real table from piped plain text.
+  table: "table",
 }
 
 const nodeTypeByInline = {

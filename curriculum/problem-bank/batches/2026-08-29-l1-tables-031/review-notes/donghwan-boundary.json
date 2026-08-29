@@ -1,0 +1,45 @@
+{
+  "batchId": "2026-08-29-l1-tables-031",
+  "reviewerId": "donghwan-boundary",
+  "role": "mechanical-counterexample",
+  "prNumber": 186,
+  "boundHeadSha": "32455401a068048b857102b4f59356b128671424",
+  "priorHeadSha": "ef60e153ff80d22b6fd2819aa3078bb8544f0546",
+  "boundBaseSha": "15be6a7a8801adccecc419ea19c91370e389c44a",
+  "boundManifestDigest": "50b8683ab052ae5e0bc5dbf559ee758cb55e9df8cdadb763bdc27893bf1f421f",
+  "reviewedAt": "2026-08-29T09:08:00Z",
+  "scope": {
+    "assignedBy": "현철",
+    "brief": "031(revision 2) 경계 리뷰: P3의 Route|Time 어휘, 192 fixture와 수동 반례, semantic header/body all-dash 금지, 실제 GFM parser/evaluator를 새 digest에서 다시 재고 sealed review + 상세 note 커밋 SHA.",
+    "headMoveNote": "ef60e153 -> 32455401 로 head가 한 번 더 움직였다(repositoryBankGate 결함 수정, 4개 publication-boundary 파일만). git diff ef60e153..32455401 로 batch-030/031 evidence 파일이 하나도 안 바뀐 것과 review-manifest.json의 manifestDigest/artifactDigests가 동일한 것을 직접 확인했다. 그래서 content-level 검증(fixture 192개, 12 target, 8개 반례)은 재실행하지 않고 exact-head 규약대로 sealed review의 reviewedHead·reviewDigest만 새 SHA에 다시 묶었다. 게이트(7/7)와 전체 suite(86파일/10,371)만 새 head에서 재확인했다."
+  },
+  "method": {
+    "description": "#186(030) 리뷰와 동일한 방법 — src/markdown/parser.ts와 동일한 실제 GFM 파서를 직접 import해 독립 스크립트(scripts/verify-boundary-donghwan-031.ts)를 짜고, structural.ts의 countBlockNodes를 재사용하지 않고 documentScope 비재귀 규칙을 재구현해 대조했다.",
+    "steps": [
+      "1) tableBatch031Problems.ts에서 12개 revision-2 target을 직접 import해 all-dash 아님·top-level table 1개를 확인",
+      "2) P1 확인: teaching.example('Name | Age...')이 12개 target 어디와도 동일하지 않음을 확인",
+      "3) P3 확인: l1-table-bus-time target이 정확히 'Route | Time'로 시작함을 확인",
+      "4) 커밋된 fixtures.json(192개) 전수를 실제 파서로 재파싱해 expectedStatus와 대조",
+      "5) tableBatch031Fixtures.ts(TS 소스)와 fixtures.json(생성 아티팩트) 간 192개 전수 drift 확인",
+      "6) 030 리뷰 때 짠 8개 반례(shipped fixture에 없는 경계: all-dash header/body, 이중 이스케이프 바, 콜론만 있는 divider, 비대칭 셀수 불일치(양방향), 본문 셀 초과, blockquote 안 파이프, 표 앞 빈 줄 없는 문단)를 그대로 재실행",
+      "7) scripts/problem-bank/tableBatch031Artifacts.gate.ts(vitest)를 새 head 32455401에서 재실행 — 7/7",
+      "8) 전체 vitest 재실행 — 86파일/10,371, 현철 수치와 일치",
+      "9) 게이트 판별력 확인: tableBatch031Fixtures.ts가 상속하는 tableBatch030Fixtures.ts의 no-divider 픽스처를 fail→matched로 파괴 변형 → 031 게이트가 7/7에서 3/7로 즉시 빨개짐(4개 실패: artifact/tracker drift 관련) → 원복 후 7/7 재확인"
+    ]
+  },
+  "probes": "030 리뷰(review-notes/../2026-08-29-l1-tables-030/review-notes/donghwan-boundary.json)의 8개 반례와 동일 — all-dash-body-row, all-dash-header-row, escaped-bar-odd-backslash-count, divider-colon-without-dash, divider-fewer-cells-than-header, body-row-more-cells-than-header, pipe-in-blockquote, table-interrupts-paragraph-no-blank-line. 전부 pass, findings 0건.",
+  "findings": [],
+  "regressionTests": {
+    "targetsNonAllDash": "pass (12/12)",
+    "targetsSingleTableNode": "pass (12/12)",
+    "p1SharedExampleNoCollision": "pass — teaching.example 'Name | Age\\n--- | ---\\nAda | 31'는 12개 target 어디와도 동일하지 않음",
+    "p3VocabularyApplied": "pass — l1-table-bus-time target이 'Route | Time'로 시작",
+    "shippedFixturesDifferential": "pass (192/192, 실제 GFM 파서 기준)",
+    "tsJsonArtifactDrift": "pass (0 mismatch, 192/192)",
+    "batch031Gate": "pass (7/7, head 32455401)",
+    "fullSuite": "pass (86 files / 10,371 tests, head 32455401, 현철 수치와 일치)",
+    "gateSensitivity": "confirmed — 공유 no-divider fixture 파괴 시 031 게이트 7/7→3/7, 원복 후 7/7"
+  },
+  "overallVerdict": "pass-for-scope",
+  "verdictNote": "반례 담당 범위(표 문법 경계 + P1/P3 구조적 확인) 안에서는 결함 0건. 진서가 위임한 ②(카드 문구가 실제 빈칸과 맞는가)는 내 스코프 밖(editorial)이라 다루지 않았다. #187(describeCheckpoint→instructionFor 교체) 머지 후에는 카드 경로 자체가 바뀌므로 진서·메이가 이미 합의한 대로 publication 전 전수 재검증이 필요하다 — 그 재검증에도 필요하면 다시 붙는다."
+}

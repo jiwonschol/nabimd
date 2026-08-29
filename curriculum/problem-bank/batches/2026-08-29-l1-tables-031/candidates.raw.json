@@ -1,0 +1,905 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-031",
+  "sequence": 27,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-codex-build-time-authoring",
+  "generatedOn": "2026-08-29",
+  "candidates": [
+    {
+      "id": "l1-table-fruit-count",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Fruit | Count\n--- | ---\nApples | 3",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "food"
+        ],
+        "terms": [
+          "fruit",
+          "count",
+          "apples"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "fruit-count"
+    },
+    {
+      "id": "l1-table-day-weather",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Day | Weather\n--- | ---\nMonday | Sunny",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "weather"
+        ],
+        "terms": [
+          "day",
+          "weather",
+          "Monday",
+          "sunny"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "day-weather"
+    },
+    {
+      "id": "l1-table-item-price",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Item | Price\n--- | ---\nTea | $2",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "shopping"
+        ],
+        "terms": [
+          "item",
+          "price",
+          "tea"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "item-price"
+    },
+    {
+      "id": "l1-table-room-floor",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Room | Floor\n--- | ---\nLibrary | 2",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "public-places"
+        ],
+        "terms": [
+          "room",
+          "floor",
+          "library"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "room-floor"
+    },
+    {
+      "id": "l1-table-bus-time",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Route | Time\n--- | ---\nGreen | Noon",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "local-travel"
+        ],
+        "terms": [
+          "route",
+          "time",
+          "green",
+          "noon"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "route-time"
+    },
+    {
+      "id": "l1-table-pet-name",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Pet | Name\n--- | ---\nCat | Luna",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "pets"
+        ],
+        "terms": [
+          "pet",
+          "name",
+          "cat",
+          "Luna"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "pet-name"
+    },
+    {
+      "id": "l1-table-meal-drink",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Meal | Drink\n--- | ---\nSoup | Water",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "meals"
+        ],
+        "terms": [
+          "meal",
+          "drink",
+          "soup",
+          "water"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "meal-drink"
+    },
+    {
+      "id": "l1-table-trail-length",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Trail | Length\n--- | ---\nPine | 4 km",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "outdoor-walks"
+        ],
+        "terms": [
+          "trail",
+          "length",
+          "pine"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "trail-length"
+    },
+    {
+      "id": "l1-table-flower-color",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Flower | Color\n--- | ---\nTulip | Red",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "gardens"
+        ],
+        "terms": [
+          "flower",
+          "color",
+          "tulip",
+          "red"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "flower-color"
+    },
+    {
+      "id": "l1-table-team-practice",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Team | Practice\n--- | ---\nBears | Friday",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "community-sports"
+        ],
+        "terms": [
+          "team",
+          "practice",
+          "Bears",
+          "Friday"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "team-practice"
+    },
+    {
+      "id": "l1-table-shop-opens",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Shop | Opens\n--- | ---\nBakery | 8 am",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "neighborhood-errands"
+        ],
+        "terms": [
+          "shop",
+          "opens",
+          "bakery"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "shop-opens"
+    },
+    {
+      "id": "l1-table-event-place",
+      "schemaVersion": 2,
+      "level": 1,
+      "flavor": "standard",
+      "familyId": "tables",
+      "skillIds": [
+        "table"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "introduce",
+      "teaching": {
+        "concept": "A Markdown table lines up related values in rows and columns.",
+        "howTo": "Put a bar between the cells in every row — the divider row under the headers needs one too.",
+        "example": "Name | Age\n--- | ---\nAda | 31"
+      },
+      "syntaxTokens": [
+        "|"
+      ],
+      "title": "Markdown table",
+      "prompt": "Write the three-row Markdown table.",
+      "target": "Event | Place\n--- | ---\nPicnic | Park",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-table",
+          "kind": "block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Type a vertical bar between the two cells in each of the three rows."
+        }
+      ],
+      "editorialChecks": [
+        {
+          "id": "keep-one-table",
+          "kind": "max-block-count",
+          "scope": {
+            "kind": "document"
+          },
+          "block": "table",
+          "max": 1,
+          "review": "Keep this short exercise focused on one table."
+        }
+      ],
+      "hints": [
+        "Every row takes a bar, including the one made of dashes.",
+        "Type one vertical bar between the two cells.",
+        "Example: `Name | Age`"
+      ],
+      "retryFamily": "level-1-table",
+      "reviewTags": [
+        "one-focused-table",
+        "two-column-table"
+      ],
+      "vocabulary": {
+        "profile": "everyday",
+        "domains": [
+          "community-events"
+        ],
+        "terms": [
+          "event",
+          "place",
+          "picnic",
+          "park"
+        ]
+      },
+      "revision": 2,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "event-place"
+    }
+  ]
+}

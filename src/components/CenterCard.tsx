@@ -14,6 +14,11 @@ import {
   type SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
 import {
+  instructionFor,
+  type CheckpointInstruction,
+} from "../guided/checkpointInstruction"
+import { checkpointShape } from "../guided/checkpointShape"
+import {
   inputSegments,
   type CenterCardSlotVerdict,
 } from "../guided/useCenterCard"
@@ -40,81 +45,21 @@ type CenterCardProps = {
   onSubmit: () => void
 }
 
-export type CheckpointInstruction = {
-  prefix: string
-  term: string
-  suffix: string
-}
+export type { CheckpointInstruction } from "../guided/checkpointInstruction"
 
-function instruction(
-  prefix: string,
-  term: string,
-  suffix = ".",
-): CheckpointInstruction {
-  return { prefix, term, suffix }
-}
-
+/**
+ * The sentence above the boxes.
+ *
+ * The judgment lives in `instructionFor`, which takes a shape and cannot see
+ * `canonicalInput`. Every blank joined with nothing between them cannot tell
+ * one mark from several, and nine defects came from deciding the sentence
+ * from that value; keeping the checkpoint on this side of the call is what
+ * stops the next branch from reaching for it again.
+ */
 export function describeCheckpoint(
   checkpoint: SyntaxCheckpoint,
 ): CheckpointInstruction {
-  const mark = checkpoint.canonicalInput.trim()
-  const lockedBreak = checkpoint.segments.some(
-    (segment) => segment.kind === "locked" && segment.value.includes("\n"),
-  )
-
-  if (/^(?:=+|-+)$/.test(mark) && lockedBreak) {
-    return instruction(
-      "Type the Markdown underline for a ",
-      `level ${mark.startsWith("=") ? "1" : "2"} Setext heading`,
-    )
-  }
-  if (mark.startsWith("#")) {
-    const depth = mark.match(/^#+/)?.[0]?.length ?? 1
-    return instruction(
-      "Type the Markdown marks and space for a ",
-      `level ${depth} heading`,
-    )
-  }
-  if (["---", "***", "___"].includes(mark)) {
-    return instruction("Type the Markdown marks for a ", "section break")
-  }
-  if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
-    return instruction("Type the Markdown mark and space for a ", "bullet item")
-  }
-  if (/^\d+[.)]/.test(mark)) {
-    return instruction(
-      "Type the Markdown number, delimiter, and space for a ",
-      "numbered step",
-    )
-  }
-  if (mark.startsWith(">")) {
-    return instruction("Type the Markdown mark and space for a ", "block quote")
-  }
-  if (mark.startsWith("```") || mark.startsWith("~~~")) {
-    return instruction(
-      "Type the opening and closing Markdown marks for a ",
-      "fenced code block",
-    )
-  }
-  if (mark === "**" || mark === "__") {
-    return instruction("Wrap the phrase in Markdown marks for ", "italic text")
-  }
-  if (mark.startsWith("**") || mark.startsWith("__")) {
-    return instruction("Wrap the phrase in Markdown marks for ", "bold text")
-  }
-  if (mark.startsWith("![")) {
-    return instruction("Add the Markdown punctuation for an ", "image")
-  }
-  if (mark.startsWith("[")) {
-    return instruction("Add the Markdown punctuation for a ", "link")
-  }
-  if (mark.startsWith("`")) {
-    return instruction("Wrap the phrase in Markdown marks for ", "inline code")
-  }
-  if (mark.startsWith("*") || mark.startsWith("_")) {
-    return instruction("Wrap the phrase in Markdown marks for ", "italic text")
-  }
-  return instruction("Type the Markdown marks for this ", "structure")
+  return instructionFor(checkpointShape(checkpoint))
 }
 
 export type SyntaxReference = {
@@ -131,6 +76,23 @@ function titleCase(value: string): string {
   return `${value.charAt(0).toUpperCase()}${value.slice(1)}`
 }
 
+// The Level 2 families this card can now name. The chain below grew one nested
+// ternary per family and is left as it stands; new families are looked up here
+// first. Each string is Markdown source — the panel renders it — so the hard
+// break carries two real trailing spaces, and both table terms share a whole
+// table, since one row on its own renders as a paragraph.
+const LEVEL_TWO_EXAMPLES: Record<string, string> = {
+  "Strikethrough text": "~~Example~~",
+  "Bold italic text": "***Example***",
+  "Quote inside a quote": "> Example\n> > Example",
+  "Syntax-highlighted code block": "```js\nlet example = 1\n```",
+  "Line break": "First line  \nSecond line",
+  "Table row": "Fruit | Count\n--- | ---\nApples | 3",
+  "Column headers": "Fruit | Count\n--- | ---\nApples | 3",
+  "Checkbox item": "- [ ] Example",
+  "Checked-off item": "- [x] Example",
+}
+
 export function buildSyntaxReference(
   checkpoint: SyntaxCheckpoint,
 ): SyntaxReference {
@@ -143,8 +105,17 @@ export function buildSyntaxReference(
   const isBullet = term === "bullet item"
   const isNumbered = term === "numbered step"
   const isBold = term === "bold text"
+  // `syntaxCheckpointTerms` names each blank on its own, so it splits families
+  // whose marks arrive in more than one group: a checkbox reads as "bullet
+  // item + link" because `[ ]` starts with a bracket, and a fence that asks
+  // for its language reads as "fenced code block + Markdown mark".
+  // `describeCheckpoint` sees the whole checkpoint and knows the family, so
+  // where it names one of these it wins over the per-group join.
+  const ownFamily = LEVEL_TWO_EXAMPLES[titleCase(term)]
   const name =
-    terms.length > 1
+    ownFamily !== undefined
+      ? titleCase(term)
+      : terms.length > 1
       ? terms.map(titleCase).join(" + ")
       : isBullet && hasInlineCode
         ? "Bullet item with inline code"
@@ -158,7 +129,9 @@ export function buildSyntaxReference(
   const headingDepth = /^level (\d) heading$/.exec(term)?.[1]
   const setextDepth = /^level (\d) Setext heading$/.exec(term)?.[1]
   const example =
-    terms.length > 1
+    ownFamily !== undefined
+      ? ownFamily
+      : terms.length > 1
       ? checkpoint.segments.map((segment) => segment.value).join("")
       : setextDepth
         ? `Example\n${setextDepth === "1" ? "=======" : "-------"}`
@@ -336,8 +309,19 @@ export function CenterCard({
       <div className="center-card__leaf center-card__leaf--write">
         <header className="center-card__header">
         <div className="center-card__heading">
-          {/* `Step x of 5` in the top bar is the only progress label: the
-              marks inside one card never get a second counter. */}
+          {slotTotal > 1 ? (
+            <span
+              aria-label={`Current problem progress, part ${slotIndex + 1} of ${slotTotal}`}
+              aria-live="polite"
+              aria-valuemax={slotTotal}
+              aria-valuemin={1}
+              aria-valuenow={slotIndex + 1}
+              className="center-card__slot"
+              role="progressbar"
+            >
+              Part {slotIndex + 1} of {slotTotal}
+            </span>
+          ) : null}
           <h2 className="center-card__instruction">
             {checkpointInstruction.prefix}
             <strong>{checkpointInstruction.term}</strong>
@@ -368,9 +352,9 @@ export function CenterCard({
       <div className="center-card__controls">
         <button
           aria-keyshortcuts="ArrowUp"
-          aria-label="Previous mark"
+          aria-label="Previous part"
           className="center-card__control"
-          data-tooltip="Previous mark (↑)"
+          data-tooltip="Previous part (↑)"
           disabled={!interactive || !canGoToPreviousSlot}
           onClick={onPreviousSlot}
           type="button"
@@ -379,9 +363,9 @@ export function CenterCard({
         </button>
         <button
           aria-keyshortcuts="ArrowDown"
-          aria-label="Next mark"
+          aria-label="Next part"
           className="center-card__control"
-          data-tooltip="Next mark (↓)"
+          data-tooltip="Next part (↓)"
           disabled={!interactive || !canGoToNextSlot}
           onClick={onNextSlot}
           type="button"

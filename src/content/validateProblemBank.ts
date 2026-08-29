@@ -1,4 +1,5 @@
 import { normalizeProblem } from "./normalizeProblem"
+import { BLOCK_KINDS } from "./types"
 import type {
   FixtureKind,
   FixtureRole,
@@ -57,14 +58,7 @@ const supportedInlineKinds = new Set<string>([
   "image",
 ])
 
-const supportedBlockKinds = new Set<string>([
-  "heading",
-  "paragraph",
-  "list",
-  "code",
-  "blockquote",
-  "thematic-break",
-])
+const supportedBlockKinds = new Set<string>(BLOCK_KINDS)
 
 const scopeRequiredMatchCheckKinds = new Set<string>([
   "block-count",

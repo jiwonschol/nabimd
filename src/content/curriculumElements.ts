@@ -60,6 +60,8 @@ const singleSkillElements: Readonly<Record<string, CurriculumElement>> = {
   italic: "italic",
   "italic-emphasis": "italic",
   "ordered-list": "ordered-list",
+  table: "table",
+  "task-list": "task-list",
   "thematic-break": "thematic-break",
   "unordered-list": "unordered-list",
 }

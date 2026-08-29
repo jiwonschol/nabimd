@@ -1,0 +1,21 @@
+{
+  "reviewedHead": "32455401a068048b857102b4f59356b128671424",
+  "manifestDigest": "50b8683ab052ae5e0bc5dbf559ee758cb55e9df8cdadb763bdc27893bf1f421f",
+  "scope": "Independent mechanical contract and reproduction review for batch 031 only.",
+  "methods": [
+    "Rebuilt prepared artifacts and checked the frozen manifest plus all twelve revision-two candidate and fixture-result digests.",
+    "Ran validateProblemBank, derivePlaintextStarter, deriveSyntaxCheckpoints, describeCheckpoint, and evaluateProblem for every candidate; each produced table row, column headers, table row with one editable bar on each card and canonical matched status.",
+    "Replayed all 192 fixtures through evaluateProblem and compared candidate, runtime, 40 seeds by 10 runs, and Try another ID sets.",
+    "Ran the table 030 and 031 gates, the repository publication gate, batch pipeline tests, the full generated-batch chain, editorial tests, and the complete test suite.",
+    "Read the publication-cutoff diff: only the continuous prefix through the latest published summary determines current runtime/tracker; rejected 030 is excluded before replacement publication and retained in history when a later published replacement extends the prefix."
+  ],
+  "results": {
+    "candidateCount": 12,
+    "fixtureCount": 192,
+    "fixtureFailures": 0,
+    "candidateRuntimeScheduledRetryIdsMatch": true,
+    "publicationCutoff": "pass",
+    "overallVerdict": "pass"
+  },
+  "limitations": "This is mechanical prepared-state evidence only. It does not publish batch 031, does not supersede the separate editorial verdict, and must be rechecked after #187 changes the card-description path before final publication."
+}

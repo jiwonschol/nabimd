@@ -1,8 +1,8 @@
 import type { Code, Heading, Root } from "mdast"
-import { fromMarkdown } from "mdast-util-from-markdown"
+import { parseMarkdownSource } from "../markdown/parser"
 
 export function parseMarkdown(source: string): Root {
-  return fromMarkdown(source)
+  return parseMarkdownSource(source)
 }
 
 export function headingsAtLevel(root: Root, level: Heading["depth"]): Heading[] {

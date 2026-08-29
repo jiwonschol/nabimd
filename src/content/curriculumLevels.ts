@@ -21,7 +21,7 @@ export const curriculumLevels = [
       "task-list",
       "image",
     ],
-    unimplementedElements: ["table", "task-list"],
+    unimplementedElements: ["task-list"],
     exerciseMode: "target",
   },
   {

@@ -30,12 +30,51 @@ function renderItalicCard() {
   return { ...hook, onGrow, onComplete, onMiss }
 }
 
+function renderNestedQuoteCard() {
+  const onMiss = vi.fn()
+  const base = getProblem("l1-italic-paper-boat")
+  const hook = renderHook(() =>
+    useCenterCard({
+      problem: { ...base, target: "> > deep", starterText: "deep" },
+      draft: "",
+      completed: false,
+      onGrow: vi.fn(),
+      onComplete: vi.fn(),
+      onMiss,
+    }),
+  )
+  return { ...hook, onMiss }
+}
+
 beforeEach(() => {
   resetCenterCardMemoryForTests()
   vi.clearAllMocks()
 })
 
 describe("useCenterCard Hint and retry state", () => {
+  it("records a nested quote marker as a nested quote", () => {
+    // This caller assembled `syntaxGroupTerm`'s context arguments by hand and
+    // stopped at two of the three, so the card taught "quote inside a quote"
+    // while the Missed summary wrote down "block quote" for the same blank.
+    const { result, onMiss } = renderNestedQuoteCard()
+
+    act(() => {
+      result.current.editSegment(0, "> ")
+      result.current.editSegment(1, "x")
+    })
+    act(() => {
+      result.current.submit()
+    })
+
+    expect(onMiss).toHaveBeenCalledTimes(1)
+    expect(
+      (onMiss.mock.calls[0]![0] as { groupIndex: number; term: string }[]).map(
+        (miss) => [miss.groupIndex, miss.term],
+      ),
+    ).toEqual([[1, "quote inside a quote"]])
+  })
+
+
   it("restores an exact Hint when the persisted session says retry is pending", () => {
     const onGrow = vi.fn()
     const onComplete = vi.fn()
@@ -62,7 +101,10 @@ describe("useCenterCard Hint and retry state", () => {
     let draft = ""
     const { result } = renderHook(() =>
       useCenterCard({
-        problem: getProblem("l1-nested-bullets-lunch-tray"),
+        // A problem whose cards teach different syntaxes: same-syntax lines
+        // now share one card, so a list no longer has a "next slot" to carry
+        // the Hint into.
+        problem: getProblem("l2-code-block-alarm-routine"),
         draft,
         completed: false,
         onGrow: (nextDraft) => {
@@ -73,7 +115,7 @@ describe("useCenterCard Hint and retry state", () => {
       }),
     )
 
-    act(() => result.current.editSegment(0, "- "))
+    act(() => result.current.editSegment(0, "# "))
     act(() => result.current.submit())
 
     expect(result.current.slotIndex).toBe(1)
@@ -369,8 +411,14 @@ describe("useCenterCard draft validation", () => {
       }),
     )
 
+    // Every bullet of the list is a blank on one card, and Markdown starts a
+    // new list when the marker changes partway down, so the alternate has to
+    // be typed into all of them.
+    const alternate = "* * * "
     act(() => {
       result.current.editSegment(0, "* ")
+      result.current.editSegment(1, "* ")
+      result.current.editSegment(2, "* ")
     })
     act(() => {
       result.current.submit()
@@ -380,7 +428,7 @@ describe("useCenterCard draft validation", () => {
     expect(result.current.frontierIndex).toBe(1)
     expect(callbacks.onGrow).toHaveBeenLastCalledWith(
       buildGuidedDraft(problem.target, checkpoints, 1, {
-        [checkpoints[0]!.id]: "* ",
+        [checkpoints[0]!.id]: alternate,
       }),
     )
 
@@ -403,13 +451,19 @@ describe("useCenterCard draft validation", () => {
       }),
     )
 
+    // The answer has to be accepted for this to mean anything: a rejected
+    // submission also leaves the frontier at zero, which would pass without
+    // ever reaching the behaviour under test.
     act(() => {
       result.current.editSegment(0, "* ")
+      result.current.editSegment(1, "* ")
+      result.current.editSegment(2, "* ")
     })
     act(() => {
       result.current.submit()
     })
 
+    expect(result.current.verdict).toBe("idle")
     expect(result.current.frontierIndex).toBe(0)
     expect(result.current.checkpoint?.id).toBe(
       deriveSyntaxCheckpoints(problem.target, problem.starterText)[0]?.id,

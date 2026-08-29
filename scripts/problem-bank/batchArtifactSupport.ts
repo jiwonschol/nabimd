@@ -17,6 +17,7 @@ import {
   evaluateBatchEvidence,
   loadBatchDirectories,
   normalizeBatch,
+  publishedBatchHistory,
   verifyBatchFixtures,
 } from "./batchPipeline.mjs"
 import { canonicalJson, sha256 } from "./pipeline.mjs"
@@ -167,31 +168,61 @@ function isAncestorOfHead(repositoryRoot: string, reviewedHead: string) {
   }
 }
 
-// True when this batch's own summary.generated.json already exists on origin/main,
-// i.e. it has been squash-merged. Used as the sole exemption from the ancestor check
-// below. If origin/main itself is not resolvable in this checkout (e.g. a shallow
-// fetch that never registered the remote-tracking ref — CI checks out with
-// fetch-depth: 0 per ci.yml, so this is not expected there), this fails OPEN and
-// treats the batch as merged: we cannot prove it, but blocking would permanently lock
-// every already-merged batch the moment its ancestry naturally breaks post-squash.
-function isBatchPublishedOnMain(repositoryRoot: string, summaryPath: string) {
+function evidenceOnMain({
+  repositoryRoot,
+  batchPath,
+  record,
+}: {
+  repositoryRoot: string
+  batchPath: string
+  record: JsonRecord
+}) {
   try {
     execFileSync("git", ["rev-parse", "--verify", "origin/main"], {
       cwd: repositoryRoot,
       stdio: "ignore",
     })
   } catch {
-    return true
+    return {
+      present: false,
+      error: "origin/main is unavailable; cannot verify merged provenance evidence",
+    }
   }
+
+  let paths: string[]
   try {
-    execFileSync("git", ["cat-file", "-e", `origin/main:${summaryPath}`], {
-      cwd: repositoryRoot,
-      stdio: "ignore",
-    })
-    return true
+    if ("editorialActor" in record) {
+      paths = [`${batchPath}/editorial.json`]
+    } else {
+      paths = execFileSync(
+        "git",
+        ["ls-tree", "-r", "--name-only", "origin/main", "--", `${batchPath}/reviews`],
+        { cwd: repositoryRoot, encoding: "utf8" },
+      )
+        .split("\n")
+        .filter((path) => path.endsWith(".json"))
+    }
   } catch {
-    return false
+    return { present: false, error: null }
   }
+
+  for (const path of paths) {
+    try {
+      const committed = JSON.parse(
+        execFileSync("git", ["show", `origin/main:${path}`], {
+          cwd: repositoryRoot,
+          encoding: "utf8",
+          stdio: ["ignore", "pipe", "ignore"],
+        }),
+      )
+      if (canonicalJson(committed) === canonicalJson(record)) {
+        return { present: true, error: null }
+      }
+    } catch {
+      // A missing or unreadable candidate is not proof that this record merged.
+    }
+  }
+  return { present: false, error: null }
 }
 
 // Checks sourceBuzzEventId format (64-char hex) and reviewedHead format (40-char hex)
@@ -200,24 +231,27 @@ function isBatchPublishedOnMain(repositoryRoot: string, summaryPath: string) {
 // verified against jiwonschol/nabimd's merged history) — a squash rewrites main so the
 // reviewer's original branch commit stops being an ancestor, which is normal history
 // compaction, not the rebase/force-push-during-review this check exists to catch. That
-// exemption is checked directly (does this batch's summary exist on origin/main?), not
-// inferred from local publish state, so the check still runs during the window between
-// a batch's own publish and its own merge — exactly when cherry-pick/rebase happens.
+// exemption is checked against the exact evidence record on origin/main, not inferred
+// from a local summary file. A stale/premature summary therefore cannot disable the
+// check, while an unchanged record remains valid after squash-merge removes its branch
+// commit from main ancestry. An unavailable origin/main fails closed.
 // Identity of sourceBuzzEventId (does this event id really belong to the named
 // reviewer?) is NOT checked here — the gate has no network access to query the relay,
 // and must not gain one, so that stays a human cross-check against the signed event.
-function provenanceErrors({
+export function provenanceErrors({
   record,
   label,
   repositoryRoot,
-  batchSummaryPath,
+  batchPath,
 }: {
   record: JsonRecord
   label: string
   repositoryRoot: string
-  batchSummaryPath: string
+  batchPath: string
 }) {
   const errors: string[] = []
+  const mergedEvidence = evidenceOnMain({ repositoryRoot, batchPath, record })
+  if (mergedEvidence.error) errors.push(`${label} ${mergedEvidence.error}`)
   const sourceBuzzEventId = record.sourceBuzzEventId
   if (
     typeof sourceBuzzEventId !== "string" ||
@@ -230,7 +264,7 @@ function provenanceErrors({
     errors.push(`${label} reviewedHead must be a 40-character lowercase hex string`)
   } else if (
     !isAncestorOfHead(repositoryRoot, reviewedHead) &&
-    !isBatchPublishedOnMain(repositoryRoot, batchSummaryPath)
+    !mergedEvidence.present
   ) {
     errors.push(`${label} reviewedHead ${reviewedHead} is not an ancestor of HEAD`)
   }
@@ -310,10 +344,6 @@ function bankDirectory(config: AuthoredBatchConfig) {
   return config.bankRoot ?? DEFAULT_BANK_ROOT
 }
 
-function batchSummaryPath(config: AuthoredBatchConfig) {
-  return `${batchDirectory(config)}/summary.generated.json`
-}
-
 async function loadPreviousBatches({
   repositoryRoot,
   config,
@@ -351,12 +381,35 @@ async function loadPreviousBatches({
       `Cannot prepare ${config.batchId} while prior batch evidence is invalid:\n${compiled.errors.join("\n")}`,
     )
   }
+  const publishedPreviousBatches = publishedBatchHistory(previousBatches)
+  const publishedPreviousBatchIds = new Set(
+    publishedPreviousBatches.map((batch) => batch.normalized?.batchId),
+  )
+  const unpublishedAcceptedBatches: string[] = []
+  for (const batch of previousBatches) {
+    const previousBatchId = String(batch.normalized?.batchId ?? "<unknown>")
+    if (publishedPreviousBatchIds.has(batch.normalized?.batchId)) continue
+    if (evaluateBatchEvidence(batch).summary.accepted > 0) {
+      unpublishedAcceptedBatches.push(previousBatchId)
+    }
+  }
+  if (unpublishedAcceptedBatches.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} after accepted but unpublished batches:\n${unpublishedAcceptedBatches.join("\n")}`,
+    )
+  }
+  const published = compileAcceptedBank(publishedPreviousBatches)
+  if (published.errors.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} while published batch evidence is invalid:\n${published.errors.join("\n")}`,
+    )
+  }
   return {
     previousBatches,
     laterBatches,
     compiled,
-    runtimeProjections: createRuntimeProjections(compiled),
-    tracker: buildTracker(compiled),
+    runtimeProjections: createRuntimeProjections(published),
+    tracker: buildTracker(published),
   }
 }
 
@@ -610,11 +663,11 @@ function mechanicalDriftErrors({
 function validateCommittedReviews({
   computed,
   reviews,
-  batchSummaryPath: summaryPath,
+  batchPath,
 }: {
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   reviews: JsonRecord[]
-  batchSummaryPath: string
+  batchPath: string
 }) {
   const errors: string[] = []
   const reviewerIds = new Set<string>()
@@ -666,7 +719,7 @@ function validateCommittedReviews({
           record: review,
           label: `Review ${String(reviewerId ?? "<unknown>")}`,
           repositoryRoot: computed.repositoryRoot,
-          batchSummaryPath: summaryPath,
+          batchPath,
         }),
       )
     }
@@ -735,13 +788,13 @@ export function buildAuthoredBatchPublication({
   computed: Awaited<ReturnType<typeof buildAuthoredBatchArtifacts>>
   committed: Awaited<ReturnType<typeof readCommittedAuthoredBatch>>
 }) {
-  const summaryPath = batchSummaryPath(computed.config)
+  const batchPath = batchDirectory(computed.config)
   const errors = [
     ...mechanicalDriftErrors({ computed, committed }),
     ...validateCommittedReviews({
       computed,
       reviews: committed.reviews,
-      batchSummaryPath: summaryPath,
+      batchPath,
     }),
   ]
   const requiredReviews = computed.config.requiredIndependentReviews ?? 2
@@ -766,7 +819,7 @@ export function buildAuthoredBatchPublication({
           record: committed.editorial,
           label: "Editorial",
           repositoryRoot: computed.repositoryRoot,
-          batchSummaryPath: summaryPath,
+          batchPath,
         }),
       )
     }
@@ -863,7 +916,7 @@ export function checkAuthoredBatchState({
     ...validateCommittedReviews({
       computed,
       reviews: committed.reviews,
-      batchSummaryPath: batchSummaryPath(computed.config),
+      batchPath: batchDirectory(computed.config),
     }),
   ]
   const committedIndependentReviews = committed.reviews.length

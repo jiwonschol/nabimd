@@ -1,0 +1,69 @@
+{
+  "kind": "editorial-notes",
+  "batchId": "2026-08-29-l1-tables-031",
+  "reviewerId": "jinseo-editorial",
+  "role": "editorial",
+  "prNumber": 186,
+  "boundHeadSha": "32455401a068048b857102b4f59356b128671424",
+  "boundBaseSha": "15be6a7a8801adccecc419ea19c91370e389c44a",
+  "boundManifestDigest": "50b8683ab052ae5e0bc5dbf559ee758cb55e9df8cdadb763bdc27893bf1f421f",
+  "sealedArtifact": "editorial.json",
+  "editorialDigest": "7ba516408a7f96dbca85332707ec1db30b31d905f5e6a0a2815396ae5a8696de",
+  "reviewDigests": [
+    "6090e7146840a6c397d71c038f20e141d8b8531938291f3dec306324d3bfb0e2",
+    "6da7b64b5a8a1b7dffabc125d890e0a465f395984cfebd3f6f90c3c7bcb4dbda"
+  ],
+  "replaces": {
+    "batchId": "2026-08-29-l1-tables-030",
+    "verdict": "hold",
+    "editorialDigest": "bb54293c1118849535be25c1ca28665b6e20c9576f6e12bb914bc20b1a84365f"
+  },
+  "method": {
+    "description": "030 과 같은 방식으로, 문구를 읽기 전에 12개 target 을 실제 카드 경로로 태워 무엇이 빈칸인지 먼저 재고 문구와 대조했다. 030 의 세 finding 이 각각 닫혔는지를 축으로 삼았다.",
+    "steps": [
+      "1) derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint 로 12개의 카드 수·빈칸·문장을 뽑았다",
+      "2) 공유 teaching.example 과 hints 예시가 12개 target 어느 것과도 겹치지 않는지, 문장뿐 아니라 셀 낱말까지 대조했다",
+      "3) howTo·feedback·hints 가 지시하는 행동이 2)에서 잰 빈칸 집합과 일치하는지 봤다",
+      "4) head 가 ef60e153 -> 32455401 로 움직인 뒤, 의존 파일 다섯의 해시 불변을 확인하고도 ②를 실제 경로에서 다시 쟀다"
+    ],
+    "measured": {
+      "cardsPerProblem": 3,
+      "blanksPerProblem": 3,
+      "blankValues": [
+        "|",
+        "|",
+        "|"
+      ],
+      "cardTerms": [
+        "table row",
+        "column headers",
+        "table row"
+      ],
+      "problemsDivergingFromThat": 0,
+      "sharedExampleOverlapWithTargets": 0,
+      "sharedExampleWordOverlap": 0
+    }
+  },
+  "overallVerdict": "pass",
+  "closedFindings": [
+    {
+      "id": "example-is-the-answer",
+      "severity": "P1",
+      "from": "2026-08-29-l1-tables-030",
+      "closedBy": "공유 예시를 `Name | Age` / `Ada | 31` 로 바꿨다. 12개 target 어느 것과도 문장이 겹치지 않고, Ada·Name·Age 낱말도 배치 안에 없다. 030 의 결함이 '예시가 답과 같다' 만이 아니라 '예시가 배치 안에 산다' 였기 때문에 낱말 단위까지 셌다."
+    },
+    {
+      "id": "copy-asks-for-work-the-learner-does-not-do",
+      "severity": "P2",
+      "from": "2026-08-29-l1-tables-030",
+      "closedBy": "howTo·feedback·hints[0] 셋이 '행을 만들라' 에서 '행마다 바를 넣으라' 로 바뀌었고 구분선 행에도 바를 친다는 것을 명시한다. 실측한 빈칸(각 행의 바 하나씩 셋)과 일치하고, 카드 문장(bar that makes the row above the column headers)과 층이 맞는다."
+    },
+    {
+      "id": "bus-named-by-colour-alone",
+      "severity": "P3",
+      "from": "2026-08-29-l1-tables-030",
+      "closedBy": "헤더를 `Route | Time` 으로 바꿔 `Green` 이 노선 이름으로 읽힌다. terms 에서 bus 가 빠지고 route 가 들어갔으며 contentVariant 도 route-time 이다. id 는 revision 이력 때문에 유지가 맞다."
+    }
+  ],
+  "note": "Not a sealed review record. The decisions the pipeline reads live in the batch root editorial.json."
+}

@@ -40,6 +40,8 @@ function blockLabel(
       return "Blockquotes"
     case "thematic-break":
       return "Thematic break"
+    case "table":
+      return "Tables"
     default:
       return assertNever(block)
   }

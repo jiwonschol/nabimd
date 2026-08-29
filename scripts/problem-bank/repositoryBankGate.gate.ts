@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest"
 import {
   evaluateBankGate,
   loadBatchDirectories,
+  publishedBatchHistory,
   verifyLegacyEvidence,
 } from "./batchPipeline.mjs"
 
@@ -99,15 +100,16 @@ const [batches, published, committedTracker, baselineTracker, legacyIndex] =
     readJson(resolve(bankRoot, "legacy/v1-128.index.json")),
   ])
 
-const editoriallyAcceptedBatches = batches.filter(
+const editoriallyCompletedBatches = batches.filter(
   (batch) => batch.editorial !== null && batch.editorial !== undefined,
 )
+const publishedBatches = publishedBatchHistory(editoriallyCompletedBatches)
 
 describe("repository-wide problem-bank integrity", () => {
   it("loads every batch and enforces current publication plus append-only history", () => {
     expect(batches.flatMap((batch) => batch.loaderErrors ?? [])).toEqual([])
     const result = evaluateBankGate({
-      batches: editoriallyAcceptedBatches,
+      batches: publishedBatches,
       published,
       committedTracker,
       baselineTracker,

@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest"
 import type { NormalizedProblem } from "../content/types"
-import { createTurnProblemIds, getSyntaxFamily } from "./runComposition"
+import {
+  chooseMixedForRun,
+  createTurnProblemIds,
+  defaultBoundaryPreviousElements,
+  getSyntaxFamily,
+} from "./runComposition"
+import { getCurriculumElements } from "../content/curriculumElements"
 import { RUN_POLICY, SYNTAX_FAMILY_WEIGHTS } from "./runPolicy"
 
 type SchedulableProblem = Pick<
@@ -160,5 +166,81 @@ describe("chapter run composition", () => {
     expect(() => createTurnProblemIds(3, 0, [], 0)).toThrow(
       "No standard problems available for chapter-3",
     )
+  })
+})
+
+describe("the run before a cycle boundary", () => {
+  // The walk that picks the mixed exercise starts at the cycle boundary, so
+  // the run before it is one the loop never visits. Left unseeded, the first
+  // run of every cycle chose as if nothing came before it.
+  //
+  // Comparing the boundary run against its neighbours cannot show this — the
+  // neighbourhood swings by ten points on its own and a run beside it is often
+  // worse. The seeded and unseeded choices are compared directly instead,
+  // which is the line the code either has or does not.
+  //
+  // Elements come from syntax tokens, not skill ids, so the fixtures carry
+  // real marks; built from names alone every candidate has no elements and
+  // every overlap is zero, which passes whatever the rule does.
+  const withTokens = (id: string, tokens: readonly string[]): SchedulableProblem => ({
+    flavor: "standard",
+    id,
+    level: 1,
+    retryFamily: id,
+    skillIds: ["one", "two"],
+    syntaxTokens: tokens,
+  })
+
+  // Ordered so the two rules disagree. `mixed-link-image` collides with
+  // nothing this run, so an unseeded boundary takes it first; it collides with
+  // both of the previous run's singles, so a seeded one must not.
+  const mixedPool = [
+    withTokens("mixed-heading-list", ["# ", "- "]),
+    withTokens("mixed-link-image", ["[", "!["]),
+    withTokens("mixed-quote-code", ["> ", "```"]),
+  ]
+  const boundary = mixedPool.length
+  const singlesByRun: Record<number, SchedulableProblem[]> = {
+    [boundary - 1]: [withTokens("s-link", ["["]), withTokens("s-image", ["!["])],
+    [boundary]: [withTokens("s-heading", ["# "]), withTokens("s-list", ["- "])],
+  }
+  const singlesForRun = (runNumber: number) => singlesByRun[runNumber] ?? []
+
+  const previousElements = () =>
+    new Set(singlesForRun(boundary - 1).flatMap(getCurriculumElements))
+
+  it("has real elements, or nothing below measures anything", () => {
+    expect(previousElements()).toEqual(new Set(["link", "image"]))
+    for (const candidate of mixedPool) {
+      expect(getCurriculumElements(candidate), candidate.id).toHaveLength(2)
+    }
+  })
+
+  it("is carried into the choice the boundary makes", () => {
+    const seeded = chooseMixedForRun(mixedPool, singlesForRun, boundary)
+    const unseeded = chooseMixedForRun(
+      mixedPool,
+      singlesForRun,
+      boundary,
+      () => [],
+    )
+    const overlap = (chosen: SchedulableProblem) => {
+      const previous = previousElements()
+      return getCurriculumElements(chosen).filter((element) =>
+        previous.has(element),
+      ).length
+    }
+
+    expect(unseeded.id).toBe("mixed-link-image")
+    expect(seeded.id).toBe("mixed-quote-code")
+    expect(overlap(unseeded)).toBe(2)
+    expect(overlap(seeded)).toBe(0)
+  })
+
+  it("is the previous run's singles and nothing else", () => {
+    const seed = defaultBoundaryPreviousElements(singlesForRun)
+    expect([...seed(boundary)].sort()).toEqual(["image", "link"])
+    // Run 0 has no run before it, and reaching back would wrap to the end.
+    expect(seed(0)).toEqual([])
   })
 })

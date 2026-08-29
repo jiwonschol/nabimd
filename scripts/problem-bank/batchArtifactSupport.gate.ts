@@ -1,4 +1,8 @@
+import { mkdtemp } from "node:fs/promises"
+import { tmpdir } from "node:os"
+import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
+import { provenanceErrors } from "./batchArtifactSupport"
 import {
   buildImageBatch029Artifacts,
   buildImageBatch029Publication,
@@ -23,12 +27,10 @@ function isProvenanceError(error: string) {
 }
 
 // Real batch 029 is, by now, actually squash-merged into origin/main (PR #163), so its
-// real batchId's summary.generated.json genuinely exists there — that's what makes it a
-// valid merged-batch pass pair (see the positive-control test), but it also means we
-// can't use batch 029's real batchId to simulate "not yet on origin/main" for the
-// destructive tests below: the origin/main lookup would find the real file regardless
-// of any local committed.summary tweak. Pointing the lookup at a batchId nothing was
-// ever published under keeps those tests honest without needing a second live fixture.
+// review and editorial records genuinely exist there — that's what makes it a valid
+// merged-batch pass pair. Pointing the lookup at a batchId nothing was ever published
+// under lets the destructive cases model the publish-to-merge window without inventing
+// a second evidence record.
 function withUnmergedBatchId(
   computed: Awaited<ReturnType<typeof buildImageBatch029Artifacts>>,
 ) {
@@ -39,7 +41,7 @@ function withUnmergedBatchId(
 }
 
 describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
-  it("passes with zero provenance errors on real batch-029 evidence (positive control, and the merged-batch pass pair: batch 029's real reviewedHead is no longer an ancestor of HEAD post-squash, so this only stays green because its summary.generated.json is present on origin/main)", async () => {
+  it("passes with zero provenance errors on real batch-029 evidence (positive control: its exact evidence exists on origin/main after squash removed the reviewed branch commit)", async () => {
     const computed = await buildImageBatch029Artifacts({ repositoryRoot })
     const committed = await readCommittedImageBatch029({ repositoryRoot })
     const state = checkImageBatch029State({ computed, committed })
@@ -91,6 +93,24 @@ describe("issue #170: reviewedHead/sourceBuzzEventId provenance gate", () => {
     // lowercase hex string, so it passes format regardless of merge state — that part
     // relies on the review's own reviewDigest (sha256 of everything except itself) to
     // make tampering with this field detectable without git ancestry.
+  })
+
+  it("fails closed when origin/main cannot be resolved", async () => {
+    const repositoryWithoutRemote = await mkdtemp(
+      resolve(tmpdir(), "nabimd-provenance-no-origin-"),
+    )
+    const errors = provenanceErrors({
+      record: {
+        sourceBuzzEventId: "a".repeat(64),
+        reviewedHead: "b".repeat(40),
+      },
+      label: "Review isolated-checkout",
+      repositoryRoot: repositoryWithoutRemote,
+      batchPath: "curriculum/problem-bank/batches/example",
+    })
+    expect(errors).toContain(
+      "Review isolated-checkout origin/main is unavailable; cannot verify merged provenance evidence",
+    )
   })
 
   it("rejects an empty reviewedHead", async () => {
