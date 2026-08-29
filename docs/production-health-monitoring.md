@@ -52,10 +52,22 @@ status rather than guessing:
 | `build-failed` | any other Vercel failure | red | yes |
 | `deployed-elsewhere` | Vercel succeeded but is not being served | red | yes |
 | `pending-stalled` | pending for longer than any real deployment takes | red | yes |
+| `unobserved` | the check never read a commit from the page | red | yes |
 | `in-flight` | pending, recently | green | no |
 
 Anything the classifier cannot positively identify as the quota limit calls a
 person; widening that recognition trades a real alert for silence.
+
+**Only the newest attempt is judged.** Vercel attaches one status per
+deployment attempt and a retry does not remove the attempt it replaces, so
+reading the whole history would let a stale rate limit outrank a redeploy that
+is actively running. Production being behind is already established by the time
+this classification happens; what it answers is why *now*.
+
+**A failed check is not the same as a stale deployment.** If the page never
+answered, the check has no commit to compare and says so rather than reading
+the Vercel status alone and announcing an alias problem it never observed — the
+one moment that matters is when the site is simply unreachable.
 
 **A pending status does not expire.** If Vercel abandons one, nothing ever
 changes it, so "still building" would stay true and green forever while

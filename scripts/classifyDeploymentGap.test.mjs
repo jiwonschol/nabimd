@@ -129,12 +129,20 @@ describe("classifyDeploymentGap", () => {
     expect(result.summary).toContain("https://vercel.com/example/deployment")
   })
 
-  it("pages a human when one attempt was rate limited and another was not", () => {
-    // Downgrading here would hide a real build failure behind an excuse that
-    // only covers one of the two attempts.
+  it("pages a human when the newest attempt failed for a reason it cannot name", () => {
     const result = gap([
-      { context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT },
-      { context: "Vercel", state: "error", description: "Internal error" },
+      {
+        context: "Vercel",
+        state: "failure",
+        description: OBSERVED_RATE_LIMIT,
+        updated_at: "2026-08-29T11:00:00Z",
+      },
+      {
+        context: "Vercel",
+        state: "error",
+        description: "Internal error",
+        updated_at: "2026-08-29T14:00:00Z",
+      },
     ])
 
     expect(result.kind).toBe("build-failed")
@@ -241,13 +249,64 @@ describe("classifyDeploymentGap", () => {
     expect(result.openIssue).toBe(true)
   })
 
-  it("keeps a green retry from erasing the failure that left production behind", () => {
-    const result = gap([
-      { context: "Vercel", state: "success", description: "Deployment ready" },
+  it("judges the newest attempt, not the worst one in the history", () => {
+    // This assertion used to say the opposite — that a green retry could not
+    // erase an earlier failure. Codex pointed out what that costs: a stale
+    // rate limit outranks a redeploy that is actively running, and an old
+    // build failure outranks the successful retry that followed it. We already
+    // know production is behind; the question this answers is *why now*, and
+    // the answer is the current attempt. The older entries are history.
+    const fixed = gap([
       {
         context: "Vercel",
         state: "failure",
         description: "Build failed: out of memory",
+        updated_at: "2026-08-29T11:00:00Z",
+      },
+      {
+        context: "Vercel",
+        state: "success",
+        description: "Deployment ready",
+        updated_at: "2026-08-29T14:00:00Z",
+      },
+    ])
+
+    expect(fixed.kind).toBe("deployed-elsewhere")
+    expect(fixed.summary).not.toContain("out of memory")
+
+    // A running redeploy beside an old rate limit is in-flight, not limited.
+    const retrying = gap(
+      [
+        {
+          context: "Vercel",
+          state: "failure",
+          description: OBSERVED_RATE_LIMIT,
+          updated_at: "2026-08-29T11:00:00Z",
+        },
+        ...pendingFor(30_000),
+      ],
+      "schedule",
+    )
+
+    expect(retrying.kind).toBe("in-flight")
+    expect(retrying.failWorkflow).toBe(false)
+  })
+
+  it("still reads a failure that is itself the newest attempt", () => {
+    // The passing side of the same rule: reordering must not make failures
+    // unreachable.
+    const result = gap([
+      {
+        context: "Vercel",
+        state: "success",
+        description: "Deployment ready",
+        updated_at: "2026-08-29T11:00:00Z",
+      },
+      {
+        context: "Vercel",
+        state: "failure",
+        description: "Build failed: out of memory",
+        updated_at: "2026-08-29T14:00:00Z",
       },
     ])
 
@@ -255,12 +314,32 @@ describe("classifyDeploymentGap", () => {
     expect(result.summary).toContain("out of memory")
   })
 
-  it("names both commits in every outcome so the report stands alone", () => {
+  it("does not call production stale when it never read what production serves", () => {
+    // Three failed page loads leave no receipt. Reading a successful Vercel
+    // status in that state and announcing an alias problem states something
+    // never observed, at the one moment the site may simply have been down.
+    const result = classifyDeploymentGap({
+      statuses: [{ context: "Vercel", state: "success", description: "Ready" }],
+      expectedSha: "af16cbf50003441a92f1894600edda43f0458b6b",
+      deployedSha: null,
+      eventName: "push",
+      now: NOW,
+    })
+
+    expect(result.kind).toBe("unobserved")
+    expect(result.failWorkflow).toBe(true)
+    expect(result.openIssue).toBe(true)
+    expect(result.summary).not.toContain("not the one being served")
+    expect(result.summary).toMatch(/never read a commit/)
+  })
+
+  it("names both commits in every outcome that claims to know both", () => {
     const outcomes = [
       gap([]),
       gap([{ context: "Vercel", state: "failure", description: OBSERVED_RATE_LIMIT }]),
       gap([{ context: "Vercel", state: "failure", description: "Build failed" }]),
       gap(pendingFor(5_000)),
+      gap(pendingFor(PENDING_GRACE_MS + 60_000)),
       gap([{ context: "Vercel", state: "success", description: "Ready" }]),
     ]
 
