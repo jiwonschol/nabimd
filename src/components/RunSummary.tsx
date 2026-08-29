@@ -105,7 +105,12 @@ export function RunSummary({
                   >
                     ←
                   </button>
-                  <span>{pageIndex + 1} / {pages.length}</span>
+                  <span aria-live="polite" role="status">
+                    <span aria-hidden="true">{pageIndex + 1} / {pages.length}</span>
+                    <span className="visually-hidden">
+                      {`Showing completed exercise ${pageIndex + 1} of ${pages.length}: ${activePage.title}`}
+                    </span>
+                  </span>
                   <button
                     aria-label="Next completed exercise"
                     disabled={pageIndex === pages.length - 1}

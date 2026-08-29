@@ -140,6 +140,9 @@ describe("RunSummary as a teacher's return", () => {
     fireEvent.click(next)
 
     expect(next).toHaveFocus()
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Showing completed exercise 2 of 2: Paper boat",
+    )
     const previous = screen.getByRole("button", {
       name: "Previous completed exercise",
     })
