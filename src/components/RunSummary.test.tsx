@@ -66,6 +66,35 @@ describe("RunSummary as a teacher's return", () => {
     vi.unstubAllGlobals()
   })
 
+  it("waits for the page turn before playing the Summary cue", () => {
+    const { rerender } = render(
+      <RunSummary
+        elapsedMs={1_000}
+        motionReady={false}
+        onChangeLevel={vi.fn()}
+        onPracticeAgain={vi.fn()}
+        score={1}
+        total={1}
+      />,
+    )
+
+    expect(playFeedbackSound).not.toHaveBeenCalled()
+
+    rerender(
+      <RunSummary
+        elapsedMs={1_000}
+        motionReady
+        onChangeLevel={vi.fn()}
+        onPracticeAgain={vi.fn()}
+        score={1}
+        total={1}
+      />,
+    )
+
+    expect(playFeedbackSound).toHaveBeenCalledOnce()
+    expect(playFeedbackSound).toHaveBeenCalledWith("summary")
+  })
+
   it("shows the finished work directly, with no viewer to open", () => {
     renderSummary()
 

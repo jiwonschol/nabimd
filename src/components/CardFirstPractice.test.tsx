@@ -7,13 +7,28 @@ import { CardFirstPractice } from "./CardFirstPractice"
 const problem = getProblem("l1-italic-paper-boat")
 
 describe("CardFirstPractice", () => {
+  let resizeCallback: ResizeObserverCallback | null
+
   beforeEach(() => {
     resetCenterCardMemoryForTests()
+    resizeCallback = null
+    vi.stubGlobal(
+      "ResizeObserver",
+      class {
+        constructor(callback: ResizeObserverCallback) {
+          resizeCallback = callback
+        }
+        observe() {}
+        disconnect() {}
+        unobserve() {}
+      },
+    )
   })
 
   afterEach(() => {
     vi.restoreAllMocks()
     vi.useRealTimers()
+    vi.unstubAllGlobals()
   })
 
   it("uses one centered card instead of Goal and answer pages", () => {
@@ -133,5 +148,50 @@ describe("CardFirstPractice", () => {
     fireEvent.click(screen.getByRole("button", { name: "Close hint" }))
     expect(practice.style.height).toBe("200px")
     expect(practice).toHaveAttribute("data-transition", "height")
+  })
+
+  it("starts the next transition from the reflowed resting height", () => {
+    vi.useFakeTimers()
+    const forcedStartHeights: string[] = []
+    vi.spyOn(HTMLElement.prototype, "scrollHeight", "get").mockImplementation(
+      function (this: HTMLElement) {
+        if (!this.classList.contains("card-practice")) return 0
+        return this.querySelector(".center-card__exact-hint") ? 360 : 200
+      },
+    )
+    vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockImplementation(
+      function (this: HTMLElement) {
+        if (this.classList.contains("card-practice")) {
+          forcedStartHeights.push(this.style.height)
+        }
+        return 0
+      },
+    )
+
+    render(
+      <CardFirstPractice
+        draft=""
+        interactive
+        onComplete={vi.fn()}
+        onGrow={vi.fn()}
+        onMiss={vi.fn()}
+        problem={problem}
+        problemCompleted={false}
+      />,
+    )
+
+    act(() => {
+      resizeCallback?.(
+        [
+          {
+            contentRect: { height: 240 } as DOMRectReadOnly,
+          } as ResizeObserverEntry,
+        ],
+        {} as ResizeObserver,
+      )
+    })
+    fireEvent.click(screen.getByRole("button", { name: "Hint" }))
+
+    expect(forcedStartHeights).toContain("240px")
   })
 })

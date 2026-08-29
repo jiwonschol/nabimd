@@ -281,7 +281,7 @@ describe("global responsive styles", () => {
   it("uses a 250ms card transition and animates Hint height", () => {
     expect(tokens).toContain("--problem-transition-duration: 250ms")
     expect(styles).toMatch(
-      /\.card-practice\s*\{[^{}]*transition:\s*height var\(--problem-transition-duration\)/s,
+      /\.card-practice\s*\{[^{}]*overflow-x:\s*hidden[^{}]*transition:\s*height var\(--problem-transition-duration\)/s,
     )
     expect(styles).toMatch(
       /\.card-practice\[data-transition="problem"\] \.center-card\s*\{[^{}]*animation:\s*problem-card-in var\(--problem-transition-duration\)/s,

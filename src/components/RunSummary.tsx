@@ -52,10 +52,10 @@ export function RunSummary({
   )
 
   useEffect(() => {
-    if (playedSummarySound.current) return
+    if (!motionReady || playedSummarySound.current) return
     playedSummarySound.current = true
     playFeedbackSound("summary")
-  }, [])
+  }, [motionReady])
 
   useEffect(() => {
     completionTitleRef.current?.focus({ preventScroll: true })

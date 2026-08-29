@@ -83,6 +83,19 @@ describe("pageTurnSound", () => {
     expect(audio.play).toHaveBeenCalledTimes(2)
   })
 
+  it("stops an active page turn when the shared sound control is muted", async () => {
+    const { unlockAndPlayPageTurnSound } = await import("./pageTurnSound")
+    const { setSoundMuted } = await import("./feedbackSound")
+
+    unlockAndPlayPageTurnSound()
+    await Promise.resolve()
+    setSoundMuted(true)
+
+    expect(audio.muted).toBe(true)
+    expect(audio.pause).toHaveBeenCalledOnce()
+    expect(audio.currentTime).toBe(0)
+  })
+
   it("swallows browser playback rejection", async () => {
     audio.play.mockImplementationOnce(() => Promise.reject(new Error("blocked")))
     const { unlockAndPlayPageTurnSound } = await import("./pageTurnSound")

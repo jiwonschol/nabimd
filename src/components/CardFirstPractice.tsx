@@ -99,6 +99,19 @@ export function CardFirstPractice({
     [],
   )
 
+  useLayoutEffect(() => {
+    const practice = practiceRef.current
+    if (!practice || typeof ResizeObserver === "undefined") return
+
+    const observer = new ResizeObserver((entries) => {
+      if (transitionTimerRef.current !== null) return
+      const height = entries[0]?.contentRect.height
+      if (height) previousHeightRef.current = height
+    })
+    observer.observe(practice)
+    return () => observer.disconnect()
+  }, [])
+
   if (!card.checkpoint) return null
 
   return (
