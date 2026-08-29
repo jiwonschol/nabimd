@@ -458,6 +458,32 @@ describe("the sentence, derived from real Markdown", () => {
     ])
   })
 
+  it("names the hard break on a card that also holds an underline", () => {
+    // `a  \nb\n---` is one card with two blanks: the spaces that force the
+    // break, and the underline beneath `b`. The card names its first family,
+    // and that is the break. The deriver puts the line ending inside the space
+    // blank when something follows, so the run may end in a newline — and only
+    // the newline comes off when counting, because the spaces themselves are
+    // trailing whitespace and trimming them asks for zero.
+    expect(sentencesFor("a  \nb\n---")).toEqual([
+      "End the line with two spaces to force a line break",
+    ])
+    expect(sentencesFor("a  \nb\n===")).toEqual([
+      "End the line with two spaces to force a line break",
+    ])
+    // A card that is only breaks still counts them per line.
+    expect(sentencesFor("a  \nb")).toEqual([
+      "End the line with two spaces to force a line break",
+    ])
+    expect(sentencesFor("a  \nb  \nc")).toEqual([
+      "End each line with two spaces to force a line break",
+    ])
+    // And an underline with no break in front of it is still the heading.
+    expect(sentencesFor("One\n---")).toEqual([
+      "Type the Markdown underline for a level 2 Setext heading",
+    ])
+  })
+
   it("reads a thematic break that trails whitespace", () => {
     // The deriver keeps the trailing spaces inside the blank.
     expect(sentencesFor("***   ")).toEqual([

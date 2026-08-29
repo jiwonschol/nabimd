@@ -32,7 +32,9 @@ const BULLET_MARKER = /^ {0,3}[-+*][\t ]+$/
 const STEP_MARKER = /^ {0,3}\d+[.)][\t ]+$/
 const QUOTE_MARKER = /^ {0,3}>[\t ]*$/
 const TASK_BOX = /^\[[ xX]?\]$/
-const SPACE_RUN = /^ {2,}$/
+// The deriver puts the line's ending inside the blank when the card carries
+// something after it, so the run may end in a newline.
+const SPACE_RUN = /^ {2,}\n?$/
 const TABLE_PUNCTUATION = /^[|\s:-]*$/
 const DIVIDER_CELL = /^\s*:?-+:?\s*$/
 const FENCE = /^(?:`{3,}|~{3,})/
@@ -54,7 +56,11 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   // A hard line break is spaces and nothing else, so there is no mark to name
   // and the sentence names an action instead. It has to be decided before any
   // branch that inspects mark characters, because a run of spaces has none.
-  const spaceRuns = inputs.filter((value) => SPACE_RUN.test(value))
+  // Only the newline comes off: the spaces *are* trailing whitespace, so
+  // `trimEnd` would leave nothing to count and every card would ask for zero.
+  const spaceRuns = inputs
+    .filter((value) => SPACE_RUN.test(value))
+    .map((value) => value.replace(/\n$/, ""))
   if (spaceRuns.length > 0 && spaceRuns.length === inputs.length) {
     // #176 gathers several breaks onto one card. The count has to come from
     // one blank, not from all of them added up: three lines each ending in two
@@ -433,6 +439,15 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   // choice comes from. It used to come from the joined value, whose leading
   // characters are the first blank's — so the same answer, read from the
   // blank itself, with no concatenation in between.
+  // A hard line break is the one family whose mark is invisible, so it has to
+  // be recognised before the branches that read mark characters — a run of
+  // spaces has none, and `leading` trims it away to nothing.
+  if (SPACE_RUN.test(inputs[0] ?? "")) {
+    return instruction(
+      `End the line with ${spelledCount((inputs[0] ?? "").replace(/\n$/, "").length)} spaces to force a `,
+      "line break",
+    )
+  }
   const leading = inputs[0]?.trim() ?? ""
   if (leading.startsWith("![")) {
     return instruction("Add the Markdown punctuation for an ", "image")
