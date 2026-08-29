@@ -252,15 +252,11 @@ export function describeCheckpoint(
       stepMarkers > 0
         ? many
           ? "Type each step number and space"
-          : "Type the Markdown number and space"
+          : "Type the step number and space"
         : many
           ? "Type each bullet mark and space"
-          : "Type the Markdown mark and space"
-    return instruction(
-      `${lead}, then wrap the exact text in `,
-      "inline code",
-      " marks.",
-    )
+          : "Type the bullet mark and space"
+    return instruction(`${lead}, then wrap the text in `, "inline code", " marks.")
   }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     const bullets = markerCount(/^ {0,3}[-+*][\t ]+$/)

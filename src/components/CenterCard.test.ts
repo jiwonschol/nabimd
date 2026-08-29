@@ -563,14 +563,14 @@ describe("describeCheckpoint", () => {
     // card can hold three blanks (or six). The marker sentence alone shipped
     // in front of them, silent about the backticks.
     expect(describeCheckpoint(checkpointFor("- Run `report daily` now"))).toEqual({
-      prefix: "Type the Markdown mark and space, then wrap the exact text in ",
+      prefix: "Type the bullet mark and space, then wrap the text in ",
       term: "inline code",
       suffix: " marks.",
     })
     expect(
       describeCheckpoint(checkpointFor("1. Create a folder named `Current`")),
     ).toEqual({
-      prefix: "Type the Markdown number and space, then wrap the exact text in ",
+      prefix: "Type the step number and space, then wrap the text in ",
       term: "inline code",
       suffix: " marks.",
     })
@@ -579,7 +579,7 @@ describe("describeCheckpoint", () => {
         checkpointFor("1. Run `a b`\n2. Open `c.txt`"),
       ),
     ).toEqual({
-      prefix: "Type each step number and space, then wrap the exact text in ",
+      prefix: "Type each step number and space, then wrap the text in ",
       term: "inline code",
       suffix: " marks.",
     })
