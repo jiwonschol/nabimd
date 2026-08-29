@@ -10,8 +10,16 @@ on:
   workflow_dispatch:
 
 permissions:
+  # contents: checkout. issues: file and close the two reports.
+  # statuses: read the commit's Vercel status, which is how the freshness
+  # report names its cause. Unlisted permissions are disabled outright, so
+  # dropping this one does not degrade the report — it makes the reporting
+  # step throw before it classifies anything, and the rate-limit case goes
+  # back to being a red check with no diagnosis. scripts/workflowPermissions
+  # .test.mjs holds this file to what the reporting script actually calls.
   contents: read
   issues: write
+  statuses: read
 
 concurrency:
   group: production-health
