@@ -168,17 +168,14 @@ function buildAcceptedForms(
   // second list, so those must agree; two checked boxes constrain nothing, so
   // flipping them together rejected the valid mixed answer `[x]…[X]`.
   //
-  // The tab spelling belongs here too, and leaving it out was the wrong half
-  // of the question. A Goal written `- [\t]` produces a card whose only
-  // accepted answer is a tab, and its Hint prints that tab as a row visually
-  // identical to `- [ ]` — the card cannot be solved from the screen. What the
-  // Hint shows is a display problem; what the card accepts is whether it can
-  // be answered at all.
+  // Only the case varies. A tab between the brackets is a task marker in some
+  // columns and not others — `- [\t]` parses as an item while `-  [\t]` and
+  // `  - [\t]` do not — and a checkpoint cannot see the line's indentation,
+  // so offering the tab here accepted answers that are no longer task items.
+  // The deriver keeps tab boxes locked for the same reason.
   const taskBoxAlternatives: Readonly<Record<string, string>> = {
     "[x]": "[X]",
     "[X]": "[x]",
-    "[ ]": "[\t]",
-    "[\t]": "[ ]",
   }
   const taskBoxGroups = canonicalParts.flatMap((part, index) =>
     part in taskBoxAlternatives ? [index] : [],
@@ -314,7 +311,7 @@ export function syntaxGroupTerm(
   if (mark === "*" || mark === "_") return "italic text"
   if (mark === "~~") return "strikethrough text"
   // A task box is bracket punctuation and would otherwise read as a link.
-  if (/^\[[\t xX]?\]$/.test(mark)) {
+  if (/^\[[ xX]?\]$/.test(mark)) {
     return /[xX]/.test(mark) ? "checked-off item" : "checkbox item"
   }
   if (mark.startsWith("![")) return "image"
@@ -871,12 +868,21 @@ function markNodeSyntax(
           node.checked === undefined ||
           !/^\s*[-+*][\t ]+$/.test(marker)
             ? null
-            : // The parser accepts a tab between the brackets and sets
-              // `checked` for it, so a regex that only knows the space
-              // dropped a box the grammar had already recognised.
+            : // A space between the brackets, never a tab — and that is a
+              // decision, not an oversight. The parser does read `- [\t] Buy`
+              // as a task item, so blanking it looks correct, but the card it
+              // makes cannot be answered: its Hint prints the tab as a row
+              // indistinguishable from `- [ ]`, so a learner reading the
+              // screen types a space and is refused. Offering the space as an
+              // alternative closes that and opens something worse — the tab is
+              // only a task marker in some columns (`-  [\t]` and `  - [\t]`
+              // both parse as `checked: null`), and the accepted set is built
+              // from a checkpoint that cannot see the line's indentation, so
+              // it cannot tell which. A tab box stays locked prose and the
+              // item teaches its bullet marker.
               source
                 .slice(markerEnd, lineEndAt(source, markerEnd))
-                .match(/^\[[\t xX]\]/)
+                .match(/^\[[ xX]\]/)
         if (markerEnd !== null && checkbox?.[0]) {
           markRange(
             mask,
@@ -1071,6 +1077,24 @@ function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
   return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
 }
 
+/**
+ * The exact quote markers a card asks for, in order.
+ *
+ * `>>` and `> > ` are both a quote inside a quote and carry the same name, but
+ * they are not the same answer. Joining two blocks that spell it differently
+ * produced one card whose sentence counts the spaces of its first pair and
+ * says nothing about the second.
+ */
+function quoteMarkerShape(checkpoint: SyntaxCheckpoint): string {
+  return checkpoint.segments
+    .flatMap((segment) =>
+      segment.kind === "input" && /^ {0,3}>[\t ]*$/.test(segment.value)
+        ? [segment.value]
+        : [],
+    )
+    .join("|")
+}
+
 function sameSyntax(
   left: SyntaxCheckpoint,
   right: SyntaxCheckpoint,
@@ -1079,7 +1103,8 @@ function sameSyntax(
   const rightTerms = syntaxCheckpointTerms(right)
   return (
     leftTerms.length === rightTerms.length &&
-    leftTerms.every((term, index) => term === rightTerms[index])
+    leftTerms.every((term, index) => term === rightTerms[index]) &&
+    quoteMarkerShape(left) === quoteMarkerShape(right)
   )
 }
 

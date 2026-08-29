@@ -44,6 +44,32 @@ const LANGUAGE_NAME = /^[A-Za-z][\w+#-]*$/
 const THEMATIC_BREAK = /^(?:-{3,}|\*{3,}|_{3,})$/
 
 /**
+ * The sentence for a card whose blanks hold a nested quote, or `null` when no
+ * two quote markers touch.
+ *
+ * `> > ` and the compact `>>` are both valid and ask for a different number of
+ * spaces. The count comes from the nested pair alone; taking it from every
+ * blank made a card holding two nested quotes claim twice as many spaces as
+ * either one wants.
+ */
+function nestedQuoteInstruction(
+  shape: CheckpointShape,
+): CheckpointInstruction | null {
+  const nestedAt = firstTouchingMatch(shape, QUOTE_MARKER)
+  if (nestedAt < 0) return null
+  const pair = touchingPairAt(shape, nestedAt)!
+  const spaces = (pair.join("").match(/ /g) ?? []).length
+  return instruction(
+    spaces === 0
+      ? "Type the Markdown marks for a "
+      : spaces === 1
+        ? "Type the Markdown marks and space for a "
+        : "Type the Markdown marks and spaces for a ",
+    "quote inside a quote",
+  )
+}
+
+/**
  * The sentence above the boxes.
  *
  * It takes a shape and never a checkpoint, so it cannot reach the joined
@@ -349,27 +375,12 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
 
+  const nestedQuote = nestedQuoteInstruction(shape)
   if (everyInput(shape, QUOTE_MARKER)) {
     // A quote inside a quote puts its two markers side by side. Two quoted
     // lines gathered onto one card join to the same `> > ` but have the first
     // line's prose between them, and they are one block quote, not two levels.
-    const nestedAt = firstTouchingMatch(shape, QUOTE_MARKER)
-    if (nestedAt >= 0) {
-      // `> > ` and the compact `>>` are both valid, and they ask for a
-      // different number of spaces. The count comes from the nested pair
-      // alone; taking it from every blank made a card holding two nested
-      // quotes claim twice as many spaces as either one wants.
-      const pair = touchingPairAt(shape, nestedAt)!
-      const spaces = (pair.join("").match(/ /g) ?? []).length
-      return instruction(
-        spaces === 0
-          ? "Type the Markdown marks for a "
-          : spaces === 1
-            ? "Type the Markdown marks and space for a "
-            : "Type the Markdown marks and spaces for a ",
-        "quote inside a quote",
-      )
-    }
+    if (nestedQuote) return nestedQuote
     return instruction(
       `Type the Markdown mark and space for ${inputs.length > 1 ? "each line of this " : "a "}`,
       "block quote",
@@ -476,6 +487,10 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
   if (QUOTE_MARKER.test(inputs[0] ?? "")) {
+    // A nested quote carrying another family — `> > **Deep**` — reaches here,
+    // and counting markers alone read its two touching levels as two quoted
+    // lines. It is one line at depth two, so the nesting decides first.
+    if (nestedQuote) return nestedQuote
     const markers = countInputs(shape, QUOTE_MARKER)
     return instruction(
       `Type the Markdown mark and space for ${markers > 1 ? "each line of this " : "a "}`,

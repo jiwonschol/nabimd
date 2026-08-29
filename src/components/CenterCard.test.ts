@@ -812,10 +812,10 @@ describe("describeCheckpoint", () => {
     expect(describeCheckpoint(checkpointFor("> > Deep")).term).toBe(
       "quote inside a quote",
     )
-    // The parser accepts a tab between the brackets, so the sentence has to
-    // name that box too rather than falling back to the marker's own.
+    // A tab box stays locked prose — see `guidedSyntax.test.ts` for why — so
+    // the item teaches its marker and nothing claims to be a checkbox.
     expect(describeCheckpoint(checkpointFor("- [\t] Buy")).term).toBe(
-      "checkbox item",
+      "bullet item",
     )
   })
 
@@ -827,6 +827,19 @@ describe("describeCheckpoint", () => {
     const ordered = checkpointFor("1. [ ] Buy")
     expect(ordered.segments.filter((s) => s.kind === "input")).toHaveLength(1)
     expect(describeCheckpoint(ordered).term).toBe("numbered step")
+  })
+
+  it("keeps the nesting when a nested quote carries another family", () => {
+    // `> > **Deep**` is one line at depth two. Counting quote markers alone
+    // read its two touching levels as two quoted lines and said "each line of
+    // this block quote", so the nesting is decided before the count.
+    expect(describeCheckpoint(checkpointFor("> > **Deep**")).term).toBe(
+      "quote inside a quote",
+    )
+    // Two quoted lines really are two lines, and keep their own sentence.
+    expect(describeCheckpoint(checkpointFor("> one\n> two")).term).toBe(
+      "block quote",
+    )
   })
 
   it("names strikethrough when it leads a card carrying two families", () => {

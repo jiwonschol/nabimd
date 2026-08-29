@@ -4,6 +4,7 @@ import {
   getCurriculumElements,
 } from "../content/curriculumElements"
 import { isEligibleMixedExercise } from "../content/mixedExercisePolicy"
+import { parseMarkdownSource } from "../markdown/parser"
 import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import {
@@ -76,20 +77,11 @@ describe("deriveSyntaxCheckpoints", () => {
 
     expect(accepted("- [x] Buy milk")).toContain("- [X]")
     expect(accepted("- [X] Buy milk")).toContain("- [x]")
-    // A tab between the brackets is the same unchecked item to the parser, and
-    // it goes both ways. The direction that matters is the second one: a Goal
-    // written with a tab produces a card whose Hint prints a row visually
-    // identical to `- [ ]`, so refusing the space would leave a card that
-    // cannot be solved from the screen.
-    expect(accepted("- [ ] Buy milk")).toEqual([
-      "- [ ]",
-      "* [ ]",
-      "+ [ ]",
-      "- [\t]",
-      "* [\t]",
-      "+ [\t]",
-    ])
-    expect(accepted("- [\t] Buy milk")).toContain("- [ ]")
+    // Only the case varies. A tab between the brackets is a task marker in
+    // some columns and not others, and the accepted set is built from a
+    // checkpoint that cannot see the line's indentation — see the tab test
+    // below for what that costs.
+    expect(accepted("- [ ] Buy milk")).toEqual(["- [ ]", "* [ ]", "+ [ ]"])
 
     // Two boxes on one card choose independently — `[x]` beside `[X]` is
     // valid GFM. Flipping them together, the way the list markers must be
@@ -98,20 +90,41 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(accepted("- [x] one\n- [x] two")).toContain("- [x]- [X]")
   })
 
-  it("blanks a task box written with a tab", () => {
-    // The parser reads `- [\t] Buy` as a task item and sets `checked`, so a
-    // box regex that only knew the space dropped a shape the grammar had
-    // already recognised and taught a bullet item instead.
+  it("leaves a task box written with a tab as locked prose", () => {
+    // The parser does read `- [\t] Buy` as a task item, so blanking the box
+    // looks correct. The card it makes cannot be answered: its Hint prints
+    // the tab as a row indistinguishable from `- [ ]`, so a learner reading
+    // the screen types a space and is refused. Accepting the space instead
+    // opens something worse — the tab is a task marker only in some columns:
+    const parsed = (source: string) => {
+      const [item] = (
+        parseMarkdownSource(source).children[0] as { children: unknown[] }
+      ).children as { checked?: boolean | null }[]
+      return item?.checked ?? null
+    }
+    expect(parsed("- [\t] Buy")).toBe(false)
+    expect(parsed("-  [\t] Buy")).toBe(null)
+    // …and `buildAcceptedForms` works from a checkpoint, which cannot see the
+    // line's indentation, so it cannot tell those two apart. The box stays
+    // locked and the item teaches its marker.
     const checkpoint = deriveSyntaxCheckpoints("- [\t] Buy", "")[0]!
     expect(
       checkpoint.segments.flatMap((segment) =>
         segment.kind === "input" ? [segment.value] : [],
       ),
-    ).toEqual(["- ", "[\t]"])
-    expect(syntaxCheckpointTerms(checkpoint)).toEqual([
-      "bullet item",
-      "checkbox item",
-    ])
+    ).toEqual(["- "])
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["bullet item"])
+    expect(acceptedGuidedSyntaxInputs(checkpoint)).not.toContain("- [\t]")
+  })
+
+  it("keeps nested quotes of different spacing on separate cards", () => {
+    // `>>` and `> > ` carry the same name but are not the same answer. Merged,
+    // the card counted the spaces of its first pair and said nothing about the
+    // second.
+    const cards = deriveSyntaxCheckpoints(">> one\n\n> > two", "")
+    expect(cards).toHaveLength(2)
+    expect(acceptedGuidedSyntaxInputs(cards[0]!)).toEqual([">> "])
+    expect(acceptedGuidedSyntaxInputs(cards[1]!)).toEqual(["> > "])
   })
 
   it("keeps a plain quote and a nested quote on separate cards", () => {
