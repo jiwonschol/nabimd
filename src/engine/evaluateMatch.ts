@@ -25,12 +25,21 @@ function missingNumberedSpaceCount(source: string): number {
   ).length
 }
 
-function listWithoutCheckboxCount(source: string): number {
+function listWithoutCheckboxCount(
+  source: string,
+  ordered: ListShapeCheck["ordered"],
+): number {
   return source.split("\n").filter((line) => {
     if (isThematicBreak(line)) return false
-    return (
-      /^[ \t]{0,3}[-+*][ \t]+/.test(line) &&
-      !/^[ \t]{0,3}[-+*][ \t]+\[[ xX]\][ \t]/.test(line)
+    const marker =
+      ordered === true
+        ? /^[ \t]{0,3}\d{1,9}[.)][ \t]+/
+        : ordered === false
+          ? /^[ \t]{0,3}[-+*][ \t]+/
+          : /^[ \t]{0,3}(?:[-+*]|\d{1,9}[.)])[ \t]+/
+    if (!marker.test(line)) return false
+    return !/^[ \t]{0,3}(?:[-+*]|\d{1,9}[.)])[ \t]+\[[ xX]\][ \t]/.test(
+      line,
     )
   }).length
 }
@@ -43,9 +52,11 @@ function listFailureMessage(
   // so it gets its own sentence rather than the generic feedback.
   if (
     check.requireTaskItems &&
-    listWithoutCheckboxCount(source) >= check.minItems
+    listWithoutCheckboxCount(source, check.ordered) >= check.minItems
   ) {
-    return "Put a checkbox after each bullet marker, for example `- [ ] Item`."
+    return check.ordered === true
+      ? "Put a checkbox after each numbered marker, for example `1. [ ] Item`."
+      : "Put a checkbox after each bullet marker, for example `- [ ] Item`."
   }
 
   if (

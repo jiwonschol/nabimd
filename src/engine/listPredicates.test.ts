@@ -213,6 +213,26 @@ describe("task list checkboxes", () => {
     )
   })
 
+  it("names missing boxes on an ordered task list", () => {
+    const taskCheck = taskListProblem(true)
+      .matchChecks[0] as Extract<MatchCheck, { kind: "list-shape" }>
+    const orderedProblem: GradableProblem = {
+      ...taskListProblem(true),
+      matchChecks: [
+        {
+          ...taskCheck,
+          ordered: true,
+        },
+      ],
+    }
+    const result = evaluateProblem(orderedProblem, "1. Buy milk\n2. Post the letter")
+
+    expect(result.status).toBe("fail")
+    expect(JSON.stringify(result)).toContain(
+      "Put a checkbox after each numbered marker",
+    )
+  })
+
   it("leaves lists without the option exactly as they were", () => {
     // The option is opt-in. Without it a plain bullet list still passes, so
     // adding the axis cannot have narrowed any problem already in the bank.

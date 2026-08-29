@@ -127,6 +127,36 @@ describe("buildReviewCorrections", () => {
     ])
   })
 
+  it("takes task-list repair syntax from the target task list", () => {
+    const target = [
+      "# Tasks",
+      "",
+      "- Background note",
+      "- Another note",
+      "",
+      "Keep these separate.",
+      "",
+      "- [ ] Buy milk",
+      "- [x] Post the letter",
+    ].join("\n")
+    const check: MatchCheck = {
+      ...checkBase("task-list", 10),
+      kind: "list-shape",
+      scope: { kind: "document" },
+      ordered: false,
+      minItems: 2,
+      requireTaskItems: true,
+    }
+    const problem = problemWith(target, [check])
+    const source = "# Tasks\n\n- Buy milk\n- Post the letter"
+    const evaluation = failedEvaluation(problem, source)
+
+    expect(buildReviewCorrections(problem, evaluation, source)[0]).toMatchObject({
+      id: "task-list",
+      requiredSource: "- [ ] Buy milk",
+    })
+  })
+
   it("orders independent errors by their fixed Goal positions", () => {
     const target = [
       "# Guide",

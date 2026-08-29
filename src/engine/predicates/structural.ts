@@ -201,7 +201,7 @@ function listShapePasses(
  * leaves it null otherwise, so presence is the whole test — a task-list
  * exercise teaches the box, not which way it is ticked.
  */
-function isTaskItem(item: ListItem): boolean {
+export function isTaskItem(item: ListItem): boolean {
   return item.checked === true || item.checked === false
 }
 
