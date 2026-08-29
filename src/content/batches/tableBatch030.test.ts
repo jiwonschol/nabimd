@@ -16,6 +16,7 @@ import {
   tableBatch030Id,
   tableBatch030Problems,
 } from "./tableBatch030Problems"
+import { tableBatch031Id } from "./tableBatch031Problems"
 
 const requiredRoles: readonly FixtureRole[] = [
   "canonical",
@@ -131,16 +132,22 @@ describe("Level 1 table batch 030", () => {
     }
   })
 
-  it("does not collide with the accepted bank", () => {
-    const ids = new Set(problemBank.map((problem) => problem.id))
-    const targets = new Set(problemBank.map((problem) => problem.target))
-    const variants = new Set(problemBank.map((problem) => problem.contentVariant))
-
+  it("is replaced only by the reviewed revision-two batch", () => {
+    const publishedById = new Map(
+      problemBank.map((problem) => [problem.id, problem]),
+    )
     for (const problem of tableBatch030Problems) {
-      expect(ids.has(problem.id), problem.id).toBe(false)
-      expect(targets.has(problem.target), problem.id).toBe(false)
-      expect(variants.has(problem.contentVariant), problem.id).toBe(false)
+      expect(publishedById.get(problem.id), problem.id).toMatchObject({
+        revision: 2,
+        sourceBatchId: tableBatch031Id,
+      })
     }
+    expect(
+      problemBank
+        .filter((problem) => problem.familyId === "tables")
+        .map((problem) => problem.id)
+        .sort(),
+    ).toEqual(tableBatch030Problems.map((problem) => problem.id).sort())
   })
 
   it("keeps all twelve IDs in publication, runtime, turns, and Try another reach", () => {

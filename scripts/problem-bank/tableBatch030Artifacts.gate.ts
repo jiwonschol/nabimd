@@ -80,7 +80,7 @@ describe("schema-v2 Level 1 table batch 030", () => {
     ).rejects.toThrow("immutable after review or editorial evidence exists")
   })
 
-  it("preserves the 384-problem bank after all twelve candidates are rejected", async () => {
+  it("keeps rejected 030 out while the published 031 replacement advances the bank", async () => {
     const committed = await readCommittedTableBatch030({ repositoryRoot })
     const state = checkTableBatch030State({ computed, committed })
     if (committed.editorial === null) {
@@ -112,7 +112,8 @@ describe("schema-v2 Level 1 table batch 030", () => {
       5: 22,
     })
     expect(publication.tracker.counts.byFamily.tables ?? 0).toBe(0)
-    expect(committed.tracker.acceptedTotal).toBe(384)
+    expect(committed.tracker.acceptedTotal).toBe(396)
+    expect(committed.tracker.counts.byFamily.tables).toBe(12)
     expect(committed.summary).toBeNull()
     expect(state).toEqual({
       status: "invalid-editorial-evidence",

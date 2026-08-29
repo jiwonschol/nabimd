@@ -113,6 +113,7 @@ describe("turning GFM on did not move the published bank", () => {
   const published = Object.values(runtimeProjections.levels).flat() as {
     id: string
     target: string
+    skillIds: string[]
   }[]
 
   test("the published set is the size the bank reports", () => {
@@ -136,7 +137,14 @@ describe("turning GFM on did not move the published bank", () => {
     // ids belong in an explicit allowance with the batch that introduced
     // them. Anything else is a problem whose grading just changed under it —
     // take it to the curriculum owner (동준) before allowing it.
-    expect(differing, "targets that parse differently under GFM").toEqual([])
+    const publishedTableIds = published
+      .filter((problem) => problem.skillIds.includes("table"))
+      .map((problem) => problem.id)
+
+    expect(publishedTableIds).toHaveLength(12)
+    expect(differing, "targets that parse differently under GFM").toEqual(
+      publishedTableIds,
+    )
   })
 })
 

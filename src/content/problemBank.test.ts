@@ -14,6 +14,7 @@ import { inlineCodeBatch007Fixtures } from "./batches/inlineCodeBatch007Fixtures
 import { imageBatch027Fixtures } from "./batches/imageBatch027Fixtures"
 import { imageBatch028Fixtures } from "./batches/imageBatch028Fixtures"
 import { imageBatch029Fixtures } from "./batches/imageBatch029Fixtures"
+import { tableBatch031Fixtures } from "./batches/tableBatch031Fixtures"
 import { italicRebuildBatch013Fixtures } from "./batches/italicRebuildBatch013Fixtures"
 import { linkBatch008Fixtures } from "./batches/linkBatch008Fixtures"
 import { listBatch004Fixtures } from "./batches/listBatch004Fixtures"
@@ -54,10 +55,10 @@ function authoredWordCount(source: string) {
 }
 
 describe("compiled problem bank", () => {
-  it("keeps the 384 reviewed records while serving the 352 owner-budget exercises", () => {
-    expect(tracker.acceptedTotal).toBe(384)
+  it("keeps the 396 reviewed records while serving the 364 owner-budget exercises", () => {
+    expect(tracker.acceptedTotal).toBe(396)
     expect(tracker.counts.byLevel).toEqual({
-      1: 152,
+      1: 164,
       2: 148,
       3: 30,
       4: 32,
@@ -66,7 +67,7 @@ describe("compiled problem bank", () => {
     // The immutable tracker remains the evidence ledger. Runtime retires 32
     // legacy work documents that exceed their new curriculum owner's budget.
     expect(problemBank.every(withinRuntimeBudget)).toBe(true)
-    const servedByLevel = { 1: 152, 2: 148, 3: 28, 4: 12, 5: 12 } as const
+    const servedByLevel = { 1: 164, 2: 148, 3: 28, 4: 12, 5: 12 } as const
     expect(problemBank).toHaveLength(
       Object.values(servedByLevel).reduce((sum, count) => sum + count, 0),
     )
@@ -336,6 +337,7 @@ describe("compiled problem bank", () => {
       ...imageBatch027Fixtures,
       ...imageBatch028Fixtures,
       ...imageBatch029Fixtures,
+      ...tableBatch031Fixtures,
     ].filter(({ problemId, problemRevision }) =>
       publishedProblemRevisions.has(`${problemId}@${problemRevision ?? 1}`),
     )

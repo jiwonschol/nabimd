@@ -78,7 +78,7 @@ describe("three-level entry choices", () => {
     ).toEqual([
       {
         id: "level-1",
-        problems: 304,
+        problems: 316,
         elements: new Set([
           "heading",
           "bold",
@@ -90,6 +90,7 @@ describe("three-level entry choices", () => {
           "code-block",
           "blockquote",
           "image",
+          "table",
         ]),
       },
       {
@@ -198,7 +199,7 @@ describe("three-level entry choices", () => {
         createRunProblemIds("level-1", runNumber, 0),
       ).flat(),
     )
-    expect(allServedIds).toHaveLength(263)
+    expect(allServedIds).toHaveLength(275)
   })
 
   it("keeps every served mixed exercise short and free of separated syntax repeats", () => {
