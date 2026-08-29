@@ -43,6 +43,34 @@ describe("a table row is a card", () => {
     expect(blanks(body!)).toHaveLength(1)
   })
 
+  it("locks an escaped bar inside a cell", () => {
+    // `\\|` is a literal bar in the cell text, not a separator — GFM reads it
+    // as text. Scanning raw characters asked the learner to type it, so the
+    // card wanted two separators where the row has one.
+    const [, , body] = deriveSyntaxCheckpoints(
+      "Operator | Meaning\n--- | ---\nA \\| B | either one",
+      "",
+    )
+    expect(blanks(body!)).toHaveLength(1)
+    expect(body!.segments[0]).toEqual({ kind: "locked", value: "A \\| B " })
+  })
+
+  it("keeps rows apart when the bar is not the row's first blank", () => {
+    // The never-join rule reads the row's family. Taking it from the first
+    // blank lost the rows whose first mark is something else, and the rows
+    // then collapsed onto one card: a quoted table came out as a single card
+    // holding every `>` and every bar in the block.
+    const quoted = deriveSyntaxCheckpoints("> a | b\n> --- | ---\n> 1 | 2", "")
+    expect(quoted).toHaveLength(3)
+    for (const card of quoted) {
+      expect(
+        card.segments.some(
+          (segment) => segment.kind === "input" && segment.value === "|",
+        ),
+      ).toBe(true)
+    }
+  })
+
   it.each([
     ["a bullet whose text carries a bar", "- Compare A | B"],
     ["a bullet of nothing but punctuation", "- |"],
@@ -115,6 +143,14 @@ describe("sentences the table cards still get wrong", () => {
     expect(rowOf("| A | B |\n| :--- | ---: |\n| 1 | 2 |", 1).prefix).not.toMatch(
       /colon/i,
     )
+  })
+
+  it("names only the first syntax when a row carries two", () => {
+    // A bold cell or a quoted table puts two syntaxes on one card, and the
+    // sentence names one of them. That is #177/#178, not the table engine:
+    // the row is correctly kept apart, and the bar is correctly a blank.
+    expect(rowOf("**x** | one\n--- | ---\n**y** | two", 0).term).toBe("bold text")
+    expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 0).term).toBe("block quote")
   })
 
   it("reads a body row of dashes as a rule", () => {

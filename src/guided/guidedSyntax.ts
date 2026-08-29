@@ -836,7 +836,12 @@ function markNodeSyntax(
         while (lineStart < range.to) {
           const lineEnd = lineEndAt(source, lineStart)
           for (let index = lineStart; index < lineEnd; index += 1) {
-            if (source[index] === "|") {
+            // `\|` is a literal bar inside a cell, not a separator — GFM
+            // reads it as text. Counting backslashes matters because `\\|`
+            // is an escaped backslash followed by a real separator.
+            let backslashes = 0
+            while (source[index - 1 - backslashes] === "\\") backslashes += 1
+            if (source[index] === "|" && backslashes % 2 === 0) {
               markRange(
                 mask,
                 { from: index, to: index + 1 },
@@ -1104,7 +1109,18 @@ export function deriveSyntaxCheckpoints(
         canonicalInput,
         segments,
       })
-      checkpointFamilies.push(families[activeOffset] ?? null)
+      // A row is a table row whenever *any* of its blanks is a bar. Reading
+      // only the first blank's family lost the rows whose first mark is
+      // something else — a bold cell, or the `> ` of a quoted table — and the
+      // never-join rule then collapsed them onto one card.
+      const holdsTableBar = families
+        .slice(contentStart, checkpointEnd)
+        .some((candidate, offset) =>
+          candidate === TABLE_ROW_FAMILY && mask[contentStart + offset] === true,
+        )
+      checkpointFamilies.push(
+        holdsTableBar ? TABLE_ROW_FAMILY : (families[activeOffset] ?? null),
+      )
     }
 
     if (checkpointEnd >= source.length) break
