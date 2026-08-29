@@ -17,6 +17,7 @@ import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
+export const CHECKPOINT_PROJECTION_REVISION = "given-document-title@1"
 // A browser session cannot legitimately reach this many five-problem turns.
 // Cap untrusted storage before deterministic schedule reconstruction.
 export const MAX_PERSISTED_RUN_NUMBER = 10_000
@@ -32,6 +33,7 @@ export function createDefaultProgress(
     version: 5,
     bankRevision,
     runScheduleRevision,
+    checkpointProjectionRevision: CHECKPOINT_PROJECTION_REVISION,
     entryId: null,
     runNumber: 0,
     runSeed,
@@ -225,6 +227,7 @@ function isProgressV5(
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
     value.runScheduleRevision !== runScheduleRevision ||
+    value.checkpointProjectionRevision !== CHECKPOINT_PROJECTION_REVISION ||
     (value.entryId !== null &&
       (!isEntryId(value.entryId) || !getEntryChoice(value.entryId).available)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
@@ -375,6 +378,28 @@ function migrateSyntaxMistakes(value: unknown): unknown {
   }
   return {
     ...value,
+    syntaxMistakes: [],
+  }
+}
+
+function migrateCheckpointProjection(value: unknown): unknown {
+  if (
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.checkpointProjectionRevision === CHECKPOINT_PROJECTION_REVISION
+  ) {
+    return value
+  }
+
+  // Checkpoint ids are positions in the derived card sequence. Giving the
+  // opening document title removes its card and shifts every later id, so a
+  // persisted retry or mistake would otherwise be attached to syntax the
+  // learner never attempted. Drafts and run position are document-scoped and
+  // remain valid; only checkpoint-scoped evidence is invalidated.
+  return {
+    ...value,
+    checkpointProjectionRevision: CHECKPOINT_PROJECTION_REVISION,
+    pendingSlotRetryProblemId: null,
     syntaxMistakes: [],
   }
 }
@@ -619,26 +644,28 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migrateSyntaxMistakes(
-      migratePendingSlotRetry(
-        migrateRunScheduleRevision(
-          migrateLegacyRunSeed(
-            migrateStarterProjectionRevision(
-              migratePreChapterRevision(
-                JSON.parse(saved),
+    const parsed: unknown = migrateCheckpointProjection(
+      migrateSyntaxMistakes(
+        migratePendingSlotRetry(
+          migrateRunScheduleRevision(
+            migrateLegacyRunSeed(
+              migrateStarterProjectionRevision(
+                migratePreChapterRevision(
+                  JSON.parse(saved),
+                  validProblemIds,
+                  validDraftProblemIds,
+                  expectedBankRevision,
+                  expectedRunSeed,
+                ),
                 validProblemIds,
-                validDraftProblemIds,
                 expectedBankRevision,
-                expectedRunSeed,
               ),
-              validProblemIds,
-              expectedBankRevision,
             ),
+            validProblemIds,
+            validDraftProblemIds,
+            expectedBankRevision,
+            expectedRunSeed,
           ),
-          validProblemIds,
-          validDraftProblemIds,
-          expectedBankRevision,
-          expectedRunSeed,
         ),
       ),
     )

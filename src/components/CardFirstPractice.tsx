@@ -1,6 +1,7 @@
 import type { GradableProblem } from "../content/types"
 import { useLayoutEffect, useRef } from "react"
 import {
+  buildGuidedDraft,
   projectCheckpointContext,
   type SyntaxMistake,
 } from "../guided/guidedSyntax"
@@ -101,6 +102,21 @@ export function CardFirstPractice({
 
   if (!card.checkpoint) return null
 
+  const context = projectCheckpointContext(problem.target, card.checkpoint)
+  const zeroProgressDraft = buildGuidedDraft(
+    problem.target,
+    card.checkpoints,
+    0,
+  ).trimEnd()
+  // The zero-progress draft is real given content, even though the session has
+  // not needed an onGrow event yet. Use the complete prefix here rather than
+  // the context projector's single adjacent block so a title separated from
+  // the first taught block by prose is visible from the first card.
+  const visibleContext =
+    card.frontierIndex === 0 && zeroProgressDraft
+      ? { ...context, before: zeroProgressDraft }
+      : context
+
   return (
     <article
       aria-disabled={!interactive}
@@ -115,7 +131,7 @@ export function CardFirstPractice({
         canGoToNextSlot={card.canGoToNextSlot}
         canGoToPreviousSlot={card.canGoToPreviousSlot}
         checkpoint={card.checkpoint}
-        context={projectCheckpointContext(problem.target, card.checkpoint)}
+        context={visibleContext}
         focusRequest={card.focusRequest}
         hintOpen={card.hintOpen}
         hintRows={card.hintRows}
