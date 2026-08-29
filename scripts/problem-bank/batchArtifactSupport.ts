@@ -244,12 +244,38 @@ async function loadPreviousBatches({
       `Cannot prepare ${config.batchId} while prior batch evidence is invalid:\n${compiled.errors.join("\n")}`,
     )
   }
+  const publishedPreviousBatches: LoadedBatch[] = []
+  const unpublishedAcceptedBatches: string[] = []
+  for (const batch of previousBatches) {
+    const previousBatchId = String(batch.normalized?.batchId ?? "<unknown>")
+    const summary = await optionalJson(
+      resolve(bankRoot, "batches", previousBatchId, "summary.generated.json"),
+    )
+    if (summary !== null) {
+      publishedPreviousBatches.push(batch)
+      continue
+    }
+    if (evaluateBatchEvidence(batch).summary.accepted > 0) {
+      unpublishedAcceptedBatches.push(previousBatchId)
+    }
+  }
+  if (unpublishedAcceptedBatches.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} after accepted but unpublished batches:\n${unpublishedAcceptedBatches.join("\n")}`,
+    )
+  }
+  const published = compileAcceptedBank(publishedPreviousBatches)
+  if (published.errors.length > 0) {
+    throw new Error(
+      `Cannot prepare ${config.batchId} while published batch evidence is invalid:\n${published.errors.join("\n")}`,
+    )
+  }
   return {
     previousBatches,
     laterBatches,
     compiled,
-    runtimeProjections: createRuntimeProjections(compiled),
-    tracker: buildTracker(compiled),
+    runtimeProjections: createRuntimeProjections(published),
+    tracker: buildTracker(published),
   }
 }
 

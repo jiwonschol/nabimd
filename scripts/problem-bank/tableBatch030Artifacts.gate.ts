@@ -80,7 +80,7 @@ describe("schema-v2 Level 1 table batch 030", () => {
     ).rejects.toThrow("immutable after review or editorial evidence exists")
   })
 
-  it("adds all twelve only after two reviews and editorial acceptance", async () => {
+  it("preserves the 384-problem bank after all twelve candidates are rejected", async () => {
     const committed = await readCommittedTableBatch030({ repositoryRoot })
     const state = checkTableBatch030State({ computed, committed })
     if (committed.editorial === null) {
@@ -95,35 +95,47 @@ describe("schema-v2 Level 1 table batch 030", () => {
       return
     }
 
+    const rejectionErrors = tableBatch030Problems
+      .map(
+        ({ id }) =>
+          `Batch ${computed.normalized.batchId} is fail-closed after editorial rejection: ${id}`,
+      )
+      .sort()
     const publication = buildTableBatch030Publication({ computed, committed })
-    expect(publication.errors).toEqual([])
-    expect(publication.tracker.acceptedTotal).toBe(396)
+    expect(publication.errors).toEqual(rejectionErrors)
+    expect(publication.tracker.acceptedTotal).toBe(384)
     expect(publication.tracker.counts.byLevel).toEqual({
-      1: 164,
+      1: 152,
       2: 148,
       3: 30,
       4: 32,
       5: 22,
     })
-    expect(publication.tracker.counts.byFamily).toMatchObject({ tables: 12 })
-    const publishedById = new Map(
-      publication.runtimeProjections.levels[1].map((problem) => [
-        problem.id,
-        problem,
-      ]),
-    )
-    for (const addition of tableBatch030Problems) {
-      expect(publishedById.get(addition.id)).toMatchObject({
-        revision: 1,
-        sourceBatchId: computed.normalized.batchId,
-      })
-    }
-    expect(["ready-to-publish", "published"]).toContain(state.status)
+    expect(publication.tracker.counts.byFamily.tables ?? 0).toBe(0)
+    expect(committed.tracker.acceptedTotal).toBe(384)
+    expect(committed.summary).toBeNull()
+    expect(state).toEqual({
+      status: "invalid-editorial-evidence",
+      errors: rejectionErrors,
+      committedIndependentReviews: 2,
+    })
   })
 
-  it("keeps publication fail-closed while editorial evidence is absent", async () => {
+  it("keeps publication fail-closed while editorial evidence is absent or rejected", async () => {
     const committed = await readCommittedTableBatch030({ repositoryRoot })
-    if (committed.editorial !== null) return
+    if (committed.editorial !== null) {
+      expect(
+        buildTableBatch030Publication({ computed, committed }).errors,
+      ).toEqual(
+        tableBatch030Problems
+          .map(
+            ({ id }) =>
+              `Batch ${computed.normalized.batchId} is fail-closed after editorial rejection: ${id}`,
+          )
+          .sort(),
+      )
+      return
+    }
     await expect(
       publishTableBatch030Artifacts({ repositoryRoot, computed }),
     ).rejects.toThrow("requires separate editorial evidence")
