@@ -116,6 +116,14 @@ describe("describeCheckpoint", () => {
     )
   })
 
+  it("counts the spaces the blank actually asks for", () => {
+    // Two is the minimum a break needs, not the only width a source carries;
+    // a three-space blank draws three boxes and the sentence has to agree.
+    expect(
+      describeCheckpoint(checkpointFor("first line   \nsecond line")).prefix,
+    ).toBe("End the line with three spaces to force a ")
+  })
+
   it("does not call bold italic bold", () => {
     expect(describeCheckpoint(checkpointFor("***Very*** important"))).toEqual({
       prefix: "Wrap the phrase in Markdown marks for ",
@@ -246,7 +254,7 @@ describe("describeCheckpoint", () => {
 
   it("drops the outer bars without changing the sentence's grammar", () => {
     // #157 designs Level 2 tables as two columns with no outer bars, so a row
-    // asks for a single bar. The sentence has to agree with itself.
+    // asks for a single bar. Noun and verb both have to agree with that count.
     expect(
       describeCheckpoint(
         checkpointOf(["Apples ", "locked"], ["|", "input"], [" 3", "locked"]),
@@ -254,6 +262,15 @@ describe("describeCheckpoint", () => {
     ).toEqual({
       prefix: "Type the Markdown bar that separates the cells of this ",
       term: "table row",
+      suffix: ".",
+    })
+    expect(
+      describeCheckpoint(
+        checkpointOf(["--- ", "locked"], ["|", "input"], [" ---", "locked"]),
+      ),
+    ).toEqual({
+      prefix: "Type the Markdown bar that makes the row above the ",
+      term: "column headers",
       suffix: ".",
     })
   })
@@ -277,5 +294,10 @@ describe("describeCheckpoint", () => {
       "bullet item",
     )
     expect(describeCheckpoint(checkpointFor("> > Deep")).term).toBe("block quote")
+    // The fence itself is reachable; the sentence that names the language is
+    // not, because the engine locks `js` instead of blanking it.
+    expect(
+      describeCheckpoint(checkpointFor("```js\nlet a = 1\n```")).term,
+    ).toBe("fenced code block")
   })
 })

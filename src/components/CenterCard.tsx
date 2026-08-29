@@ -54,6 +54,13 @@ function instruction(
   return { prefix, term, suffix }
 }
 
+// Small counts read as words in the rest of the card's copy ("two spaces"),
+// and a blank wide enough to need a numeral is not a shape the content ever
+// asks for — but the sentence still has to be able to say it.
+function spelledCount(count: number): string {
+  return ["zero", "one", "two", "three", "four", "five"][count] ?? String(count)
+}
+
 export function describeCheckpoint(
   checkpoint: SyntaxCheckpoint,
 ): CheckpointInstruction {
@@ -69,9 +76,14 @@ export function describeCheckpoint(
   // mark there is. It has to be read before `mark` is consulted, and it is the
   // one family whose instruction names an action instead of a mark: there is
   // no mark to name. The boxes already show what was typed (a space renders as
-  // a middle dot), so the sentence only has to say how many and why.
+  // a middle dot), so the sentence only has to say how many and why — and the
+  // count comes from the blank, since two is the minimum a break needs but not
+  // the only width a source can carry.
   if (/^ {2,}$/.test(checkpoint.canonicalInput)) {
-    return instruction("End the line with two spaces to force a ", "line break")
+    return instruction(
+      `End the line with ${spelledCount(checkpoint.canonicalInput.length)} spaces to force a `,
+      "line break",
+    )
   }
 
   // Table rows are the one family the mark cannot name on its own: a header
@@ -93,16 +105,18 @@ export function describeCheckpoint(
       dashesTyped ||
       lockedValues.some((value) => /^\s*:?-{3,}:?\s*$/.test(value))
     if (dividerRow) {
+      // #157 designs Level 2 tables with no outer bars, so a two-column row
+      // asks for a single bar. Noun and verb both have to follow that count.
       const typed =
         dashesTyped && barsTyped > 0
-          ? "bars and dashes"
+          ? "bars and dashes that make"
           : dashesTyped
-            ? "dashes"
+            ? "dashes that make"
             : barsTyped > 1
-              ? "bars"
-              : "bar"
+              ? "bars that make"
+              : "bar that makes"
       return instruction(
-        `Type the Markdown ${typed} that make the row above the `,
+        `Type the Markdown ${typed} the row above the `,
         "column headers",
       )
     }
