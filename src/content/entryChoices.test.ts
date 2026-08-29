@@ -21,6 +21,8 @@ import {
   syntaxCheckpointTerms,
   type SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
+import { instructionFor } from "../guided/checkpointInstruction"
+import { checkpointShape } from "../guided/checkpointShape"
 
 function checkpointTerms(checkpoint: SyntaxCheckpoint): string[] {
   // Was a copy of `syntaxCheckpointTerms`, and it fell behind twice — once
@@ -393,5 +395,109 @@ describe("three-level entry choices", () => {
     expect(isEntryId("level-4")).toBe(false)
     expect(isEntryId("challenge")).toBe(false)
     expect(getEntryChoice("level-2").level).toBe(2)
+  })
+})
+
+describe("how often a run repeats a syntax the learner just practised", () => {
+  // Jiwon, 2026-08-29: "I answered everything right and kept pressing Enter,
+  // and problems of the same syntax keep coming." Measured on the live build
+  // it was true and not a feeling: over this grid the same problem never came
+  // back, while the syntax behind it returned every second run.
+  //
+  // The grid spans a full mixed-exercise cycle and one run past it. A shorter
+  // grid flatters the schedule twice over: run 0 has no run before it, so
+  // counting it dilutes the run-to-run rate with terms that cannot repeat,
+  // and early runs of a cycle choose from a full pool while the last runs have
+  // no candidates left. Both were in the first version of this measurement and
+  // both made the change look about eight times larger than it is.
+  //
+  // The budgets are ceilings, not the current readings, and they sit under
+  // what the schedule did before the mixed exercise started avoiding what the
+  // run beside it teaches (same-run 1.353 cards, run-to-run 38.13%).
+  //
+  // Run-to-run barely moves and that is the honest result: every mixed
+  // exercise in the bank opens on a level 1 heading, so no candidate can avoid
+  // that element, and serving each exercise once per cycle leaves the tail of
+  // a cycle with nothing to choose between. #198 owns the heading card.
+  const SEEDS = 40
+  const FIRST_RUN = 0
+  const LAST_RUN = 41
+  const MAX_SAME_RUN_REPEATS_PER_RUN = 1.2
+  const MAX_RUN_TO_RUN_REPEAT_RATE = 0.38
+  const MAX_CARDS_PER_RUN = 8.1
+
+  // The grid walks 1,680 runs, and a problem's cards do not depend on the run
+  // that served them. Deriving per appearance parses the same 364 targets
+  // 8,400 times and put the first cold run over vitest's default timeout —
+  // a gate that is only green on a warm machine is not a gate.
+  const cardTermsByProblemId = new Map<string, string[]>()
+  function cardTerms(problemId: string): string[] {
+    const cached = cardTermsByProblemId.get(problemId)
+    if (cached) return cached
+    const problem = problemBank.find((candidate) => candidate.id === problemId)!
+    const terms = deriveSyntaxCheckpoints(problem.target, problem.starterText).map(
+      (checkpoint) => instructionFor(checkpointShape(checkpoint)).term,
+    )
+    cardTermsByProblemId.set(problemId, terms)
+    return terms
+  }
+
+  function runCardTerms(runNumber: number, seed: number): string[] {
+    return createRunProblemIds("level-1", runNumber, seed).flatMap(cardTerms)
+  }
+
+  it("keeps a sitting off the syntax it just taught", () => {
+    let runs = 0
+    let cards = 0
+    let sameRunRepeats = 0
+    let returningSyntaxes = 0
+    let comparedSyntaxes = 0
+
+    for (let seed = 0; seed < SEEDS; seed += 1) {
+      let previous: Set<string> | null = null
+      for (let runNumber = FIRST_RUN; runNumber <= LAST_RUN; runNumber += 1) {
+        const terms = runCardTerms(runNumber, seed)
+        const distinct = new Set<string>()
+        for (const term of terms) {
+          if (distinct.has(term)) sameRunRepeats += 1
+          distinct.add(term)
+        }
+        // The first run of a seed has nothing before it. Counting it would put
+        // terms into the denominator that cannot possibly repeat.
+        if (previous) {
+          for (const term of distinct) {
+            comparedSyntaxes += 1
+            if (previous.has(term)) returningSyntaxes += 1
+          }
+        }
+        previous = distinct
+        runs += 1
+        cards += terms.length
+      }
+    }
+
+    expect(runs).toBe(SEEDS * (LAST_RUN - FIRST_RUN + 1))
+    expect(comparedSyntaxes).toBeGreaterThan(0)
+    expect(sameRunRepeats / runs).toBeLessThanOrEqual(
+      MAX_SAME_RUN_REPEATS_PER_RUN,
+    )
+    expect(returningSyntaxes / comparedSyntaxes).toBeLessThanOrEqual(
+      MAX_RUN_TO_RUN_REPEAT_RATE,
+    )
+    expect(cards / runs).toBeLessThanOrEqual(MAX_CARDS_PER_RUN)
+    // Declared rather than inherited. Memoised the grid runs about a second
+    // warm, but the default five is close enough to a cold parse that this
+    // gate went red once on a first run and green on the second — and a gate
+    // whose colour depends on the machine tells you nothing either way.
+  }, 20_000)
+
+  it("never serves the same problem twice across the grid it covers", () => {
+    for (let seed = 0; seed < SEEDS; seed += 1) {
+      const served: string[] = []
+      for (let runNumber = 0; runNumber < 10; runNumber += 1) {
+        served.push(...createRunProblemIds("level-1", runNumber, seed))
+      }
+      expect(new Set(served).size, `seed ${seed}`).toBe(served.length)
+    }
   })
 })
