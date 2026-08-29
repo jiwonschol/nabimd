@@ -161,11 +161,20 @@ describe("schema-v2 problem-bank validation", () => {
     expect(
       targetUsesTabAsMarkerWhitespace("> ~~~text\n> >\tcode\n> ~~~"),
     ).toBe(false)
+    expect(targetUsesTabAsMarkerWhitespace("> ~~~\n>\tcode\n> ~~~")).toBe(true)
   })
 
   it("checks every parser-recognized line of a multiline quote", () => {
     expect(targetUsesTabAsMarkerWhitespace("> first\n>\tsecond")).toBe(true)
+    expect(targetUsesTabAsMarkerWhitespace("> first\n  >\tsecond")).toBe(true)
   })
+
+  it.each(["Title\n---\t", "Title\n=\t"])(
+    "checks tab whitespace on a Setext underline: %s",
+    (target) => {
+      expect(targetUsesTabAsMarkerWhitespace(target)).toBe(true)
+    },
+  )
 
   it("does not mistake prose or layout tabs for marker whitespace", () => {
     for (const target of ["Word\tword", "    code\tword", "> text\tword"]) {
