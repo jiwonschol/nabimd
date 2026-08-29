@@ -199,7 +199,18 @@ function chooseMixedForRun(
   const cycleStart = runNumber - (runNumber % cycleLength)
   const taken = new Set<number>()
   let chosenIndex = 0
-  let previousRunElements: ReadonlySet<string> = new Set()
+  // The walk starts at the cycle boundary, so at every boundary but the first
+  // there is a run before it that the loop will never visit. Its four singles
+  // are one offset away and cost nothing to recover; its mixed exercise would
+  // cost a second walk through the previous cycle, and that walk would itself
+  // open on an unknown run. Seeding with the singles keeps the adjacency rule
+  // in force across the boundary against four of the five problems the learner
+  // just saw, rather than none.
+  let previousRunElements: ReadonlySet<string> = new Set(
+    cycleStart === 0
+      ? []
+      : singlesForRun(cycleStart - 1).flatMap(getCurriculumElements),
+  )
 
   for (let run = cycleStart; run <= runNumber; run += 1) {
     const thisRun = new Set<string>()
