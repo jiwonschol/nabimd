@@ -83,6 +83,8 @@ function fingerprint(value: string): string {
 
 /** See the note beside its use in `runScheduleRevision`. */
 export const COMPOSITION_REVISION = "composition@2-mixed-avoids-adjacent-runs"
+export const CHECKPOINT_LAYOUT_REVISION =
+  "checkpoint-layout@2-split-sequential-syntax"
 
 /**
  * Any input that can invalidate a persisted deterministic run belongs here.
@@ -117,6 +119,7 @@ export const runScheduleRevision = [
   // Bump it whenever `createTurnProblemIds` can return a different run for an
   // unchanged (chapter, runNumber, seed).
   COMPOSITION_REVISION,
+  CHECKPOINT_LAYOUT_REVISION,
   ...curriculumLevels.map((entry) => {
     const ids = getServedProblemsForBank(problemBank, entry.level).map(
       (problem) => problem.id,

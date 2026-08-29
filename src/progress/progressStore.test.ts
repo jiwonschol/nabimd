@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import {
+  CHECKPOINT_LAYOUT_REVISION,
   COMPOSITION_REVISION,
   createRunProblemIds,
   entryChoices,
@@ -371,6 +372,44 @@ describe("progressStore v5", () => {
     expect(loaded.draftByProblemId).toEqual({
       [otherMixed.id]: "# Keep this across the bump",
     })
+  })
+
+  it("invalidates persisted mistake ids when checkpoint layout changes", () => {
+    const ids = createRunProblemIds("level-1", 0, 0)
+    const problemId = ids[0]!
+    const progress = createDefaultProgress(problemId)
+    progress.entryId = "level-1"
+    progress.runProblemIds = ids
+    progress.runStartedAtMs = 1_000
+    progress.draftByProblemId[problemId] = "# Keep this draft"
+    progress.syntaxMistakes = [
+      {
+        problemId,
+        checkpointId: "syntax-1-2",
+        groupIndex: 0,
+        term: "old checkpoint",
+        submitted: "@",
+        expected: ["# "],
+      },
+    ]
+    progress.runScheduleRevision = runScheduleRevision
+      .split("|")
+      .filter((segment) => segment !== CHECKPOINT_LAYOUT_REVISION)
+      .join("|")
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+      problemBankRevision,
+      0,
+      validDraftProblemIds,
+    )
+
+    expect(loaded.runProblemIds).toEqual(ids)
+    expect(loaded.draftByProblemId[problemId]).toBe("# Keep this draft")
+    expect(loaded.syntaxMistakes).toEqual([])
   })
 
   it("keeps a draft for a mixed exercise retired from serving while regenerating its schedule", () => {
