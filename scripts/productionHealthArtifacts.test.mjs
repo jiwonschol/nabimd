@@ -49,8 +49,14 @@ describe("production health artifacts survive both checks", () => {
   })
 
   it("keeps the served-commit receipt out of any Playwright output directory", () => {
-    const receipt = workflow.match(/DEPLOYED_SHA_RECEIPT: (\S+)/)?.[1]
+    // `\S+` stops at the space inside `${{ runner.temp }}`, so it captured
+    // `${{` and every containment check below passed against three characters.
+    // A mutation that put the receipt straight back under test-results/
+    // survived this test until the pattern read to the end of the line.
+    const receipt = workflow.match(/DEPLOYED_SHA_RECEIPT: (.+)/)?.[1]?.trim()
     expect(receipt, "DEPLOYED_SHA_RECEIPT not set").toBeTruthy()
+    // The value has to be a path, not the head of an unparsed expression.
+    expect(receipt).toMatch(/deployed-sha\.txt$/)
 
     // A receipt written under an output directory is deleted by the next run
     // before the report step reads it, and the report then calls the served
