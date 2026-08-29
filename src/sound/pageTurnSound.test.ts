@@ -139,8 +139,11 @@ describe("pageTurnSound", () => {
     await Promise.resolve()
 
     setSoundMuted(false)
+    expect(audio.muted).toBe(true)
     await Promise.resolve()
     await Promise.resolve()
+    expect(audio.pause).toHaveBeenCalledTimes(2)
+    expect(audio.muted).toBe(false)
     playPageTurnSound()
 
     expect(audio.play).toHaveBeenCalledTimes(3)

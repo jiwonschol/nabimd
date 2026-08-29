@@ -21,7 +21,7 @@ subscribeSoundMuted((muted) => {
     // The sound toggle is itself a user gesture. If muting aborted the first
     // browser unlock attempt, use this later gesture to make the channel
     // retryable instead of leaving Summary turns silent for the whole run.
-    playPageTurnAudio(true)
+    playPageTurnAudio(true, true)
   }
 })
 
@@ -35,14 +35,14 @@ function getPageTurnAudio(): HTMLAudioElement | null {
   return pageTurnAudio
 }
 
-function playPageTurnAudio(unlockOnSuccess: boolean) {
+function playPageTurnAudio(unlockOnSuccess: boolean, primeSilently = false) {
   const muted = readSoundMuted()
   if (muted && !unlockOnSuccess) return
 
   const audio = getPageTurnAudio()
   if (!audio) return
 
-  audio.muted = muted
+  audio.muted = muted || primeSilently
   audio.currentTime = 0
   try {
     const playback = Promise.resolve(audio.play())
@@ -53,7 +53,7 @@ function playPageTurnAudio(unlockOnSuccess: boolean) {
           if (pageTurnPriming !== playback) return
           pageTurnPriming = null
           pageTurnUnlocked = true
-          if (muted) {
+          if (muted || primeSilently) {
             audio.pause()
             audio.currentTime = 0
           }
