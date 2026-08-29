@@ -188,8 +188,15 @@ export function describeCheckpoint(
   if (mark.startsWith(">")) {
     const depth = (mark.match(/>/g) ?? []).length
     if (depth > 1) {
+      // `> > ` and the compact `>>` are both valid, and they ask for a
+      // different number of spaces. The sentence counts what the blank holds.
+      const spaces = (checkpoint.canonicalInput.match(/ /g) ?? []).length
       return instruction(
-        "Type the Markdown marks and spaces for a ",
+        spaces === 0
+          ? "Type the Markdown marks for a "
+          : spaces === 1
+            ? "Type the Markdown marks and space for a "
+            : "Type the Markdown marks and spaces for a ",
         "quote inside a quote",
       )
     }
@@ -240,6 +247,19 @@ export function describeCheckpoint(
   // concatenate to the same value. The nesting has to be read from the order
   // of the groups — the contract shape blanks the three marks together, and
   // today's engine splits them into an emphasis mark wrapping a strong pair.
+  // In the split shape the two opening marks touch, and so do the two closing
+  // ones. Counting the four values alone also accepted `*This is **very**
+  // good*` — bold inside part of an italic span, which has the same four
+  // values with prose between them — and told the learner the whole phrase
+  // was bold italic.
+  const touchingInputs = (first: string, second: string): boolean =>
+    checkpoint.segments.some(
+      (segment, index) =>
+        segment.kind === "input" &&
+        segment.value === first &&
+        checkpoint.segments[index + 1]?.kind === "input" &&
+        checkpoint.segments[index + 1]?.value === second,
+    )
   const boldItalicNesting =
     (inputValues.length === 2 &&
       inputValues.every((value) => value === "***" || value === "___")) ||
@@ -247,7 +267,9 @@ export function describeCheckpoint(
       (inputValues[0] === "*" || inputValues[0] === "_") &&
       inputValues[0] === inputValues[3] &&
       (inputValues[1] === "**" || inputValues[1] === "__") &&
-      inputValues[1] === inputValues[2])
+      inputValues[1] === inputValues[2] &&
+      touchingInputs(inputValues[0], inputValues[1]) &&
+      touchingInputs(inputValues[2], inputValues[3]))
   if (boldItalicNesting) {
     return instruction(
       "Wrap the phrase in Markdown marks for ",

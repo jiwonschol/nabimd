@@ -173,6 +173,22 @@ describe("describeCheckpoint", () => {
       ).term,
     ).toBe("bold italic text")
 
+    // Bold inside only part of an italic span has the same four values, with
+    // prose between them. Only the outer and inner marks touching makes it a
+    // single bold italic phrase.
+    expect(
+      describeCheckpoint(checkpointFor("*This is **very** good*")).term,
+    ).toBe("bold text")
+    // Both ends have to touch. Italic that keeps going after the bold closes
+    // ("***Very** good*") and italic that starts before it opens
+    // ("*good **Very***") each leave one pair apart.
+    expect(describeCheckpoint(checkpointFor("***Very** good*")).term).toBe(
+      "bold text",
+    )
+    expect(describeCheckpoint(checkpointFor("*good **Very***")).term).toBe(
+      "bold text",
+    )
+
     // Nesting is symmetric. An outer pair that does not match itself is not a
     // wrapper, so it falls out of the branch rather than being named.
     expect(
@@ -273,6 +289,17 @@ describe("describeCheckpoint", () => {
       term: "quote inside a quote",
       suffix: ".",
     })
+    // The compact form is equally valid and asks for one space, or none.
+    expect(
+      describeCheckpoint(
+        checkpointOf([">", "input"], ["> ", "input"], ["Deep", "locked"]),
+      ).prefix,
+    ).toBe("Type the Markdown marks and space for a ")
+    expect(
+      describeCheckpoint(
+        checkpointOf([">", "input"], [">", "input"], [" Deep", "locked"]),
+      ).prefix,
+    ).toBe("Type the Markdown marks for a ")
   })
 
   it("tells a checkbox from a bullet, and checked from unchecked", () => {
