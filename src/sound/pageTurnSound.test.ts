@@ -118,6 +118,34 @@ describe("pageTurnSound", () => {
     expect(audio.currentTime).toBe(0)
   })
 
+  it("re-primes from a later unmute after muting aborts startup", async () => {
+    let rejectFirst!: (error: Error) => void
+    audio.play
+      .mockReturnValueOnce(
+        new Promise<void>((_resolve, reject) => {
+          rejectFirst = reject
+        }),
+      )
+      .mockResolvedValue(undefined)
+    const { playPageTurnSound, unlockAndPlayPageTurnSound } = await import(
+      "./pageTurnSound"
+    )
+    const { setSoundMuted } = await import("./feedbackSound")
+
+    unlockAndPlayPageTurnSound()
+    setSoundMuted(true)
+    rejectFirst(new Error("aborted by pause"))
+    await Promise.resolve()
+    await Promise.resolve()
+
+    setSoundMuted(false)
+    await Promise.resolve()
+    await Promise.resolve()
+    playPageTurnSound()
+
+    expect(audio.play).toHaveBeenCalledTimes(3)
+  })
+
   it("swallows browser playback rejection", async () => {
     audio.play.mockImplementationOnce(() => Promise.reject(new Error("blocked")))
     const { unlockAndPlayPageTurnSound } = await import("./pageTurnSound")

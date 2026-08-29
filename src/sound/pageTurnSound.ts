@@ -17,6 +17,11 @@ subscribeSoundMuted((muted) => {
   if (muted) {
     pageTurnAudio.pause()
     pageTurnAudio.currentTime = 0
+  } else if (!pageTurnUnlocked && pageTurnPriming === null) {
+    // The sound toggle is itself a user gesture. If muting aborted the first
+    // browser unlock attempt, use this later gesture to make the channel
+    // retryable instead of leaving Summary turns silent for the whole run.
+    playPageTurnAudio(true)
   }
 })
 
