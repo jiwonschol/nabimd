@@ -285,6 +285,20 @@ describe("describeCheckpoint", () => {
       suffix: ".",
     })
 
+    // A two-column divider that exposes its single inner bar and its dashes
+    // together: the bar is still one bar.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["| ", "locked"],
+          ["---", "input"],
+          ["|", "input"],
+          ["---", "input"],
+          [" |", "locked"],
+        ),
+      ).prefix,
+    ).toBe("Type the Markdown bar and dashes that make the row above the ")
+
     // And when the dashes are the blank instead of the bars.
     const dividerTypedDashes = checkpointOf(
       ["| ", "locked"],

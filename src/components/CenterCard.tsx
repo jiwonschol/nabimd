@@ -115,13 +115,15 @@ export function describeCheckpoint(
       // #157 designs Level 2 tables with no outer bars, so a two-column row
       // asks for a single bar. Noun and verb both have to follow that count.
       const typed =
-        dashesTyped && barsTyped > 0
+        dashesTyped && barsTyped > 1
           ? "bars and dashes that make"
-          : dashesTyped
-            ? "dashes that make"
-            : barsTyped > 1
-              ? "bars that make"
-              : "bar that makes"
+          : dashesTyped && barsTyped === 1
+            ? "bar and dashes that make"
+            : dashesTyped
+              ? "dashes that make"
+              : barsTyped > 1
+                ? "bars that make"
+                : "bar that makes"
       return instruction(
         `Type the Markdown ${typed} the row above the `,
         "column headers",
