@@ -24,6 +24,7 @@ import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { describeDraft, reportError } from "../monitoring/errorMonitoring"
 import { resolveBrowserStorage } from "../progress/browserStorage"
 import {
+  hasUnknownCheckpointProjection,
   loadProgress,
   readPersistedRunSeed,
   saveProgress,
@@ -129,16 +130,26 @@ export function useLearningSession(
   const [sessionSeed] = useState(() =>
     getOrCreateSessionSeed(sessionStorage, createSessionSeed),
   )
+  const [preserveUnknownProgress] = useState(() =>
+    hasUnknownCheckpointProjection(sessionStorage),
+  )
   const [session, dispatch] = useReducer(
     learningSessionReducer,
     { storage: sessionStorage, seed: sessionSeed },
     initializeSession,
   )
   const problem = getProblem(session.currentProblemId)
+  const initialProgressRef = useRef(session.progress)
 
   useEffect(() => {
+    if (
+      preserveUnknownProgress &&
+      session.progress === initialProgressRef.current
+    ) {
+      return
+    }
     saveProgress(sessionStorage, session.progress)
-  }, [session.progress, sessionStorage])
+  }, [preserveUnknownProgress, session.progress, sessionStorage])
 
   const edit = useCallback((value: string) => {
     dispatch({ type: "edited", value })

@@ -403,12 +403,12 @@ function migrateCheckpointProjection(value: unknown): unknown {
 
   // Do not parse untrusted problem ids until the same cheap bounds enforced by
   // the v5 validator have passed. A legitimate run has five scheduled slots
-  // and at most one transfer after each slot; oversized or duplicate-filled
-  // arrays are invalid and must fall through to normal recovery untouched.
+  // and at most one transfer after each slot. Duplicates are legitimate when
+  // repair practice selects content that also appears in a later scheduled
+  // slot, so reachability validation below owns that decision.
   if (
     !Array.isArray(value.runProblemIds) ||
     value.runProblemIds.length > MAX_PERSISTED_RUN_PROBLEM_IDS ||
-    new Set(value.runProblemIds).size !== value.runProblemIds.length ||
     !Array.isArray(value.syntaxMistakes) ||
     value.syntaxMistakes.length > MAX_PERSISTED_SYNTAX_MISTAKES
   ) {
@@ -756,6 +756,21 @@ export function loadProgress(
         }
   } catch {
     return fallback
+  }
+}
+
+export function hasUnknownCheckpointProjection(storage: Storage): boolean {
+  try {
+    const saved = storage.getItem(PROGRESS_STORAGE_KEY)
+    if (!saved) return false
+    const stored: unknown = JSON.parse(saved)
+    return (
+      isRecord(stored) &&
+      "checkpointProjectionRevision" in stored &&
+      stored.checkpointProjectionRevision !== CHECKPOINT_PROJECTION_REVISION
+    )
+  } catch {
+    return false
   }
 }
 
