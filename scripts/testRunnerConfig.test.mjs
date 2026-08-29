@@ -35,9 +35,30 @@ export function importsNodeTest(source) {
     }
     return null
   }
-  const runnerApis = new Set(["test", "it", "describe", "suite"])
-  const importsRunnerApi = (node) => {
-    if (node.type === "ImportExpression") return true
+  const runnerApis = new Set(["default", "test", "it", "describe", "suite"])
+  const importsRunnerApi = (node, ancestors) => {
+    if (node.type === "ImportExpression") {
+      let expression = node
+      let parentIndex = ancestors.length - 1
+      if (
+        ancestors[parentIndex]?.type === "AwaitExpression" &&
+        ancestors[parentIndex].argument === node
+      ) {
+        expression = ancestors[parentIndex]
+        parentIndex -= 1
+      }
+      const consumer = ancestors[parentIndex]
+      if (consumer?.type === "VariableDeclarator" && consumer.init === expression) {
+        if (consumer.id.type !== "ObjectPattern") return true
+        return consumer.id.properties.some((property) =>
+          runnerApis.has(property.key?.name ?? property.key?.value),
+        )
+      }
+      if (consumer?.type === "MemberExpression" && consumer.object === expression) {
+        return runnerApis.has(consumer.property?.name ?? consumer.property?.value)
+      }
+      return true
+    }
     return node.specifiers.some((specifier) => {
       if (specifier.type === "ImportDefaultSpecifier" || specifier.type === "ImportNamespaceSpecifier") {
         return true
@@ -47,25 +68,25 @@ export function importsNodeTest(source) {
   }
   let importsNodeRunner = false
   let importsVitestRunner = false
-  const visit = (node) => {
+  const visit = (node, ancestors = []) => {
     if (
       (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
       moduleName(node.source) === "node:test" &&
-      importsRunnerApi(node)
+      importsRunnerApi(node, ancestors)
     ) {
       importsNodeRunner = true
     }
     if (
       (node.type === "ImportDeclaration" || node.type === "ImportExpression") &&
       moduleName(node.source) === "vitest" &&
-      importsRunnerApi(node)
+      importsRunnerApi(node, ancestors)
     ) {
       importsVitestRunner = true
     }
     for (const value of Object.values(node)) {
       if (value === null || typeof value !== "object") continue
-      if (Array.isArray(value)) value.forEach((child) => child && visit(child))
-      else if (typeof value.type === "string") visit(value)
+      if (Array.isArray(value)) value.forEach((child) => child && visit(child, [...ancestors, node]))
+      else if (typeof value.type === "string") visit(value, [...ancestors, node])
     }
   }
   visit(parseAst(source))
@@ -134,5 +155,15 @@ describe("test runner configuration", () => {
         'import test from "node:test"\nimport { expect } from "vitest"\n',
       ),
     ).toBe(true)
+    expect(
+      importsNodeTest(
+        'import test from "node:test"\nconst { expect } = await import("vitest")\n',
+      ),
+    ).toBe(true)
+    expect(
+      importsNodeTest(
+        'import test from "node:test"\nconst { it } = await import("vitest")\n',
+      ),
+    ).toBe(false)
   })
 })

@@ -317,6 +317,25 @@ test("origin/main itself uses its parent instead of HEAD as the baseline", async
   assert.equal(await resolveBaselineSha(repository, ""), parent)
 })
 
+test("origin/main at HEAD uses its parent even when local main is older", async () => {
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-origin-head-stale-main-"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "first\n")
+  await run("git", ["add", "evidence.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "first"], { cwd: repository })
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "second\n")
+  await run("git", ["commit", "-am", "second"], { cwd: repository })
+  const parent = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+  await writeFile(resolve(repository, "evidence.txt"), "third\n")
+  await run("git", ["commit", "-am", "third"], { cwd: repository })
+  await run("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: repository })
+
+  assert.equal(await resolveBaselineSha(repository, ""), parent)
+})
+
 test("a newer local main wins over a stale origin/main baseline", async () => {
   const repository = await mkdtemp(resolve(tmpdir(), "nabimd-newest-main-baseline-"))
   await run("git", ["init"], { cwd: repository })

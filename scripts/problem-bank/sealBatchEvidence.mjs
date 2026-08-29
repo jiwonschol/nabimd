@@ -265,16 +265,26 @@ export async function resolveBaselineSha(
 
   const candidates = []
   const head = (await run("git", ["rev-parse", "HEAD"], { cwd })).stdout.trim()
+  let mainRefAtHead = false
   for (const mainRef of ["origin/main", "main"]) {
     try {
       const baseline = (
         await run("git", ["merge-base", mainRef, "HEAD"], { cwd })
       ).stdout.trim()
-      if (baseline && baseline !== head && !candidates.includes(baseline)) {
+      if (baseline === head) {
+        mainRefAtHead = true
+      } else if (baseline && !candidates.includes(baseline)) {
         candidates.push(baseline)
       }
     } catch {
       // Try the next stable main ref before falling back to the parent commit.
+    }
+  }
+  if (mainRefAtHead) {
+    try {
+      return (await run("git", ["rev-parse", "HEAD^"], { cwd })).stdout.trim()
+    } catch {
+      return null
     }
   }
   if (candidates.length > 0) {
