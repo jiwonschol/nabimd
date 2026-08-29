@@ -3,9 +3,26 @@ import { mkdtemp, mkdir, readFile, writeFile, readdir } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { resolve } from "node:path"
 import test from "node:test"
+import { execFile } from "node:child_process"
+import { promisify } from "node:util"
 import { resealBatchEvidence } from "./sealBatchEvidence.mjs"
 import { sealEditorial, sealReview } from "./batchPipeline.mjs"
 import { canonicalJson } from "./pipeline.mjs"
+
+const run = promisify(execFile)
+const cli = resolve(import.meta.dirname, "sealBatchEvidence.mjs")
+
+// Calling the exported function proves the rule; it does not prove the command
+// a person types passes `--check` through to it. Mutating `write: !check` to
+// `write: true` left every direct-call test green.
+async function runCli(args) {
+  try {
+    const { stdout } = await run(process.execPath, [cli, ...args])
+    return { code: 0, stdout }
+  } catch (error) {
+    return { code: error.code ?? 1, stdout: error.stdout ?? "" }
+  }
+}
 
 // Every case builds its own batch under a temp directory. The tool writes to
 // the paths it is given, and the repository's own batches are the thing it
@@ -128,6 +145,36 @@ test("check mode reports drift without writing", async () => {
   const report = await resealBatchEvidence({ batchDir, write: false })
   assert.deepEqual(report.changed, ["reviews/a.json", "editorial.json"])
   assert.equal(await readFile(resolve(batchDir, "reviews", "a.json"), "utf8"), original)
+})
+
+test("the command's check mode refuses to write and fails", async () => {
+  const before = sealReview(reviewBody("a", "ok"))
+  const edited = { ...before, verdicts: [{ candidateId: "c1", verdict: "pass", note: "corrected" }] }
+  const batchDir = await makeBatch({
+    reviews: { "a.json": edited },
+    editorial: sealEditorial(editorialBody(), [before]),
+  })
+  const original = await readFile(resolve(batchDir, "reviews", "a.json"), "utf8")
+
+  const result = await runCli([batchDir, "--check"])
+  assert.equal(result.code, 1)
+  assert.match(result.stdout, /DRIFT/)
+  assert.equal(await readFile(resolve(batchDir, "reviews", "a.json"), "utf8"), original)
+})
+
+test("the command without --check reseals and succeeds", async () => {
+  const before = sealReview(reviewBody("a", "ok"))
+  const edited = { ...before, verdicts: [{ candidateId: "c1", verdict: "pass", note: "corrected" }] }
+  const batchDir = await makeBatch({
+    reviews: { "a.json": edited },
+    editorial: sealEditorial(editorialBody(), [before]),
+  })
+
+  const result = await runCli([batchDir])
+  assert.equal(result.code, 0)
+  const review = JSON.parse(await readFile(resolve(batchDir, "reviews", "a.json"), "utf8"))
+  assert.equal(canonicalJson(review), canonicalJson(sealReview(review)))
+  assert.equal((await runCli([batchDir, "--check"])).code, 0)
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {
