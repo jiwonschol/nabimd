@@ -179,6 +179,27 @@ describe("classifyDeploymentGap", () => {
     }
   })
 
+  it("ages a retried deployment from its newest attempt, not its oldest", () => {
+    // A one-element fixture cannot tell Math.max from Math.min: swapping them
+    // left every other pending case green. Vercel attaches a status per
+    // attempt, so a stale first try sitting beside a fresh retry is the real
+    // shape, and reading the oldest would call a running deployment stalled.
+    const retried = [
+      ...pendingFor(PENDING_GRACE_MS + 60_000),
+      ...pendingFor(30_000),
+    ]
+
+    expect(gap(retried, "schedule").kind).toBe("in-flight")
+
+    // And the reverse still stalls: both attempts old means nothing is running.
+    const abandoned = [
+      ...pendingFor(PENDING_GRACE_MS + 60_000),
+      ...pendingFor(PENDING_GRACE_MS + 10_000),
+    ]
+
+    expect(gap(abandoned, "schedule").kind).toBe("pending-stalled")
+  })
+
   it("does not call a pending status stalled when it carries no timestamp", () => {
     // No timestamp is no evidence of age. Paging a human over a missing field
     // would make the report about our parsing rather than about production.
