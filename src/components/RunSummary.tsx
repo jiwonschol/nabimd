@@ -46,6 +46,7 @@ export function RunSummary({
 }: RunSummaryProps) {
   const playedSummarySound = useRef(false)
   const completionTitleRef = useRef<HTMLHeadingElement>(null)
+  const workTitleRef = useRef<HTMLHeadingElement>(null)
   const [pageIndex, setPageIndex] = useState(0)
   const [quietInitialFocus, setQuietInitialFocus] = useState(true)
   const { pages, notes } = useMemo(
@@ -60,7 +61,9 @@ export function RunSummary({
   }, [])
 
   useEffect(() => {
-    completionTitleRef.current?.focus({ preventScroll: true })
+    ;(workTitleRef.current ?? completionTitleRef.current)?.focus({
+      preventScroll: true,
+    })
   }, [])
 
   const activePage = pages[Math.min(pageIndex, Math.max(0, pages.length - 1))]
@@ -84,7 +87,7 @@ export function RunSummary({
               <header className="run-summary__work-header">
                 <div>
                   <p>Completed exercise</p>
-                  <h3>{activePage.title}</h3>
+                  <h3 ref={workTitleRef} tabIndex={-1}>{activePage.title}</h3>
                 </div>
                 <nav aria-label="Completed exercise navigation" className="run-summary__work-navigation">
                   <button
@@ -111,6 +114,7 @@ export function RunSummary({
                   aria-label="Rendered document"
                   className="run-summary__work-pane"
                   key={`rendered-${activePage.problemId}`}
+                  tabIndex={0}
                 >
                   <p className="run-summary__work-label">Rendered</p>
                   <RenderedDocumentBody
@@ -122,6 +126,7 @@ export function RunSummary({
                   aria-label="Markdown source"
                   className="run-summary__work-pane"
                   key={`source-${activePage.problemId}`}
+                  tabIndex={0}
                 >
                   <p className="run-summary__work-label">Markdown</p>
                   <pre><code>{activePage.source}</code></pre>

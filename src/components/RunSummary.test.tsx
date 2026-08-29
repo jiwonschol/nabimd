@@ -74,8 +74,16 @@ describe("RunSummary as a teacher's return", () => {
     expect(screen.getByRole("region", { name: "Rendered document" })).toHaveTextContent(
       "Grocery list",
     )
+    expect(screen.getByRole("region", { name: "Rendered document" })).toHaveAttribute(
+      "tabindex",
+      "0",
+    )
     expect(screen.getByRole("region", { name: "Markdown source" })).toHaveTextContent(
       "# Grocery list",
+    )
+    expect(screen.getByRole("region", { name: "Markdown source" })).toHaveAttribute(
+      "tabindex",
+      "0",
     )
     // The completed pages are the page now, not a dialog behind a button.
     expect(screen.queryByRole("dialog")).toBeNull()
@@ -227,8 +235,12 @@ describe("RunSummary as a teacher's return", () => {
 
     const replay = screen.getByRole("button", { name: "Practice again" })
     const completion = screen.getByRole("heading", { name: "Well done." })
-    expect(completion).toHaveFocus()
-    expect(completion).toHaveAttribute("data-quiet-focus", "true")
+    const workTitle = screen.getByRole("heading", { level: 3, name: "Grocery list" })
+    const next = screen.getByRole("button", { name: "Next completed exercise" })
+    expect(workTitle).toHaveFocus()
+    expect(workTitle.compareDocumentPosition(next)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    )
     expect(replay).not.toHaveFocus()
     expect(replay.parentElement).toHaveClass(
       "summary-ink",
@@ -294,7 +306,9 @@ describe("RunSummary as a teacher's return", () => {
 
     renderSummary()
 
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Grocery list" }),
+    ).toHaveFocus()
     expect(
       screen.getByRole("button", { name: "Practice again" }),
     ).not.toHaveFocus()
