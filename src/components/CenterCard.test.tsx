@@ -74,11 +74,12 @@ describe("CenterCard", () => {
       problem.starterText,
     ).map(centerCardModule.buildSyntaxReference)
 
+    // The three numbered steps are one card, not three: consecutive
+    // checkpoints teaching the same syntax are grouped, so Now learning never
+    // names the same thing on card after card.
     expect(references.map((reference) => reference.name)).toEqual([
       "Level 1 heading",
       "Fenced code block",
-      "Numbered step",
-      "Numbered step",
       "Numbered step",
     ])
   })

@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest"
+import { getCurriculumElements } from "../content/curriculumElements"
+import { isEligibleMixedExercise } from "../content/mixedExercisePolicy"
 import { problemBank } from "../content/problemBank"
 import { evaluateProblem } from "../engine/evaluateProblem"
 import {
@@ -10,6 +12,7 @@ import {
   missedGuidedSyntaxGroups,
   projectCheckpointContext,
   syntaxGroupTerm,
+  syntaxCheckpointTerms,
 } from "./guidedSyntax"
 
 describe("deriveSyntaxCheckpoints", () => {
@@ -283,25 +286,28 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("keeps nested-list indentation out of the card and asks only the marker", () => {
+  it("asks for both nested markers on one card and never for the indentation", () => {
     const target = ["- Parent", "  - Child"].join("\n")
     const checkpoints = deriveSyntaxCheckpoints(
       target,
       ["Parent", "Child"].join("\n"),
     )
 
+    // Both items teach the bullet marker, so they are one card with one blank
+    // each rather than two cards asking the same thing in a row.
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
-      "- ",
-      "- ",
+      "- - ",
     ])
-    // The indentation is not part of the checkpoint at all: the card shows
-    // only the marker boxes and the prose, and the document regains the
-    // indentation from the untouched slice before the checkpoint.
-    expect(checkpoints[1]?.segments).toEqual([
+    // The indentation is never a blank: it sits in the locked run between the
+    // two markers, so the card shows the real shape of the document without
+    // asking the learner to type layout.
+    expect(checkpoints[0]?.segments).toEqual([
+      { kind: "input", value: "- " },
+      { kind: "locked", value: "Parent\n  " },
       { kind: "input", value: "- " },
       { kind: "locked", value: "Child" },
     ])
-    expect(checkpoints[1]?.targetFrom).toBe("- Parent\n  ".length)
+    expect(checkpoints[0]?.targetFrom).toBe(0)
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
   })
 
@@ -361,7 +367,7 @@ describe("card teaching projections", () => {
     const checkpoint = deriveSyntaxCheckpoints(
       target,
       "Lunch tray\nSandwich\nApple",
-    )[1]!
+    )[0]!
 
     expect(projectCheckpointContext(target, checkpoint)).toEqual({
       before: null,
@@ -523,6 +529,99 @@ describe("published blank policy", () => {
         label,
       ).toBe(false)
     }
+  })
+})
+
+describe("one card teaches one syntax", () => {
+  // The turn scheduler already keeps one syntax from filling a turn, but it
+  // counts problems while the learner counts cards: a three-item list was one
+  // problem and three identical cards, so the practice felt like the same mark
+  // three times in a row. Adjacent checkpoints naming the same syntax are one
+  // card with one blank per item.
+  it("puts every bullet of a list on one card", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "- Apples\n- Pears\n- Milk",
+      "Apples\nPears\nMilk",
+    )
+
+    expect(checkpoints).toHaveLength(1)
+    expect(
+      checkpoints[0]!.segments.filter((segment) => segment.kind === "input"),
+    ).toEqual([
+      { kind: "input", value: "- " },
+      { kind: "input", value: "- " },
+      { kind: "input", value: "- " },
+    ])
+  })
+
+  it("keeps different syntaxes on their own cards", () => {
+    // The pass case: grouping must not collapse a problem into one card. A
+    // heading above a list is two lessons and stays two.
+    const checkpoints = deriveSyntaxCheckpoints(
+      "# Packing\n\n- Socks\n- Towel",
+      "Packing\nSocks\nTowel",
+    )
+
+    expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
+      "# ",
+      "- - ",
+    ])
+  })
+
+  it("does not swallow an unrelated block between two lists", () => {
+    // Only whitespace may sit between two joined cards. A paragraph in
+    // between means another block came first, and pulling it into a locked
+    // segment would put unrelated prose inside the card.
+    const checkpoints = deriveSyntaxCheckpoints(
+      "- Apples\n\nThen rest.\n\n- Pears",
+      "Apples\nThen rest.\nPears",
+    )
+
+    expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
+      "- ",
+      "- ",
+    ])
+  })
+
+  it("never repeats a syntax on consecutive cards of a served problem", () => {
+    // Scoped to what practice can actually serve: a single-element problem, or
+    // a mixed exercise that passed eligibility. Problems outside that set can
+    // still repeat a syntax across cards — `l3-decision-quiet-room-booking`
+    // has two level-2 headings with an unmarked paragraph between them — and
+    // `isEligibleMixedExercise` is what keeps them off the schedule.
+    const served = problemBank.filter(
+      (problem) =>
+        getCurriculumElements(problem).length === 1 ||
+        isEligibleMixedExercise(problem),
+    )
+    expect(served.length).toBeGreaterThan(200)
+
+    let compared = 0
+    for (const problem of served) {
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+      const terms = checkpoints.map((checkpoint) =>
+        syntaxCheckpointTerms(checkpoint).join("+"),
+      )
+      for (let index = 1; index < terms.length; index += 1) {
+        compared += 1
+        expect(
+          terms[index],
+          `${problem.id} card ${index + 1} repeats card ${index}`,
+        ).not.toBe(terms[index - 1])
+      }
+    }
+    // Guards the loop against passing by never comparing anything. Most served
+    // problems are a single card now, so the floor is the number of card
+    // boundaries that still exist rather than a share of the bank.
+    const multiCard = served.filter(
+      (problem) =>
+        deriveSyntaxCheckpoints(problem.target, problem.starterText).length > 1,
+    ).length
+    expect(multiCard).toBeGreaterThan(20)
+    expect(compared).toBeGreaterThanOrEqual(multiCard)
   })
 })
 

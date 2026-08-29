@@ -37,21 +37,6 @@ export const entryChoices = curriculumLevels.map((entry) => ({
   available: isEntryAvailableForBank(entry, problemBank, RUN_POLICY.turnSize),
 }))
 
-// Any input that can invalidate a persisted deterministic run belongs here.
-// Deriving the value prevents a curriculum edit from relying on a manual bump.
-export const runScheduleRevision = [
-  `turn-size@${RUN_POLICY.turnSize}`,
-  `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
-    .sort(([left], [right]) => left.localeCompare(right))
-    .map(([family, weight]) => `${family}:${weight}`)
-    .join(",")}`,
-  `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
-  ...entryChoices.map(
-    (entry) =>
-      `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
-  ),
-].join("|")
-
 const servedProblemsByBank = new WeakMap<
   readonly SchedulableEntryProblem[],
   Map<CurriculumLevel, readonly SchedulableEntryProblem[]>
@@ -87,6 +72,46 @@ function getServedProblemsForBank(
   }
   return served
 }
+
+function fingerprint(value: string): string {
+  let hash = 2_166_136_261
+  for (const character of value) {
+    hash = Math.imul(hash ^ character.charCodeAt(0), 16_777_619)
+  }
+  return (hash >>> 0).toString(36)
+}
+
+/**
+ * Any input that can invalidate a persisted deterministic run belongs here.
+ * Deriving the value prevents a curriculum edit from relying on a manual bump.
+ *
+ * The served set is part of it because eligibility is computed, not declared:
+ * `isEligibleMixedExercise` counts checkpoints, so a change to how the card
+ * cuts blanks silently changes which mixed exercises a level may serve. That
+ * happened — grouping adjacent same-syntax checkpoints took twelve Level 2
+ * composites from over the checkpoint ceiling to under it. Naming only the
+ * policy constants would have left a persisted run being validated against a
+ * different schedule under an unchanged revision, which drops the learner's
+ * progress instead of migrating it.
+ */
+export const runScheduleRevision = [
+  `turn-size@${RUN_POLICY.turnSize}`,
+  `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([family, weight]) => `${family}:${weight}`)
+    .join(",")}`,
+  `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
+  ...entryChoices.map(
+    (entry) =>
+      `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
+  ),
+  ...curriculumLevels.map((entry) => {
+    const ids = getServedProblemsForBank(problemBank, entry.level).map(
+      (problem) => problem.id,
+    )
+    return `served@${entry.id}:${ids.length}:${fingerprint(ids.join(","))}`
+  }),
+].join("|")
 
 export function isEntryId(value: unknown): value is EntryId {
   return entryChoices.some((entry) => entry.id === value)

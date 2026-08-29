@@ -26,6 +26,7 @@ import {
   isEligibleTransferProblem,
   selectTransferProblem,
 } from "../selection/selectTransferProblem"
+import { curriculumLevels } from "../content/curriculumLevels"
 import { SYNTAX_FAMILY_WEIGHTS } from "../selection/runPolicy"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { createLearningSession } from "../session/learningSession"
@@ -100,20 +101,50 @@ describe("progressStore v5", () => {
       runStartedAtMs: null,
       runCompletedAtMs: null,
     })
-    expect(runScheduleRevision).toBe(
-      [
-        "turn-size@5",
-        `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
-          .sort(([left], [right]) => left.localeCompare(right))
-          .map(([family, weight]) => `${family}:${weight}`)
-          .join(",")}`,
-        `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
-        ...entryChoices.map(
-          (entry) =>
-            `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
-        ),
-      ].join("|"),
-    )
+    const policy = [
+      "turn-size@5",
+      `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+        .sort(([left], [right]) => left.localeCompare(right))
+        .map(([family, weight]) => `${family}:${weight}`)
+        .join(",")}`,
+      `mixed-exercise@max-${MIXED_EXERCISE_POLICY.maxCheckpoints}:separated-repeat-${MIXED_EXERCISE_POLICY.separatedSyntaxRepeats}`,
+      ...entryChoices.map(
+        (entry) => `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
+      ),
+    ].join("|")
+    expect(runScheduleRevision.startsWith(`${policy}|`)).toBe(true)
+
+    // Eligibility is computed, not declared, so naming the policy constants is
+    // not enough: a change to how the card cuts blanks moves which mixed
+    // exercises a level may serve without touching any constant above. The
+    // served counts are recomputed here from the bank directly rather than
+    // through `getServedProblemsForBank`, so this fails if the revision stops
+    // following the real served set.
+    const servedIdsByEntry = curriculumLevels.map((entry) => ({
+      entry,
+      ids: problemBank
+        .filter(
+          (problem) =>
+            problem.flavor === "standard" &&
+            getProblemEntryId(problem) === entry.id &&
+            (getCurriculumElements(problem).length === 1 ||
+              isEligibleMixedExercise(problem)),
+        )
+        .map((problem) => problem.id),
+    }))
+    const fingerprints = new Set<string>()
+    for (const { entry, ids } of servedIdsByEntry) {
+      const marker = `|served@${entry.id}:${ids.length}:`
+      expect(runScheduleRevision, entry.id).toContain(marker)
+      const fingerprint = runScheduleRevision
+        .slice(runScheduleRevision.indexOf(marker) + marker.length)
+        .split("|")[0]!
+      expect(fingerprint, entry.id).toMatch(/^[0-9a-z]+$/)
+      fingerprints.add(fingerprint)
+    }
+    // Levels serve different problems, so a fingerprint that ignored its input
+    // would collapse them to one value.
+    expect(fingerprints.size).toBe(servedIdsByEntry.length)
   })
 
   it("round-trips a valid deterministic run", () => {

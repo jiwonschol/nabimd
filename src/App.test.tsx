@@ -10,7 +10,10 @@ import userEvent from "@testing-library/user-event"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
-import { deriveSyntaxCheckpoints } from "./guided/guidedSyntax"
+import {
+  acceptedGuidedSyntaxInputs,
+  deriveSyntaxCheckpoints,
+} from "./guided/guidedSyntax"
 import { resetCenterCardMemoryForTests } from "./guided/useCenterCard"
 import {
   createDefaultProgress,
@@ -130,6 +133,24 @@ function boxInputs() {
 
 function firstBoxInput() {
   return boxInputs()[0]!
+}
+
+// A card that offers a second accepted answer and keeps it in one box, so an
+// edit can be typed into `firstBoxInput`. It must have a card after it as
+// well, so the run can move past it and come back.
+function editableSlotIndex(
+  checkpoints: ReturnType<typeof deriveSyntaxCheckpoints>,
+): number | null {
+  for (let index = 0; index + 1 < checkpoints.length; index += 1) {
+    const checkpoint = checkpoints[index]!
+    const groups = checkpoint.segments.filter(
+      (segment) => segment.kind === "input",
+    )
+    if (groups.length === 1 && acceptedGuidedSyntaxInputs(checkpoint).length > 1) {
+      return index
+    }
+  }
+  return null
 }
 
 function slotMarks(problem = currentProblem()) {
@@ -354,11 +375,12 @@ describe("App", () => {
   })
 
   it("starts the document blank and grows it as slots are accepted", async () => {
+    // Cards are one per syntax now, so a document that grows across cards has
+    // to teach more than one syntax.
     useSessionSeedForFirstProblem(
       1,
       (problem) =>
-        problem.skillIds.length === 1 &&
-        problem.skillIds[0] === "unordered-list",
+        deriveSyntaxCheckpoints(problem.target, problem.starterText).length > 1,
     )
     await openLevel(1)
     const problem = currentProblem()
@@ -396,7 +418,7 @@ describe("App", () => {
     expect(reference).toHaveTextContent("Fenced code block")
   })
 
-  it("accepts an alternate unordered-list marker in a slot", async () => {
+  it("asks for every bullet of a list on one card and takes an alternate marker", async () => {
     useSessionSeedForFirstProblem(
       1,
       (problem) =>
@@ -405,13 +427,38 @@ describe("App", () => {
     )
     await openLevel(1)
     const marks = slotMarks()
-    expect(marks.length).toBeGreaterThan(2)
-    const alternate = marks[0]!.replace("-", "*")
+    // One card for the whole list — the learner still types every marker.
+    expect(marks).toHaveLength(1)
+    expect(
+      screen.getAllByRole("textbox", { name: /^Marks \d+ of \d+$/ }).length,
+    ).toBeGreaterThan(1)
+
+    const alternate = marks[0]!.replaceAll("-", "*")
     expect(alternate).not.toBe(marks[0])
 
     submitSlot(alternate)
     // Accepted alternates land in the document exactly as typed.
+    expect(screen.getByRole("status")).toHaveTextContent("Matched")
     expect(writePanelDocument()).toContain("* ")
+  })
+
+  it("rejects a list whose marker changes partway down", async () => {
+    useSessionSeedForFirstProblem(
+      1,
+      (problem) =>
+        problem.skillIds.length === 1 &&
+        problem.skillIds[0] === "unordered-list",
+    )
+    await openLevel(1)
+    const marks = slotMarks()[0]!
+    // Markdown starts a second list when the marker changes, so a card that
+    // holds the whole list must not accept a mixture.
+    const mixed = `${marks.slice(0, 2)}${marks.slice(2).replaceAll("-", "*")}`
+    expect(mixed).not.toBe(marks)
+
+    submitSlot(mixed)
+    expect(screen.getByRole("status")).toHaveTextContent("Try again")
+    expect(writePanelDocument()).toBe("")
   })
 
   it("normalizes the Korean won sign to a backtick in code slots", async () => {
@@ -517,18 +564,35 @@ describe("App", () => {
   })
 
   it("walks previous slots with ArrowUp and ArrowDown and edits them in place", async () => {
-    useSessionSeedForFirstProblem(
-      1,
-      (problem) =>
-        problem.skillIds.length === 1 &&
-        problem.skillIds[0] === "unordered-list",
-    )
+    // Walking needs a card to come back to and one to come back from, and the
+    // edit needs a card that accepts a second answer in a single box. Both are
+    // properties of the checkpoints, so the fixture is chosen by them rather
+    // than by a syntax name — cards are one per syntax now, so naming a syntax
+    // no longer says how many cards a problem has.
+    useSessionSeedForFirstProblem(1, (problem) => {
+      const checkpoints = deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )
+      return editableSlotIndex(checkpoints) !== null
+    })
     await openLevel(1)
-    const marks = slotMarks()
-    expect(marks.length).toBeGreaterThan(2)
+    const problem = currentProblem()
+    const checkpoints = deriveSyntaxCheckpoints(
+      problem.target,
+      problem.starterText,
+    )
+    const marks = slotMarks(problem)
+    const editable = editableSlotIndex(checkpoints)!
+    // A card can hold several boxes, and the first box only ever shows that
+    // card's first group.
+    const firstGroup = (index: number) =>
+      checkpoints[index]!.segments.find((segment) => segment.kind === "input")!
+        .value
 
-    submitSlot(marks[0]!)
-    submitSlot(marks[1]!)
+    for (let index = 0; index <= editable + 1; index += 1) {
+      submitSlot(marks[index]!)
+    }
     // The card carries no `Mark x of y` counter, so which slot is showing is
     // proven by the answer in the boxes: the frontier slot is empty.
     const card = screen.getByLabelText("Markdown syntax practice")
@@ -537,23 +601,23 @@ describe("App", () => {
 
     // ArrowUp steps back through accepted slots, showing the stored answer.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(firstBoxInput()).toHaveValue(marks[1]!)
+    expect(firstBoxInput()).toHaveValue(firstGroup(editable + 1))
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(firstBoxInput()).toHaveValue(marks[0]!)
+    expect(firstBoxInput()).toHaveValue(firstGroup(editable))
 
     // ArrowDown returns toward the frontier.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowDown" })
-    expect(firstBoxInput()).toHaveValue(marks[1]!)
+    expect(firstBoxInput()).toHaveValue(firstGroup(editable + 1))
 
-    // Editing a past slot regrows the document and jumps back to the
-    // frontier. The list-style normalizer keeps the marks coherent.
+    // Editing a past slot regrows the document and jumps back to the frontier.
     fireEvent.keyDown(firstBoxInput(), { key: "ArrowUp" })
-    expect(firstBoxInput()).toHaveValue(marks[0]!)
-    const alternate = marks[0]!.replace("-", "*")
+    expect(firstBoxInput()).toHaveValue(firstGroup(editable))
+    const alternate = acceptedGuidedSyntaxInputs(checkpoints[editable]!)[1]!
+    expect(alternate).not.toBe(marks[editable])
     fireEvent.change(firstBoxInput(), { target: { value: alternate } })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
     expect(firstBoxInput()).toHaveValue("")
-    expect(writePanelDocument()).toContain("* ")
+    expect(writePanelDocument()).toContain(alternate)
   })
 
   it("advances by itself after the last slot — no second confirmation key", async () => {

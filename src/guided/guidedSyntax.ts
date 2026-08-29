@@ -71,22 +71,38 @@ function buildAcceptedForms(
     .map((segment) => segment.value)
   const forms = [canonicalParts]
 
-  const canonicalFirst = canonicalParts[0]
-  const unorderedMatch = canonicalFirst?.match(/^(\s*)([-+*])(\s+)/)
-  if (canonicalFirst && unorderedMatch) {
+  // One card can now hold every item of a list, so the marker alternates are
+  // rewritten across all of its marker groups at once. Markdown starts a new
+  // list when the marker changes partway down, so mixing `-` and `*` in one
+  // list is a real mistake and no accepted form offers it.
+  const unorderedGroups = canonicalParts.flatMap((part, index) => {
+    const match = part.match(/^(\s*)([-+*])(\s+)/)
+    return match ? [{ index, match }] : []
+  })
+  if (unorderedGroups.length > 0) {
+    const current = unorderedGroups[0]!.match[2]
     for (const marker of ["-", "*", "+"] as const) {
-      if (marker === unorderedMatch[2]) continue
+      if (marker === current) continue
       const alternative = [...canonicalParts]
-      alternative[0] = `${unorderedMatch[1] ?? ""}${marker}${unorderedMatch[3] ?? ""}${canonicalFirst.slice(unorderedMatch[0].length)}`
+      for (const { index, match } of unorderedGroups) {
+        const part = canonicalParts[index]!
+        alternative[index] = `${match[1] ?? ""}${marker}${match[3] ?? ""}${part.slice(match[0].length)}`
+      }
       forms.push(alternative)
     }
   }
 
-  const orderedMatch = canonicalFirst?.match(/^(\s*\d+)([.)])(\s+)/)
-  if (canonicalFirst && orderedMatch) {
-    const delimiter = orderedMatch[2] === "." ? ")" : "."
+  const orderedGroups = canonicalParts.flatMap((part, index) => {
+    const match = part.match(/^(\s*\d+)([.)])(\s+)/)
+    return match ? [{ index, match }] : []
+  })
+  if (orderedGroups.length > 0) {
+    const delimiter = orderedGroups[0]!.match[2] === "." ? ")" : "."
     const alternative = [...canonicalParts]
-    alternative[0] = `${orderedMatch[1] ?? ""}${delimiter}${orderedMatch[3] ?? ""}${canonicalFirst.slice(orderedMatch[0].length)}`
+    for (const { index, match } of orderedGroups) {
+      const part = canonicalParts[index]!
+      alternative[index] = `${match[1] ?? ""}${delimiter}${match[3] ?? ""}${part.slice(match[0].length)}`
+    }
     forms.push(alternative)
   }
 
@@ -398,7 +414,10 @@ function coherentListStyle(
   return style
 }
 
-function normalizeListStyle(value: string, style: GuidedListStyle): string {
+function normalizeGroupListStyle(
+  value: string,
+  style: GuidedListStyle,
+): string {
   let normalized = value
   if (style.unorderedMarker) {
     normalized = normalized.replace(
@@ -413,6 +432,37 @@ function normalizeListStyle(value: string, style: GuidedListStyle): string {
     )
   }
   return normalized
+}
+
+/**
+ * A marker only starts a line, so normalisation is anchored — and one card can
+ * now carry several markers, which made a leading-anchor pass rewrite the
+ * first item and leave the rest. `1) ` beside `2. ` is a different list to
+ * Markdown, so the document stopped grading. Each input group is normalised on
+ * its own; accepted alternatives are the same length as the canonical answer,
+ * so the groups can be sliced by the canonical widths.
+ */
+function normalizeListStyle(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+  style: GuidedListStyle,
+): string {
+  const widths = checkpoint.segments.flatMap((segment) =>
+    segment.kind === "input" ? [segment.value.length] : [],
+  )
+  if (widths.length <= 1) return normalizeGroupListStyle(value, style)
+
+  let offset = 0
+  return widths
+    .map((width, index) => {
+      const group =
+        index === widths.length - 1
+          ? value.slice(offset)
+          : value.slice(offset, offset + width)
+      offset += width
+      return normalizeGroupListStyle(group, style)
+    })
+    .join("")
 }
 
 type SourceRange = { from: number; to: number }
@@ -802,6 +852,84 @@ function lineNumberAt(source: string, offset: number): number {
   return line
 }
 
+/**
+ * Two cards in a row must not teach the same thing.
+ *
+ * The turn scheduler already keeps one syntax from filling a turn, but that
+ * contract is written in problems while the learner counts cards: a
+ * three-item list was one problem and three identical cards, so the practice
+ * *felt* like the same mark three times in a row even though the schedule was
+ * correct. Consecutive checkpoints that name the same syntax become one card
+ * with one blank per item, which is the same amount of typing on one screen.
+ *
+ * Only whitespace may sit between the two — anything else means another block
+ * came in between and swallowing it into a locked segment would put an
+ * unrelated paragraph inside the card.
+ */
+function sameSyntax(
+  left: SyntaxCheckpoint,
+  right: SyntaxCheckpoint,
+): boolean {
+  const leftTerms = syntaxCheckpointTerms(left)
+  const rightTerms = syntaxCheckpointTerms(right)
+  return (
+    leftTerms.length === rightTerms.length &&
+    leftTerms.every((term, index) => term === rightTerms[index])
+  )
+}
+
+function mergeAdjacentSameSyntax(
+  source: string,
+  checkpoints: readonly SyntaxCheckpoint[],
+): SyntaxCheckpoint[] {
+  const merged: SyntaxCheckpoint[] = []
+  for (const checkpoint of checkpoints) {
+    const previous = merged.at(-1)
+    const between = previous
+      ? source.slice(previous.targetTo, checkpoint.targetFrom)
+      : null
+    if (
+      !previous ||
+      between === null ||
+      !/^[\t ]*\n[\n\t ]*$/.test(between) ||
+      !sameSyntax(previous, checkpoint)
+    ) {
+      merged.push(checkpoint)
+      continue
+    }
+
+    // `mergeSegments` guarantees no two locked segments sit side by side, and
+    // joining two cards must not break that: the text between them is locked
+    // and so is the tail of the card before it.
+    const segments: GuidedSyntaxSegment[] = []
+    for (const segment of [
+      ...previous.segments,
+      { kind: "locked", value: between } as const,
+      ...checkpoint.segments,
+    ]) {
+      const tail = segments.at(-1)
+      if (tail?.kind === "locked" && segment.kind === "locked") {
+        tail.value += segment.value
+        continue
+      }
+      segments.push({ ...segment })
+    }
+    merged[merged.length - 1] = {
+      ...previous,
+      targetTo: checkpoint.targetTo,
+      segments,
+      canonicalInput: segments
+        .filter(
+          (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
+            segment.kind === "input",
+        )
+        .map((segment) => segment.value)
+        .join(""),
+    }
+  }
+  return merged
+}
+
 export function deriveSyntaxCheckpoints(
   target: string,
   _starterText: string,
@@ -871,7 +999,7 @@ export function deriveSyntaxCheckpoints(
     lineStart = checkpointEnd + 1
   }
 
-  return checkpoints
+  return mergeAdjacentSameSyntax(source, checkpoints)
 }
 
 export function buildGuidedDraft(
@@ -900,7 +1028,7 @@ export function buildGuidedDraft(
     parts.push(
       renderCheckpointWithInput(
         checkpoint,
-        normalizeListStyle(acceptedValue, listStyle),
+        normalizeListStyle(checkpoint, acceptedValue, listStyle),
       ),
     )
     cursor = checkpoint.targetTo
