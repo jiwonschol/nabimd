@@ -8,6 +8,7 @@ import {
   problemBankRevision,
 } from "../content/problemBank"
 import {
+  CHECKPOINT_PROJECTION_REVISION,
   PROGRESS_STORAGE_KEY,
   createDefaultProgress,
   saveProgress,
@@ -51,6 +52,26 @@ function renderLearningSession(
 }
 
 describe("useLearningSession", () => {
+  it("does not overwrite a newer checkpoint projection until the learner acts", async () => {
+    const storage = new MemoryStorage()
+    const future = createDefaultProgress(problemBank[0].id)
+    future.checkpointProjectionRevision = "future-projection@2"
+    future.draftByProblemId[future.currentProblemId] = "# Future draft semantics"
+    const raw = JSON.stringify(future)
+    storage.setItem(PROGRESS_STORAGE_KEY, raw)
+
+    const { result } = renderLearningSession(storage)
+    await waitFor(() => expect(storage.getItem(PROGRESS_STORAGE_KEY)).toBe(raw))
+
+    act(() => result.current.start("level-1"))
+    await waitFor(() => {
+      const saved = JSON.parse(storage.getItem(PROGRESS_STORAGE_KEY)!)
+      expect(saved.checkpointProjectionRevision).toBe(
+        CHECKPOINT_PROJECTION_REVISION,
+      )
+    })
+  })
+
   it("finishes a five-problem turn instead of ending after the first Match", () => {
     const { result } = renderLearningSession()
     act(() => result.current.start("level-1"))

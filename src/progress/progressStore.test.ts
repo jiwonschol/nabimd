@@ -690,6 +690,24 @@ describe("progressStore v5", () => {
     expect(loaded).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
+  it("migrates a reachable legacy repair schedule with duplicate problem ids", () => {
+    const baseline = createRunProblemIds("level-1", 0)
+    const duplicate = baseline[1]!
+    const progress = createDefaultProgress(duplicate)
+    progress.entryId = "level-1"
+    progress.runProblemIds = [baseline[0]!, duplicate, ...baseline.slice(1)]
+    progress.runStepIndex = 1
+    progress.currentIsTransfer = true
+    progress.runStartedAtMs = 1_000
+    const {
+      checkpointProjectionRevision: _checkpointProjectionRevision,
+      ...legacyProgress
+    } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    expect(loadProgress(storage, validProblemIds, () => true)).toEqual(progress)
+  })
+
   it("rejects oversized legacy mistake ledgers before parsing checkpoint titles", () => {
     const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
