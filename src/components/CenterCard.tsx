@@ -68,6 +68,23 @@ export function describeCheckpoint(
   const lockedBreak = checkpoint.segments.some(
     (segment) => segment.kind === "locked" && segment.value.includes("\n"),
   )
+  // Two blanks that touch, with nothing between them. Marks that nest are
+  // adjacent; marks that merely repeat down a card have the line's prose
+  // between them, and the two join to the same value.
+  const touchingInputs = (first: string, second: string): boolean =>
+    checkpoint.segments.some(
+      (segment, index) =>
+        segment.kind === "input" &&
+        segment.value === first &&
+        checkpoint.segments[index + 1]?.kind === "input" &&
+        checkpoint.segments[index + 1]?.value === second,
+    )
+  // #176 gathers every blank of one family onto a single card, so a sentence
+  // that says "a bullet item" can be standing in front of three of them.
+  const markerCount = (pattern: RegExp): number =>
+    checkpoint.segments.filter(
+      (segment) => segment.kind === "input" && pattern.test(segment.value),
+    ).length
   const lockedValues = checkpoint.segments
     .filter((segment) => segment.kind === "locked")
     .map((segment) => segment.value)
@@ -167,27 +184,57 @@ export function describeCheckpoint(
   // curriculum has no ordered checkbox. An ordered one would fall through to
   // the numbered-step sentence; that is a shape to open when content asks for
   // it, not a case to guess at now.
-  const taskBox = mark.match(/^[-+*]\s+\[([ xX]?)\]$/)
-  if (taskBox) {
-    return taskBox[1] === " " || taskBox[1] === ""
-      ? instruction("Type the Markdown mark and brackets for a ", "checkbox item")
-      : instruction(
-          "Type the Markdown mark and brackets for a ",
-          "checked-off item",
-        )
+  // A checkbox is a bracket blank right behind a bullet marker. Matching the
+  // joined mark instead only ever saw one item, so a card gathering two of
+  // them fell through to the bullet sentence.
+  const taskBoxes = checkpoint.segments.filter(
+    (segment, index) =>
+      segment.kind === "input" &&
+      /^\[[ xX]?\]$/.test(segment.value) &&
+      checkpoint.segments[index - 1]?.kind === "input" &&
+      /^ {0,3}[-+*][\t ]+$/.test(checkpoint.segments[index - 1]?.value ?? ""),
+  )
+  if (taskBoxes.length > 0) {
+    const article = taskBoxes.length > 1 ? "each " : "a "
+    // A card mixing done and not-done items is taught as the plain checkbox;
+    // only an all-checked card is about the checked form.
+    const allChecked = taskBoxes.every((segment) => /[xX]/.test(segment.value))
+    return instruction(
+      `Type the Markdown mark and brackets for ${article}`,
+      allChecked ? "checked-off item" : "checkbox item",
+    )
   }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
-    return instruction("Type the Markdown mark and space for a ", "bullet item")
+    const bullets = markerCount(/^ {0,3}[-+*][\t ]+$/)
+    return instruction(
+      `Type the Markdown mark and space for ${bullets > 1 ? "each " : "a "}`,
+      "bullet item",
+    )
   }
   if (/^\d+[.)]/.test(mark)) {
+    const steps = markerCount(/^ {0,3}\d+[.)][\t ]+$/)
     return instruction(
-      "Type the Markdown number, delimiter, and space for a ",
+      `Type the Markdown number, delimiter, and space for ${steps > 1 ? "each " : "a "}`,
       "numbered step",
     )
   }
   if (mark.startsWith(">")) {
-    const depth = (mark.match(/>/g) ?? []).length
-    if (depth > 1) {
+    const markers = markerCount(/^ {0,3}>[\t ]*$/)
+    // A quote inside a quote puts its two markers side by side. Two quoted
+    // lines gathered onto one card join to the same `> > ` but have the first
+    // line's prose between them, and they are one block quote, not two levels.
+    const nested =
+      markers > 1 &&
+      checkpoint.segments.some(
+        (segment, index) =>
+          segment.kind === "input" &&
+          checkpoint.segments[index + 1]?.kind === "input" &&
+          /^ {0,3}>[\t ]*$/.test(segment.value) &&
+          /^ {0,3}>[\t ]*$/.test(
+            checkpoint.segments[index + 1]?.value ?? "",
+          ),
+      )
+    if (nested) {
       // `> > ` and the compact `>>` are both valid, and they ask for a
       // different number of spaces. The sentence counts what the blank holds.
       const spaces = (checkpoint.canonicalInput.match(/ /g) ?? []).length
@@ -200,7 +247,10 @@ export function describeCheckpoint(
         "quote inside a quote",
       )
     }
-    return instruction("Type the Markdown mark and space for a ", "block quote")
+    return instruction(
+      `Type the Markdown mark and space for ${markers > 1 ? "each line of this " : "a "}`,
+      "block quote",
+    )
   }
   // Strikethrough is an even run of two-tilde delimiters wrapping a phrase.
   // Deciding it from the joined value instead called an unclosed four-tilde
@@ -252,14 +302,6 @@ export function describeCheckpoint(
   // good*` — bold inside part of an italic span, which has the same four
   // values with prose between them — and told the learner the whole phrase
   // was bold italic.
-  const touchingInputs = (first: string, second: string): boolean =>
-    checkpoint.segments.some(
-      (segment, index) =>
-        segment.kind === "input" &&
-        segment.value === first &&
-        checkpoint.segments[index + 1]?.kind === "input" &&
-        checkpoint.segments[index + 1]?.value === second,
-    )
   const boldItalicNesting =
     (inputValues.length === 2 &&
       inputValues.every((value) => value === "***" || value === "___")) ||

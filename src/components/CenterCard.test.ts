@@ -279,6 +279,70 @@ describe("describeCheckpoint", () => {
     })
   })
 
+  it("counts the blanks a gathered card actually holds", () => {
+    // #176 puts every blank of one family on one card, so a card can carry
+    // three bullet markers while the sentence says "a bullet item".
+    expect(describeCheckpoint(checkpointFor("- Apples\n- Pears\n- Milk"))).toEqual({
+      prefix: "Type the Markdown mark and space for each ",
+      term: "bullet item",
+      suffix: ".",
+    })
+    expect(describeCheckpoint(checkpointFor("- Apples")).prefix).toBe(
+      "Type the Markdown mark and space for a ",
+    )
+    expect(
+      describeCheckpoint(checkpointFor("1. First\n2. Second")).prefix,
+    ).toBe("Type the Markdown number, delimiter, and space for each ")
+    expect(describeCheckpoint(checkpointFor("1. First")).prefix).toBe(
+      "Type the Markdown number, delimiter, and space for a ",
+    )
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["- ", "input"],
+          ["[ ]", "input"],
+          [" Milk\n", "locked"],
+          ["- ", "input"],
+          ["[ ]", "input"],
+          [" Eggs", "locked"],
+        ),
+      ).prefix,
+    ).toBe("Type the Markdown mark and brackets for each ")
+    // A card that mixes done and not-done items teaches the plain checkbox.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["- ", "input"],
+          ["[x]", "input"],
+          [" Milk\n", "locked"],
+          ["- ", "input"],
+          ["[ ]", "input"],
+          [" Eggs", "locked"],
+        ),
+      ).term,
+    ).toBe("checkbox item")
+    // The brackets alone are not a checkbox — #157 fixes the contract to a
+    // bracket blank sitting right behind a bullet marker.
+    expect(
+      describeCheckpoint(
+        checkpointOf(["Pick ", "locked"], ["[ ]", "input"], [" one", "locked"]),
+      ).term,
+    ).not.toBe("checkbox item")
+  })
+
+  it("does not call two quoted lines a quote inside a quote", () => {
+    // Gathered sibling quote markers join to the same `> > ` a nested quote
+    // does. The nested pair sits side by side; siblings have a line between.
+    expect(describeCheckpoint(checkpointFor("> One\n> Two"))).toEqual({
+      prefix: "Type the Markdown mark and space for each line of this ",
+      term: "block quote",
+      suffix: ".",
+    })
+    expect(describeCheckpoint(checkpointFor("> Solo")).prefix).toBe(
+      "Type the Markdown mark and space for a ",
+    )
+  })
+
   it("tells a nested quote from a plain one", () => {
     expect(
       describeCheckpoint(
