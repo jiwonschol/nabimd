@@ -180,6 +180,36 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(blanks(cards[1]!)).toEqual(["> ", "> "])
   })
 
+  it("never leaves an odd run of strikethrough delimiters on a card", () => {
+    // The damage of a split pair was not the wording. Three `~~` on one card
+    // makes the answer six tildes, and `instructionFor` reads an odd run as a
+    // fence — so the card told the learner to type `~~~~~~` where the source
+    // has two separate deletions. Delimiters come in pairs; a card holding a
+    // pair and a half is asking for something no source produced.
+    //
+    // Swept rather than listed, because this arrived twice as two spellings:
+    // one deletion across a soft break, then two whose lines overlap.
+    const gaps = [" ", "\n", "\n ", "\n\n"]
+    let carrying = 0
+    for (const first of gaps) {
+      for (const between of gaps) {
+        for (const second of gaps) {
+          const source = `~~a${first}b~~${between}~~c${second}d~~`
+          for (const checkpoint of deriveSyntaxCheckpoints(source, "")) {
+            const delimiters = checkpoint.segments.filter(
+              (segment) => segment.kind === "input" && segment.value === "~~",
+            ).length
+            if (delimiters === 0) continue
+            carrying += 1
+            expect(delimiters % 2, JSON.stringify(source)).toBe(0)
+          }
+        }
+      }
+    }
+    // The sweep has to reach cards that actually hold delimiters.
+    expect(carrying).toBeGreaterThanOrEqual(64)
+  })
+
   it("keeps two deletions that share a line on one card", () => {
     // Grouped ranges are looked up by the line they start on, and the loop
     // skips past a whole group once it takes one. Two multiline deletions can
