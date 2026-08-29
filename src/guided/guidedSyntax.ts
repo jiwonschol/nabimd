@@ -886,13 +886,25 @@ function markNodeSyntax(
           // parser whitespace between them. Do not scan into prose: after
           // whitespace, the next character still has to be this node's `>`.
           let markStart = lineStart
+          let column = 0
+          let indentation = 0
           while (
             markStart < lineEnd &&
             (mask[markStart] || source[markStart] === " " || source[markStart] === "\t")
           ) {
+            const character = source[markStart]
+            const nextColumn = character === "\t"
+              ? column + (4 - (column % 4))
+              : column + 1
+            if (mask[markStart]) indentation = 0
+            else {
+              indentation += nextColumn - column
+              if (indentation > 3) break
+            }
+            column = nextColumn
             markStart += 1
           }
-          if (source[markStart] === ">") {
+          if (indentation <= 3 && source[markStart] === ">") {
             const markEnd = markStart + 1 + (source[markStart + 1] === " " ? 1 : 0)
             markRange(
               mask,
