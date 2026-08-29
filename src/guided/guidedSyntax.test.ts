@@ -697,11 +697,9 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("keeps one marker across cards at the same level and none across levels", () => {
-    // Two lists at the same level are one list to Markdown once the blank line
-    // between them is answered, so an answer typed on the second card is
-    // normalised to agree with the first. A nested list is a separate list and
-    // keeps whatever the learner typed.
+  it("scopes one marker to one parsed list and never across lists", () => {
+    // Marker coherence belongs to the containing AST list. Separate lists at
+    // the same indentation and a nested list both keep their own marker.
     const sameLevel = "- Apples\n\nThen rest.\n\n- Pears"
     const cards = deriveSyntaxCheckpoints(sameLevel, "")
     expect(cards).toHaveLength(2)
@@ -710,7 +708,7 @@ describe("deriveSyntaxCheckpoints", () => {
         [cards[0]!.id]: "* ",
         [cards[1]!.id]: "- ",
       }),
-    ).toBe("* Apples\n\nThen rest.\n\n* Pears")
+    ).toBe("* Apples\n\nThen rest.\n\n- Pears")
 
     const nested = "- Parent\n  * Child"
     const nestedCards = deriveSyntaxCheckpoints(nested, "")
@@ -754,6 +752,13 @@ describe("deriveSyntaxCheckpoints", () => {
         [cards[1]!.id]: ">  * ",
       }),
     ).toBe("> + [ ] task\n>  + plain")
+  })
+
+  it("preserves separate quoted lists at the same semantic depth", () => {
+    const target = "> - a\n>  * b"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(buildGuidedDraft(target, cards, cards.length)).toBe(target)
   })
 
   it("normalizes an outer marker while preserving a distinct nested marker", () => {
