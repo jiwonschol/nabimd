@@ -66,12 +66,17 @@ describe("RunSummary as a teacher's return", () => {
     vi.unstubAllGlobals()
   })
 
-  it("shows the finished work directly, with no viewer to open", () => {
+  it("shows rendered work and its Markdown together, one completed exercise at a time", () => {
     renderSummary()
 
     const work = screen.getByLabelText("Your work")
     expect(work).toHaveTextContent("Grocery list")
-    expect(work).toHaveTextContent("Paper boat")
+    expect(screen.getByRole("region", { name: "Rendered document" })).toHaveTextContent(
+      "Grocery list",
+    )
+    expect(screen.getByRole("region", { name: "Markdown source" })).toHaveTextContent(
+      "# Grocery list",
+    )
     // The completed pages are the page now, not a dialog behind a button.
     expect(screen.queryByRole("dialog")).toBeNull()
     expect(
@@ -80,18 +85,33 @@ describe("RunSummary as a teacher's return", () => {
     // Review only: nothing on this page takes typing.
     expect(screen.queryAllByRole("textbox")).toHaveLength(0)
     expect(
-      screen.getByRole("article", { name: "Grocery list" }),
+      screen.getByRole("article", {
+        name: "Completed exercise 1 of 2: Grocery list",
+      }),
     ).toBeVisible()
+    expect(screen.queryByText("Paper boat")).toBeNull()
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Next completed exercise" }),
+    )
     expect(
-      screen.getByRole("article", { name: "Paper boat" }),
+      screen.getByRole("article", {
+        name: "Completed exercise 2 of 2: Paper boat",
+      }),
     ).toBeVisible()
+    expect(screen.getByRole("region", { name: "Markdown source" })).toHaveTextContent(
+      "*Paper boat*",
+    )
   })
 
   it("marks the missed line and prints the matching numbered note", () => {
     renderSummary([mistake()])
 
     // The mark sits on the line that was missed — the heading, not the body.
-    const heading = screen.getByRole("heading", { name: /Grocery list/ })
+    const heading = screen.getByRole("heading", {
+      level: 1,
+      name: /Grocery list/,
+    })
     expect(heading).toHaveAttribute("data-corrected", "true")
     expect(screen.getByText("Correction 1")).toBeVisible()
 
@@ -124,6 +144,9 @@ describe("RunSummary as a teacher's return", () => {
     expect(notes[0]).toHaveTextContent("Level 1 heading needs these marks.")
     expect(notes[1]).toHaveTextContent("Italic text needs these marks.")
     expect(screen.getByText("Correction 1")).toBeVisible()
+    fireEvent.click(
+      screen.getByRole("button", { name: "Next completed exercise" }),
+    )
     expect(screen.getByText("Correction 2")).toBeVisible()
   })
 
@@ -166,12 +189,18 @@ describe("RunSummary as a teacher's return", () => {
     renderSummary()
 
     const replay = screen.getByRole("button", { name: "Practice again" })
-    expect(screen.getByRole("heading", { name: "Well done." })).toHaveFocus()
+    const completion = screen.getByRole("heading", { name: "Well done." })
+    expect(completion).toHaveFocus()
+    expect(completion).toHaveAttribute("data-quiet-focus", "true")
     expect(replay).not.toHaveFocus()
     expect(replay.parentElement).toHaveClass(
       "summary-ink",
       "summary-ink--actions",
     )
+
+    fireEvent.blur(completion)
+    fireEvent.focus(completion)
+    expect(completion).not.toHaveAttribute("data-quiet-focus")
   })
 
   it("runs both quiet actions", () => {

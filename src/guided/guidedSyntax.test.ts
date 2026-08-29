@@ -72,6 +72,11 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(terms("~~gone~~ here")).toEqual(["strikethrough text"])
   })
 
+  it("keeps two thematic breaks named as breaks instead of a Setext heading", () => {
+    const checkpoint = deriveSyntaxCheckpoints("---\n\n---", "")[0]!
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["section break"])
+  })
+
   it("accepts either spelling of a checked task box", () => {
     const checkpointFor = (source: string) =>
       deriveSyntaxCheckpoints(source, "")[0]!

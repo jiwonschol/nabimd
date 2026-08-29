@@ -354,7 +354,7 @@ function syntaxGroupTermsInOrder(
     return [
       syntaxGroupTerm(
         segment.value,
-        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+        previous?.kind === "locked" && /[^\n]\n[\t ]*$/.test(previous.value),
         previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
       ),
     ]

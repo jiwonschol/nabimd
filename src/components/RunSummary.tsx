@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import type { SyntaxMistake } from "../guided/guidedSyntax"
 import { playFeedbackSound } from "../sound/feedbackSound"
 import { formatElapsedTime } from "./ElapsedTime"
@@ -46,6 +46,8 @@ export function RunSummary({
 }: RunSummaryProps) {
   const playedSummarySound = useRef(false)
   const completionTitleRef = useRef<HTMLHeadingElement>(null)
+  const [pageIndex, setPageIndex] = useState(0)
+  const [quietInitialFocus, setQuietInitialFocus] = useState(true)
   const { pages, notes } = useMemo(
     () => buildTeachersReturn(completedPages, syntaxMistakes),
     [completedPages, syntaxMistakes],
@@ -61,6 +63,8 @@ export function RunSummary({
     completionTitleRef.current?.focus({ preventScroll: true })
   }, [])
 
+  const activePage = pages[Math.min(pageIndex, Math.max(0, pages.length - 1))]
+
   return (
     <section
       aria-label="Run summary"
@@ -72,18 +76,52 @@ export function RunSummary({
         className="run-summary__page run-summary__page--work open-book-page"
       >
         <div className="run-summary__work">
-          {pages.map((page) => (
+          {activePage ? (
             <article
-              aria-label={page.title}
+              aria-label={`Completed exercise ${pageIndex + 1} of ${pages.length}: ${activePage.title}`}
               className="run-summary__work-page"
-              key={page.problemId}
+              key={activePage.problemId}
             >
-              <RenderedDocumentBody
-                corrections={page.corrections}
-                source={page.source}
-              />
+              <header className="run-summary__work-header">
+                <div>
+                  <p>Completed exercise</p>
+                  <h3>{activePage.title}</h3>
+                </div>
+                <nav aria-label="Completed exercise navigation" className="run-summary__work-navigation">
+                  <button
+                    aria-label="Previous completed exercise"
+                    disabled={pageIndex === 0}
+                    onClick={() => setPageIndex((index) => Math.max(0, index - 1))}
+                    type="button"
+                  >
+                    ←
+                  </button>
+                  <span>{pageIndex + 1} / {pages.length}</span>
+                  <button
+                    aria-label="Next completed exercise"
+                    disabled={pageIndex === pages.length - 1}
+                    onClick={() => setPageIndex((index) => Math.min(pages.length - 1, index + 1))}
+                    type="button"
+                  >
+                    →
+                  </button>
+                </nav>
+              </header>
+              <div className="run-summary__work-compare">
+                <section aria-label="Rendered document" className="run-summary__work-pane">
+                  <p className="run-summary__work-label">Rendered</p>
+                  <RenderedDocumentBody
+                    corrections={activePage.corrections}
+                    source={activePage.source}
+                  />
+                </section>
+                <section aria-label="Markdown source" className="run-summary__work-pane">
+                  <p className="run-summary__work-label">Markdown</p>
+                  <pre><code>{activePage.source}</code></pre>
+                </section>
+              </div>
             </article>
-          ))}
+          ) : null}
         </div>
       </section>
 
@@ -94,7 +132,9 @@ export function RunSummary({
         <div className="run-summary__note-copy">
           <h2
             className="run-summary__title summary-ink summary-ink--1"
+            data-quiet-focus={quietInitialFocus || undefined}
             id="completion-title"
+            onBlur={() => setQuietInitialFocus(false)}
             ref={completionTitleRef}
             tabIndex={-1}
           >

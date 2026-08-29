@@ -935,19 +935,61 @@ test("completes a run and reveals full documents only from Summary", async ({
     }
   }
 
-  await expect(
-    page.getByRole("heading", { name: "Well done." }),
-  ).toBeFocused()
+  const completionTitle = page.getByRole("heading", { name: "Well done." })
+  await expect(completionTitle).toBeFocused()
+  expect(
+    await completionTitle.evaluate((element) => {
+      const style = getComputedStyle(element)
+      return {
+        backgroundColor: style.backgroundColor,
+        outlineStyle: style.outlineStyle,
+      }
+    }),
+  ).toEqual({ backgroundColor: "rgba(0, 0, 0, 0)", outlineStyle: "none" })
   await expect(page.getByLabel("Score")).toContainText("5 / 5")
   await expect(page.getByRole("textbox")).toHaveCount(0)
   const work = page.getByRole("region", { name: "Your work" })
-  await expect(work.getByRole("article")).toHaveCount(5)
+  await expect(work.getByRole("article")).toHaveCount(1)
+  await expect(work.getByRole("article")).toHaveAccessibleName(
+    /^Completed exercise 1 of 5: /,
+  )
+  await expect(page.getByRole("region", { name: "Rendered document" })).toBeVisible()
+  await expect(page.getByRole("region", { name: "Markdown source" })).toBeVisible()
+  await page.getByRole("button", { name: "Next completed exercise" }).click()
+  await expect(work.getByRole("article")).toHaveAccessibleName(
+    /^Completed exercise 2 of 5: /,
+  )
+
+  for (const viewport of [
+    { width: 1440, height: 900 },
+    { width: 1366, height: 768 },
+    { width: 1280, height: 720 },
+  ]) {
+    await page.setViewportSize(viewport)
+    const metrics = await page.locator(".run-summary__work").evaluate((element) => ({
+      clientHeight: element.clientHeight,
+      scrollHeight: element.scrollHeight,
+    }))
+    expect(
+      metrics.scrollHeight,
+      `completed-work outer scroll at ${viewport.width}x${viewport.height}`,
+    ).toBeLessThanOrEqual(metrics.clientHeight + 1)
+  }
   await expect(
     page.getByRole("button", { name: "View completed pages" }),
   ).toHaveCount(0)
   await expect(page.getByRole("dialog")).toHaveCount(0)
 
   await page.setViewportSize({ width: 390, height: 844 })
+  const phoneComparison = await page
+    .locator(".run-summary__work-compare")
+    .evaluate((element) => ({
+      clientHeight: element.clientHeight,
+      scrollHeight: element.scrollHeight,
+    }))
+  expect(phoneComparison.scrollHeight).toBeLessThanOrEqual(
+    phoneComparison.clientHeight + 1,
+  )
   const teacherNote = page.getByRole("region", { name: "Well done." })
   await teacherNote.scrollIntoViewIfNeeded()
   await expect(teacherNote).toBeVisible()

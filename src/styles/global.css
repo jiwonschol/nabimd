@@ -2920,16 +2920,105 @@ button:focus-visible,
 }
 
 .run-summary__work {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.4rem, 3vh, 2.4rem);
+  display: grid;
   min-height: 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
-.run-summary__work-page + .run-summary__work-page {
-  padding-top: clamp(1.2rem, 2.5vh, 2rem);
-  border-top: 1px solid var(--book-line);
+.run-summary__work-page {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.run-summary__work-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.run-summary__work-header p,
+.run-summary__work-label {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 680;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.run-summary__work-header h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 500;
+}
+
+.run-summary__work-navigation {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.run-summary__work-navigation button {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.run-summary__work-navigation button:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.run-summary__work-navigation span {
+  min-width: 3rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.run-summary__work-compare {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.run-summary__work-pane {
+  min-width: 0;
+  min-height: 0;
+  padding: 1rem;
+  overflow: auto;
+  border: 1px solid var(--book-line);
+  border-radius: 0.35rem;
+}
+
+.run-summary__work-pane .rendered-document__body {
+  padding: 0;
+}
+
+.run-summary__work-pane pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.run-summary__work-pane code {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 /* A thin muted-red stroke under the line that was missed. Colour is never the
@@ -3005,9 +3094,26 @@ button:focus-visible,
   margin-top: clamp(1rem, 2.5vh, 1.6rem);
 }
 
+.run-summary__title:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 0.3rem;
+}
+
+/* The summary moves accessibility focus here on entry. That announcement is
+   not a selection, so the first programmatic focus stays visually quiet. If
+   focus leaves and later returns through navigation, the normal visible ring
+   applies again. */
+.run-summary__title[data-quiet-focus]:focus {
+  outline: none;
+}
+
 @media (max-width: 760px) {
   .run-summary__work {
     max-height: 45vh;
+  }
+
+  .run-summary__work-compare {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
