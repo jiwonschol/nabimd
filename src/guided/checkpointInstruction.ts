@@ -493,6 +493,17 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
       "fenced code block",
     )
   }
+  // A line carrying strikethrough and then another family reaches here, and
+  // the chain had no `~~` case: `~~old~~ **new**` fell all the way to the
+  // generic sentence while `**bold**` and `` `code` `` on one line names its
+  // first family. Naming the leading family is #177's imprecision, not a new
+  // one — being silent about it was the defect.
+  if (leading === "~~") {
+    return instruction(
+      "Wrap the phrase in Markdown marks for ",
+      "strikethrough text",
+    )
+  }
   if (leading.startsWith("**") || leading.startsWith("__")) {
     return instruction("Wrap the phrase in Markdown marks for ", "bold text")
   }

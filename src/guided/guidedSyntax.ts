@@ -158,6 +158,29 @@ function buildAcceptedForms(
     forms.push(alternative)
   }
 
+  // GFM reads `[x]` and `[X]` as the same checked item, and the name the card
+  // shows recognises both. Recording only the spelling the Goal happens to use
+  // rejected the other one, so a learner typing valid Markdown was marked
+  // wrong. The boxes on one card move together, the way the list markers above
+  // do.
+  const taskBoxGroups = canonicalParts.flatMap((part, index) =>
+    /^\[[xX]\]$/.test(part) ? [index] : [],
+  )
+  if (taskBoxGroups.length > 0) {
+    expandInputForms(forms, (form) => {
+      const alternative = [...form]
+      let changed = false
+      for (const index of taskBoxGroups) {
+        const value = form[index]
+        if (value === "[x]") alternative[index] = "[X]"
+        else if (value === "[X]") alternative[index] = "[x]"
+        else continue
+        changed = true
+      }
+      return changed ? alternative : null
+    })
+  }
+
   // Emphasis pairs do not constrain each other. `*one*` and `*two*` were two
   // cards before they were joined, and each accepted its own delimiter;
   // swapping only the first pair offered a mixed answer (`__**`) while
@@ -810,8 +833,20 @@ function markNodeSyntax(
         // sentence that names a checkbox looks for a box blank sitting behind
         // a marker blank, so folding the two into one group left the card
         // calling a task item a bullet item.
+        // Only an unordered item. `instructionFor` names a task box solely
+        // when it sits behind a bullet marker, and says so: an ordered one is
+        // "a shape to open when content asks for it, not a case to guess at
+        // now". Blanking it anyway left `1. [ ] Buy` asking for a box its
+        // sentence never mentions.
+        const marker =
+          markerEnd === null
+            ? ""
+            : source.slice(lineStartAt(source, range.from), markerEnd)
         const checkbox =
-          markerEnd === null || node.checked === null || node.checked === undefined
+          markerEnd === null ||
+          node.checked === null ||
+          node.checked === undefined ||
+          !/^\s*[-+*][\t ]+$/.test(marker)
             ? null
             : source.slice(markerEnd, lineEndAt(source, markerEnd)).match(/^\[[ xX]\]/)
         if (markerEnd !== null && checkbox?.[0]) {

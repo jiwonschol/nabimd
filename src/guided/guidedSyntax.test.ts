@@ -67,6 +67,19 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(terms("~~gone~~ here")).toEqual(["strikethrough text"])
   })
 
+  it("accepts either spelling of a checked task box", () => {
+    // GFM parses `[x]` and `[X]` as the same checked item, so a learner who
+    // types the other one is not wrong. Recording only the spelling the Goal
+    // happens to use rejected valid Markdown.
+    const accepted = (source: string) =>
+      acceptedGuidedSyntaxInputs(deriveSyntaxCheckpoints(source, "")[0]!)
+
+    expect(accepted("- [x] Buy milk")).toContain("- [X]")
+    expect(accepted("- [X] Buy milk")).toContain("- [x]")
+    // The unchecked box has one spelling and gains no alternative.
+    expect(accepted("- [ ] Buy milk")).toEqual(["- [ ]", "* [ ]", "+ [ ]"])
+  })
+
   it("finds the groups an attempt cannot explain", () => {
     const checkpoint = deriveSyntaxCheckpoints("*Paper boat*", "Paper boat")[0]!
 

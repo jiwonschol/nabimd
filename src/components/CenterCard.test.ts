@@ -814,6 +814,29 @@ describe("describeCheckpoint", () => {
     )
   })
 
+  it("never leaves a blank the sentence does not mention", () => {
+    // An ordered task item. `instructionFor` names a task box only behind a
+    // bullet marker and calls the ordered one "a shape to open when content
+    // asks for it, not a case to guess at now" — so blanking the box here
+    // would have asked for a group the numbered-step sentence never mentions.
+    const ordered = checkpointFor("1. [ ] Buy")
+    expect(ordered.segments.filter((s) => s.kind === "input")).toHaveLength(1)
+    expect(describeCheckpoint(ordered).term).toBe("numbered step")
+  })
+
+  it("names strikethrough when it leads a card carrying two families", () => {
+    // One line, two families: the card names the first and stays silent about
+    // the rest, which is #177's imprecision and the same thing `**bold**` with
+    // `` `code` `` does today. What was wrong is that the fallback chain had
+    // no `~~` case at all, so this line got the generic sentence instead.
+    expect(describeCheckpoint(checkpointFor("~~old~~ **new**")).term).toBe(
+      "strikethrough text",
+    )
+    expect(describeCheckpoint(checkpointFor("**bold** and `code`")).term).toBe(
+      "bold text",
+    )
+  })
+
   it("records which families the engine still cannot reach", () => {
     // One is left, and it is not a parser gap. `instructionFor` names a
     // syntax-highlighted block by reading a blank that holds the language
