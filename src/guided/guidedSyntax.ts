@@ -16,6 +16,8 @@ export type SyntaxCheckpoint = {
   activeOffset: number
   canonicalInput: string
   segments: readonly GuidedSyntaxSegment[]
+  /** Parser node family owning this card's first blank. */
+  syntaxFamily?: string
 }
 
 function expandInputForms(
@@ -348,16 +350,24 @@ export function syntaxGroupTerm(
 function syntaxGroupTermsInOrder(
   checkpoint: SyntaxCheckpoint,
 ): readonly string[] {
+  let compoundPunctuation: "image" | "link" | null = null
   return checkpoint.segments.flatMap((segment, index) => {
     if (segment.kind !== "input") return []
     const previous = checkpoint.segments[index - 1]
-    return [
-      syntaxGroupTerm(
-        segment.value,
-        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-        previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
-      ),
-    ]
+    if (segment.value.startsWith("![")) compoundPunctuation = "image"
+    else if (segment.value === "[") compoundPunctuation = "link"
+    const term =
+      compoundPunctuation !== null && ["](", ")[", "]", ")"].includes(segment.value)
+        ? compoundPunctuation
+        : syntaxGroupTerm(
+            segment.value,
+            previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+            previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
+          )
+    if (compoundPunctuation !== null && segment.value === ")") {
+      compoundPunctuation = null
+    }
+    return [term]
   })
 }
 
@@ -1146,6 +1156,108 @@ function mergeSegments(
   return segments
 }
 
+type SyntaxRun = {
+  from: number
+  to: number
+  family: string | null
+  value: string
+}
+
+function syntaxRuns(
+  source: string,
+  mask: readonly boolean[],
+  families: readonly (string | null)[],
+  from: number,
+  to: number,
+): SyntaxRun[] {
+  const runs: SyntaxRun[] = []
+  let index = from
+  while (index < to) {
+    if (!mask[index]) {
+      index += 1
+      continue
+    }
+    const family = families[index] ?? null
+    const start = index
+    while (index < to && mask[index] && (families[index] ?? null) === family) {
+      index += 1
+    }
+    runs.push({ from: start, to: index, family, value: source.slice(start, index) })
+  }
+  return runs
+}
+
+const EMPHASIS_MARK = /^(?:\*{1,3}|_{1,3})$/
+const LIST_MARK = /^ {0,3}(?:[-+*]|\d+[.)])[\t ]+$/
+const TASK_BOX_MARK = /^\[[ xX]\]$/
+
+/**
+ * Two adjacent families that are one Markdown construction, not two lessons.
+ * Nested quote markers describe one depth, a task box belongs to its list
+ * item, and touching emphasis widths describe bold-italic nesting. Everything
+ * else can become its own card without showing the next family's answer.
+ */
+function oneConstruction(left: SyntaxRun, right: SyntaxRun): boolean {
+  if (left.family === right.family) return true
+  // Separate parser nodes can spell repeated instances of one lesson: two
+  // inline-code spans, adjacent links, and the opening/closing fence families
+  // all carry different instance IDs. The node type before `@` is their
+  // stable semantic family.
+  const leftType = left.family?.split("@")[0]
+  const rightType = right.family?.split("@")[0]
+  if (leftType !== undefined && leftType === rightType) return true
+  if (
+    QUOTE_MARKER_BLANK.test(left.value) &&
+    QUOTE_MARKER_BLANK.test(right.value)
+  ) {
+    return true
+  }
+  if (LIST_MARK.test(left.value) && TASK_BOX_MARK.test(right.value)) return true
+  return EMPHASIS_MARK.test(left.value) && EMPHASIS_MARK.test(right.value)
+}
+
+/**
+ * Cut sequential syntax families into non-overlapping source ranges.
+ *
+ * The old line-sized checkpoint made `- Run `report`` one card: the list
+ * marker and backticks were both blanks, so one sentence had to teach two
+ * lessons. Splitting at the next family's first mark lets the first card stop
+ * before that mark. The answer is neither locked nor previewed; the later card
+ * owns it. Non-overlapping ranges keep draft growth deterministic.
+ *
+ * A table row remains atomic by contract. Mixed syntax inside a table cell is
+ * rejected by the content policy; splitting a row would break the stronger
+ * one-row/one-card contract for a source shape the bank cannot serve.
+ */
+function checkpointRangesByFamily(
+  source: string,
+  mask: readonly boolean[],
+  families: readonly (string | null)[],
+  from: number,
+  to: number,
+  tableRow: boolean,
+): SourceRange[] {
+  if (tableRow) return [{ from, to }]
+  const runs = syntaxRuns(source, mask, families, from, to)
+  if (runs.length < 2) return [{ from, to }]
+
+  const boundaries: number[] = []
+  let previous = runs[0]!
+  for (const run of runs.slice(1)) {
+    // The prose between two families travels with the later lesson. The first
+    // card then reveals only what it just taught (`- `), while the next can
+    // still see context it needs (`b\n---` is a Setext heading, not a break).
+    if (!oneConstruction(previous, run)) boundaries.push(previous.to)
+    previous = run
+  }
+  if (boundaries.length === 0) return [{ from, to }]
+
+  return [from, ...boundaries, to].flatMap((start, index, points) => {
+    const end = points[index + 1]
+    return end === undefined || start === end ? [] : [{ from: start, to: end }]
+  })
+}
+
 function lineNumberAt(source: string, offset: number): number {
   let line = 1
   for (let index = 0; index < offset; index += 1) {
@@ -1335,33 +1447,7 @@ export function deriveSyntaxCheckpoints(
       ) {
         contentStart += 1
       }
-      const segments = mergeSegments(
-        source,
-        mask,
-        contentStart,
-        checkpointEnd,
-        families,
-      )
-      const canonicalInput = segments
-        .filter(
-          (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
-            segment.kind === "input",
-        )
-        .map((segment) => segment.value)
-        .join("")
-      const activeOffset = mask.findIndex(
-        (isInput, index) => index >= contentStart && index < checkpointEnd && isInput,
-      )
       const line = lineNumberAt(source, lineStart)
-      checkpoints.push({
-        id: `syntax-${line}-${checkpoints.length + 1}`,
-        line,
-        targetFrom: contentStart,
-        targetTo: checkpointEnd,
-        activeOffset: activeOffset < 0 ? contentStart : activeOffset,
-        canonicalInput,
-        segments,
-      })
       // A row is a table row whenever *any* of its blanks is a bar. Reading
       // only the first blank's family lost the rows whose first mark is
       // something else — a bold cell, or the `> ` of a quoted table — and the
@@ -1371,9 +1457,45 @@ export function deriveSyntaxCheckpoints(
         .some((candidate, offset) =>
           candidate === TABLE_ROW_FAMILY && mask[contentStart + offset] === true,
         )
-      checkpointFamilies.push(
-        holdsTableBar ? TABLE_ROW_FAMILY : (families[activeOffset] ?? null),
-      )
+      for (const range of checkpointRangesByFamily(
+        source,
+        mask,
+        families,
+        contentStart,
+        checkpointEnd,
+        holdsTableBar,
+      )) {
+        const segments = mergeSegments(
+          source,
+          mask,
+          range.from,
+          range.to,
+          families,
+        )
+        const canonicalInput = segments
+          .filter(
+            (segment): segment is Extract<GuidedSyntaxSegment, { kind: "input" }> =>
+              segment.kind === "input",
+          )
+          .map((segment) => segment.value)
+          .join("")
+        const activeOffset = mask.findIndex(
+          (isInput, index) => index >= range.from && index < range.to && isInput,
+        )
+        checkpoints.push({
+          id: `syntax-${line}-${checkpoints.length + 1}`,
+          line,
+          targetFrom: range.from,
+          targetTo: range.to,
+          activeOffset: activeOffset < 0 ? range.from : activeOffset,
+          canonicalInput,
+          segments,
+          syntaxFamily: families[activeOffset]?.split("@")[0],
+        })
+        checkpointFamilies.push(
+          holdsTableBar ? TABLE_ROW_FAMILY : (families[activeOffset] ?? null),
+        )
+      }
     }
 
     if (checkpointEnd >= source.length) break

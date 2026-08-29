@@ -40,9 +40,23 @@ function hasSeparatedRepeatedTerm(
     const indexes = termsByCheckpoint.flatMap((terms, index) =>
       terms.includes(term) ? [index] : [],
     )
-    return indexes.some(
-      (value, index) => index > 0 && value - indexes[index - 1]! > 1,
-    )
+    return indexes.some((value, index) => {
+      if (index === 0) return false
+      const previous = indexes[index - 1]!
+      if (value - previous <= 1) return false
+      // Independent restatement of the only intentional bridge: #177 cuts
+      // inline code out of one list without turning that list into two syntax
+      // families. No other intervening term earns the exception.
+      return !(
+        (term === "bullet item" || term === "numbered step") &&
+        termsByCheckpoint
+          .slice(previous + 1, value)
+          .every(
+            (between) =>
+              between.length === 1 && between[0] === "inline code",
+          )
+      )
+    })
   })
 }
 
@@ -194,7 +208,7 @@ describe("three-level entry choices", () => {
     expect(allServedIds).toHaveLength(275)
   })
 
-  it("keeps every served mixed exercise short and free of separated syntax repeats", () => {
+  it("keeps every served mixed exercise short and free of unexplained syntax repeats", () => {
     const servedMixedIds = new Set<string>()
     for (const seed of [0, 1, 17, 999]) {
       const mixedIds: string[] = []

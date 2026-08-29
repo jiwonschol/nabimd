@@ -412,10 +412,20 @@ export function CenterCard({
                   }`}
                   key={box}
                 >
-                  {value[box] === " " ? (
-                    // A typed space stays visible in its box, using the same
-                    // middle-dot convention as the book's invisible marks.
-                    <span className="center-card__box-space">·</span>
+                  {value[box] === " " ||
+                  (value[box] === undefined && segment.value[box] === " ") ? (
+                    // A hard-break card has no visible glyph otherwise. Its
+                    // empty boxes preview the book's middle-dot convention;
+                    // a typed space uses the same glyph at full hint weight.
+                    <span
+                      className={`center-card__box-space${
+                        value[box] === undefined
+                          ? " center-card__box-space--placeholder"
+                          : ""
+                      }`}
+                    >
+                      ·
+                    </span>
                   ) : (
                     value[box] ?? ""
                   )}

@@ -40,6 +40,8 @@ export type CheckpointShape = {
   readonly lockedBefore: readonly (string | null)[]
   /** A locked run carries a line break, so the checkpoint spans lines. */
   readonly lockedBreak: boolean
+  /** Parser node family, when the shape came from real source. */
+  readonly syntaxFamily?: string
 }
 
 export function checkpointShape(checkpoint: SyntaxCheckpoint): CheckpointShape {
@@ -65,6 +67,7 @@ export function checkpointShape(checkpoint: SyntaxCheckpoint): CheckpointShape {
     precededByInput,
     lockedBefore,
     lockedBreak: locked.some((value) => value.includes("\n")),
+    syntaxFamily: checkpoint.syntaxFamily,
   }
 }
 

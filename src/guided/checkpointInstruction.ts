@@ -435,6 +435,7 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   // list item holding a three-backtick span, and taught a block-level lesson
   // for a single line.
   if (
+    shape.syntaxFamily !== "inlineCode" &&
     inputs.some((value) => FENCE.test(value)) &&
     inputs.every((value) => FENCE.test(value) || LANGUAGE_NAME.test(value))
   ) {
@@ -525,6 +526,9 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
       "Type the Markdown marks and space for a ",
       `level ${depth} heading`,
     )
+  }
+  if (shape.syntaxFamily === "inlineCode" && leading.startsWith("`")) {
+    return instruction("Wrap the phrase in Markdown marks for ", "inline code")
   }
   if (FENCE.test(leading)) {
     return instruction(

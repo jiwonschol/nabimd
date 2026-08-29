@@ -12,6 +12,7 @@ import { createRunProblemIds, entryChoices } from "./content/entryChoices"
 import { getProblem } from "./content/problemBank"
 import {
   acceptedGuidedSyntaxInputs,
+  buildGuidedDraft,
   deriveSyntaxCheckpoints,
 } from "./guided/guidedSyntax"
 import { resetCenterCardMemoryForTests } from "./guided/useCenterCard"
@@ -135,18 +136,15 @@ function firstBoxInput() {
   return boxInputs()[0]!
 }
 
-// A card that offers a second accepted answer and keeps it in one box, so an
-// edit can be typed into `firstBoxInput`. It must have a card after it as
-// well, so the run can move past it and come back.
+// A card that offers a second accepted answer and has two cards after it: one
+// to move onto, and one empty frontier that proves the edit jumps forward.
+// Pasting the whole answer into the first box exercises spillover distribution.
 function editableSlotIndex(
   checkpoints: ReturnType<typeof deriveSyntaxCheckpoints>,
 ): number | null {
-  for (let index = 0; index + 1 < checkpoints.length; index += 1) {
+  for (let index = 0; index + 2 < checkpoints.length; index += 1) {
     const checkpoint = checkpoints[index]!
-    const groups = checkpoint.segments.filter(
-      (segment) => segment.kind === "input",
-    )
-    if (groups.length === 1 && acceptedGuidedSyntaxInputs(checkpoint).length > 1) {
+    if (acceptedGuidedSyntaxInputs(checkpoint).length > 1) {
       return index
     }
   }
@@ -617,7 +615,11 @@ describe("App", () => {
     fireEvent.change(firstBoxInput(), { target: { value: alternate } })
     fireEvent.keyDown(firstBoxInput(), { key: "Enter" })
     expect(firstBoxInput()).toHaveValue("")
-    expect(writePanelDocument()).toContain(alternate)
+    expect(writePanelDocument()).toBe(
+      buildGuidedDraft(problem.target, checkpoints, editable + 2, {
+        [checkpoints[editable]!.id]: alternate,
+      }),
+    )
   })
 
   it("advances by itself after the last slot — no second confirmation key", async () => {

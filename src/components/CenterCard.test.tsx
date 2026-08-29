@@ -145,17 +145,21 @@ describe("CenterCard", () => {
     expect(reference.querySelector("em")).toHaveTextContent("Example")
   })
 
-  it("shows every required mark in a mixed checkpoint example", () => {
+  it("shows one syntax reference per card for a mixed source line", () => {
     const target = "- **Changed:** adapter boundary"
-    const checkpoint = deriveSyntaxCheckpoints(
+    const checkpoints = deriveSyntaxCheckpoints(
       target,
       "Changed: adapter boundary",
-    )[0]!
-    const reference = centerCardModule.buildSyntaxReference(checkpoint)
+    )
+    const references = checkpoints.map(centerCardModule.buildSyntaxReference)
 
-    expect(reference.name).toBe("Bullet item + Bold text")
-    expect(reference.notation).toBe("-␠ … ** … **")
-    expect(reference.example).toBe(target)
+    expect(references.map((reference) => reference.name)).toEqual([
+      "Bullet item",
+      "Bold text",
+    ])
+    expect(references[0]!.notation).toBe("-␠")
+    expect(references[0]!.example).not.toContain("**")
+    expect(references[1]!.notation).toBe("** … **")
   })
 
   it("keeps Now learning scoped to the current step of a mixed document", () => {
@@ -316,7 +320,7 @@ describe("CenterCard", () => {
     expect(screen.getAllByRole("textbox")[0]).toHaveFocus()
   })
 
-  it("separates touching syntax groups with a slash the learner never types", () => {
+  it("does not preview touching syntax from the next card", () => {
     const target = "> **Important deadline**"
     const checkpoint = deriveSyntaxCheckpoints(target, "Important deadline")[0]!
     render(
@@ -324,22 +328,37 @@ describe("CenterCard", () => {
         {...cardProps({
           checkpoint,
           context: projectCheckpointContext(target, checkpoint),
-          segmentValues: ["", "", ""],
+          segmentValues: [""],
         })}
       />,
     )
 
     const line = document.querySelector(".center-card__line")!
-    // `> ` and `**` touch, so exactly one divider sits between them. The
-    // closing `**` follows locked prose and gets none.
+    // The quote card ends before `**`; the later answer is absent rather than
+    // shown as locked prose or another blank.
     const dividers = line.querySelectorAll(".center-card__group-divider")
-    expect(dividers).toHaveLength(1)
-    expect(dividers[0]).toHaveAttribute("aria-hidden", "true")
+    expect(dividers).toHaveLength(0)
+    expect(screen.getAllByRole("textbox")).toHaveLength(1)
+    expect(line.textContent).not.toContain("**")
+  })
 
-    // The slash is punctuation the card draws, never an input: the three
-    // groups are still the only typing surfaces.
-    expect(screen.getAllByRole("textbox")).toHaveLength(3)
-    expect(line.textContent).toContain("/")
+  it("renders hard-break middle dots with the hard-break sentence", () => {
+    const target = "Read the **guide**  \nthen start"
+    const checkpoint = deriveSyntaxCheckpoints(target, "")[1]!
+    render(
+      <CenterCard
+        {...cardProps({
+          checkpoint,
+          context: projectCheckpointContext(target, checkpoint),
+          segmentValues: [""],
+        })}
+      />,
+    )
+
+    expect(screen.getByText("line break", { selector: "strong" })).toBeVisible()
+    expect(document.querySelectorAll(".center-card__box-space--placeholder"))
+      .toHaveLength(2)
+    expect(document.querySelector(".center-card__line")?.textContent).toBe("··")
   })
 
   it("keeps one-family punctuation free of a divider", () => {

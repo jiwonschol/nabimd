@@ -2039,6 +2039,10 @@ button:focus-visible,
   color: rgb(17 17 17 / 34%);
 }
 
+.center-card__box-space--placeholder {
+  color: rgb(17 17 17 / 18%);
+}
+
 .center-card__line[data-verdict="retry"] .center-card__box {
   border-color: #c2726c;
   background: rgb(255 246 245);

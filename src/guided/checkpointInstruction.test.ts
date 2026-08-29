@@ -359,11 +359,12 @@ describe("the sentence, derived from real Markdown", () => {
     )
   })
 
-  it("says each when a mixed card carries two list markers", () => {
-    // The bold marks make this card fail the all-bullets test and fall to the
-    // sentence that names the first family. The count still comes from the card.
+  it("gives repeated mixed lines one sentence per syntax", () => {
     expect(sentencesFor("- **One**\n- **Two**")).toEqual([
-      "Type the Markdown mark and space for each bullet item",
+      "Type the Markdown mark and space for a bullet item",
+      "Wrap the phrase in Markdown marks for bold text",
+      "Type the Markdown mark and space for a bullet item",
+      "Wrap the phrase in Markdown marks for bold text",
     ])
   })
 
@@ -410,23 +411,20 @@ describe("the sentence, derived from real Markdown", () => {
     ])
   })
 
-  it("keeps a card that mixes families out of the block-level lessons", () => {
-    // Every one of these was a card naming the wrong lesson because one blank
-    // looked like a whole shape on its own.
-    //
-    // A backtick run wide enough to open a fence is still a span when it sits
-    // inside a list item, and the card is a list item.
+  it("names each family after sequential syntax is split", () => {
+    // A backtick run wide enough to open a fence is still inline code when the
+    // parser says it is a span inside a list item.
     expect(sentencesFor("- ```x```")).toEqual([
       "Type the Markdown mark and space for a bullet item",
+      "Wrap the phrase in Markdown marks for inline code",
     ])
-    // The nesting is the card's first family even when other syntax follows
-    // it. Reading only the first blank named one mark of that family — "italic
-    // text" — and said nothing about the three beside it.
     expect(sentencesFor("***both*** [link](/u)")).toEqual([
       "Wrap the phrase in Markdown marks for bold italic text",
+      "Add the Markdown punctuation for a link",
     ])
     expect(sentencesFor("***both*** `code`")).toEqual([
       "Wrap the phrase in Markdown marks for bold italic text",
+      "Wrap the phrase in Markdown marks for inline code",
     ])
     // But a prefix is not any four marks that happen to be there. Bold inside
     // part of an italic span has the same four values with prose between them,
@@ -458,18 +456,14 @@ describe("the sentence, derived from real Markdown", () => {
     ])
   })
 
-  it("names the hard break on a card that also holds an underline", () => {
-    // `a  \nb\n---` is one card with two blanks: the spaces that force the
-    // break, and the underline beneath `b`. The card names its first family,
-    // and that is the break. The deriver puts the line ending inside the space
-    // blank when something follows, so the run may end in a newline — and only
-    // the newline comes off when counting, because the spaces themselves are
-    // trailing whitespace and trimming them asks for zero.
+  it("splits a hard break from the Setext heading after it", () => {
     expect(sentencesFor("a  \nb\n---")).toEqual([
       "End the line with two spaces to force a line break",
+      "Type the Markdown underline for a level 2 Setext heading",
     ])
     expect(sentencesFor("a  \nb\n===")).toEqual([
       "End the line with two spaces to force a line break",
+      "Type the Markdown underline for a level 1 Setext heading",
     ])
     // Several breaks on a card that also holds an underline count the same way
     // a card of only breaks does. The mixed branch used to be a second copy
@@ -477,9 +471,11 @@ describe("the sentence, derived from real Markdown", () => {
     // whose second line wanted three, and "the line" for a card with several.
     expect(sentencesFor("a  \nb   \nc\n---")).toEqual([
       "Fill the spaces at the end of each line to force a line break",
+      "Type the Markdown underline for a level 2 Setext heading",
     ])
     expect(sentencesFor("a  \nb  \nc\n---")).toEqual([
       "End each line with two spaces to force a line break",
+      "Type the Markdown underline for a level 2 Setext heading",
     ])
     // The two branches answer alike, which is the property that broke: the
     // same blanks with and without the trailing underline.
@@ -487,7 +483,7 @@ describe("the sentence, derived from real Markdown", () => {
       ["a  \nb   \nc\n---", "a  \nb   \nc"],
       ["a  \nb  \nc\n---", "a  \nb  \nc"],
     ] as const) {
-      expect(sentencesFor(mixed), mixed).toEqual(sentencesFor(pure))
+      expect(sentencesFor(mixed).slice(0, -1), mixed).toEqual(sentencesFor(pure))
     }
 
     // A card that is only breaks still counts them per line.

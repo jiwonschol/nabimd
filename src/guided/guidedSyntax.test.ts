@@ -365,28 +365,31 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(missedGuidedSyntaxGroups(checkpoint, ["*", "*"])).toEqual([])
   })
 
-  it("splits touching marks from two syntax families into separate groups", () => {
-    // `> ` and `**` sit side by side in the source. They are two different
-    // answers the learner types, so the card must not collapse them into one
-    // opaque `> **` run.
+  it("splits touching marks from two syntax families into separate cards", () => {
+    // `> ` and `**` sit side by side in the source. The quote card stops
+    // before the bold answer, so it cannot reveal the next lesson as locked
+    // prose; the bold card owns the rest of the line.
     const checkpoints = deriveSyntaxCheckpoints(
       "> **Important deadline**",
       "Important deadline",
     )
 
-    expect(checkpoints).toHaveLength(1)
+    expect(checkpoints).toHaveLength(2)
     expect(checkpoints[0]?.segments).toEqual([
       { kind: "input", value: "> " },
+    ])
+    expect(checkpoints[1]?.segments).toEqual([
       { kind: "input", value: "**" },
       { kind: "locked", value: "Important deadline" },
       { kind: "input", value: "**" },
     ])
-    // Splitting must not change what grading accepts: the groups still join
-    // into the same answer, and the bold alternative stays available.
-    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([
-      "> ****",
-      "> ____",
-    ])
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual(["> "])
+    expect(acceptedGuidedSyntaxInputs(checkpoints[1]!)).toEqual(["****", "____"])
+    expect(buildGuidedDraft(
+      "> **Important deadline**",
+      checkpoints,
+      1,
+    )).toBe("> ")
   })
 
   it("keeps punctuation inside one syntax family in a single group", () => {
@@ -430,19 +433,13 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
-  it("offers every bullet and bold alternative once the groups are split", () => {
-    // The bullet marker and the bold delimiters are independent choices, so
-    // all standard combinations are accepted equally.
+  it("keeps bullet and bold alternatives on their own cards", () => {
     const checkpoints = deriveSyntaxCheckpoints("- **Ship it**", "Ship it")
 
-    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual([
-      "- ****",
-      "* ****",
-      "+ ****",
-      "- ____",
-      "* ____",
-      "+ ____",
-    ])
+    expect(checkpoints).toHaveLength(2)
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual(["- ", "* ", "+ "])
+    expect(acceptedGuidedSyntaxInputs(checkpoints[1]!)).toEqual(["****", "____"])
+    expect(buildGuidedDraft("- **Ship it**", checkpoints, 1)).toBe("- ")
   })
 
   it.each(["===", "---"])(
@@ -545,20 +542,15 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(expected)
   })
 
-  it("combines independent equivalents inside one syntax checkpoint", () => {
-    const checkpoint = deriveSyntaxCheckpoints(
+  it("keeps independent equivalents on separate syntax cards", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
       "- **Changed:** adapter boundary",
       "Changed: adapter boundary",
-    )[0]!
+    )
 
-    expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual([
-      "- ****",
-      "* ****",
-      "+ ****",
-      "- ____",
-      "* ____",
-      "+ ____",
-    ])
+    expect(checkpoints).toHaveLength(2)
+    expect(acceptedGuidedSyntaxInputs(checkpoints[0]!)).toEqual(["- ", "* ", "+ "])
+    expect(acceptedGuidedSyntaxInputs(checkpoints[1]!)).toEqual(["****", "____"])
   })
 
   it.each([

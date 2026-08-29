@@ -3,7 +3,10 @@ import type {
   GuidedSyntaxSegment,
   SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
-import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
+import {
+  deriveSyntaxCheckpoints,
+  syntaxCheckpointTerms,
+} from "../guided/guidedSyntax"
 import { problemBank } from "../content/problemBank"
 import { describeCheckpoint } from "./CenterCard"
 
@@ -561,33 +564,27 @@ describe("describeCheckpoint", () => {
     expect(gathered).toBeGreaterThan(50)
   })
 
-  it("names both syntaxes when one card holds a marker and inline code", () => {
-    // L3/L4/L5 write an exact name as inline code inside a list item, so one
-    // card can hold three blanks (or six). The marker sentence alone shipped
-    // in front of them, silent about the backticks.
-    expect(describeCheckpoint(checkpointFor("- Run `report daily` now"))).toEqual({
-      prefix: "Type the bullet mark and space, then wrap the phrase in ",
-      term: "inline code",
-      suffix: " marks.",
-    })
-    expect(
-      describeCheckpoint(checkpointFor("1. Create a folder named `Current`")),
-    ).toEqual({
-      prefix:
-        "Type the number, delimiter, and space; wrap the phrase in ",
-      term: "inline code",
-      suffix: " marks.",
-    })
-    expect(
-      describeCheckpoint(
-        checkpointFor("1. Run `a b`\n2. Open `c.txt`"),
-      ),
-    ).toEqual({
-      prefix:
-        "Type each number, delimiter, and space; wrap each phrase in ",
-      term: "inline code",
-      suffix: " marks.",
-    })
+  it("gives a marker and inline code one lesson each", () => {
+    const checkpoints = deriveSyntaxCheckpoints("- Run `report daily` now", "")
+    expect(checkpoints).toHaveLength(2)
+    expect(checkpoints.map(describeCheckpoint)).toEqual([
+      {
+        prefix: "Type the Markdown mark and space for a ",
+        term: "bullet item",
+        suffix: ".",
+      },
+      {
+        prefix: "Wrap the phrase in Markdown marks for ",
+        term: "inline code",
+        suffix: ".",
+      },
+    ])
+    // The first card ends before the backticks. They are neither blanks nor
+    // locked prose, so the next lesson's answer is not previewed.
+    expect(checkpoints[0]!.segments.map((segment) => segment.value).join(""))
+      .toBe("- ")
+    expect(checkpoints[1]!.segments.map((segment) => segment.value).join(""))
+      .toBe("Run `report daily` now")
     // A marker with no code keeps its own sentence, and code with no marker
     // keeps the wrapping one. The branch has to read the kinds present, not
     // just notice that a backtick exists somewhere.
@@ -673,101 +670,45 @@ describe("describeCheckpoint", () => {
     )
   })
 
-  it("keeps every served card that mixes syntaxes to a known shape", () => {
-    // The 158 shipped because nothing counted the sentence against the card's
-    // blank count. These 15 shipped because nothing counted its blank *kinds*:
-    // the L5 readme cards hold six blanks of two kinds, and "for each numbered
-    // step" is true of the count while saying nothing about four of them. The
-    // marker patterns are rewritten here on purpose — calling back into the
-    // code under test would let both be wrong together.
-    const LIST_MARKER = /^ {0,3}(?:[-+*]|\d+[.)])[\t ]+$/
-    const INLINE_CODE = /^`{1,2}$/
-    // Every mixed-kind shape the bank serves today. A new combination has to
-    // land here deliberately: without this the next pairing ships silently,
-    // which is exactly how these 15 got out.
-    const KNOWN = new Set([
-      '["[","](",")"]',
-      '["![","](",")"]',
-      '["- ","`","`"]',
-      '["#. ","`","`"]',
-      '["#. ","`","`","#. ","`","`"]',
-    ])
-
-    let mixed = 0
-    let markerOnly = 0
-    let codeOnly = 0
+  it("splits every served list-plus-code occurrence without previewing it", () => {
+    let splitPairs = 0
+    let cards = 0
+    let multiSyntaxCards = 0
     for (const problem of problemBank) {
-      for (const checkpoint of deriveSyntaxCheckpoints(
+      const checkpoints = deriveSyntaxCheckpoints(
         problem.target,
         problem.starterText,
-      )) {
-        const blanks = checkpoint.segments
-          .filter((segment) => segment.kind === "input")
-          .map((segment) => segment.value)
-        const kinds = new Set(
-          blanks.map((value) => value.trim().replace(/\d+/g, "#")),
-        )
-        const { prefix, term, suffix } = describeCheckpoint(checkpoint)
-        const markers = blanks.filter((value) => LIST_MARKER.test(value)).length
-        const codes = blanks.filter((value) => INLINE_CODE.test(value)).length
-        const where = `${problem.id}:${checkpoint.id}`
-
-        if (kinds.size > 1) {
-          const shape = JSON.stringify(
-            blanks.map((value) => value.replace(/^\d+/, "#")),
-          )
-          expect(KNOWN.has(shape), `${where} serves new mixed shape ${shape}`).toBe(
-            true,
-          )
-        }
-
-        if (markers > 0 && codes >= 2) {
-          mixed += 1
-          // Both syntaxes, or the learner is left with blanks nobody named.
-          expect(term, `${where} "${prefix}${term}${suffix}"`).toBe("inline code")
-          expect(
-            /\b(?:mark|number)\b/.test(prefix),
-            `${where} drops the marker: "${prefix}${term}${suffix}"`,
-          ).toBe(true)
-          // An ordered marker blanks its delimiter too, so a sentence that
-          // stops at "number and space" asks for less than the card holds.
-          const ordered = blanks.filter((value) =>
-            /^ {0,3}\d+[.)][\t ]+$/.test(value),
-          ).length
-          expect(
-            /\bdelimiter\b/.test(prefix),
-            `${where} names the delimiter: "${prefix}${term}${suffix}"`,
-          ).toBe(ordered > 0)
-          // Two counts, not one: the card can gather two markers and two code
-          // spans, and each number has to come from its own blanks.
-          expect(
-            /\beach number\b|\beach bullet\b/.test(prefix),
-            `${where} pluralises the marker: "${prefix}${term}${suffix}"`,
-          ).toBe(markers > 1)
-          expect(
-            /\beach phrase\b/.test(prefix),
-            `${where} pluralises the code span: "${prefix}${term}${suffix}"`,
-          ).toBe(codes / 2 > 1)
-        } else if (markers > 0) {
-          markerOnly += 1
-          expect(term, `${where} claims code with no backtick blank`).not.toBe(
-            "inline code",
-          )
-        } else if (codes >= 2) {
-          codeOnly += 1
-          expect(
-            prefix,
-            `${where} is inline code alone and keeps the wrapping sentence`,
-          ).toBe("Wrap the phrase in Markdown marks for ")
-        }
+      )
+      cards += checkpoints.length
+      for (const checkpoint of checkpoints) {
+        const terms = syntaxCheckpointTerms(checkpoint)
+        if (terms.length > 1) multiSyntaxCards += 1
+        expect(
+          terms,
+          `${problem.id}:${checkpoint.id} asks for several syntaxes`,
+        ).toHaveLength(1)
+      }
+      for (let index = 0; index < checkpoints.length - 1; index += 1) {
+        const marker = checkpoints[index]!
+        const code = checkpoints[index + 1]!
+        const markerTerm = describeCheckpoint(marker).term
+        if (
+          !["bullet item", "numbered step"].includes(markerTerm) ||
+          describeCheckpoint(code).term !== "inline code" ||
+          marker.targetTo !== code.targetFrom
+        ) continue
+        splitPairs += 1
+        expect(
+          marker.segments.map((segment) => segment.value).join(""),
+          `${problem.id}:${marker.id} previews inline code`,
+        ).not.toContain("`")
       }
     }
-
-    // A guard that walked none of the three arms proves nothing. The mixed arm
-    // is the one that was empty when the 15 shipped.
-    expect(mixed).toBe(15)
-    expect(markerOnly).toBeGreaterThan(100)
-    expect(codeOnly).toBeGreaterThan(20)
+    expect(cards).toBe(798)
+    expect(multiSyntaxCards).toBe(0)
+    // The old 15 mixed cards contain 19 marker/code occurrences: four L5
+    // cards each held two lines. Every occurrence is now an ordered pair.
+    expect(splitPairs).toBe(19)
   })
 
   it("leaves no served card on the generic sentence", () => {

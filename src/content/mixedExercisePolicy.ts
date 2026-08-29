@@ -31,10 +31,26 @@ export function hasSeparatedSyntaxRepeat(
     }
   }
 
-  return [...indexesByTerm.values()].some((indexes) =>
-    indexes.some(
-      (value, index) => index > 0 && value - indexes[index - 1]! > 1,
-    ),
+  return [...indexesByTerm.entries()].some(([term, indexes]) =>
+    indexes.some((value, index) => {
+      if (index === 0) return false
+      const previous = indexes[index - 1]!
+      if (value - previous <= 1) return false
+
+      // #177 turns one list line containing inline code into two lessons.
+      // In a single parsed list, that can make the list-marker card appear on
+      // both sides of the code card. It is still one list structure, not the
+      // separated repeat this policy excludes; only the newly isolated inline
+      // code may bridge the two marker cards. Every other gap stays forbidden.
+      const splitListBridge =
+        (term === "bullet item" || term === "numbered step") &&
+        termsByCheckpoint
+          .slice(previous + 1, value)
+          .every(
+            (terms) => terms.length === 1 && terms[0] === "inline code",
+          )
+      return !splitListBridge
+    }),
   )
 }
 
