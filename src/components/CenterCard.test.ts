@@ -600,6 +600,34 @@ describe("describeCheckpoint", () => {
     expect(
       describeCheckpoint(checkpointFor("```\ncode\n```")).term,
     ).toBe("fenced code block")
+
+    // Neither shape below is in the bank, so the corpus walks past both and
+    // widening the predicate to any backtick run — or to an unpaired one —
+    // leaves every served sentence byte-identical. They are written out as
+    // checkpoint literals so the narrowing is held by something.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["- ", "input"],
+          ["Run ", "locked"],
+          ["`", "input"],
+          ["x", "locked"],
+        ),
+      ).term,
+      "an unpaired backtick is not inline code",
+    ).toBe("bullet item")
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["- ", "input"],
+          ["Run\n  ", "locked"],
+          ["```", "input"],
+          ["code", "locked"],
+          ["```", "input"],
+        ),
+      ).term,
+      "a fence inside a list item is not inline code",
+    ).not.toBe("inline code")
   })
 
   it("keeps every served card that mixes syntaxes to a known shape", () => {

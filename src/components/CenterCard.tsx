@@ -244,7 +244,14 @@ export function describeCheckpoint(
   ).length
   const bulletMarkers = markerCount(/^ {0,3}[-+*][\t ]+$/)
   const stepMarkers = markerCount(/^ {0,3}\d+[.)][\t ]+$/)
-  if (inlineCodeRuns >= 2 && bulletMarkers + stepMarkers > 0) {
+  // Inline code wraps, so its blanks come in pairs. An odd run is some other
+  // shape and keeps the marker's own sentence rather than being described as
+  // code the learner is not being asked to close.
+  if (
+    inlineCodeRuns >= 2 &&
+    inlineCodeRuns % 2 === 0 &&
+    bulletMarkers + stepMarkers > 0
+  ) {
     const many = bulletMarkers + stepMarkers > 1
     const lead =
       stepMarkers > 0
