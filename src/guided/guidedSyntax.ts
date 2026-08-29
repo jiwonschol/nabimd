@@ -858,11 +858,26 @@ function markNodeSyntax(
       // trade came up (`- [\t] Buy`, `> \t> deep`) and it is settled the same
       // way: the tab stays locked prose. A tab after a *lone* marker is a
       // different question and belongs to #203.
-      const nesting =
-        insideQuote ||
-        (isParent(node) &&
-          node.children.some((child) => child.type === "blockquote"))
-      const markerPattern = nesting ? /^ {0,3}>[ ]?/ : /^ {0,3}>[\t ]?/
+      // Per line, not per node. One quote can hold a plain line and a nested
+      // one — `>\tplain` above `> > nested` — and applying the rule to the
+      // whole node took the tab out of a marker that is not part of any
+      // nesting, leaving a card that asks for a mark and a space and then
+      // refuses `> `.
+      const nestedChildLines = new Set<number>()
+      if (isParent(node)) {
+        for (const child of node.children) {
+          if (child.type !== "blockquote") continue
+          const childRange = nodeRange(child as Nodes)
+          if (!childRange) continue
+          let childLine = lineStartAt(source, childRange.from)
+          while (childLine < childRange.to) {
+            nestedChildLines.add(childLine)
+            const childLineEnd = lineEndAt(source, childLine)
+            if (childLineEnd >= source.length) break
+            childLine = childLineEnd + 1
+          }
+        }
+      }
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
@@ -883,7 +898,10 @@ function markNodeSyntax(
           // content that needs it.
           let markStart = lineStart
           while (markStart < lineEnd && mask[markStart]) markStart += 1
-          const marker = source.slice(markStart, lineEnd).match(markerPattern)
+          const nesting = insideQuote || nestedChildLines.has(lineStart)
+          const marker = source
+            .slice(markStart, lineEnd)
+            .match(nesting ? /^ {0,3}>[ ]?/ : /^ {0,3}>[\t ]?/)
           if (marker?.[0]) {
             markRange(
               mask,
@@ -1280,6 +1298,18 @@ export function deriveSyntaxCheckpoints(
   markNodeSyntax(parseMarkdownSource(source), source, mask, groupedRanges, families)
   unmaskLineLeadingWhitespace(source, mask, families)
 
+  // Grouped ranges are looked up by the line they start on, and the loop skips
+  // past a whole group once it takes one. Two multiline deletions can share a
+  // line — `~~a\nb~~ ~~c\n d~~` — so the second range's start was consumed by
+  // the first group and never visited, splitting a delimiter pair across two
+  // cards. Overlapping ranges become one.
+  const unionedRanges: SourceRange[] = []
+  for (const range of [...groupedRanges].sort((left, right) => left.from - right.from)) {
+    const last = unionedRanges.at(-1)
+    if (last && range.from <= last.to) last.to = Math.max(last.to, range.to)
+    else unionedRanges.push({ ...range })
+  }
+
   const checkpoints: SyntaxCheckpoint[] = []
   // The family each checkpoint's first blank belongs to. Only the merge step
   // reads it, to keep a table's rows apart.
@@ -1287,7 +1317,7 @@ export function deriveSyntaxCheckpoints(
   let lineStart = 0
   while (lineStart <= source.length) {
     const lineEnd = lineEndAt(source, lineStart)
-    const grouped = groupedRanges.find((range) => range.from === lineStart)
+    const grouped = unionedRanges.find((range) => range.from === lineStart)
     const checkpointEnd = grouped?.to ?? lineEnd
     const hasInput = mask
       .slice(lineStart, checkpointEnd)

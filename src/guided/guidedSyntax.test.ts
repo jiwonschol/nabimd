@@ -20,6 +20,7 @@ import {
   syntaxGroupTerm,
   syntaxGroupTermAt,
   syntaxCheckpointTerms,
+  type SyntaxCheckpoint,
 } from "./guidedSyntax"
 
 describe("deriveSyntaxCheckpoints", () => {
@@ -161,6 +162,37 @@ describe("deriveSyntaxCheckpoints", () => {
         source,
       ).toEqual(["~~", "~~"])
     }
+  })
+
+  it("takes the tab out of nesting markers only, line by line", () => {
+    // One quote can hold a plain line and a nested one. Applying the rule to
+    // the whole node took the tab out of a marker that is part of no nesting,
+    // leaving a card that asks for "a mark and space" and then refuses `> `.
+    const blanks = (checkpoint: SyntaxCheckpoint) =>
+      checkpoint.segments.flatMap((segment) =>
+        segment.kind === "input" ? [segment.value] : [],
+      )
+    const cards = deriveSyntaxCheckpoints(">\tplain\n> > nested", "")
+    expect(cards).toHaveLength(2)
+    // The plain line keeps the tab it always had — that is #204's axis.
+    expect(blanks(cards[0]!)).toEqual([">\t"])
+    // The nested line does not.
+    expect(blanks(cards[1]!)).toEqual(["> ", "> "])
+  })
+
+  it("keeps two deletions that share a line on one card", () => {
+    // Grouped ranges are looked up by the line they start on, and the loop
+    // skips past a whole group once it takes one. Two multiline deletions can
+    // share a line, so the second range's start was consumed by the first
+    // group and never visited — splitting a delimiter pair across two cards
+    // and leaving an odd run of three, which reads as a fence.
+    const cards = deriveSyntaxCheckpoints("~~a\nb~~ ~~c\n d~~", "")
+    expect(cards).toHaveLength(1)
+    expect(
+      cards[0]!.segments.flatMap((segment) =>
+        segment.kind === "input" ? [segment.value] : [],
+      ),
+    ).toEqual(["~~", "~~", "~~", "~~"])
   })
 
   it("never puts a tab in a nested quote's blanks", () => {
