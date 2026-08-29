@@ -1306,24 +1306,33 @@ function mergeAdjacentSameSyntax(
  * "the prefix of the first line" is not the same shape, and no exercise in the
  * bank opens with one.
  */
+export function hasGivenDocumentTitle(target: string): boolean {
+  const source = target.replace(/\r\n?/g, "\n")
+  const root = parseMarkdownSource(source)
+  if (!isParent(root) || root.children.length < 2) return false
+
+  const title = root.children[0]
+  if (!title || title.type !== "heading" || title.depth !== 1) return false
+
+  const from = title.position?.start.offset
+  if (from === undefined) return false
+  return /^ {0,3}#{1,6}[\t ]+/.test(source.slice(from, lineEndAt(source, from)))
+}
+
 function unmaskGivenDocumentTitle(
   root: Nodes,
   source: string,
   mask: boolean[],
   families: SyntaxFamilies,
 ): void {
-  if (!isParent(root) || root.children.length < 2) return
+  if (!hasGivenDocumentTitle(source) || !isParent(root)) return
 
   const title = root.children[0]
-  if (!title || title.type !== "heading" || title.depth !== 1) return
+  if (!title || title.type !== "heading") return
 
   const from = title.position?.start.offset
   const to = title.position?.end.offset
   if (from === undefined || to === undefined) return
-  if (!/^ {0,3}#{1,6}[\t ]+/.test(source.slice(from, lineEndAt(source, from)))) {
-    return
-  }
-
   // `markNodeSyntax` keys a node's family by type and start offset, so this
   // clears the title's own prefix and cannot reach a mark that shares the line.
   const family = `heading@${from}`
