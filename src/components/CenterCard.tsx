@@ -664,8 +664,19 @@ export function CenterCard({
       <div className="center-card__leaf center-card__leaf--write">
         <header className="center-card__header">
         <div className="center-card__heading">
-          {/* `Step x of 5` in the top bar is the only progress label: the
-              marks inside one card never get a second counter. */}
+          {slotTotal > 1 ? (
+            <span
+              aria-label={`Current problem progress, part ${slotIndex + 1} of ${slotTotal}`}
+              aria-live="polite"
+              aria-valuemax={slotTotal}
+              aria-valuemin={1}
+              aria-valuenow={slotIndex + 1}
+              className="center-card__slot"
+              role="progressbar"
+            >
+              Part {slotIndex + 1} of {slotTotal}
+            </span>
+          ) : null}
           <h2 className="center-card__instruction">
             {checkpointInstruction.prefix}
             <strong>{checkpointInstruction.term}</strong>
@@ -696,9 +707,9 @@ export function CenterCard({
       <div className="center-card__controls">
         <button
           aria-keyshortcuts="ArrowUp"
-          aria-label="Previous mark"
+          aria-label="Previous part"
           className="center-card__control"
-          data-tooltip="Previous mark (↑)"
+          data-tooltip="Previous part (↑)"
           disabled={!interactive || !canGoToPreviousSlot}
           onClick={onPreviousSlot}
           type="button"
@@ -707,9 +718,9 @@ export function CenterCard({
         </button>
         <button
           aria-keyshortcuts="ArrowDown"
-          aria-label="Next mark"
+          aria-label="Next part"
           className="center-card__control"
-          data-tooltip="Next mark (↓)"
+          data-tooltip="Next part (↓)"
           disabled={!interactive || !canGoToNextSlot}
           onClick={onNextSlot}
           type="button"
