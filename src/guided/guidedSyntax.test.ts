@@ -321,6 +321,49 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
   })
 
+  it("leaves no two locked runs side by side on a joined card", () => {
+    // `mergeSegments` guarantees locked text never sits beside locked text;
+    // joining two cards must not break that, or the card renders the same
+    // prose as several fragments.
+    const [card] = deriveSyntaxCheckpoints(
+      "- Apples\n- Pears\n- Milk",
+      "Apples\nPears\nMilk",
+    )
+    expect(card!.segments).toEqual([
+      { kind: "input", value: "- " },
+      { kind: "locked", value: "Apples\n" },
+      { kind: "input", value: "- " },
+      { kind: "locked", value: "Pears\n" },
+      { kind: "input", value: "- " },
+      { kind: "locked", value: "Milk" },
+    ])
+  })
+
+  it("keeps one marker across cards at the same level and none across levels", () => {
+    // Two lists at the same level are one list to Markdown once the blank line
+    // between them is answered, so an answer typed on the second card is
+    // normalised to agree with the first. A nested list is a separate list and
+    // keeps whatever the learner typed.
+    const sameLevel = "- Apples\n\nThen rest.\n\n- Pears"
+    const cards = deriveSyntaxCheckpoints(sameLevel, "")
+    expect(cards).toHaveLength(2)
+    expect(
+      buildGuidedDraft(sameLevel, cards, 2, {
+        [cards[0]!.id]: "* ",
+        [cards[1]!.id]: "- ",
+      }),
+    ).toBe("* Apples\n\nThen rest.\n\n* Pears")
+
+    const nested = "- Parent\n  * Child"
+    const nestedCards = deriveSyntaxCheckpoints(nested, "")
+    expect(
+      buildGuidedDraft(nested, nestedCards, 2, {
+        [nestedCards[0]!.id]: "+ ",
+        [nestedCards[1]!.id]: "* ",
+      }),
+    ).toBe("+ Parent\n  * Child")
+  })
+
   it("lets every emphasis pair on a joined card choose its own delimiter", () => {
     // Two emphasis spans were two cards before they were joined, and each
     // accepted its own delimiter. Swapping only the first pair offered a mixed
