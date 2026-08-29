@@ -196,17 +196,33 @@ export async function listBatchDirectories(bankRoot) {
 
 export const DEFAULT_BANK_ROOT = "curriculum/problem-bank/batches"
 
-async function immutableBaselineTargets(targets) {
-  let baseline
+export async function resolveBaselineSha(cwd = process.cwd()) {
+  const explicit = process.env.NABI_BASE_SHA?.trim()
+  if (explicit && !/^0+$/.test(explicit)) return explicit
+
   try {
-    baseline = (
+    const baseline = (
       await run("git", ["merge-base", "origin/main", "HEAD"], {
-        cwd: process.cwd(),
+        cwd,
       })
     ).stdout.trim()
+    if (baseline) return baseline
   } catch {
+    // A checkout without origin/main falls through to its parent commit.
+  }
+
+  try {
+    return (await run("git", ["rev-parse", "HEAD^"], { cwd })).stdout.trim()
+  } catch {
+    return null
+  }
+}
+
+async function immutableBaselineTargets(targets) {
+  const baseline = await resolveBaselineSha()
+  if (!baseline) {
     throw new Error(
-      "Cannot identify origin/main; refusing to write sealed evidence without an immutable baseline.",
+      "Cannot identify an immutable baseline; refusing to write sealed evidence.",
     )
   }
 

@@ -8,6 +8,7 @@ import { promisify } from "node:util"
 import {
   resealBatchEvidence,
   resealBatchEvidenceSet,
+  resolveBaselineSha,
 } from "./sealBatchEvidence.mjs"
 import { sealEditorial, sealReview } from "./batchPipeline.mjs"
 import { canonicalJson } from "./pipeline.mjs"
@@ -246,6 +247,21 @@ test("the write command refuses batches protected by the immutable baseline", as
   assert.equal(result.code, 1)
   assert.match(result.stderr, /Refusing to reseal immutable baseline batches/)
   assert.match(result.stderr, /publish a new replacement batch instead/)
+})
+
+test("a checkout without origin/main uses its parent as the immutable baseline", async () => {
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-baseline-"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "first\n")
+  await run("git", ["add", "evidence.txt"], { cwd: repository })
+  await run("git", ["commit", "-m", "first"], { cwd: repository })
+  const parent = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+  await writeFile(resolve(repository, "evidence.txt"), "second\n")
+  await run("git", ["commit", "-am", "second"], { cwd: repository })
+
+  assert.equal(await resolveBaselineSha(repository), parent)
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {
