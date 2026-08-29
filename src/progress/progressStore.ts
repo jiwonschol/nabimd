@@ -13,7 +13,6 @@ import {
 } from "../content/problemBank"
 import { deriveLegacyPlaintextStarter } from "../content/plaintextStarter"
 import type { SyntaxMistake } from "../guided/guidedSyntax"
-import { isReachableRunSchedule } from "../session/runSchedule"
 import type { ProgressV5 } from "./types"
 
 export const PROGRESS_STORAGE_KEY = "nabimd.progress.v5"
@@ -102,14 +101,7 @@ function isValidRunProblemIds(
   entryId: ProgressV5["entryId"],
   runNumber: number,
   runSeed: number,
-  runStepIndex: number,
-  scheduledStepIndex: number,
-  currentIsTransfer: boolean,
   validProblemIds: ReadonlySet<string>,
-  isEligibleTransferProblem: (
-    currentProblemId: string,
-    candidateProblemId: string,
-  ) => boolean,
 ): value is string[] {
   if (!Array.isArray(value)) return false
   if (entryId === null) return value.length === 0
@@ -119,15 +111,7 @@ function isValidRunProblemIds(
 
   return (
     value.length >= expectedRunProblemIds.length &&
-    isKnownIdList(value, validProblemIds, maximumRunLength) &&
-    isReachableRunSchedule({
-      baselineProblemIds: expectedRunProblemIds,
-      persistedProblemIds: value,
-      persistedStepIndex: runStepIndex,
-      persistedScheduledStepIndex: scheduledStepIndex,
-      persistedCurrentIsTransfer: currentIsTransfer,
-      isEligibleTransferProblem,
-    })
+    isKnownIdList(value, validProblemIds, maximumRunLength)
   )
 }
 
@@ -212,10 +196,6 @@ function isProgressV5(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
   validDraftProblemIds: ReadonlySet<string>,
-  isEligibleTransferProblem: (
-    currentProblemId: string,
-    candidateProblemId: string,
-  ) => boolean,
   expectedBankRevision: string,
   expectedRunSeed: number,
 ): value is ProgressV5 {
@@ -256,6 +236,7 @@ function isProgressV5(
   if (
     scheduledStepIndex === null ||
     scheduledStepIndex > scheduledRunLength ||
+    scheduledStepIndex > value.runStepIndex ||
     !isUniqueIntegerList(
       value.failedScheduledStepIndexes,
       scheduledRunLength,
@@ -283,12 +264,10 @@ function isProgressV5(
       entryId,
       value.runNumber,
       value.runSeed,
-      value.runStepIndex,
-      scheduledStepIndex,
-      value.currentIsTransfer,
       validProblemIds,
-      isEligibleTransferProblem,
     ) &&
+    value.runProblemIds.length - scheduledRunLength ===
+      value.runStepIndex - scheduledStepIndex &&
     value.runStepIndex <= value.runProblemIds.length &&
     typeof value.currentProblemId === "string" &&
     validProblemIds.has(value.currentProblemId) &&
@@ -556,6 +535,32 @@ function migrateRunScheduleRevision(
     value.runNumber <= MAX_PERSISTED_RUN_NUMBER
       ? value.runNumber
       : 0
+  const expectedRunLength = createRunProblemIds(
+    value.entryId,
+    runNumber,
+    expectedRunSeed,
+  ).length
+  const canPreserveSchedule =
+    isNonnegativeSafeInteger(value.runStepIndex) &&
+    isNonnegativeSafeInteger(value.scheduledStepIndex) &&
+    isValidRunProblemIds(
+      value.runProblemIds,
+      value.entryId,
+      runNumber,
+      expectedRunSeed,
+      validProblemIds,
+    ) &&
+    value.runProblemIds.length - expectedRunLength ===
+      value.runStepIndex - value.scheduledStepIndex
+
+  if (canPreserveSchedule) {
+    return {
+      ...value,
+      runScheduleRevision,
+      draftByProblemId,
+    }
+  }
+
   const runProblemIds = createRunProblemIds(
     value.entryId,
     runNumber,
@@ -600,7 +605,7 @@ export function readPersistedRunSeed(storage: Storage): number | null {
 export function loadProgress(
   storage: Storage,
   validProblemIds: ReadonlySet<string>,
-  isEligibleTransferProblem: (
+  _isEligibleTransferProblem: (
     currentProblemId: string,
     candidateProblemId: string,
   ) => boolean = () => false,
@@ -646,7 +651,6 @@ export function loadProgress(
       parsed,
       validProblemIds,
       validDraftProblemIds,
-      isEligibleTransferProblem,
       expectedBankRevision,
       expectedRunSeed,
     )

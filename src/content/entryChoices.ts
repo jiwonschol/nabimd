@@ -81,21 +81,18 @@ function fingerprint(value: string): string {
   return (hash >>> 0).toString(36)
 }
 
-/** See the note beside its use in `runScheduleRevision`. */
-export const COMPOSITION_REVISION = "composition@2-mixed-avoids-adjacent-runs"
-
 /**
- * Any input that can invalidate a persisted deterministic run belongs here.
- * Deriving the value prevents a curriculum edit from relying on a manual bump.
+ * Inputs that change the persisted run's structural contract belong here.
+ * Composition order and classification do not: a run already in progress
+ * finishes with its stored known IDs, then the next run uses the new selector.
  *
  * The served set is part of it because eligibility is computed, not declared:
  * `isEligibleMixedExercise` counts checkpoints, so a change to how the card
  * cuts blanks silently changes which mixed exercises a level may serve. That
  * happened — grouping adjacent same-syntax checkpoints took twelve Level 2
  * composites from over the checkpoint ceiling to under it. Naming only the
- * policy constants would have left a persisted run being validated against a
- * different schedule under an unchanged revision, which drops the learner's
- * progress instead of migrating it.
+ * policy constants would have hidden a serving-pool migration from records
+ * whose IDs or allowed length may genuinely need structural repair.
  */
 export const runScheduleRevision = [
   `turn-size@${RUN_POLICY.turnSize}`,
@@ -108,15 +105,6 @@ export const runScheduleRevision = [
     (entry) =>
       `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
   ),
-  // Everything else here is derived, and nothing derived can see the shape of
-  // the code that reads it. A persisted run is validated by recomputing the
-  // schedule, so changing how a run is composed changes that contract even
-  // when every constant and the served set stay byte-identical. Without this
-  // token the recomputed run simply would not match, and the learner's drafts
-  // would be dropped by the validator instead of carried by the migration.
-  // Bump it whenever `createTurnProblemIds` can return a different run for an
-  // unchanged (chapter, runNumber, seed).
-  COMPOSITION_REVISION,
   ...curriculumLevels.map((entry) => {
     const ids = getServedProblemsForBank(problemBank, entry.level).map(
       (problem) => problem.id,

@@ -1,6 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import {
-  COMPOSITION_REVISION,
   createRunProblemIds,
   entryChoices,
   runScheduleRevision,
@@ -115,13 +114,7 @@ describe("progressStore v5", () => {
     ].join("|")
     expect(runScheduleRevision.startsWith(`${policy}|`)).toBe(true)
 
-    // Nothing derived from the bank can notice that `createTurnProblemIds`
-    // now returns a different run for the same (chapter, runNumber, seed), so
-    // the algorithm carries a hand-written token. Losing it would let a
-    // composition change reach a learner whose persisted run no longer
-    // matches, and the validator drops that progress instead of migrating it.
-    expect(runScheduleRevision).toContain(`|${COMPOSITION_REVISION}|`)
-    expect(COMPOSITION_REVISION).toMatch(/^composition@\d+-/)
+    expect(runScheduleRevision).not.toContain("|composition@")
 
     // Eligibility is computed, not declared, so naming the policy constants is
     // not enough: a change to how the card cuts blanks moves which mixed
@@ -313,12 +306,7 @@ describe("progressStore v5", () => {
     })
   })
 
-  it("carries a mid-run draft across the composition token instead of dropping it", () => {
-    // The token is the only part of the revision that a composition change can
-    // move, and it is the part that decides which path a stored run takes. A
-    // stored run written before it fails `isValidRunProblemIds` — that path
-    // returns a default and the learner loses the draft. This asserts the
-    // revision mismatch is seen first, so the migration regenerates instead.
+  it("keeps a valid persisted schedule when composition order changes", () => {
     const runNumber = 7
     const scheduled = createRunProblemIds("level-1", runNumber, 0)
     const servedMixed = scheduled.find(
@@ -342,11 +330,8 @@ describe("progressStore v5", () => {
     storage.setItem(
       PROGRESS_STORAGE_KEY,
       JSON.stringify({
-        ...createDefaultProgress(otherMixed.id),
-        runScheduleRevision: runScheduleRevision
-          .split("|")
-          .filter((segment) => segment !== COMPOSITION_REVISION)
-          .join("|"),
+        ...createDefaultProgress(previousRunProblemIds[0]!),
+        runScheduleRevision: `${runScheduleRevision}|old-composition`,
         entryId: "level-1",
         runNumber,
         runProblemIds: previousRunProblemIds,
@@ -354,8 +339,6 @@ describe("progressStore v5", () => {
         draftByProblemId: { [otherMixed.id]: "# Keep this across the bump" },
       }),
     )
-    vi.spyOn(Date, "now").mockReturnValue(9_000)
-
     const loaded = loadProgress(
       storage,
       validProblemIds,
@@ -367,13 +350,14 @@ describe("progressStore v5", () => {
 
     expect(loaded.entryId).toBe("level-1")
     expect(loaded.runNumber).toBe(runNumber)
-    expect(loaded.runProblemIds).toEqual(scheduled)
+    expect(loaded.runProblemIds).toEqual(previousRunProblemIds)
+    expect(loaded.runScheduleRevision).toBe(runScheduleRevision)
     expect(loaded.draftByProblemId).toEqual({
       [otherMixed.id]: "# Keep this across the bump",
     })
   })
 
-  it("keeps a draft for a mixed exercise retired from serving while regenerating its schedule", () => {
+  it("keeps a valid persisted schedule when classification retires one member", () => {
     const retiredMixed = problemBank.find(
       (problem) =>
         problem.flavor === "standard" &&
@@ -403,7 +387,7 @@ describe("progressStore v5", () => {
     storage.setItem(
       PROGRESS_STORAGE_KEY,
       JSON.stringify({
-        ...createDefaultProgress(retiredMixed.id),
+        ...createDefaultProgress(previousRunProblemIds[0]!),
         runScheduleRevision: previousRunScheduleRevision,
         entryId: "level-1",
         runNumber,
@@ -414,8 +398,6 @@ describe("progressStore v5", () => {
         },
       }),
     )
-    vi.spyOn(Date, "now").mockReturnValue(9_000)
-
     const loaded = loadProgress(
       storage,
       validProblemIds,
@@ -427,17 +409,9 @@ describe("progressStore v5", () => {
 
     expect(loaded.entryId).toBe("level-1")
     expect(loaded.runNumber).toBe(runNumber)
-    expect(loaded.runProblemIds).toEqual(
-      createRunProblemIds("level-1", runNumber, 0),
-    )
-    expect(loaded.runStartedAtMs).toBe(9_000)
-    expect(loaded.runProblemIds).not.toContain(retiredMixed.id)
-    for (const id of loaded.runProblemIds) {
-      const problem = getProblem(id)
-      if (getCurriculumElements(problem).length > 1) {
-        expect(isEligibleMixedExercise(problem), id).toBe(true)
-      }
-    }
+    expect(loaded.runProblemIds).toEqual(previousRunProblemIds)
+    expect(loaded.runStartedAtMs).toBe(1_000)
+    expect(loaded.runProblemIds).toContain(retiredMixed.id)
     expect(loaded.draftByProblemId).toEqual({
       [retiredMixed.id]: "# Keep the retired mixed draft",
     })
@@ -1001,7 +975,7 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
-  it("rejects a known cross-level substitution", () => {
+  it("restores a known substitution without reclassifying it", () => {
     const baseline = createRunProblemIds("level-1", 0)
     const wrongLevel = problemBank.find(
       (problem) => getCurriculumElement(problem) === "thematic-break",
@@ -1009,6 +983,23 @@ describe("progressStore v5", () => {
     const progress = createDefaultProgress(wrongLevel)
     progress.entryId = "level-1"
     progress.runProblemIds = [wrongLevel, ...baseline.slice(1)]
+    progress.runStartedAtMs = 1_000
+    saveProgress(storage, progress)
+
+    expect(
+      loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
+    ).toEqual(progress)
+  })
+
+  it.each([
+    ["contains an unknown id", (ids: string[]) => [...ids.slice(0, -1), "removed-problem"]],
+    ["is shorter than the scheduled run", (ids: string[]) => ids.slice(0, -1)],
+    ["exceeds the transfer-expanded length", (ids: string[]) => [...ids, ...ids, ids[0]!]],
+  ])("rejects a persisted run that %s", (_label, mutate) => {
+    const baseline = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(baseline[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = mutate(baseline)
     progress.runStartedAtMs = 1_000
     saveProgress(storage, progress)
 
@@ -1039,7 +1030,7 @@ describe("progressStore v5", () => {
     ).toEqual(progress)
   })
 
-  it("rejects a forged cross-level transfer insertion", () => {
+  it("restores a known transfer insertion without reclassifying it", () => {
     const baseline = createRunProblemIds("level-1", 0)
     const wrongLevel = problemBank.find(
       (problem) => getCurriculumElement(problem) === "thematic-break",
@@ -1058,7 +1049,7 @@ describe("progressStore v5", () => {
 
     expect(
       loadProgress(storage, validProblemIds, isEligibleTransferProblemId),
-    ).toEqual(createDefaultProgress(problemBank[0].id))
+    ).toEqual(progress)
   })
 
   it("recovers from corrupt or unknown records", () => {
