@@ -722,6 +722,14 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toEqual(["- - - "])
   })
 
+  it.each(["- * item", "1. 1) item"])(
+    "preserves nested list marker styles on one source line: %s",
+    (target) => {
+      const checkpoints = deriveSyntaxCheckpoints(target, "")
+      expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
+    },
+  )
+
   it("never surfaces line-leading whitespace in any published problem", () => {
     for (const problem of problemBank) {
       const checkpoints = deriveSyntaxCheckpoints(

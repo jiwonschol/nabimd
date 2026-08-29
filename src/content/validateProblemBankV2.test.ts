@@ -151,6 +151,13 @@ describe("schema-v2 problem-bank validation", () => {
     },
   )
 
+  it("checks parser markers but ignores marker-like text inside fenced code", () => {
+    expect(targetUsesTabAsMarkerWhitespace("> \t-\titem")).toBe(true)
+    expect(
+      targetUsesTabAsMarkerWhitespace("```text\n-\titem\n#\tTitle\n```"),
+    ).toBe(false)
+  })
+
   it("does not mistake prose or layout tabs for marker whitespace", () => {
     for (const target of ["Word\tword", "    code\tword", "> text\tword"]) {
       expect(targetUsesTabAsMarkerWhitespace(target), target).toBe(false)

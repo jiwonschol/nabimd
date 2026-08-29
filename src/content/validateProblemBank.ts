@@ -1,5 +1,7 @@
 import { normalizeProblem } from "./normalizeProblem"
 import { BLOCK_KINDS } from "./types"
+import { parseMarkdownSource } from "../markdown/parser"
+import type { Nodes, Parents } from "mdast"
 import type {
   FixtureKind,
   FixtureRole,
@@ -635,24 +637,28 @@ function validConvention(problem: GradableProblem): boolean {
 
 /** Whether a target asks Markdown marker whitespace to be a literal tab. */
 export function targetUsesTabAsMarkerWhitespace(target: string): boolean {
-  return target.split("\n").some((line) => {
-    let remainder = line
-
-    // Walk real quote prefixes first. A tab immediately after `>` is itself
-    // one of the four invisible marker-whitespace forms; a literal space can
-    // lead to another marker on the same line.
-    while (true) {
-      const quote = remainder.match(/^ {0,3}>([ \t]?)/)
-      if (!quote) break
-      if (quote[1] === "\t") return true
-      remainder = remainder.slice(quote[0].length)
+  let found = false
+  const visit = (node: Nodes) => {
+    const offset = node.position?.start.offset
+    if (offset !== undefined) {
+      const lineEnd = target.indexOf("\n", offset)
+      const source = target.slice(offset, lineEnd < 0 ? target.length : lineEnd)
+      const whitespace =
+        node.type === "blockquote"
+          ? source.match(/^>([ \t]?)/)?.[1]
+          : node.type === "listItem"
+            ? source.match(/^(?:[-+*]|\d+[.)])([ \t]+)/)?.[1]
+            : node.type === "heading"
+              ? source.match(/^#{1,6}([ \t]+)/)?.[1]
+              : undefined
+      if (whitespace?.includes("\t")) found = true
     }
-
-    const markerWhitespace = remainder.match(
-      /^ {0,3}(?:#{1,6}|[-+*]|\d+[.)])([ \t]+)/,
-    )?.[1]
-    return markerWhitespace?.includes("\t") ?? false
-  })
+    if ("children" in node) {
+      ;(node as Parents).children.forEach(visit)
+    }
+  }
+  visit(parseMarkdownSource(target))
+  return found
 }
 
 export function validateProblemBank(
