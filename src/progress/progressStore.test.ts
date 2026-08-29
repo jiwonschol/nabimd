@@ -666,6 +666,29 @@ describe("progressStore v5", () => {
     ).toEqual(createDefaultProgress(problemBank[0].id))
   })
 
+  it("rejects oversized legacy run ids before parsing checkpoint titles", () => {
+    const ids = createRunProblemIds("level-1", 0)
+    const progress = createDefaultProgress(ids[0]!)
+    progress.entryId = "level-1"
+    progress.runProblemIds = Array(10_000).fill(ids[0]!)
+    progress.runStartedAtMs = 1_000
+    const {
+      checkpointProjectionRevision: _checkpointProjectionRevision,
+      ...legacyProgress
+    } = progress
+    storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress))
+
+    const startedAt = performance.now()
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+    )
+
+    expect(performance.now() - startedAt).toBeLessThan(250)
+    expect(loaded).toEqual(createDefaultProgress(problemBank[0].id))
+  })
+
   it("round-trips a bounded syntax mistake ledger", () => {
     const ids = createRunProblemIds("level-1", 0)
     const progress = createDefaultProgress(ids[0]!)
