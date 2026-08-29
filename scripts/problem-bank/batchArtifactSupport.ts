@@ -16,6 +16,7 @@ import {
   evaluateBatchEvidence,
   loadBatchDirectories,
   normalizeBatch,
+  publishedBatchHistory,
   verifyBatchFixtures,
 } from "./batchPipeline.mjs"
 import { canonicalJson, sha256 } from "./pipeline.mjs"
@@ -244,17 +245,14 @@ async function loadPreviousBatches({
       `Cannot prepare ${config.batchId} while prior batch evidence is invalid:\n${compiled.errors.join("\n")}`,
     )
   }
-  const publishedPreviousBatches: LoadedBatch[] = []
+  const publishedPreviousBatches = publishedBatchHistory(previousBatches)
+  const publishedPreviousBatchIds = new Set(
+    publishedPreviousBatches.map((batch) => batch.normalized?.batchId),
+  )
   const unpublishedAcceptedBatches: string[] = []
   for (const batch of previousBatches) {
     const previousBatchId = String(batch.normalized?.batchId ?? "<unknown>")
-    const summary = await optionalJson(
-      resolve(bankRoot, "batches", previousBatchId, "summary.generated.json"),
-    )
-    if (summary !== null) {
-      publishedPreviousBatches.push(batch)
-      continue
-    }
+    if (publishedPreviousBatchIds.has(batch.normalized?.batchId)) continue
     if (evaluateBatchEvidence(batch).summary.accepted > 0) {
       unpublishedAcceptedBatches.push(previousBatchId)
     }

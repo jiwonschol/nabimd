@@ -1053,6 +1053,7 @@ async function loadBatchDirectory(batchDir, directoryName) {
   let verification
   let manifest
   let editorial
+  let summary
   let reviews = []
   try {
     normalized = await readJson(resolve(batchDir, "candidates.normalized.json"))
@@ -1061,7 +1062,7 @@ async function loadBatchDirectory(batchDir, directoryName) {
     return { normalized: { batchId: directoryName }, loaderErrors }
   }
   try {
-    ;[prompt, raw, fixtureArtifact, engineContract, verification, manifest, editorial] = await Promise.all([
+    ;[prompt, raw, fixtureArtifact, engineContract, verification, manifest, editorial, summary] = await Promise.all([
       readFile(resolve(batchDir, "generation-prompt.md"), "utf8"),
       readJson(resolve(batchDir, "candidates.raw.json")),
       readJson(resolve(batchDir, "fixtures.json")),
@@ -1069,6 +1070,7 @@ async function loadBatchDirectory(batchDir, directoryName) {
       readJson(resolve(batchDir, "verification.json")),
       readJson(resolve(batchDir, "review-manifest.json")),
       optionalJson(resolve(batchDir, "editorial.json")),
+      optionalJson(resolve(batchDir, "summary.generated.json")),
     ])
   } catch (error) {
     loaderErrors.push(`Cannot load ${directoryName}: ${error instanceof Error ? error.message : String(error)}`)
@@ -1115,8 +1117,23 @@ async function loadBatchDirectory(batchDir, directoryName) {
     manifest,
     reviews,
     editorial,
+    summary,
     loaderErrors,
   }
+}
+
+export function publishedBatchHistory(batches) {
+  const publishedSequences = batches
+    .filter((batch) => batch.summary?.status === "published")
+    .map((batch) => batch.normalized?.sequence)
+    .filter((sequence) => typeof sequence === "number")
+  if (publishedSequences.length === 0) return []
+  const lastPublishedSequence = Math.max(...publishedSequences)
+  return batches.filter(
+    (batch) =>
+      typeof batch.normalized?.sequence === "number" &&
+      batch.normalized.sequence <= lastPublishedSequence,
+  )
 }
 
 export async function loadBatchDirectories(bankRoot) {
