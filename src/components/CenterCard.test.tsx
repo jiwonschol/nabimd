@@ -169,9 +169,9 @@ describe("CenterCard", () => {
 
     // The three numbered steps are one card, not three: consecutive
     // checkpoints teaching the same syntax are grouped, so Now learning never
-    // names the same thing on card after card.
+    // names the same thing on card after card. The opening title is given
+    // rather than asked for (#198), so it is not a card at all.
     expect(references.map((reference) => reference.name)).toEqual([
-      "Level 1 heading",
       "Fenced code block",
       "Numbered step",
     ])
