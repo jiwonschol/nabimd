@@ -1,4 +1,5 @@
 import { fromMarkdown } from "mdast-util-from-markdown"
+import { createHash } from "node:crypto"
 import { describe, expect, it } from "vitest"
 import { evaluateProblem } from "../../engine/evaluateProblem"
 import { buildReviewCorrections } from "../../feedback/reviewCorrections"
@@ -144,7 +145,7 @@ describe("Level 1 image batch 029", () => {
     }
   })
 
-  it("keeps one reviewed learner instruction across every failing boundary", () => {
+  it("stops when the reviewed learner instruction changes", () => {
     const problems = new Map(
       imageBatch029Problems.map((problem) => [problem.id, problem]),
     )
@@ -166,9 +167,14 @@ describe("Level 1 image batch 029", () => {
       instructions.add(instruction!)
     }
 
-    expect([...instructions]).toEqual([
-      "Add a Markdown image with an exclamation mark, a description in the brackets, and an address in the parentheses. Both the description and the address need visible text — spaces and invisible characters do not count.",
-    ])
+    expect(instructions.size).toBe(1)
+    const feedbackDigest = createHash("sha256")
+      .update(JSON.stringify([...instructions].sort()))
+      .digest("hex")
+    expect(
+      feedbackDigest,
+      "Learner feedback changed. Before updating the reviewed digest, ask: does this sentence cover every failure this contract rejects?",
+    ).toBe("5605dffe07c28011ca92f813bd45519829c229682e1ecc31cbd9b67d5280dd48")
   })
 
   it("keeps all 36 link-shape consumers matched with the same poison title", () => {

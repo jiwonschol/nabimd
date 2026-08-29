@@ -181,7 +181,7 @@ describe("Level 4 development-spec batch 012", () => {
     }
   })
 
-  it("gives every check unique, direct real-engine evidence", () => {
+  it("validates the complete direct-evidence fixture set", () => {
     expect(
       validateProblemBank(
         developmentSpecBatch012Problems,
@@ -189,8 +189,11 @@ describe("Level 4 development-spec batch 012", () => {
       ),
     ).toEqual([])
     expect(developmentSpecBatch012Fixtures).toHaveLength(488)
+  })
 
-    for (const problem of developmentSpecBatch012Problems) {
+  it.each(developmentSpecBatch012Problems)(
+    "gives $id unique, direct real-engine evidence",
+    (problem) => {
       const fixtures = developmentSpecBatch012Fixtures.filter(
         (fixture) => fixture.problemId === problem.id,
       )
@@ -199,9 +202,10 @@ describe("Level 4 development-spec batch 012", () => {
           problem.retryFamily as keyof typeof expectedFixtureCounts
         ],
       )
-      expect(new Set(fixtures.map((fixture) => fixture.id)).size, problem.id).toBe(
-        fixtures.length,
-      )
+      expect(
+        new Set(fixtures.map((fixture) => fixture.id)).size,
+        problem.id,
+      ).toBe(fixtures.length)
       const fixturesBySource = new Map<string, typeof fixtures>()
       for (const fixture of fixtures) {
         const group = fixturesBySource.get(fixture.source) ?? []
@@ -236,6 +240,6 @@ describe("Level 4 development-spec batch 012", () => {
           })
         }
       }
-    }
-  })
+    },
+  )
 })
