@@ -188,13 +188,30 @@ describe("which table row the sentence calls the rule", () => {
     )
   })
 
-  it("cannot tell a body row that is entirely dashes from the rule", () => {
-    // Recorded, not fixed. The two rows are the same characters, so no reading
-    // of the values separates them; only the row's position can, which is
-    // #178. Until then the batch keeps one non-dash cell in every body row.
-    expect(ruleOf("| A | B |\n| --- | --- |\n| --- | --- |", 2).term).toBe(
-      "column headers",
-    )
+  it("cannot tell any all-dash row from the rule, wherever it sits", () => {
+    // Recorded, not fixed, and this change is what opened the header half of
+    // it. Reading every cell means an all-dash row reads as the rule no matter
+    // which row it is, so both a body row and a header row of dashes are
+    // announced as the rule — and a table can end up saying it twice.
+    //
+    // The old predicate got the header right only by accident: `| - | - |`
+    // has one dash per cell and the three-dash minimum missed it, which is
+    // the same miss that made a real one-dash rule read as a body row. The
+    // two cannot be separated by the values at all; both rows are the same
+    // characters. Only the row's position can, which is #178 item 12.
+    //
+    // Taken deliberately. A one-dash rule row is ordinary GFM; a header whose
+    // every cell is literally a dash is not something the curriculum writes.
+    // The batch keeps one non-dash cell in every row, header included.
+    const bodyAllDashes = "| A | B |\n| --- | --- |\n| --- | --- |"
+    expect(ruleOf(bodyAllDashes, 2).term).toBe("column headers")
+
+    const headerAllDashes = "| - | - |\n| --- | --- |\n| x | y |"
+    expect(ruleOf(headerAllDashes, 0).term).toBe("column headers")
+    // The real rule row underneath still reads correctly, so the table says
+    // it twice rather than losing it.
+    expect(ruleOf(headerAllDashes, 1).term).toBe("column headers")
+    expect(ruleOf(headerAllDashes, 2).term).toBe("table row")
   })
 })
 
