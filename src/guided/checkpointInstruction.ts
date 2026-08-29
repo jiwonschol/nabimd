@@ -56,30 +56,37 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   // A hard line break is spaces and nothing else, so there is no mark to name
   // and the sentence names an action instead. It has to be decided before any
   // branch that inspects mark characters, because a run of spaces has none.
-  // Only the newline comes off: the spaces *are* trailing whitespace, so
-  // `trimEnd` would leave nothing to count and every card would ask for zero.
+  //
+  // The card may be only breaks, or it may hold a break and then some other
+  // family — `a  \nb\n---` is two spaces and a Setext underline. Both cases
+  // ask the same three questions of the same blanks, so both call this. They
+  // used to be written twice, and the second copy read only the first blank:
+  // it said "two spaces" for a card whose second line wanted three, and "the
+  // line" for a card with several.
   const spaceRuns = inputs
+    // Only the newline comes off: the spaces *are* trailing whitespace, so
+    // `trimEnd` would leave nothing to count and every card would ask for zero.
     .filter((value) => SPACE_RUN.test(value))
     .map((value) => value.replace(/\n$/, ""))
-  if (spaceRuns.length > 0 && spaceRuns.length === inputs.length) {
+  if (spaceRuns.length > 0 && SPACE_RUN.test(inputs[0] ?? "")) {
     // #176 gathers several breaks onto one card. The count has to come from
     // one blank, not from all of them added up: three lines each ending in two
     // spaces is not one line ending in six.
     const widths = new Set(spaceRuns.map((value) => value.length))
-    if (spaceRuns.length === 1) {
+    if (widths.size > 1) {
+      // Lines asking for different widths have no one number to name, and the
+      // boxes already show how many each one wants.
       return instruction(
-        `End the line with ${spelledCount(spaceRuns[0]!.length)} spaces to force a `,
+        "Fill the spaces at the end of each line to force a ",
         "line break",
       )
     }
-    return widths.size === 1
-      ? instruction(
-          `End each line with ${spelledCount(spaceRuns[0]!.length)} spaces to force a `,
-          "line break",
-        )
-      : // Lines asking for different widths have no one number to name, and
-        // the boxes already show how many each one wants.
-        instruction("Fill the spaces at the end of each line to force a ", "line break")
+    return instruction(
+      spaceRuns.length === 1
+        ? `End the line with ${spelledCount(spaceRuns[0]!.length)} spaces to force a `
+        : `End each line with ${spelledCount(spaceRuns[0]!.length)} spaces to force a `,
+      "line break",
+    )
   }
 
   // Table rows are the one family the marks cannot name on their own: a header
@@ -444,15 +451,6 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   // choice comes from. It used to come from the joined value, whose leading
   // characters are the first blank's — so the same answer, read from the
   // blank itself, with no concatenation in between.
-  // A hard line break is the one family whose mark is invisible, so it has to
-  // be recognised before the branches that read mark characters — a run of
-  // spaces has none, and `leading` trims it away to nothing.
-  if (SPACE_RUN.test(inputs[0] ?? "")) {
-    return instruction(
-      `End the line with ${spelledCount((inputs[0] ?? "").replace(/\n$/, "").length)} spaces to force a `,
-      "line break",
-    )
-  }
   const leading = inputs[0]?.trim() ?? ""
   if (leading.startsWith("![")) {
     return instruction("Add the Markdown punctuation for an ", "image")
