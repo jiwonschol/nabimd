@@ -76,8 +76,48 @@ describe("deriveSyntaxCheckpoints", () => {
 
     expect(accepted("- [x] Buy milk")).toContain("- [X]")
     expect(accepted("- [X] Buy milk")).toContain("- [x]")
-    // The unchecked box has one spelling and gains no alternative.
+    // The unchecked box gains no alternative. A tab between the brackets is
+    // valid Markdown and is recognised (see the tab test below), but it is
+    // invisible in the Hint list, where it would print as a second row
+    // identical to `[ ]`. Recognising the shape and offering it as an answer
+    // are different questions.
     expect(accepted("- [ ] Buy milk")).toEqual(["- [ ]", "* [ ]", "+ [ ]"])
+
+    // Two boxes on one card choose independently — `[x]` beside `[X]` is
+    // valid GFM. Flipping them together, the way the list markers must be
+    // (a marker that changes starts a second list), rejected the mixed answer.
+    expect(accepted("- [x] one\n- [x] two")).toContain("- [X]- [x]")
+    expect(accepted("- [x] one\n- [x] two")).toContain("- [x]- [X]")
+  })
+
+  it("blanks a task box written with a tab", () => {
+    // The parser reads `- [\t] Buy` as a task item and sets `checked`, so a
+    // box regex that only knew the space dropped a shape the grammar had
+    // already recognised and taught a bullet item instead.
+    const checkpoint = deriveSyntaxCheckpoints("- [\t] Buy", "")[0]!
+    expect(
+      checkpoint.segments.flatMap((segment) =>
+        segment.kind === "input" ? [segment.value] : [],
+      ),
+    ).toEqual(["- ", "[\t]"])
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual([
+      "bullet item",
+      "checkbox item",
+    ])
+  })
+
+  it("keeps a plain quote and a nested quote on separate cards", () => {
+    // `mergeAdjacentSameSyntax` joins neighbours whose names match, and both
+    // levels used to be called `block quote`. The joined card then claimed to
+    // be a quote inside a quote while also asking for the unrelated plain
+    // marker, so the depth has to live in the name the merger reads.
+    const cards = deriveSyntaxCheckpoints("> plain\n\n> > deep", "")
+    expect(cards).toHaveLength(2)
+    expect(syntaxCheckpointTerms(cards[0]!)).toEqual(["block quote"])
+    expect(syntaxCheckpointTerms(cards[1]!)).toEqual([
+      "block quote",
+      "quote inside a quote",
+    ])
   })
 
   it("finds the groups an attempt cannot explain", () => {

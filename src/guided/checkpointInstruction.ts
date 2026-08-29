@@ -31,7 +31,9 @@ function spelledCount(count: number): string {
 const BULLET_MARKER = /^ {0,3}[-+*][\t ]+$/
 const STEP_MARKER = /^ {0,3}\d+[.)][\t ]+$/
 const QUOTE_MARKER = /^ {0,3}>[\t ]*$/
-const TASK_BOX = /^\[[ xX]?\]$/
+// The parser accepts a tab between the brackets, so the sentence has to be
+// able to name a box written that way.
+const TASK_BOX = /^\[[\t xX]?\]$/
 // The deriver puts the line's ending inside the blank when the card carries
 // something after it, so the run may end in a newline.
 const SPACE_RUN = /^ {2,}\n?$/

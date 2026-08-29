@@ -161,23 +161,22 @@ function buildAcceptedForms(
   // GFM reads `[x]` and `[X]` as the same checked item, and the name the card
   // shows recognises both. Recording only the spelling the Goal happens to use
   // rejected the other one, so a learner typing valid Markdown was marked
-  // wrong. The boxes on one card move together, the way the list markers above
-  // do.
+  // wrong.
+  //
+  // Each box chooses on its own, like the emphasis pairs below and unlike the
+  // list markers above. A marker that changes partway down a list starts a
+  // second list, so those must agree; two checked boxes constrain nothing, so
+  // flipping them together rejected the valid mixed answer `[x]…[X]`.
   const taskBoxGroups = canonicalParts.flatMap((part, index) =>
     /^\[[xX]\]$/.test(part) ? [index] : [],
   )
-  if (taskBoxGroups.length > 0) {
+  for (const index of taskBoxGroups) {
     expandInputForms(forms, (form) => {
+      const value = form[index]
+      if (value !== "[x]" && value !== "[X]") return null
       const alternative = [...form]
-      let changed = false
-      for (const index of taskBoxGroups) {
-        const value = form[index]
-        if (value === "[x]") alternative[index] = "[X]"
-        else if (value === "[X]") alternative[index] = "[x]"
-        else continue
-        changed = true
-      }
-      return changed ? alternative : null
+      alternative[index] = value === "[x]" ? "[X]" : "[x]"
+      return alternative
     })
   }
 
@@ -272,6 +271,7 @@ export function acceptedGuidedSyntaxGroupInputs(
 export function syntaxGroupTerm(
   value: string,
   precededByLineBreak = false,
+  precededByQuoteMarker = false,
 ): string {
   // A list marker is only a list marker because the grammar requires the
   // space after it. Trimming first would make `* ` (bullet) and `*` (italic)
@@ -287,13 +287,20 @@ export function syntaxGroupTerm(
     return `level ${mark.match(/^#+/)?.[0]?.length ?? 1} heading`
   }
   if (["---", "***", "___"].includes(mark)) return "section break"
-  if (mark.startsWith(">")) return "block quote"
+  // A marker sitting against another marker is the second level of a nested
+  // quote, and the merger compares these names: without the distinction
+  // `> plain` and `> > deep` both read as `block quote`, joined into one card,
+  // and that card claimed to be a quote inside a quote while also asking for
+  // the unrelated plain marker.
+  if (mark.startsWith(">")) {
+    return precededByQuoteMarker ? "quote inside a quote" : "block quote"
+  }
   if (mark.startsWith("```") || mark.startsWith("~~~")) return "fenced code block"
   if (mark === "**" || mark === "__") return "bold text"
   if (mark === "*" || mark === "_") return "italic text"
   if (mark === "~~") return "strikethrough text"
   // A task box is bracket punctuation and would otherwise read as a link.
-  if (/^\[[ xX]?\]$/.test(mark)) {
+  if (/^\[[\t xX]?\]$/.test(mark)) {
     return /[xX]/.test(mark) ? "checked-off item" : "checkbox item"
   }
   if (mark.startsWith("![")) return "image"
@@ -316,6 +323,8 @@ export function syntaxCheckpointTerms(
           syntaxGroupTerm(
             segment.value,
             previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+            previous?.kind === "input" &&
+              /^ {0,3}>[\t ]*$/.test(previous.value),
           ),
         ]
       }),
@@ -848,7 +857,12 @@ function markNodeSyntax(
           node.checked === undefined ||
           !/^\s*[-+*][\t ]+$/.test(marker)
             ? null
-            : source.slice(markerEnd, lineEndAt(source, markerEnd)).match(/^\[[ xX]\]/)
+            : // The parser accepts a tab between the brackets and sets
+              // `checked` for it, so a regex that only knows the space
+              // dropped a box the grammar had already recognised.
+              source
+                .slice(markerEnd, lineEndAt(source, markerEnd))
+                .match(/^\[[\t xX]\]/)
         if (markerEnd !== null && checkbox?.[0]) {
           markRange(
             mask,

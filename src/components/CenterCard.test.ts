@@ -812,6 +812,11 @@ describe("describeCheckpoint", () => {
     expect(describeCheckpoint(checkpointFor("> > Deep")).term).toBe(
       "quote inside a quote",
     )
+    // The parser accepts a tab between the brackets, so the sentence has to
+    // name that box too rather than falling back to the marker's own.
+    expect(describeCheckpoint(checkpointFor("- [\t] Buy")).term).toBe(
+      "checkbox item",
+    )
   })
 
   it("never leaves a blank the sentence does not mention", () => {
