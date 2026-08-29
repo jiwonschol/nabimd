@@ -752,6 +752,17 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(acceptedGuidedSyntaxInputs(checkpoint)).toEqual(["``````"])
     expect(acceptedGuidedSyntaxInputs(checkpoint)).not.toContain("~~~~~~")
   })
+
+  it("keeps touching sibling emphasis constructions on separate cards", () => {
+    const target = "*one***two**"
+    const checkpoints = deriveSyntaxCheckpoints(target, "onetwo")
+
+    expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
+      "**",
+      "****",
+    ])
+    expect(buildGuidedDraft(target, checkpoints, checkpoints.length)).toBe(target)
+  })
 })
 
 describe("card teaching projections", () => {

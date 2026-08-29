@@ -16,6 +16,13 @@ describe("mixed exercise card policy", () => {
       expect(hasSeparatedSyntaxRepeat(problem), id).toBe(false)
       expect(isEligibleMixedExercise(problem), id).toBe(true)
     }
+
+    const longDelimiter = {
+      target: "- ```a```\n- b",
+      starterText: "a\nb",
+    }
+    expect(hasSeparatedSyntaxRepeat(longDelimiter)).toBe(false)
+    expect(isEligibleMixedExercise(longDelimiter)).toBe(true)
   })
 
   it("does not exempt any other separated repeat", () => {

@@ -1,4 +1,5 @@
 import {
+  CHECKPOINT_LAYOUT_REVISION,
   createRunProblemIds,
   getEntryChoice,
   isEntryId,
@@ -32,6 +33,7 @@ export function createDefaultProgress(
     version: 5,
     bankRevision,
     runScheduleRevision,
+    checkpointLayoutRevision: CHECKPOINT_LAYOUT_REVISION,
     entryId: null,
     runNumber: 0,
     runSeed,
@@ -225,6 +227,7 @@ function isProgressV5(
     value.version !== 5 ||
     value.bankRevision !== expectedBankRevision ||
     value.runScheduleRevision !== runScheduleRevision ||
+    value.checkpointLayoutRevision !== CHECKPOINT_LAYOUT_REVISION ||
     (value.entryId !== null &&
       (!isEntryId(value.entryId) || !getEntryChoice(value.entryId).available)) ||
     !isNonnegativeSafeInteger(value.runNumber) ||
@@ -379,6 +382,23 @@ function migrateSyntaxMistakes(value: unknown): unknown {
   }
 }
 
+function migrateCheckpointLayout(value: unknown): unknown {
+  if (
+    !isRecord(value) ||
+    value.version !== 5 ||
+    value.checkpointLayoutRevision === CHECKPOINT_LAYOUT_REVISION
+  ) {
+    return value
+  }
+  if ("checkpointLayoutRevision" in value) return value
+
+  return {
+    ...value,
+    checkpointLayoutRevision: CHECKPOINT_LAYOUT_REVISION,
+    syntaxMistakes: [],
+  }
+}
+
 function migrateStarterProjectionRevision(
   value: unknown,
   validProblemIds: ReadonlySet<string>,
@@ -512,6 +532,16 @@ function migrateRunScheduleRevision(
     return value
   }
 
+  if (
+    typeof value.runScheduleRevision === "string" &&
+    value.runScheduleRevision
+      .split("|")
+      .filter((segment) => segment !== CHECKPOINT_LAYOUT_REVISION)
+      .join("|") === runScheduleRevision
+  ) {
+    return { ...value, runScheduleRevision }
+  }
+
   const firstProblemId = validProblemIds.values().next().value
   const fallback = createDefaultProgress(
     firstProblemId ?? "l1-heading-apple",
@@ -619,8 +649,9 @@ export function loadProgress(
     const saved = storage.getItem(PROGRESS_STORAGE_KEY)
     if (!saved) return fallback
 
-    const parsed: unknown = migrateSyntaxMistakes(
-      migratePendingSlotRetry(
+    const parsed: unknown = migrateCheckpointLayout(
+      migrateSyntaxMistakes(
+        migratePendingSlotRetry(
         migrateRunScheduleRevision(
           migrateLegacyRunSeed(
             migrateStarterProjectionRevision(
@@ -639,6 +670,7 @@ export function loadProgress(
           validDraftProblemIds,
           expectedBankRevision,
           expectedRunSeed,
+        ),
         ),
       ),
     )

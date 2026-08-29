@@ -392,10 +392,15 @@ describe("progressStore v5", () => {
         expected: ["# "],
       },
     ]
-    progress.runScheduleRevision = runScheduleRevision
-      .split("|")
-      .filter((segment) => segment !== CHECKPOINT_LAYOUT_REVISION)
-      .join("|")
+    progress.runStepIndex = 1
+    progress.scheduledStepIndex = 1
+    progress.currentProblemId = ids[1]!
+    progress.completedProblemIds = [ids[0]!]
+    progress.recentProblemIds = [ids[0]!]
+    progress.failedScheduledStepIndexes = [0]
+    progress.failedProblemIds = [ids[0]!]
+    progress.runScheduleRevision = `${runScheduleRevision}|${CHECKPOINT_LAYOUT_REVISION}`
+    delete (progress as Partial<typeof progress>).checkpointLayoutRevision
     storage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress))
 
     const loaded = loadProgress(
@@ -408,6 +413,13 @@ describe("progressStore v5", () => {
     )
 
     expect(loaded.runProblemIds).toEqual(ids)
+    expect(loaded.runStepIndex).toBe(1)
+    expect(loaded.scheduledStepIndex).toBe(1)
+    expect(loaded.currentProblemId).toBe(ids[1])
+    expect(loaded.completedProblemIds).toEqual([ids[0]])
+    expect(loaded.recentProblemIds).toEqual([ids[0]])
+    expect(loaded.failedScheduledStepIndexes).toEqual([0])
+    expect(loaded.failedProblemIds).toEqual([ids[0]])
     expect(loaded.draftByProblemId[problemId]).toBe("# Keep this draft")
     expect(loaded.syntaxMistakes).toEqual([])
   })

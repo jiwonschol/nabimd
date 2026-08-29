@@ -119,7 +119,6 @@ export const runScheduleRevision = [
   // Bump it whenever `createTurnProblemIds` can return a different run for an
   // unchanged (chapter, runNumber, seed).
   COMPOSITION_REVISION,
-  CHECKPOINT_LAYOUT_REVISION,
   ...curriculumLevels.map((entry) => {
     const ids = getServedProblemsForBank(problemBank, entry.level).map(
       (problem) => problem.id,

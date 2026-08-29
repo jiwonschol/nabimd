@@ -78,11 +78,9 @@ export function hasSeparatedSyntaxRepeat(
         (term === "bullet item" || term === "numbered step") &&
         listIdentityByCheckpoint[previous] !== null &&
         listIdentityByCheckpoint[previous] === listIdentityByCheckpoint[value] &&
-        termsByCheckpoint
+        checkpoints
           .slice(previous + 1, value)
-          .every(
-            (terms) => terms.length === 1 && terms[0] === "inline code",
-          )
+          .every((checkpoint) => checkpoint.syntaxFamily === "inlineCode")
       return !splitListBridge
     }),
   )

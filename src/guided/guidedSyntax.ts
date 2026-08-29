@@ -1188,7 +1188,6 @@ function syntaxRuns(
   return runs
 }
 
-const EMPHASIS_MARK = /^(?:\*{1,3}|_{1,3})$/
 const LIST_MARK = /^ {0,3}(?:[-+*]|\d+[.)])[\t ]+$/
 const TASK_BOX_MARK = /^\[[ xX]\]$/
 
@@ -1214,11 +1213,7 @@ function oneConstruction(left: SyntaxRun, right: SyntaxRun): boolean {
     return true
   }
   if (LIST_MARK.test(left.value) && TASK_BOX_MARK.test(right.value)) return true
-  return (
-    left.to === right.from &&
-    EMPHASIS_MARK.test(left.value) &&
-    EMPHASIS_MARK.test(right.value)
-  )
+  return false
 }
 
 /**
