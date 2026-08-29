@@ -471,6 +471,25 @@ describe("the sentence, derived from real Markdown", () => {
     expect(sentencesFor("a  \nb\n===")).toEqual([
       "End the line with two spaces to force a line break",
     ])
+    // Several breaks on a card that also holds an underline count the same way
+    // a card of only breaks does. The mixed branch used to be a second copy
+    // that read the first blank alone, so it said "two spaces" for a card
+    // whose second line wanted three, and "the line" for a card with several.
+    expect(sentencesFor("a  \nb   \nc\n---")).toEqual([
+      "Fill the spaces at the end of each line to force a line break",
+    ])
+    expect(sentencesFor("a  \nb  \nc\n---")).toEqual([
+      "End each line with two spaces to force a line break",
+    ])
+    // The two branches answer alike, which is the property that broke: the
+    // same blanks with and without the trailing underline.
+    for (const [mixed, pure] of [
+      ["a  \nb   \nc\n---", "a  \nb   \nc"],
+      ["a  \nb  \nc\n---", "a  \nb  \nc"],
+    ] as const) {
+      expect(sentencesFor(mixed), mixed).toEqual(sentencesFor(pure))
+    }
+
     // A card that is only breaks still counts them per line.
     expect(sentencesFor("a  \nb")).toEqual([
       "End the line with two spaces to force a line break",
