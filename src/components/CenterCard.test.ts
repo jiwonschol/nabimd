@@ -12,7 +12,7 @@ function checkpointFor(target: string) {
   return checkpoint
 }
 
-// Four of the Level 2 families cannot be derived from source yet: the parser
+// Five of the Level 2 families cannot be derived from source yet: the parser
 // that feeds `deriveSyntaxCheckpoints` has GFM off, and two more families have
 // their marks locked rather than blank (#157). Their sentences are written
 // against the blank shapes the engine work is committed to producing, spelled
@@ -140,6 +140,23 @@ describe("describeCheckpoint", () => {
     })
   })
 
+  it("does not call a bar in prose a table", () => {
+    // A bullet item whose text happens to contain a bar is not a table row.
+    expect(describeCheckpoint(checkpointFor("- Compare A | B"))).toEqual({
+      prefix: "Type the Markdown mark and space for a ",
+      term: "bullet item",
+      suffix: ".",
+    })
+  })
+
+  it("does not call a four-tilde code fence strikethrough", () => {
+    // An unclosed `~~~~` fence joins to the same value a strikethrough pair
+    // does; only the shape tells them apart.
+    expect(describeCheckpoint(checkpointFor("~~~~\ncode")).term).toBe(
+      "fenced code block",
+    )
+  })
+
   it("does not call strikethrough a code fence", () => {
     // `~~old~~` joins into `~~~~`, which the fence branch would swallow.
     expect(
@@ -151,6 +168,37 @@ describe("describeCheckpoint", () => {
       term: "strikethrough text",
       suffix: ".",
     })
+
+    // And it survives #157's grouping, where one card carries several phrases
+    // of the same family separated by locked newlines.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["~~", "input"],
+          ["old", "locked"],
+          ["~~", "input"],
+          ["\n", "locked"],
+          ["~~", "input"],
+          ["older", "locked"],
+          ["~~", "input"],
+        ),
+      ).term,
+    ).toBe("strikethrough text")
+
+    // Delimiters come in pairs. An odd run is a shape nothing produces, and it
+    // falls out of this branch rather than being guessed at — six tildes read
+    // as a fence, which is the direction that does not invent a lesson.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["~~", "input"],
+          ["old", "locked"],
+          ["~~", "input"],
+          ["x", "locked"],
+          ["~~", "input"],
+        ),
+      ).term,
+    ).toBe("fenced code block")
   })
 
   it("names the language when the fence asks for one", () => {

@@ -87,14 +87,21 @@ export function describeCheckpoint(
   }
 
   // Table rows are the one family the mark cannot name on its own: a header
-  // row and the divider under it can both come out as nothing but bars. The
-  // row is recognised by a bar anywhere in the checkpoint — a divider whose
-  // dashes are the blank would otherwise read as a Setext underline — and the
-  // divider is told apart by its dash runs, on whichever side of the blank
-  // they fall.
+  // row and the divider under it can both come out as nothing but bars. So the
+  // bar has to be found in the checkpoint rather than in the mark — but only
+  // where it is grammar. A bar sitting in locked prose ("- Compare A | B") is
+  // a character in a sentence, and reading it as a table turned a bullet item
+  // into a table row. A bar counts when the learner types it, or when it is in
+  // a locked run that holds nothing but table punctuation, which is what keeps
+  // a divider whose dashes are the blank from reading as a Setext underline.
+  const barIsSyntax = checkpoint.segments.some(
+    (segment) =>
+      segment.value.includes("|") &&
+      (segment.kind === "input" || /^[|\s:-]+$/.test(segment.value)),
+  )
   const inTableRow =
     /^[|\s:-]+$/.test(mark) &&
-    checkpoint.segments.some((segment) => segment.value.includes("|")) &&
+    barIsSyntax &&
     // A Setext underline under a heading that happens to contain a bar is a
     // dash run with a locked newline; that shape stays a heading.
     !(lockedBreak && /^(?:=+|-+)$/.test(mark))
@@ -141,6 +148,10 @@ export function describeCheckpoint(
   if (["---", "***", "___"].includes(mark)) {
     return instruction("Type the Markdown marks for a ", "section break")
   }
+  // #157 fixes the checkbox contract to an unordered item, `[- ][[ ]]`, and the
+  // curriculum has no ordered checkbox. An ordered one would fall through to
+  // the numbered-step sentence; that is a shape to open when content asks for
+  // it, not a case to guess at now.
   const taskBox = mark.match(/^[-+*]\s+\[([ xX]?)\]$/)
   if (taskBox) {
     return taskBox[1] === " " || taskBox[1] === ""
@@ -169,7 +180,19 @@ export function describeCheckpoint(
     }
     return instruction("Type the Markdown mark and space for a ", "block quote")
   }
-  if (mark === "~~~~") {
+  // Strikethrough is an even run of two-tilde delimiters wrapping a phrase.
+  // Deciding it from the joined value instead called an unclosed four-tilde
+  // code fence ("~~~~\ncode") strikethrough: both join to `~~~~`. A fence's
+  // delimiter is never exactly two tildes, so the shape separates them and an
+  // unexpected shape falls through to the fence sentence rather than this one.
+  const inputValues = checkpoint.segments
+    .filter((segment) => segment.kind === "input")
+    .map((segment) => segment.value)
+  if (
+    inputValues.length >= 2 &&
+    inputValues.length % 2 === 0 &&
+    inputValues.every((value) => value === "~~")
+  ) {
     return instruction(
       "Wrap the phrase in Markdown marks for ",
       "strikethrough text",
