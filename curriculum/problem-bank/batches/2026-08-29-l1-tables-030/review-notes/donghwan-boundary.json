@@ -1,0 +1,88 @@
+{
+  "batchId": "2026-08-29-l1-tables-030",
+  "reviewerId": "donghwan-boundary",
+  "role": "mechanical-counterexample",
+  "prNumber": 186,
+  "boundHeadSha": "0cbfcf08ddc317002b3e6ef3a827b3c12e504210",
+  "boundBaseSha": "aac35ff860effb87d955154364495e8fc0b02e2a",
+  "boundManifestDigest": "43256539c49217ce7fb71b72193681580f9e9eab8b7bdca38fb6d7c0492ac854",
+  "reviewedAt": "2026-08-29T08:39:00Z",
+  "scope": {
+    "assignedBy": "동준",
+    "brief": "표 문법 경계 반례: 바깥 바 유무, -/--/--- divider의 실제 GFM 경계, 정렬 콜론, escaped bar 홀짝, 파이프 문단·목록·fence, 셀 수 불일치, 대시 셀+평문 셀. 12개 semantic header/body에 all-dash 행이 없는지 독립 AST로 확인. #178 전이라 all-dash header/body 문장 판정은 해결됐다고 세지 않는다.",
+    "notInScope": "계약/재현(메이 담당), editorial 문구(진서 담당). candidate/fixture 내용은 봉인 상태라 수정하지 않았다."
+  },
+  "method": {
+    "description": "src/markdown/parser.ts와 동일한 실제 GFM 파서(micromark-extension-gfm + mdast-util-gfm)를 직접 import해 독립 스크립트를 짰다. structural.ts의 countBlockNodes를 재사용하지 않고, documentScope 비재귀 규칙(top-level root.children 중 type===table)을 별도로 재구현해 대조했다 — 코드 경로가 아니라 실제 스펙 파서를 오라클로 쓴 differential check.",
+    "script": "scripts/verify-boundary-donghwan.ts (이 커밋에 포함)",
+    "steps": [
+      "1) 배치 030 12개 target(header/body)이 all-dash가 아님을 확인하고 각각 top-level table 노드 정확히 1개로 파싱됨을 확인",
+      "2) 커밋된 fixtures.json(192개, shippedFixtureCount로 검증) 전수를 실제 파서로 재파싱해 expectedStatus(matched↔count>=1, fail↔count===0)와 대조",
+      "3) tableBatch030Fixtures.ts(TS 소스)와 fixtures.json(생성 아티팩트) 간 192개 전수 drift 확인(id/problemId/source/expectedStatus)",
+      "4) 리뷰 브리핑이 지정한 경계 중 shipped fixture에 없는 8개 반례를 손으로 짜서 같은 오라클로 실행",
+      "5) tableBatch030.test.ts를 실제로 돌려 evaluateProblem 전체 파이프라인(구조+검증 엔진)으로도 192개 전수가 초록인지 확인",
+      "6) 5)가 진짜 도는 시험인지 확인하려고 fixture 하나(no-divider, fail→matched)를 파괴 변형해 실패하는지 보고 원복(git status로 원복 확인)"
+    ]
+  },
+  "probes": [
+    {
+      "name": "all-dash-body-row",
+      "source": "Name | Color\n--- | ---\n--- | ---",
+      "note": "본문 행 두 셀이 모두 문자 그대로 '---'인 경우 (shipped 'dash-cell-with-text'는 한 셀만 '---'). 여전히 table 1개로 정상 파싱됨을 확인.",
+      "result": "pass"
+    },
+    {
+      "name": "all-dash-header-row",
+      "source": "--- | ---\n--- | ---\nA | B",
+      "note": "헤더 행 자체가 '---'인 경우. divider 행과 표기가 같지만 GFM은 헤더 셀 내용에 제약이 없어 정상 파싱됨을 확인.",
+      "result": "pass"
+    },
+    {
+      "name": "escaped-bar-odd-backslash-count",
+      "source": "Choice | Note\n--- | ---\nA \\\\| B | Saved",
+      "note": "shipped 'escaped-cell-bar'는 백슬래시 1개(이스케이프 성공, 2셀 유지). 여기는 백슬래시 2개(자기 자신을 이스케이프해 무효화되고 바가 다시 분리자로 살아남아 본문 행이 3셀). GFM에서 헤더보다 셀이 많은 본문 행은 초과분을 버릴 뿐 표 자체는 유효 — table 1개로 정상 파싱, 검증됨.",
+      "result": "pass"
+    },
+    {
+      "name": "divider-colon-without-dash",
+      "source": "Name | Color\n: | :\nKite | Blue",
+      "note": "정렬 콜론만 있고 대시가 없는 분리자 행. GFM 분리자 셀은 대시가 최소 1개 필요해 표로 인식되지 않아야 한다 — 실제로 table 0개, 확인됨. shipped 'aligned-divider'는 항상 대시를 유지하므로 이 경계는 커버가 안 됐었다.",
+      "result": "pass"
+    },
+    {
+      "name": "divider-fewer-cells-than-header",
+      "source": "Name | Color | Place\n--- | ---\nKite | Blue | Home",
+      "note": "shipped 'mismatched-divider'의 반대 방향(분리자가 헤더보다 많음). 여기는 분리자(2셀)가 헤더(3셀)보다 적음. 둘 다 표로 인식되지 않아야 한다 — 실제로 table 0개, 확인됨.",
+      "result": "pass"
+    },
+    {
+      "name": "body-row-more-cells-than-header",
+      "source": "Name | Color\n--- | ---\nKite | Blue | Extra",
+      "note": "헤더/분리자 불일치와 달리, 본문 행의 셀 수 초과는 GFM 스펙상 표를 무효화하지 않고 초과 셀만 버려진다 — table 1개로 정상 파싱 확인. 이 배치의 match check는 표 존재 유무만 보고(block-count, 내용 비교 없음) 헤더 텍스트와 무관하게 통과하므로 shipped 'different-prose'/'case-spelling' 픽스처가 완전히 다른 단어로도 matched인 것과 같은 원리 — 신규 결함 아님.",
+      "result": "pass"
+    },
+    {
+      "name": "pipe-in-blockquote",
+      "source": "> Compare A | B when the sizes differ.",
+      "note": "shipped 'pipe-paragraph'(평문단)·'pipe-list'(목록)의 형제 경계로 blockquote 컨테이너를 확인. table 0개, 확인됨.",
+      "result": "pass"
+    },
+    {
+      "name": "table-interrupts-paragraph-no-blank-line",
+      "source": "Some text right above.\nName | Color\n--- | ---\nKite | Blue",
+      "note": "표 헤더 앞에 빈 줄 없이 평문단이 바로 붙은 경우. 처음엔 '단락에 흡수돼 표가 안 생긴다'고 예상했는데 틀렸다 — GFM 표는 단락을 끊고 들어갈 수 있어(interrupt) 실제로는 paragraph 1개 + table 1개로 분리 파싱된다. 내 예상이 틀렸던 걸 실제 파서로 잡았다(스크립트 히스토리에 남김); 결함 아니고, 오히려 이 경계에서 표 인식이 깨지지 않는다는 확인.",
+      "result": "pass"
+    }
+  ],
+  "findings": [],
+  "regressionTests": {
+    "targetsNonAllDash": "pass (12/12)",
+    "targetsSingleTableNode": "pass (12/12)",
+    "shippedFixturesDifferential": "pass (192/192, 실제 GFM 파서 기준)",
+    "shippedFixturesRealEngine": "pass (192/192, tableBatch030.test.ts 'runs all frozen fixtures through the real learner engine', 실제로 돎을 파괴 변형으로 확인 — no-divider fixture를 fail→matched로 바꾸니 정확히 그 1개만 빨갛게 잡힘)",
+    "tsJsonArtifactDrift": "pass (0 mismatch, 192/192)",
+    "manifestDigestBinding": "review-manifest.json의 manifestDigest가 PR 본문/현철 메시지의 43256539… 와 일치함을 확인"
+  },
+  "overallVerdict": "pass-for-scope",
+  "verdictNote": "반례 담당 범위(표 문법 경계) 안에서는 결함 0건 — shipped 192 fixtures 전수와 이번에 추가로 짠 8개 반례 모두 실제 GFM 파서·실제 evaluateProblem 엔진 양쪽에서 기대대로 동작한다. 다만 이 PR의 전체 판정은 @진서 editorial HOLD(P1 teaching.example이 12개 중 하나 문제의 정답과 완전히 동일, P2 문구가 학습자가 실제로 안 하는 '행 추가'를 지시, P3 어휘 약함)로 이미 HOLD 상태이며, 이건 내 스코프 밖(candidate 텍스트) 결함이라 여기서 고치지 않는다."
+}
