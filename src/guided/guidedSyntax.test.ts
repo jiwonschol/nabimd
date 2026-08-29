@@ -1,3 +1,4 @@
+import { readFileSync, readdirSync } from "node:fs"
 import { describe, expect, it } from "vitest"
 import {
   getCurriculumElement,
@@ -17,6 +18,7 @@ import {
   missedGuidedSyntaxGroups,
   projectCheckpointContext,
   syntaxGroupTerm,
+  syntaxGroupTermAt,
   syntaxCheckpointTerms,
 } from "./guidedSyntax"
 
@@ -99,6 +101,13 @@ describe("deriveSyntaxCheckpoints", () => {
     // The note still shows the learner both spellings, one row per group.
     expect(acceptedGuidedSyntaxGroupInputs(two, 1)).toEqual(["[x]", "[X]"])
 
+    // And the note is not raised at all for a box typed in the other case.
+    // `missedGuidedSyntaxGroups` compares group by group, so it needs the same
+    // fold the whole-answer check does — without it a correct `[X]` is marked
+    // as the group that could not be explained.
+    expect(missedGuidedSyntaxGroups(two, ["- ", "[X]", "- ", "[x]"])).toEqual([])
+    expect(missedGuidedSyntaxGroups(two, ["- ", "[ ]", "- ", "[x]"])).toEqual([1])
+
     // Only the case varies. A tab between the brackets is a task marker in
     // some columns and not others, and the accepted set is built from a
     // checkpoint that cannot see the line's indentation — see the tab test
@@ -135,6 +144,82 @@ describe("deriveSyntaxCheckpoints", () => {
     ).toEqual(["- "])
     expect(syntaxCheckpointTerms(checkpoint)).toEqual(["bullet item"])
     expect(acceptedGuidedSyntaxInputs(checkpoint)).not.toContain("- [\t]")
+  })
+
+  it("keeps a deletion that wraps a line break on one card", () => {
+    // The merger compares line indentation, because a nested list is a
+    // different list. A deletion is inline and crosses the break anyway, so
+    // an indented second line split the pair into two cards that each held
+    // one `~~` and each said it wraps a phrase.
+    for (const source of ["~~old\nprice~~", "~~old\n price~~"]) {
+      const [card, ...rest] = deriveSyntaxCheckpoints(source, "")
+      expect(rest, source).toEqual([])
+      expect(
+        card!.segments.flatMap((segment) =>
+          segment.kind === "input" ? [segment.value] : [],
+        ),
+        source,
+      ).toEqual(["~~", "~~"])
+    }
+  })
+
+  it("leaves a tab-indented nested quote as a plain quote", () => {
+    // `> \t> deep` is a nested quote to the parser. Opening the inner marker
+    // would put the tab between the two blanks as locked prose that looks
+    // like a space, so they would no longer touch and the nesting could only
+    // be recovered by loosening what "adjacent" means for every family. The
+    // same reason keeps a tab task box locked.
+    const checkpoint = deriveSyntaxCheckpoints("> \t> deep", "")[0]!
+    expect(syntaxCheckpointTerms(checkpoint)).toEqual(["block quote"])
+  })
+
+  it("lets only one place assemble the naming context", () => {
+    // The context arguments leaked twice — #188's line break, then this PR's
+    // quote marker — because three sites each rebuilt them and the defaults
+    // kept the compiler quiet. `syntaxGroupTermsInOrder` is the one caller;
+    // everything else asks for a group by index. Two files are exempt: the
+    // module that owns the function, and this file, which tests it directly.
+    const roots = ["src"]
+    const files: string[] = []
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const full = `${dir}/${entry.name}`
+        if (entry.isDirectory()) walk(full)
+        else if (/\.tsx?$/.test(entry.name)) files.push(full)
+      }
+    }
+    for (const root of roots) walk(root)
+
+    const exempt = new Set([
+      "src/guided/guidedSyntax.ts",
+      "src/guided/guidedSyntax.test.ts",
+    ])
+    const callers = files.filter((file) => {
+      if (exempt.has(file)) return false
+      return /\bsyntaxGroupTerm\s*\(/.test(readFileSync(file, "utf8"))
+    })
+
+    expect(callers).toEqual([])
+    // And the exemption is not vacuous: the owner really does call it, once,
+    // beyond the definition itself.
+    expect(
+      readFileSync("src/guided/guidedSyntax.ts", "utf8").match(
+        /(?<!function )\bsyntaxGroupTerm\s*\(/g,
+      ),
+    ).toHaveLength(1)
+  })
+
+  it("names one group with the context the checkpoint carries", () => {
+    // Every caller used to assemble `syntaxGroupTerm`'s context arguments
+    // itself, and when a third one was added the Missed-summary caller kept
+    // passing two — recording a nested quote as a plain one. The context is
+    // read from the checkpoint now, so a caller cannot leave one out.
+    const nested = deriveSyntaxCheckpoints("> > deep", "")[0]!
+    expect(syntaxGroupTermAt(nested, 0)).toBe("block quote")
+    expect(syntaxGroupTermAt(nested, 1)).toBe("quote inside a quote")
+
+    const setext = deriveSyntaxCheckpoints("Title\n---", "")[0]!
+    expect(syntaxGroupTermAt(setext, 0)).toBe("level 2 Setext heading")
   })
 
   it("keeps every line of one quote on a single card", () => {

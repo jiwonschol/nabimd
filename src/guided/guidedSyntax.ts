@@ -1,6 +1,9 @@
 import type { Nodes, Parents } from "mdast"
 import { parseMarkdownSource } from "../markdown/parser"
 
+/** A blank holding one block-quote marker. */
+const QUOTE_MARKER_BLANK = /^ {0,3}>[\t ]*$/
+
 export type GuidedSyntaxSegment =
   | { kind: "input"; value: string }
   | { kind: "locked"; value: string }
@@ -333,27 +336,45 @@ export function syntaxGroupTerm(
   return "Markdown mark"
 }
 
+/**
+ * The name of every input group, in order.
+ *
+ * `syntaxGroupTerm` needs context a bare value cannot carry — whether a line
+ * break sits in front of it, whether another quote marker does — and every
+ * caller used to assemble those arguments itself. When the third one was
+ * added, the Missed-summary caller kept passing two and silently recorded a
+ * nested quote as a plain one. The context is read here, once.
+ */
+function syntaxGroupTermsInOrder(
+  checkpoint: SyntaxCheckpoint,
+): readonly string[] {
+  return checkpoint.segments.flatMap((segment, index) => {
+    if (segment.kind !== "input") return []
+    const previous = checkpoint.segments[index - 1]
+    return [
+      syntaxGroupTerm(
+        segment.value,
+        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+        previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
+      ),
+    ]
+  })
+}
+
+/** The name of one input group, as the card and the Missed summary say it. */
+export function syntaxGroupTermAt(
+  checkpoint: SyntaxCheckpoint,
+  groupIndex: number,
+): string {
+  return syntaxGroupTermsInOrder(checkpoint)[groupIndex] ?? "Markdown mark"
+}
+
 /** Semantic syntax names represented by one checkpoint, matching the labels
  * shown in the Now learning panel. */
 export function syntaxCheckpointTerms(
   checkpoint: SyntaxCheckpoint,
 ): readonly string[] {
-  return [
-    ...new Set(
-      checkpoint.segments.flatMap((segment, index) => {
-        if (segment.kind !== "input") return []
-        const previous = checkpoint.segments[index - 1]
-        return [
-          syntaxGroupTerm(
-            segment.value,
-            previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-            previous?.kind === "input" &&
-              /^ {0,3}>[\t ]*$/.test(previous.value),
-          ),
-        ]
-      }),
-    ),
-  ]
+  return [...new Set(syntaxGroupTermsInOrder(checkpoint))]
 }
 
 export function acceptsGuidedSyntaxInput(
@@ -838,6 +859,14 @@ function markNodeSyntax(
           // its parent has not masked yet: matching from the line start again
           // re-claimed the outer `>`, so the nested marker never became a
           // blank and a two-level quote read as a plain one.
+          // Past the markers this node's parent already took — and no
+          // further. `> \t> deep` is a nested quote to the parser, but the tab
+          // between the markers would sit in the card as locked prose that
+          // looks like a space, so the two blanks would no longer touch and
+          // the nesting could only be recovered by loosening what "adjacent"
+          // means for every family. The same reason keeps a tab task box
+          // locked; a tab-indented nested quote is a shape to open with the
+          // content that needs it.
           let markStart = lineStart
           while (markStart < lineEnd && mask[markStart]) markStart += 1
           const marker = source.slice(markStart, lineEnd).match(/^ {0,3}>[\t ]?/)
@@ -911,12 +940,30 @@ function markNodeSyntax(
       break
     case "emphasis":
     case "strong":
+      markInlineDelimiters(source, mask, node, families, family)
+      break
     // GFM strikethrough wraps its phrase the same way emphasis does, and it
     // had no case at all: `~~gone~~` produced no checkpoint, so the sentence
     // written for it could never be shown.
-    case "delete":
+    case "delete": {
       markInlineDelimiters(source, mask, node, families, family)
+      // A deletion may wrap a soft line break, putting its two delimiters on
+      // different lines. The merger compares line indentation — a nested list
+      // is a different list — so `~~old\n price~~` came apart into two cards,
+      // each holding one `~~` and each saying it wraps a phrase. Grouping the
+      // node's lines keeps the pair together, the way a fenced block does.
+      const deletion = range
+      if (
+        deletion &&
+        source.slice(deletion.from, deletion.to).includes("\n")
+      ) {
+        groupedRanges.push({
+          from: lineStartAt(source, deletion.from),
+          to: lineEndAt(source, deletion.to),
+        })
+      }
       break
+    }
     case "inlineCode":
       if (range) {
         const raw = source.slice(range.from, range.to)
@@ -1092,8 +1139,6 @@ function lineNumberAt(source: string, offset: number): number {
 function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
   return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
 }
-
-const QUOTE_MARKER_BLANK = /^ {0,3}>[\t ]*$/
 
 /**
  * The quote markers a card asks for, one line at a time.
