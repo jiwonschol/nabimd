@@ -701,6 +701,19 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(buildGuidedDraft(target, cards, cards.length)).toBe(target)
   })
 
+  it("keeps one marker across quoted-list checkpoints", () => {
+    const target = "> - [ ] task\n> - plain"
+    const cards = deriveSyntaxCheckpoints(target, "")
+
+    expect(cards).toHaveLength(2)
+    expect(
+      buildGuidedDraft(target, cards, cards.length, {
+        [cards[0]!.id]: "> + [ ]",
+        [cards[1]!.id]: "> * ",
+      }),
+    ).toBe("> + [ ] task\n> + plain")
+  })
+
   it("lets every emphasis pair on a joined card choose its own delimiter", () => {
     // Two emphasis spans were two cards before they were joined, and each
     // accepted its own delimiter. Swapping only the first pair offered a mixed

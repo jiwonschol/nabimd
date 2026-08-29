@@ -541,6 +541,22 @@ function listStyleFromInput(value: string): GuidedListStyle {
   return {}
 }
 
+function listStyleFromCheckpointInput(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+): GuidedListStyle {
+  let inputOffset = 0
+  for (const segment of checkpoint.segments) {
+    if (segment.kind !== "input") continue
+    const width = segment.value.length
+    if (Object.keys(listStyleFromInput(segment.value)).length > 0) {
+      return listStyleFromInput(value.slice(inputOffset, inputOffset + width))
+    }
+    inputOffset += width
+  }
+  return {}
+}
+
 /**
  * One coherent marker per indentation level, not one for the document.
  *
@@ -561,7 +577,7 @@ function coherentListStyles(
     const style = styles.get(indentation) ?? {}
     if (style.unorderedMarker && style.orderedDelimiter) continue
     const value = completedValues[checkpoint.id] ?? checkpoint.canonicalInput
-    const candidate = listStyleFromInput(value)
+    const candidate = listStyleFromCheckpointInput(checkpoint, value)
     style.unorderedMarker ??= candidate.unorderedMarker
     style.orderedDelimiter ??= candidate.orderedDelimiter
     styles.set(indentation, style)
