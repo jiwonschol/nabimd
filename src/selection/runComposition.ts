@@ -174,6 +174,80 @@ function chapterOrder(
   return rotate(ordered, roundOffset * totalWeight)
 }
 
+/**
+ * The mixed exercise is the only slot a run fills from outside its syntax
+ * window, so it is also the only slot that can collide with what the learner
+ * just did: the four singles come from consecutive `chapterOrder` windows and
+ * are already disjoint across adjacent runs. Walking the cycle from its start
+ * keeps the choice a pure function of `runNumber`, so a persisted run still
+ * validates against a recomputed schedule, and every mixed exercise is still
+ * served exactly once per cycle — this reorders that permutation, it does not
+ * shorten it.
+ *
+ * This cannot lower how often a syntax returns from one run to the next.
+ * Every mixed exercise in the bank opens on a level 1 heading, so no candidate
+ * avoids that element; measured over 400 runs, choosing the best candidate
+ * every time moves run-to-run repeats 35.1% -> 31.7% while same-run repeats
+ * fall 1.29 -> 0.80 cards. The run-to-run number belongs to the heading card.
+ */
+function chooseMixedForRun(
+  orderedMixed: readonly SchedulableProblem[],
+  singlesForRun: (runNumber: number) => readonly SchedulableProblem[],
+  runNumber: number,
+): SchedulableProblem {
+  const cycleLength = orderedMixed.length
+  const cycleStart = runNumber - (runNumber % cycleLength)
+  const taken = new Set<number>()
+  let chosenIndex = 0
+  let previousRunElements: ReadonlySet<string> = new Set()
+
+  for (let run = cycleStart; run <= runNumber; run += 1) {
+    const thisRun = new Set<string>()
+    for (const problem of singlesForRun(run)) {
+      for (const element of getCurriculumElements(problem)) thisRun.add(element)
+    }
+
+    // Two ways a mixed exercise can feel stale, ordered by what the learner
+    // actually complained about: a syntax that returns next sitting beats a
+    // syntax repeated inside this one. Comparing them in order rather than
+    // summing them keeps the rule readable and needs no tuned constants;
+    // measured over 400 runs, ordering them this way and summing with the
+    // other weight both reach the same schedule.
+    let bestIndex = -1
+    let bestPreviousOverlap = Number.POSITIVE_INFINITY
+    let bestSameRunOverlap = Number.POSITIVE_INFINITY
+    for (let index = 0; index < cycleLength; index += 1) {
+      if (taken.has(index)) continue
+      const elements = getCurriculumElements(orderedMixed[index]!)
+      const previousOverlap = elements.filter((element) =>
+        previousRunElements.has(element),
+      ).length
+      const sameRunOverlap = elements.filter((element) =>
+        thisRun.has(element),
+      ).length
+      if (
+        previousOverlap < bestPreviousOverlap ||
+        (previousOverlap === bestPreviousOverlap &&
+          sameRunOverlap < bestSameRunOverlap)
+      ) {
+        bestPreviousOverlap = previousOverlap
+        bestSameRunOverlap = sameRunOverlap
+        bestIndex = index
+      }
+    }
+    taken.add(bestIndex)
+    chosenIndex = bestIndex
+
+    const served = new Set(thisRun)
+    for (const element of getCurriculumElements(orderedMixed[bestIndex]!)) {
+      served.add(element)
+    }
+    previousRunElements = served
+  }
+
+  return orderedMixed[chosenIndex]!
+}
+
 export function createTurnProblemIds(
   chapter: CurriculumLevel,
   runNumber: number,
@@ -207,14 +281,16 @@ export function createTurnProblemIds(
   ) {
     const orderedSingles = chapterOrder(singleProblems, seed)
     const singleCount = RUN_POLICY.turnSize - 1
-    const singleOffset = (runNumber * singleCount) % orderedSingles.length
-    const singles = Array.from(
-      { length: singleCount },
-      (_, index) =>
-        orderedSingles[(singleOffset + index) % orderedSingles.length]!,
-    )
+    const singlesForRun = (run: number): SchedulableProblem[] => {
+      const offset = (run * singleCount) % orderedSingles.length
+      return Array.from(
+        { length: singleCount },
+        (_, index) => orderedSingles[(offset + index) % orderedSingles.length]!,
+      )
+    }
+    const singles = singlesForRun(runNumber)
     const orderedMixed = seededProblemOrder(mixedProblems, seed)
-    const mixed = orderedMixed[runNumber % orderedMixed.length]!
+    const mixed = chooseMixedForRun(orderedMixed, singlesForRun, runNumber)
     const selected = [...singles, mixed]
     const presentationOffset =
       seed === 0

@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import {
+  COMPOSITION_REVISION,
   createRunProblemIds,
   entryChoices,
   runScheduleRevision,
@@ -113,6 +114,14 @@ describe("progressStore v5", () => {
       ),
     ].join("|")
     expect(runScheduleRevision.startsWith(`${policy}|`)).toBe(true)
+
+    // Nothing derived from the bank can notice that `createTurnProblemIds`
+    // now returns a different run for the same (chapter, runNumber, seed), so
+    // the algorithm carries a hand-written token. Losing it would let a
+    // composition change reach a learner whose persisted run no longer
+    // matches, and the validator drops that progress instead of migrating it.
+    expect(runScheduleRevision).toContain(`|${COMPOSITION_REVISION}|`)
+    expect(COMPOSITION_REVISION).toMatch(/^composition@\d+-/)
 
     // Eligibility is computed, not declared, so naming the policy constants is
     // not enough: a change to how the card cuts blanks moves which mixed

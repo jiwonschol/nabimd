@@ -21,6 +21,8 @@ import {
   syntaxGroupTerm,
   type SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
+import { instructionFor } from "../guided/checkpointInstruction"
+import { checkpointShape } from "../guided/checkpointShape"
 
 function checkpointTerms(checkpoint: SyntaxCheckpoint): string[] {
   return [
@@ -403,5 +405,81 @@ describe("three-level entry choices", () => {
     expect(isEntryId("level-4")).toBe(false)
     expect(isEntryId("challenge")).toBe(false)
     expect(getEntryChoice("level-2").level).toBe(2)
+  })
+})
+
+describe("how often a run repeats a syntax the learner just practised", () => {
+  // Jiwon, 2026-08-29: "I answered everything right and kept pressing Enter,
+  // and problems of the same syntax keep coming." Measured on the live build
+  // it was true and not a feeling: over this grid the same problem never came
+  // back, while the syntax behind it returned every second run.
+  //
+  // The budgets below are ceilings, not the current readings. They are chosen
+  // to sit under what the schedule did before the mixed exercise started
+  // avoiding what the run beside it teaches (same-run 1.29 cards, run-to-run
+  // 35.1%), so reverting that choice fails here rather than passing quietly.
+  //
+  // The run-to-run figure cannot go much lower from this file. Every mixed
+  // exercise in the bank opens on a level 1 heading, so no candidate can avoid
+  // that element; #198 is where that card is answered.
+  const SEEDS = 40
+  const RUNS = 10
+  const MAX_SAME_RUN_REPEATS_PER_RUN = 1.1
+  const MAX_RUN_TO_RUN_REPEAT_RATE = 0.33
+  const MAX_CARDS_PER_RUN = 8.1
+
+  function runCardTerms(runNumber: number, seed: number): string[] {
+    return createRunProblemIds("level-1", runNumber, seed).flatMap((id) => {
+      const problem = problemBank.find((candidate) => candidate.id === id)!
+      return deriveSyntaxCheckpoints(problem.target, problem.starterText).map(
+        (checkpoint) => instructionFor(checkpointShape(checkpoint)).term,
+      )
+    })
+  }
+
+  it("keeps a sitting off the syntax it just taught", () => {
+    let runs = 0
+    let cards = 0
+    let sameRunRepeats = 0
+    let returningSyntaxes = 0
+    let syntaxes = 0
+
+    for (let seed = 0; seed < SEEDS; seed += 1) {
+      let previous = new Set<string>()
+      for (let runNumber = 0; runNumber < RUNS; runNumber += 1) {
+        const terms = runCardTerms(runNumber, seed)
+        const distinct = new Set<string>()
+        for (const term of terms) {
+          if (distinct.has(term)) sameRunRepeats += 1
+          distinct.add(term)
+        }
+        for (const term of distinct) {
+          syntaxes += 1
+          if (previous.has(term)) returningSyntaxes += 1
+        }
+        previous = distinct
+        runs += 1
+        cards += terms.length
+      }
+    }
+
+    expect(runs).toBe(SEEDS * RUNS)
+    expect(sameRunRepeats / runs).toBeLessThanOrEqual(
+      MAX_SAME_RUN_REPEATS_PER_RUN,
+    )
+    expect(returningSyntaxes / syntaxes).toBeLessThanOrEqual(
+      MAX_RUN_TO_RUN_REPEAT_RATE,
+    )
+    expect(cards / runs).toBeLessThanOrEqual(MAX_CARDS_PER_RUN)
+  })
+
+  it("never serves the same problem twice across the grid it covers", () => {
+    for (let seed = 0; seed < SEEDS; seed += 1) {
+      const served: string[] = []
+      for (let runNumber = 0; runNumber < RUNS; runNumber += 1) {
+        served.push(...createRunProblemIds("level-1", runNumber, seed))
+      }
+      expect(new Set(served).size, `seed ${seed}`).toBe(served.length)
+    }
   })
 })
