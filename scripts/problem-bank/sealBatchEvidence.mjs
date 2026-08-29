@@ -157,6 +157,17 @@ async function resealOneBatch({ batchDir, write }) {
 }
 
 export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
+  if (write && batchDirs.length > 0) {
+    const bankRoot = dirname(dirname(batchDirs[0]))
+    const loaded = await loadBatchDirectories(bankRoot)
+    const loaderErrors = loaded.flatMap((batch) => batch.loaderErrors ?? [])
+    if (loaderErrors.length > 0) {
+      throw new Error(
+        `Cannot reseal while the problem bank is unreadable:\n${loaderErrors.join("\n")}`,
+      )
+    }
+  }
+
   const sealed = []
   for (const batchDir of batchDirs) {
     sealed.push({ batchDir, ...(await resealOneBatch({ batchDir, write })) })
@@ -226,6 +237,15 @@ async function immutableBaselineTargets(targets) {
   if (!baseline) {
     throw new Error(
       "Cannot identify an immutable baseline; refusing to write sealed evidence.",
+    )
+  }
+  try {
+    await run("git", ["cat-file", "-e", `${baseline}^{commit}`], {
+      cwd: process.cwd(),
+    })
+  } catch {
+    throw new Error(
+      `Immutable baseline ${baseline} is not a locally available commit; refusing to write sealed evidence.`,
     )
   }
 

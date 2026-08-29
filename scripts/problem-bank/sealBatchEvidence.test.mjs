@@ -264,6 +264,58 @@ test("a checkout without origin/main uses its parent as the immutable baseline",
   assert.equal(await resolveBaselineSha(repository, ""), parent)
 })
 
+test("the write command rejects an explicit baseline that is not available locally", async () => {
+  const baselineBatch = resolve(
+    import.meta.dirname,
+    "../../curriculum/problem-bank/batches/2026-07-19-milestone-1-foundation-001",
+  )
+  let result
+  try {
+    await run(process.execPath, [cli, baselineBatch], {
+      env: { ...process.env, NABI_BASE_SHA: "deadbeefdeadbeefdeadbeefdeadbeefdeadbeef" },
+    })
+    result = { code: 0, stderr: "" }
+  } catch (error) {
+    result = { code: error.code ?? 1, stderr: error.stderr ?? "" }
+  }
+
+  assert.equal(result.code, 1)
+  assert.match(result.stderr, /not a locally available commit/)
+})
+
+test("an unreadable sibling batch blocks every reseal before any file is written", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-unreadable-chain-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  await mkdir(batchesRoot, { recursive: true })
+  const batchIds = [
+    "2026-07-19-milestone-1-foundation-001",
+    "2026-07-19-l1-l2-headings-002",
+  ]
+  for (const batchId of batchIds) {
+    await cp(resolve(sourceBank, "batches", batchId), resolve(batchesRoot, batchId), {
+      recursive: true,
+    })
+  }
+  const targetDir = resolve(batchesRoot, batchIds[0])
+  const reviewName = (await readdir(resolve(targetDir, "reviews")))
+    .filter((name) => name.endsWith(".json"))
+    .sort()[0]
+  const reviewPath = resolve(targetDir, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].note = "would require resealing"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  const before = await readFile(reviewPath, "utf8")
+  await writeFile(resolve(batchesRoot, batchIds[1], "fixtures.json"), "{broken\n")
+
+  await assert.rejects(
+    resealBatchEvidenceSet({ batchDirs: [targetDir], write: true }),
+    /problem bank is unreadable/,
+  )
+  assert.equal(await readFile(reviewPath, "utf8"), before)
+})
+
 test("a batch with no reviews and no editorial is not an error", async () => {
   const batchDir = await makeBatch()
   const report = await resealBatchEvidence({ batchDir, write: true })

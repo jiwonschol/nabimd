@@ -21,7 +21,51 @@ async function scriptTestFiles() {
 }
 
 export function importsNodeTest(source) {
-  return /^\s*import\s+(?:[\w$]+\s*,\s*)?(?:\*\s+as\s+[\w$]+|\{[^}]*\}|[\w$]+)\s+from\s+(["'])node:test\1\s*;?/m.test(source)
+  let executable = ""
+  let index = 0
+  while (index < source.length) {
+    const current = source[index]
+    const next = source[index + 1]
+    if (current === "/" && next === "/") {
+      const end = source.indexOf("\n", index + 2)
+      executable += " ".repeat((end < 0 ? source.length : end) - index)
+      index = end < 0 ? source.length : end
+      continue
+    }
+    if (current === "/" && next === "*") {
+      const end = source.indexOf("*/", index + 2)
+      const stop = end < 0 ? source.length : end + 2
+      executable += source.slice(index, stop).replace(/[^\n]/g, " ")
+      index = stop
+      continue
+    }
+    if (current === "`") {
+      let stop = index + 1
+      while (stop < source.length) {
+        if (source[stop] === "\\") stop += 2
+        else if (source[stop] === "`") { stop += 1; break }
+        else stop += 1
+      }
+      executable += source.slice(index, stop).replace(/[^\n]/g, " ")
+      index = stop
+      continue
+    }
+    if (current === '"' || current === "'") {
+      const quote = current
+      let stop = index + 1
+      while (stop < source.length) {
+        if (source[stop] === "\\") stop += 2
+        else if (source[stop] === quote) { stop += 1; break }
+        else stop += 1
+      }
+      executable += source.slice(index, stop)
+      index = stop
+      continue
+    }
+    executable += current
+    index += 1
+  }
+  return /^\s*import\s+(?:[\w$]+\s*,\s*)?(?:\*\s+as\s+[\w$]+|\{[^}]*\}|[\w$]+)\s+from\s+(["'])node:test\1\s*;?/m.test(executable)
 }
 
 describe("test runner configuration", () => {
@@ -66,6 +110,8 @@ describe("test runner configuration", () => {
     expect(importsNodeTest('import {\n  describe,\n  it,\n} from "node:test"\n')).toBe(true)
     expect(importsNodeTest('import test, { mock } from "node:test"\n')).toBe(true)
     expect(importsNodeTest('// import test from "node:test"\n')).toBe(false)
+    expect(importsNodeTest('/*\nimport test from "node:test"\n*/\n')).toBe(false)
+    expect(importsNodeTest('const fixture = `\nimport test from "node:test"\n`\n')).toBe(false)
     expect(importsNodeTest('const runner = "node:test"\n')).toBe(false)
   })
 })
