@@ -196,8 +196,11 @@ export async function listBatchDirectories(bankRoot) {
 
 export const DEFAULT_BANK_ROOT = "curriculum/problem-bank/batches"
 
-export async function resolveBaselineSha(cwd = process.cwd()) {
-  const explicit = process.env.NABI_BASE_SHA?.trim()
+export async function resolveBaselineSha(
+  cwd = process.cwd(),
+  explicitBaseSha = process.env.NABI_BASE_SHA,
+) {
+  const explicit = explicitBaseSha?.trim()
   if (explicit && !/^0+$/.test(explicit)) return explicit
 
   try {

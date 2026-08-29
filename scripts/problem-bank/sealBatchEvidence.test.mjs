@@ -261,7 +261,7 @@ test("a checkout without origin/main uses its parent as the immutable baseline",
   await writeFile(resolve(repository, "evidence.txt"), "second\n")
   await run("git", ["commit", "-am", "second"], { cwd: repository })
 
-  assert.equal(await resolveBaselineSha(repository), parent)
+  assert.equal(await resolveBaselineSha(repository, ""), parent)
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {
