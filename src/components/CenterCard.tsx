@@ -225,6 +225,56 @@ export function describeCheckpoint(
       allChecked ? "checked-off item" : "checkbox item",
     )
   }
+  // One line can carry two syntaxes. The L3/L4/L5 content writes an exact name
+  // as inline code inside a list item, so the blanks are a list marker and a
+  // pair of backticks — and the marker branches below decide from the joined
+  // value, where `- ` and two backticks read as "- ``". They matched the
+  // bullet and said nothing about the other blanks; on the L5 readme cards
+  // that left four of six unexplained. Which kinds are present has to be
+  // counted from the segments, the same way the marker count already is.
+  // Splitting the card into one per syntax would be the better answer, but the
+  // two share a line, so either half would show the other half's answer in its
+  // locked prose. That needs the locked-prose contract reopened (#177); until
+  // then the sentence names both, and the emphasis goes on the backticks
+  // because a learner who reached this card has already been taught the marker.
+  const inlineCodeRuns = checkpoint.segments.filter(
+    // One or two backticks, never a fence: three or more is a code block, and
+    // its own branch below teaches it.
+    (segment) => segment.kind === "input" && /^`{1,2}$/.test(segment.value),
+  ).length
+  const bulletMarkers = markerCount(/^ {0,3}[-+*][\t ]+$/)
+  const stepMarkers = markerCount(/^ {0,3}\d+[.)][\t ]+$/)
+  // Inline code wraps, so it takes two blanks. A single backtick blank is some
+  // other shape and keeps the marker's own sentence.
+  if (inlineCodeRuns >= 2 && bulletMarkers + stepMarkers > 0) {
+    // The two syntaxes are counted separately. Sharing one count read the L5
+    // cards — two steps and two code spans — as plural on the marker and
+    // singular on the code, which is the same miss as the 158: a number the
+    // sentence never took from the card.
+    const markers = bulletMarkers + stepMarkers
+    const codeSpans = inlineCodeRuns / 2
+    // An ordered marker is a number, a delimiter and a space; the delimiter is
+    // a blank of its own and `)` is as valid as `.`, so the sentence names it
+    // rather than assuming the dot the content happens to use today.
+    // "number" needs no qualifier: an ordered marker is the only blank on this
+    // card that is one. A bullet's mark is `-`, `*` or `+`, so "mark" alone
+    // does not say which, and it keeps its name. The ordered sentence for a
+    // card with no code says "number" too.
+    const lead =
+      stepMarkers > 0
+        ? markers > 1
+          ? "Type each number, delimiter, and space"
+          : "Type the number, delimiter, and space"
+        : markers > 1
+          ? "Type each bullet mark and space"
+          : "Type the bullet mark and space"
+    // The ordered sentences carry three more blanks than the bullet one, so
+    // they join the two halves with a semicolon to stay inside the card. The
+    // order still reads off the order of the clauses.
+    const join = stepMarkers > 0 ? "; " : ", then "
+    const wrap = codeSpans > 1 ? "wrap each phrase in " : "wrap the phrase in "
+    return instruction(`${lead}${join}${wrap}`, "inline code", " marks.")
+  }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     const bullets = markerCount(/^ {0,3}[-+*][\t ]+$/)
     return instruction(

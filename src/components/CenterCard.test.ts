@@ -558,6 +558,215 @@ describe("describeCheckpoint", () => {
     expect(gathered).toBeGreaterThan(50)
   })
 
+  it("names both syntaxes when one card holds a marker and inline code", () => {
+    // L3/L4/L5 write an exact name as inline code inside a list item, so one
+    // card can hold three blanks (or six). The marker sentence alone shipped
+    // in front of them, silent about the backticks.
+    expect(describeCheckpoint(checkpointFor("- Run `report daily` now"))).toEqual({
+      prefix: "Type the bullet mark and space, then wrap the phrase in ",
+      term: "inline code",
+      suffix: " marks.",
+    })
+    expect(
+      describeCheckpoint(checkpointFor("1. Create a folder named `Current`")),
+    ).toEqual({
+      prefix:
+        "Type the number, delimiter, and space; wrap the phrase in ",
+      term: "inline code",
+      suffix: " marks.",
+    })
+    expect(
+      describeCheckpoint(
+        checkpointFor("1. Run `a b`\n2. Open `c.txt`"),
+      ),
+    ).toEqual({
+      prefix:
+        "Type each number, delimiter, and space; wrap each phrase in ",
+      term: "inline code",
+      suffix: " marks.",
+    })
+    // A marker with no code keeps its own sentence, and code with no marker
+    // keeps the wrapping one. The branch has to read the kinds present, not
+    // just notice that a backtick exists somewhere.
+    expect(describeCheckpoint(checkpointFor("- Plain item")).term).toBe(
+      "bullet item",
+    )
+    expect(describeCheckpoint(checkpointFor("Use `npm test` here.")).term).toBe(
+      "inline code",
+    )
+    expect(
+      describeCheckpoint(checkpointFor("Use `npm test` here.")).prefix,
+    ).toBe("Wrap the phrase in Markdown marks for ")
+    // Three backticks are a fence, not inline code, even inside a document
+    // that also has list markers elsewhere.
+    expect(
+      describeCheckpoint(checkpointFor("```\ncode\n```")).term,
+    ).toBe("fenced code block")
+
+    // Neither shape below is in the bank, so the corpus walks past both and
+    // widening the predicate to any backtick run — or to an unpaired one —
+    // leaves every served sentence byte-identical. They are written out as
+    // checkpoint literals so the narrowing is held by something.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["- ", "input"],
+          ["Run ", "locked"],
+          ["`", "input"],
+          ["x", "locked"],
+        ),
+      ).term,
+      "an unpaired backtick is not inline code",
+    ).toBe("bullet item")
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["- ", "input"],
+          ["Run\n  ", "locked"],
+          ["```", "input"],
+          ["code", "locked"],
+          ["```", "input"],
+        ),
+      ).term,
+      "a fence inside a list item is not inline code",
+    ).not.toBe("inline code")
+
+    // The marker count and the code-span count are separate numbers. The bank
+    // only serves cards where they agree (one of each, or two of each), so a
+    // single count reads as correct across all 744 and the crossed shapes are
+    // the only thing that tells them apart.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["1. ", "input"],
+          ["Run ", "locked"],
+          ["`", "input"],
+          ["a", "locked"],
+          ["`", "input"],
+          [" then ", "locked"],
+          ["`", "input"],
+          ["b", "locked"],
+          ["`", "input"],
+        ),
+      ).prefix,
+      "one step, two code spans",
+    ).toBe("Type the number, delimiter, and space; wrap each phrase in ")
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["1. ", "input"],
+          ["Run ", "locked"],
+          ["`", "input"],
+          ["a", "locked"],
+          ["`", "input"],
+          ["\n", "locked"],
+          ["2. ", "input"],
+          ["Wait", "locked"],
+        ),
+      ).prefix,
+      "two steps, one code span",
+    ).toBe(
+      "Type each number, delimiter, and space; wrap the phrase in ",
+    )
+  })
+
+  it("keeps every served card that mixes syntaxes to a known shape", () => {
+    // The 158 shipped because nothing counted the sentence against the card's
+    // blank count. These 15 shipped because nothing counted its blank *kinds*:
+    // the L5 readme cards hold six blanks of two kinds, and "for each numbered
+    // step" is true of the count while saying nothing about four of them. The
+    // marker patterns are rewritten here on purpose — calling back into the
+    // code under test would let both be wrong together.
+    const LIST_MARKER = /^ {0,3}(?:[-+*]|\d+[.)])[\t ]+$/
+    const INLINE_CODE = /^`{1,2}$/
+    // Every mixed-kind shape the bank serves today. A new combination has to
+    // land here deliberately: without this the next pairing ships silently,
+    // which is exactly how these 15 got out.
+    const KNOWN = new Set([
+      '["[","](",")"]',
+      '["![","](",")"]',
+      '["- ","`","`"]',
+      '["#. ","`","`"]',
+      '["#. ","`","`","#. ","`","`"]',
+    ])
+
+    let mixed = 0
+    let markerOnly = 0
+    let codeOnly = 0
+    for (const problem of problemBank) {
+      for (const checkpoint of deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )) {
+        const blanks = checkpoint.segments
+          .filter((segment) => segment.kind === "input")
+          .map((segment) => segment.value)
+        const kinds = new Set(
+          blanks.map((value) => value.trim().replace(/\d+/g, "#")),
+        )
+        const { prefix, term, suffix } = describeCheckpoint(checkpoint)
+        const markers = blanks.filter((value) => LIST_MARKER.test(value)).length
+        const codes = blanks.filter((value) => INLINE_CODE.test(value)).length
+        const where = `${problem.id}:${checkpoint.id}`
+
+        if (kinds.size > 1) {
+          const shape = JSON.stringify(
+            blanks.map((value) => value.replace(/^\d+/, "#")),
+          )
+          expect(KNOWN.has(shape), `${where} serves new mixed shape ${shape}`).toBe(
+            true,
+          )
+        }
+
+        if (markers > 0 && codes >= 2) {
+          mixed += 1
+          // Both syntaxes, or the learner is left with blanks nobody named.
+          expect(term, `${where} "${prefix}${term}${suffix}"`).toBe("inline code")
+          expect(
+            /\b(?:mark|number)\b/.test(prefix),
+            `${where} drops the marker: "${prefix}${term}${suffix}"`,
+          ).toBe(true)
+          // An ordered marker blanks its delimiter too, so a sentence that
+          // stops at "number and space" asks for less than the card holds.
+          const ordered = blanks.filter((value) =>
+            /^ {0,3}\d+[.)][\t ]+$/.test(value),
+          ).length
+          expect(
+            /\bdelimiter\b/.test(prefix),
+            `${where} names the delimiter: "${prefix}${term}${suffix}"`,
+          ).toBe(ordered > 0)
+          // Two counts, not one: the card can gather two markers and two code
+          // spans, and each number has to come from its own blanks.
+          expect(
+            /\beach number\b|\beach bullet\b/.test(prefix),
+            `${where} pluralises the marker: "${prefix}${term}${suffix}"`,
+          ).toBe(markers > 1)
+          expect(
+            /\beach phrase\b/.test(prefix),
+            `${where} pluralises the code span: "${prefix}${term}${suffix}"`,
+          ).toBe(codes / 2 > 1)
+        } else if (markers > 0) {
+          markerOnly += 1
+          expect(term, `${where} claims code with no backtick blank`).not.toBe(
+            "inline code",
+          )
+        } else if (codes >= 2) {
+          codeOnly += 1
+          expect(
+            prefix,
+            `${where} is inline code alone and keeps the wrapping sentence`,
+          ).toBe("Wrap the phrase in Markdown marks for ")
+        }
+      }
+    }
+
+    // A guard that walked none of the three arms proves nothing. The mixed arm
+    // is the one that was empty when the 15 shipped.
+    expect(mixed).toBe(15)
+    expect(markerOnly).toBeGreaterThan(100)
+    expect(codeOnly).toBeGreaterThan(20)
+  })
+
   it("records which families the engine still cannot reach", () => {
     // These fail when the parser work in #157 lands. That is the handoff: the
     // sentences above stop being a contract and become derivable from source.
