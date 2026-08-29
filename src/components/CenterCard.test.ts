@@ -563,14 +563,15 @@ describe("describeCheckpoint", () => {
     // card can hold three blanks (or six). The marker sentence alone shipped
     // in front of them, silent about the backticks.
     expect(describeCheckpoint(checkpointFor("- Run `report daily` now"))).toEqual({
-      prefix: "Type the bullet mark and space, then wrap the text in ",
+      prefix: "Type the bullet mark and space, then wrap the phrase in ",
       term: "inline code",
       suffix: " marks.",
     })
     expect(
       describeCheckpoint(checkpointFor("1. Create a folder named `Current`")),
     ).toEqual({
-      prefix: "Type the step number and space, then wrap the text in ",
+      prefix:
+        "Type the step number, delimiter, and space, then wrap the phrase in ",
       term: "inline code",
       suffix: " marks.",
     })
@@ -579,7 +580,8 @@ describe("describeCheckpoint", () => {
         checkpointFor("1. Run `a b`\n2. Open `c.txt`"),
       ),
     ).toEqual({
-      prefix: "Type each step number and space, then wrap the text in ",
+      prefix:
+        "Type each step number, delimiter, and space, then wrap each phrase in ",
       term: "inline code",
       suffix: " marks.",
     })
@@ -628,6 +630,44 @@ describe("describeCheckpoint", () => {
       ).term,
       "a fence inside a list item is not inline code",
     ).not.toBe("inline code")
+
+    // The marker count and the code-span count are separate numbers. The bank
+    // only serves cards where they agree (one of each, or two of each), so a
+    // single count reads as correct across all 744 and the crossed shapes are
+    // the only thing that tells them apart.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["1. ", "input"],
+          ["Run ", "locked"],
+          ["`", "input"],
+          ["a", "locked"],
+          ["`", "input"],
+          [" then ", "locked"],
+          ["`", "input"],
+          ["b", "locked"],
+          ["`", "input"],
+        ),
+      ).prefix,
+      "one step, two code spans",
+    ).toBe("Type the step number, delimiter, and space, then wrap each phrase in ")
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["1. ", "input"],
+          ["Run ", "locked"],
+          ["`", "input"],
+          ["a", "locked"],
+          ["`", "input"],
+          ["\n", "locked"],
+          ["2. ", "input"],
+          ["Wait", "locked"],
+        ),
+      ).prefix,
+      "two steps, one code span",
+    ).toBe(
+      "Type each step number, delimiter, and space, then wrap the phrase in ",
+    )
   })
 
   it("keeps every served card that mixes syntaxes to a known shape", () => {
@@ -686,6 +726,25 @@ describe("describeCheckpoint", () => {
             /\b(?:mark|number)\b/.test(prefix),
             `${where} drops the marker: "${prefix}${term}${suffix}"`,
           ).toBe(true)
+          // An ordered marker blanks its delimiter too, so a sentence that
+          // stops at "number and space" asks for less than the card holds.
+          const ordered = blanks.filter((value) =>
+            /^ {0,3}\d+[.)][\t ]+$/.test(value),
+          ).length
+          expect(
+            /\bdelimiter\b/.test(prefix),
+            `${where} names the delimiter: "${prefix}${term}${suffix}"`,
+          ).toBe(ordered > 0)
+          // Two counts, not one: the card can gather two markers and two code
+          // spans, and each number has to come from its own blanks.
+          expect(
+            /\beach step\b|\beach bullet\b/.test(prefix),
+            `${where} pluralises the marker: "${prefix}${term}${suffix}"`,
+          ).toBe(markers > 1)
+          expect(
+            /\beach phrase\b/.test(prefix),
+            `${where} pluralises the code span: "${prefix}${term}${suffix}"`,
+          ).toBe(codes / 2 > 1)
         } else if (markers > 0) {
           markerOnly += 1
           expect(term, `${where} claims code with no backtick blank`).not.toBe(

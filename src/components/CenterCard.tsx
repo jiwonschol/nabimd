@@ -247,16 +247,26 @@ export function describeCheckpoint(
   // Inline code wraps, so it takes two blanks. A single backtick blank is some
   // other shape and keeps the marker's own sentence.
   if (inlineCodeRuns >= 2 && bulletMarkers + stepMarkers > 0) {
-    const many = bulletMarkers + stepMarkers > 1
+    // The two syntaxes are counted separately. Sharing one count read the L5
+    // cards — two steps and two code spans — as plural on the marker and
+    // singular on the code, which is the same miss as the 158: a number the
+    // sentence never took from the card.
+    const markers = bulletMarkers + stepMarkers
+    const codeSpans = inlineCodeRuns / 2
+    // An ordered marker is a number, a delimiter and a space; the delimiter is
+    // a blank of its own and `)` is as valid as `.`, so the sentence names it
+    // rather than assuming the dot the content happens to use today.
     const lead =
       stepMarkers > 0
-        ? many
-          ? "Type each step number and space"
-          : "Type the step number and space"
-        : many
+        ? markers > 1
+          ? "Type each step number, delimiter, and space"
+          : "Type the step number, delimiter, and space"
+        : markers > 1
           ? "Type each bullet mark and space"
           : "Type the bullet mark and space"
-    return instruction(`${lead}, then wrap the text in `, "inline code", " marks.")
+    const wrap =
+      codeSpans > 1 ? "then wrap each phrase in " : "then wrap the phrase in "
+    return instruction(`${lead}, ${wrap}`, "inline code", " marks.")
   }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     const bullets = markerCount(/^ {0,3}[-+*][\t ]+$/)
