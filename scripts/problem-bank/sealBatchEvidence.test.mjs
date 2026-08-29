@@ -249,7 +249,7 @@ test("the write command refuses batches protected by the immutable baseline", as
   assert.match(result.stderr, /publish a new replacement batch instead/)
 })
 
-test("a checkout without origin/main uses its parent as the immutable baseline", async () => {
+test("a checkout without origin/main uses local main before the parent commit", async () => {
   const repository = await mkdtemp(resolve(tmpdir(), "nabimd-baseline-"))
   await run("git", ["init"], { cwd: repository })
   await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
@@ -257,9 +257,13 @@ test("a checkout without origin/main uses its parent as the immutable baseline",
   await writeFile(resolve(repository, "evidence.txt"), "first\n")
   await run("git", ["add", "evidence.txt"], { cwd: repository })
   await run("git", ["commit", "-m", "first"], { cwd: repository })
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
   const parent = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+  await run("git", ["checkout", "-b", "feature"], { cwd: repository })
   await writeFile(resolve(repository, "evidence.txt"), "second\n")
   await run("git", ["commit", "-am", "second"], { cwd: repository })
+  await writeFile(resolve(repository, "evidence.txt"), "third\n")
+  await run("git", ["commit", "-am", "third"], { cwd: repository })
 
   assert.equal(await resolveBaselineSha(repository, ""), parent)
 })
@@ -314,6 +318,42 @@ test("an unreadable sibling batch blocks every reseal before any file is written
     /problem bank is unreadable/,
   )
   assert.equal(await readFile(reviewPath, "utf8"), before)
+})
+
+test("semantic chain validation fails before any seal is written", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-invalid-chain-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  await mkdir(batchesRoot, { recursive: true })
+  const batchId = "2026-07-19-milestone-1-foundation-001"
+  const targetDir = resolve(batchesRoot, batchId)
+  await cp(resolve(sourceBank, "batches", batchId), targetDir, { recursive: true })
+  await cp(
+    resolve(sourceBank, "runtime-projections.generated.json"),
+    resolve(bankRoot, "runtime-projections.generated.json"),
+  )
+  await cp(
+    resolve(sourceBank, "tracker.generated.json"),
+    resolve(bankRoot, "tracker.generated.json"),
+  )
+  const reviewName = (await readdir(resolve(targetDir, "reviews")))
+    .filter((name) => name.endsWith(".json"))
+    .sort()[0]
+  const reviewPath = resolve(targetDir, "reviews", reviewName)
+  const editorialPath = resolve(targetDir, "editorial.json")
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.manifestDigest = "invalid-manifest-digest"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+  const beforeReview = await readFile(reviewPath, "utf8")
+  const beforeEditorial = await readFile(editorialPath, "utf8")
+
+  await assert.rejects(
+    resealBatchEvidenceSet({ batchDirs: [targetDir], write: true }),
+    /Stale review scope/,
+  )
+  assert.equal(await readFile(reviewPath, "utf8"), beforeReview)
+  assert.equal(await readFile(editorialPath, "utf8"), beforeEditorial)
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {

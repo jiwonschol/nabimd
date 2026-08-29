@@ -22,14 +22,16 @@ async function resolveBaselineSha(): Promise<string | null> {
   const explicit = process.env.NABI_BASE_SHA?.trim()
   if (explicit && !/^0+$/.test(explicit)) return explicit
 
-  try {
-    const { stdout } = await run("git", ["merge-base", "origin/main", "HEAD"], {
-      cwd: repositoryRoot,
-    })
-    const mergeBase = stdout.trim()
-    if (mergeBase) return mergeBase
-  } catch {
-    // A local checkout without origin/main falls through to the parent commit.
+  for (const mainRef of ["origin/main", "main"]) {
+    try {
+      const { stdout } = await run("git", ["merge-base", mainRef, "HEAD"], {
+        cwd: repositoryRoot,
+      })
+      const mergeBase = stdout.trim()
+      if (mergeBase) return mergeBase
+    } catch {
+      // Try the next stable main ref before falling back to the parent commit.
+    }
   }
 
   try {

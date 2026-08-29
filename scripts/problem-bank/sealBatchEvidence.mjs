@@ -170,7 +170,7 @@ export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
 
   const sealed = []
   for (const batchDir of batchDirs) {
-    sealed.push({ batchDir, ...(await resealOneBatch({ batchDir, write })) })
+    sealed.push({ batchDir, ...(await resealOneBatch({ batchDir, write: false })) })
   }
 
   const changedBatches = sealed.filter(({ report }) => report.changed.length > 0)
@@ -184,9 +184,20 @@ export async function resealBatchEvidenceSet({ batchDirs, write = false }) {
     const generated = await updatePublishedChain({
       batchDirs: changedBatches.map(({ batchDir }) => batchDir),
       projectedBatches,
-      write,
+      write: false,
     })
     changedBatches[0].report.changed.push(...generated)
+
+    if (write) {
+      for (const { batchDir } of sealed) {
+        await resealOneBatch({ batchDir, write: true })
+      }
+      await updatePublishedChain({
+        batchDirs: changedBatches.map(({ batchDir }) => batchDir),
+        projectedBatches,
+        write: true,
+      })
+    }
   }
 
   return sealed.map(({ batchDir, report }) => ({ batchDir, ...report }))
@@ -214,15 +225,15 @@ export async function resolveBaselineSha(
   const explicit = explicitBaseSha?.trim()
   if (explicit && !/^0+$/.test(explicit)) return explicit
 
-  try {
-    const baseline = (
-      await run("git", ["merge-base", "origin/main", "HEAD"], {
-        cwd,
-      })
-    ).stdout.trim()
-    if (baseline) return baseline
-  } catch {
-    // A checkout without origin/main falls through to its parent commit.
+  for (const mainRef of ["origin/main", "main"]) {
+    try {
+      const baseline = (
+        await run("git", ["merge-base", mainRef, "HEAD"], { cwd })
+      ).stdout.trim()
+      if (baseline) return baseline
+    } catch {
+      // Try the next stable main ref before falling back to the parent commit.
+    }
   }
 
   try {

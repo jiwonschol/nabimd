@@ -58,14 +58,22 @@ export function importsNodeTest(source) {
         else if (source[stop] === quote) { stop += 1; break }
         else stop += 1
       }
-      executable += source.slice(index, stop)
+      const isModuleSpecifier = /(?:\bfrom|\bimport\s*\()\s*$/.test(
+        executable.trimEnd(),
+      )
+      executable += isModuleSpecifier
+        ? source.slice(index, stop)
+        : source.slice(index, stop).replace(/[^\n]/g, " ")
       index = stop
       continue
     }
     executable += current
     index += 1
   }
-  return /^\s*import\s+(?:[\w$]+\s*,\s*)?(?:\*\s+as\s+[\w$]+|\{[^}]*\}|[\w$]+)\s+from\s+(["'])node:test\1\s*;?/m.test(executable)
+  return (
+    /^\s*import\s+(?:[\w$]+\s*,\s*)?(?:\*\s+as\s+[\w$]+|\{[^}]*\}|[\w$]+)\s+from\s+(["'])node:test\1\s*;?/m.test(executable) ||
+    /(?:^|[^\w$])import\s*\(\s*(["'])node:test\1\s*\)/m.test(executable)
+  )
 }
 
 describe("test runner configuration", () => {
@@ -109,9 +117,12 @@ describe("test runner configuration", () => {
     expect(importsNodeTest("import test from 'node:test'\n")).toBe(true)
     expect(importsNodeTest('import {\n  describe,\n  it,\n} from "node:test"\n')).toBe(true)
     expect(importsNodeTest('import test, { mock } from "node:test"\n')).toBe(true)
+    expect(importsNodeTest('const { test } = await import("node:test")\n')).toBe(true)
     expect(importsNodeTest('// import test from "node:test"\n')).toBe(false)
     expect(importsNodeTest('/*\nimport test from "node:test"\n*/\n')).toBe(false)
     expect(importsNodeTest('const fixture = `\nimport test from "node:test"\n`\n')).toBe(false)
     expect(importsNodeTest('const runner = "node:test"\n')).toBe(false)
+    expect(importsNodeTest('/* await import("node:test") */\n')).toBe(false)
+    expect(importsNodeTest('const fixture = `await import("node:test")`\n')).toBe(false)
   })
 })
