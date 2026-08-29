@@ -81,6 +81,9 @@ function fingerprint(value: string): string {
   return (hash >>> 0).toString(36)
 }
 
+/** See the note beside its use in `runScheduleRevision`. */
+export const COMPOSITION_REVISION = "composition@2-mixed-avoids-adjacent-runs"
+
 /**
  * Any input that can invalidate a persisted deterministic run belongs here.
  * Deriving the value prevents a curriculum edit from relying on a manual bump.
@@ -105,6 +108,15 @@ export const runScheduleRevision = [
     (entry) =>
       `${entry.id}@${entry.level}:${entry.elements.join(",")}`,
   ),
+  // Everything else here is derived, and nothing derived can see the shape of
+  // the code that reads it. A persisted run is validated by recomputing the
+  // schedule, so changing how a run is composed changes that contract even
+  // when every constant and the served set stay byte-identical. Without this
+  // token the recomputed run simply would not match, and the learner's drafts
+  // would be dropped by the validator instead of carried by the migration.
+  // Bump it whenever `createTurnProblemIds` can return a different run for an
+  // unchanged (chapter, runNumber, seed).
+  COMPOSITION_REVISION,
   ...curriculumLevels.map((entry) => {
     const ids = getServedProblemsForBank(problemBank, entry.level).map(
       (problem) => problem.id,

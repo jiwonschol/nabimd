@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import {
+  COMPOSITION_REVISION,
   createRunProblemIds,
   entryChoices,
   runScheduleRevision,
@@ -113,6 +114,14 @@ describe("progressStore v5", () => {
       ),
     ].join("|")
     expect(runScheduleRevision.startsWith(`${policy}|`)).toBe(true)
+
+    // Nothing derived from the bank can notice that `createTurnProblemIds`
+    // now returns a different run for the same (chapter, runNumber, seed), so
+    // the algorithm carries a hand-written token. Losing it would let a
+    // composition change reach a learner whose persisted run no longer
+    // matches, and the validator drops that progress instead of migrating it.
+    expect(runScheduleRevision).toContain(`|${COMPOSITION_REVISION}|`)
+    expect(COMPOSITION_REVISION).toMatch(/^composition@\d+-/)
 
     // Eligibility is computed, not declared, so naming the policy constants is
     // not enough: a change to how the card cuts blanks moves which mixed
@@ -301,6 +310,66 @@ describe("progressStore v5", () => {
     expect(loaded.runStartedAtMs).toBe(9_000)
     expect(loaded.draftByProblemId).toEqual({
       [draftProblemId]: "# Keep this draft",
+    })
+  })
+
+  it("carries a mid-run draft across the composition token instead of dropping it", () => {
+    // The token is the only part of the revision that a composition change can
+    // move, and it is the part that decides which path a stored run takes. A
+    // stored run written before it fails `isValidRunProblemIds` — that path
+    // returns a default and the learner loses the draft. This asserts the
+    // revision mismatch is seen first, so the migration regenerates instead.
+    const runNumber = 7
+    const scheduled = createRunProblemIds("level-1", runNumber, 0)
+    const servedMixed = scheduled.find(
+      (id) => getCurriculumElements(getProblem(id)).length > 1,
+    )!
+    const otherMixed = problemBank.find(
+      (problem) =>
+        problem.flavor === "standard" &&
+        getProblemEntryId(problem) === "level-1" &&
+        getCurriculumElements(problem).length > 1 &&
+        isEligibleMixedExercise(problem) &&
+        problem.id !== servedMixed,
+    )!
+    // What the schedule looked like before: the same singles, a different
+    // mixed exercise in the slot the new choice moved.
+    const previousRunProblemIds = scheduled.map((id) =>
+      id === servedMixed ? otherMixed.id : id,
+    )
+    expect(previousRunProblemIds).not.toEqual(scheduled)
+
+    storage.setItem(
+      PROGRESS_STORAGE_KEY,
+      JSON.stringify({
+        ...createDefaultProgress(otherMixed.id),
+        runScheduleRevision: runScheduleRevision
+          .split("|")
+          .filter((segment) => segment !== COMPOSITION_REVISION)
+          .join("|"),
+        entryId: "level-1",
+        runNumber,
+        runProblemIds: previousRunProblemIds,
+        runStartedAtMs: 1_000,
+        draftByProblemId: { [otherMixed.id]: "# Keep this across the bump" },
+      }),
+    )
+    vi.spyOn(Date, "now").mockReturnValue(9_000)
+
+    const loaded = loadProgress(
+      storage,
+      validProblemIds,
+      isEligibleTransferProblemId,
+      problemBankRevision,
+      0,
+      validDraftProblemIds,
+    )
+
+    expect(loaded.entryId).toBe("level-1")
+    expect(loaded.runNumber).toBe(runNumber)
+    expect(loaded.runProblemIds).toEqual(scheduled)
+    expect(loaded.draftByProblemId).toEqual({
+      [otherMixed.id]: "# Keep this across the bump",
     })
   })
 

@@ -1,6 +1,9 @@
 import type { Nodes, Parents } from "mdast"
 import { parseMarkdownSource } from "../markdown/parser"
 
+/** A blank holding one block-quote marker. */
+const QUOTE_MARKER_BLANK = /^ {0,3}>[\t ]*$/
+
 export type GuidedSyntaxSegment =
   | { kind: "input"; value: string }
   | { kind: "locked"; value: string }
@@ -158,6 +161,15 @@ function buildAcceptedForms(
     forms.push(alternative)
   }
 
+  // GFM reads `[x]` and `[X]` as the same checked item, and the name the card
+  // shows recognises both. Recording only the spelling the Goal happens to use
+  // rejected the other one, so a learner typing valid Markdown was marked
+  // wrong.
+  //
+  // Each box chooses on its own, like the emphasis pairs below and unlike the
+  // list markers above. A marker that changes partway down a list starts a
+  // second list, so those must agree; two checked boxes constrain nothing, so
+  // flipping them together rejected the valid mixed answer `[x]…[X]`.
   // Emphasis pairs do not constrain each other. `*one*` and `*two*` were two
   // cards before they were joined, and each accepted its own delimiter;
   // swapping only the first pair offered a mixed answer (`__**`) while
@@ -208,6 +220,25 @@ export function acceptedGuidedSyntaxInputs(
 }
 
 /**
+ * `[X]` folded to `[x]`.
+ *
+ * GFM reads both as the same checked item, so a learner who types either one
+ * is right. Offering the pair as two *accepted forms* doubled the form array
+ * once per box, and a checked list merges onto a single card: fourteen items
+ * produced 49,152 complete forms and about 12 MB of hint rows, which
+ * `checkpointHintRows` builds on every render whether the Hint is open or
+ * not. Folding the case where answers are compared keeps both spellings right
+ * and leaves the form count exactly where it was.
+ *
+ * A blank holding `[X]` is a task box and nothing else — every other bracket
+ * mark is split into its own group (`[`, `](`, `)`), so this cannot touch a
+ * link.
+ */
+function foldTaskBoxCase(value: string): string {
+  return value.replace(/\[X\]/g, "[x]")
+}
+
+/**
  * Which input groups in this attempt no group-wise accepted answer can
  * explain. An empty result means every group is typable as part of some
  * accepted form (the whole answer may still be rejected when the groups come
@@ -221,8 +252,12 @@ export function missedGuidedSyntaxGroups(
   const groupCount = forms[0]?.length ?? 0
   const missed: number[] = []
   for (let index = 0; index < groupCount; index += 1) {
-    const value = values[index] ?? ""
-    if (!forms.some((form) => form[index] === value)) missed.push(index)
+    const value = foldTaskBoxCase(values[index] ?? "")
+    const explained = forms.some((form) => {
+      const accepted = form[index]
+      return accepted !== undefined && foldTaskBoxCase(accepted) === value
+    })
+    if (!explained) missed.push(index)
   }
   return missed
 }
@@ -232,10 +267,24 @@ export function acceptedGuidedSyntaxGroupInputs(
   checkpoint: SyntaxCheckpoint,
   groupIndex: number,
 ): readonly string[] {
-  return [
+  const values = [
     ...new Set(
       acceptedGuidedSyntaxGroupForms(checkpoint).flatMap(
         (form) => form[groupIndex] ?? [],
+      ),
+    ),
+  ]
+  // The other spelling of a checked box is listed here rather than doubling
+  // the accepted forms it would come from — see `foldTaskBoxCase`. One group
+  // gains one row; the complete forms gain none.
+  return [
+    ...new Set(
+      values.flatMap((value) =>
+        value === "[x]"
+          ? [value, "[X]"]
+          : value === "[X]"
+            ? [value, "[x]"]
+            : [value],
       ),
     ),
   ]
@@ -249,6 +298,7 @@ export function acceptedGuidedSyntaxGroupInputs(
 export function syntaxGroupTerm(
   value: string,
   precededByLineBreak = false,
+  precededByQuoteMarker = false,
 ): string {
   // A list marker is only a list marker because the grammar requires the
   // space after it. Trimming first would make `* ` (bullet) and `*` (italic)
@@ -264,14 +314,59 @@ export function syntaxGroupTerm(
     return `level ${mark.match(/^#+/)?.[0]?.length ?? 1} heading`
   }
   if (["---", "***", "___"].includes(mark)) return "section break"
-  if (mark.startsWith(">")) return "block quote"
+  // A marker sitting against another marker is the second level of a nested
+  // quote, and the merger compares these names: without the distinction
+  // `> plain` and `> > deep` both read as `block quote`, joined into one card,
+  // and that card claimed to be a quote inside a quote while also asking for
+  // the unrelated plain marker.
+  if (mark.startsWith(">")) {
+    return precededByQuoteMarker ? "quote inside a quote" : "block quote"
+  }
   if (mark.startsWith("```") || mark.startsWith("~~~")) return "fenced code block"
   if (mark === "**" || mark === "__") return "bold text"
   if (mark === "*" || mark === "_") return "italic text"
+  if (mark === "~~") return "strikethrough text"
+  // A task box is bracket punctuation and would otherwise read as a link.
+  if (/^\[[ xX]?\]$/.test(mark)) {
+    return /[xX]/.test(mark) ? "checked-off item" : "checkbox item"
+  }
   if (mark.startsWith("![")) return "image"
   if (mark.startsWith("[") || mark === "](" || mark === ")") return "link"
   if (mark.startsWith("`")) return "inline code"
   return "Markdown mark"
+}
+
+/**
+ * The name of every input group, in order.
+ *
+ * `syntaxGroupTerm` needs context a bare value cannot carry — whether a line
+ * break sits in front of it, whether another quote marker does — and every
+ * caller used to assemble those arguments itself. When the third one was
+ * added, the Missed-summary caller kept passing two and silently recorded a
+ * nested quote as a plain one. The context is read here, once.
+ */
+function syntaxGroupTermsInOrder(
+  checkpoint: SyntaxCheckpoint,
+): readonly string[] {
+  return checkpoint.segments.flatMap((segment, index) => {
+    if (segment.kind !== "input") return []
+    const previous = checkpoint.segments[index - 1]
+    return [
+      syntaxGroupTerm(
+        segment.value,
+        previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
+        previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
+      ),
+    ]
+  })
+}
+
+/** The name of one input group, as the card and the Missed summary say it. */
+export function syntaxGroupTermAt(
+  checkpoint: SyntaxCheckpoint,
+  groupIndex: number,
+): string {
+  return syntaxGroupTermsInOrder(checkpoint)[groupIndex] ?? "Markdown mark"
 }
 
 /** Semantic syntax names represented by one checkpoint, matching the labels
@@ -279,27 +374,17 @@ export function syntaxGroupTerm(
 export function syntaxCheckpointTerms(
   checkpoint: SyntaxCheckpoint,
 ): readonly string[] {
-  return [
-    ...new Set(
-      checkpoint.segments.flatMap((segment, index) => {
-        if (segment.kind !== "input") return []
-        const previous = checkpoint.segments[index - 1]
-        return [
-          syntaxGroupTerm(
-            segment.value,
-            previous?.kind === "locked" && /\n[\t ]*$/.test(previous.value),
-          ),
-        ]
-      }),
-    ),
-  ]
+  return [...new Set(syntaxGroupTermsInOrder(checkpoint))]
 }
 
 export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): boolean {
-  return acceptedGuidedSyntaxInputs(checkpoint).includes(value)
+  const folded = foldTaskBoxCase(value)
+  return acceptedGuidedSyntaxInputs(checkpoint).some(
+    (accepted) => foldTaskBoxCase(accepted) === folded,
+  )
 }
 
 function renderCheckpointWithInput(
@@ -572,13 +657,14 @@ function markPrefix(
   pattern: RegExp,
   families: SyntaxFamilies,
   family: string,
-): void {
+): number | null {
   const start = lineStartAt(source, offset)
   const end = lineEndAt(source, offset)
   const match = source.slice(start, end).match(pattern)
-  if (match?.[0]) {
-    markRange(mask, { from: start, to: start + match[0].length }, families, family)
-  }
+  if (!match?.[0]) return null
+  const markEnd = start + match[0].length
+  markRange(mask, { from: start, to: markEnd }, families, family)
+  return markEnd
 }
 
 function markInlineDelimiters(
@@ -672,15 +758,21 @@ function markCodeFence(
     .match(/^(\s*)(`{3,}|~{3,})/)
   if (!opening?.[2]) return null
 
+  const openingMarkEnd =
+    openingStart + (opening[1]?.length ?? 0) + opening[2].length
   markRange(
     mask,
-    {
-      from: openingStart,
-      to: openingStart + (opening[1]?.length ?? 0) + opening[2].length,
-    },
+    { from: openingStart, to: openingMarkEnd },
     families,
     `${family}-open`,
   )
+
+  // The info string is *not* blanked. `instructionFor` has a sentence for a
+  // syntax-highlighted block and it reads a blank holding the language name,
+  // but a blank holding a name is Goal prose, which the published blank
+  // policy forbids outright ("asks only Markdown grammar characters"). The
+  // sentence is unreachable by contract rather than by omission, so the gap
+  // is a product question and not a parser one.
 
   const closingLineStart = lineStartAt(source, Math.max(range.from, range.to - 1))
   if (closingLineStart !== openingStart) {
@@ -710,6 +802,7 @@ function markNodeSyntax(
   mask: boolean[],
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
+  insideQuote = false,
 ): void {
   const range = nodeRange(node)
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
@@ -756,29 +849,76 @@ function markNodeSyntax(
         }
       }
       break
-    case "blockquote":
+    case "blockquote": {
+      // A marker that is part of a nesting never swallows a tab. The two
+      // levels of `>>\tdeep` are `>` and `>\t`, and the sentence that names
+      // them can only say "marks" or "marks and space(s)" — a tab is neither,
+      // and on screen it is the same picture as a space, so the card cannot
+      // be solved from what the learner sees. This is the third time the same
+      // trade came up (`- [\t] Buy`, `> \t> deep`) and it is settled the same
+      // way: the tab stays locked prose. A tab after a *lone* marker is a
+      // different question and belongs to #203.
+      // Per line, not per node. One quote can hold a plain line and a nested
+      // one — `>\tplain` above `> > nested` — and applying the rule to the
+      // whole node took the tab out of a marker that is not part of any
+      // nesting, leaving a card that asks for a mark and a space and then
+      // refuses `> `.
+      const nestedChildLines = new Set<number>()
+      if (isParent(node)) {
+        for (const child of node.children) {
+          if (child.type !== "blockquote") continue
+          const childRange = nodeRange(child as Nodes)
+          if (!childRange) continue
+          let childLine = lineStartAt(source, childRange.from)
+          while (childLine < childRange.to) {
+            nestedChildLines.add(childLine)
+            const childLineEnd = lineEndAt(source, childLine)
+            if (childLineEnd >= source.length) break
+            childLine = childLineEnd + 1
+          }
+        }
+      }
       if (range) {
         let lineStart = lineStartAt(source, range.from)
         while (lineStart < range.to) {
-          // Each quoted line carries its own `>` the learner types, so every
-          // line is its own group.
-          markPrefix(
-            source,
-            mask,
-            lineStart,
-            /^ {0,3}>[\t ]?/,
-            families,
-            `${family}-${lineStart}`,
-          )
           const lineEnd = lineEndAt(source, lineStart)
+          // Each quoted line carries its own `>` the learner types, so every
+          // line is its own group. A quote inside a quote puts a second `>`
+          // on the same line, and the marker this node owns is the first one
+          // its parent has not masked yet: matching from the line start again
+          // re-claimed the outer `>`, so the nested marker never became a
+          // blank and a two-level quote read as a plain one.
+          // Past the markers this node's parent already took — and no
+          // further. `> \t> deep` is a nested quote to the parser, but the tab
+          // between the markers would sit in the card as locked prose that
+          // looks like a space, so the two blanks would no longer touch and
+          // the nesting could only be recovered by loosening what "adjacent"
+          // means for every family. The same reason keeps a tab task box
+          // locked; a tab-indented nested quote is a shape to open with the
+          // content that needs it.
+          let markStart = lineStart
+          while (markStart < lineEnd && mask[markStart]) markStart += 1
+          const nesting = insideQuote || nestedChildLines.has(lineStart)
+          const marker = source
+            .slice(markStart, lineEnd)
+            .match(nesting ? /^ {0,3}>[ ]?/ : /^ {0,3}>[\t ]?/)
+          if (marker?.[0]) {
+            markRange(
+              mask,
+              { from: markStart, to: markStart + marker[0].length },
+              families,
+              `${family}-${markStart}`,
+            )
+          }
           if (lineEnd >= source.length) break
           lineStart = lineEnd + 1
         }
       }
       break
+    }
     case "listItem":
       if (range) {
-        markPrefix(
+        const markerEnd = markPrefix(
           source,
           mask,
           range.from,
@@ -786,12 +926,77 @@ function markNodeSyntax(
           families,
           family,
         )
+        // A GFM task item carries a checkbox behind its marker, and the box is
+        // a second mark the learner types. It needs its own family: the
+        // sentence that names a checkbox looks for a box blank sitting behind
+        // a marker blank, so folding the two into one group left the card
+        // calling a task item a bullet item.
+        // Only an unordered item. `instructionFor` names a task box solely
+        // when it sits behind a bullet marker, and says so: an ordered one is
+        // "a shape to open when content asks for it, not a case to guess at
+        // now". Blanking it anyway left `1. [ ] Buy` asking for a box its
+        // sentence never mentions.
+        const marker =
+          markerEnd === null
+            ? ""
+            : source.slice(lineStartAt(source, range.from), markerEnd)
+        const checkbox =
+          markerEnd === null ||
+          node.checked === null ||
+          node.checked === undefined ||
+          !/^\s*[-+*][\t ]+$/.test(marker)
+            ? null
+            : // A space between the brackets, never a tab — and that is a
+              // decision, not an oversight. The parser does read `- [\t] Buy`
+              // as a task item, so blanking it looks correct, but the card it
+              // makes cannot be answered: its Hint prints the tab as a row
+              // indistinguishable from `- [ ]`, so a learner reading the
+              // screen types a space and is refused. Offering the space as an
+              // alternative closes that and opens something worse — the tab is
+              // only a task marker in some columns (`-  [\t]` and `  - [\t]`
+              // both parse as `checked: null`), and the accepted set is built
+              // from a checkpoint that cannot see the line's indentation, so
+              // it cannot tell which. A tab box stays locked prose and the
+              // item teaches its bullet marker.
+              source
+                .slice(markerEnd, lineEndAt(source, markerEnd))
+                .match(/^\[[ xX]\]/)
+        if (markerEnd !== null && checkbox?.[0]) {
+          markRange(
+            mask,
+            { from: markerEnd, to: markerEnd + checkbox[0].length },
+            families,
+            `${family}-task`,
+          )
+        }
       }
       break
     case "emphasis":
     case "strong":
       markInlineDelimiters(source, mask, node, families, family)
       break
+    // GFM strikethrough wraps its phrase the same way emphasis does, and it
+    // had no case at all: `~~gone~~` produced no checkpoint, so the sentence
+    // written for it could never be shown.
+    case "delete": {
+      markInlineDelimiters(source, mask, node, families, family)
+      // A deletion may wrap a soft line break, putting its two delimiters on
+      // different lines. The merger compares line indentation — a nested list
+      // is a different list — so `~~old\n price~~` came apart into two cards,
+      // each holding one `~~` and each saying it wraps a phrase. Grouping the
+      // node's lines keeps the pair together, the way a fenced block does.
+      const deletion = range
+      if (
+        deletion &&
+        source.slice(deletion.from, deletion.to).includes("\n")
+      ) {
+        groupedRanges.push({
+          from: lineStartAt(source, deletion.from),
+          to: lineEndAt(source, deletion.to),
+        })
+      }
+      break
+    }
     case "inlineCode":
       if (range) {
         const raw = source.slice(range.from, range.to)
@@ -865,7 +1070,14 @@ function markNodeSyntax(
 
   if (isParent(node)) {
     for (const child of node.children) {
-      markNodeSyntax(child as Nodes, source, mask, groupedRanges, families)
+      markNodeSyntax(
+        child as Nodes,
+        source,
+        mask,
+        groupedRanges,
+        families,
+        insideQuote || node.type === "blockquote",
+      )
     }
   }
 }
@@ -968,6 +1180,34 @@ function indentationOf(source: string, checkpoint: SyntaxCheckpoint): string {
   return source.slice(lineStartAt(source, checkpoint.targetFrom), checkpoint.targetFrom)
 }
 
+/**
+ * The quote markers a card asks for, one line at a time.
+ *
+ * `>>` and `> > ` are both a quote inside a quote and carry the same name, but
+ * they are not the same answer, so two blocks spelling it differently must not
+ * join. Comparing the *accumulated* sequence closed that and opened the
+ * opposite: once two lines had merged, a card holding `> |> ` stopped matching
+ * the third line's `> `, and a three-line quote came apart into two cards.
+ *
+ * Every quoted line opens with a marker nothing precedes, so the sequence is
+ * cut there and the lines are compared as a set — which is the same for one
+ * line as for ten of the same spelling.
+ */
+function quoteMarkerShape(checkpoint: SyntaxCheckpoint): string {
+  const lines: string[][] = []
+  checkpoint.segments.forEach((segment, index) => {
+    if (segment.kind !== "input" || !QUOTE_MARKER_BLANK.test(segment.value)) {
+      return
+    }
+    const previous = checkpoint.segments[index - 1]
+    const continuesLine =
+      previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value)
+    if (continuesLine && lines.length > 0) lines[lines.length - 1]!.push(segment.value)
+    else lines.push([segment.value])
+  })
+  return [...new Set(lines.map((line) => line.join("|")))].sort().join(" ")
+}
+
 function sameSyntax(
   left: SyntaxCheckpoint,
   right: SyntaxCheckpoint,
@@ -976,7 +1216,8 @@ function sameSyntax(
   const rightTerms = syntaxCheckpointTerms(right)
   return (
     leftTerms.length === rightTerms.length &&
-    leftTerms.every((term, index) => term === rightTerms[index])
+    leftTerms.every((term, index) => term === rightTerms[index]) &&
+    quoteMarkerShape(left) === quoteMarkerShape(right)
   )
 }
 
@@ -1057,6 +1298,18 @@ export function deriveSyntaxCheckpoints(
   markNodeSyntax(parseMarkdownSource(source), source, mask, groupedRanges, families)
   unmaskLineLeadingWhitespace(source, mask, families)
 
+  // Grouped ranges are looked up by the line they start on, and the loop skips
+  // past a whole group once it takes one. Two multiline deletions can share a
+  // line — `~~a\nb~~ ~~c\n d~~` — so the second range's start was consumed by
+  // the first group and never visited, splitting a delimiter pair across two
+  // cards. Overlapping ranges become one.
+  const unionedRanges: SourceRange[] = []
+  for (const range of [...groupedRanges].sort((left, right) => left.from - right.from)) {
+    const last = unionedRanges.at(-1)
+    if (last && range.from <= last.to) last.to = Math.max(last.to, range.to)
+    else unionedRanges.push({ ...range })
+  }
+
   const checkpoints: SyntaxCheckpoint[] = []
   // The family each checkpoint's first blank belongs to. Only the merge step
   // reads it, to keep a table's rows apart.
@@ -1064,7 +1317,7 @@ export function deriveSyntaxCheckpoints(
   let lineStart = 0
   while (lineStart <= source.length) {
     const lineEnd = lineEndAt(source, lineStart)
-    const grouped = groupedRanges.find((range) => range.from === lineStart)
+    const grouped = unionedRanges.find((range) => range.from === lineStart)
     const checkpointEnd = grouped?.to ?? lineEnd
     const hasInput = mask
       .slice(lineStart, checkpointEnd)

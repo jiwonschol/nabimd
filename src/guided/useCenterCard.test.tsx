@@ -30,12 +30,51 @@ function renderItalicCard() {
   return { ...hook, onGrow, onComplete, onMiss }
 }
 
+function renderNestedQuoteCard() {
+  const onMiss = vi.fn()
+  const base = getProblem("l1-italic-paper-boat")
+  const hook = renderHook(() =>
+    useCenterCard({
+      problem: { ...base, target: "> > deep", starterText: "deep" },
+      draft: "",
+      completed: false,
+      onGrow: vi.fn(),
+      onComplete: vi.fn(),
+      onMiss,
+    }),
+  )
+  return { ...hook, onMiss }
+}
+
 beforeEach(() => {
   resetCenterCardMemoryForTests()
   vi.clearAllMocks()
 })
 
 describe("useCenterCard Hint and retry state", () => {
+  it("records a nested quote marker as a nested quote", () => {
+    // This caller assembled `syntaxGroupTerm`'s context arguments by hand and
+    // stopped at two of the three, so the card taught "quote inside a quote"
+    // while the Missed summary wrote down "block quote" for the same blank.
+    const { result, onMiss } = renderNestedQuoteCard()
+
+    act(() => {
+      result.current.editSegment(0, "> ")
+      result.current.editSegment(1, "x")
+    })
+    act(() => {
+      result.current.submit()
+    })
+
+    expect(onMiss).toHaveBeenCalledTimes(1)
+    expect(
+      (onMiss.mock.calls[0]![0] as { groupIndex: number; term: string }[]).map(
+        (miss) => [miss.groupIndex, miss.term],
+      ),
+    ).toEqual([[1, "quote inside a quote"]])
+  })
+
+
   it("restores an exact Hint when the persisted session says retry is pending", () => {
     const onGrow = vi.fn()
     const onComplete = vi.fn()

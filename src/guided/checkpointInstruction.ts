@@ -31,7 +31,9 @@ function spelledCount(count: number): string {
 const BULLET_MARKER = /^ {0,3}[-+*][\t ]+$/
 const STEP_MARKER = /^ {0,3}\d+[.)][\t ]+$/
 const QUOTE_MARKER = /^ {0,3}>[\t ]*$/
-const TASK_BOX = /^\[[ xX]?\]$/
+// The parser accepts a tab between the brackets, so the sentence has to be
+// able to name a box written that way.
+const TASK_BOX = /^\[[\t xX]?\]$/
 // The deriver puts the line's ending inside the blank when the card carries
 // something after it, so the run may end in a newline.
 const SPACE_RUN = /^ {2,}\n?$/
@@ -40,6 +42,54 @@ const DIVIDER_CELL = /^\s*:?-+:?\s*$/
 const FENCE = /^(?:`{3,}|~{3,})/
 const LANGUAGE_NAME = /^[A-Za-z][\w+#-]*$/
 const THEMATIC_BREAK = /^(?:-{3,}|\*{3,}|_{3,})$/
+
+/**
+ * The sentence for a card whose blanks hold a nested quote, or `null` when no
+ * two quote markers touch.
+ *
+ * `> > ` and the compact `>>` are both valid and ask for a different number of
+ * spaces. The count comes from the nested pair alone; taking it from every
+ * blank made a card holding two nested quotes claim twice as many spaces as
+ * either one wants.
+ */
+function nestedQuoteInstruction(
+  shape: CheckpointShape,
+): CheckpointInstruction | null {
+  const nestedAt = firstTouchingMatch(shape, QUOTE_MARKER)
+  if (nestedAt < 0) return null
+  // The spaces come from one whole line, not from the first pair on it.
+  // `>>> deep` is three markers carrying a single trailing space: reading the
+  // first two found none, and the card said "marks" while its only accepted
+  // answer was `>>> `. `>> > deep` undercounted the same way.
+  const firstLine: string[] = []
+  for (const [index, value] of shape.inputs.entries()) {
+    if (!QUOTE_MARKER.test(value)) continue
+    if (firstLine.length > 0 && shape.precededByInput[index] !== true) break
+    firstLine.push(value)
+  }
+  const spaces = (firstLine.join("").match(/ /g) ?? []).length
+  // How many quoted *lines* the card holds, not how many markers. Every line
+  // opens with a marker nothing precedes; the ones behind it are its deeper
+  // levels. Counting markers instead would read `> > > one` as three lines,
+  // and counting nothing at all — which is what this did — let a card asking
+  // for four blanks across two lines say it teaches one quote.
+  const lines = shape.inputs.filter(
+    (value, index) =>
+      QUOTE_MARKER.test(value) && shape.precededByInput[index] !== true,
+  ).length
+  const marks =
+    spaces === 0
+      ? "Type the Markdown marks for "
+      : spaces === 1
+        ? "Type the Markdown marks and space for "
+        : "Type the Markdown marks and spaces for "
+  // The plural reads the way the plain block quote's does: several lines of
+  // one quote, not several quotes.
+  return instruction(
+    `${marks}${lines > 1 ? "each line of this " : "a "}`,
+    "quote inside a quote",
+  )
+}
 
 /**
  * The sentence above the boxes.
@@ -347,27 +397,12 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
 
+  const nestedQuote = nestedQuoteInstruction(shape)
   if (everyInput(shape, QUOTE_MARKER)) {
     // A quote inside a quote puts its two markers side by side. Two quoted
     // lines gathered onto one card join to the same `> > ` but have the first
     // line's prose between them, and they are one block quote, not two levels.
-    const nestedAt = firstTouchingMatch(shape, QUOTE_MARKER)
-    if (nestedAt >= 0) {
-      // `> > ` and the compact `>>` are both valid, and they ask for a
-      // different number of spaces. The count comes from the nested pair
-      // alone; taking it from every blank made a card holding two nested
-      // quotes claim twice as many spaces as either one wants.
-      const pair = touchingPairAt(shape, nestedAt)!
-      const spaces = (pair.join("").match(/ /g) ?? []).length
-      return instruction(
-        spaces === 0
-          ? "Type the Markdown marks for a "
-          : spaces === 1
-            ? "Type the Markdown marks and space for a "
-            : "Type the Markdown marks and spaces for a ",
-        "quote inside a quote",
-      )
-    }
+    if (nestedQuote) return nestedQuote
     return instruction(
       `Type the Markdown mark and space for ${inputs.length > 1 ? "each line of this " : "a "}`,
       "block quote",
@@ -474,6 +509,10 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
   if (QUOTE_MARKER.test(inputs[0] ?? "")) {
+    // A nested quote carrying another family — `> > **Deep**` — reaches here,
+    // and counting markers alone read its two touching levels as two quoted
+    // lines. It is one line at depth two, so the nesting decides first.
+    if (nestedQuote) return nestedQuote
     const markers = countInputs(shape, QUOTE_MARKER)
     return instruction(
       `Type the Markdown mark and space for ${markers > 1 ? "each line of this " : "a "}`,
@@ -491,6 +530,17 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     return instruction(
       "Type the opening and closing Markdown marks for a ",
       "fenced code block",
+    )
+  }
+  // A line carrying strikethrough and then another family reaches here, and
+  // the chain had no `~~` case: `~~old~~ **new**` fell all the way to the
+  // generic sentence while `**bold**` and `` `code` `` on one line names its
+  // first family. Naming the leading family is #177's imprecision, not a new
+  // one — being silent about it was the defect.
+  if (leading === "~~") {
+    return instruction(
+      "Wrap the phrase in Markdown marks for ",
+      "strikethrough text",
     )
   }
   if (leading.startsWith("**") || leading.startsWith("__")) {
