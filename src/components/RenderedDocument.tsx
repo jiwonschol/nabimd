@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
 import Markdown, { type ExtraProps } from "react-markdown"
 import remarkGfm from "remark-gfm"
+import { GFM_OPTIONS } from "../markdown/parser"
 
 type RenderedDocumentProps = {
   label: string
@@ -61,7 +62,7 @@ export function RenderedDocumentBody({
     <div className="rendered-document__body">
       {source ? (
         <Markdown
-          remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
+          remarkPlugins={[[remarkGfm, GFM_OPTIONS]]}
           components={{
             a: ({ children }) => (
               <span className="rendered-document__link">{children}</span>

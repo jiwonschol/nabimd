@@ -1,5 +1,5 @@
 import type { Nodes, Parents } from "mdast"
-import { fromMarkdown } from "mdast-util-from-markdown"
+import { parseMarkdownSource } from "../markdown/parser"
 
 const unicodeSpaces = /[\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000]/g
 const zeroWidthCharacters = /[\u200b-\u200d\u2060\ufeff]/g
@@ -68,7 +68,7 @@ function normalizeLegacyPlaintext(value: string): string {
  * persisted drafts during the one-step storage migration.
  */
 export function deriveLegacyPlaintextStarter(target: string): string {
-  return normalizeLegacyPlaintext(legacyVisibleText(fromMarkdown(target)))
+  return normalizeLegacyPlaintext(legacyVisibleText(parseMarkdownSource(target)))
 }
 
 function normalizeVisibleText(value: string): string {
@@ -174,7 +174,7 @@ export function derivePlaintextStarter(target: string): string {
   const literalLineIndexes = new Set<number>()
 
   projectNode(
-    fromMarkdown(normalizedTarget),
+    parseMarkdownSource(normalizedTarget),
     normalizedTarget,
     outputLines,
     literalLineIndexes,
