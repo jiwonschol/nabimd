@@ -61,7 +61,56 @@ export function describeCheckpoint(
   const lockedBreak = checkpoint.segments.some(
     (segment) => segment.kind === "locked" && segment.value.includes("\n"),
   )
+  const lockedValues = checkpoint.segments
+    .filter((segment) => segment.kind === "locked")
+    .map((segment) => segment.value)
 
+  // A hard line break is spaces and nothing else, so trimming erases the only
+  // mark there is. It has to be read before `mark` is consulted, and it is the
+  // one family whose instruction names an action instead of a mark: there is
+  // no mark to name. The boxes already show what was typed (a space renders as
+  // a middle dot), so the sentence only has to say how many and why.
+  if (/^ {2,}$/.test(checkpoint.canonicalInput)) {
+    return instruction("End the line with two spaces to force a ", "line break")
+  }
+
+  // Table rows are the one family the mark cannot name on its own: a header
+  // row and the divider under it can both come out as nothing but bars. The
+  // row is recognised by a bar anywhere in the checkpoint — a divider whose
+  // dashes are the blank would otherwise read as a Setext underline — and the
+  // divider is told apart by its dash runs, on whichever side of the blank
+  // they fall.
+  const inTableRow =
+    /^[|\s:-]+$/.test(mark) &&
+    checkpoint.segments.some((segment) => segment.value.includes("|")) &&
+    // A Setext underline under a heading that happens to contain a bar is a
+    // dash run with a locked newline; that shape stays a heading.
+    !(lockedBreak && /^(?:=+|-+)$/.test(mark))
+  if (inTableRow) {
+    const barsTyped = (mark.match(/\|/g) ?? []).length
+    const dashesTyped = /-{3,}/.test(mark)
+    const dividerRow =
+      dashesTyped ||
+      lockedValues.some((value) => /^\s*:?-{3,}:?\s*$/.test(value))
+    if (dividerRow) {
+      const typed =
+        dashesTyped && barsTyped > 0
+          ? "bars and dashes"
+          : dashesTyped
+            ? "dashes"
+            : barsTyped > 1
+              ? "bars"
+              : "bar"
+      return instruction(
+        `Type the Markdown ${typed} that make the row above the `,
+        "column headers",
+      )
+    }
+    return instruction(
+      `Type the Markdown ${barsTyped > 1 ? "bars that separate" : "bar that separates"} the cells of this `,
+      "table row",
+    )
+  }
   if (/^(?:=+|-+)$/.test(mark) && lockedBreak) {
     return instruction(
       "Type the Markdown underline for a ",
@@ -78,6 +127,15 @@ export function describeCheckpoint(
   if (["---", "***", "___"].includes(mark)) {
     return instruction("Type the Markdown marks for a ", "section break")
   }
+  const taskBox = mark.match(/^[-+*]\s+\[([ xX]?)\]$/)
+  if (taskBox) {
+    return taskBox[1] === " " || taskBox[1] === ""
+      ? instruction("Type the Markdown mark and brackets for a ", "checkbox item")
+      : instruction(
+          "Type the Markdown mark and brackets for a ",
+          "checked-off item",
+        )
+  }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     return instruction("Type the Markdown mark and space for a ", "bullet item")
   }
@@ -88,9 +146,34 @@ export function describeCheckpoint(
     )
   }
   if (mark.startsWith(">")) {
+    const depth = (mark.match(/>/g) ?? []).length
+    if (depth > 1) {
+      return instruction(
+        "Type the Markdown marks and spaces for a ",
+        "quote inside a quote",
+      )
+    }
     return instruction("Type the Markdown mark and space for a ", "block quote")
   }
+  if (mark === "~~~~") {
+    return instruction(
+      "Wrap the phrase in Markdown marks for ",
+      "strikethrough text",
+    )
+  }
   if (mark.startsWith("```") || mark.startsWith("~~~")) {
+    // A fence that also asks for the language name is teaching the language,
+    // not the fence, so it gets its own sentence.
+    const asksForLanguage = checkpoint.segments.some(
+      (segment) =>
+        segment.kind === "input" && /^[A-Za-z][\w+#-]*$/.test(segment.value),
+    )
+    if (asksForLanguage) {
+      return instruction(
+        "Type the Markdown marks and the language name for a ",
+        "syntax-highlighted code block",
+      )
+    }
     return instruction(
       "Type the opening and closing Markdown marks for a ",
       "fenced code block",
@@ -98,6 +181,12 @@ export function describeCheckpoint(
   }
   if (mark === "**" || mark === "__") {
     return instruction("Wrap the phrase in Markdown marks for ", "italic text")
+  }
+  if (mark === "******" || mark === "______") {
+    return instruction(
+      "Wrap the phrase in Markdown marks for ",
+      "bold italic text",
+    )
   }
   if (mark.startsWith("**") || mark.startsWith("__")) {
     return instruction("Wrap the phrase in Markdown marks for ", "bold text")
