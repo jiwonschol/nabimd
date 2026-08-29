@@ -153,7 +153,69 @@ describe("sentences the table cards already get right", () => {
   })
 })
 
-describe("sentences the table cards still get wrong", () => {
+describe("which table row the sentence calls the rule", () => {
+  // The rule row was decided from any one locked cell that was a dash run of
+  // three or more, and both halves of that were wrong. `| --- | value |` is a
+  // body row whose first cell happens to be dashes and was announced as the
+  // rule; `| - | - |` is a rule GFM accepts and was announced as a body row,
+  // so the one card that teaches what a rule is did not say it.
+  const ruleOf = (target: string, index: number) =>
+    describeCheckpoint(deriveSyntaxCheckpoints(target, "")[index]!)
+
+  it("reads a rule of any dash width as the rule", () => {
+    for (const rule of ["---", "--", "-"]) {
+      expect(
+        ruleOf(`| A | B |\n| ${rule} | ${rule} |\n| 1 | 2 |`, 1).term,
+        `rule written as ${rule}`,
+      ).toBe("column headers")
+    }
+  })
+
+  it("keeps a body row holding one dash cell a body row", () => {
+    const table = "| A | B |\n| --- | --- |\n| --- | value |"
+    expect(ruleOf(table, 2).term).toBe("table row")
+    // The header and the rule above it are untouched.
+    expect(ruleOf(table, 0).term).toBe("table row")
+    expect(ruleOf(table, 1).term).toBe("column headers")
+  })
+
+  it("keeps alignment colons reading as the rule", () => {
+    expect(ruleOf("| A | B |\n| :--- | ---: |\n| 1 | 2 |", 1).term).toBe(
+      "column headers",
+    )
+    expect(ruleOf("| A | B |\n| :---: | :---: |\n| 1 | 2 |", 1).term).toBe(
+      "column headers",
+    )
+  })
+
+  it("cannot tell any all-dash row from the rule, wherever it sits", () => {
+    // Recorded, not fixed, and this change is what opened the header half of
+    // it. Reading every cell means an all-dash row reads as the rule no matter
+    // which row it is, so both a body row and a header row of dashes are
+    // announced as the rule — and a table can end up saying it twice.
+    //
+    // The old predicate got the header right only by accident: `| - | - |`
+    // has one dash per cell and the three-dash minimum missed it, which is
+    // the same miss that made a real one-dash rule read as a body row. The
+    // two cannot be separated by the values at all; both rows are the same
+    // characters. Only the row's position can, which is #178 item 12.
+    //
+    // Taken deliberately. A one-dash rule row is ordinary GFM; a header whose
+    // every cell is literally a dash is not something the curriculum writes.
+    // The batch keeps one non-dash cell in every row, header included.
+    const bodyAllDashes = "| A | B |\n| --- | --- |\n| --- | --- |"
+    expect(ruleOf(bodyAllDashes, 2).term).toBe("column headers")
+
+    const headerAllDashes = "| - | - |\n| --- | --- |\n| x | y |"
+    expect(ruleOf(headerAllDashes, 0).term).toBe("column headers")
+    // The real rule row underneath still reads correctly, so the table says
+    // it twice rather than losing it.
+    expect(ruleOf(headerAllDashes, 1).term).toBe("column headers")
+    expect(ruleOf(headerAllDashes, 2).term).toBe("table row")
+  })
+})
+
+describe("the sentence a table card still gets wrong", () => {
   // Opening the blanks makes these reachable. They are recorded rather than
   // fixed here because the sentences live in `CenterCard.tsx`, which #181 is
   // rewriting; each becomes red when that follow-up lands, which is the
@@ -161,28 +223,29 @@ describe("sentences the table cards still get wrong", () => {
   const rowOf = (target: string, index: number) =>
     describeCheckpoint(deriveSyntaxCheckpoints(target, "")[index]!)
 
-  it("reads a one-dash rule as an ordinary row", () => {
-    expect(rowOf("| A | B |\n| - | - |\n| 1 | 2 |", 1).term).toBe("table row")
-  })
-
   it("names only the first syntax when a row carries two", () => {
     // A bold cell or a quoted table puts two syntaxes on one card, and the
     // sentence names one of them. That is #177/#178, not the table engine:
     // the row is correctly kept apart, and the bar is correctly a blank.
+    // The term alone cannot separate "not fixed" from "half fixed": a sentence
+    // that began naming the bar would keep the same term and stay green, so
+    // the prefix is checked too.
     expect(rowOf("**x** | one\n--- | ---\n**y** | two", 0).term).toBe("bold text")
+    expect(
+      rowOf("**x** | one\n--- | ---\n**y** | two", 0).prefix,
+    ).not.toMatch(/\bbars?\b/)
     expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 0).term).toBe("block quote")
+    expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 0).prefix).not.toMatch(
+      /\bbars?\b/,
+    )
     // The rule row of a quoted table is the worse case and needs its own
     // assertion: the others only fail to mention the bar, while this one also
     // loses that the row sets the column headers — outside a blockquote it
     // would say so. Checking only the first row leaves that free to change
     // either way unnoticed.
     expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 1).term).toBe("block quote")
-  })
-
-  it("reads a body row of dashes as a rule", () => {
-    // `| --- | value |` is a legitimate body cell, not a second rule.
-    expect(rowOf("| A | B |\n| --- | --- |\n| --- | value |", 2).term).toBe(
-      "column headers",
+    expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 1).prefix).not.toMatch(
+      /\bbars?\b|column/,
     )
   })
 })
