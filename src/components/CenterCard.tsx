@@ -96,11 +96,32 @@ export function describeCheckpoint(
   // a middle dot), so the sentence only has to say how many and why — and the
   // count comes from the blank, since two is the minimum a break needs but not
   // the only width a source can carry.
-  if (/^ {2,}$/.test(checkpoint.canonicalInput)) {
-    return instruction(
-      `End the line with ${spelledCount(checkpoint.canonicalInput.length)} spaces to force a `,
-      "line break",
-    )
+  const spaceRuns = checkpoint.segments.filter(
+    (segment) => segment.kind === "input" && /^ {2,}$/.test(segment.value),
+  )
+  const everyBlankIsSpaces =
+    spaceRuns.length > 0 &&
+    spaceRuns.length ===
+      checkpoint.segments.filter((segment) => segment.kind === "input").length
+  if (everyBlankIsSpaces) {
+    // #176 gathers several breaks onto one card, and their spaces join. The
+    // count has to come from one blank, not from all of them added up: three
+    // lines each ending in two spaces is not one line ending in six.
+    const widths = new Set(spaceRuns.map((segment) => segment.value.length))
+    if (spaceRuns.length === 1) {
+      return instruction(
+        `End the line with ${spelledCount(spaceRuns[0]!.value.length)} spaces to force a `,
+        "line break",
+      )
+    }
+    return widths.size === 1
+      ? instruction(
+          `End each line with ${spelledCount(spaceRuns[0]!.value.length)} spaces to force a `,
+          "line break",
+        )
+      : // Lines asking for different widths have no one number to name, and
+        // the boxes already show how many each one wants.
+        instruction("Fill the spaces at the end of each line to force a ", "line break")
   }
 
   // Table rows are the one family the mark cannot name on its own: a header

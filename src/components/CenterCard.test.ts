@@ -4,6 +4,7 @@ import type {
   SyntaxCheckpoint,
 } from "../guided/guidedSyntax"
 import { deriveSyntaxCheckpoints } from "../guided/guidedSyntax"
+import { problemBank } from "../content/problemBank"
 import { describeCheckpoint } from "./CenterCard"
 
 function checkpointFor(target: string) {
@@ -330,6 +331,27 @@ describe("describeCheckpoint", () => {
     ).not.toBe("checkbox item")
   })
 
+  it("ends each gathered line with its own spaces", () => {
+    // Three lines each ending in two spaces is not one line ending in six.
+    expect(
+      describeCheckpoint(checkpointFor("First  \nSecond  \nThird")).prefix,
+    ).toBe("End each line with two spaces to force a ")
+    expect(describeCheckpoint(checkpointFor("First  \nSecond")).prefix).toBe(
+      "End the line with two spaces to force a ",
+    )
+    // Lines asking for different widths have no one number to name.
+    expect(
+      describeCheckpoint(
+        checkpointOf(
+          ["First", "locked"],
+          ["  ", "input"],
+          ["\nSecond", "locked"],
+          ["   ", "input"],
+        ),
+      ).prefix,
+    ).toBe("Fill the spaces at the end of each line to force a ")
+  })
+
   it("does not call two quoted lines a quote inside a quote", () => {
     // Gathered sibling quote markers join to the same `> > ` a nested quote
     // does. The nested pair sits side by side; siblings have a line between.
@@ -489,6 +511,51 @@ describe("describeCheckpoint", () => {
       term: "level 2 Setext heading",
       suffix: ".",
     })
+  })
+
+  it("keeps every served card's article matching the blanks it holds", () => {
+    // The whole bank, both directions. 158 of 744 served cards shipped saying
+    // "for a" in front of two or three markers because nothing counted the
+    // sentence against the card. The marker patterns are written out here on
+    // purpose: this is an independent recount, not a call back into the code
+    // being checked.
+    const COUNTED: ReadonlyArray<{ term: string; marker: RegExp }> = [
+      { term: "bullet item", marker: /^ {0,3}[-+*][\t ]+$/ },
+      { term: "numbered step", marker: /^ {0,3}\d+[.)][\t ]+$/ },
+      { term: "block quote", marker: /^ {0,3}>[\t ]*$/ },
+      { term: "checkbox item", marker: /^\[[ xX]?\]$/ },
+      { term: "checked-off item", marker: /^\[[ xX]?\]$/ },
+      { term: "line break", marker: /^ {2,}$/ },
+    ]
+
+    let single = 0
+    let gathered = 0
+    for (const problem of problemBank) {
+      for (const checkpoint of deriveSyntaxCheckpoints(
+        problem.target,
+        problem.starterText,
+      )) {
+        const { prefix, term } = describeCheckpoint(checkpoint)
+        const family = COUNTED.find((counted) => counted.term === term)
+        if (!family) continue
+        const markers = checkpoint.segments.filter(
+          (segment) =>
+            segment.kind === "input" && family.marker.test(segment.value),
+        ).length
+        const saysEach = /\beach\b/.test(prefix)
+        expect(
+          saysEach,
+          `${problem.id}:${checkpoint.id} "${prefix}${term}." holds ${markers}`,
+        ).toBe(markers > 1)
+        if (markers > 1) gathered += 1
+        else single += 1
+      }
+    }
+
+    // A guard that walked nothing is green for the wrong reason, and one that
+    // only ever saw single cards would not have caught the 158.
+    expect(single).toBeGreaterThan(50)
+    expect(gathered).toBeGreaterThan(50)
   })
 
   it("records which families the engine still cannot reach", () => {
