@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-29-l1-tables-031",
+  "editorialActor": "jinseo-editorial-batch031-independent",
+  "editorialRunId": "editorial-batch031-50b8683a-20260829-kst-001",
+  "reviewedOn": "2026-08-29",
+  "reviewTimezone": "Asia/Seoul",
+  "reviewedHead": "32455401a068048b857102b4f59356b128671424",
+  "sourceBuzzEventId": "d78d1a9fae3788c46bd4ec151dbf2d951e6e7f4505aa62857fc907a6fcb68835",
+  "manifestDigest": "50b8683ab052ae5e0bc5dbf559ee758cb55e9df8cdadb763bdc27893bf1f421f",
+  "decisions": [
+    {
+      "candidateId": "l1-table-bus-time",
+      "revision": 2,
+      "candidateDigest": "2d5b5ba45478bba06a078d557342929106c9a1a4aeb5a5b2d608a69d77b971ef",
+      "fixtureResultsDigest": "7d240b1950897018f83894fb08f4f5be202737c84d0d159db0d3322466f9636a",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. P3 is closed by heading the column `Route | Time`, which makes `Green` read as a route name rather than a colour standing alone. The vocabulary metadata followed the target: terms are route/time/green/noon and contentVariant is route-time. The id stays l1-table-bus-time so revision 1 -> 2 history stays on one candidateId; contentVariant is what carries the content. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-day-weather",
+      "revision": 2,
+      "candidateDigest": "4a153594db9716bceacd4f6be15fe3d192ec0703fdaabba6e86e0458c791a139",
+      "fixtureResultsDigest": "0bd7434fd6d3b8eecc68fc2b6b5e81bb37b580d04b527866c1af2278fe8bf893",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-event-place",
+      "revision": 2,
+      "candidateDigest": "cbc8f988642fd6487da315b51be483e1eb64016a526ae9421cbcb0496af7dd4b",
+      "fixtureResultsDigest": "56a9cf0c3c97239bb5669b638efe648941bf496b968b7c217496530fd5cfee8f",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-flower-color",
+      "revision": 2,
+      "candidateDigest": "781b9d78aa5a6241e7a3c755fbea83c6d34daab95f91f5d0e5e6317e0c5e5ce3",
+      "fixtureResultsDigest": "f2be5088c7c62bed152548846fbe62b81222750d80c81e6d6c1e87fc4652783e",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-fruit-count",
+      "revision": 2,
+      "candidateDigest": "59a591920ddbaade21b48ad5b025a69e19c23adf02075ba89945db2c8e140817",
+      "fixtureResultsDigest": "c8244fe42c0bae82c6ad3d726133e58385388b4cb35e8f8c267e2eb85e619729",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-item-price",
+      "revision": 2,
+      "candidateDigest": "5e89bc25aedec9a37521f0185bf5565bafda07ef53ef6465ed4c4aaf3eec75a3",
+      "fixtureResultsDigest": "158ec1b250fdd48212889ccda10de8e72eb2633c7b6c0a7a0213a1babef8feeb",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-meal-drink",
+      "revision": 2,
+      "candidateDigest": "6483b8ea703290632a74e5fb48be0cdc92b86341571cfa53e542b2307861afc9",
+      "fixtureResultsDigest": "78ffb270c568d3672340c1b168bf0cd464ee54a2af205e40e56d352b11f69e6c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-pet-name",
+      "revision": 2,
+      "candidateDigest": "143a5934e7edaf617500ff2df156d8ebf09810c282567b50034fe1932665d42b",
+      "fixtureResultsDigest": "fa8d0282a6438d9e91d86d12889caf629090db27755e5b9568eafd433183eb50",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-room-floor",
+      "revision": 2,
+      "candidateDigest": "8a321697cc7fb52ed85e9dd8a32038a959368cf51e3f807dc3a81b57d00a5167",
+      "fixtureResultsDigest": "db17a045f30ce816a16cc27507859ab205fffb8594e442fb61ed30fcadf01c3f",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-shop-opens",
+      "revision": 2,
+      "candidateDigest": "8973b256ba070e7896ae75551849cf8a62d5a5b8e39f1ecc4667825894810c38",
+      "fixtureResultsDigest": "b8c6a02ae64c26915859bbd661cdd3549dac13b9da76229c3ff992e3e649d524",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-team-practice",
+      "revision": 2,
+      "candidateDigest": "779951d64ad8dd6536f47c53a520b0ccd01f471608c05e7ae42873f3a316b137",
+      "fixtureResultsDigest": "449677f0dcc4832dcc7a98f12ceca932e8d751659dd6c662edbae0078df354ea",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    },
+    {
+      "candidateId": "l1-table-trail-length",
+      "revision": 2,
+      "candidateDigest": "abccdef8c4e0415ea9c933755993dec771627f80549d971980fbac1295bc2f4c",
+      "fixtureResultsDigest": "57244f78fae5795f19d7b1ecbafa85b5be0a1449944ac6669c063b2637f74d5c",
+      "status": "accepted",
+      "checks": {
+        "levelFit": "pass",
+        "vocabularyFit": "pass",
+        "ambiguity": "pass",
+        "goalQuality": "pass",
+        "duplication": "pass",
+        "licensing": "pass",
+        "flavor": "pass",
+        "runtimeAiBoundary": "pass"
+      },
+      "notes": "Revision 2 replaces the shared teaching, hints and match-check feedback that made 030 fail. Measured on the real card path (derivePlaintextStarter -> deriveSyntaxCheckpoints -> describeCheckpoint) this candidate opens three cards, one bar each, reading table row / column headers / table row; the cell text and the divider dashes stay locked. The copy now names that work and nothing else: howTo says a bar in every row and that the divider row needs one too, the feedback a learner sees after leaving a bar out asks for a bar in each of the three rows, and the first hint says every row takes a bar including the one made of dashes. The shared teaching example (`Name | Age` / `Ada | 31`) matches no target in the batch, and none of Ada, Name or Age appears in any of the twelve. That was the 030 P1: a shared example that lives inside the batch is one candidate's answer."
+    }
+  ],
+  "reviewDigests": [
+    "6090e7146840a6c397d71c038f20e141d8b8531938291f3dec306324d3bfb0e2",
+    "6da7b64b5a8a1b7dffabc125d890e0a465f395984cfebd3f6f90c3c7bcb4dbda"
+  ],
+  "editorialDigest": "7ba516408a7f96dbca85332707ec1db30b31d905f5e6a0a2815396ae5a8696de"
+}
