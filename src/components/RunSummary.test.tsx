@@ -122,6 +122,24 @@ describe("RunSummary as a teacher's return", () => {
     expect(screen.getByText("Space")).toBeVisible()
   })
 
+  it("keeps keyboard focus on completed-exercise navigation", () => {
+    renderSummary()
+    const next = screen.getByRole("button", {
+      name: "Next completed exercise",
+    })
+    next.focus()
+
+    fireEvent.click(next)
+
+    expect(next).toHaveFocus()
+    const previous = screen.getByRole("button", {
+      name: "Previous completed exercise",
+    })
+    previous.focus()
+    fireEvent.click(previous)
+    expect(previous).toHaveFocus()
+  })
+
   it("marks only the missed line, leaving the rest of the work clean", () => {
     renderSummary([mistake()])
 

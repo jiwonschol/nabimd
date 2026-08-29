@@ -80,7 +80,6 @@ export function RunSummary({
             <article
               aria-label={`Completed exercise ${pageIndex + 1} of ${pages.length}: ${activePage.title}`}
               className="run-summary__work-page"
-              key={activePage.problemId}
             >
               <header className="run-summary__work-header">
                 <div>

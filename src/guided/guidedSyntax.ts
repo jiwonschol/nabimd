@@ -351,10 +351,14 @@ function syntaxGroupTermsInOrder(
   return checkpoint.segments.flatMap((segment, index) => {
     if (segment.kind !== "input") return []
     const previous = checkpoint.segments[index - 1]
+    const precedingSource = checkpoint.segments
+      .slice(0, index)
+      .map((candidate) => candidate.value)
+      .join("")
     return [
       syntaxGroupTerm(
         segment.value,
-        previous?.kind === "locked" && /[^\n]\n[\t ]*$/.test(previous.value),
+        /[^\n]\n[\t ]*$/.test(precedingSource),
         previous?.kind === "input" && QUOTE_MARKER_BLANK.test(previous.value),
       ),
     ]

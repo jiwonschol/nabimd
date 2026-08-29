@@ -323,6 +323,11 @@ describe("deriveSyntaxCheckpoints", () => {
 
     const setext = deriveSyntaxCheckpoints("Title\n---", "")[0]!
     expect(syntaxGroupTermAt(setext, 0)).toBe("level 2 Setext heading")
+
+    const formattedSetext = deriveSyntaxCheckpoints("*Heading*\n---", "")[0]!
+    expect(syntaxGroupTermAt(formattedSetext, 2)).toBe(
+      "level 2 Setext heading",
+    )
   })
 
   it("keeps every line of one quote on a single card", () => {
