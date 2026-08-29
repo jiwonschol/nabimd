@@ -111,6 +111,20 @@ describe("grading can tell a table from piped text", () => {
 })
 
 describe("sentences the table cards already get right", () => {
+  it("says nothing about alignment colons, because nobody types them", () => {
+    // Codex read the silence as a gap. The colons are locked prose here — the
+    // only blank is the bar — and a sentence has no business naming a mark the
+    // learner does not type. Same shape as the singular-bar case below: the
+    // report assumed a card where the colons are blanks, and this engine does
+    // not make one. Recorded as a pass case so a later change to what a rule
+    // row blanks cannot flip it quietly.
+    const rule = describeCheckpoint(
+      deriveSyntaxCheckpoints("| A | B |\n| :--- | ---: |\n| 1 | 2 |", "")[1]!,
+    )
+    expect(rule.term).toBe("column headers")
+    expect(rule.prefix).not.toMatch(/colon/i)
+  })
+
   it("keeps a single bar singular on a rule row", () => {
     // Codex read this as plural-for-one-bar, which was true while the dashes
     // were typed. The engine locks them — the bar is the only blank — so the
@@ -134,15 +148,6 @@ describe("sentences the table cards still get wrong", () => {
 
   it("reads a one-dash rule as an ordinary row", () => {
     expect(rowOf("| A | B |\n| - | - |\n| 1 | 2 |", 1).term).toBe("table row")
-  })
-
-  it("says nothing about alignment colons", () => {
-    expect(rowOf("| A | B |\n| :--- | ---: |\n| 1 | 2 |", 1).term).toBe(
-      "column headers",
-    )
-    expect(rowOf("| A | B |\n| :--- | ---: |\n| 1 | 2 |", 1).prefix).not.toMatch(
-      /colon/i,
-    )
   })
 
   it("names only the first syntax when a row carries two", () => {
