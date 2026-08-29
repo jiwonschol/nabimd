@@ -156,6 +156,12 @@ describe("sentences the table cards still get wrong", () => {
     // the row is correctly kept apart, and the bar is correctly a blank.
     expect(rowOf("**x** | one\n--- | ---\n**y** | two", 0).term).toBe("bold text")
     expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 0).term).toBe("block quote")
+    // The rule row of a quoted table is the worse case and needs its own
+    // assertion: the others only fail to mention the bar, while this one also
+    // loses that the row sets the column headers — outside a blockquote it
+    // would say so. Checking only the first row leaves that free to change
+    // either way unnoticed.
+    expect(rowOf("> a | b\n> --- | ---\n> 1 | 2", 1).term).toBe("block quote")
   })
 
   it("reads a body row of dashes as a rule", () => {
