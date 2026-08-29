@@ -59,12 +59,25 @@ function nestedQuoteInstruction(
   if (nestedAt < 0) return null
   const pair = touchingPairAt(shape, nestedAt)!
   const spaces = (pair.join("").match(/ /g) ?? []).length
-  return instruction(
+  // How many quoted *lines* the card holds, not how many markers. Every line
+  // opens with a marker nothing precedes; the ones behind it are its deeper
+  // levels. Counting markers instead would read `> > > one` as three lines,
+  // and counting nothing at all — which is what this did — let a card asking
+  // for four blanks across two lines say it teaches one quote.
+  const lines = shape.inputs.filter(
+    (value, index) =>
+      QUOTE_MARKER.test(value) && shape.precededByInput[index] !== true,
+  ).length
+  const marks =
     spaces === 0
-      ? "Type the Markdown marks for a "
+      ? "Type the Markdown marks for "
       : spaces === 1
-        ? "Type the Markdown marks and space for a "
-        : "Type the Markdown marks and spaces for a ",
+        ? "Type the Markdown marks and space for "
+        : "Type the Markdown marks and spaces for "
+  // The plural reads the way the plain block quote's does: several lines of
+  // one quote, not several quotes.
+  return instruction(
+    `${marks}${lines > 1 ? "each line of this " : "a "}`,
     "quote inside a quote",
   )
 }

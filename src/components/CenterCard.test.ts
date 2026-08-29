@@ -829,6 +829,27 @@ describe("describeCheckpoint", () => {
     expect(describeCheckpoint(ordered).term).toBe("numbered step")
   })
 
+  it("counts quoted lines, not quote markers, in the nested sentence", () => {
+    // Two lines at depth two is one card with four blanks. Saying "a quote
+    // inside a quote" there asks for four and claims to teach one. The plain
+    // block quote already says "each line of this", and the nested sentence
+    // now reads the same way — several lines of one quote, not several quotes.
+    const sentence = (target: string) => {
+      const { prefix, term, suffix } = describeCheckpoint(checkpointFor(target))
+      return prefix + term + suffix
+    }
+    expect(sentence("> > one\n> > two")).toBe(
+      "Type the Markdown marks and spaces for each line of this quote inside a quote.",
+    )
+    // Depth is not line count: three markers on one line is still one line.
+    expect(sentence("> > > Deep")).toBe(
+      "Type the Markdown marks and spaces for a quote inside a quote.",
+    )
+    expect(sentence("> > Deep")).toBe(
+      "Type the Markdown marks and spaces for a quote inside a quote.",
+    )
+  })
+
   it("keeps the nesting when a nested quote carries another family", () => {
     // `> > **Deep**` is one line at depth two. Counting quote markers alone
     // read its two touching levels as two quoted lines and said "each line of
