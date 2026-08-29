@@ -225,6 +225,41 @@ export function describeCheckpoint(
       allChecked ? "checked-off item" : "checkbox item",
     )
   }
+  // One line can carry two syntaxes. The L3/L4/L5 content writes an exact name
+  // as inline code inside a list item, so the blanks are a list marker and a
+  // pair of backticks — and the marker branches below decide from the joined
+  // value, where `- ` and two backticks read as "- ``". They matched the
+  // bullet and said nothing about the other blanks; on the L5 readme cards
+  // that left four of six unexplained. Which kinds are present has to be
+  // counted from the segments, the same way the marker count already is.
+  // Splitting the card into one per syntax would be the better answer, but the
+  // two share a line, so either half would show the other half's answer in its
+  // locked prose. That needs the locked-prose contract reopened (#177); until
+  // then the sentence names both, and the emphasis goes on the backticks
+  // because a learner who reached this card has already been taught the marker.
+  const inlineCodeRuns = checkpoint.segments.filter(
+    // One or two backticks, never a fence: three or more is a code block, and
+    // its own branch below teaches it.
+    (segment) => segment.kind === "input" && /^`{1,2}$/.test(segment.value),
+  ).length
+  const bulletMarkers = markerCount(/^ {0,3}[-+*][\t ]+$/)
+  const stepMarkers = markerCount(/^ {0,3}\d+[.)][\t ]+$/)
+  if (inlineCodeRuns >= 2 && bulletMarkers + stepMarkers > 0) {
+    const many = bulletMarkers + stepMarkers > 1
+    const lead =
+      stepMarkers > 0
+        ? many
+          ? "Type each step number and space"
+          : "Type the Markdown number and space"
+        : many
+          ? "Type each bullet mark and space"
+          : "Type the Markdown mark and space"
+    return instruction(
+      `${lead}, then wrap the exact text in `,
+      "inline code",
+      " marks.",
+    )
+  }
   if (/^[-+*]\s*$/.test(mark) || /^[-+*]\s+\S?/.test(checkpoint.canonicalInput)) {
     const bullets = markerCount(/^ {0,3}[-+*][\t ]+$/)
     return instruction(
