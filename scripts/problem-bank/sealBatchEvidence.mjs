@@ -1,8 +1,80 @@
 import { readdir, readFile, writeFile } from "node:fs/promises"
-import { resolve } from "node:path"
+import { basename, dirname, resolve } from "node:path"
 import { pathToFileURL } from "node:url"
-import { sealEditorial, sealReview } from "./batchPipeline.mjs"
+import {
+  buildPublishedBatchArtifacts,
+  loadBatchDirectories,
+  publishedBatchHistory,
+  sealEditorial,
+  sealReview,
+} from "./batchPipeline.mjs"
 import { canonicalJson } from "./pipeline.mjs"
+
+function prettyJson(value) {
+  return `${JSON.stringify(value, null, 2)}\n`
+}
+
+async function updatePublishedChain({ batchDir, projectedBatch, write }) {
+  const bankRoot = dirname(dirname(batchDir))
+  const targetBatchId = basename(batchDir)
+  const loaded = await loadBatchDirectories(bankRoot)
+  const target = loaded.find((batch) => batch.normalized?.batchId === targetBatchId)
+  if (!target) return []
+
+  const projected = loaded.map((batch) =>
+    batch.normalized?.batchId === targetBatchId
+      ? { ...batch, ...projectedBatch }
+      : batch,
+  )
+  const published = publishedBatchHistory(
+    projected.filter((batch) => batch.editorial !== null && batch.editorial !== undefined),
+  ).sort(
+    (left, right) =>
+      left.normalized.sequence - right.normalized.sequence ||
+      left.normalized.batchId.localeCompare(right.normalized.batchId),
+  )
+  if (!published.some((batch) => batch.normalized.batchId === targetBatchId)) return []
+  const targetSequence = target.normalized.sequence
+  const changed = []
+  let finalArtifacts = null
+  for (let index = 0; index < published.length; index += 1) {
+    const currentBatch = published[index]
+    const artifacts = buildPublishedBatchArtifacts({
+      batches: published.slice(0, index + 1),
+      currentBatch,
+    })
+    if (artifacts.errors.length > 0) {
+      throw new Error(
+        `Cannot rebuild published evidence after resealing ${targetBatchId}:\n${artifacts.errors.join("\n")}`,
+      )
+    }
+    finalArtifacts = artifacts
+    if (currentBatch.normalized.sequence < targetSequence) continue
+    if (currentBatch.summary === null || currentBatch.summary === undefined) continue
+    if (canonicalJson(artifacts.summary) === canonicalJson(currentBatch.summary)) continue
+    const relative = `${currentBatch.normalized.batchId}/summary.generated.json`
+    changed.push(relative)
+    if (write) {
+      await writeFile(
+        resolve(bankRoot, "batches", relative),
+        prettyJson(artifacts.summary),
+      )
+    }
+  }
+
+  if (finalArtifacts === null) return changed
+  for (const [name, expected] of [
+    ["runtime-projections.generated.json", finalArtifacts.runtimeProjections],
+    ["tracker.generated.json", finalArtifacts.tracker],
+  ]) {
+    const path = resolve(bankRoot, name)
+    const committed = JSON.parse(await readFile(path, "utf8"))
+    if (canonicalJson(expected) === canonicalJson(committed)) continue
+    changed.push(name)
+    if (write) await writeFile(path, prettyJson(expected))
+  }
+  return changed
+}
 
 /**
  * Re-derive the seals a batch's evidence carries.
@@ -57,13 +129,24 @@ export async function resealBatchEvidence({ batchDir, write = false }) {
   }
 
   if (editorial !== null) {
-    const sealed = sealEditorial(editorial, sealedReviews)
-    if (canonicalJson(sealed) !== canonicalJson(editorial)) {
+    const sealedEditorial = sealEditorial(editorial, sealedReviews)
+    if (canonicalJson(sealedEditorial) !== canonicalJson(editorial)) {
       changed.push("editorial.json")
       if (write) {
-        await writeFile(editorialPath, `${JSON.stringify(sealed, null, 2)}\n`)
+        await writeFile(editorialPath, prettyJson(sealedEditorial))
       }
     }
+    editorial = sealedEditorial
+  }
+
+  if (changed.length > 0) {
+    changed.push(
+      ...(await updatePublishedChain({
+        batchDir,
+        projectedBatch: { reviews: sealedReviews, editorial },
+        write,
+      })),
+    )
   }
 
   return { reviewCount: reviewNames.length, hasEditorial: editorial !== null, changed }

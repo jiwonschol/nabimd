@@ -940,6 +940,43 @@ export function createRuntimeProjections(compiled) {
   return { ...artifact, projectionDigest: sha256(artifact) }
 }
 
+export function buildPublishedBatchArtifacts({ batches, currentBatch }) {
+  const evaluated = evaluateBatchEvidence(currentBatch)
+  const compiled = compileAcceptedBank(batches)
+  const runtimeProjections = createRuntimeProjections(compiled)
+  const tracker = buildTracker(compiled)
+  const summaryBase = {
+    schemaVersion: BATCH_SCHEMA_VERSION,
+    batchId: currentBatch.normalized.batchId,
+    status: "published",
+    batchDigest: evaluated.batchDigest,
+    bankDigest: compiled.bankDigest,
+    projectionDigest: runtimeProjections.projectionDigest,
+    trackerDigest: tracker.trackerDigest,
+    generated: evaluated.summary.generated,
+    accepted: evaluated.summary.accepted,
+    rejected: evaluated.summary.rejected,
+    blocked: evaluated.summary.blocked,
+    counts: {
+      byLevel: tracker.counts.byLevel,
+      byFamily: tracker.counts.byFamily,
+      byLevelAndFamily: tracker.counts.byLevelAndFamily,
+      byFlavor: tracker.counts.byFlavor,
+    },
+    manifestDigest: currentBatch.manifest.manifestDigest,
+    reviewDigests: currentBatch.reviews
+      .map((review) => review.reviewDigest)
+      .sort(),
+    editorialDigest: currentBatch.editorial?.editorialDigest ?? null,
+  }
+  return {
+    errors: [...new Set([...evaluated.errors, ...compiled.errors])],
+    runtimeProjections,
+    tracker,
+    summary: { ...summaryBase, summaryDigest: sha256(summaryBase) },
+  }
+}
+
 const COMPLETION_FLOORS = Object.freeze({ 1: 128, 2: 128, 3: 96, 4: 80, 5: 80 })
 
 export function evaluateBankGate({

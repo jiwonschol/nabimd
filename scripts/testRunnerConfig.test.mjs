@@ -20,6 +20,10 @@ async function scriptTestFiles() {
   return found.sort()
 }
 
+export function importsNodeTest(source) {
+  return /^\s*import\s+(?:[\w$]+\s*,\s*)?(?:\*\s+as\s+[\w$]+|\{[^}]*\}|[\w$]+)\s+from\s+(["'])node:test\1\s*;?/m.test(source)
+}
+
 describe("test runner configuration", () => {
   // Two runners share one directory tree. vitest's include reaches
   // `scripts/**/*.test.mjs` for the suites written against it, and a file
@@ -39,7 +43,7 @@ describe("test runner configuration", () => {
       const source = await readFile(path, "utf8")
       // An import statement, not a mention: this file names both runners in
       // its own assertions and would otherwise classify itself.
-      const isNodeTest = /^import[^\n]*from "node:test"/m.test(source)
+      const isNodeTest = importsNodeTest(source)
       const excluded = config.includes(`"${relative}"`)
       if (isNodeTest) {
         nodeTestFiles += 1
@@ -55,5 +59,13 @@ describe("test runner configuration", () => {
     // A sweep that matched neither kind would satisfy both branches above.
     expect(nodeTestFiles).toBeGreaterThan(0)
     expect(vitestFiles).toBeGreaterThan(0)
+  })
+
+  it("recognizes valid node:test import forms", () => {
+    expect(importsNodeTest("import test from 'node:test'\n")).toBe(true)
+    expect(importsNodeTest('import {\n  describe,\n  it,\n} from "node:test"\n')).toBe(true)
+    expect(importsNodeTest('import test, { mock } from "node:test"\n')).toBe(true)
+    expect(importsNodeTest('// import test from "node:test"\n')).toBe(false)
+    expect(importsNodeTest('const runner = "node:test"\n')).toBe(false)
   })
 })

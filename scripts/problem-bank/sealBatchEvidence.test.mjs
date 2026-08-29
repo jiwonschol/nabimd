@@ -1,5 +1,5 @@
 import assert from "node:assert/strict"
-import { mkdtemp, mkdir, readFile, writeFile, readdir } from "node:fs/promises"
+import { cp, mkdtemp, mkdir, readFile, writeFile, readdir } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { resolve } from "node:path"
 import test from "node:test"
@@ -175,6 +175,53 @@ test("the command without --check reseals and succeeds", async () => {
   const review = JSON.parse(await readFile(resolve(batchDir, "reviews", "a.json"), "utf8"))
   assert.equal(canonicalJson(review), canonicalJson(sealReview(review)))
   assert.equal((await runCli([batchDir, "--check"])).code, 0)
+})
+
+test("resealing published evidence rebuilds every affected generated artifact", async () => {
+  const sourceBank = resolve(import.meta.dirname, "../../curriculum/problem-bank")
+  const tempRoot = await mkdtemp(resolve(tmpdir(), "nabimd-published-chain-"))
+  const bankRoot = resolve(tempRoot, "problem-bank")
+  const batchesRoot = resolve(bankRoot, "batches")
+  await mkdir(batchesRoot, { recursive: true })
+
+  const batchIds = [
+    "2026-07-19-milestone-1-foundation-001",
+    "2026-07-19-l1-l2-headings-002",
+  ]
+  for (const batchId of batchIds) {
+    await cp(
+      resolve(sourceBank, "batches", batchId),
+      resolve(batchesRoot, batchId),
+      { recursive: true },
+    )
+  }
+  await cp(
+    resolve(sourceBank, "runtime-projections.generated.json"),
+    resolve(bankRoot, "runtime-projections.generated.json"),
+  )
+  await cp(
+    resolve(sourceBank, "tracker.generated.json"),
+    resolve(bankRoot, "tracker.generated.json"),
+  )
+
+  const firstBatch = resolve(batchesRoot, batchIds[0])
+  const reviewName = (await readdir(resolve(firstBatch, "reviews")))
+    .filter((name) => name.endsWith(".json"))
+    .sort()[0]
+  const reviewPath = resolve(firstBatch, "reviews", reviewName)
+  const review = JSON.parse(await readFile(reviewPath, "utf8"))
+  review.verdicts[0].note = "clarified without changing the verdict"
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`)
+
+  const report = await resealBatchEvidence({ batchDir: firstBatch, write: true })
+  assert.ok(report.changed.includes(`${batchIds[0]}/summary.generated.json`))
+  assert.ok(report.changed.includes(`${batchIds[1]}/summary.generated.json`))
+  assert.ok(report.changed.includes("runtime-projections.generated.json"))
+  assert.ok(report.changed.includes("tracker.generated.json"))
+  assert.deepEqual(
+    (await resealBatchEvidence({ batchDir: firstBatch, write: false })).changed,
+    [],
+  )
 })
 
 test("a batch with no reviews and no editorial is not an error", async () => {

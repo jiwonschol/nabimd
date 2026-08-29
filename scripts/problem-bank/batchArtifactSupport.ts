@@ -10,6 +10,7 @@ import { validateProblemBank } from "../../src/content/validateProblemBank"
 import { evaluateProblem } from "../../src/engine/evaluateProblem"
 import {
   buildReviewManifest,
+  buildPublishedBatchArtifacts,
   buildTracker,
   compileAcceptedBank,
   createRuntimeProjections,
@@ -681,42 +682,16 @@ export function buildAuthoredBatchPublication({
   }
 
   const currentBatch = evidenceBatch(committed)
-  const evaluated = evaluateBatchEvidence(currentBatch)
-  errors.push(...evaluated.errors)
-  const compiled = compileAcceptedBank([...computed.previousBatches, currentBatch])
-  errors.push(...compiled.errors)
-  const runtimeProjections = createRuntimeProjections(compiled)
-  const tracker = buildTracker(compiled)
-  const summaryBase = {
-    schemaVersion: 2,
-    batchId: computed.normalized.batchId,
-    status: "published",
-    batchDigest: evaluated.batchDigest,
-    bankDigest: compiled.bankDigest,
-    projectionDigest: runtimeProjections.projectionDigest,
-    trackerDigest: tracker.trackerDigest,
-    generated: evaluated.summary.generated,
-    accepted: evaluated.summary.accepted,
-    rejected: evaluated.summary.rejected,
-    blocked: evaluated.summary.blocked,
-    counts: {
-      byLevel: tracker.counts.byLevel,
-      byFamily: tracker.counts.byFamily,
-      byLevelAndFamily: tracker.counts.byLevelAndFamily,
-      byFlavor: tracker.counts.byFlavor,
-    },
-    manifestDigest: computed.manifest.manifestDigest,
-    reviewDigests: committed.reviews
-      .map((review) => review.reviewDigest)
-      .sort(),
-    editorialDigest: committed.editorial?.editorialDigest ?? null,
-  }
-  const summary = { ...summaryBase, summaryDigest: sha256(summaryBase) }
+  const published = buildPublishedBatchArtifacts({
+    batches: [...computed.previousBatches, currentBatch],
+    currentBatch,
+  })
+  errors.push(...published.errors)
   return {
     errors: [...new Set(errors)],
-    runtimeProjections,
-    tracker,
-    summary,
+    runtimeProjections: published.runtimeProjections,
+    tracker: published.tracker,
+    summary: published.summary,
   }
 }
 
