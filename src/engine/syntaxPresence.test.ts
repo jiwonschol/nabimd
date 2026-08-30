@@ -7,6 +7,18 @@ describe("syntax presence", () => {
     expect(countSyntaxPresence(createEvaluationContext("\\*text\\*"), "escape")).toBe(2)
     expect(countSyntaxPresence(createEvaluationContext("`\\*text\\*`"), "escape")).toBe(0)
     expect(countSyntaxPresence(createEvaluationContext("```text\n\\# literal\n```"), "escape")).toBe(0)
+    expect(
+      countSyntaxPresence(createEvaluationContext("[x](foo\\(bar\\))"), "escape"),
+    ).toBe(2)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("[x][ref]\n\n[ref]: foo\\(bar\\)"),
+        "escape",
+      ),
+    ).toBe(2)
+    expect(
+      countSyntaxPresence(createEvaluationContext("<http://x/\\*>"), "escape"),
+    ).toBe(0)
   })
 
   it("counts each matched footnote identifier once", () => {
@@ -55,5 +67,14 @@ describe("syntax presence", () => {
     const source = "- First paragraph\n\n  Second paragraph"
 
     expect(countSyntaxPresence(createEvaluationContext(source), "list-with-block")).toBe(1)
+  })
+
+  it("counts a block-only list item", () => {
+    expect(
+      countSyntaxPresence(createEvaluationContext("- > Nested note"), "list-with-block"),
+    ).toBe(1)
+    expect(
+      countSyntaxPresence(createEvaluationContext("- Plain item"), "list-with-block"),
+    ).toBe(0)
   })
 })

@@ -189,23 +189,24 @@ function buildAcceptedForms(
         .filter((candidate) => candidate.kind === "input").length,
     ]
   })
-  if (titleDelimiterIndexes.length === 2) {
-    const [openingIndex, closingIndex] = titleDelimiterIndexes
+  for (let pair = 0; pair + 1 < titleDelimiterIndexes.length; pair += 2) {
+    const openingIndex = titleDelimiterIndexes[pair]!
+    const closingIndex = titleDelimiterIndexes[pair + 1]!
+    const currentForms = [...forms]
     for (const [opening, closing] of [
       ['"', '"'],
       ["'", "'"],
       ["(", ")"],
     ] as const) {
-      if (
-        canonicalParts[openingIndex!] === opening &&
-        canonicalParts[closingIndex!] === closing
-      ) {
-        continue
+      for (const form of currentForms) {
+        if (form[openingIndex] === opening && form[closingIndex] === closing) {
+          continue
+        }
+        const alternative = [...form]
+        alternative[openingIndex] = opening
+        alternative[closingIndex] = closing
+        forms.push(alternative)
       }
-      const alternative = [...canonicalParts]
-      alternative[openingIndex!] = opening
-      alternative[closingIndex!] = closing
-      forms.push(alternative)
     }
   }
 
@@ -390,6 +391,9 @@ function syntaxGroupTermsInOrder(
     if (segment.kind !== "input") return []
     const previous = checkpoint.segments[index - 1]
     const next = checkpoint.segments[index + 1]
+    if (segment.family?.endsWith("-title")) {
+      return ["link title"]
+    }
     if (segment.family?.startsWith("break@")) {
       return ["line break"]
     }
@@ -948,6 +952,7 @@ function markNodeSyntax(
   mask: boolean[],
   groupedRanges: SourceRange[],
   families: SyntaxFamilies,
+  referencedDefinitionIds: ReadonlySet<string>,
   insideQuote = false,
   insideTable = false,
 ): void {
@@ -1258,6 +1263,30 @@ function markNodeSyntax(
         }
       }
       break
+    case "definition": {
+      if (!range || !referencedDefinitionIds.has(node.identifier)) break
+      const raw = source.slice(range.from, range.to)
+      const title = raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*$/)
+      if (title?.index === undefined) break
+      const titleSource = title[0]
+      const opening = title[1] ?? "("
+      const closing = title[1] ?? ")"
+      const openingFrom = range.from + title.index + titleSource.indexOf(opening)
+      const closingFrom = range.from + title.index + titleSource.lastIndexOf(closing)
+      markRange(
+        mask,
+        { from: openingFrom, to: openingFrom + 1 },
+        families,
+        `${family}-title`,
+      )
+      markRange(
+        mask,
+        { from: closingFrom, to: closingFrom + 1 },
+        families,
+        `${family}-title`,
+      )
+      break
+    }
     default:
       break
   }
@@ -1270,6 +1299,7 @@ function markNodeSyntax(
         mask,
         groupedRanges,
         families,
+        referencedDefinitionIds,
         insideQuote || node.type === "blockquote",
         insideTable || node.type === "table",
       )
@@ -1506,7 +1536,25 @@ export function deriveSyntaxCheckpoints(
     () => null,
   )
   const groupedRanges: SourceRange[] = []
-  markNodeSyntax(parseMarkdownSource(source), source, mask, groupedRanges, families)
+  const root = parseMarkdownSource(source)
+  const referencedDefinitionIds = new Set<string>()
+  const collectReferenceIds = (node: Nodes): void => {
+    if (node.type === "linkReference") {
+      referencedDefinitionIds.add(node.identifier)
+    }
+    if (isParent(node)) {
+      for (const child of node.children) collectReferenceIds(child as Nodes)
+    }
+  }
+  collectReferenceIds(root)
+  markNodeSyntax(
+    root,
+    source,
+    mask,
+    groupedRanges,
+    families,
+    referencedDefinitionIds,
+  )
   unmaskLineLeadingWhitespace(source, mask, families)
 
   // Grouped ranges are looked up by the line they start on, and the loop skips

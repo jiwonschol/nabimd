@@ -50,9 +50,9 @@ function countNestedBlockquotes(
 
 function isListWithBlock(node: AstNode): boolean {
   if (node.type !== "listItem" || !node.children) return false
-  return (
-    node.children.length > 1 &&
-    node.children.slice(1).some((child) => child.type !== "list")
+  return node.children.some(
+    (child, index) =>
+      child.type !== "list" && (index > 0 || child.type !== "paragraph"),
   )
 }
 
@@ -68,16 +68,41 @@ function countEscapes(
   nodes: readonly PositionedSyntaxNode[],
   source: string,
 ): number {
-  return nodes
-    .filter((node) => node.type === "text")
-    .reduce(
-      (count, node) =>
-        count +
-        (rawSource(node, source).match(
-          /\\[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g,
-        )?.length ?? 0),
-      0,
-    )
+  const offsets = new Set<number>()
+  const autolinkRanges = nodes.flatMap((node) => {
+    const start = node.position?.start.offset
+    const end = node.position?.end.offset
+    return node.type === "link" &&
+      start !== undefined &&
+      end !== undefined &&
+      source.slice(start, end).startsWith("<")
+      ? [{ start, end }]
+      : []
+  })
+  for (const node of nodes) {
+    const raw = rawSource(node, source)
+    const syntaxBearingRange =
+      node.type === "text" ||
+      (node.type === "link" && raw.startsWith("[")) ||
+      node.type === "definition"
+    if (!syntaxBearingRange) continue
+    const start = node.position?.start.offset
+    if (start === undefined) continue
+    for (const match of raw.matchAll(
+      /\\[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g,
+    )) {
+      if (match.index === undefined) continue
+      const offset = start + match.index
+      if (
+        !autolinkRanges.some(
+          (range) => offset >= range.start && offset < range.end,
+        )
+      ) {
+        offsets.add(offset)
+      }
+    }
+  }
+  return offsets.size
 }
 
 export const supportedSyntaxPresenceKinds = new Set<SyntaxPresenceKind>([

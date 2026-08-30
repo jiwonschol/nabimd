@@ -378,6 +378,12 @@ export function findRenderedMarkdownTokens(
         if (!nodeOffsets) break
         const raw = source.slice(nodeOffsets.from, nodeOffsets.to)
         const insideTable = ancestors.some((ancestor) => ancestor.type === "table")
+        const insideAutolink = ancestors.some((ancestor) => {
+          if (ancestor.type !== "link") return false
+          const range = offsets(ancestor)
+          return Boolean(range && source.slice(range.from, range.to).startsWith("<"))
+        })
+        if (insideAutolink) break
         for (const relativeFrom of escapeBackslashOffsets(raw)) {
           // A single escaped table pipe is already projected as one local
           // `escaped-pipe` glyph by the table node. Avoid overlapping
