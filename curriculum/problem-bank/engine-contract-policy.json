@@ -4,6 +4,7 @@
   "files": [
     "package-lock.json",
     "src/content/normalizeProblem.ts",
+    "src/content/plaintextStarter.ts",
     "src/content/types.ts",
     "src/editor/renderedMarkdown.ts",
     "src/engine/evaluateProblem.ts",
@@ -16,7 +17,8 @@
     "src/markdown/parser.ts",
     "src/engine/predicates/heading.ts",
     "src/engine/predicates/structural.ts",
-    "src/engine/types.ts"
+    "src/engine/types.ts",
+    "src/guided/guidedSyntax.ts"
   ],
   "dependencies": [
     {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
-  "policyDigest": "f1e83d1dd45d53793379d08bb8a8c05426a092ab988c337f5790442103570b12",
+  "policyDigest": "c368349016a5e732f1ad717b580ee985e39140c0979577bbc98f4505882f87a8",
   "files": [
     {
       "path": "package-lock.json",
@@ -10,6 +10,10 @@
     {
       "path": "src/content/normalizeProblem.ts",
       "sha256": "03810fafe8ed82ab6cac6199e6811d0878f00968d8b0cead6760d04852316081"
+    },
+    {
+      "path": "src/content/plaintextStarter.ts",
+      "sha256": "575b0a5f7fe5a653ed1b62adb695a4d996ac88a595ffebbb8cafaf0e01844403"
     },
     {
       "path": "src/content/types.ts",
@@ -45,7 +49,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "0bfa81a61db3e3eb584a23cde5ed946c4a5a40bdafe60990ba8aaa417fd20b0d"
+      "sha256": "2c07dfe49fa12bc970d759ef29634722a16b8ef8c148f95ceaf7a5d0cb917511"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -62,6 +66,10 @@
     {
       "path": "src/engine/types.ts",
       "sha256": "032c9a7d2bfb97c025906e4ec317022615dd98276eb339a7d37841f9cd0bdd88"
+    },
+    {
+      "path": "src/guided/guidedSyntax.ts",
+      "sha256": "1fca754230a7fb33a69fb08d2e7a1407206fc11714b6f9a8cd320e6024fc9dea"
     }
   ],
   "dependencies": [
@@ -78,5 +86,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "dfb1d610d78d119d2bcc0dea19cdf91e8b037da098c99a99ca028869fec6c1aa"
+  "engineContractDigest": "d677372a590e9d07c57b61bfe6602116b18aeb06829bb5d90ab3fe76eed89b2f"
 }

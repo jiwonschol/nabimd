@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-31-l2-l3-unlock-037",
+  "batchId": "2026-08-31-l2-l3-unlock-038",
   "fixtures": [
     {
       "id": "l2-bold-italic-1-canonical",
@@ -1287,7 +1287,7 @@
       "problemId": "l3-list-with-block-1",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "- Reminder\n\n  > Bring a notebook",
+      "source": "- > Bring a notebook",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1353,7 +1353,7 @@
       "problemId": "l3-list-with-block-2",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "- Update\n\n  ```text\n  Ready\n  ```",
+      "source": "- > Share the update",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },
@@ -1495,7 +1495,7 @@
       "problemId": "l3-mixed-list-angle-url",
       "problemRevision": 1,
       "role": "canonical",
-      "source": "- Check the source\n\n  > Open <https://example.org>.",
+      "source": "- > Open <https://example.org>.",
       "expectedStatus": "matched",
       "expectedReviewIds": []
     },

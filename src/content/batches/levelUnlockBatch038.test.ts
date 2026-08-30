@@ -14,14 +14,14 @@ import { isEligibleMixedExercise } from "../mixedExercisePolicy"
 import { problemBank } from "../problemBank"
 import { withinRuntimeBudget } from "../runtimeBudget"
 import { validateProblemBank } from "../validateProblemBank"
-import { levelUnlockBatch037Fixtures } from "./levelUnlockBatch037Fixtures"
-import { levelUnlockBatch037Problems } from "./levelUnlockBatch037Problems"
+import { levelUnlockBatch038Fixtures } from "./levelUnlockBatch038Fixtures"
+import { levelUnlockBatch038Problems } from "./levelUnlockBatch038Problems"
 
 const levelTwo = curriculumLevels.find((entry) => entry.id === "level-2")!
 const levelThree = curriculumLevels.find((entry) => entry.id === "level-3")!
-const batchDirectory = `${process.cwd()}/curriculum/problem-bank/batches/2026-08-31-l2-l3-unlock-037`
+const batchDirectory = `${process.cwd()}/curriculum/problem-bank/batches/2026-08-31-l2-l3-unlock-038`
 
-describe("Level 2 and 3 unlock batch 037", () => {
+describe("Level 2 and 3 unlock batch 038", () => {
   it("tracks the empty review boundary in a clean checkout", () => {
     const readme = readFileSync(
       `${batchDirectory}/reviews/README.md`,
@@ -57,13 +57,13 @@ describe("Level 2 and 3 unlock batch 037", () => {
   })
 
   it("freezes failure fixtures for parser and renderer edge cases", () => {
-    const unreferencedDefinitions = levelUnlockBatch037Fixtures.filter(
+    const unreferencedDefinitions = levelUnlockBatch038Fixtures.filter(
       (fixture) => fixture.id?.endsWith("-unreferenced-definition"),
     )
-    const literalCodeBackslashes = levelUnlockBatch037Fixtures.filter(
+    const literalCodeBackslashes = levelUnlockBatch038Fixtures.filter(
       (fixture) => fixture.id?.endsWith("-literal-code-backslashes"),
     )
-    const mailtoUris = levelUnlockBatch037Fixtures.filter(
+    const mailtoUris = levelUnlockBatch038Fixtures.filter(
       (fixture) => fixture.id?.endsWith("-mailto-uri"),
     )
     expect(unreferencedDefinitions).toHaveLength(2)
@@ -78,7 +78,7 @@ describe("Level 2 and 3 unlock batch 037", () => {
       expect(fixture.expectedFeedbackId, fixture.id).toMatch(/^use-/)
     }
     for (const fixture of mailtoUris) {
-      const problem = levelUnlockBatch037Problems.find(
+      const problem = levelUnlockBatch038Problems.find(
         (candidate) => candidate.id === fixture.problemId,
       )
       if (!problem) throw new Error(`Missing problem for ${fixture.id}`)
@@ -90,12 +90,12 @@ describe("Level 2 and 3 unlock batch 037", () => {
 
   it("passes the source schema and fixture coverage gate", () => {
     expect(
-      validateProblemBank(levelUnlockBatch037Problems, levelUnlockBatch037Fixtures),
+      validateProblemBank(levelUnlockBatch038Problems, levelUnlockBatch038Fixtures),
     ).toEqual([])
-    expect(levelUnlockBatch037Fixtures).toHaveLength(24 * 6 + 14 + 4 + 3)
+    expect(levelUnlockBatch038Fixtures).toHaveLength(24 * 6 + 14 + 4 + 3)
   })
   it("provides two dedicated retry variants for every supported element", () => {
-    const singles = levelUnlockBatch037Problems.filter(
+    const singles = levelUnlockBatch038Problems.filter(
       (problem) => getCurriculumElements(problem).length === 1,
     )
     const counts = singles.reduce<Record<string, number>>((result, problem) => {
@@ -120,7 +120,7 @@ describe("Level 2 and 3 unlock batch 037", () => {
   })
 
   it("grades every canonical target and gives it a guided checkpoint within budget", () => {
-    for (const problem of levelUnlockBatch037Problems) {
+    for (const problem of levelUnlockBatch038Problems) {
       expect(evaluateProblem(problem, problem.target).status, problem.id).toBe("matched")
       expect(
         deriveSyntaxCheckpoints(problem.target, problem.starterText).length,
@@ -131,7 +131,7 @@ describe("Level 2 and 3 unlock batch 037", () => {
   })
 
   it("adds two eligible Level 3-owned mixed exercises", () => {
-    const mixed = levelUnlockBatch037Problems.filter(
+    const mixed = levelUnlockBatch038Problems.filter(
       (problem) => getCurriculumElements(problem).length > 1,
     )
 
@@ -147,7 +147,7 @@ describe("Level 2 and 3 unlock batch 037", () => {
   })
 
   it("makes both entries available when the frozen candidates are published", () => {
-    const projected = [...problemBank, ...levelUnlockBatch037Problems]
+    const projected = [...problemBank, ...levelUnlockBatch038Problems]
 
     expect(getImplementedElementsForEntry(levelTwo, projected)).toEqual([
       "bold-italic",

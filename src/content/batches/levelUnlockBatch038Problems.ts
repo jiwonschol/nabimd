@@ -1,6 +1,6 @@
 import type { NormalizedProblem, SyntaxPresenceKind } from "../types"
 
-export const levelUnlockBatch037Id = "2026-08-31-l2-l3-unlock-037"
+export const levelUnlockBatch038Id = "2026-08-31-l2-l3-unlock-038"
 
 const curriculumVersion = "2026-07-19"
 
@@ -27,7 +27,7 @@ export const levelUnlockSingleInputs: readonly SingleInput[] = [
   { level: 3, syntax: "angle-bracket-url", label: "angle-bracket URL", targets: ["<https://example.com>", "<https://example.org/help>"], example: "<https://example.net>" },
   { level: 3, syntax: "angle-bracket-email", label: "angle-bracket email", targets: ["<hello@example.com>", "<team@example.org>"], example: "<help@example.net>" },
   { level: 3, syntax: "escape", label: "escaped punctuation", targets: ["\\*Literal stars\\*", "\\# Literal hash"], example: "\\_Literal marks\\_" },
-  { level: 3, syntax: "list-with-block", label: "list item with a block", targets: ["- Reminder\n\n  > Bring a notebook", "- Update\n\n  ```text\n  Ready\n  ```"], example: "- Item\n\n  > Detail" },
+  { level: 3, syntax: "list-with-block", label: "list item with a block", targets: ["- > Bring a notebook", "- > Share the update"], example: "- > Detail" },
   { level: 3, syntax: "footnote", label: "footnote", targets: ["Check the source[^1].\n\n[^1]: Project notes", "Read the detail[^note].\n\n[^note]: Team handbook"], example: "Claim[^1]\n\n[^1]: Source" },
 ] as const
 
@@ -82,7 +82,7 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
       domains: [input.level === 2 ? "everyday-notes" : "workplace-notes"],
       terms: [...new Set(target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
     },
-    sourceBatchId: levelUnlockBatch037Id,
+    sourceBatchId: levelUnlockBatch038Id,
     revision: 1,
     curriculumVersion,
     contentVariant: `variant-${suffix}`,
@@ -103,7 +103,7 @@ const mixedInputs = [
   },
   {
     id: "l3-mixed-list-angle-url",
-    target: "- Check the source\n\n  > Open <https://example.org>.",
+    target: "- > Open <https://example.org>.",
     skillIds: ["list-with-block", "angle-bracket-url"],
     syntaxTokens: ["list-with-block", "angle-bracket-url"],
   },
@@ -121,7 +121,7 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input, inde
   teaching: {
     concept: "A short Markdown note can combine more than one syntax pattern.",
     howTo: "Add each requested mark while keeping the note readable.",
-    example: index === 0 ? "[Help](https://example.net \"Details\")\n\nEmail <help@example.net>." : "- Source\n\n  > Open <https://example.net>.",
+    example: index === 0 ? "[Help](https://example.net \"Details\")\n\nEmail <help@example.net>." : "- > Open <https://example.net>.",
   },
   syntaxTokens: input.syntaxTokens,
   title: "Combined Markdown patterns",
@@ -159,13 +159,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input, inde
     domains: ["workplace-notes"],
     terms: [...new Set(input.target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
   },
-  sourceBatchId: levelUnlockBatch037Id,
+  sourceBatchId: levelUnlockBatch038Id,
   revision: 1,
   curriculumVersion,
   contentVariant: index === 0 ? "link-and-email" : "list-and-url",
 }))
 
-export const levelUnlockBatch037Problems: readonly NormalizedProblem[] = [
+export const levelUnlockBatch038Problems: readonly NormalizedProblem[] = [
   ...singleProblems,
   ...mixedProblems,
 ]
