@@ -636,7 +636,17 @@ describe("deriveSyntaxCheckpoints", () => {
       "Guide",
     )
 
-    expect(checkpoint?.canonicalInput).toBe("[](()")
+    expect(checkpoint?.canonicalInput).toBe("[](())")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "input", value: "[" },
+      { kind: "locked", value: "Guide" },
+      { kind: "input", value: "](" },
+      { kind: "locked", value: "https://example.com " },
+      { kind: "input", value: "(" },
+      { kind: "locked", value: "Read me" },
+      { kind: "input", value: ")" },
+      { kind: "input", value: ")" },
+    ])
     expect(syntaxCheckpointTerms(checkpoint!)).toContain("link title")
     expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
       "link with a title",
@@ -746,6 +756,27 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["escape"])
     expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
       "Markdown escape",
+    )
+  })
+
+  it("keeps escaped backslashes visible while asking only for escape syntax", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints("\\\\*Literal", "\\*Literal")
+
+    expect(checkpoint?.canonicalInput).toBe("\\")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "input", value: "\\" },
+      { kind: "locked", value: "\\*Literal" },
+    ])
+  })
+
+  it("asks for escape syntax inside GFM table cells", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "| Value |\n| --- |\n| \\*literal\\* |",
+      "Value\n\nliteral",
+    )
+
+    expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toContain(
+      "|\\\\|",
     )
   })
 

@@ -44,16 +44,22 @@ describe("a table row is a card", () => {
     expect(blanks(body!)).toHaveLength(1)
   })
 
-  it("locks an escaped bar inside a cell", () => {
+  it("teaches an escaped bar inside a cell without treating it as a separator", () => {
     // `\\|` is a literal bar in the cell text, not a separator — GFM reads it
-    // as text. Scanning raw characters asked the learner to type it, so the
-    // card wanted two separators where the row has one.
+    // as text. The backslash is still Markdown escape syntax, while the bar
+    // itself stays locked and does not become a second table separator.
     const [, , body] = deriveSyntaxCheckpoints(
       "Operator | Meaning\n--- | ---\nA \\| B | either one",
       "",
     )
-    expect(blanks(body!)).toHaveLength(1)
-    expect(body!.segments[0]).toEqual({ kind: "locked", value: "A \\| B " })
+    expect(blanks(body!)).toHaveLength(2)
+    expect(body!.segments).toEqual([
+      { kind: "locked", value: "A " },
+      { kind: "input", value: "\\" },
+      { kind: "locked", value: "| B " },
+      { kind: "input", value: "|" },
+      { kind: "locked", value: " either one" },
+    ])
   })
 
   it("keeps rows apart when the bar is not the row's first blank", () => {

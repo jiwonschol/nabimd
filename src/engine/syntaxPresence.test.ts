@@ -14,4 +14,46 @@ describe("syntax presence", () => {
     expect(countSyntaxPresence(createEvaluationContext("[^a]: Unreferenced"), "footnote")).toBe(0)
     expect(countSyntaxPresence(createEvaluationContext("Missing[^a]"), "footnote")).toBe(0)
   })
+
+  it("counts each blockquote nested below another blockquote", () => {
+    const source = "> Outer\n>\n> > One\n>\n> > Two"
+
+    expect(countSyntaxPresence(createEvaluationContext(source), "nested-blockquote")).toBe(2)
+  })
+
+  it("accepts uppercase bare URL schemes", () => {
+    expect(countSyntaxPresence(createEvaluationContext("HTTPS://example.com"), "automatic-url")).toBe(1)
+    expect(countSyntaxPresence(createEvaluationContext("WWW.example.com"), "automatic-url")).toBe(1)
+  })
+
+  it("counts titles on referenced definitions only when a link uses them", () => {
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext('[Guide][ref]\n\n[ref]: https://example.com "Guide title"'),
+        "link-title",
+      ),
+    ).toBe(1)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext('[ref]: https://example.com "Unused title"'),
+        "link-title",
+      ),
+    ).toBe(0)
+  })
+
+  it("classifies mailto URI autolinks by their source form", () => {
+    const uri = createEvaluationContext("<mailto:user@example.com>")
+    const email = createEvaluationContext("<user@example.com>")
+
+    expect(countSyntaxPresence(uri, "angle-bracket-url")).toBe(1)
+    expect(countSyntaxPresence(uri, "angle-bracket-email")).toBe(0)
+    expect(countSyntaxPresence(email, "angle-bracket-url")).toBe(0)
+    expect(countSyntaxPresence(email, "angle-bracket-email")).toBe(1)
+  })
+
+  it("counts a continuation paragraph as a block inside a list item", () => {
+    const source = "- First paragraph\n\n  Second paragraph"
+
+    expect(countSyntaxPresence(createEvaluationContext(source), "list-with-block")).toBe(1)
+  })
 })
