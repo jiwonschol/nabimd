@@ -11,6 +11,7 @@
     "src/engine/evaluationContext.ts",
     "src/engine/markdownAst.ts",
     "src/engine/sectionIndex.ts",
+    "src/engine/syntaxPresence.ts",
     "src/engine/predicates/heading.ts",
     "src/engine/predicates/structural.ts",
     "src/engine/types.ts"

@@ -32,8 +32,8 @@ describe("a table problem is owned and scheduled by Level 1", () => {
   it("keeps a skill the curriculum does not declare unowned", () => {
     // The pass case's counterpart: this is not a mapping that answers for
     // anything it is handed.
-    expect(getCurriculumElements(problem("footnote"))).toEqual([])
-    expect(getSyntaxFamily(problem("footnote"))).toBeNull()
+    expect(getCurriculumElements(problem("unknown-syntax"))).toEqual([])
+    expect(getSyntaxFamily(problem("unknown-syntax"))).toBeNull()
   })
 
   it("weights every Level 1 element the scheduler can serve", () => {

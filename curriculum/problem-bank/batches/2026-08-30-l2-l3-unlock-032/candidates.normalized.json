@@ -1,0 +1,1768 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-30-l2-l3-unlock-032",
+  "sequence": 28,
+  "curriculumVersion": "2026-07-19",
+  "generatedBy": "gpt-5.6-sol-build-time-authoring",
+  "generatedOn": "2026-08-30",
+  "promptSha256": "03c6fda38a2cbd2ea81f193b11e22a01234210aa65e281d5e9417dc73427a25b",
+  "rawArtifactDigest": "a199bbed4c18fe560c1f8d72fac75d7e11521d6129640aecfd911c5d74e2e252",
+  "candidateCount": 26,
+  "candidates": [
+    {
+      "id": "l2-automatic-url-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "automatic-url",
+      "skillIds": [
+        "automatic-url"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Automatic URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the automatic URL.",
+        "example": "See https://example.net"
+      },
+      "syntaxTokens": [
+        "automatic-url"
+      ],
+      "title": "automatic URL",
+      "prompt": "Write the automatic URL.",
+      "target": "Visit https://example.com",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-automatic-url",
+          "kind": "syntax-presence",
+          "syntax": "automatic-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown automatic URL syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a automatic URL.",
+        "Add the missing automatic URL marks.",
+        "Example: See https://example.net"
+      ],
+      "retryFamily": "level-2-automatic-url",
+      "reviewTags": [
+        "automatic-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Visit",
+          "https",
+          "example",
+          "com"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "e37a170fd87d82b8fa481abb24c2d37182ca9c8accb3349d9aaf91a68db8710d"
+    },
+    {
+      "id": "l2-automatic-url-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "automatic-url",
+      "skillIds": [
+        "automatic-url"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Automatic URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the automatic URL.",
+        "example": "See https://example.net"
+      },
+      "syntaxTokens": [
+        "automatic-url"
+      ],
+      "title": "automatic URL",
+      "prompt": "Write the automatic URL.",
+      "target": "Open https://example.org/help",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-automatic-url",
+          "kind": "syntax-presence",
+          "syntax": "automatic-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown automatic URL syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a automatic URL.",
+        "Add the missing automatic URL marks.",
+        "Example: See https://example.net"
+      ],
+      "retryFamily": "level-2-automatic-url",
+      "reviewTags": [
+        "automatic-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Open",
+          "https",
+          "example",
+          "org",
+          "help"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "290ce69ade859e6f0853383e7d086eab717e3cc2cfd72ce1c8e1b82f02e2c327"
+    },
+    {
+      "id": "l2-bold-italic-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "bold-italic",
+      "skillIds": [
+        "bold-italic"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Bold italic text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the bold italic text.",
+        "example": "***Important***"
+      },
+      "syntaxTokens": [
+        "bold-italic"
+      ],
+      "title": "bold italic text",
+      "prompt": "Write the bold italic text.",
+      "target": "***Read this first***",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-bold-italic",
+          "kind": "syntax-presence",
+          "syntax": "bold-italic",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown bold italic text syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a bold italic text.",
+        "Add the missing bold italic text marks.",
+        "Example: ***Important***"
+      ],
+      "retryFamily": "level-2-bold-italic",
+      "reviewTags": [
+        "bold-italic",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Read",
+          "this",
+          "first"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "40c5513f90e89cc640abe1978d501cbde94627df250ef83e73c6baff53dce471"
+    },
+    {
+      "id": "l2-bold-italic-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "bold-italic",
+      "skillIds": [
+        "bold-italic"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Bold italic text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the bold italic text.",
+        "example": "***Important***"
+      },
+      "syntaxTokens": [
+        "bold-italic"
+      ],
+      "title": "bold italic text",
+      "prompt": "Write the bold italic text.",
+      "target": "___Keep this nearby___",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-bold-italic",
+          "kind": "syntax-presence",
+          "syntax": "bold-italic",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown bold italic text syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a bold italic text.",
+        "Add the missing bold italic text marks.",
+        "Example: ***Important***"
+      ],
+      "retryFamily": "level-2-bold-italic",
+      "reviewTags": [
+        "bold-italic",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Keep",
+          "this",
+          "nearby"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "4e94608af20e5aa0734d552b4181919724d4a88d42c6108c9bd90558a2f43950"
+    },
+    {
+      "id": "l2-code-block-language-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "code-block-language",
+      "skillIds": [
+        "code-block-language"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Syntax-highlighted code block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the syntax-highlighted code block.",
+        "example": "```html\n<p>Hello</p>\n```"
+      },
+      "syntaxTokens": [
+        "code-block-language"
+      ],
+      "title": "syntax-highlighted code block",
+      "prompt": "Write the syntax-highlighted code block.",
+      "target": "```js\nconst ready = true\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-code-block-language",
+          "kind": "syntax-presence",
+          "syntax": "code-block-language",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown syntax-highlighted code block syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a syntax-highlighted code block.",
+        "Add the missing syntax-highlighted code block marks.",
+        "Example: ```html\n<p>Hello</p>\n```"
+      ],
+      "retryFamily": "level-2-code-block-language",
+      "reviewTags": [
+        "code-block-language",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "js",
+          "const",
+          "ready",
+          "true"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "f7eb22ad926f2af5774e72c5470c06765bedf8033e1697dc3e2a1c81e1987d66"
+    },
+    {
+      "id": "l2-code-block-language-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "code-block-language",
+      "skillIds": [
+        "code-block-language"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Syntax-highlighted code block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the syntax-highlighted code block.",
+        "example": "```html\n<p>Hello</p>\n```"
+      },
+      "syntaxTokens": [
+        "code-block-language"
+      ],
+      "title": "syntax-highlighted code block",
+      "prompt": "Write the syntax-highlighted code block.",
+      "target": "```css\n.card { color: blue; }\n```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-code-block-language",
+          "kind": "syntax-presence",
+          "syntax": "code-block-language",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown syntax-highlighted code block syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a syntax-highlighted code block.",
+        "Add the missing syntax-highlighted code block marks.",
+        "Example: ```html\n<p>Hello</p>\n```"
+      ],
+      "retryFamily": "level-2-code-block-language",
+      "reviewTags": [
+        "code-block-language",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "css",
+          "card",
+          "color",
+          "blue"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "eaa7831349e9389e4bcf7fc6215e9f4e7ba88b4c8dce0ce42647e425dce45d45"
+    },
+    {
+      "id": "l2-hard-line-break-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "hard-line-break",
+      "skillIds": [
+        "hard-line-break"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Line break is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the line break.",
+        "example": "Line one  \nLine two"
+      },
+      "syntaxTokens": [
+        "hard-line-break"
+      ],
+      "title": "line break",
+      "prompt": "Write the line break.",
+      "target": "First step  \nSecond step",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-hard-line-break",
+          "kind": "syntax-presence",
+          "syntax": "hard-line-break",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown line break syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a line break.",
+        "Add the missing line break marks.",
+        "Example: Line one  \nLine two"
+      ],
+      "retryFamily": "level-2-hard-line-break",
+      "reviewTags": [
+        "hard-line-break",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "First",
+          "step",
+          "Second"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "64818dc0e8c801be5d09957e00dae08845fd54cbc7ed6277d70e535e65fd1fd3"
+    },
+    {
+      "id": "l2-hard-line-break-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "hard-line-break",
+      "skillIds": [
+        "hard-line-break"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Line break is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the line break.",
+        "example": "Line one  \nLine two"
+      },
+      "syntaxTokens": [
+        "hard-line-break"
+      ],
+      "title": "line break",
+      "prompt": "Write the line break.",
+      "target": "Morning note  \nEvening note",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-hard-line-break",
+          "kind": "syntax-presence",
+          "syntax": "hard-line-break",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown line break syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a line break.",
+        "Add the missing line break marks.",
+        "Example: Line one  \nLine two"
+      ],
+      "retryFamily": "level-2-hard-line-break",
+      "reviewTags": [
+        "hard-line-break",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Morning",
+          "note",
+          "Evening"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "81eab00c39f0a592ba4d193fa59b412c661fec5eb09887ab52006cc65f4a2588"
+    },
+    {
+      "id": "l2-nested-blockquote-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "nested-blockquote",
+      "skillIds": [
+        "nested-blockquote"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
+      },
+      "syntaxTokens": [
+        "nested-blockquote"
+      ],
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Main note\n> > Reply",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-nested-blockquote",
+          "kind": "syntax-presence",
+          "syntax": "nested-blockquote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown nested block quote syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
+      ],
+      "retryFamily": "level-2-nested-blockquote",
+      "reviewTags": [
+        "nested-blockquote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Main",
+          "note",
+          "Reply"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "357e08d33102709a50e5be299ccffd33b8db857943bc1367c3eac2b5e2b6bef4"
+    },
+    {
+      "id": "l2-nested-blockquote-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "nested-blockquote",
+      "skillIds": [
+        "nested-blockquote"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
+      },
+      "syntaxTokens": [
+        "nested-blockquote"
+      ],
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Question\n> > Answer",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-nested-blockquote",
+          "kind": "syntax-presence",
+          "syntax": "nested-blockquote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown nested block quote syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
+      ],
+      "retryFamily": "level-2-nested-blockquote",
+      "reviewTags": [
+        "nested-blockquote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Question",
+          "Answer"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "8f77b09ddbcc3499821f613d366ab28392f3c8d4f2b0bc782cfe34bf83b5d74b"
+    },
+    {
+      "id": "l2-strikethrough-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "strikethrough",
+      "skillIds": [
+        "strikethrough"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
+      },
+      "syntaxTokens": [
+        "strikethrough"
+      ],
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Old address~~",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-strikethrough",
+          "kind": "syntax-presence",
+          "syntax": "strikethrough",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown strikethrough text syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
+      ],
+      "retryFamily": "level-2-strikethrough",
+      "reviewTags": [
+        "strikethrough",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Old",
+          "address"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "d7179b26cab6cd0615e1bad2ee9205ca1d5e487691d7550fe089c9e48b9ebd9f"
+    },
+    {
+      "id": "l2-strikethrough-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "strikethrough",
+      "skillIds": [
+        "strikethrough"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
+      },
+      "syntaxTokens": [
+        "strikethrough"
+      ],
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Canceled meeting~~",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-strikethrough",
+          "kind": "syntax-presence",
+          "syntax": "strikethrough",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown strikethrough text syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
+      ],
+      "retryFamily": "level-2-strikethrough",
+      "reviewTags": [
+        "strikethrough",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Canceled",
+          "meeting"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "c50e083647b6c99eeae8b355c885fef4c0581f3791efbfa6e778d86047d5694f"
+    },
+    {
+      "id": "l3-angle-bracket-email-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-email",
+      "skillIds": [
+        "angle-bracket-email"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket email is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket email.",
+        "example": "<help@example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-email"
+      ],
+      "title": "angle-bracket email",
+      "prompt": "Write the angle-bracket email.",
+      "target": "<hello@example.com>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-email",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-email",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket email syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket email.",
+        "Add the missing angle-bracket email marks.",
+        "Example: <help@example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-email",
+      "reviewTags": [
+        "angle-bracket-email",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "hello",
+          "example",
+          "com"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "736c7323554ae91c3415c54004d6813f0d500c670ac4f90660651a6530039b58"
+    },
+    {
+      "id": "l3-angle-bracket-email-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-email",
+      "skillIds": [
+        "angle-bracket-email"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket email is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket email.",
+        "example": "<help@example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-email"
+      ],
+      "title": "angle-bracket email",
+      "prompt": "Write the angle-bracket email.",
+      "target": "<team@example.org>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-email",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-email",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket email syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket email.",
+        "Add the missing angle-bracket email marks.",
+        "Example: <help@example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-email",
+      "reviewTags": [
+        "angle-bracket-email",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "team",
+          "example",
+          "org"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "43bc0cd8c7bb5518be91abcb6e18039c8e91bb9f9c39bfa2659b5ff2fe72b4bc"
+    },
+    {
+      "id": "l3-angle-bracket-url-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the angle-bracket URL.",
+      "target": "<https://example.com>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "https",
+          "example",
+          "com"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "99c6b005c9c645bfbfd796ca2a81bc3f0d1a85518b80f8c4f332771c13c39cc1"
+    },
+    {
+      "id": "l3-angle-bracket-url-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the angle-bracket URL.",
+      "target": "<https://example.org/help>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "https",
+          "example",
+          "org",
+          "help"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "c8427ae0de59890e917e3af808ba3abaedec7ecd2195cfa5f8f6579b725c4a6e"
+    },
+    {
+      "id": "l3-escape-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "escape",
+      "skillIds": [
+        "escape"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Escaped punctuation is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the escaped punctuation.",
+        "example": "\\_Literal marks\\_"
+      },
+      "syntaxTokens": [
+        "escape"
+      ],
+      "title": "escaped punctuation",
+      "prompt": "Write the escaped punctuation.",
+      "target": "\\*Literal stars\\*",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-escape",
+          "kind": "syntax-presence",
+          "syntax": "escape",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown escaped punctuation syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a escaped punctuation.",
+        "Add the missing escaped punctuation marks.",
+        "Example: \\_Literal marks\\_"
+      ],
+      "retryFamily": "level-3-escape",
+      "reviewTags": [
+        "escape",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Literal",
+          "stars"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "8596518bb48e82f26f5c0284aaa7489c3ab6878121aad70e8eab399e0aa8f03e"
+    },
+    {
+      "id": "l3-escape-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "escape",
+      "skillIds": [
+        "escape"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Escaped punctuation is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the escaped punctuation.",
+        "example": "\\_Literal marks\\_"
+      },
+      "syntaxTokens": [
+        "escape"
+      ],
+      "title": "escaped punctuation",
+      "prompt": "Write the escaped punctuation.",
+      "target": "\\# Literal hash",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-escape",
+          "kind": "syntax-presence",
+          "syntax": "escape",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown escaped punctuation syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a escaped punctuation.",
+        "Add the missing escaped punctuation marks.",
+        "Example: \\_Literal marks\\_"
+      ],
+      "retryFamily": "level-3-escape",
+      "reviewTags": [
+        "escape",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Literal",
+          "hash"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "1ebe24f29dfe2f2000e2f74103732c0a08bcaae277510ee3068a5c1c2e2cba05"
+    },
+    {
+      "id": "l3-footnote-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "footnote",
+      "skillIds": [
+        "footnote"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Footnote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the footnote.",
+        "example": "Claim[^1]\n\n[^1]: Source"
+      },
+      "syntaxTokens": [
+        "footnote"
+      ],
+      "title": "footnote",
+      "prompt": "Write the footnote.",
+      "target": "Check the source[^1].\n\n[^1]: Project notes",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-footnote",
+          "kind": "syntax-presence",
+          "syntax": "footnote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown footnote syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a footnote.",
+        "Add the missing footnote marks.",
+        "Example: Claim[^1]\n\n[^1]: Source"
+      ],
+      "retryFamily": "level-3-footnote",
+      "reviewTags": [
+        "footnote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Check",
+          "the",
+          "source",
+          "Project",
+          "notes"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "ff1984c197f386caa1bfff5b56e01824c8ebe6f3398f1c38f8cdc6fd05f6166c"
+    },
+    {
+      "id": "l3-footnote-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "footnote",
+      "skillIds": [
+        "footnote"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Footnote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the footnote.",
+        "example": "Claim[^1]\n\n[^1]: Source"
+      },
+      "syntaxTokens": [
+        "footnote"
+      ],
+      "title": "footnote",
+      "prompt": "Write the footnote.",
+      "target": "Read the detail[^note].\n\n[^note]: Team handbook",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-footnote",
+          "kind": "syntax-presence",
+          "syntax": "footnote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown footnote syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a footnote.",
+        "Add the missing footnote marks.",
+        "Example: Claim[^1]\n\n[^1]: Source"
+      ],
+      "retryFamily": "level-3-footnote",
+      "reviewTags": [
+        "footnote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Read",
+          "the",
+          "detail",
+          "note",
+          "Team",
+          "handbook"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "d3b5abc94ae75387a102de26912d998164a48470b6a504f221505c5620769d64"
+    },
+    {
+      "id": "l3-link-title-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "link-title",
+      "skillIds": [
+        "link-title"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
+      },
+      "syntaxTokens": [
+        "link-title"
+      ],
+      "title": "link title",
+      "prompt": "Write the link title.",
+      "target": "[Guide](https://example.com \"Read the guide\")",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link title syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
+      ],
+      "retryFamily": "level-3-link-title",
+      "reviewTags": [
+        "link-title",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Guide",
+          "https",
+          "example",
+          "com",
+          "Read",
+          "the",
+          "guide"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "392803fa865c279e831b073a93886abfac3c7bd723d67b0f7ba179b29e3b682c"
+    },
+    {
+      "id": "l3-link-title-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "link-title",
+      "skillIds": [
+        "link-title"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Link title is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the link title.",
+        "example": "[Help](https://example.net \"More details\")"
+      },
+      "syntaxTokens": [
+        "link-title"
+      ],
+      "title": "link title",
+      "prompt": "Write the link title.",
+      "target": "[Map](https://example.org 'Open the map')",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link title syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a link title.",
+        "Add the missing link title marks.",
+        "Example: [Help](https://example.net \"More details\")"
+      ],
+      "retryFamily": "level-3-link-title",
+      "reviewTags": [
+        "link-title",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Map",
+          "https",
+          "example",
+          "org",
+          "Open",
+          "the",
+          "map"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "20521e349837bbe16326841c32966a793db1774259b364b67a7b828407bd3174"
+    },
+    {
+      "id": "l3-list-with-block-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- Item\n\n  > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the list item with a block.",
+      "target": "- Reminder\n\n  > Bring a notebook",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - Item\n\n  > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Reminder",
+          "Bring",
+          "a",
+          "notebook"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "720ab254f96c0aa037dd202b5e02b760d54d25cfcbec3dca68e23dfa5c795f8f"
+    },
+    {
+      "id": "l3-list-with-block-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "list-with-block",
+      "skillIds": [
+        "list-with-block"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "List item with a block is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the list item with a block.",
+        "example": "- Item\n\n  > Detail"
+      },
+      "syntaxTokens": [
+        "list-with-block"
+      ],
+      "title": "list item with a block",
+      "prompt": "Write the list item with a block.",
+      "target": "- Update\n\n  ```text\n  Ready\n  ```",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list item with a block syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a list item with a block.",
+        "Add the missing list item with a block marks.",
+        "Example: - Item\n\n  > Detail"
+      ],
+      "retryFamily": "level-3-list-with-block",
+      "reviewTags": [
+        "list-with-block",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Update",
+          "text",
+          "Ready"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "8bb1f5817ab8563f79a7fa1165463550bf18a8a55f4b3b4e78b3697328df54f9"
+    },
+    {
+      "id": "l3-mixed-link-title-email",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "level-3-mixed-syntax",
+      "skillIds": [
+        "link-title",
+        "angle-bracket-email"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short Markdown note can combine more than one syntax pattern.",
+        "howTo": "Add each requested mark while keeping the note readable.",
+        "example": "[Help](https://example.net \"Details\")\n\nEmail <help@example.net>."
+      },
+      "syntaxTokens": [
+        "link-title",
+        "angle-bracket-email"
+      ],
+      "title": "Combined Markdown patterns",
+      "prompt": "Write the short note with both Markdown patterns.",
+      "target": "[Guide](https://example.com \"Team guide\")\n\nContact <team@example.com>.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-link-title",
+          "kind": "syntax-presence",
+          "syntax": "link-title",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown link-title syntax."
+        },
+        {
+          "id": "use-angle-bracket-email",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-email",
+          "min": 1,
+          "priority": 11,
+          "feedback": "Use Markdown angle-bracket-email syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Find the punctuation for both requested patterns.",
+        "Complete one syntax pattern at a time.",
+        "Check that both patterns still parse as Markdown."
+      ],
+      "retryFamily": "level-3-mixed-syntax",
+      "reviewTags": [
+        "mixed-syntax",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Guide",
+          "https",
+          "example",
+          "com",
+          "Team",
+          "guide",
+          "Contact",
+          "team"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "link-and-email",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "b0f2408bbbe6cc9a10c344003874cb3b6c86827feaa98d5f8d98f123a075eb71"
+    },
+    {
+      "id": "l3-mixed-list-angle-url",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "level-3-mixed-syntax",
+      "skillIds": [
+        "list-with-block",
+        "angle-bracket-url"
+      ],
+      "difficulty": "mixed",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "A short Markdown note can combine more than one syntax pattern.",
+        "howTo": "Add each requested mark while keeping the note readable.",
+        "example": "- Source\n\n  > Open <https://example.net>."
+      },
+      "syntaxTokens": [
+        "list-with-block",
+        "angle-bracket-url"
+      ],
+      "title": "Combined Markdown patterns",
+      "prompt": "Write the short note with both Markdown patterns.",
+      "target": "- Check the source\n\n  > Open <https://example.org>.",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-list-with-block",
+          "kind": "syntax-presence",
+          "syntax": "list-with-block",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown list-with-block syntax."
+        },
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 11,
+          "feedback": "Use Markdown angle-bracket-url syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Find the punctuation for both requested patterns.",
+        "Complete one syntax pattern at a time.",
+        "Check that both patterns still parse as Markdown."
+      ],
+      "retryFamily": "level-3-mixed-syntax",
+      "reviewTags": [
+        "mixed-syntax",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Check",
+          "the",
+          "source",
+          "Open",
+          "https",
+          "example",
+          "org"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "list-and-url",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-032",
+      "candidateDigest": "aa05e01f6071c05a1d3701f948f0abe937e11dec3bd27d535bc428a702848121"
+    }
+  ],
+  "artifactDigest": "2ba1f16a47b36af235ce80f7ee1dedc43d73d827a4e1d0891d6f01794071f134"
+}

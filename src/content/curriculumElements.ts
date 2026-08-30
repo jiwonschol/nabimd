@@ -49,9 +49,17 @@ export type CurriculumElementEntry = {
 }
 
 const singleSkillElements: Readonly<Record<string, CurriculumElement>> = {
+  "angle-bracket-email": "angle-bracket-email",
+  "angle-bracket-url": "angle-bracket-url",
+  "automatic-url": "automatic-url",
   blockquote: "blockquote",
   "bold-emphasis": "bold",
+  "bold-italic": "bold-italic",
   "code-block": "code-block",
+  "code-block-language": "code-block-language",
+  escape: "escape",
+  footnote: "footnote",
+  "hard-line-break": "hard-line-break",
   "heading-h1": "heading",
   image: "image",
   "inline-image": "image",
@@ -60,6 +68,10 @@ const singleSkillElements: Readonly<Record<string, CurriculumElement>> = {
   italic: "italic",
   "italic-emphasis": "italic",
   "ordered-list": "ordered-list",
+  "link-title": "link-title",
+  "list-with-block": "list-with-block",
+  "nested-blockquote": "nested-blockquote",
+  strikethrough: "strikethrough",
   table: "table",
   "task-list": "task-list",
   "thematic-break": "thematic-break",
@@ -75,6 +87,9 @@ function isNestedListToken(token: string): boolean {
 }
 
 function getMixedTokenElement(token: string): CurriculumElement | null {
+  if (curriculumElementIds.includes(token as CurriculumElement)) {
+    return token as CurriculumElement
+  }
   if (isNestedListToken(token)) return "nested-list"
   // A language tag inside a mixed document is still part of applying a code
   // block. Dedicated one-syntax exercises own code-block-language in Level 2.

@@ -21,9 +21,17 @@ type SchedulableProblem = Pick<
 >
 
 const skillFamilyById: Readonly<Record<string, SyntaxFamily>> = {
+  "angle-bracket-email": "angle-bracket-email",
+  "angle-bracket-url": "angle-bracket-url",
+  "automatic-url": "automatic-url",
   blockquote: "blockquote",
   "bold-emphasis": "bold",
+  "bold-italic": "bold-italic",
   "code-block": "code-block",
+  "code-block-language": "code-block-language",
+  escape: "escape",
+  footnote: "footnote",
+  "hard-line-break": "hard-line-break",
   "heading-h1": "heading",
   image: "image",
   "inline-code": "inline-code",
@@ -32,6 +40,10 @@ const skillFamilyById: Readonly<Record<string, SyntaxFamily>> = {
   italic: "italic",
   "italic-emphasis": "italic",
   "ordered-list": "ordered-list",
+  "link-title": "link-title",
+  "list-with-block": "list-with-block",
+  "nested-blockquote": "nested-blockquote",
+  strikethrough: "strikethrough",
   table: "table",
   "task-list": "task-list",
   "thematic-break": "thematic-break",
