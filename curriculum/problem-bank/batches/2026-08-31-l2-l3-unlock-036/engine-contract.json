@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 2,
+  "policyId": "real-engine-contract-v1",
+  "policyDigest": "f1e83d1dd45d53793379d08bb8a8c05426a092ab988c337f5790442103570b12",
+  "files": [
+    {
+      "path": "package-lock.json",
+      "sha256": "3ecb5ef91b2435a7c528d2501794c208b20712a7630ffa6de199bb894ba29271"
+    },
+    {
+      "path": "src/content/normalizeProblem.ts",
+      "sha256": "03810fafe8ed82ab6cac6199e6811d0878f00968d8b0cead6760d04852316081"
+    },
+    {
+      "path": "src/content/types.ts",
+      "sha256": "1c571de9955d9ce6edce7f7a3d95dbd305775c6f2eb74ae4178b22d471bb238f"
+    },
+    {
+      "path": "src/editor/renderedMarkdown.ts",
+      "sha256": "e1e02c36ebbeb7069421fa5712a4e85a124cd6c7f50747e3e8889da402f14eae"
+    },
+    {
+      "path": "src/engine/evaluateProblem.ts",
+      "sha256": "5f81d46a26958291afbf8e85bff3c294391f9b0044bf9d924a02bf0344f1a348"
+    },
+    {
+      "path": "src/engine/evaluateMatch.ts",
+      "sha256": "35e122667fbfabf063a9d0920e2e44aed7d979a11e0a8ab281e9fa58195b9846"
+    },
+    {
+      "path": "src/engine/evaluateEditorial.ts",
+      "sha256": "eecf2a75c490bd0f59f79fe77a6a885a41d24db6c506c1e029c1da7831585f51"
+    },
+    {
+      "path": "src/engine/evaluationContext.ts",
+      "sha256": "d86a558a8512abc20c563405668d32099b10bc45de891cd3241533990747e89e"
+    },
+    {
+      "path": "src/engine/markdownAst.ts",
+      "sha256": "6e3e56005b29cac9752815329ecf8c96b8491183c6dbdac219ecc39c2e5ae7fc"
+    },
+    {
+      "path": "src/engine/sectionIndex.ts",
+      "sha256": "5a79aed75a5320a71360b349797a94c465466e47c9159e576cb3cb46bcd0db4c"
+    },
+    {
+      "path": "src/engine/syntaxPresence.ts",
+      "sha256": "5f3486297c56fe17601da954b94bcdc80fd88250fd83b25f2eb1e4c115b701e0"
+    },
+    {
+      "path": "src/markdown/parser.ts",
+      "sha256": "20f8371a6dfa84f2d6c327bf9067198a075947a829de99ae7e2c30add15d03d9"
+    },
+    {
+      "path": "src/engine/predicates/heading.ts",
+      "sha256": "66b4623adecf8cb88ae5e89d9a7e3f302b8c390be9ba5630100451e30ffda74c"
+    },
+    {
+      "path": "src/engine/predicates/structural.ts",
+      "sha256": "cce3da18085191fadb2aaf971febd0f1c6d905f6bd3e914278e239b1482a41b0"
+    },
+    {
+      "path": "src/engine/types.ts",
+      "sha256": "032c9a7d2bfb97c025906e4ec317022615dd98276eb339a7d37841f9cd0bdd88"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "mdast-util-from-markdown",
+      "version": "2.0.3"
+    },
+    {
+      "name": "mdast-util-gfm",
+      "version": "3.1.0"
+    },
+    {
+      "name": "micromark-extension-gfm",
+      "version": "3.0.0"
+    }
+  ],
+  "engineContractDigest": "c390ff862af17cd63203528c7b39ef29236f1d9706170550cf0ee186e73f0467"
+}
