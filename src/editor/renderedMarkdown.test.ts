@@ -230,6 +230,20 @@ describe("renderedMarkdown", () => {
     ])
   })
 
+  it("preserves a literal backslash inside an autolink destination", () => {
+    const source = "<http://x/\\*>"
+    const backslashFrom = source.indexOf("\\")
+    const concealed = findRenderedMarkdownTokens(source).filter(
+      (token) => token.kind === "replace" && token.replacement === "conceal",
+    )
+
+    expect(
+      concealed.some(
+        (token) => token.from <= backslashFrom && token.to > backslashFrom,
+      ),
+    ).toBe(false)
+  })
+
   it("renders setext, closed ATX, and empty ATX headings semantically", () => {
     const source = [
       "Primary",

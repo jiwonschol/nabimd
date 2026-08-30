@@ -179,6 +179,16 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
 
+  if (
+    inputs.length > 0 &&
+    shape.inputFamilies.every((family) => family?.endsWith("-title"))
+  ) {
+    return instruction(
+      "Type the opening and closing title delimiters for a ",
+      "link title",
+    )
+  }
+
   if (everyInput(shape, /^\[\^[^\]]+\](?::[\t ]*)?$/)) {
     return instruction("Type the matching Markdown marker for a ", "footnote")
   }

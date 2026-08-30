@@ -663,6 +663,37 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("expands title delimiter alternatives independently after cards merge", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      '[One](https://one.example "A")\n[Two](https://two.example "B")',
+      "One\nTwo",
+    )
+    const accepted = acceptedGuidedSyntaxInputs(checkpoint!)
+
+    expect(accepted).toHaveLength(9)
+    expect(accepted).toEqual(
+      expect.arrayContaining([
+        '[]("")[]("")',
+        "[]('')[](())",
+        "[](())[]('')",
+      ]),
+    )
+  })
+
+  it("derives link-title blanks from a referenced definition", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      '[Guide][ref]\n\n[ref]: https://example.com "Guide title"',
+      "Guide\n\nref: https://example.com Guide title",
+    )
+    const title = checkpoints.find((checkpoint) =>
+      syntaxCheckpointTerms(checkpoint).includes("link title"),
+    )
+
+    expect(title?.canonicalInput).toBe('""')
+    expect(instructionFor(checkpointShape(title!)).term).toBe("link title")
+    expect(acceptedGuidedSyntaxInputs(title!)).toEqual(['""', "''", "()"])
+  })
+
   it("keeps a bare automatic URL visible because it has no Markdown-only marks", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "Visit https://example.com today.",
