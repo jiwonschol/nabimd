@@ -351,6 +351,31 @@ export async function resolveBaselineSha(
     }
   }
   if (candidates.length > 0) {
+    for (let left = 0; left < candidates.length; left += 1) {
+      for (let right = left + 1; right < candidates.length; right += 1) {
+        const [leftContainsRight, rightContainsLeft] = await Promise.all(
+          [
+            [candidates[left], candidates[right]],
+            [candidates[right], candidates[left]],
+          ].map(async ([ancestor, descendant]) => {
+            try {
+              await run("git", ["merge-base", "--is-ancestor", ancestor, descendant], {
+                cwd,
+              })
+              return true
+            } catch (error) {
+              if (error.code === 1) return false
+              throw error
+            }
+          }),
+        )
+        if (!leftContainsRight && !rightContainsLeft) {
+          throw new Error(
+            "Local and remote main baselines have diverged; refusing to choose an incomplete immutable baseline.",
+          )
+        }
+      }
+    }
     const distances = await Promise.all(
       candidates.map(async (candidate) => ({
         candidate,

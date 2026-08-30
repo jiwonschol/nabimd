@@ -366,6 +366,36 @@ test("a newer local main wins over a stale origin/main baseline", async () => {
   assert.equal(await resolveBaselineSha(repository, ""), localMain)
 })
 
+test("diverged main baselines fail closed when HEAD contains both histories", async () => {
+  const repository = await mkdtemp(resolve(tmpdir(), "nabimd-diverged-main-baseline-"))
+  await run("git", ["init"], { cwd: repository })
+  await run("git", ["config", "user.name", "Nabi Test"], { cwd: repository })
+  await run("git", ["config", "user.email", "nabi@example.com"], { cwd: repository })
+  await writeFile(resolve(repository, "root.txt"), "root\n")
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "root"], { cwd: repository })
+  const root = (await run("git", ["rev-parse", "HEAD"], { cwd: repository })).stdout.trim()
+
+  await run("git", ["branch", "-M", "main"], { cwd: repository })
+  await writeFile(resolve(repository, "local-main.txt"), "local\n")
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "local main"], { cwd: repository })
+  await run("git", ["checkout", "-b", "remote-main", root], { cwd: repository })
+  await writeFile(resolve(repository, "remote-main.txt"), "remote\n")
+  await run("git", ["add", "."], { cwd: repository })
+  await run("git", ["commit", "-m", "remote main"], { cwd: repository })
+  await run("git", ["update-ref", "refs/remotes/origin/main", "HEAD"], { cwd: repository })
+  await run("git", ["checkout", "-b", "feature", "main"], { cwd: repository })
+  await run("git", ["merge", "--no-ff", "origin/main", "-m", "combine histories"], {
+    cwd: repository,
+  })
+
+  await assert.rejects(
+    resolveBaselineSha(repository, ""),
+    /main baselines have diverged/,
+  )
+})
+
 test("resealing rejects targets from different problem-bank roots", async () => {
   const firstRoot = resolve(tmpdir(), "first-bank", "batches", "batch-a")
   const secondRoot = resolve(tmpdir(), "second-bank", "batches", "batch-b")
