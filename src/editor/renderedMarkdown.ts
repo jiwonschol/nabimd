@@ -84,6 +84,27 @@ function offsets(node: MdNode): { from: number; to: number } | null {
   return from === undefined || to === undefined ? null : { from, to }
 }
 
+function escapeBackslashOffsets(raw: string): number[] {
+  const result: number[] = []
+  for (let index = 0; index < raw.length; index += 1) {
+    if (raw[index] !== "\\") continue
+
+    let runLength = 1
+    while (raw[index + runLength] === "\\") runLength += 1
+    const escapesPunctuation = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(
+      raw[index + runLength] ?? "",
+    )
+    const syntaxBackslashes =
+      Math.floor(runLength / 2) +
+      (runLength % 2 === 1 && escapesPunctuation ? 1 : 0)
+    for (let pair = 0; pair < syntaxBackslashes; pair += 1) {
+      result.push(index + pair * 2)
+    }
+    index += runLength - 1
+  }
+  return result
+}
+
 function childBounds(node: MdNode): { from: number; to: number } | null {
   const first = node.children?.[0]
   const last = node.children?.at(-1)
@@ -353,6 +374,27 @@ export function findRenderedMarkdownTokens(
       case "linkReference":
         addConcealedDelimiters(tokens, node, "cm-rendered-link", source)
         break
+      case "text": {
+        if (!nodeOffsets) break
+        const raw = source.slice(nodeOffsets.from, nodeOffsets.to)
+        const insideTable = ancestors.some((ancestor) => ancestor.type === "table")
+        for (const relativeFrom of escapeBackslashOffsets(raw)) {
+          // A single escaped table pipe is already projected as one local
+          // `escaped-pipe` glyph by the table node. Avoid overlapping
+          // CodeMirror replacement ranges while still concealing other
+          // escapes inside table cells.
+          if (insideTable && raw[relativeFrom + 1] === "|") continue
+          const from = nodeOffsets.from + relativeFrom
+          tokens.push({
+            from,
+            kind: "replace",
+            replacement: "conceal",
+            source: "\\",
+            to: from + 1,
+          })
+        }
+        break
+      }
       case "image": {
         if (!nodeOffsets) break
         const raw = source.slice(nodeOffsets.from, nodeOffsets.to)

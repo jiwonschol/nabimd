@@ -175,6 +175,25 @@ describe("renderedMarkdown", () => {
     ).toBe(false)
   })
 
+  it("conceals Markdown escape backslashes while preserving visible content", () => {
+    const source = "\\*Literal stars\\*\n\\# Literal hash\n\\\\*Visible slash"
+    const concealed = findRenderedMarkdownTokens(source).filter(
+      (token) => token.kind === "replace" && token.replacement === "conceal",
+    )
+
+    expect(
+      concealed.map((token) => ({
+        from: token.from,
+        source: source.slice(token.from, token.to),
+      })),
+    ).toEqual([
+      { from: 0, source: "\\" },
+      { from: 15, source: "\\" },
+      { from: 18, source: "\\" },
+      { from: 34, source: "\\" },
+    ])
+  })
+
   it("renders setext, closed ATX, and empty ATX headings semantically", () => {
     const source = [
       "Primary",
