@@ -36,9 +36,11 @@ describe("Level 2 and Level 3 syntax capability matrix", () => {
 
   it("keeps every parser-supported row teachable and rejects its missing form", () => {
     const matrix = buildSyntaxCapabilityMatrix()
-    const supported = matrix.filter((row) => row.id !== "heading-id")
+    const supported = matrix.filter(
+      (row) => row.id !== "heading-id" && row.id !== "automatic-url",
+    )
 
-    expect(supported).toHaveLength(12)
+    expect(supported).toHaveLength(11)
     expect(
       supported.every(
         (row) =>
@@ -49,6 +51,12 @@ describe("Level 2 and Level 3 syntax capability matrix", () => {
           row.guided.hasSpecificTerm,
       ),
     ).toBe(true)
+    expect(matrix.find((row) => row.id === "automatic-url")).toMatchObject({
+      parser: { opens: true },
+      grading: { acceptsCanonical: true, rejectsMissing: true },
+      guided: { createsCheckpoint: false },
+      decision: "intentional-exclusion",
+    })
   })
 
   it("renders generated values and the command that refreshes them", () => {

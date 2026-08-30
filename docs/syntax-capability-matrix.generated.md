@@ -11,7 +11,7 @@ The generator normalizes a real problem candidate, parses its target through the
 | 2 | nested-blockquote | yes | yes | yes | block quote, quote inside a quote | candidate |  |
 | 2 | code-block-language | yes | yes | yes | fenced code block, syntax-highlighted code block | candidate | The language name must be an answer, not locked Goal prose. |
 | 2 | hard-line-break | yes | yes | yes | line break | candidate |  |
-| 2 | automatic-url | yes | yes | yes | automatic URL | candidate |  |
+| 2 | automatic-url | yes | yes | no |  | intentional-exclusion | A bare URL has no Markdown-only marks to remove; its plaintext starter already contains the complete address, so guided teaching is intentionally excluded. |
 | 3 | link-title | yes | yes | yes | link, link title | candidate |  |
 | 3 | angle-bracket-url | yes | yes | yes | angle-bracket URL | candidate |  |
 | 3 | angle-bracket-email | yes | yes | yes | angle-bracket email | candidate |  |

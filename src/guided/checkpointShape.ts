@@ -19,6 +19,8 @@ import type { SyntaxCheckpoint } from "./guidedSyntax"
 export type CheckpointShape = {
   /** Every blank the learner types, in source order. */
   readonly inputs: readonly string[]
+  /** Parser-derived family for each blank, when the checkpoint came from the real deriver. */
+  readonly inputFamilies: readonly (string | null)[]
   /** Every locked run, in source order. */
   readonly locked: readonly string[]
   /**
@@ -47,6 +49,7 @@ export function checkpointShape(checkpoint: SyntaxCheckpoint): CheckpointShape {
   const locked: string[] = []
   const precededByInput: boolean[] = []
   const lockedBefore: (string | null)[] = []
+  const inputFamilies: (string | null)[] = []
 
   checkpoint.segments.forEach((segment, index) => {
     if (segment.kind === "locked") {
@@ -54,6 +57,7 @@ export function checkpointShape(checkpoint: SyntaxCheckpoint): CheckpointShape {
       return
     }
     inputs.push(segment.value)
+    inputFamilies.push(segment.family ?? null)
     precededByInput.push(checkpoint.segments[index - 1]?.kind === "input")
     const before = checkpoint.segments[index - 1]
     lockedBefore.push(before?.kind === "locked" ? before.value : null)
@@ -61,6 +65,7 @@ export function checkpointShape(checkpoint: SyntaxCheckpoint): CheckpointShape {
 
   return {
     inputs,
+    inputFamilies,
     locked,
     precededByInput,
     lockedBefore,

@@ -1,6 +1,7 @@
 import { normalizeProblem } from "./normalizeProblem"
 import { curriculumElementIds } from "./curriculumElements"
 import { BLOCK_KINDS } from "./types"
+import { supportedSyntaxPresenceKinds } from "../engine/syntaxPresence"
 import type {
   FixtureKind,
   FixtureRole,
@@ -463,7 +464,10 @@ function validateMatchChecks(problem: GradableProblem, errors: string[]) {
       }
       case "syntax-presence":
         validateRange(problem.id, check, check.min, check.max, errors)
-        if (!curriculumElementIds.includes(check.syntax)) {
+        if (
+          !curriculumElementIds.includes(check.syntax) ||
+          !supportedSyntaxPresenceKinds.has(check.syntax)
+        ) {
           errors.push(
             `Problem ${problem.id} check ${check.id} has unsupported syntax: ${String(check.syntax)}`,
           )
