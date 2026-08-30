@@ -628,6 +628,11 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
       "link with a title",
     )
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual([
+      '[]("")',
+      "[]('')",
+      "[](())",
+    ])
   })
 
   it("asks for parenthesized link-title delimiters", () => {
@@ -651,6 +656,11 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
       "link with a title",
     )
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual([
+      "[](())",
+      '[]("")',
+      "[]('')",
+    ])
   })
 
   it("keeps a bare automatic URL visible because it has no Markdown-only marks", () => {
@@ -693,6 +703,34 @@ describe("deriveSyntaxCheckpoints", () => {
         "angle-bracket URL",
       ])
     }
+  })
+
+  it("names mailto URI autolinks as URLs even though their payload contains @", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "Email <mailto:learn@example.com>.",
+      "Email mailto:learn@example.com.",
+    )
+
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["angle-bracket URL"])
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "angle-bracket URL",
+    )
+  })
+
+  it("classifies an autolink from the address between its own brackets", () => {
+    const [url] = deriveSyntaxCheckpoints(
+      "Contact me@example.com, then open <https://example.com>.",
+      "Contact me@example.com, then open https://example.com.",
+    )
+    const [email] = deriveSyntaxCheckpoints(
+      "Open https://example.com, then email <me@example.com>.",
+      "Open https://example.com, then email me@example.com.",
+    )
+
+    expect(instructionFor(checkpointShape(url!)).term).toBe("angle-bracket URL")
+    expect(instructionFor(checkpointShape(email!)).term).toBe(
+      "angle-bracket email",
+    )
   })
 
   it("names backslash hard breaks as line breaks rather than escapes", () => {
@@ -961,6 +999,22 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
       "syntax-highlighted code block",
     )
+  })
+
+  it("does not offer a fence alternative that consumes the language token", () => {
+    for (const [fence, language] of [
+      ["```", "~~~"],
+      ["~~~", "```"],
+    ] as const) {
+      const [checkpoint] = deriveSyntaxCheckpoints(
+        `${fence}${language}\nvalue\n${fence}`,
+        "\nvalue\n",
+      )
+
+      expect(acceptedGuidedSyntaxInputs(checkpoint!), `${fence}${language}`).toEqual([
+        `${fence}${language}${fence}`,
+      ])
+    }
   })
 })
 

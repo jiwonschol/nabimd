@@ -395,6 +395,14 @@ export function findRenderedMarkdownTokens(
         }
         break
       }
+      case "break": {
+        if (!nodeOffsets) break
+        const raw = source.slice(nodeOffsets.from, nodeOffsets.to)
+        if (raw.startsWith("\\")) {
+          conceal(tokens, source, nodeOffsets.from, nodeOffsets.from + 1)
+        }
+        break
+      }
       case "image": {
         if (!nodeOffsets) break
         const raw = source.slice(nodeOffsets.from, nodeOffsets.to)
@@ -530,12 +538,13 @@ export function findRenderedMarkdownTokens(
             })
           }
           for (let index = 0; index < line.text.length; index += 1) {
-            if (
-              line.text[index] === "\\" &&
-              line.text[index + 1] === "|" &&
-              line.text[index - 1] !== "\\"
-            ) {
-              const from = line.from + index
+            if (line.text[index] !== "|") continue
+            let backslashes = 0
+            while (line.text[index - backslashes - 1] === "\\") {
+              backslashes += 1
+            }
+            if (backslashes % 2 === 1) {
+              const from = line.from + index - 1
               tokens.push({
                 from,
                 glyph: "|",
@@ -544,10 +553,8 @@ export function findRenderedMarkdownTokens(
                 source: "\\|",
                 to: from + 2,
               })
-              index += 1
               continue
             }
-            if (line.text[index] !== "|") continue
             const from = line.from + index
             tokens.push({
               from,

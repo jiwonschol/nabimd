@@ -503,6 +503,15 @@ describe("the sentence, derived from real Markdown", () => {
     ])
   })
 
+  it("describes adjacent hard breaks that use both supported forms", () => {
+    expect(sentencesFor("First\\\nSecond  \nThird")).toEqual([
+      "Complete each line ending with its shown hard-break form to force a line break",
+    ])
+    expect(sentencesFor("First  \nSecond\\\nThird")).toEqual([
+      "Complete each line ending with its shown hard-break form to force a line break",
+    ])
+  })
+
   it("reads a thematic break that trails whitespace", () => {
     // The deriver keeps the trailing spaces inside the blank.
     expect(sentencesFor("***   ")).toEqual([

@@ -179,13 +179,45 @@ function buildAcceptedForms(
     expandInputForms(forms, (form) => swapDelimiterPair(form, pair))
   }
 
+  const titleDelimiterIndexes = checkpoint.segments.flatMap((segment, index) => {
+    if (segment.kind !== "input" || !segment.family?.endsWith("-title")) {
+      return []
+    }
+    return [
+      checkpoint.segments
+        .slice(0, index)
+        .filter((candidate) => candidate.kind === "input").length,
+    ]
+  })
+  if (titleDelimiterIndexes.length === 2) {
+    const [openingIndex, closingIndex] = titleDelimiterIndexes
+    for (const [opening, closing] of [
+      ['"', '"'],
+      ["'", "'"],
+      ["(", ")"],
+    ] as const) {
+      if (
+        canonicalParts[openingIndex!] === opening &&
+        canonicalParts[closingIndex!] === closing
+      ) {
+        continue
+      }
+      const alternative = [...canonicalParts]
+      alternative[openingIndex!] = opening
+      alternative[closingIndex!] = closing
+      forms.push(alternative)
+    }
+  }
+
   if (
     (canonicalParts.length === 2 || canonicalParts.length === 3) &&
     canonicalParts[0] === canonicalParts.at(-1) &&
     (canonicalParts[0] === "```" || canonicalParts[0] === "~~~")
   ) {
     const alternativeFence = canonicalParts[0] === "```" ? "~~~" : "```"
+    const informationToken = canonicalParts.length === 3 ? canonicalParts[1] : ""
     expandInputForms(forms, (form) =>
+      !informationToken?.startsWith(alternativeFence[0]!) &&
       form[0] === canonicalParts[0] && form.at(-1) === canonicalParts.at(-1)
         ? [alternativeFence, ...form.slice(1, -1), alternativeFence]
         : null,
@@ -388,11 +420,11 @@ function syntaxGroupTermsInOrder(
           : segment.value === ">" && previous?.kind === "locked"
             ? previous.value
             : ""
-      if (destination.includes("@") && !destination.includes("://")) {
-        return ["angle-bracket email"]
-      }
       if (/^[A-Za-z][A-Za-z0-9+.-]{1,31}:/.test(destination)) {
         return ["angle-bracket URL"]
+      }
+      if (destination.includes("@")) {
+        return ["angle-bracket email"]
       }
     }
     return [

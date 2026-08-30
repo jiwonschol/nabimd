@@ -194,6 +194,42 @@ describe("renderedMarkdown", () => {
     ])
   })
 
+  it("renders an escaped table pipe after an odd backslash run as cell content", () => {
+    const source = "| Text |\n| --- |\n| A \\\\\\| B |"
+    const pipeFrom = source.indexOf("|", source.indexOf("A"))
+    const replacements = findRenderedMarkdownTokens(source).filter(
+      (token) => token.kind === "replace",
+    )
+
+    expect(replacements).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          from: pipeFrom - 1,
+          glyph: "|",
+          replacement: "escaped-pipe",
+          source: "\\|",
+          to: pipeFrom + 1,
+        }),
+      ]),
+    )
+    expect(
+      replacements.some(
+        (token) => token.replacement === "table-pipe" && token.from === pipeFrom,
+      ),
+    ).toBe(false)
+  })
+
+  it("conceals the marker of a backslash hard break", () => {
+    const source = "First\\\nSecond"
+    const concealed = findRenderedMarkdownTokens(source).filter(
+      (token) => token.kind === "replace" && token.replacement === "conceal",
+    )
+
+    expect(concealed).toEqual([
+      expect.objectContaining({ from: 5, source: "\\", to: 6 }),
+    ])
+  })
+
   it("renders setext, closed ATX, and empty ATX headings semantically", () => {
     const source = [
       "Primary",
