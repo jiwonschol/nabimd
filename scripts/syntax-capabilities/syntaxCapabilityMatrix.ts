@@ -99,8 +99,9 @@ const probes: readonly Probe[] = [
     level: 2,
     target: "Visit https://example.com today.",
     missing: "Visit example.com today.",
-    checkpointInput: (input) => /(?:https?:\/\/|www\.)/.test(input),
-    expectedTerms: ["automatic URL"],
+    checkpointInput: () => false,
+    expectedTerms: [],
+    notes: "A bare URL has no Markdown-only marks to remove; its plaintext starter already contains the complete address, so guided teaching is intentionally excluded.",
   },
   {
     id: "link-title",
@@ -238,7 +239,7 @@ export function buildSyntaxCapabilityMatrix(): SyntaxCapabilityRow[] {
       },
       guided: { createsCheckpoint, hasSpecificTerm, terms },
       decision:
-        probe.id === "heading-id"
+        probe.id === "heading-id" || probe.id === "automatic-url"
           ? "intentional-exclusion"
           : parserOpens
             ? "candidate"

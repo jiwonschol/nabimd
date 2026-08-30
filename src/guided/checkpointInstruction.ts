@@ -40,7 +40,7 @@ const SPACE_RUN = /^ {2,}\n?$/
 const TABLE_PUNCTUATION = /^[|\s:-]*$/
 const DIVIDER_CELL = /^\s*:?-+:?\s*$/
 const FENCE = /^(?:`{3,}|~{3,})/
-const LANGUAGE_NAME = /^[A-Za-z][\w+#-]*$/
+const LANGUAGE_NAME = /^\S+$/
 const THEMATIC_BREAK = /^(?:-{3,}|\*{3,}|_{3,})$/
 
 /**
@@ -102,6 +102,21 @@ function nestedQuoteInstruction(
  */
 export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   const { inputs } = shape
+
+  if (
+    inputs.length > 0 &&
+    inputs.every(
+      (value, index) =>
+        value === "\\" && shape.inputFamilies[index]?.startsWith("break@"),
+    )
+  ) {
+    return instruction(
+      inputs.length === 1
+        ? "End the line with a backslash to force a "
+        : "End each line with a backslash to force a ",
+      "line break",
+    )
+  }
 
   // A hard line break is spaces and nothing else, so there is no mark to name
   // and the sentence names an action instead. It has to be decided before any
@@ -471,7 +486,9 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
   ) {
     // A fence that also asks for the language name is teaching the language,
     // not the fence, so it gets its own sentence.
-    const asksForLanguage = inputs.some((value) => LANGUAGE_NAME.test(value))
+    const asksForLanguage = inputs.some(
+      (value) => !FENCE.test(value) && LANGUAGE_NAME.test(value),
+    )
     if (asksForLanguage) {
       return instruction(
         "Type the Markdown marks and the language name for a ",
@@ -522,7 +539,11 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     return instruction("Add the Markdown punctuation for an ", "image")
   }
   if (leading.startsWith("[")) {
-    if (inputs.some((value) => value === '"' || value === "'")) {
+    if (
+      inputs.some(
+        (value) => value === '"' || value === "'" || value === "(",
+      )
+    ) {
       return instruction(
         "Add the Markdown punctuation and title delimiters for a ",
         "link with a title",

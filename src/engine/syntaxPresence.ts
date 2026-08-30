@@ -6,6 +6,7 @@ import {
 } from "./evaluationContext"
 
 type PositionedSyntaxNode = AstNode & {
+  identifier?: string
   lang?: string | null
   title?: string | null
   url?: string
@@ -44,9 +45,36 @@ function isListWithBlock(node: AstNode): boolean {
   )
 }
 
-function countEscapes(source: string): number {
-  return source.match(/\\[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g)?.length ?? 0
+function countEscapes(
+  nodes: readonly PositionedSyntaxNode[],
+  source: string,
+): number {
+  return nodes
+    .filter((node) => node.type === "text")
+    .reduce(
+      (count, node) =>
+        count +
+        (rawSource(node, source).match(
+          /\\[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/g,
+        )?.length ?? 0),
+      0,
+    )
 }
+
+export const supportedSyntaxPresenceKinds = new Set<SyntaxPresenceKind>([
+  "bold-italic",
+  "strikethrough",
+  "nested-blockquote",
+  "code-block-language",
+  "hard-line-break",
+  "automatic-url",
+  "link-title",
+  "angle-bracket-url",
+  "angle-bracket-email",
+  "escape",
+  "list-with-block",
+  "footnote",
+])
 
 export function countSyntaxPresence(
   context: EvaluationContext,
@@ -98,15 +126,26 @@ export function countSyntaxPresence(
           String(node.url ?? "").startsWith("mailto:"),
       ).length
     case "escape":
-      return countEscapes(context.source)
+      return countEscapes(nodes, context.source)
     case "list-with-block":
       return nodes.filter(isListWithBlock).length
     case "footnote":
-      return nodes.filter(
-        (node) =>
-          node.type === "footnoteDefinition" ||
-          node.type === "footnoteReference",
-      ).length
+      {
+        const definitions = new Set(
+          nodes
+            .filter((node) => node.type === "footnoteDefinition")
+            .map((node) => node.identifier),
+        )
+        return new Set(
+          nodes
+            .filter(
+              (node) =>
+                node.type === "footnoteReference" &&
+                definitions.has(node.identifier),
+            )
+            .map((node) => node.identifier),
+        ).size
+      }
     case "heading-id":
       return nodes.filter(
         (node) =>

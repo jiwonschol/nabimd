@@ -74,15 +74,15 @@ describe("the product reads one Markdown dialect", () => {
     expect(derivePlaintextStarter("Compare A | B")).toBe("Compare A | B")
   })
 
-  test("a bare address asks for its URL scheme instead of one arbitrary letter", () => {
+  test("a bare address stays visible while angle brackets remain teachable", () => {
     // GFM makes the bare address a link node. The whole scheme is the grammar
     // that distinguishes an automatic URL; masking one `h` would still teach
     // nothing, and masking the domain would turn Goal content into an answer.
-    const [automatic] = deriveSyntaxCheckpoints(
+    const automatic = deriveSyntaxCheckpoints(
       "Docs live at https://example.com now.",
       "",
     )
-    expect(automatic?.canonicalInput).toBe("https://")
+    expect(automatic).toEqual([])
     const [angleBracket] = deriveSyntaxCheckpoints(
       "Docs live at <https://example.com> now.",
       "",

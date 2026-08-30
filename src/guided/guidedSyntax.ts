@@ -5,7 +5,7 @@ import { parseMarkdownSource } from "../markdown/parser"
 const QUOTE_MARKER_BLANK = /^ {0,3}>[\t ]*$/
 
 export type GuidedSyntaxSegment =
-  | { kind: "input"; value: string }
+  | { kind: "input"; value: string; readonly family?: string }
   | { kind: "locked"; value: string }
 
 export type SyntaxCheckpoint = {
@@ -328,7 +328,7 @@ export function syntaxGroupTerm(
     return precededByQuoteMarker ? "quote inside a quote" : "block quote"
   }
   if (mark.startsWith("```") || mark.startsWith("~~~")) return "fenced code block"
-  if (/^[A-Za-z][\w+#-]*$/.test(mark)) return "syntax-highlighted code block"
+  if (/^[A-Za-z][\w+#.-]*$/.test(mark)) return "syntax-highlighted code block"
   if (mark === "**" || mark === "__") return "bold text"
   if (mark === "*" || mark === "_") return "italic text"
   if (mark === "~~") return "strikethrough text"
@@ -358,6 +358,29 @@ function syntaxGroupTermsInOrder(
     if (segment.kind !== "input") return []
     const previous = checkpoint.segments[index - 1]
     const next = checkpoint.segments[index + 1]
+    if (segment.family?.startsWith("break@")) {
+      return ["line break"]
+    }
+    if (
+      /^\S+$/.test(segment.value) &&
+      previous?.kind === "input" &&
+      /^(?:`{3,}|~{3,})$/.test(previous.value.trim())
+    ) {
+      return ["syntax-highlighted code block"]
+    }
+    if (
+      (segment.value === "(" || segment.value === ")") &&
+      ((segment.value === "(" &&
+        previous?.kind === "locked" &&
+        /\s$/.test(previous.value) &&
+        next?.kind === "locked") ||
+        (segment.value === ")" &&
+          previous?.kind === "locked" &&
+          next?.kind === "input" &&
+          next.value === ")"))
+    ) {
+      return ["link title"]
+    }
     if (segment.value === "<" || segment.value === ">") {
       const destination =
         segment.value === "<" && next?.kind === "locked"
@@ -368,7 +391,7 @@ function syntaxGroupTermsInOrder(
       if (destination.includes("@") && !destination.includes("://")) {
         return ["angle-bracket email"]
       }
-      if (/^(?:https?:\/\/|www\.)/.test(destination)) {
+      if (/^[A-Za-z][A-Za-z0-9+.-]{1,31}:/.test(destination)) {
         return ["angle-bracket URL"]
       }
     }
@@ -716,14 +739,10 @@ function markLinkPunctuation(
   if (!range) return
   const raw = source.slice(range.from, range.to)
   // A GFM autolink literal (`https://example.com` written bare) is a link
-  // node with no punctuation in it. Masking its first character would ask the
-  // learner to type `h` — a blank that teaches nothing and cannot be right or
-  // wrong. Enabling GFM is what makes these nodes appear, so the guard ships
-  // with it. `<https://example.com>` is skipped for the same reason: its
-  // angle brackets are a different curriculum element and are not taught by
-  // pretending they are link punctuation.
+  // node with no punctuation in it. It has no syntax-only blank: the scheme
+  // is learner-visible content in the plaintext starter, so leave it locked.
   if (
-    /^<(?:https?:\/\/|www\.|[^<>\s@]+@[^<>\s@]+)/.test(raw) &&
+    /^<(?:[A-Za-z][A-Za-z0-9+.-]{1,31}:|[^<>\s@]+@[^<>\s@]+)/.test(raw) &&
     raw.endsWith(">")
   ) {
     markRange(
@@ -741,15 +760,6 @@ function markLinkPunctuation(
     return
   }
   if (!raw.startsWith("[") && !raw.startsWith("![")) {
-    const automaticScheme = raw.match(/^(?:https?:\/\/|www\.)/)?.[0]
-    if (automaticScheme) {
-      markRange(
-        mask,
-        { from: range.from, to: range.from + automaticScheme.length },
-        families,
-        `${family}-automatic`,
-      )
-    }
     return
   }
   const openingLength = raw.startsWith("![") ? 2 : 1
@@ -779,7 +789,7 @@ function markLinkPunctuation(
     )
     const destinationClose = raw.lastIndexOf(")")
     if (destinationClose > destinationOpen) {
-      const title = raw.match(/\s+(["'])([\s\S]*?)\1\s*\)$/)
+      const title = raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*\)$/)
       if (title?.index !== undefined && title[1]) {
         const titleSource = title[0]
         const openingQuote = title.index + titleSource.indexOf(title[1])
@@ -799,6 +809,23 @@ function markLinkPunctuation(
             from: range.from + closingQuote,
             to: range.from + closingQuote + 1,
           },
+          families,
+          `${family}-title`,
+        )
+      }
+      if (title?.index !== undefined && title[3] !== undefined) {
+        const titleSource = title[0]
+        const openingParen = title.index + titleSource.indexOf("(")
+        const closingParen = title.index + titleSource.lastIndexOf(")")
+        markRange(
+          mask,
+          { from: range.from + openingParen, to: range.from + openingParen + 1 },
+          families,
+          `${family}-title`,
+        )
+        markRange(
+          mask,
+          { from: range.from + closingParen, to: range.from + closingParen + 1 },
           families,
           `${family}-title`,
         )
@@ -1249,7 +1276,16 @@ function mergeSegments(
     // they belong to the same syntax family: `> ` and `**` stay apart so the
     // learner answers the block quote and the bold marks as separate groups.
     if (previous?.kind === kind && kind === "locked") previous.value += value
-    else segments.push({ kind, value } as GuidedSyntaxSegment)
+    else {
+      const segment = { kind, value } as GuidedSyntaxSegment
+      if (kind === "input" && segmentFamily) {
+        Object.defineProperty(segment, "family", {
+          value: segmentFamily,
+          enumerable: false,
+        })
+      }
+      segments.push(segment)
+    }
   }
 
   for (let index = from + 1; index < to; index += 1) {
@@ -1387,7 +1423,14 @@ function mergeAdjacentSameSyntax(
         tail.value += segment.value
         continue
       }
-      segments.push({ ...segment })
+      const copy = { ...segment }
+      if (segment.kind === "input" && segment.family) {
+        Object.defineProperty(copy, "family", {
+          value: segment.family,
+          enumerable: false,
+        })
+      }
+      segments.push(copy)
     }
     merged[merged.length - 1] = {
       ...previous,

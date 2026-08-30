@@ -89,6 +89,25 @@ function validate(
 }
 
 describe("schema-v2 problem-bank validation", () => {
+  it("rejects syntax-presence checks the parser cannot support", () => {
+    const invalid = problem("unsupported-heading-id", {
+      matchChecks: [
+        {
+          id: "use-heading-id",
+          kind: "syntax-presence",
+          syntax: "heading-id",
+          min: 1,
+          priority: 10,
+          feedback: "Use a heading ID.",
+        },
+      ],
+    })
+
+    expect(validate([invalid])).toContain(
+      "Problem unsupported-heading-id check use-heading-id has unsupported syntax: heading-id",
+    )
+  })
+
   it("accepts unique fixtures and multiple edge cases per role", () => {
     const problems = [problem("first"), problem("second")]
     const problemFixtures = [

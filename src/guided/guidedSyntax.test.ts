@@ -630,22 +630,26 @@ describe("deriveSyntaxCheckpoints", () => {
     )
   })
 
-  it("asks for the scheme that turns a bare address into an automatic URL", () => {
+  it("asks for parenthesized link-title delimiters", () => {
     const [checkpoint] = deriveSyntaxCheckpoints(
+      "[Guide](https://example.com (Read me))",
+      "Guide",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("[](()")
+    expect(syntaxCheckpointTerms(checkpoint!)).toContain("link title")
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
+      "link with a title",
+    )
+  })
+
+  it("keeps a bare automatic URL visible because it has no Markdown-only marks", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
       "Visit https://example.com today.",
       "Visit https://example.com today.",
     )
 
-    expect(checkpoint?.canonicalInput).toBe("https://")
-    expect(checkpoint?.segments).toEqual([
-      { kind: "locked", value: "Visit " },
-      { kind: "input", value: "https://" },
-      { kind: "locked", value: "example.com today." },
-    ])
-    expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["automatic URL"])
-    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
-      "automatic URL",
-    )
+    expect(checkpoints).toEqual([])
   })
 
   it("asks for the angle brackets around an autolink URL", () => {
@@ -668,6 +672,40 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(instructionFor(checkpointShape(checkpoint!)).term).toBe(
       "angle-bracket URL",
     )
+  })
+
+  it("asks for angle brackets around every parser-supported URI scheme", () => {
+    for (const target of ["Open <ftp://example.com>.", "Call <tel:+12345>."]) {
+      const plaintext = target.replace(/[<>]/g, "")
+      const [checkpoint] = deriveSyntaxCheckpoints(target, plaintext)
+      expect(checkpoint?.canonicalInput, target).toBe("<>")
+      expect(syntaxCheckpointTerms(checkpoint!), target).toEqual([
+        "angle-bracket URL",
+      ])
+    }
+  })
+
+  it("names backslash hard breaks as line breaks rather than escapes", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints("First\\\nSecond", "First\nSecond")
+
+    expect(checkpoint?.canonicalInput).toBe("\\")
+    expect(syntaxCheckpointTerms(checkpoint!)).toEqual(["line break"])
+    expect(instructionFor(checkpointShape(checkpoint!)).term).toBe("line break")
+  })
+
+  it("names every accepted fenced-code info token", () => {
+    for (const language of ["1c", "objective.c"]) {
+      const [checkpoint] = deriveSyntaxCheckpoints(
+        `\`\`\`${language}\nvalue\n\`\`\``,
+        "value",
+      )
+      expect(syntaxCheckpointTerms(checkpoint!), language).toContain(
+        "syntax-highlighted code block",
+      )
+      expect(instructionFor(checkpointShape(checkpoint!)).term, language).toBe(
+        "syntax-highlighted code block",
+      )
+    }
   })
 
   it("asks for the angle brackets around an autolink email", () => {
