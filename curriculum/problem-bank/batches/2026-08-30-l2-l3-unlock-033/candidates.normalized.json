@@ -1,10 +1,13 @@
 {
   "schemaVersion": 2,
-  "batchId": "2026-08-30-l2-l3-unlock-032",
+  "batchId": "2026-08-30-l2-l3-unlock-033",
   "sequence": 28,
   "curriculumVersion": "2026-07-19",
   "generatedBy": "gpt-5.6-sol-build-time-authoring",
   "generatedOn": "2026-08-30",
+  "promptSha256": "8bd45edff3a3e0e9b17faf5a14733987c87082a83cad1f68c509c053252cd8bb",
+  "rawArtifactDigest": "fb6bbcb35854010e9e8ee8e779e823166202ae6fd95064e587c6da514f18a486",
+  "candidateCount": 24,
   "candidates": [
     {
       "id": "l2-bold-italic-1",
@@ -64,7 +67,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "268caf043a599c66dc7d1a6cad6848258a971702281a4f2e8701334613ff401d"
     },
     {
       "id": "l2-bold-italic-2",
@@ -124,244 +129,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l2-strikethrough-1",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Old address~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Old",
-          "address"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l2-strikethrough-2",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "strikethrough",
-      "skillIds": [
-        "strikethrough"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Strikethrough text is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the strikethrough text.",
-        "example": "~~Old note~~"
-      },
-      "syntaxTokens": [
-        "strikethrough"
-      ],
-      "title": "strikethrough text",
-      "prompt": "Write the strikethrough text.",
-      "target": "~~Canceled meeting~~",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-strikethrough",
-          "kind": "syntax-presence",
-          "syntax": "strikethrough",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown strikethrough text syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a strikethrough text.",
-        "Add the missing strikethrough text marks.",
-        "Example: ~~Old note~~"
-      ],
-      "retryFamily": "level-2-strikethrough",
-      "reviewTags": [
-        "strikethrough",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Canceled",
-          "meeting"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l2-nested-blockquote-1",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Main note\n> > Reply",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Main",
-          "note",
-          "Reply"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l2-nested-blockquote-2",
-      "schemaVersion": 2,
-      "level": 2,
-      "flavor": "standard",
-      "familyId": "nested-blockquote",
-      "skillIds": [
-        "nested-blockquote"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Nested block quote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the nested block quote.",
-        "example": "> Note\n> > Detail"
-      },
-      "syntaxTokens": [
-        "nested-blockquote"
-      ],
-      "title": "nested block quote",
-      "prompt": "Write the nested block quote.",
-      "target": "> Question\n> > Answer",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-nested-blockquote",
-          "kind": "syntax-presence",
-          "syntax": "nested-blockquote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown nested block quote syntax."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a nested block quote.",
-        "Add the missing nested block quote marks.",
-        "Example: > Note\n> > Detail"
-      ],
-      "retryFamily": "level-2-nested-blockquote",
-      "reviewTags": [
-        "nested-blockquote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "everyday-recall",
-        "domains": [
-          "everyday-notes"
-        ],
-        "terms": [
-          "Question",
-          "Answer"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "3c206e1e76578cdb767ea4427e2ccf3f89d262a4ca5c0395d67cc3ac4d1e2587"
     },
     {
       "id": "l2-code-block-language-1",
@@ -422,7 +192,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "1a1e9d6f961a9af4fa051cfdbf84a928372186ecea62023e8f79571dbbdde357"
     },
     {
       "id": "l2-code-block-language-2",
@@ -483,7 +255,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "9596cd6a245b77166be4d8b3172d03bb8cca22346db86d7cbbe2f58955af5677"
     },
     {
       "id": "l2-hard-line-break-1",
@@ -543,7 +317,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "4f94d824e554b9dae3da19eb7f12a564a15258add3c4daaeeb61bae02ccc5c7e"
     },
     {
       "id": "l2-hard-line-break-2",
@@ -603,51 +379,53 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "c4495dd9b18fd599fe38c18930667545b7e375f4f08e9890caeca8a7436081a6"
     },
     {
-      "id": "l2-automatic-url-1",
+      "id": "l2-nested-blockquote-1",
       "schemaVersion": 2,
       "level": 2,
       "flavor": "standard",
-      "familyId": "automatic-url",
+      "familyId": "nested-blockquote",
       "skillIds": [
-        "automatic-url"
+        "nested-blockquote"
       ],
       "difficulty": "warmup",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Automatic URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the automatic URL.",
-        "example": "See https://example.net"
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
       },
       "syntaxTokens": [
-        "automatic-url"
+        "nested-blockquote"
       ],
-      "title": "automatic URL",
-      "prompt": "Write the automatic URL.",
-      "target": "Visit https://example.com",
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Main note\n> > Reply",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-automatic-url",
+          "id": "use-nested-blockquote",
           "kind": "syntax-presence",
-          "syntax": "automatic-url",
+          "syntax": "nested-blockquote",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown automatic URL syntax."
+          "feedback": "Use Markdown nested block quote syntax."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a automatic URL.",
-        "Add the missing automatic URL marks.",
-        "Example: See https://example.net"
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
       ],
-      "retryFamily": "level-2-automatic-url",
+      "retryFamily": "level-2-nested-blockquote",
       "reviewTags": [
-        "automatic-url",
+        "nested-blockquote",
         "level-unlock"
       ],
       "vocabulary": {
@@ -656,7 +434,396 @@
           "everyday-notes"
         ],
         "terms": [
-          "Visit",
+          "Main",
+          "note",
+          "Reply"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "852d81c4b0a7c3e1bc778608f12819b08f62fd5df4bf8ad61a3ae2d3e4581d96"
+    },
+    {
+      "id": "l2-nested-blockquote-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "nested-blockquote",
+      "skillIds": [
+        "nested-blockquote"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Nested block quote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the nested block quote.",
+        "example": "> Note\n> > Detail"
+      },
+      "syntaxTokens": [
+        "nested-blockquote"
+      ],
+      "title": "nested block quote",
+      "prompt": "Write the nested block quote.",
+      "target": "> Question\n> > Answer",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-nested-blockquote",
+          "kind": "syntax-presence",
+          "syntax": "nested-blockquote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown nested block quote syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a nested block quote.",
+        "Add the missing nested block quote marks.",
+        "Example: > Note\n> > Detail"
+      ],
+      "retryFamily": "level-2-nested-blockquote",
+      "reviewTags": [
+        "nested-blockquote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Question",
+          "Answer"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "a4251dd4ba4789b413cc6a1240e51c4b87fea29bfdf1d1945f0af243ea24a357"
+    },
+    {
+      "id": "l2-strikethrough-1",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "strikethrough",
+      "skillIds": [
+        "strikethrough"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
+      },
+      "syntaxTokens": [
+        "strikethrough"
+      ],
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Old address~~",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-strikethrough",
+          "kind": "syntax-presence",
+          "syntax": "strikethrough",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown strikethrough text syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
+      ],
+      "retryFamily": "level-2-strikethrough",
+      "reviewTags": [
+        "strikethrough",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Old",
+          "address"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "d55fc8572a6bc4431a9a2bba5ef1cf778fa7e3baa24a08c3549b1a35728a87fd"
+    },
+    {
+      "id": "l2-strikethrough-2",
+      "schemaVersion": 2,
+      "level": 2,
+      "flavor": "standard",
+      "familyId": "strikethrough",
+      "skillIds": [
+        "strikethrough"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Strikethrough text is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the strikethrough text.",
+        "example": "~~Old note~~"
+      },
+      "syntaxTokens": [
+        "strikethrough"
+      ],
+      "title": "strikethrough text",
+      "prompt": "Write the strikethrough text.",
+      "target": "~~Canceled meeting~~",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-strikethrough",
+          "kind": "syntax-presence",
+          "syntax": "strikethrough",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown strikethrough text syntax."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a strikethrough text.",
+        "Add the missing strikethrough text marks.",
+        "Example: ~~Old note~~"
+      ],
+      "retryFamily": "level-2-strikethrough",
+      "reviewTags": [
+        "strikethrough",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "everyday-recall",
+        "domains": [
+          "everyday-notes"
+        ],
+        "terms": [
+          "Canceled",
+          "meeting"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "2c53a96c2b4fbc75e94a1e61f1a27731abffeb1e4e1cea3b9fe20a36118a1870"
+    },
+    {
+      "id": "l3-angle-bracket-email-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-email",
+      "skillIds": [
+        "angle-bracket-email"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket email is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket email.",
+        "example": "<help@example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-email"
+      ],
+      "title": "angle-bracket email",
+      "prompt": "Write the angle-bracket email.",
+      "target": "<hello@example.com>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-email",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-email",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket email syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket email.",
+        "Add the missing angle-bracket email marks.",
+        "Example: <help@example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-email",
+      "reviewTags": [
+        "angle-bracket-email",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "hello",
+          "example",
+          "com"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "31bc34d3f1ea934155a63a859cba4528b302adbd12f8702f94fba4d168df4bfd"
+    },
+    {
+      "id": "l3-angle-bracket-email-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-email",
+      "skillIds": [
+        "angle-bracket-email"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket email is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket email.",
+        "example": "<help@example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-email"
+      ],
+      "title": "angle-bracket email",
+      "prompt": "Write the angle-bracket email.",
+      "target": "<team@example.org>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-email",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-email",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket email syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket email.",
+        "Add the missing angle-bracket email marks.",
+        "Example: <help@example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-email",
+      "reviewTags": [
+        "angle-bracket-email",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "team",
+          "example",
+          "org"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "8ac3697fb1741f7ffd448ac553a5a0e3e88efdd8a1b99e74d44790e440f87372"
+    },
+    {
+      "id": "l3-angle-bracket-url-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "angle-bracket-url",
+      "skillIds": [
+        "angle-bracket-url"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
+      },
+      "syntaxTokens": [
+        "angle-bracket-url"
+      ],
+      "title": "angle-bracket URL",
+      "prompt": "Write the angle-bracket URL.",
+      "target": "<https://example.com>",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-angle-bracket-url",
+          "kind": "syntax-presence",
+          "syntax": "angle-bracket-url",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
+      ],
+      "retryFamily": "level-3-angle-bracket-url",
+      "reviewTags": [
+        "angle-bracket-url",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
           "https",
           "example",
           "com"
@@ -664,60 +831,68 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "27a46adc13e99f65bf3a50e21b6c3d93bbc9140b7aadd6a692afdd6535ccaba3"
     },
     {
-      "id": "l2-automatic-url-2",
+      "id": "l3-angle-bracket-url-2",
       "schemaVersion": 2,
-      "level": 2,
+      "level": 3,
       "flavor": "standard",
-      "familyId": "automatic-url",
+      "familyId": "angle-bracket-url",
       "skillIds": [
-        "automatic-url"
+        "angle-bracket-url"
       ],
       "difficulty": "makeover",
       "teachingMode": "recall",
       "teaching": {
-        "concept": "Automatic URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the automatic URL.",
-        "example": "See https://example.net"
+        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the angle-bracket URL.",
+        "example": "<https://example.net>"
       },
       "syntaxTokens": [
-        "automatic-url"
+        "angle-bracket-url"
       ],
-      "title": "automatic URL",
-      "prompt": "Write the automatic URL.",
-      "target": "Open https://example.org/help",
+      "title": "angle-bracket URL",
+      "prompt": "Write the angle-bracket URL.",
+      "target": "<https://example.org/help>",
       "starterText": "",
       "protectedContent": [],
       "matchChecks": [
         {
-          "id": "use-automatic-url",
+          "id": "use-angle-bracket-url",
           "kind": "syntax-presence",
-          "syntax": "automatic-url",
+          "syntax": "angle-bracket-url",
           "min": 1,
           "priority": 10,
-          "feedback": "Use Markdown automatic URL syntax."
+          "feedback": "Use Markdown angle-bracket URL syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
         }
       ],
       "editorialChecks": [],
       "hints": [
-        "Look for the punctuation used by a automatic URL.",
-        "Add the missing automatic URL marks.",
-        "Example: See https://example.net"
+        "Look for the punctuation used by a angle-bracket URL.",
+        "Add the missing angle-bracket URL marks.",
+        "Example: <https://example.net>"
       ],
-      "retryFamily": "level-2-automatic-url",
+      "retryFamily": "level-3-angle-bracket-url",
       "reviewTags": [
-        "automatic-url",
+        "angle-bracket-url",
         "level-unlock"
       ],
       "vocabulary": {
-        "profile": "everyday-recall",
+        "profile": "workplace-document",
         "domains": [
-          "everyday-notes"
+          "workplace-notes"
         ],
         "terms": [
-          "Open",
           "https",
           "example",
           "org",
@@ -726,7 +901,288 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "26de6a5cca9ef5ee23e1f335afabc993548a385081a101d5da3680e258ae25c4"
+    },
+    {
+      "id": "l3-escape-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "escape",
+      "skillIds": [
+        "escape"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Escaped punctuation is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the escaped punctuation.",
+        "example": "\\_Literal marks\\_"
+      },
+      "syntaxTokens": [
+        "escape"
+      ],
+      "title": "escaped punctuation",
+      "prompt": "Write the escaped punctuation.",
+      "target": "\\*Literal stars\\*",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-escape",
+          "kind": "syntax-presence",
+          "syntax": "escape",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown escaped punctuation syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a escaped punctuation.",
+        "Add the missing escaped punctuation marks.",
+        "Example: \\_Literal marks\\_"
+      ],
+      "retryFamily": "level-3-escape",
+      "reviewTags": [
+        "escape",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Literal",
+          "stars"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "819a7b412e420ea92b906fa16d7ffd017a48d265e65c8c4d273bda7034a68686"
+    },
+    {
+      "id": "l3-escape-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "escape",
+      "skillIds": [
+        "escape"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Escaped punctuation is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the escaped punctuation.",
+        "example": "\\_Literal marks\\_"
+      },
+      "syntaxTokens": [
+        "escape"
+      ],
+      "title": "escaped punctuation",
+      "prompt": "Write the escaped punctuation.",
+      "target": "\\# Literal hash",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-escape",
+          "kind": "syntax-presence",
+          "syntax": "escape",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown escaped punctuation syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a escaped punctuation.",
+        "Add the missing escaped punctuation marks.",
+        "Example: \\_Literal marks\\_"
+      ],
+      "retryFamily": "level-3-escape",
+      "reviewTags": [
+        "escape",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Literal",
+          "hash"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "719bbf85563f1a8009389cbd196a08127c900bbb8ccef2710d3e59de9f30582b"
+    },
+    {
+      "id": "l3-footnote-1",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "footnote",
+      "skillIds": [
+        "footnote"
+      ],
+      "difficulty": "warmup",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Footnote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the footnote.",
+        "example": "Claim[^1]\n\n[^1]: Source"
+      },
+      "syntaxTokens": [
+        "footnote"
+      ],
+      "title": "footnote",
+      "prompt": "Write the footnote.",
+      "target": "Check the source[^1].\n\n[^1]: Project notes",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-footnote",
+          "kind": "syntax-presence",
+          "syntax": "footnote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown footnote syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a footnote.",
+        "Add the missing footnote marks.",
+        "Example: Claim[^1]\n\n[^1]: Source"
+      ],
+      "retryFamily": "level-3-footnote",
+      "reviewTags": [
+        "footnote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Check",
+          "the",
+          "source",
+          "Project",
+          "notes"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "31c185e61af262d6e9d8c9b893cdba1eb16b95fef752f440af74d6abd5d66aba"
+    },
+    {
+      "id": "l3-footnote-2",
+      "schemaVersion": 2,
+      "level": 3,
+      "flavor": "standard",
+      "familyId": "footnote",
+      "skillIds": [
+        "footnote"
+      ],
+      "difficulty": "makeover",
+      "teachingMode": "recall",
+      "teaching": {
+        "concept": "Footnote is a Markdown syntax pattern.",
+        "howTo": "Type the punctuation that creates the footnote.",
+        "example": "Claim[^1]\n\n[^1]: Source"
+      },
+      "syntaxTokens": [
+        "footnote"
+      ],
+      "title": "footnote",
+      "prompt": "Write the footnote.",
+      "target": "Read the detail[^note].\n\n[^note]: Team handbook",
+      "starterText": "",
+      "protectedContent": [],
+      "matchChecks": [
+        {
+          "id": "use-footnote",
+          "kind": "syntax-presence",
+          "syntax": "footnote",
+          "min": 1,
+          "priority": 10,
+          "feedback": "Use Markdown footnote syntax."
+        },
+        {
+          "id": "keep-short",
+          "kind": "document-limits",
+          "maxLines": 28,
+          "priority": 20,
+          "feedback": "Keep the answer within 28 lines."
+        }
+      ],
+      "editorialChecks": [],
+      "hints": [
+        "Look for the punctuation used by a footnote.",
+        "Add the missing footnote marks.",
+        "Example: Claim[^1]\n\n[^1]: Source"
+      ],
+      "retryFamily": "level-3-footnote",
+      "reviewTags": [
+        "footnote",
+        "level-unlock"
+      ],
+      "vocabulary": {
+        "profile": "workplace-document",
+        "domains": [
+          "workplace-notes"
+        ],
+        "terms": [
+          "Read",
+          "the",
+          "detail",
+          "note",
+          "Team",
+          "handbook"
+        ]
+      },
+      "revision": 1,
+      "curriculumVersion": "2026-07-19",
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "e15c87f4405bd690c037633f002a3e13615c7b2151e6660c35146516615d76f4"
     },
     {
       "id": "l3-link-title-1",
@@ -797,7 +1253,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "452f06a11c7afac1f3b4a62b8f37c04ea48b600df0ef9ca519ce0a5e591d06ef"
     },
     {
       "id": "l3-link-title-2",
@@ -868,408 +1326,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l3-angle-bracket-url-1",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-url",
-      "skillIds": [
-        "angle-bracket-url"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-url"
-      ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the angle-bracket URL.",
-      "target": "<https://example.com>",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-url",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-url",
-      "reviewTags": [
-        "angle-bracket-url",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "https",
-          "example",
-          "com"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l3-angle-bracket-url-2",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-url",
-      "skillIds": [
-        "angle-bracket-url"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket URL is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket URL.",
-        "example": "<https://example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-url"
-      ],
-      "title": "angle-bracket URL",
-      "prompt": "Write the angle-bracket URL.",
-      "target": "<https://example.org/help>",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-url",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-url",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket URL syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket URL.",
-        "Add the missing angle-bracket URL marks.",
-        "Example: <https://example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-url",
-      "reviewTags": [
-        "angle-bracket-url",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "https",
-          "example",
-          "org",
-          "help"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l3-angle-bracket-email-1",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the angle-bracket email.",
-      "target": "<hello@example.com>",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "hello",
-          "example",
-          "com"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l3-angle-bracket-email-2",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "angle-bracket-email",
-      "skillIds": [
-        "angle-bracket-email"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Angle-bracket email is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the angle-bracket email.",
-        "example": "<help@example.net>"
-      },
-      "syntaxTokens": [
-        "angle-bracket-email"
-      ],
-      "title": "angle-bracket email",
-      "prompt": "Write the angle-bracket email.",
-      "target": "<team@example.org>",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-angle-bracket-email",
-          "kind": "syntax-presence",
-          "syntax": "angle-bracket-email",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown angle-bracket email syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a angle-bracket email.",
-        "Add the missing angle-bracket email marks.",
-        "Example: <help@example.net>"
-      ],
-      "retryFamily": "level-3-angle-bracket-email",
-      "reviewTags": [
-        "angle-bracket-email",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "team",
-          "example",
-          "org"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l3-escape-1",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "escape",
-      "skillIds": [
-        "escape"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Escaped punctuation is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the escaped punctuation.",
-        "example": "\\_Literal marks\\_"
-      },
-      "syntaxTokens": [
-        "escape"
-      ],
-      "title": "escaped punctuation",
-      "prompt": "Write the escaped punctuation.",
-      "target": "\\*Literal stars\\*",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-escape",
-          "kind": "syntax-presence",
-          "syntax": "escape",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown escaped punctuation syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a escaped punctuation.",
-        "Add the missing escaped punctuation marks.",
-        "Example: \\_Literal marks\\_"
-      ],
-      "retryFamily": "level-3-escape",
-      "reviewTags": [
-        "escape",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Literal",
-          "stars"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l3-escape-2",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "escape",
-      "skillIds": [
-        "escape"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Escaped punctuation is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the escaped punctuation.",
-        "example": "\\_Literal marks\\_"
-      },
-      "syntaxTokens": [
-        "escape"
-      ],
-      "title": "escaped punctuation",
-      "prompt": "Write the escaped punctuation.",
-      "target": "\\# Literal hash",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-escape",
-          "kind": "syntax-presence",
-          "syntax": "escape",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown escaped punctuation syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a escaped punctuation.",
-        "Add the missing escaped punctuation marks.",
-        "Example: \\_Literal marks\\_"
-      ],
-      "retryFamily": "level-3-escape",
-      "reviewTags": [
-        "escape",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Literal",
-          "hash"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "bc9a5ae504982e28c70c742fb2efb8cb39e316b5a2c1bb5903916a3a96042135"
     },
     {
       "id": "l3-list-with-block-1",
@@ -1337,7 +1396,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
+      "contentVariant": "variant-1",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "09b130740b6bfc34c244fefd1f22eea9c4c957b5bdd963d013b8677a4c61d555"
     },
     {
       "id": "l3-list-with-block-2",
@@ -1404,146 +1465,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
-    },
-    {
-      "id": "l3-footnote-1",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "footnote",
-      "skillIds": [
-        "footnote"
-      ],
-      "difficulty": "warmup",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Footnote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the footnote.",
-        "example": "Claim[^1]\n\n[^1]: Source"
-      },
-      "syntaxTokens": [
-        "footnote"
-      ],
-      "title": "footnote",
-      "prompt": "Write the footnote.",
-      "target": "Check the source[^1].\n\n[^1]: Project notes",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-footnote",
-          "kind": "syntax-presence",
-          "syntax": "footnote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown footnote syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a footnote.",
-        "Add the missing footnote marks.",
-        "Example: Claim[^1]\n\n[^1]: Source"
-      ],
-      "retryFamily": "level-3-footnote",
-      "reviewTags": [
-        "footnote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Check",
-          "the",
-          "source",
-          "Project",
-          "notes"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-1"
-    },
-    {
-      "id": "l3-footnote-2",
-      "schemaVersion": 2,
-      "level": 3,
-      "flavor": "standard",
-      "familyId": "footnote",
-      "skillIds": [
-        "footnote"
-      ],
-      "difficulty": "makeover",
-      "teachingMode": "recall",
-      "teaching": {
-        "concept": "Footnote is a Markdown syntax pattern.",
-        "howTo": "Type the punctuation that creates the footnote.",
-        "example": "Claim[^1]\n\n[^1]: Source"
-      },
-      "syntaxTokens": [
-        "footnote"
-      ],
-      "title": "footnote",
-      "prompt": "Write the footnote.",
-      "target": "Read the detail[^note].\n\n[^note]: Team handbook",
-      "starterText": "",
-      "protectedContent": [],
-      "matchChecks": [
-        {
-          "id": "use-footnote",
-          "kind": "syntax-presence",
-          "syntax": "footnote",
-          "min": 1,
-          "priority": 10,
-          "feedback": "Use Markdown footnote syntax."
-        },
-        {
-          "id": "keep-short",
-          "kind": "document-limits",
-          "maxLines": 28,
-          "priority": 20,
-          "feedback": "Keep the answer within 28 lines."
-        }
-      ],
-      "editorialChecks": [],
-      "hints": [
-        "Look for the punctuation used by a footnote.",
-        "Add the missing footnote marks.",
-        "Example: Claim[^1]\n\n[^1]: Source"
-      ],
-      "retryFamily": "level-3-footnote",
-      "reviewTags": [
-        "footnote",
-        "level-unlock"
-      ],
-      "vocabulary": {
-        "profile": "workplace-document",
-        "domains": [
-          "workplace-notes"
-        ],
-        "terms": [
-          "Read",
-          "the",
-          "detail",
-          "note",
-          "Team",
-          "handbook"
-        ]
-      },
-      "revision": 1,
-      "curriculumVersion": "2026-07-19",
-      "contentVariant": "variant-2"
+      "contentVariant": "variant-2",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "287bf726198a51bbe5b60cbe780c098700352072e6c6a5653208358f8abe34bd"
     },
     {
       "id": "l3-mixed-link-title-email",
@@ -1625,7 +1549,9 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "link-and-email"
+      "contentVariant": "link-and-email",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "4691cddf63a5c89e4b7ed97b6653a717722e1c82e632a45354253ab73ae19339"
     },
     {
       "id": "l3-mixed-list-angle-url",
@@ -1706,7 +1632,10 @@
       },
       "revision": 1,
       "curriculumVersion": "2026-07-19",
-      "contentVariant": "list-and-url"
+      "contentVariant": "list-and-url",
+      "sourceBatch": "2026-08-30-l2-l3-unlock-033",
+      "candidateDigest": "87b560aed9fd963d045c477969940110b970e10fbe6c71afd7ea7ffc1fae4725"
     }
-  ]
+  ],
+  "artifactDigest": "1a05731db1769abbf2c11617722fd28ab75840dfed528e4fbc6a0f23e55101ce"
 }

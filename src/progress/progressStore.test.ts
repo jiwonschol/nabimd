@@ -29,6 +29,7 @@ import {
 } from "../selection/selectTransferProblem"
 import { curriculumLevels } from "../content/curriculumLevels"
 import { SYNTAX_FAMILY_WEIGHTS } from "../selection/runPolicy"
+import { getSyntaxFamily } from "../selection/runComposition"
 import { MemoryStorage } from "../test/MemoryStorage"
 import { createLearningSession } from "../session/learningSession"
 import {
@@ -105,6 +106,11 @@ describe("progressStore v5", () => {
     const policy = [
       "turn-size@5",
       `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+        .filter(([family]) =>
+          problemBank.some(
+            (problem) => getSyntaxFamily(problem) === family,
+          ),
+        )
         .sort(([left], [right]) => left.localeCompare(right))
         .map(([family, weight]) => `${family}:${weight}`)
         .join(",")}`,

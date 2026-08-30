@@ -23,7 +23,6 @@ type SchedulableProblem = Pick<
 const skillFamilyById: Readonly<Record<string, SyntaxFamily>> = {
   "angle-bracket-email": "angle-bracket-email",
   "angle-bracket-url": "angle-bracket-url",
-  "automatic-url": "automatic-url",
   blockquote: "blockquote",
   "bold-emphasis": "bold",
   "bold-italic": "bold-italic",

@@ -10,7 +10,6 @@ export const RUN_POLICY = {
 export const SYNTAX_FAMILY_WEIGHTS = {
   "angle-bracket-email": 1,
   "angle-bracket-url": 1,
-  "automatic-url": 1,
   heading: 1,
   bold: 1,
   "bold-italic": 1,

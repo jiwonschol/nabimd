@@ -12,6 +12,7 @@
     "src/engine/markdownAst.ts",
     "src/engine/sectionIndex.ts",
     "src/engine/syntaxPresence.ts",
+    "src/markdown/parser.ts",
     "src/engine/predicates/heading.ts",
     "src/engine/predicates/structural.ts",
     "src/engine/types.ts"
@@ -20,6 +21,14 @@
     {
       "name": "mdast-util-from-markdown",
       "version": "2.0.3"
+    },
+    {
+      "name": "mdast-util-gfm",
+      "version": "3.1.0"
+    },
+    {
+      "name": "micromark-extension-gfm",
+      "version": "3.0.0"
     }
   ]
 }

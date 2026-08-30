@@ -1,5 +1,10 @@
 import type { FixtureRole, ProblemFixture, SyntaxPresenceKind } from "../types"
-import { levelUnlockBatch032Problems } from "./levelUnlockBatch032Problems"
+import { levelUnlockBatch033Problems } from "./levelUnlockBatch033Problems"
+
+type SupportedUnlockSyntax = Exclude<
+  SyntaxPresenceKind,
+  "heading-id" | "automatic-url"
+>
 
 type FixtureSources = {
   different: string
@@ -8,13 +13,12 @@ type FixtureSources = {
   malformed: string
 }
 
-const singleSources: Readonly<Record<Exclude<SyntaxPresenceKind, "heading-id">, FixtureSources>> = {
+const singleSources: Readonly<Record<SupportedUnlockSyntax, FixtureSources>> = {
   "bold-italic": { different: "***Fresh words***", caseVariation: "___FRESH WORDS___", missing: "Fresh words", malformed: "**Fresh words*" },
   strikethrough: { different: "~~Earlier plan~~", caseVariation: "~~EARLIER PLAN~~", missing: "Earlier plan", malformed: "~Earlier plan~" },
   "nested-blockquote": { different: "> Topic\n> > Detail", caseVariation: "> TOPIC\n> > DETAIL", missing: "> Topic\n> Detail", malformed: "> Topic\n> Reply" },
   "code-block-language": { different: "```html\n<p>Hi</p>\n```", caseVariation: "```HTML\n<P>HI</P>\n```", missing: "```\nplain\n```", malformed: "    plain code" },
   "hard-line-break": { different: "Left  \nRight", caseVariation: "LEFT  \nRIGHT", missing: "Left\nRight", malformed: "Left \nRight" },
-  "automatic-url": { different: "Visit https://example.net", caseVariation: "VISIT https://EXAMPLE.NET", missing: "Visit example.net", malformed: "Visit [site](https://example.net)" },
   "link-title": { different: "[Help](https://example.net \"Details\")", caseVariation: "[HELP](https://EXAMPLE.NET \"DETAILS\")", missing: "[Help](https://example.net)", malformed: "[Help](https://example.net \"\")" },
   "angle-bracket-url": { different: "<https://example.net/help>", caseVariation: "<https://EXAMPLE.NET/HELP>", missing: "https://example.net/help", malformed: "[Help](https://example.net/help)" },
   "angle-bracket-email": { different: "<help@example.net>", caseVariation: "<HELP@EXAMPLE.NET>", missing: "help@example.net", malformed: "[Email](mailto:help@example.net)" },
@@ -31,9 +35,9 @@ function kind(role: FixtureRole): ProblemFixture["kind"] {
   return role
 }
 
-function fixture(problemId: string, role: FixtureRole, source: string, expectedStatus: ProblemFixture["expectedStatus"], extra: Pick<ProblemFixture, "expectedFeedbackId" | "exercisesCheckId" | "expectedReviewIds"> = {}): ProblemFixture {
+function fixture(problemId: string, role: FixtureRole, source: string, expectedStatus: ProblemFixture["expectedStatus"], extra: Pick<ProblemFixture, "expectedFeedbackId" | "exercisesCheckId" | "expectedReviewIds"> = {}, suffix: string = role): ProblemFixture {
   return {
-    id: `${problemId}-${role}`,
+    id: `${problemId}-${suffix}`,
     problemId,
     problemRevision: 1,
     role,
@@ -44,8 +48,8 @@ function fixture(problemId: string, role: FixtureRole, source: string, expectedS
   }
 }
 
-function singleFixtures(problem: (typeof levelUnlockBatch032Problems)[number]): readonly ProblemFixture[] {
-  const syntax = problem.skillIds[0] as Exclude<SyntaxPresenceKind, "heading-id">
+function singleFixtures(problem: (typeof levelUnlockBatch033Problems)[number]): readonly ProblemFixture[] {
+  const syntax = problem.skillIds[0] as SupportedUnlockSyntax
   const sources = singleSources[syntax]
   const checkId = `use-${syntax}`
   const matched = { expectedReviewIds: [] } as const
@@ -61,10 +65,34 @@ function singleFixtures(problem: (typeof levelUnlockBatch032Problems)[number]): 
   if (problem.level === 3) {
     fixtures.push(fixture(problem.id, "edge-case", `${sources.different}\n${Array.from({ length: 28 }, (_, index) => `Plain line ${index + 1}.`).join("\n")}`, "fail", { expectedFeedbackId: "keep-short", exercisesCheckId: "keep-short" }))
   }
+  if (syntax === "footnote") {
+    fixtures.push(
+      fixture(
+        problem.id,
+        "edge-case",
+        "[^a]: Definition without a reference",
+        "fail",
+        failed,
+        "unreferenced-definition",
+      ),
+    )
+  }
+  if (syntax === "escape") {
+    fixtures.push(
+      fixture(
+        problem.id,
+        "edge-case",
+        "`\\*literal code\\*`",
+        "fail",
+        failed,
+        "literal-code-backslashes",
+      ),
+    )
+  }
   return fixtures
 }
 
-function mixedFixtures(problem: (typeof levelUnlockBatch032Problems)[number]): readonly ProblemFixture[] {
+function mixedFixtures(problem: (typeof levelUnlockBatch033Problems)[number]): readonly ProblemFixture[] {
   const [first, second] = problem.skillIds
   const isLinkMix = first === "link-title"
   const sources = isLinkMix
@@ -92,7 +120,7 @@ function mixedFixtures(problem: (typeof levelUnlockBatch032Problems)[number]): r
   ]
 }
 
-export const levelUnlockBatch032Fixtures: readonly ProblemFixture[] =
-  levelUnlockBatch032Problems.flatMap((problem) =>
+export const levelUnlockBatch033Fixtures: readonly ProblemFixture[] =
+  levelUnlockBatch033Problems.flatMap((problem) =>
     problem.skillIds.length === 1 ? singleFixtures(problem) : mixedFixtures(problem),
   )

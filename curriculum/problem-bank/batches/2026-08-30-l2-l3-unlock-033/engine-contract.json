@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "policyId": "real-engine-contract-v1",
-  "policyDigest": "cb5a0b772ecf6c6533c977d840e6c7618cd062c3e8f07b670e2b027aaeb29d26",
+  "policyDigest": "76c6f522ecd1d3a5867a610bca45c80bb29f2a86f7bce5da5d66fa0fefa263e1",
   "files": [
     {
       "path": "package-lock.json",
@@ -41,7 +41,11 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "8da3dc0cda03c363e74d09eae0b427260fd29356bef1296a0ef3a6921a64a152"
+      "sha256": "6148fcac5b06bc1ad70c7df3614af3f0f6a65240e6c63b1ced5975db8dc9e27d"
+    },
+    {
+      "path": "src/markdown/parser.ts",
+      "sha256": "20f8371a6dfa84f2d6c327bf9067198a075947a829de99ae7e2c30add15d03d9"
     },
     {
       "path": "src/engine/predicates/heading.ts",
@@ -60,7 +64,15 @@
     {
       "name": "mdast-util-from-markdown",
       "version": "2.0.3"
+    },
+    {
+      "name": "mdast-util-gfm",
+      "version": "3.1.0"
+    },
+    {
+      "name": "micromark-extension-gfm",
+      "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "49b4f7867c1f09474aa09f554048710acba2a2f134364a6a5503245ecdd767e8"
+  "engineContractDigest": "39fa4e50219c445a86cff1b0714ad3ebafbdcdce906817c3a7454c54625ff5c4"
 }

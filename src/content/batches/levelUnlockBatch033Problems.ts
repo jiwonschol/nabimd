@@ -1,12 +1,17 @@
 import type { NormalizedProblem, SyntaxPresenceKind } from "../types"
 
-export const levelUnlockBatch032Id = "2026-08-30-l2-l3-unlock-032"
+export const levelUnlockBatch033Id = "2026-08-30-l2-l3-unlock-033"
 
 const curriculumVersion = "2026-07-19"
 
+type SupportedUnlockSyntax = Exclude<
+  SyntaxPresenceKind,
+  "heading-id" | "automatic-url"
+>
+
 type SingleInput = {
   level: 2 | 3
-  syntax: Exclude<SyntaxPresenceKind, "heading-id">
+  syntax: SupportedUnlockSyntax
   label: string
   targets: readonly [string, string]
   example: string
@@ -18,7 +23,6 @@ export const levelUnlockSingleInputs: readonly SingleInput[] = [
   { level: 2, syntax: "nested-blockquote", label: "nested block quote", targets: ["> Main note\n> > Reply", "> Question\n> > Answer"], example: "> Note\n> > Detail" },
   { level: 2, syntax: "code-block-language", label: "syntax-highlighted code block", targets: ["```js\nconst ready = true\n```", "```css\n.card { color: blue; }\n```"], example: "```html\n<p>Hello</p>\n```" },
   { level: 2, syntax: "hard-line-break", label: "line break", targets: ["First step  \nSecond step", "Morning note  \nEvening note"], example: "Line one  \nLine two" },
-  { level: 2, syntax: "automatic-url", label: "automatic URL", targets: ["Visit https://example.com", "Open https://example.org/help"], example: "See https://example.net" },
   { level: 3, syntax: "link-title", label: "link title", targets: ["[Guide](https://example.com \"Read the guide\")", "[Map](https://example.org 'Open the map')"], example: "[Help](https://example.net \"More details\")" },
   { level: 3, syntax: "angle-bracket-url", label: "angle-bracket URL", targets: ["<https://example.com>", "<https://example.org/help>"], example: "<https://example.net>" },
   { level: 3, syntax: "angle-bracket-email", label: "angle-bracket email", targets: ["<hello@example.com>", "<team@example.org>"], example: "<help@example.net>" },
@@ -78,7 +82,7 @@ function createSingleProblem(input: SingleInput, variant: number): NormalizedPro
       domains: [input.level === 2 ? "everyday-notes" : "workplace-notes"],
       terms: [...new Set(target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
     },
-    sourceBatchId: levelUnlockBatch032Id,
+    sourceBatchId: levelUnlockBatch033Id,
     revision: 1,
     curriculumVersion,
     contentVariant: `variant-${suffix}`,
@@ -155,13 +159,13 @@ const mixedProblems: readonly NormalizedProblem[] = mixedInputs.map((input, inde
     domains: ["workplace-notes"],
     terms: [...new Set(input.target.match(/[A-Za-z]+/g) ?? [])].slice(0, 8),
   },
-  sourceBatchId: levelUnlockBatch032Id,
+  sourceBatchId: levelUnlockBatch033Id,
   revision: 1,
   curriculumVersion,
   contentVariant: index === 0 ? "link-and-email" : "list-and-url",
 }))
 
-export const levelUnlockBatch032Problems: readonly NormalizedProblem[] = [
+export const levelUnlockBatch033Problems: readonly NormalizedProblem[] = [
   ...singleProblems,
   ...mixedProblems,
 ]

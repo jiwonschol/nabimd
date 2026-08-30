@@ -1,6 +1,9 @@
 import { problemBank } from "./problemBank"
 import type { CurriculumLevel, NormalizedProblem } from "./types"
-import { createTurnProblemIds } from "../selection/runComposition"
+import {
+  createTurnProblemIds,
+  getSyntaxFamily,
+} from "../selection/runComposition"
 import { curriculumLevels } from "./curriculumLevels"
 import {
   type EntryId,
@@ -84,6 +87,14 @@ function fingerprint(value: string): string {
 /** See the note beside its use in `runScheduleRevision`. */
 export const COMPOSITION_REVISION = "composition@2-mixed-avoids-adjacent-runs"
 
+const servedSyntaxFamilies = new Set(
+  curriculumLevels.flatMap((entry) =>
+    getServedProblemsForBank(problemBank, entry.level)
+      .map(getSyntaxFamily)
+      .filter((family) => family !== null),
+  ),
+)
+
 /**
  * Any input that can invalidate a persisted deterministic run belongs here.
  * Deriving the value prevents a curriculum edit from relying on a manual bump.
@@ -100,6 +111,9 @@ export const COMPOSITION_REVISION = "composition@2-mixed-avoids-adjacent-runs"
 export const runScheduleRevision = [
   `turn-size@${RUN_POLICY.turnSize}`,
   `family-weights@${Object.entries(SYNTAX_FAMILY_WEIGHTS)
+    .filter(([family]) =>
+      servedSyntaxFamilies.has(family as keyof typeof SYNTAX_FAMILY_WEIGHTS),
+    )
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([family, weight]) => `${family}:${weight}`)
     .join(",")}`,
