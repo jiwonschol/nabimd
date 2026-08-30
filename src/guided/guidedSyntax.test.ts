@@ -692,6 +692,22 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("keeps multiline link-title delimiters on one interchangeable card", () => {
+    const titleCards = deriveSyntaxCheckpoints(
+      '[x](url "multi\nline")',
+      "x",
+    ).filter((checkpoint) =>
+      syntaxCheckpointTerms(checkpoint).includes("link title"),
+    )
+
+    expect(titleCards).toHaveLength(1)
+    expect(acceptedGuidedSyntaxInputs(titleCards[0]!)).toEqual([
+      "[](\"\")",
+      "[]('')",
+      "[](())",
+    ])
+  })
+
   it("derives link-title blanks from a referenced definition", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       '[Guide][ref]\n\n[ref]: https://example.com "Guide title"',
@@ -1105,6 +1121,25 @@ describe("deriveSyntaxCheckpoints", () => {
     expect(checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint))).toContain(
       "syntax-highlighted code block",
     )
+    const fenceCard = checkpoints.find((checkpoint) =>
+      syntaxCheckpointTerms(checkpoint).includes("syntax-highlighted code block"),
+    )
+    expect(
+      acceptedGuidedSyntaxInputs(fenceCard!).some(
+        (input) => input.includes("~~~") && !input.includes("```"),
+      ),
+    ).toBe(true)
+  })
+
+  it("asks for a language-tagged fence that starts in a list item", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "- ```js\n  value\n  ```",
+      "value",
+    )
+
+    expect(
+      checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+    ).toContain("syntax-highlighted code block")
   })
 
   it("does not offer a fence alternative that consumes the language token", () => {

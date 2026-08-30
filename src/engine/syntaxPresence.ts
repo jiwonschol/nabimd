@@ -51,19 +51,46 @@ function countBoldItalicSegments(
 }
 
 function referencedFootnoteIdentifiers(root: AstNode): Set<string> {
+  const definitions = new Map<string, PositionedSyntaxNode>()
   const referencedFootnotes = new Set<string>()
-  const collectReferences = (nodes: readonly AstNode[], insideDefinition = false): void => {
+  const collectTopLevelReferences = (
+    nodes: readonly AstNode[],
+    insideDefinition = false,
+  ): void => {
     for (const node of nodes as readonly PositionedSyntaxNode[]) {
+      if (
+        node.type === "footnoteDefinition" &&
+        node.identifier &&
+        !definitions.has(node.identifier)
+      ) {
+        definitions.set(node.identifier, node)
+      }
       if (node.type === "footnoteReference" && !insideDefinition && node.identifier) {
         referencedFootnotes.add(node.identifier)
       }
-      collectReferences(
+      collectTopLevelReferences(
         node.children ?? [],
         insideDefinition || node.type === "footnoteDefinition",
       )
     }
   }
-  collectReferences(root.children ?? [])
+  collectTopLevelReferences(root.children ?? [])
+
+  const queue = [...referencedFootnotes]
+  for (let index = 0; index < queue.length; index += 1) {
+    const definition = definitions.get(queue[index]!)
+    if (!definition) continue
+    for (const node of descendants(definition.children ?? []) as PositionedSyntaxNode[]) {
+      if (
+        node.type === "footnoteReference" &&
+        node.identifier &&
+        !referencedFootnotes.has(node.identifier)
+      ) {
+        referencedFootnotes.add(node.identifier)
+        queue.push(node.identifier)
+      }
+    }
+  }
   return referencedFootnotes
 }
 
@@ -92,15 +119,23 @@ function syntaxNodes(root: AstNode): PositionedSyntaxNode[] {
 
 function countNestedBlockquotes(
   nodes: readonly AstNode[],
+  referencedFootnotes: ReadonlySet<string>,
   insideBlockquote = false,
 ): number {
   return nodes.reduce((count, node) => {
+    const positioned = node as PositionedSyntaxNode
+    if (
+      node.type === "footnoteDefinition" &&
+      positioned.identifier &&
+      !referencedFootnotes.has(positioned.identifier)
+    ) return count
     const isNested = node.type === "blockquote" && insideBlockquote
     return (
       count +
       (isNested ? 1 : 0) +
       countNestedBlockquotes(
         node.children ?? [],
+        referencedFootnotes,
         insideBlockquote || node.type === "blockquote",
       )
     )
@@ -145,13 +180,36 @@ function countEscapes(
       ? [{ start, end }]
       : []
   })
+  const referencedDefinitionIdentifiers = new Set(
+    nodes.flatMap((node) =>
+      (node.type === "linkReference" || node.type === "imageReference") &&
+      node.identifier
+        ? [node.identifier]
+        : [],
+    ),
+  )
+  const effectiveDefinitions = new Map<string, PositionedSyntaxNode>()
+  for (const node of nodes) {
+    if (
+      node.type === "definition" &&
+      node.identifier &&
+      !effectiveDefinitions.has(node.identifier)
+    ) {
+      effectiveDefinitions.set(node.identifier, node)
+    }
+  }
   for (const node of nodes) {
     const raw = rawSource(node, source)
     const syntaxBearingRange =
       node.type === "text" ||
       (node.type === "link" && raw.startsWith("[")) ||
       node.type === "image" ||
-      node.type === "definition"
+      node.type === "linkReference" ||
+      node.type === "imageReference" ||
+      (node.type === "definition" &&
+        Boolean(node.identifier) &&
+        referencedDefinitionIdentifiers.has(node.identifier!) &&
+        effectiveDefinitions.get(node.identifier!) === node)
     if (!syntaxBearingRange) continue
     const start = node.position?.start.offset
     if (start === undefined) continue
@@ -205,7 +263,10 @@ export function countSyntaxPresence(
     case "strikethrough":
       return nodes.filter((node) => node.type === "delete").length
     case "nested-blockquote":
-      return countNestedBlockquotes(context.root.children as AstNode[])
+      return countNestedBlockquotes(
+        context.root.children as AstNode[],
+        referencedFootnoteIdentifiers(context.root as AstNode),
+      )
     case "code-block-language":
       return nodes.filter(
         (node) => node.type === "code" && Boolean(node.lang?.trim()),
