@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+import { readFile } from "node:fs/promises"
 import { levelUnlockBatch032Fixtures } from "../../src/content/batches/levelUnlockBatch032Fixtures"
 import { levelUnlockBatch032Problems } from "../../src/content/batches/levelUnlockBatch032Problems"
 import {
@@ -24,6 +25,15 @@ describe("schema-v2 Level 2 and 3 unlock batch 032", () => {
   it("binds all candidates to the real syntax detector", () => {
     expect(computed.engineContract.files.map(({ path }: { path: string }) => path)).toContain("src/engine/syntaxPresence.ts")
     expect(computed.manifest.entries).toHaveLength(levelUnlockBatch032Problems.length)
+  })
+
+  it("tracks the empty review directory without forging review JSON", async () => {
+    const reviewReadme = await readFile(
+      `${repositoryRoot}/curriculum/problem-bank/batches/2026-08-30-l2-l3-unlock-032/reviews/README.md`,
+      "utf8",
+    )
+    expect(reviewReadme).toContain("two sealed JSON review records")
+    expect(reviewReadme).toContain("all 26 candidate revisions independently")
   })
 
   it("keeps committed mechanical evidence deterministic and unsealed", async () => {
