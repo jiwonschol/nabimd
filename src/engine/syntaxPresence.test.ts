@@ -31,6 +31,18 @@ describe("syntax presence", () => {
     expect(
       countSyntaxPresence(createEvaluationContext("https://x/\\(a"), "escape"),
     ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("[unused]: /foo\\(bar\\)"),
+        "escape",
+      ),
+    ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("![a\\*][ref]\n\n[ref]: /image"),
+        "escape",
+      ),
+    ).toBe(1)
   })
 
   it("ignores syntax hidden in unreferenced footnote definitions", () => {
@@ -40,12 +52,26 @@ describe("syntax presence", () => {
     expect(
       countSyntaxPresence(createEvaluationContext("[^a]: [^a]"), "footnote"),
     ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("[^a]: > outer\n    > > inner"),
+        "nested-blockquote",
+      ),
+    ).toBe(0)
   })
 
   it("counts each matched footnote identifier once", () => {
     expect(countSyntaxPresence(createEvaluationContext("Claim[^a]. Again[^a].\n\n[^a]: Source"), "footnote")).toBe(1)
     expect(countSyntaxPresence(createEvaluationContext("[^a]: Unreferenced"), "footnote")).toBe(0)
     expect(countSyntaxPresence(createEvaluationContext("Missing[^a]"), "footnote")).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext(
+          "Claim[^a]\n\n[^a]: Outer[^b]\n\n[^b]: Inner",
+        ),
+        "footnote",
+      ),
+    ).toBe(2)
   })
 
   it("counts each blockquote nested below another blockquote", () => {

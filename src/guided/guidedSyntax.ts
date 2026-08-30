@@ -231,18 +231,36 @@ function buildAcceptedForms(
     }
   }
 
+  const fenceParts = checkpoint.segments.flatMap((segment, segmentIndex) => {
+    if (segment.kind !== "input" || !segment.family) return []
+    const inputIndex = checkpoint.segments
+      .slice(0, segmentIndex)
+      .filter((candidate) => candidate.kind === "input").length
+    return [{ family: segment.family, inputIndex, value: segment.value }]
+  })
+  const openingFence = fenceParts.find(({ family }) => family.endsWith("-open"))
+  const closingFence = fenceParts.find(({ family }) => family.endsWith("-close"))
+  const language = fenceParts.find(({ family }) => family.endsWith("-language"))
   if (
-    (canonicalParts.length === 2 || canonicalParts.length === 3) &&
-    canonicalParts[0] === canonicalParts.at(-1) &&
-    (canonicalParts[0] === "```" || canonicalParts[0] === "~~~")
+    openingFence &&
+    closingFence &&
+    openingFence.value === closingFence.value &&
+    /^(?:`{3,}|~{3,})$/.test(openingFence.value)
   ) {
-    const alternativeFence = canonicalParts[0] === "```" ? "~~~" : "```"
-    const informationToken = canonicalParts.length === 3 ? (canonicalParts[1] ?? "") : ""
+    const alternativeFence = openingFence.value.startsWith("`")
+      ? "~".repeat(openingFence.value.length)
+      : "`".repeat(openingFence.value.length)
+    const informationToken = language?.value ?? ""
     expandInputForms(forms, (form) =>
       !(alternativeFence.startsWith("`") && informationToken.includes("`")) &&
       !informationToken?.startsWith(alternativeFence[0]!) &&
-      form[0] === canonicalParts[0] && form.at(-1) === canonicalParts.at(-1)
-        ? [alternativeFence, ...form.slice(1, -1), alternativeFence]
+      form[openingFence.inputIndex] === openingFence.value &&
+      form[closingFence.inputIndex] === closingFence.value
+        ? form.map((part, index) =>
+            index === openingFence.inputIndex || index === closingFence.inputIndex
+              ? alternativeFence
+              : part,
+          )
         : null,
     )
   }
@@ -920,13 +938,13 @@ function markCodeFence(
   const openingStart = lineStartAt(source, range.from)
   const openingEnd = lineEndAt(source, range.from)
   const opening = source
-    .slice(openingStart, openingEnd)
-    .match(/^((?: {0,3}>[\t ]?)*[\t ]*)(`{3,}|~{3,})/)
-  if (!opening?.[2]) return null
+    .slice(range.from, openingEnd)
+    .match(/^(`{3,}|~{3,})/)
+  if (!opening?.[1]) return null
 
-  const openingMarkStart = openingStart + (opening[1]?.length ?? 0)
+  const openingMarkStart = range.from
   const openingMarkEnd =
-    openingMarkStart + opening[2].length
+    openingMarkStart + opening[1].length
   markRange(
     mask,
     { from: openingMarkStart, to: openingMarkEnd },
@@ -1251,6 +1269,16 @@ function markNodeSyntax(
       markLinkPunctuation(source, mask, node, families, family)
       if (node.type === "link" || node.type === "image") {
         markEscapeSyntax(source, mask, node, families, family)
+        if (
+          range &&
+          node.title?.trim() &&
+          source.slice(range.from, range.to).includes("\n")
+        ) {
+          groupedRanges.push({
+            from: lineStartAt(source, range.from),
+            to: lineEndAt(source, range.to),
+          })
+        }
       }
       break
     case "code": {
