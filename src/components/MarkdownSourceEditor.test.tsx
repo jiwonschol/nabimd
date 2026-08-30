@@ -605,6 +605,21 @@ describe("MarkdownSourceEditor", () => {
     expect(screen.queryByRole("textbox", { name: "Goal document" })).toBeNull()
   })
 
+  it("conceals escape syntax in a rendered read-only document", () => {
+    const { container } = render(
+      <MarkdownWordProcessor
+        label="Goal document"
+        presentation="rendered"
+        readOnly
+        value={"\\*Literal stars\\*\n\\# Literal hash"}
+      />,
+    )
+
+    expect(
+      container.querySelectorAll(".cm-rendered-widget--conceal"),
+    ).toHaveLength(3)
+  })
+
   it("keeps the visual image placeholder out of the read-only document narration", () => {
     const { container } = render(
       <MarkdownWordProcessor
