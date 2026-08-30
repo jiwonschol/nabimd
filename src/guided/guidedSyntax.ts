@@ -46,6 +46,16 @@ function replacePairedDelimiter(
   return alternative
 }
 
+function hasUnescapedCharacter(value: string, character: string): boolean {
+  for (let index = 0; index < value.length; index += 1) {
+    if (value[index] !== character) continue
+    let backslashes = 0
+    while (value[index - 1 - backslashes] === "\\") backslashes += 1
+    if (backslashes % 2 === 0) return true
+  }
+  return false
+}
+
 const swappedDelimiters: Readonly<Record<string, string>> = {
   "**": "__",
   __: "**",
@@ -183,21 +193,32 @@ function buildAcceptedForms(
     if (segment.kind !== "input" || !segment.family?.endsWith("-title")) {
       return []
     }
-    return [
-      checkpoint.segments
+    return [{
+      inputIndex: checkpoint.segments
         .slice(0, index)
         .filter((candidate) => candidate.kind === "input").length,
-    ]
+      segmentIndex: index,
+    }]
   })
   for (let pair = 0; pair + 1 < titleDelimiterIndexes.length; pair += 2) {
-    const openingIndex = titleDelimiterIndexes[pair]!
-    const closingIndex = titleDelimiterIndexes[pair + 1]!
+    const openingDelimiter = titleDelimiterIndexes[pair]!
+    const closingDelimiter = titleDelimiterIndexes[pair + 1]!
+    const openingIndex = openingDelimiter.inputIndex
+    const closingIndex = closingDelimiter.inputIndex
+    const titleText = checkpoint.segments
+      .slice(openingDelimiter.segmentIndex + 1, closingDelimiter.segmentIndex)
+      .map((segment) => segment.value)
+      .join("")
     const currentForms = [...forms]
     for (const [opening, closing] of [
       ['"', '"'],
       ["'", "'"],
       ["(", ")"],
     ] as const) {
+      const forbidden = opening === "(" ? ["(", ")"] : [opening]
+      if (forbidden.some((delimiter) => hasUnescapedCharacter(titleText, delimiter))) {
+        continue
+      }
       for (const form of currentForms) {
         if (form[openingIndex] === opening && form[closingIndex] === closing) {
           continue
@@ -216,8 +237,9 @@ function buildAcceptedForms(
     (canonicalParts[0] === "```" || canonicalParts[0] === "~~~")
   ) {
     const alternativeFence = canonicalParts[0] === "```" ? "~~~" : "```"
-    const informationToken = canonicalParts.length === 3 ? canonicalParts[1] : ""
+    const informationToken = canonicalParts.length === 3 ? (canonicalParts[1] ?? "") : ""
     expandInputForms(forms, (form) =>
+      !(alternativeFence.startsWith("`") && informationToken.includes("`")) &&
       !informationToken?.startsWith(alternativeFence[0]!) &&
       form[0] === canonicalParts[0] && form.at(-1) === canonicalParts.at(-1)
         ? [alternativeFence, ...form.slice(1, -1), alternativeFence]
@@ -393,6 +415,9 @@ function syntaxGroupTermsInOrder(
     const next = checkpoint.segments[index + 1]
     if (segment.family?.endsWith("-title")) {
       return ["link title"]
+    }
+    if (segment.family?.startsWith("footnote")) {
+      return ["footnote"]
     }
     if (segment.family?.startsWith("break@")) {
       return ["line break"]
@@ -896,14 +921,15 @@ function markCodeFence(
   const openingEnd = lineEndAt(source, range.from)
   const opening = source
     .slice(openingStart, openingEnd)
-    .match(/^(\s*)(`{3,}|~{3,})/)
+    .match(/^((?: {0,3}>[\t ]?)*[\t ]*)(`{3,}|~{3,})/)
   if (!opening?.[2]) return null
 
+  const openingMarkStart = openingStart + (opening[1]?.length ?? 0)
   const openingMarkEnd =
-    openingStart + (opening[1]?.length ?? 0) + opening[2].length
+    openingMarkStart + opening[2].length
   markRange(
     mask,
-    { from: openingStart, to: openingMarkEnd },
+    { from: openingMarkStart, to: openingMarkEnd },
     families,
     `${family}-open`,
   )
@@ -929,13 +955,14 @@ function markCodeFence(
     const closingEnd = lineEndAt(source, closingLineStart)
     const closing = source
       .slice(closingLineStart, closingEnd)
-      .match(/^(\s*)(`{3,}|~{3,})\s*$/)
+      .match(/^((?: {0,3}>[\t ]?)*[\t ]*)(`{3,}|~{3,})\s*$/)
     if (closing?.[2]) {
+      const closingMarkStart = closingLineStart + (closing[1]?.length ?? 0)
       markRange(
         mask,
         {
-          from: closingLineStart,
-          to: closingLineStart + (closing[1]?.length ?? 0) + closing[2].length,
+          from: closingMarkStart,
+          to: closingMarkStart + closing[2].length,
         },
         families,
         `${family}-close`,
@@ -944,6 +971,54 @@ function markCodeFence(
   }
 
   return { from: openingStart, to: lineEndAt(source, range.to) }
+}
+
+function markEscapeSyntax(
+  source: string,
+  mask: boolean[],
+  node: Nodes,
+  families: SyntaxFamilies,
+  family: string,
+): void {
+  const range = nodeRange(node)
+  if (!range) return
+  const raw = source.slice(range.from, range.to)
+  if (node.type === "link" && /^(?:<|https?:\/\/|www\.)/i.test(raw)) return
+  const literalRanges: SourceRange[] = []
+  const collectLiterals = (candidate: Nodes): void => {
+    if (candidate.type === "inlineCode") {
+      const candidateRange = nodeRange(candidate)
+      if (candidateRange) literalRanges.push(candidateRange)
+    }
+    if (isParent(candidate)) {
+      for (const child of candidate.children) collectLiterals(child as Nodes)
+    }
+  }
+  collectLiterals(node)
+  for (let index = 0; index < raw.length; index += 1) {
+    if (raw[index] !== "\\") continue
+    let runLength = 1
+    while (raw[index + runLength] === "\\") runLength += 1
+    const escapedPunctuation = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(
+      raw[index + runLength] ?? "",
+    )
+    const syntaxBackslashes =
+      Math.floor(runLength / 2) +
+      (runLength % 2 === 1 && escapedPunctuation ? 1 : 0)
+    for (let pair = 0; pair < syntaxBackslashes; pair += 1) {
+      const from = range.from + index + pair * 2
+      if (literalRanges.some((literal) => from >= literal.from && from < literal.to)) {
+        continue
+      }
+      markRange(
+        mask,
+        { from, to: from + 1 },
+        families,
+        `${family}-escape-${index + pair * 2}`,
+      )
+    }
+    index += runLength - 1
+  }
 }
 
 function markNodeSyntax(
@@ -1174,6 +1249,9 @@ function markNodeSyntax(
     case "image":
     case "imageReference":
       markLinkPunctuation(source, mask, node, families, family)
+      if (node.type === "link" || node.type === "image") {
+        markEscapeSyntax(source, mask, node, families, family)
+      }
       break
     case "code": {
       const grouped = markCodeFence(source, mask, node, families, family)
@@ -1219,45 +1297,32 @@ function markNodeSyntax(
       break
     case "text":
       if (range && !insideAutolink) {
-        const raw = source.slice(range.from, range.to)
-        for (let index = 0; index < raw.length; index += 1) {
-          if (raw[index] !== "\\") continue
-
-          let runLength = 1
-          while (raw[index + runLength] === "\\") runLength += 1
-          const escapedPunctuation = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(
-            raw[index + runLength] ?? "",
-          )
-          const syntaxBackslashes =
-            Math.floor(runLength / 2) + (runLength % 2 === 1 && escapedPunctuation ? 1 : 0)
-
-          for (let pair = 0; pair < syntaxBackslashes; pair += 1) {
-            markRange(
-              mask,
-              {
-                from: range.from + index + pair * 2,
-                to: range.from + index + pair * 2 + 1,
-              },
-              families,
-              `${family}-escape-${index + pair * 2}`,
-            )
-          }
-          index += runLength - 1
-        }
+        markEscapeSyntax(source, mask, node, families, family)
       }
       break
     case "footnoteReference":
-      if (range) markRange(mask, range, families, family)
+      if (range) {
+        markRange(mask, { from: range.from, to: range.from + 2 }, families, family)
+        markRange(mask, { from: range.to - 1, to: range.to }, families, family)
+      }
       break
     case "footnoteDefinition":
       if (range) {
         const prefix = source
           .slice(range.from, lineEndAt(source, range.from))
-          .match(/^ {0,3}\[\^[^\]]+\]:[\t ]*/)?.[0]
+          .match(/^( {0,3})\[\^([^\]]+)\]:(?:[\t ]*)/)
         if (prefix) {
+          const markerFrom = range.from + (prefix[1]?.length ?? 0)
           markRange(
             mask,
-            { from: range.from, to: range.from + prefix.length },
+            { from: markerFrom, to: markerFrom + 2 },
+            families,
+            family,
+          )
+          const closingFrom = markerFrom + 2 + (prefix[2]?.length ?? 0)
+          markRange(
+            mask,
+            { from: closingFrom, to: closingFrom + 2 },
             families,
             family,
           )
@@ -1268,24 +1333,26 @@ function markNodeSyntax(
       if (!range || !referencedDefinitionIds.has(node.identifier)) break
       const raw = source.slice(range.from, range.to)
       const title = raw.match(/\s+(?:(["'])([\s\S]*?)\1|\(([\s\S]*?)\))\s*$/)
-      if (title?.index === undefined) break
-      const titleSource = title[0]
-      const opening = title[1] ?? "("
-      const closing = title[1] ?? ")"
-      const openingFrom = range.from + title.index + titleSource.indexOf(opening)
-      const closingFrom = range.from + title.index + titleSource.lastIndexOf(closing)
-      markRange(
-        mask,
-        { from: openingFrom, to: openingFrom + 1 },
-        families,
-        `${family}-title`,
-      )
-      markRange(
-        mask,
-        { from: closingFrom, to: closingFrom + 1 },
-        families,
-        `${family}-title`,
-      )
+      if (title?.index !== undefined) {
+        const titleSource = title[0]
+        const opening = title[1] ?? "("
+        const closing = title[1] ?? ")"
+        const openingFrom = range.from + title.index + titleSource.indexOf(opening)
+        const closingFrom = range.from + title.index + titleSource.lastIndexOf(closing)
+        markRange(
+          mask,
+          { from: openingFrom, to: openingFrom + 1 },
+          families,
+          `${family}-title`,
+        )
+        markRange(
+          mask,
+          { from: closingFrom, to: closingFrom + 1 },
+          families,
+          `${family}-title`,
+        )
+      }
+      markEscapeSyntax(source, mask, node, families, family)
       break
     }
     default:
@@ -1306,7 +1373,7 @@ function markNodeSyntax(
         insideAutolink ||
           (node.type === "link" &&
             range !== null &&
-            source.slice(range.from, range.to).startsWith("<")),
+            /^(?:<|https?:\/\/|www\.)/i.test(source.slice(range.from, range.to))),
       )
     }
   }

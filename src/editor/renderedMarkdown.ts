@@ -381,7 +381,12 @@ export function findRenderedMarkdownTokens(
         const insideAutolink = ancestors.some((ancestor) => {
           if (ancestor.type !== "link") return false
           const range = offsets(ancestor)
-          return Boolean(range && source.slice(range.from, range.to).startsWith("<"))
+          return Boolean(
+            range &&
+              /^(?:<|https?:\/\/|www\.)/i.test(
+                source.slice(range.from, range.to),
+              ),
+          )
         })
         if (insideAutolink) break
         for (const relativeFrom of escapeBackslashOffsets(raw)) {

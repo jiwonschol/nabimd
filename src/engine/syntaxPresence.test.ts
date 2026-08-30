@@ -25,6 +25,21 @@ describe("syntax presence", () => {
         "escape",
       ),
     ).toBe(2)
+    expect(
+      countSyntaxPresence(createEvaluationContext("[`\\*`](url)"), "escape"),
+    ).toBe(0)
+    expect(
+      countSyntaxPresence(createEvaluationContext("https://x/\\(a"), "escape"),
+    ).toBe(0)
+  })
+
+  it("ignores syntax hidden in unreferenced footnote definitions", () => {
+    expect(
+      countSyntaxPresence(createEvaluationContext("[^a]: ***hidden***"), "bold-italic"),
+    ).toBe(0)
+    expect(
+      countSyntaxPresence(createEvaluationContext("[^a]: [^a]"), "footnote"),
+    ).toBe(0)
   })
 
   it("counts each matched footnote identifier once", () => {
@@ -57,6 +72,21 @@ describe("syntax presence", () => {
         "link-title",
       ),
     ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext('[x][a]\n\n[a]: /first\n[a]: /ignored "title"'),
+        "link-title",
+      ),
+    ).toBe(0)
+  })
+
+  it("counts each inner bold-italic segment", () => {
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("_**one** and **two**_"),
+        "bold-italic",
+      ),
+    ).toBe(2)
   })
 
   it("classifies mailto URI autolinks by their source form", () => {
