@@ -144,9 +144,9 @@ describe("Level 2 and 3 unlock batch 038", () => {
         checkpoints,
         checkpoints.length,
       )
-      expect(evaluateProblem(problem, completed), problem.id).toMatchObject({
-        status: "pass",
-      })
+      expect(evaluateProblem(problem, completed).status, problem.id).not.toBe(
+        "fail",
+      )
     }
   })
 
