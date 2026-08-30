@@ -25,10 +25,69 @@ function rawSource(node: PositionedSyntaxNode, source: string): string {
     : source.slice(start, end)
 }
 
-function containsDescendant(node: AstNode, type: string): boolean {
-  return descendants(node.children ?? []).some(
-    (candidate) => candidate.type === type,
-  )
+function countBoldItalicSegments(
+  nodes: readonly AstNode[],
+  referencedFootnotes: ReadonlySet<string>,
+  insideStrong = false,
+  insideEmphasis = false,
+): number {
+  return nodes.reduce((count, node) => {
+    const positioned = node as PositionedSyntaxNode
+    if (
+      node.type === "footnoteDefinition" &&
+      positioned.identifier &&
+      !referencedFootnotes.has(positioned.identifier)
+    ) return count
+    const segment =
+      (node.type === "strong" && insideEmphasis) ||
+      (node.type === "emphasis" && insideStrong)
+    return count + (segment ? 1 : 0) + countBoldItalicSegments(
+      node.children ?? [],
+      referencedFootnotes,
+      insideStrong || node.type === "strong",
+      insideEmphasis || node.type === "emphasis",
+    )
+  }, 0)
+}
+
+function referencedFootnoteIdentifiers(root: AstNode): Set<string> {
+  const referencedFootnotes = new Set<string>()
+  const collectReferences = (nodes: readonly AstNode[], insideDefinition = false): void => {
+    for (const node of nodes as readonly PositionedSyntaxNode[]) {
+      if (node.type === "footnoteReference" && !insideDefinition && node.identifier) {
+        referencedFootnotes.add(node.identifier)
+      }
+      collectReferences(
+        node.children ?? [],
+        insideDefinition || node.type === "footnoteDefinition",
+      )
+    }
+  }
+  collectReferences(root.children ?? [])
+  return referencedFootnotes
+}
+
+function syntaxNodes(root: AstNode): PositionedSyntaxNode[] {
+  const all = descendants(root.children ?? []) as PositionedSyntaxNode[]
+  const referencedFootnotes = referencedFootnoteIdentifiers(root)
+  const hiddenRanges = all.flatMap((node) => {
+    const start = node.position?.start.offset
+    const end = node.position?.end.offset
+    return node.type === "footnoteDefinition" &&
+      node.identifier &&
+      !referencedFootnotes.has(node.identifier) &&
+      start !== undefined &&
+      end !== undefined
+      ? [{ start, end }]
+      : []
+  })
+  return all.filter((node) => {
+    const start = node.position?.start.offset
+    const end = node.position?.end.offset
+    return start === undefined || end === undefined || !hiddenRanges.some(
+      (range) => start >= range.start && end <= range.end,
+    )
+  })
 }
 
 function countNestedBlockquotes(
@@ -69,13 +128,20 @@ function countEscapes(
   source: string,
 ): number {
   const offsets = new Set<number>()
+  const literalRanges = nodes.flatMap((node) => {
+    const start = node.position?.start.offset
+    const end = node.position?.end.offset
+    return node.type === "inlineCode" && start !== undefined && end !== undefined
+      ? [{ start, end }]
+      : []
+  })
   const autolinkRanges = nodes.flatMap((node) => {
     const start = node.position?.start.offset
     const end = node.position?.end.offset
     return node.type === "link" &&
       start !== undefined &&
       end !== undefined &&
-      source.slice(start, end).startsWith("<")
+      /^(?:<|https?:\/\/|www\.)/i.test(source.slice(start, end))
       ? [{ start, end }]
       : []
   })
@@ -95,6 +161,9 @@ function countEscapes(
       if (match.index === undefined) continue
       const offset = start + match.index
       if (
+        !literalRanges.some(
+          (range) => offset >= range.start && offset < range.end,
+        ) &&
         !autolinkRanges.some(
           (range) => offset >= range.start && offset < range.end,
         )
@@ -125,15 +194,14 @@ export function countSyntaxPresence(
   context: EvaluationContext,
   syntax: SyntaxPresenceKind,
 ): number {
-  const nodes = descendants(context.root.children as AstNode[]) as PositionedSyntaxNode[]
+  const nodes = syntaxNodes(context.root as AstNode)
 
   switch (syntax) {
     case "bold-italic":
-      return nodes.filter(
-        (node) =>
-          (node.type === "strong" && containsDescendant(node, "emphasis")) ||
-          (node.type === "emphasis" && containsDescendant(node, "strong")),
-      ).length
+      return countBoldItalicSegments(
+        context.root.children as AstNode[],
+        referencedFootnoteIdentifiers(context.root as AstNode),
+      )
     case "strikethrough":
       return nodes.filter((node) => node.type === "delete").length
     case "nested-blockquote":
@@ -158,16 +226,19 @@ export function countSyntaxPresence(
             rawSource(node, context.source).startsWith("[") &&
             Boolean(node.title?.trim()),
         ).length
-        const referencedIdentifiers = new Set(
+        const referencedIdentifiers = new Set<string>(
           nodes
             .filter((node) => node.type === "linkReference")
-            .map((node) => node.identifier),
+            .flatMap((node) => node.identifier ? [node.identifier] : []),
         )
-        const referencedDefinitionTitles = nodes.filter(
-          (node) =>
-            node.type === "definition" &&
-            referencedIdentifiers.has(node.identifier) &&
-            Boolean(node.title?.trim()),
+        const effectiveDefinitions = new Map<string, PositionedSyntaxNode>()
+        for (const node of nodes) {
+          if (node.type === "definition" && node.identifier && !effectiveDefinitions.has(node.identifier)) {
+            effectiveDefinitions.set(node.identifier, node)
+          }
+        }
+        const referencedDefinitionTitles = [...referencedIdentifiers].filter(
+          (identifier) => Boolean(effectiveDefinitions.get(identifier)?.title?.trim()),
         ).length
         return inlineTitles + referencedDefinitionTitles
       }

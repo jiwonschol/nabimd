@@ -189,22 +189,30 @@ export function instructionFor(shape: CheckpointShape): CheckpointInstruction {
     )
   }
 
-  if (everyInput(shape, /^\[\^[^\]]+\](?::[\t ]*)?$/)) {
+  if (
+    inputs.length > 0 &&
+    shape.inputFamilies.every((family) => family?.startsWith("footnote"))
+  ) {
     return instruction("Type the matching Markdown marker for a ", "footnote")
   }
 
   if (
-    inputs.length === 2 &&
-    inputs[0] === "<" &&
-    inputs[1] === ">"
+    inputs.length >= 2 &&
+    inputs.length % 2 === 0 &&
+    inputs.every((value, index) => value === (index % 2 === 0 ? "<" : ">"))
   ) {
-    const closingIndex = inputs.indexOf(">")
-    const destination = shape.lockedBefore[closingIndex] ?? ""
+    const destinations = inputs.flatMap((value, index) =>
+      value === ">" ? [shape.lockedBefore[index] ?? ""] : [],
+    )
     return instruction(
-      "Wrap the address in angle brackets to create an ",
-      /^[A-Za-z][A-Za-z0-9+.-]{1,31}:/.test(destination)
+      destinations.length > 1
+        ? "Wrap each address in angle brackets to create an "
+        : "Wrap the address in angle brackets to create an ",
+      destinations.every((destination) =>
+        /^[A-Za-z][A-Za-z0-9+.-]{1,31}:/.test(destination),
+      )
         ? "angle-bracket URL"
-        : destination.includes("@")
+        : destinations.every((destination) => destination.includes("@"))
           ? "angle-bracket email"
           : "angle-bracket URL",
     )

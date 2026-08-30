@@ -680,6 +680,18 @@ describe("deriveSyntaxCheckpoints", () => {
     )
   })
 
+  it("offers only title delimiters valid for the locked title text", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      '[x](url "it\'s")',
+      "x",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual([
+      "[](\"\")",
+      "[](())",
+    ])
+  })
+
   it("derives link-title blanks from a referenced definition", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       '[Guide][ref]\n\n[ref]: https://example.com "Guide title"',
@@ -852,6 +864,20 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("asks for escapes stored on link, image, and definition leaf ranges", () => {
+    for (const target of [
+      "[x](foo\\(bar\\))",
+      "![x](foo\\(bar\\))",
+      "[x][a]\n\n[a]: foo\\(bar\\)",
+    ]) {
+      expect(
+        deriveSyntaxCheckpoints(target, "")
+          .flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint)),
+        target,
+      ).toContain("escape")
+    }
+  })
+
   it("asks for escape syntax inside GFM table cells", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "| Value |\n| --- |\n| \\*literal\\* |",
@@ -870,14 +896,18 @@ describe("deriveSyntaxCheckpoints", () => {
     )
 
     expect(checkpoints.map((checkpoint) => checkpoint.canonicalInput)).toEqual([
-      "[^1][^1]: ",
+      "[^][^]:",
     ])
     expect(checkpoints[0]?.segments).toEqual([
       { kind: "locked", value: "Claim" },
-      { kind: "input", value: "[^1]" },
+      { kind: "input", value: "[^" },
+      { kind: "locked", value: "1" },
+      { kind: "input", value: "]" },
       { kind: "locked", value: "\n\n" },
-      { kind: "input", value: "[^1]: " },
-      { kind: "locked", value: "Source note" },
+      { kind: "input", value: "[^" },
+      { kind: "locked", value: "1" },
+      { kind: "input", value: "]:" },
+      { kind: "locked", value: " Source note" },
     ])
     for (const checkpoint of checkpoints) {
       expect(syntaxCheckpointTerms(checkpoint)).toEqual(["footnote"])
@@ -1046,6 +1076,17 @@ describe("deriveSyntaxCheckpoints", () => {
     )
   })
 
+  it("asks for a language-tagged fence nested in a blockquote", () => {
+    const checkpoints = deriveSyntaxCheckpoints(
+      "> ```js\n> value\n> ```",
+      "value",
+    )
+
+    expect(checkpoints.flatMap((checkpoint) => syntaxCheckpointTerms(checkpoint))).toContain(
+      "syntax-highlighted code block",
+    )
+  })
+
   it("does not offer a fence alternative that consumes the language token", () => {
     for (const [fence, language] of [
       ["```", "~~~"],
@@ -1060,6 +1101,17 @@ describe("deriveSyntaxCheckpoints", () => {
         `${fence}${language}${fence}`,
       ])
     }
+  })
+
+  it("does not offer a backtick fence around an info token containing a backtick", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "~~~foo`bar\nvalue\n~~~",
+      "value",
+    )
+
+    expect(acceptedGuidedSyntaxInputs(checkpoint!)).toEqual([
+      "~~~foo`bar~~~",
+    ])
   })
 })
 

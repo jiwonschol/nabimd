@@ -518,4 +518,16 @@ describe("the sentence, derived from real Markdown", () => {
       "Type the Markdown marks for a section break",
     ])
   })
+
+  it("describes every pair in a merged autolink checkpoint", () => {
+    expect(sentencesFor("<https://one.example>\n<https://two.example>")).toEqual([
+      "Wrap each address in angle brackets to create an angle-bracket URL",
+    ])
+  })
+
+  it("names punctuation-only footnote blanks", () => {
+    expect(sentencesFor("Claim[^source]\n\n[^source]: Note")).toEqual([
+      "Type the matching Markdown marker for a footnote",
+    ])
+  })
 })
