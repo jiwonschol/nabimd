@@ -1,0 +1,3886 @@
+{
+  "schemaVersion": 2,
+  "batchId": "2026-08-31-l2-l3-unlock-039",
+  "fixtures": [
+    {
+      "id": "l2-bold-italic-1-canonical",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "***Read this first***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-1-case-spelling-variation",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "___FRESH WORDS___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-1-different-prose",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "***Fresh words***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-1-malformed",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "**Fresh words*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-1-matched-with-review",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "***Fresh words***\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-1-missing",
+      "problemId": "l2-bold-italic-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "Fresh words",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-2-canonical",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "___Keep this nearby___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-2-case-spelling-variation",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "___FRESH WORDS___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-2-different-prose",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "***Fresh words***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-2-malformed",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "**Fresh words*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-2-matched-with-review",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "***Fresh words***\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-2-missing",
+      "problemId": "l2-bold-italic-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "Fresh words",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-3-canonical",
+      "problemId": "l2-bold-italic-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "***Save before closing***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-3-case-spelling-variation",
+      "problemId": "l2-bold-italic-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "___FRESH WORDS___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-3-different-prose",
+      "problemId": "l2-bold-italic-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "***Fresh words***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-3-malformed",
+      "problemId": "l2-bold-italic-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "**Fresh words*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-3-matched-with-review",
+      "problemId": "l2-bold-italic-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "***Fresh words***\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-3-missing",
+      "problemId": "l2-bold-italic-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "Fresh words",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-4-canonical",
+      "problemId": "l2-bold-italic-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "___Bring this tomorrow___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-4-case-spelling-variation",
+      "problemId": "l2-bold-italic-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "___FRESH WORDS___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-4-different-prose",
+      "problemId": "l2-bold-italic-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "***Fresh words***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-4-malformed",
+      "problemId": "l2-bold-italic-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "**Fresh words*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-4-matched-with-review",
+      "problemId": "l2-bold-italic-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "***Fresh words***\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-4-missing",
+      "problemId": "l2-bold-italic-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "Fresh words",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-5-canonical",
+      "problemId": "l2-bold-italic-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "***Check the final total***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-5-case-spelling-variation",
+      "problemId": "l2-bold-italic-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "___FRESH WORDS___",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-5-different-prose",
+      "problemId": "l2-bold-italic-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "***Fresh words***",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-5-malformed",
+      "problemId": "l2-bold-italic-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "**Fresh words*",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-bold-italic-5-matched-with-review",
+      "problemId": "l2-bold-italic-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "***Fresh words***\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-bold-italic-5-missing",
+      "problemId": "l2-bold-italic-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-bold-italic",
+      "source": "Fresh words",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-bold-italic"
+    },
+    {
+      "id": "l2-code-block-language-1-canonical",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "```js\nconst ready = true\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-1-case-spelling-variation",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "```HTML\n<P>HI</P>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-1-different-prose",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "```html\n<p>Hi</p>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-1-malformed",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "    plain code",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-1-matched-with-review",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "```html\n<p>Hi</p>\n```\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-1-missing",
+      "problemId": "l2-code-block-language-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "```\nplain\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-2-canonical",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "```css\n.card { color: blue; }\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-2-case-spelling-variation",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "```HTML\n<P>HI</P>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-2-different-prose",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "```html\n<p>Hi</p>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-2-malformed",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "    plain code",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-2-matched-with-review",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "```html\n<p>Hi</p>\n```\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-2-missing",
+      "problemId": "l2-code-block-language-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "```\nplain\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-3-canonical",
+      "problemId": "l2-code-block-language-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "```html\n<p>Hello</p>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-3-case-spelling-variation",
+      "problemId": "l2-code-block-language-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "```HTML\n<P>HI</P>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-3-different-prose",
+      "problemId": "l2-code-block-language-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "```html\n<p>Hi</p>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-3-malformed",
+      "problemId": "l2-code-block-language-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "    plain code",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-3-matched-with-review",
+      "problemId": "l2-code-block-language-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "```html\n<p>Hi</p>\n```\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-3-missing",
+      "problemId": "l2-code-block-language-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "```\nplain\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-4-canonical",
+      "problemId": "l2-code-block-language-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "```json\n{\"ready\": true}\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-4-case-spelling-variation",
+      "problemId": "l2-code-block-language-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "```HTML\n<P>HI</P>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-4-different-prose",
+      "problemId": "l2-code-block-language-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "```html\n<p>Hi</p>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-4-malformed",
+      "problemId": "l2-code-block-language-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "    plain code",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-4-matched-with-review",
+      "problemId": "l2-code-block-language-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "```html\n<p>Hi</p>\n```\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-4-missing",
+      "problemId": "l2-code-block-language-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "```\nplain\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-5-canonical",
+      "problemId": "l2-code-block-language-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "```sql\nSELECT name FROM tasks;\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-5-case-spelling-variation",
+      "problemId": "l2-code-block-language-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "```HTML\n<P>HI</P>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-5-different-prose",
+      "problemId": "l2-code-block-language-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "```html\n<p>Hi</p>\n```",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-5-malformed",
+      "problemId": "l2-code-block-language-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "    plain code",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-code-block-language-5-matched-with-review",
+      "problemId": "l2-code-block-language-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "```html\n<p>Hi</p>\n```\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-code-block-language-5-missing",
+      "problemId": "l2-code-block-language-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-code-block-language",
+      "source": "```\nplain\n```",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-code-block-language"
+    },
+    {
+      "id": "l2-hard-line-break-1-canonical",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "First step  \nSecond step",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-1-case-spelling-variation",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "LEFT  \nRIGHT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-1-different-prose",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Left  \nRight",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-1-malformed",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left \nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-1-matched-with-review",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Left  \nRight\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-1-missing",
+      "problemId": "l2-hard-line-break-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left\nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-2-canonical",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Morning note  \nEvening note",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-2-case-spelling-variation",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "LEFT  \nRIGHT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-2-different-prose",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Left  \nRight",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-2-malformed",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left \nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-2-matched-with-review",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Left  \nRight\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-2-missing",
+      "problemId": "l2-hard-line-break-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left\nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-3-canonical",
+      "problemId": "l2-hard-line-break-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Room 12  \nSecond floor",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-3-case-spelling-variation",
+      "problemId": "l2-hard-line-break-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "LEFT  \nRIGHT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-3-different-prose",
+      "problemId": "l2-hard-line-break-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Left  \nRight",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-3-malformed",
+      "problemId": "l2-hard-line-break-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left \nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-3-matched-with-review",
+      "problemId": "l2-hard-line-break-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Left  \nRight\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-3-missing",
+      "problemId": "l2-hard-line-break-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left\nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-4-canonical",
+      "problemId": "l2-hard-line-break-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Call today  \nEmail tomorrow",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-4-case-spelling-variation",
+      "problemId": "l2-hard-line-break-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "LEFT  \nRIGHT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-4-different-prose",
+      "problemId": "l2-hard-line-break-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Left  \nRight",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-4-malformed",
+      "problemId": "l2-hard-line-break-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left \nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-4-matched-with-review",
+      "problemId": "l2-hard-line-break-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Left  \nRight\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-4-missing",
+      "problemId": "l2-hard-line-break-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left\nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-5-canonical",
+      "problemId": "l2-hard-line-break-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Draft ready  \nReview pending",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-5-case-spelling-variation",
+      "problemId": "l2-hard-line-break-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "LEFT  \nRIGHT",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-5-different-prose",
+      "problemId": "l2-hard-line-break-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Left  \nRight",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-5-malformed",
+      "problemId": "l2-hard-line-break-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left \nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-hard-line-break-5-matched-with-review",
+      "problemId": "l2-hard-line-break-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Left  \nRight\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-hard-line-break-5-missing",
+      "problemId": "l2-hard-line-break-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-hard-line-break",
+      "source": "Left\nRight",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-hard-line-break"
+    },
+    {
+      "id": "l2-nested-blockquote-1-canonical",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "> Main note\n> > Reply",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-1-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "> TOPIC\n> > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-1-different-prose",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "> Topic\n> > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-1-malformed",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Reply",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-1-matched-with-review",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "> Topic\n> > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-1-missing",
+      "problemId": "l2-nested-blockquote-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-2-canonical",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "> Question\n> > Answer",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-2-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "> TOPIC\n> > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-2-different-prose",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "> Topic\n> > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-2-malformed",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Reply",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-2-matched-with-review",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "> Topic\n> > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-2-missing",
+      "problemId": "l2-nested-blockquote-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-3-canonical",
+      "problemId": "l2-nested-blockquote-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "> Update\n> > Follow-up",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-3-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "> TOPIC\n> > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-3-different-prose",
+      "problemId": "l2-nested-blockquote-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "> Topic\n> > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-3-malformed",
+      "problemId": "l2-nested-blockquote-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Reply",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-3-matched-with-review",
+      "problemId": "l2-nested-blockquote-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "> Topic\n> > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-3-missing",
+      "problemId": "l2-nested-blockquote-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-4-canonical",
+      "problemId": "l2-nested-blockquote-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "> Request\n> > Response",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-4-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "> TOPIC\n> > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-4-different-prose",
+      "problemId": "l2-nested-blockquote-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "> Topic\n> > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-4-malformed",
+      "problemId": "l2-nested-blockquote-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Reply",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-4-matched-with-review",
+      "problemId": "l2-nested-blockquote-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "> Topic\n> > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-4-missing",
+      "problemId": "l2-nested-blockquote-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-5-canonical",
+      "problemId": "l2-nested-blockquote-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "> Summary\n> > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-5-case-spelling-variation",
+      "problemId": "l2-nested-blockquote-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "> TOPIC\n> > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-5-different-prose",
+      "problemId": "l2-nested-blockquote-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "> Topic\n> > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-5-malformed",
+      "problemId": "l2-nested-blockquote-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Reply",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-nested-blockquote-5-matched-with-review",
+      "problemId": "l2-nested-blockquote-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "> Topic\n> > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-nested-blockquote-5-missing",
+      "problemId": "l2-nested-blockquote-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-nested-blockquote",
+      "source": "> Topic\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-nested-blockquote"
+    },
+    {
+      "id": "l2-strikethrough-1-canonical",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "~~Old address~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-1-case-spelling-variation",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "~~EARLIER PLAN~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-1-different-prose",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "~~Earlier plan~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-1-malformed",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "~Earlier plan~",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-1-matched-with-review",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "~~Earlier plan~~\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-1-missing",
+      "problemId": "l2-strikethrough-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "Earlier plan",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-2-canonical",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "~~Canceled meeting~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-2-case-spelling-variation",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "~~EARLIER PLAN~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-2-different-prose",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "~~Earlier plan~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-2-malformed",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "~Earlier plan~",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-2-matched-with-review",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "~~Earlier plan~~\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-2-missing",
+      "problemId": "l2-strikethrough-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "Earlier plan",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-3-canonical",
+      "problemId": "l2-strikethrough-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "~~Previous deadline~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-3-case-spelling-variation",
+      "problemId": "l2-strikethrough-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "~~EARLIER PLAN~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-3-different-prose",
+      "problemId": "l2-strikethrough-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "~~Earlier plan~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-3-malformed",
+      "problemId": "l2-strikethrough-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "~Earlier plan~",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-3-matched-with-review",
+      "problemId": "l2-strikethrough-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "~~Earlier plan~~\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-3-missing",
+      "problemId": "l2-strikethrough-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "Earlier plan",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-4-canonical",
+      "problemId": "l2-strikethrough-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "~~Outdated instructions~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-4-case-spelling-variation",
+      "problemId": "l2-strikethrough-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "~~EARLIER PLAN~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-4-different-prose",
+      "problemId": "l2-strikethrough-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "~~Earlier plan~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-4-malformed",
+      "problemId": "l2-strikethrough-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "~Earlier plan~",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-4-matched-with-review",
+      "problemId": "l2-strikethrough-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "~~Earlier plan~~\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-4-missing",
+      "problemId": "l2-strikethrough-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "Earlier plan",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-5-canonical",
+      "problemId": "l2-strikethrough-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "~~Earlier estimate~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-5-case-spelling-variation",
+      "problemId": "l2-strikethrough-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "~~EARLIER PLAN~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-5-different-prose",
+      "problemId": "l2-strikethrough-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "~~Earlier plan~~",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-5-malformed",
+      "problemId": "l2-strikethrough-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "~Earlier plan~",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l2-strikethrough-5-matched-with-review",
+      "problemId": "l2-strikethrough-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "~~Earlier plan~~\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l2-strikethrough-5-missing",
+      "problemId": "l2-strikethrough-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-strikethrough",
+      "source": "Earlier plan",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-strikethrough"
+    },
+    {
+      "id": "l3-angle-bracket-email-1-canonical",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Project contact\n\nSend questions to <hello@example.com>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-1-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<HELP@EXAMPLE.NET>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-1-different-prose",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<help@example.net>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-1-edge-case",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<help@example.net>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-email-1-mailto-uri",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "<mailto:foo>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-1-malformed",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "[Email](mailto:help@example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-1-matched-with-review",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<help@example.net>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-1-missing",
+      "problemId": "l3-angle-bracket-email-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "help@example.net",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-2-canonical",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Team request\n\nEmail the details to <team@example.org>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-2-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<HELP@EXAMPLE.NET>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-2-different-prose",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<help@example.net>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-2-edge-case",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<help@example.net>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-email-2-mailto-uri",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "<mailto:foo>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-2-malformed",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "[Email](mailto:help@example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-2-matched-with-review",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<help@example.net>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-2-missing",
+      "problemId": "l3-angle-bracket-email-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "help@example.net",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-3-canonical",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Office booking\n\nConfirm the room with <rooms@example.net>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-3-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<HELP@EXAMPLE.NET>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-3-different-prose",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<help@example.net>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-3-edge-case",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<help@example.net>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-email-3-mailto-uri",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "<mailto:foo>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-3-malformed",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "[Email](mailto:help@example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-3-matched-with-review",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<help@example.net>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-3-missing",
+      "problemId": "l3-angle-bracket-email-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "help@example.net",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-4-canonical",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Workshop help\n\nAsk <events@example.edu> about access.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-4-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<HELP@EXAMPLE.NET>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-4-different-prose",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<help@example.net>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-4-edge-case",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<help@example.net>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-email-4-mailto-uri",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "<mailto:foo>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-4-malformed",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "[Email](mailto:help@example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-4-matched-with-review",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<help@example.net>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-4-missing",
+      "problemId": "l3-angle-bracket-email-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "help@example.net",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-5-canonical",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Support handoff\n\nForward the note to <help@example.info>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-5-case-spelling-variation",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<HELP@EXAMPLE.NET>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-5-different-prose",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<help@example.net>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-5-edge-case",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<help@example.net>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-email-5-mailto-uri",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "<mailto:foo>",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-5-malformed",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "[Email](mailto:help@example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-email-5-matched-with-review",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<help@example.net>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-email-5-missing",
+      "problemId": "l3-angle-bracket-email-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "help@example.net",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-angle-bracket-url-1-canonical",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Project reference\n\nOpen <https://example.com> for the current plan.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-1-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<https://EXAMPLE.NET/HELP>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-1-different-prose",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<https://example.net/help>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-1-edge-case",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<https://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-url-1-malformed",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "[Help](https://example.net/help)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-1-matched-with-review",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<https://example.net/help>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-1-missing",
+      "problemId": "l3-angle-bracket-url-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "https://example.net/help",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-2-canonical",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Visitor information\n\nUse <https://example.org/help> before arriving.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-2-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<https://EXAMPLE.NET/HELP>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-2-different-prose",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<https://example.net/help>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-2-edge-case",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<https://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-url-2-malformed",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "[Help](https://example.net/help)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-2-matched-with-review",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<https://example.net/help>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-2-missing",
+      "problemId": "l3-angle-bracket-url-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "https://example.net/help",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-3-canonical",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Team calendar\n\nCheck <https://example.net/calendar> for the next date.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-3-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<https://EXAMPLE.NET/HELP>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-3-different-prose",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<https://example.net/help>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-3-edge-case",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<https://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-url-3-malformed",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "[Help](https://example.net/help)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-3-matched-with-review",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<https://example.net/help>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-3-missing",
+      "problemId": "l3-angle-bracket-url-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "https://example.net/help",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-4-canonical",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Release notes\n\nRead <https://example.edu/releases> before the update.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-4-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<https://EXAMPLE.NET/HELP>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-4-different-prose",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<https://example.net/help>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-4-edge-case",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<https://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-url-4-malformed",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "[Help](https://example.net/help)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-4-matched-with-review",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<https://example.net/help>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-4-missing",
+      "problemId": "l3-angle-bracket-url-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "https://example.net/help",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-5-canonical",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Support status\n\nVisit <https://example.info/status> for the latest notice.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-5-case-spelling-variation",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "<https://EXAMPLE.NET/HELP>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-5-different-prose",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "<https://example.net/help>",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-5-edge-case",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "<https://example.net/help>\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-angle-bracket-url-5-malformed",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "[Help](https://example.net/help)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-angle-bracket-url-5-matched-with-review",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "<https://example.net/help>\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-angle-bracket-url-5-missing",
+      "problemId": "l3-angle-bracket-url-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "https://example.net/help",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-escape-1-canonical",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Notation note\n\nWrite \"\\*required\\*\" as literal text in the form.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-1-case-spelling-variation",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "\\_LITERAL UNDERSCORES\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-1-different-prose",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "\\_Literal underscores\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-1-edge-case",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-escape-1-literal-code-backslashes",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "`\\*literal code\\*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-1-malformed",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-escape",
+      "source": "_Formatted underscores_",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-1-matched-with-review",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-1-missing",
+      "problemId": "l3-escape-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-escape",
+      "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-2-canonical",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Draft label\n\nKeep \\# pending as plain text in the report.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-2-case-spelling-variation",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "\\_LITERAL UNDERSCORES\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-2-different-prose",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "\\_Literal underscores\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-2-edge-case",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-escape-2-literal-code-backslashes",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "`\\*literal code\\*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-2-malformed",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-escape",
+      "source": "_Formatted underscores_",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-2-matched-with-review",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-2-missing",
+      "problemId": "l3-escape-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-escape",
+      "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-3-canonical",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Search note\n\nType \\_archive\\_ exactly in the search field.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-3-case-spelling-variation",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "\\_LITERAL UNDERSCORES\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-3-different-prose",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "\\_Literal underscores\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-3-edge-case",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-escape-3-literal-code-backslashes",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "`\\*literal code\\*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-3-malformed",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-escape",
+      "source": "_Formatted underscores_",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-3-matched-with-review",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-3-missing",
+      "problemId": "l3-escape-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-escape",
+      "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-4-canonical",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Template reminder\n\nShow \\{owner\\} as literal braces in the example.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-4-case-spelling-variation",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "\\_LITERAL UNDERSCORES\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-4-different-prose",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "\\_Literal underscores\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-4-edge-case",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-escape-4-literal-code-backslashes",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "`\\*literal code\\*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-4-malformed",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-escape",
+      "source": "_Formatted underscores_",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-4-matched-with-review",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-4-missing",
+      "problemId": "l3-escape-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-escape",
+      "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-5-canonical",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Command note\n\nKeep \\+ optional as ordinary text in the guide.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-5-case-spelling-variation",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "\\_LITERAL UNDERSCORES\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-5-different-prose",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "\\_Literal underscores\\_",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-5-edge-case",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "\\_Literal underscores\\_\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-escape-5-literal-code-backslashes",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-escape",
+      "source": "`\\*literal code\\*`",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-5-malformed",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-escape",
+      "source": "_Formatted underscores_",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-escape-5-matched-with-review",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "\\_Literal underscores\\_\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-escape-5-missing",
+      "problemId": "l3-escape-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-escape",
+      "source": "Literal underscores",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-footnote-1-canonical",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Research note\n\nCheck the source[^1] before sharing the summary.\n\n[^1]: Project notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-1-case-spelling-variation",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-1-different-prose",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Claim[^a].\n\n[^a]: Source",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-1-edge-case",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-footnote-1-malformed",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim[1].\n\n[1]: Source",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-1-matched-with-review",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-1-missing",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim with a source.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-1-unreferenced-definition",
+      "problemId": "l3-footnote-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-footnote",
+      "source": "[^a]: Definition without a reference",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-2-canonical",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Team update\n\nRead the detail[^note] before the meeting.\n\n[^note]: Team handbook",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-2-case-spelling-variation",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-2-different-prose",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Claim[^a].\n\n[^a]: Source",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-2-edge-case",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-footnote-2-malformed",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim[1].\n\n[1]: Source",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-2-matched-with-review",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-2-missing",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim with a source.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-2-unreferenced-definition",
+      "problemId": "l3-footnote-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-footnote",
+      "source": "[^a]: Definition without a reference",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-3-canonical",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Travel brief\n\nConfirm the arrival time[^trip] before booking.\n\n[^trip]: Visitor guide",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-3-case-spelling-variation",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-3-different-prose",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Claim[^a].\n\n[^a]: Source",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-3-edge-case",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-footnote-3-malformed",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim[1].\n\n[1]: Source",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-3-matched-with-review",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-3-missing",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim with a source.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-3-unreferenced-definition",
+      "problemId": "l3-footnote-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-footnote",
+      "source": "[^a]: Definition without a reference",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-4-canonical",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Release summary\n\nVerify the supported version[^release] before updating.\n\n[^release]: Release notes",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-4-case-spelling-variation",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-4-different-prose",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Claim[^a].\n\n[^a]: Source",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-4-edge-case",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-footnote-4-malformed",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim[1].\n\n[1]: Source",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-4-matched-with-review",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-4-missing",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim with a source.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-4-unreferenced-definition",
+      "problemId": "l3-footnote-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-footnote",
+      "source": "[^a]: Definition without a reference",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-5-canonical",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Support record\n\nKeep the ticket number[^case] with the handoff.\n\n[^case]: Support log",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-5-case-spelling-variation",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "CLAIM[^A].\n\n[^A]: SOURCE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-5-different-prose",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Claim[^a].\n\n[^a]: Source",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-5-edge-case",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Claim[^a].\n\n[^a]: Source\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-footnote-5-malformed",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim[1].\n\n[1]: Source",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-5-matched-with-review",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Claim[^a].\n\n[^a]: Source\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-footnote-5-missing",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Claim with a source.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-footnote-5-unreferenced-definition",
+      "problemId": "l3-footnote-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-footnote",
+      "source": "[^a]: Definition without a reference",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-link-title-1-canonical",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Project guide\n\nRead the [setup notes](https://example.com \"Setup notes\") before Monday.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-1-case-spelling-variation",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-1-different-prose",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "[Help](https://example.net \"Details\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-1-edge-case",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-link-title-1-malformed",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net \"\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-1-matched-with-review",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-1-missing",
+      "problemId": "l3-link-title-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-2-canonical",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Office visit\n\nOpen the [floor map](https://example.org 'Office map') before you leave.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-2-case-spelling-variation",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-2-different-prose",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "[Help](https://example.net \"Details\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-2-edge-case",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-link-title-2-malformed",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net \"\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-2-matched-with-review",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-2-missing",
+      "problemId": "l3-link-title-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-3-canonical",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Team handbook\n\nKeep the [leave policy](https://example.net \"Leave policy\") nearby.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-3-case-spelling-variation",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-3-different-prose",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "[Help](https://example.net \"Details\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-3-edge-case",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-link-title-3-malformed",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net \"\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-3-matched-with-review",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-3-missing",
+      "problemId": "l3-link-title-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-4-canonical",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Workshop prep\n\nReview the [arrival guide](https://example.edu 'Arrival guide') this week.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-4-case-spelling-variation",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-4-different-prose",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "[Help](https://example.net \"Details\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-4-edge-case",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-link-title-4-malformed",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net \"\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-4-matched-with-review",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-4-missing",
+      "problemId": "l3-link-title-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-5-canonical",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Support handoff\n\nShare the [contact guide](https://example.info \"Contact guide\") with the next shift.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-5-case-spelling-variation",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "[HELP](https://EXAMPLE.NET \"DETAILS\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-5-different-prose",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "[Help](https://example.net \"Details\")",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-5-edge-case",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "[Help](https://example.net \"Details\")\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-link-title-5-malformed",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net \"\")",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-link-title-5-matched-with-review",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "[Help](https://example.net \"Details\")\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-link-title-5-missing",
+      "problemId": "l3-link-title-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "[Help](https://example.net)",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-list-with-block-1-canonical",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Meeting follow-up\n\n- > Bring a notebook",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-1-case-spelling-variation",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- ITEM\n\n  > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-1-different-prose",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Item\n\n  > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-1-edge-case",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-1-malformed",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-1-matched-with-review",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-1-missing",
+      "problemId": "l3-list-with-block-1",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n  - Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-2-canonical",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Project reminder\n\n- > Share the update",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-2-case-spelling-variation",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- ITEM\n\n  > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-2-different-prose",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Item\n\n  > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-2-edge-case",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-2-malformed",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-2-matched-with-review",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-2-missing",
+      "problemId": "l3-list-with-block-2",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n  - Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-3-canonical",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Visitor note\n\n- > Check in at reception",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-3-case-spelling-variation",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- ITEM\n\n  > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-3-different-prose",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Item\n\n  > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-3-edge-case",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-3-malformed",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-3-matched-with-review",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-3-missing",
+      "problemId": "l3-list-with-block-3",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n  - Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-4-canonical",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Workshop plan\n\n- > Save time for questions",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-4-case-spelling-variation",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- ITEM\n\n  > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-4-different-prose",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Item\n\n  > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-4-edge-case",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-4-malformed",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-4-matched-with-review",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-4-missing",
+      "problemId": "l3-list-with-block-4",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n  - Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-5-canonical",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Support handoff\n\n- > Confirm the next owner",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-5-case-spelling-variation",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "- ITEM\n\n  > DETAIL",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-5-different-prose",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "- Item\n\n  > Detail",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-5-edge-case",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "- Item\n\n  > Detail\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-list-with-block-5-malformed",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n\n> Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-list-with-block-5-matched-with-review",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "- Item\n\n  > Detail\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-list-with-block-5-missing",
+      "problemId": "l3-list-with-block-5",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "- Item\n  - Detail",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-mixed-escape-footnote-canonical",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Template note\n\nWrite \\*owner\\* as literal text in the form.[^1]\n\n[^1]: Project template",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-escape-footnote-case-spelling-variation",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "TEMPLATE\n\nTYPE \\_OWNER\\_ LITERALLY.[^A]\n\n[^A]: FORM GUIDE",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-escape-footnote-different-prose",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Template\n\nType \\_owner\\_ literally.[^a]\n\n[^a]: Form guide",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-escape-footnote-edge-case",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Template\n\nType \\_owner\\_ literally.[^a]\n\n[^a]: Form guide\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-mixed-escape-footnote-malformed",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-footnote",
+      "source": "Template\n\nType \\_owner\\_ literally with source [1].",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-footnote"
+    },
+    {
+      "id": "l3-mixed-escape-footnote-matched-with-review",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Template\n\nType \\_owner\\_ literally.[^a]\n\n[^a]: Form guide\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-escape-footnote-missing",
+      "problemId": "l3-mixed-escape-footnote",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-escape",
+      "source": "Template\n\nType owner literally.[^a]\n\n[^a]: Form guide",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-escape"
+    },
+    {
+      "id": "l3-mixed-link-title-email-canonical",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Team guide\n\nRead the [handoff notes](https://example.com \"Team guide\"), then contact <team@example.com>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-email-case-spelling-variation",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "GUIDE\n\nREAD THE [MAP](https://EXAMPLE.NET \"OFFICE MAP\"), THEN EMAIL <HELP@EXAMPLE.NET>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-email-different-prose",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Guide\n\nRead the [map](https://example.net \"Office map\"), then email <help@example.net>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-email-edge-case",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Guide\n\nRead the [map](https://example.net \"Office map\"), then email <help@example.net>.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-mixed-link-title-email-mailto-uri",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "[Map](https://example.net \"Office map\")\n\nEmail <mailto:foo>.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-mixed-link-title-email-malformed",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "Guide\n\nRead the [map](https://example.net \"Office map\"), then email help@example.net.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-mixed-link-title-email-matched-with-review",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Guide\n\nRead the [map](https://example.net \"Office map\"), then email <help@example.net>.\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-email-missing",
+      "problemId": "l3-mixed-link-title-email",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "Guide\n\nEmail <help@example.net>.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-mixed-link-title-url-canonical",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Release reference\n\nRead the [update guide](https://example.net \"Update guide\"), then check <https://example.net/status>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-url-case-spelling-variation",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "REFERENCE\n\nREAD THE [GUIDE](https://EXAMPLE.EDU \"GUIDE\"), THEN VISIT <https://EXAMPLE.EDU/STATUS>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-url-different-prose",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Reference\n\nRead the [guide](https://example.edu \"Guide\"), then visit <https://example.edu/status>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-url-edge-case",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Reference\n\nRead the [guide](https://example.edu \"Guide\"), then visit <https://example.edu/status>.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-mixed-link-title-url-malformed",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "Reference\n\nRead the [guide](https://example.edu \"Guide\"), then visit https://example.edu/status.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-mixed-link-title-url-matched-with-review",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Reference\n\nRead the [guide](https://example.edu \"Guide\"), then visit <https://example.edu/status>.\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-link-title-url-missing",
+      "problemId": "l3-mixed-link-title-url",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-link-title",
+      "source": "Reference\n\nVisit <https://example.edu/status>.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-link-title"
+    },
+    {
+      "id": "l3-mixed-list-angle-url-canonical",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Visitor checklist\n\n- > Open <https://example.org/visit> before arriving.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-angle-url-case-spelling-variation",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "REFERENCE\n\n- > VISIT <https://EXAMPLE.NET>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-angle-url-different-prose",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Reference\n\n- > Visit <https://example.net>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-angle-url-edge-case",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Reference\n\n- > Visit <https://example.net>.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-mixed-list-angle-url-malformed",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-url",
+      "source": "Reference\n\n- > Visit https://example.net.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-url"
+    },
+    {
+      "id": "l3-mixed-list-angle-url-matched-with-review",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Reference\n\n- > Visit <https://example.net>.\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-angle-url-missing",
+      "problemId": "l3-mixed-list-angle-url",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "Reference\n\nVisit <https://example.net>.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    },
+    {
+      "id": "l3-mixed-list-email-canonical",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "canonical",
+      "source": "Support handoff\n\n- > Send the final note to <help@example.info>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-email-case-spelling-variation",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "case-or-spelling",
+      "source": "HANDOFF\n\n- > EMAIL <TEAM@EXAMPLE.ORG>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-email-different-prose",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "alternate-prose",
+      "source": "Handoff\n\n- > Email <team@example.org>.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-email-edge-case",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "keep-short",
+      "source": "Handoff\n\n- > Email <team@example.org>.\nPlain line 1.\nPlain line 2.\nPlain line 3.\nPlain line 4.\nPlain line 5.\nPlain line 6.\nPlain line 7.\nPlain line 8.\nPlain line 9.\nPlain line 10.\nPlain line 11.\nPlain line 12.\nPlain line 13.\nPlain line 14.\nPlain line 15.\nPlain line 16.\nPlain line 17.\nPlain line 18.\nPlain line 19.\nPlain line 20.\nPlain line 21.\nPlain line 22.\nPlain line 23.\nPlain line 24.\nPlain line 25.\nPlain line 26.\nPlain line 27.\nPlain line 28.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "keep-short"
+    },
+    {
+      "id": "l3-mixed-list-email-mailto-uri",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "edge-case",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "- > Email <mailto:foo>.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-mixed-list-email-malformed",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "malformed-required",
+      "exercisesCheckId": "use-angle-bracket-email",
+      "source": "Handoff\n\n- > Email team@example.org.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-angle-bracket-email"
+    },
+    {
+      "id": "l3-mixed-list-email-matched-with-review",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "matched-with-review",
+      "source": "Handoff\n\n- > Email <team@example.org>.\n\nPlain follow-up.",
+      "expectedStatus": "matched",
+      "expectedReviewIds": []
+    },
+    {
+      "id": "l3-mixed-list-email-missing",
+      "problemId": "l3-mixed-list-email",
+      "problemRevision": 1,
+      "role": "missing-required",
+      "exercisesCheckId": "use-list-with-block",
+      "source": "Handoff\n\nEmail <team@example.org>.",
+      "expectedStatus": "fail",
+      "expectedFeedbackId": "use-list-with-block"
+    }
+  ]
+}

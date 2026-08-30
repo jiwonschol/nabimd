@@ -799,6 +799,26 @@ describe("deriveSyntaxCheckpoints", () => {
     }
   })
 
+  it("accepts any valid fenced-code language instead of hidden target metadata", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "```js\nconst ready = true\n```",
+      "const ready = true",
+    )
+
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "```python```")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "~~~objective.c~~~")).toBe(true)
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "``````")).toBe(false)
+    expect(acceptsGuidedSyntaxInput(checkpoint!, "```foo`bar```")).toBe(false)
+    expect(
+      buildGuidedDraft(
+        "```js\nconst ready = true\n```",
+        [checkpoint!],
+        1,
+        { [checkpoint!.id]: "```python```" },
+      ),
+    ).toBe("```python\nconst ready = true\n```")
+  })
+
   it("asks for the angle brackets around an autolink email", () => {
     const [checkpoint] = deriveSyntaxCheckpoints(
       "Email <learn@example.com>.",

@@ -1,4 +1,4 @@
-# Batch 038: Level 2 and Level 3 unlock candidates
+# Batch 039: Level 2 and Level 3 unlock candidates
 
 Prepare short, independently reviewable exercises for every Level 2 and Level 3
 syntax that the current parser, grader, guided checkpoint generator, and learner
@@ -7,9 +7,10 @@ not support them.
 
 ## Coverage
 
-- Create two dedicated standard problems for each of the five supported Level 2
-  elements and each of the six supported Level 3 elements.
-- Create two standard mixed exercises owned by Level 3. Each must combine two
+- Create five dedicated standard problems for each of the five supported Level 2
+  elements and each of the six supported Level 3 elements. Level 3 targets must
+  be short, coherent, human-readable documents rather than isolated snippets.
+- Create five standard mixed exercises owned by Level 3. Each must combine two
   Level 3 elements, produce no more than five guided checkpoints, and avoid a
   separated repeat of the same checkpoint term.
 - Keep every target within its curriculum owner's runtime line budget.
@@ -23,7 +24,8 @@ not support them.
   direct failing fixture.
 - Every target must produce at least one real guided checkpoint whose learner
   term is already recorded by the generated syntax capability matrix.
-- Keep two content variants in every retry family.
+- Keep five content variants in every retry family so the first five turns do
+  not repeat a card.
 
 ## Publication boundary
 

@@ -482,10 +482,47 @@ export function syntaxCheckpointTerms(
   return [...new Set(syntaxGroupTermsInOrder(checkpoint))]
 }
 
+function fencedLanguageInputParts(
+  checkpoint: SyntaxCheckpoint,
+  value: string,
+): readonly [string, string, string] | null {
+  const canonicalParts = checkpoint.segments.flatMap((segment) =>
+    segment.kind === "input" ? [segment.value] : [],
+  )
+  if (
+    canonicalParts.length !== 3 ||
+    !/^(?:`{3,}|~{3,})$/.test(canonicalParts[0] ?? "") ||
+    canonicalParts[0] !== canonicalParts[2] ||
+    !/^\S+$/.test(canonicalParts[1] ?? "")
+  ) {
+    return null
+  }
+
+  const canonicalFence = canonicalParts[0]!
+  const fences = [
+    canonicalFence,
+    canonicalFence.startsWith("`")
+      ? "~".repeat(canonicalFence.length)
+      : "`".repeat(canonicalFence.length),
+  ]
+  for (const fence of fences) {
+    if (!value.startsWith(fence) || !value.endsWith(fence)) continue
+    const informationToken = value.slice(fence.length, -fence.length)
+    if (
+      /^\S+$/.test(informationToken) &&
+      !(fence.startsWith("`") && informationToken.includes("`"))
+    ) {
+      return [fence, informationToken, fence]
+    }
+  }
+  return null
+}
+
 export function acceptsGuidedSyntaxInput(
   checkpoint: SyntaxCheckpoint,
   value: string,
 ): boolean {
+  if (fencedLanguageInputParts(checkpoint, value) !== null) return true
   const folded = foldTaskBoxCase(value)
   return acceptedGuidedSyntaxInputs(checkpoint).some(
     (accepted) => foldTaskBoxCase(accepted) === folded,
@@ -497,9 +534,12 @@ function renderCheckpointWithInput(
   value: string,
 ): string {
   let inputOffset = 0
+  let inputIndex = 0
+  const fencedLanguageParts = fencedLanguageInputParts(checkpoint, value)
   return checkpoint.segments
     .map((segment) => {
       if (segment.kind === "locked") return segment.value
+      if (fencedLanguageParts) return fencedLanguageParts[inputIndex++]!
       const replacement = value.slice(
         inputOffset,
         inputOffset + segment.value.length,

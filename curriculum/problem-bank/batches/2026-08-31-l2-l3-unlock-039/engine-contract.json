@@ -21,7 +21,7 @@
     },
     {
       "path": "src/editor/renderedMarkdown.ts",
-      "sha256": "6b43fb5293f29c799e0dc6e769a6c1fb9c62448ad221e902b1b515a5a030da1d"
+      "sha256": "b10ae3e5fc92dd086b45905fde28c094e33326f7ebb74ec67d18440f4cab241d"
     },
     {
       "path": "src/engine/evaluateProblem.ts",
@@ -49,7 +49,7 @@
     },
     {
       "path": "src/engine/syntaxPresence.ts",
-      "sha256": "2c07dfe49fa12bc970d759ef29634722a16b8ef8c148f95ceaf7a5d0cb917511"
+      "sha256": "fa3fc9d867c63d5990f6b7497c507541a03a51ccc1b0ae0eb9c94886bdf30750"
     },
     {
       "path": "src/markdown/parser.ts",
@@ -69,7 +69,7 @@
     },
     {
       "path": "src/guided/guidedSyntax.ts",
-      "sha256": "1fca754230a7fb33a69fb08d2e7a1407206fc11714b6f9a8cd320e6024fc9dea"
+      "sha256": "6e42796d7018c238ab9d58eee055751ba5e552628d2f44162f978fc26eb3c21e"
     }
   ],
   "dependencies": [
@@ -86,5 +86,5 @@
       "version": "3.0.0"
     }
   ],
-  "engineContractDigest": "d677372a590e9d07c57b61bfe6602116b18aeb06829bb5d90ab3fe76eed89b2f"
+  "engineContractDigest": "0b0dbdca47adac8bd80815fcd7bf4bfc06c28b0eeccd591a0e10467e2ba9fd03"
 }
