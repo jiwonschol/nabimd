@@ -19,6 +19,12 @@ describe("syntax presence", () => {
     expect(
       countSyntaxPresence(createEvaluationContext("<http://x/\\*>"), "escape"),
     ).toBe(0)
+    expect(
+      countSyntaxPresence(
+        createEvaluationContext("![x](foo\\(bar\\))"),
+        "escape",
+      ),
+    ).toBe(2)
   })
 
   it("counts each matched footnote identifier once", () => {

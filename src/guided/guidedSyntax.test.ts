@@ -838,6 +838,20 @@ describe("deriveSyntaxCheckpoints", () => {
     ])
   })
 
+  it("keeps literal backslashes inside autolink addresses locked", () => {
+    const [checkpoint] = deriveSyntaxCheckpoints(
+      "<http://x/\\*>",
+      "http://x/\\*",
+    )
+
+    expect(checkpoint?.canonicalInput).toBe("<>")
+    expect(checkpoint?.segments).toEqual([
+      { kind: "input", value: "<" },
+      { kind: "locked", value: "http://x/\\*" },
+      { kind: "input", value: ">" },
+    ])
+  })
+
   it("asks for escape syntax inside GFM table cells", () => {
     const checkpoints = deriveSyntaxCheckpoints(
       "| Value |\n| --- |\n| \\*literal\\* |",

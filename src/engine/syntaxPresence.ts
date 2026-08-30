@@ -84,6 +84,7 @@ function countEscapes(
     const syntaxBearingRange =
       node.type === "text" ||
       (node.type === "link" && raw.startsWith("[")) ||
+      node.type === "image" ||
       node.type === "definition"
     if (!syntaxBearingRange) continue
     const start = node.position?.start.offset

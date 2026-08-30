@@ -955,6 +955,7 @@ function markNodeSyntax(
   referencedDefinitionIds: ReadonlySet<string>,
   insideQuote = false,
   insideTable = false,
+  insideAutolink = false,
 ): void {
   const range = nodeRange(node)
   // Two sibling nodes of the same type can sit side by side (`[a](b)[c](d)`).
@@ -1217,7 +1218,7 @@ function markNodeSyntax(
       if (range) markRange(mask, range, families, family)
       break
     case "text":
-      if (range) {
+      if (range && !insideAutolink) {
         const raw = source.slice(range.from, range.to)
         for (let index = 0; index < raw.length; index += 1) {
           if (raw[index] !== "\\") continue
@@ -1302,6 +1303,10 @@ function markNodeSyntax(
         referencedDefinitionIds,
         insideQuote || node.type === "blockquote",
         insideTable || node.type === "table",
+        insideAutolink ||
+          (node.type === "link" &&
+            range !== null &&
+            source.slice(range.from, range.to).startsWith("<")),
       )
     }
   }
