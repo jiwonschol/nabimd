@@ -15,6 +15,30 @@ import {
 const repositoryRoot = process.cwd()
 const computed = await buildLevelUnlockBatch039Artifacts({ repositoryRoot })
 
+type ReviewPhase = {
+  reviews: readonly unknown[]
+  editorial: unknown | null
+  state: { status: string; errors: readonly string[] }
+  publication: { errors: readonly string[] }
+}
+
+function expectReviewPhase({ editorial, state, publication }: ReviewPhase) {
+  if (editorial === null) {
+    expect([
+      "awaiting-independent-review",
+      "awaiting-second-independent-review",
+      "awaiting-editorial",
+    ]).toContain(state.status)
+    expect(state.errors).toEqual([])
+    expect(publication.errors).toContain(
+      "Batch 2026-08-31-l2-l3-unlock-039 requires separate editorial evidence",
+    )
+    return
+  }
+  expect(publication.errors).toEqual([])
+  expect(["ready-to-publish", "published"]).toContain(state.status)
+}
+
 describe("schema-v2 Level 2 and 3 unlock batch 039", () => {
   it("normalizes all candidates and verifies every real-engine fixture", () => {
     expect(computed.normalized.candidateCount).toBe(60)
@@ -65,20 +89,35 @@ describe("schema-v2 Level 2 and 3 unlock batch 039", () => {
     const committed = await readCommittedLevelUnlockBatch039({ repositoryRoot })
     const state = checkLevelUnlockBatch039State({ computed, committed })
     const publication = buildLevelUnlockBatch039Publication({ computed, committed })
-    if (committed.editorial === null) {
-      expect([
-        "awaiting-independent-review",
-        "awaiting-second-independent-review",
-        "awaiting-editorial",
-      ]).toContain(state.status)
-      expect(state.errors).toEqual([])
-      expect(publication.errors).toContain(
-        "Batch 2026-08-31-l2-l3-unlock-039 requires separate editorial evidence",
-      )
-      return
+    expectReviewPhase({
+      reviews: committed.reviews,
+      editorial: committed.editorial,
+      state,
+      publication,
+    })
+  })
+
+  it("accepts zero, one, two, and editorial-complete review phase shapes", () => {
+    for (const sample of [
+      { reviewCount: 0, editorial: null, status: "awaiting-independent-review" },
+      { reviewCount: 1, editorial: null, status: "awaiting-second-independent-review" },
+      { reviewCount: 2, editorial: null, status: "awaiting-editorial" },
+      { reviewCount: 2, editorial: {}, status: "ready-to-publish" },
+      { reviewCount: 2, editorial: {}, status: "published" },
+    ]) {
+      expect(() =>
+        expectReviewPhase({
+          reviews: Array.from({ length: sample.reviewCount }),
+          editorial: sample.editorial,
+          state: { status: sample.status, errors: [] },
+          publication: {
+            errors: sample.editorial === null
+              ? ["Batch 2026-08-31-l2-l3-unlock-039 requires separate editorial evidence"]
+              : [],
+          },
+        }),
+      ).not.toThrow()
     }
-    expect(publication.errors).toEqual([])
-    expect(["ready-to-publish", "published"]).toContain(state.status)
   })
 
   it("refuses to rewrite evidence after review begins", async () => {
